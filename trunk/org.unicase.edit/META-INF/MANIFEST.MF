@@ -8,9 +8,14 @@ Bundle-Activator: org.unicase.edit.ModelEditPlugin$Implementation
 Bundle-Vendor: unicase.org
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.unicase.edit,
- org.unicase.model.provider
+Export-Package: org.unicase.edit;uses:="org.eclipse.emf.common,org.eclipse.emf.common.util",
+ org.unicase.model.provider;
+  uses:="org.unicase.model.util,
+   org.eclipse.emf.common.notify,
+   org.eclipse.emf.edit.provider,
+   org.eclipse.emf.common.util,
+   org.eclipse.emf.ecore"
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.edit;visibility:=reexport,
+ org.eclipse.emf.edit,
  org.unicase.model;visibility:=reexport
 Eclipse-LazyStart: true
