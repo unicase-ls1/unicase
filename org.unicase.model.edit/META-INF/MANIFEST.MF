@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: unicase Model Edit Plugin
+Bundle-SymbolicName: org.unicase.model.edit; singleton:=true
+Bundle-Version: 0.0.1
+Bundle-ClassPath: .
+Bundle-Activator: org.unicase.model.provider.ModelEditPlugin$Implementation
+Bundle-Vendor: unicase.org
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.unicase.model.provider
+Require-Bundle: org.eclipse.core.runtime,
+ org.unicase.model;visibility:=reexport,
+ org.eclipse.emf.edit;visibility:=reexport
+Eclipse-LazyStart: true
