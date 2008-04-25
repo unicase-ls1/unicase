@@ -9,11 +9,14 @@ public class UserSession {
 	private ServerInfo serverInfo;
 	private String username;
 	private SessionId sessionId;
-	
+		
 	private transient String password;
+	
+	private UCConnectionManager connectionManager;
 	
 	public UserSession(ServerInfo serverInfo) {
 		this.serverInfo=serverInfo;
+		this.connectionManager=UCConnectionManager.getInstance();
 	}
 	
 	public void logIn(String username, String password) {
@@ -25,10 +28,10 @@ public class UserSession {
 	}
 	
 	public List<ProjectInfo> getProjectList() {
-		return null;
+		return connectionManager.getProjectList(sessionId, serverInfo);
 	}
 	
 	public UCWorkspace checkOut(ProjectId projectId, PrimaryVersionSpec version) {
-		return null;
+		return connectionManager.checkOut(sessionId, serverInfo, projectId, version);
 	}
 }
