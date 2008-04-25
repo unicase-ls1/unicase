@@ -3,8 +3,9 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/unicase.model/src"
     editDirectory="/unicase.edit/src" editorDirectory="/unicase.geneditor/src" modelPluginID="unicase.model"
-    modelName="Model" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
-    copyrightFields="false" editPluginID="unicase.edit" editorPluginID="unicase.geneditor">
+    modelName="Model" editPluginClass="org.unicase.edit.ModelEditPlugin" editorPluginClass="org.unicase.geneditor.ModelEditorPlugin"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    editPluginID="unicase.edit" editorPluginID="unicase.geneditor">
   <foreignModel>model.ecore</foreignModel>
   <genPackages prefix="Model" basePackage="org.unicase" disposableProviderFactory="true"
       ecorePackage="model.ecore#/">
