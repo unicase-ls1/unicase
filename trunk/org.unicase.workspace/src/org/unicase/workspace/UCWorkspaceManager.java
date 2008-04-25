@@ -2,6 +2,8 @@ package org.unicase.workspace;
 
 import java.util.List;
 
+import org.unicase.model.Project;
+
 public class UCWorkspaceManager {
 	
 	private static UCWorkspaceManager instance;
