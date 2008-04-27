@@ -168,6 +168,29 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.ProjectId} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ProjectIdItemProvider projectIdItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.ProjectId}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createProjectIdAdapter() {
+		if (projectIdItemProvider == null) {
+			projectIdItemProvider = new ProjectIdItemProvider(this);
+		}
+
+		return projectIdItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -270,6 +293,7 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 		if (leafSectionItemProvider != null) leafSectionItemProvider.dispose();
 		if (compositeSectionItemProvider != null) compositeSectionItemProvider.dispose();
 		if (projectItemProvider != null) projectItemProvider.dispose();
+		if (projectIdItemProvider != null) projectIdItemProvider.dispose();
 	}
 
 }
