@@ -64,6 +64,7 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 			case ModelPackage.LEAF_SECTION: return createLeafSection();
 			case ModelPackage.COMPOSITE_SECTION: return createCompositeSection();
 			case ModelPackage.PROJECT: return createProject();
+			case ModelPackage.PROJECT_ID: return createProjectId();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -107,6 +108,16 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	public Project createProject() {
 		ProjectImpl project = new ProjectImpl();
 		return project;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ProjectId createProjectId() {
+		ProjectIdImpl projectId = new ProjectIdImpl();
+		return projectId;
 	}
 
 	/**

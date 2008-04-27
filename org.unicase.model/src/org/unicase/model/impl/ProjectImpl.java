@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
+import org.unicase.model.ProjectId;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,6 +37,7 @@ import org.unicase.model.Project;
  *   <li>{@link org.unicase.model.impl.ProjectImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.unicase.model.impl.ProjectImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.unicase.model.impl.ProjectImpl#getProjectElements <em>Project Elements</em>}</li>
+ *   <li>{@link org.unicase.model.impl.ProjectImpl#getIdentifier <em>Identifier</em>}</li>
  * </ul>
  * </p>
  *
@@ -91,6 +93,16 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @ordered
 	 */
 	protected EList<ModelElement> projectElements;
+
+	/**
+	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected ProjectId identifier;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -170,6 +182,49 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ProjectId getIdentifier() {
+		return identifier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetIdentifier(ProjectId newIdentifier, NotificationChain msgs) {
+		ProjectId oldIdentifier = identifier;
+		identifier = newIdentifier;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelPackage.PROJECT__IDENTIFIER, oldIdentifier, newIdentifier);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIdentifier(ProjectId newIdentifier) {
+		if (newIdentifier != identifier) {
+			NotificationChain msgs = null;
+			if (identifier != null)
+				msgs = ((InternalEObject)identifier).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ModelPackage.PROJECT__IDENTIFIER, null, msgs);
+			if (newIdentifier != null)
+				msgs = ((InternalEObject)newIdentifier).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ModelPackage.PROJECT__IDENTIFIER, null, msgs);
+			msgs = basicSetIdentifier(newIdentifier, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.PROJECT__IDENTIFIER, newIdentifier, newIdentifier));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -190,6 +245,8 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		switch (featureID) {
 			case ModelPackage.PROJECT__PROJECT_ELEMENTS:
 				return ((InternalEList<?>)getProjectElements()).basicRemove(otherEnd, msgs);
+			case ModelPackage.PROJECT__IDENTIFIER:
+				return basicSetIdentifier(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -208,6 +265,8 @@ public class ProjectImpl extends EObjectImpl implements Project {
 				return getDescription();
 			case ModelPackage.PROJECT__PROJECT_ELEMENTS:
 				return getProjectElements();
+			case ModelPackage.PROJECT__IDENTIFIER:
+				return getIdentifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -231,6 +290,9 @@ public class ProjectImpl extends EObjectImpl implements Project {
 				getProjectElements().clear();
 				getProjectElements().addAll((Collection<? extends ModelElement>)newValue);
 				return;
+			case ModelPackage.PROJECT__IDENTIFIER:
+				setIdentifier((ProjectId)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -252,6 +314,9 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			case ModelPackage.PROJECT__PROJECT_ELEMENTS:
 				getProjectElements().clear();
 				return;
+			case ModelPackage.PROJECT__IDENTIFIER:
+				setIdentifier((ProjectId)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -270,6 +335,8 @@ public class ProjectImpl extends EObjectImpl implements Project {
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 			case ModelPackage.PROJECT__PROJECT_ELEMENTS:
 				return projectElements != null && !projectElements.isEmpty();
+			case ModelPackage.PROJECT__IDENTIFIER:
+				return identifier != null;
 		}
 		return super.eIsSet(featureID);
 	}

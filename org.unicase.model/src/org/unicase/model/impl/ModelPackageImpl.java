@@ -21,6 +21,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
+import org.unicase.model.ProjectId;
 import org.unicase.model.Section;
 
 /**
@@ -71,6 +72,13 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	private EClass projectEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass projectIdEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -343,6 +351,24 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getProject_Identifier() {
+		return (EReference)projectEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getProjectId() {
+		return projectIdEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ModelFactory getModelFactory() {
 		return (ModelFactory)getEFactoryInstance();
 	}
@@ -393,6 +419,9 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		createEAttribute(projectEClass, PROJECT__NAME);
 		createEAttribute(projectEClass, PROJECT__DESCRIPTION);
 		createEReference(projectEClass, PROJECT__PROJECT_ELEMENTS);
+		createEReference(projectEClass, PROJECT__IDENTIFIER);
+
+		projectIdEClass = createEClass(PROJECT_ID);
 	}
 
 	/**
@@ -461,6 +490,9 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEAttribute(getProject_Name(), ecorePackage.getEString(), "name", null, 0, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getProject_Description(), ecorePackage.getEString(), "description", null, 0, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProject_ProjectElements(), this.getModelElement(), this.getModelElement_Project(), "projectElements", null, 0, -1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProject_Identifier(), this.getProjectId(), null, "Identifier", null, 0, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(projectIdEClass, ProjectId.class, "ProjectId", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.unicase.model.Project#getName <em>Name</em>}</li>
  *   <li>{@link org.unicase.model.Project#getDescription <em>Description</em>}</li>
  *   <li>{@link org.unicase.model.Project#getProjectElements <em>Project Elements</em>}</li>
+ *   <li>{@link org.unicase.model.Project#getIdentifier <em>Identifier</em>}</li>
  * </ul>
  * </p>
  *
@@ -98,5 +99,31 @@ public interface Project extends EObject {
 	 * @generated
 	 */
 	EList<ModelElement> getProjectElements();
+
+	/**
+	 * Returns the value of the '<em><b>Identifier</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Identifier</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Identifier</em>' containment reference.
+	 * @see #setIdentifier(ProjectId)
+	 * @see org.unicase.model.ModelPackage#getProject_Identifier()
+	 * @model containment="true"
+	 * @generated
+	 */
+	ProjectId getIdentifier();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.Project#getIdentifier <em>Identifier</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Identifier</em>' containment reference.
+	 * @see #getIdentifier()
+	 * @generated
+	 */
+	void setIdentifier(ProjectId value);
 
 } // Project

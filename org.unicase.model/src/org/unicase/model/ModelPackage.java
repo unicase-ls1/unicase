@@ -471,13 +471,42 @@ public interface ModelPackage extends EPackage {
 	int PROJECT__PROJECT_ELEMENTS = 2;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__IDENTIFIER = 3;
+
+	/**
 	 * The number of structural features of the '<em>Project</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_FEATURE_COUNT = 3;
+	int PROJECT_FEATURE_COUNT = 4;
+
+
+	/**
+	 * The meta object id for the '{@link org.unicase.model.impl.ProjectIdImpl <em>Project Id</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.impl.ProjectIdImpl
+	 * @see org.unicase.model.impl.ModelPackageImpl#getProjectId()
+	 * @generated
+	 */
+	int PROJECT_ID = 6;
+
+	/**
+	 * The number of structural features of the '<em>Project Id</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_ID_FEATURE_COUNT = 0;
 
 
 	/**
@@ -717,6 +746,27 @@ public interface ModelPackage extends EPackage {
 	EReference getProject_ProjectElements();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.unicase.model.Project#getIdentifier <em>Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Identifier</em>'.
+	 * @see org.unicase.model.Project#getIdentifier()
+	 * @see #getProject()
+	 * @generated
+	 */
+	EReference getProject_Identifier();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.model.ProjectId <em>Project Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Project Id</em>'.
+	 * @see org.unicase.model.ProjectId
+	 * @generated
+	 */
+	EClass getProjectId();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -925,6 +975,24 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PROJECT__PROJECT_ELEMENTS = eINSTANCE.getProject_ProjectElements();
+
+		/**
+		 * The meta object literal for the '<em><b>Identifier</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROJECT__IDENTIFIER = eINSTANCE.getProject_Identifier();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.impl.ProjectIdImpl <em>Project Id</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.impl.ProjectIdImpl
+		 * @see org.unicase.model.impl.ModelPackageImpl#getProjectId()
+		 * @generated
+		 */
+		EClass PROJECT_ID = eINSTANCE.getProjectId();
 
 	}
 
