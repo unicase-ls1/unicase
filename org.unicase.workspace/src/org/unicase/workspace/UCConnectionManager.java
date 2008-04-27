@@ -6,9 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -19,8 +17,19 @@ import org.unicase.model.ModelFactory;
 import org.unicase.model.Project;
 import org.unicase.model.ProjectId;
 import org.unicase.model.impl.ModelFactoryImpl;
-import org.unicase.model.impl.ProjectIdImpl;
 
+/**
+ * How to get retrieve a Project
+ * 
+ * create a new UserSession (a serverinfo can be obtained from UserSession.getDefaultServerInfo)
+ * call logIn on usersession to log in
+ * call getProjectList on the usersession to get a list of available projects
+ * call checkOut on UserSession to get a Workspace
+ * call getProject on UCWorkSpace to get a Project
+ * 
+ * @author koegel
+ *
+ */
 public class UCConnectionManager {
 
 	private static UCConnectionManager instance;
