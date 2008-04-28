@@ -6,14 +6,17 @@
  */
 package org.unicase.model.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -43,7 +46,7 @@ import org.unicase.model.ProjectId;
  *
  * @generated
  */
-public class ProjectImpl extends EObjectImpl implements Project {
+public class ProjectImpl extends EObjectImpl implements Project ,IAdaptable{
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -358,5 +361,22 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		result.append(')');
 		return result.toString();
 	}
+
+	public Object getAdapter(Class adapter) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public Collection<ModelElement> getElementsByClass(
+			Class<? extends EObject> elementType) {
+		Collection<ModelElement> returnList = new ArrayList<ModelElement>();
+		for (ModelElement currentME : projectElements) {
+			if (elementType.isAssignableFrom(currentME.getClass())) {
+				returnList.add(currentME);
+			}
+		}
+		return returnList;
+	}
+
+
 
 } //ProjectImpl
