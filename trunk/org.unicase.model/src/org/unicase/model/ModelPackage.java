@@ -41,7 +41,7 @@ public interface ModelPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.sysiphus.org/model";
+	String eNS_URI = "http://unicase.org/model";
 
 	/**
 	 * The package namespace name.
@@ -49,7 +49,7 @@ public interface ModelPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "org.globalse.sysiphus.model";
+	String eNS_PREFIX = "org.unicase.model";
 
 	/**
 	 * The singleton instance of the package.

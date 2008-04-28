@@ -6,13 +6,13 @@
  */
 package org.unicase.model;
 
-import org.eclipse.emf.common.util.EList;
+import java.util.Collection;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Project</b></em>'.
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Project</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
@@ -31,13 +31,14 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Project extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Name</b></em>' attribute. <!--
+	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there
+	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.unicase.model.ModelPackage#getProject_Name()
@@ -48,8 +49,7 @@ public interface Project extends EObject {
 
 	/**
 	 * Sets the value of the '{@link org.unicase.model.Project#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
 	 * @generated
@@ -74,8 +74,7 @@ public interface Project extends EObject {
 
 	/**
 	 * Sets the value of the '{@link org.unicase.model.Project#getDescription <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Description</em>' attribute.
 	 * @see #getDescription()
 	 * @generated
@@ -88,8 +87,8 @@ public interface Project extends EObject {
 	 * It is bidirectional and its opposite is '{@link org.unicase.model.ModelElement#getProject <em>Project</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Project Elements</em>' reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Project Elements</em>' reference list
+	 * isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Project Elements</em>' reference list.
@@ -104,8 +103,8 @@ public interface Project extends EObject {
 	 * Returns the value of the '<em><b>Identifier</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Identifier</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Identifier</em>' containment reference
+	 * isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Identifier</em>' containment reference.
@@ -118,12 +117,14 @@ public interface Project extends EObject {
 
 	/**
 	 * Sets the value of the '{@link org.unicase.model.Project#getIdentifier <em>Identifier</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Identifier</em>' containment reference.
 	 * @see #getIdentifier()
 	 * @generated
 	 */
 	void setIdentifier(ProjectId value);
+
+	Collection<ModelElement> getElementsByClass(
+			Class<? extends EObject> elementType);
 
 } // Project
