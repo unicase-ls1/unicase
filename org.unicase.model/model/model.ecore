@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="model"
+    nsURI="http://www.sysiphus.org/model" nsPrefix="org.globalse.sysiphus.model">
+  <eClassifiers xsi:type="ecore:EClass" name="ModelElement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="https://www.sysiphus.org/Visibility">
+        <details key="VisibilityValue" value="MANDATORY"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.sysiphus.org/Visibility">
+        <details key="VisibilityValue" value="VIEWWHENSET"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true">
+      <eAnnotations source="http://www.sysiphus.org/Visibility">
+        <details key="VisibilityValue" value="INVISIBLE"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="project" lowerBound="1"
+        eType="#//Project" eOpposite="#//Project/projectElements"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionalRequirement" eSuperTypes="#//ModelElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reviewed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="storyPoints" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="priority" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="refiningRequirements" upperBound="-1"
+        eType="#//FunctionalRequirement" eOpposite="#//FunctionalRequirement/refinedRequirement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="refinedRequirement" eType="#//FunctionalRequirement"
+        eOpposite="#//FunctionalRequirement/refiningRequirements"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LeafSection" eSuperTypes="#//Section">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ElementType">
+      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
+        <eTypeArguments>
+          <eUpperBound eClassifier="#//ModelElement"/>
+        </eTypeArguments>
+      </eGenericType>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompositeSection" eSuperTypes="#//Section">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subsections" upperBound="-1"
+        eType="#//Section" containment="true" eOpposite="#//Section/parent"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Section" abstract="true" interface="true"
+      eSuperTypes="#//ModelElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//CompositeSection"
+        eOpposite="#//CompositeSection/subsections"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Project">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="projectElements" upperBound="-1"
+        eType="#//ModelElement" eOpposite="#//ModelElement/project"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Identifier" eType="#//ProjectId"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProjectId"/>
+</ecore:EPackage>

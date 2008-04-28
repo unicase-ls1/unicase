@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.unicase.model/src"
+    modelPluginID="org.unicase.model" modelName="Model" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false">
+  <foreignModel>model.ecore</foreignModel>
+  <genPackages prefix="Model" basePackage="org.unicase" disposableProviderFactory="true"
+      ecorePackage="model.ecore#/">
+    <genClasses image="false" ecoreClass="model.ecore#//ModelElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/id"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//ModelElement/project"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//FunctionalRequirement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//FunctionalRequirement/reviewed"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//FunctionalRequirement/storyPoints"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//FunctionalRequirement/priority"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//FunctionalRequirement/date"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//FunctionalRequirement/refiningRequirements"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//FunctionalRequirement/refinedRequirement"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//LeafSection">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//LeafSection/ElementType"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//CompositeSection">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//CompositeSection/subsections"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="model.ecore#//Section">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//Section/parent"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Project">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Project/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Project/description"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Project/projectElements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Project/Identifier"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//ProjectId"/>
+  </genPackages>
+</genmodel:GenModel>
