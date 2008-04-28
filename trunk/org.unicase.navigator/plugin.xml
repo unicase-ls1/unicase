@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+     <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="Unicase"
+            id="org.unicase">
+      </category>
+      <view
+            category="org.unicase"
+            class="org.unicase.navigator.TreeView"
+            icon="icons/sample.gif"
+            id="org.unicase.navigator.viewer"
+            name="UC Navigator">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.eclipse.jdt.ui.JavaPerspective">
+         <view
+               ratio="0.5"
+               relative="org.eclipse.ui.views.TaskList"
+               relationship="left"
+               id="org.unicase.navigator">
+         </view>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.help.contexts">
+      <contexts
+            file="contexts.xml">
+      </contexts>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <navigatorContent
+            contentProvider="org.unicase.navigator.TreeContentProvider"
+            id="org.unicase.navigator.navigatorContent"
+            labelProvider="org.unicase.navigator.LabelProvider"
+            name="Unicase Content">
+         <triggerPoints>
+            <instanceof
+                  value="org.eclipse.emf.ecore.EObject">
+            </instanceof>
+         </triggerPoints>
+         <actionProvider
+               class="org.unicase.navigator.TreeActionProvider">
+         </actionProvider>
+         <possibleChildren>
+            <instanceof
+                  value="org.eclipse.emf.ecore.EObject">
+            </instanceof>
+         </possibleChildren>
+      </navigatorContent>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.viewer">
+      <viewer
+            viewerId="org.unicase.navigator.viewer">
+      </viewer>
+      <viewerContentBinding
+            viewerId="org.unicase.navigator.viewer">
+         <includes>
+            <contentExtension
+                  pattern="org.unicase.navigator.navigatorContent">
+            </contentExtension></includes>
+      </viewerContentBinding>
+   </extension>
+
+</plugin>
