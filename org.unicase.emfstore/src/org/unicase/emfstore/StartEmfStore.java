@@ -8,6 +8,8 @@ import java.util.Properties;
 
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
+import org.unicase.emfstore.storage.ResourceStorage;
+import org.unicase.emfstore.storage.TeneoStorage;
 
 public class StartEmfStore implements IApplication {
 
@@ -19,7 +21,7 @@ public class StartEmfStore implements IApplication {
 		
 		Properties properties = initProperties();
 		ResourceStorage storage = initStorage(properties);
-		emfStore = new EmfStore(storage);
+		emfStore = new EmfStore(storage, properties);
 		Thread serverThread = new Thread(emfStore);
 			
 		System.out.println("COMPLETE");

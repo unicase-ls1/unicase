@@ -1,4 +1,4 @@
-package org.unicase.emfstore;
+package org.unicase.emfstore.storage;
 
 import java.util.Properties;
 
@@ -12,7 +12,7 @@ import org.unicase.model.ModelPackage;
 
 public class TeneoStorage implements ResourceStorage {
 
-	public URI getURI() {
+	public URI init(Properties properties) {
 		// Set the hibernate properties
 		final Properties props = new Properties();
 		props.setProperty(Environment.DRIVER, "com.mysql.jdbc.Driver");
