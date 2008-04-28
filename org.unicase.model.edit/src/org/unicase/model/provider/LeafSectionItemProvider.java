@@ -144,4 +144,17 @@ public class LeafSectionItemProvider
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
+	  @Override
+	  public Collection<?> getChildren(Object object)
+	  {
+	    if (object instanceof LeafSection)
+	    {
+	      LeafSection leafSection = (LeafSection)object;
+	      return leafSection.getProject().getElementsByClass(leafSection.getElementType());
+	    }
+	    else
+	    {
+	      return super.getChildren(object);
+	    }
+	  }
 }
