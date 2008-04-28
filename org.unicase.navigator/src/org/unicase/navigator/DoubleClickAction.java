@@ -9,6 +9,7 @@ import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
+import org.unicase.meeditor.MEEditorInput;
 import org.unicase.model.ModelElement;
 
 
@@ -19,7 +20,7 @@ public class DoubleClickAction extends Action implements ISelectionChangedListen
 	public void run() {
 		MEEditorInput input = new MEEditorInput((ModelElement)((TreeSelection)event.getSelection()).getFirstElement());
 		try {
-			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(input, "symphusion.meEditor",true);
+			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(input, "org.unicase.meeditor",true);
 		} catch (PartInitException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

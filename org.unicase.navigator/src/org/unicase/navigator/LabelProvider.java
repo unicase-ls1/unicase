@@ -5,6 +5,7 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
 
+
 public class LabelProvider extends AdapterFactoryLabelProvider implements
 		ILabelProvider {
 
