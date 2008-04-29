@@ -29,7 +29,7 @@ import org.unicase.model.ModelPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.unicase.model.impl.LeafSectionImpl#getParent <em>Parent</em>}</li>
- *   <li>{@link org.unicase.model.impl.LeafSectionImpl#getElementType <em>Element Type</em>}</li>
+ *   <li>{@link org.unicase.model.impl.LeafSectionImpl#getElementClass <em>Element Class</em>}</li>
  * </ul>
  * </p>
  *
@@ -37,15 +37,14 @@ import org.unicase.model.ModelPackage;
  */
 public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	/**
-	 * The cached value of the '{@link #getElementType() <em>Element Type</em>}' attribute.
+	 * The cached value of the '{@link #getElementClass() <em>Element Class</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getElementType()
+	 * @see #getElementClass()
 	 * @generated
 	 * @ordered
 	 */
-	protected Class<? extends ModelElement> elementType;
-
+	protected Class<? extends ModelElement> elementClass;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -111,8 +110,8 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Class<? extends ModelElement> getElementType() {
-		return elementType;
+	public Class<? extends ModelElement> getElementClass() {
+		return elementClass;
 	}
 
 	/**
@@ -120,11 +119,11 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setElementType(Class<? extends ModelElement> newElementType) {
-		Class<? extends ModelElement> oldElementType = elementType;
-		elementType = newElementType;
+	public void setElementClass(Class<? extends ModelElement> newElementClass) {
+		Class<? extends ModelElement> oldElementClass = elementClass;
+		elementClass = newElementClass;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.LEAF_SECTION__ELEMENT_TYPE, oldElementType, elementType));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.LEAF_SECTION__ELEMENT_CLASS, oldElementClass, elementClass));
 	}
 
 	/**
@@ -181,8 +180,8 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 		switch (featureID) {
 			case ModelPackage.LEAF_SECTION__PARENT:
 				return getParent();
-			case ModelPackage.LEAF_SECTION__ELEMENT_TYPE:
-				return getElementType();
+			case ModelPackage.LEAF_SECTION__ELEMENT_CLASS:
+				return getElementClass();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -199,8 +198,8 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 			case ModelPackage.LEAF_SECTION__PARENT:
 				setParent((CompositeSection)newValue);
 				return;
-			case ModelPackage.LEAF_SECTION__ELEMENT_TYPE:
-				setElementType((Class<? extends ModelElement>)newValue);
+			case ModelPackage.LEAF_SECTION__ELEMENT_CLASS:
+				setElementClass((Class<? extends ModelElement>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -217,8 +216,8 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 			case ModelPackage.LEAF_SECTION__PARENT:
 				setParent((CompositeSection)null);
 				return;
-			case ModelPackage.LEAF_SECTION__ELEMENT_TYPE:
-				setElementType((Class<? extends ModelElement>)null);
+			case ModelPackage.LEAF_SECTION__ELEMENT_CLASS:
+				setElementClass((Class<? extends ModelElement>)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -234,8 +233,8 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 		switch (featureID) {
 			case ModelPackage.LEAF_SECTION__PARENT:
 				return getParent() != null;
-			case ModelPackage.LEAF_SECTION__ELEMENT_TYPE:
-				return elementType != null;
+			case ModelPackage.LEAF_SECTION__ELEMENT_CLASS:
+				return elementClass != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -250,8 +249,8 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (ElementType: ");
-		result.append(elementType);
+		result.append(" (elementClass: ");
+		result.append(elementClass);
 		result.append(')');
 		return result.toString();
 	}

@@ -15,7 +15,7 @@ package org.unicase.model;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.model.LeafSection#getElementType <em>Element Type</em>}</li>
+ *   <li>{@link org.unicase.model.LeafSection#getElementClass <em>Element Class</em>}</li>
  * </ul>
  * </p>
  *
@@ -25,29 +25,29 @@ package org.unicase.model;
  */
 public interface LeafSection extends Section {
 	/**
-	 * Returns the value of the '<em><b>Element Type</b></em>' attribute.
+	 * Returns the value of the '<em><b>Element Class</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Element Type</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Element Class</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Element Type</em>' attribute.
-	 * @see #setElementType(Class)
-	 * @see org.unicase.model.ModelPackage#getLeafSection_ElementType()
+	 * @return the value of the '<em>Element Class</em>' attribute.
+	 * @see #setElementClass(Class)
+	 * @see org.unicase.model.ModelPackage#getLeafSection_ElementClass()
 	 * @model
 	 * @generated
 	 */
-	Class<? extends ModelElement> getElementType();
+	Class<? extends ModelElement> getElementClass();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.LeafSection#getElementType <em>Element Type</em>}' attribute.
+	 * Sets the value of the '{@link org.unicase.model.LeafSection#getElementClass <em>Element Class</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Element Type</em>' attribute.
-	 * @see #getElementType()
+	 * @param value the new value of the '<em>Element Class</em>' attribute.
+	 * @see #getElementClass()
 	 * @generated
 	 */
-	void setElementType(Class<? extends ModelElement> value);
+	void setElementClass(Class<? extends ModelElement> value);
 
 } // LeafSection

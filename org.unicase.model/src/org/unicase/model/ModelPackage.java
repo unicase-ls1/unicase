@@ -343,13 +343,13 @@ public interface ModelPackage extends EPackage {
 	int LEAF_SECTION__PARENT = SECTION__PARENT;
 
 	/**
-	 * The feature id for the '<em><b>Element Type</b></em>' attribute.
+	 * The feature id for the '<em><b>Element Class</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEAF_SECTION__ELEMENT_TYPE = SECTION_FEATURE_COUNT + 0;
+	int LEAF_SECTION__ELEMENT_CLASS = SECTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Leaf Section</em>' class.
@@ -500,13 +500,22 @@ public interface ModelPackage extends EPackage {
 	int PROJECT_ID = 6;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_ID__IDENTIFIER = 0;
+
+	/**
 	 * The number of structural features of the '<em>Project Id</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_ID_FEATURE_COUNT = 0;
+	int PROJECT_ID_FEATURE_COUNT = 1;
 
 
 	/**
@@ -650,15 +659,15 @@ public interface ModelPackage extends EPackage {
 	EClass getLeafSection();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.LeafSection#getElementType <em>Element Type</em>}'.
+	 * Returns the meta object for the attribute '{@link org.unicase.model.LeafSection#getElementClass <em>Element Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Element Type</em>'.
-	 * @see org.unicase.model.LeafSection#getElementType()
+	 * @return the meta object for the attribute '<em>Element Class</em>'.
+	 * @see org.unicase.model.LeafSection#getElementClass()
 	 * @see #getLeafSection()
 	 * @generated
 	 */
-	EAttribute getLeafSection_ElementType();
+	EAttribute getLeafSection_ElementClass();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.CompositeSection <em>Composite Section</em>}'.
@@ -765,6 +774,17 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getProjectId();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.ProjectId#getIdentifier <em>Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Identifier</em>'.
+	 * @see org.unicase.model.ProjectId#getIdentifier()
+	 * @see #getProjectId()
+	 * @generated
+	 */
+	EAttribute getProjectId_Identifier();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -899,12 +919,12 @@ public interface ModelPackage extends EPackage {
 		EClass LEAF_SECTION = eINSTANCE.getLeafSection();
 
 		/**
-		 * The meta object literal for the '<em><b>Element Type</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Element Class</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LEAF_SECTION__ELEMENT_TYPE = eINSTANCE.getLeafSection_ElementType();
+		EAttribute LEAF_SECTION__ELEMENT_CLASS = eINSTANCE.getLeafSection_ElementClass();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.impl.CompositeSectionImpl <em>Composite Section</em>}' class.
@@ -993,6 +1013,14 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PROJECT_ID = eINSTANCE.getProjectId();
+
+		/**
+		 * The meta object literal for the '<em><b>Identifier</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROJECT_ID__IDENTIFIER = eINSTANCE.getProjectId_Identifier();
 
 	}
 
