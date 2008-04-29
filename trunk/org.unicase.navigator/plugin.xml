@@ -10,7 +10,7 @@
       <view
             category="org.unicase"
             class="org.unicase.navigator.TreeView"
-            icon="icons/sample.gif"
+            icon="icons/unicase.png"
             id="org.unicase.navigator.viewer"
             name="UC Navigator">
       </view>
