@@ -8,6 +8,7 @@ package org.unicase.model;
 
 import java.util.Collection;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
@@ -27,9 +28,9 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see org.unicase.model.ModelPackage#getProject()
  * @model
- * @generated
+ * @generated NOT
  */
-public interface Project extends EObject {
+public interface Project extends EObject, IAdaptable {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute. <!--
 	 * begin-user-doc -->
