@@ -153,7 +153,7 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 		reqLeafSection.setName("Functional Requirements");
 		reqLeafSection
 				.setDescription("Lists all functional requirements in this project");
-		reqLeafSection.setElementType(FunctionalRequirement.class);
+		reqLeafSection.setElementClass(FunctionalRequirement.class);
 
 		reqLeafSection.setId("2");
 		reqLeafSection.setParent(rootSection);
@@ -163,7 +163,7 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 		scenLeafSection.setDescription("Lists all scenarios of this project.");
 		scenLeafSection.setId("3");
 		scenLeafSection.setParent(rootSection);
-		scenLeafSection.setElementType(FunctionalRequirement.class);
+		scenLeafSection.setElementClass(FunctionalRequirement.class);
 
 		CompositeSection ucmCompositeSection = this.createCompositeSection();
 		ucmCompositeSection.setName("Use Case Modeling");
@@ -177,7 +177,7 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 		actorLeafSection.setDescription("Lists all actors of this project.");
 		actorLeafSection.setId("5");
 		actorLeafSection.setParent(ucmCompositeSection);
-		actorLeafSection.setElementType(FunctionalRequirement.class);
+		actorLeafSection.setElementClass(FunctionalRequirement.class);
 
 		LeafSection useCaseLeafSection = this.createLeafSection();
 		useCaseLeafSection.setName("Use Cases");
@@ -185,7 +185,7 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 				.setDescription("Lists all use cases of this project.");
 		useCaseLeafSection.setId("6");
 		useCaseLeafSection.setParent(ucmCompositeSection);
-		useCaseLeafSection.setElementType(FunctionalRequirement.class);
+		useCaseLeafSection.setElementClass(FunctionalRequirement.class);
 
 		LeafSection useCaseDiagramLeafSection = this.createLeafSection();
 		useCaseDiagramLeafSection.setName("Use Case Diagrams");
@@ -193,7 +193,7 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 				.setDescription("Lists all use case diagrams of this project.");
 		useCaseDiagramLeafSection.setId("7");
 		useCaseDiagramLeafSection.setParent(ucmCompositeSection);
-		useCaseDiagramLeafSection.setElementType(FunctionalRequirement.class);
+		useCaseDiagramLeafSection.setElementClass(FunctionalRequirement.class);
 
 		FunctionalRequirement fr = this.createFunctionalRequirement();
 		fr.setName("My Reuirement");
