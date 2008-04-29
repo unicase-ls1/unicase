@@ -66,6 +66,7 @@ public interface ModelElement extends EObject {
 	 * @see #setDescription(String)
 	 * @see org.unicase.model.ModelPackage#getModelElement_Description()
 	 * @model annotation="http://www.sysiphus.org/Visibility VisibilityValue='VIEWWHENSET'"
+	 *        annotation="http://www.unicase.org/view type='TEXT_AREA'"
 	 * @generated
 	 */
 	String getDescription();

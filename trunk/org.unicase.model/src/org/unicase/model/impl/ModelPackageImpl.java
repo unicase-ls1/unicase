@@ -9,6 +9,7 @@ package org.unicase.model.impl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EGenericType;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -270,7 +271,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLeafSection_ElementType() {
+	public EAttribute getLeafSection_ElementClass() {
 		return (EAttribute)leafSectionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -369,6 +370,15 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getProjectId_Identifier() {
+		return (EAttribute)projectIdEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ModelFactory getModelFactory() {
 		return (ModelFactory)getEFactoryInstance();
 	}
@@ -407,7 +417,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		createEReference(functionalRequirementEClass, FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT);
 
 		leafSectionEClass = createEClass(LEAF_SECTION);
-		createEAttribute(leafSectionEClass, LEAF_SECTION__ELEMENT_TYPE);
+		createEAttribute(leafSectionEClass, LEAF_SECTION__ELEMENT_CLASS);
 
 		compositeSectionEClass = createEClass(COMPOSITE_SECTION);
 		createEReference(compositeSectionEClass, COMPOSITE_SECTION__SUBSECTIONS);
@@ -422,6 +432,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		createEReference(projectEClass, PROJECT__IDENTIFIER);
 
 		projectIdEClass = createEClass(PROJECT_ID);
+		createEAttribute(projectIdEClass, PROJECT_ID__IDENTIFIER);
 	}
 
 	/**
@@ -478,7 +489,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		g1.getETypeArguments().add(g2);
 		EGenericType g3 = createEGenericType(this.getModelElement());
 		g2.setEUpperBound(g3);
-		initEAttribute(getLeafSection_ElementType(), g1, "ElementType", null, 0, 1, LeafSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLeafSection_ElementClass(), g1, "elementClass", null, 0, 1, LeafSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(compositeSectionEClass, CompositeSection.class, "CompositeSection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompositeSection_Subsections(), this.getSection(), this.getSection_Parent(), "subsections", null, 0, -1, CompositeSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -492,7 +503,11 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEReference(getProject_ProjectElements(), this.getModelElement(), this.getModelElement_Project(), "projectElements", null, 0, -1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProject_Identifier(), this.getProjectId(), null, "Identifier", null, 0, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		EOperation op = addEOperation(projectEClass, null, "addModelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getModelElement(), "modelElement", 1, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(projectIdEClass, ProjectId.class, "ProjectId", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getProjectId_Identifier(), ecorePackage.getEString(), "identifier", null, 1, 1, ProjectId.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -502,6 +517,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		createVisibilityAnnotations();
 		// http://www.sysiphus.org/Visibility
 		createVisibility_1Annotations();
+		// http://www.unicase.org/view
+		createViewAnnotations();
 	}
 
 	/**
@@ -517,7 +534,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		   source, 
 		   new String[] {
 			 "VisibilityValue", "MANDATORY"
-		   });		
+		   });			
 	}
 
 	/**
@@ -533,13 +550,29 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		   source, 
 		   new String[] {
 			 "VisibilityValue", "VIEWWHENSET"
-		   });		
+		   });			
 		addAnnotation
 		  (getModelElement_Id(), 
 		   source, 
 		   new String[] {
 			 "VisibilityValue", "INVISIBLE"
 		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.unicase.org/view</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createViewAnnotations() {
+		String source = "http://www.unicase.org/view";				
+		addAnnotation
+		  (getModelElement_Description(), 
+		   source, 
+		   new String[] {
+			 "type", "TEXT_AREA"
+		   });	
 	}
 
 } //ModelPackageImpl
