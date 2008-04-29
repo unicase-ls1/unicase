@@ -22,7 +22,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//FunctionalRequirement/refinedRequirement"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//LeafSection">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//LeafSection/ElementType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//LeafSection/elementClass"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//CompositeSection">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//CompositeSection/subsections"/>
@@ -35,7 +35,12 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Project/description"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Project/projectElements"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Project/Identifier"/>
+      <genOperations ecoreOperation="model.ecore#//Project/addModelElement">
+        <genParameters ecoreParameter="model.ecore#//Project/addModelElement/modelElement"/>
+      </genOperations>
     </genClasses>
-    <genClasses ecoreClass="model.ecore#//ProjectId"/>
+    <genClasses ecoreClass="model.ecore#//ProjectId">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ProjectId/identifier"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>
