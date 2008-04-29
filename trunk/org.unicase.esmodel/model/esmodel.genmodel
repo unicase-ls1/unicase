@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.unicase.esmodel/src"
+    modelPluginID="org.unicase.esmodel" modelName="Esmodel" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore.change/model/Change.genmodel#//change platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.unicase.model/model/model.genmodel#//model">
+  <foreignModel>esmodel.ecore</foreignModel>
+  <genPackages prefix="Esmodel" basePackage="org.unicase" disposableProviderFactory="true"
+      ecorePackage="esmodel.ecore#/">
+    <genClasses ecoreClass="esmodel.ecore#//Version">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference esmodel.ecore#//Version/projectState"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference esmodel.ecore#//Version/primarySpec"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference esmodel.ecore#//Version/tagSpecs"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference esmodel.ecore#//Version/nextVersion"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference esmodel.ecore#//Version/previousVersion"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference esmodel.ecore#//Version/changes"/>
+    </genClasses>
+    <genClasses ecoreClass="esmodel.ecore#//ProjectHistory">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//ProjectHistory/versions"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="esmodel.ecore#//VersionSpec"/>
+    <genClasses ecoreClass="esmodel.ecore#//PrimaryVersionSpec"/>
+    <genClasses ecoreClass="esmodel.ecore#//DateVersionSpec">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//DateVersionSpec/date"/>
+    </genClasses>
+    <genClasses ecoreClass="esmodel.ecore#//TagVersionSpec">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//TagVersionSpec/name"/>
+    </genClasses>
+    <genClasses ecoreClass="esmodel.ecore#//ChangePackage">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference esmodel.ecore#//ChangePackage/fowardDelta"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference esmodel.ecore#//ChangePackage/backwardDelta"/>
+      <genOperations ecoreOperation="esmodel.ecore#//ChangePackage/reverse"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
