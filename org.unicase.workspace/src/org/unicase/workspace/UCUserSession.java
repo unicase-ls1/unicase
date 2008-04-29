@@ -27,8 +27,12 @@ public class UCUserSession {
 		return sessionId!=null;
 	}
 	
-	public List<ProjectInfo> getProjectList() {
-		return connectionManager.getProjectList(sessionId);
+	public List<ProjectInfo> getRemoteProjectList() {
+		return connectionManager.getRemoteProjectList(sessionId);
+	}
+	
+	public List<ProjectInfo> getLocalProjectList() {
+		return connectionManager.getLocalProjectList();
 	}
 	
 	public UCWorkspace checkOut(ProjectId projectId, PrimaryVersionSpec version) {

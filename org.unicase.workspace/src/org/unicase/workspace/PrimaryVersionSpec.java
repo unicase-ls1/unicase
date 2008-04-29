@@ -9,7 +9,7 @@ public class PrimaryVersionSpec extends VersionSpec {
 		this.spec=spec;
 	}
 	
-	public static PrimaryVersionSpec getHEADSpec() {
+	public static PrimaryVersionSpec getHeadSpec() {
 		return new PrimaryVersionSpec(HEAD);
 	}
 }
