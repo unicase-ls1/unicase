@@ -19,6 +19,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -125,7 +127,7 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 	protected Date date = DATE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getRefiningRequirements() <em>Refining Requirements</em>}' reference list.
+	 * The cached value of the '{@link #getRefiningRequirements() <em>Refining Requirements</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getRefiningRequirements()
@@ -133,16 +135,6 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 	 * @ordered
 	 */
 	protected EList<FunctionalRequirement> refiningRequirements;
-
-	/**
-	 * The cached value of the '{@link #getRefinedRequirement() <em>Refined Requirement</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRefinedRequirement()
-	 * @generated
-	 * @ordered
-	 */
-	protected FunctionalRequirement refinedRequirement;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -254,7 +246,7 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 	 */
 	public EList<FunctionalRequirement> getRefiningRequirements() {
 		if (refiningRequirements == null) {
-			refiningRequirements = new EObjectWithInverseResolvingEList<FunctionalRequirement>(FunctionalRequirement.class, this, ModelPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS, ModelPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT);
+			refiningRequirements = new EObjectContainmentWithInverseEList<FunctionalRequirement>(FunctionalRequirement.class, this, ModelPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS, ModelPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT);
 		}
 		return refiningRequirements;
 	}
@@ -265,24 +257,8 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 	 * @generated
 	 */
 	public FunctionalRequirement getRefinedRequirement() {
-		if (refinedRequirement != null && refinedRequirement.eIsProxy()) {
-			InternalEObject oldRefinedRequirement = (InternalEObject)refinedRequirement;
-			refinedRequirement = (FunctionalRequirement)eResolveProxy(oldRefinedRequirement);
-			if (refinedRequirement != oldRefinedRequirement) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT, oldRefinedRequirement, refinedRequirement));
-			}
-		}
-		return refinedRequirement;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public FunctionalRequirement basicGetRefinedRequirement() {
-		return refinedRequirement;
+		if (eContainerFeatureID != ModelPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT) return null;
+		return (FunctionalRequirement)eContainer();
 	}
 
 	/**
@@ -291,12 +267,7 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 	 * @generated
 	 */
 	public NotificationChain basicSetRefinedRequirement(FunctionalRequirement newRefinedRequirement, NotificationChain msgs) {
-		FunctionalRequirement oldRefinedRequirement = refinedRequirement;
-		refinedRequirement = newRefinedRequirement;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT, oldRefinedRequirement, newRefinedRequirement);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
+		msgs = eBasicSetContainer((InternalEObject)newRefinedRequirement, ModelPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT, msgs);
 		return msgs;
 	}
 
@@ -306,10 +277,12 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 	 * @generated
 	 */
 	public void setRefinedRequirement(FunctionalRequirement newRefinedRequirement) {
-		if (newRefinedRequirement != refinedRequirement) {
+		if (newRefinedRequirement != eInternalContainer() || (eContainerFeatureID != ModelPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT && newRefinedRequirement != null)) {
+			if (EcoreUtil.isAncestor(this, newRefinedRequirement))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (refinedRequirement != null)
-				msgs = ((InternalEObject)refinedRequirement).eInverseRemove(this, ModelPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS, FunctionalRequirement.class, msgs);
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
 			if (newRefinedRequirement != null)
 				msgs = ((InternalEObject)newRefinedRequirement).eInverseAdd(this, ModelPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS, FunctionalRequirement.class, msgs);
 			msgs = basicSetRefinedRequirement(newRefinedRequirement, msgs);
@@ -331,8 +304,8 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 			case ModelPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getRefiningRequirements()).basicAdd(otherEnd, msgs);
 			case ModelPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT:
-				if (refinedRequirement != null)
-					msgs = ((InternalEObject)refinedRequirement).eInverseRemove(this, ModelPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS, FunctionalRequirement.class, msgs);
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetRefinedRequirement((FunctionalRequirement)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -360,6 +333,20 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID) {
+			case ModelPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT:
+				return eInternalContainer().eInverseRemove(this, ModelPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS, FunctionalRequirement.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ModelPackage.FUNCTIONAL_REQUIREMENT__REVIEWED:
@@ -373,8 +360,7 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 			case ModelPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS:
 				return getRefiningRequirements();
 			case ModelPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT:
-				if (resolve) return getRefinedRequirement();
-				return basicGetRefinedRequirement();
+				return getRefinedRequirement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -460,7 +446,7 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 			case ModelPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS:
 				return refiningRequirements != null && !refiningRequirements.isEmpty();
 			case ModelPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT:
-				return refinedRequirement != null;
+				return getRefinedRequirement() != null;
 		}
 		return super.eIsSet(featureID);
 	}

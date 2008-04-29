@@ -197,7 +197,7 @@ public interface ModelPackage extends EPackage {
 	int FUNCTIONAL_REQUIREMENT__DATE = MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Refining Requirements</b></em>' reference list.
+	 * The feature id for the '<em><b>Refining Requirements</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -206,7 +206,7 @@ public interface ModelPackage extends EPackage {
 	int FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS = MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Refined Requirement</b></em>' reference.
+	 * The feature id for the '<em><b>Refined Requirement</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -618,10 +618,10 @@ public interface ModelPackage extends EPackage {
 	EAttribute getFunctionalRequirement_Date();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.FunctionalRequirement#getRefiningRequirements <em>Refining Requirements</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.unicase.model.FunctionalRequirement#getRefiningRequirements <em>Refining Requirements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Refining Requirements</em>'.
+	 * @return the meta object for the containment reference list '<em>Refining Requirements</em>'.
 	 * @see org.unicase.model.FunctionalRequirement#getRefiningRequirements()
 	 * @see #getFunctionalRequirement()
 	 * @generated
@@ -629,10 +629,10 @@ public interface ModelPackage extends EPackage {
 	EReference getFunctionalRequirement_RefiningRequirements();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.FunctionalRequirement#getRefinedRequirement <em>Refined Requirement</em>}'.
+	 * Returns the meta object for the container reference '{@link org.unicase.model.FunctionalRequirement#getRefinedRequirement <em>Refined Requirement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Refined Requirement</em>'.
+	 * @return the meta object for the container reference '<em>Refined Requirement</em>'.
 	 * @see org.unicase.model.FunctionalRequirement#getRefinedRequirement()
 	 * @see #getFunctionalRequirement()
 	 * @generated
@@ -873,7 +873,7 @@ public interface ModelPackage extends EPackage {
 		EAttribute FUNCTIONAL_REQUIREMENT__DATE = eINSTANCE.getFunctionalRequirement_Date();
 
 		/**
-		 * The meta object literal for the '<em><b>Refining Requirements</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Refining Requirements</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -881,7 +881,7 @@ public interface ModelPackage extends EPackage {
 		EReference FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS = eINSTANCE.getFunctionalRequirement_RefiningRequirements();
 
 		/**
-		 * The meta object literal for the '<em><b>Refined Requirement</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Refined Requirement</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
