@@ -15,13 +15,18 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.unicase.model.ModelPackage;
+import org.unicase.model.ProjectId;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.model.ProjectId} object.
@@ -58,8 +63,31 @@ public class ProjectIdItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addIdentifierPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Identifier feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIdentifierPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ProjectId_identifier_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ProjectId_identifier_feature", "_UI_ProjectId_type"),
+				 ModelPackage.Literals.PROJECT_ID__IDENTIFIER,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -81,7 +109,10 @@ public class ProjectIdItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ProjectId_type");
+		String label = ((ProjectId)object).getIdentifier();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ProjectId_type") :
+			getString("_UI_ProjectId_type") + " " + label;
 	}
 
 	/**
@@ -94,6 +125,12 @@ public class ProjectIdItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(ProjectId.class)) {
+			case ModelPackage.PROJECT_ID__IDENTIFIER:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 
