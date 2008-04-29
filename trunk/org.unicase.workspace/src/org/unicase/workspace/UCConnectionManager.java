@@ -164,9 +164,9 @@ public class UCConnectionManager {
 		fr.setId("8");
 		fr.setProject(projectElement);
 		FunctionalRequirement fr2 = factory.createFunctionalRequirement();
-		fr.setName("My Reuirement2");
-		fr.setId("9");
-		fr.setProject(projectElement);
+		fr2.setName("My Reuirement2");
+		fr2.setId("9");
+		fr2.setProject(projectElement);
 
 		rootSection.setProject(projectElement);
 		reqLeafSection.setProject(projectElement);
