@@ -17,9 +17,9 @@ public class TreeView extends CommonNavigator {
 		UCUserSession session = new UCUserSession(UCUserSession
 				.getDefaultServerInfo());
 		session.logIn("", "");
-		ProjectInfo projectInfo = session.getProjectList().get(0);
+		ProjectInfo projectInfo = session.getRemoteProjectList().get(0);
 		UCWorkspace checkOut = session.checkOut(projectInfo.getProjectId(),
-				PrimaryVersionSpec.getHEADSpec());
+				projectInfo.getVersion());
 		Project project = checkOut.getProject();
 
 		return project;
