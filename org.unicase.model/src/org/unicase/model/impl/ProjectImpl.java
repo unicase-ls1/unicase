@@ -46,7 +46,7 @@ import org.unicase.model.ProjectId;
  *
  * @generated
  */
-public class ProjectImpl extends EObjectImpl implements Project ,IAdaptable{
+public class ProjectImpl extends EObjectImpl implements Project, IAdaptable{
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->

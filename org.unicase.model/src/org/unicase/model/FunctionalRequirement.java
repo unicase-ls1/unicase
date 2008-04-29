@@ -137,7 +137,7 @@ public interface FunctionalRequirement extends ModelElement {
 	void setDate(Date value);
 
 	/**
-	 * Returns the value of the '<em><b>Refining Requirements</b></em>' reference list.
+	 * Returns the value of the '<em><b>Refining Requirements</b></em>' containment reference list.
 	 * The list contents are of type {@link org.unicase.model.FunctionalRequirement}.
 	 * It is bidirectional and its opposite is '{@link org.unicase.model.FunctionalRequirement#getRefinedRequirement <em>Refined Requirement</em>}'.
 	 * <!-- begin-user-doc -->
@@ -146,16 +146,16 @@ public interface FunctionalRequirement extends ModelElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Refining Requirements</em>' reference list.
+	 * @return the value of the '<em>Refining Requirements</em>' containment reference list.
 	 * @see org.unicase.model.ModelPackage#getFunctionalRequirement_RefiningRequirements()
 	 * @see org.unicase.model.FunctionalRequirement#getRefinedRequirement
-	 * @model opposite="refinedRequirement"
+	 * @model opposite="refinedRequirement" containment="true"
 	 * @generated
 	 */
 	EList<FunctionalRequirement> getRefiningRequirements();
 
 	/**
-	 * Returns the value of the '<em><b>Refined Requirement</b></em>' reference.
+	 * Returns the value of the '<em><b>Refined Requirement</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.unicase.model.FunctionalRequirement#getRefiningRequirements <em>Refining Requirements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -163,20 +163,20 @@ public interface FunctionalRequirement extends ModelElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Refined Requirement</em>' reference.
+	 * @return the value of the '<em>Refined Requirement</em>' container reference.
 	 * @see #setRefinedRequirement(FunctionalRequirement)
 	 * @see org.unicase.model.ModelPackage#getFunctionalRequirement_RefinedRequirement()
 	 * @see org.unicase.model.FunctionalRequirement#getRefiningRequirements
-	 * @model opposite="refiningRequirements"
+	 * @model opposite="refiningRequirements" transient="false"
 	 * @generated
 	 */
 	FunctionalRequirement getRefinedRequirement();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.FunctionalRequirement#getRefinedRequirement <em>Refined Requirement</em>}' reference.
+	 * Sets the value of the '{@link org.unicase.model.FunctionalRequirement#getRefinedRequirement <em>Refined Requirement</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Refined Requirement</em>' reference.
+	 * @param value the new value of the '<em>Refined Requirement</em>' container reference.
 	 * @see #getRefinedRequirement()
 	 * @generated
 	 */

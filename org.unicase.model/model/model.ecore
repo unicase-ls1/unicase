@@ -13,6 +13,9 @@
       <eAnnotations source="http://www.sysiphus.org/Visibility">
         <details key="VisibilityValue" value="VIEWWHENSET"/>
       </eAnnotations>
+      <eAnnotations source="http://www.unicase.org/view">
+        <details key="type" value="TEXT_AREA"/>
+      </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true">
@@ -29,7 +32,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="priority" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="refiningRequirements" upperBound="-1"
-        eType="#//FunctionalRequirement" eOpposite="#//FunctionalRequirement/refinedRequirement"/>
+        eType="#//FunctionalRequirement" containment="true" eOpposite="#//FunctionalRequirement/refinedRequirement"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="refinedRequirement" eType="#//FunctionalRequirement"
         eOpposite="#//FunctionalRequirement/refiningRequirements"/>
   </eClassifiers>
