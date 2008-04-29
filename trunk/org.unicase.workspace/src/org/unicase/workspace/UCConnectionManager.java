@@ -52,10 +52,10 @@ public class UCConnectionManager {
 		return new SessionId("someId");
 	}
 
-	public List<ProjectInfo> getProjectList(SessionId sessionId) {
+	public List<ProjectInfo> getRemoteProjectList(SessionId sessionId) {
 		List<ProjectInfo> ret = new ArrayList<ProjectInfo>();
 		ProjectId projectId = ModelFactoryImpl.eINSTANCE.createProjectId();
-		ret.add(new ProjectInfo(projectId, "TestProjec", "A test project"));
+		ret.add(new ProjectInfo(projectId, "TestProjec", "A test project", PrimaryVersionSpec.getHeadSpec()));
 		return ret;
 	}
 
@@ -178,6 +178,10 @@ public class UCConnectionManager {
 
 		return projectElement;
 		// end of generation
+	}
+
+	public List<ProjectInfo> getLocalProjectList() {
+		return null;
 	}
 
 }

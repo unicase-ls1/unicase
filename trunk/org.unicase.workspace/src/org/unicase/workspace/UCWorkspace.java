@@ -22,8 +22,6 @@ public class UCWorkspace {
 	private Resource resource;
 	private UCConnectionManager connectionManager;
 	
-	
-	
 	public UCWorkspace(SessionId sessionId, ProjectId projectId,
 			PrimaryVersionSpec version, Resource resource, UCConnectionManager connectionManager) {
 		this.sessionId=sessionId;
@@ -34,7 +32,7 @@ public class UCWorkspace {
 	}
 
 	public void update(PrimaryVersionSpec primaryVersionSpec) {
-		
+		throw new NoSuchMethodError();
 	}
 	
 	public void commit() {
@@ -42,7 +40,7 @@ public class UCWorkspace {
 	}
 	
 	public void revert() {
-		
+		throw new NoSuchMethodError();
 	}
 	
 	public Project getProject() {

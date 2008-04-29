@@ -10,10 +10,13 @@ public class ProjectInfo {
 	
 	private String projectDescription;
 	
-	public ProjectInfo(ProjectId projectId, String projectName, String projectDescription) {
+	private PrimaryVersionSpec version;
+	
+	public ProjectInfo(ProjectId projectId, String projectName, String projectDescription, PrimaryVersionSpec version) {
 		this.projectId=projectId;
 		this.projectName=projectName;
 		this.projectDescription=projectDescription;
+		this.version=version;
 	}
 
 	/**
@@ -35,5 +38,12 @@ public class ProjectInfo {
 	 */
 	public String getProjectDescription() {
 		return projectDescription;
+	}
+
+	/**
+	 * @return the version
+	 */
+	public PrimaryVersionSpec getVersion() {
+		return version;
 	}
 }
