@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.esmodel.util;
+package org.unicase.esmodel.versionspec.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -13,24 +13,24 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.unicase.esmodel.*;
+import org.unicase.esmodel.versionspec.*;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see org.unicase.esmodel.EsmodelPackage
+ * @see org.unicase.esmodel.versionspec.VersionspecPackage
  * @generated
  */
-public class EsmodelAdapterFactory extends AdapterFactoryImpl {
+public class VersionspecAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static EsmodelPackage modelPackage;
+	protected static VersionspecPackage modelPackage;
 
 	/**
 	 * Creates an instance of the adapter factory.
@@ -38,9 +38,9 @@ public class EsmodelAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EsmodelAdapterFactory() {
+	public VersionspecAdapterFactory() {
 		if (modelPackage == null) {
-			modelPackage = EsmodelPackage.eINSTANCE;
+			modelPackage = VersionspecPackage.eINSTANCE;
 		}
 	}
 
@@ -69,31 +69,23 @@ public class EsmodelAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EsmodelSwitch<Adapter> modelSwitch =
-		new EsmodelSwitch<Adapter>() {
+	protected VersionspecSwitch<Adapter> modelSwitch =
+		new VersionspecSwitch<Adapter>() {
 			@Override
-			public Adapter caseVersion(Version object) {
-				return createVersionAdapter();
+			public Adapter caseTagVersionSpec(TagVersionSpec object) {
+				return createTagVersionSpecAdapter();
 			}
 			@Override
-			public Adapter caseProjectHistory(ProjectHistory object) {
-				return createProjectHistoryAdapter();
+			public Adapter caseDateVersionSpec(DateVersionSpec object) {
+				return createDateVersionSpecAdapter();
 			}
 			@Override
-			public Adapter caseChangePackage(ChangePackage object) {
-				return createChangePackageAdapter();
+			public Adapter casePrimaryVersionSpec(PrimaryVersionSpec object) {
+				return createPrimaryVersionSpecAdapter();
 			}
 			@Override
-			public Adapter caseProjectInfo(ProjectInfo object) {
-				return createProjectInfoAdapter();
-			}
-			@Override
-			public Adapter caseHistoryInfo(HistoryInfo object) {
-				return createHistoryInfoAdapter();
-			}
-			@Override
-			public Adapter caseSessionId(SessionId object) {
-				return createSessionIdAdapter();
+			public Adapter caseVersionSpec(VersionSpec object) {
+				return createVersionSpecAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -116,86 +108,58 @@ public class EsmodelAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.esmodel.Version <em>Version</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.unicase.esmodel.versionspec.TagVersionSpec <em>Tag Version Spec</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.unicase.esmodel.Version
+	 * @see org.unicase.esmodel.versionspec.TagVersionSpec
 	 * @generated
 	 */
-	public Adapter createVersionAdapter() {
+	public Adapter createTagVersionSpecAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.esmodel.ProjectHistory <em>Project History</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.unicase.esmodel.versionspec.DateVersionSpec <em>Date Version Spec</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.unicase.esmodel.ProjectHistory
+	 * @see org.unicase.esmodel.versionspec.DateVersionSpec
 	 * @generated
 	 */
-	public Adapter createProjectHistoryAdapter() {
+	public Adapter createDateVersionSpecAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.esmodel.ChangePackage <em>Change Package</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.unicase.esmodel.versionspec.PrimaryVersionSpec <em>Primary Version Spec</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.unicase.esmodel.ChangePackage
+	 * @see org.unicase.esmodel.versionspec.PrimaryVersionSpec
 	 * @generated
 	 */
-	public Adapter createChangePackageAdapter() {
+	public Adapter createPrimaryVersionSpecAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.esmodel.ProjectInfo <em>Project Info</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.unicase.esmodel.versionspec.VersionSpec <em>Version Spec</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.unicase.esmodel.ProjectInfo
+	 * @see org.unicase.esmodel.versionspec.VersionSpec
 	 * @generated
 	 */
-	public Adapter createProjectInfoAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.esmodel.HistoryInfo <em>History Info</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.esmodel.HistoryInfo
-	 * @generated
-	 */
-	public Adapter createHistoryInfoAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.esmodel.SessionId <em>Session Id</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.esmodel.SessionId
-	 * @generated
-	 */
-	public Adapter createSessionIdAdapter() {
+	public Adapter createVersionSpecAdapter() {
 		return null;
 	}
 
@@ -211,4 +175,4 @@ public class EsmodelAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} //EsmodelAdapterFactory
+} //VersionspecAdapterFactory

@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.esmodel.impl;
+package org.unicase.esmodel.versionspec.impl;
 
 import java.util.Date;
 
@@ -15,8 +15,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
-import org.unicase.esmodel.DateVersionSpec;
-import org.unicase.esmodel.EsmodelPackage;
+import org.unicase.esmodel.versionspec.DateVersionSpec;
+import org.unicase.esmodel.versionspec.VersionspecPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,7 +25,7 @@ import org.unicase.esmodel.EsmodelPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.esmodel.impl.DateVersionSpecImpl#getDate <em>Date</em>}</li>
+ *   <li>{@link org.unicase.esmodel.versionspec.impl.DateVersionSpecImpl#getDate <em>Date</em>}</li>
  * </ul>
  * </p>
  *
@@ -68,7 +68,7 @@ public class DateVersionSpecImpl extends EObjectImpl implements DateVersionSpec 
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return EsmodelPackage.Literals.DATE_VERSION_SPEC;
+		return VersionspecPackage.Literals.DATE_VERSION_SPEC;
 	}
 
 	/**
@@ -89,7 +89,7 @@ public class DateVersionSpecImpl extends EObjectImpl implements DateVersionSpec 
 		Date oldDate = date;
 		date = newDate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EsmodelPackage.DATE_VERSION_SPEC__DATE, oldDate, date));
+			eNotify(new ENotificationImpl(this, Notification.SET, VersionspecPackage.DATE_VERSION_SPEC__DATE, oldDate, date));
 	}
 
 	/**
@@ -100,7 +100,7 @@ public class DateVersionSpecImpl extends EObjectImpl implements DateVersionSpec 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EsmodelPackage.DATE_VERSION_SPEC__DATE:
+			case VersionspecPackage.DATE_VERSION_SPEC__DATE:
 				return getDate();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -114,7 +114,7 @@ public class DateVersionSpecImpl extends EObjectImpl implements DateVersionSpec 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EsmodelPackage.DATE_VERSION_SPEC__DATE:
+			case VersionspecPackage.DATE_VERSION_SPEC__DATE:
 				setDate((Date)newValue);
 				return;
 		}
@@ -129,7 +129,7 @@ public class DateVersionSpecImpl extends EObjectImpl implements DateVersionSpec 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EsmodelPackage.DATE_VERSION_SPEC__DATE:
+			case VersionspecPackage.DATE_VERSION_SPEC__DATE:
 				setDate(DATE_EDEFAULT);
 				return;
 		}
@@ -144,7 +144,7 @@ public class DateVersionSpecImpl extends EObjectImpl implements DateVersionSpec 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EsmodelPackage.DATE_VERSION_SPEC__DATE:
+			case VersionspecPackage.DATE_VERSION_SPEC__DATE:
 				return DATE_EDEFAULT == null ? date != null : !DATE_EDEFAULT.equals(date);
 		}
 		return super.eIsSet(featureID);

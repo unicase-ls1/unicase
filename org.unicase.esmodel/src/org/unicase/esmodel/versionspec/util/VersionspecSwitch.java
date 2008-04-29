@@ -4,14 +4,14 @@
  *
  * $Id$
  */
-package org.unicase.esmodel.util;
+package org.unicase.esmodel.versionspec.util;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
-import org.unicase.esmodel.*;
+import org.unicase.esmodel.versionspec.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,17 +23,17 @@ import org.unicase.esmodel.*;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.unicase.esmodel.EsmodelPackage
+ * @see org.unicase.esmodel.versionspec.VersionspecPackage
  * @generated
  */
-public class EsmodelSwitch<T> {
+public class VersionspecSwitch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static EsmodelPackage modelPackage;
+	protected static VersionspecPackage modelPackage;
 
 	/**
 	 * Creates an instance of the switch.
@@ -41,9 +41,9 @@ public class EsmodelSwitch<T> {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EsmodelSwitch() {
+	public VersionspecSwitch() {
 		if (modelPackage == null) {
-			modelPackage = EsmodelPackage.eINSTANCE;
+			modelPackage = VersionspecPackage.eINSTANCE;
 		}
 	}
 
@@ -87,39 +87,27 @@ public class EsmodelSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case EsmodelPackage.VERSION: {
-				Version version = (Version)theEObject;
-				T result = caseVersion(version);
+			case VersionspecPackage.TAG_VERSION_SPEC: {
+				TagVersionSpec tagVersionSpec = (TagVersionSpec)theEObject;
+				T result = caseTagVersionSpec(tagVersionSpec);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EsmodelPackage.PROJECT_HISTORY: {
-				ProjectHistory projectHistory = (ProjectHistory)theEObject;
-				T result = caseProjectHistory(projectHistory);
+			case VersionspecPackage.DATE_VERSION_SPEC: {
+				DateVersionSpec dateVersionSpec = (DateVersionSpec)theEObject;
+				T result = caseDateVersionSpec(dateVersionSpec);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EsmodelPackage.CHANGE_PACKAGE: {
-				ChangePackage changePackage = (ChangePackage)theEObject;
-				T result = caseChangePackage(changePackage);
+			case VersionspecPackage.PRIMARY_VERSION_SPEC: {
+				PrimaryVersionSpec primaryVersionSpec = (PrimaryVersionSpec)theEObject;
+				T result = casePrimaryVersionSpec(primaryVersionSpec);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EsmodelPackage.PROJECT_INFO: {
-				ProjectInfo projectInfo = (ProjectInfo)theEObject;
-				T result = caseProjectInfo(projectInfo);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EsmodelPackage.HISTORY_INFO: {
-				HistoryInfo historyInfo = (HistoryInfo)theEObject;
-				T result = caseHistoryInfo(historyInfo);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EsmodelPackage.SESSION_ID: {
-				SessionId sessionId = (SessionId)theEObject;
-				T result = caseSessionId(sessionId);
+			case VersionspecPackage.VERSION_SPEC: {
+				VersionSpec versionSpec = (VersionSpec)theEObject;
+				T result = caseVersionSpec(versionSpec);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -128,92 +116,62 @@ public class EsmodelSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Version</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Tag Version Spec</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Version</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Tag Version Spec</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseVersion(Version object) {
+	public T caseTagVersionSpec(TagVersionSpec object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Project History</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Date Version Spec</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Project History</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Date Version Spec</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseProjectHistory(ProjectHistory object) {
+	public T caseDateVersionSpec(DateVersionSpec object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Change Package</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Primary Version Spec</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Change Package</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Primary Version Spec</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseChangePackage(ChangePackage object) {
+	public T casePrimaryVersionSpec(PrimaryVersionSpec object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Project Info</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Version Spec</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Project Info</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Version Spec</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseProjectInfo(ProjectInfo object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>History Info</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>History Info</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseHistoryInfo(HistoryInfo object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Session Id</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Session Id</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSessionId(SessionId object) {
+	public T caseVersionSpec(VersionSpec object) {
 		return null;
 	}
 
@@ -232,4 +190,4 @@ public class EsmodelSwitch<T> {
 		return null;
 	}
 
-} //EsmodelSwitch
+} //VersionspecSwitch

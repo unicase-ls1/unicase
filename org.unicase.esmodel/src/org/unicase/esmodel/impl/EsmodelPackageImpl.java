@@ -10,19 +10,17 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.change.ChangePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-import org.unicase.esmodel.DateVersionSpec;
 import org.unicase.esmodel.EsmodelFactory;
 import org.unicase.esmodel.EsmodelPackage;
-import org.unicase.esmodel.PrimaryVersionSpec;
+import org.unicase.esmodel.HistoryInfo;
 import org.unicase.esmodel.ProjectHistory;
-import org.unicase.esmodel.TagVersionSpec;
+import org.unicase.esmodel.ProjectInfo;
+import org.unicase.esmodel.SessionId;
 import org.unicase.esmodel.Version;
-
-import org.unicase.esmodel.VersionSpec;
+import org.unicase.esmodel.versionspec.VersionspecPackage;
+import org.unicase.esmodel.versionspec.impl.VersionspecPackageImpl;
 import org.unicase.model.ModelPackage;
 
 /**
@@ -50,32 +48,28 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass versionSpecEClass = null;
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass primaryVersionSpecEClass = null;
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass dateVersionSpecEClass = null;
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass tagVersionSpecEClass = null;
+	private EClass changePackageEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass changePackageEClass = null;
+	private EClass projectInfoEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass historyInfoEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass sessionIdEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -137,11 +131,16 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		ChangePackage.eINSTANCE.eClass();
 		ModelPackage.eINSTANCE.eClass();
 
+		// Obtain or create and register interdependencies
+		VersionspecPackageImpl theVersionspecPackage = (VersionspecPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(VersionspecPackage.eNS_URI) instanceof VersionspecPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(VersionspecPackage.eNS_URI) : VersionspecPackage.eINSTANCE);
+
 		// Create package meta-data objects
 		theEsmodelPackage.createPackageContents();
+		theVersionspecPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theEsmodelPackage.initializePackageContents();
+		theVersionspecPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theEsmodelPackage.freeze();
@@ -235,60 +234,6 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getVersionSpec() {
-		return versionSpecEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getPrimaryVersionSpec() {
-		return primaryVersionSpecEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getDateVersionSpec() {
-		return dateVersionSpecEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getDateVersionSpec_Date() {
-		return (EAttribute)dateVersionSpecEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getTagVersionSpec() {
-		return tagVersionSpecEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getTagVersionSpec_Name() {
-		return (EAttribute)tagVersionSpecEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getChangePackage() {
 		return changePackageEClass;
 	}
@@ -309,6 +254,78 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 */
 	public EReference getChangePackage_BackwardDelta() {
 		return (EReference)changePackageEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getProjectInfo() {
+		return projectInfoEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProjectInfo_Name() {
+		return (EAttribute)projectInfoEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProjectInfo_Description() {
+		return (EAttribute)projectInfoEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getProjectInfo_ProjectId() {
+		return (EReference)projectInfoEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getProjectInfo_Version() {
+		return (EReference)projectInfoEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getHistoryInfo() {
+		return historyInfoEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSessionId() {
+		return sessionIdEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSessionId_Identifier() {
+		return (EAttribute)sessionIdEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -350,19 +367,20 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		projectHistoryEClass = createEClass(PROJECT_HISTORY);
 		createEReference(projectHistoryEClass, PROJECT_HISTORY__VERSIONS);
 
-		versionSpecEClass = createEClass(VERSION_SPEC);
-
-		primaryVersionSpecEClass = createEClass(PRIMARY_VERSION_SPEC);
-
-		dateVersionSpecEClass = createEClass(DATE_VERSION_SPEC);
-		createEAttribute(dateVersionSpecEClass, DATE_VERSION_SPEC__DATE);
-
-		tagVersionSpecEClass = createEClass(TAG_VERSION_SPEC);
-		createEAttribute(tagVersionSpecEClass, TAG_VERSION_SPEC__NAME);
-
 		changePackageEClass = createEClass(CHANGE_PACKAGE);
 		createEReference(changePackageEClass, CHANGE_PACKAGE__FOWARD_DELTA);
 		createEReference(changePackageEClass, CHANGE_PACKAGE__BACKWARD_DELTA);
+
+		projectInfoEClass = createEClass(PROJECT_INFO);
+		createEAttribute(projectInfoEClass, PROJECT_INFO__NAME);
+		createEAttribute(projectInfoEClass, PROJECT_INFO__DESCRIPTION);
+		createEReference(projectInfoEClass, PROJECT_INFO__PROJECT_ID);
+		createEReference(projectInfoEClass, PROJECT_INFO__VERSION);
+
+		historyInfoEClass = createEClass(HISTORY_INFO);
+
+		sessionIdEClass = createEClass(SESSION_ID);
+		createEAttribute(sessionIdEClass, SESSION_ID__IDENTIFIER);
 	}
 
 	/**
@@ -389,8 +407,12 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
+		VersionspecPackage theVersionspecPackage = (VersionspecPackage)EPackage.Registry.INSTANCE.getEPackage(VersionspecPackage.eNS_URI);
 		ModelPackage theModelPackage = (ModelPackage)EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 		ChangePackage theChangePackage = (ChangePackage)EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI);
+
+		// Add subpackages
+		getESubpackages().add(theVersionspecPackage);
 
 		// Create type parameters
 
@@ -401,8 +423,8 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		// Initialize classes and features; add operations and parameters
 		initEClass(versionEClass, Version.class, "Version", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getVersion_ProjectState(), theModelPackage.getProject(), null, "projectState", null, 0, 1, Version.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getVersion_PrimarySpec(), this.getPrimaryVersionSpec(), null, "primarySpec", null, 1, 1, Version.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getVersion_TagSpecs(), this.getTagVersionSpec(), null, "tagSpecs", null, 0, -1, Version.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVersion_PrimarySpec(), theVersionspecPackage.getPrimaryVersionSpec(), null, "primarySpec", null, 1, 1, Version.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVersion_TagSpecs(), theVersionspecPackage.getTagVersionSpec(), null, "tagSpecs", null, 0, -1, Version.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getVersion_NextVersion(), this.getVersion(), null, "nextVersion", null, 0, 1, Version.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getVersion_PreviousVersion(), this.getVersion(), null, "previousVersion", null, 0, 1, Version.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getVersion_Changes(), this.getChangePackage(), null, "changes", null, 1, 1, Version.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -410,21 +432,22 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		initEClass(projectHistoryEClass, ProjectHistory.class, "ProjectHistory", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getProjectHistory_Versions(), this.getVersion(), null, "versions", null, 1, -1, ProjectHistory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(versionSpecEClass, VersionSpec.class, "VersionSpec", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(primaryVersionSpecEClass, PrimaryVersionSpec.class, "PrimaryVersionSpec", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(dateVersionSpecEClass, DateVersionSpec.class, "DateVersionSpec", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getDateVersionSpec_Date(), ecorePackage.getEDate(), "date", null, 1, 1, DateVersionSpec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(tagVersionSpecEClass, TagVersionSpec.class, "TagVersionSpec", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTagVersionSpec_Name(), ecorePackage.getEString(), "name", null, 1, 1, TagVersionSpec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(changePackageEClass, org.unicase.esmodel.ChangePackage.class, "ChangePackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getChangePackage_FowardDelta(), theChangePackage.getChangeDescription(), null, "fowardDelta", null, 1, 1, org.unicase.esmodel.ChangePackage.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getChangePackage_BackwardDelta(), theChangePackage.getChangeDescription(), null, "backwardDelta", null, 1, 1, org.unicase.esmodel.ChangePackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		addEOperation(changePackageEClass, this.getChangePackage(), "reverse", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(projectInfoEClass, ProjectInfo.class, "ProjectInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getProjectInfo_Name(), ecorePackage.getEString(), "name", null, 1, 1, ProjectInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProjectInfo_Description(), ecorePackage.getEString(), "description", null, 0, 1, ProjectInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProjectInfo_ProjectId(), theModelPackage.getProjectId(), null, "projectId", null, 1, 1, ProjectInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProjectInfo_Version(), theVersionspecPackage.getPrimaryVersionSpec(), null, "version", null, 1, 1, ProjectInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(historyInfoEClass, HistoryInfo.class, "HistoryInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(sessionIdEClass, SessionId.class, "SessionId", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSessionId_Identifier(), ecorePackage.getEString(), "identifier", null, 1, 1, SessionId.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

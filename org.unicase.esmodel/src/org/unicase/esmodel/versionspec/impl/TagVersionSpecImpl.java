@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.esmodel.impl;
+package org.unicase.esmodel.versionspec.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -13,8 +13,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
-import org.unicase.esmodel.EsmodelPackage;
-import org.unicase.esmodel.TagVersionSpec;
+import org.unicase.esmodel.versionspec.TagVersionSpec;
+import org.unicase.esmodel.versionspec.VersionspecPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +23,7 @@ import org.unicase.esmodel.TagVersionSpec;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.esmodel.impl.TagVersionSpecImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.unicase.esmodel.versionspec.impl.TagVersionSpecImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -66,7 +66,7 @@ public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return EsmodelPackage.Literals.TAG_VERSION_SPEC;
+		return VersionspecPackage.Literals.TAG_VERSION_SPEC;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EsmodelPackage.TAG_VERSION_SPEC__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, VersionspecPackage.TAG_VERSION_SPEC__NAME, oldName, name));
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EsmodelPackage.TAG_VERSION_SPEC__NAME:
+			case VersionspecPackage.TAG_VERSION_SPEC__NAME:
 				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -112,7 +112,7 @@ public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EsmodelPackage.TAG_VERSION_SPEC__NAME:
+			case VersionspecPackage.TAG_VERSION_SPEC__NAME:
 				setName((String)newValue);
 				return;
 		}
@@ -127,7 +127,7 @@ public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EsmodelPackage.TAG_VERSION_SPEC__NAME:
+			case VersionspecPackage.TAG_VERSION_SPEC__NAME:
 				setName(NAME_EDEFAULT);
 				return;
 		}
@@ -142,7 +142,7 @@ public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EsmodelPackage.TAG_VERSION_SPEC__NAME:
+			case VersionspecPackage.TAG_VERSION_SPEC__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);

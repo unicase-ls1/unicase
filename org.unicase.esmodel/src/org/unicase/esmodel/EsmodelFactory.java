@@ -44,33 +44,6 @@ public interface EsmodelFactory extends EFactory {
 	ProjectHistory createProjectHistory();
 
 	/**
-	 * Returns a new object of class '<em>Primary Version Spec</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Primary Version Spec</em>'.
-	 * @generated
-	 */
-	PrimaryVersionSpec createPrimaryVersionSpec();
-
-	/**
-	 * Returns a new object of class '<em>Date Version Spec</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Date Version Spec</em>'.
-	 * @generated
-	 */
-	DateVersionSpec createDateVersionSpec();
-
-	/**
-	 * Returns a new object of class '<em>Tag Version Spec</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Tag Version Spec</em>'.
-	 * @generated
-	 */
-	TagVersionSpec createTagVersionSpec();
-
-	/**
 	 * Returns a new object of class '<em>Change Package</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,6 +51,33 @@ public interface EsmodelFactory extends EFactory {
 	 * @generated
 	 */
 	ChangePackage createChangePackage();
+
+	/**
+	 * Returns a new object of class '<em>Project Info</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Project Info</em>'.
+	 * @generated
+	 */
+	ProjectInfo createProjectInfo();
+
+	/**
+	 * Returns a new object of class '<em>History Info</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>History Info</em>'.
+	 * @generated
+	 */
+	HistoryInfo createHistoryInfo();
+
+	/**
+	 * Returns a new object of class '<em>Session Id</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Session Id</em>'.
+	 * @generated
+	 */
+	SessionId createSessionId();
 
 	/**
 	 * Returns the package supported by this factory.

@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.esmodel;
+package org.unicase.esmodel.versionspec;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -16,11 +16,11 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.esmodel.TagVersionSpec#getName <em>Name</em>}</li>
+ *   <li>{@link org.unicase.esmodel.versionspec.TagVersionSpec#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.unicase.esmodel.EsmodelPackage#getTagVersionSpec()
+ * @see org.unicase.esmodel.versionspec.VersionspecPackage#getTagVersionSpec()
  * @model
  * @generated
  */
@@ -35,14 +35,14 @@ public interface TagVersionSpec extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see org.unicase.esmodel.EsmodelPackage#getTagVersionSpec_Name()
+	 * @see org.unicase.esmodel.versionspec.VersionspecPackage#getTagVersionSpec_Name()
 	 * @model required="true"
 	 * @generated
 	 */
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.esmodel.TagVersionSpec#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link org.unicase.esmodel.versionspec.TagVersionSpec#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.

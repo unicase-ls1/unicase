@@ -11,24 +11,24 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.unicase.esmodel.EsmodelPackage;
-import org.unicase.esmodel.PrimaryVersionSpec;
+import org.unicase.esmodel.HistoryInfo;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Primary Version Spec</b></em>'.
+ * An implementation of the model object '<em><b>History Info</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersionSpec {
+public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PrimaryVersionSpecImpl() {
+	protected HistoryInfoImpl() {
 		super();
 	}
 
@@ -39,7 +39,7 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersio
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return EsmodelPackage.Literals.PRIMARY_VERSION_SPEC;
+		return EsmodelPackage.Literals.HISTORY_INFO;
 	}
 
-} //PrimaryVersionSpecImpl
+} //HistoryInfoImpl

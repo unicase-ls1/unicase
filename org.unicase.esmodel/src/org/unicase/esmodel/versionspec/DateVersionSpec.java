@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.esmodel;
+package org.unicase.esmodel.versionspec;
 
 import java.util.Date;
 
@@ -18,11 +18,11 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.esmodel.DateVersionSpec#getDate <em>Date</em>}</li>
+ *   <li>{@link org.unicase.esmodel.versionspec.DateVersionSpec#getDate <em>Date</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.unicase.esmodel.EsmodelPackage#getDateVersionSpec()
+ * @see org.unicase.esmodel.versionspec.VersionspecPackage#getDateVersionSpec()
  * @model
  * @generated
  */
@@ -37,14 +37,14 @@ public interface DateVersionSpec extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Date</em>' attribute.
 	 * @see #setDate(Date)
-	 * @see org.unicase.esmodel.EsmodelPackage#getDateVersionSpec_Date()
+	 * @see org.unicase.esmodel.versionspec.VersionspecPackage#getDateVersionSpec_Date()
 	 * @model required="true"
 	 * @generated
 	 */
 	Date getDate();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.esmodel.DateVersionSpec#getDate <em>Date</em>}' attribute.
+	 * Sets the value of the '{@link org.unicase.esmodel.versionspec.DateVersionSpec#getDate <em>Date</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Date</em>' attribute.
