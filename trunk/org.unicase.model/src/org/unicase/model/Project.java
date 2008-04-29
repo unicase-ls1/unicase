@@ -10,6 +10,7 @@ import java.util.Collection;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -125,7 +126,12 @@ public interface Project extends EObject, IAdaptable {
 	 */
 	void setIdentifier(ProjectId value);
 
+	/**
+	 * @param elementClass
+	 * @return
+	 * * @generated NOT
+	 */
 	Collection<ModelElement> getElementsByClass(
-			Class<? extends EObject> elementType);
+			Class<? extends EObject> elementClass);
 
 } // Project

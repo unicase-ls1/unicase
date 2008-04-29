@@ -46,7 +46,9 @@ import org.unicase.model.ProjectId;
  *
  * @generated
  */
-public class ProjectImpl extends EObjectImpl implements Project{
+
+public class ProjectImpl extends EObjectImpl implements Project {
+
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -106,7 +108,7 @@ public class ProjectImpl extends EObjectImpl implements Project{
 	 * @ordered
 	 */
 	protected ProjectId identifier;
-
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -366,6 +368,7 @@ public class ProjectImpl extends EObjectImpl implements Project{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 	public Collection<ModelElement> getElementsByClass(
 			Class<? extends EObject> elementType) {
 		Collection<ModelElement> returnList = new ArrayList<ModelElement>();
@@ -376,7 +379,6 @@ public class ProjectImpl extends EObjectImpl implements Project{
 		}
 		return returnList;
 	}
-
 
 
 } //ProjectImpl
