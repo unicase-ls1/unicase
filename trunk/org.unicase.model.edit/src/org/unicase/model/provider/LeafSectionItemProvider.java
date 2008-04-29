@@ -61,25 +61,25 @@ public class LeafSectionItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addElementTypePropertyDescriptor(object);
+			addElementClassPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Element Type feature.
+	 * This adds a property descriptor for the Element Class feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addElementTypePropertyDescriptor(Object object) {
+	protected void addElementClassPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_LeafSection_ElementType_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LeafSection_ElementType_feature", "_UI_LeafSection_type"),
-				 ModelPackage.Literals.LEAF_SECTION__ELEMENT_TYPE,
+				 getString("_UI_LeafSection_elementClass_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LeafSection_elementClass_feature", "_UI_LeafSection_type"),
+				 ModelPackage.Literals.LEAF_SECTION__ELEMENT_CLASS,
 				 true,
 				 false,
 				 false,
@@ -125,7 +125,7 @@ public class LeafSectionItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(LeafSection.class)) {
-			case ModelPackage.LEAF_SECTION__ELEMENT_TYPE:
+			case ModelPackage.LEAF_SECTION__ELEMENT_CLASS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -150,7 +150,7 @@ public class LeafSectionItemProvider
 	    if (object instanceof LeafSection)
 	    {
 	      LeafSection leafSection = (LeafSection)object;
-	      return leafSection.getProject().getElementsByClass(leafSection.getElementType());
+	      return leafSection.getProject().getElementsByClass(leafSection.getElementClass());
 	    }
 	    else
 	    {
