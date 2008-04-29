@@ -1,0 +1,68 @@
+package org.unicase.meeditor;
+
+
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IPersistableElement;
+import org.unicase.model.ModelElement;
+import org.unicase.model.provider.ModelItemProviderAdapterFactory;
+
+public class MEEditorInput implements IEditorInput {
+
+	ModelElement modelElement;
+
+	public MEEditorInput(ModelElement me) {
+		super();
+		this.modelElement = me;
+	}
+
+	public boolean exists() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public ImageDescriptor getImageDescriptor() {
+		ImageDescriptor descriptor = ImageDescriptor.createFromImage(new AdapterFactoryLabelProvider(new ModelItemProviderAdapterFactory()).getImage(modelElement));
+		return descriptor;
+	}
+
+	public String getName() {
+		return modelElement.getName();
+	}
+
+	public IPersistableElement getPersistable() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getToolTipText() {
+		// TODO Auto-generated method stub
+		return "";
+	}
+
+	public Object getAdapter(Class adapter) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ModelElement getModelElement() {
+		return modelElement;
+	}
+
+	public void setModelElement(ModelElement modelElement) {
+		this.modelElement = modelElement;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof MEEditorInput) {
+			MEEditorInput other = (MEEditorInput) obj;
+			boolean ret = modelElement.equals(other.getModelElement());
+			return ret;
+		} else {
+			return super.equals(obj);
+		}
+	}
+
+}
