@@ -37,7 +37,7 @@
         eOpposite="#//FunctionalRequirement/refiningRequirements"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LeafSection" eSuperTypes="#//Section">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ElementType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="elementClass">
       <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
         <eTypeArguments>
           <eUpperBound eClassifier="#//ModelElement"/>
@@ -55,6 +55,9 @@
         eOpposite="#//CompositeSection/subsections"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Project">
+    <eOperations name="addModelElement">
+      <eParameters name="modelElement" lowerBound="1" eType="#//ModelElement"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="projectElements" upperBound="-1"
@@ -62,5 +65,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="Identifier" eType="#//ProjectId"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ProjectId"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ProjectId">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
+  </eClassifiers>
 </ecore:EPackage>
