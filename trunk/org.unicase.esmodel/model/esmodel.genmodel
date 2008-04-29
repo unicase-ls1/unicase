@@ -18,18 +18,31 @@
     <genClasses ecoreClass="esmodel.ecore#//ProjectHistory">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//ProjectHistory/versions"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="esmodel.ecore#//VersionSpec"/>
-    <genClasses ecoreClass="esmodel.ecore#//PrimaryVersionSpec"/>
-    <genClasses ecoreClass="esmodel.ecore#//DateVersionSpec">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//DateVersionSpec/date"/>
-    </genClasses>
-    <genClasses ecoreClass="esmodel.ecore#//TagVersionSpec">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//TagVersionSpec/name"/>
-    </genClasses>
     <genClasses ecoreClass="esmodel.ecore#//ChangePackage">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference esmodel.ecore#//ChangePackage/fowardDelta"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference esmodel.ecore#//ChangePackage/backwardDelta"/>
       <genOperations ecoreOperation="esmodel.ecore#//ChangePackage/reverse"/>
     </genClasses>
+    <genClasses ecoreClass="esmodel.ecore#//ProjectInfo">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//ProjectInfo/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//ProjectInfo/description"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference esmodel.ecore#//ProjectInfo/projectId"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference esmodel.ecore#//ProjectInfo/version"/>
+    </genClasses>
+    <genClasses ecoreClass="esmodel.ecore#//HistoryInfo"/>
+    <genClasses ecoreClass="esmodel.ecore#//SessionId">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//SessionId/identifier"/>
+    </genClasses>
+    <nestedGenPackages prefix="Versionspec" basePackage="org.unicase.esmodel" disposableProviderFactory="true"
+        ecorePackage="esmodel.ecore#//versionspec">
+      <genClasses ecoreClass="esmodel.ecore#//versionspec/TagVersionSpec">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versionspec/TagVersionSpec/name"/>
+      </genClasses>
+      <genClasses ecoreClass="esmodel.ecore#//versionspec/DateVersionSpec">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versionspec/DateVersionSpec/date"/>
+      </genClasses>
+      <genClasses ecoreClass="esmodel.ecore#//versionspec/PrimaryVersionSpec"/>
+      <genClasses image="false" ecoreClass="esmodel.ecore#//versionspec/VersionSpec"/>
+    </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

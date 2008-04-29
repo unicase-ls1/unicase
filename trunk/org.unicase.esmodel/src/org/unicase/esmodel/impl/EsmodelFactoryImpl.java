@@ -62,10 +62,10 @@ public class EsmodelFactoryImpl extends EFactoryImpl implements EsmodelFactory {
 		switch (eClass.getClassifierID()) {
 			case EsmodelPackage.VERSION: return createVersion();
 			case EsmodelPackage.PROJECT_HISTORY: return createProjectHistory();
-			case EsmodelPackage.PRIMARY_VERSION_SPEC: return createPrimaryVersionSpec();
-			case EsmodelPackage.DATE_VERSION_SPEC: return createDateVersionSpec();
-			case EsmodelPackage.TAG_VERSION_SPEC: return createTagVersionSpec();
 			case EsmodelPackage.CHANGE_PACKAGE: return createChangePackage();
+			case EsmodelPackage.PROJECT_INFO: return createProjectInfo();
+			case EsmodelPackage.HISTORY_INFO: return createHistoryInfo();
+			case EsmodelPackage.SESSION_ID: return createSessionId();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -96,39 +96,39 @@ public class EsmodelFactoryImpl extends EFactoryImpl implements EsmodelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PrimaryVersionSpec createPrimaryVersionSpec() {
-		PrimaryVersionSpecImpl primaryVersionSpec = new PrimaryVersionSpecImpl();
-		return primaryVersionSpec;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DateVersionSpec createDateVersionSpec() {
-		DateVersionSpecImpl dateVersionSpec = new DateVersionSpecImpl();
-		return dateVersionSpec;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TagVersionSpec createTagVersionSpec() {
-		TagVersionSpecImpl tagVersionSpec = new TagVersionSpecImpl();
-		return tagVersionSpec;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public ChangePackage createChangePackage() {
 		ChangePackageImpl changePackage = new ChangePackageImpl();
 		return changePackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ProjectInfo createProjectInfo() {
+		ProjectInfoImpl projectInfo = new ProjectInfoImpl();
+		return projectInfo;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public HistoryInfo createHistoryInfo() {
+		HistoryInfoImpl historyInfo = new HistoryInfoImpl();
+		return historyInfo;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SessionId createSessionId() {
+		SessionIdImpl sessionId = new SessionIdImpl();
+		return sessionId;
 	}
 
 	/**

@@ -162,101 +162,6 @@ public interface EsmodelPackage extends EPackage {
 	int PROJECT_HISTORY_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.esmodel.VersionSpec <em>Version Spec</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.unicase.esmodel.VersionSpec
-	 * @see org.unicase.esmodel.impl.EsmodelPackageImpl#getVersionSpec()
-	 * @generated
-	 */
-	int VERSION_SPEC = 2;
-
-	/**
-	 * The number of structural features of the '<em>Version Spec</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VERSION_SPEC_FEATURE_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.unicase.esmodel.impl.PrimaryVersionSpecImpl <em>Primary Version Spec</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.unicase.esmodel.impl.PrimaryVersionSpecImpl
-	 * @see org.unicase.esmodel.impl.EsmodelPackageImpl#getPrimaryVersionSpec()
-	 * @generated
-	 */
-	int PRIMARY_VERSION_SPEC = 3;
-
-	/**
-	 * The number of structural features of the '<em>Primary Version Spec</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMARY_VERSION_SPEC_FEATURE_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.unicase.esmodel.impl.DateVersionSpecImpl <em>Date Version Spec</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.unicase.esmodel.impl.DateVersionSpecImpl
-	 * @see org.unicase.esmodel.impl.EsmodelPackageImpl#getDateVersionSpec()
-	 * @generated
-	 */
-	int DATE_VERSION_SPEC = 4;
-
-	/**
-	 * The feature id for the '<em><b>Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATE_VERSION_SPEC__DATE = 0;
-
-	/**
-	 * The number of structural features of the '<em>Date Version Spec</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATE_VERSION_SPEC_FEATURE_COUNT = 1;
-
-	/**
-	 * The meta object id for the '{@link org.unicase.esmodel.impl.TagVersionSpecImpl <em>Tag Version Spec</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.unicase.esmodel.impl.TagVersionSpecImpl
-	 * @see org.unicase.esmodel.impl.EsmodelPackageImpl#getTagVersionSpec()
-	 * @generated
-	 */
-	int TAG_VERSION_SPEC = 5;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TAG_VERSION_SPEC__NAME = 0;
-
-	/**
-	 * The number of structural features of the '<em>Tag Version Spec</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TAG_VERSION_SPEC_FEATURE_COUNT = 1;
-
-
-	/**
 	 * The meta object id for the '{@link org.unicase.esmodel.impl.ChangePackageImpl <em>Change Package</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -264,7 +169,7 @@ public interface EsmodelPackage extends EPackage {
 	 * @see org.unicase.esmodel.impl.EsmodelPackageImpl#getChangePackage()
 	 * @generated
 	 */
-	int CHANGE_PACKAGE = 6;
+	int CHANGE_PACKAGE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Foward Delta</b></em>' reference.
@@ -292,6 +197,109 @@ public interface EsmodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int CHANGE_PACKAGE_FEATURE_COUNT = 2;
+
+
+	/**
+	 * The meta object id for the '{@link org.unicase.esmodel.impl.ProjectInfoImpl <em>Project Info</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.esmodel.impl.ProjectInfoImpl
+	 * @see org.unicase.esmodel.impl.EsmodelPackageImpl#getProjectInfo()
+	 * @generated
+	 */
+	int PROJECT_INFO = 3;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_INFO__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_INFO__DESCRIPTION = 1;
+
+	/**
+	 * The feature id for the '<em><b>Project Id</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_INFO__PROJECT_ID = 2;
+
+	/**
+	 * The feature id for the '<em><b>Version</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_INFO__VERSION = 3;
+
+	/**
+	 * The number of structural features of the '<em>Project Info</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_INFO_FEATURE_COUNT = 4;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.esmodel.impl.HistoryInfoImpl <em>History Info</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.esmodel.impl.HistoryInfoImpl
+	 * @see org.unicase.esmodel.impl.EsmodelPackageImpl#getHistoryInfo()
+	 * @generated
+	 */
+	int HISTORY_INFO = 4;
+
+	/**
+	 * The number of structural features of the '<em>History Info</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HISTORY_INFO_FEATURE_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.esmodel.impl.SessionIdImpl <em>Session Id</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.esmodel.impl.SessionIdImpl
+	 * @see org.unicase.esmodel.impl.EsmodelPackageImpl#getSessionId()
+	 * @generated
+	 */
+	int SESSION_ID = 5;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SESSION_ID__IDENTIFIER = 0;
+
+	/**
+	 * The number of structural features of the '<em>Session Id</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SESSION_ID_FEATURE_COUNT = 1;
 
 
 	/**
@@ -392,68 +400,6 @@ public interface EsmodelPackage extends EPackage {
 	EReference getProjectHistory_Versions();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.esmodel.VersionSpec <em>Version Spec</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Version Spec</em>'.
-	 * @see org.unicase.esmodel.VersionSpec
-	 * @generated
-	 */
-	EClass getVersionSpec();
-
-	/**
-	 * Returns the meta object for class '{@link org.unicase.esmodel.PrimaryVersionSpec <em>Primary Version Spec</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Primary Version Spec</em>'.
-	 * @see org.unicase.esmodel.PrimaryVersionSpec
-	 * @generated
-	 */
-	EClass getPrimaryVersionSpec();
-
-	/**
-	 * Returns the meta object for class '{@link org.unicase.esmodel.DateVersionSpec <em>Date Version Spec</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Date Version Spec</em>'.
-	 * @see org.unicase.esmodel.DateVersionSpec
-	 * @generated
-	 */
-	EClass getDateVersionSpec();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.esmodel.DateVersionSpec#getDate <em>Date</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Date</em>'.
-	 * @see org.unicase.esmodel.DateVersionSpec#getDate()
-	 * @see #getDateVersionSpec()
-	 * @generated
-	 */
-	EAttribute getDateVersionSpec_Date();
-
-	/**
-	 * Returns the meta object for class '{@link org.unicase.esmodel.TagVersionSpec <em>Tag Version Spec</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Tag Version Spec</em>'.
-	 * @see org.unicase.esmodel.TagVersionSpec
-	 * @generated
-	 */
-	EClass getTagVersionSpec();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.esmodel.TagVersionSpec#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.unicase.esmodel.TagVersionSpec#getName()
-	 * @see #getTagVersionSpec()
-	 * @generated
-	 */
-	EAttribute getTagVersionSpec_Name();
-
-	/**
 	 * Returns the meta object for class '{@link org.unicase.esmodel.ChangePackage <em>Change Package</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -484,6 +430,91 @@ public interface EsmodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getChangePackage_BackwardDelta();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.esmodel.ProjectInfo <em>Project Info</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Project Info</em>'.
+	 * @see org.unicase.esmodel.ProjectInfo
+	 * @generated
+	 */
+	EClass getProjectInfo();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.esmodel.ProjectInfo#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.unicase.esmodel.ProjectInfo#getName()
+	 * @see #getProjectInfo()
+	 * @generated
+	 */
+	EAttribute getProjectInfo_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.esmodel.ProjectInfo#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see org.unicase.esmodel.ProjectInfo#getDescription()
+	 * @see #getProjectInfo()
+	 * @generated
+	 */
+	EAttribute getProjectInfo_Description();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.esmodel.ProjectInfo#getProjectId <em>Project Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Project Id</em>'.
+	 * @see org.unicase.esmodel.ProjectInfo#getProjectId()
+	 * @see #getProjectInfo()
+	 * @generated
+	 */
+	EReference getProjectInfo_ProjectId();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.esmodel.ProjectInfo#getVersion <em>Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Version</em>'.
+	 * @see org.unicase.esmodel.ProjectInfo#getVersion()
+	 * @see #getProjectInfo()
+	 * @generated
+	 */
+	EReference getProjectInfo_Version();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.esmodel.HistoryInfo <em>History Info</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>History Info</em>'.
+	 * @see org.unicase.esmodel.HistoryInfo
+	 * @generated
+	 */
+	EClass getHistoryInfo();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.esmodel.SessionId <em>Session Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Session Id</em>'.
+	 * @see org.unicase.esmodel.SessionId
+	 * @generated
+	 */
+	EClass getSessionId();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.esmodel.SessionId#getIdentifier <em>Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Identifier</em>'.
+	 * @see org.unicase.esmodel.SessionId#getIdentifier()
+	 * @see #getSessionId()
+	 * @generated
+	 */
+	EAttribute getSessionId_Identifier();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -584,62 +615,6 @@ public interface EsmodelPackage extends EPackage {
 		EReference PROJECT_HISTORY__VERSIONS = eINSTANCE.getProjectHistory_Versions();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.esmodel.VersionSpec <em>Version Spec</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.unicase.esmodel.VersionSpec
-		 * @see org.unicase.esmodel.impl.EsmodelPackageImpl#getVersionSpec()
-		 * @generated
-		 */
-		EClass VERSION_SPEC = eINSTANCE.getVersionSpec();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.esmodel.impl.PrimaryVersionSpecImpl <em>Primary Version Spec</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.unicase.esmodel.impl.PrimaryVersionSpecImpl
-		 * @see org.unicase.esmodel.impl.EsmodelPackageImpl#getPrimaryVersionSpec()
-		 * @generated
-		 */
-		EClass PRIMARY_VERSION_SPEC = eINSTANCE.getPrimaryVersionSpec();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.esmodel.impl.DateVersionSpecImpl <em>Date Version Spec</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.unicase.esmodel.impl.DateVersionSpecImpl
-		 * @see org.unicase.esmodel.impl.EsmodelPackageImpl#getDateVersionSpec()
-		 * @generated
-		 */
-		EClass DATE_VERSION_SPEC = eINSTANCE.getDateVersionSpec();
-
-		/**
-		 * The meta object literal for the '<em><b>Date</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute DATE_VERSION_SPEC__DATE = eINSTANCE.getDateVersionSpec_Date();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.esmodel.impl.TagVersionSpecImpl <em>Tag Version Spec</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.unicase.esmodel.impl.TagVersionSpecImpl
-		 * @see org.unicase.esmodel.impl.EsmodelPackageImpl#getTagVersionSpec()
-		 * @generated
-		 */
-		EClass TAG_VERSION_SPEC = eINSTANCE.getTagVersionSpec();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TAG_VERSION_SPEC__NAME = eINSTANCE.getTagVersionSpec_Name();
-
-		/**
 		 * The meta object literal for the '{@link org.unicase.esmodel.impl.ChangePackageImpl <em>Change Package</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -664,6 +639,76 @@ public interface EsmodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CHANGE_PACKAGE__BACKWARD_DELTA = eINSTANCE.getChangePackage_BackwardDelta();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.esmodel.impl.ProjectInfoImpl <em>Project Info</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.esmodel.impl.ProjectInfoImpl
+		 * @see org.unicase.esmodel.impl.EsmodelPackageImpl#getProjectInfo()
+		 * @generated
+		 */
+		EClass PROJECT_INFO = eINSTANCE.getProjectInfo();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROJECT_INFO__NAME = eINSTANCE.getProjectInfo_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROJECT_INFO__DESCRIPTION = eINSTANCE.getProjectInfo_Description();
+
+		/**
+		 * The meta object literal for the '<em><b>Project Id</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROJECT_INFO__PROJECT_ID = eINSTANCE.getProjectInfo_ProjectId();
+
+		/**
+		 * The meta object literal for the '<em><b>Version</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROJECT_INFO__VERSION = eINSTANCE.getProjectInfo_Version();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.esmodel.impl.HistoryInfoImpl <em>History Info</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.esmodel.impl.HistoryInfoImpl
+		 * @see org.unicase.esmodel.impl.EsmodelPackageImpl#getHistoryInfo()
+		 * @generated
+		 */
+		EClass HISTORY_INFO = eINSTANCE.getHistoryInfo();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.esmodel.impl.SessionIdImpl <em>Session Id</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.esmodel.impl.SessionIdImpl
+		 * @see org.unicase.esmodel.impl.EsmodelPackageImpl#getSessionId()
+		 * @generated
+		 */
+		EClass SESSION_ID = eINSTANCE.getSessionId();
+
+		/**
+		 * The meta object literal for the '<em><b>Identifier</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SESSION_ID__IDENTIFIER = eINSTANCE.getSessionId_Identifier();
 
 	}
 

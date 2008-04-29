@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.esmodel;
+package org.unicase.esmodel.versionspec;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- end-user-doc -->
  *
  *
- * @see org.unicase.esmodel.EsmodelPackage#getVersionSpec()
+ * @see org.unicase.esmodel.versionspec.VersionspecPackage#getVersionSpec()
  * @model interface="true" abstract="true"
  * @generated
  */

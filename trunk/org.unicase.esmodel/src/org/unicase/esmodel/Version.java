@@ -9,6 +9,8 @@ package org.unicase.esmodel;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
+import org.unicase.esmodel.versionspec.PrimaryVersionSpec;
+import org.unicase.esmodel.versionspec.TagVersionSpec;
 import org.unicase.model.Project;
 
 /**
@@ -87,7 +89,7 @@ public interface Version extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Tag Specs</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.esmodel.TagVersionSpec}.
+	 * The list contents are of type {@link org.unicase.esmodel.versionspec.TagVersionSpec}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Tag Specs</em>' reference list isn't clear,

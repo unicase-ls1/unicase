@@ -6,9 +6,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="Version">
     <eStructuralFeatures xsi:type="ecore:EReference" name="projectState" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="primarySpec" lowerBound="1"
-        eType="#//PrimaryVersionSpec"/>
+        eType="#//versionspec/PrimaryVersionSpec"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tagSpecs" upperBound="-1"
-        eType="#//TagVersionSpec"/>
+        eType="#//versionspec/TagVersionSpec"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nextVersion" eType="#//Version"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="previousVersion" eType="#//Version"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="changes" lowerBound="1"
@@ -18,14 +18,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="versions" lowerBound="1"
         upperBound="-1" eType="#//Version" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="VersionSpec" abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PrimaryVersionSpec"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DateVersionSpec">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TagVersionSpec">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ChangePackage">
     <eOperations name="reverse" eType="#//ChangePackage"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="fowardDelta" lowerBound="1"
@@ -34,4 +26,30 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="backwardDelta" lowerBound="1"
         eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore.change/model/Change.ecore#//ChangeDescription"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProjectInfo">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="projectId" lowerBound="1"
+        eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ProjectId"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="version" lowerBound="1"
+        eType="#//versionspec/PrimaryVersionSpec"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HistoryInfo"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SessionId">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eSubpackages name="versionspec" nsURI="http://unicase.org/esmodel/versionspec"
+      nsPrefix="org.unicase.esmodel.versionspec">
+    <eClassifiers xsi:type="ecore:EClass" name="TagVersionSpec">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DateVersionSpec">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="PrimaryVersionSpec"/>
+    <eClassifiers xsi:type="ecore:EClass" name="VersionSpec" abstract="true" interface="true"/>
+  </eSubpackages>
 </ecore:EPackage>
