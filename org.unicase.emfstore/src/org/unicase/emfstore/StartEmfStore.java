@@ -8,6 +8,7 @@ import java.util.Properties;
 
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
+import org.unicase.emfstore.rmi.RMITest;
 import org.unicase.emfstore.storage.ResourceStorage;
 import org.unicase.emfstore.storage.TeneoStorage;
 
@@ -19,18 +20,20 @@ public class StartEmfStore implements IApplication {
 
 		System.out.print("Initialization...");
 		
-		Properties properties = initProperties();
-		ResourceStorage storage = initStorage(properties);
-		emfStore = new EmfStore(storage, properties);
-		Thread serverThread = new Thread(emfStore);
-			
-		System.out.println("COMPLETE");
+		new RMITest();
 		
-		serverThread.start();
-		
-		System.out.println("Server is running...");
-		
-		serverThread.join();
+//		Properties properties = initProperties();
+//		ResourceStorage storage = initStorage(properties);
+//		emfStore = new EmfStore(storage, properties);
+//		Thread serverThread = new Thread(emfStore);
+//			
+//		System.out.println("COMPLETE");
+//		
+//		serverThread.start();
+//		
+//		System.out.println("Server is running...");
+//		
+//		serverThread.join();
 		return IApplication.EXIT_OK;
 	}
 
