@@ -8,6 +8,12 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.unicase.esmodel,
+ org.unicase.esmodel.accesscontrol,
+ org.unicase.esmodel.accesscontrol.impl,
+ org.unicase.esmodel.accesscontrol.util,
+ org.unicase.esmodel.changemanagment,
+ org.unicase.esmodel.changemanagment.impl,
+ org.unicase.esmodel.changemanagment.util,
  org.unicase.esmodel.impl,
  org.unicase.esmodel.util
 Require-Bundle: org.eclipse.core.runtime,
