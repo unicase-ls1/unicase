@@ -7,21 +7,8 @@
   <foreignModel>esmodel.ecore</foreignModel>
   <genPackages prefix="Esmodel" basePackage="org.unicase" disposableProviderFactory="true"
       ecorePackage="esmodel.ecore#/">
-    <genClasses ecoreClass="esmodel.ecore#//Version">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference esmodel.ecore#//Version/projectState"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference esmodel.ecore#//Version/primarySpec"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference esmodel.ecore#//Version/tagSpecs"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference esmodel.ecore#//Version/nextVersion"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference esmodel.ecore#//Version/previousVersion"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference esmodel.ecore#//Version/changes"/>
-    </genClasses>
     <genClasses ecoreClass="esmodel.ecore#//ProjectHistory">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//ProjectHistory/versions"/>
-    </genClasses>
-    <genClasses ecoreClass="esmodel.ecore#//ChangePackage">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference esmodel.ecore#//ChangePackage/fowardDelta"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference esmodel.ecore#//ChangePackage/backwardDelta"/>
-      <genOperations ecoreOperation="esmodel.ecore#//ChangePackage/reverse"/>
     </genClasses>
     <genClasses ecoreClass="esmodel.ecore#//ProjectInfo">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//ProjectInfo/name"/>
@@ -29,20 +16,93 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference esmodel.ecore#//ProjectInfo/projectId"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference esmodel.ecore#//ProjectInfo/version"/>
     </genClasses>
-    <genClasses ecoreClass="esmodel.ecore#//HistoryInfo"/>
     <genClasses ecoreClass="esmodel.ecore#//SessionId">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//SessionId/identifier"/>
     </genClasses>
-    <nestedGenPackages prefix="Versionspec" basePackage="org.unicase.esmodel" disposableProviderFactory="true"
-        ecorePackage="esmodel.ecore#//versionspec">
-      <genClasses ecoreClass="esmodel.ecore#//versionspec/TagVersionSpec">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versionspec/TagVersionSpec/name"/>
+    <nestedGenPackages prefix="Changemanagment" basePackage="org.unicase.esmodel"
+        disposableProviderFactory="true" ecorePackage="esmodel.ecore#//changemanagment">
+      <genClasses ecoreClass="esmodel.ecore#//changemanagment/TagVersionSpec">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//changemanagment/TagVersionSpec/name"/>
       </genClasses>
-      <genClasses ecoreClass="esmodel.ecore#//versionspec/DateVersionSpec">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versionspec/DateVersionSpec/date"/>
+      <genClasses ecoreClass="esmodel.ecore#//changemanagment/DateVersionSpec">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//changemanagment/DateVersionSpec/date"/>
       </genClasses>
-      <genClasses ecoreClass="esmodel.ecore#//versionspec/PrimaryVersionSpec"/>
-      <genClasses image="false" ecoreClass="esmodel.ecore#//versionspec/VersionSpec"/>
+      <genClasses ecoreClass="esmodel.ecore#//changemanagment/PrimaryVersionSpec">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//changemanagment/PrimaryVersionSpec/identifier"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="esmodel.ecore#//changemanagment/VersionSpec"/>
+      <genClasses ecoreClass="esmodel.ecore#//changemanagment/LogMessage">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//changemanagment/LogMessage/message"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference esmodel.ecore#//changemanagment/LogMessage/author"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//changemanagment/LogMessage/date"/>
+      </genClasses>
+      <genClasses ecoreClass="esmodel.ecore#//changemanagment/ChangePackage">
+        <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference esmodel.ecore#//changemanagment/ChangePackage/fowardDelta"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference esmodel.ecore#//changemanagment/ChangePackage/backwardDelta"/>
+        <genOperations ecoreOperation="esmodel.ecore#//changemanagment/ChangePackage/reverse"/>
+      </genClasses>
+      <genClasses ecoreClass="esmodel.ecore#//changemanagment/HistoryInfo">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference esmodel.ecore#//changemanagment/HistoryInfo/primerySpec"/>
+      </genClasses>
+      <genClasses ecoreClass="esmodel.ecore#//changemanagment/Version">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference esmodel.ecore#//changemanagment/Version/projectState"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference esmodel.ecore#//changemanagment/Version/primarySpec"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference esmodel.ecore#//changemanagment/Version/tagSpecs"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference esmodel.ecore#//changemanagment/Version/nextVersion"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference esmodel.ecore#//changemanagment/Version/previousVersion"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference esmodel.ecore#//changemanagment/Version/changes"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference esmodel.ecore#//changemanagment/Version/logMessage"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Accesscontrol" basePackage="org.unicase.esmodel" disposableProviderFactory="true"
+        ecorePackage="esmodel.ecore#//accesscontrol">
+      <genClasses ecoreClass="esmodel.ecore#//accesscontrol/User">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//accesscontrol/User/firstName"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//accesscontrol/User/lastName"/>
+      </genClasses>
+      <genClasses ecoreClass="esmodel.ecore#//accesscontrol/OrgUnit">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//accesscontrol/OrgUnit/name"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//accesscontrol/OrgUnit/identifier"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference esmodel.ecore#//accesscontrol/OrgUnit/roles"/>
+      </genClasses>
+      <genClasses ecoreClass="esmodel.ecore#//accesscontrol/Group">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference esmodel.ecore#//accesscontrol/Group/members"/>
+      </genClasses>
+      <genClasses ecoreClass="esmodel.ecore#//accesscontrol/Role">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference esmodel.ecore#//accesscontrol/Role/projects"/>
+        <genOperations ecoreOperation="esmodel.ecore#//accesscontrol/Role/canAdministrate">
+          <genParameters ecoreParameter="esmodel.ecore#//accesscontrol/Role/canAdministrate/projectId"/>
+        </genOperations>
+        <genOperations ecoreOperation="esmodel.ecore#//accesscontrol/Role/canCreate">
+          <genParameters ecoreParameter="esmodel.ecore#//accesscontrol/Role/canCreate/modelElement"/>
+        </genOperations>
+        <genOperations ecoreOperation="esmodel.ecore#//accesscontrol/Role/canDelete">
+          <genParameters ecoreParameter="esmodel.ecore#//accesscontrol/Role/canDelete/modelElement"/>
+        </genOperations>
+        <genOperations ecoreOperation="esmodel.ecore#//accesscontrol/Role/canModify">
+          <genParameters ecoreParameter="esmodel.ecore#//accesscontrol/Role/canModify/modelElement"/>
+        </genOperations>
+        <genOperations ecoreOperation="esmodel.ecore#//accesscontrol/Role/canRead">
+          <genParameters ecoreParameter="esmodel.ecore#//accesscontrol/Role/canRead/modelElement"/>
+        </genOperations>
+      </genClasses>
+      <genClasses ecoreClass="esmodel.ecore#//accesscontrol/ReaderRole"/>
+      <genClasses ecoreClass="esmodel.ecore#//accesscontrol/WriterRole"/>
+      <genClasses ecoreClass="esmodel.ecore#//accesscontrol/ProjectAdminRole"/>
+      <genClasses ecoreClass="esmodel.ecore#//accesscontrol/ServerAdmin"/>
     </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

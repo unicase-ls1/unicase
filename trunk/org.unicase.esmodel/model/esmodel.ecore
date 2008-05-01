@@ -3,28 +3,9 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="esmodel"
     nsURI="http://unicase.org/esmodel" nsPrefix="org.unicase.esmodel">
-  <eClassifiers xsi:type="ecore:EClass" name="Version">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="projectState" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="primarySpec" lowerBound="1"
-        eType="#//versionspec/PrimaryVersionSpec"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="tagSpecs" upperBound="-1"
-        eType="#//versionspec/TagVersionSpec"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="nextVersion" eType="#//Version"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="previousVersion" eType="#//Version"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="changes" lowerBound="1"
-        eType="#//ChangePackage"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProjectHistory">
     <eStructuralFeatures xsi:type="ecore:EReference" name="versions" lowerBound="1"
-        upperBound="-1" eType="#//Version" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ChangePackage">
-    <eOperations name="reverse" eType="#//ChangePackage"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="fowardDelta" lowerBound="1"
-        eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore.change/model/Change.ecore#//ChangeDescription"
-        changeable="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="backwardDelta" lowerBound="1"
-        eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore.change/model/Change.ecore#//ChangeDescription"/>
+        upperBound="-1" eType="#//changemanagment/Version" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProjectInfo">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -32,15 +13,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="projectId" lowerBound="1"
         eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ProjectId"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="version" lowerBound="1"
-        eType="#//versionspec/PrimaryVersionSpec"/>
+        eType="#//changemanagment/PrimaryVersionSpec"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="HistoryInfo"/>
   <eClassifiers xsi:type="ecore:EClass" name="SessionId">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eSubpackages name="versionspec" nsURI="http://unicase.org/esmodel/versionspec"
-      nsPrefix="org.unicase.esmodel.versionspec">
+  <eSubpackages name="changemanagment" nsURI="http://unicase.org/esmodel/changemanagment"
+      nsPrefix="org.unicase.esmodel.changemanagment">
     <eClassifiers xsi:type="ecore:EClass" name="TagVersionSpec">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -49,7 +29,83 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="PrimaryVersionSpec"/>
+    <eClassifiers xsi:type="ecore:EClass" name="PrimaryVersionSpec">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="VersionSpec" abstract="true" interface="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="LogMessage">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="message" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="author" lowerBound="1"
+          eType="#//accesscontrol/User"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ChangePackage">
+      <eOperations name="reverse" eType="#//changemanagment/ChangePackage"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="fowardDelta" lowerBound="1"
+          eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore.change/model/Change.ecore#//ChangeDescription"
+          changeable="false"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="backwardDelta" lowerBound="1"
+          eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore.change/model/Change.ecore#//ChangeDescription"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="HistoryInfo">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="primerySpec" eType="#//changemanagment/PrimaryVersionSpec"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Version">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="projectState" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="primarySpec" lowerBound="1"
+          eType="#//changemanagment/PrimaryVersionSpec"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="tagSpecs" upperBound="-1"
+          eType="#//changemanagment/TagVersionSpec"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="nextVersion" eType="#//changemanagment/Version"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="previousVersion" eType="#//changemanagment/Version"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="changes" lowerBound="1"
+          eType="#//changemanagment/ChangePackage"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="logMessage" eType="#//changemanagment/LogMessage"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="accesscontrol" nsURI="http://unicase.org/esmodel/accesscontrol"
+      nsPrefix="org.unicase.accesscontrol">
+    <eClassifiers xsi:type="ecore:EClass" name="User">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="firstName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OrgUnit">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="roles" upperBound="-1"
+          eType="#//accesscontrol/Role"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Group" eSuperTypes="#//accesscontrol/OrgUnit">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="members" upperBound="-1"
+          eType="#//accesscontrol/OrgUnit"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Role" abstract="true">
+      <eOperations name="canAdministrate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eParameters name="projectId" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ProjectId"/>
+      </eOperations>
+      <eOperations name="canCreate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eParameters name="modelElement" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElement"/>
+      </eOperations>
+      <eOperations name="canDelete" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eParameters name="modelElement" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElement"/>
+      </eOperations>
+      <eOperations name="canModify" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eParameters name="modelElement" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElement"/>
+      </eOperations>
+      <eOperations name="canRead" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eParameters name="modelElement" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElement"/>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="projects" upperBound="-1"
+          eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ProjectId"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ReaderRole" eSuperTypes="#//accesscontrol/Role"/>
+    <eClassifiers xsi:type="ecore:EClass" name="WriterRole" eSuperTypes="#//accesscontrol/Role"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ProjectAdminRole" eSuperTypes="#//accesscontrol/Role"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ServerAdmin" eSuperTypes="#//accesscontrol/Role"/>
   </eSubpackages>
 </ecore:EPackage>
