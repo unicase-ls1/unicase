@@ -9,6 +9,7 @@ import java.util.Properties;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.unicase.emfstore.rmi.RMITest;
+import org.unicase.emfstore.rmi.clienttest.RMIClientTest;
 import org.unicase.emfstore.storage.ResourceStorage;
 import org.unicase.emfstore.storage.TeneoStorage;
 
@@ -21,6 +22,18 @@ public class StartEmfStore implements IApplication {
 		System.out.print("Initialization...");
 		
 		new RMITest();
+		
+		/**
+		 * RMI now works with Strings. A new problem occurred while trying
+		 * to send ME's.
+		 */
+		//new RMIClientTest();
+		
+		// keep the server running
+		for(int i = 0; i < 10;i++) {
+			System.out.print(".");
+			Thread.sleep(1000);
+		}
 		
 //		Properties properties = initProperties();
 //		ResourceStorage storage = initStorage(properties);
