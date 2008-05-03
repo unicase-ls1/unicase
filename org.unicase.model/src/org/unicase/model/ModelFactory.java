@@ -71,6 +71,24 @@ public interface ModelFactory extends EFactory {
 	ProjectId createProjectId();
 
 	/**
+	 * Returns a new object of class '<em>Element Id</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Element Id</em>'.
+	 * @generated
+	 */
+	ModelElementId createModelElementId();
+
+	/**
+	 * Returns a new object of class '<em>Reader Info</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Reader Info</em>'.
+	 * @generated
+	 */
+	ReaderInfo createReaderInfo();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

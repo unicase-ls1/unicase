@@ -160,6 +160,7 @@ import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
 
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
+import org.unicase.model.organization.provider.OrganizationItemProviderAdapterFactory;
 
 
 /**
@@ -697,6 +698,7 @@ public class ModelEditor
 
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ModelItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new OrganizationItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		// Create the command stack that will notify this editor as commands are executed.

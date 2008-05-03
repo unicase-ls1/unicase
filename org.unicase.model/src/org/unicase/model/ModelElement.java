@@ -6,7 +6,9 @@
  */
 package org.unicase.model;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.model.organization.User;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,8 +20,8 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.unicase.model.ModelElement#getName <em>Name</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getDescription <em>Description</em>}</li>
- *   <li>{@link org.unicase.model.ModelElement#getId <em>Id</em>}</li>
- *   <li>{@link org.unicase.model.ModelElement#getProject <em>Project</em>}</li>
+ *   <li>{@link org.unicase.model.ModelElement#getIdentifier <em>Identifier</em>}</li>
+ *   <li>{@link org.unicase.model.ModelElement#getReaderInfos <em>Reader Infos</em>}</li>
  * </ul>
  * </p>
  *
@@ -82,58 +84,54 @@ public interface ModelElement extends EObject {
 	void setDescription(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Id</b></em>' attribute.
+	 * Returns the value of the '<em><b>Identifier</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Id</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Identifier</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Id</em>' attribute.
-	 * @see #setId(String)
-	 * @see org.unicase.model.ModelPackage#getModelElement_Id()
-	 * @model id="true"
-	 *        annotation="http://www.sysiphus.org/Visibility VisibilityValue='INVISIBLE'"
+	 * @return the value of the '<em>Identifier</em>' containment reference.
+	 * @see org.unicase.model.ModelPackage#getModelElement_Identifier()
+	 * @model containment="true" required="true" changeable="false"
 	 * @generated
 	 */
-	String getId();
+	ModelElementId getIdentifier();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.ModelElement#getId <em>Id</em>}' attribute.
+	 * Returns the value of the '<em><b>Reader Infos</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.model.ReaderInfo}.
 	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Reader Infos</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Id</em>' attribute.
-	 * @see #getId()
+	 * @return the value of the '<em>Reader Infos</em>' containment reference list.
+	 * @see org.unicase.model.ModelPackage#getModelElement_ReaderInfos()
+	 * @model containment="true"
 	 * @generated
 	 */
-	void setId(String value);
+	EList<ReaderInfo> getReaderInfos();
 
 	/**
-	 * Returns the value of the '<em><b>Project</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.Project#getProjectElements <em>Project Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Project</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Project</em>' reference.
-	 * @see #setProject(Project)
-	 * @see org.unicase.model.ModelPackage#getModelElement_Project()
-	 * @see org.unicase.model.Project#getProjectElements
-	 * @model opposite="projectElements" required="true"
+	 * @model kind="operation"
 	 * @generated
 	 */
 	Project getProject();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.ModelElement#getProject <em>Project</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Project</em>' reference.
-	 * @see #getProject()
+	 * @model
 	 * @generated
 	 */
-	void setProject(Project value);
+	void addReader(User readerName);
 
 } // ModelElement

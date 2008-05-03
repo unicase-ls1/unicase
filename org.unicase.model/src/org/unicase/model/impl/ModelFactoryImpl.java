@@ -6,19 +6,13 @@
  */
 package org.unicase.model.impl;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.unicase.model.*;
-import org.unicase.model.CompositeSection;
-import org.unicase.model.FunctionalRequirement;
-import org.unicase.model.LeafSection;
-import org.unicase.model.ModelFactory;
-import org.unicase.model.ModelPackage;
-import org.unicase.model.Project;
-import org.unicase.model.ProjectId;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
@@ -67,6 +61,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 			case ModelPackage.COMPOSITE_SECTION: return createCompositeSection();
 			case ModelPackage.PROJECT: return createProject();
 			case ModelPackage.PROJECT_ID: return createProjectId();
+			case ModelPackage.MODEL_ELEMENT_ID: return createModelElementId();
+			case ModelPackage.READER_INFO: return createReaderInfo();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -118,6 +114,26 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelElementId createModelElementId() {
+		ModelElementIdImpl modelElementId = new ModelElementIdImpl();
+		return modelElementId;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReaderInfo createReaderInfo() {
+		ReaderInfoImpl readerInfo = new ReaderInfoImpl();
+		return readerInfo;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -147,7 +163,6 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 		rootSection.setName("RAD");
 		rootSection
 				.setDescription("The requirements analysis document of the project");
-		rootSection.setId("1");
 
 		LeafSection reqLeafSection = this.createLeafSection();
 		reqLeafSection.setName("Functional Requirements");
@@ -155,13 +170,11 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 				.setDescription("Lists all functional requirements in this project");
 		reqLeafSection.setElementClass(FunctionalRequirement.class);
 
-		reqLeafSection.setId("2");
 		reqLeafSection.setParent(rootSection);
 
 		LeafSection scenLeafSection = this.createLeafSection();
 		scenLeafSection.setName("Scenarios");
 		scenLeafSection.setDescription("Lists all scenarios of this project.");
-		scenLeafSection.setId("3");
 		scenLeafSection.setParent(rootSection);
 		scenLeafSection.setElementClass(FunctionalRequirement.class);
 
@@ -169,13 +182,11 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 		ucmCompositeSection.setName("Use Case Modeling");
 		ucmCompositeSection
 				.setDescription("Contains sections concerning use cases.");
-		ucmCompositeSection.setId("4");
 		ucmCompositeSection.setParent(rootSection);
 
 		LeafSection actorLeafSection = this.createLeafSection();
 		actorLeafSection.setName("Actors");
 		actorLeafSection.setDescription("Lists all actors of this project.");
-		actorLeafSection.setId("5");
 		actorLeafSection.setParent(ucmCompositeSection);
 		actorLeafSection.setElementClass(FunctionalRequirement.class);
 
@@ -183,7 +194,6 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 		useCaseLeafSection.setName("Use Cases");
 		useCaseLeafSection
 				.setDescription("Lists all use cases of this project.");
-		useCaseLeafSection.setId("6");
 		useCaseLeafSection.setParent(ucmCompositeSection);
 		useCaseLeafSection.setElementClass(FunctionalRequirement.class);
 
@@ -191,27 +201,20 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 		useCaseDiagramLeafSection.setName("Use Case Diagrams");
 		useCaseDiagramLeafSection
 				.setDescription("Lists all use case diagrams of this project.");
-		useCaseDiagramLeafSection.setId("7");
 		useCaseDiagramLeafSection.setParent(ucmCompositeSection);
 		useCaseDiagramLeafSection.setElementClass(FunctionalRequirement.class);
 
 		FunctionalRequirement fr = this.createFunctionalRequirement();
 		fr.setName("My Reuirement");
-		fr.setId("8");
-		fr.setProject(projectElement);
+		
 		FunctionalRequirement fr2 = this.createFunctionalRequirement();
 		fr2.setName("My Reuirement2");
-		fr2.setId("9");
-		fr2.setProject(projectElement);
 
-		rootSection.setProject(projectElement);
-		reqLeafSection.setProject(projectElement);
-		scenLeafSection.setProject(projectElement);
-		ucmCompositeSection.setProject(projectElement);
-		actorLeafSection.setProject(projectElement);
-		useCaseLeafSection.setProject(projectElement);
-		useCaseDiagramLeafSection.setProject(projectElement);
 
+		EList<ModelElement> projectElements = projectElement.getProjectElements();
+		projectElements.add(fr);
+		projectElements.add(fr2);
+		projectElements.add(rootSection);
 		return projectElement;
 		// end of generation
 	}

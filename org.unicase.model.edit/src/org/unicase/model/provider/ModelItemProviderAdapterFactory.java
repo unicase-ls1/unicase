@@ -191,6 +191,52 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.ModelElementId} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ModelElementIdItemProvider modelElementIdItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.ModelElementId}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createModelElementIdAdapter() {
+		if (modelElementIdItemProvider == null) {
+			modelElementIdItemProvider = new ModelElementIdItemProvider(this);
+		}
+
+		return modelElementIdItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.ReaderInfo} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ReaderInfoItemProvider readerInfoItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.ReaderInfo}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createReaderInfoAdapter() {
+		if (readerInfoItemProvider == null) {
+			readerInfoItemProvider = new ReaderInfoItemProvider(this);
+		}
+
+		return readerInfoItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -294,6 +340,8 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 		if (compositeSectionItemProvider != null) compositeSectionItemProvider.dispose();
 		if (projectItemProvider != null) projectItemProvider.dispose();
 		if (projectIdItemProvider != null) projectIdItemProvider.dispose();
+		if (modelElementIdItemProvider != null) modelElementIdItemProvider.dispose();
+		if (readerInfoItemProvider != null) readerInfoItemProvider.dispose();
 	}
 
 }

@@ -10,8 +10,12 @@
     <genClasses image="false" ecoreClass="model.ecore#//ModelElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/description"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/id"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//ModelElement/project"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//ModelElement/identifier"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//ModelElement/readerInfos"/>
+      <genOperations ecoreOperation="model.ecore#//ModelElement/getProject"/>
+      <genOperations ecoreOperation="model.ecore#//ModelElement/addReader">
+        <genParameters ecoreParameter="model.ecore#//ModelElement/addReader/readerName"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//FunctionalRequirement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//FunctionalRequirement/reviewed"/>
@@ -39,8 +43,23 @@
         <genParameters ecoreParameter="model.ecore#//Project/addModelElement/modelElement"/>
       </genOperations>
     </genClasses>
-    <genClasses ecoreClass="model.ecore#//ProjectId">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ProjectId/identifier"/>
+    <genClasses ecoreClass="model.ecore#//ProjectId"/>
+    <genClasses ecoreClass="model.ecore#//ModelElementId"/>
+    <genClasses image="false" ecoreClass="model.ecore#//UniqueIdentifier">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//UniqueIdentifier/id"/>
     </genClasses>
+    <genClasses ecoreClass="model.ecore#//ReaderInfo">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ReaderInfo/date"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//ReaderInfo/readerId"/>
+    </genClasses>
+    <nestedGenPackages prefix="Organization" basePackage="org.unicase.model" disposableProviderFactory="true"
+        ecorePackage="model.ecore#//organization">
+      <genClasses ecoreClass="model.ecore#//organization/User"/>
+      <genClasses ecoreClass="model.ecore#//organization/OrgUnit">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//organization/OrgUnit/orgId"/>
+      </genClasses>
+      <genClasses ecoreClass="model.ecore#//organization/OrgUnitId"/>
+      <genClasses ecoreClass="model.ecore#//organization/Group"/>
+    </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>
