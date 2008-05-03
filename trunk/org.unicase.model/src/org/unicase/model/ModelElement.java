@@ -6,6 +6,8 @@
  */
 package org.unicase.model;
 
+import java.io.Serializable;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.organization.User;
@@ -27,9 +29,9 @@ import org.unicase.model.organization.User;
  *
  * @see org.unicase.model.ModelPackage#getModelElement()
  * @model abstract="true"
- * @generated
+ * @generated not
  */
-public interface ModelElement extends EObject {
+public interface ModelElement extends EObject, Serializable {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
