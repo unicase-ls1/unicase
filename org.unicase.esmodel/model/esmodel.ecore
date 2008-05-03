@@ -15,10 +15,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="version" lowerBound="1"
         eType="#//changemanagment/PrimaryVersionSpec"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SessionId">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SessionId" eSuperTypes="../../org.unicase.model/model/model.ecore#//UniqueIdentifier"/>
   <eSubpackages name="changemanagment" nsURI="http://unicase.org/esmodel/changemanagment"
       nsPrefix="org.unicase.esmodel.changemanagment">
     <eClassifiers xsi:type="ecore:EClass" name="TagVersionSpec">
@@ -75,10 +72,10 @@
     <eClassifiers xsi:type="ecore:EClass" name="OrgUnit">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="roles" upperBound="-1"
           eType="#//accesscontrol/Role"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="id" eType="#//accesscontrol/OrgUnitId"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Group" eSuperTypes="#//accesscontrol/OrgUnit">
       <eStructuralFeatures xsi:type="ecore:EReference" name="members" upperBound="-1"
@@ -107,5 +104,6 @@
     <eClassifiers xsi:type="ecore:EClass" name="WriterRole" eSuperTypes="#//accesscontrol/Role"/>
     <eClassifiers xsi:type="ecore:EClass" name="ProjectAdminRole" eSuperTypes="#//accesscontrol/Role"/>
     <eClassifiers xsi:type="ecore:EClass" name="ServerAdmin" eSuperTypes="#//accesscontrol/Role"/>
+    <eClassifiers xsi:type="ecore:EClass" name="OrgUnitId" eSuperTypes="../../org.unicase.model/model/model.ecore#//UniqueIdentifier"/>
   </eSubpackages>
 </ecore:EPackage>

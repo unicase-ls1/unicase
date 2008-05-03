@@ -14,6 +14,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 import org.unicase.esmodel.accesscontrol.*;
+import org.unicase.model.UniqueIdentifier;
 
 /**
  * <!-- begin-user-doc -->
@@ -102,6 +103,14 @@ public class AccesscontrolAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseServerAdmin(ServerAdmin object) {
 				return createServerAdminAdapter();
+			}
+			@Override
+			public Adapter caseOrgUnitId(OrgUnitId object) {
+				return createOrgUnitIdAdapter();
+			}
+			@Override
+			public Adapter caseUniqueIdentifier(UniqueIdentifier object) {
+				return createUniqueIdentifierAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -232,6 +241,34 @@ public class AccesscontrolAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createServerAdminAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.esmodel.accesscontrol.OrgUnitId <em>Org Unit Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.esmodel.accesscontrol.OrgUnitId
+	 * @generated
+	 */
+	public Adapter createOrgUnitIdAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.UniqueIdentifier <em>Unique Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.UniqueIdentifier
+	 * @generated
+	 */
+	public Adapter createUniqueIdentifierAdapter() {
 		return null;
 	}
 

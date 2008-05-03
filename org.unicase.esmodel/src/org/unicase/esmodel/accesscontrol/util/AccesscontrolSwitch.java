@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 import org.unicase.esmodel.accesscontrol.*;
+import org.unicase.model.UniqueIdentifier;
 
 /**
  * <!-- begin-user-doc -->
@@ -140,6 +141,13 @@ public class AccesscontrolSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case AccesscontrolPackage.ORG_UNIT_ID: {
+				OrgUnitId orgUnitId = (OrgUnitId)theEObject;
+				T result = caseOrgUnitId(orgUnitId);
+				if (result == null) result = caseUniqueIdentifier(orgUnitId);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -261,6 +269,36 @@ public class AccesscontrolSwitch<T> {
 	 * @generated
 	 */
 	public T caseServerAdmin(ServerAdmin object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Org Unit Id</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Org Unit Id</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOrgUnitId(OrgUnitId object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Unique Identifier</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Unique Identifier</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUniqueIdentifier(UniqueIdentifier object) {
 		return null;
 	}
 

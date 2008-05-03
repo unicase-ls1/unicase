@@ -22,6 +22,7 @@ import org.unicase.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.esmodel.accesscontrol.AccesscontrolPackage;
 import org.unicase.esmodel.accesscontrol.Group;
 import org.unicase.esmodel.accesscontrol.OrgUnit;
+import org.unicase.esmodel.accesscontrol.OrgUnitId;
 import org.unicase.esmodel.accesscontrol.ProjectAdminRole;
 import org.unicase.esmodel.accesscontrol.ReaderRole;
 import org.unicase.esmodel.accesscontrol.Role;
@@ -99,6 +100,13 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 	 * @generated
 	 */
 	private EClass serverAdminEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass orgUnitIdEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -230,8 +238,8 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getOrgUnit_Identifier() {
-		return (EAttribute)orgUnitEClass.getEStructuralFeatures().get(1);
+	public EReference getOrgUnit_Roles() {
+		return (EReference)orgUnitEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -239,8 +247,17 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOrgUnit_Roles() {
+	public EReference getOrgUnit_Id() {
 		return (EReference)orgUnitEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getOrgUnit_Description() {
+		return (EAttribute)orgUnitEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -320,6 +337,15 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getOrgUnitId() {
+		return orgUnitIdEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public AccesscontrolFactory getAccesscontrolFactory() {
 		return (AccesscontrolFactory)getEFactoryInstance();
 	}
@@ -349,8 +375,9 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 
 		orgUnitEClass = createEClass(ORG_UNIT);
 		createEAttribute(orgUnitEClass, ORG_UNIT__NAME);
-		createEAttribute(orgUnitEClass, ORG_UNIT__IDENTIFIER);
 		createEReference(orgUnitEClass, ORG_UNIT__ROLES);
+		createEReference(orgUnitEClass, ORG_UNIT__ID);
+		createEAttribute(orgUnitEClass, ORG_UNIT__DESCRIPTION);
 
 		groupEClass = createEClass(GROUP);
 		createEReference(groupEClass, GROUP__MEMBERS);
@@ -365,6 +392,8 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 		projectAdminRoleEClass = createEClass(PROJECT_ADMIN_ROLE);
 
 		serverAdminEClass = createEClass(SERVER_ADMIN);
+
+		orgUnitIdEClass = createEClass(ORG_UNIT_ID);
 	}
 
 	/**
@@ -403,6 +432,7 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 		writerRoleEClass.getESuperTypes().add(this.getRole());
 		projectAdminRoleEClass.getESuperTypes().add(this.getRole());
 		serverAdminEClass.getESuperTypes().add(this.getRole());
+		orgUnitIdEClass.getESuperTypes().add(theModelPackage.getUniqueIdentifier());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(userEClass, User.class, "User", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -411,8 +441,9 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 
 		initEClass(orgUnitEClass, OrgUnit.class, "OrgUnit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getOrgUnit_Name(), ecorePackage.getEString(), "name", null, 1, 1, OrgUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getOrgUnit_Identifier(), ecorePackage.getEString(), "identifier", null, 1, 1, OrgUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOrgUnit_Roles(), this.getRole(), null, "roles", null, 0, -1, OrgUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOrgUnit_Id(), this.getOrgUnitId(), null, "id", null, 0, 1, OrgUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getOrgUnit_Description(), ecorePackage.getEString(), "description", null, 0, 1, OrgUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(groupEClass, Group.class, "Group", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGroup_Members(), this.getOrgUnit(), null, "members", null, 0, -1, Group.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -442,6 +473,8 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 		initEClass(projectAdminRoleEClass, ProjectAdminRole.class, "ProjectAdminRole", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(serverAdminEClass, ServerAdmin.class, "ServerAdmin", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(orgUnitIdEClass, OrgUnitId.class, "OrgUnitId", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 	}
 
 } //AccesscontrolPackageImpl

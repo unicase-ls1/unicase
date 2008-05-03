@@ -89,6 +89,15 @@ public interface AccesscontrolFactory extends EFactory {
 	ServerAdmin createServerAdmin();
 
 	/**
+	 * Returns a new object of class '<em>Org Unit Id</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Org Unit Id</em>'.
+	 * @generated
+	 */
+	OrgUnitId createOrgUnitId();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
