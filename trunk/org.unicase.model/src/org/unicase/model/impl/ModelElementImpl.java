@@ -6,18 +6,25 @@
  */
 package org.unicase.model.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.ModelElement;
+import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
+import org.unicase.model.ReaderInfo;
+import org.unicase.model.organization.User;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,8 +35,8 @@ import org.unicase.model.Project;
  * <ul>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link org.unicase.model.impl.ModelElementImpl#getId <em>Id</em>}</li>
- *   <li>{@link org.unicase.model.impl.ModelElementImpl#getProject <em>Project</em>}</li>
+ *   <li>{@link org.unicase.model.impl.ModelElementImpl#getIdentifier <em>Identifier</em>}</li>
+ *   <li>{@link org.unicase.model.impl.ModelElementImpl#getReaderInfos <em>Reader Infos</em>}</li>
  * </ul>
  * </p>
  *
@@ -77,42 +84,33 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getId()
+	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String ID_EDEFAULT = null;
+	protected ModelElementId identifier;
 
 	/**
-	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * The cached value of the '{@link #getReaderInfos() <em>Reader Infos</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getId()
+	 * @see #getReaderInfos()
 	 * @generated
 	 * @ordered
 	 */
-	protected String id = ID_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getProject() <em>Project</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getProject()
-	 * @generated
-	 * @ordered
-	 */
-	protected Project project;
+	protected EList<ReaderInfo> readerInfos;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected ModelElementImpl() {
 		super();
+		this.identifier=ModelFactoryImpl.eINSTANCE.createModelElementId();
 	}
 
 	/**
@@ -172,8 +170,8 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getId() {
-		return id;
+	public ModelElementId getIdentifier() {
+		return identifier;
 	}
 
 	/**
@@ -181,49 +179,11 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setId(String newId) {
-		String oldId = id;
-		id = newId;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.MODEL_ELEMENT__ID, oldId, id));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Project getProject() {
-		if (project != null && project.eIsProxy()) {
-			InternalEObject oldProject = (InternalEObject)project;
-			project = (Project)eResolveProxy(oldProject);
-			if (project != oldProject) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackage.MODEL_ELEMENT__PROJECT, oldProject, project));
-			}
-		}
-		return project;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Project basicGetProject() {
-		return project;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetProject(Project newProject, NotificationChain msgs) {
-		Project oldProject = project;
-		project = newProject;
+	public NotificationChain basicSetIdentifier(ModelElementId newIdentifier, NotificationChain msgs) {
+		ModelElementId oldIdentifier = identifier;
+		identifier = newIdentifier;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelPackage.MODEL_ELEMENT__PROJECT, oldProject, newProject);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelPackage.MODEL_ELEMENT__IDENTIFIER, oldIdentifier, newIdentifier);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -234,18 +194,31 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setProject(Project newProject) {
-		if (newProject != project) {
-			NotificationChain msgs = null;
-			if (project != null)
-				msgs = ((InternalEObject)project).eInverseRemove(this, ModelPackage.PROJECT__PROJECT_ELEMENTS, Project.class, msgs);
-			if (newProject != null)
-				msgs = ((InternalEObject)newProject).eInverseAdd(this, ModelPackage.PROJECT__PROJECT_ELEMENTS, Project.class, msgs);
-			msgs = basicSetProject(newProject, msgs);
-			if (msgs != null) msgs.dispatch();
+	public EList<ReaderInfo> getReaderInfos() {
+		if (readerInfos == null) {
+			readerInfos = new EObjectContainmentEList<ReaderInfo>(ReaderInfo.class, this, ModelPackage.MODEL_ELEMENT__READER_INFOS);
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.MODEL_ELEMENT__PROJECT, newProject, newProject));
+		return readerInfos;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Project getProject() {
+		//check if my container is a project
+		if (ModelPackageImpl.eINSTANCE.getProject().isInstance(this.eContainer)) {
+			return (Project)this.eContainer();
+		}
+		//check if my container is a model element
+		else if (ModelPackageImpl.eINSTANCE.getModelElement().isInstance(this.eContainer)) {
+			return ((ModelElement)this.eContainer()).getProject();
+		}
+		else {
+			//FIXME
+			throw new IllegalStateException("ModelElement is not contained by any project");
+		}
 	}
 
 	/**
@@ -253,15 +226,10 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ModelPackage.MODEL_ELEMENT__PROJECT:
-				if (project != null)
-					msgs = ((InternalEObject)project).eInverseRemove(this, ModelPackage.PROJECT__PROJECT_ELEMENTS, Project.class, msgs);
-				return basicSetProject((Project)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
+	public void addReader(User readerName) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -272,8 +240,10 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ModelPackage.MODEL_ELEMENT__PROJECT:
-				return basicSetProject(null, msgs);
+			case ModelPackage.MODEL_ELEMENT__IDENTIFIER:
+				return basicSetIdentifier(null, msgs);
+			case ModelPackage.MODEL_ELEMENT__READER_INFOS:
+				return ((InternalEList<?>)getReaderInfos()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -290,11 +260,10 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 				return getName();
 			case ModelPackage.MODEL_ELEMENT__DESCRIPTION:
 				return getDescription();
-			case ModelPackage.MODEL_ELEMENT__ID:
-				return getId();
-			case ModelPackage.MODEL_ELEMENT__PROJECT:
-				if (resolve) return getProject();
-				return basicGetProject();
+			case ModelPackage.MODEL_ELEMENT__IDENTIFIER:
+				return getIdentifier();
+			case ModelPackage.MODEL_ELEMENT__READER_INFOS:
+				return getReaderInfos();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -304,6 +273,7 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -313,11 +283,9 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 			case ModelPackage.MODEL_ELEMENT__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
-			case ModelPackage.MODEL_ELEMENT__ID:
-				setId((String)newValue);
-				return;
-			case ModelPackage.MODEL_ELEMENT__PROJECT:
-				setProject((Project)newValue);
+			case ModelPackage.MODEL_ELEMENT__READER_INFOS:
+				getReaderInfos().clear();
+				getReaderInfos().addAll((Collection<? extends ReaderInfo>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -337,11 +305,8 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 			case ModelPackage.MODEL_ELEMENT__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
-			case ModelPackage.MODEL_ELEMENT__ID:
-				setId(ID_EDEFAULT);
-				return;
-			case ModelPackage.MODEL_ELEMENT__PROJECT:
-				setProject((Project)null);
+			case ModelPackage.MODEL_ELEMENT__READER_INFOS:
+				getReaderInfos().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -359,10 +324,10 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ModelPackage.MODEL_ELEMENT__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case ModelPackage.MODEL_ELEMENT__ID:
-				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
-			case ModelPackage.MODEL_ELEMENT__PROJECT:
-				return project != null;
+			case ModelPackage.MODEL_ELEMENT__IDENTIFIER:
+				return identifier != null;
+			case ModelPackage.MODEL_ELEMENT__READER_INFOS:
+				return readerInfos != null && !readerInfos.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -381,10 +346,25 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 		result.append(name);
 		result.append(", description: ");
 		result.append(description);
-		result.append(", id: ");
-		result.append(id);
 		result.append(')');
 		return result.toString();
+	}
+	
+	/**
+	 * Returns true if the other model elements id is identical.
+	 * False in any other case.
+	 * 
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 * @generated NOT
+	 */
+	public boolean equals(Object otherObject) {
+		if (otherObject instanceof ModelElementImpl) {
+			ModelElementImpl otherModelElement = (ModelElementImpl) otherObject;
+			return otherModelElement.getIdentifier().equals(this.getIdentifier());
+		}
+		else {
+			return false;
+		}
 	}
 
 } //ModelElementImpl

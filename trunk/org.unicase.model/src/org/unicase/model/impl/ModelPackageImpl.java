@@ -19,11 +19,16 @@ import org.unicase.model.CompositeSection;
 import org.unicase.model.FunctionalRequirement;
 import org.unicase.model.LeafSection;
 import org.unicase.model.ModelElement;
+import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.ProjectId;
+import org.unicase.model.ReaderInfo;
 import org.unicase.model.Section;
+import org.unicase.model.UniqueIdentifier;
+import org.unicase.model.organization.OrganizationPackage;
+import org.unicase.model.organization.impl.OrganizationPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -82,6 +87,27 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	private EClass projectIdEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass modelElementIdEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass uniqueIdentifierEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass readerInfoEClass = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -137,11 +163,16 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 		isInited = true;
 
+		// Obtain or create and register interdependencies
+		OrganizationPackageImpl theOrganizationPackage = (OrganizationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(OrganizationPackage.eNS_URI) : OrganizationPackage.eINSTANCE);
+
 		// Create package meta-data objects
 		theModelPackage.createPackageContents();
+		theOrganizationPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theModelPackage.initializePackageContents();
+		theOrganizationPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theModelPackage.freeze();
@@ -181,8 +212,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getModelElement_Id() {
-		return (EAttribute)modelElementEClass.getEStructuralFeatures().get(2);
+	public EReference getModelElement_Identifier() {
+		return (EReference)modelElementEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -190,7 +221,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModelElement_Project() {
+	public EReference getModelElement_ReaderInfos() {
 		return (EReference)modelElementEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -370,8 +401,53 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getProjectId_Identifier() {
-		return (EAttribute)projectIdEClass.getEStructuralFeatures().get(0);
+	public EClass getModelElementId() {
+		return modelElementIdEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getUniqueIdentifier() {
+		return uniqueIdentifierEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getUniqueIdentifier_Id() {
+		return (EAttribute)uniqueIdentifierEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getReaderInfo() {
+		return readerInfoEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getReaderInfo_Date() {
+		return (EAttribute)readerInfoEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getReaderInfo_ReaderId() {
+		return (EReference)readerInfoEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -405,8 +481,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		modelElementEClass = createEClass(MODEL_ELEMENT);
 		createEAttribute(modelElementEClass, MODEL_ELEMENT__NAME);
 		createEAttribute(modelElementEClass, MODEL_ELEMENT__DESCRIPTION);
-		createEAttribute(modelElementEClass, MODEL_ELEMENT__ID);
-		createEReference(modelElementEClass, MODEL_ELEMENT__PROJECT);
+		createEReference(modelElementEClass, MODEL_ELEMENT__IDENTIFIER);
+		createEReference(modelElementEClass, MODEL_ELEMENT__READER_INFOS);
 
 		functionalRequirementEClass = createEClass(FUNCTIONAL_REQUIREMENT);
 		createEAttribute(functionalRequirementEClass, FUNCTIONAL_REQUIREMENT__REVIEWED);
@@ -432,7 +508,15 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		createEReference(projectEClass, PROJECT__IDENTIFIER);
 
 		projectIdEClass = createEClass(PROJECT_ID);
-		createEAttribute(projectIdEClass, PROJECT_ID__IDENTIFIER);
+
+		modelElementIdEClass = createEClass(MODEL_ELEMENT_ID);
+
+		uniqueIdentifierEClass = createEClass(UNIQUE_IDENTIFIER);
+		createEAttribute(uniqueIdentifierEClass, UNIQUE_IDENTIFIER__ID);
+
+		readerInfoEClass = createEClass(READER_INFO);
+		createEAttribute(readerInfoEClass, READER_INFO__DATE);
+		createEReference(readerInfoEClass, READER_INFO__READER_ID);
 	}
 
 	/**
@@ -458,6 +542,12 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
 
+		// Obtain other dependent packages
+		OrganizationPackage theOrganizationPackage = (OrganizationPackage)EPackage.Registry.INSTANCE.getEPackage(OrganizationPackage.eNS_URI);
+
+		// Add subpackages
+		getESubpackages().add(theOrganizationPackage);
+
 		// Create type parameters
 
 		// Set bounds for type parameters
@@ -467,13 +557,20 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		leafSectionEClass.getESuperTypes().add(this.getSection());
 		compositeSectionEClass.getESuperTypes().add(this.getSection());
 		sectionEClass.getESuperTypes().add(this.getModelElement());
+		projectIdEClass.getESuperTypes().add(this.getUniqueIdentifier());
+		modelElementIdEClass.getESuperTypes().add(this.getUniqueIdentifier());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(modelElementEClass, ModelElement.class, "ModelElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getModelElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getModelElement_Description(), ecorePackage.getEString(), "description", null, 0, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getModelElement_Id(), ecorePackage.getEString(), "id", null, 0, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModelElement_Project(), this.getProject(), this.getProject_ProjectElements(), "project", null, 1, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModelElement_Identifier(), this.getModelElementId(), null, "identifier", null, 1, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModelElement_ReaderInfos(), this.getReaderInfo(), null, "readerInfos", null, 0, -1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		addEOperation(modelElementEClass, this.getProject(), "getProject", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		EOperation op = addEOperation(modelElementEClass, null, "addReader", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theOrganizationPackage.getUser(), "readerName", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(functionalRequirementEClass, FunctionalRequirement.class, "FunctionalRequirement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFunctionalRequirement_Reviewed(), ecorePackage.getEBoolean(), "reviewed", null, 0, 1, FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -500,14 +597,22 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEClass(projectEClass, Project.class, "Project", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getProject_Name(), ecorePackage.getEString(), "name", null, 0, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getProject_Description(), ecorePackage.getEString(), "description", null, 0, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProject_ProjectElements(), this.getModelElement(), this.getModelElement_Project(), "projectElements", null, 0, -1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProject_ProjectElements(), this.getModelElement(), null, "projectElements", null, 0, -1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProject_Identifier(), this.getProjectId(), null, "Identifier", null, 0, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		EOperation op = addEOperation(projectEClass, null, "addModelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getModelElement(), "modelElement", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(projectEClass, null, "addModelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getModelElement(), "modelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(projectIdEClass, ProjectId.class, "ProjectId", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getProjectId_Identifier(), ecorePackage.getEString(), "identifier", null, 1, 1, ProjectId.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(modelElementIdEClass, ModelElementId.class, "ModelElementId", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(uniqueIdentifierEClass, UniqueIdentifier.class, "UniqueIdentifier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getUniqueIdentifier_Id(), ecorePackage.getEString(), "id", null, 0, 1, UniqueIdentifier.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(readerInfoEClass, ReaderInfo.class, "ReaderInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getReaderInfo_Date(), ecorePackage.getEDate(), "date", null, 0, 1, ReaderInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getReaderInfo_ReaderId(), theOrganizationPackage.getOrgUnitId(), null, "readerId", null, 0, 1, ReaderInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -534,7 +639,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		   source, 
 		   new String[] {
 			 "VisibilityValue", "MANDATORY"
-		   });			
+		   });		
 	}
 
 	/**
@@ -550,13 +655,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		   source, 
 		   new String[] {
 			 "VisibilityValue", "VIEWWHENSET"
-		   });			
-		addAnnotation
-		  (getModelElement_Id(), 
-		   source, 
-		   new String[] {
-			 "VisibilityValue", "INVISIBLE"
-		   });
+		   });	
 	}
 
 	/**
@@ -572,7 +671,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		   source, 
 		   new String[] {
 			 "type", "TEXT_AREA"
-		   });	
+		   });
 	}
 
 } //ModelPackageImpl

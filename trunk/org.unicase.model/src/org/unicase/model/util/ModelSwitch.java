@@ -132,6 +132,26 @@ public class ModelSwitch<T> {
 			case ModelPackage.PROJECT_ID: {
 				ProjectId projectId = (ProjectId)theEObject;
 				T result = caseProjectId(projectId);
+				if (result == null) result = caseUniqueIdentifier(projectId);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ModelPackage.MODEL_ELEMENT_ID: {
+				ModelElementId modelElementId = (ModelElementId)theEObject;
+				T result = caseModelElementId(modelElementId);
+				if (result == null) result = caseUniqueIdentifier(modelElementId);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ModelPackage.UNIQUE_IDENTIFIER: {
+				UniqueIdentifier uniqueIdentifier = (UniqueIdentifier)theEObject;
+				T result = caseUniqueIdentifier(uniqueIdentifier);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ModelPackage.READER_INFO: {
+				ReaderInfo readerInfo = (ReaderInfo)theEObject;
+				T result = caseReaderInfo(readerInfo);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -241,6 +261,51 @@ public class ModelSwitch<T> {
 	 * @generated
 	 */
 	public T caseProjectId(ProjectId object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Element Id</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Element Id</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModelElementId(ModelElementId object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Unique Identifier</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Unique Identifier</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUniqueIdentifier(UniqueIdentifier object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Reader Info</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Reader Info</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseReaderInfo(ReaderInfo object) {
 		return null;
 	}
 

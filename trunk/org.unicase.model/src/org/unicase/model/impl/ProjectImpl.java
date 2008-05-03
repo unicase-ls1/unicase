@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -90,7 +91,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getProjectElements() <em>Project Elements</em>}' reference list.
+	 * The cached value of the '{@link #getProjectElements() <em>Project Elements</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getProjectElements()
@@ -177,7 +178,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 */
 	public EList<ModelElement> getProjectElements() {
 		if (projectElements == null) {
-			projectElements = new EObjectWithInverseResolvingEList<ModelElement>(ModelElement.class, this, ModelPackage.PROJECT__PROJECT_ELEMENTS, ModelPackage.MODEL_ELEMENT__PROJECT);
+			projectElements = new EObjectContainmentEList<ModelElement>(ModelElement.class, this, ModelPackage.PROJECT__PROJECT_ELEMENTS);
 		}
 		return projectElements;
 	}
@@ -234,21 +235,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ModelPackage.PROJECT__PROJECT_ELEMENTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getProjectElements()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -389,6 +375,23 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			}
 		}
 		return returnList;
+	}
+	
+	/**
+	 * Returns true if the other projects id is identical.
+	 * False in any other case.
+	 * 
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 * @generated NOT
+	 */
+	public boolean equals(Object otherObject) {
+		if (otherObject instanceof ProjectImpl) {
+			ProjectImpl otherProject = (ProjectImpl) otherObject;
+			return otherProject.getIdentifier().equals(this.getIdentifier());
+		}
+		else {
+			return false;
+		}
 	}
 
 

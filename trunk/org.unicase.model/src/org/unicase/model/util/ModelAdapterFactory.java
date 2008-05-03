@@ -100,6 +100,18 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 				return createProjectIdAdapter();
 			}
 			@Override
+			public Adapter caseModelElementId(ModelElementId object) {
+				return createModelElementIdAdapter();
+			}
+			@Override
+			public Adapter caseUniqueIdentifier(UniqueIdentifier object) {
+				return createUniqueIdentifierAdapter();
+			}
+			@Override
+			public Adapter caseReaderInfo(ReaderInfo object) {
+				return createReaderInfoAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -214,6 +226,48 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createProjectIdAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.ModelElementId <em>Element Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.ModelElementId
+	 * @generated
+	 */
+	public Adapter createModelElementIdAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.UniqueIdentifier <em>Unique Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.UniqueIdentifier
+	 * @generated
+	 */
+	public Adapter createUniqueIdentifierAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.ReaderInfo <em>Reader Info</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.ReaderInfo
+	 * @generated
+	 */
+	public Adapter createReaderInfoAdapter() {
 		return null;
 	}
 
