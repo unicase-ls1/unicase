@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.unicase.model.ModelPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -153,13 +154,13 @@ public interface EsmodelPackage extends EPackage {
 	int SESSION_ID = 2;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SESSION_ID__IDENTIFIER = 0;
+	int SESSION_ID__ID = ModelPackage.UNIQUE_IDENTIFIER__ID;
 
 	/**
 	 * The number of structural features of the '<em>Session Id</em>' class.
@@ -168,7 +169,7 @@ public interface EsmodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SESSION_ID_FEATURE_COUNT = 1;
+	int SESSION_ID_FEATURE_COUNT = ModelPackage.UNIQUE_IDENTIFIER_FEATURE_COUNT + 0;
 
 
 	/**
@@ -255,17 +256,6 @@ public interface EsmodelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getSessionId();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.esmodel.SessionId#getIdentifier <em>Identifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Identifier</em>'.
-	 * @see org.unicase.esmodel.SessionId#getIdentifier()
-	 * @see #getSessionId()
-	 * @generated
-	 */
-	EAttribute getSessionId_Identifier();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -358,14 +348,6 @@ public interface EsmodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass SESSION_ID = eINSTANCE.getSessionId();
-
-		/**
-		 * The meta object literal for the '<em><b>Identifier</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SESSION_ID__IDENTIFIER = eINSTANCE.getSessionId_Identifier();
 
 	}
 

@@ -67,6 +67,7 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements Accesscont
 			case AccesscontrolPackage.WRITER_ROLE: return createWriterRole();
 			case AccesscontrolPackage.PROJECT_ADMIN_ROLE: return createProjectAdminRole();
 			case AccesscontrolPackage.SERVER_ADMIN: return createServerAdmin();
+			case AccesscontrolPackage.ORG_UNIT_ID: return createOrgUnitId();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -140,6 +141,16 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements Accesscont
 	public ServerAdmin createServerAdmin() {
 		ServerAdminImpl serverAdmin = new ServerAdminImpl();
 		return serverAdmin;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OrgUnitId createOrgUnitId() {
+		OrgUnitIdImpl orgUnitId = new OrgUnitIdImpl();
+		return orgUnitId;
 	}
 
 	/**

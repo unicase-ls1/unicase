@@ -16,9 +16,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference esmodel.ecore#//ProjectInfo/projectId"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference esmodel.ecore#//ProjectInfo/version"/>
     </genClasses>
-    <genClasses ecoreClass="esmodel.ecore#//SessionId">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//SessionId/identifier"/>
-    </genClasses>
+    <genClasses ecoreClass="esmodel.ecore#//SessionId"/>
     <nestedGenPackages prefix="Changemanagment" basePackage="org.unicase.esmodel"
         disposableProviderFactory="true" ecorePackage="esmodel.ecore#//changemanagment">
       <genClasses ecoreClass="esmodel.ecore#//changemanagment/TagVersionSpec">
@@ -72,9 +70,11 @@
       </genClasses>
       <genClasses ecoreClass="esmodel.ecore#//accesscontrol/OrgUnit">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//accesscontrol/OrgUnit/name"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//accesscontrol/OrgUnit/identifier"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference esmodel.ecore#//accesscontrol/OrgUnit/roles"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference esmodel.ecore#//accesscontrol/OrgUnit/id"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//accesscontrol/OrgUnit/description"/>
       </genClasses>
       <genClasses ecoreClass="esmodel.ecore#//accesscontrol/Group">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -103,6 +103,7 @@
       <genClasses ecoreClass="esmodel.ecore#//accesscontrol/WriterRole"/>
       <genClasses ecoreClass="esmodel.ecore#//accesscontrol/ProjectAdminRole"/>
       <genClasses ecoreClass="esmodel.ecore#//accesscontrol/ServerAdmin"/>
+      <genClasses ecoreClass="esmodel.ecore#//accesscontrol/OrgUnitId"/>
     </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

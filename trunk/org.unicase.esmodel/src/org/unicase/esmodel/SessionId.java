@@ -6,6 +6,7 @@
  */
 package org.unicase.esmodel;
 
+import org.unicase.model.UniqueIdentifier;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -13,42 +14,11 @@ import org.eclipse.emf.ecore.EObject;
  * A representation of the model object '<em><b>Session Id</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.esmodel.SessionId#getIdentifier <em>Identifier</em>}</li>
- * </ul>
- * </p>
  *
  * @see org.unicase.esmodel.EsmodelPackage#getSessionId()
  * @model
  * @generated
  */
-public interface SessionId extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Identifier</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Identifier</em>' attribute.
-	 * @see #setIdentifier(String)
-	 * @see org.unicase.esmodel.EsmodelPackage#getSessionId_Identifier()
-	 * @model required="true"
-	 * @generated
-	 */
-	String getIdentifier();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.esmodel.SessionId#getIdentifier <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Identifier</em>' attribute.
-	 * @see #getIdentifier()
-	 * @generated
-	 */
-	void setIdentifier(String value);
+public interface SessionId extends UniqueIdentifier {
 
 } // SessionId

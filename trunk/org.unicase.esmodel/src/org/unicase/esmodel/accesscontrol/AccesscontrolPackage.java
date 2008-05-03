@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.unicase.model.ModelPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -116,22 +117,31 @@ public interface AccesscontrolPackage extends EPackage {
 	int ORG_UNIT__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORG_UNIT__IDENTIFIER = 1;
-
-	/**
 	 * The feature id for the '<em><b>Roles</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ORG_UNIT__ROLES = 2;
+	int ORG_UNIT__ROLES = 1;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORG_UNIT__ID = 2;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORG_UNIT__DESCRIPTION = 3;
 
 	/**
 	 * The number of structural features of the '<em>Org Unit</em>' class.
@@ -140,7 +150,7 @@ public interface AccesscontrolPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ORG_UNIT_FEATURE_COUNT = 3;
+	int ORG_UNIT_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.esmodel.accesscontrol.impl.GroupImpl <em>Group</em>}' class.
@@ -162,15 +172,6 @@ public interface AccesscontrolPackage extends EPackage {
 	int GROUP__NAME = ORG_UNIT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GROUP__IDENTIFIER = ORG_UNIT__IDENTIFIER;
-
-	/**
 	 * The feature id for the '<em><b>Roles</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -178,6 +179,24 @@ public interface AccesscontrolPackage extends EPackage {
 	 * @ordered
 	 */
 	int GROUP__ROLES = ORG_UNIT__ROLES;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP__ID = ORG_UNIT__ID;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP__DESCRIPTION = ORG_UNIT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Members</b></em>' reference list.
@@ -339,6 +358,35 @@ public interface AccesscontrolPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.unicase.esmodel.accesscontrol.impl.OrgUnitIdImpl <em>Org Unit Id</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.esmodel.accesscontrol.impl.OrgUnitIdImpl
+	 * @see org.unicase.esmodel.accesscontrol.impl.AccesscontrolPackageImpl#getOrgUnitId()
+	 * @generated
+	 */
+	int ORG_UNIT_ID = 8;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORG_UNIT_ID__ID = ModelPackage.UNIQUE_IDENTIFIER__ID;
+
+	/**
+	 * The number of structural features of the '<em>Org Unit Id</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORG_UNIT_ID_FEATURE_COUNT = ModelPackage.UNIQUE_IDENTIFIER_FEATURE_COUNT + 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.esmodel.accesscontrol.User <em>User</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -392,17 +440,6 @@ public interface AccesscontrolPackage extends EPackage {
 	EAttribute getOrgUnit_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.esmodel.accesscontrol.OrgUnit#getIdentifier <em>Identifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Identifier</em>'.
-	 * @see org.unicase.esmodel.accesscontrol.OrgUnit#getIdentifier()
-	 * @see #getOrgUnit()
-	 * @generated
-	 */
-	EAttribute getOrgUnit_Identifier();
-
-	/**
 	 * Returns the meta object for the reference list '{@link org.unicase.esmodel.accesscontrol.OrgUnit#getRoles <em>Roles</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -412,6 +449,28 @@ public interface AccesscontrolPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getOrgUnit_Roles();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.esmodel.accesscontrol.OrgUnit#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Id</em>'.
+	 * @see org.unicase.esmodel.accesscontrol.OrgUnit#getId()
+	 * @see #getOrgUnit()
+	 * @generated
+	 */
+	EReference getOrgUnit_Id();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.esmodel.accesscontrol.OrgUnit#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see org.unicase.esmodel.accesscontrol.OrgUnit#getDescription()
+	 * @see #getOrgUnit()
+	 * @generated
+	 */
+	EAttribute getOrgUnit_Description();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.esmodel.accesscontrol.Group <em>Group</em>}'.
@@ -496,6 +555,16 @@ public interface AccesscontrolPackage extends EPackage {
 	EClass getServerAdmin();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.esmodel.accesscontrol.OrgUnitId <em>Org Unit Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Org Unit Id</em>'.
+	 * @see org.unicase.esmodel.accesscontrol.OrgUnitId
+	 * @generated
+	 */
+	EClass getOrgUnitId();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -562,20 +631,28 @@ public interface AccesscontrolPackage extends EPackage {
 		EAttribute ORG_UNIT__NAME = eINSTANCE.getOrgUnit_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Identifier</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ORG_UNIT__IDENTIFIER = eINSTANCE.getOrgUnit_Identifier();
-
-		/**
 		 * The meta object literal for the '<em><b>Roles</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference ORG_UNIT__ROLES = eINSTANCE.getOrgUnit_Roles();
+
+		/**
+		 * The meta object literal for the '<em><b>Id</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ORG_UNIT__ID = eINSTANCE.getOrgUnit_Id();
+
+		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ORG_UNIT__DESCRIPTION = eINSTANCE.getOrgUnit_Description();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.esmodel.accesscontrol.impl.GroupImpl <em>Group</em>}' class.
@@ -652,6 +729,16 @@ public interface AccesscontrolPackage extends EPackage {
 		 * @generated
 		 */
 		EClass SERVER_ADMIN = eINSTANCE.getServerAdmin();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.esmodel.accesscontrol.impl.OrgUnitIdImpl <em>Org Unit Id</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.esmodel.accesscontrol.impl.OrgUnitIdImpl
+		 * @see org.unicase.esmodel.accesscontrol.impl.AccesscontrolPackageImpl#getOrgUnitId()
+		 * @generated
+		 */
+		EClass ORG_UNIT_ID = eINSTANCE.getOrgUnitId();
 
 	}
 

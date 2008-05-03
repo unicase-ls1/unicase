@@ -216,15 +216,6 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSessionId_Identifier() {
-		return (EAttribute)sessionIdEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EsmodelFactory getEsmodelFactory() {
 		return (EsmodelFactory)getEFactoryInstance();
 	}
@@ -258,7 +249,6 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		createEReference(projectInfoEClass, PROJECT_INFO__VERSION);
 
 		sessionIdEClass = createEClass(SESSION_ID);
-		createEAttribute(sessionIdEClass, SESSION_ID__IDENTIFIER);
 	}
 
 	/**
@@ -298,6 +288,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		sessionIdEClass.getESuperTypes().add(theModelPackage.getUniqueIdentifier());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(projectHistoryEClass, ProjectHistory.class, "ProjectHistory", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -310,7 +301,6 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		initEReference(getProjectInfo_Version(), theChangemanagmentPackage.getPrimaryVersionSpec(), null, "version", null, 1, 1, ProjectInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sessionIdEClass, SessionId.class, "SessionId", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSessionId_Identifier(), ecorePackage.getEString(), "identifier", null, 1, 1, SessionId.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
