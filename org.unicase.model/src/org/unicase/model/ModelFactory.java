@@ -96,7 +96,5 @@ public interface ModelFactory extends EFactory {
 	 * @generated
 	 */
 	ModelPackage getModelPackage();
-	
-	public Project createDummyProject();
 
 } //ModelFactory
