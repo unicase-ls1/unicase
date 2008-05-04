@@ -3,19 +3,38 @@ package org.unicase.ui.repository.views;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.part.*;
-import org.eclipse.jface.viewers.*;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.jface.action.*;
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.ui.*;
-import org.eclipse.swt.widgets.Menu;
-import org.eclipse.swt.SWT;
 import org.eclipse.core.runtime.IAdaptable;
-import org.unicase.workspace.ProjectInfo;
+import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.IMenuListener;
+import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.action.IToolBarManager;
+import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IDoubleClickListener;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredContentProvider;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerSorter;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.ui.IActionBars;
+import org.eclipse.ui.ISharedImages;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.part.DrillDownAdapter;
+import org.eclipse.ui.part.ViewPart;
+import org.unicase.esmodel.ProjectInfo;
+import org.unicase.workspace.Configuration;
+import org.unicase.workspace.ConnectionException;
 import org.unicase.workspace.ServerInfo;
-import org.unicase.workspace.UCUserSession;
+import org.unicase.workspace.Usersession;
+import org.unicase.workspace.impl.WorkspaceFactoryImpl;
 
 /**
  * This sample class demonstrates how to plug-in a new workbench view. The view
@@ -150,9 +169,9 @@ public class RepositoryView extends ViewPart {
 		 * code, you will connect to a real model and expose its hierarchy.
 		 */
 		private void initialize() {
-			invisibleRoot = new ServerNode(UCUserSession.getDefaultServerInfo());
+			invisibleRoot = new ServerNode(Configuration.getDefaultServerInfo());
 
-			ServerNode testServer = new ServerNode(UCUserSession
+			ServerNode testServer = new ServerNode(Configuration
 					.getDefaultServerInfo());
 			invisibleRoot.addChild(testServer);
 		}
@@ -263,12 +282,22 @@ public class RepositoryView extends ViewPart {
 			public void run() {
 				showMessage("Logging in...");
 				try{
-					UCUserSession session = new UCUserSession(serverNode.serverInfo);
-					List<ProjectInfo> projectInfos = session.getRemoteProjectList();
-					for (ProjectInfo projectInfo : projectInfos){
-						serverNode.addChild(new ProjectNode(projectInfo.getProjectName()));
+					Usersession session = WorkspaceFactoryImpl.eINSTANCE.createUsersession();
+					session.setUsername("user");
+					session.setServerInfo(serverNode.serverInfo);
+					session.logIn("password");
+					List<ProjectInfo> projectInfos;
+					try {
+						projectInfos = session.getRemoteProjectList();
+						for (ProjectInfo projectInfo : projectInfos){
+							serverNode.addChild(new ProjectNode(projectInfo.getName()));
+						}
+						viewer.refresh();
+					} catch (ConnectionException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
-					viewer.refresh();
+					
 				}catch(NullPointerException e){
 					showMessage("ServerInfo is not set for this ServerNode!");
 				}
