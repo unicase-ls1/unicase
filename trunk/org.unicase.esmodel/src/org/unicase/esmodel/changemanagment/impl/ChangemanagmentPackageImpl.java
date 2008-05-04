@@ -24,6 +24,7 @@ import org.unicase.esmodel.accesscontrol.impl.AccesscontrolPackageImpl;
 import org.unicase.esmodel.changemanagment.ChangemanagmentFactory;
 import org.unicase.esmodel.changemanagment.ChangemanagmentPackage;
 import org.unicase.esmodel.changemanagment.DateVersionSpec;
+import org.unicase.esmodel.changemanagment.HeadVersionSpec;
 import org.unicase.esmodel.changemanagment.HistoryInfo;
 import org.unicase.esmodel.changemanagment.LogMessage;
 import org.unicase.esmodel.changemanagment.PrimaryVersionSpec;
@@ -97,6 +98,13 @@ public class ChangemanagmentPackageImpl extends EPackageImpl implements Changema
 	 * @generated
 	 */
 	private EClass versionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass headVersionSpecEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -399,6 +407,15 @@ public class ChangemanagmentPackageImpl extends EPackageImpl implements Changema
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getHeadVersionSpec() {
+		return headVersionSpecEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ChangemanagmentFactory getChangemanagmentFactory() {
 		return (ChangemanagmentFactory)getEFactoryInstance();
 	}
@@ -453,6 +470,8 @@ public class ChangemanagmentPackageImpl extends EPackageImpl implements Changema
 		createEReference(versionEClass, VERSION__PREVIOUS_VERSION);
 		createEReference(versionEClass, VERSION__CHANGES);
 		createEReference(versionEClass, VERSION__LOG_MESSAGE);
+
+		headVersionSpecEClass = createEClass(HEAD_VERSION_SPEC);
 	}
 
 	/**
@@ -491,6 +510,7 @@ public class ChangemanagmentPackageImpl extends EPackageImpl implements Changema
 		tagVersionSpecEClass.getESuperTypes().add(this.getVersionSpec());
 		dateVersionSpecEClass.getESuperTypes().add(this.getVersionSpec());
 		primaryVersionSpecEClass.getESuperTypes().add(this.getVersionSpec());
+		headVersionSpecEClass.getESuperTypes().add(this.getVersionSpec());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(tagVersionSpecEClass, TagVersionSpec.class, "TagVersionSpec", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -510,7 +530,7 @@ public class ChangemanagmentPackageImpl extends EPackageImpl implements Changema
 		initEAttribute(getLogMessage_Date(), ecorePackage.getEDate(), "date", null, 1, 1, LogMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(changePackageEClass, org.unicase.esmodel.changemanagment.ChangePackage.class, "ChangePackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getChangePackage_FowardDelta(), theChangePackage.getChangeDescription(), null, "fowardDelta", null, 1, 1, org.unicase.esmodel.changemanagment.ChangePackage.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getChangePackage_FowardDelta(), theChangePackage.getChangeDescription(), null, "fowardDelta", null, 1, 1, org.unicase.esmodel.changemanagment.ChangePackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getChangePackage_BackwardDelta(), theChangePackage.getChangeDescription(), null, "backwardDelta", null, 1, 1, org.unicase.esmodel.changemanagment.ChangePackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		addEOperation(changePackageEClass, this.getChangePackage(), "reverse", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -526,6 +546,8 @@ public class ChangemanagmentPackageImpl extends EPackageImpl implements Changema
 		initEReference(getVersion_PreviousVersion(), this.getVersion(), null, "previousVersion", null, 0, 1, Version.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getVersion_Changes(), this.getChangePackage(), null, "changes", null, 1, 1, Version.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getVersion_LogMessage(), this.getLogMessage(), null, "logMessage", null, 0, 1, Version.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(headVersionSpecEClass, HeadVersionSpec.class, "HeadVersionSpec", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 	}
 
 } //ChangemanagmentPackageImpl

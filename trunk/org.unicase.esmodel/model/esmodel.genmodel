@@ -61,6 +61,7 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference esmodel.ecore#//changemanagment/Version/logMessage"/>
       </genClasses>
+      <genClasses ecoreClass="esmodel.ecore#//changemanagment/HeadVersionSpec"/>
     </nestedGenPackages>
     <nestedGenPackages prefix="Accesscontrol" basePackage="org.unicase.esmodel" disposableProviderFactory="true"
         ecorePackage="esmodel.ecore#//accesscontrol">
