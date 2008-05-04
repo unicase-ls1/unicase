@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: unicase Workspace Plugin
+Bundle-SymbolicName: org.unicase.workspace; singleton:=true
+Bundle-Version: 0.0.1
+Bundle-ClassPath: .
+Bundle-Vendor: unicase.org
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.unicase.workspace,
+ org.unicase.workspace.impl,
+ org.unicase.workspace.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.ecore.change;visibility:=reexport,
+ org.unicase.esmodel;visibility:=reexport,
+ org.unicase.model;visibility:=reexport
+Eclipse-LazyStart: true

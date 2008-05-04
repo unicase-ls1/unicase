@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="workspace"
+    nsURI="http://unicase.org/workspace" nsPrefix="org.unicase.workspace">
+  <eClassifiers xsi:type="ecore:EClass" name="Workspace">
+    <eOperations name="checkout" eType="#//ProjectSpace">
+      <eParameters name="usersession" eType="#//Usersession"/>
+      <eParameters name="projectId" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ProjectId"/>
+      <eParameters name="version" eType="ecore:EClass ../../org.unicase.esmodel/model/esmodel.ecore#//changemanagment/VersionSpec"/>
+    </eOperations>
+    <eOperations name="save"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="projectSpaces" upperBound="-1"
+        eType="#//ProjectSpace"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="serverInfos" upperBound="-1"
+        eType="#//ServerInfo"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ServerInfo">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="port" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="displayName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Usersession">
+    <eOperations name="isLoggedIn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eOperations name="logIn">
+      <eParameters name="password" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="checkout" eType="#//ProjectSpace">
+      <eParameters name="projectId" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ProjectId"/>
+      <eParameters name="versionSpec" eType="ecore:EClass ../../org.unicase.esmodel/model/esmodel.ecore#//changemanagment/VersionSpec"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="username" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="password" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        transient="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sessionId" eType="ecore:EClass ../../org.unicase.esmodel/model/esmodel.ecore#//SessionId"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="serverInfo" eType="#//ServerInfo"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProjectSpace">
+    <eOperations name="commit" eType="ecore:EClass ../../org.unicase.esmodel/model/esmodel.ecore#//changemanagment/PrimaryVersionSpec"/>
+    <eOperations name="update"/>
+    <eOperations name="update">
+      <eParameters name="version" eType="ecore:EClass ../../org.unicase.esmodel/model/esmodel.ecore#//changemanagment/VersionSpec"/>
+    </eOperations>
+    <eOperations name="revert"/>
+    <eOperations name="save"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="project" lowerBound="1"
+        eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="baseVersion" lowerBound="1"
+        eType="ecore:EClass ../../org.unicase.esmodel/model/esmodel.ecore#//changemanagment/PrimaryVersionSpec"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="localChanges" eType="ecore:EClass ../../org.unicase.esmodel/model/esmodel.ecore#//changemanagment/ChangePackage"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="usersession" eType="#//Usersession"/>
+  </eClassifiers>
+</ecore:EPackage>
