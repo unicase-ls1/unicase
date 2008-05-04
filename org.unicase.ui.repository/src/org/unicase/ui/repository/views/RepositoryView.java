@@ -285,9 +285,9 @@ public class RepositoryView extends ViewPart {
 					Usersession session = WorkspaceFactoryImpl.eINSTANCE.createUsersession();
 					session.setUsername("user");
 					session.setServerInfo(serverNode.serverInfo);
-					session.logIn("password");
 					List<ProjectInfo> projectInfos;
 					try {
+						session.logIn("password");
 						projectInfos = session.getRemoteProjectList();
 						for (ProjectInfo projectInfo : projectInfos){
 							serverNode.addChild(new ProjectNode(projectInfo.getName()));
