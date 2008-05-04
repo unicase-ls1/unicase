@@ -9,23 +9,16 @@ package org.unicase.model.impl;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
@@ -40,7 +33,7 @@ import org.unicase.model.ProjectId;
  * <ul>
  *   <li>{@link org.unicase.model.impl.ProjectImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.unicase.model.impl.ProjectImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link org.unicase.model.impl.ProjectImpl#getProjectElements <em>Project Elements</em>}</li>
+ *   <li>{@link org.unicase.model.impl.ProjectImpl#getModelElements <em>Model Elements</em>}</li>
  *   <li>{@link org.unicase.model.impl.ProjectImpl#getIdentifier <em>Identifier</em>}</li>
  * </ul>
  * </p>
@@ -91,14 +84,14 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getProjectElements() <em>Project Elements</em>}' containment reference list.
+	 * The cached value of the '{@link #getModelElements() <em>Model Elements</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getProjectElements()
+	 * @see #getModelElements()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModelElement> projectElements;
+	protected EList<ModelElement> modelElements;
 
 	/**
 	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' containment reference.
@@ -177,11 +170,11 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ModelElement> getProjectElements() {
-		if (projectElements == null) {
-			projectElements = new EObjectContainmentEList<ModelElement>(ModelElement.class, this, ModelPackage.PROJECT__PROJECT_ELEMENTS);
+	public EList<ModelElement> getModelElements() {
+		if (modelElements == null) {
+			modelElements = new EObjectContainmentEList<ModelElement>(ModelElement.class, this, ModelPackage.PROJECT__MODEL_ELEMENTS);
 		}
-		return projectElements;
+		return modelElements;
 	}
 
 	/**
@@ -230,12 +223,10 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void addModelElement(ModelElement modelElement) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		this.getModelElements().add(modelElement);
 	}
 
 	/**
@@ -246,8 +237,8 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ModelPackage.PROJECT__PROJECT_ELEMENTS:
-				return ((InternalEList<?>)getProjectElements()).basicRemove(otherEnd, msgs);
+			case ModelPackage.PROJECT__MODEL_ELEMENTS:
+				return ((InternalEList<?>)getModelElements()).basicRemove(otherEnd, msgs);
 			case ModelPackage.PROJECT__IDENTIFIER:
 				return basicSetIdentifier(null, msgs);
 		}
@@ -266,8 +257,8 @@ public class ProjectImpl extends EObjectImpl implements Project {
 				return getName();
 			case ModelPackage.PROJECT__DESCRIPTION:
 				return getDescription();
-			case ModelPackage.PROJECT__PROJECT_ELEMENTS:
-				return getProjectElements();
+			case ModelPackage.PROJECT__MODEL_ELEMENTS:
+				return getModelElements();
 			case ModelPackage.PROJECT__IDENTIFIER:
 				return getIdentifier();
 		}
@@ -289,9 +280,9 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			case ModelPackage.PROJECT__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
-			case ModelPackage.PROJECT__PROJECT_ELEMENTS:
-				getProjectElements().clear();
-				getProjectElements().addAll((Collection<? extends ModelElement>)newValue);
+			case ModelPackage.PROJECT__MODEL_ELEMENTS:
+				getModelElements().clear();
+				getModelElements().addAll((Collection<? extends ModelElement>)newValue);
 				return;
 			case ModelPackage.PROJECT__IDENTIFIER:
 				setIdentifier((ProjectId)newValue);
@@ -314,8 +305,8 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			case ModelPackage.PROJECT__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
-			case ModelPackage.PROJECT__PROJECT_ELEMENTS:
-				getProjectElements().clear();
+			case ModelPackage.PROJECT__MODEL_ELEMENTS:
+				getModelElements().clear();
 				return;
 			case ModelPackage.PROJECT__IDENTIFIER:
 				setIdentifier((ProjectId)null);
@@ -336,8 +327,8 @@ public class ProjectImpl extends EObjectImpl implements Project {
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ModelPackage.PROJECT__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case ModelPackage.PROJECT__PROJECT_ELEMENTS:
-				return projectElements != null && !projectElements.isEmpty();
+			case ModelPackage.PROJECT__MODEL_ELEMENTS:
+				return modelElements != null && !modelElements.isEmpty();
 			case ModelPackage.PROJECT__IDENTIFIER:
 				return identifier != null;
 		}
@@ -370,7 +361,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	public Collection<ModelElement> getElementsByClass(
 			Class<? extends EObject> elementType) {
 		Collection<ModelElement> returnList = new ArrayList<ModelElement>();
-		for (ModelElement currentME : projectElements) {
+		for (ModelElement currentME : modelElements) {
 			if (elementType.isAssignableFrom(currentME.getClass())) {
 				returnList.add(currentME);
 			}

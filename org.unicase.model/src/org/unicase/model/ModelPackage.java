@@ -462,13 +462,13 @@ public interface ModelPackage extends EPackage {
 	int PROJECT__DESCRIPTION = 1;
 
 	/**
-	 * The feature id for the '<em><b>Project Elements</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Model Elements</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT__PROJECT_ELEMENTS = 2;
+	int PROJECT__MODEL_ELEMENTS = 2;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
@@ -839,15 +839,15 @@ public interface ModelPackage extends EPackage {
 	EAttribute getProject_Description();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.model.Project#getProjectElements <em>Project Elements</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.unicase.model.Project#getModelElements <em>Model Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Project Elements</em>'.
-	 * @see org.unicase.model.Project#getProjectElements()
+	 * @return the meta object for the containment reference list '<em>Model Elements</em>'.
+	 * @see org.unicase.model.Project#getModelElements()
 	 * @see #getProject()
 	 * @generated
 	 */
-	EReference getProject_ProjectElements();
+	EReference getProject_ModelElements();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.unicase.model.Project#getIdentifier <em>Identifier</em>}'.
@@ -1136,12 +1136,12 @@ public interface ModelPackage extends EPackage {
 		EAttribute PROJECT__DESCRIPTION = eINSTANCE.getProject_Description();
 
 		/**
-		 * The meta object literal for the '<em><b>Project Elements</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Model Elements</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PROJECT__PROJECT_ELEMENTS = eINSTANCE.getProject_ProjectElements();
+		EReference PROJECT__MODEL_ELEMENTS = eINSTANCE.getProject_ModelElements();
 
 		/**
 		 * The meta object literal for the '<em><b>Identifier</b></em>' containment reference feature.
