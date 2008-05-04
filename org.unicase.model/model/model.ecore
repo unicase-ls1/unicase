@@ -22,7 +22,7 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="identifier" lowerBound="1"
-        eType="#//ModelElementId" changeable="false" containment="true" eKeys="#//UniqueIdentifier/id"/>
+        eType="#//ModelElementId" containment="true" eKeys="#//UniqueIdentifier/id"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="readerInfos" upperBound="-1"
         eType="#//ReaderInfo" containment="true"/>
   </eClassifiers>
@@ -69,7 +69,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="ModelElementId" eSuperTypes="#//UniqueIdentifier"/>
   <eClassifiers xsi:type="ecore:EClass" name="UniqueIdentifier" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        changeable="false" defaultValueLiteral="Default Value Literal&#x9;" iD="true"/>
+        defaultValueLiteral="Default Value Literal&#x9;" iD="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ReaderInfo">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>

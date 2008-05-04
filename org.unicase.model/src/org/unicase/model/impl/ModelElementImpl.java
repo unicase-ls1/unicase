@@ -194,6 +194,25 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void setIdentifier(ModelElementId newIdentifier) {
+		if (newIdentifier != identifier) {
+			NotificationChain msgs = null;
+			if (identifier != null)
+				msgs = ((InternalEObject)identifier).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ModelPackage.MODEL_ELEMENT__IDENTIFIER, null, msgs);
+			if (newIdentifier != null)
+				msgs = ((InternalEObject)newIdentifier).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ModelPackage.MODEL_ELEMENT__IDENTIFIER, null, msgs);
+			msgs = basicSetIdentifier(newIdentifier, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.MODEL_ELEMENT__IDENTIFIER, newIdentifier, newIdentifier));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<ReaderInfo> getReaderInfos() {
 		if (readerInfos == null) {
 			readerInfos = new EObjectContainmentEList<ReaderInfo>(ReaderInfo.class, this, ModelPackage.MODEL_ELEMENT__READER_INFOS);
@@ -283,6 +302,9 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 			case ModelPackage.MODEL_ELEMENT__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
+			case ModelPackage.MODEL_ELEMENT__IDENTIFIER:
+				setIdentifier((ModelElementId)newValue);
+				return;
 			case ModelPackage.MODEL_ELEMENT__READER_INFOS:
 				getReaderInfos().clear();
 				getReaderInfos().addAll((Collection<? extends ReaderInfo>)newValue);
@@ -304,6 +326,9 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 				return;
 			case ModelPackage.MODEL_ELEMENT__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
+				return;
+			case ModelPackage.MODEL_ELEMENT__IDENTIFIER:
+				setIdentifier((ModelElementId)null);
 				return;
 			case ModelPackage.MODEL_ELEMENT__READER_INFOS:
 				getReaderInfos().clear();
