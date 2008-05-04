@@ -34,104 +34,104 @@ import org.unicase.model.Project;
  */
 public interface ProjectSpace extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Project</b></em>' reference.
+	 * Returns the value of the '<em><b>Project</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Project</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Project</em>' reference.
+	 * @return the value of the '<em>Project</em>' containment reference.
 	 * @see #setProject(Project)
 	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_Project()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	Project getProject();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getProject <em>Project</em>}' reference.
+	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getProject <em>Project</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Project</em>' reference.
+	 * @param value the new value of the '<em>Project</em>' containment reference.
 	 * @see #getProject()
 	 * @generated
 	 */
 	void setProject(Project value);
 
 	/**
-	 * Returns the value of the '<em><b>Base Version</b></em>' reference.
+	 * Returns the value of the '<em><b>Base Version</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Base Version</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Base Version</em>' reference.
+	 * @return the value of the '<em>Base Version</em>' containment reference.
 	 * @see #setBaseVersion(PrimaryVersionSpec)
 	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_BaseVersion()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	PrimaryVersionSpec getBaseVersion();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getBaseVersion <em>Base Version</em>}' reference.
+	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getBaseVersion <em>Base Version</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Base Version</em>' reference.
+	 * @param value the new value of the '<em>Base Version</em>' containment reference.
 	 * @see #getBaseVersion()
 	 * @generated
 	 */
 	void setBaseVersion(PrimaryVersionSpec value);
 
 	/**
-	 * Returns the value of the '<em><b>Local Changes</b></em>' reference.
+	 * Returns the value of the '<em><b>Local Changes</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Local Changes</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Local Changes</em>' reference.
+	 * @return the value of the '<em>Local Changes</em>' containment reference.
 	 * @see #setLocalChanges(ChangePackage)
 	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_LocalChanges()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	ChangePackage getLocalChanges();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getLocalChanges <em>Local Changes</em>}' reference.
+	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getLocalChanges <em>Local Changes</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Local Changes</em>' reference.
+	 * @param value the new value of the '<em>Local Changes</em>' containment reference.
 	 * @see #getLocalChanges()
 	 * @generated
 	 */
 	void setLocalChanges(ChangePackage value);
 
 	/**
-	 * Returns the value of the '<em><b>Usersession</b></em>' reference.
+	 * Returns the value of the '<em><b>Usersession</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Usersession</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Usersession</em>' reference.
+	 * @return the value of the '<em>Usersession</em>' containment reference.
 	 * @see #setUsersession(Usersession)
 	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_Usersession()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	Usersession getUsersession();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getUsersession <em>Usersession</em>}' reference.
+	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getUsersession <em>Usersession</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Usersession</em>' reference.
+	 * @param value the new value of the '<em>Usersession</em>' containment reference.
 	 * @see #getUsersession()
 	 * @generated
 	 */

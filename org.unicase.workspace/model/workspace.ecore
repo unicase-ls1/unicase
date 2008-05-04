@@ -33,7 +33,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="username" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="password" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         transient="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sessionId" eType="ecore:EClass ../../org.unicase.esmodel/model/esmodel.ecore#//SessionId"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sessionId" eType="ecore:EClass ../../org.unicase.esmodel/model/esmodel.ecore#//SessionId"
+        transient="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="serverInfo" eType="#//ServerInfo"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProjectSpace">
