@@ -104,18 +104,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFowardDelta(ChangeDescription newFowardDelta) {
-		ChangeDescription oldFowardDelta = fowardDelta;
-		fowardDelta = newFowardDelta;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ChangemanagmentPackage.CHANGE_PACKAGE__FOWARD_DELTA, oldFowardDelta, fowardDelta));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public ChangeDescription getBackwardDelta() {
 		if (backwardDelta != null && backwardDelta.eIsProxy()) {
 			InternalEObject oldBackwardDelta = (InternalEObject)backwardDelta;
@@ -186,9 +174,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ChangemanagmentPackage.CHANGE_PACKAGE__FOWARD_DELTA:
-				setFowardDelta((ChangeDescription)newValue);
-				return;
 			case ChangemanagmentPackage.CHANGE_PACKAGE__BACKWARD_DELTA:
 				setBackwardDelta((ChangeDescription)newValue);
 				return;
@@ -204,9 +189,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ChangemanagmentPackage.CHANGE_PACKAGE__FOWARD_DELTA:
-				setFowardDelta((ChangeDescription)null);
-				return;
 			case ChangemanagmentPackage.CHANGE_PACKAGE__BACKWARD_DELTA:
 				setBackwardDelta((ChangeDescription)null);
 				return;

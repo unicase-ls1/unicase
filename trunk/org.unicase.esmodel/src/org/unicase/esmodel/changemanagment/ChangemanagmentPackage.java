@@ -100,22 +100,13 @@ public interface ChangemanagmentPackage extends EPackage {
 	int VERSION_SPEC = 3;
 
 	/**
-	 * The number of structural features of the '<em>Version Spec</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VERSION_SPEC_FEATURE_COUNT = 0;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TAG_VERSION_SPEC__NAME = VERSION_SPEC_FEATURE_COUNT + 0;
+	int TAG_VERSION_SPEC__NAME = 0;
 
 	/**
 	 * The number of structural features of the '<em>Tag Version Spec</em>' class.
@@ -124,7 +115,7 @@ public interface ChangemanagmentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TAG_VERSION_SPEC_FEATURE_COUNT = VERSION_SPEC_FEATURE_COUNT + 1;
+	int TAG_VERSION_SPEC_FEATURE_COUNT = 1;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -133,7 +124,7 @@ public interface ChangemanagmentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATE_VERSION_SPEC__DATE = VERSION_SPEC_FEATURE_COUNT + 0;
+	int DATE_VERSION_SPEC__DATE = 0;
 
 	/**
 	 * The number of structural features of the '<em>Date Version Spec</em>' class.
@@ -142,7 +133,7 @@ public interface ChangemanagmentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATE_VERSION_SPEC_FEATURE_COUNT = VERSION_SPEC_FEATURE_COUNT + 1;
+	int DATE_VERSION_SPEC_FEATURE_COUNT = 1;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -151,7 +142,7 @@ public interface ChangemanagmentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMARY_VERSION_SPEC__IDENTIFIER = VERSION_SPEC_FEATURE_COUNT + 0;
+	int PRIMARY_VERSION_SPEC__IDENTIFIER = 0;
 
 	/**
 	 * The number of structural features of the '<em>Primary Version Spec</em>' class.
@@ -160,7 +151,16 @@ public interface ChangemanagmentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMARY_VERSION_SPEC_FEATURE_COUNT = VERSION_SPEC_FEATURE_COUNT + 1;
+	int PRIMARY_VERSION_SPEC_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of structural features of the '<em>Version Spec</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERSION_SPEC_FEATURE_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.esmodel.changemanagment.impl.LogMessageImpl <em>Log Message</em>}' class.
