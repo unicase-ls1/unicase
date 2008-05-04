@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface DateVersionSpec extends EObject {
+public interface DateVersionSpec extends VersionSpec {
 	/**
 	 * Returns the value of the '<em><b>Date</b></em>' attribute.
 	 * <!-- begin-user-doc -->
