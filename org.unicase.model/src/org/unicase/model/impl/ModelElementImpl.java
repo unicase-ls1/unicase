@@ -216,7 +216,7 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 			return ((ModelElement)this.eContainer()).getProject();
 		}
 		else {
-			//FIXME
+			//FIXME MK
 			throw new IllegalStateException("ModelElement is not contained by any project");
 		}
 	}
