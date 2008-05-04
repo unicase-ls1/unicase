@@ -177,4 +177,12 @@ public interface ProjectSpace extends EObject {
 	 */
 	void save();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void init();
+
 } // ProjectContainer

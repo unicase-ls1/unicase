@@ -140,7 +140,7 @@ public class StubConnectionManagerImpl implements ConnectionManager {
 		fr2.setName("My Reuirement2");
 
 
-		EList<ModelElement> projectElements = project.getProjectElements();
+		EList<ModelElement> projectElements = project.getModelElements();
 		projectElements.add(fr);
 		projectElements.add(fr2);
 		projectElements.add(rootSection);

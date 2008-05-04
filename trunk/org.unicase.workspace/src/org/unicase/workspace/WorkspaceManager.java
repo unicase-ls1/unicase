@@ -68,6 +68,10 @@ public class WorkspaceManager {
 				Workspace workspace = (Workspace) eObject;
 				workspace.setConnectionManager(this.connectionManager);
 				workspace.setResource(resource);
+				//initialize all projectSpaces
+				for (ProjectSpace projectSpace: workspace.getProjectSpaces()) {
+					projectSpace.init();
+				}
 				return workspace;
 			}
 		}
