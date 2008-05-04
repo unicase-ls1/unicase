@@ -10,6 +10,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -18,6 +19,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.unicase.esmodel.changemanagment.ChangePackage;
@@ -50,7 +53,7 @@ import org.unicase.model.Project;
  */
 public class VersionImpl extends EObjectImpl implements Version {
 	/**
-	 * The cached value of the '{@link #getProjectState() <em>Project State</em>}' reference.
+	 * The cached value of the '{@link #getProjectState() <em>Project State</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getProjectState()
@@ -60,7 +63,7 @@ public class VersionImpl extends EObjectImpl implements Version {
 	protected Project projectState;
 
 	/**
-	 * The cached value of the '{@link #getPrimarySpec() <em>Primary Spec</em>}' reference.
+	 * The cached value of the '{@link #getPrimarySpec() <em>Primary Spec</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getPrimarySpec()
@@ -70,7 +73,7 @@ public class VersionImpl extends EObjectImpl implements Version {
 	protected PrimaryVersionSpec primarySpec;
 
 	/**
-	 * The cached value of the '{@link #getTagSpecs() <em>Tag Specs</em>}' reference list.
+	 * The cached value of the '{@link #getTagSpecs() <em>Tag Specs</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getTagSpecs()
@@ -100,7 +103,7 @@ public class VersionImpl extends EObjectImpl implements Version {
 	protected Version previousVersion;
 
 	/**
-	 * The cached value of the '{@link #getChanges() <em>Changes</em>}' reference.
+	 * The cached value of the '{@link #getChanges() <em>Changes</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getChanges()
@@ -110,7 +113,7 @@ public class VersionImpl extends EObjectImpl implements Version {
 	protected ChangePackage changes;
 
 	/**
-	 * The cached value of the '{@link #getLogMessage() <em>Log Message</em>}' reference.
+	 * The cached value of the '{@link #getLogMessage() <em>Log Message</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getLogMessage()
@@ -144,14 +147,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 * @generated
 	 */
 	public Project getProjectState() {
-		if (projectState != null && projectState.eIsProxy()) {
-			InternalEObject oldProjectState = (InternalEObject)projectState;
-			projectState = (Project)eResolveProxy(oldProjectState);
-			if (projectState != oldProjectState) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ChangemanagmentPackage.VERSION__PROJECT_STATE, oldProjectState, projectState));
-			}
-		}
 		return projectState;
 	}
 
@@ -160,8 +155,14 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Project basicGetProjectState() {
-		return projectState;
+	public NotificationChain basicSetProjectState(Project newProjectState, NotificationChain msgs) {
+		Project oldProjectState = projectState;
+		projectState = newProjectState;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ChangemanagmentPackage.VERSION__PROJECT_STATE, oldProjectState, newProjectState);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -170,10 +171,17 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 * @generated
 	 */
 	public void setProjectState(Project newProjectState) {
-		Project oldProjectState = projectState;
-		projectState = newProjectState;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ChangemanagmentPackage.VERSION__PROJECT_STATE, oldProjectState, projectState));
+		if (newProjectState != projectState) {
+			NotificationChain msgs = null;
+			if (projectState != null)
+				msgs = ((InternalEObject)projectState).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ChangemanagmentPackage.VERSION__PROJECT_STATE, null, msgs);
+			if (newProjectState != null)
+				msgs = ((InternalEObject)newProjectState).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ChangemanagmentPackage.VERSION__PROJECT_STATE, null, msgs);
+			msgs = basicSetProjectState(newProjectState, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ChangemanagmentPackage.VERSION__PROJECT_STATE, newProjectState, newProjectState));
 	}
 
 	/**
@@ -182,14 +190,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 * @generated
 	 */
 	public PrimaryVersionSpec getPrimarySpec() {
-		if (primarySpec != null && primarySpec.eIsProxy()) {
-			InternalEObject oldPrimarySpec = (InternalEObject)primarySpec;
-			primarySpec = (PrimaryVersionSpec)eResolveProxy(oldPrimarySpec);
-			if (primarySpec != oldPrimarySpec) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ChangemanagmentPackage.VERSION__PRIMARY_SPEC, oldPrimarySpec, primarySpec));
-			}
-		}
 		return primarySpec;
 	}
 
@@ -198,8 +198,14 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PrimaryVersionSpec basicGetPrimarySpec() {
-		return primarySpec;
+	public NotificationChain basicSetPrimarySpec(PrimaryVersionSpec newPrimarySpec, NotificationChain msgs) {
+		PrimaryVersionSpec oldPrimarySpec = primarySpec;
+		primarySpec = newPrimarySpec;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ChangemanagmentPackage.VERSION__PRIMARY_SPEC, oldPrimarySpec, newPrimarySpec);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -208,10 +214,17 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 * @generated
 	 */
 	public void setPrimarySpec(PrimaryVersionSpec newPrimarySpec) {
-		PrimaryVersionSpec oldPrimarySpec = primarySpec;
-		primarySpec = newPrimarySpec;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ChangemanagmentPackage.VERSION__PRIMARY_SPEC, oldPrimarySpec, primarySpec));
+		if (newPrimarySpec != primarySpec) {
+			NotificationChain msgs = null;
+			if (primarySpec != null)
+				msgs = ((InternalEObject)primarySpec).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ChangemanagmentPackage.VERSION__PRIMARY_SPEC, null, msgs);
+			if (newPrimarySpec != null)
+				msgs = ((InternalEObject)newPrimarySpec).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ChangemanagmentPackage.VERSION__PRIMARY_SPEC, null, msgs);
+			msgs = basicSetPrimarySpec(newPrimarySpec, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ChangemanagmentPackage.VERSION__PRIMARY_SPEC, newPrimarySpec, newPrimarySpec));
 	}
 
 	/**
@@ -221,7 +234,7 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 */
 	public EList<TagVersionSpec> getTagSpecs() {
 		if (tagSpecs == null) {
-			tagSpecs = new EObjectResolvingEList<TagVersionSpec>(TagVersionSpec.class, this, ChangemanagmentPackage.VERSION__TAG_SPECS);
+			tagSpecs = new EObjectContainmentEList<TagVersionSpec>(TagVersionSpec.class, this, ChangemanagmentPackage.VERSION__TAG_SPECS);
 		}
 		return tagSpecs;
 	}
@@ -308,14 +321,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 * @generated
 	 */
 	public ChangePackage getChanges() {
-		if (changes != null && changes.eIsProxy()) {
-			InternalEObject oldChanges = (InternalEObject)changes;
-			changes = (ChangePackage)eResolveProxy(oldChanges);
-			if (changes != oldChanges) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ChangemanagmentPackage.VERSION__CHANGES, oldChanges, changes));
-			}
-		}
 		return changes;
 	}
 
@@ -324,8 +329,14 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ChangePackage basicGetChanges() {
-		return changes;
+	public NotificationChain basicSetChanges(ChangePackage newChanges, NotificationChain msgs) {
+		ChangePackage oldChanges = changes;
+		changes = newChanges;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ChangemanagmentPackage.VERSION__CHANGES, oldChanges, newChanges);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -334,10 +345,17 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 * @generated
 	 */
 	public void setChanges(ChangePackage newChanges) {
-		ChangePackage oldChanges = changes;
-		changes = newChanges;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ChangemanagmentPackage.VERSION__CHANGES, oldChanges, changes));
+		if (newChanges != changes) {
+			NotificationChain msgs = null;
+			if (changes != null)
+				msgs = ((InternalEObject)changes).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ChangemanagmentPackage.VERSION__CHANGES, null, msgs);
+			if (newChanges != null)
+				msgs = ((InternalEObject)newChanges).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ChangemanagmentPackage.VERSION__CHANGES, null, msgs);
+			msgs = basicSetChanges(newChanges, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ChangemanagmentPackage.VERSION__CHANGES, newChanges, newChanges));
 	}
 
 	/**
@@ -346,14 +364,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 * @generated
 	 */
 	public LogMessage getLogMessage() {
-		if (logMessage != null && logMessage.eIsProxy()) {
-			InternalEObject oldLogMessage = (InternalEObject)logMessage;
-			logMessage = (LogMessage)eResolveProxy(oldLogMessage);
-			if (logMessage != oldLogMessage) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ChangemanagmentPackage.VERSION__LOG_MESSAGE, oldLogMessage, logMessage));
-			}
-		}
 		return logMessage;
 	}
 
@@ -362,8 +372,14 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LogMessage basicGetLogMessage() {
-		return logMessage;
+	public NotificationChain basicSetLogMessage(LogMessage newLogMessage, NotificationChain msgs) {
+		LogMessage oldLogMessage = logMessage;
+		logMessage = newLogMessage;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ChangemanagmentPackage.VERSION__LOG_MESSAGE, oldLogMessage, newLogMessage);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -372,10 +388,39 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 * @generated
 	 */
 	public void setLogMessage(LogMessage newLogMessage) {
-		LogMessage oldLogMessage = logMessage;
-		logMessage = newLogMessage;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ChangemanagmentPackage.VERSION__LOG_MESSAGE, oldLogMessage, logMessage));
+		if (newLogMessage != logMessage) {
+			NotificationChain msgs = null;
+			if (logMessage != null)
+				msgs = ((InternalEObject)logMessage).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ChangemanagmentPackage.VERSION__LOG_MESSAGE, null, msgs);
+			if (newLogMessage != null)
+				msgs = ((InternalEObject)newLogMessage).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ChangemanagmentPackage.VERSION__LOG_MESSAGE, null, msgs);
+			msgs = basicSetLogMessage(newLogMessage, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ChangemanagmentPackage.VERSION__LOG_MESSAGE, newLogMessage, newLogMessage));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ChangemanagmentPackage.VERSION__PROJECT_STATE:
+				return basicSetProjectState(null, msgs);
+			case ChangemanagmentPackage.VERSION__PRIMARY_SPEC:
+				return basicSetPrimarySpec(null, msgs);
+			case ChangemanagmentPackage.VERSION__TAG_SPECS:
+				return ((InternalEList<?>)getTagSpecs()).basicRemove(otherEnd, msgs);
+			case ChangemanagmentPackage.VERSION__CHANGES:
+				return basicSetChanges(null, msgs);
+			case ChangemanagmentPackage.VERSION__LOG_MESSAGE:
+				return basicSetLogMessage(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -387,11 +432,9 @@ public class VersionImpl extends EObjectImpl implements Version {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ChangemanagmentPackage.VERSION__PROJECT_STATE:
-				if (resolve) return getProjectState();
-				return basicGetProjectState();
+				return getProjectState();
 			case ChangemanagmentPackage.VERSION__PRIMARY_SPEC:
-				if (resolve) return getPrimarySpec();
-				return basicGetPrimarySpec();
+				return getPrimarySpec();
 			case ChangemanagmentPackage.VERSION__TAG_SPECS:
 				return getTagSpecs();
 			case ChangemanagmentPackage.VERSION__NEXT_VERSION:
@@ -401,11 +444,9 @@ public class VersionImpl extends EObjectImpl implements Version {
 				if (resolve) return getPreviousVersion();
 				return basicGetPreviousVersion();
 			case ChangemanagmentPackage.VERSION__CHANGES:
-				if (resolve) return getChanges();
-				return basicGetChanges();
+				return getChanges();
 			case ChangemanagmentPackage.VERSION__LOG_MESSAGE:
-				if (resolve) return getLogMessage();
-				return basicGetLogMessage();
+				return getLogMessage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

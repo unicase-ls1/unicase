@@ -8,6 +8,7 @@ package org.unicase.esmodel.changemanagment.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -35,7 +36,7 @@ import org.unicase.esmodel.changemanagment.ChangemanagmentPackage;
  */
 public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	/**
-	 * The cached value of the '{@link #getFowardDelta() <em>Foward Delta</em>}' reference.
+	 * The cached value of the '{@link #getFowardDelta() <em>Foward Delta</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getFowardDelta()
@@ -45,7 +46,7 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	protected ChangeDescription fowardDelta;
 
 	/**
-	 * The cached value of the '{@link #getBackwardDelta() <em>Backward Delta</em>}' reference.
+	 * The cached value of the '{@link #getBackwardDelta() <em>Backward Delta</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getBackwardDelta()
@@ -79,14 +80,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 * @generated
 	 */
 	public ChangeDescription getFowardDelta() {
-		if (fowardDelta != null && fowardDelta.eIsProxy()) {
-			InternalEObject oldFowardDelta = (InternalEObject)fowardDelta;
-			fowardDelta = (ChangeDescription)eResolveProxy(oldFowardDelta);
-			if (fowardDelta != oldFowardDelta) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ChangemanagmentPackage.CHANGE_PACKAGE__FOWARD_DELTA, oldFowardDelta, fowardDelta));
-			}
-		}
 		return fowardDelta;
 	}
 
@@ -95,8 +88,14 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ChangeDescription basicGetFowardDelta() {
-		return fowardDelta;
+	public NotificationChain basicSetFowardDelta(ChangeDescription newFowardDelta, NotificationChain msgs) {
+		ChangeDescription oldFowardDelta = fowardDelta;
+		fowardDelta = newFowardDelta;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ChangemanagmentPackage.CHANGE_PACKAGE__FOWARD_DELTA, oldFowardDelta, newFowardDelta);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -105,10 +104,17 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 * @generated
 	 */
 	public void setFowardDelta(ChangeDescription newFowardDelta) {
-		ChangeDescription oldFowardDelta = fowardDelta;
-		fowardDelta = newFowardDelta;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ChangemanagmentPackage.CHANGE_PACKAGE__FOWARD_DELTA, oldFowardDelta, fowardDelta));
+		if (newFowardDelta != fowardDelta) {
+			NotificationChain msgs = null;
+			if (fowardDelta != null)
+				msgs = ((InternalEObject)fowardDelta).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ChangemanagmentPackage.CHANGE_PACKAGE__FOWARD_DELTA, null, msgs);
+			if (newFowardDelta != null)
+				msgs = ((InternalEObject)newFowardDelta).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ChangemanagmentPackage.CHANGE_PACKAGE__FOWARD_DELTA, null, msgs);
+			msgs = basicSetFowardDelta(newFowardDelta, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ChangemanagmentPackage.CHANGE_PACKAGE__FOWARD_DELTA, newFowardDelta, newFowardDelta));
 	}
 
 	/**
@@ -117,14 +123,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 * @generated
 	 */
 	public ChangeDescription getBackwardDelta() {
-		if (backwardDelta != null && backwardDelta.eIsProxy()) {
-			InternalEObject oldBackwardDelta = (InternalEObject)backwardDelta;
-			backwardDelta = (ChangeDescription)eResolveProxy(oldBackwardDelta);
-			if (backwardDelta != oldBackwardDelta) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ChangemanagmentPackage.CHANGE_PACKAGE__BACKWARD_DELTA, oldBackwardDelta, backwardDelta));
-			}
-		}
 		return backwardDelta;
 	}
 
@@ -133,8 +131,14 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ChangeDescription basicGetBackwardDelta() {
-		return backwardDelta;
+	public NotificationChain basicSetBackwardDelta(ChangeDescription newBackwardDelta, NotificationChain msgs) {
+		ChangeDescription oldBackwardDelta = backwardDelta;
+		backwardDelta = newBackwardDelta;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ChangemanagmentPackage.CHANGE_PACKAGE__BACKWARD_DELTA, oldBackwardDelta, newBackwardDelta);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -143,10 +147,17 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 * @generated
 	 */
 	public void setBackwardDelta(ChangeDescription newBackwardDelta) {
-		ChangeDescription oldBackwardDelta = backwardDelta;
-		backwardDelta = newBackwardDelta;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ChangemanagmentPackage.CHANGE_PACKAGE__BACKWARD_DELTA, oldBackwardDelta, backwardDelta));
+		if (newBackwardDelta != backwardDelta) {
+			NotificationChain msgs = null;
+			if (backwardDelta != null)
+				msgs = ((InternalEObject)backwardDelta).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ChangemanagmentPackage.CHANGE_PACKAGE__BACKWARD_DELTA, null, msgs);
+			if (newBackwardDelta != null)
+				msgs = ((InternalEObject)newBackwardDelta).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ChangemanagmentPackage.CHANGE_PACKAGE__BACKWARD_DELTA, null, msgs);
+			msgs = basicSetBackwardDelta(newBackwardDelta, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ChangemanagmentPackage.CHANGE_PACKAGE__BACKWARD_DELTA, newBackwardDelta, newBackwardDelta));
 	}
 
 	/**
@@ -166,14 +177,28 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ChangemanagmentPackage.CHANGE_PACKAGE__FOWARD_DELTA:
+				return basicSetFowardDelta(null, msgs);
+			case ChangemanagmentPackage.CHANGE_PACKAGE__BACKWARD_DELTA:
+				return basicSetBackwardDelta(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ChangemanagmentPackage.CHANGE_PACKAGE__FOWARD_DELTA:
-				if (resolve) return getFowardDelta();
-				return basicGetFowardDelta();
+				return getFowardDelta();
 			case ChangemanagmentPackage.CHANGE_PACKAGE__BACKWARD_DELTA:
-				if (resolve) return getBackwardDelta();
-				return basicGetBackwardDelta();
+				return getBackwardDelta();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

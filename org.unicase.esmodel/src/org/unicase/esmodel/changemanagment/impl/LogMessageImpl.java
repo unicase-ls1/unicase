@@ -10,6 +10,7 @@ import java.util.Date;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -58,7 +59,7 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 	protected String message = MESSAGE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getAuthor() <em>Author</em>}' reference.
+	 * The cached value of the '{@link #getAuthor() <em>Author</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getAuthor()
@@ -133,14 +134,6 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 	 * @generated
 	 */
 	public User getAuthor() {
-		if (author != null && author.eIsProxy()) {
-			InternalEObject oldAuthor = (InternalEObject)author;
-			author = (User)eResolveProxy(oldAuthor);
-			if (author != oldAuthor) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ChangemanagmentPackage.LOG_MESSAGE__AUTHOR, oldAuthor, author));
-			}
-		}
 		return author;
 	}
 
@@ -149,8 +142,14 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public User basicGetAuthor() {
-		return author;
+	public NotificationChain basicSetAuthor(User newAuthor, NotificationChain msgs) {
+		User oldAuthor = author;
+		author = newAuthor;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ChangemanagmentPackage.LOG_MESSAGE__AUTHOR, oldAuthor, newAuthor);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -159,10 +158,17 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 	 * @generated
 	 */
 	public void setAuthor(User newAuthor) {
-		User oldAuthor = author;
-		author = newAuthor;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ChangemanagmentPackage.LOG_MESSAGE__AUTHOR, oldAuthor, author));
+		if (newAuthor != author) {
+			NotificationChain msgs = null;
+			if (author != null)
+				msgs = ((InternalEObject)author).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ChangemanagmentPackage.LOG_MESSAGE__AUTHOR, null, msgs);
+			if (newAuthor != null)
+				msgs = ((InternalEObject)newAuthor).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ChangemanagmentPackage.LOG_MESSAGE__AUTHOR, null, msgs);
+			msgs = basicSetAuthor(newAuthor, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ChangemanagmentPackage.LOG_MESSAGE__AUTHOR, newAuthor, newAuthor));
 	}
 
 	/**
@@ -192,13 +198,26 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ChangemanagmentPackage.LOG_MESSAGE__AUTHOR:
+				return basicSetAuthor(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ChangemanagmentPackage.LOG_MESSAGE__MESSAGE:
 				return getMessage();
 			case ChangemanagmentPackage.LOG_MESSAGE__AUTHOR:
-				if (resolve) return getAuthor();
-				return basicGetAuthor();
+				return getAuthor();
 			case ChangemanagmentPackage.LOG_MESSAGE__DATE:
 				return getDate();
 		}

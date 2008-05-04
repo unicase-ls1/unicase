@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.unicase.esmodel.changemanagment.ChangemanagmentPackage;
 import org.unicase.esmodel.changemanagment.HistoryInfo;
+import org.unicase.esmodel.changemanagment.LogMessage;
 import org.unicase.esmodel.changemanagment.PrimaryVersionSpec;
 
 /**
@@ -26,6 +27,7 @@ import org.unicase.esmodel.changemanagment.PrimaryVersionSpec;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.unicase.esmodel.changemanagment.impl.HistoryInfoImpl#getPrimerySpec <em>Primery Spec</em>}</li>
+ *   <li>{@link org.unicase.esmodel.changemanagment.impl.HistoryInfoImpl#getLogMessage <em>Log Message</em>}</li>
  * </ul>
  * </p>
  *
@@ -41,6 +43,16 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 	 * @ordered
 	 */
 	protected PrimaryVersionSpec primerySpec;
+
+	/**
+	 * The cached value of the '{@link #getLogMessage() <em>Log Message</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLogMessage()
+	 * @generated
+	 * @ordered
+	 */
+	protected LogMessage logMessage;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -104,12 +116,53 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public LogMessage getLogMessage() {
+		if (logMessage != null && logMessage.eIsProxy()) {
+			InternalEObject oldLogMessage = (InternalEObject)logMessage;
+			logMessage = (LogMessage)eResolveProxy(oldLogMessage);
+			if (logMessage != oldLogMessage) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ChangemanagmentPackage.HISTORY_INFO__LOG_MESSAGE, oldLogMessage, logMessage));
+			}
+		}
+		return logMessage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LogMessage basicGetLogMessage() {
+		return logMessage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLogMessage(LogMessage newLogMessage) {
+		LogMessage oldLogMessage = logMessage;
+		logMessage = newLogMessage;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ChangemanagmentPackage.HISTORY_INFO__LOG_MESSAGE, oldLogMessage, logMessage));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ChangemanagmentPackage.HISTORY_INFO__PRIMERY_SPEC:
 				if (resolve) return getPrimerySpec();
 				return basicGetPrimerySpec();
+			case ChangemanagmentPackage.HISTORY_INFO__LOG_MESSAGE:
+				if (resolve) return getLogMessage();
+				return basicGetLogMessage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -124,6 +177,9 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 		switch (featureID) {
 			case ChangemanagmentPackage.HISTORY_INFO__PRIMERY_SPEC:
 				setPrimerySpec((PrimaryVersionSpec)newValue);
+				return;
+			case ChangemanagmentPackage.HISTORY_INFO__LOG_MESSAGE:
+				setLogMessage((LogMessage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -140,6 +196,9 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 			case ChangemanagmentPackage.HISTORY_INFO__PRIMERY_SPEC:
 				setPrimerySpec((PrimaryVersionSpec)null);
 				return;
+			case ChangemanagmentPackage.HISTORY_INFO__LOG_MESSAGE:
+				setLogMessage((LogMessage)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -154,6 +213,8 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 		switch (featureID) {
 			case ChangemanagmentPackage.HISTORY_INFO__PRIMERY_SPEC:
 				return primerySpec != null;
+			case ChangemanagmentPackage.HISTORY_INFO__LOG_MESSAGE:
+				return logMessage != null;
 		}
 		return super.eIsSet(featureID);
 	}

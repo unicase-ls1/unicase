@@ -58,26 +58,26 @@ public interface LogMessage extends EObject {
 	void setMessage(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Author</b></em>' reference.
+	 * Returns the value of the '<em><b>Author</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Author</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Author</em>' reference.
+	 * @return the value of the '<em>Author</em>' containment reference.
 	 * @see #setAuthor(User)
 	 * @see org.unicase.esmodel.changemanagment.ChangemanagmentPackage#getLogMessage_Author()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	User getAuthor();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.esmodel.changemanagment.LogMessage#getAuthor <em>Author</em>}' reference.
+	 * Sets the value of the '{@link org.unicase.esmodel.changemanagment.LogMessage#getAuthor <em>Author</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Author</em>' reference.
+	 * @param value the new value of the '<em>Author</em>' containment reference.
 	 * @see #getAuthor()
 	 * @generated
 	 */
