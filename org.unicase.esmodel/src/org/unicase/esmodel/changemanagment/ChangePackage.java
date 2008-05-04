@@ -37,22 +37,11 @@ public interface ChangePackage extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Foward Delta</em>' reference.
-	 * @see #setFowardDelta(ChangeDescription)
 	 * @see org.unicase.esmodel.changemanagment.ChangemanagmentPackage#getChangePackage_FowardDelta()
-	 * @model required="true"
+	 * @model required="true" changeable="false"
 	 * @generated
 	 */
 	ChangeDescription getFowardDelta();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.esmodel.changemanagment.ChangePackage#getFowardDelta <em>Foward Delta</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Foward Delta</em>' reference.
-	 * @see #getFowardDelta()
-	 * @generated
-	 */
-	void setFowardDelta(ChangeDescription value);
 
 	/**
 	 * Returns the value of the '<em><b>Backward Delta</b></em>' reference.

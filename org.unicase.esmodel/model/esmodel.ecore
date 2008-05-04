@@ -18,15 +18,15 @@
   <eClassifiers xsi:type="ecore:EClass" name="SessionId" eSuperTypes="../../org.unicase.model/model/model.ecore#//UniqueIdentifier"/>
   <eSubpackages name="changemanagment" nsURI="http://unicase.org/esmodel/changemanagment"
       nsPrefix="org.unicase.esmodel.changemanagment">
-    <eClassifiers xsi:type="ecore:EClass" name="TagVersionSpec" eSuperTypes="#//changemanagment/VersionSpec">
+    <eClassifiers xsi:type="ecore:EClass" name="TagVersionSpec">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="DateVersionSpec" eSuperTypes="#//changemanagment/VersionSpec">
+    <eClassifiers xsi:type="ecore:EClass" name="DateVersionSpec">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="PrimaryVersionSpec" eSuperTypes="#//changemanagment/VersionSpec">
+    <eClassifiers xsi:type="ecore:EClass" name="PrimaryVersionSpec">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
@@ -42,7 +42,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="ChangePackage">
       <eOperations name="reverse" eType="#//changemanagment/ChangePackage"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="fowardDelta" lowerBound="1"
-          eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore.change/model/Change.ecore#//ChangeDescription"/>
+          eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore.change/model/Change.ecore#//ChangeDescription"
+          changeable="false"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="backwardDelta" lowerBound="1"
           eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore.change/model/Change.ecore#//ChangeDescription"/>
     </eClassifiers>
