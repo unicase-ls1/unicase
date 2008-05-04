@@ -6,6 +6,8 @@
  */
 package org.unicase.workspace.impl;
 
+import java.util.Collections;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
@@ -159,7 +161,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 */
 	public void setProject(Project newProject) {
 		setProjectGen(newProject);
-		this.changeRecorder=new ChangeRecorder(project);
+		init();
 	}
 	
 	/**
@@ -343,6 +345,9 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	public void save() {
 		//FIXME MK this does not work forward change description is empty
 		ChangeDescription changeDescription = this.changeRecorder.endRecording();
+		if (changeDescription==null) {
+			return;
+		}
 		ChangeDescription backwardChangeDescription= (ChangeDescription)EcoreUtil.copy(changeDescription);
 		changeDescription.applyAndReverse();
 		changeDescription.apply();
@@ -351,6 +356,21 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 		changePackage.setBackwardDelta(backwardChangeDescription);
 		changePackage.setFowardDelta(forwardChangeDescription);
 		this.setLocalChanges(changePackage);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void init() {
+		this.changeRecorder=new ChangeRecorder();
+		if (this.getLocalChanges()==null) {
+			changeRecorder.beginRecording(Collections.singleton(this.project));
+		}
+		else {
+			changeRecorder.beginRecording(localChanges.getBackwardDelta(), Collections.singleton(this.project));
+		}
 	}
 
 	/**

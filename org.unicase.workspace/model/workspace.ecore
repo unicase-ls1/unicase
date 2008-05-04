@@ -45,6 +45,7 @@
     </eOperations>
     <eOperations name="revert"/>
     <eOperations name="save"/>
+    <eOperations name="init"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="project" lowerBound="1"
         eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="baseVersion" lowerBound="1"

@@ -49,6 +49,7 @@
       </genOperations>
       <genOperations ecoreOperation="workspace.ecore#//ProjectSpace/revert"/>
       <genOperations ecoreOperation="workspace.ecore#//ProjectSpace/save"/>
+      <genOperations ecoreOperation="workspace.ecore#//ProjectSpace/init"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
