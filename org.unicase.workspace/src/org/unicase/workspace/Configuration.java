@@ -1,6 +1,7 @@
 package org.unicase.workspace;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,7 +31,8 @@ public class Configuration {
 	}
 
 	public static String getWorkspacePath() {
-		return getWorkspaceDirectory() + "workspace";
+		String workSpacePath = getWorkspaceDirectory() + "workspace";
+		return workSpacePath;
 	}
 
 	public static Map<Object, Object> getResourceSaveOptions() {

@@ -11,9 +11,9 @@
     </eOperations>
     <eOperations name="save"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="projectSpaces" upperBound="-1"
-        eType="#//ProjectSpace"/>
+        eType="#//ProjectSpace" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="serverInfos" upperBound="-1"
-        eType="#//ServerInfo"/>
+        eType="#//ServerInfo" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ServerInfo">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -45,10 +45,13 @@
     <eOperations name="revert"/>
     <eOperations name="save"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="project" lowerBound="1"
-        eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"/>
+        eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="baseVersion" lowerBound="1"
-        eType="ecore:EClass ../../org.unicase.esmodel/model/esmodel.ecore#//changemanagment/PrimaryVersionSpec"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="localChanges" eType="ecore:EClass ../../org.unicase.esmodel/model/esmodel.ecore#//changemanagment/ChangePackage"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="usersession" eType="#//Usersession"/>
+        eType="ecore:EClass ../../org.unicase.esmodel/model/esmodel.ecore#//changemanagment/PrimaryVersionSpec"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="localChanges" eType="ecore:EClass ../../org.unicase.esmodel/model/esmodel.ecore#//changemanagment/ChangePackage"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="usersession" eType="#//Usersession"
+        containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

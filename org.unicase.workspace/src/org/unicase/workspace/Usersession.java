@@ -150,18 +150,11 @@ public interface Usersession extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
-	void logIn(String password);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * @throws ConnectionException 
 	 * @model
 	 * @generated NOT
 	 */
-	void logIn(ServerInfo serverInfo) throws ConnectionException;
+	void logIn(String password) throws ConnectionException;
 
 	/**
 	 * <!-- begin-user-doc -->

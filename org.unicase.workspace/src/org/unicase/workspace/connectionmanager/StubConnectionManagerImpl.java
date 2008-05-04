@@ -83,9 +83,9 @@ public class StubConnectionManagerImpl implements ConnectionManager {
 		// Generate the elements of the model
 		
 		ModelFactory factory = ModelFactoryImpl.eINSTANCE;
-		Project projectElement = factory.createProject();
-		projectElement.setName("Sysiphus EMF Evaluation");
-		projectElement
+		Project project = factory.createProject();
+		project.setName("Sysiphus EMF Evaluation");
+		project
 				.setDescription("This model is part of the effort to evaluate the EMF Framework.");
 
 		CompositeSection rootSection = factory.createCompositeSection();
@@ -140,11 +140,11 @@ public class StubConnectionManagerImpl implements ConnectionManager {
 		fr2.setName("My Reuirement2");
 
 
-		EList<ModelElement> projectElements = projectElement.getProjectElements();
+		EList<ModelElement> projectElements = project.getProjectElements();
 		projectElements.add(fr);
 		projectElements.add(fr2);
 		projectElements.add(rootSection);
-		return projectElement;
+		return project;
 		// end of generation
 	}
 
