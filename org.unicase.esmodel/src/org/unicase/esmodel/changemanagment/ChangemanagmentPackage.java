@@ -357,6 +357,26 @@ public interface ChangemanagmentPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.unicase.esmodel.changemanagment.impl.HeadVersionSpecImpl <em>Head Version Spec</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.esmodel.changemanagment.impl.HeadVersionSpecImpl
+	 * @see org.unicase.esmodel.changemanagment.impl.ChangemanagmentPackageImpl#getHeadVersionSpec()
+	 * @generated
+	 */
+	int HEAD_VERSION_SPEC = 8;
+
+	/**
+	 * The number of structural features of the '<em>Head Version Spec</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HEAD_VERSION_SPEC_FEATURE_COUNT = VERSION_SPEC_FEATURE_COUNT + 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.esmodel.changemanagment.TagVersionSpec <em>Tag Version Spec</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -613,6 +633,16 @@ public interface ChangemanagmentPackage extends EPackage {
 	EReference getVersion_LogMessage();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.esmodel.changemanagment.HeadVersionSpec <em>Head Version Spec</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Head Version Spec</em>'.
+	 * @see org.unicase.esmodel.changemanagment.HeadVersionSpec
+	 * @generated
+	 */
+	EClass getHeadVersionSpec();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -841,6 +871,16 @@ public interface ChangemanagmentPackage extends EPackage {
 		 * @generated
 		 */
 		EReference VERSION__LOG_MESSAGE = eINSTANCE.getVersion_LogMessage();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.esmodel.changemanagment.impl.HeadVersionSpecImpl <em>Head Version Spec</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.esmodel.changemanagment.impl.HeadVersionSpecImpl
+		 * @see org.unicase.esmodel.changemanagment.impl.ChangemanagmentPackageImpl#getHeadVersionSpec()
+		 * @generated
+		 */
+		EClass HEAD_VERSION_SPEC = eINSTANCE.getHeadVersionSpec();
 
 	}
 

@@ -42,8 +42,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="ChangePackage">
       <eOperations name="reverse" eType="#//changemanagment/ChangePackage"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="fowardDelta" lowerBound="1"
-          eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore.change/model/Change.ecore#//ChangeDescription"
-          changeable="false"/>
+          eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore.change/model/Change.ecore#//ChangeDescription"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="backwardDelta" lowerBound="1"
           eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore.change/model/Change.ecore#//ChangeDescription"/>
     </eClassifiers>
@@ -62,6 +61,7 @@
           eType="#//changemanagment/ChangePackage"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="logMessage" eType="#//changemanagment/LogMessage"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="HeadVersionSpec" eSuperTypes="#//changemanagment/VersionSpec"/>
   </eSubpackages>
   <eSubpackages name="accesscontrol" nsURI="http://unicase.org/esmodel/accesscontrol"
       nsPrefix="org.unicase.accesscontrol">

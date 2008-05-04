@@ -104,6 +104,10 @@ public class ChangemanagmentAdapterFactory extends AdapterFactoryImpl {
 				return createVersionAdapter();
 			}
 			@Override
+			public Adapter caseHeadVersionSpec(HeadVersionSpec object) {
+				return createHeadVersionSpecAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -232,6 +236,20 @@ public class ChangemanagmentAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createVersionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.esmodel.changemanagment.HeadVersionSpec <em>Head Version Spec</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.esmodel.changemanagment.HeadVersionSpec
+	 * @generated
+	 */
+	public Adapter createHeadVersionSpecAdapter() {
 		return null;
 	}
 

@@ -67,6 +67,7 @@ public class ChangemanagmentFactoryImpl extends EFactoryImpl implements Changema
 			case ChangemanagmentPackage.CHANGE_PACKAGE: return createChangePackage();
 			case ChangemanagmentPackage.HISTORY_INFO: return createHistoryInfo();
 			case ChangemanagmentPackage.VERSION: return createVersion();
+			case ChangemanagmentPackage.HEAD_VERSION_SPEC: return createHeadVersionSpec();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -140,6 +141,16 @@ public class ChangemanagmentFactoryImpl extends EFactoryImpl implements Changema
 	public Version createVersion() {
 		VersionImpl version = new VersionImpl();
 		return version;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public HeadVersionSpec createHeadVersionSpec() {
+		HeadVersionSpecImpl headVersionSpec = new HeadVersionSpecImpl();
+		return headVersionSpec;
 	}
 
 	/**
