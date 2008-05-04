@@ -32,7 +32,7 @@ import org.unicase.model.organization.User;
  * @model abstract="true"
  * @generated
  */
-public interface ModelElement extends EObject {
+public interface ModelElement extends EObject, Serializable {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
