@@ -21,12 +21,10 @@ public class TreeView extends CommonNavigator {
 				.createUsersession();
 		usersession.setServerInfo(Configuration.getDefaultServerInfo());
 		usersession.setUsername("user");
-		usersession.logIn("password");
-
-		Workspace workspace = WorkspaceManager.getInstance()
-				.getCurrentWorkspace();
+		
 		ProjectInfo projectInfo;
 		try {
+			usersession.logIn("password");
 			projectInfo = usersession.getRemoteProjectList().get(0);
 			ProjectSpace projectSpace;
 			projectSpace = usersession.checkout(projectInfo.getProjectId(),

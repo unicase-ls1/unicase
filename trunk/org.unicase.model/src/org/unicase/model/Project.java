@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Project</b></em>'.
+ * @implements IAdaptable
  * <!-- end-user-doc -->
  *
  * <p>
@@ -29,7 +30,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see org.unicase.model.ModelPackage#getProject()
  * @model
- * @generated NOT
+ * @generated
  */
 public interface Project extends EObject, IAdaptable {
 	/**
@@ -84,19 +85,17 @@ public interface Project extends EObject, IAdaptable {
 	void setDescription(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Project Elements</b></em>' reference list.
+	 * Returns the value of the '<em><b>Project Elements</b></em>' containment reference list.
 	 * The list contents are of type {@link org.unicase.model.ModelElement}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.ModelElement#getProject <em>Project</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Project Elements</em>' reference list
 	 * isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Project Elements</em>' reference list.
+	 * @return the value of the '<em>Project Elements</em>' containment reference list.
 	 * @see org.unicase.model.ModelPackage#getProject_ProjectElements()
-	 * @see org.unicase.model.ModelElement#getProject
-	 * @model opposite="project"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<ModelElement> getProjectElements();
@@ -125,6 +124,14 @@ public interface Project extends EObject, IAdaptable {
 	 * @generated
 	 */
 	void setIdentifier(ProjectId value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void addModelElement(ModelElement modelElement);
 
 	/**
 	 * @param elementClass

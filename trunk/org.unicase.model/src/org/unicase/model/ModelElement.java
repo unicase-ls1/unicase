@@ -15,6 +15,7 @@ import org.unicase.model.organization.User;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Element</b></em>'.
+ * @implements Serializable
  * <!-- end-user-doc -->
  *
  * <p>
@@ -29,9 +30,9 @@ import org.unicase.model.organization.User;
  *
  * @see org.unicase.model.ModelPackage#getModelElement()
  * @model abstract="true"
- * @generated not
+ * @generated
  */
-public interface ModelElement extends EObject, Serializable {
+public interface ModelElement extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -95,7 +96,7 @@ public interface ModelElement extends EObject, Serializable {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Identifier</em>' containment reference.
 	 * @see org.unicase.model.ModelPackage#getModelElement_Identifier()
-	 * @model containment="true" required="true" changeable="false"
+	 * @model containment="true" keys="id" required="true" changeable="false"
 	 * @generated
 	 */
 	ModelElementId getIdentifier();

@@ -113,10 +113,11 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected ProjectImpl() {
 		super();
+		this.identifier = ModelFactoryImpl.eINSTANCE.createProjectId();
 	}
 
 	/**
