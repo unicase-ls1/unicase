@@ -374,7 +374,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProject_ProjectElements() {
+	public EReference getProject_ModelElements() {
 		return (EReference)projectEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -504,7 +504,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		projectEClass = createEClass(PROJECT);
 		createEAttribute(projectEClass, PROJECT__NAME);
 		createEAttribute(projectEClass, PROJECT__DESCRIPTION);
-		createEReference(projectEClass, PROJECT__PROJECT_ELEMENTS);
+		createEReference(projectEClass, PROJECT__MODEL_ELEMENTS);
 		createEReference(projectEClass, PROJECT__IDENTIFIER);
 
 		projectIdEClass = createEClass(PROJECT_ID);
@@ -598,8 +598,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEClass(projectEClass, Project.class, "Project", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getProject_Name(), ecorePackage.getEString(), "name", null, 0, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getProject_Description(), ecorePackage.getEString(), "description", null, 0, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProject_ProjectElements(), this.getModelElement(), null, "projectElements", null, 0, -1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProject_Identifier(), this.getProjectId(), null, "Identifier", null, 0, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProject_ModelElements(), this.getModelElement(), null, "modelElements", null, 0, -1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProject_Identifier(), this.getProjectId(), null, "identifier", null, 0, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(projectEClass, null, "addModelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelElement(), "modelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -609,7 +609,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEClass(modelElementIdEClass, ModelElementId.class, "ModelElementId", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(uniqueIdentifierEClass, UniqueIdentifier.class, "UniqueIdentifier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getUniqueIdentifier_Id(), ecorePackage.getEString(), "id", null, 0, 1, UniqueIdentifier.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUniqueIdentifier_Id(), ecorePackage.getEString(), "id", "Default Value Literal\t", 1, 1, UniqueIdentifier.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(readerInfoEClass, ReaderInfo.class, "ReaderInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getReaderInfo_Date(), ecorePackage.getEDate(), "date", null, 0, 1, ReaderInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

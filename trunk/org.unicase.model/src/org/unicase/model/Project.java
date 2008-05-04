@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.unicase.model.Project#getName <em>Name</em>}</li>
  *   <li>{@link org.unicase.model.Project#getDescription <em>Description</em>}</li>
- *   <li>{@link org.unicase.model.Project#getProjectElements <em>Project Elements</em>}</li>
+ *   <li>{@link org.unicase.model.Project#getModelElements <em>Model Elements</em>}</li>
  *   <li>{@link org.unicase.model.Project#getIdentifier <em>Identifier</em>}</li>
  * </ul>
  * </p>
@@ -85,20 +85,20 @@ public interface Project extends EObject, IAdaptable {
 	void setDescription(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Project Elements</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Model Elements</b></em>' containment reference list.
 	 * The list contents are of type {@link org.unicase.model.ModelElement}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Project Elements</em>' reference list
-	 * isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Model Elements</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Project Elements</em>' containment reference list.
-	 * @see org.unicase.model.ModelPackage#getProject_ProjectElements()
+	 * @return the value of the '<em>Model Elements</em>' containment reference list.
+	 * @see org.unicase.model.ModelPackage#getProject_ModelElements()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ModelElement> getProjectElements();
+	EList<ModelElement> getModelElements();
 
 	/**
 	 * Returns the value of the '<em><b>Identifier</b></em>' containment reference.

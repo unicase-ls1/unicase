@@ -39,7 +39,7 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements Unique
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String ID_EDEFAULT = null;
+	protected static final String ID_EDEFAULT = "Default Value Literal\t";
 	
 	/**
 	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.

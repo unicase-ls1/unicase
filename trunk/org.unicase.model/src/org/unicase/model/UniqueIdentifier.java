@@ -28,6 +28,7 @@ public interface UniqueIdentifier extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.
+	 * The default value is <code>"Default Value Literal\t"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Id</em>' attribute isn't clear,
@@ -36,7 +37,7 @@ public interface UniqueIdentifier extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see org.unicase.model.ModelPackage#getUniqueIdentifier_Id()
-	 * @model id="true" changeable="false"
+	 * @model default="Default Value Literal\t" id="true" required="true" changeable="false"
 	 * @generated
 	 */
 	String getId();

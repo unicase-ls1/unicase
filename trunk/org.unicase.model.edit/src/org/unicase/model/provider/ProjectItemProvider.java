@@ -30,6 +30,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
+import org.unicase.model.organization.OrganizationFactory;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.model.Project} object.
@@ -68,7 +69,6 @@ public class ProjectItemProvider
 
 			addNamePropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
-			addProjectElementsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -118,28 +118,6 @@ public class ProjectItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Project Elements feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addProjectElementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Project_projectElements_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Project_projectElements_feature", "_UI_Project_type"),
-				 ModelPackage.Literals.PROJECT__PROJECT_ELEMENTS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -151,6 +129,7 @@ public class ProjectItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
+			childrenFeatures.add(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS);
 			childrenFeatures.add(ModelPackage.Literals.PROJECT__IDENTIFIER);
 		}
 		return childrenFeatures;
@@ -210,6 +189,7 @@ public class ProjectItemProvider
 			case ModelPackage.PROJECT__DESCRIPTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
+			case ModelPackage.PROJECT__MODEL_ELEMENTS:
 			case ModelPackage.PROJECT__IDENTIFIER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -227,6 +207,36 @@ public class ProjectItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				 ModelFactory.eINSTANCE.createFunctionalRequirement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				 ModelFactory.eINSTANCE.createLeafSection()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				 ModelFactory.eINSTANCE.createCompositeSection()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				 OrganizationFactory.eINSTANCE.createUser()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				 OrganizationFactory.eINSTANCE.createOrgUnit()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				 OrganizationFactory.eINSTANCE.createGroup()));
 
 		newChildDescriptors.add
 			(createChildParameter
