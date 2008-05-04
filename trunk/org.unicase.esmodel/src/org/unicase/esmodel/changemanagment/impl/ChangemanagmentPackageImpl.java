@@ -488,6 +488,9 @@ public class ChangemanagmentPackageImpl extends EPackageImpl implements Changema
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		tagVersionSpecEClass.getESuperTypes().add(this.getVersionSpec());
+		dateVersionSpecEClass.getESuperTypes().add(this.getVersionSpec());
+		primaryVersionSpecEClass.getESuperTypes().add(this.getVersionSpec());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(tagVersionSpecEClass, TagVersionSpec.class, "TagVersionSpec", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
