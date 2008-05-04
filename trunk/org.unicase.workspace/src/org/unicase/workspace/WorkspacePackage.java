@@ -70,7 +70,7 @@ public interface WorkspacePackage extends EPackage {
 	int WORKSPACE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Project Spaces</b></em>' reference list.
+	 * The feature id for the '<em><b>Project Spaces</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -79,7 +79,7 @@ public interface WorkspacePackage extends EPackage {
 	int WORKSPACE__PROJECT_SPACES = 0;
 
 	/**
-	 * The feature id for the '<em><b>Server Infos</b></em>' reference list.
+	 * The feature id for the '<em><b>Server Infos</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -217,7 +217,7 @@ public interface WorkspacePackage extends EPackage {
 	int PROJECT_SPACE = 3;
 
 	/**
-	 * The feature id for the '<em><b>Project</b></em>' reference.
+	 * The feature id for the '<em><b>Project</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -226,7 +226,7 @@ public interface WorkspacePackage extends EPackage {
 	int PROJECT_SPACE__PROJECT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Base Version</b></em>' reference.
+	 * The feature id for the '<em><b>Base Version</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -235,7 +235,7 @@ public interface WorkspacePackage extends EPackage {
 	int PROJECT_SPACE__BASE_VERSION = 1;
 
 	/**
-	 * The feature id for the '<em><b>Local Changes</b></em>' reference.
+	 * The feature id for the '<em><b>Local Changes</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -244,7 +244,7 @@ public interface WorkspacePackage extends EPackage {
 	int PROJECT_SPACE__LOCAL_CHANGES = 2;
 
 	/**
-	 * The feature id for the '<em><b>Usersession</b></em>' reference.
+	 * The feature id for the '<em><b>Usersession</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -272,10 +272,10 @@ public interface WorkspacePackage extends EPackage {
 	EClass getWorkspace();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.workspace.Workspace#getProjectSpaces <em>Project Spaces</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.unicase.workspace.Workspace#getProjectSpaces <em>Project Spaces</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Project Spaces</em>'.
+	 * @return the meta object for the containment reference list '<em>Project Spaces</em>'.
 	 * @see org.unicase.workspace.Workspace#getProjectSpaces()
 	 * @see #getWorkspace()
 	 * @generated
@@ -283,10 +283,10 @@ public interface WorkspacePackage extends EPackage {
 	EReference getWorkspace_ProjectSpaces();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.workspace.Workspace#getServerInfos <em>Server Infos</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.unicase.workspace.Workspace#getServerInfos <em>Server Infos</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Server Infos</em>'.
+	 * @return the meta object for the containment reference list '<em>Server Infos</em>'.
 	 * @see org.unicase.workspace.Workspace#getServerInfos()
 	 * @see #getWorkspace()
 	 * @generated
@@ -412,10 +412,10 @@ public interface WorkspacePackage extends EPackage {
 	EClass getProjectSpace();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.workspace.ProjectSpace#getProject <em>Project</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.workspace.ProjectSpace#getProject <em>Project</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Project</em>'.
+	 * @return the meta object for the containment reference '<em>Project</em>'.
 	 * @see org.unicase.workspace.ProjectSpace#getProject()
 	 * @see #getProjectSpace()
 	 * @generated
@@ -423,10 +423,10 @@ public interface WorkspacePackage extends EPackage {
 	EReference getProjectSpace_Project();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.workspace.ProjectSpace#getBaseVersion <em>Base Version</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.workspace.ProjectSpace#getBaseVersion <em>Base Version</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base Version</em>'.
+	 * @return the meta object for the containment reference '<em>Base Version</em>'.
 	 * @see org.unicase.workspace.ProjectSpace#getBaseVersion()
 	 * @see #getProjectSpace()
 	 * @generated
@@ -434,10 +434,10 @@ public interface WorkspacePackage extends EPackage {
 	EReference getProjectSpace_BaseVersion();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.workspace.ProjectSpace#getLocalChanges <em>Local Changes</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.workspace.ProjectSpace#getLocalChanges <em>Local Changes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Local Changes</em>'.
+	 * @return the meta object for the containment reference '<em>Local Changes</em>'.
 	 * @see org.unicase.workspace.ProjectSpace#getLocalChanges()
 	 * @see #getProjectSpace()
 	 * @generated
@@ -445,10 +445,10 @@ public interface WorkspacePackage extends EPackage {
 	EReference getProjectSpace_LocalChanges();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.workspace.ProjectSpace#getUsersession <em>Usersession</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.workspace.ProjectSpace#getUsersession <em>Usersession</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Usersession</em>'.
+	 * @return the meta object for the containment reference '<em>Usersession</em>'.
 	 * @see org.unicase.workspace.ProjectSpace#getUsersession()
 	 * @see #getProjectSpace()
 	 * @generated
@@ -488,7 +488,7 @@ public interface WorkspacePackage extends EPackage {
 		EClass WORKSPACE = eINSTANCE.getWorkspace();
 
 		/**
-		 * The meta object literal for the '<em><b>Project Spaces</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Project Spaces</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -496,7 +496,7 @@ public interface WorkspacePackage extends EPackage {
 		EReference WORKSPACE__PROJECT_SPACES = eINSTANCE.getWorkspace_ProjectSpaces();
 
 		/**
-		 * The meta object literal for the '<em><b>Server Infos</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Server Infos</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -598,7 +598,7 @@ public interface WorkspacePackage extends EPackage {
 		EClass PROJECT_SPACE = eINSTANCE.getProjectSpace();
 
 		/**
-		 * The meta object literal for the '<em><b>Project</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Project</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -606,7 +606,7 @@ public interface WorkspacePackage extends EPackage {
 		EReference PROJECT_SPACE__PROJECT = eINSTANCE.getProjectSpace_Project();
 
 		/**
-		 * The meta object literal for the '<em><b>Base Version</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Base Version</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -614,7 +614,7 @@ public interface WorkspacePackage extends EPackage {
 		EReference PROJECT_SPACE__BASE_VERSION = eINSTANCE.getProjectSpace_BaseVersion();
 
 		/**
-		 * The meta object literal for the '<em><b>Local Changes</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Local Changes</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -622,7 +622,7 @@ public interface WorkspacePackage extends EPackage {
 		EReference PROJECT_SPACE__LOCAL_CHANGES = eINSTANCE.getProjectSpace_LocalChanges();
 
 		/**
-		 * The meta object literal for the '<em><b>Usersession</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Usersession</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

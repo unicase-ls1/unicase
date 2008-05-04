@@ -98,7 +98,7 @@ public interface Usersession extends EObject {
 	 * @return the value of the '<em>Session Id</em>' reference.
 	 * @see #setSessionId(SessionId)
 	 * @see org.unicase.workspace.WorkspacePackage#getUsersession_SessionId()
-	 * @model
+	 * @model transient="true"
 	 * @generated
 	 */
 	SessionId getSessionId();

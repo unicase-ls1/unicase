@@ -7,6 +7,7 @@
 package org.unicase.workspace.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.change.ChangeDescription;
@@ -50,7 +51,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	private ChangeRecorder changeRecorder;
 	
 	/**
-	 * The cached value of the '{@link #getProject() <em>Project</em>}' reference.
+	 * The cached value of the '{@link #getProject() <em>Project</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getProject()
@@ -60,7 +61,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	protected Project project;
 
 	/**
-	 * The cached value of the '{@link #getBaseVersion() <em>Base Version</em>}' reference.
+	 * The cached value of the '{@link #getBaseVersion() <em>Base Version</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getBaseVersion()
@@ -70,7 +71,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	protected PrimaryVersionSpec baseVersion;
 
 	/**
-	 * The cached value of the '{@link #getLocalChanges() <em>Local Changes</em>}' reference.
+	 * The cached value of the '{@link #getLocalChanges() <em>Local Changes</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getLocalChanges()
@@ -80,7 +81,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	protected ChangePackage localChanges;
 
 	/**
-	 * The cached value of the '{@link #getUsersession() <em>Usersession</em>}' reference.
+	 * The cached value of the '{@link #getUsersession() <em>Usersession</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getUsersession()
@@ -114,14 +115,6 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @generated
 	 */
 	public Project getProject() {
-		if (project != null && project.eIsProxy()) {
-			InternalEObject oldProject = (InternalEObject)project;
-			project = (Project)eResolveProxy(oldProject);
-			if (project != oldProject) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, WorkspacePackage.PROJECT_SPACE__PROJECT, oldProject, project));
-			}
-		}
 		return project;
 	}
 
@@ -130,8 +123,14 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Project basicGetProject() {
-		return project;
+	public NotificationChain basicSetProject(Project newProject, NotificationChain msgs) {
+		Project oldProject = project;
+		project = newProject;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__PROJECT, oldProject, newProject);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -140,10 +139,17 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @generated
 	 */
 	public void setProjectGen(Project newProject) {
-		Project oldProject = project;
-		project = newProject;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__PROJECT, oldProject, project));
+		if (newProject != project) {
+			NotificationChain msgs = null;
+			if (project != null)
+				msgs = ((InternalEObject)project).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WorkspacePackage.PROJECT_SPACE__PROJECT, null, msgs);
+			if (newProject != null)
+				msgs = ((InternalEObject)newProject).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WorkspacePackage.PROJECT_SPACE__PROJECT, null, msgs);
+			msgs = basicSetProject(newProject, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__PROJECT, newProject, newProject));
 	}
 	
 	/**
@@ -162,14 +168,6 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @generated
 	 */
 	public PrimaryVersionSpec getBaseVersion() {
-		if (baseVersion != null && baseVersion.eIsProxy()) {
-			InternalEObject oldBaseVersion = (InternalEObject)baseVersion;
-			baseVersion = (PrimaryVersionSpec)eResolveProxy(oldBaseVersion);
-			if (baseVersion != oldBaseVersion) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, WorkspacePackage.PROJECT_SPACE__BASE_VERSION, oldBaseVersion, baseVersion));
-			}
-		}
 		return baseVersion;
 	}
 
@@ -178,8 +176,14 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PrimaryVersionSpec basicGetBaseVersion() {
-		return baseVersion;
+	public NotificationChain basicSetBaseVersion(PrimaryVersionSpec newBaseVersion, NotificationChain msgs) {
+		PrimaryVersionSpec oldBaseVersion = baseVersion;
+		baseVersion = newBaseVersion;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__BASE_VERSION, oldBaseVersion, newBaseVersion);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -188,10 +192,17 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @generated
 	 */
 	public void setBaseVersion(PrimaryVersionSpec newBaseVersion) {
-		PrimaryVersionSpec oldBaseVersion = baseVersion;
-		baseVersion = newBaseVersion;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__BASE_VERSION, oldBaseVersion, baseVersion));
+		if (newBaseVersion != baseVersion) {
+			NotificationChain msgs = null;
+			if (baseVersion != null)
+				msgs = ((InternalEObject)baseVersion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WorkspacePackage.PROJECT_SPACE__BASE_VERSION, null, msgs);
+			if (newBaseVersion != null)
+				msgs = ((InternalEObject)newBaseVersion).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WorkspacePackage.PROJECT_SPACE__BASE_VERSION, null, msgs);
+			msgs = basicSetBaseVersion(newBaseVersion, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__BASE_VERSION, newBaseVersion, newBaseVersion));
 	}
 
 	/**
@@ -200,14 +211,6 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @generated
 	 */
 	public ChangePackage getLocalChanges() {
-		if (localChanges != null && localChanges.eIsProxy()) {
-			InternalEObject oldLocalChanges = (InternalEObject)localChanges;
-			localChanges = (ChangePackage)eResolveProxy(oldLocalChanges);
-			if (localChanges != oldLocalChanges) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, WorkspacePackage.PROJECT_SPACE__LOCAL_CHANGES, oldLocalChanges, localChanges));
-			}
-		}
 		return localChanges;
 	}
 
@@ -216,8 +219,14 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ChangePackage basicGetLocalChanges() {
-		return localChanges;
+	public NotificationChain basicSetLocalChanges(ChangePackage newLocalChanges, NotificationChain msgs) {
+		ChangePackage oldLocalChanges = localChanges;
+		localChanges = newLocalChanges;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__LOCAL_CHANGES, oldLocalChanges, newLocalChanges);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -226,10 +235,17 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @generated
 	 */
 	public void setLocalChanges(ChangePackage newLocalChanges) {
-		ChangePackage oldLocalChanges = localChanges;
-		localChanges = newLocalChanges;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__LOCAL_CHANGES, oldLocalChanges, localChanges));
+		if (newLocalChanges != localChanges) {
+			NotificationChain msgs = null;
+			if (localChanges != null)
+				msgs = ((InternalEObject)localChanges).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WorkspacePackage.PROJECT_SPACE__LOCAL_CHANGES, null, msgs);
+			if (newLocalChanges != null)
+				msgs = ((InternalEObject)newLocalChanges).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WorkspacePackage.PROJECT_SPACE__LOCAL_CHANGES, null, msgs);
+			msgs = basicSetLocalChanges(newLocalChanges, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__LOCAL_CHANGES, newLocalChanges, newLocalChanges));
 	}
 
 	/**
@@ -238,14 +254,6 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @generated
 	 */
 	public Usersession getUsersession() {
-		if (usersession != null && usersession.eIsProxy()) {
-			InternalEObject oldUsersession = (InternalEObject)usersession;
-			usersession = (Usersession)eResolveProxy(oldUsersession);
-			if (usersession != oldUsersession) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, WorkspacePackage.PROJECT_SPACE__USERSESSION, oldUsersession, usersession));
-			}
-		}
 		return usersession;
 	}
 
@@ -254,8 +262,14 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Usersession basicGetUsersession() {
-		return usersession;
+	public NotificationChain basicSetUsersession(Usersession newUsersession, NotificationChain msgs) {
+		Usersession oldUsersession = usersession;
+		usersession = newUsersession;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__USERSESSION, oldUsersession, newUsersession);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -264,10 +278,17 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @generated
 	 */
 	public void setUsersession(Usersession newUsersession) {
-		Usersession oldUsersession = usersession;
-		usersession = newUsersession;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__USERSESSION, oldUsersession, usersession));
+		if (newUsersession != usersession) {
+			NotificationChain msgs = null;
+			if (usersession != null)
+				msgs = ((InternalEObject)usersession).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WorkspacePackage.PROJECT_SPACE__USERSESSION, null, msgs);
+			if (newUsersession != null)
+				msgs = ((InternalEObject)newUsersession).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WorkspacePackage.PROJECT_SPACE__USERSESSION, null, msgs);
+			msgs = basicSetUsersession(newUsersession, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__USERSESSION, newUsersession, newUsersession));
 	}
 
 	/**
@@ -320,10 +341,12 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @generated NOT
 	 */
 	public void save() {
+		//FIXME MK this does not work forward change description is empty
 		ChangeDescription changeDescription = this.changeRecorder.endRecording();
 		ChangeDescription backwardChangeDescription= (ChangeDescription)EcoreUtil.copy(changeDescription);
 		changeDescription.applyAndReverse();
-		ChangeDescription forwardChangeDescription=changeDescription;
+		changeDescription.apply();
+		ChangeDescription forwardChangeDescription=(ChangeDescription)EcoreUtil.copy(changeDescription);
 		ChangePackage changePackage = ChangemanagmentFactoryImpl.eINSTANCE.createChangePackage();
 		changePackage.setBackwardDelta(backwardChangeDescription);
 		changePackage.setFowardDelta(forwardChangeDescription);
@@ -336,20 +359,36 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case WorkspacePackage.PROJECT_SPACE__PROJECT:
+				return basicSetProject(null, msgs);
+			case WorkspacePackage.PROJECT_SPACE__BASE_VERSION:
+				return basicSetBaseVersion(null, msgs);
+			case WorkspacePackage.PROJECT_SPACE__LOCAL_CHANGES:
+				return basicSetLocalChanges(null, msgs);
+			case WorkspacePackage.PROJECT_SPACE__USERSESSION:
+				return basicSetUsersession(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case WorkspacePackage.PROJECT_SPACE__PROJECT:
-				if (resolve) return getProject();
-				return basicGetProject();
+				return getProject();
 			case WorkspacePackage.PROJECT_SPACE__BASE_VERSION:
-				if (resolve) return getBaseVersion();
-				return basicGetBaseVersion();
+				return getBaseVersion();
 			case WorkspacePackage.PROJECT_SPACE__LOCAL_CHANGES:
-				if (resolve) return getLocalChanges();
-				return basicGetLocalChanges();
+				return getLocalChanges();
 			case WorkspacePackage.PROJECT_SPACE__USERSESSION:
-				if (resolve) return getUsersession();
-				return basicGetUsersession();
+				return getUsersession();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

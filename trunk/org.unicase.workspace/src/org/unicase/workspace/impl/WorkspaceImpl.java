@@ -9,10 +9,14 @@ package org.unicase.workspace.impl;
 import java.io.IOException;
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.change.util.ChangeRecorder;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.unicase.esmodel.SessionId;
@@ -51,7 +55,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	private Resource resource;
 	
 	/**
-	 * The cached value of the '{@link #getProjectSpaces() <em>Project Spaces</em>}' reference list.
+	 * The cached value of the '{@link #getProjectSpaces() <em>Project Spaces</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getProjectSpaces()
@@ -67,7 +71,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	private ConnectionManager connectionManager;
 	
 	/**
-	 * The cached value of the '{@link #getServerInfos() <em>Server Infos</em>}' reference list.
+	 * The cached value of the '{@link #getServerInfos() <em>Server Infos</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getServerInfos()
@@ -102,7 +106,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 */
 	public EList<ProjectSpace> getProjectSpaces() {
 		if (projectSpaces == null) {
-			projectSpaces = new EObjectResolvingEList<ProjectSpace>(ProjectSpace.class, this, WorkspacePackage.WORKSPACE__PROJECT_SPACES);
+			projectSpaces = new EObjectContainmentEList<ProjectSpace>(ProjectSpace.class, this, WorkspacePackage.WORKSPACE__PROJECT_SPACES);
 		}
 		return projectSpaces;
 	}
@@ -114,7 +118,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 */
 	public EList<ServerInfo> getServerInfos() {
 		if (serverInfos == null) {
-			serverInfos = new EObjectResolvingEList<ServerInfo>(ServerInfo.class, this, WorkspacePackage.WORKSPACE__SERVER_INFOS);
+			serverInfos = new EObjectContainmentEList<ServerInfo>(ServerInfo.class, this, WorkspacePackage.WORKSPACE__SERVER_INFOS);
 		}
 		return serverInfos;
 	}
@@ -133,6 +137,7 @@ public ProjectSpace checkout(Usersession usersession, ProjectId projectId, Versi
 		projectSpace.setBaseVersion(primaryVersionSpec);
 		projectSpace.setProject(project);
 		projectSpace.setUsersession(usersession);
+		this.getProjectSpaces().add(projectSpace);
 		save();
 		return projectSpace;
 	}
@@ -153,6 +158,22 @@ public ProjectSpace checkout(Usersession usersession, ProjectId projectId, Versi
 			e.printStackTrace();
 		}
 		
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case WorkspacePackage.WORKSPACE__PROJECT_SPACES:
+				return ((InternalEList<?>)getProjectSpaces()).basicRemove(otherEnd, msgs);
+			case WorkspacePackage.WORKSPACE__SERVER_INFOS:
+				return ((InternalEList<?>)getServerInfos()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

@@ -2,8 +2,6 @@ package org.unicase.workspace;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -11,9 +9,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.unicase.model.Project;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
-import org.unicase.workspace.connectionmanager.RMIConnectionManagerImpl;
 import org.unicase.workspace.connectionmanager.StubConnectionManagerImpl;
 import org.unicase.workspace.impl.WorkspaceFactoryImpl;
 import org.unicase.workspace.impl.WorkspaceImpl;

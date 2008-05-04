@@ -50,6 +50,10 @@ public class Configuration {
 		serverInfo.setName("EmfStoreOne");
 		serverInfo.setPort("somePort");
 		serverInfo.setUrl("someURL");
+		
+		//make server info known to workspace
+		WorkspaceManager.getInstance().getCurrentWorkspace().getServerInfos().add(serverInfo);
+		
 		return serverInfo;
 	}
 }
