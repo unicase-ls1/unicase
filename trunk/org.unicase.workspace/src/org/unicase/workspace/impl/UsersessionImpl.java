@@ -261,24 +261,14 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void logIn(String password) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @throws ConnectionException 
 	 * @generated NOT
 	 */
-	public void logIn(ServerInfo serverInfo) throws ConnectionException {
+	public void logIn(String password) throws ConnectionException {
+		//MK sanity checks for usersession state
+		this.password=password;
 		ConnectionManager connectionManager = this.getWorkspaceManager().getConnectionManager();
 		this.setSessionId(connectionManager.logIn(username, password, serverInfo));
-		this.setServerInfo(serverInfo);
 	}
 
 	/**
@@ -299,6 +289,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 * @generated NOT
 	 */
 	public ProjectSpace checkout(ProjectId projectId, VersionSpec versionSpec) throws ConnectionException {
+		//MK sanity checks for usersession state
 		return this.getWorkspaceManager().getCurrentWorkspace().checkout(this, projectId, versionSpec);
 	}
 
@@ -411,6 +402,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	}
 
 	public List<ProjectInfo> getRemoteProjectList() throws ConnectionException {
+		//MK sanity checks for usersession state
 		return getWorkspaceManager().getConnectionManager().getProjectList(sessionId);
 	}
 

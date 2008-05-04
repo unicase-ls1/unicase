@@ -1,5 +1,6 @@
 package org.unicase.workspace;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -44,8 +45,27 @@ public class WorkspaceManager {
 	private Workspace initWorkSpace() {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		URI fileURI = URI.createFileURI(Configuration.getWorkspacePath());
+		File workspaceFile = new File(Configuration.getWorkspacePath());
+		if (!workspaceFile.exists()) {
+
+			// no workspace content found, create a workspace
+			Resource resource = resourceSet.createResource(fileURI);
+			Workspace workspace = WorkspaceFactoryImpl.eINSTANCE
+					.createWorkspace();
+			workspace.setConnectionManager(this.connectionManager);
+			workspace.setResource(resource);
+			resource.getContents().add(workspace);
+			try {
+				resource.save(Configuration.getResourceSaveOptions());
+			} catch (IOException e) {
+				// MK Auto-generated catch block
+				e.printStackTrace();
+			}
+			return workspace;
+		}
+
+		// if file exists load it
 		Resource resource = resourceSet.getResource(fileURI, true);
-		
 		EList<EObject> directContents = resource.getContents();
 		for (EObject eObject : directContents) {
 			if (eObject instanceof WorkspaceImpl) {
@@ -55,19 +75,9 @@ public class WorkspaceManager {
 				return workspace;
 			}
 		}
-		//no workspace content found, create a workspace
-		Workspace workspace = WorkspaceFactoryImpl.eINSTANCE.createWorkspace();
-		workspace.setConnectionManager(this.connectionManager);
-		workspace.setResource(resource);
-		resource.getContents().add(workspace);
-		try {
-			resource.save(Configuration.getResourceSaveOptions());
-		} catch (IOException e) {
-			// MK Auto-generated catch block
-			e.printStackTrace();
-		}
-		// setConnectionManager for workspace
-		return null;
+		
+		throw new IllegalStateException();
+
 	}
 
 	/**

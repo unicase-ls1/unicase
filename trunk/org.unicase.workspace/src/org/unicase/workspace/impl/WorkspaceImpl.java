@@ -6,6 +6,7 @@
  */
 package org.unicase.workspace.impl;
 
+import java.io.IOException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
@@ -19,6 +20,7 @@ import org.unicase.esmodel.changemanagment.PrimaryVersionSpec;
 import org.unicase.esmodel.changemanagment.VersionSpec;
 import org.unicase.model.Project;
 import org.unicase.model.ProjectId;
+import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ConnectionException;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
@@ -131,6 +133,7 @@ public ProjectSpace checkout(Usersession usersession, ProjectId projectId, Versi
 		projectSpace.setBaseVersion(primaryVersionSpec);
 		projectSpace.setProject(project);
 		projectSpace.setUsersession(usersession);
+		save();
 		return projectSpace;
 	}
 
@@ -143,8 +146,13 @@ public ProjectSpace checkout(Usersession usersession, ProjectId projectId, Versi
 		for (ProjectSpace projectSpace: this.getProjectSpaces()) {
 			projectSpace.save();
 		}
-		//TODO:
-		//now save the workspace to file
+		try {
+			this.resource.save(Configuration.getResourceSaveOptions());
+		} catch (IOException e) {
+			// MK Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	/**
