@@ -18,15 +18,15 @@
   <eClassifiers xsi:type="ecore:EClass" name="SessionId" eSuperTypes="../../org.unicase.model/model/model.ecore#//UniqueIdentifier"/>
   <eSubpackages name="changemanagment" nsURI="http://unicase.org/esmodel/changemanagment"
       nsPrefix="org.unicase.esmodel.changemanagment">
-    <eClassifiers xsi:type="ecore:EClass" name="TagVersionSpec">
+    <eClassifiers xsi:type="ecore:EClass" name="TagVersionSpec" eSuperTypes="#//changemanagment/VersionSpec">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="DateVersionSpec">
+    <eClassifiers xsi:type="ecore:EClass" name="DateVersionSpec" eSuperTypes="#//changemanagment/VersionSpec">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="PrimaryVersionSpec">
+    <eClassifiers xsi:type="ecore:EClass" name="PrimaryVersionSpec" eSuperTypes="#//changemanagment/VersionSpec">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>

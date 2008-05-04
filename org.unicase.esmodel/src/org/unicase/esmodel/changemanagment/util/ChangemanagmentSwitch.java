@@ -90,18 +90,21 @@ public class ChangemanagmentSwitch<T> {
 			case ChangemanagmentPackage.TAG_VERSION_SPEC: {
 				TagVersionSpec tagVersionSpec = (TagVersionSpec)theEObject;
 				T result = caseTagVersionSpec(tagVersionSpec);
+				if (result == null) result = caseVersionSpec(tagVersionSpec);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ChangemanagmentPackage.DATE_VERSION_SPEC: {
 				DateVersionSpec dateVersionSpec = (DateVersionSpec)theEObject;
 				T result = caseDateVersionSpec(dateVersionSpec);
+				if (result == null) result = caseVersionSpec(dateVersionSpec);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ChangemanagmentPackage.PRIMARY_VERSION_SPEC: {
 				PrimaryVersionSpec primaryVersionSpec = (PrimaryVersionSpec)theEObject;
 				T result = casePrimaryVersionSpec(primaryVersionSpec);
+				if (result == null) result = caseVersionSpec(primaryVersionSpec);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
