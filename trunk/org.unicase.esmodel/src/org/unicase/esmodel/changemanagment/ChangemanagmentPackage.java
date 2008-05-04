@@ -182,7 +182,7 @@ public interface ChangemanagmentPackage extends EPackage {
 	int LOG_MESSAGE__MESSAGE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Author</b></em>' reference.
+	 * The feature id for the '<em><b>Author</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -219,7 +219,7 @@ public interface ChangemanagmentPackage extends EPackage {
 	int CHANGE_PACKAGE = 5;
 
 	/**
-	 * The feature id for the '<em><b>Foward Delta</b></em>' reference.
+	 * The feature id for the '<em><b>Foward Delta</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -228,7 +228,7 @@ public interface ChangemanagmentPackage extends EPackage {
 	int CHANGE_PACKAGE__FOWARD_DELTA = 0;
 
 	/**
-	 * The feature id for the '<em><b>Backward Delta</b></em>' reference.
+	 * The feature id for the '<em><b>Backward Delta</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -265,13 +265,22 @@ public interface ChangemanagmentPackage extends EPackage {
 	int HISTORY_INFO__PRIMERY_SPEC = 0;
 
 	/**
+	 * The feature id for the '<em><b>Log Message</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HISTORY_INFO__LOG_MESSAGE = 1;
+
+	/**
 	 * The number of structural features of the '<em>History Info</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HISTORY_INFO_FEATURE_COUNT = 1;
+	int HISTORY_INFO_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.esmodel.changemanagment.impl.VersionImpl <em>Version</em>}' class.
@@ -284,7 +293,7 @@ public interface ChangemanagmentPackage extends EPackage {
 	int VERSION = 7;
 
 	/**
-	 * The feature id for the '<em><b>Project State</b></em>' reference.
+	 * The feature id for the '<em><b>Project State</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -293,7 +302,7 @@ public interface ChangemanagmentPackage extends EPackage {
 	int VERSION__PROJECT_STATE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Primary Spec</b></em>' reference.
+	 * The feature id for the '<em><b>Primary Spec</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -302,7 +311,7 @@ public interface ChangemanagmentPackage extends EPackage {
 	int VERSION__PRIMARY_SPEC = 1;
 
 	/**
-	 * The feature id for the '<em><b>Tag Specs</b></em>' reference list.
+	 * The feature id for the '<em><b>Tag Specs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -329,7 +338,7 @@ public interface ChangemanagmentPackage extends EPackage {
 	int VERSION__PREVIOUS_VERSION = 4;
 
 	/**
-	 * The feature id for the '<em><b>Changes</b></em>' reference.
+	 * The feature id for the '<em><b>Changes</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -338,7 +347,7 @@ public interface ChangemanagmentPackage extends EPackage {
 	int VERSION__CHANGES = 5;
 
 	/**
-	 * The feature id for the '<em><b>Log Message</b></em>' reference.
+	 * The feature id for the '<em><b>Log Message</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -471,10 +480,10 @@ public interface ChangemanagmentPackage extends EPackage {
 	EAttribute getLogMessage_Message();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.esmodel.changemanagment.LogMessage#getAuthor <em>Author</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.esmodel.changemanagment.LogMessage#getAuthor <em>Author</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Author</em>'.
+	 * @return the meta object for the containment reference '<em>Author</em>'.
 	 * @see org.unicase.esmodel.changemanagment.LogMessage#getAuthor()
 	 * @see #getLogMessage()
 	 * @generated
@@ -503,10 +512,10 @@ public interface ChangemanagmentPackage extends EPackage {
 	EClass getChangePackage();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.esmodel.changemanagment.ChangePackage#getFowardDelta <em>Foward Delta</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.esmodel.changemanagment.ChangePackage#getFowardDelta <em>Foward Delta</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Foward Delta</em>'.
+	 * @return the meta object for the containment reference '<em>Foward Delta</em>'.
 	 * @see org.unicase.esmodel.changemanagment.ChangePackage#getFowardDelta()
 	 * @see #getChangePackage()
 	 * @generated
@@ -514,10 +523,10 @@ public interface ChangemanagmentPackage extends EPackage {
 	EReference getChangePackage_FowardDelta();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.esmodel.changemanagment.ChangePackage#getBackwardDelta <em>Backward Delta</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.esmodel.changemanagment.ChangePackage#getBackwardDelta <em>Backward Delta</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Backward Delta</em>'.
+	 * @return the meta object for the containment reference '<em>Backward Delta</em>'.
 	 * @see org.unicase.esmodel.changemanagment.ChangePackage#getBackwardDelta()
 	 * @see #getChangePackage()
 	 * @generated
@@ -546,6 +555,17 @@ public interface ChangemanagmentPackage extends EPackage {
 	EReference getHistoryInfo_PrimerySpec();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.unicase.esmodel.changemanagment.HistoryInfo#getLogMessage <em>Log Message</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Log Message</em>'.
+	 * @see org.unicase.esmodel.changemanagment.HistoryInfo#getLogMessage()
+	 * @see #getHistoryInfo()
+	 * @generated
+	 */
+	EReference getHistoryInfo_LogMessage();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.esmodel.changemanagment.Version <em>Version</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -556,10 +576,10 @@ public interface ChangemanagmentPackage extends EPackage {
 	EClass getVersion();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.esmodel.changemanagment.Version#getProjectState <em>Project State</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.esmodel.changemanagment.Version#getProjectState <em>Project State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Project State</em>'.
+	 * @return the meta object for the containment reference '<em>Project State</em>'.
 	 * @see org.unicase.esmodel.changemanagment.Version#getProjectState()
 	 * @see #getVersion()
 	 * @generated
@@ -567,10 +587,10 @@ public interface ChangemanagmentPackage extends EPackage {
 	EReference getVersion_ProjectState();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.esmodel.changemanagment.Version#getPrimarySpec <em>Primary Spec</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.esmodel.changemanagment.Version#getPrimarySpec <em>Primary Spec</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Primary Spec</em>'.
+	 * @return the meta object for the containment reference '<em>Primary Spec</em>'.
 	 * @see org.unicase.esmodel.changemanagment.Version#getPrimarySpec()
 	 * @see #getVersion()
 	 * @generated
@@ -578,10 +598,10 @@ public interface ChangemanagmentPackage extends EPackage {
 	EReference getVersion_PrimarySpec();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.esmodel.changemanagment.Version#getTagSpecs <em>Tag Specs</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.unicase.esmodel.changemanagment.Version#getTagSpecs <em>Tag Specs</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Tag Specs</em>'.
+	 * @return the meta object for the containment reference list '<em>Tag Specs</em>'.
 	 * @see org.unicase.esmodel.changemanagment.Version#getTagSpecs()
 	 * @see #getVersion()
 	 * @generated
@@ -611,10 +631,10 @@ public interface ChangemanagmentPackage extends EPackage {
 	EReference getVersion_PreviousVersion();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.esmodel.changemanagment.Version#getChanges <em>Changes</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.esmodel.changemanagment.Version#getChanges <em>Changes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Changes</em>'.
+	 * @return the meta object for the containment reference '<em>Changes</em>'.
 	 * @see org.unicase.esmodel.changemanagment.Version#getChanges()
 	 * @see #getVersion()
 	 * @generated
@@ -622,10 +642,10 @@ public interface ChangemanagmentPackage extends EPackage {
 	EReference getVersion_Changes();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.esmodel.changemanagment.Version#getLogMessage <em>Log Message</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.esmodel.changemanagment.Version#getLogMessage <em>Log Message</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Log Message</em>'.
+	 * @return the meta object for the containment reference '<em>Log Message</em>'.
 	 * @see org.unicase.esmodel.changemanagment.Version#getLogMessage()
 	 * @see #getVersion()
 	 * @generated
@@ -747,7 +767,7 @@ public interface ChangemanagmentPackage extends EPackage {
 		EAttribute LOG_MESSAGE__MESSAGE = eINSTANCE.getLogMessage_Message();
 
 		/**
-		 * The meta object literal for the '<em><b>Author</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Author</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -773,7 +793,7 @@ public interface ChangemanagmentPackage extends EPackage {
 		EClass CHANGE_PACKAGE = eINSTANCE.getChangePackage();
 
 		/**
-		 * The meta object literal for the '<em><b>Foward Delta</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Foward Delta</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -781,7 +801,7 @@ public interface ChangemanagmentPackage extends EPackage {
 		EReference CHANGE_PACKAGE__FOWARD_DELTA = eINSTANCE.getChangePackage_FowardDelta();
 
 		/**
-		 * The meta object literal for the '<em><b>Backward Delta</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Backward Delta</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -807,6 +827,14 @@ public interface ChangemanagmentPackage extends EPackage {
 		EReference HISTORY_INFO__PRIMERY_SPEC = eINSTANCE.getHistoryInfo_PrimerySpec();
 
 		/**
+		 * The meta object literal for the '<em><b>Log Message</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference HISTORY_INFO__LOG_MESSAGE = eINSTANCE.getHistoryInfo_LogMessage();
+
+		/**
 		 * The meta object literal for the '{@link org.unicase.esmodel.changemanagment.impl.VersionImpl <em>Version</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -817,7 +845,7 @@ public interface ChangemanagmentPackage extends EPackage {
 		EClass VERSION = eINSTANCE.getVersion();
 
 		/**
-		 * The meta object literal for the '<em><b>Project State</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Project State</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -825,7 +853,7 @@ public interface ChangemanagmentPackage extends EPackage {
 		EReference VERSION__PROJECT_STATE = eINSTANCE.getVersion_ProjectState();
 
 		/**
-		 * The meta object literal for the '<em><b>Primary Spec</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Primary Spec</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -833,7 +861,7 @@ public interface ChangemanagmentPackage extends EPackage {
 		EReference VERSION__PRIMARY_SPEC = eINSTANCE.getVersion_PrimarySpec();
 
 		/**
-		 * The meta object literal for the '<em><b>Tag Specs</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Tag Specs</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -857,7 +885,7 @@ public interface ChangemanagmentPackage extends EPackage {
 		EReference VERSION__PREVIOUS_VERSION = eINSTANCE.getVersion_PreviousVersion();
 
 		/**
-		 * The meta object literal for the '<em><b>Changes</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Changes</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -865,7 +893,7 @@ public interface ChangemanagmentPackage extends EPackage {
 		EReference VERSION__CHANGES = eINSTANCE.getVersion_Changes();
 
 		/**
-		 * The meta object literal for the '<em><b>Log Message</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Log Message</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

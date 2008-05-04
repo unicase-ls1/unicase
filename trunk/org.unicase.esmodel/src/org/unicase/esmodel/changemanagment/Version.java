@@ -36,59 +36,59 @@ import org.unicase.model.Project;
  */
 public interface Version extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Project State</b></em>' reference.
+	 * Returns the value of the '<em><b>Project State</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Project State</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Project State</em>' reference.
+	 * @return the value of the '<em>Project State</em>' containment reference.
 	 * @see #setProjectState(Project)
 	 * @see org.unicase.esmodel.changemanagment.ChangemanagmentPackage#getVersion_ProjectState()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	Project getProjectState();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.esmodel.changemanagment.Version#getProjectState <em>Project State</em>}' reference.
+	 * Sets the value of the '{@link org.unicase.esmodel.changemanagment.Version#getProjectState <em>Project State</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Project State</em>' reference.
+	 * @param value the new value of the '<em>Project State</em>' containment reference.
 	 * @see #getProjectState()
 	 * @generated
 	 */
 	void setProjectState(Project value);
 
 	/**
-	 * Returns the value of the '<em><b>Primary Spec</b></em>' reference.
+	 * Returns the value of the '<em><b>Primary Spec</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Primary Spec</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Primary Spec</em>' reference.
+	 * @return the value of the '<em>Primary Spec</em>' containment reference.
 	 * @see #setPrimarySpec(PrimaryVersionSpec)
 	 * @see org.unicase.esmodel.changemanagment.ChangemanagmentPackage#getVersion_PrimarySpec()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	PrimaryVersionSpec getPrimarySpec();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.esmodel.changemanagment.Version#getPrimarySpec <em>Primary Spec</em>}' reference.
+	 * Sets the value of the '{@link org.unicase.esmodel.changemanagment.Version#getPrimarySpec <em>Primary Spec</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Primary Spec</em>' reference.
+	 * @param value the new value of the '<em>Primary Spec</em>' containment reference.
 	 * @see #getPrimarySpec()
 	 * @generated
 	 */
 	void setPrimarySpec(PrimaryVersionSpec value);
 
 	/**
-	 * Returns the value of the '<em><b>Tag Specs</b></em>' reference list.
+	 * Returns the value of the '<em><b>Tag Specs</b></em>' containment reference list.
 	 * The list contents are of type {@link org.unicase.esmodel.changemanagment.TagVersionSpec}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -96,9 +96,9 @@ public interface Version extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Tag Specs</em>' reference list.
+	 * @return the value of the '<em>Tag Specs</em>' containment reference list.
 	 * @see org.unicase.esmodel.changemanagment.ChangemanagmentPackage#getVersion_TagSpecs()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<TagVersionSpec> getTagSpecs();
@@ -156,52 +156,52 @@ public interface Version extends EObject {
 	void setPreviousVersion(Version value);
 
 	/**
-	 * Returns the value of the '<em><b>Changes</b></em>' reference.
+	 * Returns the value of the '<em><b>Changes</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Changes</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Changes</em>' reference.
+	 * @return the value of the '<em>Changes</em>' containment reference.
 	 * @see #setChanges(ChangePackage)
 	 * @see org.unicase.esmodel.changemanagment.ChangemanagmentPackage#getVersion_Changes()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	ChangePackage getChanges();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.esmodel.changemanagment.Version#getChanges <em>Changes</em>}' reference.
+	 * Sets the value of the '{@link org.unicase.esmodel.changemanagment.Version#getChanges <em>Changes</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Changes</em>' reference.
+	 * @param value the new value of the '<em>Changes</em>' containment reference.
 	 * @see #getChanges()
 	 * @generated
 	 */
 	void setChanges(ChangePackage value);
 
 	/**
-	 * Returns the value of the '<em><b>Log Message</b></em>' reference.
+	 * Returns the value of the '<em><b>Log Message</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Log Message</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Log Message</em>' reference.
+	 * @return the value of the '<em>Log Message</em>' containment reference.
 	 * @see #setLogMessage(LogMessage)
 	 * @see org.unicase.esmodel.changemanagment.ChangemanagmentPackage#getVersion_LogMessage()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	LogMessage getLogMessage();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.esmodel.changemanagment.Version#getLogMessage <em>Log Message</em>}' reference.
+	 * Sets the value of the '{@link org.unicase.esmodel.changemanagment.Version#getLogMessage <em>Log Message</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Log Message</em>' reference.
+	 * @param value the new value of the '<em>Log Message</em>' containment reference.
 	 * @see #getLogMessage()
 	 * @generated
 	 */

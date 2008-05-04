@@ -35,31 +35,38 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="message" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="author" lowerBound="1"
-          eType="#//accesscontrol/User"/>
+          eType="#//accesscontrol/User" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ChangePackage">
       <eOperations name="reverse" eType="#//changemanagment/ChangePackage"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="fowardDelta" lowerBound="1"
-          eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore.change/model/Change.ecore#//ChangeDescription"/>
+          eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore.change/model/Change.ecore#//ChangeDescription"
+          containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="backwardDelta" lowerBound="1"
-          eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore.change/model/Change.ecore#//ChangeDescription"/>
+          eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore.change/model/Change.ecore#//ChangeDescription"
+          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="HistoryInfo">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="primerySpec" eType="#//changemanagment/PrimaryVersionSpec"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="primerySpec" lowerBound="1"
+          eType="#//changemanagment/PrimaryVersionSpec"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="logMessage" lowerBound="1"
+          eType="#//changemanagment/LogMessage"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Version">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="projectState" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="projectState" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"
+          containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="primarySpec" lowerBound="1"
-          eType="#//changemanagment/PrimaryVersionSpec"/>
+          eType="#//changemanagment/PrimaryVersionSpec" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="tagSpecs" upperBound="-1"
-          eType="#//changemanagment/TagVersionSpec"/>
+          eType="#//changemanagment/TagVersionSpec" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="nextVersion" eType="#//changemanagment/Version"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="previousVersion" eType="#//changemanagment/Version"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="changes" lowerBound="1"
-          eType="#//changemanagment/ChangePackage"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="logMessage" eType="#//changemanagment/LogMessage"/>
+          eType="#//changemanagment/ChangePackage" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="logMessage" eType="#//changemanagment/LogMessage"
+          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="HeadVersionSpec" eSuperTypes="#//changemanagment/VersionSpec"/>
   </eSubpackages>
