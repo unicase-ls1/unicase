@@ -6,10 +6,12 @@
  */
 package org.unicase.model.impl;
 
+import org.eclipse.emf.common.notify.Notification;
 import java.util.UUID;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.unicase.model.ModelPackage;
@@ -85,6 +87,18 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements Unique
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void setId(String newId) {
+		String oldId = id;
+		id = newId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.UNIQUE_IDENTIFIER__ID, oldId, id));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -92,6 +106,36 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements Unique
 				return getId();
 		}
 		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case ModelPackage.UNIQUE_IDENTIFIER__ID:
+				setId((String)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case ModelPackage.UNIQUE_IDENTIFIER__ID:
+				setId(ID_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
 	}
 
 	/**

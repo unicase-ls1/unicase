@@ -95,11 +95,22 @@ public interface ModelElement extends EObject, Serializable {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Identifier</em>' containment reference.
+	 * @see #setIdentifier(ModelElementId)
 	 * @see org.unicase.model.ModelPackage#getModelElement_Identifier()
-	 * @model containment="true" keys="id" required="true" changeable="false"
+	 * @model containment="true" keys="id" required="true"
 	 * @generated
 	 */
 	ModelElementId getIdentifier();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.ModelElement#getIdentifier <em>Identifier</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Identifier</em>' containment reference.
+	 * @see #getIdentifier()
+	 * @generated
+	 */
+	void setIdentifier(ModelElementId value);
 
 	/**
 	 * Returns the value of the '<em><b>Reader Infos</b></em>' containment reference list.
