@@ -8,7 +8,6 @@ import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ConnectionException;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
-import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.impl.WorkspaceFactoryImpl;
 
