@@ -118,7 +118,7 @@ public class CompositeSectionItemProvider
 		String label = ((CompositeSection)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_CompositeSection_type") :
-			getString("_UI_CompositeSection_type") + " " + label;
+			 label;
 	}
 
 	/**
