@@ -405,12 +405,16 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void init() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		this.changeRecorder=new ChangeRecorder();
+		if (this.getLocalChanges()==null) {
+			changeRecorder.beginRecording(Collections.singleton(this.project));
+		}
+		else {
+			changeRecorder.beginRecording(localChanges.getBackwardDelta(), Collections.singleton(this.project));
+		}
 	}
 
 	/**
