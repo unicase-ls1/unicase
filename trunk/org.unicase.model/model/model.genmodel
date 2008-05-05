@@ -9,7 +9,8 @@
       ecorePackage="model.ecore#/">
     <genClasses image="false" ecoreClass="model.ecore#//ModelElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/description"/>
+      <genFeatures createChild="false" propertyCategory="" propertyDescription=""
+          ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/description"/>
       <genFeatures property="None" createChild="true" ecoreFeature="ecore:EReference model.ecore#//ModelElement/identifier"/>
       <genFeatures property="None" createChild="false" propertyCategory="" propertyDescription=""
           ecoreFeature="ecore:EReference model.ecore#//ModelElement/readerInfos"/>

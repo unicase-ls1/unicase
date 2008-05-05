@@ -17,7 +17,7 @@
       <eAnnotations source="http://www.sysiphus.org/Visibility">
         <details key="VisibilityValue" value="VIEWWHENSET"/>
       </eAnnotations>
-      <eAnnotations source="http://www.unicase.org/view">
+      <eAnnotations source="http://www.unicase.org/UIHints">
         <details key="type" value="TEXT_AREA"/>
       </eAnnotations>
     </eStructuralFeatures>

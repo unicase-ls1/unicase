@@ -623,8 +623,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		createVisibilityAnnotations();
 		// http://www.sysiphus.org/Visibility
 		createVisibility_1Annotations();
-		// http://www.unicase.org/view
-		createViewAnnotations();
+		// http://www.unicase.org/UIHints
+		createUIHintsAnnotations();
 	}
 
 	/**
@@ -660,13 +660,13 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	}
 
 	/**
-	 * Initializes the annotations for <b>http://www.unicase.org/view</b>.
+	 * Initializes the annotations for <b>http://www.unicase.org/UIHints</b>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void createViewAnnotations() {
-		String source = "http://www.unicase.org/view";				
+	protected void createUIHintsAnnotations() {
+		String source = "http://www.unicase.org/UIHints";				
 		addAnnotation
 		  (getModelElement_Description(), 
 		   source, 
