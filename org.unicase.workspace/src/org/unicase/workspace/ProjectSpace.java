@@ -7,8 +7,8 @@
 package org.unicase.workspace;
 
 import java.util.Date;
+
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.unicase.esmodel.changemanagment.ChangePackage;
 import org.unicase.esmodel.changemanagment.PrimaryVersionSpec;
 import org.unicase.esmodel.changemanagment.VersionSpec;
