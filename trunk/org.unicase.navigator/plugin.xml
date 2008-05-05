@@ -68,5 +68,27 @@
             </contentExtension></includes>
       </viewerContentBinding>
    </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            id="org.unicase.navigator.contribution1"
+            objectClass="org.unicase.model.ModelElement">
+         <menu
+               id="org.unicase.navigator.menu1"
+               label="New Submenu"
+               path="additions">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               class="org.unicase.navigator.popup.actions.NewAction"
+               enablesFor="1"
+               id="org.unicase.navigator.newAction"
+               label="New Action"
+               menubarPath="org.unicase.navigator.menu1/group1">
+         </action>
+      </objectContribution>
+   </extension>
 
 </plugin>
