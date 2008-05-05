@@ -28,4 +28,5 @@ public class TreeActionProvider extends CommonActionProvider {
 		actionBars.setGlobalActionHandler(ICommonActionConstants.OPEN,
 				doubleClickAction);
 	}
+	
 }
