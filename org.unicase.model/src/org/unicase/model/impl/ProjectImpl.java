@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.ModelElement;
+import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.ProjectId;
@@ -110,7 +111,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 */
 	protected ProjectImpl() {
 		super();
-		this.identifier = ModelFactoryImpl.eINSTANCE.createProjectId();
+		this.identifier = ModelFactory.eINSTANCE.createProjectId();
 	}
 
 	/**

@@ -8,15 +8,14 @@ import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ConnectionException;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.impl.WorkspaceFactoryImpl;
+import org.unicase.workspace.WorkspaceFactory;
 
 public class TreeView extends CommonNavigator {
 
 	@Override
 	protected IAdaptable getInitialInput() {
 
-		Usersession usersession = WorkspaceFactoryImpl.eINSTANCE
+		Usersession usersession = WorkspaceFactory.eINSTANCE
 				.createUsersession();
 		usersession.setServerInfo(Configuration.getDefaultServerInfo());
 		usersession.setUsername("user");

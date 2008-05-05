@@ -13,13 +13,10 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.change.util.ChangeRecorder;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.unicase.esmodel.SessionId;
 import org.unicase.esmodel.changemanagment.PrimaryVersionSpec;
 import org.unicase.esmodel.changemanagment.VersionSpec;
 import org.unicase.model.Project;
@@ -30,6 +27,7 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
+import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspacePackage;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 
@@ -133,7 +131,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 public ProjectSpace checkout(Usersession usersession, ProjectId projectId, VersionSpec version) throws ConnectionException {
 		Project project = this.connectionManager.getProject(usersession.getSessionId(), projectId, version);
 		PrimaryVersionSpec primaryVersionSpec = this.connectionManager.resolveVersionSpec(version);
-		ProjectSpace projectSpace = WorkspaceFactoryImpl.eINSTANCE.createProjectSpace();
+		ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE.createProjectSpace();
 		projectSpace.setBaseVersion(primaryVersionSpec);
 		projectSpace.setProject(project);
 		projectSpace.setUsersession(usersession);

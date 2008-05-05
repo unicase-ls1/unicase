@@ -4,16 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.unicase.esmodel.EsmodelFactory;
 import org.unicase.esmodel.ProjectInfo;
 import org.unicase.esmodel.SessionId;
 import org.unicase.esmodel.changemanagment.ChangePackage;
+import org.unicase.esmodel.changemanagment.ChangemanagmentFactory;
 import org.unicase.esmodel.changemanagment.HeadVersionSpec;
 import org.unicase.esmodel.changemanagment.HistoryInfo;
 import org.unicase.esmodel.changemanagment.LogMessage;
 import org.unicase.esmodel.changemanagment.PrimaryVersionSpec;
 import org.unicase.esmodel.changemanagment.VersionSpec;
 import org.unicase.esmodel.changemanagment.impl.ChangemanagmentFactoryImpl;
-import org.unicase.esmodel.impl.EsmodelFactoryImpl;
 import org.unicase.model.CompositeSection;
 import org.unicase.model.FunctionalRequirement;
 import org.unicase.model.LeafSection;
@@ -54,11 +55,11 @@ public class StubConnectionManagerImpl implements ConnectionManager {
 			throws ConnectionException {
 		List<ProjectInfo> ret = new ArrayList<ProjectInfo>();
 		
-		ProjectId projectId = ModelFactoryImpl.eINSTANCE.createProjectId();
+		ProjectId projectId = ModelFactory.eINSTANCE.createProjectId();
 		
 		HeadVersionSpec headVersionSpec = ChangemanagmentFactoryImpl.eINSTANCE.createHeadVersionSpec();
 		
-		ProjectInfo projectInfo = EsmodelFactoryImpl.eINSTANCE.createProjectInfo();
+		ProjectInfo projectInfo = EsmodelFactory.eINSTANCE.createProjectInfo();
 		projectInfo.setName("TestProject");
 		projectInfo.setDescription("A test Project");
 		projectInfo.setProjectId(projectId);
@@ -70,11 +71,11 @@ public class StubConnectionManagerImpl implements ConnectionManager {
 
 	public SessionId logIn(String username, String password,
 			ServerInfo severInfo) throws ConnectionException {
-		return EsmodelFactoryImpl.eINSTANCE.createSessionId();
+		return EsmodelFactory.eINSTANCE.createSessionId();
 	}
 
 	public PrimaryVersionSpec resolveVersionSpec(VersionSpec versionSpec) {
-		PrimaryVersionSpec primaryVersionSpec = ChangemanagmentFactoryImpl.eINSTANCE.createPrimaryVersionSpec();
+		PrimaryVersionSpec primaryVersionSpec = ChangemanagmentFactory.eINSTANCE.createPrimaryVersionSpec();
 		primaryVersionSpec.setIdentifier(1);
 		return primaryVersionSpec;
 	}
@@ -82,7 +83,7 @@ public class StubConnectionManagerImpl implements ConnectionManager {
 	private Project createDummyProject() {
 		// Generate the elements of the model
 		
-		ModelFactory factory = ModelFactoryImpl.eINSTANCE;
+		ModelFactory factory = ModelFactory.eINSTANCE;
 		Project project = factory.createProject();
 		project.setName("Sysiphus EMF Evaluation");
 		project
