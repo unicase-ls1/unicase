@@ -253,13 +253,22 @@ public interface WorkspacePackage extends EPackage {
 	int PROJECT_SPACE__USERSESSION = 3;
 
 	/**
+	 * The feature id for the '<em><b>Last Updated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_SPACE__LAST_UPDATED = 4;
+
+	/**
 	 * The number of structural features of the '<em>Project Space</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE_FEATURE_COUNT = 4;
+	int PROJECT_SPACE_FEATURE_COUNT = 5;
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.workspace.Workspace <em>Workspace</em>}'.
@@ -456,6 +465,17 @@ public interface WorkspacePackage extends EPackage {
 	EReference getProjectSpace_Usersession();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.workspace.ProjectSpace#getLastUpdated <em>Last Updated</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Last Updated</em>'.
+	 * @see org.unicase.workspace.ProjectSpace#getLastUpdated()
+	 * @see #getProjectSpace()
+	 * @generated
+	 */
+	EAttribute getProjectSpace_LastUpdated();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -628,6 +648,14 @@ public interface WorkspacePackage extends EPackage {
 		 * @generated
 		 */
 		EReference PROJECT_SPACE__USERSESSION = eINSTANCE.getProjectSpace_Usersession();
+
+		/**
+		 * The meta object literal for the '<em><b>Last Updated</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROJECT_SPACE__LAST_UPDATED = eINSTANCE.getProjectSpace_LastUpdated();
 
 	}
 
