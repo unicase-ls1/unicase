@@ -22,7 +22,6 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.Project;
 import org.unicase.model.ProjectId;
-import org.unicase.model.impl.ModelFactoryImpl;
 import org.unicase.workspace.ConnectionException;
 import org.unicase.workspace.ServerInfo;
 
@@ -133,12 +132,21 @@ public class StubConnectionManagerImpl implements ConnectionManager {
 				.setDescription("Lists all use case diagrams of this project.");
 		useCaseDiagramLeafSection.setParent(ucmCompositeSection);
 		useCaseDiagramLeafSection.setElementClass(FunctionalRequirement.class);
+		
+		
+		useCaseDiagramLeafSection.setName("Use Case Diagrams");
+		useCaseDiagramLeafSection
+				.setDescription("Lists all use case diagrams of this project.");
+		useCaseDiagramLeafSection.setParent(ucmCompositeSection);
+		useCaseDiagramLeafSection.setElementClass(FunctionalRequirement.class);
 
 		FunctionalRequirement fr = factory.createFunctionalRequirement();
 		fr.setName("My Reuirement");
 		
 		FunctionalRequirement fr2 = factory.createFunctionalRequirement();
 		fr2.setName("My Reuirement2");
+		
+		
 
 
 		EList<ModelElement> projectElements = project.getModelElements();
