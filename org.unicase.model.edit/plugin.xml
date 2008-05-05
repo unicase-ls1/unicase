@@ -12,7 +12,7 @@
     
   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
     <factory 
-       uri = "http://www.sysiphus.org/model" 
+       uri = "http://unicase.org/model" 
        class = "org.unicase.model.provider.ModelItemProviderAdapterFactory" 
        supportedTypes = 
          "org.eclipse.emf.edit.provider.IEditingDomainItemProvider

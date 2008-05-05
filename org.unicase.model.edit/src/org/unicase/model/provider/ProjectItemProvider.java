@@ -259,15 +259,8 @@ public class ProjectItemProvider
 	public Collection<?> getChildren(Object object) {
 		if (object instanceof Project) {
 			Project project = (Project) object;
-			Collection<ModelElement> list = project
+			Collection<ModelElement> ret = project
 					.getElementsByClass(CompositeSection.class);
-			Collection<ModelElement> ret = new ArrayList<ModelElement>();
-			for(ModelElement me : list){
-				if(me.eContainer()==null)
-				{
-					ret.add(me);
-				}
-			}
 			return ret;
 
 		} else {
