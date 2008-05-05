@@ -6,6 +6,7 @@
  */
 package org.unicase.workspace;
 
+import java.util.Date;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.unicase.esmodel.changemanagment.ChangePackage;
@@ -25,6 +26,7 @@ import org.unicase.model.Project;
  *   <li>{@link org.unicase.workspace.ProjectSpace#getBaseVersion <em>Base Version</em>}</li>
  *   <li>{@link org.unicase.workspace.ProjectSpace#getLocalChanges <em>Local Changes</em>}</li>
  *   <li>{@link org.unicase.workspace.ProjectSpace#getUsersession <em>Usersession</em>}</li>
+ *   <li>{@link org.unicase.workspace.ProjectSpace#getLastUpdated <em>Last Updated</em>}</li>
  * </ul>
  * </p>
  *
@@ -136,6 +138,32 @@ public interface ProjectSpace extends EObject {
 	 * @generated
 	 */
 	void setUsersession(Usersession value);
+
+	/**
+	 * Returns the value of the '<em><b>Last Updated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Last Updated</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Last Updated</em>' attribute.
+	 * @see #setLastUpdated(Date)
+	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_LastUpdated()
+	 * @model
+	 * @generated
+	 */
+	Date getLastUpdated();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getLastUpdated <em>Last Updated</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Last Updated</em>' attribute.
+	 * @see #getLastUpdated()
+	 * @generated
+	 */
+	void setLastUpdated(Date value);
 
 	/**
 	 * <!-- begin-user-doc -->

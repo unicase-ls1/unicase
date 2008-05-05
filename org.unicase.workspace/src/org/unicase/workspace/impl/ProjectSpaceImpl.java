@@ -6,6 +6,7 @@
  */
 package org.unicase.workspace.impl;
 
+import java.util.Date;
 import java.util.Collections;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -41,6 +42,7 @@ import org.unicase.workspace.WorkspacePackage;
  *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getBaseVersion <em>Base Version</em>}</li>
  *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getLocalChanges <em>Local Changes</em>}</li>
  *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getUsersession <em>Usersession</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getLastUpdated <em>Last Updated</em>}</li>
  * </ul>
  * </p>
  *
@@ -92,6 +94,26 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @ordered
 	 */
 	protected Usersession usersession;
+
+	/**
+	 * The default value of the '{@link #getLastUpdated() <em>Last Updated</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLastUpdated()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Date LAST_UPDATED_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getLastUpdated() <em>Last Updated</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLastUpdated()
+	 * @generated
+	 * @ordered
+	 */
+	protected Date lastUpdated = LAST_UPDATED_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -299,6 +321,27 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Date getLastUpdated() {
+		return lastUpdated;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLastUpdated(Date newLastUpdated) {
+		Date oldLastUpdated = lastUpdated;
+		lastUpdated = newLastUpdated;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__LAST_UPDATED, oldLastUpdated, lastUpdated));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public PrimaryVersionSpec commit() {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
@@ -365,13 +408,9 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @generated
 	 */
 	public void init() {
-		this.changeRecorder=new ChangeRecorder();
-		if (this.getLocalChanges()==null) {
-			changeRecorder.beginRecording(Collections.singleton(this.project));
-		}
-		else {
-			changeRecorder.beginRecording(localChanges.getBackwardDelta(), Collections.singleton(this.project));
-		}
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -410,6 +449,8 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 				return getLocalChanges();
 			case WorkspacePackage.PROJECT_SPACE__USERSESSION:
 				return getUsersession();
+			case WorkspacePackage.PROJECT_SPACE__LAST_UPDATED:
+				return getLastUpdated();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -433,6 +474,9 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 				return;
 			case WorkspacePackage.PROJECT_SPACE__USERSESSION:
 				setUsersession((Usersession)newValue);
+				return;
+			case WorkspacePackage.PROJECT_SPACE__LAST_UPDATED:
+				setLastUpdated((Date)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -458,6 +502,9 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 			case WorkspacePackage.PROJECT_SPACE__USERSESSION:
 				setUsersession((Usersession)null);
 				return;
+			case WorkspacePackage.PROJECT_SPACE__LAST_UPDATED:
+				setLastUpdated(LAST_UPDATED_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -478,8 +525,26 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 				return localChanges != null;
 			case WorkspacePackage.PROJECT_SPACE__USERSESSION:
 				return usersession != null;
+			case WorkspacePackage.PROJECT_SPACE__LAST_UPDATED:
+				return LAST_UPDATED_EDEFAULT == null ? lastUpdated != null : !LAST_UPDATED_EDEFAULT.equals(lastUpdated);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (lastUpdated: ");
+		result.append(lastUpdated);
+		result.append(')');
+		return result.toString();
 	}
 
 } //ProjectContainerImpl
