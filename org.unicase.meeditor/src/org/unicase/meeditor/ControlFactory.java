@@ -10,6 +10,13 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.unicase.meeditor.mecontrols.MEBoolControl;
+import org.unicase.meeditor.mecontrols.MEControl;
+import org.unicase.meeditor.mecontrols.MEDateControl;
+import org.unicase.meeditor.mecontrols.MEIntControl;
+import org.unicase.meeditor.mecontrols.MELinkControl;
+import org.unicase.meeditor.mecontrols.METextAreaControl;
+import org.unicase.meeditor.mecontrols.METextControl;
 
 public class ControlFactory {
 	private final EObject modelElement;
