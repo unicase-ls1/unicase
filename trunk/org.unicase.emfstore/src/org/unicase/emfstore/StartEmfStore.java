@@ -9,7 +9,6 @@ import java.util.Properties;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.unicase.emfstore.rmi.RMITest;
-import org.unicase.emfstore.rmi.clienttest.RMIClientTest;
 import org.unicase.emfstore.storage.ResourceStorage;
 import org.unicase.emfstore.storage.TeneoStorage;
 
