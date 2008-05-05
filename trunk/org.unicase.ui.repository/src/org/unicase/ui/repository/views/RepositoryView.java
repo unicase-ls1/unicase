@@ -20,6 +20,7 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerSorter;
+import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
@@ -27,7 +28,6 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.part.DrillDownAdapter;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.esmodel.ProjectInfo;
 import org.unicase.workspace.Configuration;
@@ -53,8 +53,8 @@ import org.unicase.workspace.impl.WorkspaceFactoryImpl;
 
 public class RepositoryView extends ViewPart {
 	private TreeViewer viewer;
-	private DrillDownAdapter drillDownAdapter;
 	private Action checkout;
+	private Action addRepository;
 	private ServerAction login;
 	private Action doubleClickAction;
 
@@ -175,7 +175,6 @@ public class RepositoryView extends ViewPart {
 					.getDefaultServerInfo());
 			invisibleRoot.addChild(testServer);
 		}
-
 	}
 
 	class ViewLabelProvider extends LabelProvider {
@@ -208,7 +207,6 @@ public class RepositoryView extends ViewPart {
 	 */
 	public void createPartControl(Composite parent) {
 		viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
-		drillDownAdapter = new DrillDownAdapter(viewer);
 		viewer.setContentProvider(new ViewContentProvider());
 		viewer.setLabelProvider(new ViewLabelProvider());
 		viewer.setSorter(new NameSorter());
@@ -258,6 +256,7 @@ public class RepositoryView extends ViewPart {
 
 	private void fillLocalToolBar(IToolBarManager manager) {
 		manager.add(checkout);
+		manager.add(addRepository);
 	}
 	
 	private class ServerAction extends Action{
@@ -265,6 +264,10 @@ public class RepositoryView extends ViewPart {
 		public void setServerNode(ServerNode serverNode){
 			this.serverNode = serverNode;
 		}
+	}
+	
+	private RepositoryView getViewInstance(){
+		return this;
 	}
 	
 	private void makeActions() {
@@ -309,6 +312,24 @@ public class RepositoryView extends ViewPart {
 		login.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages()
 				.getImageDescriptor(ISharedImages.IMG_OBJ_ELEMENT));
 
+		
+		addRepository = new Action() {
+			public void run() {
+				 RepositoryWizard wizard = new RepositoryWizard();
+				  wizard.init(getSite().getWorkbenchWindow().getWorkbench(),
+				            (IStructuredSelection)getSite().getWorkbenchWindow().getSelectionService().getSelection());
+				  wizard.setRepositoryView(getViewInstance());
+				    // Instantiates the wizard container with the wizard and opens it
+				    WizardDialog dialog = new WizardDialog(getSite().getWorkbenchWindow().getShell(), wizard);
+				    dialog.create();
+				    dialog.open();
+			}
+		};
+		addRepository.setText("New repository...");
+		addRepository.setToolTipText("Click to add new repository");
+		addRepository.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages()
+				.getImageDescriptor(ISharedImages.IMG_TOOL_NEW_WIZARD));
+		
 		doubleClickAction = new Action() {
 			public void run() {
 				ISelection selection = viewer.getSelection();
@@ -342,5 +363,11 @@ public class RepositoryView extends ViewPart {
 	 */
 	public void setFocus() {
 		viewer.getControl().setFocus();
+	}
+	
+	public void addRepository(ServerInfo serverInfo){
+		((ViewContentProvider)viewer.getContentProvider()).invisibleRoot.addChild(new ServerNode(serverInfo));
+		viewer.refresh();
+		//TODO: Save locally the repository 
 	}
 }
