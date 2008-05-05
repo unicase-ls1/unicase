@@ -1,4 +1,4 @@
-package org.unicase.meeditor;
+package org.unicase.meeditor.mecontrols;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;

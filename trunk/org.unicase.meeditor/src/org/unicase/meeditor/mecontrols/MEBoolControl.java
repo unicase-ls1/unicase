@@ -1,4 +1,4 @@
-package org.unicase.meeditor;
+package org.unicase.meeditor.mecontrols;
 
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
@@ -8,36 +8,36 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 
-public class METextControl extends AbstractMEControl implements MEControl
-		 {
-
-	Text text;
+public class MEBoolControl extends AbstractMEControl implements MEControl {
 	FormToolkit toolkit;
 	EAttribute attribute;
 	EObject modelElement;
 	EditingDomain editingDomain;
+	Button check;
 
-	public METextControl(EAttribute attribute, FormToolkit toolkit,
-			EObject modelElement,EditingDomain editingDomain) {
+	public MEBoolControl(EAttribute attribute, FormToolkit toolkit,
+			EObject modelElement, EditingDomain editingDomain) {
 		super();
 		this.attribute = attribute;
-		this.toolkit = toolkit;
+		this.editingDomain = editingDomain;
 		this.modelElement = modelElement;
-		this.editingDomain= editingDomain;
+		this.toolkit = toolkit;
 	}
 
-	
 	public Control createControl(Composite parent, int style) {
-		text = toolkit.createText(parent, new String(), style);
-		IObservableValue model = EMFEditObservables.observeValue(editingDomain, modelElement, attribute);
+		check = toolkit.createButton(parent, "", SWT.CHECK);
+		IObservableValue model = EMFEditObservables.observeValue(editingDomain,
+				modelElement, attribute);
 		EMFDataBindingContext dbc = new EMFDataBindingContext();
-		dbc.bindValue(SWTObservables.observeText(text, SWT.FocusOut), model, null, null);	
-		return text;
+		dbc
+				.bindValue(SWTObservables.observeSelection(check), model, null,
+						null);
+		return check;
 	}
 
 }

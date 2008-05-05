@@ -1,4 +1,4 @@
-package org.unicase.meeditor;
+package org.unicase.meeditor.mecontrols;
 
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
@@ -7,20 +7,19 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.databinding.swt.SWTObservables;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.DateTime;
-import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 
-public class MEDateControl extends AbstractMEControl implements MEControl {
+public class MEIntControl extends AbstractMEControl implements MEControl {
 	FormToolkit toolkit;
 	EAttribute attribute;
 	EObject modelElement;
 	EditingDomain editingDomain;
-	
-	public MEDateControl(EAttribute attribute, FormToolkit toolkit,
+	Spinner spinner;
+
+	public MEIntControl(EAttribute attribute, FormToolkit toolkit,
 			EObject modelElement, EditingDomain editingDomain) {
 		super();
 		this.attribute = attribute;
@@ -30,21 +29,15 @@ public class MEDateControl extends AbstractMEControl implements MEControl {
 	}
 
 	public Control createControl(Composite parent, int style) {
-		Composite composite = toolkit.createComposite(parent);
-		composite.setLayout(new GridLayout(2,false));
-		
-//		Label label= toolkit.createLabel(composite, modelElement.eGet(attribute).toString());
-		
-		DateTime date = new DateTime(composite, style);
-		
+		spinner = new Spinner(parent, style);
+
 		IObservableValue model = EMFEditObservables.observeValue(editingDomain,
 				modelElement, attribute);
 		EMFDataBindingContext dbc = new EMFDataBindingContext();
-		//dbc.bindValue(SWTObservables., model, null,		null);
-		
+		dbc.bindValue(SWTObservables.observeSelection(spinner), model, null,
+				null);
 
-		
-		return composite;
+		return spinner;
 	}
 
 }

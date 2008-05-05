@@ -1,4 +1,4 @@
-package org.unicase.meeditor;
+package org.unicase.meeditor.mecontrols;
 
 import java.util.ArrayList;
 import java.util.List;
