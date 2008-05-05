@@ -7,20 +7,19 @@
 package org.unicase.model.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
+import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.ReaderInfo;
@@ -110,7 +109,7 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 	 */
 	protected ModelElementImpl() {
 		super();
-		this.identifier=ModelFactoryImpl.eINSTANCE.createModelElementId();
+		this.identifier=ModelFactory.eINSTANCE.createModelElementId();
 	}
 
 	/**
@@ -227,11 +226,11 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 	 */
 	public Project getProject() {
 		//check if my container is a project
-		if (ModelPackageImpl.eINSTANCE.getProject().isInstance(this.eContainer)) {
+		if (ModelPackage.eINSTANCE.getProject().isInstance(this.eContainer)) {
 			return (Project)this.eContainer();
 		}
 		//check if my container is a model element
-		else if (ModelPackageImpl.eINSTANCE.getModelElement().isInstance(this.eContainer)) {
+		else if (ModelPackage.eINSTANCE.getModelElement().isInstance(this.eContainer)) {
 			return ((ModelElement)this.eContainer()).getProject();
 		}
 		else {

@@ -1,12 +1,10 @@
 package org.unicase.workspace;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.resource.Resource;
-import org.unicase.workspace.impl.WorkspaceFactoryImpl;
 
 public class Configuration {
 
@@ -45,7 +43,7 @@ public class Configuration {
 	}
 	
 	public static ServerInfo getDefaultServerInfo() {
-		ServerInfo serverInfo = WorkspaceFactoryImpl.eINSTANCE.createServerInfo();
+		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
 		serverInfo.setDisplayName("DefaultServer");
 		serverInfo.setName("EmfStoreOne");
 		serverInfo.setPort("somePort");

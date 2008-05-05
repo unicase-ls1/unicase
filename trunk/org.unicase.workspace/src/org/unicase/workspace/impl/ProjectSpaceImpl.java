@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.esmodel.changemanagment.ChangePackage;
+import org.unicase.esmodel.changemanagment.ChangemanagmentFactory;
 import org.unicase.esmodel.changemanagment.PrimaryVersionSpec;
 import org.unicase.esmodel.changemanagment.VersionSpec;
 import org.unicase.esmodel.changemanagment.impl.ChangemanagmentFactoryImpl;
@@ -352,7 +353,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 		changeDescription.applyAndReverse();
 		changeDescription.apply();
 		ChangeDescription forwardChangeDescription=(ChangeDescription)EcoreUtil.copy(changeDescription);
-		ChangePackage changePackage = ChangemanagmentFactoryImpl.eINSTANCE.createChangePackage();
+		ChangePackage changePackage = ChangemanagmentFactory.eINSTANCE.createChangePackage();
 		changePackage.setBackwardDelta(backwardChangeDescription);
 		changePackage.setFowardDelta(forwardChangeDescription);
 		this.setLocalChanges(changePackage);

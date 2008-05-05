@@ -34,7 +34,7 @@ import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ConnectionException;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
-import org.unicase.workspace.impl.WorkspaceFactoryImpl;
+import org.unicase.workspace.WorkspaceFactory;
 
 /**
  * This sample class demonstrates how to plug-in a new workbench view. The view
@@ -285,7 +285,7 @@ public class RepositoryView extends ViewPart {
 			public void run() {
 				showMessage("Logging in...");
 				try{
-					Usersession session = WorkspaceFactoryImpl.eINSTANCE.createUsersession();
+					Usersession session = WorkspaceFactory.eINSTANCE.createUsersession();
 					session.setUsername("user");
 					session.setServerInfo(serverNode.serverInfo);
 					List<ProjectInfo> projectInfos;

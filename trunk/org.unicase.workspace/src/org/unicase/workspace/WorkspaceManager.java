@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.connectionmanager.StubConnectionManagerImpl;
-import org.unicase.workspace.impl.WorkspaceFactoryImpl;
 import org.unicase.workspace.impl.WorkspaceImpl;
 
 public class WorkspaceManager {
@@ -46,7 +45,7 @@ public class WorkspaceManager {
 
 			// no workspace content found, create a workspace
 			Resource resource = resourceSet.createResource(fileURI);
-			Workspace workspace = WorkspaceFactoryImpl.eINSTANCE
+			Workspace workspace = WorkspaceFactory.eINSTANCE
 					.createWorkspace();
 			workspace.setConnectionManager(this.connectionManager);
 			workspace.setResource(resource);
