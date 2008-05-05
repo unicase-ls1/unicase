@@ -261,4 +261,9 @@ public ProjectSpace checkout(Usersession usersession, ProjectId projectId, Versi
 		this.resource=resource;
 	}
 
+	public Object getAdapter(Class adapter) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } //WorkspaceImpl

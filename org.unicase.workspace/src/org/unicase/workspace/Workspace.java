@@ -6,6 +6,7 @@
  */
 package org.unicase.workspace;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -17,6 +18,7 @@ import org.unicase.workspace.connectionmanager.ConnectionManager;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Workspace</b></em>'.
+ * @implements IAdaptable
  * <!-- end-user-doc -->
  *
  * <p>
@@ -31,7 +33,7 @@ import org.unicase.workspace.connectionmanager.ConnectionManager;
  * @model
  * @generated
  */
-public interface Workspace extends EObject {
+public interface Workspace extends EObject, IAdaptable {
 	/**
 	 * Returns the value of the '<em><b>Project Spaces</b></em>' containment reference list.
 	 * The list contents are of type {@link org.unicase.workspace.ProjectSpace}.
