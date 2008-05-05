@@ -2,8 +2,6 @@ package org.unicase.meeditor;
 
 import java.util.Date;
 
-import org.eclipse.emf.common.util.EMap;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -17,6 +15,7 @@ import org.unicase.meeditor.mecontrols.MEIntControl;
 import org.unicase.meeditor.mecontrols.MELinkControl;
 import org.unicase.meeditor.mecontrols.METextAreaControl;
 import org.unicase.meeditor.mecontrols.METextControl;
+import org.unicase.model.edit.uihint.FeatureUIHint;
 
 public class ControlFactory {
 	private final EObject modelElement;
@@ -30,30 +29,23 @@ public class ControlFactory {
 		this.toolkit = toolkit;
 	}
 
-	public MEControl createControl(EStructuralFeature feature) {
-		EAnnotation annotation = feature
-				.getEAnnotation("http://www.unicase.org/View");
-		EMap<String, String> details = null;
-		if (annotation != null) {
-			details = annotation.getDetails();
-		}
+	public MEControl createControl(EStructuralFeature feature,
+			FeatureUIHint featureUIHint) {
+
 		if (feature instanceof EAttribute) {
-			if (details != null) {
-				if (details.get("type").equals("TEXT_AREA")) {
-					return createMETextAreaControl((EAttribute) feature);
-				}
+
+			if (featureUIHint.getType().equals(FeatureUIHint.TEXT_AREA)) {
+				return createMETextAreaControl((EAttribute) feature);
 			}
 			if (feature.getEType().getInstanceClass().equals(boolean.class)) {
 				return createMEBoolControl((EAttribute) feature);
 			}
-
 			if (feature.getEType().getInstanceClass().equals(int.class)) {
 				return createMEIntControl((EAttribute) feature);
 			}
 			if (feature.getEType().getInstanceClass().equals(Date.class)) {
 				return createMEDateControl((EAttribute) feature);
 			}
-
 			return createMETextControl((EAttribute) feature);
 		}
 		if (feature instanceof EReference && feature.getUpperBound() != 1) {
@@ -67,7 +59,7 @@ public class ControlFactory {
 		if (feature instanceof EReference && feature.getUpperBound() == 1) {
 			EReference reference = (EReference) feature;
 
-			//return createMESingleLinkControl((EReference) feature);
+			// return createMESingleLinkControl((EReference) feature);
 
 		}
 

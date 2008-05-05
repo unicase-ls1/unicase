@@ -20,6 +20,9 @@ import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
 import org.unicase.meeditor.mecontrols.MEControl;
 import org.unicase.model.ModelElement;
+import org.unicase.model.edit.uihint.FeatureUIHint;
+import org.unicase.model.edit.uihint.UIHintAdapter;
+import org.unicase.model.edit.uihint.UIHintAdapterImpl;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
 
 public class MEEditorPage extends FormPage {
@@ -29,6 +32,7 @@ public class MEEditorPage extends FormPage {
 	Composite body;
 	FormToolkit toolkit;
 	List<MEControl> meControls = new ArrayList<MEControl>();
+	UIHintAdapter uiHintAdapter;
 	private ScrolledForm form;
 
 	public MEEditorPage(MEEditor editor, String id, String title,
@@ -36,6 +40,7 @@ public class MEEditorPage extends FormPage {
 		super(editor, id, title);
 		this.editingDomain = editingDomain;
 		this.modelElement = modelElement;
+		uiHintAdapter = new UIHintAdapterImpl();
 	}
 
 	@Override
@@ -69,7 +74,8 @@ public class MEEditorPage extends FormPage {
 		ControlFactory controlFactory = new ControlFactory(editingDomain,
 				modelElement,  this.getEditor().getToolkit());
 		for (EReference reference : references) {
-			MEControl meControl = controlFactory.createControl(reference);
+			FeatureUIHint featureUIHint =uiHintAdapter.getFeatureUIHint(reference);
+			MEControl meControl = controlFactory.createControl(reference, featureUIHint);
 			if (meControl != null) {
 				Control control = meControl.createControl(body, SWT.WRAP);
 				control.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -96,8 +102,9 @@ public class MEEditorPage extends FormPage {
 		EList<EAttribute> attributes = modelElement.eClass()
 				.getEAllAttributes();
 		for (EAttribute attribute : attributes) {
-			toolkit.createLabel(attributeComposite, attribute.getName() + ":");
-			MEControl meControl = controlFactory.createControl(attribute);
+			FeatureUIHint featureUIHint =uiHintAdapter.getFeatureUIHint(attribute);
+			toolkit.createLabel(attributeComposite, featureUIHint.getLabel());
+			MEControl meControl = controlFactory.createControl(attribute, featureUIHint);
 			Control control = meControl.createControl(attributeComposite,
 					SWT.WRAP);
 			control.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
