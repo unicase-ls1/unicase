@@ -32,7 +32,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 	}
 
 	public List<HistoryInfo> getHistoryInfo(SessionId sessionId,
-			ProjectId projectId) throws ConnectionException {
+			ProjectId projectId, VersionSpec source, VersionSpec target) throws ConnectionException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -54,7 +54,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 		return null;
 	}
 
-	public PrimaryVersionSpec resolveVersionSpec(VersionSpec versionSpec) {
+	public PrimaryVersionSpec resolveVersionSpec(SessionId sessionId, VersionSpec versionSpec) {
 		// TODO Auto-generated method stub
 		return null;
 	}

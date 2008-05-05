@@ -41,7 +41,7 @@ public class StubConnectionManagerImpl implements ConnectionManager {
 	}
 
 	public List<HistoryInfo> getHistoryInfo(SessionId sessionId,
-			ProjectId projectId) throws ConnectionException {
+			ProjectId projectId, VersionSpec source, VersionSpec target) throws ConnectionException {
 		throw new UnsupportedOperationException();
 	}
 
@@ -62,7 +62,7 @@ public class StubConnectionManagerImpl implements ConnectionManager {
 		projectInfo.setName("TestProject");
 		projectInfo.setDescription("A test Project");
 		projectInfo.setProjectId(projectId);
-		projectInfo.setVersion(resolveVersionSpec(headVersionSpec));
+		projectInfo.setVersion(resolveVersionSpec(sessionId, headVersionSpec));
 		
 		ret.add(projectInfo);
 		return ret;
@@ -73,7 +73,7 @@ public class StubConnectionManagerImpl implements ConnectionManager {
 		return EsmodelFactory.eINSTANCE.createSessionId();
 	}
 
-	public PrimaryVersionSpec resolveVersionSpec(VersionSpec versionSpec) {
+	public PrimaryVersionSpec resolveVersionSpec(SessionId sessionId, VersionSpec versionSpec) {
 		PrimaryVersionSpec primaryVersionSpec = ChangemanagmentFactory.eINSTANCE.createPrimaryVersionSpec();
 		primaryVersionSpec.setIdentifier(1);
 		return primaryVersionSpec;

@@ -130,7 +130,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 */
 public ProjectSpace checkout(Usersession usersession, ProjectId projectId, VersionSpec version) throws ConnectionException {
 		Project project = this.connectionManager.getProject(usersession.getSessionId(), projectId, version);
-		PrimaryVersionSpec primaryVersionSpec = this.connectionManager.resolveVersionSpec(version);
+		PrimaryVersionSpec primaryVersionSpec = this.connectionManager.resolveVersionSpec(usersession.getSessionId(), version);
 		ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE.createProjectSpace();
 		projectSpace.setBaseVersion(primaryVersionSpec);
 		projectSpace.setProject(project);
