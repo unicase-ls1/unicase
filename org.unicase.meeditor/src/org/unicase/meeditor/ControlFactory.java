@@ -1,5 +1,7 @@
 package org.unicase.meeditor;
 
+import java.util.Date;
+
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
@@ -24,7 +26,7 @@ public class ControlFactory {
 	public MEControl createControl(EStructuralFeature feature) {
 		EAnnotation annotation = feature
 				.getEAnnotation("http://www.unicase.org/View");
-		EMap<String, String> details=null;
+		EMap<String, String> details = null;
 		if (annotation != null) {
 			details = annotation.getDetails();
 		}
@@ -34,9 +36,17 @@ public class ControlFactory {
 					return createMETextAreaControl((EAttribute) feature);
 				}
 			}
-			if(feature.getEType().getInstanceClass().equals(boolean.class)){
-				return createMEBoolControl((EAttribute)feature);
+			if (feature.getEType().getInstanceClass().equals(boolean.class)) {
+				return createMEBoolControl((EAttribute) feature);
 			}
+
+			if (feature.getEType().getInstanceClass().equals(int.class)) {
+				return createMEIntControl((EAttribute) feature);
+			}
+			if (feature.getEType().getInstanceClass().equals(Date.class)) {
+				return createMEDateControl((EAttribute) feature);
+			}
+
 			return createMETextControl((EAttribute) feature);
 		}
 		if (feature instanceof EReference && feature.getUpperBound() != 1) {
@@ -46,13 +56,31 @@ public class ControlFactory {
 			}
 
 		}
+
+		if (feature instanceof EReference && feature.getUpperBound() == 1) {
+			EReference reference = (EReference) feature;
+
+			//return createMESingleLinkControl((EReference) feature);
+
+		}
+
 		return null;
 		// TODO: Add other types
 	}
 
+	private MEControl createMEDateControl(EAttribute attribute) {
+		return new MEDateControl(attribute, toolkit, modelElement,
+				editingDomain);
+	}
+
+	private MEControl createMEIntControl(EAttribute attribute) {
+		return new MEIntControl(attribute, toolkit, modelElement, editingDomain);
+	}
+
 	private MEControl createMEBoolControl(EAttribute attribute) {
-		return new MEBoolControl(attribute,toolkit,modelElement,editingDomain);
-		
+		return new MEBoolControl(attribute, toolkit, modelElement,
+				editingDomain);
+
 	}
 
 	private MEControl createMETextAreaControl(EAttribute attribute) {
