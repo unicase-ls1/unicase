@@ -79,13 +79,13 @@ public interface WorkspacePackage extends EPackage {
 	int WORKSPACE__PROJECT_SPACES = 0;
 
 	/**
-	 * The feature id for the '<em><b>Server Info Aggregation</b></em>' containment reference.
+	 * The feature id for the '<em><b>Server Infos</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WORKSPACE__SERVER_INFO_AGGREGATION = 1;
+	int WORKSPACE__SERVER_INFOS = 1;
 
 	/**
 	 * The number of structural features of the '<em>Workspace</em>' class.
@@ -271,34 +271,6 @@ public interface WorkspacePackage extends EPackage {
 	int PROJECT_SPACE_FEATURE_COUNT = 5;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.workspace.impl.ServerInfoAggregationImpl <em>Server Info Aggregation</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.unicase.workspace.impl.ServerInfoAggregationImpl
-	 * @see org.unicase.workspace.impl.WorkspacePackageImpl#getServerInfoAggregation()
-	 * @generated
-	 */
-	int SERVER_INFO_AGGREGATION = 4;
-
-	/**
-	 * The feature id for the '<em><b>Server Infos</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVER_INFO_AGGREGATION__SERVER_INFOS = 0;
-
-	/**
-	 * The number of structural features of the '<em>Server Info Aggregation</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVER_INFO_AGGREGATION_FEATURE_COUNT = 1;
-
-	/**
 	 * Returns the meta object for class '{@link org.unicase.workspace.Workspace <em>Workspace</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -320,15 +292,15 @@ public interface WorkspacePackage extends EPackage {
 	EReference getWorkspace_ProjectSpaces();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.unicase.workspace.Workspace#getServerInfoAggregation <em>Server Info Aggregation</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.unicase.workspace.Workspace#getServerInfos <em>Server Infos</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Server Info Aggregation</em>'.
-	 * @see org.unicase.workspace.Workspace#getServerInfoAggregation()
+	 * @return the meta object for the containment reference list '<em>Server Infos</em>'.
+	 * @see org.unicase.workspace.Workspace#getServerInfos()
 	 * @see #getWorkspace()
 	 * @generated
 	 */
-	EReference getWorkspace_ServerInfoAggregation();
+	EReference getWorkspace_ServerInfos();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.workspace.ServerInfo <em>Server Info</em>}'.
@@ -504,27 +476,6 @@ public interface WorkspacePackage extends EPackage {
 	EAttribute getProjectSpace_LastUpdated();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.workspace.ServerInfoAggregation <em>Server Info Aggregation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Server Info Aggregation</em>'.
-	 * @see org.unicase.workspace.ServerInfoAggregation
-	 * @generated
-	 */
-	EClass getServerInfoAggregation();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.workspace.ServerInfoAggregation#getServerInfos <em>Server Infos</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Server Infos</em>'.
-	 * @see org.unicase.workspace.ServerInfoAggregation#getServerInfos()
-	 * @see #getServerInfoAggregation()
-	 * @generated
-	 */
-	EReference getServerInfoAggregation_ServerInfos();
-
-	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -565,12 +516,12 @@ public interface WorkspacePackage extends EPackage {
 		EReference WORKSPACE__PROJECT_SPACES = eINSTANCE.getWorkspace_ProjectSpaces();
 
 		/**
-		 * The meta object literal for the '<em><b>Server Info Aggregation</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Server Infos</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference WORKSPACE__SERVER_INFO_AGGREGATION = eINSTANCE.getWorkspace_ServerInfoAggregation();
+		EReference WORKSPACE__SERVER_INFOS = eINSTANCE.getWorkspace_ServerInfos();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.workspace.impl.ServerInfoImpl <em>Server Info</em>}' class.
@@ -705,24 +656,6 @@ public interface WorkspacePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PROJECT_SPACE__LAST_UPDATED = eINSTANCE.getProjectSpace_LastUpdated();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.workspace.impl.ServerInfoAggregationImpl <em>Server Info Aggregation</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.unicase.workspace.impl.ServerInfoAggregationImpl
-		 * @see org.unicase.workspace.impl.WorkspacePackageImpl#getServerInfoAggregation()
-		 * @generated
-		 */
-		EClass SERVER_INFO_AGGREGATION = eINSTANCE.getServerInfoAggregation();
-
-		/**
-		 * The meta object literal for the '<em><b>Server Infos</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SERVER_INFO_AGGREGATION__SERVER_INFOS = eINSTANCE.getServerInfoAggregation_ServerInfos();
 
 	}
 

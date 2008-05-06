@@ -168,29 +168,6 @@ public class WorkspaceItemProviderAdapterFactory extends WorkspaceAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.workspace.ServerInfoAggregation} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ServerInfoAggregationItemProvider serverInfoAggregationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.workspace.ServerInfoAggregation}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createServerInfoAggregationAdapter() {
-		if (serverInfoAggregationItemProvider == null) {
-			serverInfoAggregationItemProvider = new ServerInfoAggregationItemProvider(this);
-		}
-
-		return serverInfoAggregationItemProvider;
-	}
-
-	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -293,7 +270,6 @@ public class WorkspaceItemProviderAdapterFactory extends WorkspaceAdapterFactory
 		if (serverInfoItemProvider != null) serverInfoItemProvider.dispose();
 		if (usersessionItemProvider != null) usersessionItemProvider.dispose();
 		if (projectSpaceItemProvider != null) projectSpaceItemProvider.dispose();
-		if (serverInfoAggregationItemProvider != null) serverInfoAggregationItemProvider.dispose();
 	}
 
 }

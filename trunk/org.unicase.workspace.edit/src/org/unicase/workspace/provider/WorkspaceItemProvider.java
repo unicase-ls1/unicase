@@ -105,7 +105,7 @@ public class WorkspaceItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(WorkspacePackage.Literals.WORKSPACE__SERVER_INFO_AGGREGATION);
+			childrenFeatures.add(WorkspacePackage.Literals.WORKSPACE__SERVER_INFOS);
 		}
 		return childrenFeatures;
 	}
@@ -157,7 +157,7 @@ public class WorkspaceItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Workspace.class)) {
-			case WorkspacePackage.WORKSPACE__SERVER_INFO_AGGREGATION:
+			case WorkspacePackage.WORKSPACE__SERVER_INFOS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -177,8 +177,8 @@ public class WorkspaceItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(WorkspacePackage.Literals.WORKSPACE__SERVER_INFO_AGGREGATION,
-				 WorkspaceFactory.eINSTANCE.createServerInfoAggregation()));
+				(WorkspacePackage.Literals.WORKSPACE__SERVER_INFOS,
+				 WorkspaceFactory.eINSTANCE.createServerInfo()));
 	}
 
 	/**

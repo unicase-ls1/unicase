@@ -76,7 +76,7 @@ public class RepositoryWizard extends Wizard implements INewWizard {
 		if (this.getContainer().getCurrentPage().canFlipToNextPage()) {
 			//save serverInfo to workspace
 			Workspace workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
-			workspace.getServerInfoAggregation().getServerInfos().add(this.serverInfo);
+			workspace.getServerInfos().add(this.serverInfo);
 			workspace.save();
 			
 			MessageDialog.openInformation(workbench.getActiveWorkbenchWindow()
