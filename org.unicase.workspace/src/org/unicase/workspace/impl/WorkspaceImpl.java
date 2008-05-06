@@ -17,18 +17,19 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.unicase.emfstore.EmfStoreException;
 import org.unicase.esmodel.changemanagment.PrimaryVersionSpec;
 import org.unicase.esmodel.changemanagment.VersionSpec;
 import org.unicase.model.Project;
 import org.unicase.model.ProjectId;
 import org.unicase.workspace.Configuration;
-import org.unicase.workspace.ConnectionException;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspacePackage;
+import org.unicase.workspace.connectionmanager.ConnectionException;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 
 /**
@@ -128,7 +129,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * @throws ConnectionException 
 	 * @generated NOT
 	 */
-public ProjectSpace checkout(Usersession usersession, ProjectId projectId, VersionSpec version) throws ConnectionException {
+public ProjectSpace checkout(Usersession usersession, ProjectId projectId, VersionSpec version) throws EmfStoreException {
 		Project project = this.connectionManager.getProject(usersession.getSessionId(), projectId, version);
 		PrimaryVersionSpec primaryVersionSpec = this.connectionManager.resolveVersionSpec(usersession.getSessionId(), version);
 		ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE.createProjectSpace();

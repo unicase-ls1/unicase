@@ -22,7 +22,6 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.Project;
 import org.unicase.model.ProjectId;
-import org.unicase.workspace.ConnectionException;
 import org.unicase.workspace.ServerInfo;
 
 public class StubConnectionManagerImpl implements ConnectionManager {

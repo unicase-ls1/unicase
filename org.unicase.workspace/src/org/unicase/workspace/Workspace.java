@@ -10,9 +10,11 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.unicase.emfstore.EmfStoreException;
 import org.unicase.esmodel.SessionId;
 import org.unicase.esmodel.changemanagment.VersionSpec;
 import org.unicase.model.ProjectId;
+import org.unicase.workspace.connectionmanager.ConnectionException;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 
 /**
@@ -70,10 +72,11 @@ public interface Workspace extends EObject, IAdaptable {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @throws ConnectionException 
+	 * @throws EmfStoreException 
 	 * @model
 	 * @generated NOT
 	 */
-	ProjectSpace checkout(Usersession usersession, ProjectId projectId, VersionSpec version) throws ConnectionException;
+	ProjectSpace checkout(Usersession usersession, ProjectId projectId, VersionSpec version) throws EmfStoreException;
 
 	/**
 	 * <!-- begin-user-doc -->
