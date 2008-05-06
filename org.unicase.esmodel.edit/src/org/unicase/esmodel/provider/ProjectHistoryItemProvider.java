@@ -69,52 +69,29 @@ public class ProjectHistoryItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addNamePropertyDescriptor(object);
-			addDescriptionPropertyDescriptor(object);
+			addProjectInfoPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature.
+	 * This adds a property descriptor for the Project Info feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNamePropertyDescriptor(Object object) {
+	protected void addProjectInfoPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ProjectHistory_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ProjectHistory_name_feature", "_UI_ProjectHistory_type"),
-				 EsmodelPackage.Literals.PROJECT_HISTORY__NAME,
+				 getString("_UI_ProjectHistory_projectInfo_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ProjectHistory_projectInfo_feature", "_UI_ProjectHistory_type"),
+				 EsmodelPackage.Literals.PROJECT_HISTORY__PROJECT_INFO,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 true,
 				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Description feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ProjectHistory_description_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ProjectHistory_description_feature", "_UI_ProjectHistory_type"),
-				 EsmodelPackage.Literals.PROJECT_HISTORY__DESCRIPTION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -131,7 +108,6 @@ public class ProjectHistoryItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(EsmodelPackage.Literals.PROJECT_HISTORY__IDENTIFIER);
 			childrenFeatures.add(EsmodelPackage.Literals.PROJECT_HISTORY__VERSIONS);
 		}
 		return childrenFeatures;
@@ -169,10 +145,7 @@ public class ProjectHistoryItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ProjectHistory)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_ProjectHistory_type") :
-			getString("_UI_ProjectHistory_type") + " " + label;
+		return getString("_UI_ProjectHistory_type");
 	}
 
 	/**
@@ -187,11 +160,6 @@ public class ProjectHistoryItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ProjectHistory.class)) {
-			case EsmodelPackage.PROJECT_HISTORY__NAME:
-			case EsmodelPackage.PROJECT_HISTORY__DESCRIPTION:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case EsmodelPackage.PROJECT_HISTORY__IDENTIFIER:
 			case EsmodelPackage.PROJECT_HISTORY__VERSIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -209,11 +177,6 @@ public class ProjectHistoryItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(EsmodelPackage.Literals.PROJECT_HISTORY__IDENTIFIER,
-				 EsmodelFactory.eINSTANCE.createProjectId()));
 
 		newChildDescriptors.add
 			(createChildParameter

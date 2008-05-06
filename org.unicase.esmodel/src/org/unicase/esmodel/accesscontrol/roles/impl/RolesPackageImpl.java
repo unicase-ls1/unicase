@@ -295,7 +295,7 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(roleEClass, Role.class, "Role", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRole_Projects(), theEsmodelPackage.getProjectId(), null, "projects", null, 0, -1, Role.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRole_Projects(), theEsmodelPackage.getProjectInfo(), null, "projects", null, 0, -1, Role.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = addEOperation(roleEClass, ecorePackage.getEBoolean(), "canAdministrate", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theEsmodelPackage.getProjectId(), "projectId", 0, 1, IS_UNIQUE, IS_ORDERED);

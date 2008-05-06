@@ -145,26 +145,26 @@ public class EsmodelItemProviderAdapterFactory extends EsmodelAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.esmodel.Administration} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.esmodel.ServerSpace} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AdministrationItemProvider administrationItemProvider;
+	protected ServerSpaceItemProvider serverSpaceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.esmodel.Administration}.
+	 * This creates an adapter for a {@link org.unicase.esmodel.ServerSpace}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createAdministrationAdapter() {
-		if (administrationItemProvider == null) {
-			administrationItemProvider = new AdministrationItemProvider(this);
+	public Adapter createServerSpaceAdapter() {
+		if (serverSpaceItemProvider == null) {
+			serverSpaceItemProvider = new ServerSpaceItemProvider(this);
 		}
 
-		return administrationItemProvider;
+		return serverSpaceItemProvider;
 	}
 
 	/**
@@ -292,7 +292,7 @@ public class EsmodelItemProviderAdapterFactory extends EsmodelAdapterFactory imp
 		if (projectHistoryItemProvider != null) projectHistoryItemProvider.dispose();
 		if (projectInfoItemProvider != null) projectInfoItemProvider.dispose();
 		if (sessionIdItemProvider != null) sessionIdItemProvider.dispose();
-		if (administrationItemProvider != null) administrationItemProvider.dispose();
+		if (serverSpaceItemProvider != null) serverSpaceItemProvider.dispose();
 		if (projectIdItemProvider != null) projectIdItemProvider.dispose();
 	}
 

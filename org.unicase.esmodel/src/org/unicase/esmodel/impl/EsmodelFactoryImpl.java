@@ -63,7 +63,7 @@ public class EsmodelFactoryImpl extends EFactoryImpl implements EsmodelFactory {
 			case EsmodelPackage.PROJECT_HISTORY: return createProjectHistory();
 			case EsmodelPackage.PROJECT_INFO: return createProjectInfo();
 			case EsmodelPackage.SESSION_ID: return createSessionId();
-			case EsmodelPackage.ADMINISTRATION: return createAdministration();
+			case EsmodelPackage.SERVER_SPACE: return createServerSpace();
 			case EsmodelPackage.PROJECT_ID: return createProjectId();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -105,9 +105,9 @@ public class EsmodelFactoryImpl extends EFactoryImpl implements EsmodelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Administration createAdministration() {
-		AdministrationImpl administration = new AdministrationImpl();
-		return administration;
+	public ServerSpace createServerSpace() {
+		ServerSpaceImpl serverSpace = new ServerSpaceImpl();
+		return serverSpace;
 	}
 
 	/**

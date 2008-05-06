@@ -107,9 +107,9 @@ public class EsmodelSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EsmodelPackage.ADMINISTRATION: {
-				Administration administration = (Administration)theEObject;
-				T result = caseAdministration(administration);
+			case EsmodelPackage.SERVER_SPACE: {
+				ServerSpace serverSpace = (ServerSpace)theEObject;
+				T result = caseServerSpace(serverSpace);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -170,17 +170,17 @@ public class EsmodelSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Administration</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Server Space</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Administration</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Server Space</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAdministration(Administration object) {
+	public T caseServerSpace(ServerSpace object) {
 		return null;
 	}
 

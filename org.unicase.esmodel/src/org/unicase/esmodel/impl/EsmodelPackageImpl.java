@@ -10,29 +10,21 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.change.ChangePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-import org.unicase.esmodel.Administration;
 import org.unicase.esmodel.EsmodelFactory;
 import org.unicase.esmodel.EsmodelPackage;
 import org.unicase.esmodel.ProjectHistory;
 import org.unicase.esmodel.ProjectId;
 import org.unicase.esmodel.ProjectInfo;
+import org.unicase.esmodel.ServerSpace;
 import org.unicase.esmodel.SessionId;
-
 import org.unicase.esmodel.accesscontrol.AccesscontrolPackage;
-
 import org.unicase.esmodel.accesscontrol.impl.AccesscontrolPackageImpl;
-
 import org.unicase.esmodel.accesscontrol.roles.RolesPackage;
 import org.unicase.esmodel.accesscontrol.roles.impl.RolesPackageImpl;
 import org.unicase.esmodel.changemanagment.ChangemanagmentPackage;
-
 import org.unicase.esmodel.changemanagment.impl.ChangemanagmentPackageImpl;
-
 import org.unicase.model.ModelPackage;
 
 /**
@@ -68,7 +60,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass administrationEClass = null;
+	private EClass serverSpaceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -174,7 +166,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProjectHistory_Identifier() {
+	public EReference getProjectHistory_Versions() {
 		return (EReference)projectHistoryEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -183,26 +175,8 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getProjectHistory_Name() {
-		return (EAttribute)projectHistoryEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getProjectHistory_Description() {
-		return (EAttribute)projectHistoryEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getProjectHistory_Versions() {
-		return (EReference)projectHistoryEClass.getEStructuralFeatures().get(3);
+	public EReference getProjectHistory_ProjectInfo() {
+		return (EReference)projectHistoryEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -264,8 +238,8 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAdministration() {
-		return administrationEClass;
+	public EClass getServerSpace() {
+		return serverSpaceEClass;
 	}
 
 	/**
@@ -273,8 +247,26 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAdministration_OrgUnits() {
-		return (EReference)administrationEClass.getEStructuralFeatures().get(0);
+	public EReference getServerSpace_OrgUnits() {
+		return (EReference)serverSpaceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getServerSpace_Projects() {
+		return (EReference)serverSpaceEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getServerSpace_OpenSessions() {
+		return (EReference)serverSpaceEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -315,10 +307,8 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 
 		// Create classes and their features
 		projectHistoryEClass = createEClass(PROJECT_HISTORY);
-		createEReference(projectHistoryEClass, PROJECT_HISTORY__IDENTIFIER);
-		createEAttribute(projectHistoryEClass, PROJECT_HISTORY__NAME);
-		createEAttribute(projectHistoryEClass, PROJECT_HISTORY__DESCRIPTION);
 		createEReference(projectHistoryEClass, PROJECT_HISTORY__VERSIONS);
+		createEReference(projectHistoryEClass, PROJECT_HISTORY__PROJECT_INFO);
 
 		projectInfoEClass = createEClass(PROJECT_INFO);
 		createEAttribute(projectInfoEClass, PROJECT_INFO__NAME);
@@ -328,8 +318,10 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 
 		sessionIdEClass = createEClass(SESSION_ID);
 
-		administrationEClass = createEClass(ADMINISTRATION);
-		createEReference(administrationEClass, ADMINISTRATION__ORG_UNITS);
+		serverSpaceEClass = createEClass(SERVER_SPACE);
+		createEReference(serverSpaceEClass, SERVER_SPACE__ORG_UNITS);
+		createEReference(serverSpaceEClass, SERVER_SPACE__PROJECTS);
+		createEReference(serverSpaceEClass, SERVER_SPACE__OPEN_SESSIONS);
 
 		projectIdEClass = createEClass(PROJECT_ID);
 	}
@@ -376,10 +368,8 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(projectHistoryEClass, ProjectHistory.class, "ProjectHistory", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProjectHistory_Identifier(), this.getProjectId(), null, "identifier", null, 0, 1, ProjectHistory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getProjectHistory_Name(), ecorePackage.getEString(), "name", null, 1, 1, ProjectHistory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getProjectHistory_Description(), ecorePackage.getEString(), "description", null, 0, 1, ProjectHistory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProjectHistory_Versions(), theChangemanagmentPackage.getVersion(), null, "versions", null, 1, -1, ProjectHistory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProjectHistory_ProjectInfo(), this.getProjectInfo(), null, "projectInfo", null, 1, 1, ProjectHistory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(projectInfoEClass, ProjectInfo.class, "ProjectInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getProjectInfo_Name(), ecorePackage.getEString(), "name", null, 1, 1, ProjectInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -389,8 +379,10 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 
 		initEClass(sessionIdEClass, SessionId.class, "SessionId", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(administrationEClass, Administration.class, "Administration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAdministration_OrgUnits(), theAccesscontrolPackage.getOrgUnit(), null, "orgUnits", null, 0, -1, Administration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(serverSpaceEClass, ServerSpace.class, "ServerSpace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getServerSpace_OrgUnits(), theAccesscontrolPackage.getOrgUnit(), null, "orgUnits", null, 0, -1, ServerSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getServerSpace_Projects(), this.getProjectHistory(), null, "projects", null, 0, -1, ServerSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getServerSpace_OpenSessions(), this.getSessionId(), null, "openSessions", null, 0, -1, ServerSpace.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(projectIdEClass, ProjectId.class, "ProjectId", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

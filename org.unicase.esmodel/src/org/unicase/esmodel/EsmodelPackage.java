@@ -71,40 +71,22 @@ public interface EsmodelPackage extends EPackage {
 	int PROJECT_HISTORY = 0;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROJECT_HISTORY__IDENTIFIER = 0;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROJECT_HISTORY__NAME = 1;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROJECT_HISTORY__DESCRIPTION = 2;
-
-	/**
 	 * The feature id for the '<em><b>Versions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_HISTORY__VERSIONS = 3;
+	int PROJECT_HISTORY__VERSIONS = 0;
+
+	/**
+	 * The feature id for the '<em><b>Project Info</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_HISTORY__PROJECT_INFO = 1;
 
 	/**
 	 * The number of structural features of the '<em>Project History</em>' class.
@@ -113,7 +95,7 @@ public interface EsmodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_HISTORY_FEATURE_COUNT = 4;
+	int PROJECT_HISTORY_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.esmodel.impl.ProjectInfoImpl <em>Project Info</em>}' class.
@@ -200,14 +182,14 @@ public interface EsmodelPackage extends EPackage {
 
 
 	/**
-	 * The meta object id for the '{@link org.unicase.esmodel.impl.AdministrationImpl <em>Administration</em>}' class.
+	 * The meta object id for the '{@link org.unicase.esmodel.impl.ServerSpaceImpl <em>Server Space</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.unicase.esmodel.impl.AdministrationImpl
-	 * @see org.unicase.esmodel.impl.EsmodelPackageImpl#getAdministration()
+	 * @see org.unicase.esmodel.impl.ServerSpaceImpl
+	 * @see org.unicase.esmodel.impl.EsmodelPackageImpl#getServerSpace()
 	 * @generated
 	 */
-	int ADMINISTRATION = 3;
+	int SERVER_SPACE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Org Units</b></em>' containment reference list.
@@ -216,16 +198,34 @@ public interface EsmodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ADMINISTRATION__ORG_UNITS = 0;
+	int SERVER_SPACE__ORG_UNITS = 0;
 
 	/**
-	 * The number of structural features of the '<em>Administration</em>' class.
+	 * The feature id for the '<em><b>Projects</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ADMINISTRATION_FEATURE_COUNT = 1;
+	int SERVER_SPACE__PROJECTS = 1;
+
+	/**
+	 * The feature id for the '<em><b>Open Sessions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVER_SPACE__OPEN_SESSIONS = 2;
+
+	/**
+	 * The number of structural features of the '<em>Server Space</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVER_SPACE_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.esmodel.impl.ProjectIdImpl <em>Project Id</em>}' class.
@@ -267,39 +267,6 @@ public interface EsmodelPackage extends EPackage {
 	EClass getProjectHistory();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.unicase.esmodel.ProjectHistory#getIdentifier <em>Identifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Identifier</em>'.
-	 * @see org.unicase.esmodel.ProjectHistory#getIdentifier()
-	 * @see #getProjectHistory()
-	 * @generated
-	 */
-	EReference getProjectHistory_Identifier();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.esmodel.ProjectHistory#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.unicase.esmodel.ProjectHistory#getName()
-	 * @see #getProjectHistory()
-	 * @generated
-	 */
-	EAttribute getProjectHistory_Name();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.esmodel.ProjectHistory#getDescription <em>Description</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Description</em>'.
-	 * @see org.unicase.esmodel.ProjectHistory#getDescription()
-	 * @see #getProjectHistory()
-	 * @generated
-	 */
-	EAttribute getProjectHistory_Description();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link org.unicase.esmodel.ProjectHistory#getVersions <em>Versions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -309,6 +276,17 @@ public interface EsmodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getProjectHistory_Versions();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.esmodel.ProjectHistory#getProjectInfo <em>Project Info</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Project Info</em>'.
+	 * @see org.unicase.esmodel.ProjectHistory#getProjectInfo()
+	 * @see #getProjectHistory()
+	 * @generated
+	 */
+	EReference getProjectHistory_ProjectInfo();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.esmodel.ProjectInfo <em>Project Info</em>}'.
@@ -375,25 +353,47 @@ public interface EsmodelPackage extends EPackage {
 	EClass getSessionId();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.esmodel.Administration <em>Administration</em>}'.
+	 * Returns the meta object for class '{@link org.unicase.esmodel.ServerSpace <em>Server Space</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Administration</em>'.
-	 * @see org.unicase.esmodel.Administration
+	 * @return the meta object for class '<em>Server Space</em>'.
+	 * @see org.unicase.esmodel.ServerSpace
 	 * @generated
 	 */
-	EClass getAdministration();
+	EClass getServerSpace();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.esmodel.Administration#getOrgUnits <em>Org Units</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.unicase.esmodel.ServerSpace#getOrgUnits <em>Org Units</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Org Units</em>'.
-	 * @see org.unicase.esmodel.Administration#getOrgUnits()
-	 * @see #getAdministration()
+	 * @see org.unicase.esmodel.ServerSpace#getOrgUnits()
+	 * @see #getServerSpace()
 	 * @generated
 	 */
-	EReference getAdministration_OrgUnits();
+	EReference getServerSpace_OrgUnits();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.unicase.esmodel.ServerSpace#getProjects <em>Projects</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Projects</em>'.
+	 * @see org.unicase.esmodel.ServerSpace#getProjects()
+	 * @see #getServerSpace()
+	 * @generated
+	 */
+	EReference getServerSpace_Projects();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.unicase.esmodel.ServerSpace#getOpenSessions <em>Open Sessions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Open Sessions</em>'.
+	 * @see org.unicase.esmodel.ServerSpace#getOpenSessions()
+	 * @see #getServerSpace()
+	 * @generated
+	 */
+	EReference getServerSpace_OpenSessions();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.esmodel.ProjectId <em>Project Id</em>}'.
@@ -438,36 +438,20 @@ public interface EsmodelPackage extends EPackage {
 		EClass PROJECT_HISTORY = eINSTANCE.getProjectHistory();
 
 		/**
-		 * The meta object literal for the '<em><b>Identifier</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PROJECT_HISTORY__IDENTIFIER = eINSTANCE.getProjectHistory_Identifier();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PROJECT_HISTORY__NAME = eINSTANCE.getProjectHistory_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PROJECT_HISTORY__DESCRIPTION = eINSTANCE.getProjectHistory_Description();
-
-		/**
 		 * The meta object literal for the '<em><b>Versions</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference PROJECT_HISTORY__VERSIONS = eINSTANCE.getProjectHistory_Versions();
+
+		/**
+		 * The meta object literal for the '<em><b>Project Info</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROJECT_HISTORY__PROJECT_INFO = eINSTANCE.getProjectHistory_ProjectInfo();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.esmodel.impl.ProjectInfoImpl <em>Project Info</em>}' class.
@@ -522,14 +506,14 @@ public interface EsmodelPackage extends EPackage {
 		EClass SESSION_ID = eINSTANCE.getSessionId();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.esmodel.impl.AdministrationImpl <em>Administration</em>}' class.
+		 * The meta object literal for the '{@link org.unicase.esmodel.impl.ServerSpaceImpl <em>Server Space</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.unicase.esmodel.impl.AdministrationImpl
-		 * @see org.unicase.esmodel.impl.EsmodelPackageImpl#getAdministration()
+		 * @see org.unicase.esmodel.impl.ServerSpaceImpl
+		 * @see org.unicase.esmodel.impl.EsmodelPackageImpl#getServerSpace()
 		 * @generated
 		 */
-		EClass ADMINISTRATION = eINSTANCE.getAdministration();
+		EClass SERVER_SPACE = eINSTANCE.getServerSpace();
 
 		/**
 		 * The meta object literal for the '<em><b>Org Units</b></em>' containment reference list feature.
@@ -537,7 +521,23 @@ public interface EsmodelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ADMINISTRATION__ORG_UNITS = eINSTANCE.getAdministration_OrgUnits();
+		EReference SERVER_SPACE__ORG_UNITS = eINSTANCE.getServerSpace_OrgUnits();
+
+		/**
+		 * The meta object literal for the '<em><b>Projects</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERVER_SPACE__PROJECTS = eINSTANCE.getServerSpace_Projects();
+
+		/**
+		 * The meta object literal for the '<em><b>Open Sessions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERVER_SPACE__OPEN_SESSIONS = eINSTANCE.getServerSpace_OpenSessions();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.esmodel.impl.ProjectIdImpl <em>Project Id</em>}' class.

@@ -53,13 +53,13 @@ public interface EsmodelFactory extends EFactory {
 	SessionId createSessionId();
 
 	/**
-	 * Returns a new object of class '<em>Administration</em>'.
+	 * Returns a new object of class '<em>Server Space</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Administration</em>'.
+	 * @return a new object of class '<em>Server Space</em>'.
 	 * @generated
 	 */
-	Administration createAdministration();
+	ServerSpace createServerSpace();
 
 	/**
 	 * Returns a new object of class '<em>Project Id</em>'.

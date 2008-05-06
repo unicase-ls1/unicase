@@ -8,10 +8,8 @@
   <genPackages prefix="Esmodel" basePackage="org.unicase" disposableProviderFactory="true"
       ecorePackage="esmodel.ecore#/">
     <genClasses ecoreClass="esmodel.ecore#//ProjectHistory">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//ProjectHistory/identifier"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//ProjectHistory/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//ProjectHistory/description"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//ProjectHistory/versions"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference esmodel.ecore#//ProjectHistory/projectInfo"/>
     </genClasses>
     <genClasses ecoreClass="esmodel.ecore#//ProjectInfo">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//ProjectInfo/name"/>
@@ -20,8 +18,10 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference esmodel.ecore#//ProjectInfo/version"/>
     </genClasses>
     <genClasses ecoreClass="esmodel.ecore#//SessionId"/>
-    <genClasses ecoreClass="esmodel.ecore#//Administration">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//Administration/orgUnits"/>
+    <genClasses ecoreClass="esmodel.ecore#//ServerSpace">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//ServerSpace/orgUnits"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//ServerSpace/projects"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//ServerSpace/openSessions"/>
     </genClasses>
     <genClasses ecoreClass="esmodel.ecore#//ProjectId"/>
     <nestedGenPackages prefix="Changemanagment" basePackage="org.unicase.esmodel"
