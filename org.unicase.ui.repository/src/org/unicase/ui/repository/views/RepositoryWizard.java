@@ -13,7 +13,9 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.unicase.workspace.ServerInfo;
+import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceFactory;
+import org.unicase.workspace.WorkspaceManager;
 
 /**
  * Wizard for adding a new repository.
@@ -35,7 +37,8 @@ public class RepositoryWizard extends Wizard implements INewWizard {
 	 */
 	public RepositoryWizard() {
 		super();
-		serverInfo = null;//WorkspaceFactory.eINSTANCE.createServerInfo();
+		serverInfo = null;
+		//serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
 	}
 	
 	/**
@@ -71,6 +74,11 @@ public class RepositoryWizard extends Wizard implements INewWizard {
 	 */
 	public boolean performFinish() {
 		if (this.getContainer().getCurrentPage().canFlipToNextPage()) {
+			//save serverInfo to workspace
+			Workspace workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+			workspace.getServerInfos().add(this.serverInfo);
+			workspace.save();
+			
 			MessageDialog.openInformation(workbench.getActiveWorkbenchWindow()
 					.getShell(), "Success",
 					"Repository was successfully added!");
