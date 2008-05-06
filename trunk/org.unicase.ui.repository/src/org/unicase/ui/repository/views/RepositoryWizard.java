@@ -13,40 +13,43 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.unicase.workspace.ServerInfo;
-import org.unicase.workspace.impl.WorkspaceFactoryImpl;
+import org.unicase.workspace.WorkspaceFactory;
 
+/**
+ * Wizard for adding a new repository.
+ * @author shterev
+ *
+ */
 public class RepositoryWizard extends Wizard implements INewWizard {
 
-	RepositoryView parent;
+	private ServerInfo serverInfo;
 
-	ServerInfo serverInfo;
+	private RepositoryMainPage mainPage;
 
-	RepositoryMainPage mainPage;
+	private IStructuredSelection selection;
 
-	protected IStructuredSelection selection;
-
-	// the workbench instance
-	protected IWorkbench workbench;
+	private IWorkbench workbench;
 
 	/**
 	 * Default constructor.
 	 */
 	public RepositoryWizard() {
 		super();
-		serverInfo = WorkspaceFactoryImpl.eINSTANCE.createServerInfo();
+		serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
 	}
-
-	public void setRepositoryView(RepositoryView repositoryView) {
-		this.parent = repositoryView;
-	}
-
+	
+	/**
+	 * Adds all pages in the wizard.
+	 */
 	public void addPages() {
 		mainPage = new RepositoryMainPage(workbench, selection);
 		addPage(mainPage);
 	}
 
 	/**
-	 * @see IWorkbenchWizard#init(IWorkbench, IStructuredSelection)
+	 * @see IWorkbenchWizard#init(IWorkbench, IStructuredSelection)	
+	 * @param workbench the workbench
+	 * @param selection the selection
 	 */
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
@@ -56,13 +59,18 @@ public class RepositoryWizard extends Wizard implements INewWizard {
 		}
 	}
 
+	/**
+	 * {@inheritDoc} 
+	 */
 	public boolean canFinish() {
 		return true;
 	}
-
+	
+	/**
+	 * {@inheritDoc} 
+	 */
 	public boolean performFinish() {
 		if (this.getContainer().getCurrentPage().canFlipToNextPage()) {
-			parent.addRepository(serverInfo);
 			MessageDialog.openInformation(workbench.getActiveWorkbenchWindow()
 					.getShell(), "Success",
 					"Repository was successfully added!");
@@ -73,27 +81,43 @@ public class RepositoryWizard extends Wizard implements INewWizard {
 		return true;
 	}
 
+	/**
+	 * Getter for the ServerInfo.
+	 * @return the {@link ServerInfo}
+	 */
+	public ServerInfo getServerInfo() {
+		return serverInfo;
+	}
+
 }
 
+/**
+ * The main page of the wizard. 
+ * @author shterev
+ *
+ */
 class RepositoryMainPage extends WizardPage {
 
-	IWorkbench workbench;
-	IStructuredSelection selection;
+	private Text name;
+	private Text displayName;
+	private Text url;
+	private Text port;
 
-	Text name;
-	Text displayName;
-	Text url;
-	Text port;
-
+	/**
+	 * Default constructor.
+	 * @param workbench the current workbench
+	 * @param selection the current selection
+	 */
 	public RepositoryMainPage(IWorkbench workbench,
 			IStructuredSelection selection) {
 		super("Main");
 		setTitle("Server Details");
 		setDescription("Select the details for the new repository");
-		this.workbench = workbench;
-		this.selection = selection;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void createControl(Composite parent) {
 
 		GridData gd;
@@ -131,10 +155,13 @@ class RepositoryMainPage extends WizardPage {
 		setControl(composite);
 	}
 
-
+	/**
+	 * @return if the input on the current page is valid.
+	 */
 	public boolean canFlipToNextPage() {
-		if (getErrorMessage() != null)
+		if (getErrorMessage() != null){
 			return false;
+		}
 		if (isTextNonEmpty(name) && isTextNonEmpty(displayName)
 				&& isTextNonEmpty(url) && isTextNonEmpty(port)){
 			saveDataToModel();
@@ -148,9 +175,8 @@ class RepositoryMainPage extends WizardPage {
 	 * page
 	 */
 	private void saveDataToModel() {
-		// Gets the model
 		RepositoryWizard wizard = (RepositoryWizard) getWizard();
-		ServerInfo serverInfo = wizard.serverInfo;
+		ServerInfo serverInfo = wizard.getServerInfo();
 		serverInfo.setDisplayName(displayName.getText());
 		serverInfo.setName(name.getText());
 		serverInfo.setUrl(url.getText());
@@ -159,8 +185,9 @@ class RepositoryMainPage extends WizardPage {
 
 	private static boolean isTextNonEmpty(Text t) {
 		String s = t.getText();
-		if ((s != null) && (s.trim().length() > 0))
+		if ((s != null) && (s.trim().length() > 0)){
 			return true;
+		}
 		return false;
 	}
 

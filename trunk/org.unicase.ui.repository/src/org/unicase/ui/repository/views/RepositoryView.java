@@ -16,7 +16,9 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.jface.viewers.ITreeViewerListener;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.TreeExpansionEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerSorter;
@@ -35,115 +37,166 @@ import org.unicase.workspace.ConnectionException;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceFactory;
+import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.impl.WorkspaceFactoryImpl;
 
 /**
- * This sample class demonstrates how to plug-in a new workbench view. The view
- * shows data obtained from the model. The sample creates a dummy model on the
- * fly, but a real implementation would connect to the model available either in
- * this or another plug-in (e.g. the workspace). The view is connected to the
- * model using a content provider.
- * <p>
- * The view uses a label provider to define how model objects should be
- * presented in the view. Each view can present the same model objects using
- * different labels and icons, if needed. Alternatively, a single label provider
- * can be shared between views in order to ensure that objects of the same type
- * are presented in the same way everywhere.
- * <p>
+ * View containing the remote repositories.
+ * @author shterev
+ *
  */
-
-public class RepositoryView extends ViewPart {
+public class RepositoryView extends ViewPart implements ITreeViewerListener{
 	private TreeViewer viewer;
 	private Action checkout;
 	private Action addRepository;
 	private ServerAction login;
 	private Action doubleClickAction;
 
-	/*
-	 * The content provider class is responsible for providing objects to the
-	 * view. It can wrap existing objects in adapters or simply return objects
-	 * as-is. These objects may be sensitive to the current input of the view,
-	 * or ignore it and always show the same content (like Task List, for
-	 * example).
+	/**
+	 * Definition of a ProjectNode in the TreeViewer.
+	 * @author shterev
 	 */
-
 	class ProjectNode implements IAdaptable {
 		private String name;
 		private ServerNode parent;
 
+		/**
+		 * Default constructor.
+		 * @param name the name of the node
+		 */
 		public ProjectNode(String name) {
 			this.name = name;
 		}
 
+		/**
+		 * @return the name of the node.
+		 */
 		public String getName() {
 			return name;
 		}
 
+		/**
+		 * Sets the parenting ServerNode.
+		 * @param parent the parent
+		 */
 		public void setParent(ServerNode parent) {
 			this.parent = parent;
 		}
 
+		/**
+		 * @return the parent node.
+		 */
 		public ServerNode getParent() {
 			return parent;
 		}
-
+		
+		/**
+		 * {@inheritDoc}
+		 */
 		public String toString() {
 			return getName();
 		}
 
+		/**
+		 * Auto generated.
+		 */
 		public Object getAdapter(Class key) {
 			return null;
 		}
 	}
-
+	
+	/**
+	 * Definition for the ServerNode in the TreeViewer. 
+	 * @author shterev
+	 *
+	 */
 	class ServerNode extends ProjectNode {
-		private ArrayList children;
+		private ArrayList<ProjectNode> children;
 		private ServerInfo serverInfo;
 		
+		/**
+		 * Default constructor. 
+		 * @param serverInfo the ServerInfo that the node is based upon
+		 */
 		public ServerNode(ServerInfo serverInfo) {
 			super(serverInfo.getName());
-			children = new ArrayList();
+			children = new ArrayList<ProjectNode>();
 			this.serverInfo = serverInfo;
 		}
 
+		/**
+		 * Method for adding a ProjectNode.
+		 * @param child the child node
+		 */
 		public void addChild(ProjectNode child) {
 			children.add(child);
 			child.setParent(this);
 		}
 
+		/**
+		 * Removes specific ProjectNode from the Tree.
+		 * @param child the ProjectNode
+		 */
 		public void removeChild(ProjectNode child) {
 			children.remove(child);
 			child.setParent(null);
 		}
 
+		/**
+		 * @return the children of the ServerNode.
+		 */
 		public ProjectNode[] getChildren() {
 			return (ProjectNode[]) children.toArray(new ProjectNode[children
 					.size()]);
 		}
 
+		/**
+		 * @return if the ServerNode has children.
+		 */
 		public boolean hasChildren() {
 			return children.size() > 0;
 		}
 	}
 
+	/**
+	 * Content provider for the tree view.
+	 * @author shterev
+	 *
+	 */
 	class ViewContentProvider implements IStructuredContentProvider,
 			ITreeContentProvider {
 		private ServerNode invisibleRoot;
 
+		/**
+		 * .
+		 */
 		public void inputChanged(Viewer v, Object oldInput, Object newInput) {
 		}
 
+		/**
+		 * .
+		 */
 		public void dispose() {
 		}
 
+		/**
+		 * @param parent the parent node.
+		 * @return an array containing all nodes of the tree.
+		 */
 		public Object[] getElements(Object parent) {
 			if (parent.equals(getViewSite())) {
-				if (invisibleRoot == null)
+				if (invisibleRoot == null){
 					initialize();
+				}
 				return getChildren(invisibleRoot);
 			}
 			return getChildren(parent);
 		}
 
+		/**
+		 * @return the parent of a given child
+		 * @param child the child.
+		 */
 		public Object getParent(Object child) {
 			if (child instanceof ProjectNode) {
 				return ((ProjectNode) child).getParent();
@@ -151,6 +204,10 @@ public class RepositoryView extends ViewPart {
 			return null;
 		}
 
+		/**
+		 * @return the children of a given parent
+		 * @param parent the parent
+		 */
 		public Object[] getChildren(Object parent) {
 			if (parent instanceof ServerNode) {
 				return ((ServerNode) parent).getChildren();
@@ -158,25 +215,31 @@ public class RepositoryView extends ViewPart {
 			return new Object[0];
 		}
 
+		/**
+		 * @return if the parent has children
+		 * @param parent the parent
+		 */
 		public boolean hasChildren(Object parent) {
-			if (parent instanceof ServerNode)
-				return ((ServerNode) parent).hasChildren();
+			if (parent instanceof ServerNode){
+				return true;
+			}
 			return false;
 		}
 
 		/*
-		 * We will set up a dummy model to initialize tree heararchy. In a real
+		 * We will set up a dummy model to initialize tree hierarchy. In a real
 		 * code, you will connect to a real model and expose its hierarchy.
 		 */
 		private void initialize() {
 			invisibleRoot = new ServerNode(Configuration.getDefaultServerInfo());
-
-			ServerNode testServer = new ServerNode(Configuration
-					.getDefaultServerInfo());
-			invisibleRoot.addChild(testServer);
+			List<ServerInfo> servers = WorkspaceManager.getInstance().getCurrentWorkspace().getServerInfos();
+			for (ServerInfo server : servers){
+				invisibleRoot.addChild(new ServerNode(server));
+			}
 		}
 	}
-
+	
+	// TODO: To be replaced with the EMF LabelProvider.
 	class ViewLabelProvider extends LabelProvider {
 
 		public String getText(Object obj) {
@@ -202,8 +265,9 @@ public class RepositoryView extends ViewPart {
 	}
 
 	/**
-	 * This is a callback that will allow us to create the viewer and initialize
+	 * This is a callback that will allow us to create the viewer and initialize.
 	 * it.
+	 * @param parent the parent
 	 */
 	public void createPartControl(Composite parent) {
 		viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
@@ -211,6 +275,7 @@ public class RepositoryView extends ViewPart {
 		viewer.setLabelProvider(new ViewLabelProvider());
 		viewer.setSorter(new NameSorter());
 		viewer.setInput(getViewSite());
+		viewer.addTreeListener(this);
 
 		// Create the help context id for the viewer's control
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(viewer.getControl(),
@@ -259,8 +324,13 @@ public class RepositoryView extends ViewPart {
 		manager.add(addRepository);
 	}
 	
+	/**
+	 * Custom Action to contain the ServerNode.
+	 * @author shterev
+	 *
+	 */
 	private class ServerAction extends Action{
-		ServerNode serverNode;
+		protected ServerNode serverNode;
 		public void setServerNode(ServerNode serverNode){
 			this.serverNode = serverNode;
 		}
@@ -283,30 +353,23 @@ public class RepositoryView extends ViewPart {
 
 		login = new ServerAction() {
 			public void run() {
-				showMessage("Logging in...");
 				try{
-					Usersession session = WorkspaceFactory.eINSTANCE.createUsersession();
-					session.setUsername("user");
+					Usersession session = WorkspaceFactoryImpl.eINSTANCE.createUsersession();
 					session.setServerInfo(serverNode.serverInfo);
+					RepositoryLoginDialog dialog = new RepositoryLoginDialog(getSite().getShell(), getViewInstance());
+					dialog.setBlockOnOpen(true);
 					List<ProjectInfo> projectInfos;
 					try {
-						session.logIn("password");
 						projectInfos = session.getRemoteProjectList();
 						for (ProjectInfo projectInfo : projectInfos){
 							serverNode.addChild(new ProjectNode(projectInfo.getName()));
 						}
 						viewer.refresh();
-					} catch (ConnectionException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
+					} catch (ConnectionException e) {e.printStackTrace();}
 				}catch(NullPointerException e){
 					showMessage("ServerInfo is not set for this ServerNode!");
 				}
-			}
-
-		};
+			}};
 		login.setText("Login");
 		login.setToolTipText("Click to log on the server");
 		login.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages()
@@ -318,11 +381,9 @@ public class RepositoryView extends ViewPart {
 				 RepositoryWizard wizard = new RepositoryWizard();
 				  wizard.init(getSite().getWorkbenchWindow().getWorkbench(),
 				            (IStructuredSelection)getSite().getWorkbenchWindow().getSelectionService().getSelection());
-				  wizard.setRepositoryView(getViewInstance());
-				    // Instantiates the wizard container with the wizard and opens it
-				    WizardDialog dialog = new WizardDialog(getSite().getWorkbenchWindow().getShell(), wizard);
-				    dialog.create();
-				    dialog.open();
+				  WizardDialog dialog = new WizardDialog(getSite().getWorkbenchWindow().getShell(), wizard);
+				  dialog.create();
+				  dialog.open();
 			}
 		};
 		addRepository.setText("New repository...");
@@ -365,9 +426,31 @@ public class RepositoryView extends ViewPart {
 		viewer.getControl().setFocus();
 	}
 	
+	/**
+	 * Adds new repository to the local model.
+	 * @param serverInfo the new repository
+	 */
 	public void addRepository(ServerInfo serverInfo){
-		((ViewContentProvider)viewer.getContentProvider()).invisibleRoot.addChild(new ServerNode(serverInfo));
-		viewer.refresh();
+		ServerInfo newServer = WorkspaceFactory.eINSTANCE.createServerInfo();
+		newServer = serverInfo;
 		//TODO: Save locally the repository 
+	}
+
+	/**
+	 * Actions to be executed when the tree node is collapsed.
+	 * @param event a {@link TreeExpansionEvent}
+	 */
+	public void treeCollapsed(TreeExpansionEvent event) {
+		// TODO Close the connection to the server
+		
+	}
+
+	/**
+	 * Actions to be executed when the tree node is expanded.
+	 * @param event a {@link TreeExpansionEvent}
+	 */
+	public void treeExpanded(TreeExpansionEvent event) {
+		login.setServerNode(((ServerNode)event.getElement()));
+		login.run();
 	}
 }
