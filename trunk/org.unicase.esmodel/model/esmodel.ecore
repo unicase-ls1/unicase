@@ -4,12 +4,10 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="esmodel"
     nsURI="http://unicase.org/esmodel" nsPrefix="org.unicase.esmodel">
   <eClassifiers xsi:type="ecore:EClass" name="ProjectHistory">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="identifier" eType="#//ProjectId"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="versions" lowerBound="1"
         upperBound="-1" eType="#//changemanagment/Version" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="projectInfo" lowerBound="1"
+        eType="#//ProjectInfo"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProjectInfo">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -20,9 +18,13 @@
         eType="#//changemanagment/PrimaryVersionSpec"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SessionId" eSuperTypes="../../org.unicase.model/model/model.ecore#//UniqueIdentifier"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Administration">
+  <eClassifiers xsi:type="ecore:EClass" name="ServerSpace">
     <eStructuralFeatures xsi:type="ecore:EReference" name="orgUnits" upperBound="-1"
         eType="#//accesscontrol/OrgUnit" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="projects" upperBound="-1"
+        eType="#//ProjectHistory" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="openSessions" upperBound="-1"
+        eType="#//SessionId" transient="true" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProjectId" eSuperTypes="../../org.unicase.model/model/model.ecore#//UniqueIdentifier"/>
   <eSubpackages name="changemanagment" nsURI="http://unicase.org/esmodel/changemanagment"
@@ -121,7 +123,7 @@
           <eParameters name="modelElement" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElement"/>
         </eOperations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="projects" upperBound="-1"
-            eType="#//ProjectId"/>
+            eType="#//ProjectInfo"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ReaderRole" eSuperTypes="#//accesscontrol/roles/Role"/>
       <eClassifiers xsi:type="ecore:EClass" name="WriterRole" eSuperTypes="#//accesscontrol/roles/Role"/>

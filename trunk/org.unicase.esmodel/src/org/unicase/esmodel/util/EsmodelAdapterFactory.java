@@ -85,8 +85,8 @@ public class EsmodelAdapterFactory extends AdapterFactoryImpl {
 				return createSessionIdAdapter();
 			}
 			@Override
-			public Adapter caseAdministration(Administration object) {
-				return createAdministrationAdapter();
+			public Adapter caseServerSpace(ServerSpace object) {
+				return createServerSpaceAdapter();
 			}
 			@Override
 			public Adapter caseProjectId(ProjectId object) {
@@ -159,16 +159,16 @@ public class EsmodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.esmodel.Administration <em>Administration</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.unicase.esmodel.ServerSpace <em>Server Space</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.unicase.esmodel.Administration
+	 * @see org.unicase.esmodel.ServerSpace
 	 * @generated
 	 */
-	public Adapter createAdministrationAdapter() {
+	public Adapter createServerSpaceAdapter() {
 		return null;
 	}
 

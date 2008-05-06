@@ -26,18 +26,19 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.unicase.esmodel.Administration;
+import org.unicase.esmodel.EsmodelFactory;
 import org.unicase.esmodel.EsmodelPackage;
+import org.unicase.esmodel.ServerSpace;
 
 import org.unicase.esmodel.accesscontrol.AccesscontrolFactory;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.esmodel.Administration} object.
+ * This is the item provider adapter for a {@link org.unicase.esmodel.ServerSpace} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class AdministrationItemProvider
+public class ServerSpaceItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -51,7 +52,7 @@ public class AdministrationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AdministrationItemProvider(AdapterFactory adapterFactory) {
+	public ServerSpaceItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -82,7 +83,9 @@ public class AdministrationItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(EsmodelPackage.Literals.ADMINISTRATION__ORG_UNITS);
+			childrenFeatures.add(EsmodelPackage.Literals.SERVER_SPACE__ORG_UNITS);
+			childrenFeatures.add(EsmodelPackage.Literals.SERVER_SPACE__PROJECTS);
+			childrenFeatures.add(EsmodelPackage.Literals.SERVER_SPACE__OPEN_SESSIONS);
 		}
 		return childrenFeatures;
 	}
@@ -101,14 +104,14 @@ public class AdministrationItemProvider
 	}
 
 	/**
-	 * This returns Administration.gif.
+	 * This returns ServerSpace.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Administration"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ServerSpace"));
 	}
 
 	/**
@@ -119,7 +122,7 @@ public class AdministrationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_Administration_type");
+		return getString("_UI_ServerSpace_type");
 	}
 
 	/**
@@ -133,8 +136,10 @@ public class AdministrationItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Administration.class)) {
-			case EsmodelPackage.ADMINISTRATION__ORG_UNITS:
+		switch (notification.getFeatureID(ServerSpace.class)) {
+			case EsmodelPackage.SERVER_SPACE__ORG_UNITS:
+			case EsmodelPackage.SERVER_SPACE__PROJECTS:
+			case EsmodelPackage.SERVER_SPACE__OPEN_SESSIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -154,13 +159,23 @@ public class AdministrationItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(EsmodelPackage.Literals.ADMINISTRATION__ORG_UNITS,
+				(EsmodelPackage.Literals.SERVER_SPACE__ORG_UNITS,
 				 AccesscontrolFactory.eINSTANCE.createOrgUnit()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(EsmodelPackage.Literals.ADMINISTRATION__ORG_UNITS,
+				(EsmodelPackage.Literals.SERVER_SPACE__ORG_UNITS,
 				 AccesscontrolFactory.eINSTANCE.createGroup()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(EsmodelPackage.Literals.SERVER_SPACE__PROJECTS,
+				 EsmodelFactory.eINSTANCE.createProjectHistory()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(EsmodelPackage.Literals.SERVER_SPACE__OPEN_SESSIONS,
+				 EsmodelFactory.eINSTANCE.createSessionId()));
 	}
 
 	/**

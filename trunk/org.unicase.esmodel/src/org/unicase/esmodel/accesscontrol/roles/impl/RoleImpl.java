@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.unicase.esmodel.ProjectId;
 
+import org.unicase.esmodel.ProjectInfo;
 import org.unicase.esmodel.accesscontrol.roles.Role;
 import org.unicase.esmodel.accesscontrol.roles.RolesPackage;
 
@@ -45,7 +46,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ProjectId> projects;
+	protected EList<ProjectInfo> projects;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -71,9 +72,9 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ProjectId> getProjects() {
+	public EList<ProjectInfo> getProjects() {
 		if (projects == null) {
-			projects = new EObjectResolvingEList<ProjectId>(ProjectId.class, this, RolesPackage.ROLE__PROJECTS);
+			projects = new EObjectResolvingEList<ProjectInfo>(ProjectInfo.class, this, RolesPackage.ROLE__PROJECTS);
 		}
 		return projects;
 	}
@@ -158,7 +159,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 		switch (featureID) {
 			case RolesPackage.ROLE__PROJECTS:
 				getProjects().clear();
-				getProjects().addAll((Collection<? extends ProjectId>)newValue);
+				getProjects().addAll((Collection<? extends ProjectInfo>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
