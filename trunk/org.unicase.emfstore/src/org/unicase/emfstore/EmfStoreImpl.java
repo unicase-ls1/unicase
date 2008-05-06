@@ -12,11 +12,11 @@ import org.unicase.emfstore.storage.ResourceStorage;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 
-public class EmfStore implements Runnable {
+public class EmfStoreImpl implements Runnable {
 
 	private boolean doExit;
 	
-	public EmfStore(ResourceStorage storage, Properties properties) {
+	public EmfStoreImpl(ResourceStorage storage, Properties properties) {
 		
 		this.doExit=false;
 		
