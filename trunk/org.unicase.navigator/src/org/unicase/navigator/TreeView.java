@@ -2,8 +2,8 @@ package org.unicase.navigator;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.ui.navigator.CommonNavigator;
-import org.unicase.emfstore.EmfStoreException;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.esmodel.ProjectInfo;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.Usersession;

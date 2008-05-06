@@ -1,6 +1,6 @@
 package org.unicase.workspace.connectionmanager;
 
-import org.unicase.emfstore.EmfStoreException;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 
 /**
  * Represents an exceptional condition with the connection to the EmfStore.

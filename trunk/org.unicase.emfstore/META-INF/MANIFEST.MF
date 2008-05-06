@@ -21,4 +21,5 @@ Bundle-ClassPath: lib/antlr.jar,
  lib/mysql-connector-java-3.1.14-bin.jar,
  .
 Export-Package: org.unicase.emfstore,
- org.unicase.emfstore.accesscontrol
+ org.unicase.emfstore.accesscontrol,
+ org.unicase.emfstore.exceptions

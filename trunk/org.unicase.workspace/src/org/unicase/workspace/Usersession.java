@@ -10,8 +10,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.unicase.emfstore.EmfStoreException;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.esmodel.ProjectInfo;
 import org.unicase.esmodel.SessionId;
 import org.unicase.esmodel.changemanagment.VersionSpec;
