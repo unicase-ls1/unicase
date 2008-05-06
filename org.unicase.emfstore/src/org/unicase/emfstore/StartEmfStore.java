@@ -14,7 +14,7 @@ import org.unicase.emfstore.storage.TeneoStorage;
 
 public class StartEmfStore implements IApplication {
 
-	private EmfStore emfStore;
+	private EmfStoreImpl emfStore;
 	
 	public Object start(IApplicationContext context) throws Exception {
 
