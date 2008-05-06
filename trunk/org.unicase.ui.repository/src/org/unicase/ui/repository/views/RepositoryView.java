@@ -31,9 +31,9 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
+import org.unicase.emfstore.EmfStoreException;
 import org.unicase.esmodel.ProjectInfo;
 import org.unicase.workspace.Configuration;
-import org.unicase.workspace.ConnectionException;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceFactory;
@@ -373,7 +373,7 @@ public class RepositoryView extends ViewPart implements ITreeViewerListener{
 							serverNode.addChild(new ProjectNode(projectInfo.getName()));
 						}
 						viewer.refresh();
-					} catch (ConnectionException e) {e.printStackTrace();}
+					} catch (EmfStoreException e) {e.printStackTrace();}
 				}catch(NullPointerException e){
 					showMessage("ServerInfo is not set for this ServerNode!");
 				}
