@@ -64,6 +64,7 @@ public class WorkspaceFactoryImpl extends EFactoryImpl implements WorkspaceFacto
 			case WorkspacePackage.SERVER_INFO: return createServerInfo();
 			case WorkspacePackage.USERSESSION: return createUsersession();
 			case WorkspacePackage.PROJECT_SPACE: return createProjectSpace();
+			case WorkspacePackage.SERVER_INFO_AGGREGATION: return createServerInfoAggregation();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -107,6 +108,16 @@ public class WorkspaceFactoryImpl extends EFactoryImpl implements WorkspaceFacto
 	public ProjectSpace createProjectSpace() {
 		ProjectSpaceImpl projectSpace = new ProjectSpaceImpl();
 		return projectSpace;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ServerInfoAggregation createServerInfoAggregation() {
+		ServerInfoAggregationImpl serverInfoAggregation = new ServerInfoAggregationImpl();
+		return serverInfoAggregation;
 	}
 
 	/**

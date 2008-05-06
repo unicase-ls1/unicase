@@ -27,7 +27,7 @@ import org.unicase.workspace.connectionmanager.ConnectionManager;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.unicase.workspace.Workspace#getProjectSpaces <em>Project Spaces</em>}</li>
- *   <li>{@link org.unicase.workspace.Workspace#getServerInfos <em>Server Infos</em>}</li>
+ *   <li>{@link org.unicase.workspace.Workspace#getServerInfoAggregation <em>Server Info Aggregation</em>}</li>
  * </ul>
  * </p>
  *
@@ -53,20 +53,30 @@ public interface Workspace extends EObject, IAdaptable {
 	EList<ProjectSpace> getProjectSpaces();
 
 	/**
-	 * Returns the value of the '<em><b>Server Infos</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.workspace.ServerInfo}.
+	 * Returns the value of the '<em><b>Server Info Aggregation</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Server Infos</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Server Info Aggregation</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Server Infos</em>' containment reference list.
-	 * @see org.unicase.workspace.WorkspacePackage#getWorkspace_ServerInfos()
-	 * @model containment="true"
+	 * @return the value of the '<em>Server Info Aggregation</em>' containment reference.
+	 * @see #setServerInfoAggregation(ServerInfoAggregation)
+	 * @see org.unicase.workspace.WorkspacePackage#getWorkspace_ServerInfoAggregation()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<ServerInfo> getServerInfos();
+	ServerInfoAggregation getServerInfoAggregation();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.workspace.Workspace#getServerInfoAggregation <em>Server Info Aggregation</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Server Info Aggregation</em>' containment reference.
+	 * @see #getServerInfoAggregation()
+	 * @generated
+	 */
+	void setServerInfoAggregation(ServerInfoAggregation value);
 
 	/**
 	 * <!-- begin-user-doc -->

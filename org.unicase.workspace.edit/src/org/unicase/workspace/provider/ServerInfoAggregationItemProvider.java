@@ -16,7 +16,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -24,20 +24,19 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
-
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.model.Project;
-import org.unicase.workspace.Workspace;
+
+import org.unicase.workspace.ServerInfoAggregation;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspacePackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.workspace.Workspace} object.
+ * This is the item provider adapter for a {@link org.unicase.workspace.ServerInfoAggregation} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class WorkspaceItemProvider
+public class ServerInfoAggregationItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -51,7 +50,7 @@ public class WorkspaceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public WorkspaceItemProvider(AdapterFactory adapterFactory) {
+	public ServerInfoAggregationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -66,31 +65,8 @@ public class WorkspaceItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addProjectSpacesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Project Spaces feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addProjectSpacesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Workspace_projectSpaces_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Workspace_projectSpaces_feature", "_UI_Workspace_type"),
-				 WorkspacePackage.Literals.WORKSPACE__PROJECT_SPACES,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**
@@ -105,7 +81,7 @@ public class WorkspaceItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(WorkspacePackage.Literals.WORKSPACE__SERVER_INFO_AGGREGATION);
+			childrenFeatures.add(WorkspacePackage.Literals.SERVER_INFO_AGGREGATION__SERVER_INFOS);
 		}
 		return childrenFeatures;
 	}
@@ -124,14 +100,14 @@ public class WorkspaceItemProvider
 	}
 
 	/**
-	 * This returns Workspace.gif.
+	 * This returns ServerInfoAggregation.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Workspace"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ServerInfoAggregation"));
 	}
 
 	/**
@@ -142,7 +118,7 @@ public class WorkspaceItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_Workspace_type");
+		return getString("_UI_ServerInfoAggregation_type");
 	}
 
 	/**
@@ -156,8 +132,8 @@ public class WorkspaceItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Workspace.class)) {
-			case WorkspacePackage.WORKSPACE__SERVER_INFO_AGGREGATION:
+		switch (notification.getFeatureID(ServerInfoAggregation.class)) {
+			case WorkspacePackage.SERVER_INFO_AGGREGATION__SERVER_INFOS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -177,8 +153,8 @@ public class WorkspaceItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(WorkspacePackage.Literals.WORKSPACE__SERVER_INFO_AGGREGATION,
-				 WorkspaceFactory.eINSTANCE.createServerInfoAggregation()));
+				(WorkspacePackage.Literals.SERVER_INFO_AGGREGATION__SERVER_INFOS,
+				 WorkspaceFactory.eINSTANCE.createServerInfo()));
 	}
 
 	/**
@@ -191,16 +167,5 @@ public class WorkspaceItemProvider
 	public ResourceLocator getResourceLocator() {
 		return WorkspaceEditPlugin.INSTANCE;
 	}
-
-	@Override
-	public Collection<?> getChildren(Object object) {
-
-		if (object instanceof Workspace){
-			Workspace workspace = (Workspace)object;
-			return workspace.getProjectSpaces();
-		}
-		return super.getChildren(object);
-	}
-	
 
 }
