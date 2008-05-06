@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.unicase.esmodel.EsmodelFactory;
+import org.unicase.esmodel.ProjectId;
 import org.unicase.esmodel.ProjectInfo;
 import org.unicase.esmodel.SessionId;
 import org.unicase.esmodel.changemanagment.ChangePackage;
@@ -21,7 +22,6 @@ import org.unicase.model.LeafSection;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.Project;
-import org.unicase.model.ProjectId;
 import org.unicase.workspace.ServerInfo;
 
 public class StubConnectionManagerImpl implements ConnectionManager {
@@ -53,7 +53,7 @@ public class StubConnectionManagerImpl implements ConnectionManager {
 			throws ConnectionException {
 		List<ProjectInfo> ret = new ArrayList<ProjectInfo>();
 		
-		ProjectId projectId = ModelFactory.eINSTANCE.createProjectId();
+		ProjectId projectId = EsmodelFactory.eINSTANCE.createProjectId();
 		
 		HeadVersionSpec headVersionSpec = ChangemanagmentFactoryImpl.eINSTANCE.createHeadVersionSpec();
 		
@@ -83,10 +83,6 @@ public class StubConnectionManagerImpl implements ConnectionManager {
 		
 		ModelFactory factory = ModelFactory.eINSTANCE;
 		Project project = factory.createProject();
-		project.setName("Sysiphus EMF Evaluation");
-		project
-				.setDescription("This model is part of the effort to evaluate the EMF Framework.");
-
 		CompositeSection rootSection = factory.createCompositeSection();
 		rootSection.setName("RAD");
 		rootSection

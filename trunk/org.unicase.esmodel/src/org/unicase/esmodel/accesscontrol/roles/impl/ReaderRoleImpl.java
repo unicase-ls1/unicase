@@ -4,12 +4,12 @@
  *
  * $Id$
  */
-package org.unicase.esmodel.accesscontrol.impl;
+package org.unicase.esmodel.accesscontrol.roles.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.unicase.esmodel.accesscontrol.AccesscontrolPackage;
-import org.unicase.esmodel.accesscontrol.ReaderRole;
+import org.unicase.esmodel.accesscontrol.roles.ReaderRole;
+import org.unicase.esmodel.accesscontrol.roles.RolesPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,7 +37,7 @@ public class ReaderRoleImpl extends RoleImpl implements ReaderRole {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return AccesscontrolPackage.Literals.READER_ROLE;
+		return RolesPackage.Literals.READER_ROLE;
 	}
 
 } //ReaderRoleImpl

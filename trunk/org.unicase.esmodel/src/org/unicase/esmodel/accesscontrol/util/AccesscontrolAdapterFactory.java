@@ -85,26 +85,6 @@ public class AccesscontrolAdapterFactory extends AdapterFactoryImpl {
 				return createGroupAdapter();
 			}
 			@Override
-			public Adapter caseRole(Role object) {
-				return createRoleAdapter();
-			}
-			@Override
-			public Adapter caseReaderRole(ReaderRole object) {
-				return createReaderRoleAdapter();
-			}
-			@Override
-			public Adapter caseWriterRole(WriterRole object) {
-				return createWriterRoleAdapter();
-			}
-			@Override
-			public Adapter caseProjectAdminRole(ProjectAdminRole object) {
-				return createProjectAdminRoleAdapter();
-			}
-			@Override
-			public Adapter caseServerAdmin(ServerAdmin object) {
-				return createServerAdminAdapter();
-			}
-			@Override
 			public Adapter caseOrgUnitId(OrgUnitId object) {
 				return createOrgUnitIdAdapter();
 			}
@@ -171,76 +151,6 @@ public class AccesscontrolAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createGroupAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.esmodel.accesscontrol.Role <em>Role</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.esmodel.accesscontrol.Role
-	 * @generated
-	 */
-	public Adapter createRoleAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.esmodel.accesscontrol.ReaderRole <em>Reader Role</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.esmodel.accesscontrol.ReaderRole
-	 * @generated
-	 */
-	public Adapter createReaderRoleAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.esmodel.accesscontrol.WriterRole <em>Writer Role</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.esmodel.accesscontrol.WriterRole
-	 * @generated
-	 */
-	public Adapter createWriterRoleAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.esmodel.accesscontrol.ProjectAdminRole <em>Project Admin Role</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.esmodel.accesscontrol.ProjectAdminRole
-	 * @generated
-	 */
-	public Adapter createProjectAdminRoleAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.esmodel.accesscontrol.ServerAdmin <em>Server Admin</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.esmodel.accesscontrol.ServerAdmin
-	 * @generated
-	 */
-	public Adapter createServerAdminAdapter() {
 		return null;
 	}
 

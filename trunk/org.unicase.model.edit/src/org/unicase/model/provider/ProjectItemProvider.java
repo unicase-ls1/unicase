@@ -67,54 +67,8 @@ public class ProjectItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addNamePropertyDescriptor(object);
-			addDescriptionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Project_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Project_name_feature", "_UI_Project_type"),
-				 ModelPackage.Literals.PROJECT__NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Description feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Project_description_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Project_description_feature", "_UI_Project_type"),
-				 ModelPackage.Literals.PROJECT__DESCRIPTION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -130,7 +84,6 @@ public class ProjectItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS);
-			childrenFeatures.add(ModelPackage.Literals.PROJECT__IDENTIFIER);
 		}
 		return childrenFeatures;
 	}
@@ -167,10 +120,7 @@ public class ProjectItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Project)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Project_type") :
-			getString("_UI_Project_type") + " " + label;
+		return getString("_UI_Project_type");
 	}
 
 	/**
@@ -185,12 +135,7 @@ public class ProjectItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Project.class)) {
-			case ModelPackage.PROJECT__NAME:
-			case ModelPackage.PROJECT__DESCRIPTION:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
 			case ModelPackage.PROJECT__MODEL_ELEMENTS:
-			case ModelPackage.PROJECT__IDENTIFIER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -237,11 +182,6 @@ public class ProjectItemProvider
 			(createChildParameter
 				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 				 OrganizationFactory.eINSTANCE.createGroup()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__IDENTIFIER,
-				 ModelFactory.eINSTANCE.createProjectId()));
 	}
 
 	/**

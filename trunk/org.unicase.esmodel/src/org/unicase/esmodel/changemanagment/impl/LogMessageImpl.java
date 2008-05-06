@@ -30,8 +30,8 @@ import org.unicase.esmodel.changemanagment.LogMessage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.unicase.esmodel.changemanagment.impl.LogMessageImpl#getMessage <em>Message</em>}</li>
- *   <li>{@link org.unicase.esmodel.changemanagment.impl.LogMessageImpl#getAuthor <em>Author</em>}</li>
  *   <li>{@link org.unicase.esmodel.changemanagment.impl.LogMessageImpl#getDate <em>Date</em>}</li>
+ *   <li>{@link org.unicase.esmodel.changemanagment.impl.LogMessageImpl#getAuthor <em>Author</em>}</li>
  * </ul>
  * </p>
  *
@@ -59,16 +59,6 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 	protected String message = MESSAGE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getAuthor() <em>Author</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAuthor()
-	 * @generated
-	 * @ordered
-	 */
-	protected User author;
-
-	/**
 	 * The default value of the '{@link #getDate() <em>Date</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -87,6 +77,26 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 	 * @ordered
 	 */
 	protected Date date = DATE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getAuthor() <em>Author</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAuthor()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String AUTHOR_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getAuthor() <em>Author</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAuthor()
+	 * @generated
+	 * @ordered
+	 */
+	protected String author = AUTHOR_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -133,7 +143,7 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public User getAuthor() {
+	public String getAuthor() {
 		return author;
 	}
 
@@ -142,33 +152,11 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetAuthor(User newAuthor, NotificationChain msgs) {
-		User oldAuthor = author;
+	public void setAuthor(String newAuthor) {
+		String oldAuthor = author;
 		author = newAuthor;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ChangemanagmentPackage.LOG_MESSAGE__AUTHOR, oldAuthor, newAuthor);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAuthor(User newAuthor) {
-		if (newAuthor != author) {
-			NotificationChain msgs = null;
-			if (author != null)
-				msgs = ((InternalEObject)author).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ChangemanagmentPackage.LOG_MESSAGE__AUTHOR, null, msgs);
-			if (newAuthor != null)
-				msgs = ((InternalEObject)newAuthor).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ChangemanagmentPackage.LOG_MESSAGE__AUTHOR, null, msgs);
-			msgs = basicSetAuthor(newAuthor, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ChangemanagmentPackage.LOG_MESSAGE__AUTHOR, newAuthor, newAuthor));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ChangemanagmentPackage.LOG_MESSAGE__AUTHOR, oldAuthor, author));
 	}
 
 	/**
@@ -198,28 +186,14 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ChangemanagmentPackage.LOG_MESSAGE__AUTHOR:
-				return basicSetAuthor(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ChangemanagmentPackage.LOG_MESSAGE__MESSAGE:
 				return getMessage();
-			case ChangemanagmentPackage.LOG_MESSAGE__AUTHOR:
-				return getAuthor();
 			case ChangemanagmentPackage.LOG_MESSAGE__DATE:
 				return getDate();
+			case ChangemanagmentPackage.LOG_MESSAGE__AUTHOR:
+				return getAuthor();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -235,11 +209,11 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 			case ChangemanagmentPackage.LOG_MESSAGE__MESSAGE:
 				setMessage((String)newValue);
 				return;
-			case ChangemanagmentPackage.LOG_MESSAGE__AUTHOR:
-				setAuthor((User)newValue);
-				return;
 			case ChangemanagmentPackage.LOG_MESSAGE__DATE:
 				setDate((Date)newValue);
+				return;
+			case ChangemanagmentPackage.LOG_MESSAGE__AUTHOR:
+				setAuthor((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -256,11 +230,11 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 			case ChangemanagmentPackage.LOG_MESSAGE__MESSAGE:
 				setMessage(MESSAGE_EDEFAULT);
 				return;
-			case ChangemanagmentPackage.LOG_MESSAGE__AUTHOR:
-				setAuthor((User)null);
-				return;
 			case ChangemanagmentPackage.LOG_MESSAGE__DATE:
 				setDate(DATE_EDEFAULT);
+				return;
+			case ChangemanagmentPackage.LOG_MESSAGE__AUTHOR:
+				setAuthor(AUTHOR_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -276,10 +250,10 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 		switch (featureID) {
 			case ChangemanagmentPackage.LOG_MESSAGE__MESSAGE:
 				return MESSAGE_EDEFAULT == null ? message != null : !MESSAGE_EDEFAULT.equals(message);
-			case ChangemanagmentPackage.LOG_MESSAGE__AUTHOR:
-				return author != null;
 			case ChangemanagmentPackage.LOG_MESSAGE__DATE:
 				return DATE_EDEFAULT == null ? date != null : !DATE_EDEFAULT.equals(date);
+			case ChangemanagmentPackage.LOG_MESSAGE__AUTHOR:
+				return AUTHOR_EDEFAULT == null ? author != null : !AUTHOR_EDEFAULT.equals(author);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -298,6 +272,8 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 		result.append(message);
 		result.append(", date: ");
 		result.append(date);
+		result.append(", author: ");
+		result.append(author);
 		result.append(')');
 		return result.toString();
 	}

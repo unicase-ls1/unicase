@@ -8,34 +8,22 @@ package org.unicase.esmodel.accesscontrol.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.change.ChangePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.unicase.esmodel.EsmodelPackage;
-
 import org.unicase.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.esmodel.accesscontrol.AccesscontrolPackage;
 import org.unicase.esmodel.accesscontrol.Group;
 import org.unicase.esmodel.accesscontrol.OrgUnit;
 import org.unicase.esmodel.accesscontrol.OrgUnitId;
-import org.unicase.esmodel.accesscontrol.ProjectAdminRole;
-import org.unicase.esmodel.accesscontrol.ReaderRole;
-import org.unicase.esmodel.accesscontrol.Role;
-import org.unicase.esmodel.accesscontrol.ServerAdmin;
 import org.unicase.esmodel.accesscontrol.User;
-import org.unicase.esmodel.accesscontrol.WriterRole;
-
+import org.unicase.esmodel.accesscontrol.roles.RolesPackage;
+import org.unicase.esmodel.accesscontrol.roles.impl.RolesPackageImpl;
 import org.unicase.esmodel.changemanagment.ChangemanagmentPackage;
-
 import org.unicase.esmodel.changemanagment.impl.ChangemanagmentPackageImpl;
-
 import org.unicase.esmodel.impl.EsmodelPackageImpl;
-
 import org.unicase.model.ModelPackage;
 
 /**
@@ -65,41 +53,6 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 	 * @generated
 	 */
 	private EClass groupEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass roleEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass readerRoleEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass writerRoleEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass projectAdminRoleEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass serverAdminEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -171,16 +124,19 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 		// Obtain or create and register interdependencies
 		EsmodelPackageImpl theEsmodelPackage = (EsmodelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(EsmodelPackage.eNS_URI) instanceof EsmodelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EsmodelPackage.eNS_URI) : EsmodelPackage.eINSTANCE);
 		ChangemanagmentPackageImpl theChangemanagmentPackage = (ChangemanagmentPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ChangemanagmentPackage.eNS_URI) instanceof ChangemanagmentPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ChangemanagmentPackage.eNS_URI) : ChangemanagmentPackage.eINSTANCE);
+		RolesPackageImpl theRolesPackage = (RolesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RolesPackage.eNS_URI) instanceof RolesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RolesPackage.eNS_URI) : RolesPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theAccesscontrolPackage.createPackageContents();
 		theEsmodelPackage.createPackageContents();
 		theChangemanagmentPackage.createPackageContents();
+		theRolesPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theAccesscontrolPackage.initializePackageContents();
 		theEsmodelPackage.initializePackageContents();
 		theChangemanagmentPackage.initializePackageContents();
+		theRolesPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theAccesscontrolPackage.freeze();
@@ -283,60 +239,6 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getRole() {
-		return roleEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getRole_Projects() {
-		return (EReference)roleEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getReaderRole() {
-		return readerRoleEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getWriterRole() {
-		return writerRoleEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getProjectAdminRole() {
-		return projectAdminRoleEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getServerAdmin() {
-		return serverAdminEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getOrgUnitId() {
 		return orgUnitIdEClass;
 	}
@@ -382,17 +284,6 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 		groupEClass = createEClass(GROUP);
 		createEReference(groupEClass, GROUP__MEMBERS);
 
-		roleEClass = createEClass(ROLE);
-		createEReference(roleEClass, ROLE__PROJECTS);
-
-		readerRoleEClass = createEClass(READER_ROLE);
-
-		writerRoleEClass = createEClass(WRITER_ROLE);
-
-		projectAdminRoleEClass = createEClass(PROJECT_ADMIN_ROLE);
-
-		serverAdminEClass = createEClass(SERVER_ADMIN);
-
 		orgUnitIdEClass = createEClass(ORG_UNIT_ID);
 	}
 
@@ -420,7 +311,11 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
+		RolesPackage theRolesPackage = (RolesPackage)EPackage.Registry.INSTANCE.getEPackage(RolesPackage.eNS_URI);
 		ModelPackage theModelPackage = (ModelPackage)EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
+
+		// Add subpackages
+		getESubpackages().add(theRolesPackage);
 
 		// Create type parameters
 
@@ -428,10 +323,6 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 
 		// Add supertypes to classes
 		groupEClass.getESuperTypes().add(this.getOrgUnit());
-		readerRoleEClass.getESuperTypes().add(this.getRole());
-		writerRoleEClass.getESuperTypes().add(this.getRole());
-		projectAdminRoleEClass.getESuperTypes().add(this.getRole());
-		serverAdminEClass.getESuperTypes().add(this.getRole());
 		orgUnitIdEClass.getESuperTypes().add(theModelPackage.getUniqueIdentifier());
 
 		// Initialize classes and features; add operations and parameters
@@ -441,38 +332,12 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 
 		initEClass(orgUnitEClass, OrgUnit.class, "OrgUnit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getOrgUnit_Name(), ecorePackage.getEString(), "name", null, 1, 1, OrgUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getOrgUnit_Roles(), this.getRole(), null, "roles", null, 0, -1, OrgUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOrgUnit_Roles(), theRolesPackage.getRole(), null, "roles", null, 0, -1, OrgUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOrgUnit_Id(), this.getOrgUnitId(), null, "id", null, 0, 1, OrgUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getOrgUnit_Description(), ecorePackage.getEString(), "description", null, 0, 1, OrgUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(groupEClass, Group.class, "Group", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGroup_Members(), this.getOrgUnit(), null, "members", null, 0, -1, Group.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(roleEClass, Role.class, "Role", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRole_Projects(), theModelPackage.getProjectId(), null, "projects", null, 0, -1, Role.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		EOperation op = addEOperation(roleEClass, ecorePackage.getEBoolean(), "canAdministrate", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theModelPackage.getProjectId(), "projectId", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(roleEClass, ecorePackage.getEBoolean(), "canCreate", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theModelPackage.getModelElement(), "modelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(roleEClass, ecorePackage.getEBoolean(), "canDelete", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theModelPackage.getModelElement(), "modelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(roleEClass, ecorePackage.getEBoolean(), "canModify", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theModelPackage.getModelElement(), "modelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(roleEClass, ecorePackage.getEBoolean(), "canRead", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theModelPackage.getModelElement(), "modelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(readerRoleEClass, ReaderRole.class, "ReaderRole", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(writerRoleEClass, WriterRole.class, "WriterRole", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(projectAdminRoleEClass, ProjectAdminRole.class, "ProjectAdminRole", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(serverAdminEClass, ServerAdmin.class, "ServerAdmin", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(orgUnitIdEClass, OrgUnitId.class, "OrgUnitId", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 	}

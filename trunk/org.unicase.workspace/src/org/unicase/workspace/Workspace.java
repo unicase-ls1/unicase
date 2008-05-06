@@ -11,9 +11,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.esmodel.SessionId;
+import org.unicase.esmodel.ProjectId;
 import org.unicase.esmodel.changemanagment.VersionSpec;
-import org.unicase.model.ProjectId;
 import org.unicase.workspace.connectionmanager.ConnectionException;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 

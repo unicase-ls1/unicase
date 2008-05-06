@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.esmodel.accesscontrol;
+package org.unicase.esmodel.accesscontrol.roles;
 
 
 /**
@@ -13,7 +13,7 @@ package org.unicase.esmodel.accesscontrol;
  * <!-- end-user-doc -->
  *
  *
- * @see org.unicase.esmodel.accesscontrol.AccesscontrolPackage#getReaderRole()
+ * @see org.unicase.esmodel.accesscontrol.roles.RolesPackage#getReaderRole()
  * @model
  * @generated
  */

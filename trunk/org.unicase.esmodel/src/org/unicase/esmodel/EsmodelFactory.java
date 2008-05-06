@@ -53,6 +53,24 @@ public interface EsmodelFactory extends EFactory {
 	SessionId createSessionId();
 
 	/**
+	 * Returns a new object of class '<em>Administration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Administration</em>'.
+	 * @generated
+	 */
+	Administration createAdministration();
+
+	/**
+	 * Returns a new object of class '<em>Project Id</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Project Id</em>'.
+	 * @generated
+	 */
+	ProjectId createProjectId();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

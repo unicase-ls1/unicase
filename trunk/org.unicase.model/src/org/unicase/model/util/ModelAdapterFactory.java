@@ -96,10 +96,6 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 				return createProjectAdapter();
 			}
 			@Override
-			public Adapter caseProjectId(ProjectId object) {
-				return createProjectIdAdapter();
-			}
-			@Override
 			public Adapter caseModelElementId(ModelElementId object) {
 				return createModelElementIdAdapter();
 			}
@@ -212,20 +208,6 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createProjectAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.ProjectId <em>Project Id</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.model.ProjectId
-	 * @generated
-	 */
-	public Adapter createProjectIdAdapter() {
 		return null;
 	}
 

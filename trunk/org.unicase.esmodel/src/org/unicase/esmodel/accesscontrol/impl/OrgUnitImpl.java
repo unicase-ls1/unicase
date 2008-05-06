@@ -9,21 +9,17 @@ package org.unicase.esmodel.accesscontrol.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
+import org.unicase.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.esmodel.accesscontrol.AccesscontrolPackage;
 import org.unicase.esmodel.accesscontrol.OrgUnit;
 import org.unicase.esmodel.accesscontrol.OrgUnitId;
-import org.unicase.esmodel.accesscontrol.Role;
+import org.unicase.esmodel.accesscontrol.roles.Role;
 
 /**
  * <!-- begin-user-doc -->
@@ -105,10 +101,11 @@ public class OrgUnitImpl extends EObjectImpl implements OrgUnit {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected OrgUnitImpl() {
 		super();
+		this.setId(AccesscontrolFactory.eINSTANCE.createOrgUnitId());
 	}
 
 	/**

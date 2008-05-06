@@ -8,6 +8,9 @@
   <genPackages prefix="Esmodel" basePackage="org.unicase" disposableProviderFactory="true"
       ecorePackage="esmodel.ecore#/">
     <genClasses ecoreClass="esmodel.ecore#//ProjectHistory">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//ProjectHistory/identifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//ProjectHistory/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//ProjectHistory/description"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//ProjectHistory/versions"/>
     </genClasses>
     <genClasses ecoreClass="esmodel.ecore#//ProjectInfo">
@@ -17,6 +20,10 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference esmodel.ecore#//ProjectInfo/version"/>
     </genClasses>
     <genClasses ecoreClass="esmodel.ecore#//SessionId"/>
+    <genClasses ecoreClass="esmodel.ecore#//Administration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//Administration/orgUnits"/>
+    </genClasses>
+    <genClasses ecoreClass="esmodel.ecore#//ProjectId"/>
     <nestedGenPackages prefix="Changemanagment" basePackage="org.unicase.esmodel"
         disposableProviderFactory="true" ecorePackage="esmodel.ecore#//changemanagment">
       <genClasses ecoreClass="esmodel.ecore#//changemanagment/TagVersionSpec">
@@ -31,9 +38,9 @@
       <genClasses image="false" ecoreClass="esmodel.ecore#//changemanagment/VersionSpec"/>
       <genClasses ecoreClass="esmodel.ecore#//changemanagment/LogMessage">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//changemanagment/LogMessage/message"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference esmodel.ecore#//changemanagment/LogMessage/author"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//changemanagment/LogMessage/date"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EAttribute esmodel.ecore#//changemanagment/LogMessage/author"/>
       </genClasses>
       <genClasses ecoreClass="esmodel.ecore#//changemanagment/ChangePackage">
         <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference esmodel.ecore#//changemanagment/ChangePackage/fowardDelta"/>
@@ -83,30 +90,37 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference esmodel.ecore#//accesscontrol/Group/members"/>
       </genClasses>
-      <genClasses ecoreClass="esmodel.ecore#//accesscontrol/Role">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference esmodel.ecore#//accesscontrol/Role/projects"/>
-        <genOperations ecoreOperation="esmodel.ecore#//accesscontrol/Role/canAdministrate">
-          <genParameters ecoreParameter="esmodel.ecore#//accesscontrol/Role/canAdministrate/projectId"/>
-        </genOperations>
-        <genOperations ecoreOperation="esmodel.ecore#//accesscontrol/Role/canCreate">
-          <genParameters ecoreParameter="esmodel.ecore#//accesscontrol/Role/canCreate/modelElement"/>
-        </genOperations>
-        <genOperations ecoreOperation="esmodel.ecore#//accesscontrol/Role/canDelete">
-          <genParameters ecoreParameter="esmodel.ecore#//accesscontrol/Role/canDelete/modelElement"/>
-        </genOperations>
-        <genOperations ecoreOperation="esmodel.ecore#//accesscontrol/Role/canModify">
-          <genParameters ecoreParameter="esmodel.ecore#//accesscontrol/Role/canModify/modelElement"/>
-        </genOperations>
-        <genOperations ecoreOperation="esmodel.ecore#//accesscontrol/Role/canRead">
-          <genParameters ecoreParameter="esmodel.ecore#//accesscontrol/Role/canRead/modelElement"/>
-        </genOperations>
-      </genClasses>
-      <genClasses ecoreClass="esmodel.ecore#//accesscontrol/ReaderRole"/>
-      <genClasses ecoreClass="esmodel.ecore#//accesscontrol/WriterRole"/>
-      <genClasses ecoreClass="esmodel.ecore#//accesscontrol/ProjectAdminRole"/>
-      <genClasses ecoreClass="esmodel.ecore#//accesscontrol/ServerAdmin"/>
       <genClasses ecoreClass="esmodel.ecore#//accesscontrol/OrgUnitId"/>
+      <nestedGenPackages prefix="Roles" basePackage="org.unicase.esmodel.accesscontrol"
+          disposableProviderFactory="true" ecorePackage="esmodel.ecore#//accesscontrol/roles">
+        <genClasses image="false" ecoreClass="esmodel.ecore#//accesscontrol/roles/Role">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference esmodel.ecore#//accesscontrol/roles/Role/projects"/>
+          <genOperations ecoreOperation="esmodel.ecore#//accesscontrol/roles/Role/canAdministrate">
+            <genParameters ecoreParameter="esmodel.ecore#//accesscontrol/roles/Role/canAdministrate/projectId"/>
+          </genOperations>
+          <genOperations ecoreOperation="esmodel.ecore#//accesscontrol/roles/Role/canCreate">
+            <genParameters ecoreParameter="esmodel.ecore#//accesscontrol/roles/Role/canCreate/projectId"/>
+            <genParameters ecoreParameter="esmodel.ecore#//accesscontrol/roles/Role/canCreate/modelElement"/>
+          </genOperations>
+          <genOperations ecoreOperation="esmodel.ecore#//accesscontrol/roles/Role/canDelete">
+            <genParameters ecoreParameter="esmodel.ecore#//accesscontrol/roles/Role/canDelete/projectId"/>
+            <genParameters ecoreParameter="esmodel.ecore#//accesscontrol/roles/Role/canDelete/modelElement"/>
+          </genOperations>
+          <genOperations ecoreOperation="esmodel.ecore#//accesscontrol/roles/Role/canModify">
+            <genParameters ecoreParameter="esmodel.ecore#//accesscontrol/roles/Role/canModify/projectId"/>
+            <genParameters ecoreParameter="esmodel.ecore#//accesscontrol/roles/Role/canModify/modelElement"/>
+          </genOperations>
+          <genOperations ecoreOperation="esmodel.ecore#//accesscontrol/roles/Role/canRead">
+            <genParameters ecoreParameter="esmodel.ecore#//accesscontrol/roles/Role/canRead/projectId"/>
+            <genParameters ecoreParameter="esmodel.ecore#//accesscontrol/roles/Role/canRead/modelElement"/>
+          </genOperations>
+        </genClasses>
+        <genClasses ecoreClass="esmodel.ecore#//accesscontrol/roles/ReaderRole"/>
+        <genClasses ecoreClass="esmodel.ecore#//accesscontrol/roles/WriterRole"/>
+        <genClasses ecoreClass="esmodel.ecore#//accesscontrol/roles/ProjectAdminRole"/>
+        <genClasses ecoreClass="esmodel.ecore#//accesscontrol/roles/ServerAdmin"/>
+      </nestedGenPackages>
     </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

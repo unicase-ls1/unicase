@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.esmodel.accesscontrol.provider;
+package org.unicase.esmodel.accesscontrol.roles.provider;
 
 
 import java.util.Collection;
@@ -13,21 +13,29 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.ResourceLocator;
+
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+
+import org.unicase.esmodel.accesscontrol.roles.RolesPackage;
+
+import org.unicase.esmodel.provider.EsmodelEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.esmodel.accesscontrol.ProjectAdminRole} object.
+ * This is the item provider adapter for a {@link org.unicase.esmodel.accesscontrol.roles.Role} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ProjectAdminRoleItemProvider
-	extends RoleItemProvider
+public class RoleItemProvider
+	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -40,7 +48,7 @@ public class ProjectAdminRoleItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ProjectAdminRoleItemProvider(AdapterFactory adapterFactory) {
+	public RoleItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -55,19 +63,31 @@ public class ProjectAdminRoleItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addProjectsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This returns ProjectAdminRole.gif.
+	 * This adds a property descriptor for the Projects feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ProjectAdminRole"));
+	protected void addProjectsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Role_projects_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Role_projects_feature", "_UI_Role_type"),
+				 RolesPackage.Literals.ROLE__PROJECTS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -78,7 +98,7 @@ public class ProjectAdminRoleItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ProjectAdminRole_type");
+		return getString("_UI_Role_type");
 	}
 
 	/**
@@ -104,6 +124,17 @@ public class ProjectAdminRoleItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return EsmodelEditPlugin.INSTANCE;
 	}
 
 }

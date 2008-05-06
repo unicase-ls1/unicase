@@ -4,12 +4,12 @@
  *
  * $Id$
  */
-package org.unicase.esmodel.accesscontrol.impl;
+package org.unicase.esmodel.accesscontrol.roles.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.unicase.esmodel.accesscontrol.AccesscontrolPackage;
-import org.unicase.esmodel.accesscontrol.ServerAdmin;
+import org.unicase.esmodel.accesscontrol.roles.RolesPackage;
+import org.unicase.esmodel.accesscontrol.roles.ServerAdmin;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,7 +37,7 @@ public class ServerAdminImpl extends RoleImpl implements ServerAdmin {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return AccesscontrolPackage.Literals.SERVER_ADMIN;
+		return RolesPackage.Literals.SERVER_ADMIN;
 	}
 
 } //ServerAdminImpl

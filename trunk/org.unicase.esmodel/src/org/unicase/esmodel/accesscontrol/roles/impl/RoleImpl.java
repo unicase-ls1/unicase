@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.esmodel.accesscontrol.impl;
+package org.unicase.esmodel.accesscontrol.roles.impl;
 
 import java.util.Collection;
 
@@ -16,11 +16,12 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
-import org.unicase.esmodel.accesscontrol.AccesscontrolPackage;
-import org.unicase.esmodel.accesscontrol.Role;
+import org.unicase.esmodel.ProjectId;
+
+import org.unicase.esmodel.accesscontrol.roles.Role;
+import org.unicase.esmodel.accesscontrol.roles.RolesPackage;
 
 import org.unicase.model.ModelElement;
-import org.unicase.model.ProjectId;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,7 +30,7 @@ import org.unicase.model.ProjectId;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.esmodel.accesscontrol.impl.RoleImpl#getProjects <em>Projects</em>}</li>
+ *   <li>{@link org.unicase.esmodel.accesscontrol.roles.impl.RoleImpl#getProjects <em>Projects</em>}</li>
  * </ul>
  * </p>
  *
@@ -62,7 +63,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return AccesscontrolPackage.Literals.ROLE;
+		return RolesPackage.Literals.ROLE;
 	}
 
 	/**
@@ -72,7 +73,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 */
 	public EList<ProjectId> getProjects() {
 		if (projects == null) {
-			projects = new EObjectResolvingEList<ProjectId>(ProjectId.class, this, AccesscontrolPackage.ROLE__PROJECTS);
+			projects = new EObjectResolvingEList<ProjectId>(ProjectId.class, this, RolesPackage.ROLE__PROJECTS);
 		}
 		return projects;
 	}
@@ -93,7 +94,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean canCreate(ModelElement modelElement) {
+	public boolean canCreate(ProjectId projectId, ModelElement modelElement) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -104,7 +105,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean canDelete(ModelElement modelElement) {
+	public boolean canDelete(ProjectId projectId, ModelElement modelElement) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -115,7 +116,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean canModify(ModelElement modelElement) {
+	public boolean canModify(ProjectId projectId, ModelElement modelElement) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -126,7 +127,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean canRead(ModelElement modelElement) {
+	public boolean canRead(ProjectId projectId, ModelElement modelElement) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -140,7 +141,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case AccesscontrolPackage.ROLE__PROJECTS:
+			case RolesPackage.ROLE__PROJECTS:
 				return getProjects();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -155,7 +156,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case AccesscontrolPackage.ROLE__PROJECTS:
+			case RolesPackage.ROLE__PROJECTS:
 				getProjects().clear();
 				getProjects().addAll((Collection<? extends ProjectId>)newValue);
 				return;
@@ -171,7 +172,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case AccesscontrolPackage.ROLE__PROJECTS:
+			case RolesPackage.ROLE__PROJECTS:
 				getProjects().clear();
 				return;
 		}
@@ -186,7 +187,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case AccesscontrolPackage.ROLE__PROJECTS:
+			case RolesPackage.ROLE__PROJECTS:
 				return projects != null && !projects.isEmpty();
 		}
 		return super.eIsSet(featureID);

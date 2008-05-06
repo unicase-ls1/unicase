@@ -145,6 +145,52 @@ public class EsmodelItemProviderAdapterFactory extends EsmodelAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.esmodel.Administration} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AdministrationItemProvider administrationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.esmodel.Administration}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAdministrationAdapter() {
+		if (administrationItemProvider == null) {
+			administrationItemProvider = new AdministrationItemProvider(this);
+		}
+
+		return administrationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.esmodel.ProjectId} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ProjectIdItemProvider projectIdItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.esmodel.ProjectId}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createProjectIdAdapter() {
+		if (projectIdItemProvider == null) {
+			projectIdItemProvider = new ProjectIdItemProvider(this);
+		}
+
+		return projectIdItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -246,6 +292,8 @@ public class EsmodelItemProviderAdapterFactory extends EsmodelAdapterFactory imp
 		if (projectHistoryItemProvider != null) projectHistoryItemProvider.dispose();
 		if (projectInfoItemProvider != null) projectInfoItemProvider.dispose();
 		if (sessionIdItemProvider != null) sessionIdItemProvider.dispose();
+		if (administrationItemProvider != null) administrationItemProvider.dispose();
+		if (projectIdItemProvider != null) projectIdItemProvider.dispose();
 	}
 
 }

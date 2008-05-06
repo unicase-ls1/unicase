@@ -3,6 +3,7 @@ package org.unicase.emfstore;
 import java.util.List;
 
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.esmodel.ProjectId;
 import org.unicase.esmodel.ProjectInfo;
 import org.unicase.esmodel.SessionId;
 import org.unicase.esmodel.changemanagment.ChangePackage;
@@ -11,7 +12,6 @@ import org.unicase.esmodel.changemanagment.LogMessage;
 import org.unicase.esmodel.changemanagment.PrimaryVersionSpec;
 import org.unicase.esmodel.changemanagment.VersionSpec;
 import org.unicase.model.Project;
-import org.unicase.model.ProjectId;
 
 /**
  * An EMF store is responsible for storing projects, change management on

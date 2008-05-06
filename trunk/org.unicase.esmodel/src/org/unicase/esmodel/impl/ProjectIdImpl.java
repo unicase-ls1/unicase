@@ -4,11 +4,14 @@
  *
  * $Id$
  */
-package org.unicase.model.impl;
+package org.unicase.esmodel.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.unicase.model.ModelPackage;
-import org.unicase.model.ProjectId;
+
+import org.unicase.esmodel.EsmodelPackage;
+import org.unicase.esmodel.ProjectId;
+
+import org.unicase.model.impl.UniqueIdentifierImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,7 +39,7 @@ public class ProjectIdImpl extends UniqueIdentifierImpl implements ProjectId {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ModelPackage.Literals.PROJECT_ID;
+		return EsmodelPackage.Literals.PROJECT_ID;
 	}
 
 } //ProjectIdImpl

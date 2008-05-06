@@ -4,9 +4,9 @@
  *
  * $Id$
  */
-package org.unicase.model;
+package org.unicase.esmodel;
 
-import org.eclipse.emf.ecore.EObject;
+import org.unicase.model.UniqueIdentifier;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- end-user-doc -->
  *
  *
- * @see org.unicase.model.ModelPackage#getProjectId()
+ * @see org.unicase.esmodel.EsmodelPackage#getProjectId()
  * @model
  * @generated
  */

@@ -217,147 +217,6 @@ public interface AccesscontrolPackage extends EPackage {
 	int GROUP_FEATURE_COUNT = ORG_UNIT_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.esmodel.accesscontrol.impl.RoleImpl <em>Role</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.unicase.esmodel.accesscontrol.impl.RoleImpl
-	 * @see org.unicase.esmodel.accesscontrol.impl.AccesscontrolPackageImpl#getRole()
-	 * @generated
-	 */
-	int ROLE = 3;
-
-	/**
-	 * The feature id for the '<em><b>Projects</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROLE__PROJECTS = 0;
-
-	/**
-	 * The number of structural features of the '<em>Role</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROLE_FEATURE_COUNT = 1;
-
-	/**
-	 * The meta object id for the '{@link org.unicase.esmodel.accesscontrol.impl.ReaderRoleImpl <em>Reader Role</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.unicase.esmodel.accesscontrol.impl.ReaderRoleImpl
-	 * @see org.unicase.esmodel.accesscontrol.impl.AccesscontrolPackageImpl#getReaderRole()
-	 * @generated
-	 */
-	int READER_ROLE = 4;
-
-	/**
-	 * The feature id for the '<em><b>Projects</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int READER_ROLE__PROJECTS = ROLE__PROJECTS;
-
-	/**
-	 * The number of structural features of the '<em>Reader Role</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int READER_ROLE_FEATURE_COUNT = ROLE_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.unicase.esmodel.accesscontrol.impl.WriterRoleImpl <em>Writer Role</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.unicase.esmodel.accesscontrol.impl.WriterRoleImpl
-	 * @see org.unicase.esmodel.accesscontrol.impl.AccesscontrolPackageImpl#getWriterRole()
-	 * @generated
-	 */
-	int WRITER_ROLE = 5;
-
-	/**
-	 * The feature id for the '<em><b>Projects</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WRITER_ROLE__PROJECTS = ROLE__PROJECTS;
-
-	/**
-	 * The number of structural features of the '<em>Writer Role</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WRITER_ROLE_FEATURE_COUNT = ROLE_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.unicase.esmodel.accesscontrol.impl.ProjectAdminRoleImpl <em>Project Admin Role</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.unicase.esmodel.accesscontrol.impl.ProjectAdminRoleImpl
-	 * @see org.unicase.esmodel.accesscontrol.impl.AccesscontrolPackageImpl#getProjectAdminRole()
-	 * @generated
-	 */
-	int PROJECT_ADMIN_ROLE = 6;
-
-	/**
-	 * The feature id for the '<em><b>Projects</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROJECT_ADMIN_ROLE__PROJECTS = ROLE__PROJECTS;
-
-	/**
-	 * The number of structural features of the '<em>Project Admin Role</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROJECT_ADMIN_ROLE_FEATURE_COUNT = ROLE_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.unicase.esmodel.accesscontrol.impl.ServerAdminImpl <em>Server Admin</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.unicase.esmodel.accesscontrol.impl.ServerAdminImpl
-	 * @see org.unicase.esmodel.accesscontrol.impl.AccesscontrolPackageImpl#getServerAdmin()
-	 * @generated
-	 */
-	int SERVER_ADMIN = 7;
-
-	/**
-	 * The feature id for the '<em><b>Projects</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVER_ADMIN__PROJECTS = ROLE__PROJECTS;
-
-	/**
-	 * The number of structural features of the '<em>Server Admin</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVER_ADMIN_FEATURE_COUNT = ROLE_FEATURE_COUNT + 0;
-
-
-	/**
 	 * The meta object id for the '{@link org.unicase.esmodel.accesscontrol.impl.OrgUnitIdImpl <em>Org Unit Id</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -365,7 +224,7 @@ public interface AccesscontrolPackage extends EPackage {
 	 * @see org.unicase.esmodel.accesscontrol.impl.AccesscontrolPackageImpl#getOrgUnitId()
 	 * @generated
 	 */
-	int ORG_UNIT_ID = 8;
+	int ORG_UNIT_ID = 3;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -494,67 +353,6 @@ public interface AccesscontrolPackage extends EPackage {
 	EReference getGroup_Members();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.esmodel.accesscontrol.Role <em>Role</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Role</em>'.
-	 * @see org.unicase.esmodel.accesscontrol.Role
-	 * @generated
-	 */
-	EClass getRole();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.esmodel.accesscontrol.Role#getProjects <em>Projects</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Projects</em>'.
-	 * @see org.unicase.esmodel.accesscontrol.Role#getProjects()
-	 * @see #getRole()
-	 * @generated
-	 */
-	EReference getRole_Projects();
-
-	/**
-	 * Returns the meta object for class '{@link org.unicase.esmodel.accesscontrol.ReaderRole <em>Reader Role</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Reader Role</em>'.
-	 * @see org.unicase.esmodel.accesscontrol.ReaderRole
-	 * @generated
-	 */
-	EClass getReaderRole();
-
-	/**
-	 * Returns the meta object for class '{@link org.unicase.esmodel.accesscontrol.WriterRole <em>Writer Role</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Writer Role</em>'.
-	 * @see org.unicase.esmodel.accesscontrol.WriterRole
-	 * @generated
-	 */
-	EClass getWriterRole();
-
-	/**
-	 * Returns the meta object for class '{@link org.unicase.esmodel.accesscontrol.ProjectAdminRole <em>Project Admin Role</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Project Admin Role</em>'.
-	 * @see org.unicase.esmodel.accesscontrol.ProjectAdminRole
-	 * @generated
-	 */
-	EClass getProjectAdminRole();
-
-	/**
-	 * Returns the meta object for class '{@link org.unicase.esmodel.accesscontrol.ServerAdmin <em>Server Admin</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Server Admin</em>'.
-	 * @see org.unicase.esmodel.accesscontrol.ServerAdmin
-	 * @generated
-	 */
-	EClass getServerAdmin();
-
-	/**
 	 * Returns the meta object for class '{@link org.unicase.esmodel.accesscontrol.OrgUnitId <em>Org Unit Id</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -671,64 +469,6 @@ public interface AccesscontrolPackage extends EPackage {
 		 * @generated
 		 */
 		EReference GROUP__MEMBERS = eINSTANCE.getGroup_Members();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.esmodel.accesscontrol.impl.RoleImpl <em>Role</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.unicase.esmodel.accesscontrol.impl.RoleImpl
-		 * @see org.unicase.esmodel.accesscontrol.impl.AccesscontrolPackageImpl#getRole()
-		 * @generated
-		 */
-		EClass ROLE = eINSTANCE.getRole();
-
-		/**
-		 * The meta object literal for the '<em><b>Projects</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ROLE__PROJECTS = eINSTANCE.getRole_Projects();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.esmodel.accesscontrol.impl.ReaderRoleImpl <em>Reader Role</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.unicase.esmodel.accesscontrol.impl.ReaderRoleImpl
-		 * @see org.unicase.esmodel.accesscontrol.impl.AccesscontrolPackageImpl#getReaderRole()
-		 * @generated
-		 */
-		EClass READER_ROLE = eINSTANCE.getReaderRole();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.esmodel.accesscontrol.impl.WriterRoleImpl <em>Writer Role</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.unicase.esmodel.accesscontrol.impl.WriterRoleImpl
-		 * @see org.unicase.esmodel.accesscontrol.impl.AccesscontrolPackageImpl#getWriterRole()
-		 * @generated
-		 */
-		EClass WRITER_ROLE = eINSTANCE.getWriterRole();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.esmodel.accesscontrol.impl.ProjectAdminRoleImpl <em>Project Admin Role</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.unicase.esmodel.accesscontrol.impl.ProjectAdminRoleImpl
-		 * @see org.unicase.esmodel.accesscontrol.impl.AccesscontrolPackageImpl#getProjectAdminRole()
-		 * @generated
-		 */
-		EClass PROJECT_ADMIN_ROLE = eINSTANCE.getProjectAdminRole();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.esmodel.accesscontrol.impl.ServerAdminImpl <em>Server Admin</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.unicase.esmodel.accesscontrol.impl.ServerAdminImpl
-		 * @see org.unicase.esmodel.accesscontrol.impl.AccesscontrolPackageImpl#getServerAdmin()
-		 * @generated
-		 */
-		EClass SERVER_ADMIN = eINSTANCE.getServerAdmin();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.esmodel.accesscontrol.impl.OrgUnitIdImpl <em>Org Unit Id</em>}' class.

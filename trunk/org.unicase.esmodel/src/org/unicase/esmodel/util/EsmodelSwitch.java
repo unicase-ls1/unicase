@@ -107,6 +107,19 @@ public class EsmodelSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case EsmodelPackage.ADMINISTRATION: {
+				Administration administration = (Administration)theEObject;
+				T result = caseAdministration(administration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EsmodelPackage.PROJECT_ID: {
+				ProjectId projectId = (ProjectId)theEObject;
+				T result = caseProjectId(projectId);
+				if (result == null) result = caseUniqueIdentifier(projectId);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -153,6 +166,36 @@ public class EsmodelSwitch<T> {
 	 * @generated
 	 */
 	public T caseSessionId(SessionId object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Administration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Administration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAdministration(Administration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Project Id</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Project Id</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseProjectId(ProjectId object) {
 		return null;
 	}
 

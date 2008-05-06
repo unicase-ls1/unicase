@@ -62,15 +62,6 @@ public interface ModelFactory extends EFactory {
 	Project createProject();
 
 	/**
-	 * Returns a new object of class '<em>Project Id</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Project Id</em>'.
-	 * @generated
-	 */
-	ProjectId createProjectId();
-
-	/**
 	 * Returns a new object of class '<em>Element Id</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

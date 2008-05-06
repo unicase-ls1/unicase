@@ -21,6 +21,8 @@ import org.unicase.esmodel.accesscontrol.AccesscontrolPackage;
 
 import org.unicase.esmodel.accesscontrol.impl.AccesscontrolPackageImpl;
 
+import org.unicase.esmodel.accesscontrol.roles.RolesPackage;
+import org.unicase.esmodel.accesscontrol.roles.impl.RolesPackageImpl;
 import org.unicase.esmodel.changemanagment.ChangemanagmentFactory;
 import org.unicase.esmodel.changemanagment.ChangemanagmentPackage;
 import org.unicase.esmodel.changemanagment.DateVersionSpec;
@@ -169,16 +171,19 @@ public class ChangemanagmentPackageImpl extends EPackageImpl implements Changema
 		// Obtain or create and register interdependencies
 		EsmodelPackageImpl theEsmodelPackage = (EsmodelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(EsmodelPackage.eNS_URI) instanceof EsmodelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EsmodelPackage.eNS_URI) : EsmodelPackage.eINSTANCE);
 		AccesscontrolPackageImpl theAccesscontrolPackage = (AccesscontrolPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(AccesscontrolPackage.eNS_URI) instanceof AccesscontrolPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(AccesscontrolPackage.eNS_URI) : AccesscontrolPackage.eINSTANCE);
+		RolesPackageImpl theRolesPackage = (RolesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RolesPackage.eNS_URI) instanceof RolesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RolesPackage.eNS_URI) : RolesPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theChangemanagmentPackage.createPackageContents();
 		theEsmodelPackage.createPackageContents();
 		theAccesscontrolPackage.createPackageContents();
+		theRolesPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theChangemanagmentPackage.initializePackageContents();
 		theEsmodelPackage.initializePackageContents();
 		theAccesscontrolPackage.initializePackageContents();
+		theRolesPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theChangemanagmentPackage.freeze();
@@ -272,8 +277,8 @@ public class ChangemanagmentPackageImpl extends EPackageImpl implements Changema
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLogMessage_Author() {
-		return (EReference)logMessageEClass.getEStructuralFeatures().get(1);
+	public EAttribute getLogMessage_Author() {
+		return (EAttribute)logMessageEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -282,7 +287,7 @@ public class ChangemanagmentPackageImpl extends EPackageImpl implements Changema
 	 * @generated
 	 */
 	public EAttribute getLogMessage_Date() {
-		return (EAttribute)logMessageEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)logMessageEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -461,8 +466,8 @@ public class ChangemanagmentPackageImpl extends EPackageImpl implements Changema
 
 		logMessageEClass = createEClass(LOG_MESSAGE);
 		createEAttribute(logMessageEClass, LOG_MESSAGE__MESSAGE);
-		createEReference(logMessageEClass, LOG_MESSAGE__AUTHOR);
 		createEAttribute(logMessageEClass, LOG_MESSAGE__DATE);
+		createEAttribute(logMessageEClass, LOG_MESSAGE__AUTHOR);
 
 		changePackageEClass = createEClass(CHANGE_PACKAGE);
 		createEReference(changePackageEClass, CHANGE_PACKAGE__FOWARD_DELTA);
@@ -508,7 +513,6 @@ public class ChangemanagmentPackageImpl extends EPackageImpl implements Changema
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		AccesscontrolPackage theAccesscontrolPackage = (AccesscontrolPackage)EPackage.Registry.INSTANCE.getEPackage(AccesscontrolPackage.eNS_URI);
 		ChangePackage theChangePackage = (ChangePackage)EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI);
 		ModelPackage theModelPackage = (ModelPackage)EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 
@@ -536,8 +540,8 @@ public class ChangemanagmentPackageImpl extends EPackageImpl implements Changema
 
 		initEClass(logMessageEClass, LogMessage.class, "LogMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getLogMessage_Message(), ecorePackage.getEString(), "message", null, 1, 1, LogMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLogMessage_Author(), theAccesscontrolPackage.getUser(), null, "author", null, 1, 1, LogMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLogMessage_Date(), ecorePackage.getEDate(), "date", null, 1, 1, LogMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLogMessage_Author(), ecorePackage.getEString(), "author", null, 1, 1, LogMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(changePackageEClass, org.unicase.esmodel.changemanagment.ChangePackage.class, "ChangePackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getChangePackage_FowardDelta(), theChangePackage.getChangeDescription(), null, "fowardDelta", null, 1, 1, org.unicase.esmodel.changemanagment.ChangePackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

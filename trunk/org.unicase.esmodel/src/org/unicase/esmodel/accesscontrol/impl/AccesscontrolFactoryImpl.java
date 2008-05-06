@@ -63,10 +63,6 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements Accesscont
 			case AccesscontrolPackage.USER: return createUser();
 			case AccesscontrolPackage.ORG_UNIT: return createOrgUnit();
 			case AccesscontrolPackage.GROUP: return createGroup();
-			case AccesscontrolPackage.READER_ROLE: return createReaderRole();
-			case AccesscontrolPackage.WRITER_ROLE: return createWriterRole();
-			case AccesscontrolPackage.PROJECT_ADMIN_ROLE: return createProjectAdminRole();
-			case AccesscontrolPackage.SERVER_ADMIN: return createServerAdmin();
 			case AccesscontrolPackage.ORG_UNIT_ID: return createOrgUnitId();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -101,46 +97,6 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements Accesscont
 	public Group createGroup() {
 		GroupImpl group = new GroupImpl();
 		return group;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ReaderRole createReaderRole() {
-		ReaderRoleImpl readerRole = new ReaderRoleImpl();
-		return readerRole;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public WriterRole createWriterRole() {
-		WriterRoleImpl writerRole = new WriterRoleImpl();
-		return writerRole;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ProjectAdminRole createProjectAdminRole() {
-		ProjectAdminRoleImpl projectAdminRole = new ProjectAdminRoleImpl();
-		return projectAdminRole;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ServerAdmin createServerAdmin() {
-		ServerAdminImpl serverAdmin = new ServerAdminImpl();
-		return serverAdmin;
 	}
 
 	/**

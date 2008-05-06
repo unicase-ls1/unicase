@@ -67,8 +67,8 @@ public class LogMessageItemProvider
 			super.getPropertyDescriptors(object);
 
 			addMessagePropertyDescriptor(object);
-			addAuthorPropertyDescriptor(object);
 			addDatePropertyDescriptor(object);
+			addAuthorPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -112,7 +112,7 @@ public class LogMessageItemProvider
 				 true,
 				 false,
 				 true,
-				 null,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}

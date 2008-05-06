@@ -4,6 +4,10 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="esmodel"
     nsURI="http://unicase.org/esmodel" nsPrefix="org.unicase.esmodel">
   <eClassifiers xsi:type="ecore:EClass" name="ProjectHistory">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="identifier" eType="#//ProjectId"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="versions" lowerBound="1"
         upperBound="-1" eType="#//changemanagment/Version" containment="true"/>
   </eClassifiers>
@@ -11,11 +15,16 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="projectId" lowerBound="1"
-        eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ProjectId"/>
+        eType="#//ProjectId"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="version" lowerBound="1"
         eType="#//changemanagment/PrimaryVersionSpec"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SessionId" eSuperTypes="../../org.unicase.model/model/model.ecore#//UniqueIdentifier"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Administration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orgUnits" upperBound="-1"
+        eType="#//accesscontrol/OrgUnit" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProjectId" eSuperTypes="../../org.unicase.model/model/model.ecore#//UniqueIdentifier"/>
   <eSubpackages name="changemanagment" nsURI="http://unicase.org/esmodel/changemanagment"
       nsPrefix="org.unicase.esmodel.changemanagment">
     <eClassifiers xsi:type="ecore:EClass" name="TagVersionSpec" eSuperTypes="#//changemanagment/VersionSpec">
@@ -34,10 +43,10 @@
     <eClassifiers xsi:type="ecore:EClass" name="LogMessage">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="message" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="author" lowerBound="1"
-          eType="#//accesscontrol/User" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="author" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ChangePackage">
       <eOperations name="reverse" eType="#//changemanagment/ChangePackage"/>
@@ -80,7 +89,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="roles" upperBound="-1"
-          eType="#//accesscontrol/Role"/>
+          eType="#//accesscontrol/roles/Role"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="id" eType="#//accesscontrol/OrgUnitId"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
@@ -88,29 +97,36 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="members" upperBound="-1"
           eType="#//accesscontrol/OrgUnit"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Role" abstract="true">
-      <eOperations name="canAdministrate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eParameters name="projectId" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ProjectId"/>
-      </eOperations>
-      <eOperations name="canCreate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eParameters name="modelElement" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElement"/>
-      </eOperations>
-      <eOperations name="canDelete" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eParameters name="modelElement" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElement"/>
-      </eOperations>
-      <eOperations name="canModify" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eParameters name="modelElement" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElement"/>
-      </eOperations>
-      <eOperations name="canRead" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eParameters name="modelElement" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElement"/>
-      </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="projects" upperBound="-1"
-          eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ProjectId"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ReaderRole" eSuperTypes="#//accesscontrol/Role"/>
-    <eClassifiers xsi:type="ecore:EClass" name="WriterRole" eSuperTypes="#//accesscontrol/Role"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ProjectAdminRole" eSuperTypes="#//accesscontrol/Role"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ServerAdmin" eSuperTypes="#//accesscontrol/Role"/>
     <eClassifiers xsi:type="ecore:EClass" name="OrgUnitId" eSuperTypes="../../org.unicase.model/model/model.ecore#//UniqueIdentifier"/>
+    <eSubpackages name="roles" nsURI="http://unicase.org/esmodel/accesscontrol/roles"
+        nsPrefix="org.unicase.accesscontrol.roles">
+      <eClassifiers xsi:type="ecore:EClass" name="Role" abstract="true">
+        <eOperations name="canAdministrate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+          <eParameters name="projectId" eType="#//ProjectId"/>
+        </eOperations>
+        <eOperations name="canCreate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+          <eParameters name="projectId" eType="#//ProjectId"/>
+          <eParameters name="modelElement" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElement"/>
+        </eOperations>
+        <eOperations name="canDelete" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+          <eParameters name="projectId" eType="#//ProjectId"/>
+          <eParameters name="modelElement" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElement"/>
+        </eOperations>
+        <eOperations name="canModify" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+          <eParameters name="projectId" eType="#//ProjectId"/>
+          <eParameters name="modelElement" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElement"/>
+        </eOperations>
+        <eOperations name="canRead" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+          <eParameters name="projectId" eType="#//ProjectId"/>
+          <eParameters name="modelElement" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElement"/>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="projects" upperBound="-1"
+            eType="#//ProjectId"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="ReaderRole" eSuperTypes="#//accesscontrol/roles/Role"/>
+      <eClassifiers xsi:type="ecore:EClass" name="WriterRole" eSuperTypes="#//accesscontrol/roles/Role"/>
+      <eClassifiers xsi:type="ecore:EClass" name="ProjectAdminRole" eSuperTypes="#//accesscontrol/roles/Role"/>
+      <eClassifiers xsi:type="ecore:EClass" name="ServerAdmin" eSuperTypes="#//accesscontrol/roles/Role"/>
+    </eSubpackages>
   </eSubpackages>
 </ecore:EPackage>

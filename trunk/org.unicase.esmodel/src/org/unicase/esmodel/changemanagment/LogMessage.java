@@ -21,8 +21,8 @@ import org.unicase.esmodel.accesscontrol.User;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.unicase.esmodel.changemanagment.LogMessage#getMessage <em>Message</em>}</li>
- *   <li>{@link org.unicase.esmodel.changemanagment.LogMessage#getAuthor <em>Author</em>}</li>
  *   <li>{@link org.unicase.esmodel.changemanagment.LogMessage#getDate <em>Date</em>}</li>
+ *   <li>{@link org.unicase.esmodel.changemanagment.LogMessage#getAuthor <em>Author</em>}</li>
  * </ul>
  * </p>
  *
@@ -58,30 +58,30 @@ public interface LogMessage extends EObject {
 	void setMessage(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Author</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Author</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Author</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Author</em>' containment reference.
-	 * @see #setAuthor(User)
+	 * @return the value of the '<em>Author</em>' attribute.
+	 * @see #setAuthor(String)
 	 * @see org.unicase.esmodel.changemanagment.ChangemanagmentPackage#getLogMessage_Author()
-	 * @model containment="true" required="true"
+	 * @model required="true"
 	 * @generated
 	 */
-	User getAuthor();
+	String getAuthor();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.esmodel.changemanagment.LogMessage#getAuthor <em>Author</em>}' containment reference.
+	 * Sets the value of the '{@link org.unicase.esmodel.changemanagment.LogMessage#getAuthor <em>Author</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Author</em>' containment reference.
+	 * @param value the new value of the '<em>Author</em>' attribute.
 	 * @see #getAuthor()
 	 * @generated
 	 */
-	void setAuthor(User value);
+	void setAuthor(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Date</b></em>' attribute.

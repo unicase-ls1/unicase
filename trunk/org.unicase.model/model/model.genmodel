@@ -37,15 +37,11 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//Section/parent"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//Project">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Project/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Project/description"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Project/modelElements"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Project/identifier"/>
       <genOperations ecoreOperation="model.ecore#//Project/addModelElement">
         <genParameters ecoreParameter="model.ecore#//Project/addModelElement/modelElement"/>
       </genOperations>
     </genClasses>
-    <genClasses ecoreClass="model.ecore#//ProjectId"/>
     <genClasses ecoreClass="model.ecore#//ModelElementId"/>
     <genClasses image="false" ecoreClass="model.ecore#//UniqueIdentifier">
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//UniqueIdentifier/id"/>

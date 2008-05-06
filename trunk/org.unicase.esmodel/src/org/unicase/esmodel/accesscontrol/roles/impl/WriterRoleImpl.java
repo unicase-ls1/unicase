@@ -4,12 +4,12 @@
  *
  * $Id$
  */
-package org.unicase.esmodel.accesscontrol.impl;
+package org.unicase.esmodel.accesscontrol.roles.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.unicase.esmodel.accesscontrol.AccesscontrolPackage;
-import org.unicase.esmodel.accesscontrol.WriterRole;
+import org.unicase.esmodel.accesscontrol.roles.RolesPackage;
+import org.unicase.esmodel.accesscontrol.roles.WriterRole;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,7 +37,7 @@ public class WriterRoleImpl extends RoleImpl implements WriterRole {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return AccesscontrolPackage.Literals.WRITER_ROLE;
+		return RolesPackage.Literals.WRITER_ROLE;
 	}
 
 } //WriterRoleImpl
