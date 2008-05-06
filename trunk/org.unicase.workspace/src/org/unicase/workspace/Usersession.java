@@ -10,10 +10,13 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.unicase.emfstore.EmfStoreException;
+import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.esmodel.ProjectInfo;
 import org.unicase.esmodel.SessionId;
 import org.unicase.esmodel.changemanagment.VersionSpec;
 import org.unicase.model.ProjectId;
+import org.unicase.workspace.connectionmanager.ConnectionException;
 
 /**
  * <!-- begin-user-doc -->
@@ -151,26 +154,29 @@ public interface Usersession extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @throws ConnectionException 
+	 * @throws AccessControlException 
 	 * @model
 	 * @generated NOT
 	 */
-	void logIn(String password) throws ConnectionException;
+	void logIn(String password) throws ConnectionException, AccessControlException;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @throws ConnectionException 
+	 * @throws EmfStoreException 
 	 * @model
 	 * @generated NOT
 	 */
-	ProjectSpace checkout(ProjectId projectId, VersionSpec versionSpec) throws ConnectionException;
+	ProjectSpace checkout(ProjectId projectId, VersionSpec versionSpec) throws EmfStoreException;
 
 	/**
 	 * @return
 	 * @throws ConnectionException 
+	 * @throws EmfStoreException 
 	 *
 	 * @generated NOT
 	 */
-	List<ProjectInfo> getRemoteProjectList() throws ConnectionException;
+	List<ProjectInfo> getRemoteProjectList() throws EmfStoreException;
 	
 } // Usersession

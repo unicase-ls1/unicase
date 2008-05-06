@@ -11,7 +11,6 @@ import org.unicase.esmodel.changemanagment.PrimaryVersionSpec;
 import org.unicase.esmodel.changemanagment.VersionSpec;
 import org.unicase.model.Project;
 import org.unicase.model.ProjectId;
-import org.unicase.workspace.ConnectionException;
 import org.unicase.workspace.ServerInfo;
 
 public class RMIConnectionManagerImpl implements ConnectionManager {

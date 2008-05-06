@@ -16,17 +16,19 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.unicase.emfstore.EmfStoreException;
+import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.esmodel.ProjectInfo;
 import org.unicase.esmodel.SessionId;
 
 import org.unicase.esmodel.changemanagment.VersionSpec;
 import org.unicase.model.ProjectId;
-import org.unicase.workspace.ConnectionException;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
+import org.unicase.workspace.connectionmanager.ConnectionException;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 
 /**
@@ -262,9 +264,10 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @throws ConnectionException 
+	 * @throws AccessControlException 
 	 * @generated NOT
 	 */
-	public void logIn(String password) throws ConnectionException {
+	public void logIn(String password) throws ConnectionException, AccessControlException {
 		//MK sanity checks for usersession state
 		this.password=password;
 		ConnectionManager connectionManager = this.getWorkspaceManager().getConnectionManager();
@@ -288,7 +291,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 * @throws ConnectionException 
 	 * @generated NOT
 	 */
-	public ProjectSpace checkout(ProjectId projectId, VersionSpec versionSpec) throws ConnectionException {
+	public ProjectSpace checkout(ProjectId projectId, VersionSpec versionSpec) throws EmfStoreException {
 		//MK sanity checks for usersession state
 		return this.getWorkspaceManager().getCurrentWorkspace().checkout(this, projectId, versionSpec);
 	}
@@ -401,7 +404,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 		return result.toString();
 	}
 
-	public List<ProjectInfo> getRemoteProjectList() throws ConnectionException {
+	public List<ProjectInfo> getRemoteProjectList() throws EmfStoreException {
 		//MK sanity checks for usersession state
 		return getWorkspaceManager().getConnectionManager().getProjectList(sessionId);
 	}
