@@ -1,4 +1,4 @@
-package org.unicase.emfstore;
+package org.unicase.emfstore.exceptions;
 
 /**
  * An EmfStore Exception expresses that any exceptional condition in the

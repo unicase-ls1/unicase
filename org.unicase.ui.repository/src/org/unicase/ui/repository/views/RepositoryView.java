@@ -31,7 +31,7 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.emfstore.EmfStoreException;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.esmodel.ProjectInfo;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ServerInfo;

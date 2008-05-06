@@ -5,6 +5,8 @@ import java.io.File;
 public class ServerConfiguration {
 
 	public final static String RESOURCE_STORAGE = "ResourceStorage";
+	
+	public final static String DEFAULT_RESOURCE_STORAGE = "org.unicase.emstore.storage.TeneoStorage";
 		
 	public static String getConfDirectory() {
 		StringBuffer sb = new StringBuffer();

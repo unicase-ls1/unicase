@@ -1,6 +1,6 @@
 package org.unicase.emfstore.accesscontrol;
 
-import org.unicase.emfstore.EmfStoreException;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.esmodel.SessionId;
 
 public interface AccessControl {
