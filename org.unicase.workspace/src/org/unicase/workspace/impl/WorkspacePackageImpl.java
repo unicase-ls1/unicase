@@ -268,7 +268,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProjectSpace_BaseVersion() {
+	public EReference getProjectSpace_LocalChanges() {
 		return (EReference)projectSpaceEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -277,7 +277,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProjectSpace_LocalChanges() {
+	public EReference getProjectSpace_Usersession() {
 		return (EReference)projectSpaceEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -286,8 +286,8 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProjectSpace_Usersession() {
-		return (EReference)projectSpaceEClass.getEStructuralFeatures().get(3);
+	public EAttribute getProjectSpace_LastUpdated() {
+		return (EAttribute)projectSpaceEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -295,8 +295,8 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getProjectSpace_LastUpdated() {
-		return (EAttribute)projectSpaceEClass.getEStructuralFeatures().get(4);
+	public EReference getProjectSpace_ProjectInfo() {
+		return (EReference)projectSpaceEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -345,10 +345,10 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 		projectSpaceEClass = createEClass(PROJECT_SPACE);
 		createEReference(projectSpaceEClass, PROJECT_SPACE__PROJECT);
-		createEReference(projectSpaceEClass, PROJECT_SPACE__BASE_VERSION);
 		createEReference(projectSpaceEClass, PROJECT_SPACE__LOCAL_CHANGES);
 		createEReference(projectSpaceEClass, PROJECT_SPACE__USERSESSION);
 		createEAttribute(projectSpaceEClass, PROJECT_SPACE__LAST_UPDATED);
+		createEReference(projectSpaceEClass, PROJECT_SPACE__PROJECT_INFO);
 	}
 
 	/**
@@ -375,9 +375,9 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ModelPackage theModelPackage = (ModelPackage)EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
-		ChangemanagmentPackage theChangemanagmentPackage = (ChangemanagmentPackage)EPackage.Registry.INSTANCE.getEPackage(ChangemanagmentPackage.eNS_URI);
 		EsmodelPackage theEsmodelPackage = (EsmodelPackage)EPackage.Registry.INSTANCE.getEPackage(EsmodelPackage.eNS_URI);
+		ChangemanagmentPackage theChangemanagmentPackage = (ChangemanagmentPackage)EPackage.Registry.INSTANCE.getEPackage(ChangemanagmentPackage.eNS_URI);
+		ModelPackage theModelPackage = (ModelPackage)EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -392,7 +392,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 		EOperation op = addEOperation(workspaceEClass, this.getProjectSpace(), "checkout", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getUsersession(), "usersession", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theModelPackage.getProjectId(), "projectId", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEsmodelPackage.getProjectId(), "projectId", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theChangemanagmentPackage.getVersionSpec(), "version", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		addEOperation(workspaceEClass, null, "save", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -415,15 +415,15 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		addEParameter(op, ecorePackage.getEString(), "password", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(usersessionEClass, this.getProjectSpace(), "checkout", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theModelPackage.getProjectId(), "projectId", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEsmodelPackage.getProjectId(), "projectId", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theChangemanagmentPackage.getVersionSpec(), "versionSpec", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(projectSpaceEClass, ProjectSpace.class, "ProjectSpace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getProjectSpace_Project(), theModelPackage.getProject(), null, "project", null, 1, 1, ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProjectSpace_BaseVersion(), theChangemanagmentPackage.getPrimaryVersionSpec(), null, "baseVersion", null, 1, 1, ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProjectSpace_LocalChanges(), theChangemanagmentPackage.getChangePackage(), null, "localChanges", null, 0, 1, ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProjectSpace_Usersession(), this.getUsersession(), null, "usersession", null, 0, 1, ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getProjectSpace_LastUpdated(), ecorePackage.getEDate(), "lastUpdated", null, 0, 1, ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProjectSpace_ProjectInfo(), theEsmodelPackage.getProjectInfo(), null, "projectInfo", null, 1, 1, ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		addEOperation(projectSpaceEClass, theChangemanagmentPackage.getPrimaryVersionSpec(), "commit", 0, 1, IS_UNIQUE, IS_ORDERED);
 

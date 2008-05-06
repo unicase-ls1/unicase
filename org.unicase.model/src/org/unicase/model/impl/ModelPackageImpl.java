@@ -12,9 +12,7 @@ import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.unicase.model.CompositeSection;
 import org.unicase.model.FunctionalRequirement;
 import org.unicase.model.LeafSection;
@@ -23,7 +21,6 @@ import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
-import org.unicase.model.ProjectId;
 import org.unicase.model.ReaderInfo;
 import org.unicase.model.Section;
 import org.unicase.model.UniqueIdentifier;
@@ -78,13 +75,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	private EClass projectEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass projectIdEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -356,44 +346,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getProject_Name() {
-		return (EAttribute)projectEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getProject_Description() {
-		return (EAttribute)projectEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getProject_ModelElements() {
-		return (EReference)projectEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getProject_Identifier() {
-		return (EReference)projectEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getProjectId() {
-		return projectIdEClass;
+		return (EReference)projectEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -502,12 +456,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		createEReference(sectionEClass, SECTION__PARENT);
 
 		projectEClass = createEClass(PROJECT);
-		createEAttribute(projectEClass, PROJECT__NAME);
-		createEAttribute(projectEClass, PROJECT__DESCRIPTION);
 		createEReference(projectEClass, PROJECT__MODEL_ELEMENTS);
-		createEReference(projectEClass, PROJECT__IDENTIFIER);
-
-		projectIdEClass = createEClass(PROJECT_ID);
 
 		modelElementIdEClass = createEClass(MODEL_ELEMENT_ID);
 
@@ -557,7 +506,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		leafSectionEClass.getESuperTypes().add(this.getSection());
 		compositeSectionEClass.getESuperTypes().add(this.getSection());
 		sectionEClass.getESuperTypes().add(this.getModelElement());
-		projectIdEClass.getESuperTypes().add(this.getUniqueIdentifier());
 		modelElementIdEClass.getESuperTypes().add(this.getUniqueIdentifier());
 
 		// Initialize classes and features; add operations and parameters
@@ -596,15 +544,10 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEReference(getSection_Parent(), this.getCompositeSection(), this.getCompositeSection_Subsections(), "parent", null, 0, 1, Section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(projectEClass, Project.class, "Project", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getProject_Name(), ecorePackage.getEString(), "name", null, 0, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getProject_Description(), ecorePackage.getEString(), "description", null, 0, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProject_ModelElements(), this.getModelElement(), null, "modelElements", null, 0, -1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProject_Identifier(), this.getProjectId(), null, "identifier", null, 0, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(projectEClass, null, "addModelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelElement(), "modelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(projectIdEClass, ProjectId.class, "ProjectId", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(modelElementIdEClass, ModelElementId.class, "ModelElementId", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

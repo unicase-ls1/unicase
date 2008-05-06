@@ -2,6 +2,7 @@ package org.unicase.workspace.connectionmanager;
 
 import java.util.List;
 
+import org.unicase.esmodel.ProjectId;
 import org.unicase.esmodel.ProjectInfo;
 import org.unicase.esmodel.SessionId;
 import org.unicase.esmodel.changemanagment.ChangePackage;
@@ -10,7 +11,6 @@ import org.unicase.esmodel.changemanagment.LogMessage;
 import org.unicase.esmodel.changemanagment.PrimaryVersionSpec;
 import org.unicase.esmodel.changemanagment.VersionSpec;
 import org.unicase.model.Project;
-import org.unicase.model.ProjectId;
 import org.unicase.workspace.ServerInfo;
 
 public class RMIConnectionManagerImpl implements ConnectionManager {

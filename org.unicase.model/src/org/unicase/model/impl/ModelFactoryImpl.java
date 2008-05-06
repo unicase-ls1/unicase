@@ -6,13 +6,20 @@
  */
 package org.unicase.model.impl;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.unicase.model.*;
+import org.unicase.model.CompositeSection;
+import org.unicase.model.FunctionalRequirement;
+import org.unicase.model.LeafSection;
+import org.unicase.model.ModelElementId;
+import org.unicase.model.ModelFactory;
+import org.unicase.model.ModelPackage;
+import org.unicase.model.Project;
+import org.unicase.model.ReaderInfo;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
@@ -60,7 +67,6 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 			case ModelPackage.LEAF_SECTION: return createLeafSection();
 			case ModelPackage.COMPOSITE_SECTION: return createCompositeSection();
 			case ModelPackage.PROJECT: return createProject();
-			case ModelPackage.PROJECT_ID: return createProjectId();
 			case ModelPackage.MODEL_ELEMENT_ID: return createModelElementId();
 			case ModelPackage.READER_INFO: return createReaderInfo();
 			default:
@@ -102,15 +108,6 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	public Project createProject() {
 		ProjectImpl project = new ProjectImpl();
 		return project;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ProjectId createProjectId() {
-		ProjectIdImpl projectId = new ProjectIdImpl();
-		return projectId;
 	}
 
 	/**

@@ -107,40 +107,6 @@ public class AccesscontrolSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case AccesscontrolPackage.ROLE: {
-				Role role = (Role)theEObject;
-				T result = caseRole(role);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case AccesscontrolPackage.READER_ROLE: {
-				ReaderRole readerRole = (ReaderRole)theEObject;
-				T result = caseReaderRole(readerRole);
-				if (result == null) result = caseRole(readerRole);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case AccesscontrolPackage.WRITER_ROLE: {
-				WriterRole writerRole = (WriterRole)theEObject;
-				T result = caseWriterRole(writerRole);
-				if (result == null) result = caseRole(writerRole);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case AccesscontrolPackage.PROJECT_ADMIN_ROLE: {
-				ProjectAdminRole projectAdminRole = (ProjectAdminRole)theEObject;
-				T result = caseProjectAdminRole(projectAdminRole);
-				if (result == null) result = caseRole(projectAdminRole);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case AccesscontrolPackage.SERVER_ADMIN: {
-				ServerAdmin serverAdmin = (ServerAdmin)theEObject;
-				T result = caseServerAdmin(serverAdmin);
-				if (result == null) result = caseRole(serverAdmin);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case AccesscontrolPackage.ORG_UNIT_ID: {
 				OrgUnitId orgUnitId = (OrgUnitId)theEObject;
 				T result = caseOrgUnitId(orgUnitId);
@@ -194,81 +160,6 @@ public class AccesscontrolSwitch<T> {
 	 * @generated
 	 */
 	public T caseGroup(Group object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Role</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Role</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseRole(Role object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Reader Role</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Reader Role</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseReaderRole(ReaderRole object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Writer Role</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Writer Role</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseWriterRole(WriterRole object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Project Admin Role</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Project Admin Role</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseProjectAdminRole(ProjectAdminRole object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Server Admin</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Server Admin</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseServerAdmin(ServerAdmin object) {
 		return null;
 	}
 

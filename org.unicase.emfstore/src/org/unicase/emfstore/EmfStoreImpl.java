@@ -26,7 +26,6 @@ public class EmfStoreImpl implements Runnable {
 
 		Project project = ModelPackage.eINSTANCE.getModelFactory()
 				.createProject();
-		project.setName("neuer test");
 		res.getContents().add(project);
 
 		try {

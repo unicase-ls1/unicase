@@ -13,6 +13,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -23,6 +24,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.unicase.esmodel.EsmodelFactory;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
 import org.unicase.model.provider.ProjectItemProvider;
 import org.unicase.workspace.ProjectSpace;
@@ -59,7 +61,6 @@ public class ProjectSpaceItemProvider extends ItemProviderAdapter implements
 			super.getPropertyDescriptors(object);
 
 			addProjectPropertyDescriptor(object);
-			addBaseVersionPropertyDescriptor(object);
 			addLocalChangesPropertyDescriptor(object);
 			addUsersessionPropertyDescriptor(object);
 			addLastUpdatedPropertyDescriptor(object);
@@ -81,28 +82,6 @@ public class ProjectSpaceItemProvider extends ItemProviderAdapter implements
 				 getString("_UI_ProjectSpace_project_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ProjectSpace_project_feature", "_UI_ProjectSpace_type"),
 				 WorkspacePackage.Literals.PROJECT_SPACE__PROJECT,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Base Version feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void addBaseVersionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ProjectSpace_baseVersion_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ProjectSpace_baseVersion_feature", "_UI_ProjectSpace_type"),
-				 WorkspacePackage.Literals.PROJECT_SPACE__BASE_VERSION,
 				 true,
 				 false,
 				 true,
@@ -178,6 +157,36 @@ public class ProjectSpaceItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(WorkspacePackage.Literals.PROJECT_SPACE__PROJECT_INFO);
+		}
+		return childrenFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
+	}
+
+	/**
 	 * This returns ProjectSpace.gif. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
@@ -198,7 +207,7 @@ public class ProjectSpaceItemProvider extends ItemProviderAdapter implements
 	public String getText(Object object) {
 		if (object instanceof ProjectSpace) {
 			ProjectSpace projectSpace = (ProjectSpace) object;
-			return projectSpace.getProject().getName()+"@"+projectSpace.getBaseVersion().getIdentifier();
+			return projectSpace.getProjectInfo().getName()+"@"+projectSpace.getProjectInfo().getVersion().getIdentifier();
 		}
 		return getString("_UI_ProjectSpace_type");
 	}
@@ -218,6 +227,9 @@ public class ProjectSpaceItemProvider extends ItemProviderAdapter implements
 			case WorkspacePackage.PROJECT_SPACE__LAST_UPDATED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
+			case WorkspacePackage.PROJECT_SPACE__PROJECT_INFO:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -233,6 +245,11 @@ public class ProjectSpaceItemProvider extends ItemProviderAdapter implements
 	protected void collectNewChildDescriptors(
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(WorkspacePackage.Literals.PROJECT_SPACE__PROJECT_INFO,
+				 EsmodelFactory.eINSTANCE.createProjectInfo()));
 	}
 
 	/**

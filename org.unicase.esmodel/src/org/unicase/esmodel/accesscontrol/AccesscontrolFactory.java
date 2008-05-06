@@ -53,42 +53,6 @@ public interface AccesscontrolFactory extends EFactory {
 	Group createGroup();
 
 	/**
-	 * Returns a new object of class '<em>Reader Role</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Reader Role</em>'.
-	 * @generated
-	 */
-	ReaderRole createReaderRole();
-
-	/**
-	 * Returns a new object of class '<em>Writer Role</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Writer Role</em>'.
-	 * @generated
-	 */
-	WriterRole createWriterRole();
-
-	/**
-	 * Returns a new object of class '<em>Project Admin Role</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Project Admin Role</em>'.
-	 * @generated
-	 */
-	ProjectAdminRole createProjectAdminRole();
-
-	/**
-	 * Returns a new object of class '<em>Server Admin</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Server Admin</em>'.
-	 * @generated
-	 */
-	ServerAdmin createServerAdmin();
-
-	/**
 	 * Returns a new object of class '<em>Org Unit Id</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

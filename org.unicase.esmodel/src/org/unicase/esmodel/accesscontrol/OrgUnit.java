@@ -9,6 +9,7 @@ package org.unicase.esmodel.accesscontrol;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.esmodel.accesscontrol.roles.Role;
 
 /**
  * <!-- begin-user-doc -->
@@ -58,7 +59,7 @@ public interface OrgUnit extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Roles</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.esmodel.accesscontrol.Role}.
+	 * The list contents are of type {@link org.unicase.esmodel.accesscontrol.roles.Role}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Roles</em>' reference list isn't clear,

@@ -226,22 +226,13 @@ public interface WorkspacePackage extends EPackage {
 	int PROJECT_SPACE__PROJECT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Base Version</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROJECT_SPACE__BASE_VERSION = 1;
-
-	/**
 	 * The feature id for the '<em><b>Local Changes</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__LOCAL_CHANGES = 2;
+	int PROJECT_SPACE__LOCAL_CHANGES = 1;
 
 	/**
 	 * The feature id for the '<em><b>Usersession</b></em>' containment reference.
@@ -250,7 +241,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__USERSESSION = 3;
+	int PROJECT_SPACE__USERSESSION = 2;
 
 	/**
 	 * The feature id for the '<em><b>Last Updated</b></em>' attribute.
@@ -259,7 +250,16 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__LAST_UPDATED = 4;
+	int PROJECT_SPACE__LAST_UPDATED = 3;
+
+	/**
+	 * The feature id for the '<em><b>Project Info</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_SPACE__PROJECT_INFO = 4;
 
 	/**
 	 * The number of structural features of the '<em>Project Space</em>' class.
@@ -432,17 +432,6 @@ public interface WorkspacePackage extends EPackage {
 	EReference getProjectSpace_Project();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.unicase.workspace.ProjectSpace#getBaseVersion <em>Base Version</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Base Version</em>'.
-	 * @see org.unicase.workspace.ProjectSpace#getBaseVersion()
-	 * @see #getProjectSpace()
-	 * @generated
-	 */
-	EReference getProjectSpace_BaseVersion();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link org.unicase.workspace.ProjectSpace#getLocalChanges <em>Local Changes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -474,6 +463,17 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getProjectSpace_LastUpdated();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.unicase.workspace.ProjectSpace#getProjectInfo <em>Project Info</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Project Info</em>'.
+	 * @see org.unicase.workspace.ProjectSpace#getProjectInfo()
+	 * @see #getProjectSpace()
+	 * @generated
+	 */
+	EReference getProjectSpace_ProjectInfo();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -626,14 +626,6 @@ public interface WorkspacePackage extends EPackage {
 		EReference PROJECT_SPACE__PROJECT = eINSTANCE.getProjectSpace_Project();
 
 		/**
-		 * The meta object literal for the '<em><b>Base Version</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PROJECT_SPACE__BASE_VERSION = eINSTANCE.getProjectSpace_BaseVersion();
-
-		/**
 		 * The meta object literal for the '<em><b>Local Changes</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -656,6 +648,14 @@ public interface WorkspacePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PROJECT_SPACE__LAST_UPDATED = eINSTANCE.getProjectSpace_LastUpdated();
+
+		/**
+		 * The meta object literal for the '<em><b>Project Info</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROJECT_SPACE__PROJECT_INFO = eINSTANCE.getProjectSpace_ProjectInfo();
 
 	}
 

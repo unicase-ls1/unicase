@@ -4,12 +4,12 @@
  *
  * $Id$
  */
-package org.unicase.esmodel.accesscontrol.impl;
+package org.unicase.esmodel.accesscontrol.roles.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.unicase.esmodel.accesscontrol.AccesscontrolPackage;
-import org.unicase.esmodel.accesscontrol.ProjectAdminRole;
+import org.unicase.esmodel.accesscontrol.roles.ProjectAdminRole;
+import org.unicase.esmodel.accesscontrol.roles.RolesPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,7 +37,7 @@ public class ProjectAdminRoleImpl extends RoleImpl implements ProjectAdminRole {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return AccesscontrolPackage.Literals.PROJECT_ADMIN_ROLE;
+		return RolesPackage.Literals.PROJECT_ADMIN_ROLE;
 	}
 
 } //ProjectAdminRoleImpl

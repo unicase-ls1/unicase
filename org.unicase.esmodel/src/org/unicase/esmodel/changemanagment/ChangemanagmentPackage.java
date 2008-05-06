@@ -182,22 +182,22 @@ public interface ChangemanagmentPackage extends EPackage {
 	int LOG_MESSAGE__MESSAGE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Author</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOG_MESSAGE__AUTHOR = 1;
-
-	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LOG_MESSAGE__DATE = 2;
+	int LOG_MESSAGE__DATE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Author</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOG_MESSAGE__AUTHOR = 2;
 
 	/**
 	 * The number of structural features of the '<em>Log Message</em>' class.
@@ -480,15 +480,15 @@ public interface ChangemanagmentPackage extends EPackage {
 	EAttribute getLogMessage_Message();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.unicase.esmodel.changemanagment.LogMessage#getAuthor <em>Author</em>}'.
+	 * Returns the meta object for the attribute '{@link org.unicase.esmodel.changemanagment.LogMessage#getAuthor <em>Author</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Author</em>'.
+	 * @return the meta object for the attribute '<em>Author</em>'.
 	 * @see org.unicase.esmodel.changemanagment.LogMessage#getAuthor()
 	 * @see #getLogMessage()
 	 * @generated
 	 */
-	EReference getLogMessage_Author();
+	EAttribute getLogMessage_Author();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.esmodel.changemanagment.LogMessage#getDate <em>Date</em>}'.
@@ -767,12 +767,12 @@ public interface ChangemanagmentPackage extends EPackage {
 		EAttribute LOG_MESSAGE__MESSAGE = eINSTANCE.getLogMessage_Message();
 
 		/**
-		 * The meta object literal for the '<em><b>Author</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Author</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LOG_MESSAGE__AUTHOR = eINSTANCE.getLogMessage_Author();
+		EAttribute LOG_MESSAGE__AUTHOR = eINSTANCE.getLogMessage_Author();
 
 		/**
 		 * The meta object literal for the '<em><b>Date</b></em>' attribute feature.

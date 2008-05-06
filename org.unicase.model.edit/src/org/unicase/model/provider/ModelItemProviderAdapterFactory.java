@@ -12,7 +12,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -24,7 +23,6 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.unicase.model.util.ModelAdapterFactory;
 
 /**
@@ -165,29 +163,6 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 		}
 
 		return projectItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.model.ProjectId} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ProjectIdItemProvider projectIdItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.model.ProjectId}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createProjectIdAdapter() {
-		if (projectIdItemProvider == null) {
-			projectIdItemProvider = new ProjectIdItemProvider(this);
-		}
-
-		return projectIdItemProvider;
 	}
 
 	/**
@@ -339,7 +314,6 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 		if (leafSectionItemProvider != null) leafSectionItemProvider.dispose();
 		if (compositeSectionItemProvider != null) compositeSectionItemProvider.dispose();
 		if (projectItemProvider != null) projectItemProvider.dispose();
-		if (projectIdItemProvider != null) projectIdItemProvider.dispose();
 		if (modelElementIdItemProvider != null) modelElementIdItemProvider.dispose();
 		if (readerInfoItemProvider != null) readerInfoItemProvider.dispose();
 	}

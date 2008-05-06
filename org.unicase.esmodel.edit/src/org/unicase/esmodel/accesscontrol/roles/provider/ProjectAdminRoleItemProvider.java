@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.esmodel.accesscontrol.provider;
+package org.unicase.esmodel.accesscontrol.roles.provider;
 
 
 import java.util.Collection;
@@ -21,12 +21,12 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.esmodel.accesscontrol.ReaderRole} object.
+ * This is the item provider adapter for a {@link org.unicase.esmodel.accesscontrol.roles.ProjectAdminRole} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ReaderRoleItemProvider
+public class ProjectAdminRoleItemProvider
 	extends RoleItemProvider
 	implements
 		IEditingDomainItemProvider,
@@ -40,7 +40,7 @@ public class ReaderRoleItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReaderRoleItemProvider(AdapterFactory adapterFactory) {
+	public ProjectAdminRoleItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -60,14 +60,14 @@ public class ReaderRoleItemProvider
 	}
 
 	/**
-	 * This returns ReaderRole.gif.
+	 * This returns ProjectAdminRole.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ReaderRole"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ProjectAdminRole"));
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class ReaderRoleItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ReaderRole_type");
+		return getString("_UI_ProjectAdminRole_type");
 	}
 
 	/**

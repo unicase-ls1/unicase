@@ -145,98 +145,6 @@ public class AccesscontrolItemProviderAdapterFactory extends AccesscontrolAdapte
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.esmodel.accesscontrol.ReaderRole} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ReaderRoleItemProvider readerRoleItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.esmodel.accesscontrol.ReaderRole}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createReaderRoleAdapter() {
-		if (readerRoleItemProvider == null) {
-			readerRoleItemProvider = new ReaderRoleItemProvider(this);
-		}
-
-		return readerRoleItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.esmodel.accesscontrol.WriterRole} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected WriterRoleItemProvider writerRoleItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.esmodel.accesscontrol.WriterRole}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createWriterRoleAdapter() {
-		if (writerRoleItemProvider == null) {
-			writerRoleItemProvider = new WriterRoleItemProvider(this);
-		}
-
-		return writerRoleItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.esmodel.accesscontrol.ProjectAdminRole} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ProjectAdminRoleItemProvider projectAdminRoleItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.esmodel.accesscontrol.ProjectAdminRole}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createProjectAdminRoleAdapter() {
-		if (projectAdminRoleItemProvider == null) {
-			projectAdminRoleItemProvider = new ProjectAdminRoleItemProvider(this);
-		}
-
-		return projectAdminRoleItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.esmodel.accesscontrol.ServerAdmin} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ServerAdminItemProvider serverAdminItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.esmodel.accesscontrol.ServerAdmin}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createServerAdminAdapter() {
-		if (serverAdminItemProvider == null) {
-			serverAdminItemProvider = new ServerAdminItemProvider(this);
-		}
-
-		return serverAdminItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.unicase.esmodel.accesscontrol.OrgUnitId} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -361,10 +269,6 @@ public class AccesscontrolItemProviderAdapterFactory extends AccesscontrolAdapte
 		if (userItemProvider != null) userItemProvider.dispose();
 		if (orgUnitItemProvider != null) orgUnitItemProvider.dispose();
 		if (groupItemProvider != null) groupItemProvider.dispose();
-		if (readerRoleItemProvider != null) readerRoleItemProvider.dispose();
-		if (writerRoleItemProvider != null) writerRoleItemProvider.dispose();
-		if (projectAdminRoleItemProvider != null) projectAdminRoleItemProvider.dispose();
-		if (serverAdminItemProvider != null) serverAdminItemProvider.dispose();
 		if (orgUnitIdItemProvider != null) orgUnitIdItemProvider.dispose();
 	}
 

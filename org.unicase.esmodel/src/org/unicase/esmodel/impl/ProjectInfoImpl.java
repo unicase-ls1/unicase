@@ -7,19 +7,14 @@
 package org.unicase.esmodel.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.unicase.esmodel.EsmodelPackage;
+import org.unicase.esmodel.ProjectId;
 import org.unicase.esmodel.ProjectInfo;
-
 import org.unicase.esmodel.changemanagment.PrimaryVersionSpec;
-
-import org.unicase.model.ProjectId;
 
 /**
  * <!-- begin-user-doc -->

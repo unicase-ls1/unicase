@@ -15,9 +15,11 @@ import org.eclipse.emf.ecore.change.ChangePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.unicase.esmodel.Administration;
 import org.unicase.esmodel.EsmodelFactory;
 import org.unicase.esmodel.EsmodelPackage;
 import org.unicase.esmodel.ProjectHistory;
+import org.unicase.esmodel.ProjectId;
 import org.unicase.esmodel.ProjectInfo;
 import org.unicase.esmodel.SessionId;
 
@@ -25,6 +27,8 @@ import org.unicase.esmodel.accesscontrol.AccesscontrolPackage;
 
 import org.unicase.esmodel.accesscontrol.impl.AccesscontrolPackageImpl;
 
+import org.unicase.esmodel.accesscontrol.roles.RolesPackage;
+import org.unicase.esmodel.accesscontrol.roles.impl.RolesPackageImpl;
 import org.unicase.esmodel.changemanagment.ChangemanagmentPackage;
 
 import org.unicase.esmodel.changemanagment.impl.ChangemanagmentPackageImpl;
@@ -58,6 +62,20 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * @generated
 	 */
 	private EClass sessionIdEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass administrationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass projectIdEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -122,16 +140,19 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		// Obtain or create and register interdependencies
 		ChangemanagmentPackageImpl theChangemanagmentPackage = (ChangemanagmentPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ChangemanagmentPackage.eNS_URI) instanceof ChangemanagmentPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ChangemanagmentPackage.eNS_URI) : ChangemanagmentPackage.eINSTANCE);
 		AccesscontrolPackageImpl theAccesscontrolPackage = (AccesscontrolPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(AccesscontrolPackage.eNS_URI) instanceof AccesscontrolPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(AccesscontrolPackage.eNS_URI) : AccesscontrolPackage.eINSTANCE);
+		RolesPackageImpl theRolesPackage = (RolesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RolesPackage.eNS_URI) instanceof RolesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RolesPackage.eNS_URI) : RolesPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theEsmodelPackage.createPackageContents();
 		theChangemanagmentPackage.createPackageContents();
 		theAccesscontrolPackage.createPackageContents();
+		theRolesPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theEsmodelPackage.initializePackageContents();
 		theChangemanagmentPackage.initializePackageContents();
 		theAccesscontrolPackage.initializePackageContents();
+		theRolesPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theEsmodelPackage.freeze();
@@ -153,8 +174,35 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProjectHistory_Versions() {
+	public EReference getProjectHistory_Identifier() {
 		return (EReference)projectHistoryEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProjectHistory_Name() {
+		return (EAttribute)projectHistoryEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProjectHistory_Description() {
+		return (EAttribute)projectHistoryEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getProjectHistory_Versions() {
+		return (EReference)projectHistoryEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -216,6 +264,33 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getAdministration() {
+		return administrationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAdministration_OrgUnits() {
+		return (EReference)administrationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getProjectId() {
+		return projectIdEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EsmodelFactory getEsmodelFactory() {
 		return (EsmodelFactory)getEFactoryInstance();
 	}
@@ -240,6 +315,9 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 
 		// Create classes and their features
 		projectHistoryEClass = createEClass(PROJECT_HISTORY);
+		createEReference(projectHistoryEClass, PROJECT_HISTORY__IDENTIFIER);
+		createEAttribute(projectHistoryEClass, PROJECT_HISTORY__NAME);
+		createEAttribute(projectHistoryEClass, PROJECT_HISTORY__DESCRIPTION);
 		createEReference(projectHistoryEClass, PROJECT_HISTORY__VERSIONS);
 
 		projectInfoEClass = createEClass(PROJECT_INFO);
@@ -249,6 +327,11 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		createEReference(projectInfoEClass, PROJECT_INFO__VERSION);
 
 		sessionIdEClass = createEClass(SESSION_ID);
+
+		administrationEClass = createEClass(ADMINISTRATION);
+		createEReference(administrationEClass, ADMINISTRATION__ORG_UNITS);
+
+		projectIdEClass = createEClass(PROJECT_ID);
 	}
 
 	/**
@@ -289,18 +372,27 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 
 		// Add supertypes to classes
 		sessionIdEClass.getESuperTypes().add(theModelPackage.getUniqueIdentifier());
+		projectIdEClass.getESuperTypes().add(theModelPackage.getUniqueIdentifier());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(projectHistoryEClass, ProjectHistory.class, "ProjectHistory", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getProjectHistory_Identifier(), this.getProjectId(), null, "identifier", null, 0, 1, ProjectHistory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProjectHistory_Name(), ecorePackage.getEString(), "name", null, 1, 1, ProjectHistory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProjectHistory_Description(), ecorePackage.getEString(), "description", null, 0, 1, ProjectHistory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProjectHistory_Versions(), theChangemanagmentPackage.getVersion(), null, "versions", null, 1, -1, ProjectHistory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(projectInfoEClass, ProjectInfo.class, "ProjectInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getProjectInfo_Name(), ecorePackage.getEString(), "name", null, 1, 1, ProjectInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getProjectInfo_Description(), ecorePackage.getEString(), "description", null, 0, 1, ProjectInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProjectInfo_ProjectId(), theModelPackage.getProjectId(), null, "projectId", null, 1, 1, ProjectInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProjectInfo_ProjectId(), this.getProjectId(), null, "projectId", null, 1, 1, ProjectInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProjectInfo_Version(), theChangemanagmentPackage.getPrimaryVersionSpec(), null, "version", null, 1, 1, ProjectInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sessionIdEClass, SessionId.class, "SessionId", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(administrationEClass, Administration.class, "Administration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAdministration_OrgUnits(), theAccesscontrolPackage.getOrgUnit(), null, "orgUnits", null, 0, -1, Administration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(projectIdEClass, ProjectId.class, "ProjectId", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

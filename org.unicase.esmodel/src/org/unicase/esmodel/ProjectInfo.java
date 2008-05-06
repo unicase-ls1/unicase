@@ -7,10 +7,7 @@
 package org.unicase.esmodel;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.unicase.esmodel.changemanagment.PrimaryVersionSpec;
-
-import org.unicase.model.ProjectId;
 
 /**
  * <!-- begin-user-doc -->
