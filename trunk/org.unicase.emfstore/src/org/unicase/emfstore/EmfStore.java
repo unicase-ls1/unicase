@@ -1,5 +1,138 @@
 package org.unicase.emfstore;
 
-public interface EmfStore {
+import java.util.List;
 
+import org.unicase.esmodel.ProjectInfo;
+import org.unicase.esmodel.SessionId;
+import org.unicase.esmodel.changemanagment.ChangePackage;
+import org.unicase.esmodel.changemanagment.HistoryInfo;
+import org.unicase.esmodel.changemanagment.LogMessage;
+import org.unicase.esmodel.changemanagment.PrimaryVersionSpec;
+import org.unicase.esmodel.changemanagment.VersionSpec;
+import org.unicase.model.Project;
+import org.unicase.model.ProjectId;
+
+/**
+ * An EMF store is responsible for storing projects, change management on
+ * projects and for persisting projects.
+ * 
+ * @author Maximilian Koegel
+ * 
+ * 
+ * @generated NOT
+ */
+public interface EmfStore {
+	
+	/**
+	 * Get a list of projects the user of the session id can access. The server
+	 * should is determined by the session id.
+	 * 
+	 * @param sessionId
+	 *            the session id for authentication
+	 * @return a list of project infos for the projects the user can access
+	 * @throws EmfStoreException
+	 *             if any error in the EmfStore occurs
+	 * 
+	 * @generated NOT
+	 */
+	List<ProjectInfo> getProjectList(SessionId sessionId)
+			throws EmfStoreException;
+
+	/**
+	 * Get a project in a certain revision from the server.
+	 * 
+	 * @param sessionId
+	 *            the session id for authentication
+	 * @param projectId
+	 *            the project id of the project to get
+	 * @param versionSpec
+	 *            the version to get
+	 * @return a project in the specified revision
+	 * @throws EmfStoreException
+	 *             if any error in the EmfStore occurs
+	 * 
+	 * @generated NOT
+	 */
+	Project getProject(SessionId sessionId, ProjectId projectId,
+			VersionSpec versionSpec) throws EmfStoreException;
+
+	/**
+	 * Create a new version on the server of the given project.
+	 * 
+	 * @param sessionId
+	 *            the session id for authentication
+	 * @param projectId
+	 *            the project id
+	 * @param baseVersionSpec
+	 *            the version the project was last synched with the server
+	 * @param changePackage
+	 *            the changes performed on the project since last synch
+	 * @param logMessage
+	 *            the log message for the new version
+	 * @return the version specifier of the version created on the server
+	 * @throws EmfStoreException
+	 *             if any error in the EmfStore occurs
+	 * 
+	 * @generated NOT
+	 */
+	PrimaryVersionSpec createVersion(SessionId sessionId, ProjectId projectId,
+			PrimaryVersionSpec baseVersionSpec, ChangePackage changePackage,
+			LogMessage logMessage) throws EmfStoreException;
+
+	/**
+	 * Resolve a version specified to a primary version specifier.
+	 * 
+	 * @param sessionId
+	 *            the session id for authentication
+	 * @param versionSpec
+	 *            the version specifier to resolve
+	 * @return a primary version specifier identifing the same version
+	 * @throws EmfStoreException
+	 *             if any error in the EmfStore occurs
+	 * @generated NOT
+	 */
+	PrimaryVersionSpec resolveVersionSpec(SessionId sessionId,
+			VersionSpec versionSpec) throws EmfStoreException;
+
+	/**
+	 * Get changes from the server.
+	 * 
+	 * @param sessionId
+	 *            the session id for authentication
+	 * @param projectId
+	 *            the project id
+	 * @param source
+	 *            the source version specifier
+	 * @param target
+	 *            the target version specifier
+	 * @return a list of change packages from source to target representing the
+	 *         changes that happened between the two versions.
+	 * @throws EmfStoreException
+	 *             if any error in the EmfStore occurs
+	 * 
+	 * @generated NOT
+	 */
+	List<ChangePackage> getChanges(SessionId sessionId, ProjectId projectId,
+			VersionSpec source, VersionSpec target) throws EmfStoreException;
+
+	/**
+	 * Get history information from the server. The list returned will describe
+	 * the versions from source to target.
+	 * 
+	 * @param sessionId
+	 *            the session id for authentication
+	 * @param projectId
+	 *            the project id
+	 * @param source
+	 *            the source version specifier
+	 * @param target
+	 *            the target version specifier
+	 * @return a list of history information
+	 * @throws EmfStoreException
+	 *             if any error in the EmfStore occurs
+	 * 
+	 * @generated NOT
+	 */
+	List<HistoryInfo> getHistoryInfo(SessionId sessionId, ProjectId projectId,
+			VersionSpec source, VersionSpec target) throws EmfStoreException;
 }

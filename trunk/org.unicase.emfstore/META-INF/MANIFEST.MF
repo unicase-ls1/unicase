@@ -9,7 +9,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.teneo,
  org.eclipse.emf.teneo.hibernate,
  org.unicase.model,
- org.eclipse.emf
+ org.eclipse.emf,
+ org.unicase.esmodel
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: lib/antlr.jar,
@@ -19,3 +20,5 @@ Bundle-ClassPath: lib/antlr.jar,
  lib/jta.jar,
  lib/mysql-connector-java-3.1.14-bin.jar,
  .
+Export-Package: org.unicase.emfstore,
+ org.unicase.emfstore.accesscontrol
