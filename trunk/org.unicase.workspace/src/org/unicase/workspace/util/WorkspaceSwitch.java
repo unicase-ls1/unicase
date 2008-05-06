@@ -111,6 +111,12 @@ public class WorkspaceSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case WorkspacePackage.SERVER_INFO_AGGREGATION: {
+				ServerInfoAggregation serverInfoAggregation = (ServerInfoAggregation)theEObject;
+				T result = caseServerInfoAggregation(serverInfoAggregation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -172,6 +178,21 @@ public class WorkspaceSwitch<T> {
 	 * @generated
 	 */
 	public T caseProjectSpace(ProjectSpace object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Server Info Aggregation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Server Info Aggregation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseServerInfoAggregation(ServerInfoAggregation object) {
 		return null;
 	}
 

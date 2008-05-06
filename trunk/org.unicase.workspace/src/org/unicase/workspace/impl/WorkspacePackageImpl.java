@@ -18,6 +18,7 @@ import org.unicase.esmodel.changemanagment.ChangemanagmentPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
+import org.unicase.workspace.ServerInfoAggregation;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceFactory;
@@ -57,6 +58,13 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 	 * @generated
 	 */
 	private EClass projectSpaceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass serverInfoAggregationEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -152,7 +160,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getWorkspace_ServerInfos() {
+	public EReference getWorkspace_ServerInfoAggregation() {
 		return (EReference)workspaceEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -305,6 +313,24 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getServerInfoAggregation() {
+		return serverInfoAggregationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getServerInfoAggregation_ServerInfos() {
+		return (EReference)serverInfoAggregationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public WorkspaceFactory getWorkspaceFactory() {
 		return (WorkspaceFactory)getEFactoryInstance();
 	}
@@ -330,7 +356,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		// Create classes and their features
 		workspaceEClass = createEClass(WORKSPACE);
 		createEReference(workspaceEClass, WORKSPACE__PROJECT_SPACES);
-		createEReference(workspaceEClass, WORKSPACE__SERVER_INFOS);
+		createEReference(workspaceEClass, WORKSPACE__SERVER_INFO_AGGREGATION);
 
 		serverInfoEClass = createEClass(SERVER_INFO);
 		createEAttribute(serverInfoEClass, SERVER_INFO__NAME);
@@ -350,6 +376,9 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		createEReference(projectSpaceEClass, PROJECT_SPACE__LOCAL_CHANGES);
 		createEReference(projectSpaceEClass, PROJECT_SPACE__USERSESSION);
 		createEAttribute(projectSpaceEClass, PROJECT_SPACE__LAST_UPDATED);
+
+		serverInfoAggregationEClass = createEClass(SERVER_INFO_AGGREGATION);
+		createEReference(serverInfoAggregationEClass, SERVER_INFO_AGGREGATION__SERVER_INFOS);
 	}
 
 	/**
@@ -389,7 +418,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		// Initialize classes and features; add operations and parameters
 		initEClass(workspaceEClass, Workspace.class, "Workspace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWorkspace_ProjectSpaces(), this.getProjectSpace(), null, "projectSpaces", null, 0, -1, Workspace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getWorkspace_ServerInfos(), this.getServerInfo(), null, "serverInfos", null, 0, -1, Workspace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWorkspace_ServerInfoAggregation(), this.getServerInfoAggregation(), null, "serverInfoAggregation", null, 1, 1, Workspace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = addEOperation(workspaceEClass, this.getProjectSpace(), "checkout", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getUsersession(), "usersession", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -438,6 +467,9 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		addEOperation(projectSpaceEClass, null, "save", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		addEOperation(projectSpaceEClass, null, "init", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(serverInfoAggregationEClass, ServerInfoAggregation.class, "ServerInfoAggregation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getServerInfoAggregation_ServerInfos(), this.getServerInfo(), null, "serverInfos", null, 0, -1, ServerInfoAggregation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

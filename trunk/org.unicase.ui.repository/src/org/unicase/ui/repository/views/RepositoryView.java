@@ -239,7 +239,7 @@ public class RepositoryView extends ViewPart implements ITreeViewerListener{
 		private void initialize() {
 			invisibleRoot = new ServerNode(Configuration.getDefaultServerInfo());
 			invisibleRoot.children.clear();
-			List<ServerInfo> servers = WorkspaceManager.getInstance().getCurrentWorkspace().getServerInfos();
+			List<ServerInfo> servers = WorkspaceManager.getInstance().getCurrentWorkspace().getServerInfoAggregation().getServerInfos();
 			for (ServerInfo server : servers){
 				invisibleRoot.addChild(new ServerNode(server));
 			}

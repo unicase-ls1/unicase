@@ -12,8 +12,8 @@
     <eOperations name="save"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="projectSpaces" upperBound="-1"
         eType="#//ProjectSpace" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="serverInfos" upperBound="-1"
-        eType="#//ServerInfo" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="serverInfoAggregation"
+        lowerBound="1" eType="#//ServerInfoAggregation" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ServerInfo">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -56,5 +56,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="usersession" eType="#//Usersession"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastUpdated" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ServerInfoAggregation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="serverInfos" upperBound="-1"
+        eType="#//ServerInfo" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

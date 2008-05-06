@@ -9,10 +9,12 @@ package org.unicase.workspace.impl;
 import java.io.IOException;
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -24,6 +26,7 @@ import org.unicase.model.Project;
 import org.unicase.model.ProjectId;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.ServerInfoAggregation;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
@@ -40,7 +43,7 @@ import org.unicase.workspace.connectionmanager.ConnectionManager;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getProjectSpaces <em>Project Spaces</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getServerInfos <em>Server Infos</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getServerInfoAggregation <em>Server Info Aggregation</em>}</li>
  * </ul>
  * </p>
  *
@@ -64,28 +67,29 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	protected EList<ProjectSpace> projectSpaces;
 
 	/**
+	 * The cached value of the '{@link #getServerInfoAggregation() <em>Server Info Aggregation</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getServerInfoAggregation()
+	 * @generated
+	 * @ordered
+	 */
+	protected ServerInfoAggregation serverInfoAggregation;
+
+	/**
 	 * The current connection manager used to connect to the server(s).
 	 * @generated NOT
 	 */
 	private ConnectionManager connectionManager;
 	
 	/**
-	 * The cached value of the '{@link #getServerInfos() <em>Server Infos</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getServerInfos()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ServerInfo> serverInfos;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected WorkspaceImpl() {
 		super();
+		this.setServerInfoAggregation(WorkspaceFactory.eINSTANCE.createServerInfoAggregation());
 	}
 
 	/**
@@ -115,11 +119,42 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ServerInfo> getServerInfos() {
-		if (serverInfos == null) {
-			serverInfos = new EObjectContainmentEList<ServerInfo>(ServerInfo.class, this, WorkspacePackage.WORKSPACE__SERVER_INFOS);
+	public ServerInfoAggregation getServerInfoAggregation() {
+		return serverInfoAggregation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetServerInfoAggregation(ServerInfoAggregation newServerInfoAggregation, NotificationChain msgs) {
+		ServerInfoAggregation oldServerInfoAggregation = serverInfoAggregation;
+		serverInfoAggregation = newServerInfoAggregation;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WorkspacePackage.WORKSPACE__SERVER_INFO_AGGREGATION, oldServerInfoAggregation, newServerInfoAggregation);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
-		return serverInfos;
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setServerInfoAggregation(ServerInfoAggregation newServerInfoAggregation) {
+		if (newServerInfoAggregation != serverInfoAggregation) {
+			NotificationChain msgs = null;
+			if (serverInfoAggregation != null)
+				msgs = ((InternalEObject)serverInfoAggregation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WorkspacePackage.WORKSPACE__SERVER_INFO_AGGREGATION, null, msgs);
+			if (newServerInfoAggregation != null)
+				msgs = ((InternalEObject)newServerInfoAggregation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WorkspacePackage.WORKSPACE__SERVER_INFO_AGGREGATION, null, msgs);
+			msgs = basicSetServerInfoAggregation(newServerInfoAggregation, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.WORKSPACE__SERVER_INFO_AGGREGATION, newServerInfoAggregation, newServerInfoAggregation));
 	}
 
 	/**
@@ -169,8 +204,8 @@ public ProjectSpace checkout(Usersession usersession, ProjectId projectId, Versi
 		switch (featureID) {
 			case WorkspacePackage.WORKSPACE__PROJECT_SPACES:
 				return ((InternalEList<?>)getProjectSpaces()).basicRemove(otherEnd, msgs);
-			case WorkspacePackage.WORKSPACE__SERVER_INFOS:
-				return ((InternalEList<?>)getServerInfos()).basicRemove(otherEnd, msgs);
+			case WorkspacePackage.WORKSPACE__SERVER_INFO_AGGREGATION:
+				return basicSetServerInfoAggregation(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -185,8 +220,8 @@ public ProjectSpace checkout(Usersession usersession, ProjectId projectId, Versi
 		switch (featureID) {
 			case WorkspacePackage.WORKSPACE__PROJECT_SPACES:
 				return getProjectSpaces();
-			case WorkspacePackage.WORKSPACE__SERVER_INFOS:
-				return getServerInfos();
+			case WorkspacePackage.WORKSPACE__SERVER_INFO_AGGREGATION:
+				return getServerInfoAggregation();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -204,9 +239,8 @@ public ProjectSpace checkout(Usersession usersession, ProjectId projectId, Versi
 				getProjectSpaces().clear();
 				getProjectSpaces().addAll((Collection<? extends ProjectSpace>)newValue);
 				return;
-			case WorkspacePackage.WORKSPACE__SERVER_INFOS:
-				getServerInfos().clear();
-				getServerInfos().addAll((Collection<? extends ServerInfo>)newValue);
+			case WorkspacePackage.WORKSPACE__SERVER_INFO_AGGREGATION:
+				setServerInfoAggregation((ServerInfoAggregation)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -223,8 +257,8 @@ public ProjectSpace checkout(Usersession usersession, ProjectId projectId, Versi
 			case WorkspacePackage.WORKSPACE__PROJECT_SPACES:
 				getProjectSpaces().clear();
 				return;
-			case WorkspacePackage.WORKSPACE__SERVER_INFOS:
-				getServerInfos().clear();
+			case WorkspacePackage.WORKSPACE__SERVER_INFO_AGGREGATION:
+				setServerInfoAggregation((ServerInfoAggregation)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -240,8 +274,8 @@ public ProjectSpace checkout(Usersession usersession, ProjectId projectId, Versi
 		switch (featureID) {
 			case WorkspacePackage.WORKSPACE__PROJECT_SPACES:
 				return projectSpaces != null && !projectSpaces.isEmpty();
-			case WorkspacePackage.WORKSPACE__SERVER_INFOS:
-				return serverInfos != null && !serverInfos.isEmpty();
+			case WorkspacePackage.WORKSPACE__SERVER_INFO_AGGREGATION:
+				return serverInfoAggregation != null;
 		}
 		return super.eIsSet(featureID);
 	}
