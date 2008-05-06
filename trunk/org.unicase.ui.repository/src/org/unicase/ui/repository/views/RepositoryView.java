@@ -38,7 +38,6 @@ import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.impl.WorkspaceFactoryImpl;
 
 /**
  * View containing the remote repositories.
