@@ -62,15 +62,6 @@ public interface WorkspaceFactory extends EFactory {
 	ProjectSpace createProjectSpace();
 
 	/**
-	 * Returns a new object of class '<em>Server Info Aggregation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Server Info Aggregation</em>'.
-	 * @generated
-	 */
-	ServerInfoAggregation createServerInfoAggregation();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
