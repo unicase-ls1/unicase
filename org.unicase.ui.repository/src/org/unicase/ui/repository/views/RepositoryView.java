@@ -156,6 +156,13 @@ public class RepositoryView extends ViewPart implements ITreeViewerListener{
 		public boolean hasChildren() {
 			return children.size() > 0;
 		}
+		
+		/**
+		 * Removes all children.
+		 */
+		public void removeAll(){
+			children.clear();
+		}
 	}
 
 	/**
@@ -232,6 +239,7 @@ public class RepositoryView extends ViewPart implements ITreeViewerListener{
 		 */
 		private void initialize() {
 			invisibleRoot = new ServerNode(Configuration.getDefaultServerInfo());
+			invisibleRoot.children.clear();
 			List<ServerInfo> servers = WorkspaceManager.getInstance().getCurrentWorkspace().getServerInfos();
 			for (ServerInfo server : servers){
 				invisibleRoot.addChild(new ServerNode(server));
@@ -354,13 +362,14 @@ public class RepositoryView extends ViewPart implements ITreeViewerListener{
 		login = new ServerAction() {
 			public void run() {
 				try{
-					Usersession session = WorkspaceFactoryImpl.eINSTANCE.createUsersession();
+					Usersession session = WorkspaceFactory.eINSTANCE.createUsersession();
 					session.setServerInfo(serverNode.serverInfo);
 					RepositoryLoginDialog dialog = new RepositoryLoginDialog(getSite().getShell(), getViewInstance());
 					dialog.setBlockOnOpen(true);
 					List<ProjectInfo> projectInfos;
 					try {
 						projectInfos = session.getRemoteProjectList();
+						serverNode.removeAll();
 						for (ProjectInfo projectInfo : projectInfos){
 							serverNode.addChild(new ProjectNode(projectInfo.getName()));
 						}
@@ -426,15 +435,15 @@ public class RepositoryView extends ViewPart implements ITreeViewerListener{
 		viewer.getControl().setFocus();
 	}
 	
-	/**
-	 * Adds new repository to the local model.
-	 * @param serverInfo the new repository
-	 */
-	public void addRepository(ServerInfo serverInfo){
-		ServerInfo newServer = WorkspaceFactory.eINSTANCE.createServerInfo();
-		newServer = serverInfo;
-		//TODO: Save locally the repository 
-	}
+//	/**
+//	 * Adds new repository to the local model.
+//	 * @param serverInfo the new repository
+//	 */
+//	public void addRepository(ServerInfo serverInfo){
+//		ServerInfo newServer = WorkspaceFactory.eINSTANCE.createServerInfo();
+//		newServer = serverInfo;
+//		//TODO: Save locally the repository 
+//	}
 
 	/**
 	 * Actions to be executed when the tree node is collapsed.

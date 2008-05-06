@@ -35,7 +35,7 @@ public class RepositoryWizard extends Wizard implements INewWizard {
 	 */
 	public RepositoryWizard() {
 		super();
-		serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
+		serverInfo = null;//WorkspaceFactory.eINSTANCE.createServerInfo();
 	}
 	
 	/**
