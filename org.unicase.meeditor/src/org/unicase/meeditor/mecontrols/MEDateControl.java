@@ -52,6 +52,8 @@ public class MEDateControl extends AbstractMEControl implements MEControl {
 		DateTime date = new DateTime(composite, style);
 		IObservableValue model = EMFEditObservables.observeValue(editingDomain,
 				modelElement, attribute);
+		//JH: make this work if SWTObserveable.observeDate is released
+		//JH: include date Picker
 		IObservableValue target = SWTObservables.observeEditable(date);
 		EMFDataBindingContext dbc = new EMFDataBindingContext();
 		dbc.bindValue(target, model, null, null);

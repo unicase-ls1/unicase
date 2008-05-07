@@ -1,4 +1,4 @@
-package org.unicase.meeditor.mecontrols;
+package org.unicase.meeditor.mecontrols.melinkcontrol;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -30,6 +30,7 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.eclipse.ui.forms.widgets.Section;
+import org.unicase.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.model.ModelElement;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
 
