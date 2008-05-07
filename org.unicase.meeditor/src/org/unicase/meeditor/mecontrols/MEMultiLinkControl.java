@@ -9,6 +9,7 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
@@ -34,9 +35,9 @@ import org.unicase.model.provider.ModelItemProviderAdapterFactory;
 
 public class MEMultiLinkControl extends AbstractMEControl {
 
-	FormToolkit toolkit;
+	
 	final EReference eReference;
-	EObject modelElement;
+	
 	Section section;
 	Composite composite;
 	EList<EObject> value;
@@ -46,8 +47,8 @@ public class MEMultiLinkControl extends AbstractMEControl {
 	int style;
 
 	public MEMultiLinkControl(EObject modelElement, EReference reference,
-			FormToolkit toolkit) {
-		super();
+			FormToolkit toolkit, EditingDomain editingDomain) {
+		super(editingDomain, modelElement, toolkit);
 		this.modelElement = modelElement;
 		this.eReference = reference;
 		this.toolkit = toolkit;

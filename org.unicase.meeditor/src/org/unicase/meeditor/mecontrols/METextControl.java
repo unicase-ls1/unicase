@@ -12,31 +12,39 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+/**
+ * Standard widgets to edit a single line text attribute.
+ * @author helming
+ *
+ */
+public class METextControl extends AbstractMEControl implements MEControl {
 
-public class METextControl extends AbstractMEControl implements MEControl
-		 {
+	private Text text;
 
-	Text text;
-	FormToolkit toolkit;
-	EAttribute attribute;
-	EObject modelElement;
-	EditingDomain editingDomain;
-
+	private EAttribute attribute;
+/**
+ * Default Constructor.
+ * @param attribute the attribute which is shown in the Text Control
+ * @param toolkit see {@link AbstractMEControl}
+ * @param modelElement see {@link AbstractMEControl}
+ * @param editingDomain see {@link AbstractMEControl}
+ */
 	public METextControl(EAttribute attribute, FormToolkit toolkit,
-			EObject modelElement,EditingDomain editingDomain) {
-		super();
+			EObject modelElement, EditingDomain editingDomain) {
+		super(editingDomain, modelElement, toolkit);
 		this.attribute = attribute;
-		this.toolkit = toolkit;
-		this.modelElement = modelElement;
-		this.editingDomain= editingDomain;
 	}
-
-	
+/**
+ * @return A Text Control.
+ * {@inheritDoc}
+ */
 	public Control createControl(Composite parent, int style) {
 		text = toolkit.createText(parent, new String(), style);
-		IObservableValue model = EMFEditObservables.observeValue(editingDomain, modelElement, attribute);
+		IObservableValue model = EMFEditObservables.observeValue(editingDomain,
+				modelElement, attribute);
 		EMFDataBindingContext dbc = new EMFDataBindingContext();
-		dbc.bindValue(SWTObservables.observeText(text, SWT.FocusOut), model, null, null);	
+		dbc.bindValue(SWTObservables.observeText(text, SWT.FocusOut), model,
+				null, null);
 		return text;
 	}
 

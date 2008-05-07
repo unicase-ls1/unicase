@@ -11,23 +11,32 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.ui.forms.widgets.FormToolkit;
-
+/**
+ * Standard widgets to edit a integer attribute.
+ * @author helming
+ *
+ */
 public class MEIntControl extends AbstractMEControl implements MEControl {
-	FormToolkit toolkit;
-	EAttribute attribute;
-	EObject modelElement;
-	EditingDomain editingDomain;
-	Spinner spinner;
 
+	private EAttribute attribute;
+
+	private Spinner spinner;
+/**
+ * default constructor.
+ * @param attribute the integer attribute
+ * @param toolkit see {@link AbstractMEControl}
+ * @param modelElement see {@link AbstractMEControl}
+ * @param editingDomain see {@link AbstractMEControl}
+ */
 	public MEIntControl(EAttribute attribute, FormToolkit toolkit,
 			EObject modelElement, EditingDomain editingDomain) {
-		super();
+		super(editingDomain, modelElement, toolkit);
 		this.attribute = attribute;
-		this.editingDomain = editingDomain;
-		this.modelElement = modelElement;
-		this.toolkit = toolkit;
 	}
-
+/**
+ * @return A spinner for the int value.
+ * {@inheritDoc}
+ */
 	public Control createControl(Composite parent, int style) {
 		spinner = new Spinner(parent, style);
 

@@ -19,18 +19,19 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.forms.widgets.FormText;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
-
+//JH: reimplement
 public class METextAreaControl extends AbstractMEControl implements MEControl {
-	FormToolkit toolkit;
+	
 	EAttribute attribute;
-	EObject modelElement;
-	EditingDomain editingDomain;
+	
+	
 	IDocument document;
 	Section section;
 	FormText formatText; 
 
 	public METextAreaControl(EAttribute attribute, FormToolkit toolkit,
 			EObject modelElement, EditingDomain editingDomain) {
+		super(editingDomain, modelElement, toolkit);
 		this.attribute = attribute;
 		this.toolkit = toolkit;
 		this.modelElement = modelElement;

@@ -12,23 +12,35 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.forms.widgets.FormToolkit;
-
+import org.unicase.model.ModelElement;
+/**
+ * This is the standard Control to edit boolean values of {@link ModelElement}.
+ * @author helming
+ *
+ */
 public class MEBoolControl extends AbstractMEControl implements MEControl {
-	FormToolkit toolkit;
-	EAttribute attribute;
-	EObject modelElement;
-	EditingDomain editingDomain;
-	Button check;
+	
+	private EAttribute attribute;
 
+	private Button check;
+/**
+ * Standard Constructor.
+ * {@inheritDoc}
+ * @param attribute
+ * @param toolkit
+ * @param modelElement
+ * @param editingDomain
+ */
 	public MEBoolControl(EAttribute attribute, FormToolkit toolkit,
 			EObject modelElement, EditingDomain editingDomain) {
-		super();
+		super(editingDomain,modelElement,toolkit);
 		this.attribute = attribute;
-		this.editingDomain = editingDomain;
-		this.modelElement = modelElement;
-		this.toolkit = toolkit;
 	}
-
+/**
+ * returns a check button without Label.
+ * {@inheritDoc}
+ * @return Control
+ */
 	public Control createControl(Composite parent, int style) {
 		check = toolkit.createButton(parent, "", SWT.CHECK);
 		IObservableValue model = EMFEditObservables.observeValue(editingDomain,
