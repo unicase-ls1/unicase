@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -34,6 +36,8 @@ public class MEEditorPage extends FormPage {
 	List<MEControl> meControls = new ArrayList<MEControl>();
 	UIHintAdapter uiHintAdapter;
 	private ScrolledForm form;
+	private List<IItemPropertyDescriptor> simpleAttributes = new ArrayList<IItemPropertyDescriptor>();
+	private List<IItemPropertyDescriptor> multiReferences = new ArrayList<IItemPropertyDescriptor>();
 
 	public MEEditorPage(MEEditor editor, String id, String title,
 			EditingDomain editingDomain, ModelElement modelElement) {
@@ -50,32 +54,44 @@ public class MEEditorPage extends FormPage {
 		form = managedForm.getForm();
 		body = form.getBody();
 		body.setLayout(new GridLayout());
-		
-		//Layout form
+
+		// Layout form
 		form.setText(modelElement.getName());
-		form.setImage(new AdapterFactoryLabelProvider(new ModelItemProviderAdapterFactory()).getImage(modelElement));
-		//form.setHeadClient(toolkit.createButton(form, "Hallo", SWT.WRAP));
+		form.setImage(new AdapterFactoryLabelProvider(
+				new ModelItemProviderAdapterFactory()).getImage(modelElement));
+		// form.setHeadClient(toolkit.createButton(form, "Hallo", SWT.WRAP));
 
 		// Sort and order attributes
 
+		sortAndOrderAttributes();
+
 		// Create attributes
-		createAttributes();
-		
-		
+		createSimpleAttributes();
 
 		// Create Sections for every Reference
-		createReferences();
-				
+		createMultiReferences();
+
 	}
 
-	private void createReferences() {
-		EList<EReference> references = modelElement.eClass()
-				.getEAllReferences();
+	private void sortAndOrderAttributes() {
+		AdapterFactoryItemDelegator adapterFactoryItemDelegator =new AdapterFactoryItemDelegator(new ModelItemProviderAdapterFactory());
+		List<IItemPropertyDescriptor> propertyDescriptors = adapterFactoryItemDelegator.getPropertyDescriptors(modelElement);
+		for (IItemPropertyDescriptor itemPropertyDescriptor: propertyDescriptors){
+			if(itemPropertyDescriptor.isMany(modelElement)){
+				multiReferences.add(itemPropertyDescriptor);
+			}
+			else{
+				simpleAttributes.add(itemPropertyDescriptor);
+			}
+		}
+		
+	}
+
+	private void createMultiReferences() {
 		ControlFactory controlFactory = new ControlFactory(editingDomain,
-				modelElement,  this.getEditor().getToolkit());
-		for (EReference reference : references) {
-			FeatureUIHint featureUIHint =uiHintAdapter.getFeatureUIHint(reference);
-			MEControl meControl = controlFactory.createControl(reference, featureUIHint);
+				modelElement, this.getEditor().getToolkit());
+		for (IItemPropertyDescriptor itemPropertyDescriptor : multiReferences) {
+			MEControl meControl = controlFactory.createControl(itemPropertyDescriptor);
 			if (meControl != null) {
 				Control control = meControl.createControl(body, SWT.WRAP);
 				control.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -84,7 +100,7 @@ public class MEEditorPage extends FormPage {
 
 	}
 
-	private void createAttributes() {
+	private void createSimpleAttributes() {
 
 		Section attributeSection = toolkit.createSection(body,
 				Section.DESCRIPTION | Section.TITLE_BAR | Section.TWISTIE
@@ -98,13 +114,10 @@ public class MEEditorPage extends FormPage {
 		attributeSection.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
 		ControlFactory controlFactory = new ControlFactory(editingDomain,
-				modelElement,  this.getEditor().getToolkit());
-		EList<EAttribute> attributes = modelElement.eClass()
-				.getEAllAttributes();
-		for (EAttribute attribute : attributes) {
-			FeatureUIHint featureUIHint =uiHintAdapter.getFeatureUIHint(attribute);
-			toolkit.createLabel(attributeComposite, featureUIHint.getLabel());
-			MEControl meControl = controlFactory.createControl(attribute, featureUIHint);
+				modelElement, this.getEditor().getToolkit());
+		for (IItemPropertyDescriptor itemPropertyDescriptor : simpleAttributes) {
+			toolkit.createLabel(attributeComposite, itemPropertyDescriptor.getDisplayName(modelElement));
+			MEControl meControl = controlFactory.createControl(itemPropertyDescriptor);
 			Control control = meControl.createControl(attributeComposite,
 					SWT.WRAP);
 			control.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -112,5 +125,5 @@ public class MEEditorPage extends FormPage {
 		attributeSection.setClient(attributeComposite);
 
 	}
-	
+
 }

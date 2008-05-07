@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.unicase.meeditor.mecontrols.MEBoolControl;
 import org.unicase.meeditor.mecontrols.MEControl;
@@ -15,6 +16,7 @@ import org.unicase.meeditor.mecontrols.MEIntControl;
 import org.unicase.meeditor.mecontrols.METextAreaControl;
 import org.unicase.meeditor.mecontrols.METextControl;
 import org.unicase.meeditor.mecontrols.melinkcontrol.MEMultiLinkControl;
+import org.unicase.meeditor.mecontrols.melinkcontrol.MESingleLinkControl;
 import org.unicase.model.edit.uihint.FeatureUIHint;
 
 public class ControlFactory {
@@ -29,12 +31,12 @@ public class ControlFactory {
 		this.toolkit = toolkit;
 	}
 
-	public MEControl createControl(EStructuralFeature feature,
-			FeatureUIHint featureUIHint) {
+	public MEControl createControl(IItemPropertyDescriptor itemPropertyDescriptor) {
 
+		EStructuralFeature feature = (EStructuralFeature)itemPropertyDescriptor.getFeature(modelElement);
 		if (feature instanceof EAttribute) {
 
-			if (featureUIHint.getType().equals(FeatureUIHint.TEXT_AREA)) {
+			if (itemPropertyDescriptor.isMultiLine(modelElement)) {
 				return createMETextAreaControl((EAttribute) feature);
 			}
 			if (feature.getEType().getInstanceClass().equals(boolean.class)) {
@@ -51,20 +53,22 @@ public class ControlFactory {
 		if (feature instanceof EReference && feature.getUpperBound() != 1) {
 			EReference reference = (EReference) feature;
 			if (reference.isMany()) {
-				return createMELinkControl((EReference) feature);
+				return createMELinkControl((EReference) feature, itemPropertyDescriptor);
 			}
-
 		}
 
 		if (feature instanceof EReference && feature.getUpperBound() == 1) {
 			EReference reference = (EReference) feature;
-
-			// return createMESingleLinkControl((EReference) feature);
+			return createMESingleLinkControl(reference);
 
 		}
 
 		return null;
 		// TODO: Add other types
+	}
+
+	private MEControl createMESingleLinkControl(EReference reference) {
+		return new MESingleLinkControl(editingDomain, modelElement, toolkit, reference);
 	}
 
 	private MEControl createMEDateControl(EAttribute attribute) {
@@ -92,8 +96,8 @@ public class ControlFactory {
 				editingDomain);
 	}
 
-	private MEControl createMELinkControl(EReference reference) {
-		return new MEMultiLinkControl(modelElement, reference, toolkit, editingDomain);
+	private MEControl createMELinkControl(EReference reference, IItemPropertyDescriptor itemPropertyDescriptor) {
+		return new MEMultiLinkControl(modelElement, reference, toolkit, editingDomain,itemPropertyDescriptor);
 	}
 
 }
