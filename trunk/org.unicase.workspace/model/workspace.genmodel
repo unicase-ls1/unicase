@@ -12,8 +12,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workspace.ecore#//Workspace/serverInfos"/>
       <genOperations ecoreOperation="workspace.ecore#//Workspace/checkout">
         <genParameters ecoreParameter="workspace.ecore#//Workspace/checkout/usersession"/>
-        <genParameters ecoreParameter="workspace.ecore#//Workspace/checkout/projectId"/>
-        <genParameters ecoreParameter="workspace.ecore#//Workspace/checkout/version"/>
+        <genParameters ecoreParameter="workspace.ecore#//Workspace/checkout/projectInfo"/>
       </genOperations>
       <genOperations ecoreOperation="workspace.ecore#//Workspace/save"/>
     </genClasses>
@@ -33,8 +32,7 @@
         <genParameters ecoreParameter="workspace.ecore#//Usersession/logIn/password"/>
       </genOperations>
       <genOperations ecoreOperation="workspace.ecore#//Usersession/checkout">
-        <genParameters ecoreParameter="workspace.ecore#//Usersession/checkout/projectId"/>
-        <genParameters ecoreParameter="workspace.ecore#//Usersession/checkout/versionSpec"/>
+        <genParameters ecoreParameter="workspace.ecore#//Usersession/checkout/projectInfo"/>
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="workspace.ecore#//ProjectSpace">

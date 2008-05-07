@@ -196,8 +196,7 @@ public class ProjectSpaceItemProvider extends ItemProviderAdapter implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return PlatformUI.getWorkbench().getSharedImages()
-		.getImage(ISharedImages.IMG_OBJ_PROJECT);
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ProjectSpace"));
 	}
 
 	/**

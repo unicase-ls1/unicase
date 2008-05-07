@@ -376,8 +376,8 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 		// Obtain other dependent packages
 		EsmodelPackage theEsmodelPackage = (EsmodelPackage)EPackage.Registry.INSTANCE.getEPackage(EsmodelPackage.eNS_URI);
-		ChangemanagmentPackage theChangemanagmentPackage = (ChangemanagmentPackage)EPackage.Registry.INSTANCE.getEPackage(ChangemanagmentPackage.eNS_URI);
 		ModelPackage theModelPackage = (ModelPackage)EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
+		ChangemanagmentPackage theChangemanagmentPackage = (ChangemanagmentPackage)EPackage.Registry.INSTANCE.getEPackage(ChangemanagmentPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -392,8 +392,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 		EOperation op = addEOperation(workspaceEClass, this.getProjectSpace(), "checkout", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getUsersession(), "usersession", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theEsmodelPackage.getProjectId(), "projectId", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theChangemanagmentPackage.getVersionSpec(), "version", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEsmodelPackage.getProjectInfo(), "projectInfo", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		addEOperation(workspaceEClass, null, "save", 0, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -415,8 +414,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		addEParameter(op, ecorePackage.getEString(), "password", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(usersessionEClass, this.getProjectSpace(), "checkout", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theEsmodelPackage.getProjectId(), "projectId", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theChangemanagmentPackage.getVersionSpec(), "versionSpec", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEsmodelPackage.getProjectInfo(), "projectInfo", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(projectSpaceEClass, ProjectSpace.class, "ProjectSpace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getProjectSpace_Project(), theModelPackage.getProject(), null, "project", null, 1, 1, ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
