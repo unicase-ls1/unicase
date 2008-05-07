@@ -268,7 +268,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProjectSpace_LocalChanges() {
+	public EReference getProjectSpace_ProjectId() {
 		return (EReference)projectSpaceEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -277,8 +277,8 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProjectSpace_Usersession() {
-		return (EReference)projectSpaceEClass.getEStructuralFeatures().get(2);
+	public EAttribute getProjectSpace_ProjectName() {
+		return (EAttribute)projectSpaceEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -286,7 +286,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getProjectSpace_LastUpdated() {
+	public EAttribute getProjectSpace_ProjectDescription() {
 		return (EAttribute)projectSpaceEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -295,8 +295,35 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProjectSpace_ProjectInfo() {
+	public EReference getProjectSpace_LocalChanges() {
 		return (EReference)projectSpaceEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getProjectSpace_Usersession() {
+		return (EReference)projectSpaceEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProjectSpace_LastUpdated() {
+		return (EAttribute)projectSpaceEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getProjectSpace_BaseVersion() {
+		return (EReference)projectSpaceEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -345,10 +372,13 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 		projectSpaceEClass = createEClass(PROJECT_SPACE);
 		createEReference(projectSpaceEClass, PROJECT_SPACE__PROJECT);
+		createEReference(projectSpaceEClass, PROJECT_SPACE__PROJECT_ID);
+		createEAttribute(projectSpaceEClass, PROJECT_SPACE__PROJECT_NAME);
+		createEAttribute(projectSpaceEClass, PROJECT_SPACE__PROJECT_DESCRIPTION);
 		createEReference(projectSpaceEClass, PROJECT_SPACE__LOCAL_CHANGES);
 		createEReference(projectSpaceEClass, PROJECT_SPACE__USERSESSION);
 		createEAttribute(projectSpaceEClass, PROJECT_SPACE__LAST_UPDATED);
-		createEReference(projectSpaceEClass, PROJECT_SPACE__PROJECT_INFO);
+		createEReference(projectSpaceEClass, PROJECT_SPACE__BASE_VERSION);
 	}
 
 	/**
@@ -418,10 +448,13 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 		initEClass(projectSpaceEClass, ProjectSpace.class, "ProjectSpace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getProjectSpace_Project(), theModelPackage.getProject(), null, "project", null, 1, 1, ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProjectSpace_ProjectId(), theEsmodelPackage.getProjectId(), null, "projectId", null, 1, 1, ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProjectSpace_ProjectName(), ecorePackage.getEString(), "projectName", null, 1, 1, ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProjectSpace_ProjectDescription(), ecorePackage.getEString(), "projectDescription", null, 1, 1, ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProjectSpace_LocalChanges(), theChangemanagmentPackage.getChangePackage(), null, "localChanges", null, 0, 1, ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProjectSpace_Usersession(), this.getUsersession(), null, "usersession", null, 0, 1, ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getProjectSpace_LastUpdated(), ecorePackage.getEDate(), "lastUpdated", null, 0, 1, ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProjectSpace_ProjectInfo(), theEsmodelPackage.getProjectInfo(), null, "projectInfo", null, 1, 1, ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProjectSpace_BaseVersion(), theChangemanagmentPackage.getPrimaryVersionSpec(), null, "baseVersion", null, 1, 1, ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		addEOperation(projectSpaceEClass, theChangemanagmentPackage.getPrimaryVersionSpec(), "commit", 0, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -435,6 +468,8 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		addEOperation(projectSpaceEClass, null, "save", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		addEOperation(projectSpaceEClass, null, "init", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		addEOperation(projectSpaceEClass, theEsmodelPackage.getProjectInfo(), "getProjectInfo", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

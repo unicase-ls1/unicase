@@ -271,6 +271,15 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public ProjectSpace checkout(ProjectInfo projectInfo) throws EmfStoreException {
+		return this.getWorkspaceManager().getCurrentWorkspace().checkout(this, projectInfo);
+	}
+
+	/**
 	 * @return
 	 * @generated NOT
 	 */
@@ -279,17 +288,6 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 			this.workspaceManager=WorkspaceManager.getInstance();
 		}
 		return this.workspaceManager;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @throws ConnectionException 
-	 * @generated NOT
-	 */
-	public ProjectSpace checkout(ProjectInfo projectInfo) throws EmfStoreException {
-		//MK sanity checks for usersession state
-		return this.getWorkspaceManager().getCurrentWorkspace().checkout(this, projectInfo);
 	}
 
 	/**
