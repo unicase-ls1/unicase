@@ -13,13 +13,13 @@ public class MEHyperLinkDeleteAdapter extends HyperlinkAdapter implements
 
 	private EObject modelElement;
 	private EReference reference;
-	private ModelElement opposite;
+	private EObject opposite;
 
 	public MEHyperLinkDeleteAdapter(EObject modelElement, EReference reference,
-			ModelElement me) {
+			EObject opposite) {
 		this.modelElement = modelElement;
 		this.reference= reference;
-		this.opposite= me;
+		this.opposite= opposite;
 	}
 
 	@Override

@@ -10,25 +10,19 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.ui.ISharedImages;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.forms.HyperlinkGroup;
-import org.eclipse.ui.forms.events.IHyperlinkListener;
 import org.eclipse.ui.forms.widgets.FormToolkit;
-import org.eclipse.ui.forms.widgets.Hyperlink;
-import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.eclipse.ui.forms.widgets.Section;
 import org.unicase.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.model.ModelElement;
@@ -46,14 +40,15 @@ public class MEMultiLinkControl extends AbstractMEControl {
 	List<Composite> linkComposites;
 	Composite linkArea;
 	int style;
+	private IItemPropertyDescriptor descriptor;
 
 	public MEMultiLinkControl(EObject modelElement, EReference reference,
-			FormToolkit toolkit, EditingDomain editingDomain) {
+			FormToolkit toolkit, EditingDomain editingDomain, IItemPropertyDescriptor descriptor) {
 		super(editingDomain, modelElement, toolkit);
-		this.modelElement = modelElement;
 		this.eReference = reference;
-		this.toolkit = toolkit;
+		this.descriptor=descriptor;
 		linkComposites = new ArrayList<Composite>();
+		
 		modelElement.eAdapters().add(new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
@@ -70,7 +65,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 		this.style = style;
 		section = toolkit.createSection(parent, Section.DESCRIPTION
 				| Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
-		section.setText(eReference.getName());
+		section.setText(descriptor.getDisplayName(modelElement));
 		composite = toolkit.createComposite(section, style);
 		composite.setLayout(new GridLayout());
 
@@ -131,33 +126,14 @@ public class MEMultiLinkControl extends AbstractMEControl {
 				composite.dispose();
 			}
 		}
+		MELinkControl meControl;
 		for (EObject object : value) {
 			if (object instanceof ModelElement) {
-
+				
 				ModelElement me = (ModelElement) object;
-				Composite linkComposite = toolkit.createComposite(linkArea,
-						style);
-				linkComposite.setLayout(new GridLayout(3, false));
-				ILabelProvider labelProvider = new AdapterFactoryLabelProvider(
-						new ModelItemProviderAdapterFactory());
-				Image image = labelProvider.getImage(me);
-				ImageHyperlink imageHyperlink = toolkit.createImageHyperlink(
-						linkComposite, style);
-				imageHyperlink.setImage(image);
-				Hyperlink hyperlink = toolkit.createHyperlink(linkComposite, me
-						.getName(), style);
+				meControl= new MELinkControl(editingDomain, me, toolkit, modelElement, eReference);
+				Composite linkComposite = (Composite)meControl.createControl(linkArea, style);
 				linkComposites.add(linkComposite);
-				hyperLinkGroup.add(hyperlink);
-				IHyperlinkListener listener = new MEHyperLinkAdapter(me);
-				hyperlink.addHyperlinkListener(listener);
-				imageHyperlink.addHyperlinkListener(listener);
-				ImageHyperlink deleteLink = toolkit.createImageHyperlink(
-						linkComposite, style);
-				deleteLink.setImage(PlatformUI.getWorkbench().getSharedImages()
-						.getImage(ISharedImages.IMG_TOOL_DELETE));
-
-				deleteLink.addHyperlinkListener(new MEHyperLinkDeleteAdapter(
-						modelElement, eReference, me));
 			}
 		}
 		// Force relayout.
