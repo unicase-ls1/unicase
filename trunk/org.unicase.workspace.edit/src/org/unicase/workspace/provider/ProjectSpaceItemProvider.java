@@ -192,11 +192,12 @@ public class ProjectSpaceItemProvider extends ItemProviderAdapter implements
 	 * This returns ProjectSpace.gif. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ProjectSpace"));
+		return PlatformUI.getWorkbench().getSharedImages()
+		.getImage(ISharedImages.IMG_OBJ_PROJECT);
 	}
 
 	/**
