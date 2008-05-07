@@ -20,8 +20,10 @@ import org.unicase.esmodel.changemanagment.Version;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.unicase.esmodel.ProjectHistory#getProjectId <em>Project Id</em>}</li>
  *   <li>{@link org.unicase.esmodel.ProjectHistory#getVersions <em>Versions</em>}</li>
- *   <li>{@link org.unicase.esmodel.ProjectHistory#getProjectInfo <em>Project Info</em>}</li>
+ *   <li>{@link org.unicase.esmodel.ProjectHistory#getProjectName <em>Project Name</em>}</li>
+ *   <li>{@link org.unicase.esmodel.ProjectHistory#getProjectDescription <em>Project Description</em>}</li>
  * </ul>
  * </p>
  *
@@ -30,6 +32,32 @@ import org.unicase.esmodel.changemanagment.Version;
  * @generated
  */
 public interface ProjectHistory extends EObject {
+	/**
+	 * Returns the value of the '<em><b>Project Id</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Project Id</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Project Id</em>' containment reference.
+	 * @see #setProjectId(ProjectId)
+	 * @see org.unicase.esmodel.EsmodelPackage#getProjectHistory_ProjectId()
+	 * @model containment="true"
+	 * @generated
+	 */
+	ProjectId getProjectId();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.esmodel.ProjectHistory#getProjectId <em>Project Id</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Project Id</em>' containment reference.
+	 * @see #getProjectId()
+	 * @generated
+	 */
+	void setProjectId(ProjectId value);
+
 	/**
 	 * Returns the value of the '<em><b>Versions</b></em>' containment reference list.
 	 * The list contents are of type {@link org.unicase.esmodel.changemanagment.Version}.
@@ -47,29 +75,55 @@ public interface ProjectHistory extends EObject {
 	EList<Version> getVersions();
 
 	/**
-	 * Returns the value of the '<em><b>Project Info</b></em>' reference.
+	 * Returns the value of the '<em><b>Project Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Project Info</em>' reference isn't clear,
+	 * If the meaning of the '<em>Project Name</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Project Info</em>' reference.
-	 * @see #setProjectInfo(ProjectInfo)
-	 * @see org.unicase.esmodel.EsmodelPackage#getProjectHistory_ProjectInfo()
+	 * @return the value of the '<em>Project Name</em>' attribute.
+	 * @see #setProjectName(String)
+	 * @see org.unicase.esmodel.EsmodelPackage#getProjectHistory_ProjectName()
 	 * @model required="true"
 	 * @generated
 	 */
-	ProjectInfo getProjectInfo();
+	String getProjectName();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.esmodel.ProjectHistory#getProjectInfo <em>Project Info</em>}' reference.
+	 * Sets the value of the '{@link org.unicase.esmodel.ProjectHistory#getProjectName <em>Project Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Project Info</em>' reference.
-	 * @see #getProjectInfo()
+	 * @param value the new value of the '<em>Project Name</em>' attribute.
+	 * @see #getProjectName()
 	 * @generated
 	 */
-	void setProjectInfo(ProjectInfo value);
+	void setProjectName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Project Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Project Description</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Project Description</em>' attribute.
+	 * @see #setProjectDescription(String)
+	 * @see org.unicase.esmodel.EsmodelPackage#getProjectHistory_ProjectDescription()
+	 * @model required="true"
+	 * @generated
+	 */
+	String getProjectDescription();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.esmodel.ProjectHistory#getProjectDescription <em>Project Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Project Description</em>' attribute.
+	 * @see #getProjectDescription()
+	 * @generated
+	 */
+	void setProjectDescription(String value);
 
 } // ProjectHistory

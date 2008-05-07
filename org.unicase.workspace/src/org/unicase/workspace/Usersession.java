@@ -162,9 +162,10 @@ public interface Usersession extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @throws ConnectionException 
-	 * @throws EmfStoreException 
 	 * @model
+	 * @return
+	 * @throws EmfStoreException 
+	 *
 	 * @generated NOT
 	 */
 	ProjectSpace checkout(ProjectInfo projectInfo) throws EmfStoreException;

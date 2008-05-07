@@ -27,6 +27,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.esmodel.EsmodelFactory;
+import org.unicase.esmodel.changemanagment.ChangemanagmentFactory;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
 import org.unicase.model.provider.ProjectItemProvider;
 import org.unicase.workspace.ProjectSpace;
@@ -63,6 +64,8 @@ public class ProjectSpaceItemProvider extends ItemProviderAdapter implements
 			super.getPropertyDescriptors(object);
 
 			addProjectPropertyDescriptor(object);
+			addProjectNamePropertyDescriptor(object);
+			addProjectDescriptionPropertyDescriptor(object);
 			addLocalChangesPropertyDescriptor(object);
 			addUsersessionPropertyDescriptor(object);
 			addLastUpdatedPropertyDescriptor(object);
@@ -88,6 +91,50 @@ public class ProjectSpaceItemProvider extends ItemProviderAdapter implements
 				 false,
 				 true,
 				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Project Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addProjectNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ProjectSpace_projectName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ProjectSpace_projectName_feature", "_UI_ProjectSpace_type"),
+				 WorkspacePackage.Literals.PROJECT_SPACE__PROJECT_NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Project Description feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addProjectDescriptionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ProjectSpace_projectDescription_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ProjectSpace_projectDescription_feature", "_UI_ProjectSpace_type"),
+				 WorkspacePackage.Literals.PROJECT_SPACE__PROJECT_DESCRIPTION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -170,7 +217,8 @@ public class ProjectSpaceItemProvider extends ItemProviderAdapter implements
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(WorkspacePackage.Literals.PROJECT_SPACE__PROJECT_INFO);
+			childrenFeatures.add(WorkspacePackage.Literals.PROJECT_SPACE__PROJECT_ID);
+			childrenFeatures.add(WorkspacePackage.Literals.PROJECT_SPACE__BASE_VERSION);
 		}
 		return childrenFeatures;
 	}
@@ -210,7 +258,7 @@ public class ProjectSpaceItemProvider extends ItemProviderAdapter implements
 	public String getText(Object object) {
 		if (object instanceof ProjectSpace) {
 			ProjectSpace projectSpace = (ProjectSpace) object;
-			return projectSpace.getProjectInfo().getName()+"@"+projectSpace.getProjectInfo().getVersion().getIdentifier();
+			return projectSpace.getProjectName()+"@"+projectSpace.getBaseVersion().getIdentifier();
 		}
 		return getString("_UI_ProjectSpace_type");
 	}
@@ -227,10 +275,13 @@ public class ProjectSpaceItemProvider extends ItemProviderAdapter implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ProjectSpace.class)) {
+			case WorkspacePackage.PROJECT_SPACE__PROJECT_NAME:
+			case WorkspacePackage.PROJECT_SPACE__PROJECT_DESCRIPTION:
 			case WorkspacePackage.PROJECT_SPACE__LAST_UPDATED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case WorkspacePackage.PROJECT_SPACE__PROJECT_INFO:
+			case WorkspacePackage.PROJECT_SPACE__PROJECT_ID:
+			case WorkspacePackage.PROJECT_SPACE__BASE_VERSION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -251,8 +302,13 @@ public class ProjectSpaceItemProvider extends ItemProviderAdapter implements
 
 		newChildDescriptors.add
 			(createChildParameter
-				(WorkspacePackage.Literals.PROJECT_SPACE__PROJECT_INFO,
-				 EsmodelFactory.eINSTANCE.createProjectInfo()));
+				(WorkspacePackage.Literals.PROJECT_SPACE__PROJECT_ID,
+				 EsmodelFactory.eINSTANCE.createProjectId()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(WorkspacePackage.Literals.PROJECT_SPACE__BASE_VERSION,
+				 ChangemanagmentFactory.eINSTANCE.createPrimaryVersionSpec()));
 	}
 
 	/**

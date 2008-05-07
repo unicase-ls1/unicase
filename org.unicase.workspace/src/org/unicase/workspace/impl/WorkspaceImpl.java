@@ -7,7 +7,9 @@
 package org.unicase.workspace.impl;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -129,11 +131,28 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * @generated NOT
 	 */
 	public ProjectSpace checkout(Usersession usersession, ProjectInfo projectInfo) throws EmfStoreException {
+		
+		//get Project from server
 		Project project = this.connectionManager.getProject(usersession.getSessionId(), projectInfo.getProjectId(), projectInfo.getVersion());
+		
+		//resolve version spec if neccessary
+		PrimaryVersionSpec primaryVersionSpec;
+		if (projectInfo.getVersion() instanceof PrimaryVersionSpec) {
+			primaryVersionSpec = (PrimaryVersionSpec) projectInfo.getVersion();
+		}
+		else {
+			primaryVersionSpec = this.connectionManager.resolveVersionSpec(usersession.getSessionId(), projectInfo.getVersion());
+		}
+		//init project space
 		ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE.createProjectSpace();
+		projectSpace.setProjectId(projectInfo.getProjectId());
+		projectSpace.setProjectName(projectInfo.getName());
+		projectSpace.setProjectDescription(projectInfo.getDescription());
+		projectSpace.setBaseVersion(primaryVersionSpec);
+		projectSpace.setLastUpdated(new Date());
 		projectSpace.setUsersession(usersession);
-		projectSpace.setProjectInfo(projectInfo);
 		projectSpace.setProject(project);
+		
 		this.getProjectSpaces().add(projectSpace);
 		save();
 		return projectSpace;

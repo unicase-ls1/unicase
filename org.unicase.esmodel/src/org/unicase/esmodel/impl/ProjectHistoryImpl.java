@@ -36,14 +36,26 @@ import org.unicase.esmodel.changemanagment.Version;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.unicase.esmodel.impl.ProjectHistoryImpl#getProjectId <em>Project Id</em>}</li>
  *   <li>{@link org.unicase.esmodel.impl.ProjectHistoryImpl#getVersions <em>Versions</em>}</li>
- *   <li>{@link org.unicase.esmodel.impl.ProjectHistoryImpl#getProjectInfo <em>Project Info</em>}</li>
+ *   <li>{@link org.unicase.esmodel.impl.ProjectHistoryImpl#getProjectName <em>Project Name</em>}</li>
+ *   <li>{@link org.unicase.esmodel.impl.ProjectHistoryImpl#getProjectDescription <em>Project Description</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
+	/**
+	 * The cached value of the '{@link #getProjectId() <em>Project Id</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProjectId()
+	 * @generated
+	 * @ordered
+	 */
+	protected ProjectId projectId;
+
 	/**
 	 * The cached value of the '{@link #getVersions() <em>Versions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -55,14 +67,44 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	protected EList<Version> versions;
 
 	/**
-	 * The cached value of the '{@link #getProjectInfo() <em>Project Info</em>}' reference.
+	 * The default value of the '{@link #getProjectName() <em>Project Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getProjectInfo()
+	 * @see #getProjectName()
 	 * @generated
 	 * @ordered
 	 */
-	protected ProjectInfo projectInfo;
+	protected static final String PROJECT_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getProjectName() <em>Project Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProjectName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String projectName = PROJECT_NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getProjectDescription() <em>Project Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProjectDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String PROJECT_DESCRIPTION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getProjectDescription() <em>Project Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProjectDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected String projectDescription = PROJECT_DESCRIPTION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -88,6 +130,49 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ProjectId getProjectId() {
+		return projectId;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetProjectId(ProjectId newProjectId, NotificationChain msgs) {
+		ProjectId oldProjectId = projectId;
+		projectId = newProjectId;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EsmodelPackage.PROJECT_HISTORY__PROJECT_ID, oldProjectId, newProjectId);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProjectId(ProjectId newProjectId) {
+		if (newProjectId != projectId) {
+			NotificationChain msgs = null;
+			if (projectId != null)
+				msgs = ((InternalEObject)projectId).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EsmodelPackage.PROJECT_HISTORY__PROJECT_ID, null, msgs);
+			if (newProjectId != null)
+				msgs = ((InternalEObject)newProjectId).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EsmodelPackage.PROJECT_HISTORY__PROJECT_ID, null, msgs);
+			msgs = basicSetProjectId(newProjectId, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EsmodelPackage.PROJECT_HISTORY__PROJECT_ID, newProjectId, newProjectId));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<Version> getVersions() {
 		if (versions == null) {
 			versions = new EObjectContainmentEList<Version>(Version.class, this, EsmodelPackage.PROJECT_HISTORY__VERSIONS);
@@ -100,16 +185,8 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ProjectInfo getProjectInfo() {
-		if (projectInfo != null && projectInfo.eIsProxy()) {
-			InternalEObject oldProjectInfo = (InternalEObject)projectInfo;
-			projectInfo = (ProjectInfo)eResolveProxy(oldProjectInfo);
-			if (projectInfo != oldProjectInfo) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EsmodelPackage.PROJECT_HISTORY__PROJECT_INFO, oldProjectInfo, projectInfo));
-			}
-		}
-		return projectInfo;
+	public String getProjectName() {
+		return projectName;
 	}
 
 	/**
@@ -117,20 +194,32 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ProjectInfo basicGetProjectInfo() {
-		return projectInfo;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setProjectInfo(ProjectInfo newProjectInfo) {
-		ProjectInfo oldProjectInfo = projectInfo;
-		projectInfo = newProjectInfo;
+	public void setProjectName(String newProjectName) {
+		String oldProjectName = projectName;
+		projectName = newProjectName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EsmodelPackage.PROJECT_HISTORY__PROJECT_INFO, oldProjectInfo, projectInfo));
+			eNotify(new ENotificationImpl(this, Notification.SET, EsmodelPackage.PROJECT_HISTORY__PROJECT_NAME, oldProjectName, projectName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getProjectDescription() {
+		return projectDescription;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProjectDescription(String newProjectDescription) {
+		String oldProjectDescription = projectDescription;
+		projectDescription = newProjectDescription;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EsmodelPackage.PROJECT_HISTORY__PROJECT_DESCRIPTION, oldProjectDescription, projectDescription));
 	}
 
 	/**
@@ -141,6 +230,8 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case EsmodelPackage.PROJECT_HISTORY__PROJECT_ID:
+				return basicSetProjectId(null, msgs);
 			case EsmodelPackage.PROJECT_HISTORY__VERSIONS:
 				return ((InternalEList<?>)getVersions()).basicRemove(otherEnd, msgs);
 		}
@@ -155,11 +246,14 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case EsmodelPackage.PROJECT_HISTORY__PROJECT_ID:
+				return getProjectId();
 			case EsmodelPackage.PROJECT_HISTORY__VERSIONS:
 				return getVersions();
-			case EsmodelPackage.PROJECT_HISTORY__PROJECT_INFO:
-				if (resolve) return getProjectInfo();
-				return basicGetProjectInfo();
+			case EsmodelPackage.PROJECT_HISTORY__PROJECT_NAME:
+				return getProjectName();
+			case EsmodelPackage.PROJECT_HISTORY__PROJECT_DESCRIPTION:
+				return getProjectDescription();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -173,12 +267,18 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case EsmodelPackage.PROJECT_HISTORY__PROJECT_ID:
+				setProjectId((ProjectId)newValue);
+				return;
 			case EsmodelPackage.PROJECT_HISTORY__VERSIONS:
 				getVersions().clear();
 				getVersions().addAll((Collection<? extends Version>)newValue);
 				return;
-			case EsmodelPackage.PROJECT_HISTORY__PROJECT_INFO:
-				setProjectInfo((ProjectInfo)newValue);
+			case EsmodelPackage.PROJECT_HISTORY__PROJECT_NAME:
+				setProjectName((String)newValue);
+				return;
+			case EsmodelPackage.PROJECT_HISTORY__PROJECT_DESCRIPTION:
+				setProjectDescription((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -192,11 +292,17 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case EsmodelPackage.PROJECT_HISTORY__PROJECT_ID:
+				setProjectId((ProjectId)null);
+				return;
 			case EsmodelPackage.PROJECT_HISTORY__VERSIONS:
 				getVersions().clear();
 				return;
-			case EsmodelPackage.PROJECT_HISTORY__PROJECT_INFO:
-				setProjectInfo((ProjectInfo)null);
+			case EsmodelPackage.PROJECT_HISTORY__PROJECT_NAME:
+				setProjectName(PROJECT_NAME_EDEFAULT);
+				return;
+			case EsmodelPackage.PROJECT_HISTORY__PROJECT_DESCRIPTION:
+				setProjectDescription(PROJECT_DESCRIPTION_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -210,12 +316,34 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case EsmodelPackage.PROJECT_HISTORY__PROJECT_ID:
+				return projectId != null;
 			case EsmodelPackage.PROJECT_HISTORY__VERSIONS:
 				return versions != null && !versions.isEmpty();
-			case EsmodelPackage.PROJECT_HISTORY__PROJECT_INFO:
-				return projectInfo != null;
+			case EsmodelPackage.PROJECT_HISTORY__PROJECT_NAME:
+				return PROJECT_NAME_EDEFAULT == null ? projectName != null : !PROJECT_NAME_EDEFAULT.equals(projectName);
+			case EsmodelPackage.PROJECT_HISTORY__PROJECT_DESCRIPTION:
+				return PROJECT_DESCRIPTION_EDEFAULT == null ? projectDescription != null : !PROJECT_DESCRIPTION_EDEFAULT.equals(projectDescription);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (projectName: ");
+		result.append(projectName);
+		result.append(", projectDescription: ");
+		result.append(projectDescription);
+		result.append(')');
+		return result.toString();
 	}
 
 } //ProjectHistoryImpl

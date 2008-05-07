@@ -71,7 +71,6 @@ public interface Workspace extends EObject, IAdaptable {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @throws ConnectionException 
 	 * @throws EmfStoreException 
 	 * @model
 	 * @generated NOT

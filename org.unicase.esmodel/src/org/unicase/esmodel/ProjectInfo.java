@@ -7,6 +7,7 @@
 package org.unicase.esmodel;
 
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.esmodel.changemanagment.VersionSpec;
 import org.unicase.esmodel.changemanagment.PrimaryVersionSpec;
 
 /**
@@ -108,29 +109,29 @@ public interface ProjectInfo extends EObject {
 	void setProjectId(ProjectId value);
 
 	/**
-	 * Returns the value of the '<em><b>Version</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Version</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Version</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Version</em>' containment reference.
-	 * @see #setVersion(PrimaryVersionSpec)
+	 * @return the value of the '<em>Version</em>' reference.
+	 * @see #setVersion(VersionSpec)
 	 * @see org.unicase.esmodel.EsmodelPackage#getProjectInfo_Version()
-	 * @model containment="true" required="true"
+	 * @model required="true"
 	 * @generated
 	 */
-	PrimaryVersionSpec getVersion();
+	VersionSpec getVersion();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.esmodel.ProjectInfo#getVersion <em>Version</em>}' containment reference.
+	 * Sets the value of the '{@link org.unicase.esmodel.ProjectInfo#getVersion <em>Version</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Version</em>' containment reference.
+	 * @param value the new value of the '<em>Version</em>' reference.
 	 * @see #getVersion()
 	 * @generated
 	 */
-	void setVersion(PrimaryVersionSpec value);
+	void setVersion(VersionSpec value);
 
 } // ProjectInfo

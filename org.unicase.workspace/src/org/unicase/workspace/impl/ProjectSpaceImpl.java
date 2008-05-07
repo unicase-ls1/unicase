@@ -19,6 +19,8 @@ import org.eclipse.emf.ecore.change.impl.ChangePackageImpl;
 import org.eclipse.emf.ecore.change.util.ChangeRecorder;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.unicase.esmodel.EsmodelFactory;
+import org.unicase.esmodel.ProjectId;
 import org.unicase.esmodel.ProjectInfo;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.esmodel.changemanagment.ChangePackage;
@@ -40,10 +42,13 @@ import org.unicase.workspace.WorkspacePackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProject <em>Project</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectId <em>Project Id</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectName <em>Project Name</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectDescription <em>Project Description</em>}</li>
  *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getLocalChanges <em>Local Changes</em>}</li>
  *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getUsersession <em>Usersession</em>}</li>
  *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getLastUpdated <em>Last Updated</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectInfo <em>Project Info</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getBaseVersion <em>Base Version</em>}</li>
  * </ul>
  * </p>
  *
@@ -65,6 +70,56 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @ordered
 	 */
 	protected Project project;
+
+	/**
+	 * The cached value of the '{@link #getProjectId() <em>Project Id</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProjectId()
+	 * @generated
+	 * @ordered
+	 */
+	protected ProjectId projectId;
+
+	/**
+	 * The default value of the '{@link #getProjectName() <em>Project Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProjectName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String PROJECT_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getProjectName() <em>Project Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProjectName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String projectName = PROJECT_NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getProjectDescription() <em>Project Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProjectDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String PROJECT_DESCRIPTION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getProjectDescription() <em>Project Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProjectDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected String projectDescription = PROJECT_DESCRIPTION_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getLocalChanges() <em>Local Changes</em>}' containment reference.
@@ -107,14 +162,14 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	protected Date lastUpdated = LAST_UPDATED_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getProjectInfo() <em>Project Info</em>}' containment reference.
+	 * The cached value of the '{@link #getBaseVersion() <em>Base Version</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getProjectInfo()
+	 * @see #getBaseVersion()
 	 * @generated
 	 * @ordered
 	 */
-	protected ProjectInfo projectInfo;
+	protected PrimaryVersionSpec baseVersion;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -188,6 +243,91 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 		init();
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ProjectId getProjectId() {
+		return projectId;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetProjectId(ProjectId newProjectId, NotificationChain msgs) {
+		ProjectId oldProjectId = projectId;
+		projectId = newProjectId;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__PROJECT_ID, oldProjectId, newProjectId);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProjectId(ProjectId newProjectId) {
+		if (newProjectId != projectId) {
+			NotificationChain msgs = null;
+			if (projectId != null)
+				msgs = ((InternalEObject)projectId).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WorkspacePackage.PROJECT_SPACE__PROJECT_ID, null, msgs);
+			if (newProjectId != null)
+				msgs = ((InternalEObject)newProjectId).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WorkspacePackage.PROJECT_SPACE__PROJECT_ID, null, msgs);
+			msgs = basicSetProjectId(newProjectId, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__PROJECT_ID, newProjectId, newProjectId));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getProjectName() {
+		return projectName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProjectName(String newProjectName) {
+		String oldProjectName = projectName;
+		projectName = newProjectName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__PROJECT_NAME, oldProjectName, projectName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getProjectDescription() {
+		return projectDescription;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProjectDescription(String newProjectDescription) {
+		String oldProjectDescription = projectDescription;
+		projectDescription = newProjectDescription;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__PROJECT_DESCRIPTION, oldProjectDescription, projectDescription));
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -300,8 +440,8 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ProjectInfo getProjectInfo() {
-		return projectInfo;
+	public PrimaryVersionSpec getBaseVersion() {
+		return baseVersion;
 	}
 
 	/**
@@ -309,11 +449,11 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetProjectInfo(ProjectInfo newProjectInfo, NotificationChain msgs) {
-		ProjectInfo oldProjectInfo = projectInfo;
-		projectInfo = newProjectInfo;
+	public NotificationChain basicSetBaseVersion(PrimaryVersionSpec newBaseVersion, NotificationChain msgs) {
+		PrimaryVersionSpec oldBaseVersion = baseVersion;
+		baseVersion = newBaseVersion;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__PROJECT_INFO, oldProjectInfo, newProjectInfo);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__BASE_VERSION, oldBaseVersion, newBaseVersion);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -324,18 +464,18 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setProjectInfo(ProjectInfo newProjectInfo) {
-		if (newProjectInfo != projectInfo) {
+	public void setBaseVersion(PrimaryVersionSpec newBaseVersion) {
+		if (newBaseVersion != baseVersion) {
 			NotificationChain msgs = null;
-			if (projectInfo != null)
-				msgs = ((InternalEObject)projectInfo).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WorkspacePackage.PROJECT_SPACE__PROJECT_INFO, null, msgs);
-			if (newProjectInfo != null)
-				msgs = ((InternalEObject)newProjectInfo).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WorkspacePackage.PROJECT_SPACE__PROJECT_INFO, null, msgs);
-			msgs = basicSetProjectInfo(newProjectInfo, msgs);
+			if (baseVersion != null)
+				msgs = ((InternalEObject)baseVersion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WorkspacePackage.PROJECT_SPACE__BASE_VERSION, null, msgs);
+			if (newBaseVersion != null)
+				msgs = ((InternalEObject)newBaseVersion).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WorkspacePackage.PROJECT_SPACE__BASE_VERSION, null, msgs);
+			msgs = basicSetBaseVersion(newBaseVersion, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__PROJECT_INFO, newProjectInfo, newProjectInfo));
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__BASE_VERSION, newBaseVersion, newBaseVersion));
 	}
 
 	/**
@@ -421,6 +561,20 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public ProjectInfo getProjectInfo() {
+		ProjectInfo projectInfo = EsmodelFactory.eINSTANCE.createProjectInfo();
+		projectInfo.setProjectId(getProjectId());
+		projectInfo.setName(getProjectName());
+		projectInfo.setDescription(getProjectDescription());
+		projectInfo.setVersion(getBaseVersion());
+		return projectInfo;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -428,12 +582,14 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 		switch (featureID) {
 			case WorkspacePackage.PROJECT_SPACE__PROJECT:
 				return basicSetProject(null, msgs);
+			case WorkspacePackage.PROJECT_SPACE__PROJECT_ID:
+				return basicSetProjectId(null, msgs);
 			case WorkspacePackage.PROJECT_SPACE__LOCAL_CHANGES:
 				return basicSetLocalChanges(null, msgs);
 			case WorkspacePackage.PROJECT_SPACE__USERSESSION:
 				return basicSetUsersession(null, msgs);
-			case WorkspacePackage.PROJECT_SPACE__PROJECT_INFO:
-				return basicSetProjectInfo(null, msgs);
+			case WorkspacePackage.PROJECT_SPACE__BASE_VERSION:
+				return basicSetBaseVersion(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -448,14 +604,20 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 		switch (featureID) {
 			case WorkspacePackage.PROJECT_SPACE__PROJECT:
 				return getProject();
+			case WorkspacePackage.PROJECT_SPACE__PROJECT_ID:
+				return getProjectId();
+			case WorkspacePackage.PROJECT_SPACE__PROJECT_NAME:
+				return getProjectName();
+			case WorkspacePackage.PROJECT_SPACE__PROJECT_DESCRIPTION:
+				return getProjectDescription();
 			case WorkspacePackage.PROJECT_SPACE__LOCAL_CHANGES:
 				return getLocalChanges();
 			case WorkspacePackage.PROJECT_SPACE__USERSESSION:
 				return getUsersession();
 			case WorkspacePackage.PROJECT_SPACE__LAST_UPDATED:
 				return getLastUpdated();
-			case WorkspacePackage.PROJECT_SPACE__PROJECT_INFO:
-				return getProjectInfo();
+			case WorkspacePackage.PROJECT_SPACE__BASE_VERSION:
+				return getBaseVersion();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -471,6 +633,15 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 			case WorkspacePackage.PROJECT_SPACE__PROJECT:
 				setProject((Project)newValue);
 				return;
+			case WorkspacePackage.PROJECT_SPACE__PROJECT_ID:
+				setProjectId((ProjectId)newValue);
+				return;
+			case WorkspacePackage.PROJECT_SPACE__PROJECT_NAME:
+				setProjectName((String)newValue);
+				return;
+			case WorkspacePackage.PROJECT_SPACE__PROJECT_DESCRIPTION:
+				setProjectDescription((String)newValue);
+				return;
 			case WorkspacePackage.PROJECT_SPACE__LOCAL_CHANGES:
 				setLocalChanges((ChangePackage)newValue);
 				return;
@@ -480,8 +651,8 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 			case WorkspacePackage.PROJECT_SPACE__LAST_UPDATED:
 				setLastUpdated((Date)newValue);
 				return;
-			case WorkspacePackage.PROJECT_SPACE__PROJECT_INFO:
-				setProjectInfo((ProjectInfo)newValue);
+			case WorkspacePackage.PROJECT_SPACE__BASE_VERSION:
+				setBaseVersion((PrimaryVersionSpec)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -498,6 +669,15 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 			case WorkspacePackage.PROJECT_SPACE__PROJECT:
 				setProject((Project)null);
 				return;
+			case WorkspacePackage.PROJECT_SPACE__PROJECT_ID:
+				setProjectId((ProjectId)null);
+				return;
+			case WorkspacePackage.PROJECT_SPACE__PROJECT_NAME:
+				setProjectName(PROJECT_NAME_EDEFAULT);
+				return;
+			case WorkspacePackage.PROJECT_SPACE__PROJECT_DESCRIPTION:
+				setProjectDescription(PROJECT_DESCRIPTION_EDEFAULT);
+				return;
 			case WorkspacePackage.PROJECT_SPACE__LOCAL_CHANGES:
 				setLocalChanges((ChangePackage)null);
 				return;
@@ -507,8 +687,8 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 			case WorkspacePackage.PROJECT_SPACE__LAST_UPDATED:
 				setLastUpdated(LAST_UPDATED_EDEFAULT);
 				return;
-			case WorkspacePackage.PROJECT_SPACE__PROJECT_INFO:
-				setProjectInfo((ProjectInfo)null);
+			case WorkspacePackage.PROJECT_SPACE__BASE_VERSION:
+				setBaseVersion((PrimaryVersionSpec)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -524,14 +704,20 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 		switch (featureID) {
 			case WorkspacePackage.PROJECT_SPACE__PROJECT:
 				return project != null;
+			case WorkspacePackage.PROJECT_SPACE__PROJECT_ID:
+				return projectId != null;
+			case WorkspacePackage.PROJECT_SPACE__PROJECT_NAME:
+				return PROJECT_NAME_EDEFAULT == null ? projectName != null : !PROJECT_NAME_EDEFAULT.equals(projectName);
+			case WorkspacePackage.PROJECT_SPACE__PROJECT_DESCRIPTION:
+				return PROJECT_DESCRIPTION_EDEFAULT == null ? projectDescription != null : !PROJECT_DESCRIPTION_EDEFAULT.equals(projectDescription);
 			case WorkspacePackage.PROJECT_SPACE__LOCAL_CHANGES:
 				return localChanges != null;
 			case WorkspacePackage.PROJECT_SPACE__USERSESSION:
 				return usersession != null;
 			case WorkspacePackage.PROJECT_SPACE__LAST_UPDATED:
 				return LAST_UPDATED_EDEFAULT == null ? lastUpdated != null : !LAST_UPDATED_EDEFAULT.equals(lastUpdated);
-			case WorkspacePackage.PROJECT_SPACE__PROJECT_INFO:
-				return projectInfo != null;
+			case WorkspacePackage.PROJECT_SPACE__BASE_VERSION:
+				return baseVersion != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -546,7 +732,11 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (lastUpdated: ");
+		result.append(" (projectName: ");
+		result.append(projectName);
+		result.append(", projectDescription: ");
+		result.append(projectDescription);
+		result.append(", lastUpdated: ");
 		result.append(lastUpdated);
 		result.append(')');
 		return result.toString();

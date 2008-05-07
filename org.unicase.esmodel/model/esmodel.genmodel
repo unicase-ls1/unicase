@@ -8,8 +8,10 @@
   <genPackages prefix="Esmodel" basePackage="org.unicase" disposableProviderFactory="true"
       ecorePackage="esmodel.ecore#/">
     <genClasses ecoreClass="esmodel.ecore#//ProjectHistory">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//ProjectHistory/projectId"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//ProjectHistory/versions"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference esmodel.ecore#//ProjectHistory/projectInfo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//ProjectHistory/projectName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//ProjectHistory/projectDescription"/>
     </genClasses>
     <genClasses ecoreClass="esmodel.ecore#//ProjectInfo">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//ProjectInfo/name"/>

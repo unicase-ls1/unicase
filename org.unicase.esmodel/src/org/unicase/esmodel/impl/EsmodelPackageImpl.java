@@ -166,7 +166,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProjectHistory_Versions() {
+	public EReference getProjectHistory_ProjectId() {
 		return (EReference)projectHistoryEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -175,8 +175,26 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProjectHistory_ProjectInfo() {
+	public EReference getProjectHistory_Versions() {
 		return (EReference)projectHistoryEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProjectHistory_ProjectName() {
+		return (EAttribute)projectHistoryEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProjectHistory_ProjectDescription() {
+		return (EAttribute)projectHistoryEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -307,8 +325,10 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 
 		// Create classes and their features
 		projectHistoryEClass = createEClass(PROJECT_HISTORY);
+		createEReference(projectHistoryEClass, PROJECT_HISTORY__PROJECT_ID);
 		createEReference(projectHistoryEClass, PROJECT_HISTORY__VERSIONS);
-		createEReference(projectHistoryEClass, PROJECT_HISTORY__PROJECT_INFO);
+		createEAttribute(projectHistoryEClass, PROJECT_HISTORY__PROJECT_NAME);
+		createEAttribute(projectHistoryEClass, PROJECT_HISTORY__PROJECT_DESCRIPTION);
 
 		projectInfoEClass = createEClass(PROJECT_INFO);
 		createEAttribute(projectInfoEClass, PROJECT_INFO__NAME);
@@ -368,14 +388,16 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(projectHistoryEClass, ProjectHistory.class, "ProjectHistory", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getProjectHistory_ProjectId(), this.getProjectId(), null, "projectId", null, 0, 1, ProjectHistory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProjectHistory_Versions(), theChangemanagmentPackage.getVersion(), null, "versions", null, 1, -1, ProjectHistory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProjectHistory_ProjectInfo(), this.getProjectInfo(), null, "projectInfo", null, 1, 1, ProjectHistory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProjectHistory_ProjectName(), ecorePackage.getEString(), "projectName", null, 1, 1, ProjectHistory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProjectHistory_ProjectDescription(), ecorePackage.getEString(), "projectDescription", null, 1, 1, ProjectHistory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(projectInfoEClass, ProjectInfo.class, "ProjectInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getProjectInfo_Name(), ecorePackage.getEString(), "name", null, 1, 1, ProjectInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getProjectInfo_Description(), ecorePackage.getEString(), "description", null, 0, 1, ProjectInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProjectInfo_ProjectId(), this.getProjectId(), null, "projectId", null, 1, 1, ProjectInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProjectInfo_Version(), theChangemanagmentPackage.getPrimaryVersionSpec(), null, "version", null, 1, 1, ProjectInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProjectInfo_Version(), theChangemanagmentPackage.getVersionSpec(), null, "version", null, 1, 1, ProjectInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sessionIdEClass, SessionId.class, "SessionId", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
