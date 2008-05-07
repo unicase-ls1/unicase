@@ -1,6 +1,7 @@
 package org.unicase.meeditor.mecontrols;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -31,7 +32,7 @@ import org.eclipse.ui.forms.widgets.Section;
 import org.unicase.model.ModelElement;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
 
-public class MELinkControl extends AbstractMEControl {
+public class MEMultiLinkControl extends AbstractMEControl {
 
 	FormToolkit toolkit;
 	final EReference eReference;
@@ -44,7 +45,7 @@ public class MELinkControl extends AbstractMEControl {
 	Composite linkArea;
 	int style;
 
-	public MELinkControl(EObject modelElement, EReference reference,
+	public MEMultiLinkControl(EObject modelElement, EReference reference,
 			FormToolkit toolkit) {
 		super();
 		this.modelElement = modelElement;
@@ -55,7 +56,7 @@ public class MELinkControl extends AbstractMEControl {
 			@Override
 			public void notifyChanged(Notification msg) {
 				if (msg.getFeature().equals(eReference)) {
-					setLinks();
+					rebuildLinkSection();
 				}
 				super.notifyChanged(msg);
 			}
@@ -76,9 +77,9 @@ public class MELinkControl extends AbstractMEControl {
 
 		hyperLinkGroup = new HyperlinkGroup(composite.getDisplay());
 
-		setLinks();
+		rebuildLinkSection();
 
-		// TODO: move Button in the titlebar
+		// JH: move Button in the titlebar
 		Button editButton = toolkit.createButton(composite, "Add", SWT.PUSH);
 		editButton.addSelectionListener(new SelectionAdapter() {
 
@@ -88,20 +89,21 @@ public class MELinkControl extends AbstractMEControl {
 				ElementListSelectionDialog dlg = new ElementListSelectionDialog(
 						parent.getShell(), new AdapterFactoryLabelProvider(
 								new ModelItemProviderAdapterFactory()));
-				dlg.setElements(((ModelElement) modelElement).getProject()
-						.getElementsByClass(clazz).toArray());
-				// ((ModelElement) modelElement).getProject(), new
-				// AdapterFactoryContentProvider(new
-				// ModelItemProviderAdapterFactory()),
-				// new AdapterFactoryLabelProvider(new
-				// ModelItemProviderAdapterFactory()),
-				// "Select the modelelements.");
-				dlg.setTitle("Select Elements");
-				dlg.setBlockOnOpen(true);
-				if (dlg.open() == Window.OK) {
-					Object objectList = modelElement.eGet(eReference);
-					if (objectList instanceof EList) {
-						EList<EObject> list = (EList<EObject>) objectList;
+				// JH: fill only with right elements
+				Collection<ModelElement> allElements = ((ModelElement) modelElement)
+						.getProject().getElementsByClass(clazz);
+				allElements.remove(modelElement);
+				Object objectList = modelElement.eGet(eReference);
+				EList<EObject> list;
+				if (objectList instanceof EList) {
+					list = (EList<EObject>) objectList;
+					for(EObject ref: list){
+						allElements.remove(ref);
+					}
+					dlg.setElements(allElements.toArray());
+					dlg.setTitle("Select Elements");
+					dlg.setBlockOnOpen(true);
+					if (dlg.open() == Window.OK) {
 						Object[] result = dlg.getResult();
 						for (Object object : result) {
 							if (object instanceof EObject) {
@@ -109,21 +111,9 @@ public class MELinkControl extends AbstractMEControl {
 								list.add(eObject);
 							}
 						}
+
 					}
-
 				}
-				// MultipleReferenceDialog dialog = new MultipleReferenceDialog(
-				// parent.getShell(), toolkit,
-				// (EList<EObject>) modelElement.eGet(reference),
-				// ((ModelElement) modelElement).getProject(),clazz,
-				// modelElement
-				// );
-				// dialog.setBlockOnOpen(true);
-				// if (dialog.open() == Window.OK) {
-				// modelElement.eSet(reference, dialog.getResult());
-				// setLinks();
-				// }
-
 			}
 
 		});
@@ -132,7 +122,7 @@ public class MELinkControl extends AbstractMEControl {
 		return section;
 	}
 
-	public void setLinks() {
+	public void rebuildLinkSection() {
 		value = (EList<EObject>) modelElement.eGet(eReference);
 		if (linkComposites != null) {
 			for (Composite composite : linkComposites) {
