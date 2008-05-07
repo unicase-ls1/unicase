@@ -12,7 +12,7 @@ import org.unicase.meeditor.mecontrols.MEBoolControl;
 import org.unicase.meeditor.mecontrols.MEControl;
 import org.unicase.meeditor.mecontrols.MEDateControl;
 import org.unicase.meeditor.mecontrols.MEIntControl;
-import org.unicase.meeditor.mecontrols.MELinkControl;
+import org.unicase.meeditor.mecontrols.MEMultiLinkControl;
 import org.unicase.meeditor.mecontrols.METextAreaControl;
 import org.unicase.meeditor.mecontrols.METextControl;
 import org.unicase.model.edit.uihint.FeatureUIHint;
@@ -93,7 +93,7 @@ public class ControlFactory {
 	}
 
 	private MEControl createMELinkControl(EReference reference) {
-		return new MELinkControl(modelElement, reference, toolkit);
+		return new MEMultiLinkControl(modelElement, reference, toolkit, editingDomain);
 	}
 
 }
