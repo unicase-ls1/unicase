@@ -167,7 +167,7 @@ public interface Usersession extends EObject {
 	 * @model
 	 * @generated NOT
 	 */
-	ProjectSpace checkout(ProjectId projectId, VersionSpec versionSpec) throws EmfStoreException;
+	ProjectSpace checkout(ProjectInfo projectInfo) throws EmfStoreException;
 
 	/**
 	 * @return

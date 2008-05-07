@@ -17,12 +17,14 @@ public class TreeView extends CommonNavigator {
 	@Override
 	protected IAdaptable getInitialInput() {
 
+		Workspace workspace = WorkspaceManager.getInstance()
+		.getCurrentWorkspace();
+		
 		Usersession usersession = WorkspaceFactory.eINSTANCE
 				.createUsersession();
-		usersession.setServerInfo(Configuration.getDefaultServerInfo());
+		usersession.setServerInfo(workspace.getServerInfos().get(0));
 		usersession.setUsername("user");
-		Workspace workspace = WorkspaceManager.getInstance()
-				.getCurrentWorkspace();
+		
 		if (workspace.getProjectSpaces().size() < 2) {
 
 			ProjectInfo projectInfo;
@@ -34,10 +36,9 @@ public class TreeView extends CommonNavigator {
 					e.printStackTrace();
 				}
 				projectInfo = usersession.getRemoteProjectList().get(0);
-				usersession.checkout(projectInfo.getProjectId(), projectInfo
-						.getVersion());
-				usersession.checkout(projectInfo.getProjectId(), projectInfo
-						.getVersion());
+				usersession.checkout(projectInfo);
+				projectInfo = usersession.getRemoteProjectList().get(0);
+				usersession.checkout(projectInfo);
 
 			} catch (EmfStoreException e) {
 				// MK Auto-generated catch block

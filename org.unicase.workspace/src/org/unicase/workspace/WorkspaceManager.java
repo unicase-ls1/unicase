@@ -49,6 +49,7 @@ public class WorkspaceManager {
 					.createWorkspace();
 			workspace.setConnectionManager(this.connectionManager);
 			workspace.setResource(resource);
+			workspace.getServerInfos().add(Configuration.getDefaultServerInfo());
 			resource.getContents().add(workspace);
 			try {
 				resource.save(Configuration.getResourceSaveOptions());

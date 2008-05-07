@@ -108,26 +108,26 @@ public interface ProjectInfo extends EObject {
 	void setProjectId(ProjectId value);
 
 	/**
-	 * Returns the value of the '<em><b>Version</b></em>' reference.
+	 * Returns the value of the '<em><b>Version</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Version</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Version</em>' reference.
+	 * @return the value of the '<em>Version</em>' containment reference.
 	 * @see #setVersion(PrimaryVersionSpec)
 	 * @see org.unicase.esmodel.EsmodelPackage#getProjectInfo_Version()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	PrimaryVersionSpec getVersion();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.esmodel.ProjectInfo#getVersion <em>Version</em>}' reference.
+	 * Sets the value of the '{@link org.unicase.esmodel.ProjectInfo#getVersion <em>Version</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Version</em>' reference.
+	 * @param value the new value of the '<em>Version</em>' containment reference.
 	 * @see #getVersion()
 	 * @generated
 	 */

@@ -7,6 +7,7 @@
 package org.unicase.esmodel.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -84,7 +85,7 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 	protected ProjectId projectId;
 
 	/**
-	 * The cached value of the '{@link #getVersion() <em>Version</em>}' reference.
+	 * The cached value of the '{@link #getVersion() <em>Version</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getVersion()
@@ -198,14 +199,6 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 	 * @generated
 	 */
 	public PrimaryVersionSpec getVersion() {
-		if (version != null && version.eIsProxy()) {
-			InternalEObject oldVersion = (InternalEObject)version;
-			version = (PrimaryVersionSpec)eResolveProxy(oldVersion);
-			if (version != oldVersion) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EsmodelPackage.PROJECT_INFO__VERSION, oldVersion, version));
-			}
-		}
 		return version;
 	}
 
@@ -214,8 +207,14 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PrimaryVersionSpec basicGetVersion() {
-		return version;
+	public NotificationChain basicSetVersion(PrimaryVersionSpec newVersion, NotificationChain msgs) {
+		PrimaryVersionSpec oldVersion = version;
+		version = newVersion;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EsmodelPackage.PROJECT_INFO__VERSION, oldVersion, newVersion);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -224,10 +223,31 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 	 * @generated
 	 */
 	public void setVersion(PrimaryVersionSpec newVersion) {
-		PrimaryVersionSpec oldVersion = version;
-		version = newVersion;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EsmodelPackage.PROJECT_INFO__VERSION, oldVersion, version));
+		if (newVersion != version) {
+			NotificationChain msgs = null;
+			if (version != null)
+				msgs = ((InternalEObject)version).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EsmodelPackage.PROJECT_INFO__VERSION, null, msgs);
+			if (newVersion != null)
+				msgs = ((InternalEObject)newVersion).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EsmodelPackage.PROJECT_INFO__VERSION, null, msgs);
+			msgs = basicSetVersion(newVersion, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EsmodelPackage.PROJECT_INFO__VERSION, newVersion, newVersion));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case EsmodelPackage.PROJECT_INFO__VERSION:
+				return basicSetVersion(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -246,8 +266,7 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 				if (resolve) return getProjectId();
 				return basicGetProjectId();
 			case EsmodelPackage.PROJECT_INFO__VERSION:
-				if (resolve) return getVersion();
-				return basicGetVersion();
+				return getVersion();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

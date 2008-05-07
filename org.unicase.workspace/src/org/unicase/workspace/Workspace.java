@@ -9,6 +9,7 @@ package org.unicase.workspace;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.esmodel.ProjectInfo;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.esmodel.ProjectId;
@@ -75,7 +76,7 @@ public interface Workspace extends EObject, IAdaptable {
 	 * @model
 	 * @generated NOT
 	 */
-	ProjectSpace checkout(Usersession usersession, ProjectId projectId, VersionSpec version) throws EmfStoreException;
+	ProjectSpace checkout(Usersession usersession, ProjectInfo projectInfo) throws EmfStoreException;
 
 	/**
 	 * <!-- begin-user-doc -->

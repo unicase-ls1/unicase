@@ -287,9 +287,9 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 * @throws ConnectionException 
 	 * @generated NOT
 	 */
-	public ProjectSpace checkout(ProjectId projectId, VersionSpec versionSpec) throws EmfStoreException {
+	public ProjectSpace checkout(ProjectInfo projectInfo) throws EmfStoreException {
 		//MK sanity checks for usersession state
-		return this.getWorkspaceManager().getCurrentWorkspace().checkout(this, projectId, versionSpec);
+		return this.getWorkspaceManager().getCurrentWorkspace().checkout(this, projectInfo);
 	}
 
 	/**

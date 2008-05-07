@@ -6,8 +6,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Workspace">
     <eOperations name="checkout" eType="#//ProjectSpace">
       <eParameters name="usersession" eType="#//Usersession"/>
-      <eParameters name="projectId" eType="ecore:EClass ../../org.unicase.esmodel/model/esmodel.ecore#//ProjectId"/>
-      <eParameters name="version" eType="ecore:EClass ../../org.unicase.esmodel/model/esmodel.ecore#//changemanagment/VersionSpec"/>
+      <eParameters name="projectInfo" eType="ecore:EClass ../../org.unicase.esmodel/model/esmodel.ecore#//ProjectInfo"/>
     </eOperations>
     <eOperations name="save"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="projectSpaces" upperBound="-1"
@@ -27,8 +26,7 @@
       <eParameters name="password" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
     <eOperations name="checkout" eType="#//ProjectSpace">
-      <eParameters name="projectId" eType="ecore:EClass ../../org.unicase.esmodel/model/esmodel.ecore#//ProjectId"/>
-      <eParameters name="versionSpec" eType="ecore:EClass ../../org.unicase.esmodel/model/esmodel.ecore#//changemanagment/VersionSpec"/>
+      <eParameters name="projectInfo" eType="ecore:EClass ../../org.unicase.esmodel/model/esmodel.ecore#//ProjectInfo"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="username" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="password" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
