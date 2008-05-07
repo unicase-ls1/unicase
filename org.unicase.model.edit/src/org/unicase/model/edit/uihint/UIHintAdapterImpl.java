@@ -1,9 +1,14 @@
 package org.unicase.model.edit.uihint;
 
+import java.util.List;
+
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.unicase.model.provider.ModelItemProviderAdapterFactory;
 
 public class UIHintAdapterImpl implements UIHintAdapter {
 
@@ -27,6 +32,12 @@ public class UIHintAdapterImpl implements UIHintAdapter {
 				}
 			}
 		}
+//		AdapterFactoryItemDelegator adapterFactoryItemDelegator =new AdapterFactoryItemDelegator(new ModelItemProviderAdapterFactory());
+//		List<IItemPropertyDescriptor> propertyDescriptors = adapterFactoryItemDelegator.getPropertyDescriptors(feature);
+//		for ( IItemPropertyDescriptor itemPropertyDescriptor: propertyDescriptors){
+//			System.out.println(itemPropertyDescriptor.getDisplayName(feature));
+//		}
+
 
 		return featureUIHint;
 	}
