@@ -93,7 +93,7 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 	 * @generated
 	 * @ordered
 	 */
-	protected VersionSpec version;
+	protected PrimaryVersionSpec version;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -199,10 +199,10 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VersionSpec getVersion() {
+	public PrimaryVersionSpec getVersion() {
 		if (version != null && version.eIsProxy()) {
 			InternalEObject oldVersion = (InternalEObject)version;
-			version = (VersionSpec)eResolveProxy(oldVersion);
+			version = (PrimaryVersionSpec)eResolveProxy(oldVersion);
 			if (version != oldVersion) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EsmodelPackage.PROJECT_INFO__VERSION, oldVersion, version));
@@ -216,7 +216,7 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VersionSpec basicGetVersion() {
+	public PrimaryVersionSpec basicGetVersion() {
 		return version;
 	}
 
@@ -225,8 +225,8 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setVersion(VersionSpec newVersion) {
-		VersionSpec oldVersion = version;
+	public void setVersion(PrimaryVersionSpec newVersion) {
+		PrimaryVersionSpec oldVersion = version;
 		version = newVersion;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, EsmodelPackage.PROJECT_INFO__VERSION, oldVersion, version));
@@ -272,7 +272,7 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 				setProjectId((ProjectId)newValue);
 				return;
 			case EsmodelPackage.PROJECT_INFO__VERSION:
-				setVersion((VersionSpec)newValue);
+				setVersion((PrimaryVersionSpec)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -296,7 +296,7 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 				setProjectId((ProjectId)null);
 				return;
 			case EsmodelPackage.PROJECT_INFO__VERSION:
-				setVersion((VersionSpec)null);
+				setVersion((PrimaryVersionSpec)null);
 				return;
 		}
 		super.eUnset(featureID);
