@@ -143,22 +143,22 @@ public interface WorkspacePackage extends EPackage {
 	int SERVER_INFO__DISPLAY_NAME = 3;
 
 	/**
-	 * The feature id for the '<em><b>Usersession</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVER_INFO__USERSESSION = 4;
-
-	/**
 	 * The feature id for the '<em><b>Project Infos</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_INFO__PROJECT_INFOS = 5;
+	int SERVER_INFO__PROJECT_INFOS = 4;
+
+	/**
+	 * The feature id for the '<em><b>Usersession</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVER_INFO__USERSESSION = 5;
 
 	/**
 	 * The number of structural features of the '<em>Server Info</em>' class.
@@ -402,17 +402,6 @@ public interface WorkspacePackage extends EPackage {
 	EAttribute getServerInfo_DisplayName();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.workspace.ServerInfo#getUsersession <em>Usersession</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Usersession</em>'.
-	 * @see org.unicase.workspace.ServerInfo#getUsersession()
-	 * @see #getServerInfo()
-	 * @generated
-	 */
-	EReference getServerInfo_Usersession();
-
-	/**
 	 * Returns the meta object for the reference list '{@link org.unicase.workspace.ServerInfo#getProjectInfos <em>Project Infos</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -422,6 +411,17 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getServerInfo_ProjectInfos();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.workspace.ServerInfo#getUsersession <em>Usersession</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Usersession</em>'.
+	 * @see org.unicase.workspace.ServerInfo#getUsersession()
+	 * @see #getServerInfo()
+	 * @generated
+	 */
+	EReference getServerInfo_Usersession();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.workspace.Usersession <em>Usersession</em>}'.
@@ -666,20 +666,20 @@ public interface WorkspacePackage extends EPackage {
 		EAttribute SERVER_INFO__DISPLAY_NAME = eINSTANCE.getServerInfo_DisplayName();
 
 		/**
-		 * The meta object literal for the '<em><b>Usersession</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SERVER_INFO__USERSESSION = eINSTANCE.getServerInfo_Usersession();
-
-		/**
 		 * The meta object literal for the '<em><b>Project Infos</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference SERVER_INFO__PROJECT_INFOS = eINSTANCE.getServerInfo_ProjectInfos();
+
+		/**
+		 * The meta object literal for the '<em><b>Usersession</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERVER_INFO__USERSESSION = eINSTANCE.getServerInfo_Usersession();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.workspace.impl.UsersessionImpl <em>Usersession</em>}' class.
