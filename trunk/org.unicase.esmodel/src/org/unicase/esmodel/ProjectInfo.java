@@ -117,12 +117,12 @@ public interface ProjectInfo extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Version</em>' reference.
-	 * @see #setVersion(VersionSpec)
+	 * @see #setVersion(PrimaryVersionSpec)
 	 * @see org.unicase.esmodel.EsmodelPackage#getProjectInfo_Version()
 	 * @model required="true"
 	 * @generated
 	 */
-	VersionSpec getVersion();
+	PrimaryVersionSpec getVersion();
 
 	/**
 	 * Sets the value of the '{@link org.unicase.esmodel.ProjectInfo#getVersion <em>Version</em>}' reference.
@@ -132,6 +132,6 @@ public interface ProjectInfo extends EObject {
 	 * @see #getVersion()
 	 * @generated
 	 */
-	void setVersion(VersionSpec value);
+	void setVersion(PrimaryVersionSpec value);
 
 } // ProjectInfo
