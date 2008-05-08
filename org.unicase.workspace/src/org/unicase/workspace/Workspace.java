@@ -98,5 +98,19 @@ public interface Workspace extends EObject, IAdaptable {
 	 * @generated NOT
 	 */
 	public void setResource(Resource resource);
+ 
+	/**
+	 * @param listener
+	 *
+	 * @generated NOT
+	 */
+	public void addListener(WorkspaceListener listener);
+	
+	/**
+	 * 
+	 *
+	 * @generated NOT
+	 */
+	public void init();
 	
 } // Workspace

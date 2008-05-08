@@ -303,5 +303,12 @@ public interface ProjectSpace extends EObject {
 	 * @generated
 	 */
 	ProjectInfo getProjectInfo();
+	
+	/**
+	 * @param listener
+	 *
+	 * @generated NOT
+	 */
+	void addListener(ProjectSpaceListener listener);
 
 } // ProjectContainer
