@@ -12,7 +12,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf,
  org.unicase.esmodel
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: lib/antlr.jar,
  lib/commons-collections-3.2.1.jar,
  lib/dom4j-1.6.1.jar,
@@ -22,4 +21,6 @@ Bundle-ClassPath: lib/antlr.jar,
  .
 Export-Package: org.unicase.emfstore,
  org.unicase.emfstore.accesscontrol,
+ org.unicase.emfstore.connection.rmi,
  org.unicase.emfstore.exceptions
+Bundle-ActivationPolicy: lazy
