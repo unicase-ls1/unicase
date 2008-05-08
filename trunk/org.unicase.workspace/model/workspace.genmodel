@@ -21,6 +21,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//ServerInfo/url"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//ServerInfo/port"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//ServerInfo/displayName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workspace.ecore#//ServerInfo/usersession"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workspace.ecore#//ServerInfo/projectInfos"/>
     </genClasses>
     <genClasses ecoreClass="workspace.ecore#//Usersession">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//Usersession/username"/>

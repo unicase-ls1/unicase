@@ -6,12 +6,18 @@
  */
 package org.unicase.workspace.impl;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Collections;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.eclipse.emf.ecore.change.impl.ChangeFactoryImpl;
@@ -22,6 +28,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.unicase.esmodel.EsmodelFactory;
 import org.unicase.esmodel.ProjectId;
 import org.unicase.esmodel.ProjectInfo;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.esmodel.changemanagment.ChangePackage;
 import org.unicase.esmodel.changemanagment.ChangemanagmentFactory;
@@ -29,9 +36,12 @@ import org.unicase.esmodel.changemanagment.PrimaryVersionSpec;
 import org.unicase.esmodel.changemanagment.VersionSpec;
 import org.unicase.esmodel.changemanagment.impl.ChangemanagmentFactoryImpl;
 import org.unicase.esmodel.impl.EsmodelFactoryImpl;
+import org.unicase.model.ModelFactory;
 import org.unicase.model.Project;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.ProjectSpaceListener;
 import org.unicase.workspace.Usersession;
+import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspacePackage;
 
 /**
@@ -172,12 +182,19 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	protected PrimaryVersionSpec baseVersion;
 
 	/**
+	 *
+	 * @generated NOT
+	 */
+	private List<ProjectSpaceListener> listeners;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected ProjectSpaceImpl() {
 		super();
+		this.listeners = new ArrayList<ProjectSpaceListener>();
 	}
 
 	/**
@@ -569,6 +586,13 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 		projectInfo.setName(getProjectName());
 		projectInfo.setDescription(getProjectDescription());
 		projectInfo.setVersion(getBaseVersion());
+		Resource resource = null;
+		try {
+			resource.save(new ByteArrayOutputStream(), null);
+		} catch (IOException e) {
+			// MK Auto-generated catch block
+			e.printStackTrace();
+		}
 		return projectInfo;
 	}
 
@@ -740,6 +764,11 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 		result.append(lastUpdated);
 		result.append(')');
 		return result.toString();
+	}
+
+	public void addListener(ProjectSpaceListener listener) {
+		this.listeners.add(listener);
+		
 	}
 
 } //ProjectContainerImpl

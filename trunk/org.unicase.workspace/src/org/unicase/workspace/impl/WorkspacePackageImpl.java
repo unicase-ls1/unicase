@@ -205,6 +205,24 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getServerInfo_Usersession() {
+		return (EReference)serverInfoEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getServerInfo_ProjectInfos() {
+		return (EReference)serverInfoEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getUsersession() {
 		return usersessionEClass;
 	}
@@ -363,6 +381,8 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		createEAttribute(serverInfoEClass, SERVER_INFO__URL);
 		createEAttribute(serverInfoEClass, SERVER_INFO__PORT);
 		createEAttribute(serverInfoEClass, SERVER_INFO__DISPLAY_NAME);
+		createEReference(serverInfoEClass, SERVER_INFO__USERSESSION);
+		createEReference(serverInfoEClass, SERVER_INFO__PROJECT_INFOS);
 
 		usersessionEClass = createEClass(USERSESSION);
 		createEAttribute(usersessionEClass, USERSESSION__USERNAME);
@@ -431,6 +451,8 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		initEAttribute(getServerInfo_Url(), ecorePackage.getEString(), "url", null, 1, 1, ServerInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getServerInfo_Port(), ecorePackage.getEString(), "port", null, 1, 1, ServerInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getServerInfo_DisplayName(), ecorePackage.getEString(), "displayName", null, 0, 1, ServerInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getServerInfo_Usersession(), this.getUsersession(), null, "usersession", null, 0, 1, ServerInfo.class, !IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getServerInfo_ProjectInfos(), theEsmodelPackage.getProjectInfo(), null, "projectInfos", null, 0, -1, ServerInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(usersessionEClass, Usersession.class, "Usersession", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getUsersession_Username(), ecorePackage.getEString(), "username", null, 0, 1, Usersession.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

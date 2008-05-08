@@ -6,14 +6,20 @@
  */
 package org.unicase.workspace.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.unicase.esmodel.ProjectInfo;
 import org.unicase.workspace.ServerInfo;
+import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspacePackage;
 
 /**
@@ -27,6 +33,8 @@ import org.unicase.workspace.WorkspacePackage;
  *   <li>{@link org.unicase.workspace.impl.ServerInfoImpl#getUrl <em>Url</em>}</li>
  *   <li>{@link org.unicase.workspace.impl.ServerInfoImpl#getPort <em>Port</em>}</li>
  *   <li>{@link org.unicase.workspace.impl.ServerInfoImpl#getDisplayName <em>Display Name</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.ServerInfoImpl#getUsersession <em>Usersession</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.ServerInfoImpl#getProjectInfos <em>Project Infos</em>}</li>
  * </ul>
  * </p>
  *
@@ -112,6 +120,16 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 	 * @ordered
 	 */
 	protected String displayName = DISPLAY_NAME_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getProjectInfos() <em>Project Infos</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProjectInfos()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ProjectInfo> projectInfos;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -221,6 +239,51 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Usersession getUsersession() {
+		Usersession usersession = basicGetUsersession();
+		return usersession != null && usersession.eIsProxy() ? (Usersession)eResolveProxy((InternalEObject)usersession) : usersession;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Usersession basicGetUsersession() {
+		// TODO: implement this method to return the 'Usersession' reference
+		// -> do not perform proxy resolution
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUsersession(Usersession newUsersession) {
+		// TODO: implement this method to set the 'Usersession' reference
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ProjectInfo> getProjectInfos() {
+		if (projectInfos == null) {
+			projectInfos = new EObjectResolvingEList<ProjectInfo>(ProjectInfo.class, this, WorkspacePackage.SERVER_INFO__PROJECT_INFOS);
+		}
+		return projectInfos;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -232,6 +295,11 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 				return getPort();
 			case WorkspacePackage.SERVER_INFO__DISPLAY_NAME:
 				return getDisplayName();
+			case WorkspacePackage.SERVER_INFO__USERSESSION:
+				if (resolve) return getUsersession();
+				return basicGetUsersession();
+			case WorkspacePackage.SERVER_INFO__PROJECT_INFOS:
+				return getProjectInfos();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -241,6 +309,7 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -255,6 +324,13 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 				return;
 			case WorkspacePackage.SERVER_INFO__DISPLAY_NAME:
 				setDisplayName((String)newValue);
+				return;
+			case WorkspacePackage.SERVER_INFO__USERSESSION:
+				setUsersession((Usersession)newValue);
+				return;
+			case WorkspacePackage.SERVER_INFO__PROJECT_INFOS:
+				getProjectInfos().clear();
+				getProjectInfos().addAll((Collection<? extends ProjectInfo>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -280,6 +356,12 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 			case WorkspacePackage.SERVER_INFO__DISPLAY_NAME:
 				setDisplayName(DISPLAY_NAME_EDEFAULT);
 				return;
+			case WorkspacePackage.SERVER_INFO__USERSESSION:
+				setUsersession((Usersession)null);
+				return;
+			case WorkspacePackage.SERVER_INFO__PROJECT_INFOS:
+				getProjectInfos().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -300,6 +382,10 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 				return PORT_EDEFAULT == null ? port != null : !PORT_EDEFAULT.equals(port);
 			case WorkspacePackage.SERVER_INFO__DISPLAY_NAME:
 				return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
+			case WorkspacePackage.SERVER_INFO__USERSESSION:
+				return basicGetUsersession() != null;
+			case WorkspacePackage.SERVER_INFO__PROJECT_INFOS:
+				return projectInfos != null && !projectInfos.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
