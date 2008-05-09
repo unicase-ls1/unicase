@@ -67,7 +67,9 @@ public class UsersessionItemProvider
 			addUsernamePropertyDescriptor(object);
 			addPasswordPropertyDescriptor(object);
 			addSessionIdPropertyDescriptor(object);
+			addPersistentPasswordPropertyDescriptor(object);
 			addServerInfoPropertyDescriptor(object);
+			addSavePasswordPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -139,6 +141,28 @@ public class UsersessionItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Persistent Password feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPersistentPasswordPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Usersession_persistentPassword_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Usersession_persistentPassword_feature", "_UI_Usersession_type"),
+				 WorkspacePackage.Literals.USERSESSION__PERSISTENT_PASSWORD,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This adds a property descriptor for the Server Info feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -156,6 +180,28 @@ public class UsersessionItemProvider
 				 false,
 				 true,
 				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Save Password feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSavePasswordPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Usersession_savePassword_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Usersession_savePassword_feature", "_UI_Usersession_type"),
+				 WorkspacePackage.Literals.USERSESSION__SAVE_PASSWORD,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -199,6 +245,8 @@ public class UsersessionItemProvider
 		switch (notification.getFeatureID(Usersession.class)) {
 			case WorkspacePackage.USERSESSION__USERNAME:
 			case WorkspacePackage.USERSESSION__PASSWORD:
+			case WorkspacePackage.USERSESSION__PERSISTENT_PASSWORD:
+			case WorkspacePackage.USERSESSION__SAVE_PASSWORD:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

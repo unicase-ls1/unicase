@@ -13,6 +13,8 @@
         eType="#//ProjectSpace" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="serverInfos" upperBound="-1"
         eType="#//ServerInfo" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="usersession" upperBound="-1"
+        eType="#//Usersession" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ServerInfo">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -20,14 +22,14 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="port" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="displayName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="projectInfos" upperBound="-1"
-        eType="ecore:EClass ../../org.unicase.esmodel/model/esmodel.ecore#//ProjectInfo"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="usersession" eType="#//Usersession"/>
+        eType="ecore:EClass ../../org.unicase.esmodel/model/esmodel.ecore#//ProjectInfo"
+        transient="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lastUsersession" eType="#//Usersession"
+        eOpposite="#//Usersession/serverInfo"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Usersession">
     <eOperations name="isLoggedIn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eOperations name="logIn">
-      <eParameters name="password" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eOperations>
+    <eOperations name="logIn"/>
     <eOperations name="checkout" eType="#//ProjectSpace">
       <eParameters name="projectInfo" eType="ecore:EClass ../../org.unicase.esmodel/model/esmodel.ecore#//ProjectInfo"/>
     </eOperations>
@@ -36,7 +38,10 @@
         transient="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sessionId" eType="ecore:EClass ../../org.unicase.esmodel/model/esmodel.ecore#//SessionId"
         transient="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="serverInfo" eType="#//ServerInfo"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="persistentPassword" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="serverInfo" eType="#//ServerInfo"
+        eOpposite="#//ServerInfo/lastUsersession"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="savePassword" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProjectSpace">
     <eOperations name="commit" eType="ecore:EClass ../../org.unicase.esmodel/model/esmodel.ecore#//changemanagment/PrimaryVersionSpec"/>

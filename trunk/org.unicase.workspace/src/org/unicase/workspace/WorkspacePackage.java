@@ -88,13 +88,22 @@ public interface WorkspacePackage extends EPackage {
 	int WORKSPACE__SERVER_INFOS = 1;
 
 	/**
+	 * The feature id for the '<em><b>Usersession</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKSPACE__USERSESSION = 2;
+
+	/**
 	 * The number of structural features of the '<em>Workspace</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WORKSPACE_FEATURE_COUNT = 2;
+	int WORKSPACE_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.workspace.impl.ServerInfoImpl <em>Server Info</em>}' class.
@@ -152,13 +161,13 @@ public interface WorkspacePackage extends EPackage {
 	int SERVER_INFO__PROJECT_INFOS = 4;
 
 	/**
-	 * The feature id for the '<em><b>Usersession</b></em>' reference.
+	 * The feature id for the '<em><b>Last Usersession</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_INFO__USERSESSION = 5;
+	int SERVER_INFO__LAST_USERSESSION = 5;
 
 	/**
 	 * The number of structural features of the '<em>Server Info</em>' class.
@@ -207,13 +216,31 @@ public interface WorkspacePackage extends EPackage {
 	int USERSESSION__SESSION_ID = 2;
 
 	/**
+	 * The feature id for the '<em><b>Persistent Password</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USERSESSION__PERSISTENT_PASSWORD = 3;
+
+	/**
 	 * The feature id for the '<em><b>Server Info</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USERSESSION__SERVER_INFO = 3;
+	int USERSESSION__SERVER_INFO = 4;
+
+	/**
+	 * The feature id for the '<em><b>Save Password</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USERSESSION__SAVE_PASSWORD = 5;
 
 	/**
 	 * The number of structural features of the '<em>Usersession</em>' class.
@@ -222,7 +249,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USERSESSION_FEATURE_COUNT = 4;
+	int USERSESSION_FEATURE_COUNT = 6;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.workspace.impl.ProjectSpaceImpl <em>Project Space</em>}' class.
@@ -348,6 +375,17 @@ public interface WorkspacePackage extends EPackage {
 	EReference getWorkspace_ServerInfos();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.unicase.workspace.Workspace#getUsersession <em>Usersession</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Usersession</em>'.
+	 * @see org.unicase.workspace.Workspace#getUsersession()
+	 * @see #getWorkspace()
+	 * @generated
+	 */
+	EReference getWorkspace_Usersession();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.workspace.ServerInfo <em>Server Info</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -413,15 +451,15 @@ public interface WorkspacePackage extends EPackage {
 	EReference getServerInfo_ProjectInfos();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.workspace.ServerInfo#getUsersession <em>Usersession</em>}'.
+	 * Returns the meta object for the reference '{@link org.unicase.workspace.ServerInfo#getLastUsersession <em>Last Usersession</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Usersession</em>'.
-	 * @see org.unicase.workspace.ServerInfo#getUsersession()
+	 * @return the meta object for the reference '<em>Last Usersession</em>'.
+	 * @see org.unicase.workspace.ServerInfo#getLastUsersession()
 	 * @see #getServerInfo()
 	 * @generated
 	 */
-	EReference getServerInfo_Usersession();
+	EReference getServerInfo_LastUsersession();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.workspace.Usersession <em>Usersession</em>}'.
@@ -467,6 +505,17 @@ public interface WorkspacePackage extends EPackage {
 	EReference getUsersession_SessionId();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.workspace.Usersession#getPersistentPassword <em>Persistent Password</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Persistent Password</em>'.
+	 * @see org.unicase.workspace.Usersession#getPersistentPassword()
+	 * @see #getUsersession()
+	 * @generated
+	 */
+	EAttribute getUsersession_PersistentPassword();
+
+	/**
 	 * Returns the meta object for the reference '{@link org.unicase.workspace.Usersession#getServerInfo <em>Server Info</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -476,6 +525,17 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getUsersession_ServerInfo();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.workspace.Usersession#isSavePassword <em>Save Password</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Save Password</em>'.
+	 * @see org.unicase.workspace.Usersession#isSavePassword()
+	 * @see #getUsersession()
+	 * @generated
+	 */
+	EAttribute getUsersession_SavePassword();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.workspace.ProjectSpace <em>Project Space</em>}'.
@@ -624,6 +684,14 @@ public interface WorkspacePackage extends EPackage {
 		EReference WORKSPACE__SERVER_INFOS = eINSTANCE.getWorkspace_ServerInfos();
 
 		/**
+		 * The meta object literal for the '<em><b>Usersession</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference WORKSPACE__USERSESSION = eINSTANCE.getWorkspace_Usersession();
+
+		/**
 		 * The meta object literal for the '{@link org.unicase.workspace.impl.ServerInfoImpl <em>Server Info</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -674,12 +742,12 @@ public interface WorkspacePackage extends EPackage {
 		EReference SERVER_INFO__PROJECT_INFOS = eINSTANCE.getServerInfo_ProjectInfos();
 
 		/**
-		 * The meta object literal for the '<em><b>Usersession</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Last Usersession</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SERVER_INFO__USERSESSION = eINSTANCE.getServerInfo_Usersession();
+		EReference SERVER_INFO__LAST_USERSESSION = eINSTANCE.getServerInfo_LastUsersession();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.workspace.impl.UsersessionImpl <em>Usersession</em>}' class.
@@ -716,12 +784,28 @@ public interface WorkspacePackage extends EPackage {
 		EReference USERSESSION__SESSION_ID = eINSTANCE.getUsersession_SessionId();
 
 		/**
+		 * The meta object literal for the '<em><b>Persistent Password</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USERSESSION__PERSISTENT_PASSWORD = eINSTANCE.getUsersession_PersistentPassword();
+
+		/**
 		 * The meta object literal for the '<em><b>Server Info</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference USERSESSION__SERVER_INFO = eINSTANCE.getUsersession_ServerInfo();
+
+		/**
+		 * The meta object literal for the '<em><b>Save Password</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USERSESSION__SAVE_PASSWORD = eINSTANCE.getUsersession_SavePassword();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.workspace.impl.ProjectSpaceImpl <em>Project Space</em>}' class.

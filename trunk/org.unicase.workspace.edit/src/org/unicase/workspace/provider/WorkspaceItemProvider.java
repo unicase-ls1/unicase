@@ -106,6 +106,7 @@ public class WorkspaceItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(WorkspacePackage.Literals.WORKSPACE__SERVER_INFOS);
+			childrenFeatures.add(WorkspacePackage.Literals.WORKSPACE__USERSESSION);
 		}
 		return childrenFeatures;
 	}
@@ -158,6 +159,7 @@ public class WorkspaceItemProvider
 
 		switch (notification.getFeatureID(Workspace.class)) {
 			case WorkspacePackage.WORKSPACE__SERVER_INFOS:
+			case WorkspacePackage.WORKSPACE__USERSESSION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -179,6 +181,11 @@ public class WorkspaceItemProvider
 			(createChildParameter
 				(WorkspacePackage.Literals.WORKSPACE__SERVER_INFOS,
 				 WorkspaceFactory.eINSTANCE.createServerInfo()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(WorkspacePackage.Literals.WORKSPACE__USERSESSION,
+				 WorkspaceFactory.eINSTANCE.createUsersession()));
 	}
 
 	/**

@@ -6,6 +6,7 @@ import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.esmodel.ProjectInfo;
 import org.unicase.workspace.Configuration;
+import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceFactory;
@@ -24,13 +25,14 @@ public class TreeView extends CommonNavigator {
 				.createUsersession();
 		usersession.setServerInfo(workspace.getServerInfos().get(0));
 		usersession.setUsername("user");
-		
+		usersession.setPassword("password");
+		usersession.setSavePassword(true);
 		if (workspace.getProjectSpaces().size() < 2) {
 
 			ProjectInfo projectInfo;
 			try {
 				try {
-					usersession.logIn("password");
+					usersession.logIn();
 				} catch (AccessControlException e) {
 					// MK Auto-generated catch block
 					e.printStackTrace();
@@ -38,7 +40,9 @@ public class TreeView extends CommonNavigator {
 				projectInfo = usersession.getRemoteProjectList().get(0);
 				usersession.checkout(projectInfo);
 				projectInfo = usersession.getRemoteProjectList().get(0);
-				usersession.checkout(projectInfo);
+				ProjectSpace checkout = usersession.checkout(projectInfo);
+				
+				
 
 			} catch (EmfStoreException e) {
 				// MK Auto-generated catch block

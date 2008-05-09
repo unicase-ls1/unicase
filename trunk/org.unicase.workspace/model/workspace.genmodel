@@ -10,6 +10,7 @@
     <genClasses ecoreClass="workspace.ecore#//Workspace">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workspace.ecore#//Workspace/projectSpaces"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workspace.ecore#//Workspace/serverInfos"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workspace.ecore#//Workspace/usersession"/>
       <genOperations ecoreOperation="workspace.ecore#//Workspace/checkout">
         <genParameters ecoreParameter="workspace.ecore#//Workspace/checkout/usersession"/>
         <genParameters ecoreParameter="workspace.ecore#//Workspace/checkout/projectInfo"/>
@@ -22,17 +23,17 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//ServerInfo/port"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//ServerInfo/displayName"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workspace.ecore#//ServerInfo/projectInfos"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workspace.ecore#//ServerInfo/usersession"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workspace.ecore#//ServerInfo/lastUsersession"/>
     </genClasses>
     <genClasses ecoreClass="workspace.ecore#//Usersession">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//Usersession/username"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//Usersession/password"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workspace.ecore#//Usersession/sessionId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//Usersession/persistentPassword"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workspace.ecore#//Usersession/serverInfo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//Usersession/savePassword"/>
       <genOperations ecoreOperation="workspace.ecore#//Usersession/isLoggedIn"/>
-      <genOperations ecoreOperation="workspace.ecore#//Usersession/logIn">
-        <genParameters ecoreParameter="workspace.ecore#//Usersession/logIn/password"/>
-      </genOperations>
+      <genOperations ecoreOperation="workspace.ecore#//Usersession/logIn"/>
       <genOperations ecoreOperation="workspace.ecore#//Usersession/checkout">
         <genParameters ecoreParameter="workspace.ecore#//Usersession/checkout/projectInfo"/>
       </genOperations>
