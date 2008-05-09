@@ -6,9 +6,6 @@
  */
 package org.unicase.workspace.impl;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Collections;
@@ -17,7 +14,6 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.eclipse.emf.ecore.change.impl.ChangeFactoryImpl;
@@ -28,7 +24,6 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.unicase.esmodel.EsmodelFactory;
 import org.unicase.esmodel.ProjectId;
 import org.unicase.esmodel.ProjectInfo;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.esmodel.changemanagment.ChangePackage;
 import org.unicase.esmodel.changemanagment.ChangemanagmentFactory;
@@ -552,12 +547,13 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 		}
 		ChangeDescription backwardChangeDescription= (ChangeDescription)EcoreUtil.copy(changeDescription);
 		changeDescription.applyAndReverse();
-		changeDescription.apply();
 		ChangeDescription forwardChangeDescription=(ChangeDescription)EcoreUtil.copy(changeDescription);
+		changeDescription.apply();
 		ChangePackage changePackage = ChangemanagmentFactory.eINSTANCE.createChangePackage();
 		changePackage.setBackwardDelta(backwardChangeDescription);
 		changePackage.setFowardDelta(forwardChangeDescription);
 		this.setLocalChanges(changePackage);
+		init();
 	}
 
 	/**
@@ -586,13 +582,6 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 		projectInfo.setName(getProjectName());
 		projectInfo.setDescription(getProjectDescription());
 		projectInfo.setVersion(getBaseVersion());
-		Resource resource = null;
-		try {
-			resource.save(new ByteArrayOutputStream(), null);
-		} catch (IOException e) {
-			// MK Auto-generated catch block
-			e.printStackTrace();
-		}
 		return projectInfo;
 	}
 

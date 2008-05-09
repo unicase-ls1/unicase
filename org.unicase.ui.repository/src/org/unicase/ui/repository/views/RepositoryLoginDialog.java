@@ -92,7 +92,7 @@ public class RepositoryLoginDialog extends Dialog implements Listener {
 				session.setUsername(username.getText());
 				session.setPassword(password.getText());
 				try {
-					session.logIn(password.getText());
+					session.logIn();
 				} catch (ConnectionException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

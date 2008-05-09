@@ -68,8 +68,8 @@ public class ServerInfoItemProvider
 			addUrlPropertyDescriptor(object);
 			addPortPropertyDescriptor(object);
 			addDisplayNamePropertyDescriptor(object);
-			addUsersessionPropertyDescriptor(object);
 			addProjectInfosPropertyDescriptor(object);
+			addLastUsersessionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -163,28 +163,6 @@ public class ServerInfoItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Usersession feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addUsersessionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ServerInfo_usersession_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ServerInfo_usersession_feature", "_UI_ServerInfo_type"),
-				 WorkspacePackage.Literals.SERVER_INFO__USERSESSION,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Project Infos feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -198,6 +176,28 @@ public class ServerInfoItemProvider
 				 getString("_UI_ServerInfo_projectInfos_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ServerInfo_projectInfos_feature", "_UI_ServerInfo_type"),
 				 WorkspacePackage.Literals.SERVER_INFO__PROJECT_INFOS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Last Usersession feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addLastUsersessionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ServerInfo_lastUsersession_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ServerInfo_lastUsersession_feature", "_UI_ServerInfo_type"),
+				 WorkspacePackage.Literals.SERVER_INFO__LAST_USERSESSION,
 				 true,
 				 false,
 				 true,

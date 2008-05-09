@@ -28,7 +28,9 @@ import org.unicase.workspace.connectionmanager.ConnectionException;
  *   <li>{@link org.unicase.workspace.Usersession#getUsername <em>Username</em>}</li>
  *   <li>{@link org.unicase.workspace.Usersession#getPassword <em>Password</em>}</li>
  *   <li>{@link org.unicase.workspace.Usersession#getSessionId <em>Session Id</em>}</li>
+ *   <li>{@link org.unicase.workspace.Usersession#getPersistentPassword <em>Persistent Password</em>}</li>
  *   <li>{@link org.unicase.workspace.Usersession#getServerInfo <em>Server Info</em>}</li>
+ *   <li>{@link org.unicase.workspace.Usersession#isSavePassword <em>Save Password</em>}</li>
  * </ul>
  * </p>
  *
@@ -116,7 +118,34 @@ public interface Usersession extends EObject {
 	void setSessionId(SessionId value);
 
 	/**
+	 * Returns the value of the '<em><b>Persistent Password</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Persistent Password</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Persistent Password</em>' attribute.
+	 * @see #setPersistentPassword(String)
+	 * @see org.unicase.workspace.WorkspacePackage#getUsersession_PersistentPassword()
+	 * @model
+	 * @generated
+	 */
+	String getPersistentPassword();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.workspace.Usersession#getPersistentPassword <em>Persistent Password</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Persistent Password</em>' attribute.
+	 * @see #getPersistentPassword()
+	 * @generated
+	 */
+	void setPersistentPassword(String value);
+
+	/**
 	 * Returns the value of the '<em><b>Server Info</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.unicase.workspace.ServerInfo#getLastUsersession <em>Last Usersession</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Server Info</em>' reference isn't clear,
@@ -126,7 +155,8 @@ public interface Usersession extends EObject {
 	 * @return the value of the '<em>Server Info</em>' reference.
 	 * @see #setServerInfo(ServerInfo)
 	 * @see org.unicase.workspace.WorkspacePackage#getUsersession_ServerInfo()
-	 * @model
+	 * @see org.unicase.workspace.ServerInfo#getLastUsersession
+	 * @model opposite="lastUsersession"
 	 * @generated
 	 */
 	ServerInfo getServerInfo();
@@ -142,6 +172,32 @@ public interface Usersession extends EObject {
 	void setServerInfo(ServerInfo value);
 
 	/**
+	 * Returns the value of the '<em><b>Save Password</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Save Password</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Save Password</em>' attribute.
+	 * @see #setSavePassword(boolean)
+	 * @see org.unicase.workspace.WorkspacePackage#getUsersession_SavePassword()
+	 * @model
+	 * @generated
+	 */
+	boolean isSavePassword();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.workspace.Usersession#isSavePassword <em>Save Password</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Save Password</em>' attribute.
+	 * @see #isSavePassword()
+	 * @generated
+	 */
+	void setSavePassword(boolean value);
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation"
@@ -152,12 +208,12 @@ public interface Usersession extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @throws ConnectionException 
 	 * @throws AccessControlException 
+	 * @throws ConnectionException 
 	 * @model
 	 * @generated NOT
 	 */
-	void logIn(String password) throws ConnectionException, AccessControlException;
+	void logIn() throws ConnectionException, AccessControlException;
 
 	/**
 	 * <!-- begin-user-doc -->

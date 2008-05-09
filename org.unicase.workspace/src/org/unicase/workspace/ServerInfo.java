@@ -25,7 +25,7 @@ import org.unicase.esmodel.ProjectInfo;
  *   <li>{@link org.unicase.workspace.ServerInfo#getPort <em>Port</em>}</li>
  *   <li>{@link org.unicase.workspace.ServerInfo#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link org.unicase.workspace.ServerInfo#getProjectInfos <em>Project Infos</em>}</li>
- *   <li>{@link org.unicase.workspace.ServerInfo#getUsersession <em>Usersession</em>}</li>
+ *   <li>{@link org.unicase.workspace.ServerInfo#getLastUsersession <em>Last Usersession</em>}</li>
  * </ul>
  * </p>
  *
@@ -149,35 +149,37 @@ public interface ServerInfo extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Project Infos</em>' reference list.
 	 * @see org.unicase.workspace.WorkspacePackage#getServerInfo_ProjectInfos()
-	 * @model
+	 * @model transient="true"
 	 * @generated
 	 */
 	EList<ProjectInfo> getProjectInfos();
 
 	/**
-	 * Returns the value of the '<em><b>Usersession</b></em>' reference.
+	 * Returns the value of the '<em><b>Last Usersession</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.unicase.workspace.Usersession#getServerInfo <em>Server Info</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Usersession</em>' reference isn't clear,
+	 * If the meaning of the '<em>Last Usersession</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Usersession</em>' reference.
-	 * @see #setUsersession(Usersession)
-	 * @see org.unicase.workspace.WorkspacePackage#getServerInfo_Usersession()
-	 * @model
+	 * @return the value of the '<em>Last Usersession</em>' reference.
+	 * @see #setLastUsersession(Usersession)
+	 * @see org.unicase.workspace.WorkspacePackage#getServerInfo_LastUsersession()
+	 * @see org.unicase.workspace.Usersession#getServerInfo
+	 * @model opposite="serverInfo"
 	 * @generated
 	 */
-	Usersession getUsersession();
+	Usersession getLastUsersession();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.workspace.ServerInfo#getUsersession <em>Usersession</em>}' reference.
+	 * Sets the value of the '{@link org.unicase.workspace.ServerInfo#getLastUsersession <em>Last Usersession</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Usersession</em>' reference.
-	 * @see #getUsersession()
+	 * @param value the new value of the '<em>Last Usersession</em>' reference.
+	 * @see #getLastUsersession()
 	 * @generated
 	 */
-	void setUsersession(Usersession value);
+	void setLastUsersession(Usersession value);
 
 } // ServerInfo

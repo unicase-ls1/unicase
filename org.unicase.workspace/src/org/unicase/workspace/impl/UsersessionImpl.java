@@ -9,6 +9,7 @@ package org.unicase.workspace.impl;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -37,7 +38,9 @@ import org.unicase.workspace.connectionmanager.ConnectionManager;
  *   <li>{@link org.unicase.workspace.impl.UsersessionImpl#getUsername <em>Username</em>}</li>
  *   <li>{@link org.unicase.workspace.impl.UsersessionImpl#getPassword <em>Password</em>}</li>
  *   <li>{@link org.unicase.workspace.impl.UsersessionImpl#getSessionId <em>Session Id</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.UsersessionImpl#getPersistentPassword <em>Persistent Password</em>}</li>
  *   <li>{@link org.unicase.workspace.impl.UsersessionImpl#getServerInfo <em>Server Info</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.UsersessionImpl#isSavePassword <em>Save Password</em>}</li>
  * </ul>
  * </p>
  *
@@ -101,6 +104,26 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	protected SessionId sessionId;
 
 	/**
+	 * The default value of the '{@link #getPersistentPassword() <em>Persistent Password</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPersistentPassword()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String PERSISTENT_PASSWORD_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getPersistentPassword() <em>Persistent Password</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPersistentPassword()
+	 * @generated
+	 * @ordered
+	 */
+	protected String persistentPassword = PERSISTENT_PASSWORD_EDEFAULT;
+
+	/**
 	 * The cached value of the '{@link #getServerInfo() <em>Server Info</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -109,6 +132,26 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 * @ordered
 	 */
 	protected ServerInfo serverInfo;
+
+	/**
+	 * The default value of the '{@link #isSavePassword() <em>Save Password</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSavePassword()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean SAVE_PASSWORD_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isSavePassword() <em>Save Password</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSavePassword()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean savePassword = SAVE_PASSWORD_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -164,11 +207,23 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPassword(String newPassword) {
+	public void setPasswordGen(String newPassword) {
 		String oldPassword = password;
 		password = newPassword;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.USERSESSION__PASSWORD, oldPassword, password));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setPassword(String newPassword) {
+		setPasswordGen(newPassword);
+		if (isSavePassword()) {
+			setPersistentPassword(newPassword);
+		}
 	}
 
 	/**
@@ -214,6 +269,27 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getPersistentPassword() {
+		return persistentPassword;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPersistentPassword(String newPersistentPassword) {
+		String oldPersistentPassword = persistentPassword;
+		persistentPassword = newPersistentPassword;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.USERSESSION__PERSISTENT_PASSWORD, oldPersistentPassword, persistentPassword));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ServerInfo getServerInfo() {
 		if (serverInfo != null && serverInfo.eIsProxy()) {
 			InternalEObject oldServerInfo = (InternalEObject)serverInfo;
@@ -240,11 +316,66 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setServerInfo(ServerInfo newServerInfo) {
+	public NotificationChain basicSetServerInfo(ServerInfo newServerInfo, NotificationChain msgs) {
 		ServerInfo oldServerInfo = serverInfo;
 		serverInfo = newServerInfo;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WorkspacePackage.USERSESSION__SERVER_INFO, oldServerInfo, newServerInfo);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setServerInfo(ServerInfo newServerInfo) {
+		if (newServerInfo != serverInfo) {
+			NotificationChain msgs = null;
+			if (serverInfo != null)
+				msgs = ((InternalEObject)serverInfo).eInverseRemove(this, WorkspacePackage.SERVER_INFO__LAST_USERSESSION, ServerInfo.class, msgs);
+			if (newServerInfo != null)
+				msgs = ((InternalEObject)newServerInfo).eInverseAdd(this, WorkspacePackage.SERVER_INFO__LAST_USERSESSION, ServerInfo.class, msgs);
+			msgs = basicSetServerInfo(newServerInfo, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.USERSESSION__SERVER_INFO, newServerInfo, newServerInfo));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSavePassword() {
+		return savePassword;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSavePasswordGen(boolean newSavePassword) {
+		boolean oldSavePassword = savePassword;
+		savePassword = newSavePassword;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.USERSESSION__SERVER_INFO, oldServerInfo, serverInfo));
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.USERSESSION__SAVE_PASSWORD, oldSavePassword, savePassword));
+	}
+	
+	/** 
+	 * @see org.unicase.workspace.Usersession#setSavePassword(boolean)
+	 *
+	 * @generated NOT
+	 */
+	public void setSavePassword(boolean newSavePassword) {
+		setSavePasswordGen(newSavePassword);
+		if (getPassword()!=null) {
+			setPersistentPassword(getPassword());
+		}
 	}
 
 	/**
@@ -259,13 +390,9 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @throws ConnectionException 
-	 * @throws AccessControlException 
 	 * @generated NOT
 	 */
-	public void logIn(String password) throws ConnectionException, AccessControlException {
-		//MK sanity checks for usersession state
-		this.password=password;
+	public void logIn() throws ConnectionException, AccessControlException {
 		ConnectionManager connectionManager = this.getWorkspaceManager().getConnectionManager();
 		this.setSessionId(connectionManager.logIn(username, password, serverInfo));
 	}
@@ -277,6 +404,36 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 */
 	public ProjectSpace checkout(ProjectInfo projectInfo) throws EmfStoreException {
 		return this.getWorkspaceManager().getCurrentWorkspace().checkout(this, projectInfo);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case WorkspacePackage.USERSESSION__SERVER_INFO:
+				if (serverInfo != null)
+					msgs = ((InternalEObject)serverInfo).eInverseRemove(this, WorkspacePackage.SERVER_INFO__LAST_USERSESSION, ServerInfo.class, msgs);
+				return basicSetServerInfo((ServerInfo)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case WorkspacePackage.USERSESSION__SERVER_INFO:
+				return basicSetServerInfo(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -305,9 +462,13 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 			case WorkspacePackage.USERSESSION__SESSION_ID:
 				if (resolve) return getSessionId();
 				return basicGetSessionId();
+			case WorkspacePackage.USERSESSION__PERSISTENT_PASSWORD:
+				return getPersistentPassword();
 			case WorkspacePackage.USERSESSION__SERVER_INFO:
 				if (resolve) return getServerInfo();
 				return basicGetServerInfo();
+			case WorkspacePackage.USERSESSION__SAVE_PASSWORD:
+				return isSavePassword() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -329,8 +490,14 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 			case WorkspacePackage.USERSESSION__SESSION_ID:
 				setSessionId((SessionId)newValue);
 				return;
+			case WorkspacePackage.USERSESSION__PERSISTENT_PASSWORD:
+				setPersistentPassword((String)newValue);
+				return;
 			case WorkspacePackage.USERSESSION__SERVER_INFO:
 				setServerInfo((ServerInfo)newValue);
+				return;
+			case WorkspacePackage.USERSESSION__SAVE_PASSWORD:
+				setSavePassword(((Boolean)newValue).booleanValue());
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -353,8 +520,14 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 			case WorkspacePackage.USERSESSION__SESSION_ID:
 				setSessionId((SessionId)null);
 				return;
+			case WorkspacePackage.USERSESSION__PERSISTENT_PASSWORD:
+				setPersistentPassword(PERSISTENT_PASSWORD_EDEFAULT);
+				return;
 			case WorkspacePackage.USERSESSION__SERVER_INFO:
 				setServerInfo((ServerInfo)null);
+				return;
+			case WorkspacePackage.USERSESSION__SAVE_PASSWORD:
+				setSavePassword(SAVE_PASSWORD_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -374,8 +547,12 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 				return PASSWORD_EDEFAULT == null ? password != null : !PASSWORD_EDEFAULT.equals(password);
 			case WorkspacePackage.USERSESSION__SESSION_ID:
 				return sessionId != null;
+			case WorkspacePackage.USERSESSION__PERSISTENT_PASSWORD:
+				return PERSISTENT_PASSWORD_EDEFAULT == null ? persistentPassword != null : !PERSISTENT_PASSWORD_EDEFAULT.equals(persistentPassword);
 			case WorkspacePackage.USERSESSION__SERVER_INFO:
 				return serverInfo != null;
+			case WorkspacePackage.USERSESSION__SAVE_PASSWORD:
+				return savePassword != SAVE_PASSWORD_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -394,6 +571,10 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 		result.append(username);
 		result.append(", password: ");
 		result.append(password);
+		result.append(", persistentPassword: ");
+		result.append(persistentPassword);
+		result.append(", savePassword: ");
+		result.append(savePassword);
 		result.append(')');
 		return result.toString();
 	}

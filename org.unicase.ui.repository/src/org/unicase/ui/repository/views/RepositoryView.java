@@ -70,8 +70,8 @@ public class RepositoryView extends ViewPart implements ITreeViewerListener {
 				return ((Workspace) object).getServerInfos().toArray();
 			} else if (object instanceof ServerInfo) {
 				ServerInfo serverInfo = (ServerInfo) object;
-				if (serverInfo.getUsersession() == null
-						|| serverInfo.getUsersession().getUsername() == null) {
+				if (serverInfo.getLastUsersession() == null
+						|| serverInfo.getLastUsersession().getUsername() == null) {
 					Usersession session = WorkspaceFactory.eINSTANCE
 							.createUsersession();
 					session.setServerInfo(serverInfo);
@@ -84,7 +84,7 @@ public class RepositoryView extends ViewPart implements ITreeViewerListener {
 					try {
 						serverInfo.getProjectInfos().addAll(
 								session.getRemoteProjectList());
-						serverInfo.setUsersession(session);
+						serverInfo.setLastUsersession(session);
 					} catch (EmfStoreException e) {
 						e.printStackTrace();
 					}

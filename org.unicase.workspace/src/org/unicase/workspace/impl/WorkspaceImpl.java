@@ -49,6 +49,7 @@ import org.unicase.workspace.connectionmanager.ConnectionManager;
  * <ul>
  *   <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getProjectSpaces <em>Project Spaces</em>}</li>
  *   <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getServerInfos <em>Server Infos</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getUsersession <em>Usersession</em>}</li>
  * </ul>
  * </p>
  *
@@ -80,6 +81,16 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace, ProjectSpac
 	 * @ordered
 	 */
 	protected EList<ServerInfo> serverInfos;
+
+	/**
+	 * The cached value of the '{@link #getUsersession() <em>Usersession</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUsersession()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Usersession> usersession;
 
 	/**
 	 * The current connection manager used to connect to the server(s).
@@ -135,6 +146,18 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace, ProjectSpac
 			serverInfos = new EObjectContainmentEList<ServerInfo>(ServerInfo.class, this, WorkspacePackage.WORKSPACE__SERVER_INFOS);
 		}
 		return serverInfos;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Usersession> getUsersession() {
+		if (usersession == null) {
+			usersession = new EObjectContainmentEList<Usersession>(Usersession.class, this, WorkspacePackage.WORKSPACE__USERSESSION);
+		}
+		return usersession;
 	}
 
 	/**
@@ -200,6 +223,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace, ProjectSpac
 				return ((InternalEList<?>)getProjectSpaces()).basicRemove(otherEnd, msgs);
 			case WorkspacePackage.WORKSPACE__SERVER_INFOS:
 				return ((InternalEList<?>)getServerInfos()).basicRemove(otherEnd, msgs);
+			case WorkspacePackage.WORKSPACE__USERSESSION:
+				return ((InternalEList<?>)getUsersession()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -216,6 +241,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace, ProjectSpac
 				return getProjectSpaces();
 			case WorkspacePackage.WORKSPACE__SERVER_INFOS:
 				return getServerInfos();
+			case WorkspacePackage.WORKSPACE__USERSESSION:
+				return getUsersession();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -237,6 +264,10 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace, ProjectSpac
 				getServerInfos().clear();
 				getServerInfos().addAll((Collection<? extends ServerInfo>)newValue);
 				return;
+			case WorkspacePackage.WORKSPACE__USERSESSION:
+				getUsersession().clear();
+				getUsersession().addAll((Collection<? extends Usersession>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -255,6 +286,9 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace, ProjectSpac
 			case WorkspacePackage.WORKSPACE__SERVER_INFOS:
 				getServerInfos().clear();
 				return;
+			case WorkspacePackage.WORKSPACE__USERSESSION:
+				getUsersession().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -271,6 +305,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace, ProjectSpac
 				return projectSpaces != null && !projectSpaces.isEmpty();
 			case WorkspacePackage.WORKSPACE__SERVER_INFOS:
 				return serverInfos != null && !serverInfos.isEmpty();
+			case WorkspacePackage.WORKSPACE__USERSESSION:
+				return usersession != null && !usersession.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

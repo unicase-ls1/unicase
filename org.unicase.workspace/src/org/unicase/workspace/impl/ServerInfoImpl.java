@@ -10,6 +10,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -38,7 +39,7 @@ import org.unicase.workspace.WorkspacePackage;
  *   <li>{@link org.unicase.workspace.impl.ServerInfoImpl#getPort <em>Port</em>}</li>
  *   <li>{@link org.unicase.workspace.impl.ServerInfoImpl#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link org.unicase.workspace.impl.ServerInfoImpl#getProjectInfos <em>Project Infos</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ServerInfoImpl#getUsersession <em>Usersession</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.ServerInfoImpl#getLastUsersession <em>Last Usersession</em>}</li>
  * </ul>
  * </p>
  *
@@ -136,14 +137,14 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 	protected EList<ProjectInfo> projectInfos;
 
 	/**
-	 * The cached value of the '{@link #getUsersession() <em>Usersession</em>}' reference.
+	 * The cached value of the '{@link #getLastUsersession() <em>Last Usersession</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getUsersession()
+	 * @see #getLastUsersession()
 	 * @generated
 	 * @ordered
 	 */
-	protected Usersession usersession;
+	protected Usersession lastUsersession;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -265,16 +266,16 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Usersession getUsersession() {
-		if (usersession != null && usersession.eIsProxy()) {
-			InternalEObject oldUsersession = (InternalEObject)usersession;
-			usersession = (Usersession)eResolveProxy(oldUsersession);
-			if (usersession != oldUsersession) {
+	public Usersession getLastUsersession() {
+		if (lastUsersession != null && lastUsersession.eIsProxy()) {
+			InternalEObject oldLastUsersession = (InternalEObject)lastUsersession;
+			lastUsersession = (Usersession)eResolveProxy(oldLastUsersession);
+			if (lastUsersession != oldLastUsersession) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, WorkspacePackage.SERVER_INFO__USERSESSION, oldUsersession, usersession));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, WorkspacePackage.SERVER_INFO__LAST_USERSESSION, oldLastUsersession, lastUsersession));
 			}
 		}
-		return usersession;
+		return lastUsersession;
 	}
 
 	/**
@@ -282,8 +283,8 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Usersession basicGetUsersession() {
-		return usersession;
+	public Usersession basicGetLastUsersession() {
+		return lastUsersession;
 	}
 
 	/**
@@ -291,11 +292,63 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setUsersession(Usersession newUsersession) {
-		Usersession oldUsersession = usersession;
-		usersession = newUsersession;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.SERVER_INFO__USERSESSION, oldUsersession, usersession));
+	public NotificationChain basicSetLastUsersession(Usersession newLastUsersession, NotificationChain msgs) {
+		Usersession oldLastUsersession = lastUsersession;
+		lastUsersession = newLastUsersession;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WorkspacePackage.SERVER_INFO__LAST_USERSESSION, oldLastUsersession, newLastUsersession);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLastUsersession(Usersession newLastUsersession) {
+		if (newLastUsersession != lastUsersession) {
+			NotificationChain msgs = null;
+			if (lastUsersession != null)
+				msgs = ((InternalEObject)lastUsersession).eInverseRemove(this, WorkspacePackage.USERSESSION__SERVER_INFO, Usersession.class, msgs);
+			if (newLastUsersession != null)
+				msgs = ((InternalEObject)newLastUsersession).eInverseAdd(this, WorkspacePackage.USERSESSION__SERVER_INFO, Usersession.class, msgs);
+			msgs = basicSetLastUsersession(newLastUsersession, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.SERVER_INFO__LAST_USERSESSION, newLastUsersession, newLastUsersession));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case WorkspacePackage.SERVER_INFO__LAST_USERSESSION:
+				if (lastUsersession != null)
+					msgs = ((InternalEObject)lastUsersession).eInverseRemove(this, WorkspacePackage.USERSESSION__SERVER_INFO, Usersession.class, msgs);
+				return basicSetLastUsersession((Usersession)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case WorkspacePackage.SERVER_INFO__LAST_USERSESSION:
+				return basicSetLastUsersession(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -316,9 +369,9 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 				return getDisplayName();
 			case WorkspacePackage.SERVER_INFO__PROJECT_INFOS:
 				return getProjectInfos();
-			case WorkspacePackage.SERVER_INFO__USERSESSION:
-				if (resolve) return getUsersession();
-				return basicGetUsersession();
+			case WorkspacePackage.SERVER_INFO__LAST_USERSESSION:
+				if (resolve) return getLastUsersession();
+				return basicGetLastUsersession();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -348,8 +401,8 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 				getProjectInfos().clear();
 				getProjectInfos().addAll((Collection<? extends ProjectInfo>)newValue);
 				return;
-			case WorkspacePackage.SERVER_INFO__USERSESSION:
-				setUsersession((Usersession)newValue);
+			case WorkspacePackage.SERVER_INFO__LAST_USERSESSION:
+				setLastUsersession((Usersession)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -378,8 +431,8 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 			case WorkspacePackage.SERVER_INFO__PROJECT_INFOS:
 				getProjectInfos().clear();
 				return;
-			case WorkspacePackage.SERVER_INFO__USERSESSION:
-				setUsersession((Usersession)null);
+			case WorkspacePackage.SERVER_INFO__LAST_USERSESSION:
+				setLastUsersession((Usersession)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -403,8 +456,8 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 				return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
 			case WorkspacePackage.SERVER_INFO__PROJECT_INFOS:
 				return projectInfos != null && !projectInfos.isEmpty();
-			case WorkspacePackage.SERVER_INFO__USERSESSION:
-				return usersession != null;
+			case WorkspacePackage.SERVER_INFO__LAST_USERSESSION:
+				return lastUsersession != null;
 		}
 		return super.eIsSet(featureID);
 	}
