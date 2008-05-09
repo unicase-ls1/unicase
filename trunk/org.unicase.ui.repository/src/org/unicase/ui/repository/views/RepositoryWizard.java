@@ -32,13 +32,16 @@ public class RepositoryWizard extends Wizard implements INewWizard {
 
 	private IWorkbench workbench;
 
+	private RepositoryView view;
+
 	/**
 	 * Default constructor.
+	 * @param invoker the invoker view; needed to refresh it after the repository has been added.
 	 */
-	public RepositoryWizard() {
+	public RepositoryWizard(RepositoryView invoker) {
 		super();
-		serverInfo = null;
-		//serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
+		view = invoker;
+		serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
 	}
 	
 	/**
@@ -78,10 +81,8 @@ public class RepositoryWizard extends Wizard implements INewWizard {
 			Workspace workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 			workspace.getServerInfos().add(this.serverInfo);
 			workspace.save();
-			
-			MessageDialog.openInformation(workbench.getActiveWorkbenchWindow()
-					.getShell(), "Success",
-					"Repository was successfully added!");
+			view.getViewer().refresh();
+			dispose();
 		} else {
 			MessageDialog.openError(workbench.getActiveWorkbenchWindow()
 					.getShell(), "Error", "Field(s) were left blank!");
