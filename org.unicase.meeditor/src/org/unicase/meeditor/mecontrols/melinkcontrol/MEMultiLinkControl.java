@@ -87,7 +87,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 						parent.getShell(), new AdapterFactoryLabelProvider(
 								new ModelItemProviderAdapterFactory()));
 				// JH: fill only with right elements
-				Collection<ModelElement> allElements = ((ModelElement) modelElement)
+				Collection<ModelElement> allElements = ((ModelElement)modelElement)
 						.getProject().getElementsByClass(clazz);
 				allElements.remove(modelElement);
 				Object objectList = modelElement.eGet(eReference);
@@ -121,19 +121,19 @@ public class MEMultiLinkControl extends AbstractMEControl {
 
 	public void rebuildLinkSection() {
 		value = (EList<EObject>) modelElement.eGet(eReference);
-		if (linkComposites != null) {
-			for (Composite composite : linkComposites) {
-				composite.dispose();
-			}
-		}
+//		if (linkComposites != null) {
+//			for (Composite composite : linkComposites) {
+//				composite.dispose();
+//			}
+//		}
 		MELinkControl meControl;
 		for (EObject object : value) {
 			if (object instanceof ModelElement) {
 				
 				ModelElement me = (ModelElement) object;
 				meControl= new MELinkControl(editingDomain, me, toolkit, modelElement, eReference);
-				Composite linkComposite = (Composite)meControl.createControl(linkArea, style);
-				linkComposites.add(linkComposite);
+				meControl.createControl(linkArea, style);
+//				linkComposites.add(linkComposite);
 			}
 		}
 		// Force relayout.

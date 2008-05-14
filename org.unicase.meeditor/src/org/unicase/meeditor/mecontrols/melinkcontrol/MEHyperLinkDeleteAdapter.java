@@ -18,15 +18,35 @@ public class MEHyperLinkDeleteAdapter extends HyperlinkAdapter implements
 	public MEHyperLinkDeleteAdapter(EObject modelElement, EReference reference,
 			EObject opposite) {
 		this.modelElement = modelElement;
-		this.reference= reference;
-		this.opposite= opposite;
+		this.reference = reference;
+		this.opposite = opposite;
 	}
 
 	@Override
 	public void linkActivated(HyperlinkEvent e) {
-		EList<EObject> list = (EList<EObject>)modelElement.eGet(reference);
-		list.remove(opposite);
-	}
-	
+		Object object = modelElement.eGet(reference);
+		
+		if (reference.isContainer()) {
+			ModelElement me = ((ModelElement) modelElement);
+			((ModelElement) opposite).getProject().addModelElement(me);
+			return;
+		}
+		if(reference.isContainment()){
+			ModelElement me = ((ModelElement) opposite);
+			((ModelElement) modelElement).getProject().addModelElement(me);
+			return;
+		}
+		
+		if (object instanceof EList) {
+			EList<EObject> list = (EList<EObject>) object;
+			list.remove(opposite);
+			return;
+		}
+		else{
+			modelElement.eSet(reference, null);
+			return;
+		}
 
+		
+	}
 }

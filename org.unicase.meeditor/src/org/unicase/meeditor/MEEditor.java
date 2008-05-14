@@ -87,6 +87,9 @@ public class MEEditor extends SharedHeaderFormEditor {
 		if (input instanceof MEEditorInput) {
 			setInput(input);
 			MEEditorInput meInput = (MEEditorInput) input;
+			setPartName(input.getName());
+			setTitleImage(input.getImageDescriptor().createImage());
+			
 			modelElement = meInput.getModelElement();
 		} else {
 			throw new PartInitException(

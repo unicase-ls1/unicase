@@ -2,6 +2,8 @@ package org.unicase.meeditor.mecontrols.melinkcontrol;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -29,9 +31,11 @@ public class MESingleLinkControl extends AbstractMEControl {
 
 	private Composite composite;
 
-	private EReference eReference;
+	private final EReference eReference;
 
 	Composite linkArea;
+
+	Composite linkComposite;
 
 	Composite parent;
 
@@ -40,14 +44,24 @@ public class MESingleLinkControl extends AbstractMEControl {
 	Control control;
 
 	public MESingleLinkControl(EditingDomain editingDomain,
-			EObject modelElement, FormToolkit toolkit, EReference eReference) {
+			EObject modelElement, FormToolkit toolkit, EReference reference) {
 		super(editingDomain, modelElement, toolkit);
-		this.eReference = eReference;
+		this.eReference = reference;
+		modelElement.eAdapters().add(new AdapterImpl() {
+			@Override
+			public void notifyChanged(Notification msg) {
+				if (msg.getFeature().equals(eReference)) {
+					updateLink();
+				}
+				super.notifyChanged(msg);
+			}
+
+		});
 	}
 
 	public Control createControl(final Composite parent, int style) {
 		composite = toolkit.createComposite(parent, style);
-		composite.setLayout(new GridLayout(2, true));
+		composite.setLayout(new GridLayout(2, false));
 		this.parent = parent;
 		this.style = style;
 		linkArea = toolkit.createComposite(composite);
@@ -78,7 +92,7 @@ public class MESingleLinkControl extends AbstractMEControl {
 				if (dlg.open() == Window.OK) {
 					Object result = dlg.getFirstResult();
 					if (result instanceof EObject) {
-						EObject eObject = (EObject) object;
+						EObject eObject = (EObject) result;
 						modelElement.eSet(eReference, eObject);
 					}
 				}
@@ -90,20 +104,30 @@ public class MESingleLinkControl extends AbstractMEControl {
 	}
 
 	private void updateLink() {
-		if (control != null) {
-			control.dispose();
-		}
+//		if (linkComposite != null) {
+//			linkComposite.dispose();
+//		}
+
+		linkComposite = toolkit.createComposite(linkArea);
+
+		linkComposite.setLayout(new GridLayout(1, false));
 		EObject opposite = (EObject) modelElement.eGet(eReference);
 		ModelElement me = (ModelElement) modelElement;
 		if (opposite != null) {
 			MELinkControl meControl = new MELinkControl(editingDomain,
 					opposite, toolkit, me, eReference);
-			control = meControl.createControl(linkArea, style);
+			control = meControl.createControl(linkComposite, style);
 		} else {
-			Label label = toolkit.createLabel(linkArea, "(Not Set)");
+			Label label = toolkit.createLabel(linkComposite, "(Not Set)");
 			label.setForeground(parent.getShell().getDisplay().getSystemColor(
 					SWT.COLOR_GRAY));
 		}
+		linkComposite.layout(true);
+		linkComposite.redraw();
+		linkArea.layout(true);
+		linkArea.redraw();
+		composite.layout(true);
+		composite.redraw();
 	}
 
 }
