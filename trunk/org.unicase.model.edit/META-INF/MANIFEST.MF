@@ -13,5 +13,7 @@ Export-Package: org.unicase.model.edit.uihint,
  org.unicase.model.provider
 Require-Bundle: org.eclipse.core.runtime,
  org.unicase.model;visibility:=reexport,
- org.eclipse.emf.edit;visibility:=reexport
+ org.eclipse.emf.edit;visibility:=reexport,
+ org.eclipse.ui,
+ org.eclipse.core.expressions;bundle-version="3.4.0"
 Eclipse-LazyStart: true
