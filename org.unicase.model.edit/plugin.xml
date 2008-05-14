@@ -21,5 +21,58 @@
           org.eclipse.emf.edit.provider.IItemLabelProvider
           org.eclipse.emf.edit.provider.IItemPropertySource" />
   </extension>
+  <extension
+        point="org.eclipse.ui.commands">
+     <command
+           category="org.unicase.model.edit.addAnnotations"
+           id="org.unicase.model.edit.annotateActionItem"
+           name="name">
+     </command>
+     <category
+           id="org.unicase.model.edit.addAnnotations"
+           name="Add Annotations">
+     </category>
+  </extension>
+  <extension
+        point="org.eclipse.ui.handlers">
+     <handler
+           class="org.unicase.model.edit.commands.AnnotateActionItemHandler"
+           commandId="org.unicase.model.edit.annotateActionItem">
+     </handler>
+  </extension>
+  <extension
+        point="org.eclipse.ui.menus">
+     <menuContribution
+           locationURI="popup:org.unicase.navigator.viewer?after=additions">
+        <command
+              commandId="org.unicase.model.edit.annotateActionItem"
+              label="Testcommand"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+                 <iterate>
+      <instanceof value="org.unicase.model.ModelElement"/>
+   </iterate>
+           </visibleWhen>
+        </command>
+     </menuContribution>
+     <menuContribution
+           locationURI="toolbar:org.unicase.meeditor.MEEditorPage?after=additions">
+        <command
+              commandId="org.unicase.model.edit.annotateActionItem"
+              label="Test Editor Command"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <with
+                    variable="activeModelelement">
+                 <instanceof
+                       value="org.unicase.model.FunctionalRequirement">
+                 </instanceof>
+              </with>
+           </visibleWhen>
+        </command>
+     </menuContribution>
+  </extension>
 
 </plugin>
