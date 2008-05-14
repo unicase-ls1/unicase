@@ -1,33 +1,37 @@
 package org.unicase.meeditor;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.jface.action.ContributionManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.ui.AbstractSourceProvider;
+import org.eclipse.ui.ISourceProvider;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
+import org.eclipse.ui.menus.IMenuService;
+import org.eclipse.ui.services.IEvaluationService;
 import org.unicase.meeditor.mecontrols.MEControl;
 import org.unicase.model.ModelElement;
-import org.unicase.model.edit.uihint.FeatureUIHint;
 import org.unicase.model.edit.uihint.UIHintAdapter;
 import org.unicase.model.edit.uihint.UIHintAdapterImpl;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
 
-public class MEEditorPage extends FormPage {
+public class MEEditorPage extends FormPage  {
 
 	EditingDomain editingDomain;
 	ModelElement modelElement;
@@ -35,6 +39,7 @@ public class MEEditorPage extends FormPage {
 	FormToolkit toolkit;
 	List<MEControl> meControls = new ArrayList<MEControl>();
 	UIHintAdapter uiHintAdapter;
+	static String activeModelelement = "activeModelelement";
 	private ScrolledForm form;
 	private List<IItemPropertyDescriptor> simpleAttributes = new ArrayList<IItemPropertyDescriptor>();
 	private List<IItemPropertyDescriptor> multiReferences = new ArrayList<IItemPropertyDescriptor>();
@@ -70,7 +75,40 @@ public class MEEditorPage extends FormPage {
 
 		// Create Sections for every Reference
 		createMultiReferences();
+		
+		createToolbar();
 
+	}
+
+	private void createToolbar() {
+		IMenuService menuService = (IMenuService) PlatformUI.getWorkbench()
+        .getService(IMenuService.class);
+		ISourceProvider sourceProvider = new AbstractSourceProvider(){
+
+			public void dispose() {
+				// TODO Auto-generated method stub
+				
+			}
+
+			public Map getCurrentState() {
+				HashMap<Object, Object> map = new HashMap<Object, Object>();
+				map.put(activeModelelement, modelElement);
+				return map;
+			}
+
+			public String[] getProvidedSourceNames() {
+				String[] namens = new String[1];
+				namens[0] = activeModelelement;
+				return namens;
+			}
+			
+		};
+
+		IEvaluationService service =
+		(IEvaluationService)PlatformUI.getWorkbench().getService(IEvaluationService.class);
+				service.addSourceProvider(sourceProvider); 
+		menuService.populateContributionManager((ContributionManager) form.getToolBarManager(),"toolbar:org.unicase.meeditor.MEEditorPage");
+		form.getToolBarManager().update(true);
 	}
 
 	private void sortAndOrderAttributes() {

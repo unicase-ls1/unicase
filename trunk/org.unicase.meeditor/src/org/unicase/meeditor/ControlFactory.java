@@ -17,7 +17,6 @@ import org.unicase.meeditor.mecontrols.METextAreaControl;
 import org.unicase.meeditor.mecontrols.METextControl;
 import org.unicase.meeditor.mecontrols.melinkcontrol.MEMultiLinkControl;
 import org.unicase.meeditor.mecontrols.melinkcontrol.MESingleLinkControl;
-import org.unicase.model.edit.uihint.FeatureUIHint;
 
 public class ControlFactory {
 	private final EObject modelElement;
