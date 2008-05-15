@@ -1,5 +1,9 @@
 package org.unicase.ui.repository.views;
 
+import java.util.HashMap;
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -8,13 +12,11 @@ import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
-import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.viewers.AbstractTreeViewer;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.ITreeViewerListener;
-import org.eclipse.jface.viewers.TreeExpansionEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.ViewerSorter;
 import org.eclipse.jface.wizard.WizardDialog;
@@ -25,13 +27,14 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
+import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.esmodel.ProjectInfo;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.connectionmanager.ConnectionException;
 import org.unicase.workspace.provider.WorkspaceItemProviderAdapterFactory;
 
 /**
@@ -40,12 +43,35 @@ import org.unicase.workspace.provider.WorkspaceItemProviderAdapterFactory;
  * @author shterev
  * 
  */
-public class RepositoryView extends ViewPart implements ITreeViewerListener {
+public class RepositoryView extends ViewPart {
 	private TreeViewer viewer;
 	private Action checkout;
 	private Action addRepository;
 	private Action login;
-	private Action doubleClickAction;
+	private HashMap<ProjectInfo, ServerInfo> projectServerMap = new HashMap<ProjectInfo, ServerInfo>();
+
+	/**
+	 * Action to be executed on a TreeViewer item.
+	 *
+	 */
+	class EObjectAction extends Action {
+		private EObject element;
+		
+		/**
+		 * Sets the EObject for this Action.
+		 * @param element the EObject
+		 */
+		public void setElement(EObject element) {
+			this.element = element;
+		}
+
+		/**
+		 * @return the EObject for this Action.
+		 */
+		public EObject getElement() {
+			return this.element;
+		}
+	}
 
 	/**
 	 * Content provider for the tree view.
@@ -70,26 +96,38 @@ public class RepositoryView extends ViewPart implements ITreeViewerListener {
 				return ((Workspace) object).getServerInfos().toArray();
 			} else if (object instanceof ServerInfo) {
 				ServerInfo serverInfo = (ServerInfo) object;
-				if (serverInfo.getLastUsersession() == null
-						|| serverInfo.getLastUsersession().getUsername() == null) {
-					Usersession session = WorkspaceFactory.eINSTANCE
-							.createUsersession();
-					session.setServerInfo(serverInfo);
+				Usersession session = serverInfo.getLastUsersession();
+				if (session == null || session.getUsername() == null
+						|| session.getPersistentPassword() == null) {
 					RepositoryLoginDialog dialog = new RepositoryLoginDialog(
 							PlatformUI.getWorkbench().getDisplay()
 									.getActiveShell(), session);
-					dialog.setBlockOnOpen(true);
-					dialog.create();
-					dialog.open();
-					try {
-						serverInfo.getProjectInfos().addAll(
-								session.getRemoteProjectList());
-						serverInfo.setLastUsersession(session);
-					} catch (EmfStoreException e) {
-						e.printStackTrace();
-					}
+					session = dialog.open();
 				}
-				return (ProjectInfo[]) serverInfo.getProjectInfos().toArray();
+				if(session == null){
+					return new Object[0];
+				}
+				try {
+					session.logIn();
+				} catch (ConnectionException e) {
+					// TODO server timed out
+					e.printStackTrace();
+				} catch (AccessControlException e) {
+					// TODO wrong password/user
+					e.printStackTrace();
+				}
+				try {
+					serverInfo.getProjectInfos().addAll(
+							session.getRemoteProjectList());
+					serverInfo.setLastUsersession(session);
+				} catch (EmfStoreException e) {
+					e.printStackTrace();
+				}
+				EList<ProjectInfo> pis = serverInfo.getProjectInfos();
+				for (ProjectInfo pi : pis) {
+					projectServerMap.put(pi, serverInfo);
+				}
+				return (ProjectInfo[]) pis.toArray();
 			}
 			return new Object[0];
 		}
@@ -134,14 +172,12 @@ public class RepositoryView extends ViewPart implements ITreeViewerListener {
 						ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
 		viewer.setSorter(new ViewerSorter());
 		viewer.setInput(getViewSite());
-		viewer.addTreeListener(this);
 
-		// Create the help context id for the viewer's control
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(viewer.getControl(),
 				"org.unicase.repositoryview.viewer");
 		makeActions();
 		hookContextMenu();
-		// hookDoubleClickAction();
+		hookDoubleClickAction();
 		contributeToActionBars();
 	}
 
@@ -188,9 +224,20 @@ public class RepositoryView extends ViewPart implements ITreeViewerListener {
 	}
 
 	private void makeActions() {
-		checkout = new Action() {
+		checkout = new EObjectAction() {
 			public void run() {
-				showMessage("Checking out ...");
+				EObject element = this.getElement(); 
+				if(element!=null){
+					if(element instanceof ProjectInfo){
+						ProjectInfo pi = (ProjectInfo)element;
+						try {
+							projectServerMap.get(pi).getLastUsersession().checkout(pi);
+						} catch (EmfStoreException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				}
 			}
 		};
 		checkout.setText("Checkout");
@@ -200,7 +247,11 @@ public class RepositoryView extends ViewPart implements ITreeViewerListener {
 
 		login = new Action() {
 			public void run() {
-
+				ISelection selection = viewer.getSelection();
+				Object obj = ((IStructuredSelection) selection)
+						.getFirstElement();
+				viewer.collapseToLevel(obj, AbstractTreeViewer.ALL_LEVELS);
+				viewer.expandToLevel(obj, 1);
 			}
 		};
 		login.setText("Login");
@@ -226,33 +277,14 @@ public class RepositoryView extends ViewPart implements ITreeViewerListener {
 		addRepository.setImageDescriptor(PlatformUI.getWorkbench()
 				.getSharedImages().getImageDescriptor(
 						ISharedImages.IMG_TOOL_NEW_WIZARD));
-
-		doubleClickAction = new Action() {
-			public void run() {
-				ISelection selection = viewer.getSelection();
-				Object obj = ((IStructuredSelection) selection)
-						.getFirstElement();
-				if (obj instanceof ServerInfo) {
-
-				} else {
-					checkout.run();
-				}
-			}
-		};
 	}
 
-	@SuppressWarnings("unused")
 	private void hookDoubleClickAction() {
 		viewer.addDoubleClickListener(new IDoubleClickListener() {
 			public void doubleClick(DoubleClickEvent event) {
-				doubleClickAction.run();
+				login.run();
 			}
 		});
-	}
-
-	private void showMessage(String message) {
-		MessageDialog.openInformation(viewer.getControl().getShell(),
-				"Project Repositories", message);
 	}
 
 	/**
@@ -262,26 +294,6 @@ public class RepositoryView extends ViewPart implements ITreeViewerListener {
 		viewer.getControl().setFocus();
 	}
 
-	/**
-	 * Actions to be executed when the tree node is collapsed.
-	 * 
-	 * @param event
-	 *            a {@link TreeExpansionEvent}
-	 */
-	public void treeCollapsed(TreeExpansionEvent event) {
-		// TODO Close the connection to the server
-
-	}
-
-	/**
-	 * Actions to be executed when the tree node is expanded.
-	 * 
-	 * @param event
-	 *            a {@link TreeExpansionEvent}
-	 */
-	public void treeExpanded(TreeExpansionEvent event) {
-		// already implemented in getChildren() of the ContentProvider  
-	}
 
 	/**
 	 * @return the {@link TreeViewer} for this view.
