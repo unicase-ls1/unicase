@@ -2,10 +2,10 @@ package org.unicase.emfstore.connection.rmi;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.security.AccessControlException;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 
 public interface RMIEmfStoreFacade extends Remote {
@@ -18,7 +18,7 @@ public interface RMIEmfStoreFacade extends Remote {
 	 * @throws RemoteException
 	 * @throws EmfStoreException
 	 */
-	public String getProjectList(String sessionId)
+	public List<String> getProjectList(String sessionId)
 			throws RemoteException, EmfStoreException;
 
 	public String getProject(String sessionId, String projectId,
@@ -31,11 +31,11 @@ public interface RMIEmfStoreFacade extends Remote {
 	public String resolveVersionSpec(String sessionId, String versionSpec)
 			throws RemoteException, EmfStoreException;
 
-	public String getChanges(String sessionId, String projectId,
+	public List<String> getChanges(String sessionId, String projectId,
 			String source, String target) throws RemoteException,
 			EmfStoreException;
 
-	public String getHistoryInfo(String sessionId, String projectId,
+	public List<String> getHistoryInfo(String sessionId, String projectId,
 			String source, String target) throws RemoteException,
 			EmfStoreException;
 
