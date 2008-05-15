@@ -38,24 +38,17 @@ public class EmfStoreImpl implements EmfStore, Runnable {
 
 	private boolean doExit;
 	
+	private final Resource res;
+	
 	public EmfStoreImpl(ResourceStorage storage, Properties properties) {
 		
 		this.doExit=false;
 		
 		URI resourceUri = storage.init(properties);
 		ResourceSet resourceSet = new ResourceSetImpl();
-		final Resource res = resourceSet.createResource(resourceUri);
-
-		Project project = ModelPackage.eINSTANCE.getModelFactory()
-				.createProject();
-		res.getContents().add(project);
-
-		try {
-			res.save(Collections.EMPTY_MAP);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		res = resourceSet.createResource(resourceUri);
+		
+		
 
 	}
 
@@ -93,7 +86,7 @@ public class EmfStoreImpl implements EmfStore, Runnable {
 		return createDummyProject();
 	}
 
-	public EList<ProjectInfo> getProjectList(SessionId sessionId)
+	public List<ProjectInfo> getProjectList(SessionId sessionId)
 			throws EmfStoreException {
 		EList<ProjectInfo> ret = new BasicEList<ProjectInfo>();
 		
@@ -105,7 +98,7 @@ public class EmfStoreImpl implements EmfStore, Runnable {
 		projectInfo.setName("TestProject");
 		projectInfo.setDescription("A test Project");
 		projectInfo.setProjectId(projectId);
-		projectInfo.setVersion(resolveVersionSpec(sessionId, headVersionSpec));
+		projectInfo.setVersion(ChangemanagmentFactory.eINSTANCE.createPrimaryVersionSpec());
 		
 		ret.add(projectInfo);
 		return ret;

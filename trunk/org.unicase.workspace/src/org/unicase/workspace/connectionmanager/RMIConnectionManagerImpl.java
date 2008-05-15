@@ -6,9 +6,11 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.security.AccessControlException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade;
 import org.unicase.emfstore.connection.rmi.RMIUtil;
 import org.unicase.emfstore.exceptions.EmfStoreException;
@@ -27,15 +29,15 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 
 	private RMIEmfStoreFacade facade;
 
-	public RMIConnectionManagerImpl() {
+	public RMIConnectionManagerImpl() throws ConnectionException{
 		Registry registry;
 		try {
 			registry = LocateRegistry.getRegistry();
 			facade = (RMIEmfStoreFacade) registry.lookup("RMIEmfStoreFacade");
 		} catch (RemoteException e) {
-			e.printStackTrace();
+			throw new ConnectionException("Connection to server refused.");
 		} catch (NotBoundException e) {
-			e.printStackTrace();
+			throw new ConnectionException("RMI Registry not available.");
 		}
 	}
 
@@ -46,11 +48,11 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 
 		try {
 			return (PrimaryVersionSpec) RMIUtil.stringToEObject(facade
-						.createVersion(RMIUtil.eObjectToString(sessionId), RMIUtil
-								.eObjectToString(projectId), RMIUtil
-								.eObjectToString(baseVersionSpec), RMIUtil
-								.eObjectToString(changePackage), RMIUtil
-								.eObjectToString(logMessage)));
+					.createVersion(RMIUtil.eObjectToString(sessionId), RMIUtil
+							.eObjectToString(projectId), RMIUtil
+							.eObjectToString(baseVersionSpec), RMIUtil
+							.eObjectToString(changePackage), RMIUtil
+							.eObjectToString(logMessage)));
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -74,15 +76,19 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 		return null;
 	}
 
-	public EList<HistoryInfo> getHistoryInfo(SessionId sessionId,
+	public List<HistoryInfo> getHistoryInfo(SessionId sessionId,
 			ProjectId projectId, VersionSpec source, VersionSpec target)
 			throws ConnectionException {
 		try {
-			return (EList<HistoryInfo>) RMIUtil.stringToEObject(facade.getHistoryInfo(RMIUtil
-					.eObjectToString(sessionId),
-					RMIUtil.eObjectToString(projectId), RMIUtil
-							.eObjectToString(source), RMIUtil
-							.eObjectToString(target)));
+			List<HistoryInfo> result = new ArrayList<HistoryInfo>();
+			for (String str : facade.getHistoryInfo(RMIUtil
+					.eObjectToString(sessionId), RMIUtil
+					.eObjectToString(projectId), RMIUtil
+					.eObjectToString(source), RMIUtil.eObjectToString(target))) {
+				result.add((HistoryInfo) RMIUtil.stringToEObject(str));
+			}
+
+			return result;
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -122,10 +128,14 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 		return null;
 	}
 
-	public EList<ProjectInfo> getProjectList(SessionId sessionId) {
+	public List<ProjectInfo> getProjectList(SessionId sessionId) {
 		try {
-			return (EList<ProjectInfo>) RMIUtil.stringToEObject(facade
-					.getProjectList(RMIUtil.eObjectToString(sessionId)));
+			List<ProjectInfo> result = new ArrayList<ProjectInfo>();
+			for (String str : facade.getProjectList(RMIUtil
+					.eObjectToString(sessionId))) {
+				result.add((ProjectInfo) RMIUtil.stringToEObject(str));
+			}
+			return result;
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -170,16 +180,17 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 		try {
 			return (SessionId) RMIUtil.stringToEObject(facade.login(username,
 					password, RMIUtil.eObjectToString(serverInfo)));
-		} catch (AccessControlException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
+		}
+		 catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (AccessControlException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

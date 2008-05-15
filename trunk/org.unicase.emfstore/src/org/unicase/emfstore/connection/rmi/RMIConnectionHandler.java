@@ -43,7 +43,7 @@ public class RMIConnectionHandler implements ConnectionHandler {
 
 			RemoteServer.setLog(System.out);
 
-			stub = new RMIEmfStoreFacadeImpl(null,null);
+			stub = new RMIEmfStoreFacadeImpl(emfStore,accessControl);
 
 			Registry registry = LocateRegistry.getRegistry();
 			registry.rebind("RMIEmfStoreFacade", stub);

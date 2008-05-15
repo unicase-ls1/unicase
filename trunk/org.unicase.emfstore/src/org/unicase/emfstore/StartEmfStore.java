@@ -8,8 +8,8 @@ import java.util.Properties;
 
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
+import org.unicase.emfstore.accesscontrol.AccessControlImpl;
 import org.unicase.emfstore.connection.rmi.RMIConnectionHandler;
-import org.unicase.emfstore.rmi.RMITest;
 import org.unicase.emfstore.storage.ResourceStorage;
 import org.unicase.emfstore.storage.TeneoStorage;
 
@@ -21,32 +21,29 @@ public class StartEmfStore implements IApplication {
 
 		System.out.print("Initialization...");
 
-		new RMIConnectionHandler().init(null, null);
+		Properties properties = initProperties();
+		ResourceStorage storage = initStorage(properties);
+		emfStore = new EmfStoreImpl(storage, properties);
 		
-		for (int i = 0; i < 10000; i++) {
-			if(i%100==0) System.out.print(".");
-			Thread.sleep(1000);
-		}
+		new RMIConnectionHandler().init(emfStore, new AccessControlImpl());
+		
+		Thread serverThread = new Thread(emfStore);
 
-//		 Properties properties = initProperties();
-//		 ResourceStorage storage = initStorage(properties);
-//		 emfStore = new EmfStoreImpl(storage, properties);
-//		 Thread serverThread = new Thread(emfStore);
-//					
-//		 System.out.println("COMPLETE");
-//				
-//		 serverThread.start();
-//				
-//		 System.out.println("Server is running...");
-//				
-//		 serverThread.join();
+		System.out.println("COMPLETE");
+
+		serverThread.start();
+
+		System.out.println("Server is running...");
+
+		serverThread.join();
 		return IApplication.EXIT_OK;
 	}
 
 	private ResourceStorage initStorage(Properties properties) {
-		String className = properties
-				.getProperty(ServerConfiguration.RESOURCE_STORAGE, ServerConfiguration.DEFAULT_RESOURCE_STORAGE);
-		
+		String className = properties.getProperty(
+				ServerConfiguration.RESOURCE_STORAGE,
+				ServerConfiguration.DEFAULT_RESOURCE_STORAGE);
+
 		ResourceStorage resourceStorage;
 		try {
 			resourceStorage = (ResourceStorage) Class.forName(className)
@@ -78,17 +75,17 @@ public class StartEmfStore implements IApplication {
 	}
 
 	private Properties initProperties() {
-		// File propertyFile = new File(ServerConfiguration.getConfFile());
-		// Properties properties = new Properties();
-		// try {
-		// FileInputStream fis = new FileInputStream(propertyFile);
-		// properties.load(fis);
-		// fis.close();
-		// } catch (IOException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-		Properties properties = new Properties();
+		 File propertyFile = new File(ServerConfiguration.getConfFile());
+		 Properties properties = new Properties();
+		 try {
+		 FileInputStream fis = new FileInputStream(propertyFile);
+		 properties.load(fis);
+		 fis.close();
+		 } catch (IOException e) {
+		 // TODO Auto-generated catch block
+		 e.printStackTrace();
+		 }
+//		Properties properties = new Properties();
 		return properties;
 	}
 
