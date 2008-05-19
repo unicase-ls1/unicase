@@ -69,7 +69,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 		return null;
 	}
 
-	public EList<ChangePackage> getChanges(SessionId sessionId,
+	public List<ChangePackage> getChanges(SessionId sessionId,
 			ProjectId projectId, VersionSpec source, VersionSpec target)
 			throws ConnectionException {
 		// TODO Auto-generated method stub
