@@ -144,7 +144,7 @@ public interface EsmodelPackage extends EPackage {
 	int PROJECT_INFO__DESCRIPTION = 1;
 
 	/**
-	 * The feature id for the '<em><b>Project Id</b></em>' reference.
+	 * The feature id for the '<em><b>Project Id</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -153,7 +153,7 @@ public interface EsmodelPackage extends EPackage {
 	int PROJECT_INFO__PROJECT_ID = 2;
 
 	/**
-	 * The feature id for the '<em><b>Version</b></em>' reference.
+	 * The feature id for the '<em><b>Version</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -361,10 +361,10 @@ public interface EsmodelPackage extends EPackage {
 	EAttribute getProjectInfo_Description();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.esmodel.ProjectInfo#getProjectId <em>Project Id</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.esmodel.ProjectInfo#getProjectId <em>Project Id</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Project Id</em>'.
+	 * @return the meta object for the containment reference '<em>Project Id</em>'.
 	 * @see org.unicase.esmodel.ProjectInfo#getProjectId()
 	 * @see #getProjectInfo()
 	 * @generated
@@ -372,10 +372,10 @@ public interface EsmodelPackage extends EPackage {
 	EReference getProjectInfo_ProjectId();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.esmodel.ProjectInfo#getVersion <em>Version</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.esmodel.ProjectInfo#getVersion <em>Version</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Version</em>'.
+	 * @return the meta object for the containment reference '<em>Version</em>'.
 	 * @see org.unicase.esmodel.ProjectInfo#getVersion()
 	 * @see #getProjectInfo()
 	 * @generated
@@ -536,7 +536,7 @@ public interface EsmodelPackage extends EPackage {
 		EAttribute PROJECT_INFO__DESCRIPTION = eINSTANCE.getProjectInfo_Description();
 
 		/**
-		 * The meta object literal for the '<em><b>Project Id</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Project Id</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -544,7 +544,7 @@ public interface EsmodelPackage extends EPackage {
 		EReference PROJECT_INFO__PROJECT_ID = eINSTANCE.getProjectInfo_ProjectId();
 
 		/**
-		 * The meta object literal for the '<em><b>Version</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Version</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
