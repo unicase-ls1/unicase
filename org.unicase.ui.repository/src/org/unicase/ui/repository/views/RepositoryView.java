@@ -1,5 +1,7 @@
 package org.unicase.ui.repository.views;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 
 import org.eclipse.emf.common.util.EList;
@@ -12,6 +14,7 @@ import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.AbstractTreeViewer;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -29,12 +32,15 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.esmodel.EsmodelFactory;
 import org.unicase.esmodel.ProjectInfo;
+import org.unicase.esmodel.provider.EsmodelEditPlugin;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.connectionmanager.ConnectionException;
+import org.unicase.workspace.provider.WorkspaceEditPlugin;
 import org.unicase.workspace.provider.WorkspaceItemProviderAdapterFactory;
 
 /**
@@ -48,6 +54,7 @@ public class RepositoryView extends ViewPart {
 	private Action checkout;
 	private Action addRepository;
 	private Action login;
+	private Action newProject;
 	private HashMap<ProjectInfo, ServerInfo> projectServerMap = new HashMap<ProjectInfo, ServerInfo>();
 
 	/**
@@ -209,6 +216,7 @@ public class RepositoryView extends ViewPart {
 		Object obj = ((IStructuredSelection) selection).getFirstElement();
 		if (obj instanceof ServerInfo) {
 			manager.add(login);
+			manager.add(newProject);
 		} else {
 			manager.add(checkout);
 		}
@@ -259,6 +267,30 @@ public class RepositoryView extends ViewPart {
 		login.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages()
 				.getImageDescriptor(ISharedImages.IMG_OBJ_ELEMENT));
 
+		newProject = new Action() {
+			public void run() {
+				ISelection selection = viewer.getSelection();
+				Object obj = ((IStructuredSelection) selection)
+				.getFirstElement();
+				if(obj instanceof ServerInfo){
+					ServerInfo serverInfo = ((ServerInfo)obj); 
+					ProjectInfo newProjectInfo = EsmodelFactory.eINSTANCE.createProjectInfo();
+					newProjectInfo.setName("newProject");
+					serverInfo.getProjectInfos().add(newProjectInfo);
+				}
+				viewer.collapseToLevel(obj, AbstractTreeViewer.ALL_LEVELS);
+				viewer.expandToLevel(obj, 1);
+			}
+		};
+		newProject.setText("Create new project");
+		newProject.setToolTipText("Click to create new project on the server");
+		try {
+			newProject.setImageDescriptor(ImageDescriptor.createFromURL
+			        (new URL(EsmodelEditPlugin.INSTANCE.getImage("full/obj16/ProjectInfo").toString())));
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+
 		addRepository = new Action() {
 			public void run() {
 				RepositoryWizard wizard = new RepositoryWizard(
@@ -274,9 +306,13 @@ public class RepositoryView extends ViewPart {
 		};
 		addRepository.setText("New repository...");
 		addRepository.setToolTipText("Click to add new repository");
-		addRepository.setImageDescriptor(PlatformUI.getWorkbench()
-				.getSharedImages().getImageDescriptor(
-						ISharedImages.IMG_TOOL_NEW_WIZARD));
+		try {
+			addRepository.setImageDescriptor(ImageDescriptor.createFromURL
+			        (new URL(WorkspaceEditPlugin.INSTANCE.getImage("full/obj16/ServerInfo").toString())));
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	private void hookDoubleClickAction() {
