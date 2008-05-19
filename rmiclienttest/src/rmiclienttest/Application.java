@@ -4,7 +4,9 @@ import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.unicase.esmodel.EsmodelFactory;
 import org.unicase.esmodel.ProjectInfo;
+import org.unicase.esmodel.SessionId;
 import org.unicase.esmodel.changemanagment.ChangemanagmentFactory;
+import org.unicase.esmodel.changemanagment.PrimaryVersionSpec;
 import org.unicase.model.CompositeSection;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelFactory;
@@ -31,18 +33,23 @@ public class Application implements IApplication {
 
 
 		RMIConnectionManagerImpl cm = new RMIConnectionManagerImpl();
-//		cm.logIn("da", "bla", WorkspaceFactory.eINSTANCE.createServerInfo());
-//		cm.sendString("test");
-//		Project pr = cm.getProject(EsmodelFactory.eINSTANCE.createSessionId(),
-//				EsmodelFactory.eINSTANCE.createProjectId(),
-//				ChangemanagmentFactory.eINSTANCE.createPrimaryVersionSpec());
-//		System.out.println(pr.toString());
-//		for(ModelElement me:pr.getModelElements()) {
-//			System.out.println(me.toString());
-//		}
-		
-		
+		System.out.println("----login----");
+		SessionId id = cm.logIn("da", "bla", WorkspaceFactory.eINSTANCE.createServerInfo());
+		System.out.println(id);
+		System.out.println("----resolveVersion----");
+		PrimaryVersionSpec pri = cm.resolveVersionSpec(id, ChangemanagmentFactory.eINSTANCE.createPrimaryVersionSpec());
+		System.out.println(pri);
+		System.out.println("----getProject----");
+		Project pr = cm.getProject(EsmodelFactory.eINSTANCE.createSessionId(),
+				EsmodelFactory.eINSTANCE.createProjectId(),
+				ChangemanagmentFactory.eINSTANCE.createPrimaryVersionSpec());
+		System.out.println(pr.toString());
+		for(ModelElement me:pr.getModelElements()) {
+			System.out.println(me.toString());
+		}
+		System.out.println("----getProjectList----");
 		for(ProjectInfo pi : cm.getProjectList(EsmodelFactory.eINSTANCE.createSessionId())) {
+			if(pi != null)
 			System.out.println(pi);
 		}
 		
