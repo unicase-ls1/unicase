@@ -14,6 +14,8 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.unicase.model.ModelPackage;
 
+import org.unicase.model.diagram.DiagramPackage;
+import org.unicase.model.diagram.impl.DiagramPackageImpl;
 import org.unicase.model.impl.ModelPackageImpl;
 
 import org.unicase.model.organization.Group;
@@ -114,14 +116,17 @@ public class OrganizationPackageImpl extends EPackageImpl implements Organizatio
 
 		// Obtain or create and register interdependencies
 		ModelPackageImpl theModelPackage = (ModelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI) : ModelPackage.eINSTANCE);
+		DiagramPackageImpl theDiagramPackage = (DiagramPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI) : DiagramPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theOrganizationPackage.createPackageContents();
 		theModelPackage.createPackageContents();
+		theDiagramPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theOrganizationPackage.initializePackageContents();
 		theModelPackage.initializePackageContents();
+		theDiagramPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theOrganizationPackage.freeze();

@@ -24,6 +24,8 @@ import org.unicase.model.Project;
 import org.unicase.model.ReaderInfo;
 import org.unicase.model.Section;
 import org.unicase.model.UniqueIdentifier;
+import org.unicase.model.diagram.DiagramPackage;
+import org.unicase.model.diagram.impl.DiagramPackageImpl;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.impl.OrganizationPackageImpl;
 
@@ -155,14 +157,17 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 		// Obtain or create and register interdependencies
 		OrganizationPackageImpl theOrganizationPackage = (OrganizationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(OrganizationPackage.eNS_URI) : OrganizationPackage.eINSTANCE);
+		DiagramPackageImpl theDiagramPackage = (DiagramPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI) : DiagramPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theModelPackage.createPackageContents();
 		theOrganizationPackage.createPackageContents();
+		theDiagramPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theModelPackage.initializePackageContents();
 		theOrganizationPackage.initializePackageContents();
+		theDiagramPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theModelPackage.freeze();
@@ -294,6 +299,15 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 */
 	public EAttribute getLeafSection_ElementClass() {
 		return (EAttribute)leafSectionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLeafSection_ModelElements() {
+		return (EReference)leafSectionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -448,6 +462,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 		leafSectionEClass = createEClass(LEAF_SECTION);
 		createEAttribute(leafSectionEClass, LEAF_SECTION__ELEMENT_CLASS);
+		createEReference(leafSectionEClass, LEAF_SECTION__MODEL_ELEMENTS);
 
 		compositeSectionEClass = createEClass(COMPOSITE_SECTION);
 		createEReference(compositeSectionEClass, COMPOSITE_SECTION__SUBSECTIONS);
@@ -493,9 +508,11 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 		// Obtain other dependent packages
 		OrganizationPackage theOrganizationPackage = (OrganizationPackage)EPackage.Registry.INSTANCE.getEPackage(OrganizationPackage.eNS_URI);
+		DiagramPackage theDiagramPackage = (DiagramPackage)EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theOrganizationPackage);
+		getESubpackages().add(theDiagramPackage);
 
 		// Create type parameters
 
@@ -536,6 +553,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		EGenericType g3 = createEGenericType(this.getModelElement());
 		g2.setEUpperBound(g3);
 		initEAttribute(getLeafSection_ElementClass(), g1, "elementClass", null, 0, 1, LeafSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLeafSection_ModelElements(), this.getModelElement(), null, "modelElements", null, 0, -1, LeafSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(compositeSectionEClass, CompositeSection.class, "CompositeSection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompositeSection_Subsections(), this.getSection(), this.getSection_Parent(), "subsections", null, 0, -1, CompositeSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
