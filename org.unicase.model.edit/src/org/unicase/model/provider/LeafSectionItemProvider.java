@@ -13,6 +13,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -24,7 +25,10 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.unicase.model.LeafSection;
+import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.diagram.DiagramFactory;
+import org.unicase.model.organization.OrganizationFactory;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.model.LeafSection} object.
@@ -89,6 +93,36 @@ public class LeafSectionItemProvider
 	}
 
 	/**
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(ModelPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS);
+		}
+		return childrenFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
+	}
+
+	/**
 	 * This returns LeafSection.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -128,6 +162,9 @@ public class LeafSectionItemProvider
 			case ModelPackage.LEAF_SECTION__ELEMENT_CLASS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
+			case ModelPackage.LEAF_SECTION__MODEL_ELEMENTS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -142,19 +179,42 @@ public class LeafSectionItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 ModelFactory.eINSTANCE.createFunctionalRequirement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 ModelFactory.eINSTANCE.createLeafSection()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 ModelFactory.eINSTANCE.createCompositeSection()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 OrganizationFactory.eINSTANCE.createUser()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 OrganizationFactory.eINSTANCE.createOrgUnit()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 OrganizationFactory.eINSTANCE.createGroup()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 DiagramFactory.eINSTANCE.createDiagram()));
 	}
 
-	  @Override
-	  public Collection<?> getChildren(Object object)
-	  {
-	    if (object instanceof LeafSection)
-	    {
-	      LeafSection leafSection = (LeafSection)object;
-	      return leafSection.getProject().getElementsByClass(leafSection.getElementClass());
-	    }
-	    else
-	    {
-	      return super.getChildren(object);
-	    }
-	  }
+
 }
