@@ -6,16 +6,20 @@
  */
 package org.unicase.model.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.CompositeSection;
 import org.unicase.model.LeafSection;
 import org.unicase.model.ModelElement;
@@ -30,6 +34,7 @@ import org.unicase.model.ModelPackage;
  * <ul>
  *   <li>{@link org.unicase.model.impl.LeafSectionImpl#getParent <em>Parent</em>}</li>
  *   <li>{@link org.unicase.model.impl.LeafSectionImpl#getElementClass <em>Element Class</em>}</li>
+ *   <li>{@link org.unicase.model.impl.LeafSectionImpl#getModelElements <em>Model Elements</em>}</li>
  * </ul>
  * </p>
  *
@@ -45,6 +50,15 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	 * @ordered
 	 */
 	protected Class<? extends ModelElement> elementClass;
+	/**
+	 * The cached value of the '{@link #getModelElements() <em>Model Elements</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getModelElements()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ModelElement> modelElements;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -131,6 +145,18 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<ModelElement> getModelElements() {
+		if (modelElements == null) {
+			modelElements = new EObjectContainmentEList<ModelElement>(ModelElement.class, this, ModelPackage.LEAF_SECTION__MODEL_ELEMENTS);
+		}
+		return modelElements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -152,6 +178,8 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 		switch (featureID) {
 			case ModelPackage.LEAF_SECTION__PARENT:
 				return basicSetParent(null, msgs);
+			case ModelPackage.LEAF_SECTION__MODEL_ELEMENTS:
+				return ((InternalEList<?>)getModelElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -182,6 +210,8 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 				return getParent();
 			case ModelPackage.LEAF_SECTION__ELEMENT_CLASS:
 				return getElementClass();
+			case ModelPackage.LEAF_SECTION__MODEL_ELEMENTS:
+				return getModelElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -201,6 +231,10 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 			case ModelPackage.LEAF_SECTION__ELEMENT_CLASS:
 				setElementClass((Class<? extends ModelElement>)newValue);
 				return;
+			case ModelPackage.LEAF_SECTION__MODEL_ELEMENTS:
+				getModelElements().clear();
+				getModelElements().addAll((Collection<? extends ModelElement>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -219,6 +253,9 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 			case ModelPackage.LEAF_SECTION__ELEMENT_CLASS:
 				setElementClass((Class<? extends ModelElement>)null);
 				return;
+			case ModelPackage.LEAF_SECTION__MODEL_ELEMENTS:
+				getModelElements().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -235,6 +272,8 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 				return getParent() != null;
 			case ModelPackage.LEAF_SECTION__ELEMENT_CLASS:
 				return elementClass != null;
+			case ModelPackage.LEAF_SECTION__MODEL_ELEMENTS:
+				return modelElements != null && !modelElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

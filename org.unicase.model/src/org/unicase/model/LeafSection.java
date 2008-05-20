@@ -6,6 +6,8 @@
  */
 package org.unicase.model;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -16,6 +18,7 @@ package org.unicase.model;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.unicase.model.LeafSection#getElementClass <em>Element Class</em>}</li>
+ *   <li>{@link org.unicase.model.LeafSection#getModelElements <em>Model Elements</em>}</li>
  * </ul>
  * </p>
  *
@@ -49,5 +52,21 @@ public interface LeafSection extends Section {
 	 * @generated
 	 */
 	void setElementClass(Class<? extends ModelElement> value);
+
+	/**
+	 * Returns the value of the '<em><b>Model Elements</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.model.ModelElement}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Model Elements</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Model Elements</em>' containment reference list.
+	 * @see org.unicase.model.ModelPackage#getLeafSection_ModelElements()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<ModelElement> getModelElements();
 
 } // LeafSection

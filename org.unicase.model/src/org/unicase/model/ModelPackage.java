@@ -352,13 +352,22 @@ public interface ModelPackage extends EPackage {
 	int LEAF_SECTION__ELEMENT_CLASS = SECTION_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Model Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEAF_SECTION__MODEL_ELEMENTS = SECTION_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Leaf Section</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEAF_SECTION_FEATURE_COUNT = SECTION_FEATURE_COUNT + 1;
+	int LEAF_SECTION_FEATURE_COUNT = SECTION_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.impl.CompositeSectionImpl <em>Composite Section</em>}' class.
@@ -709,6 +718,17 @@ public interface ModelPackage extends EPackage {
 	EAttribute getLeafSection_ElementClass();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.unicase.model.LeafSection#getModelElements <em>Model Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Model Elements</em>'.
+	 * @see org.unicase.model.LeafSection#getModelElements()
+	 * @see #getLeafSection()
+	 * @generated
+	 */
+	EReference getLeafSection_ModelElements();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.model.CompositeSection <em>Composite Section</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -973,6 +993,14 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute LEAF_SECTION__ELEMENT_CLASS = eINSTANCE.getLeafSection_ElementClass();
+
+		/**
+		 * The meta object literal for the '<em><b>Model Elements</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LEAF_SECTION__MODEL_ELEMENTS = eINSTANCE.getLeafSection_ModelElements();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.impl.CompositeSectionImpl <em>Composite Section</em>}' class.
