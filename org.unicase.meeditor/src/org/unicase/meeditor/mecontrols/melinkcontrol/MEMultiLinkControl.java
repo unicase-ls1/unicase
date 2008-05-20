@@ -10,6 +10,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.window.Window;
@@ -26,7 +27,7 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
 import org.unicase.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.model.ModelElement;
-import org.unicase.model.provider.ModelItemProviderAdapterFactory;
+
 
 public class MEMultiLinkControl extends AbstractMEControl {
 
@@ -85,7 +86,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 						.getEReferenceType().getInstanceClass();
 				ElementListSelectionDialog dlg = new ElementListSelectionDialog(
 						parent.getShell(), new AdapterFactoryLabelProvider(
-								new ModelItemProviderAdapterFactory()));
+								new	ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
 				// JH: fill only with right elements
 				Collection<ModelElement> allElements = ((ModelElement)modelElement)
 						.getProject().getElementsByClass(clazz);

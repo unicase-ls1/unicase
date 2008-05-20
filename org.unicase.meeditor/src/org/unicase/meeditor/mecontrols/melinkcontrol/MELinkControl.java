@@ -3,6 +3,7 @@ package org.unicase.meeditor.mecontrols.melinkcontrol;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.swt.graphics.Image;
@@ -17,7 +18,7 @@ import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.model.ModelElement;
-import org.unicase.model.provider.ModelItemProviderAdapterFactory;
+
 
 public class MELinkControl extends AbstractMEControl {
 
@@ -36,8 +37,9 @@ public class MELinkControl extends AbstractMEControl {
 		linkComposite = toolkit.createComposite(parent,
 				style);
 		linkComposite.setLayout(new GridLayout(3, false));
-		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(
-				new ModelItemProviderAdapterFactory());
+		ILabelProvider labelProvider = new 
+			AdapterFactoryLabelProvider(new	
+					ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		Image image = labelProvider.getImage(modelElement);
 		ImageHyperlink imageHyperlink = toolkit.createImageHyperlink(
 				linkComposite, style);

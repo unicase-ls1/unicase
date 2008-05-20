@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.action.ContributionManager;
@@ -63,11 +64,11 @@ public class MEEditorPage extends FormPage  {
 		// Layout form
 		form.setText(modelElement.getName());
 		form.setImage(new AdapterFactoryLabelProvider(
-				new ModelItemProviderAdapterFactory()).getImage(modelElement));
-		// form.setHeadClient(toolkit.createButton(form, "Hallo", SWT.WRAP));
-
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE))
+				.getImage(modelElement));
+		
 		// Sort and order attributes
-
 		sortAndOrderAttributes();
 
 		// Create attributes
@@ -106,13 +107,15 @@ public class MEEditorPage extends FormPage  {
 
 		IEvaluationService service =
 		(IEvaluationService)PlatformUI.getWorkbench().getService(IEvaluationService.class);
-				service.addSourceProvider(sourceProvider); 
+		service.addSourceProvider(sourceProvider); 
 		menuService.populateContributionManager((ContributionManager) form.getToolBarManager(),"toolbar:org.unicase.meeditor.MEEditorPage");
 		form.getToolBarManager().update(true);
 	}
 
 	private void sortAndOrderAttributes() {
-		AdapterFactoryItemDelegator adapterFactoryItemDelegator =new AdapterFactoryItemDelegator(new ModelItemProviderAdapterFactory());
+		AdapterFactoryItemDelegator adapterFactoryItemDelegator =new 
+			AdapterFactoryItemDelegator(new 
+					ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		List<IItemPropertyDescriptor> propertyDescriptors = adapterFactoryItemDelegator.getPropertyDescriptors(modelElement);
 		for (IItemPropertyDescriptor itemPropertyDescriptor: propertyDescriptors){
 			if(itemPropertyDescriptor.isMany(modelElement)){
