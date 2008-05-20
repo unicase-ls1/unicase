@@ -22,6 +22,8 @@ import org.unicase.model.LeafSection;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.Project;
+import org.unicase.model.diagram.DiagramFactory;
+import org.unicase.model.diagram.MEDiagram;
 import org.unicase.workspace.ServerInfo;
 
 public class StubConnectionManagerImpl implements ConnectionManager {
@@ -83,36 +85,58 @@ public class StubConnectionManagerImpl implements ConnectionManager {
 		
 		ModelFactory factory = ModelFactory.eINSTANCE;
 		Project project = factory.createProject();
+		
+		//RootSection
 		CompositeSection rootSection = factory.createCompositeSection();
 		rootSection.setName("RAD");
 		rootSection
 				.setDescription("The requirements analysis document of the project");
+		project.addModelElement(rootSection);
 
+		//Functional Requirements
 		LeafSection reqLeafSection = factory.createLeafSection();
 		reqLeafSection.setName("Functional Requirements");
 		reqLeafSection
 				.setDescription("Lists all functional requirements in this project");
 		reqLeafSection.setElementClass(FunctionalRequirement.class);
-
 		reqLeafSection.setParent(rootSection);
+		FunctionalRequirement fr = factory.createFunctionalRequirement();
+		fr.setName("My Reuirement");
+		FunctionalRequirement fr2 = factory.createFunctionalRequirement();
+		fr2.setName("My Reuirement2");
+		reqLeafSection.getModelElements().add(fr);
+		reqLeafSection.getModelElements().add(fr2);
 
-		LeafSection scenLeafSection = factory.createLeafSection();
-		scenLeafSection.setName("Scenarios");
-		scenLeafSection.setDescription("Lists all scenarios of this project.");
-		scenLeafSection.setParent(rootSection);
-		scenLeafSection.setElementClass(FunctionalRequirement.class);
-
+		//ActionItems
+		LeafSection actionItemLeafSection = factory.createLeafSection();
+		actionItemLeafSection.setName("Action Items");
+		actionItemLeafSection.setDescription("Lists all ais of this project.");
+		actionItemLeafSection.setParent(rootSection);
+		actionItemLeafSection.setElementClass(FunctionalRequirement.class);
+		//TODO: Create some AI«s here
+		
+		
+		//Diagrams
+		LeafSection diagramSection = factory.createLeafSection();
+		diagramSection.setName("Diagrams");
+		diagramSection.setDescription("Lists all diagrams of this project.");
+		diagramSection.setParent(rootSection);
+		diagramSection.setElementClass(FunctionalRequirement.class);
+		
+		DiagramFactory diagramFactory = DiagramFactory.eINSTANCE;
+		MEDiagram diagram = diagramFactory.createMEDiagram();
+		diagram.setName("Super Diagram");
+		diagramSection.getModelElements().add(diagram);
+		
+		
+		//Other Crap
 		CompositeSection ucmCompositeSection = factory.createCompositeSection();
 		ucmCompositeSection.setName("Use Case Modeling");
 		ucmCompositeSection
 				.setDescription("Contains sections concerning use cases.");
 		ucmCompositeSection.setParent(rootSection);
 
-		LeafSection actorLeafSection = factory.createLeafSection();
-		actorLeafSection.setName("Actors");
-		actorLeafSection.setDescription("Lists all actors of this project.");
-		actorLeafSection.setParent(ucmCompositeSection);
-		actorLeafSection.setElementClass(FunctionalRequirement.class);
+		
 
 		LeafSection useCaseLeafSection = factory.createLeafSection();
 		useCaseLeafSection.setName("Use Cases");
@@ -135,19 +159,6 @@ public class StubConnectionManagerImpl implements ConnectionManager {
 		useCaseDiagramLeafSection.setParent(ucmCompositeSection);
 		useCaseDiagramLeafSection.setElementClass(FunctionalRequirement.class);
 
-		FunctionalRequirement fr = factory.createFunctionalRequirement();
-		fr.setName("My Reuirement");
-		
-		FunctionalRequirement fr2 = factory.createFunctionalRequirement();
-		fr2.setName("My Reuirement2");
-		
-		
-
-
-		EList<ModelElement> projectElements = project.getModelElements();
-		reqLeafSection.getModelElements().add(fr);
-		reqLeafSection.getModelElements().add(fr2);
-		projectElements.add(rootSection);
 		return project;
 		// end of generation
 	}
