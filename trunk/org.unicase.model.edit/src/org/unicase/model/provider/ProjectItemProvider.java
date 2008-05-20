@@ -187,7 +187,7 @@ public class ProjectItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 DiagramFactory.eINSTANCE.createDiagram()));
+				 DiagramFactory.eINSTANCE.createMEDiagram()));
 	}
 
 	/**
