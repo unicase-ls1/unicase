@@ -213,7 +213,7 @@ public class LeafSectionItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ModelPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-				 DiagramFactory.eINSTANCE.createDiagram()));
+				 DiagramFactory.eINSTANCE.createMEDiagram()));
 	}
 
 
