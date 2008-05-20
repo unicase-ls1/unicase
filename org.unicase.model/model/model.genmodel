@@ -62,9 +62,9 @@
     </nestedGenPackages>
     <nestedGenPackages prefix="Diagram" basePackage="org.unicase.model" disposableProviderFactory="true"
         ecorePackage="model.ecore#//diagram">
-      <genClasses ecoreClass="model.ecore#//diagram/Diagram">
+      <genClasses ecoreClass="model.ecore#//diagram/MEDiagram">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference model.ecore#//diagram/Diagram/elements"/>
+            ecoreFeature="ecore:EReference model.ecore#//diagram/MEDiagram/elements"/>
       </genClasses>
     </nestedGenPackages>
   </genPackages>
