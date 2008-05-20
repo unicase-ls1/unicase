@@ -1,12 +1,11 @@
 package org.unicase.meeditor;
 
-
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
 import org.unicase.model.ModelElement;
-import org.unicase.model.provider.ModelItemProviderAdapterFactory;
 
 public class MEEditorInput implements IEditorInput {
 
@@ -23,7 +22,11 @@ public class MEEditorInput implements IEditorInput {
 	}
 
 	public ImageDescriptor getImageDescriptor() {
-		ImageDescriptor descriptor = ImageDescriptor.createFromImage(new AdapterFactoryLabelProvider(new ModelItemProviderAdapterFactory()).getImage(modelElement));
+		ImageDescriptor descriptor = ImageDescriptor
+				.createFromImage(new AdapterFactoryLabelProvider(
+						new ComposedAdapterFactory(
+								ComposedAdapterFactory.Descriptor.Registry.INSTANCE))
+						.getImage(modelElement));
 		return descriptor;
 	}
 
