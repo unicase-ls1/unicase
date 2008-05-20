@@ -30,7 +30,6 @@ import org.unicase.meeditor.mecontrols.MEControl;
 import org.unicase.model.ModelElement;
 import org.unicase.model.edit.uihint.UIHintAdapter;
 import org.unicase.model.edit.uihint.UIHintAdapterImpl;
-import org.unicase.model.provider.ModelItemProviderAdapterFactory;
 
 public class MEEditorPage extends FormPage  {
 
@@ -69,6 +68,7 @@ public class MEEditorPage extends FormPage  {
 				.getImage(modelElement));
 		
 		// Sort and order attributes
+
 		sortAndOrderAttributes();
 
 		// Create attributes
@@ -107,15 +107,16 @@ public class MEEditorPage extends FormPage  {
 
 		IEvaluationService service =
 		(IEvaluationService)PlatformUI.getWorkbench().getService(IEvaluationService.class);
-		service.addSourceProvider(sourceProvider); 
+				service.addSourceProvider(sourceProvider); 
 		menuService.populateContributionManager((ContributionManager) form.getToolBarManager(),"toolbar:org.unicase.meeditor.MEEditorPage");
 		form.getToolBarManager().update(true);
 	}
 
 	private void sortAndOrderAttributes() {
-		AdapterFactoryItemDelegator adapterFactoryItemDelegator =new 
+	AdapterFactoryItemDelegator adapterFactoryItemDelegator =new 
 			AdapterFactoryItemDelegator(new 
 					ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+	
 		List<IItemPropertyDescriptor> propertyDescriptors = adapterFactoryItemDelegator.getPropertyDescriptors(modelElement);
 		for (IItemPropertyDescriptor itemPropertyDescriptor: propertyDescriptors){
 			if(itemPropertyDescriptor.isMany(modelElement)){
