@@ -145,8 +145,8 @@ public class StubConnectionManagerImpl implements ConnectionManager {
 
 
 		EList<ModelElement> projectElements = project.getModelElements();
-		projectElements.add(fr);
-		projectElements.add(fr2);
+		reqLeafSection.getModelElements().add(fr);
+		reqLeafSection.getModelElements().add(fr2);
 		projectElements.add(rootSection);
 		return project;
 		// end of generation
