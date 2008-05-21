@@ -11,6 +11,7 @@ import java.io.Serializable;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.organization.User;
+import org.unicase.model.task.ActionItem;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,6 +26,7 @@ import org.unicase.model.organization.User;
  *   <li>{@link org.unicase.model.ModelElement#getDescription <em>Description</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getReaderInfos <em>Reader Infos</em>}</li>
+ *   <li>{@link org.unicase.model.ModelElement#getActionItems <em>Action Items</em>}</li>
  * </ul>
  * </p>
  *
@@ -127,6 +129,22 @@ public interface ModelElement extends EObject, Serializable {
 	 * @generated
 	 */
 	EList<ReaderInfo> getReaderInfos();
+
+	/**
+	 * Returns the value of the '<em><b>Action Items</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.task.ActionItem}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Action Items</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Action Items</em>' reference list.
+	 * @see org.unicase.model.ModelPackage#getModelElement_ActionItems()
+	 * @model
+	 * @generated
+	 */
+	EList<ActionItem> getActionItems();
 
 	/**
 	 * <!-- begin-user-doc -->

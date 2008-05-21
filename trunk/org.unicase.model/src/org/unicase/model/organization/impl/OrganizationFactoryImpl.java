@@ -31,7 +31,7 @@ public class OrganizationFactoryImpl extends EFactoryImpl implements Organizatio
 	 */
 	public static OrganizationFactory init() {
 		try {
-			OrganizationFactory theOrganizationFactory = (OrganizationFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/model/organisation"); 
+			OrganizationFactory theOrganizationFactory = (OrganizationFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/model/organization"); 
 			if (theOrganizationFactory != null) {
 				return theOrganizationFactory;
 			}

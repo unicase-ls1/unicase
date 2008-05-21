@@ -106,13 +106,22 @@ public interface ModelPackage extends EPackage {
 	int MODEL_ELEMENT__READER_INFOS = 3;
 
 	/**
+	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT__ACTION_ITEMS = 4;
+
+	/**
 	 * The number of structural features of the '<em>Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_FEATURE_COUNT = 4;
+	int MODEL_ELEMENT_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.impl.FunctionalRequirementImpl <em>Functional Requirement</em>}' class.
@@ -159,6 +168,15 @@ public interface ModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int FUNCTIONAL_REQUIREMENT__READER_INFOS = MODEL_ELEMENT__READER_INFOS;
+
+	/**
+	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTIONAL_REQUIREMENT__ACTION_ITEMS = MODEL_ELEMENT__ACTION_ITEMS;
 
 	/**
 	 * The feature id for the '<em><b>Reviewed</b></em>' attribute.
@@ -270,6 +288,15 @@ public interface ModelPackage extends EPackage {
 	int SECTION__READER_INFOS = MODEL_ELEMENT__READER_INFOS;
 
 	/**
+	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SECTION__ACTION_ITEMS = MODEL_ELEMENT__ACTION_ITEMS;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -332,6 +359,15 @@ public interface ModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int LEAF_SECTION__READER_INFOS = SECTION__READER_INFOS;
+
+	/**
+	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEAF_SECTION__ACTION_ITEMS = SECTION__ACTION_ITEMS;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' container reference.
@@ -414,6 +450,15 @@ public interface ModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPOSITE_SECTION__READER_INFOS = SECTION__READER_INFOS;
+
+	/**
+	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_SECTION__ACTION_ITEMS = SECTION__ACTION_ITEMS;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' container reference.
@@ -619,6 +664,17 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getModelElement_ReaderInfos();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.ModelElement#getActionItems <em>Action Items</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Action Items</em>'.
+	 * @see org.unicase.model.ModelElement#getActionItems()
+	 * @see #getModelElement()
+	 * @generated
+	 */
+	EReference getModelElement_ActionItems();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.FunctionalRequirement <em>Functional Requirement</em>}'.
@@ -917,6 +973,14 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MODEL_ELEMENT__READER_INFOS = eINSTANCE.getModelElement_ReaderInfos();
+
+		/**
+		 * The meta object literal for the '<em><b>Action Items</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODEL_ELEMENT__ACTION_ITEMS = eINSTANCE.getModelElement_ActionItems();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.impl.FunctionalRequirementImpl <em>Functional Requirement</em>}' class.

@@ -42,7 +42,7 @@ public interface OrganizationPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://unicase.org/model/organisation";
+	String eNS_URI = "http://unicase.org/model/organization";
 
 	/**
 	 * The package namespace name.
@@ -50,7 +50,7 @@ public interface OrganizationPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "org.unicase.model.organisation";
+	String eNS_PREFIX = "org.unicase.model.organization";
 
 	/**
 	 * The singleton instance of the package.
@@ -105,6 +105,15 @@ public interface OrganizationPackage extends EPackage {
 	 * @ordered
 	 */
 	int USER__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
+
+	/**
+	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__ACTION_ITEMS = ModelPackage.MODEL_ELEMENT__ACTION_ITEMS;
 
 	/**
 	 * The feature id for the '<em><b>Org Id</b></em>' containment reference.
@@ -170,6 +179,15 @@ public interface OrganizationPackage extends EPackage {
 	 * @ordered
 	 */
 	int ORG_UNIT__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
+
+	/**
+	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORG_UNIT__ACTION_ITEMS = ModelPackage.MODEL_ELEMENT__ACTION_ITEMS;
 
 	/**
 	 * The feature id for the '<em><b>Org Id</b></em>' containment reference.
@@ -262,6 +280,15 @@ public interface OrganizationPackage extends EPackage {
 	 * @ordered
 	 */
 	int GROUP__READER_INFOS = ORG_UNIT__READER_INFOS;
+
+	/**
+	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP__ACTION_ITEMS = ORG_UNIT__ACTION_ITEMS;
 
 	/**
 	 * The feature id for the '<em><b>Org Id</b></em>' containment reference.

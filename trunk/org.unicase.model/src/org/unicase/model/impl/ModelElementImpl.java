@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
@@ -24,6 +25,7 @@ import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.ReaderInfo;
 import org.unicase.model.organization.User;
+import org.unicase.model.task.ActionItem;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,6 +38,7 @@ import org.unicase.model.organization.User;
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getReaderInfos <em>Reader Infos</em>}</li>
+ *   <li>{@link org.unicase.model.impl.ModelElementImpl#getActionItems <em>Action Items</em>}</li>
  * </ul>
  * </p>
  *
@@ -101,6 +104,16 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 	 * @ordered
 	 */
 	protected EList<ReaderInfo> readerInfos;
+
+	/**
+	 * The cached value of the '{@link #getActionItems() <em>Action Items</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getActionItems()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ActionItem> actionItems;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -222,6 +235,18 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ActionItem> getActionItems() {
+		if (actionItems == null) {
+			actionItems = new EObjectResolvingEList<ActionItem>(ActionItem.class, this, ModelPackage.MODEL_ELEMENT__ACTION_ITEMS);
+		}
+		return actionItems;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public Project getProject() {
@@ -282,6 +307,8 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 				return getIdentifier();
 			case ModelPackage.MODEL_ELEMENT__READER_INFOS:
 				return getReaderInfos();
+			case ModelPackage.MODEL_ELEMENT__ACTION_ITEMS:
+				return getActionItems();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -308,6 +335,10 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 				getReaderInfos().clear();
 				getReaderInfos().addAll((Collection<? extends ReaderInfo>)newValue);
 				return;
+			case ModelPackage.MODEL_ELEMENT__ACTION_ITEMS:
+				getActionItems().clear();
+				getActionItems().addAll((Collection<? extends ActionItem>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -332,6 +363,9 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 			case ModelPackage.MODEL_ELEMENT__READER_INFOS:
 				getReaderInfos().clear();
 				return;
+			case ModelPackage.MODEL_ELEMENT__ACTION_ITEMS:
+				getActionItems().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -352,6 +386,8 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 				return identifier != null;
 			case ModelPackage.MODEL_ELEMENT__READER_INFOS:
 				return readerInfos != null && !readerInfos.isEmpty();
+			case ModelPackage.MODEL_ELEMENT__ACTION_ITEMS:
+				return actionItems != null && !actionItems.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
