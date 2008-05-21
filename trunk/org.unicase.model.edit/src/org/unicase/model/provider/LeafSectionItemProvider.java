@@ -29,6 +29,8 @@ import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.organization.OrganizationFactory;
+import org.unicase.model.task.TaskFactory;
+
 
 /**
  * This is the item provider adapter for a {@link org.unicase.model.LeafSection} object.
@@ -209,6 +211,11 @@ public class LeafSectionItemProvider
 			(createChildParameter
 				(ModelPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				 OrganizationFactory.eINSTANCE.createGroup()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 TaskFactory.eINSTANCE.createActionItem()));
 
 		newChildDescriptors.add
 			(createChildParameter

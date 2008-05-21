@@ -11,15 +11,10 @@
 <plugin>
     
   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-    <factory 
-       uri = "http://unicase.org/model" 
-       class = "org.unicase.model.provider.ModelItemProviderAdapterFactory" 
-       supportedTypes = 
-         "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
-          org.eclipse.emf.edit.provider.IStructuredItemContentProvider
-          org.eclipse.emf.edit.provider.ITreeItemContentProvider
-          org.eclipse.emf.edit.provider.IItemLabelProvider
-          org.eclipse.emf.edit.provider.IItemPropertySource" />
+    <factory
+          class="org.unicase.model.provider.ModelItemProviderAdapterFactory"
+          supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
+          uri="http://unicase.org/model"/>
     <factory
           class="org.unicase.model.edit.Factory1"
           supportedTypes="org.unicase.model.edit.factory1"
@@ -27,11 +22,27 @@
     </factory>
   </extension>
   <extension
+        point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+     <factory
+           class="org.unicase.model.task.provider.TaskItemProviderAdapterFactory"
+           supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
+           uri="http://unicase.org/model/task">
+     </factory>
+  </extension>
+  <extension
+        point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+     <factory
+           class="org.unicase.model.organization.provider.OrganizationItemProviderAdapterFactory"
+           supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
+           uri="http://unicase.org/model/organization">
+     </factory>
+  </extension>
+  <extension
         point="org.eclipse.ui.commands">
      <command
            category="org.unicase.model.edit.addAnnotations"
            id="org.unicase.model.edit.annotateActionItem"
-           name="name">
+           name="addAnnotation">
      </command>
      <category
            id="org.unicase.model.edit.addAnnotations"
@@ -39,6 +50,8 @@
      </category>
   </extension>
   <extension
+        id="org.unicase.modelElementHandlers"
+        name="modelElementHandlers"
         point="org.eclipse.ui.handlers">
      <handler
            class="org.unicase.model.edit.commands.AnnotateActionItemHandler"
@@ -48,16 +61,19 @@
   <extension
         point="org.eclipse.ui.menus">
      <menuContribution
-           locationURI="popup:org.unicase.navigator.viewer?after=additions">
+           locationURI="popup:org.unicase.navigator.viewer?after=org.unicase.model.edit.worksapceCommands">
         <command
               commandId="org.unicase.model.edit.annotateActionItem"
-              label="Testcommand"
+              icon="icons/full/ctool16/AnnotateWithActionItem.gif"
+              label="New Action Item"
               style="push">
-           <visibleWhen
+         <visibleWhen
                  checkEnabled="false">
-                 <iterate>
-      <instanceof value="org.unicase.model.ModelElement"/>
-   </iterate>
+              <iterate>
+                 <reference
+                       definitionId="org.unicase.model.edit.modelElement">
+                 </reference>
+              </iterate>
            </visibleWhen>
         </command>
      </menuContribution>
@@ -65,19 +81,105 @@
            locationURI="toolbar:org.unicase.meeditor.MEEditorPage?after=additions">
         <command
               commandId="org.unicase.model.edit.annotateActionItem"
-              label="Test Editor Command"
+              icon="icons/full/ctool16/AnnotateWithActionItem.gif"
+              label="New Action Item"
               style="push">
-           <visibleWhen
+          <visibleWhen
                  checkEnabled="false">
               <with
                     variable="activeModelelement">
-                 <instanceof
-                       value="org.unicase.model.FunctionalRequirement">
-                 </instanceof>
+                 <reference
+                       definitionId="org.unicase.model.edit.modelElementNotSection">
+                 </reference>
               </with>
+           </visibleWhen> 
+        </command>
+     </menuContribution> 
+  </extension>
+  <extension
+        point="org.eclipse.ui.commands">
+     <category
+           id="org.unicase.model.edit.workspace"
+           name="workspaceCategory">
+     </category>
+     <command
+           category="org.unicase.model.edit.workspace"
+           id="org.unicase.model.edit.commitWorkspace"
+           name="commitWorkspace">
+     </command>
+     <command
+           category="org.unicase.model.edit.workspace"
+           id="org.unicase.model.edit.updateWorkspace"
+           name="updateWorkspace">
+     </command>
+  </extension>
+  <extension
+        point="org.eclipse.ui.handlers">
+     <handler
+           class="org.unicase.model.edit.commands.CommitWorkspaceHandler"
+           commandId="org.unicase.model.edit.commitWorkspace">
+     </handler>
+     <handler
+           class="org.unicase.model.edit.commands.UpdateWorkspaceHandler"
+           commandId="org.unicase.model.edit.updateWorkspace">
+     </handler>
+  </extension>
+  <extension
+        point="org.eclipse.ui.menus">
+     <menuContribution
+           locationURI="popup:org.unicase.navigator.viewer?before=additions">
+        <command
+              commandId="org.unicase.model.edit.commitWorkspace"
+              label="Commit Workspace"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <iterate>
+                 <instanceof
+                       value="org.unicase.workspace.ProjectSpace">
+                 </instanceof>
+              </iterate>
            </visibleWhen>
         </command>
+        <command
+              commandId="org.unicase.model.edit.updateWorkspace"
+              label="Update Workspace"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <iterate>
+                 <instanceof
+                       value="org.unicase.workspace.ProjectSpace">
+                 </instanceof>
+              </iterate>
+           </visibleWhen>
+        </command>
+        <separator
+              name="org.unicase.model.edit.worksapceCommands"
+              visible="true">
+        </separator>
      </menuContribution>
   </extension>
-
+  <extension
+        point="org.eclipse.core.expressions.definitions">
+     <definition
+           id="org.unicase.model.edit.modelElementNotSection">
+        <and>
+           <instanceof
+                 value="org.unicase.model.ModelElement">
+           </instanceof>
+           <not>
+              <instanceof
+                    value="org.unicase.model.Section">
+              </instanceof>
+           </not>
+        </and>
+     </definition>
+     <definition
+           id="org.unicase.model.edit.modelElement">
+        <instanceof
+              value="org.unicase.model.ModelElement">
+        </instanceof>
+     </definition>
+  </extension>
 </plugin>
