@@ -68,7 +68,7 @@
             </contentExtension></includes>
       </viewerContentBinding>
    </extension>
-   <extension
+  <!-- <extension
          point="org.eclipse.ui.popupMenus">
       <objectContribution
             id="org.unicase.navigator.contribution1"
@@ -89,6 +89,6 @@
                menubarPath="org.unicase.navigator.menu1/group1">
          </action>
       </objectContribution>
-   </extension>
+   </extension> -->
 
 </plugin>
