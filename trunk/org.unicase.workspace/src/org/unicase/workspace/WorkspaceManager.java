@@ -9,6 +9,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.connectionmanager.StubConnectionManagerImpl;
 import org.unicase.workspace.impl.WorkspaceImpl;
@@ -16,6 +19,8 @@ import org.unicase.workspace.impl.WorkspaceImpl;
 public class WorkspaceManager {
 
 	private static WorkspaceManager instance;
+	
+	public final static String MODEL_EDIT_DOMAIN = "org.unicase.model";
 
 	private Workspace currentWorkspace;
 	private ConnectionManager connectionManager;
@@ -39,6 +44,12 @@ public class WorkspaceManager {
 
 	private Workspace initWorkSpace() {
 		ResourceSet resourceSet = new ResourceSetImpl();
+		
+		//register an editing domain on the ressource
+		TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(resourceSet);
+		TransactionalEditingDomain.Registry.INSTANCE.add(MODEL_EDIT_DOMAIN, editingDomain);
+		
+		
 		URI fileURI = URI.createFileURI(Configuration.getWorkspacePath());
 		File workspaceFile = new File(Configuration.getWorkspacePath());
 		if (!workspaceFile.exists()) {
