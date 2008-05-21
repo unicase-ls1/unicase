@@ -33,6 +33,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
+import org.unicase.model.task.ActionItem;
 
 public class EmfStoreImpl implements EmfStore, Runnable {
 
@@ -134,7 +135,7 @@ public class EmfStoreImpl implements EmfStore, Runnable {
 		scenLeafSection.setDescription("Lists all scenarios of this project.");
 		scenLeafSection.setParent(rootSection);
 		scenLeafSection.setElementClass(FunctionalRequirement.class);
-
+		
 		CompositeSection ucmCompositeSection = factory.createCompositeSection();
 		ucmCompositeSection.setName("Use Case Modeling");
 		ucmCompositeSection
