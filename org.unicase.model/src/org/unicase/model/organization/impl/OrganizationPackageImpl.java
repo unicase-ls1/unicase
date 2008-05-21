@@ -24,6 +24,8 @@ import org.unicase.model.organization.OrgUnitId;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
+import org.unicase.model.task.TaskPackage;
+import org.unicase.model.task.impl.TaskPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -116,16 +118,19 @@ public class OrganizationPackageImpl extends EPackageImpl implements Organizatio
 
 		// Obtain or create and register interdependencies
 		ModelPackageImpl theModelPackage = (ModelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI) : ModelPackage.eINSTANCE);
+		TaskPackageImpl theTaskPackage = (TaskPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) : TaskPackage.eINSTANCE);
 		DiagramPackageImpl theDiagramPackage = (DiagramPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI) : DiagramPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theOrganizationPackage.createPackageContents();
 		theModelPackage.createPackageContents();
+		theTaskPackage.createPackageContents();
 		theDiagramPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theOrganizationPackage.initializePackageContents();
 		theModelPackage.initializePackageContents();
+		theTaskPackage.initializePackageContents();
 		theDiagramPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed

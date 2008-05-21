@@ -25,6 +25,8 @@
         eType="#//ModelElementId" containment="true" eKeys="#//UniqueIdentifier/id"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="readerInfos" upperBound="-1"
         eType="#//ReaderInfo" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actionItems" upperBound="-1"
+        eType="#//task/ActionItem"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionalRequirement" eSuperTypes="#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="reviewed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -72,8 +74,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="readerId" eType="#//organization/OrgUnitId"/>
   </eClassifiers>
-  <eSubpackages name="organization" nsURI="http://unicase.org/model/organisation"
-      nsPrefix="org.unicase.model.organisation">
+  <eSubpackages name="organization" nsURI="http://unicase.org/model/organization"
+      nsPrefix="org.unicase.model.organization">
     <eClassifiers xsi:type="ecore:EClass" name="User" eSuperTypes="#//ModelElement #//organization/OrgUnit"/>
     <eClassifiers xsi:type="ecore:EClass" name="OrgUnit" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="orgId" eType="#//organization/OrgUnitId"
@@ -81,6 +83,15 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OrgUnitId" eSuperTypes="#//UniqueIdentifier"/>
     <eClassifiers xsi:type="ecore:EClass" name="Group" eSuperTypes="#//organization/OrgUnit"/>
+  </eSubpackages>
+  <eSubpackages name="task" nsURI="http://unicase.org/model/task" nsPrefix="org.unicase.model.task">
+    <eClassifiers xsi:type="ecore:EClass" name="ActionItem" eSuperTypes="#//ModelElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="assignedTo" lowerBound="1"
+          upperBound="-1" eType="#//organization/User"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="dueDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="done" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="estimate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eClassifiers>
   </eSubpackages>
   <eSubpackages name="diagram" nsURI="http://unicase.org/model/diagram" nsPrefix="org.unicase.model.diagram">
     <eClassifiers xsi:type="ecore:EClass" name="MEDiagram" eSuperTypes="#//ModelElement">
