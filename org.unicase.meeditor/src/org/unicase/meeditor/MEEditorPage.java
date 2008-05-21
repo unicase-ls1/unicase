@@ -31,7 +31,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.edit.uihint.UIHintAdapter;
 import org.unicase.model.edit.uihint.UIHintAdapterImpl;
 
-public class MEEditorPage extends FormPage  {
+public class MEEditorPage extends FormPage {
 
 	EditingDomain editingDomain;
 	ModelElement modelElement;
@@ -76,19 +76,19 @@ public class MEEditorPage extends FormPage  {
 
 		// Create Sections for every Reference
 		createMultiReferences();
-		
+
 		createToolbar();
 
 	}
 
 	private void createToolbar() {
 		IMenuService menuService = (IMenuService) PlatformUI.getWorkbench()
-        .getService(IMenuService.class);
-		ISourceProvider sourceProvider = new AbstractSourceProvider(){
+				.getService(IMenuService.class);
+		ISourceProvider sourceProvider = new AbstractSourceProvider() {
 
 			public void dispose() {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			public Map getCurrentState() {
@@ -102,18 +102,21 @@ public class MEEditorPage extends FormPage  {
 				namens[0] = activeModelelement;
 				return namens;
 			}
-			
+
 		};
 
-		IEvaluationService service =
-		(IEvaluationService)PlatformUI.getWorkbench().getService(IEvaluationService.class);
-				service.addSourceProvider(sourceProvider); 
-		menuService.populateContributionManager((ContributionManager) form.getToolBarManager(),"toolbar:org.unicase.meeditor.MEEditorPage");
+		IEvaluationService service = (IEvaluationService) PlatformUI
+				.getWorkbench().getService(IEvaluationService.class);
+		service.addSourceProvider(sourceProvider);
+		menuService.populateContributionManager((ContributionManager) form
+				.getToolBarManager(),
+				"toolbar:org.unicase.meeditor.MEEditorPage");
 		form.getToolBarManager().update(true);
 	}
 
 	private void sortAndOrderAttributes() {
-	AdapterFactoryItemDelegator adapterFactoryItemDelegator =new 
+
+		AdapterFactoryItemDelegator adapterFactoryItemDelegator =new 
 			AdapterFactoryItemDelegator(new 
 					ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	
@@ -121,19 +124,19 @@ public class MEEditorPage extends FormPage  {
 		for (IItemPropertyDescriptor itemPropertyDescriptor: propertyDescriptors){
 			if(itemPropertyDescriptor.isMany(modelElement)){
 				multiReferences.add(itemPropertyDescriptor);
-			}
-			else{
+			} else {
 				simpleAttributes.add(itemPropertyDescriptor);
 			}
 		}
-		
+
 	}
 
 	private void createMultiReferences() {
 		ControlFactory controlFactory = new ControlFactory(editingDomain,
 				modelElement, this.getEditor().getToolkit());
 		for (IItemPropertyDescriptor itemPropertyDescriptor : multiReferences) {
-			MEControl meControl = controlFactory.createControl(itemPropertyDescriptor);
+			MEControl meControl = controlFactory
+					.createControl(itemPropertyDescriptor);
 			if (meControl != null) {
 				Control control = meControl.createControl(body, SWT.WRAP);
 				control.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -158,8 +161,10 @@ public class MEEditorPage extends FormPage  {
 		ControlFactory controlFactory = new ControlFactory(editingDomain,
 				modelElement, this.getEditor().getToolkit());
 		for (IItemPropertyDescriptor itemPropertyDescriptor : simpleAttributes) {
-			toolkit.createLabel(attributeComposite, itemPropertyDescriptor.getDisplayName(modelElement));
-			MEControl meControl = controlFactory.createControl(itemPropertyDescriptor);
+			toolkit.createLabel(attributeComposite, itemPropertyDescriptor
+					.getDisplayName(modelElement));
+			MEControl meControl = controlFactory
+					.createControl(itemPropertyDescriptor);
 			Control control = meControl.createControl(attributeComposite,
 					SWT.WRAP);
 			control.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));

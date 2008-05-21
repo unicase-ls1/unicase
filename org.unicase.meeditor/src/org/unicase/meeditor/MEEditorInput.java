@@ -7,6 +7,7 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
 import org.unicase.model.ModelElement;
 
+
 public class MEEditorInput implements IEditorInput {
 
 	ModelElement modelElement;
@@ -27,6 +28,7 @@ public class MEEditorInput implements IEditorInput {
 						new ComposedAdapterFactory(
 								ComposedAdapterFactory.Descriptor.Registry.INSTANCE))
 						.getImage(modelElement));
+
 		return descriptor;
 	}
 
