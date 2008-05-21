@@ -32,6 +32,7 @@ import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.organization.OrganizationFactory;
+import org.unicase.model.task.TaskFactory;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.model.Project} object.
@@ -183,6 +184,11 @@ public class ProjectItemProvider
 			(createChildParameter
 				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 				 OrganizationFactory.eINSTANCE.createGroup()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				 TaskFactory.eINSTANCE.createActionItem()));
 
 		newChildDescriptors.add
 			(createChildParameter
