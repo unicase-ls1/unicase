@@ -8,6 +8,7 @@ package org.unicase.model.organization.presentation;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -97,6 +98,24 @@ import org.unicase.model.presentation.ModelEditorPlugin;
  * @generated
  */
 public class OrganizationModelWizard extends Wizard implements INewWizard {
+	/**
+	 * The supported extensions for created files.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final List<String> FILE_EXTENSIONS =
+		Collections.unmodifiableList(Arrays.asList(ModelEditorPlugin.INSTANCE.getString("_UI_OrganizationEditorFilenameExtensions").split("\\s*,\\s*")));
+
+	/**
+	 * A formatted list of supported file extensions, suitable for display.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String FORMATTED_FILE_EXTENSIONS =
+		ModelEditorPlugin.INSTANCE.getString("_UI_OrganizationEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
+
 	/**
 	 * This caches an instance of the model package.
 	 * <!-- begin-user-doc -->
@@ -317,21 +336,15 @@ public class OrganizationModelWizard extends Wizard implements INewWizard {
 	@Override
 		protected boolean validatePage() {
 			if (super.validatePage()) {
-				// Make sure the file ends in ".organization".
-				//
-				String requiredExt = ModelEditorPlugin.INSTANCE.getString("_UI_OrganizationEditorFilenameExtension");
-				String enteredExt = new Path(getFileName()).getFileExtension();
-				if (enteredExt == null || !enteredExt.equals(requiredExt)) {
-					setErrorMessage(ModelEditorPlugin.INSTANCE.getString("_WARN_FilenameExtension", new Object [] { requiredExt }));
+				String extension = new Path(getFileName()).getFileExtension();
+				if (extension == null || !FILE_EXTENSIONS.contains(extension)) {
+					String key = FILE_EXTENSIONS.size() > 1 ? "_WARN_FilenameExtensions" : "_WARN_FilenameExtension";
+					setErrorMessage(ModelEditorPlugin.INSTANCE.getString(key, new Object [] { FORMATTED_FILE_EXTENSIONS }));
 					return false;
 				}
-				else {
-					return true;
-				}
+				return true;
 			}
-			else {
-				return false;
-			}
+			return false;
 		}
 
 		/**
@@ -565,7 +578,7 @@ public class OrganizationModelWizard extends Wizard implements INewWizard {
 		newFileCreationPage = new OrganizationModelWizardNewFileCreationPage("Whatever", selection);
 		newFileCreationPage.setTitle(ModelEditorPlugin.INSTANCE.getString("_UI_OrganizationModelWizard_label"));
 		newFileCreationPage.setDescription(ModelEditorPlugin.INSTANCE.getString("_UI_OrganizationModelWizard_description"));
-		newFileCreationPage.setFileName(ModelEditorPlugin.INSTANCE.getString("_UI_OrganizationEditorFilenameDefaultBase") + "." + ModelEditorPlugin.INSTANCE.getString("_UI_OrganizationEditorFilenameExtension"));
+		newFileCreationPage.setFileName(ModelEditorPlugin.INSTANCE.getString("_UI_OrganizationEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
 		addPage(newFileCreationPage);
 
 		// Try and get the resource selection to determine a current directory for the file dialog.
@@ -592,7 +605,7 @@ public class OrganizationModelWizard extends Wizard implements INewWizard {
 					// Make up a unique new name here.
 					//
 					String defaultModelBaseFilename = ModelEditorPlugin.INSTANCE.getString("_UI_OrganizationEditorFilenameDefaultBase");
-					String defaultModelFilenameExtension = ModelEditorPlugin.INSTANCE.getString("_UI_OrganizationEditorFilenameExtension");
+					String defaultModelFilenameExtension = FILE_EXTENSIONS.get(0);
 					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
 					for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i) {
 						modelFilename = defaultModelBaseFilename + i + "." + defaultModelFilenameExtension;
