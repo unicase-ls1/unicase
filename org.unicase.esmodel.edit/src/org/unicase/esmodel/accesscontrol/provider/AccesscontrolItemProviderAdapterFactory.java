@@ -76,95 +76,95 @@ public class AccesscontrolItemProviderAdapterFactory extends AccesscontrolAdapte
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.esmodel.accesscontrol.User} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.esmodel.accesscontrol.ACUser} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected UserItemProvider userItemProvider;
+	protected ACUserItemProvider acUserItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.esmodel.accesscontrol.User}.
+	 * This creates an adapter for a {@link org.unicase.esmodel.accesscontrol.ACUser}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createUserAdapter() {
-		if (userItemProvider == null) {
-			userItemProvider = new UserItemProvider(this);
+	public Adapter createACUserAdapter() {
+		if (acUserItemProvider == null) {
+			acUserItemProvider = new ACUserItemProvider(this);
 		}
 
-		return userItemProvider;
+		return acUserItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.esmodel.accesscontrol.OrgUnit} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.esmodel.accesscontrol.ACOrgUnit} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected OrgUnitItemProvider orgUnitItemProvider;
+	protected ACOrgUnitItemProvider acOrgUnitItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.esmodel.accesscontrol.OrgUnit}.
+	 * This creates an adapter for a {@link org.unicase.esmodel.accesscontrol.ACOrgUnit}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createOrgUnitAdapter() {
-		if (orgUnitItemProvider == null) {
-			orgUnitItemProvider = new OrgUnitItemProvider(this);
+	public Adapter createACOrgUnitAdapter() {
+		if (acOrgUnitItemProvider == null) {
+			acOrgUnitItemProvider = new ACOrgUnitItemProvider(this);
 		}
 
-		return orgUnitItemProvider;
+		return acOrgUnitItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.esmodel.accesscontrol.Group} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.esmodel.accesscontrol.ACGroup} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GroupItemProvider groupItemProvider;
+	protected ACGroupItemProvider acGroupItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.esmodel.accesscontrol.Group}.
+	 * This creates an adapter for a {@link org.unicase.esmodel.accesscontrol.ACGroup}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createGroupAdapter() {
-		if (groupItemProvider == null) {
-			groupItemProvider = new GroupItemProvider(this);
+	public Adapter createACGroupAdapter() {
+		if (acGroupItemProvider == null) {
+			acGroupItemProvider = new ACGroupItemProvider(this);
 		}
 
-		return groupItemProvider;
+		return acGroupItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.esmodel.accesscontrol.OrgUnitId} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.esmodel.accesscontrol.ACOrgUnitId} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected OrgUnitIdItemProvider orgUnitIdItemProvider;
+	protected ACOrgUnitIdItemProvider acOrgUnitIdItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.esmodel.accesscontrol.OrgUnitId}.
+	 * This creates an adapter for a {@link org.unicase.esmodel.accesscontrol.ACOrgUnitId}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createOrgUnitIdAdapter() {
-		if (orgUnitIdItemProvider == null) {
-			orgUnitIdItemProvider = new OrgUnitIdItemProvider(this);
+	public Adapter createACOrgUnitIdAdapter() {
+		if (acOrgUnitIdItemProvider == null) {
+			acOrgUnitIdItemProvider = new ACOrgUnitIdItemProvider(this);
 		}
 
-		return orgUnitIdItemProvider;
+		return acOrgUnitIdItemProvider;
 	}
 
 	/**
@@ -266,10 +266,10 @@ public class AccesscontrolItemProviderAdapterFactory extends AccesscontrolAdapte
 	 * @generated
 	 */
 	public void dispose() {
-		if (userItemProvider != null) userItemProvider.dispose();
-		if (orgUnitItemProvider != null) orgUnitItemProvider.dispose();
-		if (groupItemProvider != null) groupItemProvider.dispose();
-		if (orgUnitIdItemProvider != null) orgUnitIdItemProvider.dispose();
+		if (acUserItemProvider != null) acUserItemProvider.dispose();
+		if (acOrgUnitItemProvider != null) acOrgUnitItemProvider.dispose();
+		if (acGroupItemProvider != null) acGroupItemProvider.dispose();
+		if (acOrgUnitIdItemProvider != null) acOrgUnitIdItemProvider.dispose();
 	}
 
 }

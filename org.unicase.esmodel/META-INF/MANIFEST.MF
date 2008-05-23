@@ -22,5 +22,5 @@ Export-Package: org.unicase.esmodel,
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.unicase.model;visibility:=reexport,
- org.eclipse.emf.ecore.change
+ org.eclipse.emf.ecore.change;visibility:=reexport
 Eclipse-LazyStart: true

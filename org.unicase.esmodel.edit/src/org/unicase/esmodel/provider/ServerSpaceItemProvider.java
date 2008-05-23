@@ -160,12 +160,12 @@ public class ServerSpaceItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(EsmodelPackage.Literals.SERVER_SPACE__ORG_UNITS,
-				 AccesscontrolFactory.eINSTANCE.createOrgUnit()));
+				 AccesscontrolFactory.eINSTANCE.createACOrgUnit()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(EsmodelPackage.Literals.SERVER_SPACE__ORG_UNITS,
-				 AccesscontrolFactory.eINSTANCE.createGroup()));
+				 AccesscontrolFactory.eINSTANCE.createACGroup()));
 
 		newChildDescriptors.add
 			(createChildParameter

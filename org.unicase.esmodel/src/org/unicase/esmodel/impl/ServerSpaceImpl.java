@@ -9,23 +9,17 @@ package org.unicase.esmodel.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.unicase.esmodel.EsmodelPackage;
 import org.unicase.esmodel.ProjectHistory;
 import org.unicase.esmodel.ServerSpace;
 import org.unicase.esmodel.SessionId;
-
-import org.unicase.esmodel.accesscontrol.OrgUnit;
+import org.unicase.esmodel.accesscontrol.ACOrgUnit;
 
 /**
  * <!-- begin-user-doc -->
@@ -51,7 +45,7 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<OrgUnit> orgUnits;
+	protected EList<ACOrgUnit> orgUnits;
 
 	/**
 	 * The cached value of the '{@link #getProjects() <em>Projects</em>}' containment reference list.
@@ -97,9 +91,9 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<OrgUnit> getOrgUnits() {
+	public EList<ACOrgUnit> getOrgUnits() {
 		if (orgUnits == null) {
-			orgUnits = new EObjectContainmentEList<OrgUnit>(OrgUnit.class, this, EsmodelPackage.SERVER_SPACE__ORG_UNITS);
+			orgUnits = new EObjectContainmentEList<ACOrgUnit>(ACOrgUnit.class, this, EsmodelPackage.SERVER_SPACE__ORG_UNITS);
 		}
 		return orgUnits;
 	}
@@ -175,7 +169,7 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 		switch (featureID) {
 			case EsmodelPackage.SERVER_SPACE__ORG_UNITS:
 				getOrgUnits().clear();
-				getOrgUnits().addAll((Collection<? extends OrgUnit>)newValue);
+				getOrgUnits().addAll((Collection<? extends ACOrgUnit>)newValue);
 				return;
 			case EsmodelPackage.SERVER_SPACE__PROJECTS:
 				getProjects().clear();
