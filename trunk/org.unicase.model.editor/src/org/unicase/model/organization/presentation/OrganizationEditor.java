@@ -161,6 +161,7 @@ import org.unicase.model.organization.provider.OrganizationItemProviderAdapterFa
 
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
+import org.unicase.model.diagram.provider.DiagramItemProviderAdapterFactory;
 import org.unicase.model.presentation.ModelEditorPlugin;
 
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
@@ -704,6 +705,7 @@ public class OrganizationEditor
 		adapterFactory.addAdapterFactory(new ModelItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new OrganizationItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new TaskItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new DiagramItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		// Create the command stack that will notify this editor as commands are executed.
@@ -1017,7 +1019,8 @@ public class OrganizationEditor
 
 		// Only creates the other pages if there is something that can be edited
 		//
-		if (!getEditingDomain().getResourceSet().getResources().isEmpty()) {
+		if (!getEditingDomain().getResourceSet().getResources().isEmpty() &&
+		    !(getEditingDomain().getResourceSet().getResources().get(0)).getContents().isEmpty()) {
 			// Create a page for the selection tree view.
 			//
 			{

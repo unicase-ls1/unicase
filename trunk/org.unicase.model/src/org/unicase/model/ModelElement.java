@@ -46,7 +46,7 @@ public interface ModelElement extends EObject, Serializable {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.unicase.model.ModelPackage#getModelElement_Name()
-	 * @model annotation="https://www.sysiphus.org/Visibility VisibilityValue='MANDATORY'"
+	 * @model annotation="http://unicase.org/visibility VisibilityValue='MANDATORY'"
 	 * @generated
 	 */
 	String getName();
@@ -72,8 +72,8 @@ public interface ModelElement extends EObject, Serializable {
 	 * @return the value of the '<em>Description</em>' attribute.
 	 * @see #setDescription(String)
 	 * @see org.unicase.model.ModelPackage#getModelElement_Description()
-	 * @model annotation="http://www.sysiphus.org/Visibility VisibilityValue='VIEWWHENSET'"
-	 *        annotation="http://www.unicase.org/UIHints type='TEXT_AREA'"
+	 * @model annotation="http://unicase.org/visibility VisibilityValue='VIEWWHENSET'"
+	 *        annotation="http://unicase.org/UIHints type='TEXT_AREA'"
 	 * @generated
 	 */
 	String getDescription();

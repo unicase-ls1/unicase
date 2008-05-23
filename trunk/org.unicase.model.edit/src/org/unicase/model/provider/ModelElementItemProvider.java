@@ -133,7 +133,7 @@ public class ModelElementItemProvider
 				 ModelPackage.Literals.MODEL_ELEMENT__ACTION_ITEMS,
 				 true,
 				 false,
-				 false,
+				 true,
 				 null,
 				 null,
 				 null));
