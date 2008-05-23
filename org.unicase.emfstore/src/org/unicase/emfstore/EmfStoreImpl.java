@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
+import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -41,15 +42,15 @@ public class EmfStoreImpl implements EmfStore, Runnable {
 	
 	private final Resource res;
 	
+	private final Logger logger = Logger.getLogger(this.getClass());
+	
 	public EmfStoreImpl(ResourceStorage storage, Properties properties) {
 		
 		this.doExit=false;
-		
+	
 		URI resourceUri = storage.init(properties);
 		ResourceSet resourceSet = new ResourceSetImpl();
 		res = resourceSet.createResource(resourceUri);
-		
-		
 
 	}
 
