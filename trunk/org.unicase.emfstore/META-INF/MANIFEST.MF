@@ -7,7 +7,7 @@ Bundle-Activator: org.unicase.emfstore.Activator
 Bundle-Vendor: unicase.org
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.teneo,
- org.eclipse.emf.teneo.hibernate,
+ org.eclipse.emf.teneo.hibernate;visibility:=reexport,
  org.unicase.model,
  org.eclipse.emf,
  org.unicase.esmodel
@@ -18,6 +18,7 @@ Bundle-ClassPath: lib/antlr.jar,
  lib/hibernate3.jar,
  lib/jta.jar,
  lib/mysql-connector-java-3.1.14-bin.jar,
+ lib/log4j-1.2.15.jar,
  .
 Export-Package: org.unicase.emfstore,
  org.unicase.emfstore.accesscontrol,
