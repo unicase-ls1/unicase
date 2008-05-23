@@ -10,30 +10,20 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.change.ChangePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.unicase.esmodel.EsmodelPackage;
-
 import org.unicase.esmodel.accesscontrol.ACGroup;
 import org.unicase.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.esmodel.accesscontrol.ACUser;
 import org.unicase.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.esmodel.accesscontrol.AccesscontrolPackage;
-
 import org.unicase.esmodel.accesscontrol.roles.RolesPackage;
-
 import org.unicase.esmodel.accesscontrol.roles.impl.RolesPackageImpl;
-
 import org.unicase.esmodel.changemanagment.ChangemanagmentPackage;
-
 import org.unicase.esmodel.changemanagment.impl.ChangemanagmentPackageImpl;
-
 import org.unicase.esmodel.impl.EsmodelPackageImpl;
-
 import org.unicase.model.ModelPackage;
 
 /**
