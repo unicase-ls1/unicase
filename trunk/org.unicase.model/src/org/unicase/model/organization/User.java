@@ -18,5 +18,5 @@ import org.unicase.model.ModelElement;
  * @model
  * @generated
  */
-public interface User extends ModelElement, OrgUnit {
+public interface User extends OrgUnit {
 } // User

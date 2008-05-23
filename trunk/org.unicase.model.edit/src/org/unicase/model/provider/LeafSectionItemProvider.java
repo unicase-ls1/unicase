@@ -200,12 +200,12 @@ public class LeafSectionItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ModelPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-				 OrganizationFactory.eINSTANCE.createUser()));
+				 OrganizationFactory.eINSTANCE.createOrgUnit()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(ModelPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-				 OrganizationFactory.eINSTANCE.createOrgUnit()));
+				 OrganizationFactory.eINSTANCE.createUser()));
 
 		newChildDescriptors.add
 			(createChildParameter

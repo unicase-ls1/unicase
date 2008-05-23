@@ -173,12 +173,12 @@ public class ProjectItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 OrganizationFactory.eINSTANCE.createUser()));
+				 OrganizationFactory.eINSTANCE.createOrgUnit()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 OrganizationFactory.eINSTANCE.createOrgUnit()));
+				 OrganizationFactory.eINSTANCE.createUser()));
 
 		newChildDescriptors.add
 			(createChildParameter
