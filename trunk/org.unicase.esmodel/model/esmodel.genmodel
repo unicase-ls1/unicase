@@ -76,23 +76,23 @@
     </nestedGenPackages>
     <nestedGenPackages prefix="Accesscontrol" basePackage="org.unicase.esmodel" disposableProviderFactory="true"
         ecorePackage="esmodel.ecore#//accesscontrol">
-      <genClasses ecoreClass="esmodel.ecore#//accesscontrol/User">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//accesscontrol/User/firstName"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//accesscontrol/User/lastName"/>
+      <genClasses ecoreClass="esmodel.ecore#//accesscontrol/ACUser">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//accesscontrol/ACUser/firstName"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//accesscontrol/ACUser/lastName"/>
       </genClasses>
-      <genClasses ecoreClass="esmodel.ecore#//accesscontrol/OrgUnit">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//accesscontrol/OrgUnit/name"/>
+      <genClasses ecoreClass="esmodel.ecore#//accesscontrol/ACOrgUnit">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//accesscontrol/ACOrgUnit/name"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference esmodel.ecore#//accesscontrol/OrgUnit/roles"/>
+            ecoreFeature="ecore:EReference esmodel.ecore#//accesscontrol/ACOrgUnit/roles"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference esmodel.ecore#//accesscontrol/OrgUnit/id"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//accesscontrol/OrgUnit/description"/>
+            ecoreFeature="ecore:EReference esmodel.ecore#//accesscontrol/ACOrgUnit/id"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//accesscontrol/ACOrgUnit/description"/>
       </genClasses>
-      <genClasses ecoreClass="esmodel.ecore#//accesscontrol/Group">
+      <genClasses ecoreClass="esmodel.ecore#//accesscontrol/ACGroup">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference esmodel.ecore#//accesscontrol/Group/members"/>
+            ecoreFeature="ecore:EReference esmodel.ecore#//accesscontrol/ACGroup/members"/>
       </genClasses>
-      <genClasses ecoreClass="esmodel.ecore#//accesscontrol/OrgUnitId"/>
+      <genClasses ecoreClass="esmodel.ecore#//accesscontrol/ACOrgUnitId"/>
       <nestedGenPackages prefix="Roles" basePackage="org.unicase.esmodel.accesscontrol"
           disposableProviderFactory="true" ecorePackage="esmodel.ecore#//accesscontrol/roles">
         <genClasses image="false" ecoreClass="esmodel.ecore#//accesscontrol/roles/Role">

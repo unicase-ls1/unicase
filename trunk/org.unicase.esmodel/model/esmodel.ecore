@@ -24,7 +24,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="SessionId" eSuperTypes="../../org.unicase.model/model/model.ecore#//UniqueIdentifier"/>
   <eClassifiers xsi:type="ecore:EClass" name="ServerSpace">
     <eStructuralFeatures xsi:type="ecore:EReference" name="orgUnits" upperBound="-1"
-        eType="#//accesscontrol/OrgUnit" containment="true"/>
+        eType="#//accesscontrol/ACOrgUnit" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="projects" upperBound="-1"
         eType="#//ProjectHistory" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="openSessions" upperBound="-1"
@@ -87,23 +87,23 @@
   </eSubpackages>
   <eSubpackages name="accesscontrol" nsURI="http://unicase.org/esmodel/accesscontrol"
       nsPrefix="org.unicase.accesscontrol">
-    <eClassifiers xsi:type="ecore:EClass" name="User">
+    <eClassifiers xsi:type="ecore:EClass" name="ACUser">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="firstName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="OrgUnit">
+    <eClassifiers xsi:type="ecore:EClass" name="ACOrgUnit">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="roles" upperBound="-1"
           eType="#//accesscontrol/roles/Role"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="id" eType="#//accesscontrol/OrgUnitId"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="id" eType="#//accesscontrol/ACOrgUnitId"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Group" eSuperTypes="#//accesscontrol/OrgUnit">
+    <eClassifiers xsi:type="ecore:EClass" name="ACGroup" eSuperTypes="#//accesscontrol/ACOrgUnit">
       <eStructuralFeatures xsi:type="ecore:EReference" name="members" upperBound="-1"
-          eType="#//accesscontrol/OrgUnit"/>
+          eType="#//accesscontrol/ACOrgUnit"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="OrgUnitId" eSuperTypes="../../org.unicase.model/model/model.ecore#//UniqueIdentifier"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ACOrgUnitId" eSuperTypes="../../org.unicase.model/model/model.ecore#//UniqueIdentifier"/>
     <eSubpackages name="roles" nsURI="http://unicase.org/esmodel/accesscontrol/roles"
         nsPrefix="org.unicase.accesscontrol.roles">
       <eClassifiers xsi:type="ecore:EClass" name="Role" abstract="true">

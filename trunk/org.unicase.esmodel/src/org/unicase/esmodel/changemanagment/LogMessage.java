@@ -10,8 +10,6 @@ import java.util.Date;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.unicase.esmodel.accesscontrol.User;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Log Message</b></em>'.

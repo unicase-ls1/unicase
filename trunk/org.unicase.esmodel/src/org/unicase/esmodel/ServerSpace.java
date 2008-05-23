@@ -7,10 +7,8 @@
 package org.unicase.esmodel;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.unicase.esmodel.accesscontrol.OrgUnit;
+import org.unicase.esmodel.accesscontrol.ACOrgUnit;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,7 +31,7 @@ import org.unicase.esmodel.accesscontrol.OrgUnit;
 public interface ServerSpace extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Org Units</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.esmodel.accesscontrol.OrgUnit}.
+	 * The list contents are of type {@link org.unicase.esmodel.accesscontrol.ACOrgUnit}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Org Units</em>' containment reference list isn't clear,
@@ -45,7 +43,7 @@ public interface ServerSpace extends EObject {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<OrgUnit> getOrgUnits();
+	EList<ACOrgUnit> getOrgUnits();
 
 	/**
 	 * Returns the value of the '<em><b>Projects</b></em>' containment reference list.

@@ -26,18 +26,18 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.unicase.esmodel.accesscontrol.ACUser;
 import org.unicase.esmodel.accesscontrol.AccesscontrolPackage;
-import org.unicase.esmodel.accesscontrol.User;
 
 import org.unicase.esmodel.provider.EsmodelEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.esmodel.accesscontrol.User} object.
+ * This is the item provider adapter for a {@link org.unicase.esmodel.accesscontrol.ACUser} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class UserItemProvider
+public class ACUserItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -51,7 +51,7 @@ public class UserItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UserItemProvider(AdapterFactory adapterFactory) {
+	public ACUserItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -83,9 +83,9 @@ public class UserItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_User_firstName_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_User_firstName_feature", "_UI_User_type"),
-				 AccesscontrolPackage.Literals.USER__FIRST_NAME,
+				 getString("_UI_ACUser_firstName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ACUser_firstName_feature", "_UI_ACUser_type"),
+				 AccesscontrolPackage.Literals.AC_USER__FIRST_NAME,
 				 true,
 				 false,
 				 false,
@@ -105,9 +105,9 @@ public class UserItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_User_lastName_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_User_lastName_feature", "_UI_User_type"),
-				 AccesscontrolPackage.Literals.USER__LAST_NAME,
+				 getString("_UI_ACUser_lastName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ACUser_lastName_feature", "_UI_ACUser_type"),
+				 AccesscontrolPackage.Literals.AC_USER__LAST_NAME,
 				 true,
 				 false,
 				 false,
@@ -117,14 +117,14 @@ public class UserItemProvider
 	}
 
 	/**
-	 * This returns User.gif.
+	 * This returns ACUser.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/User"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ACUser"));
 	}
 
 	/**
@@ -135,10 +135,10 @@ public class UserItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((User)object).getFirstName();
+		String label = ((ACUser)object).getFirstName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_User_type") :
-			getString("_UI_User_type") + " " + label;
+			getString("_UI_ACUser_type") :
+			getString("_UI_ACUser_type") + " " + label;
 	}
 
 	/**
@@ -152,9 +152,9 @@ public class UserItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(User.class)) {
-			case AccesscontrolPackage.USER__FIRST_NAME:
-			case AccesscontrolPackage.USER__LAST_NAME:
+		switch (notification.getFeatureID(ACUser.class)) {
+			case AccesscontrolPackage.AC_USER__FIRST_NAME:
+			case AccesscontrolPackage.AC_USER__LAST_NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

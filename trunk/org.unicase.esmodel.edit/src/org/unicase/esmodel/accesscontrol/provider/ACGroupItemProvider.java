@@ -13,8 +13,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
-
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -22,20 +21,17 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
-import org.unicase.esmodel.accesscontrol.OrgUnitId;
-
-import org.unicase.esmodel.provider.EsmodelEditPlugin;
-
-import org.unicase.model.provider.UniqueIdentifierItemProvider;
+import org.unicase.esmodel.accesscontrol.ACGroup;
+import org.unicase.esmodel.accesscontrol.AccesscontrolPackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.esmodel.accesscontrol.OrgUnitId} object.
+ * This is the item provider adapter for a {@link org.unicase.esmodel.accesscontrol.ACGroup} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class OrgUnitIdItemProvider
-	extends UniqueIdentifierItemProvider
+public class ACGroupItemProvider
+	extends ACOrgUnitItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -48,7 +44,7 @@ public class OrgUnitIdItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OrgUnitIdItemProvider(AdapterFactory adapterFactory) {
+	public ACGroupItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -63,19 +59,42 @@ public class OrgUnitIdItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addMembersPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This returns OrgUnitId.gif.
+	 * This adds a property descriptor for the Members feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addMembersPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ACGroup_members_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ACGroup_members_feature", "_UI_ACGroup_type"),
+				 AccesscontrolPackage.Literals.AC_GROUP__MEMBERS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This returns ACGroup.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/OrgUnitId"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ACGroup"));
 	}
 
 	/**
@@ -86,10 +105,10 @@ public class OrgUnitIdItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((OrgUnitId)object).getId();
+		String label = ((ACGroup)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_OrgUnitId_type") :
-			getString("_UI_OrgUnitId_type") + " " + label;
+			getString("_UI_ACGroup_type") :
+			getString("_UI_ACGroup_type") + " " + label;
 	}
 
 	/**
@@ -115,17 +134,6 @@ public class OrgUnitIdItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return EsmodelEditPlugin.INSTANCE;
 	}
 
 }
