@@ -9,15 +9,15 @@
       <eParameters name="readerName" eType="#//organization/User"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-      <eAnnotations source="https://www.sysiphus.org/Visibility">
+      <eAnnotations source="http://unicase.org/visibility">
         <details key="VisibilityValue" value="MANDATORY"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-      <eAnnotations source="http://www.sysiphus.org/Visibility">
+      <eAnnotations source="http://unicase.org/visibility">
         <details key="VisibilityValue" value="VIEWWHENSET"/>
       </eAnnotations>
-      <eAnnotations source="http://www.unicase.org/UIHints">
+      <eAnnotations source="http://unicase.org/UIHints">
         <details key="type" value="TEXT_AREA"/>
       </eAnnotations>
     </eStructuralFeatures>

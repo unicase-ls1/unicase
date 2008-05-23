@@ -107,6 +107,15 @@ public interface DiagramPackage extends EPackage {
 	int ME_DIAGRAM__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
 
 	/**
+	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ME_DIAGRAM__ACTION_ITEMS = ModelPackage.MODEL_ELEMENT__ACTION_ITEMS;
+
+	/**
 	 * The feature id for the '<em><b>Elements</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

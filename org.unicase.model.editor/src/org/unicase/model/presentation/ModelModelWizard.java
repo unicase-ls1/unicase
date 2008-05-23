@@ -97,24 +97,6 @@ import org.eclipse.ui.PartInitException;
  */
 public class ModelModelWizard extends Wizard implements INewWizard {
 	/**
-	 * The supported extensions for created files.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final List<String> FILE_EXTENSIONS =
-		Collections.unmodifiableList(Arrays.asList(ModelEditorPlugin.INSTANCE.getString("_UI_ModelEditorFilenameExtensions").split("\\s*,\\s*")));
-
-	/**
-	 * A formatted list of supported file extensions, suitable for display.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String FORMATTED_FILE_EXTENSIONS =
-		ModelEditorPlugin.INSTANCE.getString("_UI_ModelEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
-
-	/**
 	 * This caches an instance of the model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -334,15 +316,21 @@ public class ModelModelWizard extends Wizard implements INewWizard {
 	@Override
 		protected boolean validatePage() {
 			if (super.validatePage()) {
-				String extension = new Path(getFileName()).getFileExtension();
-				if (extension == null || !FILE_EXTENSIONS.contains(extension)) {
-					String key = FILE_EXTENSIONS.size() > 1 ? "_WARN_FilenameExtensions" : "_WARN_FilenameExtension";
-					setErrorMessage(ModelEditorPlugin.INSTANCE.getString(key, new Object [] { FORMATTED_FILE_EXTENSIONS }));
+				// Make sure the file ends in ".model".
+				//
+				String requiredExt = ModelEditorPlugin.INSTANCE.getString("_UI_ModelEditorFilenameExtension");
+				String enteredExt = new Path(getFileName()).getFileExtension();
+				if (enteredExt == null || !enteredExt.equals(requiredExt)) {
+					setErrorMessage(ModelEditorPlugin.INSTANCE.getString("_WARN_FilenameExtension", new Object [] { requiredExt }));
 					return false;
 				}
-				return true;
+				else {
+					return true;
+				}
 			}
-			return false;
+			else {
+				return false;
+			}
 		}
 
 		/**
@@ -576,7 +564,7 @@ public class ModelModelWizard extends Wizard implements INewWizard {
 		newFileCreationPage = new ModelModelWizardNewFileCreationPage("Whatever", selection);
 		newFileCreationPage.setTitle(ModelEditorPlugin.INSTANCE.getString("_UI_ModelModelWizard_label"));
 		newFileCreationPage.setDescription(ModelEditorPlugin.INSTANCE.getString("_UI_ModelModelWizard_description"));
-		newFileCreationPage.setFileName(ModelEditorPlugin.INSTANCE.getString("_UI_ModelEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
+		newFileCreationPage.setFileName(ModelEditorPlugin.INSTANCE.getString("_UI_ModelEditorFilenameDefaultBase") + "." + ModelEditorPlugin.INSTANCE.getString("_UI_ModelEditorFilenameExtension"));
 		addPage(newFileCreationPage);
 
 		// Try and get the resource selection to determine a current directory for the file dialog.
@@ -603,7 +591,7 @@ public class ModelModelWizard extends Wizard implements INewWizard {
 					// Make up a unique new name here.
 					//
 					String defaultModelBaseFilename = ModelEditorPlugin.INSTANCE.getString("_UI_ModelEditorFilenameDefaultBase");
-					String defaultModelFilenameExtension = FILE_EXTENSIONS.get(0);
+					String defaultModelFilenameExtension = ModelEditorPlugin.INSTANCE.getString("_UI_ModelEditorFilenameExtension");
 					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
 					for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i) {
 						modelFilename = defaultModelBaseFilename + i + "." + defaultModelFilenameExtension;

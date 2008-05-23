@@ -4,11 +4,10 @@
  *
  * $Id$
  */
-package org.unicase.model.organization.presentation;
+package org.unicase.model.task.presentation;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -73,8 +72,8 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
 
-import org.unicase.model.organization.OrganizationFactory;
-import org.unicase.model.organization.OrganizationPackage;
+import org.unicase.model.task.TaskFactory;
+import org.unicase.model.task.TaskPackage;
 import org.unicase.model.provider.ModelEditPlugin;
 
 
@@ -97,14 +96,14 @@ import org.unicase.model.presentation.ModelEditorPlugin;
  * <!-- end-user-doc -->
  * @generated
  */
-public class OrganizationModelWizard extends Wizard implements INewWizard {
+public class TaskModelWizard extends Wizard implements INewWizard {
 	/**
 	 * This caches an instance of the model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected OrganizationPackage organizationPackage = OrganizationPackage.eINSTANCE;
+	protected TaskPackage taskPackage = TaskPackage.eINSTANCE;
 
 	/**
 	 * This caches an instance of the model factory.
@@ -112,7 +111,7 @@ public class OrganizationModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected OrganizationFactory organizationFactory = organizationPackage.getOrganizationFactory();
+	protected TaskFactory taskFactory = taskPackage.getTaskFactory();
 
 	/**
 	 * This is the file creation page.
@@ -120,7 +119,7 @@ public class OrganizationModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected OrganizationModelWizardNewFileCreationPage newFileCreationPage;
+	protected TaskModelWizardNewFileCreationPage newFileCreationPage;
 
 	/**
 	 * This is the initial object creation page.
@@ -128,7 +127,7 @@ public class OrganizationModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected OrganizationModelWizardInitialObjectCreationPage initialObjectCreationPage;
+	protected TaskModelWizardInitialObjectCreationPage initialObjectCreationPage;
 
 	/**
 	 * Remember the selection during initialization for populating the default container.
@@ -164,7 +163,7 @@ public class OrganizationModelWizard extends Wizard implements INewWizard {
 		this.workbench = workbench;
 		this.selection = selection;
 		setWindowTitle(ModelEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
-		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(ModelEditorPlugin.INSTANCE.getImage("full/wizban/NewOrganization")));
+		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(ModelEditorPlugin.INSTANCE.getImage("full/wizban/NewTask")));
 	}
 
 	/**
@@ -176,7 +175,7 @@ public class OrganizationModelWizard extends Wizard implements INewWizard {
 	protected Collection<String> getInitialObjectNames() {
 		if (initialObjectNames == null) {
 			initialObjectNames = new ArrayList<String>();
-			for (EClassifier eClassifier : organizationPackage.getEClassifiers()) {
+			for (EClassifier eClassifier : taskPackage.getEClassifiers()) {
 				if (eClassifier instanceof EClass) {
 					EClass eClass = (EClass)eClassifier;
 					if (!eClass.isAbstract()) {
@@ -196,8 +195,8 @@ public class OrganizationModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	protected EObject createInitialModel() {
-		EClass eClass = (EClass)organizationPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
-		EObject rootObject = organizationFactory.create(eClass);
+		EClass eClass = (EClass)taskPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
+		EObject rootObject = taskFactory.create(eClass);
 		return rootObject;
 	}
 
@@ -298,14 +297,14 @@ public class OrganizationModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public class OrganizationModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
+	public class TaskModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
 		/**
 		 * Pass in the selection.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public OrganizationModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
+		public TaskModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
 			super(pageId, selection);
 		}
 
@@ -318,9 +317,9 @@ public class OrganizationModelWizard extends Wizard implements INewWizard {
 	@Override
 		protected boolean validatePage() {
 			if (super.validatePage()) {
-				// Make sure the file ends in ".organization".
+				// Make sure the file ends in ".task".
 				//
-				String requiredExt = ModelEditorPlugin.INSTANCE.getString("_UI_OrganizationEditorFilenameExtension");
+				String requiredExt = ModelEditorPlugin.INSTANCE.getString("_UI_TaskEditorFilenameExtension");
 				String enteredExt = new Path(getFileName()).getFileExtension();
 				if (enteredExt == null || !enteredExt.equals(requiredExt)) {
 					setErrorMessage(ModelEditorPlugin.INSTANCE.getString("_WARN_FilenameExtension", new Object [] { requiredExt }));
@@ -351,7 +350,7 @@ public class OrganizationModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public class OrganizationModelWizardInitialObjectCreationPage extends WizardPage {
+	public class TaskModelWizardInitialObjectCreationPage extends WizardPage {
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -379,7 +378,7 @@ public class OrganizationModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public OrganizationModelWizardInitialObjectCreationPage(String pageId) {
+		public TaskModelWizardInitialObjectCreationPage(String pageId) {
 			super(pageId);
 		}
 
@@ -563,10 +562,10 @@ public class OrganizationModelWizard extends Wizard implements INewWizard {
 	public void addPages() {
 		// Create a page, set the title, and the initial model file name.
 		//
-		newFileCreationPage = new OrganizationModelWizardNewFileCreationPage("Whatever", selection);
-		newFileCreationPage.setTitle(ModelEditorPlugin.INSTANCE.getString("_UI_OrganizationModelWizard_label"));
-		newFileCreationPage.setDescription(ModelEditorPlugin.INSTANCE.getString("_UI_OrganizationModelWizard_description"));
-		newFileCreationPage.setFileName(ModelEditorPlugin.INSTANCE.getString("_UI_OrganizationEditorFilenameDefaultBase") + "." + ModelEditorPlugin.INSTANCE.getString("_UI_OrganizationEditorFilenameExtension"));
+		newFileCreationPage = new TaskModelWizardNewFileCreationPage("Whatever", selection);
+		newFileCreationPage.setTitle(ModelEditorPlugin.INSTANCE.getString("_UI_TaskModelWizard_label"));
+		newFileCreationPage.setDescription(ModelEditorPlugin.INSTANCE.getString("_UI_TaskModelWizard_description"));
+		newFileCreationPage.setFileName(ModelEditorPlugin.INSTANCE.getString("_UI_TaskEditorFilenameDefaultBase") + "." + ModelEditorPlugin.INSTANCE.getString("_UI_TaskEditorFilenameExtension"));
 		addPage(newFileCreationPage);
 
 		// Try and get the resource selection to determine a current directory for the file dialog.
@@ -592,8 +591,8 @@ public class OrganizationModelWizard extends Wizard implements INewWizard {
 
 					// Make up a unique new name here.
 					//
-					String defaultModelBaseFilename = ModelEditorPlugin.INSTANCE.getString("_UI_OrganizationEditorFilenameDefaultBase");
-					String defaultModelFilenameExtension = ModelEditorPlugin.INSTANCE.getString("_UI_OrganizationEditorFilenameExtension");
+					String defaultModelBaseFilename = ModelEditorPlugin.INSTANCE.getString("_UI_TaskEditorFilenameDefaultBase");
+					String defaultModelFilenameExtension = ModelEditorPlugin.INSTANCE.getString("_UI_TaskEditorFilenameExtension");
 					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
 					for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i) {
 						modelFilename = defaultModelBaseFilename + i + "." + defaultModelFilenameExtension;
@@ -602,8 +601,8 @@ public class OrganizationModelWizard extends Wizard implements INewWizard {
 				}
 			}
 		}
-		initialObjectCreationPage = new OrganizationModelWizardInitialObjectCreationPage("Whatever2");
-		initialObjectCreationPage.setTitle(ModelEditorPlugin.INSTANCE.getString("_UI_OrganizationModelWizard_label"));
+		initialObjectCreationPage = new TaskModelWizardInitialObjectCreationPage("Whatever2");
+		initialObjectCreationPage.setTitle(ModelEditorPlugin.INSTANCE.getString("_UI_TaskModelWizard_label"));
 		initialObjectCreationPage.setDescription(ModelEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
 		addPage(initialObjectCreationPage);
 	}

@@ -174,7 +174,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		theTaskPackage.initializePackageContents();
 		theDiagramPackage.initializePackageContents();
 
-
 		// Mark meta-data to indicate it can't be changed
 		theModelPackage.freeze();
 
@@ -599,38 +598,26 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		createResource(eNS_URI);
 
 		// Create annotations
-		// https://www.sysiphus.org/Visibility
+		// http://unicase.org/visibility
 		createVisibilityAnnotations();
-		// http://www.sysiphus.org/Visibility
-		createVisibility_1Annotations();
-		// http://www.unicase.org/UIHints
+		// http://unicase.org/UIHints
 		createUIHintsAnnotations();
 	}
 
 	/**
-	 * Initializes the annotations for <b>https://www.sysiphus.org/Visibility</b>.
+	 * Initializes the annotations for <b>http://unicase.org/visibility</b>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void createVisibilityAnnotations() {
-		String source = "https://www.sysiphus.org/Visibility";		
+		String source = "http://unicase.org/visibility";		
 		addAnnotation
 		  (getModelElement_Name(), 
 		   source, 
 		   new String[] {
 			 "VisibilityValue", "MANDATORY"
 		   });		
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://www.sysiphus.org/Visibility</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createVisibility_1Annotations() {
-		String source = "http://www.sysiphus.org/Visibility";			
 		addAnnotation
 		  (getModelElement_Description(), 
 		   source, 
@@ -640,13 +627,13 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	}
 
 	/**
-	 * Initializes the annotations for <b>http://www.unicase.org/UIHints</b>.
+	 * Initializes the annotations for <b>http://unicase.org/UIHints</b>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void createUIHintsAnnotations() {
-		String source = "http://www.unicase.org/UIHints";				
+		String source = "http://unicase.org/UIHints";				
 		addAnnotation
 		  (getModelElement_Description(), 
 		   source, 
