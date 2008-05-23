@@ -253,7 +253,6 @@ public class OrganizationPackageImpl extends EPackageImpl implements Organizatio
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		userEClass.getESuperTypes().add(theModelPackage.getModelElement());
 		userEClass.getESuperTypes().add(this.getOrgUnit());
 		orgUnitEClass.getESuperTypes().add(theModelPackage.getModelElement());
 		orgUnitIdEClass.getESuperTypes().add(theModelPackage.getUniqueIdentifier());

@@ -93,8 +93,8 @@ public class OrganizationSwitch<T> {
 			case OrganizationPackage.USER: {
 				User user = (User)theEObject;
 				T result = caseUser(user);
-				if (result == null) result = caseModelElement(user);
 				if (result == null) result = caseOrgUnit(user);
+				if (result == null) result = caseModelElement(user);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

@@ -76,7 +76,7 @@
   </eClassifiers>
   <eSubpackages name="organization" nsURI="http://unicase.org/model/organization"
       nsPrefix="org.unicase.model.organization">
-    <eClassifiers xsi:type="ecore:EClass" name="User" eSuperTypes="#//ModelElement #//organization/OrgUnit"/>
+    <eClassifiers xsi:type="ecore:EClass" name="User" eSuperTypes="#//organization/OrgUnit"/>
     <eClassifiers xsi:type="ecore:EClass" name="OrgUnit" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="orgId" eType="#//organization/OrgUnitId"
           containment="true"/>
