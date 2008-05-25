@@ -36,32 +36,18 @@ import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.task.ActionItem;
 
-public class EmfStoreImpl implements EmfStore, Runnable {
+public class EmfStoreImpl implements EmfStore {
 
-	private boolean doExit;
+	private final Resource resource;
 	
-	private final Resource res;
-	
-	private final Logger logger = Logger.getLogger(this.getClass());
+	private final static Logger logger = Logger.getLogger(EmfStoreImpl.class);
 	
 	public EmfStoreImpl(ResourceStorage storage, Properties properties) {
 		
-		this.doExit=false;
-	
 		URI resourceUri = storage.init(properties);
 		ResourceSet resourceSet = new ResourceSetImpl();
-		res = resourceSet.createResource(resourceUri);
+		resource = resourceSet.createResource(resourceUri);
 
-	}
-
-	public void run() {
-		while (!doExit) {
-			
-		}
-	}
-	
-	public void stop() {
-		doExit=true;
 	}
 
 	public PrimaryVersionSpec createVersion(SessionId sessionId,

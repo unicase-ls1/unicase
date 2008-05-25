@@ -7,6 +7,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.unicase.emfstore.EmfStore;
 import org.unicase.emfstore.accesscontrol.AccessControl;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
@@ -27,6 +28,8 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 	private EmfStore emfStore;
 
 	private AccessControl accessControl;
+	
+	private static final Logger logger = Logger.getLogger(RMIEmfStoreFacade.class);
 
 	public RMIEmfStoreFacadeImpl(EmfStore emfStore, AccessControl accessControl)
 			throws RemoteException {
@@ -38,7 +41,7 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 	public String createVersion(String sessionId, String projectId,
 			String baseVersionSpec, String changePackage, String logMessage)
 			throws RemoteException, EmfStoreException {
-
+		logger.debug("Client call on createRevision RECEIVED.");
 		try {
 			return RMIUtil.eObjectToString(emfStore.createVersion(
 					(SessionId) RMIUtil.stringToEObject(sessionId),
@@ -61,6 +64,7 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 			String source, String target) throws RemoteException,
 			EmfStoreException {
 
+		logger.debug("Client call on getChanges RECEIVED.");
 		try {
 			List<String> result = new ArrayList<String>();
 			for (ChangePackage cp : emfStore.getChanges((SessionId) RMIUtil
@@ -90,6 +94,7 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 
 	public String getProject(String sessionId, String projectId,
 			String versionSpec) throws RemoteException, EmfStoreException {
+		logger.debug("Client call on getProject RECEIVED.");
 		try {
 			return RMIUtil.eObjectToString(emfStore.getProject(
 					(SessionId) RMIUtil.stringToEObject(sessionId),
@@ -107,6 +112,7 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 
 	public List<String> getProjectList(String sessionId)
 			throws RemoteException, EmfStoreException {
+		logger.debug("Client call on getProjectList RECEIVED.");
 		try {
 			List<String> result = new ArrayList<String>();
 			for (ProjectInfo pi : emfStore.getProjectList((SessionId) RMIUtil
@@ -126,6 +132,7 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 
 	public String login(String username, String password, String serverInfo)
 			throws RemoteException, AccessControlException {
+		logger.debug("Client call on login RECEIVED.");
 		System.out.println(username + " " + password + " " + serverInfo);
 		try {
 			return RMIUtil.eObjectToString(accessControl.logIn(username, password));
@@ -136,6 +143,7 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 
 	public String resolveVersionSpec(String sessionId, String versionSpec)
 			throws RemoteException, EmfStoreException {
+		logger.debug("Client call on resolveVersionSpec RECEIVED.");
 		try {
 			return RMIUtil.eObjectToString(emfStore.resolveVersionSpec(
 					(SessionId) RMIUtil.stringToEObject(sessionId),
