@@ -11,9 +11,11 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.esmodel.ProjectId;
@@ -394,7 +396,13 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 */
 	public void logIn() throws ConnectionException, AccessControlException {
 		ConnectionManager connectionManager = this.getWorkspaceManager().getConnectionManager();
-		this.setSessionId(connectionManager.logIn(username, password, serverInfo));
+		
+		//FIXME:
+		//prepare serverInfo for send: copy and remove usersession
+		ServerInfo copy = (ServerInfo)EcoreUtil.copy(serverInfo);
+		copy.setLastUsersession(null);
+		
+		this.setSessionId(connectionManager.logIn(username, password, copy));
 	}
 
 	/**
