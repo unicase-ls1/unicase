@@ -1,4 +1,4 @@
-package org.unicase.ui.repository.views;
+package org.unicase.esbrowser.views;
 
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;

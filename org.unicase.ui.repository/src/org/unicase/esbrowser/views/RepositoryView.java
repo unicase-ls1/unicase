@@ -1,4 +1,4 @@
-package org.unicase.ui.repository.views;
+package org.unicase.esbrowser.views;
 
 import java.net.MalformedURLException;
 import java.net.URL;
