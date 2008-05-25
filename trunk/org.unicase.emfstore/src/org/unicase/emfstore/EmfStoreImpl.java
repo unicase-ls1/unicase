@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -18,6 +19,7 @@ import org.unicase.emfstore.storage.ResourceStorage;
 import org.unicase.esmodel.EsmodelFactory;
 import org.unicase.esmodel.ProjectId;
 import org.unicase.esmodel.ProjectInfo;
+import org.unicase.esmodel.ServerSpace;
 import org.unicase.esmodel.SessionId;
 import org.unicase.esmodel.changemanagment.ChangePackage;
 import org.unicase.esmodel.changemanagment.ChangemanagmentFactory;
@@ -40,6 +42,8 @@ public class EmfStoreImpl implements EmfStore {
 
 	private final Resource resource;
 	
+	private ServerSpace serverSpace;
+	
 	private final static Logger logger = Logger.getLogger(EmfStoreImpl.class);
 	
 	private EmfStoreStub stub;
@@ -51,7 +55,24 @@ public class EmfStoreImpl implements EmfStore {
 		resource = resourceSet.createResource(resourceUri);
 		
 		stub = new EmfStoreStub();
-
+		
+		EList<EObject> contents = resource.getContents();
+		for (EObject content: contents) {
+			if (content instanceof ServerSpace) {
+				this.serverSpace=(ServerSpace)content;
+				return;
+			}
+		}
+		//if no serverspace can be loaded, create one
+		serverSpace = EsmodelFactory.eINSTANCE.createServerSpace();
+		stub.createDummyProjectHistories(serverSpace);
+		resource.getContents().add(serverSpace);
+		try {
+			resource.save(null);
+		} catch (IOException e) {
+			// MK Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public PrimaryVersionSpec createVersion(SessionId sessionId,

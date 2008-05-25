@@ -1,13 +1,17 @@
 package org.unicase.emfstore;
 
+import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.change.ChangeFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.esmodel.EsmodelFactory;
+import org.unicase.esmodel.ProjectHistory;
 import org.unicase.esmodel.ProjectId;
 import org.unicase.esmodel.ProjectInfo;
+import org.unicase.esmodel.ServerSpace;
 import org.unicase.esmodel.SessionId;
 import org.unicase.esmodel.changemanagment.ChangePackage;
 import org.unicase.esmodel.changemanagment.ChangemanagmentFactory;
@@ -15,6 +19,8 @@ import org.unicase.esmodel.changemanagment.HeadVersionSpec;
 import org.unicase.esmodel.changemanagment.HistoryInfo;
 import org.unicase.esmodel.changemanagment.LogMessage;
 import org.unicase.esmodel.changemanagment.PrimaryVersionSpec;
+import org.unicase.esmodel.changemanagment.TagVersionSpec;
+import org.unicase.esmodel.changemanagment.Version;
 import org.unicase.esmodel.changemanagment.VersionSpec;
 import org.unicase.esmodel.changemanagment.impl.ChangemanagmentFactoryImpl;
 import org.unicase.model.CompositeSection;
@@ -150,6 +156,34 @@ public class EmfStoreStub implements EmfStore {
 		projectElements.add(rootSection);
 		return project;
 		// end of generation
+	}
+
+	public void createDummyProjectHistories(ServerSpace serverSpace) {
+		EsmodelFactory esmodelFactory = EsmodelFactory.eINSTANCE;
+		ProjectHistory projectHistory = esmodelFactory.createProjectHistory();
+		projectHistory.setProjectDescription("This is a autogen test project");
+		projectHistory.setProjectId(esmodelFactory.createProjectId());
+		projectHistory.setProjectName("TestProject1");
+		ChangemanagmentFactory changemanagmentFactory = ChangemanagmentFactory.eINSTANCE;
+		
+		//create Version
+		ChangemanagmentFactory changemanagmentFactory2 = changemanagmentFactory;
+		Version version = changemanagmentFactory2.createVersion();
+		TagVersionSpec tagVersionSpec = changemanagmentFactory2.createTagVersionSpec();
+		tagVersionSpec.setName("InitialVersion");
+		version.getTagSpecs().add(tagVersionSpec);
+		LogMessage logMessage = changemanagmentFactory2.createLogMessage();
+		logMessage.setDate(new Date());
+		logMessage.setAuthor("es");
+		logMessage.setMessage("Auto generated");
+		version.setLogMessage(logMessage);
+		PrimaryVersionSpec primaryVersionSpec = changemanagmentFactory.createPrimaryVersionSpec();
+		primaryVersionSpec.setIdentifier(0);
+		version.setPrimarySpec(primaryVersionSpec);
+		//version.setProjectState(createDummyProject());
+		
+		projectHistory.getVersions().add(version);
+		serverSpace.getProjects().add(projectHistory);
 	}
 
 

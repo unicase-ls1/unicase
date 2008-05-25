@@ -67,7 +67,7 @@ public class RepositoryLoginDialog extends Dialog implements Listener, Selection
 			Label savedSessionsLabel = new Label(shell, SWT.NULL);
 			savedSessionsLabel.setText("Saved sessions:");
 			savedSessions = new Combo(shell,SWT.READ_ONLY);
-			savedSessionsList = WorkspaceManager.getInstance().getCurrentWorkspace().getUsersession();
+			savedSessionsList = WorkspaceManager.getInstance().getCurrentWorkspace().getUsersessions();
 			String[] savedSessionsArray = new String[savedSessionsList.size()];
 			for (int i=0; i<savedSessionsArray.length; i++){
 				savedSessionsArray[i] = savedSessionsList.get(i).getUsername();
@@ -132,7 +132,7 @@ public class RepositoryLoginDialog extends Dialog implements Listener, Selection
 				if(username.getEnabled()){
 					session = WorkspaceFactory.eINSTANCE.createUsersession();
 					session.setUsername(username.getText());
-					WorkspaceManager.getInstance().getCurrentWorkspace().getUsersession().add(session);
+					WorkspaceManager.getInstance().getCurrentWorkspace().getUsersessions().add(session);
 				}else{
 					session = savedSessionsList.get(savedSessions.getSelectionIndex());
 				}

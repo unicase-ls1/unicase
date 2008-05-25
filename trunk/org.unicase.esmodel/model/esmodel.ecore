@@ -78,8 +78,8 @@
           eType="#//changemanagment/TagVersionSpec" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="nextVersion" eType="#//changemanagment/Version"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="previousVersion" eType="#//changemanagment/Version"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="changes" lowerBound="1"
-          eType="#//changemanagment/ChangePackage" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="changes" eType="#//changemanagment/ChangePackage"
+          containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="logMessage" eType="#//changemanagment/LogMessage"
           containment="true"/>
     </eClassifiers>

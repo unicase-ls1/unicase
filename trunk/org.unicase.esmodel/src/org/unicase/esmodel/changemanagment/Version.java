@@ -166,7 +166,7 @@ public interface Version extends EObject {
 	 * @return the value of the '<em>Changes</em>' containment reference.
 	 * @see #setChanges(ChangePackage)
 	 * @see org.unicase.esmodel.changemanagment.ChangemanagmentPackage#getVersion_Changes()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	ChangePackage getChanges();
