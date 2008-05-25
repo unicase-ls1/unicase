@@ -5,7 +5,7 @@
          point="org.eclipse.ui.views">
       <category
             id="org.unicase"
-            name="Unicase">
+            name="unicase">
       </category>
       <view
             category="org.unicase"

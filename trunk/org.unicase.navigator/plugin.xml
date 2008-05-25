@@ -4,7 +4,7 @@
      <extension
          point="org.eclipse.ui.views">
       <category
-            name="Unicase"
+            name="unicase"
             id="org.unicase">
       </category>
       <view
@@ -12,7 +12,7 @@
             class="org.unicase.navigator.TreeView"
             icon="icons/unicase.png"
             id="org.unicase.navigator.viewer"
-            name="UC Navigator">
+            name="Navigator">
       </view>
    </extension>
    <extension

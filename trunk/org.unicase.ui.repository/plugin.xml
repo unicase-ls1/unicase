@@ -7,13 +7,13 @@
          point="org.eclipse.ui.views">
       <category
             name="unicase"
-            id="org.unicase.ui.repository">
+            id="org.unicase">
       </category>
       <view
-            name="Project Repositories"
+            name="EmfStore Browser"
             icon="icons/sample.gif"
-            category="org.unicase.ui.repository"
-            class="org.unicase.ui.repository.views.RepositoryView"
+            category="org.unicase"
+            class="org.unicase.esbrowser.views.RepositoryView"
             id="org.unicase.ui.repository.views.RepositoryView">
       </view>
    </extension>

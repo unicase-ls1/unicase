@@ -1,4 +1,4 @@
-package org.unicase.ui.repository;
+package org.unicase.esbrowser;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
