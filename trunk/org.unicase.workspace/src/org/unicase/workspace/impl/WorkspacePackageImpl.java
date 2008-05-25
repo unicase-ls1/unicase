@@ -160,7 +160,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getWorkspace_Usersession() {
+	public EReference getWorkspace_Usersessions() {
 		return (EReference)workspaceEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -402,7 +402,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		workspaceEClass = createEClass(WORKSPACE);
 		createEReference(workspaceEClass, WORKSPACE__PROJECT_SPACES);
 		createEReference(workspaceEClass, WORKSPACE__SERVER_INFOS);
-		createEReference(workspaceEClass, WORKSPACE__USERSESSION);
+		createEReference(workspaceEClass, WORKSPACE__USERSESSIONS);
 
 		serverInfoEClass = createEClass(SERVER_INFO);
 		createEAttribute(serverInfoEClass, SERVER_INFO__NAME);
@@ -469,7 +469,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		initEClass(workspaceEClass, Workspace.class, "Workspace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWorkspace_ProjectSpaces(), this.getProjectSpace(), null, "projectSpaces", null, 0, -1, Workspace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getWorkspace_ServerInfos(), this.getServerInfo(), null, "serverInfos", null, 0, -1, Workspace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getWorkspace_Usersession(), this.getUsersession(), null, "usersession", null, 0, -1, Workspace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWorkspace_Usersessions(), this.getUsersession(), null, "usersessions", null, 0, -1, Workspace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = addEOperation(workspaceEClass, this.getProjectSpace(), "checkout", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getUsersession(), "usersession", 0, 1, IS_UNIQUE, IS_ORDERED);

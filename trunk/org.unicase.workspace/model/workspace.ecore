@@ -13,7 +13,7 @@
         eType="#//ProjectSpace" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="serverInfos" upperBound="-1"
         eType="#//ServerInfo" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="usersession" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="usersessions" upperBound="-1"
         eType="#//Usersession" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ServerInfo">

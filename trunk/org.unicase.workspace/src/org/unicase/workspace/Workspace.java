@@ -25,7 +25,7 @@ import org.unicase.workspace.connectionmanager.ConnectionManager;
  * <ul>
  *   <li>{@link org.unicase.workspace.Workspace#getProjectSpaces <em>Project Spaces</em>}</li>
  *   <li>{@link org.unicase.workspace.Workspace#getServerInfos <em>Server Infos</em>}</li>
- *   <li>{@link org.unicase.workspace.Workspace#getUsersession <em>Usersession</em>}</li>
+ *   <li>{@link org.unicase.workspace.Workspace#getUsersessions <em>Usersessions</em>}</li>
  * </ul>
  * </p>
  *
@@ -67,20 +67,20 @@ public interface Workspace extends EObject, IAdaptable {
 	EList<ServerInfo> getServerInfos();
 
 	/**
-	 * Returns the value of the '<em><b>Usersession</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Usersessions</b></em>' containment reference list.
 	 * The list contents are of type {@link org.unicase.workspace.Usersession}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Usersession</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Usersessions</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Usersession</em>' containment reference list.
-	 * @see org.unicase.workspace.WorkspacePackage#getWorkspace_Usersession()
+	 * @return the value of the '<em>Usersessions</em>' containment reference list.
+	 * @see org.unicase.workspace.WorkspacePackage#getWorkspace_Usersessions()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Usersession> getUsersession();
+	EList<Usersession> getUsersessions();
 
 	/**
 	 * <!-- begin-user-doc -->
