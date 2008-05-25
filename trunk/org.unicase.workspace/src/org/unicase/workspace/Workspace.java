@@ -9,12 +9,9 @@ package org.unicase.workspace;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.esmodel.ProjectInfo;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.esmodel.ProjectId;
-import org.unicase.esmodel.changemanagment.VersionSpec;
-import org.unicase.workspace.connectionmanager.ConnectionException;
+import org.unicase.esmodel.ProjectInfo;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 
 /**
@@ -116,13 +113,6 @@ public interface Workspace extends EObject, IAdaptable {
 	 */
 	public void setResource(Resource resource);
  
-	/**
-	 * @param listener
-	 *
-	 * @generated NOT
-	 */
-	public void addListener(WorkspaceListener listener);
-	
 	/**
 	 * 
 	 *

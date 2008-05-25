@@ -94,7 +94,7 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String PORT_EDEFAULT = null;
+	protected static final int PORT_EDEFAULT = 0;
 
 	/**
 	 * The cached value of the '{@link #getPort() <em>Port</em>}' attribute.
@@ -104,7 +104,7 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 	 * @generated
 	 * @ordered
 	 */
-	protected String port = PORT_EDEFAULT;
+	protected int port = PORT_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
@@ -212,7 +212,7 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getPort() {
+	public int getPort() {
 		return port;
 	}
 
@@ -221,8 +221,8 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPort(String newPort) {
-		String oldPort = port;
+	public void setPort(int newPort) {
+		int oldPort = port;
 		port = newPort;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.SERVER_INFO__PORT, oldPort, port));
@@ -364,7 +364,7 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 			case WorkspacePackage.SERVER_INFO__URL:
 				return getUrl();
 			case WorkspacePackage.SERVER_INFO__PORT:
-				return getPort();
+				return new Integer(getPort());
 			case WorkspacePackage.SERVER_INFO__DISPLAY_NAME:
 				return getDisplayName();
 			case WorkspacePackage.SERVER_INFO__PROJECT_INFOS:
@@ -392,7 +392,7 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 				setUrl((String)newValue);
 				return;
 			case WorkspacePackage.SERVER_INFO__PORT:
-				setPort((String)newValue);
+				setPort(((Integer)newValue).intValue());
 				return;
 			case WorkspacePackage.SERVER_INFO__DISPLAY_NAME:
 				setDisplayName((String)newValue);
@@ -451,7 +451,7 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 			case WorkspacePackage.SERVER_INFO__URL:
 				return URL_EDEFAULT == null ? url != null : !URL_EDEFAULT.equals(url);
 			case WorkspacePackage.SERVER_INFO__PORT:
-				return PORT_EDEFAULT == null ? port != null : !PORT_EDEFAULT.equals(port);
+				return port != PORT_EDEFAULT;
 			case WorkspacePackage.SERVER_INFO__DISPLAY_NAME:
 				return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
 			case WorkspacePackage.SERVER_INFO__PROJECT_INFOS:

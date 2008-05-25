@@ -10,12 +10,10 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
+import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.esmodel.ProjectId;
 import org.unicase.esmodel.ProjectInfo;
 import org.unicase.esmodel.SessionId;
-import org.unicase.esmodel.changemanagment.VersionSpec;
-import org.unicase.workspace.connectionmanager.ConnectionException;
 
 /**
  * <!-- begin-user-doc -->
@@ -208,12 +206,12 @@ public interface Usersession extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @throws AccessControlException 
 	 * @throws ConnectionException 
+	 * @throws EmfStoreException 
 	 * @model
 	 * @generated NOT
 	 */
-	void logIn() throws ConnectionException, AccessControlException;
+	void logIn() throws AccessControlException, EmfStoreException;
 
 	/**
 	 * <!-- begin-user-doc -->

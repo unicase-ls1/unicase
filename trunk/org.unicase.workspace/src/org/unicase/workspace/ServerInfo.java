@@ -95,12 +95,12 @@ public interface ServerInfo extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Port</em>' attribute.
-	 * @see #setPort(String)
+	 * @see #setPort(int)
 	 * @see org.unicase.workspace.WorkspacePackage#getServerInfo_Port()
 	 * @model required="true"
 	 * @generated
 	 */
-	String getPort();
+	int getPort();
 
 	/**
 	 * Sets the value of the '{@link org.unicase.workspace.ServerInfo#getPort <em>Port</em>}' attribute.
@@ -110,7 +110,7 @@ public interface ServerInfo extends EObject {
 	 * @see #getPort()
 	 * @generated
 	 */
-	void setPort(String value);
+	void setPort(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Display Name</b></em>' attribute.
