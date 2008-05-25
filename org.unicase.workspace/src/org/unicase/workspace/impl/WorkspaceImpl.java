@@ -34,14 +34,13 @@ import org.unicase.workspace.connectionmanager.ConnectionManager;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Workspace</b></em>'.
- * @implements ProjectSpaceListener
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getProjectSpaces <em>Project Spaces</em>}</li>
  *   <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getServerInfos <em>Server Infos</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getUsersession <em>Usersession</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getUsersessions <em>Usersessions</em>}</li>
  * </ul>
  * </p>
  *
@@ -75,14 +74,14 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	protected EList<ServerInfo> serverInfos;
 
 	/**
-	 * The cached value of the '{@link #getUsersession() <em>Usersession</em>}' containment reference list.
+	 * The cached value of the '{@link #getUsersessions() <em>Usersessions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getUsersession()
+	 * @see #getUsersessions()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Usersession> usersession;
+	protected EList<Usersession> usersessions;
 
 	/**
 	 * The current connection manager used to connect to the server(s).
@@ -138,11 +137,11 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Usersession> getUsersession() {
-		if (usersession == null) {
-			usersession = new EObjectContainmentEList<Usersession>(Usersession.class, this, WorkspacePackage.WORKSPACE__USERSESSION);
+	public EList<Usersession> getUsersessions() {
+		if (usersessions == null) {
+			usersessions = new EObjectContainmentEList<Usersession>(Usersession.class, this, WorkspacePackage.WORKSPACE__USERSESSIONS);
 		}
-		return usersession;
+		return usersessions;
 	}
 
 	/**
@@ -208,8 +207,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 				return ((InternalEList<?>)getProjectSpaces()).basicRemove(otherEnd, msgs);
 			case WorkspacePackage.WORKSPACE__SERVER_INFOS:
 				return ((InternalEList<?>)getServerInfos()).basicRemove(otherEnd, msgs);
-			case WorkspacePackage.WORKSPACE__USERSESSION:
-				return ((InternalEList<?>)getUsersession()).basicRemove(otherEnd, msgs);
+			case WorkspacePackage.WORKSPACE__USERSESSIONS:
+				return ((InternalEList<?>)getUsersessions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -226,8 +225,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 				return getProjectSpaces();
 			case WorkspacePackage.WORKSPACE__SERVER_INFOS:
 				return getServerInfos();
-			case WorkspacePackage.WORKSPACE__USERSESSION:
-				return getUsersession();
+			case WorkspacePackage.WORKSPACE__USERSESSIONS:
+				return getUsersessions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -249,9 +248,9 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 				getServerInfos().clear();
 				getServerInfos().addAll((Collection<? extends ServerInfo>)newValue);
 				return;
-			case WorkspacePackage.WORKSPACE__USERSESSION:
-				getUsersession().clear();
-				getUsersession().addAll((Collection<? extends Usersession>)newValue);
+			case WorkspacePackage.WORKSPACE__USERSESSIONS:
+				getUsersessions().clear();
+				getUsersessions().addAll((Collection<? extends Usersession>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -271,8 +270,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 			case WorkspacePackage.WORKSPACE__SERVER_INFOS:
 				getServerInfos().clear();
 				return;
-			case WorkspacePackage.WORKSPACE__USERSESSION:
-				getUsersession().clear();
+			case WorkspacePackage.WORKSPACE__USERSESSIONS:
+				getUsersessions().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -290,8 +289,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 				return projectSpaces != null && !projectSpaces.isEmpty();
 			case WorkspacePackage.WORKSPACE__SERVER_INFOS:
 				return serverInfos != null && !serverInfos.isEmpty();
-			case WorkspacePackage.WORKSPACE__USERSESSION:
-				return usersession != null && !usersession.isEmpty();
+			case WorkspacePackage.WORKSPACE__USERSESSIONS:
+				return usersessions != null && !usersessions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

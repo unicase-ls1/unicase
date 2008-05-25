@@ -106,7 +106,7 @@ public class WorkspaceItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(WorkspacePackage.Literals.WORKSPACE__SERVER_INFOS);
-			childrenFeatures.add(WorkspacePackage.Literals.WORKSPACE__USERSESSION);
+			childrenFeatures.add(WorkspacePackage.Literals.WORKSPACE__USERSESSIONS);
 		}
 		return childrenFeatures;
 	}
@@ -159,7 +159,7 @@ public class WorkspaceItemProvider
 
 		switch (notification.getFeatureID(Workspace.class)) {
 			case WorkspacePackage.WORKSPACE__SERVER_INFOS:
-			case WorkspacePackage.WORKSPACE__USERSESSION:
+			case WorkspacePackage.WORKSPACE__USERSESSIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -184,7 +184,7 @@ public class WorkspaceItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(WorkspacePackage.Literals.WORKSPACE__USERSESSION,
+				(WorkspacePackage.Literals.WORKSPACE__USERSESSIONS,
 				 WorkspaceFactory.eINSTANCE.createUsersession()));
 	}
 

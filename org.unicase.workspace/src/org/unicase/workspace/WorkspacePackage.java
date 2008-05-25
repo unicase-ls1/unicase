@@ -88,13 +88,13 @@ public interface WorkspacePackage extends EPackage {
 	int WORKSPACE__SERVER_INFOS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Usersession</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Usersessions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WORKSPACE__USERSESSION = 2;
+	int WORKSPACE__USERSESSIONS = 2;
 
 	/**
 	 * The number of structural features of the '<em>Workspace</em>' class.
@@ -375,15 +375,15 @@ public interface WorkspacePackage extends EPackage {
 	EReference getWorkspace_ServerInfos();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.workspace.Workspace#getUsersession <em>Usersession</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.unicase.workspace.Workspace#getUsersessions <em>Usersessions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Usersession</em>'.
-	 * @see org.unicase.workspace.Workspace#getUsersession()
+	 * @return the meta object for the containment reference list '<em>Usersessions</em>'.
+	 * @see org.unicase.workspace.Workspace#getUsersessions()
 	 * @see #getWorkspace()
 	 * @generated
 	 */
-	EReference getWorkspace_Usersession();
+	EReference getWorkspace_Usersessions();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.workspace.ServerInfo <em>Server Info</em>}'.
@@ -684,12 +684,12 @@ public interface WorkspacePackage extends EPackage {
 		EReference WORKSPACE__SERVER_INFOS = eINSTANCE.getWorkspace_ServerInfos();
 
 		/**
-		 * The meta object literal for the '<em><b>Usersession</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Usersessions</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference WORKSPACE__USERSESSION = eINSTANCE.getWorkspace_Usersession();
+		EReference WORKSPACE__USERSESSIONS = eINSTANCE.getWorkspace_Usersessions();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.workspace.impl.ServerInfoImpl <em>Server Info</em>}' class.
