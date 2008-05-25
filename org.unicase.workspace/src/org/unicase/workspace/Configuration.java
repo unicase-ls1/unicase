@@ -46,8 +46,8 @@ public class Configuration {
 		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
 		serverInfo.setDisplayName("DefaultServer");
 		serverInfo.setName("EmfStoreOne");
-		serverInfo.setPort("somePort");
-		serverInfo.setUrl("someURL");
+		serverInfo.setPort(1099);
+		serverInfo.setUrl("localhost");
 		return serverInfo;
 	}
 }

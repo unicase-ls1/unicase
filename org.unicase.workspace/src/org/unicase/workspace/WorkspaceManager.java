@@ -9,24 +9,34 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
-import org.unicase.workspace.connectionmanager.ConnectionException;
+import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.connectionmanager.RMIConnectionManagerImpl;
-import org.unicase.workspace.connectionmanager.StubConnectionManagerImpl;
 import org.unicase.workspace.impl.WorkspaceImpl;
 
-public class WorkspaceManager {
+/**
+ * Controller for workspaces. Workspace Manager is a singleton.
+ * 
+ * @author Maximilian Koegel
+ * 
+ * 
+ * @generated NOT
+ */
+public final class WorkspaceManager {
 
 	private static WorkspaceManager instance;
-	
-	public final static String MODEL_EDIT_DOMAIN = "org.unicase.model";
 
 	private Workspace currentWorkspace;
 	private ConnectionManager connectionManager;
 
+	/**
+	 * Get an instance of the workspace manager. Will create an instance if no
+	 * workspace manager is present.
+	 * 
+	 * @return the workspace manager singleton
+	 * 
+	 * @generated NOT
+	 */
 	public static WorkspaceManager getInstance() {
 		if (instance == null) {
 			instance = new WorkspaceManager();
@@ -34,14 +44,27 @@ public class WorkspaceManager {
 		return instance;
 	}
 
-	public WorkspaceManager() {
+	/**
+	 * Default constructor.
+	 * 
+	 * @generated NOT
+	 */
+	private WorkspaceManager() {
 		this.connectionManager = initConnectionManager();
 		this.currentWorkspace = initWorkSpace();
 
 	}
 
+	/**
+	 * Initialize the connection manager of the workspace. The connection
+	 * manager connects the workspace with the emf store.
+	 * 
+	 * @return the connection manager
+	 * 
+	 * @generated NOT
+	 */
 	private ConnectionManager initConnectionManager() {
-		//return new StubConnectionManagerImpl();
+		// return new StubConnectionManagerImpl();
 		try {
 			return new RMIConnectionManagerImpl();
 		} catch (ConnectionException e) {
@@ -51,25 +74,34 @@ public class WorkspaceManager {
 		}
 	}
 
+	/**
+	 * Initialize the workspace. Loads workspace from persistent storage if
+	 * present. There is always one current Workspace.
+	 * 
+	 * @return the workspace
+	 * 
+	 * @generated NOT
+	 */
 	private Workspace initWorkSpace() {
 		ResourceSet resourceSet = new ResourceSetImpl();
-		
-		//register an editing domain on the ressource
-		//TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(resourceSet);
-		//TransactionalEditingDomain.Registry.INSTANCE.add(MODEL_EDIT_DOMAIN, editingDomain);
-		
-		
+
+		// register an editing domain on the ressource
+		// TransactionalEditingDomain editingDomain =
+		// TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(resourceSet);
+		// TransactionalEditingDomain.Registry.INSTANCE.add(MODEL_EDIT_DOMAIN,
+		// editingDomain);
+
 		URI fileURI = URI.createFileURI(Configuration.getWorkspacePath());
 		File workspaceFile = new File(Configuration.getWorkspacePath());
 		if (!workspaceFile.exists()) {
 
 			// no workspace content found, create a workspace
 			Resource resource = resourceSet.createResource(fileURI);
-			Workspace workspace = WorkspaceFactory.eINSTANCE
-					.createWorkspace();
+			Workspace workspace = WorkspaceFactory.eINSTANCE.createWorkspace();
 			workspace.setConnectionManager(this.connectionManager);
 			workspace.setResource(resource);
-			workspace.getServerInfos().add(Configuration.getDefaultServerInfo());
+			workspace.getServerInfos()
+					.add(Configuration.getDefaultServerInfo());
 			resource.getContents().add(workspace);
 			try {
 				resource.save(Configuration.getResourceSaveOptions());
@@ -92,12 +124,14 @@ public class WorkspaceManager {
 				return workspace;
 			}
 		}
-		
+
 		throw new IllegalStateException();
 
 	}
 
 	/**
+	 * Get the current workspace. There is always one current workspace.
+	 * 
 	 * @return the workspace
 	 */
 	public Workspace getCurrentWorkspace() {
@@ -105,6 +139,8 @@ public class WorkspaceManager {
 	}
 
 	/**
+	 * Get the connection manager. Return the connection manager for this workspace.
+	 * 
 	 * @return the connectionManager
 	 */
 	public ConnectionManager getConnectionManager() {

@@ -3,7 +3,7 @@ package org.unicase.workspace.connectionmanager;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.common.util.EList;
+import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.esmodel.EsmodelFactory;
 import org.unicase.esmodel.ProjectId;
 import org.unicase.esmodel.ProjectInfo;
@@ -19,7 +19,6 @@ import org.unicase.esmodel.changemanagment.impl.ChangemanagmentFactoryImpl;
 import org.unicase.model.CompositeSection;
 import org.unicase.model.FunctionalRequirement;
 import org.unicase.model.LeafSection;
-import org.unicase.model.ModelElement;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.Project;
 import org.unicase.model.diagram.DiagramFactory;

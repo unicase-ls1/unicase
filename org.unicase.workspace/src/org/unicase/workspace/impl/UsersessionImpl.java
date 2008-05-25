@@ -11,23 +11,20 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
+import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.esmodel.ProjectId;
 import org.unicase.esmodel.ProjectInfo;
 import org.unicase.esmodel.SessionId;
-import org.unicase.esmodel.changemanagment.VersionSpec;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
-import org.unicase.workspace.connectionmanager.ConnectionException;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 
 /**
@@ -394,7 +391,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public void logIn() throws ConnectionException, AccessControlException {
+	public void logIn() throws EmfStoreException, AccessControlException {
 		ConnectionManager connectionManager = this.getWorkspaceManager().getConnectionManager();
 		
 		//FIXME:

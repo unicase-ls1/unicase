@@ -7,11 +7,8 @@
 package org.unicase.workspace.impl;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -21,22 +18,17 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.unicase.esmodel.ProjectInfo;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.esmodel.ProjectId;
+import org.unicase.esmodel.ProjectInfo;
 import org.unicase.esmodel.changemanagment.PrimaryVersionSpec;
-import org.unicase.esmodel.changemanagment.VersionSpec;
 import org.unicase.model.Project;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.ProjectSpaceListener;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceFactory;
-import org.unicase.workspace.WorkspaceListener;
 import org.unicase.workspace.WorkspacePackage;
-import org.unicase.workspace.connectionmanager.ConnectionException;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 
 /**
@@ -55,7 +47,7 @@ import org.unicase.workspace.connectionmanager.ConnectionManager;
  *
  * @generated
  */
-public class WorkspaceImpl extends EObjectImpl implements Workspace, ProjectSpaceListener {
+public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	
 	/**
 	 * @generated NOT
@@ -97,12 +89,6 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace, ProjectSpac
 	 * @generated NOT
 	 */
 	private ConnectionManager connectionManager;
-
-	/**
-	 *
-	 * @generated NOT
-	 */
-	private List<WorkspaceListener> listeners;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -111,7 +97,6 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace, ProjectSpac
 	 */
 	protected WorkspaceImpl() {
 		super();
-		this.listeners=new ArrayList<WorkspaceListener>();
 	}
 
 	/**
@@ -337,28 +322,10 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace, ProjectSpac
 		return null;
 	}
 
-	/** 
-	 * @see org.unicase.workspace.Workspace#addWorkspaceListener(org.unicase.workspace.WorkspaceListener)
-	 *
-	 * @generated NOT
-	 */
-	public void addListener(WorkspaceListener listener) {
-		this.listeners.add(listener);
-		
-	}
-
 	public void init() {
 		//initialize all projectSpaces
 		for (ProjectSpace projectSpace: getProjectSpaces()) {
 			projectSpace.init();
-			projectSpace.addListener(this);
 		}	
 	}
-
-	public void notifyProjectSpaceGotDirty() {
-		for (WorkspaceListener listener: listeners) {
-			listener.notifyWorkspaceGotDirty();
-		}
-	}
-
 } //WorkspaceImpl
