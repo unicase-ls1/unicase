@@ -31,6 +31,7 @@ import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
+import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.esmodel.EsmodelFactory;
 import org.unicase.esmodel.ProjectInfo;
@@ -39,7 +40,6 @@ import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.connectionmanager.ConnectionException;
 import org.unicase.workspace.provider.WorkspaceEditPlugin;
 import org.unicase.workspace.provider.WorkspaceItemProviderAdapterFactory;
 
@@ -116,7 +116,7 @@ public class RepositoryView extends ViewPart {
 				}
 				try {
 					session.logIn();
-				} catch (ConnectionException e) {
+				} catch (EmfStoreException e) {
 					// TODO server timed out
 					e.printStackTrace();
 				} catch (AccessControlException e) {

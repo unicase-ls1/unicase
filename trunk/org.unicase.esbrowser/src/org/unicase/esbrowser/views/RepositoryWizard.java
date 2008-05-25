@@ -189,7 +189,7 @@ class RepositoryMainPage extends WizardPage {
 		serverInfo.setDisplayName(displayName.getText());
 		serverInfo.setName(name.getText());
 		serverInfo.setUrl(url.getText());
-		serverInfo.setPort(port.getText());
+		serverInfo.setPort(Integer.parseInt(port.getText()));
 	}
 
 	private static boolean isTextNonEmpty(Text t) {
