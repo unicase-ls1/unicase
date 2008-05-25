@@ -1,0 +1,199 @@
+package org.unicase.emfstore;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashSet;
+import java.util.Properties;
+import java.util.Set;
+
+import org.apache.log4j.ConsoleAppender;
+import org.apache.log4j.FileAppender;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+import org.apache.log4j.SimpleLayout;
+import org.eclipse.equinox.app.IApplication;
+import org.eclipse.equinox.app.IApplicationContext;
+import org.unicase.emfstore.accesscontrol.AccessControl;
+import org.unicase.emfstore.accesscontrol.AccessControlImpl;
+import org.unicase.emfstore.connection.ConnectionHandler;
+import org.unicase.emfstore.connection.rmi.RMIConnectionHandler;
+import org.unicase.emfstore.exceptions.FatalEmfStoreException;
+import org.unicase.emfstore.storage.ResourceStorage;
+
+public class EmfStoreController implements IApplication {
+
+	private EmfStoreImpl emfStore;
+	private AccessControl accessControl;
+	private Set<ConnectionHandler> connectionHandlers;
+	private Properties properties;
+	private static Logger logger;
+
+	private static EmfStoreController instance;
+
+	public Object start(IApplicationContext context) throws Exception {
+
+		if (instance != null) {
+			throw new FatalEmfStoreException(
+					"Another EmfStore Controller seems to be ruinning already!");
+		}
+		instance = this;
+		
+		System.out.println("*------------------*");
+		System.out.println("| unicase EmfStore |");
+		System.out.println("*------------------*");
+		
+		properties = initProperties();
+		initLogging(properties);
+		logger = Logger.getLogger(EmfStoreController.class);
+		emfStore = initEmfStore(properties);
+		accessControl = initAccessControl(properties);
+		connectionHandlers = initConnectionHandlers(emfStore, accessControl);
+		logger.info("Initialitation COMPLETE.");
+
+		logger.info("Server is RUNNING...");
+		waitForTermination();
+
+		instance = null;
+		logger.info("Server is STOPPED.");
+		return IApplication.EXIT_OK;
+	}
+
+	private Set<ConnectionHandler> initConnectionHandlers(EmfStore emfStore,
+			AccessControl accessControl) throws FatalEmfStoreException {
+		Set<ConnectionHandler> connectionHandlers = new HashSet<ConnectionHandler>();
+
+		// create RMI connection handler
+		RMIConnectionHandler rmiConnectionHandler = new RMIConnectionHandler();
+		connectionHandlers.add(rmiConnectionHandler);
+
+		// init all handlers
+		for (ConnectionHandler handler : connectionHandlers) {
+			handler.init(emfStore, accessControl);
+		}
+
+		return connectionHandlers;
+	}
+
+	private EmfStoreImpl initEmfStore(Properties properties)
+			throws FatalEmfStoreException {
+		ResourceStorage storage = initStorage(properties);
+		return new EmfStoreImpl(storage, properties);
+	}
+
+	public static EmfStoreController getInstance() {
+		return instance;
+	}
+
+	private void initLogging(Properties properties) {
+		ConsoleAppender console = new ConsoleAppender(new SimpleLayout());
+		try {
+			FileAppender fileLog = new FileAppender(new SimpleLayout(),
+					ServerConfiguration.getServerHome() + "emfstore.log", true);
+			Logger rootLogger = Logger.getRootLogger();
+			rootLogger.addAppender(console);
+			rootLogger.addAppender(fileLog);
+			rootLogger.setLevel(Level.ALL);
+		} catch (IOException e) {
+			String message = "Logging initialization failed! Logging might be disabled!";
+			logger.warn(message, e);
+		}
+	}
+
+	private ResourceStorage initStorage(Properties properties)
+			throws FatalEmfStoreException {
+		String className = properties.getProperty(
+				ServerConfiguration.RESOURCE_STORAGE,
+				ServerConfiguration.DEFAULT_RESOURCE_STORAGE);
+
+		ResourceStorage resourceStorage;
+		final String failMessage = "Failed loading ressource storage!";
+		try {
+			logger.debug("Using RessourceStorage \"" + className + "\".");
+			resourceStorage = (ResourceStorage) Class.forName(className)
+					.getConstructor().newInstance();
+			return resourceStorage;
+		} catch (IllegalArgumentException e) {
+			logger.fatal(failMessage, e);
+			throw new FatalEmfStoreException(failMessage, e);
+		} catch (SecurityException e) {
+			logger.fatal(failMessage, e);
+			throw new FatalEmfStoreException(failMessage, e);
+		} catch (InstantiationException e) {
+			logger.fatal(failMessage, e);
+			throw new FatalEmfStoreException(failMessage, e);
+		} catch (IllegalAccessException e) {
+			logger.fatal(failMessage, e);
+			throw new FatalEmfStoreException(failMessage, e);
+		} catch (InvocationTargetException e) {
+			logger.fatal(failMessage, e);
+			throw new FatalEmfStoreException(failMessage, e);
+		} catch (NoSuchMethodException e) {
+			logger.fatal(failMessage, e);
+			throw new FatalEmfStoreException(failMessage, e);
+		} catch (ClassNotFoundException e) {
+			logger.fatal(failMessage, e);
+			throw new FatalEmfStoreException(failMessage, e);
+		}
+	}
+
+	private AccessControl initAccessControl(Properties properties) {
+		return new AccessControlImpl();
+	}
+
+	private Properties initProperties() {
+		File propertyFile = new File(ServerConfiguration.getConfFile());
+		Properties properties = new Properties();
+		try {
+			FileInputStream fis = new FileInputStream(propertyFile);
+			properties.load(fis);
+			fis.close();
+		} catch (IOException e) {
+			System.out.println("Property initialization failed: "
+					+ e.toString());
+		}
+		return properties;
+	}
+
+	public void stop() {
+		wakeForTermination();
+		for (ConnectionHandler handler : connectionHandlers) {
+			handler.stop(false);
+		}
+		logger.info("Server was stopped.");
+		wakeForTermination();
+	}
+
+	/**
+	 * Shutdown EmfStore due to an fatal exception.
+	 * 
+	 * @generated NOT
+	 */
+	public void shutdown(FatalEmfStoreException exception) {
+		logger.debug("Stopping all connection handlers...");
+		for (ConnectionHandler handler : connectionHandlers) {
+			logger.debug("Stopping connection handler \"" + handler.getName()
+					+ "\".");
+			handler.stop(true);
+			logger.debug("Connection handler \"" + handler.getName()
+					+ "\" stopped.");
+		}
+		logger.fatal("Server was forcefully stopped.", exception);
+		logger.fatal("Cause: ", exception.getCause());
+		wakeForTermination();
+	}
+
+	private synchronized void waitForTermination() {
+		try {
+			wait();
+		} catch (InterruptedException e) {
+			logger.warn("Waiting for termination was interrupted", e);
+		}
+	}
+
+	private synchronized void wakeForTermination() {
+		notify();
+	}
+
+}

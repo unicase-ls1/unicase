@@ -9,8 +9,8 @@ import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.common.util.EList;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
+import org.unicase.emfstore.connection.rmi.RMIConnectionHandler;
 import org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade;
 import org.unicase.emfstore.connection.rmi.RMIUtil;
 import org.unicase.emfstore.exceptions.EmfStoreException;
@@ -33,7 +33,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 		Registry registry;
 		try {
 			registry = LocateRegistry.getRegistry();
-			facade = (RMIEmfStoreFacade) registry.lookup("RMIEmfStoreFacade");
+			facade = (RMIEmfStoreFacade) registry.lookup(RMIConnectionHandler.RMI_NAME);
 		} catch (RemoteException e) {
 			throw new ConnectionException("Connection to server refused.");
 		} catch (NotBoundException e) {

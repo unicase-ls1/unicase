@@ -9,7 +9,7 @@
             thread="main"
             visible="true">
          <run
-               class="org.unicase.emfstore.StartEmfStore">
+               class="org.unicase.emfstore.EmfStoreController">
          </run>
       </application>
    </extension>

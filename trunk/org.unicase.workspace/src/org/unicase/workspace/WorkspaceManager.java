@@ -12,7 +12,9 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
+import org.unicase.workspace.connectionmanager.ConnectionException;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
+import org.unicase.workspace.connectionmanager.RMIConnectionManagerImpl;
 import org.unicase.workspace.connectionmanager.StubConnectionManagerImpl;
 import org.unicase.workspace.impl.WorkspaceImpl;
 
@@ -39,15 +41,22 @@ public class WorkspaceManager {
 	}
 
 	private ConnectionManager initConnectionManager() {
-		return new StubConnectionManagerImpl();
+		//return new StubConnectionManagerImpl();
+		try {
+			return new RMIConnectionManagerImpl();
+		} catch (ConnectionException e) {
+			// MK Auto-generated catch block
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
 	}
 
 	private Workspace initWorkSpace() {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		
 		//register an editing domain on the ressource
-		TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(resourceSet);
-		TransactionalEditingDomain.Registry.INSTANCE.add(MODEL_EDIT_DOMAIN, editingDomain);
+		//TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(resourceSet);
+		//TransactionalEditingDomain.Registry.INSTANCE.add(MODEL_EDIT_DOMAIN, editingDomain);
 		
 		
 		URI fileURI = URI.createFileURI(Configuration.getWorkspacePath());
