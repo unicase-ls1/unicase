@@ -25,7 +25,7 @@
   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
     <factory 
        uri = "http://unicase.org/esmodel/changemanagment" 
-       class = "org.unicase.esmodel.changemanagment.provider.ChangemanagmentItemProviderAdapterFactory" 
+       class = "org.unicase.emfstore.model.changemanagment.provider.ChangemanagmentItemProviderAdapterFactory" 
        supportedTypes = 
          "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
           org.eclipse.emf.edit.provider.IStructuredItemContentProvider

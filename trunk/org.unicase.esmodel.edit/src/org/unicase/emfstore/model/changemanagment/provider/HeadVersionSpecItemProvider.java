@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.esmodel.changemanagment.provider;
+package org.unicase.emfstore.model.changemanagment.provider;
 
 
 import java.util.Collection;
@@ -15,7 +15,6 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -24,17 +23,15 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
-import org.unicase.emfstore.model.changemanagment.ChangemanagmentPackage;
-
 import org.unicase.esmodel.provider.EsmodelEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.model.changemanagment.HistoryInfo} object.
+ * This is the item provider adapter for a {@link org.unicase.emfstore.model.changemanagment.HeadVersionSpec} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class HistoryInfoItemProvider
+public class HeadVersionSpecItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -48,7 +45,7 @@ public class HistoryInfoItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public HistoryInfoItemProvider(AdapterFactory adapterFactory) {
+	public HeadVersionSpecItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -63,65 +60,19 @@ public class HistoryInfoItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addPrimerySpecPropertyDescriptor(object);
-			addLogMessagePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Primery Spec feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addPrimerySpecPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_HistoryInfo_primerySpec_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_HistoryInfo_primerySpec_feature", "_UI_HistoryInfo_type"),
-				 ChangemanagmentPackage.Literals.HISTORY_INFO__PRIMERY_SPEC,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Log Message feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addLogMessagePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_HistoryInfo_logMessage_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_HistoryInfo_logMessage_feature", "_UI_HistoryInfo_type"),
-				 ChangemanagmentPackage.Literals.HISTORY_INFO__LOG_MESSAGE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns HistoryInfo.gif.
+	 * This returns HeadVersionSpec.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/HistoryInfo"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/HeadVersionSpec"));
 	}
 
 	/**
@@ -132,7 +83,7 @@ public class HistoryInfoItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_HistoryInfo_type");
+		return getString("_UI_HeadVersionSpec_type");
 	}
 
 	/**

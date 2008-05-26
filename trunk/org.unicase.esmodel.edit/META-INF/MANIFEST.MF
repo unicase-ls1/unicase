@@ -9,7 +9,7 @@ Bundle-Vendor: unicase.org
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.unicase.emfstore.model.accesscontrol.provider,
- org.unicase.esmodel.changemanagment.provider,
+ org.unicase.emfstore.model.changemanagment.provider,
  org.unicase.esmodel.provider
 Require-Bundle: org.eclipse.core.runtime,
  org.unicase.emfstore.model;visibility:=reexport,

@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.esmodel.changemanagment.provider;
+package org.unicase.emfstore.model.changemanagment.provider;
 
 
 import java.util.Collection;
@@ -29,12 +29,12 @@ import org.unicase.emfstore.model.changemanagment.ChangemanagmentPackage;
 import org.unicase.esmodel.provider.EsmodelEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.model.changemanagment.ChangePackage} object.
+ * This is the item provider adapter for a {@link org.unicase.emfstore.model.changemanagment.HistoryInfo} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ChangePackageItemProvider
+public class HistoryInfoItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -48,7 +48,7 @@ public class ChangePackageItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ChangePackageItemProvider(AdapterFactory adapterFactory) {
+	public HistoryInfoItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -63,48 +63,26 @@ public class ChangePackageItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addFowardDeltaPropertyDescriptor(object);
-			addBackwardDeltaPropertyDescriptor(object);
+			addPrimerySpecPropertyDescriptor(object);
+			addLogMessagePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Foward Delta feature.
+	 * This adds a property descriptor for the Primery Spec feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addFowardDeltaPropertyDescriptor(Object object) {
+	protected void addPrimerySpecPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ChangePackage_fowardDelta_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ChangePackage_fowardDelta_feature", "_UI_ChangePackage_type"),
-				 ChangemanagmentPackage.Literals.CHANGE_PACKAGE__FOWARD_DELTA,
-				 false,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Backward Delta feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addBackwardDeltaPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ChangePackage_backwardDelta_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ChangePackage_backwardDelta_feature", "_UI_ChangePackage_type"),
-				 ChangemanagmentPackage.Literals.CHANGE_PACKAGE__BACKWARD_DELTA,
+				 getString("_UI_HistoryInfo_primerySpec_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_HistoryInfo_primerySpec_feature", "_UI_HistoryInfo_type"),
+				 ChangemanagmentPackage.Literals.HISTORY_INFO__PRIMERY_SPEC,
 				 true,
 				 false,
 				 true,
@@ -114,14 +92,36 @@ public class ChangePackageItemProvider
 	}
 
 	/**
-	 * This returns ChangePackage.gif.
+	 * This adds a property descriptor for the Log Message feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addLogMessagePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_HistoryInfo_logMessage_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_HistoryInfo_logMessage_feature", "_UI_HistoryInfo_type"),
+				 ChangemanagmentPackage.Literals.HISTORY_INFO__LOG_MESSAGE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This returns HistoryInfo.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ChangePackage"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/HistoryInfo"));
 	}
 
 	/**
@@ -132,7 +132,7 @@ public class ChangePackageItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ChangePackage_type");
+		return getString("_UI_HistoryInfo_type");
 	}
 
 	/**
