@@ -7,7 +7,6 @@
 package org.unicase.model.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
 
 /**
@@ -40,9 +39,7 @@ public final class ModelEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public ModelEditPlugin() {
-		super
-		  (new ResourceLocator [] {
-		   });
+		super(new ResourceLocator[] {ModelEditPlugin.INSTANCE});
 	}
 
 	/**
