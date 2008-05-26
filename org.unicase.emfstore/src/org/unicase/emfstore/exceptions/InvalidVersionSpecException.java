@@ -1,6 +1,7 @@
 package org.unicase.emfstore.exceptions;
 
 
+@SuppressWarnings("serial")
 public class InvalidVersionSpecException extends EmfStoreException {
 
 	public InvalidVersionSpecException(String message) {

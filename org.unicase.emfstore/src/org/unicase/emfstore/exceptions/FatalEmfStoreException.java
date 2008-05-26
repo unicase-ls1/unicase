@@ -9,6 +9,7 @@ package org.unicase.emfstore.exceptions;
  * 
  * @generated NOT
  */
+@SuppressWarnings("serial")
 public class FatalEmfStoreException extends Exception {
 
 	public FatalEmfStoreException(String message, Throwable cause) {
