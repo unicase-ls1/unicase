@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.esmodel.accesscontrol.provider;
+package org.unicase.emfstore.model.accesscontrol.provider;
 
 
 import java.util.Collection;
@@ -13,8 +13,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
-
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -22,20 +21,17 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
-import org.unicase.emfstore.model.accesscontrol.ACOrgUnitId;
-
-import org.unicase.esmodel.provider.EsmodelEditPlugin;
-
-import org.unicase.model.provider.UniqueIdentifierItemProvider;
+import org.unicase.emfstore.model.accesscontrol.ACGroup;
+import org.unicase.emfstore.model.accesscontrol.AccesscontrolPackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.model.accesscontrol.ACOrgUnitId} object.
+ * This is the item provider adapter for a {@link org.unicase.emfstore.model.accesscontrol.ACGroup} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ACOrgUnitIdItemProvider
-	extends UniqueIdentifierItemProvider
+public class ACGroupItemProvider
+	extends ACOrgUnitItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -48,7 +44,7 @@ public class ACOrgUnitIdItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ACOrgUnitIdItemProvider(AdapterFactory adapterFactory) {
+	public ACGroupItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -63,19 +59,42 @@ public class ACOrgUnitIdItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addMembersPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This returns ACOrgUnitId.gif.
+	 * This adds a property descriptor for the Members feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addMembersPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ACGroup_members_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ACGroup_members_feature", "_UI_ACGroup_type"),
+				 AccesscontrolPackage.Literals.AC_GROUP__MEMBERS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This returns ACGroup.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ACOrgUnitId"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ACGroup"));
 	}
 
 	/**
@@ -86,10 +105,10 @@ public class ACOrgUnitIdItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ACOrgUnitId)object).getId();
+		String label = ((ACGroup)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_ACOrgUnitId_type") :
-			getString("_UI_ACOrgUnitId_type") + " " + label;
+			getString("_UI_ACGroup_type") :
+			getString("_UI_ACGroup_type") + " " + label;
 	}
 
 	/**
@@ -115,17 +134,6 @@ public class ACOrgUnitIdItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return EsmodelEditPlugin.INSTANCE;
 	}
 
 }

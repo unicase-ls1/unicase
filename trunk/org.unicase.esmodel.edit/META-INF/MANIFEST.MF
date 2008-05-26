@@ -1,14 +1,14 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: unicase EMFStore Model Edit Plug-in
-Bundle-SymbolicName: org.unicase.esmodel.edit; singleton:=true
+Bundle-SymbolicName: org.unicase.emfstore.model.edit;singleton:=true
 Bundle-Version: 0.0.1
 Bundle-ClassPath: .
 Bundle-Activator: org.unicase.esmodel.provider.EsmodelEditPlugin$Implementation
 Bundle-Vendor: unicase.org
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.unicase.esmodel.accesscontrol.provider,
+Export-Package: org.unicase.emfstore.model.accesscontrol.provider,
  org.unicase.esmodel.changemanagment.provider,
  org.unicase.esmodel.provider
 Require-Bundle: org.eclipse.core.runtime,

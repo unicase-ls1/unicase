@@ -37,7 +37,7 @@
   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
     <factory 
        uri = "http://unicase.org/esmodel/accesscontrol" 
-       class = "org.unicase.esmodel.accesscontrol.provider.AccesscontrolItemProviderAdapterFactory" 
+       class = "org.unicase.emfstore.model.accesscontrol.provider.AccesscontrolItemProviderAdapterFactory" 
        supportedTypes = 
          "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
           org.eclipse.emf.edit.provider.IStructuredItemContentProvider
