@@ -6,16 +6,7 @@
  */
 package org.unicase.model.organization.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.unicase.model.impl.ModelElementImpl;
-
-import org.unicase.model.organization.OrgUnit;
-import org.unicase.model.organization.OrgUnitId;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 
