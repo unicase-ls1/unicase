@@ -161,6 +161,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		return super.eIsSet(featureID);
 	}
 
+	@SuppressWarnings("unchecked")
 	public Object getAdapter(Class adapter) {
 		// TODO Auto-generated method stub
 		return null;

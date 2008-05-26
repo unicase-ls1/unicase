@@ -6,8 +6,6 @@
  */
 package org.unicase.model;
 
-import java.io.Serializable;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.organization.User;
@@ -16,7 +14,6 @@ import org.unicase.model.task.ActionItem;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Element</b></em>'.
- * @implements Serializable
  * <!-- end-user-doc -->
  *
  * <p>
@@ -34,7 +31,7 @@ import org.unicase.model.task.ActionItem;
  * @model abstract="true"
  * @generated
  */
-public interface ModelElement extends EObject, Serializable {
+public interface ModelElement extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

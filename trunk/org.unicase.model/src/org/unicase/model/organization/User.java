@@ -6,7 +6,6 @@
  */
 package org.unicase.model.organization;
 
-import org.unicase.model.ModelElement;
 
 /**
  * <!-- begin-user-doc -->
