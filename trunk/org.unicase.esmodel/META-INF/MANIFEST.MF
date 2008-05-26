@@ -23,4 +23,4 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.unicase.model;visibility:=reexport,
  org.eclipse.emf.ecore.change;visibility:=reexport
-Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
