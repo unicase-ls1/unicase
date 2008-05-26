@@ -89,42 +89,6 @@ public class TeneoStorage implements ResourceStorage {
 		packages.add(gmfPackage);
 		
 		return packages.toArray(new EPackageImpl[packages.size()]);
-		
-//		
-//		List<EPackage> packages = new ArrayList<EPackage>();
-//		
-//		Set<Descriptor> newDescriptors = new HashSet<Descriptor>();
-//		Set<Descriptor> loadedDescriptors = new HashSet<Descriptor>();
-//
-//		while (true) {
-//			// find new epackages
-//			for (Map.Entry<String, Object> entry : EPackage.Registry.INSTANCE
-//					.entrySet()) {
-//				if (!loadedDescriptors.contains(entry.getValue()) && entry.getValue() instanceof Descriptor) {
-//					logger.debug("Found model package \"" + entry.getKey()
-//							+ "\".");
-//					newDescriptors.add((Descriptor) entry.getValue());
-//				}
-//			}
-//			if (newDescriptors.isEmpty()) {
-//				EPackage package3 = ChangePackage.eINSTANCE;
-//				packages.add(package3);
-//				
-//				EPackage package4 = EcorePackage.eINSTANCE;
-//				packages.add(package4);
-//				
-//				return packages.toArray(new EPackageImpl[packages.size()]);
-//			}
-//
-//			// load epackages
-//			for (Descriptor descriptor : newDescriptors) {
-//				EPackage ePackage = descriptor.getEPackage();
-//				packages.addAll(getSubPackages(ePackage));
-//				packages.add(ePackage);
-//			}
-//			loadedDescriptors.addAll(newDescriptors);
-//			newDescriptors.clear();
-//		}
 	}
 
 	/**
