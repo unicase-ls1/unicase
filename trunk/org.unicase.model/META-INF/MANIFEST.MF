@@ -20,5 +20,6 @@ Export-Package: org.unicase.model,
  org.unicase.model.task.impl, 
  org.unicase.model.task.util
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.gmf.runtime.notation
 Eclipse-LazyStart: true
