@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.esmodel.accesscontrol.roles.provider;
+package org.unicase.emfstore.model.accesscontrol.roles.provider;
 
 
 import java.util.Collection;
@@ -21,12 +21,12 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.model.accesscontrol.roles.ServerAdmin} object.
+ * This is the item provider adapter for a {@link org.unicase.emfstore.model.accesscontrol.roles.ReaderRole} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ServerAdminItemProvider
+public class ReaderRoleItemProvider
 	extends RoleItemProvider
 	implements
 		IEditingDomainItemProvider,
@@ -40,7 +40,7 @@ public class ServerAdminItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ServerAdminItemProvider(AdapterFactory adapterFactory) {
+	public ReaderRoleItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -60,14 +60,14 @@ public class ServerAdminItemProvider
 	}
 
 	/**
-	 * This returns ServerAdmin.gif.
+	 * This returns ReaderRole.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ServerAdmin"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ReaderRole"));
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class ServerAdminItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ServerAdmin_type");
+		return getString("_UI_ReaderRole_type");
 	}
 
 	/**

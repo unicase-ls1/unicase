@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.esmodel.accesscontrol.roles.provider;
+package org.unicase.emfstore.model.accesscontrol.roles.provider;
 
 
 import java.util.Collection;
