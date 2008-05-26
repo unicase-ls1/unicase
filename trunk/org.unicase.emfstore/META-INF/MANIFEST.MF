@@ -19,7 +19,8 @@ Bundle-ClassPath: lib/antlr.jar,
  lib/jta.jar,
  lib/mysql-connector-java-3.1.14-bin.jar,
  lib/log4j-1.2.15.jar,
- .
+ .,
+ lib/commons-logging-1.1.1.jar
 Export-Package: org.unicase.emfstore,
  org.unicase.emfstore.accesscontrol,
  org.unicase.emfstore.connection.rmi,

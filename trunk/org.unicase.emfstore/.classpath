@@ -10,5 +10,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/hibernate3.jar" sourcepath="org.unicase.emfstoresrc.zip"/>
 	<classpathentry exported="true" kind="lib" path="lib/jta.jar" sourcepath="org.unicase.emfstoresrc.zip"/>
 	<classpathentry exported="true" kind="lib" path="lib/mysql-connector-java-3.1.14-bin.jar" sourcepath="org.unicase.emfstoresrc.zip"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
