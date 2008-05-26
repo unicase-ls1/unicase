@@ -7,7 +7,6 @@
 package org.unicase.workspace.provider;
 
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -242,6 +241,7 @@ public class ProjectSpaceItemProvider extends ItemProviderAdapter implements
 	 * 
 	 * @generated NOT
 	 */
+	@SuppressWarnings("deprecation")
 	@Override
 	public Object getImage(Object object) {
 		return PlatformUI.getWorkbench().getSharedImages()
