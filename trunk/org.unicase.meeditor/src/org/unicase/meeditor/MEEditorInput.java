@@ -46,6 +46,7 @@ public class MEEditorInput implements IEditorInput {
 		return "";
 	}
 
+	@SuppressWarnings("unchecked")
 	public Object getAdapter(Class adapter) {
 		// TODO Auto-generated method stub
 		return null;

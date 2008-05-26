@@ -91,6 +91,7 @@ public class MEEditorPage extends FormPage {
 
 			}
 
+			@SuppressWarnings("unchecked")
 			public Map getCurrentState() {
 				HashMap<Object, Object> map = new HashMap<Object, Object>();
 				map.put(activeModelelement, modelElement);
