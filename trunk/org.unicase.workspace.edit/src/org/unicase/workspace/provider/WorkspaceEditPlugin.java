@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.change.provider.ChangeEditPlugin;
 
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 
-import org.unicase.esmodel.provider.EsmodelEditPlugin;
+import org.unicase.emfstore.model.provider.EsmodelEditPlugin;
 
 import org.unicase.model.provider.ModelEditPlugin;
 

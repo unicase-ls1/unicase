@@ -23,8 +23,8 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 import org.unicase.emfstore.model.accesscontrol.ACOrgUnitId;
+import org.unicase.emfstore.model.provider.EsmodelEditPlugin;
 
-import org.unicase.esmodel.provider.EsmodelEditPlugin;
 
 import org.unicase.model.provider.UniqueIdentifierItemProvider;
 
