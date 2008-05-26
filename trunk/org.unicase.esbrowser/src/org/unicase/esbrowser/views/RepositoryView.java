@@ -51,7 +51,7 @@ import org.unicase.workspace.provider.WorkspaceItemProviderAdapterFactory;
  */
 public class RepositoryView extends ViewPart {
 	private TreeViewer viewer;
-	private Action checkout;
+	private EObjectAction checkout;
 	private Action addRepository;
 	private Action login;
 	private Action newProject;
@@ -104,11 +104,10 @@ public class RepositoryView extends ViewPart {
 			} else if (object instanceof ServerInfo) {
 				ServerInfo serverInfo = (ServerInfo) object;
 				Usersession session = serverInfo.getLastUsersession();
-				if (session == null || session.getUsername() == null
-						|| session.getPersistentPassword() == null) {
+				if (session == null || session.getPassword() == null) {
 					RepositoryLoginDialog dialog = new RepositoryLoginDialog(
 							PlatformUI.getWorkbench().getDisplay()
-									.getActiveShell(), session);
+									.getActiveShell(), session, serverInfo);
 					session = dialog.open();
 				}
 				if(session == null){
@@ -124,9 +123,11 @@ public class RepositoryView extends ViewPart {
 					e.printStackTrace();
 				}
 				try {
+					serverInfo.getProjectInfos().clear();
 					serverInfo.getProjectInfos().addAll(
 							session.getRemoteProjectList());
 					serverInfo.setLastUsersession(session);
+					WorkspaceManager.getInstance().getCurrentWorkspace().save();
 				} catch (EmfStoreException e) {
 					e.printStackTrace();
 				}
@@ -136,7 +137,7 @@ public class RepositoryView extends ViewPart {
 				}
 				return (ProjectInfo[]) pis.toArray();
 			}
-			return new Object[0];
+			throw new IllegalStateException("Received parent node of unkown type: " + object.getClass());
 		}
 
 		/**
@@ -208,7 +209,7 @@ public class RepositoryView extends ViewPart {
 	}
 
 	private void fillLocalPullDown(IMenuManager manager) {
-		manager.add(checkout);
+//		manager.add(checkout);
 	}
 
 	private void fillContextMenu(IMenuManager manager) {
@@ -218,12 +219,33 @@ public class RepositoryView extends ViewPart {
 			manager.add(login);
 			manager.add(newProject);
 		} else {
+			checkout = new EObjectAction() {
+				public void run() {
+					EObject element = this.getElement(); 
+					if(element!=null){
+						if(element instanceof ProjectInfo){
+							ProjectInfo pi = (ProjectInfo)element;
+							try {
+								projectServerMap.get(pi).getLastUsersession().checkout(pi);
+							} catch (EmfStoreException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					}
+				}
+			};
+			checkout.setElement((ProjectInfo)obj);
+			checkout.setText("Checkout");
+			checkout.setToolTipText("Click to checkout this project");
+			checkout.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages()
+					.getImageDescriptor(ISharedImages.IMG_TOOL_FORWARD));
 			manager.add(checkout);
 		}
 	}
 
 	private void fillLocalToolBar(IToolBarManager manager) {
-		manager.add(checkout);
+//		manager.add(checkout);
 		manager.add(addRepository);
 	}
 
@@ -232,26 +254,7 @@ public class RepositoryView extends ViewPart {
 	}
 
 	private void makeActions() {
-		checkout = new EObjectAction() {
-			public void run() {
-				EObject element = this.getElement(); 
-				if(element!=null){
-					if(element instanceof ProjectInfo){
-						ProjectInfo pi = (ProjectInfo)element;
-						try {
-							projectServerMap.get(pi).getLastUsersession().checkout(pi);
-						} catch (EmfStoreException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
-				}
-			}
-		};
-		checkout.setText("Checkout");
-		checkout.setToolTipText("Click to checkout this project");
-		checkout.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages()
-				.getImageDescriptor(ISharedImages.IMG_TOOL_FORWARD));
+//		checkout = 
 
 		login = new Action() {
 			public void run() {

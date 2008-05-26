@@ -18,6 +18,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
@@ -38,6 +39,7 @@ public class RepositoryLoginDialog extends Dialog implements Listener, Selection
 	private Button savePassword;
 	private Button buttonOK;
 	private Button buttonCancel;
+	private ServerInfo serverInfo;
 
 	/**
 	 * Default constructor.
@@ -46,10 +48,12 @@ public class RepositoryLoginDialog extends Dialog implements Listener, Selection
 	 *            the parent shell
 	 * @param session
 	 *            the target usersession
+	 * @param serverInfo 
 	 */
-	public RepositoryLoginDialog(Shell parent, Usersession session) {
+	public RepositoryLoginDialog(Shell parent, Usersession session, ServerInfo serverInfo) {
 		super(parent);
 		this.session = session;
+		this.serverInfo=serverInfo;
 	}
 
 	/**
@@ -138,6 +142,7 @@ public class RepositoryLoginDialog extends Dialog implements Listener, Selection
 				}
 				session.setPassword(password.getText());
 				session.setSavePassword(savePassword.getSelection());
+				session.setServerInfo(serverInfo);
 				WorkspaceManager.getInstance().getCurrentWorkspace().save();
 			}else{
 				session = null;
