@@ -21,35 +21,37 @@ public class TreeView extends CommonNavigator {
 		Workspace workspace = WorkspaceManager.getInstance()
 		.getCurrentWorkspace();
 		
-		Usersession usersession = WorkspaceFactory.eINSTANCE
-				.createUsersession();
-		usersession.setServerInfo(workspace.getServerInfos().get(0));
-		usersession.setUsername("user");
-		usersession.setPassword("password");
-		usersession.setSavePassword(true);
-		if (workspace.getProjectSpaces().size() < 2) {
-
-			ProjectInfo projectInfo;
-			try {
-				try {
-					usersession.logIn();
-				} catch (AccessControlException e) {
-					// MK Auto-generated catch block
-					e.printStackTrace();
-				}
-				projectInfo = usersession.getRemoteProjectList().get(0);
-				usersession.checkout(projectInfo);
-				projectInfo = usersession.getRemoteProjectList().get(0);
-				ProjectSpace checkout = usersession.checkout(projectInfo);
-				
-				
-
-			} catch (EmfStoreException e) {
-				// MK Auto-generated catch block
-				e.printStackTrace();
-				throw new IllegalStateException();
-			}
-		}
+//		Usersession usersession = WorkspaceFactory.eINSTANCE
+//				.createUsersession();
+//		usersession.setServerInfo(workspace.getServerInfos().get(0));
+//		usersession.setUsername("user");
+//		usersession.setPassword("password");
+//		usersession.setSavePassword(true);
+//		workspace.getUsersessions().add(usersession);
+//		
+//		if (workspace.getProjectSpaces().size() < 2) {
+//
+//			ProjectInfo projectInfo;
+//			try {
+//				try {
+//					usersession.logIn();
+//				} catch (AccessControlException e) {
+//					// MK Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//				projectInfo = usersession.getRemoteProjectList().get(0);
+//				usersession.checkout(projectInfo);
+//				projectInfo = usersession.getRemoteProjectList().get(0);
+//				ProjectSpace checkout = usersession.checkout(projectInfo);
+//				
+//				
+//
+//			} catch (EmfStoreException e) {
+//				// MK Auto-generated catch block
+//				e.printStackTrace();
+//				throw new IllegalStateException();
+//			}
+//		}
 
 		return workspace;
 
