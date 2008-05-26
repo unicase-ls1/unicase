@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.change.ChangeFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.esmodel.EsmodelFactory;
 import org.unicase.esmodel.ProjectHistory;
@@ -15,14 +14,12 @@ import org.unicase.esmodel.ServerSpace;
 import org.unicase.esmodel.SessionId;
 import org.unicase.esmodel.changemanagment.ChangePackage;
 import org.unicase.esmodel.changemanagment.ChangemanagmentFactory;
-import org.unicase.esmodel.changemanagment.HeadVersionSpec;
 import org.unicase.esmodel.changemanagment.HistoryInfo;
 import org.unicase.esmodel.changemanagment.LogMessage;
 import org.unicase.esmodel.changemanagment.PrimaryVersionSpec;
 import org.unicase.esmodel.changemanagment.TagVersionSpec;
 import org.unicase.esmodel.changemanagment.Version;
 import org.unicase.esmodel.changemanagment.VersionSpec;
-import org.unicase.esmodel.changemanagment.impl.ChangemanagmentFactoryImpl;
 import org.unicase.model.CompositeSection;
 import org.unicase.model.FunctionalRequirement;
 import org.unicase.model.LeafSection;
@@ -66,8 +63,6 @@ public class EmfStoreStub implements EmfStore {
 		EList<ProjectInfo> ret = new BasicEList<ProjectInfo>();
 		
 		ProjectId projectId = EsmodelFactory.eINSTANCE.createProjectId();
-		
-		HeadVersionSpec headVersionSpec = ChangemanagmentFactoryImpl.eINSTANCE.createHeadVersionSpec();
 		
 		ProjectInfo projectInfo = EsmodelFactory.eINSTANCE.createProjectInfo();
 		projectInfo.setName("TestProject");

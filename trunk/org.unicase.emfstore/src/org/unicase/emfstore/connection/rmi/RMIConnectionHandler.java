@@ -1,14 +1,11 @@
 package org.unicase.emfstore.connection.rmi;
 
 import java.net.URL;
-import java.rmi.AccessException;
 import java.rmi.NotBoundException;
-import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.RemoteServer;
-import java.rmi.server.UnicastRemoteObject;
 
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.FileLocator;

@@ -1,20 +1,15 @@
 package org.unicase.emfstore.storage;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
-import org.apache.commons.collections.functors.NOPTransformer;
 import org.apache.log4j.Logger;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.EPackage.Descriptor;
 import org.eclipse.emf.ecore.change.ChangePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.teneo.PersistenceOptions;
@@ -24,12 +19,9 @@ import org.eclipse.emf.teneo.hibernate.resource.HibernateResource;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.hibernate.cfg.Environment;
 import org.unicase.esmodel.EsmodelPackage;
-import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 
 public class TeneoStorage implements ResourceStorage {
-
-	private final static String MODEL_PREFIX = "org.unicase.model";
 
 	private final Logger logger = Logger.getLogger(this.getClass());
 
