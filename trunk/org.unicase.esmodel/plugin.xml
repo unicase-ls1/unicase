@@ -13,7 +13,7 @@
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
        uri = "http://unicase.org/esmodel" 
-       class = "org.unicase.esmodel.EsmodelPackage"
+       class = "org.unicase.emfstore.model.EsmodelPackage"
        genModel = "model/esmodel.genmodel" /> 
   </extension>
 

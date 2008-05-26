@@ -25,7 +25,7 @@ import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
-import org.unicase.esmodel.accesscontrol.roles.util.RolesAdapterFactory;
+import org.unicase.emfstore.model.accesscontrol.roles.util.RolesAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -76,7 +76,7 @@ public class RolesItemProviderAdapterFactory extends RolesAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.esmodel.accesscontrol.roles.ReaderRole} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.model.accesscontrol.roles.ReaderRole} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -84,7 +84,7 @@ public class RolesItemProviderAdapterFactory extends RolesAdapterFactory impleme
 	protected ReaderRoleItemProvider readerRoleItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.esmodel.accesscontrol.roles.ReaderRole}.
+	 * This creates an adapter for a {@link org.unicase.emfstore.model.accesscontrol.roles.ReaderRole}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -99,7 +99,7 @@ public class RolesItemProviderAdapterFactory extends RolesAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.esmodel.accesscontrol.roles.WriterRole} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.model.accesscontrol.roles.WriterRole} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -107,7 +107,7 @@ public class RolesItemProviderAdapterFactory extends RolesAdapterFactory impleme
 	protected WriterRoleItemProvider writerRoleItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.esmodel.accesscontrol.roles.WriterRole}.
+	 * This creates an adapter for a {@link org.unicase.emfstore.model.accesscontrol.roles.WriterRole}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -122,7 +122,7 @@ public class RolesItemProviderAdapterFactory extends RolesAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.esmodel.accesscontrol.roles.ProjectAdminRole} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.model.accesscontrol.roles.ProjectAdminRole} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -130,7 +130,7 @@ public class RolesItemProviderAdapterFactory extends RolesAdapterFactory impleme
 	protected ProjectAdminRoleItemProvider projectAdminRoleItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.esmodel.accesscontrol.roles.ProjectAdminRole}.
+	 * This creates an adapter for a {@link org.unicase.emfstore.model.accesscontrol.roles.ProjectAdminRole}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -145,7 +145,7 @@ public class RolesItemProviderAdapterFactory extends RolesAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.esmodel.accesscontrol.roles.ServerAdmin} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.model.accesscontrol.roles.ServerAdmin} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -153,7 +153,7 @@ public class RolesItemProviderAdapterFactory extends RolesAdapterFactory impleme
 	protected ServerAdminItemProvider serverAdminItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.esmodel.accesscontrol.roles.ServerAdmin}.
+	 * This creates an adapter for a {@link org.unicase.emfstore.model.accesscontrol.roles.ServerAdmin}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

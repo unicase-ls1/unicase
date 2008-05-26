@@ -9,11 +9,11 @@ package org.unicase.workspace;
 import java.util.Date;
 
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.esmodel.ProjectId;
-import org.unicase.esmodel.ProjectInfo;
-import org.unicase.esmodel.changemanagment.ChangePackage;
-import org.unicase.esmodel.changemanagment.PrimaryVersionSpec;
-import org.unicase.esmodel.changemanagment.VersionSpec;
+import org.unicase.emfstore.model.ProjectId;
+import org.unicase.emfstore.model.ProjectInfo;
+import org.unicase.emfstore.model.changemanagment.ChangePackage;
+import org.unicase.emfstore.model.changemanagment.PrimaryVersionSpec;
+import org.unicase.emfstore.model.changemanagment.VersionSpec;
 import org.unicase.model.Project;
 
 /**

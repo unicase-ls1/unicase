@@ -12,17 +12,17 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.emfstore.model.EsmodelFactory;
+import org.unicase.emfstore.model.ProjectId;
+import org.unicase.emfstore.model.ProjectInfo;
+import org.unicase.emfstore.model.ServerSpace;
+import org.unicase.emfstore.model.SessionId;
+import org.unicase.emfstore.model.changemanagment.ChangePackage;
+import org.unicase.emfstore.model.changemanagment.HistoryInfo;
+import org.unicase.emfstore.model.changemanagment.LogMessage;
+import org.unicase.emfstore.model.changemanagment.PrimaryVersionSpec;
+import org.unicase.emfstore.model.changemanagment.VersionSpec;
 import org.unicase.emfstore.storage.ResourceStorage;
-import org.unicase.esmodel.EsmodelFactory;
-import org.unicase.esmodel.ProjectId;
-import org.unicase.esmodel.ProjectInfo;
-import org.unicase.esmodel.ServerSpace;
-import org.unicase.esmodel.SessionId;
-import org.unicase.esmodel.changemanagment.ChangePackage;
-import org.unicase.esmodel.changemanagment.HistoryInfo;
-import org.unicase.esmodel.changemanagment.LogMessage;
-import org.unicase.esmodel.changemanagment.PrimaryVersionSpec;
-import org.unicase.esmodel.changemanagment.VersionSpec;
 import org.unicase.model.Project;
 
 public class EmfStoreImpl implements EmfStore {

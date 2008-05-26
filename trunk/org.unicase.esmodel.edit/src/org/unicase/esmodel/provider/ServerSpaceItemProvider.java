@@ -26,14 +26,14 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.unicase.esmodel.EsmodelFactory;
-import org.unicase.esmodel.EsmodelPackage;
-import org.unicase.esmodel.ServerSpace;
+import org.unicase.emfstore.model.EsmodelFactory;
+import org.unicase.emfstore.model.EsmodelPackage;
+import org.unicase.emfstore.model.ServerSpace;
+import org.unicase.emfstore.model.accesscontrol.AccesscontrolFactory;
 
-import org.unicase.esmodel.accesscontrol.AccesscontrolFactory;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.esmodel.ServerSpace} object.
+ * This is the item provider adapter for a {@link org.unicase.emfstore.model.ServerSpace} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
