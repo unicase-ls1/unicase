@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.esmodel.changemanagment.provider;
+package org.unicase.emfstore.model.changemanagment.provider;
 
 
 import java.util.Collection;
@@ -22,22 +22,19 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.unicase.emfstore.model.changemanagment.ChangemanagmentPackage;
-import org.unicase.emfstore.model.changemanagment.TagVersionSpec;
 
 import org.unicase.esmodel.provider.EsmodelEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.model.changemanagment.TagVersionSpec} object.
+ * This is the item provider adapter for a {@link org.unicase.emfstore.model.changemanagment.ChangePackage} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class TagVersionSpecItemProvider
+public class ChangePackageItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -51,7 +48,7 @@ public class TagVersionSpecItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TagVersionSpecItemProvider(AdapterFactory adapterFactory) {
+	public ChangePackageItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -66,42 +63,65 @@ public class TagVersionSpecItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addNamePropertyDescriptor(object);
+			addFowardDeltaPropertyDescriptor(object);
+			addBackwardDeltaPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature.
+	 * This adds a property descriptor for the Foward Delta feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNamePropertyDescriptor(Object object) {
+	protected void addFowardDeltaPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TagVersionSpec_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TagVersionSpec_name_feature", "_UI_TagVersionSpec_type"),
-				 ChangemanagmentPackage.Literals.TAG_VERSION_SPEC__NAME,
-				 true,
+				 getString("_UI_ChangePackage_fowardDelta_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ChangePackage_fowardDelta_feature", "_UI_ChangePackage_type"),
+				 ChangemanagmentPackage.Literals.CHANGE_PACKAGE__FOWARD_DELTA,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 false,
+				 null,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This returns TagVersionSpec.gif.
+	 * This adds a property descriptor for the Backward Delta feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addBackwardDeltaPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ChangePackage_backwardDelta_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ChangePackage_backwardDelta_feature", "_UI_ChangePackage_type"),
+				 ChangemanagmentPackage.Literals.CHANGE_PACKAGE__BACKWARD_DELTA,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This returns ChangePackage.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/TagVersionSpec"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ChangePackage"));
 	}
 
 	/**
@@ -112,10 +132,7 @@ public class TagVersionSpecItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((TagVersionSpec)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_TagVersionSpec_type") :
-			getString("_UI_TagVersionSpec_type") + " " + label;
+		return getString("_UI_ChangePackage_type");
 	}
 
 	/**
@@ -128,12 +145,6 @@ public class TagVersionSpecItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(TagVersionSpec.class)) {
-			case ChangemanagmentPackage.TAG_VERSION_SPEC__NAME:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 

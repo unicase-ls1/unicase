@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.esmodel.changemanagment.provider;
+package org.unicase.emfstore.model.changemanagment.provider;
 
 
 import java.util.Collection;

@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.esmodel.changemanagment.provider;
+package org.unicase.emfstore.model.changemanagment.provider;
 
 
 import java.util.Collection;
@@ -27,17 +27,17 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.unicase.emfstore.model.changemanagment.ChangemanagmentPackage;
-import org.unicase.emfstore.model.changemanagment.PrimaryVersionSpec;
+import org.unicase.emfstore.model.changemanagment.LogMessage;
 
 import org.unicase.esmodel.provider.EsmodelEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.model.changemanagment.PrimaryVersionSpec} object.
+ * This is the item provider adapter for a {@link org.unicase.emfstore.model.changemanagment.LogMessage} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class PrimaryVersionSpecItemProvider
+public class LogMessageItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -51,7 +51,7 @@ public class PrimaryVersionSpecItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PrimaryVersionSpecItemProvider(AdapterFactory adapterFactory) {
+	public LogMessageItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -66,42 +66,88 @@ public class PrimaryVersionSpecItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addIdentifierPropertyDescriptor(object);
+			addMessagePropertyDescriptor(object);
+			addDatePropertyDescriptor(object);
+			addAuthorPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Identifier feature.
+	 * This adds a property descriptor for the Message feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIdentifierPropertyDescriptor(Object object) {
+	protected void addMessagePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_PrimaryVersionSpec_identifier_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PrimaryVersionSpec_identifier_feature", "_UI_PrimaryVersionSpec_type"),
-				 ChangemanagmentPackage.Literals.PRIMARY_VERSION_SPEC__IDENTIFIER,
+				 getString("_UI_LogMessage_message_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LogMessage_message_feature", "_UI_LogMessage_type"),
+				 ChangemanagmentPackage.Literals.LOG_MESSAGE__MESSAGE,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This returns PrimaryVersionSpec.gif.
+	 * This adds a property descriptor for the Author feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAuthorPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LogMessage_author_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LogMessage_author_feature", "_UI_LogMessage_type"),
+				 ChangemanagmentPackage.Literals.LOG_MESSAGE__AUTHOR,
+				 true,
+				 false,
+				 true,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Date feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDatePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LogMessage_date_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LogMessage_date_feature", "_UI_LogMessage_type"),
+				 ChangemanagmentPackage.Literals.LOG_MESSAGE__DATE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This returns LogMessage.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/PrimaryVersionSpec"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/LogMessage"));
 	}
 
 	/**
@@ -112,8 +158,10 @@ public class PrimaryVersionSpecItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		PrimaryVersionSpec primaryVersionSpec = (PrimaryVersionSpec)object;
-		return getString("_UI_PrimaryVersionSpec_type") + " " + primaryVersionSpec.getIdentifier();
+		String label = ((LogMessage)object).getMessage();
+		return label == null || label.length() == 0 ?
+			getString("_UI_LogMessage_type") :
+			getString("_UI_LogMessage_type") + " " + label;
 	}
 
 	/**
@@ -127,8 +175,9 @@ public class PrimaryVersionSpecItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(PrimaryVersionSpec.class)) {
-			case ChangemanagmentPackage.PRIMARY_VERSION_SPEC__IDENTIFIER:
+		switch (notification.getFeatureID(LogMessage.class)) {
+			case ChangemanagmentPackage.LOG_MESSAGE__MESSAGE:
+			case ChangemanagmentPackage.LOG_MESSAGE__DATE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
