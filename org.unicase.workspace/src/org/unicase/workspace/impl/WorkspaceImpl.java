@@ -316,6 +316,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 *
 	 * @generated NOT
 	 */
+	@SuppressWarnings("unchecked")
 	public Object getAdapter(Class adapter) {
 		// TODO Auto-generated method stub
 		return null;
