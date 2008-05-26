@@ -23,7 +23,6 @@ import org.unicase.esmodel.changemanagment.VersionSpec;
 import org.unicase.model.CompositeSection;
 import org.unicase.model.FunctionalRequirement;
 import org.unicase.model.LeafSection;
-import org.unicase.model.ModelElement;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.Project;
 import org.unicase.model.diagram.DiagramFactory;

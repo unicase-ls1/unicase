@@ -1,5 +1,6 @@
 package org.unicase.emfstore.exceptions;
 
+@SuppressWarnings("serial")
 public class UnknownSessionException extends EmfStoreException {
 
 	public UnknownSessionException(String message, Throwable cause) {
