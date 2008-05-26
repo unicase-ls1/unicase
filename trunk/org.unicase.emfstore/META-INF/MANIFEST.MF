@@ -10,7 +10,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.teneo.hibernate;visibility:=reexport,
  org.unicase.model,
  org.eclipse.emf,
- org.unicase.esmodel
+ org.unicase.esmodel,
+ org.eclipse.gmf.runtime.notation
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ClassPath: lib/antlr.jar,
  lib/commons-collections-3.2.1.jar,

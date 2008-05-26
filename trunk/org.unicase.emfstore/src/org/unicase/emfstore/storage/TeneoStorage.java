@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
+import org.apache.commons.collections.functors.NOPTransformer;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -20,6 +21,7 @@ import org.eclipse.emf.teneo.PersistenceOptions;
 import org.eclipse.emf.teneo.hibernate.HbDataStore;
 import org.eclipse.emf.teneo.hibernate.HbHelper;
 import org.eclipse.emf.teneo.hibernate.resource.HibernateResource;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.hibernate.cfg.Environment;
 import org.unicase.esmodel.EsmodelPackage;
 import org.unicase.model.ModelFactory;
@@ -47,12 +49,8 @@ public class TeneoStorage implements ResourceStorage {
 		props.setProperty(Environment.DIALECT,
 				org.hibernate.dialect.MySQLInnoDBDialect.class.getName());
 		
-		dataStore.setHibernateProperties(props);
-		
-		//set persistency properties
-		final Properties persistencyProps = new Properties();
 		props.setProperty(PersistenceOptions.INHERITANCE_MAPPING, "JOINED");
-		dataStore.setPersistenceProperties(persistencyProps);
+		dataStore.setProperties(props);
 				
 		//set epackages
 		dataStore.setEPackages(getUnicaseModelPackages());
@@ -85,6 +83,10 @@ public class TeneoStorage implements ResourceStorage {
 		packages.add(changePackage);
 		EPackage ecorePackage = EcorePackage.eINSTANCE;
 		packages.add(ecorePackage);
+		
+		//add gmf packages
+		NotationPackage gmfPackage = NotationPackage.eINSTANCE;
+		packages.add(gmfPackage);
 		
 		return packages.toArray(new EPackageImpl[packages.size()]);
 		
