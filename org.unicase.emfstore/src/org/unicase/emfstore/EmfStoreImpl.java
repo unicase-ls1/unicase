@@ -1,13 +1,10 @@
 package org.unicase.emfstore;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -22,21 +19,11 @@ import org.unicase.esmodel.ProjectInfo;
 import org.unicase.esmodel.ServerSpace;
 import org.unicase.esmodel.SessionId;
 import org.unicase.esmodel.changemanagment.ChangePackage;
-import org.unicase.esmodel.changemanagment.ChangemanagmentFactory;
-import org.unicase.esmodel.changemanagment.HeadVersionSpec;
 import org.unicase.esmodel.changemanagment.HistoryInfo;
 import org.unicase.esmodel.changemanagment.LogMessage;
 import org.unicase.esmodel.changemanagment.PrimaryVersionSpec;
 import org.unicase.esmodel.changemanagment.VersionSpec;
-import org.unicase.esmodel.changemanagment.impl.ChangemanagmentFactoryImpl;
-import org.unicase.model.CompositeSection;
-import org.unicase.model.FunctionalRequirement;
-import org.unicase.model.LeafSection;
-import org.unicase.model.ModelElement;
-import org.unicase.model.ModelFactory;
-import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
-import org.unicase.model.task.ActionItem;
 
 public class EmfStoreImpl implements EmfStore {
 
@@ -65,6 +52,7 @@ public class EmfStoreImpl implements EmfStore {
 		}
 
 		//if no serverspace can be loaded, create one
+		logger.debug("Creating dummy server space...");
 		serverSpace = EsmodelFactory.eINSTANCE.createServerSpace();
 		stub.createDummyProjectHistories(serverSpace);
 		resource.getContents().add(serverSpace);
