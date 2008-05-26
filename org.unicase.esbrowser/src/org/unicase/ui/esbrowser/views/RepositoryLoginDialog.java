@@ -1,4 +1,4 @@
-package org.unicase.esbrowser.views;
+package org.unicase.ui.esbrowser.views;
 
 
 import org.eclipse.emf.common.util.EList;
