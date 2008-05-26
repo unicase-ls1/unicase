@@ -63,6 +63,7 @@ public class EmfStoreImpl implements EmfStore {
 				return;
 			}
 		}
+
 		//if no serverspace can be loaded, create one
 		serverSpace = EsmodelFactory.eINSTANCE.createServerSpace();
 		stub.createDummyProjectHistories(serverSpace);
