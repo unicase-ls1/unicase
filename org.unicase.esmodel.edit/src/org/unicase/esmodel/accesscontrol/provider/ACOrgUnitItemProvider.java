@@ -26,13 +26,13 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.unicase.esmodel.accesscontrol.ACOrgUnit;
-import org.unicase.esmodel.accesscontrol.AccesscontrolPackage;
+import org.unicase.emfstore.model.accesscontrol.ACOrgUnit;
+import org.unicase.emfstore.model.accesscontrol.AccesscontrolPackage;
 
 import org.unicase.esmodel.provider.EsmodelEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.esmodel.accesscontrol.ACOrgUnit} object.
+ * This is the item provider adapter for a {@link org.unicase.emfstore.model.accesscontrol.ACOrgUnit} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

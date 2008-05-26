@@ -1,7 +1,7 @@
 package org.unicase.emfstore.accesscontrol;
 
-import org.unicase.esmodel.EsmodelFactory;
-import org.unicase.esmodel.SessionId;
+import org.unicase.emfstore.model.EsmodelFactory;
+import org.unicase.emfstore.model.SessionId;
 
 public class AccessControlImpl implements AccessControl {
 

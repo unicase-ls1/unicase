@@ -25,7 +25,7 @@ import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
-import org.unicase.esmodel.util.EsmodelAdapterFactory;
+import org.unicase.emfstore.model.util.EsmodelAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -76,7 +76,7 @@ public class EsmodelItemProviderAdapterFactory extends EsmodelAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.esmodel.ProjectHistory} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.model.ProjectHistory} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -84,7 +84,7 @@ public class EsmodelItemProviderAdapterFactory extends EsmodelAdapterFactory imp
 	protected ProjectHistoryItemProvider projectHistoryItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.esmodel.ProjectHistory}.
+	 * This creates an adapter for a {@link org.unicase.emfstore.model.ProjectHistory}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -99,7 +99,7 @@ public class EsmodelItemProviderAdapterFactory extends EsmodelAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.esmodel.ProjectInfo} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.model.ProjectInfo} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -107,7 +107,7 @@ public class EsmodelItemProviderAdapterFactory extends EsmodelAdapterFactory imp
 	protected ProjectInfoItemProvider projectInfoItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.esmodel.ProjectInfo}.
+	 * This creates an adapter for a {@link org.unicase.emfstore.model.ProjectInfo}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -122,7 +122,7 @@ public class EsmodelItemProviderAdapterFactory extends EsmodelAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.esmodel.SessionId} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.model.SessionId} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -130,7 +130,7 @@ public class EsmodelItemProviderAdapterFactory extends EsmodelAdapterFactory imp
 	protected SessionIdItemProvider sessionIdItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.esmodel.SessionId}.
+	 * This creates an adapter for a {@link org.unicase.emfstore.model.SessionId}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -145,7 +145,7 @@ public class EsmodelItemProviderAdapterFactory extends EsmodelAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.esmodel.ServerSpace} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.model.ServerSpace} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -153,7 +153,7 @@ public class EsmodelItemProviderAdapterFactory extends EsmodelAdapterFactory imp
 	protected ServerSpaceItemProvider serverSpaceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.esmodel.ServerSpace}.
+	 * This creates an adapter for a {@link org.unicase.emfstore.model.ServerSpace}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -168,7 +168,7 @@ public class EsmodelItemProviderAdapterFactory extends EsmodelAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.esmodel.ProjectId} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.model.ProjectId} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -176,7 +176,7 @@ public class EsmodelItemProviderAdapterFactory extends EsmodelAdapterFactory imp
 	protected ProjectIdItemProvider projectIdItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.esmodel.ProjectId}.
+	 * This creates an adapter for a {@link org.unicase.emfstore.model.ProjectId}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

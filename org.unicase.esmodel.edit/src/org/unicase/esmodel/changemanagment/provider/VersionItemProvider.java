@@ -24,12 +24,12 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
-import org.unicase.esmodel.changemanagment.ChangemanagmentPackage;
+import org.unicase.emfstore.model.changemanagment.ChangemanagmentPackage;
 
 import org.unicase.esmodel.provider.EsmodelEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.esmodel.changemanagment.Version} object.
+ * This is the item provider adapter for a {@link org.unicase.emfstore.model.changemanagment.Version} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

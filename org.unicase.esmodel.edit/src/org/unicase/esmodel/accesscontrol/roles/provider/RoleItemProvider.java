@@ -24,12 +24,12 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
-import org.unicase.esmodel.accesscontrol.roles.RolesPackage;
+import org.unicase.emfstore.model.accesscontrol.roles.RolesPackage;
 
 import org.unicase.esmodel.provider.EsmodelEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.esmodel.accesscontrol.roles.Role} object.
+ * This is the item provider adapter for a {@link org.unicase.emfstore.model.accesscontrol.roles.Role} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

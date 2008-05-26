@@ -12,7 +12,7 @@ Export-Package: org.unicase.esmodel.accesscontrol.provider,
  org.unicase.esmodel.changemanagment.provider,
  org.unicase.esmodel.provider
 Require-Bundle: org.eclipse.core.runtime,
- org.unicase.esmodel;visibility:=reexport,
+ org.unicase.emfstore.model;visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,
  org.eclipse.emf.ecore.change;visibility:=reexport,
  org.eclipse.emf.ecore;visibility:=reexport,

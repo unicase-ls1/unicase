@@ -18,7 +18,7 @@ import org.eclipse.emf.teneo.hibernate.HbHelper;
 import org.eclipse.emf.teneo.hibernate.resource.HibernateResource;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.hibernate.cfg.Environment;
-import org.unicase.esmodel.EsmodelPackage;
+import org.unicase.emfstore.model.EsmodelPackage;
 import org.unicase.model.ModelPackage;
 
 public class TeneoStorage implements ResourceStorage {
