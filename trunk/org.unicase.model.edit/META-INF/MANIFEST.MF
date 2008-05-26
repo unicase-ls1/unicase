@@ -17,6 +17,9 @@ Require-Bundle: org.eclipse.core.runtime,
  org.unicase.model;visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,
  org.eclipse.ui,
- org.eclipse.core.expressions;bundle-version="3.4.0",
- org.unicase.workspace;bundle-version="0.0.1"
+ org.eclipse.core.expressions,
+ org.eclipse.gmf.runtime.notation,
+ org.eclipse.gmf.runtime.diagram.core,
+ org.eclipse.core.expressions,
+ org.unicase.workspace
 Eclipse-LazyStart: true
