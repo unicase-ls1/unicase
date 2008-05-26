@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.esmodel.EsmodelPackage;
 import org.unicase.esmodel.ProjectId;
 import org.unicase.esmodel.ProjectInfo;
-import org.unicase.esmodel.changemanagment.VersionSpec;
 import org.unicase.esmodel.changemanagment.PrimaryVersionSpec;
 
 /**

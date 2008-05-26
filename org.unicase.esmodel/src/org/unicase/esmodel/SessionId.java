@@ -7,7 +7,6 @@
 package org.unicase.esmodel;
 
 import org.unicase.model.UniqueIdentifier;
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->

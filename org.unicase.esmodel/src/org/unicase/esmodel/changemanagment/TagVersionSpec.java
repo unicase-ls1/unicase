@@ -6,7 +6,6 @@
  */
 package org.unicase.esmodel.changemanagment;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->

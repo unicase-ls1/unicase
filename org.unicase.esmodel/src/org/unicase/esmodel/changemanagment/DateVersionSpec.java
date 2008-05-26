@@ -8,8 +8,6 @@ package org.unicase.esmodel.changemanagment;
 
 import java.util.Date;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Date Version Spec</b></em>'.
