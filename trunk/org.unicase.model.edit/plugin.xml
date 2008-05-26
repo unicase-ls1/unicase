@@ -11,17 +11,17 @@
 <plugin>
     
   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-    <factory
-          class="org.unicase.model.provider.ModelItemProviderAdapterFactory"
-          supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
-          uri="http://unicase.org/model"/>
-    <factory
-          class="org.unicase.model.edit.Factory1"
-          supportedTypes="org.unicase.model.edit.factory1"
-          uri="org.unicase.model.edit.factory1">
-    </factory>
+    <factory 
+       uri = "http://unicase.org/model" 
+       class = "org.unicase.model.provider.ModelItemProviderAdapterFactory" 
+       supportedTypes = 
+         "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+          org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+          org.eclipse.emf.edit.provider.ITreeItemContentProvider
+          org.eclipse.emf.edit.provider.IItemLabelProvider
+          org.eclipse.emf.edit.provider.IItemPropertySource" />
   </extension>
-  <extension
+<extension
         point="org.eclipse.emf.edit.itemProviderAdapterFactories">
      <factory
            class="org.unicase.model.task.provider.TaskItemProviderAdapterFactory"
@@ -183,3 +183,4 @@
      </definition>
   </extension>
 </plugin>
+

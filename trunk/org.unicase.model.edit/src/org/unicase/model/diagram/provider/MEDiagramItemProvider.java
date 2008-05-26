@@ -65,6 +65,7 @@ public class MEDiagramItemProvider
 			super.getPropertyDescriptors(object);
 
 			addElementsPropertyDescriptor(object);
+			addGmfdiagramPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -83,6 +84,28 @@ public class MEDiagramItemProvider
 				 getString("_UI_MEDiagram_elements_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_MEDiagram_elements_feature", "_UI_MEDiagram_type"),
 				 DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Gmfdiagram feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addGmfdiagramPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_MEDiagram_gmfdiagram_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MEDiagram_gmfdiagram_feature", "_UI_MEDiagram_type"),
+				 DiagramPackage.Literals.ME_DIAGRAM__GMFDIAGRAM,
 				 true,
 				 false,
 				 true,
