@@ -25,8 +25,8 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
 import org.unicase.emfstore.model.changemanagment.ChangemanagmentPackage;
+import org.unicase.emfstore.model.provider.EsmodelEditPlugin;
 
-import org.unicase.esmodel.provider.EsmodelEditPlugin;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.emfstore.model.changemanagment.HistoryInfo} object.

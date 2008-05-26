@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.esmodel.provider;
+package org.unicase.emfstore.model.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;

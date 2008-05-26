@@ -34,7 +34,7 @@ import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.model.EsmodelFactory;
 import org.unicase.emfstore.model.ProjectInfo;
-import org.unicase.esmodel.provider.EsmodelEditPlugin;
+import org.unicase.emfstore.model.provider.EsmodelEditPlugin;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;

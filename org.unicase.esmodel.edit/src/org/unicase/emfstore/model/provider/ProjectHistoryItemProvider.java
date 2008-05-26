@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.esmodel.provider;
+package org.unicase.emfstore.model.provider;
 
 
 import java.util.Collection;
@@ -17,28 +17,30 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.unicase.emfstore.model.EsmodelFactory;
 import org.unicase.emfstore.model.EsmodelPackage;
-import org.unicase.emfstore.model.ServerSpace;
-import org.unicase.emfstore.model.accesscontrol.AccesscontrolFactory;
+import org.unicase.emfstore.model.ProjectHistory;
+import org.unicase.emfstore.model.changemanagment.ChangemanagmentFactory;
 
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.model.ServerSpace} object.
+ * This is the item provider adapter for a {@link org.unicase.emfstore.model.ProjectHistory} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ServerSpaceItemProvider
+public class ProjectHistoryItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -52,7 +54,7 @@ public class ServerSpaceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ServerSpaceItemProvider(AdapterFactory adapterFactory) {
+	public ProjectHistoryItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -67,8 +69,54 @@ public class ServerSpaceItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addProjectNamePropertyDescriptor(object);
+			addProjectDescriptionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Project Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addProjectNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ProjectHistory_projectName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ProjectHistory_projectName_feature", "_UI_ProjectHistory_type"),
+				 EsmodelPackage.Literals.PROJECT_HISTORY__PROJECT_NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Project Description feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addProjectDescriptionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ProjectHistory_projectDescription_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ProjectHistory_projectDescription_feature", "_UI_ProjectHistory_type"),
+				 EsmodelPackage.Literals.PROJECT_HISTORY__PROJECT_DESCRIPTION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -83,9 +131,8 @@ public class ServerSpaceItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(EsmodelPackage.Literals.SERVER_SPACE__ORG_UNITS);
-			childrenFeatures.add(EsmodelPackage.Literals.SERVER_SPACE__PROJECTS);
-			childrenFeatures.add(EsmodelPackage.Literals.SERVER_SPACE__OPEN_SESSIONS);
+			childrenFeatures.add(EsmodelPackage.Literals.PROJECT_HISTORY__PROJECT_ID);
+			childrenFeatures.add(EsmodelPackage.Literals.PROJECT_HISTORY__VERSIONS);
 		}
 		return childrenFeatures;
 	}
@@ -104,14 +151,14 @@ public class ServerSpaceItemProvider
 	}
 
 	/**
-	 * This returns ServerSpace.gif.
+	 * This returns ProjectHistory.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ServerSpace"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ProjectHistory"));
 	}
 
 	/**
@@ -122,7 +169,10 @@ public class ServerSpaceItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ServerSpace_type");
+		String label = ((ProjectHistory)object).getProjectName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ProjectHistory_type") :
+			getString("_UI_ProjectHistory_type") + " " + label;
 	}
 
 	/**
@@ -136,10 +186,13 @@ public class ServerSpaceItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ServerSpace.class)) {
-			case EsmodelPackage.SERVER_SPACE__ORG_UNITS:
-			case EsmodelPackage.SERVER_SPACE__PROJECTS:
-			case EsmodelPackage.SERVER_SPACE__OPEN_SESSIONS:
+		switch (notification.getFeatureID(ProjectHistory.class)) {
+			case EsmodelPackage.PROJECT_HISTORY__PROJECT_NAME:
+			case EsmodelPackage.PROJECT_HISTORY__PROJECT_DESCRIPTION:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case EsmodelPackage.PROJECT_HISTORY__PROJECT_ID:
+			case EsmodelPackage.PROJECT_HISTORY__VERSIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -159,23 +212,13 @@ public class ServerSpaceItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(EsmodelPackage.Literals.SERVER_SPACE__ORG_UNITS,
-				 AccesscontrolFactory.eINSTANCE.createACOrgUnit()));
+				(EsmodelPackage.Literals.PROJECT_HISTORY__PROJECT_ID,
+				 EsmodelFactory.eINSTANCE.createProjectId()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(EsmodelPackage.Literals.SERVER_SPACE__ORG_UNITS,
-				 AccesscontrolFactory.eINSTANCE.createACGroup()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(EsmodelPackage.Literals.SERVER_SPACE__PROJECTS,
-				 EsmodelFactory.eINSTANCE.createProjectHistory()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(EsmodelPackage.Literals.SERVER_SPACE__OPEN_SESSIONS,
-				 EsmodelFactory.eINSTANCE.createSessionId()));
+				(EsmodelPackage.Literals.PROJECT_HISTORY__VERSIONS,
+				 ChangemanagmentFactory.eINSTANCE.createVersion()));
 	}
 
 	/**
