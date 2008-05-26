@@ -125,13 +125,22 @@ public interface DiagramPackage extends EPackage {
 	int ME_DIAGRAM__ELEMENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Gmfdiagram</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ME_DIAGRAM__GMFDIAGRAM = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>ME Diagram</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ME_DIAGRAM_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int ME_DIAGRAM_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 
 	/**
@@ -154,6 +163,17 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getMEDiagram_Elements();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.unicase.model.diagram.MEDiagram#getGmfdiagram <em>Gmfdiagram</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Gmfdiagram</em>'.
+	 * @see org.unicase.model.diagram.MEDiagram#getGmfdiagram()
+	 * @see #getMEDiagram()
+	 * @generated
+	 */
+	EReference getMEDiagram_Gmfdiagram();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -194,6 +214,14 @@ public interface DiagramPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ME_DIAGRAM__ELEMENTS = eINSTANCE.getMEDiagram_Elements();
+
+		/**
+		 * The meta object literal for the '<em><b>Gmfdiagram</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ME_DIAGRAM__GMFDIAGRAM = eINSTANCE.getMEDiagram_Gmfdiagram();
 
 	}
 
