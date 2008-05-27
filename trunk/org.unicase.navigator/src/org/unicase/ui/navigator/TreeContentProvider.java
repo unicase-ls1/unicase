@@ -1,4 +1,4 @@
-package org.unicase.navigator;
+package org.unicase.ui.navigator;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
