@@ -49,7 +49,7 @@ public interface ChangemanagmentPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "org.unicase.esmodel.changemanagment";
+	String eNS_PREFIX = "org.unicase.emfstore.model.changemanagment";
 
 	/**
 	 * The singleton instance of the package.
