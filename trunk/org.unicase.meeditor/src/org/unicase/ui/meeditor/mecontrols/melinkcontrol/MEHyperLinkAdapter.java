@@ -1,12 +1,12 @@
-package org.unicase.meeditor.mecontrols.melinkcontrol;
+package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.events.HyperlinkAdapter;
 import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.eclipse.ui.forms.events.IHyperlinkListener;
-import org.unicase.meeditor.MEEditorInput;
 import org.unicase.model.ModelElement;
+import org.unicase.ui.meeditor.MEEditorInput;
 
 public class MEHyperLinkAdapter extends HyperlinkAdapter implements
 		IHyperlinkListener {

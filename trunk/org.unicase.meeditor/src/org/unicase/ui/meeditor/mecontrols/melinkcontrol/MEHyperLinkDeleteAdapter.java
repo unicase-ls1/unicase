@@ -1,4 +1,4 @@
-package org.unicase.meeditor.mecontrols.melinkcontrol;
+package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;

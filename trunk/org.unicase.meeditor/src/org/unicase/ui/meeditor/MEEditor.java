@@ -1,4 +1,4 @@
-package org.unicase.meeditor;
+package org.unicase.ui.meeditor;
 
 import java.util.EventObject;
 import java.util.HashMap;

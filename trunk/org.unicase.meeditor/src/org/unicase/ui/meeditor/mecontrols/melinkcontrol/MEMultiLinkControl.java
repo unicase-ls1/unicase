@@ -1,4 +1,4 @@
-package org.unicase.meeditor.mecontrols.melinkcontrol;
+package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,8 +25,8 @@ import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.forms.HyperlinkGroup;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
-import org.unicase.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.model.ModelElement;
+import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 
 
 public class MEMultiLinkControl extends AbstractMEControl {
