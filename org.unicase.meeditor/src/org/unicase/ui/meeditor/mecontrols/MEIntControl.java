@@ -1,4 +1,4 @@
-package org.unicase.meeditor.mecontrols;
+package org.unicase.ui.meeditor.mecontrols;
 
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
@@ -7,45 +7,46 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.databinding.swt.SWTObservables;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 /**
- * Standard widgets to edit a single line text attribute.
+ * Standard widgets to edit a integer attribute.
  * @author helming
  *
  */
-public class METextControl extends AbstractMEControl implements MEControl {
-
-	private Text text;
+public class MEIntControl extends AbstractMEControl implements MEControl {
 
 	private EAttribute attribute;
+
+	private Spinner spinner;
 /**
- * Default Constructor.
- * @param attribute the attribute which is shown in the Text Control
+ * default constructor.
+ * @param attribute the integer attribute
  * @param toolkit see {@link AbstractMEControl}
  * @param modelElement see {@link AbstractMEControl}
  * @param editingDomain see {@link AbstractMEControl}
  */
-	public METextControl(EAttribute attribute, FormToolkit toolkit,
+	public MEIntControl(EAttribute attribute, FormToolkit toolkit,
 			EObject modelElement, EditingDomain editingDomain) {
 		super(editingDomain, modelElement, toolkit);
 		this.attribute = attribute;
 	}
 /**
- * @return A Text Control.
+ * @return A spinner for the int value.
  * {@inheritDoc}
  */
 	public Control createControl(Composite parent, int style) {
-		text = toolkit.createText(parent, new String(), style);
+		spinner = new Spinner(parent, style);
+
 		IObservableValue model = EMFEditObservables.observeValue(editingDomain,
 				modelElement, attribute);
 		EMFDataBindingContext dbc = new EMFDataBindingContext();
-		dbc.bindValue(SWTObservables.observeText(text, SWT.FocusOut), model,
-				null, null);
-		return text;
+		dbc.bindValue(SWTObservables.observeSelection(spinner), model, null,
+				null);
+
+		return spinner;
 	}
 
 }

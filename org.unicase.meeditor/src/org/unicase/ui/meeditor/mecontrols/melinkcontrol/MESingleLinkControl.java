@@ -1,4 +1,4 @@
-package org.unicase.meeditor.mecontrols.melinkcontrol;
+package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
 import java.util.Collection;
 
@@ -22,9 +22,9 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.forms.widgets.FormToolkit;
-import org.unicase.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.model.ModelElement;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
+import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 
 //JH implement
 public class MESingleLinkControl extends AbstractMEControl {

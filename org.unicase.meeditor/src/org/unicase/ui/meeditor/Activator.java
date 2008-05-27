@@ -1,4 +1,4 @@
-package org.unicase.meeditor;
+package org.unicase.ui.meeditor;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;

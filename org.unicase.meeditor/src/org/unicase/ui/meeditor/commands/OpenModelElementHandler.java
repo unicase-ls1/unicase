@@ -1,4 +1,4 @@
-package org.unicase.meeditor.commands;
+package org.unicase.ui.meeditor.commands;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -6,8 +6,8 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.unicase.meeditor.MEEditorInput;
 import org.unicase.model.ModelElement;
+import org.unicase.ui.meeditor.MEEditorInput;
 
 /**
  * 

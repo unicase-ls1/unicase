@@ -1,4 +1,4 @@
-package org.unicase.meeditor;
+package org.unicase.ui.meeditor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,10 +26,10 @@ import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.ui.menus.IMenuService;
 import org.eclipse.ui.services.IEvaluationService;
-import org.unicase.meeditor.mecontrols.MEControl;
 import org.unicase.model.ModelElement;
 import org.unicase.model.edit.uihint.UIHintAdapter;
 import org.unicase.model.edit.uihint.UIHintAdapterImpl;
+import org.unicase.ui.meeditor.mecontrols.MEControl;
 
 public class MEEditorPage extends FormPage {
 

@@ -1,4 +1,4 @@
-package org.unicase.meeditor;
+package org.unicase.ui.meeditor;
 
 import java.util.Date;
 
@@ -9,14 +9,14 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.ui.forms.widgets.FormToolkit;
-import org.unicase.meeditor.mecontrols.MEBoolControl;
-import org.unicase.meeditor.mecontrols.MEControl;
-import org.unicase.meeditor.mecontrols.MEDateControl;
-import org.unicase.meeditor.mecontrols.MEIntControl;
-import org.unicase.meeditor.mecontrols.METextAreaControl;
-import org.unicase.meeditor.mecontrols.METextControl;
-import org.unicase.meeditor.mecontrols.melinkcontrol.MEMultiLinkControl;
-import org.unicase.meeditor.mecontrols.melinkcontrol.MESingleLinkControl;
+import org.unicase.ui.meeditor.mecontrols.MEBoolControl;
+import org.unicase.ui.meeditor.mecontrols.MEControl;
+import org.unicase.ui.meeditor.mecontrols.MEDateControl;
+import org.unicase.ui.meeditor.mecontrols.MEIntControl;
+import org.unicase.ui.meeditor.mecontrols.METextAreaControl;
+import org.unicase.ui.meeditor.mecontrols.METextControl;
+import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEMultiLinkControl;
+import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MESingleLinkControl;
 
 public class ControlFactory {
 	private final EObject modelElement;

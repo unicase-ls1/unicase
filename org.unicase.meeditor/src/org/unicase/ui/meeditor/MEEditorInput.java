@@ -1,4 +1,4 @@
-package org.unicase.meeditor;
+package org.unicase.ui.meeditor;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
