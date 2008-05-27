@@ -23,7 +23,7 @@
       <editor
          id="org.unicase.model.diagram.part.ModelDiagramEditorID"
          name="%editorName"
-         icon="icons/obj16/ModelDiagramFile.gif"
+         icon="icons/obj16/DiagramDiagramFile.gif"
          extensions="model_diagram"
          default="true"
          class="org.unicase.model.diagram.part.ModelDiagramEditor"
@@ -46,7 +46,7 @@
       <?gmfgen generated="true"?>
   	  <wizard
   	     name="%newWizardName"
-  	     icon="icons/obj16/ModelDiagramFile.gif"
+  	     icon="icons/obj16/DiagramDiagramFile.gif"
   	     category="org.eclipse.ui.Examples"
   	     class="org.unicase.model.diagram.part.ModelCreationWizard"
   	     id="org.unicase.model.diagram.part.ModelCreationWizardID">
@@ -135,16 +135,6 @@
             <popupStructuredContributionCriteria objectClass="org.unicase.model.diagram.edit.parts.FunctionalRequirementNameEditPart"/>
             <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
             <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
-         </popupContribution>
-         <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-            <popupStructuredContributionCriteria objectClass="org.unicase.model.diagram.edit.parts.FunctionalRequirementName2EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
-         </popupContribution>
-         <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-            <popupStructuredContributionCriteria objectClass="org.unicase.model.diagram.edit.parts.FunctionalRequirementRefinedRequirementEditPart"/>
-            <popupAction path="/editGroup" id="deleteFromModelAction"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
          </popupContribution>
       </contributionItemProvider>
    </extension>
@@ -296,42 +286,25 @@
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
       <?gmfgen generated="true"?>
-      <metamodel nsURI="http://unicase.org/model">
+      <metamodel nsURI="http://unicase.org/model/diagram">
          <metamodelType
-               id="org.unicase.diagram.FunctionalRequirement_79"
-               name="%metatype.name.FunctionalRequirement_79"
+               id="org.unicase.diagram.MEDiagram_79"
+               name="%metatype.name.MEDiagram_79"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="FunctionalRequirement"
+               eclass="MEDiagram"
                edithelper="org.unicase.model.diagram.edit.helpers.FunctionalRequirementEditHelper">
             <param name="semanticHint" value="79"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://unicase.org/model">
-         <specializationType
-               id="org.unicase.diagram.FunctionalRequirement_1001"
-               name="%metatype.name.FunctionalRequirement_1001"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.unicase.diagram.FunctionalRequirement_79"/>
+      <metamodel nsURI="http://unicase.org/model/classes">
+         <metamodelType
+               id="org.unicase.diagram.Class_1001"
+               name="%metatype.name.Class_1001"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Class"
+               edithelper="org.unicase.model.diagram.edit.helpers.ClassEditHelper">
             <param name="semanticHint" value="1001"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://unicase.org/model">
-         <specializationType
-               id="org.unicase.diagram.FunctionalRequirement_3001"
-               name="%metatype.name.FunctionalRequirement_3001"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.unicase.diagram.FunctionalRequirement_79"/>
-            <param name="semanticHint" value="3001"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://unicase.org/model">
-         <specializationType
-               id="org.unicase.diagram.FunctionalRequirementRefinedRequirement_3002"
-               name="%metatype.name.FunctionalRequirementRefinedRequirement_3002"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="3002"/>
-         </specializationType>
+         </metamodelType>
       </metamodel>
    </extension>
 
@@ -345,10 +318,8 @@
          </enablement>
       </clientContext> 
       <binding context="ModelClientContext">
-         <elementType ref="org.unicase.diagram.FunctionalRequirement_79"/>
-         <elementType ref="org.unicase.diagram.FunctionalRequirement_1001"/>
-         <elementType ref="org.unicase.diagram.FunctionalRequirement_3001"/>
-         <elementType ref="org.unicase.diagram.FunctionalRequirementRefinedRequirement_3002"/>
+         <elementType ref="org.unicase.diagram.MEDiagram_79"/>
+         <elementType ref="org.unicase.diagram.Class_1001"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
@@ -398,7 +369,7 @@
             priority="normal" 
             contentProvider="org.unicase.model.diagram.navigator.ModelNavigatorContentProvider" 
             labelProvider="org.unicase.model.diagram.navigator.ModelNavigatorLabelProvider"
-            icon="icons/obj16/ModelDiagramFile.gif"
+            icon="icons/obj16/DiagramDiagramFile.gif"
             activeByDefault="true">
          <triggerPoints>
             <or>
@@ -434,7 +405,7 @@
             priority="normal" 
             contentProvider="org.unicase.model.diagram.navigator.ModelDomainNavigatorContentProvider" 
             labelProvider="org.unicase.model.diagram.navigator.ModelDomainNavigatorLabelProvider"
-            icon="icons/obj16/ModelDiagramFile.gif"
+            icon="icons/obj16/DiagramDiagramFile.gif"
             activeByDefault="true">
          <triggerPoints>
             <or>

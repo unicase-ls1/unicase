@@ -21,9 +21,11 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+import org.unicase.model.classes.provider.ClassesItemProviderAdapterFactory;
 import org.unicase.model.diagram.provider.DiagramItemProviderAdapterFactory;
 import org.unicase.model.organization.provider.OrganizationItemProviderAdapterFactory;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
+import org.unicase.model.task.provider.TaskItemProviderAdapterFactory;
 
 /**
  * @generated
@@ -105,7 +107,9 @@ public class ModelDiagramEditorPlugin extends AbstractUIPlugin {
 	protected void fillItemProviderFactories(List factories) {
 		factories.add(new ModelItemProviderAdapterFactory());
 		factories.add(new OrganizationItemProviderAdapterFactory());
+		factories.add(new TaskItemProviderAdapterFactory());
 		factories.add(new DiagramItemProviderAdapterFactory());
+		factories.add(new ClassesItemProviderAdapterFactory());
 		factories.add(new EcoreItemProviderAdapterFactory());
 		factories.add(new NotationItemProviderAdapterFactory());
 		factories.add(new ResourceItemProviderAdapterFactory());

@@ -88,7 +88,7 @@ public class ModelCreationWizard extends Wizard implements INewWizard {
 		this.selection = selection;
 		setWindowTitle(Messages.ModelCreationWizardTitle);
 		setDefaultPageImageDescriptor(ModelDiagramEditorPlugin
-				.getBundledImageDescriptor("icons/wizban/NewModelWizard.gif")); //$NON-NLS-1$
+				.getBundledImageDescriptor("icons/wizban/NewDiagramWizard.gif")); //$NON-NLS-1$
 		setNeedsProgressMonitor(true);
 	}
 

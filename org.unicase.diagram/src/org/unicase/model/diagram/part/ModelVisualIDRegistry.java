@@ -5,12 +5,11 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.unicase.model.FunctionalRequirement;
-import org.unicase.model.ModelPackage;
+import org.unicase.model.classes.ClassesPackage;
+import org.unicase.model.diagram.DiagramPackage;
+import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.edit.parts.FunctionalRequirement2EditPart;
-import org.unicase.model.diagram.edit.parts.FunctionalRequirement3EditPart;
 import org.unicase.model.diagram.edit.parts.FunctionalRequirementEditPart;
-import org.unicase.model.diagram.edit.parts.FunctionalRequirementName2EditPart;
 import org.unicase.model.diagram.edit.parts.FunctionalRequirementNameEditPart;
 
 /**
@@ -88,9 +87,9 @@ public class ModelVisualIDRegistry {
 		if (domainElement == null) {
 			return -1;
 		}
-		if (ModelPackage.eINSTANCE.getFunctionalRequirement().isSuperTypeOf(
+		if (DiagramPackage.eINSTANCE.getMEDiagram().isSuperTypeOf(
 				domainElement.eClass())
-				&& isDiagram((FunctionalRequirement) domainElement)) {
+				&& isDiagram((MEDiagram) domainElement)) {
 			return FunctionalRequirementEditPart.VISUAL_ID;
 		}
 		return -1;
@@ -121,8 +120,8 @@ public class ModelVisualIDRegistry {
 		}
 		switch (containerVisualID) {
 		case FunctionalRequirementEditPart.VISUAL_ID:
-			if (ModelPackage.eINSTANCE.getFunctionalRequirement()
-					.isSuperTypeOf(domainElement.eClass())) {
+			if (ClassesPackage.eINSTANCE.getClass_().isSuperTypeOf(
+					domainElement.eClass())) {
 				return FunctionalRequirement2EditPart.VISUAL_ID;
 			}
 			break;
@@ -161,11 +160,6 @@ public class ModelVisualIDRegistry {
 				return true;
 			}
 			break;
-		case FunctionalRequirement3EditPart.VISUAL_ID:
-			if (FunctionalRequirementName2EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
 		}
 		return false;
 	}
@@ -177,10 +171,6 @@ public class ModelVisualIDRegistry {
 		if (domainElement == null) {
 			return -1;
 		}
-		if (ModelPackage.eINSTANCE.getFunctionalRequirement().isSuperTypeOf(
-				domainElement.eClass())) {
-			return FunctionalRequirement3EditPart.VISUAL_ID;
-		}
 		return -1;
 	}
 
@@ -190,7 +180,7 @@ public class ModelVisualIDRegistry {
 	 * 
 	 * @generated
 	 */
-	private static boolean isDiagram(FunctionalRequirement element) {
+	private static boolean isDiagram(MEDiagram element) {
 		return true;
 	}
 

@@ -243,52 +243,17 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String FunctionalRequirement1CreationTool_title;
+	public static String Class1CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String FunctionalRequirement1CreationTool_desc;
+	public static String Class1CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
 	public static String CommandName_OpenDiagram;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_FunctionalRequirement_79_links;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_FunctionalRequirement_1001_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_FunctionalRequirement_1001_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_FunctionalRequirement_3001_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_FunctionalRequirement_3001_source;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_FunctionalRequirementRefinedRequirement_3002_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_FunctionalRequirementRefinedRequirement_3002_source;
 
 	/**
 	 * @generated

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.Map;
 
-import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
@@ -20,15 +19,12 @@ import org.eclipse.emf.ecore.xmi.DOMHandler;
 import org.eclipse.emf.ecore.xmi.DOMHelper;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xml.type.AnyType;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.unicase.model.FunctionalRequirement;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.model.diagram.edit.parts.FunctionalRequirementEditPart;
+import org.unicase.model.diagram.edit.parts.ModelEditPartFactory;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.w3c.dom.Document;
@@ -50,20 +46,15 @@ public class MEDiagramResource extends ResourceImpl implements Resource , Resour
 	}
 
 	public EList<EObject> getContents() {
-		FunctionalRequirement fr= org.unicase.model.ModelFactory.eINSTANCE.createFunctionalRequirement();
-		FunctionalRequirement fr2= org.unicase.model.ModelFactory.eINSTANCE.createFunctionalRequirement();
-		fr2.setName("Jonas kommt voran");
-		fr.getRefiningRequirements().add(fr2);
+		
 		MEDiagram meDiagram = DiagramFactory.eINSTANCE.createMEDiagram();
 		Workspace workspace = WorkspaceManager.getInstance()
 		.getCurrentWorkspace();
-		workspace.getProjectSpaces().get(0).getProject().addModelElement(meDiagram);
-		super.getContents().add(fr);
+//		workspace.getProjectSpaces().get(0).getProject().addModelElement(meDiagram);
 //		workspace.getProjectSpaces().get(0).getProject().addModelElement(fr);
 	//JH: Check why isnt it MEDiagram
 		Diagram diagram = ViewService.createDiagram(
-				fr,
-				FunctionalRequirementEditPart.MODEL_ID,
+				meDiagram,"Model",
 				ModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 		super.getContents().add(diagram);
 	

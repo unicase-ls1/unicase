@@ -47,8 +47,6 @@ import org.unicase.model.diagram.navigator.ModelNavigatorItem;
 public class ModelDiagramEditor extends DiagramDocumentEditor implements
 		IGotoMarker {
 
-	
-
 	/**
 	 * @generated
 	 */

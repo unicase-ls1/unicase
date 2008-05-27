@@ -50,6 +50,8 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
 import org.unicase.model.FunctionalRequirement;
 import org.unicase.model.ModelFactory;
+import org.unicase.model.diagram.DiagramFactory;
+import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.edit.parts.FunctionalRequirementEditPart;
 
 /**
@@ -170,7 +172,7 @@ public class ModelDiagramEditorUtil {
 			protected CommandResult doExecuteWithResult(
 					IProgressMonitor monitor, IAdaptable info)
 					throws ExecutionException {
-				FunctionalRequirement model = createInitialModel();
+				MEDiagram model = createInitialModel();
 				attachModelToResource(model, diagramResource);
 
 				Diagram diagram = ViewService.createDiagram(model,
@@ -213,8 +215,8 @@ public class ModelDiagramEditorUtil {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static FunctionalRequirement createInitialModel() {
-		return ModelFactory.eINSTANCE.createFunctionalRequirement();
+	private static MEDiagram createInitialModel() {
+		return DiagramFactory.eINSTANCE.createMEDiagram();
 	}
 
 	/**
@@ -223,8 +225,7 @@ public class ModelDiagramEditorUtil {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static void attachModelToResource(FunctionalRequirement model,
-			Resource resource) {
+	private static void attachModelToResource(MEDiagram model, Resource resource) {
 		resource.getContents().add(model);
 	}
 

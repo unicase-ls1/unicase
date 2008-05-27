@@ -128,22 +128,22 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	private long computeModificationStamp(ResourceSetInfo info) {
 		int result = 0;
-//		for (Iterator it = info.getResourceSet().getResources().iterator(); it
-//				.hasNext();) {
-//			Resource nextResource = (Resource) it.next();
-//			IFile file = WorkspaceSynchronizer.getFile(nextResource);
-//			if (file != null) {
-//				if (file.getLocation() != null) {
-//					result += file.getLocation().toFile().lastModified();
-//				} else {
-//					result += file.getModificationStamp();
-//				}
-//			}
-//		}
+		//		for (Iterator it = info.getResourceSet().getResources().iterator(); it
+		//				.hasNext();) {
+		//			Resource nextResource = (Resource) it.next();
+		//			IFile file = WorkspaceSynchronizer.getFile(nextResource);
+		//			if (file != null) {
+		//				if (file.getLocation() != null) {
+		//					result += file.getLocation().toFile().lastModified();
+		//				} else {
+		//					result += file.getModificationStamp();
+		//				}
+		//			}
+		//		}
 		return result;
 	}
 
@@ -201,7 +201,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void setDocumentContent(IDocument document, IEditorInput element)
 			throws CoreException {
@@ -220,7 +220,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 						uri.trimFragment(), false);
 				if (resource == null) {
 					resource = domain.getResourceSet().createResource(
-							uri.trimFragment(),"MEDiagram");
+							uri.trimFragment(), "MEDiagram");
 				}
 				if (!resource.isLoaded()) {
 					try {

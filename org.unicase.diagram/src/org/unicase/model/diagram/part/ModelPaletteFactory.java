@@ -32,22 +32,21 @@ public class ModelPaletteFactory {
 		PaletteGroup paletteContainer = new PaletteGroup(
 				Messages.Default1Group_title);
 		paletteContainer.setDescription(Messages.Default1Group_desc);
-		paletteContainer.add(createFunctionalRequirement1CreationTool());
+		paletteContainer.add(createClass1CreationTool());
 		return paletteContainer;
 	}
 
 	/**
 	 * @generated
 	 */
-	private ToolEntry createFunctionalRequirement1CreationTool() {
+	private ToolEntry createClass1CreationTool() {
 		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types.add(ModelElementTypes.FunctionalRequirement_1001);
+		types.add(ModelElementTypes.Class_1001);
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.FunctionalRequirement1CreationTool_title,
-				Messages.FunctionalRequirement1CreationTool_desc, types);
-		entry
-				.setSmallIcon(ModelElementTypes
-						.getImageDescriptor(ModelElementTypes.FunctionalRequirement_1001));
+				Messages.Class1CreationTool_title,
+				Messages.Class1CreationTool_desc, types);
+		entry.setSmallIcon(ModelElementTypes
+				.getImageDescriptor(ModelElementTypes.Class_1001));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -76,35 +75,6 @@ public class ModelPaletteFactory {
 		 */
 		public Tool createTool() {
 			Tool tool = new UnspecifiedTypeCreationTool(elementTypes);
-			tool.setProperties(getToolProperties());
-			return tool;
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private static class LinkToolEntry extends ToolEntry {
-
-		/**
-		 * @generated
-		 */
-		private final List relationshipTypes;
-
-		/**
-		 * @generated
-		 */
-		private LinkToolEntry(String title, String description,
-				List relationshipTypes) {
-			super(title, description, null, null);
-			this.relationshipTypes = relationshipTypes;
-		}
-
-		/**
-		 * @generated
-		 */
-		public Tool createTool() {
-			Tool tool = new UnspecifiedTypeConnectionTool(relationshipTypes);
 			tool.setProperties(getToolProperties());
 			return tool;
 		}
