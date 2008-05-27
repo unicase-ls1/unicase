@@ -1,4 +1,4 @@
-package org.unicase.tableview.viewer;
+package org.unicase.ui.tableview.viewer;
 
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
