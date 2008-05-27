@@ -50,7 +50,7 @@ public interface EsmodelPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "org.unicase.esmodel";
+	String eNS_PREFIX = "org.unicase.emfstore.model";
 
 	/**
 	 * The singleton instance of the package.

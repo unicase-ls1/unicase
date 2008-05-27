@@ -13,7 +13,7 @@
             name="EmfStore Browser"
             icon="icons/sample.gif"
             category="org.unicase"
-            class="org.unicase.esbrowser.views.RepositoryView"
+            class="org.unicase.ui.esbrowser.views.RepositoryView"
             id="org.unicase.ui.repository.views.RepositoryView">
       </view>
    </extension>
