@@ -1,4 +1,4 @@
-package org.unicase.tableview;
+package org.unicase.ui.tableview;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;

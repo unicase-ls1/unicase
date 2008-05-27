@@ -1,4 +1,4 @@
-package org.unicase.tableview.viewer;
+package org.unicase.ui.tableview.viewer;
 
 import java.util.ArrayList;
 import java.util.List;
