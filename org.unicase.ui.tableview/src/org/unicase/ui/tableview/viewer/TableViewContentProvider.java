@@ -17,7 +17,6 @@ public class TableViewContentProvider implements IStructuredContentProvider	{
 	 * ({@inheritDoc})
 	 * 
 	 */
-	@Override
 	public Object[] getElements(Object inputElement) {
 		
 		return (ModelElement[])inputElement;
@@ -28,7 +27,6 @@ public class TableViewContentProvider implements IStructuredContentProvider	{
 	 * ({@inheritDoc})
 	 * 
 	 */
-	@Override
 	public void dispose() {
 			
 	}
@@ -38,7 +36,6 @@ public class TableViewContentProvider implements IStructuredContentProvider	{
 	 *({@inheritDoc})
 	 * 
 	 */
-	@Override
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 				
 	}

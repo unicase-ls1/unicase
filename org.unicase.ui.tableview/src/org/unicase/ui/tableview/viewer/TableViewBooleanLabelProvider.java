@@ -101,7 +101,6 @@ public class TableViewBooleanLabelProvider extends OwnerDrawLabelProvider
 	 * Boolean attributes are shown using a checkbox image. Therefore getText() 
 	 * returns null.  
 	 */
-	@Override
 	public String getText(Object element) {
 		return "";
 	}
