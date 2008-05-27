@@ -9,7 +9,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.edit.ui,
  org.unicase.model.edit,
  org.eclipse.ui.navigator,
- org.unicase.meeditor,
+ org.unicase.ui.meeditor,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.unicase.workspace.edit

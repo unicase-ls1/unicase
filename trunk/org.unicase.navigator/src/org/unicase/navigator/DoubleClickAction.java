@@ -8,9 +8,9 @@ import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.meeditor.MEEditorInput;
 import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.MEDiagram;
+import org.unicase.ui.meeditor.MEEditorInput;
 
 public class DoubleClickAction extends Action implements
 		ISelectionChangedListener {
