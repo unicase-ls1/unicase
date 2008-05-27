@@ -1,4 +1,4 @@
-package org.unicase.navigator;
+package org.unicase.ui.navigator;
 
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.navigator.CommonActionProvider;

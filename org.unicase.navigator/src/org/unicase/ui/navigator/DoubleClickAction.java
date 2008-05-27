@@ -1,4 +1,4 @@
-package org.unicase.navigator;
+package org.unicase.ui.navigator;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.MessageDialog;

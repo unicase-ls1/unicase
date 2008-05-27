@@ -1,4 +1,4 @@
-package org.unicase.navigator;
+package org.unicase.ui.navigator;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;

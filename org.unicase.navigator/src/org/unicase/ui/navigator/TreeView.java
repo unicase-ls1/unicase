@@ -1,4 +1,4 @@
-package org.unicase.navigator;
+package org.unicase.ui.navigator;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.ui.navigator.CommonNavigator;
