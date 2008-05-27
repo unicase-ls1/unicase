@@ -43,7 +43,7 @@ public class OpenModelElementHandler extends AbstractHandler  {
 			try {
 					PlatformUI.getWorkbench().getActiveWorkbenchWindow()
 							.getActivePage().openEditor(input,
-									"org.unicase.meeditor", true);
+									"org.unicase.ui.meeditor", true);
 				} catch (PartInitException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

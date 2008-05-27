@@ -111,7 +111,7 @@ public class MEEditorPage extends FormPage {
 		service.addSourceProvider(sourceProvider);
 		menuService.populateContributionManager((ContributionManager) form
 				.getToolBarManager(),
-				"toolbar:org.unicase.meeditor.MEEditorPage");
+				"toolbar:org.unicase.ui.meeditor.MEEditorPage");
 		form.getToolBarManager().update(true);
 	}
 

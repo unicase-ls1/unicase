@@ -9,8 +9,8 @@
       </category>
       <view
             category="org.unicase"
-            class="org.unicase.tableview.viewer.TableView"
-            id="org.unicase.tableview.tableview"
+            class="org.unicase.ui.tableview.viewer.TableView"
+            id="org.unicase.ui.tableview.tableview"
             name="Table View"
             restorable="true">
       </view>

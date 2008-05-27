@@ -61,7 +61,7 @@
   <extension
         point="org.eclipse.ui.menus">
      <menuContribution
-           locationURI="popup:org.unicase.navigator.viewer?after=org.unicase.model.edit.worksapceCommands">
+           locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.model.edit.worksapceCommands">
         <command
               commandId="org.unicase.model.edit.annotateActionItem"
               icon="icons/full/ctool16/AnnotateWithActionItem.gif"
@@ -78,7 +78,7 @@
         </command>
      </menuContribution>
      <menuContribution
-           locationURI="toolbar:org.unicase.meeditor.MEEditorPage?after=additions">
+           locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=additions">
         <command
               commandId="org.unicase.model.edit.annotateActionItem"
               icon="icons/full/ctool16/AnnotateWithActionItem.gif"
@@ -127,7 +127,7 @@
   <extension
         point="org.eclipse.ui.menus">
      <menuContribution
-           locationURI="popup:org.unicase.navigator.viewer?before=additions">
+           locationURI="popup:org.unicase.ui.navigator.viewer?before=additions">
         <command
               commandId="org.unicase.model.edit.commitWorkspace"
               label="Commit Workspace"

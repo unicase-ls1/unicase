@@ -29,10 +29,10 @@ import org.unicase.model.task.TaskFactory;
 public class AnnotateActionItemHandler extends AbstractHandler {
 
 	
-	private static final String MEEDITOR_ID = "org.unicase.meeditor";
-	private static final String NAVIGATOR_ID= "org.unicase.navigator.viewer";
+	private static final String MEEDITOR_ID = "org.unicase.ui.meeditor";
+	private static final String NAVIGATOR_ID= "org.unicase.ui.navigator.viewer";
 	private static final String MEEDITOR_EVALUATIONSERVICE_VARIABLE = "activeModelelement";
-	private static final String MEEDITOR_OPENMODELELEMENT_COMMAND_ID = "org.unicase.meeditor.openModelElement";
+	private static final String MEEDITOR_OPENMODELELEMENT_COMMAND_ID = "org.unicase.ui.meeditor.openModelElement";
 	
 	private ExecutionEvent event;
 	
@@ -127,7 +127,7 @@ public class AnnotateActionItemHandler extends AbstractHandler {
 	
 	private void openActionItem (ActionItem ai) {
 		// ZH: this method open the ai using and the editor
-		// 	   in org.unicase.meeditor plug-in.
+		// 	   in org.unicase.ui.meeditor plug-in.
 		//	   We had to do this indirectly using a command in 
 		//	   meeditor plug-in, because we could not reference this 
 		//     this plug-in in model.edit plug-in (circular reference)
