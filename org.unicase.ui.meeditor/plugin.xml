@@ -4,24 +4,24 @@
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            class="org.unicase.meeditor.MEEditor"
+            class="org.unicase.ui.meeditor.MEEditor"
             default="false"
-            id="org.unicase.meeditor"
+            id="org.unicase.ui.meeditor"
             name="Model Element Editor">
       </editor>
    </extension>
    <extension
          point="org.eclipse.ui.commands">
       <command
-            id="org.unicase.meeditor.openModelElement"
+            id="org.unicase.ui.meeditor.openModelElement"
             name="OpenModelElement">
       </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="org.unicase.meeditor.commands.OpenModelElementHandler"
-            commandId="org.unicase.meeditor.openModelElement">
+            class="org.unicase.ui.meeditor.commands.OpenModelElementHandler"
+            commandId="org.unicase.ui.meeditor.openModelElement">
       </handler>
    </extension>
 

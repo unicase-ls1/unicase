@@ -22,7 +22,7 @@ public class MEHyperLinkAdapter extends HyperlinkAdapter implements
 	public void linkActivated(HyperlinkEvent event) {
 		MEEditorInput input = new MEEditorInput(me);
 		try {
-			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(input, "org.unicase.meeditor",true);
+			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(input, "org.unicase.ui.meeditor",true);
 		} catch (PartInitException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
