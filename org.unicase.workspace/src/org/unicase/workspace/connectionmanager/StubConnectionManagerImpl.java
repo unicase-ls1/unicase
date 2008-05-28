@@ -17,13 +17,7 @@ import org.unicase.emfstore.model.changemanagment.LogMessage;
 import org.unicase.emfstore.model.changemanagment.PrimaryVersionSpec;
 import org.unicase.emfstore.model.changemanagment.VersionSpec;
 import org.unicase.emfstore.model.changemanagment.impl.ChangemanagmentFactoryImpl;
-import org.unicase.model.FunctionalRequirement;
-import org.unicase.model.ModelFactory;
 import org.unicase.model.Project;
-import org.unicase.model.diagram.DiagramFactory;
-import org.unicase.model.diagram.MEDiagram;
-import org.unicase.model.document.CompositeSection;
-import org.unicase.model.document.LeafSection;
 import org.unicase.workspace.ServerInfo;
 
 public class StubConnectionManagerImpl implements ConnectionManager {
