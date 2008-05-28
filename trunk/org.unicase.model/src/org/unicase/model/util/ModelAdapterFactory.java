@@ -17,6 +17,7 @@ import org.unicase.model.*;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.document.Section;
+import org.unicase.model.requirement.FunctionalRequirement;
 
 /**
  * <!-- begin-user-doc -->
@@ -79,10 +80,6 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 				return createModelElementAdapter();
 			}
 			@Override
-			public Adapter caseFunctionalRequirement(FunctionalRequirement object) {
-				return createFunctionalRequirementAdapter();
-			}
-			@Override
 			public Adapter caseProject(Project object) {
 				return createProjectAdapter();
 			}
@@ -129,20 +126,6 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createModelElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.FunctionalRequirement <em>Functional Requirement</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.model.FunctionalRequirement
-	 * @generated
-	 */
-	public Adapter createFunctionalRequirementAdapter() {
 		return null;
 	}
 

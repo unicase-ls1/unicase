@@ -28,16 +28,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="actionItems" upperBound="-1"
         eType="#//task/ActionItem"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FunctionalRequirement" eSuperTypes="#//ModelElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reviewed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="storyPoints" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="priority" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="refiningRequirements" upperBound="-1"
-        eType="#//FunctionalRequirement" containment="true" eOpposite="#//FunctionalRequirement/refinedRequirement"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="refinedRequirement" eType="#//FunctionalRequirement"
-        eOpposite="#//FunctionalRequirement/refiningRequirements"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Project">
     <eOperations name="addModelElement">
       <eParameters name="modelElement" eType="#//ModelElement"/>
@@ -107,6 +97,17 @@
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="requirement" nsURI="http://unicase.org/model/requirement" nsPrefix="org.unicase.model.requirement">
-    <eClassifiers xsi:type="ecore:EClass" name="NonFunctionalRequirement"/>
+    <eClassifiers xsi:type="ecore:EClass" name="NonFunctionalRequirement" eSuperTypes="#//ModelElement"/>
+    <eClassifiers xsi:type="ecore:EClass" name="FunctionalRequirement" eSuperTypes="#//ModelElement">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="reviewed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="storyPoints" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="priority" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="refiningRequirements"
+          upperBound="-1" eType="#//requirement/FunctionalRequirement" containment="true"
+          eOpposite="#//requirement/FunctionalRequirement/refinedRequirement"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="refinedRequirement" eType="#//requirement/FunctionalRequirement"
+          eOpposite="#//requirement/FunctionalRequirement/refiningRequirements"/>
+    </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

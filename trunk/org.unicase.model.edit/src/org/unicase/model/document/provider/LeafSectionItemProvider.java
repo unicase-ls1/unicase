@@ -42,6 +42,7 @@ import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.ModelElementItemProvider;
 
+import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.task.TaskFactory;
 
 /**
@@ -207,11 +208,6 @@ public class LeafSectionItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-				 ModelFactory.eINSTANCE.createFunctionalRequirement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				 OrganizationFactory.eINSTANCE.createOrgUnit()));
 
 		newChildDescriptors.add
@@ -238,6 +234,16 @@ public class LeafSectionItemProvider
 			(createChildParameter
 				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				 ClassesFactory.eINSTANCE.createClass()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 RequirementFactory.eINSTANCE.createNonFunctionalRequirement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 RequirementFactory.eINSTANCE.createFunctionalRequirement()));
 	}
 
 	/**

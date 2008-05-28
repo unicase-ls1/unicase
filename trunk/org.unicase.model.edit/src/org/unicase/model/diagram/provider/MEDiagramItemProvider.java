@@ -30,6 +30,7 @@ import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.ModelElementItemProvider;
+import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.task.TaskFactory;
 
 /**
@@ -204,11 +205,6 @@ public class MEDiagramItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 ModelFactory.eINSTANCE.createFunctionalRequirement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
 				 OrganizationFactory.eINSTANCE.createOrgUnit()));
 
 		newChildDescriptors.add
@@ -240,6 +236,16 @@ public class MEDiagramItemProvider
 			(createChildParameter
 				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
 				 DocumentFactory.eINSTANCE.createCompositeSection()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				 RequirementFactory.eINSTANCE.createNonFunctionalRequirement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				 RequirementFactory.eINSTANCE.createFunctionalRequirement()));
 	}
 
 	/**

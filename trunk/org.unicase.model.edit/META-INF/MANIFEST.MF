@@ -10,10 +10,12 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.unicase.model.classes.provider,
  org.unicase.model.diagram.provider,
+ org.unicase.model.document.provider,
  org.unicase.model.edit.commands,
  org.unicase.model.edit.uihint,
  org.unicase.model.organization.provider,
  org.unicase.model.provider,
+ org.unicase.model.requirement.provider,
  org.unicase.model.task.provider
 Require-Bundle: org.eclipse.core.runtime,
  org.unicase.model;visibility:=reexport,

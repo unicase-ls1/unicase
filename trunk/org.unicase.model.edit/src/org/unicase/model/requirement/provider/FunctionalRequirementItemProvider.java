@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.model.provider;
+package org.unicase.model.requirement.provider;
 
 
 import java.util.Collection;
@@ -12,7 +12,11 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -22,12 +26,16 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.model.FunctionalRequirement;
-import org.unicase.model.ModelFactory;
-import org.unicase.model.ModelPackage;
+
+import org.unicase.model.provider.ModelEditPlugin;
+import org.unicase.model.provider.ModelElementItemProvider;
+
+import org.unicase.model.requirement.FunctionalRequirement;
+import org.unicase.model.requirement.RequirementFactory;
+import org.unicase.model.requirement.RequirementPackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.FunctionalRequirement} object.
+ * This is the item provider adapter for a {@link org.unicase.model.requirement.FunctionalRequirement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -65,8 +73,6 @@ public class FunctionalRequirementItemProvider
 			addStoryPointsPropertyDescriptor(object);
 			addPriorityPropertyDescriptor(object);
 			addDatePropertyDescriptor(object);
-			addRefiningRequirementsPropertyDescriptor(object);
-			addRefinedRequirementPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -84,7 +90,7 @@ public class FunctionalRequirementItemProvider
 				 getResourceLocator(),
 				 getString("_UI_FunctionalRequirement_reviewed_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_reviewed_feature", "_UI_FunctionalRequirement_type"),
-				 ModelPackage.Literals.FUNCTIONAL_REQUIREMENT__REVIEWED,
+				 RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__REVIEWED,
 				 true,
 				 false,
 				 false,
@@ -106,7 +112,7 @@ public class FunctionalRequirementItemProvider
 				 getResourceLocator(),
 				 getString("_UI_FunctionalRequirement_storyPoints_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_storyPoints_feature", "_UI_FunctionalRequirement_type"),
-				 ModelPackage.Literals.FUNCTIONAL_REQUIREMENT__STORY_POINTS,
+				 RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__STORY_POINTS,
 				 true,
 				 false,
 				 false,
@@ -128,7 +134,7 @@ public class FunctionalRequirementItemProvider
 				 getResourceLocator(),
 				 getString("_UI_FunctionalRequirement_priority_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_priority_feature", "_UI_FunctionalRequirement_type"),
-				 ModelPackage.Literals.FUNCTIONAL_REQUIREMENT__PRIORITY,
+				 RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__PRIORITY,
 				 true,
 				 false,
 				 false,
@@ -150,55 +156,11 @@ public class FunctionalRequirementItemProvider
 				 getResourceLocator(),
 				 getString("_UI_FunctionalRequirement_date_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_date_feature", "_UI_FunctionalRequirement_type"),
-				 ModelPackage.Literals.FUNCTIONAL_REQUIREMENT__DATE,
+				 RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__DATE,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Refining Requirements feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addRefiningRequirementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_FunctionalRequirement_refiningRequirements_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_refiningRequirements_feature", "_UI_FunctionalRequirement_type"),
-				 ModelPackage.Literals.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Refined Requirement feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addRefinedRequirementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_FunctionalRequirement_refinedRequirement_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_refinedRequirement_feature", "_UI_FunctionalRequirement_type"),
-				 ModelPackage.Literals.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT,
-				 true,
-				 false,
-				 true,
-				 null,
 				 null,
 				 null));
 	}
@@ -215,7 +177,7 @@ public class FunctionalRequirementItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ModelPackage.Literals.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS);
+			childrenFeatures.add(RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -270,13 +232,13 @@ public class FunctionalRequirementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(FunctionalRequirement.class)) {
-			case ModelPackage.FUNCTIONAL_REQUIREMENT__REVIEWED:
-			case ModelPackage.FUNCTIONAL_REQUIREMENT__STORY_POINTS:
-			case ModelPackage.FUNCTIONAL_REQUIREMENT__PRIORITY:
-			case ModelPackage.FUNCTIONAL_REQUIREMENT__DATE:
+			case RequirementPackage.FUNCTIONAL_REQUIREMENT__REVIEWED:
+			case RequirementPackage.FUNCTIONAL_REQUIREMENT__STORY_POINTS:
+			case RequirementPackage.FUNCTIONAL_REQUIREMENT__PRIORITY:
+			case RequirementPackage.FUNCTIONAL_REQUIREMENT__DATE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case ModelPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS:
+			case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -296,8 +258,19 @@ public class FunctionalRequirementItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ModelPackage.Literals.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS,
-				 ModelFactory.eINSTANCE.createFunctionalRequirement()));
+				(RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS,
+				 RequirementFactory.eINSTANCE.createFunctionalRequirement()));
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return ModelEditPlugin.INSTANCE;
 	}
 
 }

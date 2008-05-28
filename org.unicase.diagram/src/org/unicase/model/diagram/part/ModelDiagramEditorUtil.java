@@ -48,12 +48,12 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
-import org.unicase.model.FunctionalRequirement;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.edit.parts.FunctionalRequirementEditPart;
 import org.unicase.model.diagram.edit.parts.MEDiagramEditPart;
+import org.unicase.model.requirement.FunctionalRequirement;
 
 /**
  * @generated

@@ -12,16 +12,12 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.unicase.model.*;
-import org.unicase.model.FunctionalRequirement;
-import org.unicase.model.ModelElementId;
-import org.unicase.model.ModelFactory;
-import org.unicase.model.ModelPackage;
-import org.unicase.model.Project;
-import org.unicase.model.ReaderInfo;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.document.impl.CompositeSectionImpl;
 import org.unicase.model.document.impl.LeafSectionImpl;
+import org.unicase.model.requirement.FunctionalRequirement;
+import org.unicase.model.requirement.impl.FunctionalRequirementImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
@@ -65,7 +61,6 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case ModelPackage.FUNCTIONAL_REQUIREMENT: return createFunctionalRequirement();
 			case ModelPackage.PROJECT: return createProject();
 			case ModelPackage.MODEL_ELEMENT_ID: return createModelElementId();
 			case ModelPackage.READER_INFO: return createReaderInfo();
@@ -73,17 +68,6 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public FunctionalRequirement createFunctionalRequirement() {
-		FunctionalRequirementImpl functionalRequirement = new FunctionalRequirementImpl();
-		return functionalRequirement;
-	}
-
-
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

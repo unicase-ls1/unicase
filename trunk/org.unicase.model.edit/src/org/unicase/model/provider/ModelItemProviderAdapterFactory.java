@@ -74,29 +74,6 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.model.FunctionalRequirement} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected FunctionalRequirementItemProvider functionalRequirementItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.model.FunctionalRequirement}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createFunctionalRequirementAdapter() {
-		if (functionalRequirementItemProvider == null) {
-			functionalRequirementItemProvider = new FunctionalRequirementItemProvider(this);
-		}
-
-		return functionalRequirementItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.unicase.model.Project} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -264,7 +241,6 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	 * @generated
 	 */
 	public void dispose() {
-		if (functionalRequirementItemProvider != null) functionalRequirementItemProvider.dispose();
 		if (projectItemProvider != null) projectItemProvider.dispose();
 		if (modelElementIdItemProvider != null) modelElementIdItemProvider.dispose();
 		if (readerInfoItemProvider != null) readerInfoItemProvider.dispose();

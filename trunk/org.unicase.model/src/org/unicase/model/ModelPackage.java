@@ -124,124 +124,6 @@ public interface ModelPackage extends EPackage {
 	int MODEL_ELEMENT_FEATURE_COUNT = 5;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.model.impl.FunctionalRequirementImpl <em>Functional Requirement</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.unicase.model.impl.FunctionalRequirementImpl
-	 * @see org.unicase.model.impl.ModelPackageImpl#getFunctionalRequirement()
-	 * @generated
-	 */
-	int FUNCTIONAL_REQUIREMENT = 1;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTIONAL_REQUIREMENT__NAME = MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTIONAL_REQUIREMENT__DESCRIPTION = MODEL_ELEMENT__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTIONAL_REQUIREMENT__IDENTIFIER = MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTIONAL_REQUIREMENT__READER_INFOS = MODEL_ELEMENT__READER_INFOS;
-
-	/**
-	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTIONAL_REQUIREMENT__ACTION_ITEMS = MODEL_ELEMENT__ACTION_ITEMS;
-
-	/**
-	 * The feature id for the '<em><b>Reviewed</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTIONAL_REQUIREMENT__REVIEWED = MODEL_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Story Points</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTIONAL_REQUIREMENT__STORY_POINTS = MODEL_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Priority</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTIONAL_REQUIREMENT__PRIORITY = MODEL_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTIONAL_REQUIREMENT__DATE = MODEL_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Refining Requirements</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS = MODEL_ELEMENT_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Refined Requirement</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT = MODEL_ELEMENT_FEATURE_COUNT + 5;
-
-	/**
-	 * The number of structural features of the '<em>Functional Requirement</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTIONAL_REQUIREMENT_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 6;
-
-	/**
 	 * The meta object id for the '{@link org.unicase.model.impl.ProjectImpl <em>Project</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -249,7 +131,7 @@ public interface ModelPackage extends EPackage {
 	 * @see org.unicase.model.impl.ModelPackageImpl#getProject()
 	 * @generated
 	 */
-	int PROJECT = 2;
+	int PROJECT = 1;
 
 	/**
 	 * The feature id for the '<em><b>Model Elements</b></em>' containment reference list.
@@ -278,7 +160,7 @@ public interface ModelPackage extends EPackage {
 	 * @see org.unicase.model.impl.ModelPackageImpl#getUniqueIdentifier()
 	 * @generated
 	 */
-	int UNIQUE_IDENTIFIER = 4;
+	int UNIQUE_IDENTIFIER = 3;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -306,7 +188,7 @@ public interface ModelPackage extends EPackage {
 	 * @see org.unicase.model.impl.ModelPackageImpl#getModelElementId()
 	 * @generated
 	 */
-	int MODEL_ELEMENT_ID = 3;
+	int MODEL_ELEMENT_ID = 2;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -335,7 +217,7 @@ public interface ModelPackage extends EPackage {
 	 * @see org.unicase.model.impl.ModelPackageImpl#getReaderInfo()
 	 * @generated
 	 */
-	int READER_INFO = 5;
+	int READER_INFO = 4;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -428,82 +310,6 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getModelElement_ActionItems();
-
-	/**
-	 * Returns the meta object for class '{@link org.unicase.model.FunctionalRequirement <em>Functional Requirement</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Functional Requirement</em>'.
-	 * @see org.unicase.model.FunctionalRequirement
-	 * @generated
-	 */
-	EClass getFunctionalRequirement();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.FunctionalRequirement#isReviewed <em>Reviewed</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Reviewed</em>'.
-	 * @see org.unicase.model.FunctionalRequirement#isReviewed()
-	 * @see #getFunctionalRequirement()
-	 * @generated
-	 */
-	EAttribute getFunctionalRequirement_Reviewed();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.FunctionalRequirement#getStoryPoints <em>Story Points</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Story Points</em>'.
-	 * @see org.unicase.model.FunctionalRequirement#getStoryPoints()
-	 * @see #getFunctionalRequirement()
-	 * @generated
-	 */
-	EAttribute getFunctionalRequirement_StoryPoints();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.FunctionalRequirement#getPriority <em>Priority</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Priority</em>'.
-	 * @see org.unicase.model.FunctionalRequirement#getPriority()
-	 * @see #getFunctionalRequirement()
-	 * @generated
-	 */
-	EAttribute getFunctionalRequirement_Priority();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.FunctionalRequirement#getDate <em>Date</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Date</em>'.
-	 * @see org.unicase.model.FunctionalRequirement#getDate()
-	 * @see #getFunctionalRequirement()
-	 * @generated
-	 */
-	EAttribute getFunctionalRequirement_Date();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.model.FunctionalRequirement#getRefiningRequirements <em>Refining Requirements</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Refining Requirements</em>'.
-	 * @see org.unicase.model.FunctionalRequirement#getRefiningRequirements()
-	 * @see #getFunctionalRequirement()
-	 * @generated
-	 */
-	EReference getFunctionalRequirement_RefiningRequirements();
-
-	/**
-	 * Returns the meta object for the container reference '{@link org.unicase.model.FunctionalRequirement#getRefinedRequirement <em>Refined Requirement</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Refined Requirement</em>'.
-	 * @see org.unicase.model.FunctionalRequirement#getRefinedRequirement()
-	 * @see #getFunctionalRequirement()
-	 * @generated
-	 */
-	EReference getFunctionalRequirement_RefinedRequirement();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.Project <em>Project</em>}'.
@@ -660,64 +466,6 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MODEL_ELEMENT__ACTION_ITEMS = eINSTANCE.getModelElement_ActionItems();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.model.impl.FunctionalRequirementImpl <em>Functional Requirement</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.unicase.model.impl.FunctionalRequirementImpl
-		 * @see org.unicase.model.impl.ModelPackageImpl#getFunctionalRequirement()
-		 * @generated
-		 */
-		EClass FUNCTIONAL_REQUIREMENT = eINSTANCE.getFunctionalRequirement();
-
-		/**
-		 * The meta object literal for the '<em><b>Reviewed</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FUNCTIONAL_REQUIREMENT__REVIEWED = eINSTANCE.getFunctionalRequirement_Reviewed();
-
-		/**
-		 * The meta object literal for the '<em><b>Story Points</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FUNCTIONAL_REQUIREMENT__STORY_POINTS = eINSTANCE.getFunctionalRequirement_StoryPoints();
-
-		/**
-		 * The meta object literal for the '<em><b>Priority</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FUNCTIONAL_REQUIREMENT__PRIORITY = eINSTANCE.getFunctionalRequirement_Priority();
-
-		/**
-		 * The meta object literal for the '<em><b>Date</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FUNCTIONAL_REQUIREMENT__DATE = eINSTANCE.getFunctionalRequirement_Date();
-
-		/**
-		 * The meta object literal for the '<em><b>Refining Requirements</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS = eINSTANCE.getFunctionalRequirement_RefiningRequirements();
-
-		/**
-		 * The meta object literal for the '<em><b>Refined Requirement</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT = eINSTANCE.getFunctionalRequirement_RefinedRequirement();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.impl.ProjectImpl <em>Project</em>}' class.

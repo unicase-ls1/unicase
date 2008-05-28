@@ -20,7 +20,6 @@ import org.unicase.emfstore.model.changemanagment.PrimaryVersionSpec;
 import org.unicase.emfstore.model.changemanagment.TagVersionSpec;
 import org.unicase.emfstore.model.changemanagment.Version;
 import org.unicase.emfstore.model.changemanagment.VersionSpec;
-import org.unicase.model.FunctionalRequirement;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.Project;
 import org.unicase.model.diagram.DiagramFactory;
@@ -28,6 +27,8 @@ import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.LeafSection;
+import org.unicase.model.requirement.FunctionalRequirement;
+import org.unicase.model.requirement.RequirementFactory;
 
 public class EmfStoreStub implements EmfStore {
 
@@ -86,6 +87,7 @@ public class EmfStoreStub implements EmfStore {
 		
 		ModelFactory factory = ModelFactory.eINSTANCE;
 		DocumentFactory documentFactory =DocumentFactory.eINSTANCE;
+		RequirementFactory requirementFactory = RequirementFactory.eINSTANCE;
 		Project project = factory.createProject();
 		
 		//RootSection
@@ -102,9 +104,9 @@ public class EmfStoreStub implements EmfStore {
 				.setDescription("Lists all functional requirements in this project");
 		reqLeafSection.setElementClass(FunctionalRequirement.class);
 		reqLeafSection.setParent(rootSection);
-		FunctionalRequirement fr = factory.createFunctionalRequirement();
+		FunctionalRequirement fr = requirementFactory.createFunctionalRequirement();
 		fr.setName("My Reuirement");
-		FunctionalRequirement fr2 = factory.createFunctionalRequirement();
+		FunctionalRequirement fr2 = requirementFactory.createFunctionalRequirement();
 		fr2.setName("My Reuirement2");
 		reqLeafSection.getModelElements().add(fr);
 		reqLeafSection.getModelElements().add(fr2);

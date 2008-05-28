@@ -9,6 +9,7 @@ package org.unicase.model;
 import org.eclipse.emf.ecore.EFactory;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.LeafSection;
+import org.unicase.model.requirement.FunctionalRequirement;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,15 +27,6 @@ public interface ModelFactory extends EFactory {
 	 * @generated
 	 */
 	ModelFactory eINSTANCE = org.unicase.model.impl.ModelFactoryImpl.init();
-
-	/**
-	 * Returns a new object of class '<em>Functional Requirement</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Functional Requirement</em>'.
-	 * @generated
-	 */
-	FunctionalRequirement createFunctionalRequirement();
 
 	/**
 	 * Returns a new object of class '<em>Project</em>'.

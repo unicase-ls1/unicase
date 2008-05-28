@@ -23,9 +23,7 @@ public class ModelDomainModelElementTester extends PropertyTester {
 		if (eClass == ModelPackage.eINSTANCE.getModelElement()) {
 			return true;
 		}
-		if (eClass == ModelPackage.eINSTANCE.getFunctionalRequirement()) {
-			return true;
-		}
+		
 
 		if (eClass == ModelPackage.eINSTANCE.getProject()) {
 			return true;
