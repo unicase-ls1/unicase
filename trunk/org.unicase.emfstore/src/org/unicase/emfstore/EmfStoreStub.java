@@ -20,13 +20,14 @@ import org.unicase.emfstore.model.changemanagment.PrimaryVersionSpec;
 import org.unicase.emfstore.model.changemanagment.TagVersionSpec;
 import org.unicase.emfstore.model.changemanagment.Version;
 import org.unicase.emfstore.model.changemanagment.VersionSpec;
-import org.unicase.model.CompositeSection;
 import org.unicase.model.FunctionalRequirement;
-import org.unicase.model.LeafSection;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.Project;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.diagram.MEDiagram;
+import org.unicase.model.document.CompositeSection;
+import org.unicase.model.document.DocumentFactory;
+import org.unicase.model.document.LeafSection;
 
 public class EmfStoreStub implements EmfStore {
 
@@ -80,21 +81,22 @@ public class EmfStoreStub implements EmfStore {
 		return primaryVersionSpec;
 	}
 	
-	private Project createDummyProject() {
+	public static Project createDummyProject() {
 // Generate the elements of the model
 		
 		ModelFactory factory = ModelFactory.eINSTANCE;
+		DocumentFactory documentFactory =DocumentFactory.eINSTANCE;
 		Project project = factory.createProject();
 		
 		//RootSection
-		CompositeSection rootSection = factory.createCompositeSection();
+		CompositeSection rootSection = documentFactory.createCompositeSection();
 		rootSection.setName("RAD");
 		rootSection
 				.setDescription("The requirements analysis document of the project");
 		project.addModelElement(rootSection);
 
 		//Functional Requirements
-		LeafSection reqLeafSection = factory.createLeafSection();
+		LeafSection reqLeafSection = documentFactory.createLeafSection();
 		reqLeafSection.setName("Functional Requirements");
 		reqLeafSection
 				.setDescription("Lists all functional requirements in this project");
@@ -108,7 +110,7 @@ public class EmfStoreStub implements EmfStore {
 		reqLeafSection.getModelElements().add(fr2);
 
 		//ActionItems
-		LeafSection actionItemLeafSection = factory.createLeafSection();
+		LeafSection actionItemLeafSection = documentFactory.createLeafSection();
 		actionItemLeafSection.setName("Action Items");
 		actionItemLeafSection.setDescription("Lists all ais of this project.");
 		actionItemLeafSection.setParent(rootSection);
@@ -117,7 +119,7 @@ public class EmfStoreStub implements EmfStore {
 		
 		
 		//Diagrams
-		LeafSection diagramSection = factory.createLeafSection();
+		LeafSection diagramSection = documentFactory.createLeafSection();
 		diagramSection.setName("Diagrams");
 		diagramSection.setDescription("Lists all diagrams of this project.");
 		diagramSection.setParent(rootSection);
@@ -130,7 +132,7 @@ public class EmfStoreStub implements EmfStore {
 		
 		
 		//Other Crap
-		CompositeSection ucmCompositeSection = factory.createCompositeSection();
+		CompositeSection ucmCompositeSection = documentFactory.createCompositeSection();
 		ucmCompositeSection.setName("Use Case Modeling");
 		ucmCompositeSection
 				.setDescription("Contains sections concerning use cases.");
@@ -138,14 +140,14 @@ public class EmfStoreStub implements EmfStore {
 
 		
 
-		LeafSection useCaseLeafSection = factory.createLeafSection();
+		LeafSection useCaseLeafSection = documentFactory.createLeafSection();
 		useCaseLeafSection.setName("Use Cases");
 		useCaseLeafSection
 				.setDescription("Lists all use cases of this project.");
 		useCaseLeafSection.setParent(ucmCompositeSection);
 		useCaseLeafSection.setElementClass(FunctionalRequirement.class);
 
-		LeafSection useCaseDiagramLeafSection = factory.createLeafSection();
+		LeafSection useCaseDiagramLeafSection = documentFactory.createLeafSection();
 		useCaseDiagramLeafSection.setName("Use Case Diagrams");
 		useCaseDiagramLeafSection
 				.setDescription("Lists all use case diagrams of this project.");
