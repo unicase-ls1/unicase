@@ -17,9 +17,12 @@ import org.eclipse.ui.IMemento;
 import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 import org.eclipse.ui.navigator.ICommonLabelProvider;
 import org.unicase.model.diagram.MEDiagram;
+import org.unicase.model.diagram.edit.parts.ClassEditPart;
+import org.unicase.model.diagram.edit.parts.ClassNameEditPart;
 import org.unicase.model.diagram.edit.parts.FunctionalRequirement2EditPart;
 import org.unicase.model.diagram.edit.parts.FunctionalRequirementEditPart;
 import org.unicase.model.diagram.edit.parts.FunctionalRequirementNameEditPart;
+import org.unicase.model.diagram.edit.parts.MEDiagramEditPart;
 import org.unicase.model.diagram.part.ModelDiagramEditorPlugin;
 import org.unicase.model.diagram.part.ModelVisualIDRegistry;
 import org.unicase.model.diagram.providers.ModelElementTypes;
@@ -86,10 +89,10 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 	 */
 	public Image getImage(View view) {
 		switch (ModelVisualIDRegistry.getVisualID(view)) {
-		case FunctionalRequirementEditPart.VISUAL_ID:
+		case MEDiagramEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Diagram?http://unicase.org/model/diagram?MEDiagram", ModelElementTypes.MEDiagram_79); //$NON-NLS-1$
-		case FunctionalRequirement2EditPart.VISUAL_ID:
+		case ClassEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http://unicase.org/model/classes?Class", ModelElementTypes.Class_1001); //$NON-NLS-1$
 		}
@@ -144,9 +147,9 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 			return getUnresolvedDomainElementProxyText(view);
 		}
 		switch (ModelVisualIDRegistry.getVisualID(view)) {
-		case FunctionalRequirementEditPart.VISUAL_ID:
+		case MEDiagramEditPart.VISUAL_ID:
 			return getMEDiagram_79Text(view);
-		case FunctionalRequirement2EditPart.VISUAL_ID:
+		case ClassEditPart.VISUAL_ID:
 			return getClass_1001Text(view);
 		}
 		return getUnknownElementText(view);
@@ -173,7 +176,7 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 		IAdaptable hintAdapter = new ModelParserProvider.HintAdapter(
 				ModelElementTypes.Class_1001, (view.getElement() != null ? view
 						.getElement() : view), ModelVisualIDRegistry
-						.getType(FunctionalRequirementNameEditPart.VISUAL_ID));
+						.getType(ClassNameEditPart.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
 		if (parser != null) {
@@ -230,8 +233,8 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private boolean isOwnView(View view) {
-		return FunctionalRequirementEditPart.MODEL_ID
-				.equals(ModelVisualIDRegistry.getModelID(view));
+		return MEDiagramEditPart.MODEL_ID.equals(ModelVisualIDRegistry
+				.getModelID(view));
 	}
 
 }

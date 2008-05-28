@@ -20,8 +20,10 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 import org.eclipse.ui.navigator.ICommonContentProvider;
+import org.unicase.model.diagram.edit.parts.ClassEditPart;
 import org.unicase.model.diagram.edit.parts.FunctionalRequirement2EditPart;
 import org.unicase.model.diagram.edit.parts.FunctionalRequirementEditPart;
+import org.unicase.model.diagram.edit.parts.MEDiagramEditPart;
 import org.unicase.model.diagram.part.ModelVisualIDRegistry;
 
 /**
@@ -183,8 +185,7 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 					fileURI, true);
 			Collection result = new ArrayList();
 			result.addAll(createNavigatorItems(selectViewsByType(resource
-					.getContents(), FunctionalRequirementEditPart.MODEL_ID),
-					file, false));
+					.getContents(), MEDiagramEditPart.MODEL_ID), file, false));
 			return result.toArray();
 		}
 
@@ -210,10 +211,10 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 	private Object[] getViewChildren(View view, Object parentElement) {
 		switch (ModelVisualIDRegistry.getVisualID(view)) {
 
-		case FunctionalRequirementEditPart.VISUAL_ID: {
+		case MEDiagramEditPart.VISUAL_ID: {
 			Collection result = new ArrayList();
 			Collection connectedViews = getChildrenByType(Collections
-					.singleton(view), FunctionalRequirement2EditPart.VISUAL_ID);
+					.singleton(view), ClassEditPart.VISUAL_ID);
 			result.addAll(createNavigatorItems(connectedViews, parentElement,
 					false));
 			return result.toArray();
@@ -326,8 +327,8 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 	 * @generated
 	 */
 	private boolean isOwnView(View view) {
-		return FunctionalRequirementEditPart.MODEL_ID
-				.equals(ModelVisualIDRegistry.getModelID(view));
+		return MEDiagramEditPart.MODEL_ID.equals(ModelVisualIDRegistry
+				.getModelID(view));
 	}
 
 	/**

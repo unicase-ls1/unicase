@@ -19,6 +19,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 import org.unicase.model.diagram.edit.parts.FunctionalRequirementEditPart;
+import org.unicase.model.diagram.edit.parts.MEDiagramEditPart;
 
 /**
  * @generated
@@ -72,7 +73,7 @@ public class ModelInitDiagramFileAction implements IObjectActionDelegate {
 	public void run(IAction action) {
 		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE
 				.createEditingDomain();
-		ResourceSet resourceSet = new ResourceSetImpl();
+		ResourceSet resourceSet = editingDomain.getResourceSet();
 		EObject diagramRoot = null;
 		try {
 			Resource resource = resourceSet.getResource(domainModelURI, true);
@@ -93,7 +94,7 @@ public class ModelInitDiagramFileAction implements IObjectActionDelegate {
 				diagramRoot, editingDomain);
 		wizard.setWindowTitle(NLS.bind(
 				Messages.ModelInitDiagramFileAction_InitDiagramFileWizardTitle,
-				FunctionalRequirementEditPart.MODEL_ID));
+				MEDiagramEditPart.MODEL_ID));
 		ModelDiagramEditorUtil.runWizard(getShell(), wizard, "InitDiagramFile"); //$NON-NLS-1$
 	}
 }

@@ -29,6 +29,7 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.unicase.model.diagram.edit.parts.FunctionalRequirementEditPart;
+import org.unicase.model.diagram.edit.parts.MEDiagramEditPart;
 
 /**
  * @generated
@@ -66,7 +67,7 @@ public class ModelNewDiagramFileWizard extends Wizard {
 				.setTitle(Messages.ModelNewDiagramFileWizard_CreationPageTitle);
 		myFileCreationPage.setDescription(NLS.bind(
 				Messages.ModelNewDiagramFileWizard_CreationPageDescription,
-				FunctionalRequirementEditPart.MODEL_ID));
+				MEDiagramEditPart.MODEL_ID));
 		IPath filePath;
 		String fileName = domainModelURI.trimFileExtension().lastSegment();
 		if (domainModelURI.isPlatformResource()) {
@@ -126,16 +127,15 @@ public class ModelNewDiagramFileWizard extends Wizard {
 				int diagramVID = ModelVisualIDRegistry
 						.getDiagramVisualID(diagramRootElementSelectionPage
 								.getModelElement());
-				if (diagramVID != FunctionalRequirementEditPart.VISUAL_ID) {
+				if (diagramVID != MEDiagramEditPart.VISUAL_ID) {
 					return CommandResult
 							.newErrorCommandResult(Messages.ModelNewDiagramFileWizard_IncorrectRootError);
 				}
 				Diagram diagram = ViewService.createDiagram(
 						diagramRootElementSelectionPage.getModelElement(),
-						FunctionalRequirementEditPart.MODEL_ID,
+						MEDiagramEditPart.MODEL_ID,
 						ModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 				diagramResource.getContents().add(diagram);
-				diagramResource.getContents().add(diagram.getElement());
 				return CommandResult.newOKCommandResult();
 			}
 		};
@@ -187,8 +187,7 @@ public class ModelNewDiagramFileWizard extends Wizard {
 			}
 			boolean result = ViewService.getInstance().provides(
 					new CreateDiagramViewOperation(new EObjectAdapter(
-							selectedModelElement),
-							FunctionalRequirementEditPart.MODEL_ID,
+							selectedModelElement), MEDiagramEditPart.MODEL_ID,
 							ModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT));
 			setErrorMessage(result ? null
 					: Messages.ModelNewDiagramFileWizard_RootSelectionPageInvalidSelectionMessage);

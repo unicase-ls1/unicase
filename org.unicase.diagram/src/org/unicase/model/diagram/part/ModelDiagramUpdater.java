@@ -9,8 +9,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.diagram.MEDiagram;
+import org.unicase.model.diagram.edit.parts.ClassEditPart;
 import org.unicase.model.diagram.edit.parts.FunctionalRequirement2EditPart;
 import org.unicase.model.diagram.edit.parts.FunctionalRequirementEditPart;
+import org.unicase.model.diagram.edit.parts.MEDiagramEditPart;
 
 /**
  * @generated
@@ -22,7 +24,7 @@ public class ModelDiagramUpdater {
 	 */
 	public static List getSemanticChildren(View view) {
 		switch (ModelVisualIDRegistry.getVisualID(view)) {
-		case FunctionalRequirementEditPart.VISUAL_ID:
+		case MEDiagramEditPart.VISUAL_ID:
 			return getMEDiagram_79SemanticChildren(view);
 		}
 		return Collections.EMPTY_LIST;
@@ -44,9 +46,9 @@ public class ModelDiagramUpdater {
 			if (childElement == modelElement) {
 				continue;
 			}
-			if (ModelVisualIDRegistry.getNodeVisualID(view, childElement) == FunctionalRequirement2EditPart.VISUAL_ID) {
+			if (ModelVisualIDRegistry.getNodeVisualID(view, childElement) == ClassEditPart.VISUAL_ID) {
 				result.add(new ModelNodeDescriptor(childElement,
-						FunctionalRequirement2EditPart.VISUAL_ID));
+						ClassEditPart.VISUAL_ID));
 				continue;
 			}
 		}
@@ -65,9 +67,9 @@ public class ModelDiagramUpdater {
 	 */
 	public static List getContainedLinks(View view) {
 		switch (ModelVisualIDRegistry.getVisualID(view)) {
-		case FunctionalRequirementEditPart.VISUAL_ID:
+		case MEDiagramEditPart.VISUAL_ID:
 			return getMEDiagram_79ContainedLinks(view);
-		case FunctionalRequirement2EditPart.VISUAL_ID:
+		case ClassEditPart.VISUAL_ID:
 			return getClass_1001ContainedLinks(view);
 		}
 		return Collections.EMPTY_LIST;
@@ -78,7 +80,7 @@ public class ModelDiagramUpdater {
 	 */
 	public static List getIncomingLinks(View view) {
 		switch (ModelVisualIDRegistry.getVisualID(view)) {
-		case FunctionalRequirement2EditPart.VISUAL_ID:
+		case ClassEditPart.VISUAL_ID:
 			return getClass_1001IncomingLinks(view);
 		}
 		return Collections.EMPTY_LIST;
@@ -89,7 +91,7 @@ public class ModelDiagramUpdater {
 	 */
 	public static List getOutgoingLinks(View view) {
 		switch (ModelVisualIDRegistry.getVisualID(view)) {
-		case FunctionalRequirement2EditPart.VISUAL_ID:
+		case ClassEditPart.VISUAL_ID:
 			return getClass_1001OutgoingLinks(view);
 		}
 		return Collections.EMPTY_LIST;

@@ -21,6 +21,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.model.diagram.edit.parts.FunctionalRequirementEditPart;
+import org.unicase.model.diagram.edit.parts.MEDiagramEditPart;
 import org.unicase.model.diagram.part.Messages;
 import org.unicase.model.diagram.part.ModelDiagramEditorPlugin;
 
@@ -35,7 +36,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart) host
 				.getAdapter(IGraphicalEditPart.class);
-		if (editPart instanceof FunctionalRequirementEditPart) {
+		if (editPart instanceof MEDiagramEditPart) {
 			List types = new ArrayList();
 			types.add(ModelElementTypes.Class_1001);
 			return types;

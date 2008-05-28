@@ -6,13 +6,19 @@ import org.eclipse.gmf.runtime.diagram.core.providers.AbstractViewProvider;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.View;
+import org.unicase.model.diagram.edit.parts.ClassEditPart;
+import org.unicase.model.diagram.edit.parts.ClassNameEditPart;
 import org.unicase.model.diagram.edit.parts.FunctionalRequirement2EditPart;
 import org.unicase.model.diagram.edit.parts.FunctionalRequirementEditPart;
 import org.unicase.model.diagram.edit.parts.FunctionalRequirementNameEditPart;
+import org.unicase.model.diagram.edit.parts.MEDiagramEditPart;
 import org.unicase.model.diagram.part.ModelVisualIDRegistry;
+import org.unicase.model.diagram.view.factories.ClassNameViewFactory;
+import org.unicase.model.diagram.view.factories.ClassViewFactory;
 import org.unicase.model.diagram.view.factories.FunctionalRequirement2ViewFactory;
 import org.unicase.model.diagram.view.factories.FunctionalRequirementNameViewFactory;
 import org.unicase.model.diagram.view.factories.FunctionalRequirementViewFactory;
+import org.unicase.model.diagram.view.factories.MEDiagramViewFactory;
 
 /**
  * @generated
@@ -25,9 +31,9 @@ public class ModelViewProvider extends AbstractViewProvider {
 	protected Class getDiagramViewClass(IAdaptable semanticAdapter,
 			String diagramKind) {
 		EObject semanticElement = getSemanticElement(semanticAdapter);
-		if (FunctionalRequirementEditPart.MODEL_ID.equals(diagramKind)
+		if (MEDiagramEditPart.MODEL_ID.equals(diagramKind)
 				&& ModelVisualIDRegistry.getDiagramVisualID(semanticElement) != -1) {
-			return FunctionalRequirementViewFactory.class;
+			return MEDiagramViewFactory.class;
 		}
 		return null;
 	}
@@ -78,12 +84,12 @@ public class ModelViewProvider extends AbstractViewProvider {
 				// This method is called with EObjectAdapter as parameter from:
 				//   - ViewService.createNode(View container, EObject eObject, String type, PreferencesHint preferencesHint) 
 				//   - generated ViewFactory.decorateView() for parent element
-				if (!FunctionalRequirementEditPart.MODEL_ID
-						.equals(ModelVisualIDRegistry.getModelID(containerView))) {
+				if (!MEDiagramEditPart.MODEL_ID.equals(ModelVisualIDRegistry
+						.getModelID(containerView))) {
 					return null; // foreign diagram
 				}
 				switch (visualID) {
-				case FunctionalRequirement2EditPart.VISUAL_ID:
+				case ClassEditPart.VISUAL_ID:
 					if (domainElement == null
 							|| visualID != ModelVisualIDRegistry
 									.getNodeVisualID(containerView,
@@ -91,8 +97,8 @@ public class ModelViewProvider extends AbstractViewProvider {
 						return null; // visual id in semantic hint should match visual id for domain element
 					}
 					break;
-				case FunctionalRequirementNameEditPart.VISUAL_ID:
-					if (FunctionalRequirement2EditPart.VISUAL_ID != ModelVisualIDRegistry
+				case ClassNameEditPart.VISUAL_ID:
+					if (ClassEditPart.VISUAL_ID != ModelVisualIDRegistry
 							.getVisualID(containerView)
 							|| containerView.getElement() != domainElement) {
 						return null; // wrong container
@@ -116,10 +122,10 @@ public class ModelViewProvider extends AbstractViewProvider {
 			return null;
 		}
 		switch (visualID) {
-		case FunctionalRequirement2EditPart.VISUAL_ID:
-			return FunctionalRequirement2ViewFactory.class;
-		case FunctionalRequirementNameEditPart.VISUAL_ID:
-			return FunctionalRequirementNameViewFactory.class;
+		case ClassEditPart.VISUAL_ID:
+			return ClassViewFactory.class;
+		case ClassNameEditPart.VISUAL_ID:
+			return ClassNameViewFactory.class;
 		}
 		return null;
 	}
@@ -169,4 +175,5 @@ public class ModelViewProvider extends AbstractViewProvider {
 		}
 		return (IElementType) semanticAdapter.getAdapter(IElementType.class);
 	}
+
 }

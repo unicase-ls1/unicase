@@ -28,14 +28,14 @@ public class ModelEditPartFactory implements EditPartFactory {
 			View view = (View) model;
 			switch (ModelVisualIDRegistry.getVisualID(view)) {
 
-			case FunctionalRequirementEditPart.VISUAL_ID:
-				return new FunctionalRequirementEditPart(view);
+			case MEDiagramEditPart.VISUAL_ID:
+				return new MEDiagramEditPart(view);
 
-			case FunctionalRequirement2EditPart.VISUAL_ID:
-				return new FunctionalRequirement2EditPart(view);
+			case ClassEditPart.VISUAL_ID:
+				return new ClassEditPart(view);
 
-			case FunctionalRequirementNameEditPart.VISUAL_ID:
-				return new FunctionalRequirementNameEditPart(view);
+			case ClassNameEditPart.VISUAL_ID:
+				return new ClassNameEditPart(view);
 			}
 		}
 		return createUnrecognizedEditPart(context, model);

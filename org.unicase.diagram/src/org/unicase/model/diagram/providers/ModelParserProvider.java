@@ -12,6 +12,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.diagram.edit.parts.ClassNameEditPart;
 import org.unicase.model.diagram.edit.parts.FunctionalRequirementNameEditPart;
 import org.unicase.model.diagram.parsers.MessageFormatParser;
 import org.unicase.model.diagram.part.ModelVisualIDRegistry;
@@ -52,7 +53,7 @@ public class ModelParserProvider extends AbstractProvider implements
 	 */
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
-		case FunctionalRequirementNameEditPart.VISUAL_ID:
+		case ClassNameEditPart.VISUAL_ID:
 			return getClassName_4001Parser();
 		}
 		return null;

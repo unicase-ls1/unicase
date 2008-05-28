@@ -8,6 +8,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 import org.unicase.model.diagram.edit.parts.FunctionalRequirementEditPart;
+import org.unicase.model.diagram.edit.parts.MEDiagramEditPart;
 
 /**
  * @generated
@@ -17,7 +18,7 @@ public class ModelLoadResourceAction implements IObjectActionDelegate {
 	/**
 	 * @generated
 	 */
-	private FunctionalRequirementEditPart mySelectedElement;
+	private MEDiagramEditPart mySelectedElement;
 
 	/**
 	 * @generated
@@ -48,8 +49,8 @@ public class ModelLoadResourceAction implements IObjectActionDelegate {
 		if (selection instanceof IStructuredSelection) {
 			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
 			if (structuredSelection.size() == 1
-					&& structuredSelection.getFirstElement() instanceof FunctionalRequirementEditPart) {
-				mySelectedElement = (FunctionalRequirementEditPart) structuredSelection
+					&& structuredSelection.getFirstElement() instanceof MEDiagramEditPart) {
+				mySelectedElement = (MEDiagramEditPart) structuredSelection
 						.getFirstElement();
 			}
 		}

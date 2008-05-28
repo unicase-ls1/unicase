@@ -26,15 +26,7 @@ public class ModelDomainModelElementTester extends PropertyTester {
 		if (eClass == ModelPackage.eINSTANCE.getFunctionalRequirement()) {
 			return true;
 		}
-		if (eClass == ModelPackage.eINSTANCE.getLeafSection()) {
-			return true;
-		}
-		if (eClass == ModelPackage.eINSTANCE.getCompositeSection()) {
-			return true;
-		}
-		if (eClass == ModelPackage.eINSTANCE.getSection()) {
-			return true;
-		}
+
 		if (eClass == ModelPackage.eINSTANCE.getProject()) {
 			return true;
 		}

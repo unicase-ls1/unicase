@@ -22,6 +22,8 @@ import org.eclipse.emf.ecore.xml.type.AnyType;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.unicase.model.classes.Class;
+import org.unicase.model.classes.ClassesFactory;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.edit.parts.ModelEditPartFactory;
@@ -46,17 +48,22 @@ public class MEDiagramResource extends ResourceImpl implements Resource , Resour
 	}
 
 	public EList<EObject> getContents() {
+		Class class1 = ClassesFactory.eINSTANCE.createClass();
+		class1.setName("Max");
 		
 		MEDiagram meDiagram = DiagramFactory.eINSTANCE.createMEDiagram();
+		meDiagram.getElements().add(class1);
 		Workspace workspace = WorkspaceManager.getInstance()
 		.getCurrentWorkspace();
 //		workspace.getProjectSpaces().get(0).getProject().addModelElement(meDiagram);
 //		workspace.getProjectSpaces().get(0).getProject().addModelElement(fr);
-	//JH: Check why isnt it MEDiagram
+		//JH: Check why isnt it MEDiagram
 		Diagram diagram = ViewService.createDiagram(
 				meDiagram,"Model",
 				ModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 		super.getContents().add(diagram);
+		super.getContents().add(meDiagram);
+		super.getContents().add(class1);
 	
 	
 //		meDiagram.setGmfdiagram(diagram);
@@ -69,7 +76,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource , Resour
 		
 	
 		
-		return list;
+		return super.getContents();
 	}
 
 	public EObject getEObject(String uriFragment) {

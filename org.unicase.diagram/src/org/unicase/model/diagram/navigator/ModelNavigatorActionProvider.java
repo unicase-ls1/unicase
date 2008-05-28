@@ -23,6 +23,7 @@ import org.eclipse.ui.navigator.ICommonActionExtensionSite;
 import org.eclipse.ui.navigator.ICommonViewerWorkbenchSite;
 import org.eclipse.ui.part.FileEditorInput;
 import org.unicase.model.diagram.edit.parts.FunctionalRequirementEditPart;
+import org.unicase.model.diagram.edit.parts.MEDiagramEditPart;
 import org.unicase.model.diagram.part.Messages;
 import org.unicase.model.diagram.part.ModelDiagramEditor;
 import org.unicase.model.diagram.part.ModelDiagramEditorPlugin;
@@ -124,8 +125,8 @@ public class ModelNavigatorActionProvider extends CommonActionProvider {
 				}
 				if (selectedElement instanceof Diagram) {
 					Diagram diagram = (Diagram) selectedElement;
-					if (FunctionalRequirementEditPart.MODEL_ID
-							.equals(ModelVisualIDRegistry.getModelID(diagram))) {
+					if (MEDiagramEditPart.MODEL_ID.equals(ModelVisualIDRegistry
+							.getModelID(diagram))) {
 						myDiagram = diagram;
 					}
 				}

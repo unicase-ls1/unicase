@@ -37,6 +37,11 @@ public class ModelCreationWizard extends Wizard implements INewWizard {
 	/**
 	 * @generated
 	 */
+	protected ModelCreationWizardPage domainModelFilePage;
+
+	/**
+	 * @generated
+	 */
 	protected Resource diagram;
 
 	/**
@@ -103,6 +108,14 @@ public class ModelCreationWizard extends Wizard implements INewWizard {
 		diagramModelFilePage
 				.setDescription(Messages.ModelCreationWizard_DiagramModelFilePageDescription);
 		addPage(diagramModelFilePage);
+
+		domainModelFilePage = new ModelCreationWizardPage(
+				"DomainModelFile", getSelection(), "model"); //$NON-NLS-1$ //$NON-NLS-2$
+		domainModelFilePage
+				.setTitle(Messages.ModelCreationWizard_DomainModelFilePageTitle);
+		domainModelFilePage
+				.setDescription(Messages.ModelCreationWizard_DomainModelFilePageDescription);
+		addPage(domainModelFilePage);
 	}
 
 	/**
@@ -114,7 +127,8 @@ public class ModelCreationWizard extends Wizard implements INewWizard {
 			protected void execute(IProgressMonitor monitor)
 					throws CoreException, InterruptedException {
 				diagram = ModelDiagramEditorUtil.createDiagram(
-						diagramModelFilePage.getURI(), monitor);
+						diagramModelFilePage.getURI(), domainModelFilePage
+								.getURI(), monitor);
 				if (isOpenNewlyCreatedDiagramEditor() && diagram != null) {
 					try {
 						ModelDiagramEditorUtil.openDiagram(diagram);

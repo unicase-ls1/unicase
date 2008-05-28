@@ -11,6 +11,7 @@ import org.eclipse.gmf.runtime.diagram.ui.services.editpart.CreateGraphicEditPar
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.IEditPartOperation;
 import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.diagram.edit.parts.FunctionalRequirementEditPart;
+import org.unicase.model.diagram.edit.parts.MEDiagramEditPart;
 import org.unicase.model.diagram.edit.parts.ModelEditPartFactory;
 import org.unicase.model.diagram.part.ModelVisualIDRegistry;
 
@@ -121,8 +122,8 @@ public class ModelEditPartProvider extends AbstractEditPartProvider {
 	public synchronized boolean provides(IOperation operation) {
 		if (operation instanceof CreateGraphicEditPartOperation) {
 			View view = ((IEditPartOperation) operation).getView();
-			if (!FunctionalRequirementEditPart.MODEL_ID
-					.equals(ModelVisualIDRegistry.getModelID(view))) {
+			if (!MEDiagramEditPart.MODEL_ID.equals(ModelVisualIDRegistry
+					.getModelID(view))) {
 				return false;
 			}
 			if (isAllowCaching() && getCachedPart(view) != null) {

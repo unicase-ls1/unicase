@@ -53,6 +53,7 @@ import org.unicase.model.ModelFactory;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.edit.parts.FunctionalRequirementEditPart;
+import org.unicase.model.diagram.edit.parts.MEDiagramEditPart;
 
 /**
  * @generated
@@ -156,7 +157,7 @@ public class ModelDiagramEditorUtil {
 	 * This method should be called within a workspace modify operation since it creates resources.
 	 * @generated
 	 */
-	public static Resource createDiagram(URI diagramURI,
+	public static Resource createDiagram(URI diagramURI, URI modelURI,
 			IProgressMonitor progressMonitor) {
 		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE
 				.createEditingDomain();
@@ -164,6 +165,8 @@ public class ModelDiagramEditorUtil {
 				Messages.ModelDiagramEditorUtil_CreateDiagramProgressTask, 3);
 		final Resource diagramResource = editingDomain.getResourceSet()
 				.createResource(diagramURI);
+		final Resource modelResource = editingDomain.getResourceSet()
+				.createResource(modelURI);
 		final String diagramName = diagramURI.lastSegment();
 		AbstractTransactionalCommand command = new AbstractTransactionalCommand(
 				editingDomain,
@@ -173,10 +176,10 @@ public class ModelDiagramEditorUtil {
 					IProgressMonitor monitor, IAdaptable info)
 					throws ExecutionException {
 				MEDiagram model = createInitialModel();
-				attachModelToResource(model, diagramResource);
+				attachModelToResource(model, modelResource);
 
 				Diagram diagram = ViewService.createDiagram(model,
-						FunctionalRequirementEditPart.MODEL_ID,
+						MEDiagramEditPart.MODEL_ID,
 						ModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 				if (diagram != null) {
 					diagramResource.getContents().add(diagram);
@@ -185,7 +188,9 @@ public class ModelDiagramEditorUtil {
 				}
 
 				try {
-
+					modelResource
+							.save(org.unicase.model.diagram.part.ModelDiagramEditorUtil
+									.getSaveOptions());
 					diagramResource
 							.save(org.unicase.model.diagram.part.ModelDiagramEditorUtil
 									.getSaveOptions());
@@ -204,7 +209,7 @@ public class ModelDiagramEditorUtil {
 			ModelDiagramEditorPlugin.getInstance().logError(
 					"Unable to create model and diagram", e); //$NON-NLS-1$
 		}
-
+		setCharset(WorkspaceSynchronizer.getFile(modelResource));
 		setCharset(WorkspaceSynchronizer.getFile(diagramResource));
 		return diagramResource;
 	}

@@ -8,9 +8,12 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
+import org.unicase.model.diagram.edit.parts.ClassEditPart;
+import org.unicase.model.diagram.edit.parts.ClassNameEditPart;
 import org.unicase.model.diagram.edit.parts.FunctionalRequirement2EditPart;
 import org.unicase.model.diagram.edit.parts.FunctionalRequirementEditPart;
 import org.unicase.model.diagram.edit.parts.FunctionalRequirementNameEditPart;
+import org.unicase.model.diagram.edit.parts.MEDiagramEditPart;
 
 /**
  * This registry is used to determine which type of visual object should be
@@ -31,8 +34,8 @@ public class ModelVisualIDRegistry {
 	 */
 	public static int getVisualID(View view) {
 		if (view instanceof Diagram) {
-			if (FunctionalRequirementEditPart.MODEL_ID.equals(view.getType())) {
-				return FunctionalRequirementEditPart.VISUAL_ID;
+			if (MEDiagramEditPart.MODEL_ID.equals(view.getType())) {
+				return MEDiagramEditPart.VISUAL_ID;
 			} else {
 				return -1;
 			}
@@ -90,7 +93,7 @@ public class ModelVisualIDRegistry {
 		if (DiagramPackage.eINSTANCE.getMEDiagram().isSuperTypeOf(
 				domainElement.eClass())
 				&& isDiagram((MEDiagram) domainElement)) {
-			return FunctionalRequirementEditPart.VISUAL_ID;
+			return MEDiagramEditPart.VISUAL_ID;
 		}
 		return -1;
 	}
@@ -104,25 +107,25 @@ public class ModelVisualIDRegistry {
 		}
 		String containerModelID = org.unicase.model.diagram.part.ModelVisualIDRegistry
 				.getModelID(containerView);
-		if (!FunctionalRequirementEditPart.MODEL_ID.equals(containerModelID)) {
+		if (!MEDiagramEditPart.MODEL_ID.equals(containerModelID)) {
 			return -1;
 		}
 		int containerVisualID;
-		if (FunctionalRequirementEditPart.MODEL_ID.equals(containerModelID)) {
+		if (MEDiagramEditPart.MODEL_ID.equals(containerModelID)) {
 			containerVisualID = org.unicase.model.diagram.part.ModelVisualIDRegistry
 					.getVisualID(containerView);
 		} else {
 			if (containerView instanceof Diagram) {
-				containerVisualID = FunctionalRequirementEditPart.VISUAL_ID;
+				containerVisualID = MEDiagramEditPart.VISUAL_ID;
 			} else {
 				return -1;
 			}
 		}
 		switch (containerVisualID) {
-		case FunctionalRequirementEditPart.VISUAL_ID:
+		case MEDiagramEditPart.VISUAL_ID:
 			if (ClassesPackage.eINSTANCE.getClass_().isSuperTypeOf(
 					domainElement.eClass())) {
-				return FunctionalRequirement2EditPart.VISUAL_ID;
+				return ClassEditPart.VISUAL_ID;
 			}
 			break;
 		}
@@ -135,28 +138,28 @@ public class ModelVisualIDRegistry {
 	public static boolean canCreateNode(View containerView, int nodeVisualID) {
 		String containerModelID = org.unicase.model.diagram.part.ModelVisualIDRegistry
 				.getModelID(containerView);
-		if (!FunctionalRequirementEditPart.MODEL_ID.equals(containerModelID)) {
+		if (!MEDiagramEditPart.MODEL_ID.equals(containerModelID)) {
 			return false;
 		}
 		int containerVisualID;
-		if (FunctionalRequirementEditPart.MODEL_ID.equals(containerModelID)) {
+		if (MEDiagramEditPart.MODEL_ID.equals(containerModelID)) {
 			containerVisualID = org.unicase.model.diagram.part.ModelVisualIDRegistry
 					.getVisualID(containerView);
 		} else {
 			if (containerView instanceof Diagram) {
-				containerVisualID = FunctionalRequirementEditPart.VISUAL_ID;
+				containerVisualID = MEDiagramEditPart.VISUAL_ID;
 			} else {
 				return false;
 			}
 		}
 		switch (containerVisualID) {
-		case FunctionalRequirement2EditPart.VISUAL_ID:
-			if (FunctionalRequirementNameEditPart.VISUAL_ID == nodeVisualID) {
+		case ClassEditPart.VISUAL_ID:
+			if (ClassNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case FunctionalRequirementEditPart.VISUAL_ID:
-			if (FunctionalRequirement2EditPart.VISUAL_ID == nodeVisualID) {
+		case MEDiagramEditPart.VISUAL_ID:
+			if (ClassEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

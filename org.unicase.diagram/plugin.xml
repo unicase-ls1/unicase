@@ -59,7 +59,7 @@
       <objectContribution
             adaptable="false"
             id="org.unicase.diagram.LoadResource"
-            objectClass="org.unicase.model.diagram.edit.parts.FunctionalRequirementEditPart">
+            objectClass="org.unicase.model.diagram.edit.parts.MEDiagramEditPart">
          <action
                class="org.unicase.model.diagram.part.ModelLoadResourceAction"
                enablesFor="1"
@@ -132,7 +132,7 @@
             checkPluginLoaded="false">
          <Priority name="Low"/>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-            <popupStructuredContributionCriteria objectClass="org.unicase.model.diagram.edit.parts.FunctionalRequirementNameEditPart"/>
+            <popupStructuredContributionCriteria objectClass="org.unicase.model.diagram.edit.parts.ClassNameEditPart"/>
             <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
             <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
          </popupContribution>
@@ -292,7 +292,7 @@
                name="%metatype.name.MEDiagram_79"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="MEDiagram"
-               edithelper="org.unicase.model.diagram.edit.helpers.FunctionalRequirementEditHelper">
+               edithelper="org.unicase.model.diagram.edit.helpers.MEDiagramEditHelper">
             <param name="semanticHint" value="79"/>
          </metamodelType>
       </metamodel>
