@@ -14,6 +14,9 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 import org.unicase.model.*;
+import org.unicase.model.document.CompositeSection;
+import org.unicase.model.document.LeafSection;
+import org.unicase.model.document.Section;
 
 /**
  * <!-- begin-user-doc -->
@@ -80,18 +83,6 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 				return createFunctionalRequirementAdapter();
 			}
 			@Override
-			public Adapter caseLeafSection(LeafSection object) {
-				return createLeafSectionAdapter();
-			}
-			@Override
-			public Adapter caseCompositeSection(CompositeSection object) {
-				return createCompositeSectionAdapter();
-			}
-			@Override
-			public Adapter caseSection(Section object) {
-				return createSectionAdapter();
-			}
-			@Override
 			public Adapter caseProject(Project object) {
 				return createProjectAdapter();
 			}
@@ -152,48 +143,6 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFunctionalRequirementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.LeafSection <em>Leaf Section</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.model.LeafSection
-	 * @generated
-	 */
-	public Adapter createLeafSectionAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.CompositeSection <em>Composite Section</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.model.CompositeSection
-	 * @generated
-	 */
-	public Adapter createCompositeSectionAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.Section <em>Section</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.model.Section
-	 * @generated
-	 */
-	public Adapter createSectionAdapter() {
 		return null;
 	}
 

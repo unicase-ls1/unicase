@@ -12,8 +12,12 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.classes.ClassesPackage;
+import org.unicase.model.classes.impl.ClassesPackageImpl;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.impl.DiagramPackageImpl;
+import org.unicase.model.document.DocumentPackage;
+import org.unicase.model.document.impl.DocumentPackageImpl;
 import org.unicase.model.impl.ModelPackageImpl;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
@@ -120,18 +124,24 @@ public class OrganizationPackageImpl extends EPackageImpl implements Organizatio
 		ModelPackageImpl theModelPackage = (ModelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI) : ModelPackage.eINSTANCE);
 		TaskPackageImpl theTaskPackage = (TaskPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) : TaskPackage.eINSTANCE);
 		DiagramPackageImpl theDiagramPackage = (DiagramPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI) : DiagramPackage.eINSTANCE);
+		ClassesPackageImpl theClassesPackage = (ClassesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ClassesPackage.eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ClassesPackage.eNS_URI) : ClassesPackage.eINSTANCE);
+		DocumentPackageImpl theDocumentPackage = (DocumentPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI) : DocumentPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theOrganizationPackage.createPackageContents();
 		theModelPackage.createPackageContents();
 		theTaskPackage.createPackageContents();
 		theDiagramPackage.createPackageContents();
+		theClassesPackage.createPackageContents();
+		theDocumentPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theOrganizationPackage.initializePackageContents();
 		theModelPackage.initializePackageContents();
 		theTaskPackage.initializePackageContents();
 		theDiagramPackage.initializePackageContents();
+		theClassesPackage.initializePackageContents();
+		theDocumentPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theOrganizationPackage.freeze();

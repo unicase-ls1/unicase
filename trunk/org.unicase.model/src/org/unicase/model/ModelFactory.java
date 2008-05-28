@@ -7,6 +7,8 @@
 package org.unicase.model;
 
 import org.eclipse.emf.ecore.EFactory;
+import org.unicase.model.document.CompositeSection;
+import org.unicase.model.document.LeafSection;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,24 +35,6 @@ public interface ModelFactory extends EFactory {
 	 * @generated
 	 */
 	FunctionalRequirement createFunctionalRequirement();
-
-	/**
-	 * Returns a new object of class '<em>Leaf Section</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Leaf Section</em>'.
-	 * @generated
-	 */
-	LeafSection createLeafSection();
-
-	/**
-	 * Returns a new object of class '<em>Composite Section</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Composite Section</em>'.
-	 * @generated
-	 */
-	CompositeSection createCompositeSection();
 
 	/**
 	 * Returns a new object of class '<em>Project</em>'.

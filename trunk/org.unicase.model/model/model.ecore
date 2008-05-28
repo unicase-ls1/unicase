@@ -38,26 +38,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="refinedRequirement" eType="#//FunctionalRequirement"
         eOpposite="#//FunctionalRequirement/refiningRequirements"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LeafSection" eSuperTypes="#//Section">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="elementClass">
-      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
-        <eTypeArguments>
-          <eUpperBound eClassifier="#//ModelElement"/>
-        </eTypeArguments>
-      </eGenericType>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="modelElements" upperBound="-1"
-        eType="#//ModelElement" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CompositeSection" eSuperTypes="#//Section">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="subsections" upperBound="-1"
-        eType="#//Section" containment="true" eOpposite="#//Section/parent"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Section" abstract="true" interface="true"
-      eSuperTypes="#//ModelElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//CompositeSection"
-        eOpposite="#//CompositeSection/subsections"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Project">
     <eOperations name="addModelElement">
       <eParameters name="modelElement" eType="#//ModelElement"/>
@@ -103,5 +83,30 @@
   </eSubpackages>
   <eSubpackages name="classes" nsURI="http://unicase.org/model/classes" nsPrefix="org.unicase.model.classes">
     <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//ModelElement"/>
+  </eSubpackages>
+  <eSubpackages name="document" nsURI="http://unicase.org/model/document" nsPrefix="org.unicase.model.document">
+    <eClassifiers xsi:type="ecore:EClass" name="LeafSection" eSuperTypes="#//document/Section">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="elementClass">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
+          <eTypeArguments>
+            <eUpperBound eClassifier="#//ModelElement"/>
+          </eTypeArguments>
+        </eGenericType>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="modelElements" upperBound="-1"
+          eType="#//ModelElement" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CompositeSection" eSuperTypes="#//document/Section">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="subsections" upperBound="-1"
+          eType="#//document/Section" containment="true" eOpposite="#//document/Section/parent"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Section" abstract="true" interface="true"
+        eSuperTypes="#//ModelElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//document/CompositeSection"
+          eOpposite="#//document/CompositeSection/subsections"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="requirement" nsURI="http://unicase.org/model/requirement" nsPrefix="org.unicase.model.requirement">
+    <eClassifiers xsi:type="ecore:EClass" name="NonFunctionalRequirement"/>
   </eSubpackages>
 </ecore:EPackage>

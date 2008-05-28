@@ -12,6 +12,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 import org.unicase.model.*;
+import org.unicase.model.document.CompositeSection;
+import org.unicase.model.document.LeafSection;
+import org.unicase.model.document.Section;
 
 /**
  * <!-- begin-user-doc -->
@@ -100,29 +103,6 @@ public class ModelSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ModelPackage.LEAF_SECTION: {
-				LeafSection leafSection = (LeafSection)theEObject;
-				T result = caseLeafSection(leafSection);
-				if (result == null) result = caseSection(leafSection);
-				if (result == null) result = caseModelElement(leafSection);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ModelPackage.COMPOSITE_SECTION: {
-				CompositeSection compositeSection = (CompositeSection)theEObject;
-				T result = caseCompositeSection(compositeSection);
-				if (result == null) result = caseSection(compositeSection);
-				if (result == null) result = caseModelElement(compositeSection);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ModelPackage.SECTION: {
-				Section section = (Section)theEObject;
-				T result = caseSection(section);
-				if (result == null) result = caseModelElement(section);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ModelPackage.PROJECT: {
 				Project project = (Project)theEObject;
 				T result = caseProject(project);
@@ -179,51 +159,6 @@ public class ModelSwitch<T> {
 	 * @generated
 	 */
 	public T caseFunctionalRequirement(FunctionalRequirement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Leaf Section</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Leaf Section</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLeafSection(LeafSection object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Composite Section</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Composite Section</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCompositeSection(CompositeSection object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Section</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Section</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSection(Section object) {
 		return null;
 	}
 

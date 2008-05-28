@@ -242,252 +242,6 @@ public interface ModelPackage extends EPackage {
 	int FUNCTIONAL_REQUIREMENT_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.model.Section <em>Section</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.unicase.model.Section
-	 * @see org.unicase.model.impl.ModelPackageImpl#getSection()
-	 * @generated
-	 */
-	int SECTION = 4;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION__NAME = MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION__DESCRIPTION = MODEL_ELEMENT__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION__IDENTIFIER = MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION__READER_INFOS = MODEL_ELEMENT__READER_INFOS;
-
-	/**
-	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION__ACTION_ITEMS = MODEL_ELEMENT__ACTION_ITEMS;
-
-	/**
-	 * The feature id for the '<em><b>Parent</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION__PARENT = MODEL_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Section</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.unicase.model.impl.LeafSectionImpl <em>Leaf Section</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.unicase.model.impl.LeafSectionImpl
-	 * @see org.unicase.model.impl.ModelPackageImpl#getLeafSection()
-	 * @generated
-	 */
-	int LEAF_SECTION = 2;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LEAF_SECTION__NAME = SECTION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LEAF_SECTION__DESCRIPTION = SECTION__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LEAF_SECTION__IDENTIFIER = SECTION__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LEAF_SECTION__READER_INFOS = SECTION__READER_INFOS;
-
-	/**
-	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LEAF_SECTION__ACTION_ITEMS = SECTION__ACTION_ITEMS;
-
-	/**
-	 * The feature id for the '<em><b>Parent</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LEAF_SECTION__PARENT = SECTION__PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Element Class</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LEAF_SECTION__ELEMENT_CLASS = SECTION_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Model Elements</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LEAF_SECTION__MODEL_ELEMENTS = SECTION_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Leaf Section</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LEAF_SECTION_FEATURE_COUNT = SECTION_FEATURE_COUNT + 2;
-
-	/**
-	 * The meta object id for the '{@link org.unicase.model.impl.CompositeSectionImpl <em>Composite Section</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.unicase.model.impl.CompositeSectionImpl
-	 * @see org.unicase.model.impl.ModelPackageImpl#getCompositeSection()
-	 * @generated
-	 */
-	int COMPOSITE_SECTION = 3;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_SECTION__NAME = SECTION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_SECTION__DESCRIPTION = SECTION__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_SECTION__IDENTIFIER = SECTION__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_SECTION__READER_INFOS = SECTION__READER_INFOS;
-
-	/**
-	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_SECTION__ACTION_ITEMS = SECTION__ACTION_ITEMS;
-
-	/**
-	 * The feature id for the '<em><b>Parent</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_SECTION__PARENT = SECTION__PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Subsections</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_SECTION__SUBSECTIONS = SECTION_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Composite Section</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_SECTION_FEATURE_COUNT = SECTION_FEATURE_COUNT + 1;
-
-	/**
 	 * The meta object id for the '{@link org.unicase.model.impl.ProjectImpl <em>Project</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -495,7 +249,7 @@ public interface ModelPackage extends EPackage {
 	 * @see org.unicase.model.impl.ModelPackageImpl#getProject()
 	 * @generated
 	 */
-	int PROJECT = 5;
+	int PROJECT = 2;
 
 	/**
 	 * The feature id for the '<em><b>Model Elements</b></em>' containment reference list.
@@ -524,7 +278,7 @@ public interface ModelPackage extends EPackage {
 	 * @see org.unicase.model.impl.ModelPackageImpl#getUniqueIdentifier()
 	 * @generated
 	 */
-	int UNIQUE_IDENTIFIER = 7;
+	int UNIQUE_IDENTIFIER = 4;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -552,7 +306,7 @@ public interface ModelPackage extends EPackage {
 	 * @see org.unicase.model.impl.ModelPackageImpl#getModelElementId()
 	 * @generated
 	 */
-	int MODEL_ELEMENT_ID = 6;
+	int MODEL_ELEMENT_ID = 3;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -581,7 +335,7 @@ public interface ModelPackage extends EPackage {
 	 * @see org.unicase.model.impl.ModelPackageImpl#getReaderInfo()
 	 * @generated
 	 */
-	int READER_INFO = 8;
+	int READER_INFO = 5;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -609,7 +363,6 @@ public interface ModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int READER_INFO_FEATURE_COUNT = 2;
-
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.ModelElement <em>Element</em>}'.
@@ -751,80 +504,6 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFunctionalRequirement_RefinedRequirement();
-
-	/**
-	 * Returns the meta object for class '{@link org.unicase.model.LeafSection <em>Leaf Section</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Leaf Section</em>'.
-	 * @see org.unicase.model.LeafSection
-	 * @generated
-	 */
-	EClass getLeafSection();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.LeafSection#getElementClass <em>Element Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Element Class</em>'.
-	 * @see org.unicase.model.LeafSection#getElementClass()
-	 * @see #getLeafSection()
-	 * @generated
-	 */
-	EAttribute getLeafSection_ElementClass();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.model.LeafSection#getModelElements <em>Model Elements</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Model Elements</em>'.
-	 * @see org.unicase.model.LeafSection#getModelElements()
-	 * @see #getLeafSection()
-	 * @generated
-	 */
-	EReference getLeafSection_ModelElements();
-
-	/**
-	 * Returns the meta object for class '{@link org.unicase.model.CompositeSection <em>Composite Section</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Composite Section</em>'.
-	 * @see org.unicase.model.CompositeSection
-	 * @generated
-	 */
-	EClass getCompositeSection();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.model.CompositeSection#getSubsections <em>Subsections</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Subsections</em>'.
-	 * @see org.unicase.model.CompositeSection#getSubsections()
-	 * @see #getCompositeSection()
-	 * @generated
-	 */
-	EReference getCompositeSection_Subsections();
-
-	/**
-	 * Returns the meta object for class '{@link org.unicase.model.Section <em>Section</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Section</em>'.
-	 * @see org.unicase.model.Section
-	 * @generated
-	 */
-	EClass getSection();
-
-	/**
-	 * Returns the meta object for the container reference '{@link org.unicase.model.Section#getParent <em>Parent</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Parent</em>'.
-	 * @see org.unicase.model.Section#getParent()
-	 * @see #getSection()
-	 * @generated
-	 */
-	EReference getSection_Parent();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.Project <em>Project</em>}'.
@@ -1039,68 +718,6 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT = eINSTANCE.getFunctionalRequirement_RefinedRequirement();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.model.impl.LeafSectionImpl <em>Leaf Section</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.unicase.model.impl.LeafSectionImpl
-		 * @see org.unicase.model.impl.ModelPackageImpl#getLeafSection()
-		 * @generated
-		 */
-		EClass LEAF_SECTION = eINSTANCE.getLeafSection();
-
-		/**
-		 * The meta object literal for the '<em><b>Element Class</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute LEAF_SECTION__ELEMENT_CLASS = eINSTANCE.getLeafSection_ElementClass();
-
-		/**
-		 * The meta object literal for the '<em><b>Model Elements</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference LEAF_SECTION__MODEL_ELEMENTS = eINSTANCE.getLeafSection_ModelElements();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.model.impl.CompositeSectionImpl <em>Composite Section</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.unicase.model.impl.CompositeSectionImpl
-		 * @see org.unicase.model.impl.ModelPackageImpl#getCompositeSection()
-		 * @generated
-		 */
-		EClass COMPOSITE_SECTION = eINSTANCE.getCompositeSection();
-
-		/**
-		 * The meta object literal for the '<em><b>Subsections</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPOSITE_SECTION__SUBSECTIONS = eINSTANCE.getCompositeSection_Subsections();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.model.Section <em>Section</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.unicase.model.Section
-		 * @see org.unicase.model.impl.ModelPackageImpl#getSection()
-		 * @generated
-		 */
-		EClass SECTION = eINSTANCE.getSection();
-
-		/**
-		 * The meta object literal for the '<em><b>Parent</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SECTION__PARENT = eINSTANCE.getSection_Parent();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.impl.ProjectImpl <em>Project</em>}' class.

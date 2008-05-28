@@ -14,19 +14,23 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
-import org.unicase.model.CompositeSection;
 import org.unicase.model.FunctionalRequirement;
-import org.unicase.model.LeafSection;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.ReaderInfo;
-import org.unicase.model.Section;
 import org.unicase.model.UniqueIdentifier;
+import org.unicase.model.classes.ClassesPackage;
+import org.unicase.model.classes.impl.ClassesPackageImpl;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.impl.DiagramPackageImpl;
+import org.unicase.model.document.CompositeSection;
+import org.unicase.model.document.DocumentPackage;
+import org.unicase.model.document.LeafSection;
+import org.unicase.model.document.Section;
+import org.unicase.model.document.impl.DocumentPackageImpl;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.impl.OrganizationPackageImpl;
 import org.unicase.model.task.TaskPackage;
@@ -52,27 +56,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	private EClass functionalRequirementEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass leafSectionEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass compositeSectionEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass sectionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -165,18 +148,24 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		OrganizationPackageImpl theOrganizationPackage = (OrganizationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(OrganizationPackage.eNS_URI) : OrganizationPackage.eINSTANCE);
 		TaskPackageImpl theTaskPackage = (TaskPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) : TaskPackage.eINSTANCE);
 		DiagramPackageImpl theDiagramPackage = (DiagramPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI) : DiagramPackage.eINSTANCE);
+		ClassesPackageImpl theClassesPackage = (ClassesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ClassesPackage.eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ClassesPackage.eNS_URI) : ClassesPackage.eINSTANCE);
+		DocumentPackageImpl theDocumentPackage = (DocumentPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI) : DocumentPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theModelPackage.createPackageContents();
 		theOrganizationPackage.createPackageContents();
 		theTaskPackage.createPackageContents();
 		theDiagramPackage.createPackageContents();
+		theClassesPackage.createPackageContents();
+		theDocumentPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theModelPackage.initializePackageContents();
 		theOrganizationPackage.initializePackageContents();
 		theTaskPackage.initializePackageContents();
 		theDiagramPackage.initializePackageContents();
+		theClassesPackage.initializePackageContents();
+		theDocumentPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theModelPackage.freeze();
@@ -306,69 +295,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getLeafSection() {
-		return leafSectionEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getLeafSection_ElementClass() {
-		return (EAttribute)leafSectionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getLeafSection_ModelElements() {
-		return (EReference)leafSectionEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getCompositeSection() {
-		return compositeSectionEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompositeSection_Subsections() {
-		return (EReference)compositeSectionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getSection() {
-		return sectionEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getSection_Parent() {
-		return (EReference)sectionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getProject() {
 		return projectEClass;
 	}
@@ -479,16 +405,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		createEReference(functionalRequirementEClass, FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS);
 		createEReference(functionalRequirementEClass, FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT);
 
-		leafSectionEClass = createEClass(LEAF_SECTION);
-		createEAttribute(leafSectionEClass, LEAF_SECTION__ELEMENT_CLASS);
-		createEReference(leafSectionEClass, LEAF_SECTION__MODEL_ELEMENTS);
-
-		compositeSectionEClass = createEClass(COMPOSITE_SECTION);
-		createEReference(compositeSectionEClass, COMPOSITE_SECTION__SUBSECTIONS);
-
-		sectionEClass = createEClass(SECTION);
-		createEReference(sectionEClass, SECTION__PARENT);
-
 		projectEClass = createEClass(PROJECT);
 		createEReference(projectEClass, PROJECT__MODEL_ELEMENTS);
 
@@ -529,11 +445,15 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		OrganizationPackage theOrganizationPackage = (OrganizationPackage)EPackage.Registry.INSTANCE.getEPackage(OrganizationPackage.eNS_URI);
 		TaskPackage theTaskPackage = (TaskPackage)EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI);
 		DiagramPackage theDiagramPackage = (DiagramPackage)EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI);
+		ClassesPackage theClassesPackage = (ClassesPackage)EPackage.Registry.INSTANCE.getEPackage(ClassesPackage.eNS_URI);
+		DocumentPackage theDocumentPackage = (DocumentPackage)EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theOrganizationPackage);
 		getESubpackages().add(theTaskPackage);
 		getESubpackages().add(theDiagramPackage);
+		getESubpackages().add(theClassesPackage);
+		getESubpackages().add(theDocumentPackage);
 
 		// Create type parameters
 
@@ -541,9 +461,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 		// Add supertypes to classes
 		functionalRequirementEClass.getESuperTypes().add(this.getModelElement());
-		leafSectionEClass.getESuperTypes().add(this.getSection());
-		compositeSectionEClass.getESuperTypes().add(this.getSection());
-		sectionEClass.getESuperTypes().add(this.getModelElement());
 		modelElementIdEClass.getESuperTypes().add(this.getUniqueIdentifier());
 
 		// Initialize classes and features; add operations and parameters
@@ -567,21 +484,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEAttribute(getFunctionalRequirement_Date(), ecorePackage.getEDate(), "date", null, 0, 1, FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionalRequirement_RefiningRequirements(), this.getFunctionalRequirement(), this.getFunctionalRequirement_RefinedRequirement(), "refiningRequirements", null, 0, -1, FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionalRequirement_RefinedRequirement(), this.getFunctionalRequirement(), this.getFunctionalRequirement_RefiningRequirements(), "refinedRequirement", null, 0, 1, FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(leafSectionEClass, LeafSection.class, "LeafSection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		EGenericType g1 = createEGenericType(ecorePackage.getEJavaClass());
-		EGenericType g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		EGenericType g3 = createEGenericType(this.getModelElement());
-		g2.setEUpperBound(g3);
-		initEAttribute(getLeafSection_ElementClass(), g1, "elementClass", null, 0, 1, LeafSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLeafSection_ModelElements(), this.getModelElement(), null, "modelElements", null, 0, -1, LeafSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(compositeSectionEClass, CompositeSection.class, "CompositeSection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCompositeSection_Subsections(), this.getSection(), this.getSection_Parent(), "subsections", null, 0, -1, CompositeSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(sectionEClass, Section.class, "Section", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSection_Parent(), this.getCompositeSection(), this.getCompositeSection_Subsections(), "parent", null, 0, 1, Section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(projectEClass, Project.class, "Project", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getProject_ModelElements(), this.getModelElement(), null, "modelElements", null, 0, -1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
