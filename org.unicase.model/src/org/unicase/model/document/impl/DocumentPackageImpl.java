@@ -4,9 +4,11 @@
  *
  * $Id$
  */
-package org.unicase.model.organization.impl;
+package org.unicase.model.document.impl;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -16,15 +18,14 @@ import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.classes.impl.ClassesPackageImpl;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.impl.DiagramPackageImpl;
+import org.unicase.model.document.CompositeSection;
+import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.DocumentPackage;
-import org.unicase.model.document.impl.DocumentPackageImpl;
+import org.unicase.model.document.LeafSection;
+import org.unicase.model.document.Section;
 import org.unicase.model.impl.ModelPackageImpl;
-import org.unicase.model.organization.Group;
-import org.unicase.model.organization.OrgUnit;
-import org.unicase.model.organization.OrgUnitId;
-import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.organization.OrganizationPackage;
-import org.unicase.model.organization.User;
+import org.unicase.model.organization.impl.OrganizationPackageImpl;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.impl.TaskPackageImpl;
 
@@ -34,33 +35,25 @@ import org.unicase.model.task.impl.TaskPackageImpl;
  * <!-- end-user-doc -->
  * @generated
  */
-public class OrganizationPackageImpl extends EPackageImpl implements OrganizationPackage {
+public class DocumentPackageImpl extends EPackageImpl implements DocumentPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass userEClass = null;
-
+	private EClass leafSectionEClass = null;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass orgUnitEClass = null;
+	private EClass compositeSectionEClass = null;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass orgUnitIdEClass = null;
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass groupEClass = null;
-
+	private EClass sectionEClass = null;
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
@@ -72,12 +65,12 @@ public class OrganizationPackageImpl extends EPackageImpl implements Organizatio
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.unicase.model.organization.OrganizationPackage#eNS_URI
+	 * @see org.unicase.model.document.DocumentPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private OrganizationPackageImpl() {
-		super(eNS_URI, OrganizationFactory.eINSTANCE);
+	private DocumentPackageImpl() {
+		super(eNS_URI, DocumentFactory.eINSTANCE);
 	}
 
 	/**
@@ -109,11 +102,11 @@ public class OrganizationPackageImpl extends EPackageImpl implements Organizatio
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static OrganizationPackage init() {
-		if (isInited) return (OrganizationPackage)EPackage.Registry.INSTANCE.getEPackage(OrganizationPackage.eNS_URI);
+	public static DocumentPackage init() {
+		if (isInited) return (DocumentPackage)EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI);
 
 		// Obtain or create and register package
-		OrganizationPackageImpl theOrganizationPackage = (OrganizationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new OrganizationPackageImpl());
+		DocumentPackageImpl theDocumentPackage = (DocumentPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new DocumentPackageImpl());
 
 		isInited = true;
 
@@ -122,31 +115,31 @@ public class OrganizationPackageImpl extends EPackageImpl implements Organizatio
 
 		// Obtain or create and register interdependencies
 		ModelPackageImpl theModelPackage = (ModelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI) : ModelPackage.eINSTANCE);
+		OrganizationPackageImpl theOrganizationPackage = (OrganizationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(OrganizationPackage.eNS_URI) : OrganizationPackage.eINSTANCE);
 		TaskPackageImpl theTaskPackage = (TaskPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) : TaskPackage.eINSTANCE);
 		DiagramPackageImpl theDiagramPackage = (DiagramPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI) : DiagramPackage.eINSTANCE);
 		ClassesPackageImpl theClassesPackage = (ClassesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ClassesPackage.eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ClassesPackage.eNS_URI) : ClassesPackage.eINSTANCE);
-		DocumentPackageImpl theDocumentPackage = (DocumentPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI) : DocumentPackage.eINSTANCE);
 
 		// Create package meta-data objects
-		theOrganizationPackage.createPackageContents();
+		theDocumentPackage.createPackageContents();
 		theModelPackage.createPackageContents();
+		theOrganizationPackage.createPackageContents();
 		theTaskPackage.createPackageContents();
 		theDiagramPackage.createPackageContents();
 		theClassesPackage.createPackageContents();
-		theDocumentPackage.createPackageContents();
 
 		// Initialize created meta-data
-		theOrganizationPackage.initializePackageContents();
+		theDocumentPackage.initializePackageContents();
 		theModelPackage.initializePackageContents();
+		theOrganizationPackage.initializePackageContents();
 		theTaskPackage.initializePackageContents();
 		theDiagramPackage.initializePackageContents();
 		theClassesPackage.initializePackageContents();
-		theDocumentPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
-		theOrganizationPackage.freeze();
+		theDocumentPackage.freeze();
 
-		return theOrganizationPackage;
+		return theDocumentPackage;
 	}
 
 	/**
@@ -154,8 +147,8 @@ public class OrganizationPackageImpl extends EPackageImpl implements Organizatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getUser() {
-		return userEClass;
+	public EClass getLeafSection() {
+		return leafSectionEClass;
 	}
 
 	/**
@@ -163,8 +156,8 @@ public class OrganizationPackageImpl extends EPackageImpl implements Organizatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getOrgUnit() {
-		return orgUnitEClass;
+	public EAttribute getLeafSection_ElementClass() {
+		return (EAttribute)leafSectionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -172,8 +165,8 @@ public class OrganizationPackageImpl extends EPackageImpl implements Organizatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOrgUnit_OrgId() {
-		return (EReference)orgUnitEClass.getEStructuralFeatures().get(0);
+	public EReference getLeafSection_ModelElements() {
+		return (EReference)leafSectionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -181,8 +174,8 @@ public class OrganizationPackageImpl extends EPackageImpl implements Organizatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getOrgUnitId() {
-		return orgUnitIdEClass;
+	public EClass getCompositeSection() {
+		return compositeSectionEClass;
 	}
 
 	/**
@@ -190,8 +183,8 @@ public class OrganizationPackageImpl extends EPackageImpl implements Organizatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getGroup() {
-		return groupEClass;
+	public EReference getCompositeSection_Subsections() {
+		return (EReference)compositeSectionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -199,8 +192,26 @@ public class OrganizationPackageImpl extends EPackageImpl implements Organizatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OrganizationFactory getOrganizationFactory() {
-		return (OrganizationFactory)getEFactoryInstance();
+	public EClass getSection() {
+		return sectionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSection_Parent() {
+		return (EReference)sectionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DocumentFactory getDocumentFactory() {
+		return (DocumentFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -222,14 +233,15 @@ public class OrganizationPackageImpl extends EPackageImpl implements Organizatio
 		isCreated = true;
 
 		// Create classes and their features
-		userEClass = createEClass(USER);
+		leafSectionEClass = createEClass(LEAF_SECTION);
+		createEAttribute(leafSectionEClass, LEAF_SECTION__ELEMENT_CLASS);
+		createEReference(leafSectionEClass, LEAF_SECTION__MODEL_ELEMENTS);
 
-		orgUnitEClass = createEClass(ORG_UNIT);
-		createEReference(orgUnitEClass, ORG_UNIT__ORG_ID);
+		compositeSectionEClass = createEClass(COMPOSITE_SECTION);
+		createEReference(compositeSectionEClass, COMPOSITE_SECTION__SUBSECTIONS);
 
-		orgUnitIdEClass = createEClass(ORG_UNIT_ID);
-
-		groupEClass = createEClass(GROUP);
+		sectionEClass = createEClass(SECTION);
+		createEReference(sectionEClass, SECTION__PARENT);
 	}
 
 	/**
@@ -263,20 +275,25 @@ public class OrganizationPackageImpl extends EPackageImpl implements Organizatio
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		userEClass.getESuperTypes().add(this.getOrgUnit());
-		orgUnitEClass.getESuperTypes().add(theModelPackage.getModelElement());
-		orgUnitIdEClass.getESuperTypes().add(theModelPackage.getUniqueIdentifier());
-		groupEClass.getESuperTypes().add(this.getOrgUnit());
+		leafSectionEClass.getESuperTypes().add(this.getSection());
+		compositeSectionEClass.getESuperTypes().add(this.getSection());
+		sectionEClass.getESuperTypes().add(theModelPackage.getModelElement());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(userEClass, User.class, "User", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(leafSectionEClass, LeafSection.class, "LeafSection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		EGenericType g1 = createEGenericType(ecorePackage.getEJavaClass());
+		EGenericType g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		EGenericType g3 = createEGenericType(theModelPackage.getModelElement());
+		g2.setEUpperBound(g3);
+		initEAttribute(getLeafSection_ElementClass(), g1, "elementClass", null, 0, 1, LeafSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLeafSection_ModelElements(), theModelPackage.getModelElement(), null, "modelElements", null, 0, -1, LeafSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(orgUnitEClass, OrgUnit.class, "OrgUnit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getOrgUnit_OrgId(), this.getOrgUnitId(), null, "orgId", null, 0, 1, OrgUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(compositeSectionEClass, CompositeSection.class, "CompositeSection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCompositeSection_Subsections(), this.getSection(), this.getSection_Parent(), "subsections", null, 0, -1, CompositeSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(orgUnitIdEClass, OrgUnitId.class, "OrgUnitId", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(groupEClass, Group.class, "Group", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(sectionEClass, Section.class, "Section", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSection_Parent(), this.getCompositeSection(), this.getCompositeSection_Subsections(), "parent", null, 0, 1, Section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
-} //OrganizationPackageImpl
+} //DocumentPackageImpl

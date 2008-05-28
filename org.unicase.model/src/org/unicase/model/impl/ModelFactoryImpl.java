@@ -11,14 +11,17 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.unicase.model.CompositeSection;
+import org.unicase.model.*;
 import org.unicase.model.FunctionalRequirement;
-import org.unicase.model.LeafSection;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.ReaderInfo;
+import org.unicase.model.document.CompositeSection;
+import org.unicase.model.document.LeafSection;
+import org.unicase.model.document.impl.CompositeSectionImpl;
+import org.unicase.model.document.impl.LeafSectionImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
@@ -63,8 +66,6 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case ModelPackage.FUNCTIONAL_REQUIREMENT: return createFunctionalRequirement();
-			case ModelPackage.LEAF_SECTION: return createLeafSection();
-			case ModelPackage.COMPOSITE_SECTION: return createCompositeSection();
 			case ModelPackage.PROJECT: return createProject();
 			case ModelPackage.MODEL_ELEMENT_ID: return createModelElementId();
 			case ModelPackage.READER_INFO: return createReaderInfo();
@@ -82,23 +83,7 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 		return functionalRequirement;
 	}
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LeafSection createLeafSection() {
-		LeafSectionImpl leafSection = new LeafSectionImpl();
-		return leafSection;
-	}
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CompositeSection createCompositeSection() {
-		CompositeSectionImpl compositeSection = new CompositeSectionImpl();
-		return compositeSection;
-	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

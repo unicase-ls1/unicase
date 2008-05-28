@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.model.impl;
+package org.unicase.model.document.impl;
 
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
@@ -20,10 +20,12 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.unicase.model.CompositeSection;
-import org.unicase.model.LeafSection;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.document.CompositeSection;
+import org.unicase.model.document.DocumentPackage;
+import org.unicase.model.document.LeafSection;
+import org.unicase.model.impl.ModelElementImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,9 +34,9 @@ import org.unicase.model.ModelPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.impl.LeafSectionImpl#getParent <em>Parent</em>}</li>
- *   <li>{@link org.unicase.model.impl.LeafSectionImpl#getElementClass <em>Element Class</em>}</li>
- *   <li>{@link org.unicase.model.impl.LeafSectionImpl#getModelElements <em>Model Elements</em>}</li>
+ *   <li>{@link org.unicase.model.document.impl.LeafSectionImpl#getParent <em>Parent</em>}</li>
+ *   <li>{@link org.unicase.model.document.impl.LeafSectionImpl#getElementClass <em>Element Class</em>}</li>
+ *   <li>{@link org.unicase.model.document.impl.LeafSectionImpl#getModelElements <em>Model Elements</em>}</li>
  * </ul>
  * </p>
  *
@@ -75,7 +77,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ModelPackage.Literals.LEAF_SECTION;
+		return DocumentPackage.Literals.LEAF_SECTION;
 	}
 
 	/**
@@ -84,7 +86,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	 * @generated
 	 */
 	public CompositeSection getParent() {
-		if (eContainerFeatureID != ModelPackage.LEAF_SECTION__PARENT) return null;
+		if (eContainerFeatureID != DocumentPackage.LEAF_SECTION__PARENT) return null;
 		return (CompositeSection)eContainer();
 	}
 
@@ -94,7 +96,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	 * @generated
 	 */
 	public NotificationChain basicSetParent(CompositeSection newParent, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newParent, ModelPackage.LEAF_SECTION__PARENT, msgs);
+		msgs = eBasicSetContainer((InternalEObject)newParent, DocumentPackage.LEAF_SECTION__PARENT, msgs);
 		return msgs;
 	}
 
@@ -104,19 +106,19 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	 * @generated
 	 */
 	public void setParent(CompositeSection newParent) {
-		if (newParent != eInternalContainer() || (eContainerFeatureID != ModelPackage.LEAF_SECTION__PARENT && newParent != null)) {
+		if (newParent != eInternalContainer() || (eContainerFeatureID != DocumentPackage.LEAF_SECTION__PARENT && newParent != null)) {
 			if (EcoreUtil.isAncestor(this, newParent))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newParent != null)
-				msgs = ((InternalEObject)newParent).eInverseAdd(this, ModelPackage.COMPOSITE_SECTION__SUBSECTIONS, CompositeSection.class, msgs);
+				msgs = ((InternalEObject)newParent).eInverseAdd(this, DocumentPackage.COMPOSITE_SECTION__SUBSECTIONS, CompositeSection.class, msgs);
 			msgs = basicSetParent(newParent, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.LEAF_SECTION__PARENT, newParent, newParent));
+			eNotify(new ENotificationImpl(this, Notification.SET, DocumentPackage.LEAF_SECTION__PARENT, newParent, newParent));
 	}
 
 	/**
@@ -137,7 +139,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 		Class<? extends ModelElement> oldElementClass = elementClass;
 		elementClass = newElementClass;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.LEAF_SECTION__ELEMENT_CLASS, oldElementClass, elementClass));
+			eNotify(new ENotificationImpl(this, Notification.SET, DocumentPackage.LEAF_SECTION__ELEMENT_CLASS, oldElementClass, elementClass));
 	}
 
 	/**
@@ -147,7 +149,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	 */
 	public EList<ModelElement> getModelElements() {
 		if (modelElements == null) {
-			modelElements = new EObjectContainmentEList<ModelElement>(ModelElement.class, this, ModelPackage.LEAF_SECTION__MODEL_ELEMENTS);
+			modelElements = new EObjectContainmentEList<ModelElement>(ModelElement.class, this, DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS);
 		}
 		return modelElements;
 	}
@@ -160,7 +162,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ModelPackage.LEAF_SECTION__PARENT:
+			case DocumentPackage.LEAF_SECTION__PARENT:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetParent((CompositeSection)otherEnd, msgs);
@@ -176,9 +178,9 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ModelPackage.LEAF_SECTION__PARENT:
+			case DocumentPackage.LEAF_SECTION__PARENT:
 				return basicSetParent(null, msgs);
-			case ModelPackage.LEAF_SECTION__MODEL_ELEMENTS:
+			case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
 				return ((InternalEList<?>)getModelElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -192,8 +194,8 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID) {
-			case ModelPackage.LEAF_SECTION__PARENT:
-				return eInternalContainer().eInverseRemove(this, ModelPackage.COMPOSITE_SECTION__SUBSECTIONS, CompositeSection.class, msgs);
+			case DocumentPackage.LEAF_SECTION__PARENT:
+				return eInternalContainer().eInverseRemove(this, DocumentPackage.COMPOSITE_SECTION__SUBSECTIONS, CompositeSection.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -206,11 +208,11 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ModelPackage.LEAF_SECTION__PARENT:
+			case DocumentPackage.LEAF_SECTION__PARENT:
 				return getParent();
-			case ModelPackage.LEAF_SECTION__ELEMENT_CLASS:
+			case DocumentPackage.LEAF_SECTION__ELEMENT_CLASS:
 				return getElementClass();
-			case ModelPackage.LEAF_SECTION__MODEL_ELEMENTS:
+			case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
 				return getModelElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -225,13 +227,13 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ModelPackage.LEAF_SECTION__PARENT:
+			case DocumentPackage.LEAF_SECTION__PARENT:
 				setParent((CompositeSection)newValue);
 				return;
-			case ModelPackage.LEAF_SECTION__ELEMENT_CLASS:
+			case DocumentPackage.LEAF_SECTION__ELEMENT_CLASS:
 				setElementClass((Class<? extends ModelElement>)newValue);
 				return;
-			case ModelPackage.LEAF_SECTION__MODEL_ELEMENTS:
+			case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
 				getModelElements().clear();
 				getModelElements().addAll((Collection<? extends ModelElement>)newValue);
 				return;
@@ -247,13 +249,13 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ModelPackage.LEAF_SECTION__PARENT:
+			case DocumentPackage.LEAF_SECTION__PARENT:
 				setParent((CompositeSection)null);
 				return;
-			case ModelPackage.LEAF_SECTION__ELEMENT_CLASS:
+			case DocumentPackage.LEAF_SECTION__ELEMENT_CLASS:
 				setElementClass((Class<? extends ModelElement>)null);
 				return;
-			case ModelPackage.LEAF_SECTION__MODEL_ELEMENTS:
+			case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
 				getModelElements().clear();
 				return;
 		}
@@ -268,11 +270,11 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ModelPackage.LEAF_SECTION__PARENT:
+			case DocumentPackage.LEAF_SECTION__PARENT:
 				return getParent() != null;
-			case ModelPackage.LEAF_SECTION__ELEMENT_CLASS:
+			case DocumentPackage.LEAF_SECTION__ELEMENT_CLASS:
 				return elementClass != null;
-			case ModelPackage.LEAF_SECTION__MODEL_ELEMENTS:
+			case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
 				return modelElements != null && !modelElements.isEmpty();
 		}
 		return super.eIsSet(featureID);

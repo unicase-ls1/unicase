@@ -4,17 +4,15 @@
  *
  * $Id$
  */
-package org.unicase.model.util;
+package org.unicase.model.document.util;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
-import org.unicase.model.*;
-import org.unicase.model.document.CompositeSection;
-import org.unicase.model.document.LeafSection;
-import org.unicase.model.document.Section;
+import org.unicase.model.ModelElement;
+import org.unicase.model.document.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,17 +24,17 @@ import org.unicase.model.document.Section;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.unicase.model.ModelPackage
+ * @see org.unicase.model.document.DocumentPackage
  * @generated
  */
-public class ModelSwitch<T> {
+public class DocumentSwitch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static ModelPackage modelPackage;
+	protected static DocumentPackage modelPackage;
 
 	/**
 	 * Creates an instance of the switch.
@@ -44,9 +42,9 @@ public class ModelSwitch<T> {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelSwitch() {
+	public DocumentSwitch() {
 		if (modelPackage == null) {
-			modelPackage = ModelPackage.eINSTANCE;
+			modelPackage = DocumentPackage.eINSTANCE;
 		}
 	}
 
@@ -90,46 +88,76 @@ public class ModelSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case ModelPackage.MODEL_ELEMENT: {
-				ModelElement modelElement = (ModelElement)theEObject;
-				T result = caseModelElement(modelElement);
+			case DocumentPackage.LEAF_SECTION: {
+				LeafSection leafSection = (LeafSection)theEObject;
+				T result = caseLeafSection(leafSection);
+				if (result == null) result = caseSection(leafSection);
+				if (result == null) result = caseModelElement(leafSection);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ModelPackage.FUNCTIONAL_REQUIREMENT: {
-				FunctionalRequirement functionalRequirement = (FunctionalRequirement)theEObject;
-				T result = caseFunctionalRequirement(functionalRequirement);
-				if (result == null) result = caseModelElement(functionalRequirement);
+			case DocumentPackage.COMPOSITE_SECTION: {
+				CompositeSection compositeSection = (CompositeSection)theEObject;
+				T result = caseCompositeSection(compositeSection);
+				if (result == null) result = caseSection(compositeSection);
+				if (result == null) result = caseModelElement(compositeSection);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ModelPackage.PROJECT: {
-				Project project = (Project)theEObject;
-				T result = caseProject(project);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ModelPackage.MODEL_ELEMENT_ID: {
-				ModelElementId modelElementId = (ModelElementId)theEObject;
-				T result = caseModelElementId(modelElementId);
-				if (result == null) result = caseUniqueIdentifier(modelElementId);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ModelPackage.UNIQUE_IDENTIFIER: {
-				UniqueIdentifier uniqueIdentifier = (UniqueIdentifier)theEObject;
-				T result = caseUniqueIdentifier(uniqueIdentifier);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ModelPackage.READER_INFO: {
-				ReaderInfo readerInfo = (ReaderInfo)theEObject;
-				T result = caseReaderInfo(readerInfo);
+			case DocumentPackage.SECTION: {
+				Section section = (Section)theEObject;
+				T result = caseSection(section);
+				if (result == null) result = caseModelElement(section);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			default: return defaultCase(theEObject);
 		}
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Leaf Section</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Leaf Section</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLeafSection(LeafSection object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Composite Section</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Composite Section</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCompositeSection(CompositeSection object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Section</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Section</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSection(Section object) {
+		return null;
 	}
 
 	/**
@@ -148,81 +176,6 @@ public class ModelSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Functional Requirement</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Functional Requirement</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseFunctionalRequirement(FunctionalRequirement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Project</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Project</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseProject(Project object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Element Id</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Element Id</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseModelElementId(ModelElementId object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Unique Identifier</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Unique Identifier</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseUniqueIdentifier(UniqueIdentifier object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Reader Info</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Reader Info</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseReaderInfo(ReaderInfo object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -237,4 +190,4 @@ public class ModelSwitch<T> {
 		return null;
 	}
 
-} //ModelSwitch
+} //DocumentSwitch

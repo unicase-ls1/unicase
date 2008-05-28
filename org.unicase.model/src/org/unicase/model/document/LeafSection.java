@@ -4,9 +4,11 @@
  *
  * $Id$
  */
-package org.unicase.model;
+package org.unicase.model.document;
 
 import org.eclipse.emf.common.util.EList;
+import org.unicase.model.ModelElement;
+import org.unicase.model.ModelPackage;
 
 
 /**
@@ -17,12 +19,12 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.model.LeafSection#getElementClass <em>Element Class</em>}</li>
- *   <li>{@link org.unicase.model.LeafSection#getModelElements <em>Model Elements</em>}</li>
+ *   <li>{@link org.unicase.model.document.LeafSection#getElementClass <em>Element Class</em>}</li>
+ *   <li>{@link org.unicase.model.document.LeafSection#getModelElements <em>Model Elements</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.unicase.model.ModelPackage#getLeafSection()
+ * @see org.unicase.model.document.DocumentPackage#getLeafSection()
  * @model
  * @generated
  */
@@ -37,14 +39,14 @@ public interface LeafSection extends Section {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Element Class</em>' attribute.
 	 * @see #setElementClass(Class)
-	 * @see org.unicase.model.ModelPackage#getLeafSection_ElementClass()
+	 * @see org.unicase.model.document.DocumentPackage#getLeafSection_ElementClass()
 	 * @model
 	 * @generated
 	 */
 	Class<? extends ModelElement> getElementClass();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.LeafSection#getElementClass <em>Element Class</em>}' attribute.
+	 * Sets the value of the '{@link org.unicase.model.document.LeafSection#getElementClass <em>Element Class</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Element Class</em>' attribute.
@@ -63,7 +65,7 @@ public interface LeafSection extends Section {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Model Elements</em>' containment reference list.
-	 * @see org.unicase.model.ModelPackage#getLeafSection_ModelElements()
+	 * @see org.unicase.model.document.DocumentPackage#getLeafSection_ModelElements()
 	 * @model containment="true"
 	 * @generated
 	 */

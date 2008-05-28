@@ -28,16 +28,6 @@
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//FunctionalRequirement/refiningRequirements"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//FunctionalRequirement/refinedRequirement"/>
     </genClasses>
-    <genClasses ecoreClass="model.ecore#//LeafSection">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//LeafSection/elementClass"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//LeafSection/modelElements"/>
-    </genClasses>
-    <genClasses ecoreClass="model.ecore#//CompositeSection">
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//CompositeSection/subsections"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="model.ecore#//Section">
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//Section/parent"/>
-    </genClasses>
     <genClasses ecoreClass="model.ecore#//Project">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Project/modelElements"/>
       <genOperations ecoreOperation="model.ecore#//Project/addModelElement">
@@ -83,6 +73,19 @@
     <nestedGenPackages prefix="Classes" basePackage="org.unicase.model" disposableProviderFactory="true"
         ecorePackage="model.ecore#//classes">
       <genClasses ecoreClass="model.ecore#//classes/Class"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Document" basePackage="org.unicase.model" disposableProviderFactory="true"
+        ecorePackage="model.ecore#//document">
+      <genClasses ecoreClass="model.ecore#//document/LeafSection">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//document/LeafSection/elementClass"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//document/LeafSection/modelElements"/>
+      </genClasses>
+      <genClasses ecoreClass="model.ecore#//document/CompositeSection">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//document/CompositeSection/subsections"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="model.ecore#//document/Section">
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//document/Section/parent"/>
+      </genClasses>
     </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

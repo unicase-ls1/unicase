@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.model.util;
+package org.unicase.model.document.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -13,27 +13,25 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.unicase.model.*;
-import org.unicase.model.document.CompositeSection;
-import org.unicase.model.document.LeafSection;
-import org.unicase.model.document.Section;
+import org.unicase.model.ModelElement;
+import org.unicase.model.document.*;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see org.unicase.model.ModelPackage
+ * @see org.unicase.model.document.DocumentPackage
  * @generated
  */
-public class ModelAdapterFactory extends AdapterFactoryImpl {
+public class DocumentAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static ModelPackage modelPackage;
+	protected static DocumentPackage modelPackage;
 
 	/**
 	 * Creates an instance of the adapter factory.
@@ -41,9 +39,9 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelAdapterFactory() {
+	public DocumentAdapterFactory() {
 		if (modelPackage == null) {
-			modelPackage = ModelPackage.eINSTANCE;
+			modelPackage = DocumentPackage.eINSTANCE;
 		}
 	}
 
@@ -72,31 +70,23 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModelSwitch<Adapter> modelSwitch =
-		new ModelSwitch<Adapter>() {
+	protected DocumentSwitch<Adapter> modelSwitch =
+		new DocumentSwitch<Adapter>() {
+			@Override
+			public Adapter caseLeafSection(LeafSection object) {
+				return createLeafSectionAdapter();
+			}
+			@Override
+			public Adapter caseCompositeSection(CompositeSection object) {
+				return createCompositeSectionAdapter();
+			}
+			@Override
+			public Adapter caseSection(Section object) {
+				return createSectionAdapter();
+			}
 			@Override
 			public Adapter caseModelElement(ModelElement object) {
 				return createModelElementAdapter();
-			}
-			@Override
-			public Adapter caseFunctionalRequirement(FunctionalRequirement object) {
-				return createFunctionalRequirementAdapter();
-			}
-			@Override
-			public Adapter caseProject(Project object) {
-				return createProjectAdapter();
-			}
-			@Override
-			public Adapter caseModelElementId(ModelElementId object) {
-				return createModelElementIdAdapter();
-			}
-			@Override
-			public Adapter caseUniqueIdentifier(UniqueIdentifier object) {
-				return createUniqueIdentifierAdapter();
-			}
-			@Override
-			public Adapter caseReaderInfo(ReaderInfo object) {
-				return createReaderInfoAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -119,6 +109,48 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.document.LeafSection <em>Leaf Section</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.document.LeafSection
+	 * @generated
+	 */
+	public Adapter createLeafSectionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.document.CompositeSection <em>Composite Section</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.document.CompositeSection
+	 * @generated
+	 */
+	public Adapter createCompositeSectionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.document.Section <em>Section</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.document.Section
+	 * @generated
+	 */
+	public Adapter createSectionAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.unicase.model.ModelElement <em>Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -129,76 +161,6 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createModelElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.FunctionalRequirement <em>Functional Requirement</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.model.FunctionalRequirement
-	 * @generated
-	 */
-	public Adapter createFunctionalRequirementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.Project <em>Project</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.model.Project
-	 * @generated
-	 */
-	public Adapter createProjectAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.ModelElementId <em>Element Id</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.model.ModelElementId
-	 * @generated
-	 */
-	public Adapter createModelElementIdAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.UniqueIdentifier <em>Unique Identifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.model.UniqueIdentifier
-	 * @generated
-	 */
-	public Adapter createUniqueIdentifierAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.ReaderInfo <em>Reader Info</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.model.ReaderInfo
-	 * @generated
-	 */
-	public Adapter createReaderInfoAdapter() {
 		return null;
 	}
 
@@ -214,4 +176,4 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} //ModelAdapterFactory
+} //DocumentAdapterFactory

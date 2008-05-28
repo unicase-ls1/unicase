@@ -8,17 +8,23 @@ Bundle-Vendor: unicase.org
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.unicase.model,
+ org.unicase.model.classes,
+ org.unicase.model.classes.impl,
+ org.unicase.model.classes.util,
  org.unicase.model.diagram,
  org.unicase.model.diagram.impl,
  org.unicase.model.diagram.util,
+ org.unicase.model.document,
+ org.unicase.model.document.impl,
+ org.unicase.model.document.util,
  org.unicase.model.impl,
  org.unicase.model.organization,
  org.unicase.model.organization.impl,
  org.unicase.model.organization.util,
- org.unicase.model.util, 
  org.unicase.model.task,
- org.unicase.model.task.impl, 
- org.unicase.model.task.util
+ org.unicase.model.task.impl,
+ org.unicase.model.task.util,
+ org.unicase.model.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.gmf.runtime.notation

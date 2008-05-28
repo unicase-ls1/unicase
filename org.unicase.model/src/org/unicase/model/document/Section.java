@@ -4,7 +4,10 @@
  *
  * $Id$
  */
-package org.unicase.model;
+package org.unicase.model.document;
+
+import org.unicase.model.ModelElement;
+import org.unicase.model.ModelPackage;
 
 
 /**
@@ -15,18 +18,18 @@ package org.unicase.model;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.model.Section#getParent <em>Parent</em>}</li>
+ *   <li>{@link org.unicase.model.document.Section#getParent <em>Parent</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.unicase.model.ModelPackage#getSection()
+ * @see org.unicase.model.document.DocumentPackage#getSection()
  * @model interface="true" abstract="true"
  * @generated
  */
 public interface Section extends ModelElement {
 	/**
 	 * Returns the value of the '<em><b>Parent</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.CompositeSection#getSubsections <em>Subsections</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.document.CompositeSection#getSubsections <em>Subsections</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Parent</em>' container reference isn't clear,
@@ -35,15 +38,15 @@ public interface Section extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parent</em>' container reference.
 	 * @see #setParent(CompositeSection)
-	 * @see org.unicase.model.ModelPackage#getSection_Parent()
-	 * @see org.unicase.model.CompositeSection#getSubsections
+	 * @see org.unicase.model.document.DocumentPackage#getSection_Parent()
+	 * @see org.unicase.model.document.CompositeSection#getSubsections
 	 * @model opposite="subsections" transient="false"
 	 * @generated
 	 */
 	CompositeSection getParent();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.Section#getParent <em>Parent</em>}' container reference.
+	 * Sets the value of the '{@link org.unicase.model.document.Section#getParent <em>Parent</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Parent</em>' container reference.
