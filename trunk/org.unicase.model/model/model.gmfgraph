@@ -11,7 +11,7 @@
         xsi:type="gmfgraph:Ellipse"/>
   </figures>
   <nodes
-      name="Functional Requirement"/>
+      name="Class"/>
   <labels
       name="Name"/>
 </gmfgraph:Canvas>
