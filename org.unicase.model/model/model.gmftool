@@ -7,7 +7,7 @@
       title="Standard">
     <tools
         xsi:type="gmftool:CreationTool"
-        title="Functional Requirement"
+        title="Class"
         description=""/>
   </palette>
 </gmftool:ToolRegistry>
