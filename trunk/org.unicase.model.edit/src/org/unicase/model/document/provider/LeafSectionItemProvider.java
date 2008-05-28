@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.model.provider;
+package org.unicase.model.document.provider;
 
 
 import java.util.Collection;
@@ -12,7 +12,11 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -22,16 +26,26 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.model.LeafSection;
+
 import org.unicase.model.ModelFactory;
-import org.unicase.model.ModelPackage;
+
+import org.unicase.model.classes.ClassesFactory;
+
 import org.unicase.model.diagram.DiagramFactory;
+
+import org.unicase.model.document.DocumentFactory;
+import org.unicase.model.document.DocumentPackage;
+import org.unicase.model.document.LeafSection;
+
 import org.unicase.model.organization.OrganizationFactory;
+
+import org.unicase.model.provider.ModelEditPlugin;
+import org.unicase.model.provider.ModelElementItemProvider;
+
 import org.unicase.model.task.TaskFactory;
 
-
 /**
- * This is the item provider adapter for a {@link org.unicase.model.LeafSection} object.
+ * This is the item provider adapter for a {@link org.unicase.model.document.LeafSection} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -83,7 +97,7 @@ public class LeafSectionItemProvider
 				 getResourceLocator(),
 				 getString("_UI_LeafSection_elementClass_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_LeafSection_elementClass_feature", "_UI_LeafSection_type"),
-				 ModelPackage.Literals.LEAF_SECTION__ELEMENT_CLASS,
+				 DocumentPackage.Literals.LEAF_SECTION__ELEMENT_CLASS,
 				 true,
 				 false,
 				 false,
@@ -104,7 +118,7 @@ public class LeafSectionItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ModelPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS);
+			childrenFeatures.add(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -159,10 +173,10 @@ public class LeafSectionItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(LeafSection.class)) {
-			case ModelPackage.LEAF_SECTION__ELEMENT_CLASS:
+			case DocumentPackage.LEAF_SECTION__ELEMENT_CLASS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case ModelPackage.LEAF_SECTION__MODEL_ELEMENTS:
+			case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -182,44 +196,59 @@ public class LeafSectionItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ModelPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 DocumentFactory.eINSTANCE.createLeafSection()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 DocumentFactory.eINSTANCE.createCompositeSection()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				 ModelFactory.eINSTANCE.createFunctionalRequirement()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ModelPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-				 ModelFactory.eINSTANCE.createLeafSection()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-				 ModelFactory.eINSTANCE.createCompositeSection()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				 OrganizationFactory.eINSTANCE.createOrgUnit()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ModelPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				 OrganizationFactory.eINSTANCE.createUser()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ModelPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				 OrganizationFactory.eINSTANCE.createGroup()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ModelPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				 TaskFactory.eINSTANCE.createActionItem()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ModelPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				 DiagramFactory.eINSTANCE.createMEDiagram()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 ClassesFactory.eINSTANCE.createClass()));
 	}
 
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return ModelEditPlugin.INSTANCE;
+	}
 
 }

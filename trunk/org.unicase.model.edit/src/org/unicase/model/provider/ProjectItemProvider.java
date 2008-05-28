@@ -22,12 +22,14 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.model.CompositeSection;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
+import org.unicase.model.classes.ClassesFactory;
 import org.unicase.model.diagram.DiagramFactory;
+import org.unicase.model.document.DocumentFactory;
+import org.unicase.model.document.CompositeSection;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.task.TaskFactory;
 
@@ -160,16 +162,6 @@ public class ProjectItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 ModelFactory.eINSTANCE.createLeafSection()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 ModelFactory.eINSTANCE.createCompositeSection()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 				 OrganizationFactory.eINSTANCE.createOrgUnit()));
 
 		newChildDescriptors.add
@@ -191,6 +183,21 @@ public class ProjectItemProvider
 			(createChildParameter
 				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 				 DiagramFactory.eINSTANCE.createMEDiagram()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				 ClassesFactory.eINSTANCE.createClass()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				 DocumentFactory.eINSTANCE.createLeafSection()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				 DocumentFactory.eINSTANCE.createCompositeSection()));
 	}
 
 	/**

@@ -97,52 +97,6 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.model.LeafSection} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected LeafSectionItemProvider leafSectionItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.model.LeafSection}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createLeafSectionAdapter() {
-		if (leafSectionItemProvider == null) {
-			leafSectionItemProvider = new LeafSectionItemProvider(this);
-		}
-
-		return leafSectionItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.model.CompositeSection} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected CompositeSectionItemProvider compositeSectionItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.model.CompositeSection}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createCompositeSectionAdapter() {
-		if (compositeSectionItemProvider == null) {
-			compositeSectionItemProvider = new CompositeSectionItemProvider(this);
-		}
-
-		return compositeSectionItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.unicase.model.Project} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -311,8 +265,6 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	 */
 	public void dispose() {
 		if (functionalRequirementItemProvider != null) functionalRequirementItemProvider.dispose();
-		if (leafSectionItemProvider != null) leafSectionItemProvider.dispose();
-		if (compositeSectionItemProvider != null) compositeSectionItemProvider.dispose();
 		if (projectItemProvider != null) projectItemProvider.dispose();
 		if (modelElementIdItemProvider != null) modelElementIdItemProvider.dispose();
 		if (readerInfoItemProvider != null) readerInfoItemProvider.dispose();
