@@ -30,6 +30,8 @@ import org.unicase.model.organization.OrganizationPackage;
 
 import org.unicase.model.organization.impl.OrganizationPackageImpl;
 
+import org.unicase.model.requirement.RequirementPackage;
+import org.unicase.model.requirement.impl.RequirementPackageImpl;
 import org.unicase.model.task.TaskPackage;
 
 import org.unicase.model.task.impl.TaskPackageImpl;
@@ -113,6 +115,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		TaskPackageImpl theTaskPackage = (TaskPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) : TaskPackage.eINSTANCE);
 		DiagramPackageImpl theDiagramPackage = (DiagramPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI) : DiagramPackage.eINSTANCE);
 		DocumentPackageImpl theDocumentPackage = (DocumentPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI) : DocumentPackage.eINSTANCE);
+		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI) : RequirementPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theClassesPackage.createPackageContents();
@@ -121,6 +124,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		theTaskPackage.createPackageContents();
 		theDiagramPackage.createPackageContents();
 		theDocumentPackage.createPackageContents();
+		theRequirementPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theClassesPackage.initializePackageContents();
@@ -129,6 +133,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		theTaskPackage.initializePackageContents();
 		theDiagramPackage.initializePackageContents();
 		theDocumentPackage.initializePackageContents();
+		theRequirementPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theClassesPackage.freeze();

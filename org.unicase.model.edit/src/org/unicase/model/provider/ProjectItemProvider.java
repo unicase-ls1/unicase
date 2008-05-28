@@ -31,6 +31,7 @@ import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.organization.OrganizationFactory;
+import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.task.TaskFactory;
 
 /**
@@ -157,11 +158,6 @@ public class ProjectItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 ModelFactory.eINSTANCE.createFunctionalRequirement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 				 OrganizationFactory.eINSTANCE.createOrgUnit()));
 
 		newChildDescriptors.add
@@ -198,6 +194,16 @@ public class ProjectItemProvider
 			(createChildParameter
 				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 				 DocumentFactory.eINSTANCE.createCompositeSection()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				 RequirementFactory.eINSTANCE.createNonFunctionalRequirement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				 RequirementFactory.eINSTANCE.createFunctionalRequirement()));
 	}
 
 	/**

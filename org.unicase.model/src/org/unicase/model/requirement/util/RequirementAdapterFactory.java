@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.model.util;
+package org.unicase.model.requirement.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -13,28 +13,26 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.unicase.model.*;
-import org.unicase.model.document.CompositeSection;
-import org.unicase.model.document.LeafSection;
-import org.unicase.model.document.Section;
-import org.unicase.model.requirement.FunctionalRequirement;
+import org.unicase.model.ModelElement;
+
+import org.unicase.model.requirement.*;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see org.unicase.model.ModelPackage
+ * @see org.unicase.model.requirement.RequirementPackage
  * @generated
  */
-public class ModelAdapterFactory extends AdapterFactoryImpl {
+public class RequirementAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static ModelPackage modelPackage;
+	protected static RequirementPackage modelPackage;
 
 	/**
 	 * Creates an instance of the adapter factory.
@@ -42,9 +40,9 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelAdapterFactory() {
+	public RequirementAdapterFactory() {
 		if (modelPackage == null) {
-			modelPackage = ModelPackage.eINSTANCE;
+			modelPackage = RequirementPackage.eINSTANCE;
 		}
 	}
 
@@ -73,27 +71,19 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModelSwitch<Adapter> modelSwitch =
-		new ModelSwitch<Adapter>() {
+	protected RequirementSwitch<Adapter> modelSwitch =
+		new RequirementSwitch<Adapter>() {
+			@Override
+			public Adapter caseNonFunctionalRequirement(NonFunctionalRequirement object) {
+				return createNonFunctionalRequirementAdapter();
+			}
+			@Override
+			public Adapter caseFunctionalRequirement(FunctionalRequirement object) {
+				return createFunctionalRequirementAdapter();
+			}
 			@Override
 			public Adapter caseModelElement(ModelElement object) {
 				return createModelElementAdapter();
-			}
-			@Override
-			public Adapter caseProject(Project object) {
-				return createProjectAdapter();
-			}
-			@Override
-			public Adapter caseModelElementId(ModelElementId object) {
-				return createModelElementIdAdapter();
-			}
-			@Override
-			public Adapter caseUniqueIdentifier(UniqueIdentifier object) {
-				return createUniqueIdentifierAdapter();
-			}
-			@Override
-			public Adapter caseReaderInfo(ReaderInfo object) {
-				return createReaderInfoAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -116,6 +106,34 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.requirement.NonFunctionalRequirement <em>Non Functional Requirement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.requirement.NonFunctionalRequirement
+	 * @generated
+	 */
+	public Adapter createNonFunctionalRequirementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.requirement.FunctionalRequirement <em>Functional Requirement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.requirement.FunctionalRequirement
+	 * @generated
+	 */
+	public Adapter createFunctionalRequirementAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.unicase.model.ModelElement <em>Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -126,62 +144,6 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createModelElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.Project <em>Project</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.model.Project
-	 * @generated
-	 */
-	public Adapter createProjectAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.ModelElementId <em>Element Id</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.model.ModelElementId
-	 * @generated
-	 */
-	public Adapter createModelElementIdAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.UniqueIdentifier <em>Unique Identifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.model.UniqueIdentifier
-	 * @generated
-	 */
-	public Adapter createUniqueIdentifierAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.ReaderInfo <em>Reader Info</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.model.ReaderInfo
-	 * @generated
-	 */
-	public Adapter createReaderInfoAdapter() {
 		return null;
 	}
 
@@ -197,4 +159,4 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} //ModelAdapterFactory
+} //RequirementAdapterFactory

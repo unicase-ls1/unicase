@@ -26,6 +26,8 @@ import org.unicase.model.document.Section;
 import org.unicase.model.impl.ModelPackageImpl;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.impl.OrganizationPackageImpl;
+import org.unicase.model.requirement.RequirementPackage;
+import org.unicase.model.requirement.impl.RequirementPackageImpl;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.impl.TaskPackageImpl;
 
@@ -119,6 +121,7 @@ public class DocumentPackageImpl extends EPackageImpl implements DocumentPackage
 		TaskPackageImpl theTaskPackage = (TaskPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) : TaskPackage.eINSTANCE);
 		DiagramPackageImpl theDiagramPackage = (DiagramPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI) : DiagramPackage.eINSTANCE);
 		ClassesPackageImpl theClassesPackage = (ClassesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ClassesPackage.eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ClassesPackage.eNS_URI) : ClassesPackage.eINSTANCE);
+		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI) : RequirementPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theDocumentPackage.createPackageContents();
@@ -127,6 +130,7 @@ public class DocumentPackageImpl extends EPackageImpl implements DocumentPackage
 		theTaskPackage.createPackageContents();
 		theDiagramPackage.createPackageContents();
 		theClassesPackage.createPackageContents();
+		theRequirementPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theDocumentPackage.initializePackageContents();
@@ -135,6 +139,7 @@ public class DocumentPackageImpl extends EPackageImpl implements DocumentPackage
 		theTaskPackage.initializePackageContents();
 		theDiagramPackage.initializePackageContents();
 		theClassesPackage.initializePackageContents();
+		theRequirementPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theDocumentPackage.freeze();

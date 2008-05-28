@@ -25,6 +25,8 @@ import org.unicase.model.organization.OrgUnitId;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
+import org.unicase.model.requirement.RequirementPackage;
+import org.unicase.model.requirement.impl.RequirementPackageImpl;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.impl.TaskPackageImpl;
 
@@ -126,6 +128,7 @@ public class OrganizationPackageImpl extends EPackageImpl implements Organizatio
 		DiagramPackageImpl theDiagramPackage = (DiagramPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI) : DiagramPackage.eINSTANCE);
 		ClassesPackageImpl theClassesPackage = (ClassesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ClassesPackage.eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ClassesPackage.eNS_URI) : ClassesPackage.eINSTANCE);
 		DocumentPackageImpl theDocumentPackage = (DocumentPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI) : DocumentPackage.eINSTANCE);
+		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI) : RequirementPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theOrganizationPackage.createPackageContents();
@@ -134,6 +137,7 @@ public class OrganizationPackageImpl extends EPackageImpl implements Organizatio
 		theDiagramPackage.createPackageContents();
 		theClassesPackage.createPackageContents();
 		theDocumentPackage.createPackageContents();
+		theRequirementPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theOrganizationPackage.initializePackageContents();
@@ -142,6 +146,7 @@ public class OrganizationPackageImpl extends EPackageImpl implements Organizatio
 		theDiagramPackage.initializePackageContents();
 		theClassesPackage.initializePackageContents();
 		theDocumentPackage.initializePackageContents();
+		theRequirementPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theOrganizationPackage.freeze();

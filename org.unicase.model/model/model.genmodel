@@ -20,14 +20,6 @@
         <genParameters ecoreParameter="model.ecore#//ModelElement/addReader/readerName"/>
       </genOperations>
     </genClasses>
-    <genClasses ecoreClass="model.ecore#//FunctionalRequirement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//FunctionalRequirement/reviewed"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//FunctionalRequirement/storyPoints"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//FunctionalRequirement/priority"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//FunctionalRequirement/date"/>
-      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//FunctionalRequirement/refiningRequirements"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//FunctionalRequirement/refinedRequirement"/>
-    </genClasses>
     <genClasses ecoreClass="model.ecore#//Project">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Project/modelElements"/>
       <genOperations ecoreOperation="model.ecore#//Project/addModelElement">
@@ -85,6 +77,18 @@
       </genClasses>
       <genClasses image="false" ecoreClass="model.ecore#//document/Section">
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//document/Section/parent"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Requirement" basePackage="org.unicase.model" disposableProviderFactory="true"
+        ecorePackage="model.ecore#//requirement">
+      <genClasses ecoreClass="model.ecore#//requirement/NonFunctionalRequirement"/>
+      <genClasses ecoreClass="model.ecore#//requirement/FunctionalRequirement">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/FunctionalRequirement/reviewed"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/FunctionalRequirement/storyPoints"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/FunctionalRequirement/priority"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/FunctionalRequirement/date"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//requirement/FunctionalRequirement/refiningRequirements"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//requirement/FunctionalRequirement/refinedRequirement"/>
       </genClasses>
     </nestedGenPackages>
   </genPackages>

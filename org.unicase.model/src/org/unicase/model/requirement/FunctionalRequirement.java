@@ -4,11 +4,13 @@
  *
  * $Id$
  */
-package org.unicase.model;
+package org.unicase.model.requirement;
 
 import java.util.Date;
 
 import org.eclipse.emf.common.util.EList;
+import org.unicase.model.ModelElement;
+import org.unicase.model.ModelPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,16 +20,16 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.model.FunctionalRequirement#isReviewed <em>Reviewed</em>}</li>
- *   <li>{@link org.unicase.model.FunctionalRequirement#getStoryPoints <em>Story Points</em>}</li>
- *   <li>{@link org.unicase.model.FunctionalRequirement#getPriority <em>Priority</em>}</li>
- *   <li>{@link org.unicase.model.FunctionalRequirement#getDate <em>Date</em>}</li>
- *   <li>{@link org.unicase.model.FunctionalRequirement#getRefiningRequirements <em>Refining Requirements</em>}</li>
- *   <li>{@link org.unicase.model.FunctionalRequirement#getRefinedRequirement <em>Refined Requirement</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#isReviewed <em>Reviewed</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getStoryPoints <em>Story Points</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getPriority <em>Priority</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getDate <em>Date</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getRefiningRequirements <em>Refining Requirements</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getRefinedRequirement <em>Refined Requirement</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.unicase.model.ModelPackage#getFunctionalRequirement()
+ * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement()
  * @model
  * @generated
  */
@@ -42,14 +44,14 @@ public interface FunctionalRequirement extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Reviewed</em>' attribute.
 	 * @see #setReviewed(boolean)
-	 * @see org.unicase.model.ModelPackage#getFunctionalRequirement_Reviewed()
+	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_Reviewed()
 	 * @model
 	 * @generated
 	 */
 	boolean isReviewed();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.FunctionalRequirement#isReviewed <em>Reviewed</em>}' attribute.
+	 * Sets the value of the '{@link org.unicase.model.requirement.FunctionalRequirement#isReviewed <em>Reviewed</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Reviewed</em>' attribute.
@@ -68,14 +70,14 @@ public interface FunctionalRequirement extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Story Points</em>' attribute.
 	 * @see #setStoryPoints(int)
-	 * @see org.unicase.model.ModelPackage#getFunctionalRequirement_StoryPoints()
+	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_StoryPoints()
 	 * @model
 	 * @generated
 	 */
 	int getStoryPoints();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.FunctionalRequirement#getStoryPoints <em>Story Points</em>}' attribute.
+	 * Sets the value of the '{@link org.unicase.model.requirement.FunctionalRequirement#getStoryPoints <em>Story Points</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Story Points</em>' attribute.
@@ -94,14 +96,14 @@ public interface FunctionalRequirement extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Priority</em>' attribute.
 	 * @see #setPriority(int)
-	 * @see org.unicase.model.ModelPackage#getFunctionalRequirement_Priority()
+	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_Priority()
 	 * @model
 	 * @generated
 	 */
 	int getPriority();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.FunctionalRequirement#getPriority <em>Priority</em>}' attribute.
+	 * Sets the value of the '{@link org.unicase.model.requirement.FunctionalRequirement#getPriority <em>Priority</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Priority</em>' attribute.
@@ -120,14 +122,14 @@ public interface FunctionalRequirement extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Date</em>' attribute.
 	 * @see #setDate(Date)
-	 * @see org.unicase.model.ModelPackage#getFunctionalRequirement_Date()
+	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_Date()
 	 * @model
 	 * @generated
 	 */
 	Date getDate();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.FunctionalRequirement#getDate <em>Date</em>}' attribute.
+	 * Sets the value of the '{@link org.unicase.model.requirement.FunctionalRequirement#getDate <em>Date</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Date</em>' attribute.
@@ -138,8 +140,8 @@ public interface FunctionalRequirement extends ModelElement {
 
 	/**
 	 * Returns the value of the '<em><b>Refining Requirements</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.model.FunctionalRequirement}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.FunctionalRequirement#getRefinedRequirement <em>Refined Requirement</em>}'.
+	 * The list contents are of type {@link org.unicase.model.requirement.FunctionalRequirement}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.FunctionalRequirement#getRefinedRequirement <em>Refined Requirement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Refining Requirements</em>' reference list isn't clear,
@@ -147,8 +149,8 @@ public interface FunctionalRequirement extends ModelElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Refining Requirements</em>' containment reference list.
-	 * @see org.unicase.model.ModelPackage#getFunctionalRequirement_RefiningRequirements()
-	 * @see org.unicase.model.FunctionalRequirement#getRefinedRequirement
+	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_RefiningRequirements()
+	 * @see org.unicase.model.requirement.FunctionalRequirement#getRefinedRequirement
 	 * @model opposite="refinedRequirement" containment="true"
 	 * @generated
 	 */
@@ -156,7 +158,7 @@ public interface FunctionalRequirement extends ModelElement {
 
 	/**
 	 * Returns the value of the '<em><b>Refined Requirement</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.FunctionalRequirement#getRefiningRequirements <em>Refining Requirements</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.FunctionalRequirement#getRefiningRequirements <em>Refining Requirements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Refined Requirement</em>' reference isn't clear,
@@ -165,15 +167,15 @@ public interface FunctionalRequirement extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Refined Requirement</em>' container reference.
 	 * @see #setRefinedRequirement(FunctionalRequirement)
-	 * @see org.unicase.model.ModelPackage#getFunctionalRequirement_RefinedRequirement()
-	 * @see org.unicase.model.FunctionalRequirement#getRefiningRequirements
+	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_RefinedRequirement()
+	 * @see org.unicase.model.requirement.FunctionalRequirement#getRefiningRequirements
 	 * @model opposite="refiningRequirements" transient="false"
 	 * @generated
 	 */
 	FunctionalRequirement getRefinedRequirement();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.FunctionalRequirement#getRefinedRequirement <em>Refined Requirement</em>}' container reference.
+	 * Sets the value of the '{@link org.unicase.model.requirement.FunctionalRequirement#getRefinedRequirement <em>Refined Requirement</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Refined Requirement</em>' container reference.

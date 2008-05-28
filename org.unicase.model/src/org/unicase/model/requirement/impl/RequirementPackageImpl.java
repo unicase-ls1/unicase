@@ -4,33 +4,44 @@
  *
  * $Id$
  */
-package org.unicase.model.diagram.impl;
+package org.unicase.model.requirement.impl;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
 
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+
 import org.unicase.model.ModelPackage;
 
 import org.unicase.model.classes.ClassesPackage;
+
 import org.unicase.model.classes.impl.ClassesPackageImpl;
-import org.unicase.model.diagram.DiagramFactory;
+
 import org.unicase.model.diagram.DiagramPackage;
-import org.unicase.model.diagram.MEDiagram;
+
+import org.unicase.model.diagram.impl.DiagramPackageImpl;
 
 import org.unicase.model.document.DocumentPackage;
+
 import org.unicase.model.document.impl.DocumentPackageImpl;
+
 import org.unicase.model.impl.ModelPackageImpl;
 
 import org.unicase.model.organization.OrganizationPackage;
 
 import org.unicase.model.organization.impl.OrganizationPackageImpl;
+
+import org.unicase.model.requirement.FunctionalRequirement;
+import org.unicase.model.requirement.NonFunctionalRequirement;
+import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.RequirementPackage;
-import org.unicase.model.requirement.impl.RequirementPackageImpl;
+
 import org.unicase.model.task.TaskPackage;
+
 import org.unicase.model.task.impl.TaskPackageImpl;
 
 /**
@@ -39,13 +50,20 @@ import org.unicase.model.task.impl.TaskPackageImpl;
  * <!-- end-user-doc -->
  * @generated
  */
-public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
+public class RequirementPackageImpl extends EPackageImpl implements RequirementPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass meDiagramEClass = null;
+	private EClass nonFunctionalRequirementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass functionalRequirementEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -58,12 +76,12 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.unicase.model.diagram.DiagramPackage#eNS_URI
+	 * @see org.unicase.model.requirement.RequirementPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private DiagramPackageImpl() {
-		super(eNS_URI, DiagramFactory.eINSTANCE);
+	private RequirementPackageImpl() {
+		super(eNS_URI, RequirementFactory.eINSTANCE);
 	}
 
 	/**
@@ -95,11 +113,11 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static DiagramPackage init() {
-		if (isInited) return (DiagramPackage)EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI);
+	public static RequirementPackage init() {
+		if (isInited) return (RequirementPackage)EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI);
 
 		// Obtain or create and register package
-		DiagramPackageImpl theDiagramPackage = (DiagramPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new DiagramPackageImpl());
+		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new RequirementPackageImpl());
 
 		isInited = true;
 
@@ -110,32 +128,32 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		ModelPackageImpl theModelPackage = (ModelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI) : ModelPackage.eINSTANCE);
 		OrganizationPackageImpl theOrganizationPackage = (OrganizationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(OrganizationPackage.eNS_URI) : OrganizationPackage.eINSTANCE);
 		TaskPackageImpl theTaskPackage = (TaskPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) : TaskPackage.eINSTANCE);
+		DiagramPackageImpl theDiagramPackage = (DiagramPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI) : DiagramPackage.eINSTANCE);
 		ClassesPackageImpl theClassesPackage = (ClassesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ClassesPackage.eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ClassesPackage.eNS_URI) : ClassesPackage.eINSTANCE);
 		DocumentPackageImpl theDocumentPackage = (DocumentPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI) : DocumentPackage.eINSTANCE);
-		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI) : RequirementPackage.eINSTANCE);
 
 		// Create package meta-data objects
-		theDiagramPackage.createPackageContents();
+		theRequirementPackage.createPackageContents();
 		theModelPackage.createPackageContents();
 		theOrganizationPackage.createPackageContents();
 		theTaskPackage.createPackageContents();
+		theDiagramPackage.createPackageContents();
 		theClassesPackage.createPackageContents();
 		theDocumentPackage.createPackageContents();
-		theRequirementPackage.createPackageContents();
 
 		// Initialize created meta-data
-		theDiagramPackage.initializePackageContents();
+		theRequirementPackage.initializePackageContents();
 		theModelPackage.initializePackageContents();
 		theOrganizationPackage.initializePackageContents();
 		theTaskPackage.initializePackageContents();
+		theDiagramPackage.initializePackageContents();
 		theClassesPackage.initializePackageContents();
 		theDocumentPackage.initializePackageContents();
-		theRequirementPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
-		theDiagramPackage.freeze();
+		theRequirementPackage.freeze();
 
-		return theDiagramPackage;
+		return theRequirementPackage;
 	}
 
 	/**
@@ -143,8 +161,8 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMEDiagram() {
-		return meDiagramEClass;
+	public EClass getNonFunctionalRequirement() {
+		return nonFunctionalRequirementEClass;
 	}
 
 	/**
@@ -152,8 +170,8 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMEDiagram_Elements() {
-		return (EReference)meDiagramEClass.getEStructuralFeatures().get(0);
+	public EClass getFunctionalRequirement() {
+		return functionalRequirementEClass;
 	}
 
 	/**
@@ -161,8 +179,8 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMEDiagram_Gmfdiagram() {
-		return (EReference)meDiagramEClass.getEStructuralFeatures().get(1);
+	public EAttribute getFunctionalRequirement_Reviewed() {
+		return (EAttribute)functionalRequirementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -170,8 +188,53 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DiagramFactory getDiagramFactory() {
-		return (DiagramFactory)getEFactoryInstance();
+	public EAttribute getFunctionalRequirement_StoryPoints() {
+		return (EAttribute)functionalRequirementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFunctionalRequirement_Priority() {
+		return (EAttribute)functionalRequirementEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFunctionalRequirement_Date() {
+		return (EAttribute)functionalRequirementEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFunctionalRequirement_RefiningRequirements() {
+		return (EReference)functionalRequirementEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFunctionalRequirement_RefinedRequirement() {
+		return (EReference)functionalRequirementEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RequirementFactory getRequirementFactory() {
+		return (RequirementFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -193,9 +256,15 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		isCreated = true;
 
 		// Create classes and their features
-		meDiagramEClass = createEClass(ME_DIAGRAM);
-		createEReference(meDiagramEClass, ME_DIAGRAM__ELEMENTS);
-		createEReference(meDiagramEClass, ME_DIAGRAM__GMFDIAGRAM);
+		nonFunctionalRequirementEClass = createEClass(NON_FUNCTIONAL_REQUIREMENT);
+
+		functionalRequirementEClass = createEClass(FUNCTIONAL_REQUIREMENT);
+		createEAttribute(functionalRequirementEClass, FUNCTIONAL_REQUIREMENT__REVIEWED);
+		createEAttribute(functionalRequirementEClass, FUNCTIONAL_REQUIREMENT__STORY_POINTS);
+		createEAttribute(functionalRequirementEClass, FUNCTIONAL_REQUIREMENT__PRIORITY);
+		createEAttribute(functionalRequirementEClass, FUNCTIONAL_REQUIREMENT__DATE);
+		createEReference(functionalRequirementEClass, FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS);
+		createEReference(functionalRequirementEClass, FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT);
 	}
 
 	/**
@@ -223,19 +292,25 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 
 		// Obtain other dependent packages
 		ModelPackage theModelPackage = (ModelPackage)EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
-		NotationPackage theNotationPackage = (NotationPackage)EPackage.Registry.INSTANCE.getEPackage(NotationPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		meDiagramEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		nonFunctionalRequirementEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		functionalRequirementEClass.getESuperTypes().add(theModelPackage.getModelElement());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(meDiagramEClass, MEDiagram.class, "MEDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMEDiagram_Elements(), theModelPackage.getModelElement(), null, "elements", null, 0, -1, MEDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMEDiagram_Gmfdiagram(), theNotationPackage.getDiagram(), null, "gmfdiagram", null, 0, 1, MEDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(nonFunctionalRequirementEClass, NonFunctionalRequirement.class, "NonFunctionalRequirement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(functionalRequirementEClass, FunctionalRequirement.class, "FunctionalRequirement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getFunctionalRequirement_Reviewed(), ecorePackage.getEBoolean(), "reviewed", null, 0, 1, FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFunctionalRequirement_StoryPoints(), ecorePackage.getEInt(), "storyPoints", null, 0, 1, FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFunctionalRequirement_Priority(), ecorePackage.getEInt(), "priority", null, 0, 1, FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFunctionalRequirement_Date(), ecorePackage.getEDate(), "date", null, 0, 1, FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionalRequirement_RefiningRequirements(), this.getFunctionalRequirement(), this.getFunctionalRequirement_RefinedRequirement(), "refiningRequirements", null, 0, -1, FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionalRequirement_RefinedRequirement(), this.getFunctionalRequirement(), this.getFunctionalRequirement_RefiningRequirements(), "refinedRequirement", null, 0, 1, FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
-} //DiagramPackageImpl
+} //RequirementPackageImpl
