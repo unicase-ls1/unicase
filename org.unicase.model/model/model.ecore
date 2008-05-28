@@ -101,4 +101,7 @@
           containment="true"/>
     </eClassifiers>
   </eSubpackages>
+  <eSubpackages name="classes" nsURI="http://unicase.org/model/classes" nsPrefix="org.unicase.model.classes">
+    <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//ModelElement"/>
+  </eSubpackages>
 </ecore:EPackage>
