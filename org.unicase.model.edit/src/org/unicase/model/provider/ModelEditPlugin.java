@@ -36,10 +36,12 @@ public final class ModelEditPlugin extends EMFPlugin {
 	 * Create the instance.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public ModelEditPlugin() {
-		super(new ResourceLocator[] {ModelEditPlugin.INSTANCE});
+		super
+		  (new ResourceLocator [] {
+		   });
 	}
 
 	/**

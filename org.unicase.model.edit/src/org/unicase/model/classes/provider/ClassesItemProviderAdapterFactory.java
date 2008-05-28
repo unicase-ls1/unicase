@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.model.provider;
+package org.unicase.model.classes.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,6 +12,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -23,7 +24,8 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.unicase.model.util.ModelAdapterFactory;
+
+import org.unicase.model.classes.util.ClassesAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -34,7 +36,7 @@ import org.unicase.model.util.ModelAdapterFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ModelItemProviderAdapterFactory extends ModelAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+public class ClassesItemProviderAdapterFactory extends ClassesAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
@@ -65,7 +67,7 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelItemProviderAdapterFactory() {
+	public ClassesItemProviderAdapterFactory() {
 		supportedTypes.add(IEditingDomainItemProvider.class);
 		supportedTypes.add(IStructuredItemContentProvider.class);
 		supportedTypes.add(ITreeItemContentProvider.class);
@@ -74,95 +76,26 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.model.FunctionalRequirement} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.classes.Class} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected FunctionalRequirementItemProvider functionalRequirementItemProvider;
+	protected ClassItemProvider classItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.model.FunctionalRequirement}.
+	 * This creates an adapter for a {@link org.unicase.model.classes.Class}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createFunctionalRequirementAdapter() {
-		if (functionalRequirementItemProvider == null) {
-			functionalRequirementItemProvider = new FunctionalRequirementItemProvider(this);
+	public Adapter createClassAdapter() {
+		if (classItemProvider == null) {
+			classItemProvider = new ClassItemProvider(this);
 		}
 
-		return functionalRequirementItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.model.Project} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ProjectItemProvider projectItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.model.Project}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createProjectAdapter() {
-		if (projectItemProvider == null) {
-			projectItemProvider = new ProjectItemProvider(this);
-		}
-
-		return projectItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.model.ModelElementId} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ModelElementIdItemProvider modelElementIdItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.model.ModelElementId}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createModelElementIdAdapter() {
-		if (modelElementIdItemProvider == null) {
-			modelElementIdItemProvider = new ModelElementIdItemProvider(this);
-		}
-
-		return modelElementIdItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.model.ReaderInfo} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ReaderInfoItemProvider readerInfoItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.model.ReaderInfo}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createReaderInfoAdapter() {
-		if (readerInfoItemProvider == null) {
-			readerInfoItemProvider = new ReaderInfoItemProvider(this);
-		}
-
-		return readerInfoItemProvider;
+		return classItemProvider;
 	}
 
 	/**
@@ -264,10 +197,7 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	 * @generated
 	 */
 	public void dispose() {
-		if (functionalRequirementItemProvider != null) functionalRequirementItemProvider.dispose();
-		if (projectItemProvider != null) projectItemProvider.dispose();
-		if (modelElementIdItemProvider != null) modelElementIdItemProvider.dispose();
-		if (readerInfoItemProvider != null) readerInfoItemProvider.dispose();
+		if (classItemProvider != null) classItemProvider.dispose();
 	}
 
 }
