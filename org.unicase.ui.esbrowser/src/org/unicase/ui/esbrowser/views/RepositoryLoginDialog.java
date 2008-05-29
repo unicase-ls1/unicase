@@ -34,7 +34,7 @@ public class RepositoryLoginDialog extends Dialog implements Listener, Selection
 	private Text password;
 	private Usersession session;
 	private Shell shell;
-	private Combo savedSessions;
+	private Combo savedSessionsCombo;
 	private EList<Usersession> savedSessionsList;
 	private Button savePassword;
 	private Button buttonOK;
@@ -49,6 +49,7 @@ public class RepositoryLoginDialog extends Dialog implements Listener, Selection
 	 * @param session
 	 *            the target usersession
 	 * @param serverInfo 
+	 * 			  the serverinfo
 	 */
 	public RepositoryLoginDialog(Shell parent, Usersession session, ServerInfo serverInfo) {
 		super(parent);
@@ -67,19 +68,15 @@ public class RepositoryLoginDialog extends Dialog implements Listener, Selection
 		shell.setLayout(new GridLayout(2, true));
 
 		
-		if(session==null || session.getSessionId() == null || session.getUsername() == null){
-			Label savedSessionsLabel = new Label(shell, SWT.NULL);
-			savedSessionsLabel.setText("Saved sessions:");
-			savedSessions = new Combo(shell,SWT.READ_ONLY);
-			savedSessionsList = WorkspaceManager.getInstance().getCurrentWorkspace().getUsersessions();
-			String[] savedSessionsArray = new String[savedSessionsList.size()];
-			for (int i=0; i<savedSessionsArray.length; i++){
-				savedSessionsArray[i] = savedSessionsList.get(i).getUsername();
-			}
-			savedSessions.setItems(savedSessionsArray);
-			savedSessions.add("<new session>");
-			savedSessions.addSelectionListener(this);
+		Label savedSessionsLabel = new Label(shell, SWT.NULL);
+		savedSessionsLabel.setText("Saved sessions:");
+		savedSessionsCombo = new Combo(shell,SWT.READ_ONLY);
+		savedSessionsCombo.add("<new session>");
+		savedSessionsList = WorkspaceManager.getInstance().getCurrentWorkspace().getUsersessions();
+		for (int i=0; i<savedSessionsList.size(); i++){
+			savedSessionsCombo.add(savedSessionsList.get(i).getUsername());
 		}
+		savedSessionsCombo.addSelectionListener(this);
 		Label user = new Label(shell, SWT.NULL);
 		user.setText("Username:");
 		username = new Text(shell, SWT.SINGLE | SWT.BORDER);
@@ -107,6 +104,16 @@ public class RepositoryLoginDialog extends Dialog implements Listener, Selection
 		shell.setDefaultButton(buttonOK);
 		buttonCancel.addListener(SWT.Selection, this);
 
+		
+//		SelectionEvent event = new SelectionEvent(null);
+		if(session==null){
+			savedSessionsCombo.select(0);
+//			widgetSelected(event);
+		}else{
+			savedSessionsCombo.select(1+savedSessionsList.indexOf(session));
+//			widgetSelected(event);
+		}
+		
 		shell.addListener(SWT.Traverse, this);
 		shell.pack();
 		shell.open();
@@ -138,7 +145,7 @@ public class RepositoryLoginDialog extends Dialog implements Listener, Selection
 					session.setUsername(username.getText());
 					WorkspaceManager.getInstance().getCurrentWorkspace().getUsersessions().add(session);
 				}else{
-					session = savedSessionsList.get(savedSessions.getSelectionIndex());
+					session = savedSessionsList.get(savedSessionsCombo.getSelectionIndex()-1);
 				}
 				session.setPassword(password.getText());
 				session.setSavePassword(savePassword.getSelection());
@@ -163,21 +170,19 @@ public class RepositoryLoginDialog extends Dialog implements Listener, Selection
 	 * {@inheritDoc}
 	 */
 	public void widgetSelected(SelectionEvent e) {
-		boolean flag = false;
 		password.setEnabled(true);
 		savePassword.setEnabled(true);
-		if(savedSessions.getSelectionIndex()==savedSessions.getItemCount()-1){
+		if(savedSessionsCombo.getSelectionIndex()==0){
 			username.setText("");
 			password.setText("");
-			flag = true;
+			username.setEnabled(true);
 		}else{
-			Usersession loadSession = savedSessionsList.get(savedSessions.getSelectionIndex());
+			Usersession loadSession = savedSessionsList.get(savedSessionsCombo.getSelectionIndex()-1);
+			username.setEnabled(false);
 			username.setText(loadSession.getUsername());
-			password.setText(loadSession.getPersistentPassword());
-			savePassword.setSelection(true);
+			password.setText(loadSession.getPassword());
+			savePassword.setSelection(loadSession.isSavePassword());
 		}
-		username.setEnabled(flag);
 		
 	}
 }
-
