@@ -249,7 +249,8 @@ public class RepositoryView extends ViewPart {
 				ServerInfo element = (ServerInfo)obj;
 				element.setLastUsersession(null);
 				WorkspaceManager.getInstance().getCurrentWorkspace().save();
-				serverLogin.run();
+				viewer.collapseToLevel(obj, AbstractTreeViewer.ALL_LEVELS);
+				viewer.expandToLevel(obj, 1);
 			}
 		};
 		serverChangeSession.setText("Login as...");
