@@ -9,6 +9,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
@@ -36,12 +37,11 @@ public class RepositoryWizard extends Wizard implements INewWizard {
 
 	/**
 	 * Default constructor.
-	 * @param invoker the invoker view; needed to refresh it after the repository has been added.
+	 * @param view callback to the repository view
 	 */
-	public RepositoryWizard(RepositoryView invoker) {
+	public RepositoryWizard(RepositoryView view) {
 		super();
-		view = invoker;
-		serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
+		this.view = view;
 	}
 	
 	/**
@@ -60,9 +60,18 @@ public class RepositoryWizard extends Wizard implements INewWizard {
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
 		this.selection = selection;
-		if (selection != null && !selection.isEmpty()) {
-			// 
-		}
+		serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
+	}
+	
+	/**
+	 * @see IWorkbenchWizard#init(IWorkbench, IStructuredSelection)	
+	 * @param workbench the workbench
+	 * @param selection the selection
+	 * @param serverInfo the serverInfo that would be modified
+	 */
+	public void init(IWorkbench workbench, IStructuredSelection selection, ServerInfo serverInfo) {
+		init(workbench,selection);
+		this.serverInfo = serverInfo;
 	}
 
 	/**
@@ -110,7 +119,7 @@ class RepositoryMainPage extends WizardPage {
 	private Text name;
 	private Text displayName;
 	private Text url;
-	private Text port;
+	private Spinner port;
 
 	/**
 	 * Default constructor.
@@ -128,7 +137,9 @@ class RepositoryMainPage extends WizardPage {
 	 * {@inheritDoc}
 	 */
 	public void createControl(Composite parent) {
-
+		RepositoryWizard wizard = (RepositoryWizard) getWizard();
+		ServerInfo serverInfo = wizard.getServerInfo();
+		
 		GridData gd;
 		Composite composite = new Composite(parent, SWT.NULL);
 
@@ -142,25 +153,31 @@ class RepositoryMainPage extends WizardPage {
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		gd.horizontalSpan = ncol - 1;
 		displayName.setLayoutData(gd);
-
+		
 		new Label(composite, SWT.NONE).setText("Name:");
 		name = new Text(composite, SWT.BORDER);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		gd.horizontalSpan = ncol - 1;
 		name.setLayoutData(gd);
-
+		
 		new Label(composite, SWT.NONE).setText("URL:");
 		url = new Text(composite, SWT.BORDER);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		gd.horizontalSpan = ncol - 1;
 		url.setLayoutData(gd);
-
+		
 		new Label(composite, SWT.NONE).setText("Port:");
-		port = new Text(composite, SWT.BORDER);
+		port = new Spinner(composite, SWT.BORDER);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		gd.horizontalSpan = ncol - 1;
 		port.setLayoutData(gd);
-
+		port.setValues(1099, 1, 999999, 0, 1, 10);
+		if(serverInfo.getUrl()!=null){
+			displayName.setText(serverInfo.getDisplayName());
+			name.setText(serverInfo.getName());
+			url.setText(serverInfo.getUrl());
+			port.setSelection(serverInfo.getPort());
+		}
 		setControl(composite);
 	}
 
@@ -172,7 +189,7 @@ class RepositoryMainPage extends WizardPage {
 			return false;
 		}
 		if (isTextNonEmpty(name) && isTextNonEmpty(displayName)
-				&& isTextNonEmpty(url) && isTextNonEmpty(port)){
+				&& isTextNonEmpty(url)){
 			saveDataToModel();
 			return true;
 		}
