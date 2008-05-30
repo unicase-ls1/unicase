@@ -10,9 +10,11 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.unicase.emfstore.model.accesscontrol.*;
-
+import org.unicase.emfstore.model.accesscontrol.ACGroup;
+import org.unicase.emfstore.model.accesscontrol.ACOrgUnit;
+import org.unicase.emfstore.model.accesscontrol.ACOrgUnitId;
+import org.unicase.emfstore.model.accesscontrol.ACUser;
+import org.unicase.emfstore.model.accesscontrol.AccesscontrolPackage;
 import org.unicase.model.UniqueIdentifier;
 
 /**

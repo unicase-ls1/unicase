@@ -7,10 +7,8 @@
 package org.unicase.emfstore.model.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.unicase.emfstore.model.EsmodelPackage;
 import org.unicase.emfstore.model.ProjectId;
-
 import org.unicase.model.impl.UniqueIdentifierImpl;
 
 /**

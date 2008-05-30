@@ -9,12 +9,14 @@ package org.unicase.emfstore.model.accesscontrol.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.unicase.emfstore.model.accesscontrol.*;
+import org.unicase.emfstore.model.accesscontrol.ACGroup;
+import org.unicase.emfstore.model.accesscontrol.ACOrgUnit;
+import org.unicase.emfstore.model.accesscontrol.ACOrgUnitId;
+import org.unicase.emfstore.model.accesscontrol.ACUser;
+import org.unicase.emfstore.model.accesscontrol.AccesscontrolFactory;
+import org.unicase.emfstore.model.accesscontrol.AccesscontrolPackage;
 
 /**
  * <!-- begin-user-doc -->

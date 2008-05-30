@@ -10,8 +10,12 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.unicase.emfstore.model.accesscontrol.roles.*;
+import org.unicase.emfstore.model.accesscontrol.roles.ProjectAdminRole;
+import org.unicase.emfstore.model.accesscontrol.roles.ReaderRole;
+import org.unicase.emfstore.model.accesscontrol.roles.Role;
+import org.unicase.emfstore.model.accesscontrol.roles.RolesPackage;
+import org.unicase.emfstore.model.accesscontrol.roles.ServerAdmin;
+import org.unicase.emfstore.model.accesscontrol.roles.WriterRole;
 
 /**
  * <!-- begin-user-doc -->

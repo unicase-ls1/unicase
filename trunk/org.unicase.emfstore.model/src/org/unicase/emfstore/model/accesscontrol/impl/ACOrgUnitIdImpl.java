@@ -7,10 +7,8 @@
 package org.unicase.emfstore.model.accesscontrol.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.unicase.emfstore.model.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.model.accesscontrol.AccesscontrolPackage;
-
 import org.unicase.model.impl.UniqueIdentifierImpl;
 
 /**

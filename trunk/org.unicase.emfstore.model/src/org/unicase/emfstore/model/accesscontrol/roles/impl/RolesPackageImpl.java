@@ -10,11 +10,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.change.ChangePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.unicase.emfstore.model.EsmodelPackage;
 import org.unicase.emfstore.model.accesscontrol.AccesscontrolPackage;
 import org.unicase.emfstore.model.accesscontrol.impl.AccesscontrolPackageImpl;
@@ -28,13 +25,6 @@ import org.unicase.emfstore.model.accesscontrol.roles.WriterRole;
 import org.unicase.emfstore.model.changemanagment.ChangemanagmentPackage;
 import org.unicase.emfstore.model.changemanagment.impl.ChangemanagmentPackageImpl;
 import org.unicase.emfstore.model.impl.EsmodelPackageImpl;
-
-
-
-
-
-
-
 import org.unicase.model.ModelPackage;
 
 /**

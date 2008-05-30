@@ -9,12 +9,15 @@ package org.unicase.emfstore.model.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.unicase.emfstore.model.*;
+import org.unicase.emfstore.model.EsmodelFactory;
+import org.unicase.emfstore.model.EsmodelPackage;
+import org.unicase.emfstore.model.ProjectHistory;
+import org.unicase.emfstore.model.ProjectId;
+import org.unicase.emfstore.model.ProjectInfo;
+import org.unicase.emfstore.model.ServerSpace;
+import org.unicase.emfstore.model.SessionId;
 
 /**
  * <!-- begin-user-doc -->

@@ -9,11 +9,8 @@ package org.unicase.emfstore.model.accesscontrol.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import org.unicase.emfstore.model.accesscontrol.ACGroup;
 import org.unicase.emfstore.model.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.model.accesscontrol.AccesscontrolPackage;

@@ -9,19 +9,13 @@ package org.unicase.emfstore.model.accesscontrol.roles.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import org.unicase.emfstore.model.ProjectId;
 import org.unicase.emfstore.model.ProjectInfo;
 import org.unicase.emfstore.model.accesscontrol.roles.Role;
 import org.unicase.emfstore.model.accesscontrol.roles.RolesPackage;
-
-
 import org.unicase.model.ModelElement;
 
 /**
