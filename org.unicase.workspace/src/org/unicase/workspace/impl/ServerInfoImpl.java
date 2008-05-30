@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
-import org.unicase.emfstore.model.ProjectInfo;
+import org.unicase.emfstore.esmodel.ProjectInfo;
 
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;

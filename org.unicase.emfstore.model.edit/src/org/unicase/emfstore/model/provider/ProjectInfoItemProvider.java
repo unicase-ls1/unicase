@@ -23,11 +23,11 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.emfstore.model.EsmodelPackage;
-import org.unicase.emfstore.model.ProjectInfo;
+import org.unicase.emfstore.esmodel.EsmodelPackage;
+import org.unicase.emfstore.esmodel.ProjectInfo;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.model.ProjectInfo} object.
+ * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.ProjectInfo} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

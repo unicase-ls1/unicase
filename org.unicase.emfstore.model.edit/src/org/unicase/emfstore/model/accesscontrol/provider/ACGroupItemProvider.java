@@ -19,11 +19,11 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.unicase.emfstore.model.accesscontrol.ACGroup;
-import org.unicase.emfstore.model.accesscontrol.AccesscontrolPackage;
+import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
+import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.model.accesscontrol.ACGroup} object.
+ * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.accesscontrol.ACGroup} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

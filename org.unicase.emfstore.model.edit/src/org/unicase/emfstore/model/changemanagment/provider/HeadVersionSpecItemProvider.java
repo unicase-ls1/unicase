@@ -23,7 +23,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.unicase.emfstore.model.provider.EsmodelEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.model.changemanagment.HeadVersionSpec} object.
+ * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.changemanagment.HeadVersionSpec} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

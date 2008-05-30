@@ -20,7 +20,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.model.accesscontrol.roles.WriterRole} object.
+ * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.accesscontrol.roles.WriterRole} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

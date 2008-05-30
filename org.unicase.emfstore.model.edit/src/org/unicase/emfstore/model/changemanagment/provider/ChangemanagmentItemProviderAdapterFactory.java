@@ -23,7 +23,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.unicase.emfstore.model.changemanagment.util.ChangemanagmentAdapterFactory;
+import org.unicase.emfstore.esmodel.changemanagment.util.ChangemanagmentAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -74,7 +74,7 @@ public class ChangemanagmentItemProviderAdapterFactory extends ChangemanagmentAd
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.model.changemanagment.TagVersionSpec} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.changemanagment.TagVersionSpec} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -82,7 +82,7 @@ public class ChangemanagmentItemProviderAdapterFactory extends ChangemanagmentAd
 	protected TagVersionSpecItemProvider tagVersionSpecItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.model.changemanagment.TagVersionSpec}.
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.changemanagment.TagVersionSpec}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -97,7 +97,7 @@ public class ChangemanagmentItemProviderAdapterFactory extends ChangemanagmentAd
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.model.changemanagment.DateVersionSpec} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.changemanagment.DateVersionSpec} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -105,7 +105,7 @@ public class ChangemanagmentItemProviderAdapterFactory extends ChangemanagmentAd
 	protected DateVersionSpecItemProvider dateVersionSpecItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.model.changemanagment.DateVersionSpec}.
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.changemanagment.DateVersionSpec}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -120,7 +120,7 @@ public class ChangemanagmentItemProviderAdapterFactory extends ChangemanagmentAd
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.model.changemanagment.PrimaryVersionSpec} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -128,7 +128,7 @@ public class ChangemanagmentItemProviderAdapterFactory extends ChangemanagmentAd
 	protected PrimaryVersionSpecItemProvider primaryVersionSpecItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.model.changemanagment.PrimaryVersionSpec}.
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -143,7 +143,7 @@ public class ChangemanagmentItemProviderAdapterFactory extends ChangemanagmentAd
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.model.changemanagment.LogMessage} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.changemanagment.LogMessage} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -151,7 +151,7 @@ public class ChangemanagmentItemProviderAdapterFactory extends ChangemanagmentAd
 	protected LogMessageItemProvider logMessageItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.model.changemanagment.LogMessage}.
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.changemanagment.LogMessage}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -166,7 +166,7 @@ public class ChangemanagmentItemProviderAdapterFactory extends ChangemanagmentAd
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.model.changemanagment.ChangePackage} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.changemanagment.ChangePackage} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -174,7 +174,7 @@ public class ChangemanagmentItemProviderAdapterFactory extends ChangemanagmentAd
 	protected ChangePackageItemProvider changePackageItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.model.changemanagment.ChangePackage}.
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.changemanagment.ChangePackage}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -189,7 +189,7 @@ public class ChangemanagmentItemProviderAdapterFactory extends ChangemanagmentAd
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.model.changemanagment.HistoryInfo} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.changemanagment.HistoryInfo} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -197,7 +197,7 @@ public class ChangemanagmentItemProviderAdapterFactory extends ChangemanagmentAd
 	protected HistoryInfoItemProvider historyInfoItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.model.changemanagment.HistoryInfo}.
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.changemanagment.HistoryInfo}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -212,7 +212,7 @@ public class ChangemanagmentItemProviderAdapterFactory extends ChangemanagmentAd
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.model.changemanagment.Version} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.changemanagment.Version} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -220,7 +220,7 @@ public class ChangemanagmentItemProviderAdapterFactory extends ChangemanagmentAd
 	protected VersionItemProvider versionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.model.changemanagment.Version}.
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.changemanagment.Version}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -235,7 +235,7 @@ public class ChangemanagmentItemProviderAdapterFactory extends ChangemanagmentAd
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.model.changemanagment.HeadVersionSpec} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.changemanagment.HeadVersionSpec} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -243,7 +243,7 @@ public class ChangemanagmentItemProviderAdapterFactory extends ChangemanagmentAd
 	protected HeadVersionSpecItemProvider headVersionSpecItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.model.changemanagment.HeadVersionSpec}.
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.changemanagment.HeadVersionSpec}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

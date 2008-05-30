@@ -11,14 +11,14 @@ import org.apache.log4j.Logger;
 import org.unicase.emfstore.EmfStore;
 import org.unicase.emfstore.accesscontrol.AuthenticationControl;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
+import org.unicase.emfstore.esmodel.ProjectId;
+import org.unicase.emfstore.esmodel.ProjectInfo;
+import org.unicase.emfstore.esmodel.SessionId;
+import org.unicase.emfstore.esmodel.changemanagment.ChangePackage;
+import org.unicase.emfstore.esmodel.changemanagment.LogMessage;
+import org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.changemanagment.VersionSpec;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.emfstore.model.ProjectId;
-import org.unicase.emfstore.model.ProjectInfo;
-import org.unicase.emfstore.model.SessionId;
-import org.unicase.emfstore.model.changemanagment.ChangePackage;
-import org.unicase.emfstore.model.changemanagment.LogMessage;
-import org.unicase.emfstore.model.changemanagment.PrimaryVersionSpec;
-import org.unicase.emfstore.model.changemanagment.VersionSpec;
 
 public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 		RMIEmfStoreFacade {

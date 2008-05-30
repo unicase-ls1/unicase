@@ -2,9 +2,9 @@ package org.unicase.emfstore.accesscontrol;
 
 import java.util.Set;
 
-import org.unicase.emfstore.model.ProjectId;
-import org.unicase.emfstore.model.SessionId;
-import org.unicase.emfstore.model.accesscontrol.roles.Role;
+import org.unicase.emfstore.esmodel.ProjectId;
+import org.unicase.emfstore.esmodel.SessionId;
+import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.model.ModelElement;
 
 public interface AuthorizationControl {
