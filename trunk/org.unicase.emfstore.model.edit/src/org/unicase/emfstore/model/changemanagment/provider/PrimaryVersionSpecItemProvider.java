@@ -23,13 +23,13 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.emfstore.model.changemanagment.ChangemanagmentPackage;
-import org.unicase.emfstore.model.changemanagment.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentPackage;
+import org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec;
 import org.unicase.emfstore.model.provider.EsmodelEditPlugin;
 
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.model.changemanagment.PrimaryVersionSpec} object.
+ * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

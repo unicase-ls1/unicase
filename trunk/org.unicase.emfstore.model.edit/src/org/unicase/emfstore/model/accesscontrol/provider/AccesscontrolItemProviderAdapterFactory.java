@@ -23,7 +23,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.unicase.emfstore.model.accesscontrol.util.AccesscontrolAdapterFactory;
+import org.unicase.emfstore.esmodel.accesscontrol.util.AccesscontrolAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -74,7 +74,7 @@ public class AccesscontrolItemProviderAdapterFactory extends AccesscontrolAdapte
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.model.accesscontrol.ACUser} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.accesscontrol.ACUser} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -82,7 +82,7 @@ public class AccesscontrolItemProviderAdapterFactory extends AccesscontrolAdapte
 	protected ACUserItemProvider acUserItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.model.accesscontrol.ACUser}.
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.accesscontrol.ACUser}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -97,7 +97,7 @@ public class AccesscontrolItemProviderAdapterFactory extends AccesscontrolAdapte
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.model.accesscontrol.ACOrgUnit} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -105,7 +105,7 @@ public class AccesscontrolItemProviderAdapterFactory extends AccesscontrolAdapte
 	protected ACOrgUnitItemProvider acOrgUnitItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.model.accesscontrol.ACOrgUnit}.
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -120,7 +120,7 @@ public class AccesscontrolItemProviderAdapterFactory extends AccesscontrolAdapte
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.model.accesscontrol.ACGroup} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.accesscontrol.ACGroup} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -128,7 +128,7 @@ public class AccesscontrolItemProviderAdapterFactory extends AccesscontrolAdapte
 	protected ACGroupItemProvider acGroupItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.model.accesscontrol.ACGroup}.
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.accesscontrol.ACGroup}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -143,7 +143,7 @@ public class AccesscontrolItemProviderAdapterFactory extends AccesscontrolAdapte
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.model.accesscontrol.ACOrgUnitId} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -151,7 +151,7 @@ public class AccesscontrolItemProviderAdapterFactory extends AccesscontrolAdapte
 	protected ACOrgUnitIdItemProvider acOrgUnitIdItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.model.accesscontrol.ACOrgUnitId}.
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

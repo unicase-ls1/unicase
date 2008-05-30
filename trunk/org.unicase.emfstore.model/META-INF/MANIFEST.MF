@@ -1,24 +1,24 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: unicase EMFStore Model Plug-in
-Bundle-SymbolicName: org.unicase.emfstore.model;singleton:=true
+Bundle-SymbolicName: org.unicase.emfstore.esmodel;singleton:=true
 Bundle-Version: 0.0.1
 Bundle-ClassPath: .
 Bundle-Vendor: unicase.org
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.unicase.emfstore.model,
- org.unicase.emfstore.model.accesscontrol,
- org.unicase.emfstore.model.accesscontrol.impl,
- org.unicase.emfstore.model.accesscontrol.roles,
- org.unicase.emfstore.model.accesscontrol.roles.impl,
- org.unicase.emfstore.model.accesscontrol.roles.util,
- org.unicase.emfstore.model.accesscontrol.util,
- org.unicase.emfstore.model.changemanagment,
- org.unicase.emfstore.model.changemanagment.impl,
- org.unicase.emfstore.model.changemanagment.util,
- org.unicase.emfstore.model.impl,
- org.unicase.emfstore.model.util
+Export-Package: org.unicase.emfstore.esmodel,
+ org.unicase.emfstore.esmodel.accesscontrol,
+ org.unicase.emfstore.esmodel.accesscontrol.impl,
+ org.unicase.emfstore.esmodel.accesscontrol.roles,
+ org.unicase.emfstore.esmodel.accesscontrol.roles.impl,
+ org.unicase.emfstore.esmodel.accesscontrol.roles.util,
+ org.unicase.emfstore.esmodel.accesscontrol.util,
+ org.unicase.emfstore.esmodel.changemanagment,
+ org.unicase.emfstore.esmodel.changemanagment.impl,
+ org.unicase.emfstore.esmodel.changemanagment.util,
+ org.unicase.emfstore.esmodel.impl,
+ org.unicase.emfstore.esmodel.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.unicase.model;visibility:=reexport,

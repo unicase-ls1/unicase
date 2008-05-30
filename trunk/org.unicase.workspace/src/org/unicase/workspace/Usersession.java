@@ -10,10 +10,10 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
+import org.unicase.emfstore.esmodel.ProjectInfo;
+import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.emfstore.model.ProjectInfo;
-import org.unicase.emfstore.model.SessionId;
 
 /**
  * <!-- begin-user-doc -->

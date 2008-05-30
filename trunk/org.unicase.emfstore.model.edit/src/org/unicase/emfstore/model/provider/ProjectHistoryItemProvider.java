@@ -24,14 +24,14 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.emfstore.model.EsmodelFactory;
-import org.unicase.emfstore.model.EsmodelPackage;
-import org.unicase.emfstore.model.ProjectHistory;
-import org.unicase.emfstore.model.changemanagment.ChangemanagmentFactory;
+import org.unicase.emfstore.esmodel.EsmodelFactory;
+import org.unicase.emfstore.esmodel.EsmodelPackage;
+import org.unicase.emfstore.esmodel.ProjectHistory;
+import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentFactory;
 
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.model.ProjectHistory} object.
+ * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.ProjectHistory} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

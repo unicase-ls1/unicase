@@ -19,12 +19,12 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.unicase.emfstore.model.accesscontrol.ACOrgUnitId;
+import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.model.provider.EsmodelEditPlugin;
 import org.unicase.model.provider.UniqueIdentifierItemProvider;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.model.accesscontrol.ACOrgUnitId} object.
+ * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
