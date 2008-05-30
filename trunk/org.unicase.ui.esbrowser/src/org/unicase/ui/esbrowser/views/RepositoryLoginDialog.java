@@ -105,13 +105,9 @@ public class RepositoryLoginDialog extends Dialog implements Listener, Selection
 		buttonCancel.addListener(SWT.Selection, this);
 
 		
-//		SelectionEvent event = new SelectionEvent(null);
-		if(session==null){
-			savedSessionsCombo.select(0);
-//			widgetSelected(event);
-		}else{
+		if(session!=null){
 			savedSessionsCombo.select(1+savedSessionsList.indexOf(session));
-//			widgetSelected(event);
+			username.setText(session.getUsername());
 		}
 		
 		shell.addListener(SWT.Traverse, this);
@@ -180,7 +176,7 @@ public class RepositoryLoginDialog extends Dialog implements Listener, Selection
 			Usersession loadSession = savedSessionsList.get(savedSessionsCombo.getSelectionIndex()-1);
 			username.setEnabled(false);
 			username.setText(loadSession.getUsername());
-			password.setText(loadSession.getPassword());
+			password.setText(loadSession.getPassword()+"");
 			savePassword.setSelection(loadSession.isSavePassword());
 		}
 		
