@@ -232,8 +232,7 @@ public class RepositoryView extends ViewPart {
 				ISelection selection = viewer.getSelection();
 				Object obj = ((IStructuredSelection) selection)
 						.getFirstElement();
-				viewer.collapseToLevel(obj, AbstractTreeViewer.ALL_LEVELS);
-				viewer.expandToLevel(obj, 1);
+				viewer.refresh(obj);
 			}
 		};
 		serverLogin.setText("Login [last usersession]");
@@ -249,8 +248,7 @@ public class RepositoryView extends ViewPart {
 				ServerInfo element = (ServerInfo)obj;
 				element.setLastUsersession(null);
 				WorkspaceManager.getInstance().getCurrentWorkspace().save();
-				viewer.collapseToLevel(obj, AbstractTreeViewer.ALL_LEVELS);
-				viewer.expandToLevel(obj, 1);
+				serverLogin.run();
 			}
 		};
 		serverChangeSession.setText("Login as...");
@@ -264,10 +262,6 @@ public class RepositoryView extends ViewPart {
 				Object obj = ((IStructuredSelection) selection).getFirstElement();
 				ServerInfo serverInfo = ((ServerInfo)obj); 
 				ProjectInfo newProjectInfo = EsmodelFactory.eINSTANCE.createProjectInfo();
-				newProjectInfo.setName("newProject");
-				serverInfo.getProjectInfos().add(newProjectInfo);
-				viewer.collapseToLevel(obj, AbstractTreeViewer.ALL_LEVELS);
-				viewer.expandToLevel(obj, 1);
 			}
 		};
 		serverAddProject.setText("Create new project");
