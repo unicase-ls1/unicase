@@ -35,7 +35,9 @@ public class ControlFactory {
 		EStructuralFeature feature = (EStructuralFeature)itemPropertyDescriptor.getFeature(modelElement);
 		if (feature instanceof EAttribute) {
 
-			if (itemPropertyDescriptor.isMultiLine(modelElement)) {
+			if (itemPropertyDescriptor.isMultiLine(modelElement)
+					|| ((EAttribute)feature).getName().equalsIgnoreCase("Description")) {
+				//TODO: Delete hardcoded condition
 				return createMETextAreaControl((EAttribute) feature);
 			}
 			if (feature.getEType().getInstanceClass().equals(boolean.class)) {
