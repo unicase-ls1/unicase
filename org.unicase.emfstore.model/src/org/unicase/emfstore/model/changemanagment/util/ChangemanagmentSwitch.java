@@ -10,8 +10,16 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.unicase.emfstore.model.changemanagment.*;
+import org.unicase.emfstore.model.changemanagment.ChangePackage;
+import org.unicase.emfstore.model.changemanagment.ChangemanagmentPackage;
+import org.unicase.emfstore.model.changemanagment.DateVersionSpec;
+import org.unicase.emfstore.model.changemanagment.HeadVersionSpec;
+import org.unicase.emfstore.model.changemanagment.HistoryInfo;
+import org.unicase.emfstore.model.changemanagment.LogMessage;
+import org.unicase.emfstore.model.changemanagment.PrimaryVersionSpec;
+import org.unicase.emfstore.model.changemanagment.TagVersionSpec;
+import org.unicase.emfstore.model.changemanagment.Version;
+import org.unicase.emfstore.model.changemanagment.VersionSpec;
 
 /**
  * <!-- begin-user-doc -->

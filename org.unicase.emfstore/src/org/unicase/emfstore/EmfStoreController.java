@@ -15,7 +15,7 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.SimpleLayout;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
-import org.unicase.emfstore.accesscontrol.AccessControl;
+import org.unicase.emfstore.accesscontrol.AuthenticationControl;
 import org.unicase.emfstore.accesscontrol.AccessControlImpl;
 import org.unicase.emfstore.connection.ConnectionHandler;
 import org.unicase.emfstore.connection.rmi.RMIConnectionHandler;
@@ -25,7 +25,7 @@ import org.unicase.emfstore.storage.ResourceStorage;
 public class EmfStoreController implements IApplication {
 
 	private EmfStoreImpl emfStore;
-	private AccessControl accessControl;
+	private AuthenticationControl accessControl;
 	private Set<ConnectionHandler> connectionHandlers;
 	private Properties properties;
 	private static Logger logger;
@@ -61,7 +61,7 @@ public class EmfStoreController implements IApplication {
 	}
 
 	private Set<ConnectionHandler> initConnectionHandlers(EmfStore emfStore,
-			AccessControl accessControl) throws FatalEmfStoreException {
+			AuthenticationControl accessControl) throws FatalEmfStoreException {
 		Set<ConnectionHandler> connectionHandlers = new HashSet<ConnectionHandler>();
 
 		// create RMI connection handler
@@ -138,7 +138,7 @@ public class EmfStoreController implements IApplication {
 		}
 	}
 
-	private AccessControl initAccessControl(Properties properties) {
+	private AuthenticationControl initAccessControl(Properties properties) {
 		return new AccessControlImpl();
 	}
 

@@ -7,7 +7,6 @@
 package org.unicase.emfstore.model.changemanagment;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.ecore.change.ChangeDescription;
 
 /**

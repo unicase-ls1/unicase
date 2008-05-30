@@ -9,12 +9,14 @@ package org.unicase.emfstore.model.accesscontrol.roles.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.unicase.emfstore.model.accesscontrol.roles.*;
+import org.unicase.emfstore.model.accesscontrol.roles.ProjectAdminRole;
+import org.unicase.emfstore.model.accesscontrol.roles.ReaderRole;
+import org.unicase.emfstore.model.accesscontrol.roles.RolesFactory;
+import org.unicase.emfstore.model.accesscontrol.roles.RolesPackage;
+import org.unicase.emfstore.model.accesscontrol.roles.ServerAdmin;
+import org.unicase.emfstore.model.accesscontrol.roles.WriterRole;
 
 /**
  * <!-- begin-user-doc -->

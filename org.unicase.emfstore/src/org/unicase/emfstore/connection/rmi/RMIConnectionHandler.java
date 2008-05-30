@@ -12,7 +12,7 @@ import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.unicase.emfstore.Activator;
 import org.unicase.emfstore.EmfStore;
-import org.unicase.emfstore.accesscontrol.AccessControl;
+import org.unicase.emfstore.accesscontrol.AuthenticationControl;
 import org.unicase.emfstore.connection.ConnectionHandler;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 
@@ -32,7 +32,7 @@ public class RMIConnectionHandler implements ConnectionHandler {
 		port = Registry.REGISTRY_PORT;
 	}
 
-	public void init(EmfStore emfStore, AccessControl accessControl) throws FatalEmfStoreException {
+	public void init(EmfStore emfStore, AuthenticationControl accessControl) throws FatalEmfStoreException {
 		/**
 		 * Little hack to solve classloading issues. Is there a better solution?
 		 */

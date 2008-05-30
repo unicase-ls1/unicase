@@ -10,8 +10,12 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.unicase.emfstore.model.*;
+import org.unicase.emfstore.model.EsmodelPackage;
+import org.unicase.emfstore.model.ProjectHistory;
+import org.unicase.emfstore.model.ProjectId;
+import org.unicase.emfstore.model.ProjectInfo;
+import org.unicase.emfstore.model.ServerSpace;
+import org.unicase.emfstore.model.SessionId;
 import org.unicase.model.UniqueIdentifier;
 
 /**

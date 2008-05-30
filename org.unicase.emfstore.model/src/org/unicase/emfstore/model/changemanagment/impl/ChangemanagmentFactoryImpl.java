@@ -9,12 +9,18 @@ package org.unicase.emfstore.model.changemanagment.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.unicase.emfstore.model.changemanagment.*;
+import org.unicase.emfstore.model.changemanagment.ChangePackage;
+import org.unicase.emfstore.model.changemanagment.ChangemanagmentFactory;
+import org.unicase.emfstore.model.changemanagment.ChangemanagmentPackage;
+import org.unicase.emfstore.model.changemanagment.DateVersionSpec;
+import org.unicase.emfstore.model.changemanagment.HeadVersionSpec;
+import org.unicase.emfstore.model.changemanagment.HistoryInfo;
+import org.unicase.emfstore.model.changemanagment.LogMessage;
+import org.unicase.emfstore.model.changemanagment.PrimaryVersionSpec;
+import org.unicase.emfstore.model.changemanagment.TagVersionSpec;
+import org.unicase.emfstore.model.changemanagment.Version;
 
 /**
  * <!-- begin-user-doc -->

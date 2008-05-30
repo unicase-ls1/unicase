@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.unicase.emfstore.EmfStore;
-import org.unicase.emfstore.accesscontrol.AccessControl;
+import org.unicase.emfstore.accesscontrol.AuthenticationControl;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.model.ProjectId;
@@ -27,11 +27,11 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 
 	private EmfStore emfStore;
 
-	private AccessControl accessControl;
+	private AuthenticationControl accessControl;
 	
 	private static final Logger logger = Logger.getLogger(RMIEmfStoreFacade.class);
 
-	public RMIEmfStoreFacadeImpl(EmfStore emfStore, AccessControl accessControl)
+	public RMIEmfStoreFacadeImpl(EmfStore emfStore, AuthenticationControl accessControl)
 			throws RemoteException {
 		super();
 		this.emfStore = emfStore;

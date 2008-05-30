@@ -8,13 +8,13 @@ package org.unicase.emfstore.model.accesscontrol.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.unicase.emfstore.model.accesscontrol.*;
-
+import org.unicase.emfstore.model.accesscontrol.ACGroup;
+import org.unicase.emfstore.model.accesscontrol.ACOrgUnit;
+import org.unicase.emfstore.model.accesscontrol.ACOrgUnitId;
+import org.unicase.emfstore.model.accesscontrol.ACUser;
+import org.unicase.emfstore.model.accesscontrol.AccesscontrolPackage;
 import org.unicase.model.UniqueIdentifier;
 
 /**

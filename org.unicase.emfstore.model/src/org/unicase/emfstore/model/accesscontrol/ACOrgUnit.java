@@ -7,9 +7,7 @@
 package org.unicase.emfstore.model.accesscontrol;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.unicase.emfstore.model.accesscontrol.roles.Role;
 
 /**

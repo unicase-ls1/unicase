@@ -7,13 +7,9 @@
 package org.unicase.emfstore.model.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.change.provider.ChangeEditPlugin;
-
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
-
 import org.unicase.model.provider.ModelEditPlugin;
 
 /**

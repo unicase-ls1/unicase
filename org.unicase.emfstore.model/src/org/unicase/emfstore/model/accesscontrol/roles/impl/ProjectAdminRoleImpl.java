@@ -7,9 +7,10 @@
 package org.unicase.emfstore.model.accesscontrol.roles.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
+import org.unicase.emfstore.model.ProjectId;
 import org.unicase.emfstore.model.accesscontrol.roles.ProjectAdminRole;
 import org.unicase.emfstore.model.accesscontrol.roles.RolesPackage;
+import org.unicase.model.ModelElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,6 +39,35 @@ public class ProjectAdminRoleImpl extends RoleImpl implements ProjectAdminRole {
 	@Override
 	protected EClass eStaticClass() {
 		return RolesPackage.Literals.PROJECT_ADMIN_ROLE;
+	}
+	
+	private boolean isMyProject(ProjectId projectId) {
+		return getProjects().contains(projectId);
+	}
+
+	@Override
+	public boolean canAdministrate(ProjectId projectId) {
+		return isMyProject(projectId);
+	}
+
+	@Override
+	public boolean canCreate(ProjectId projectId, ModelElement modelElement) {
+		return isMyProject(projectId);
+	}
+
+	@Override
+	public boolean canDelete(ProjectId projectId, ModelElement modelElement) {
+		return isMyProject(projectId);
+	}
+
+	@Override
+	public boolean canModify(ProjectId projectId, ModelElement modelElement) {
+		return isMyProject(projectId);
+	}
+
+	@Override
+	public boolean canRead(ProjectId projectId, ModelElement modelElement) {
+		return isMyProject(projectId);
 	}
 
 } //ProjectAdminRoleImpl
