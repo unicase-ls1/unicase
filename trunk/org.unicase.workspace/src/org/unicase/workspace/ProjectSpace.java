@@ -14,6 +14,7 @@ import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.changemanagment.ChangePackage;
 import org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.changemanagment.VersionSpec;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.Project;
 
 /**
@@ -251,26 +252,29 @@ public interface ProjectSpace extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @throws EmfStoreException 
 	 * @model
-	 * @generated
+	 * @generated NOT
 	 */
-	PrimaryVersionSpec commit();
+	PrimaryVersionSpec commit() throws EmfStoreException;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @throws EmfStoreException 
 	 * @model
-	 * @generated
+	 * @generated NOT
 	 */
-	void update();
+	void update() throws EmfStoreException;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @throws EmfStoreException 
 	 * @model
-	 * @generated
+	 * @generated NOT
 	 */
-	void update(VersionSpec version);
+	void update(VersionSpec version) throws EmfStoreException;
 
 	/**
 	 * <!-- begin-user-doc -->

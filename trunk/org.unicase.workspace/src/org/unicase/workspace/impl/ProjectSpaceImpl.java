@@ -8,12 +8,14 @@ package org.unicase.workspace.impl;
 
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.change.ChangeDescription;
+import org.eclipse.emf.ecore.change.FeatureChange;
 import org.eclipse.emf.ecore.change.util.ChangeRecorder;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
@@ -23,12 +25,16 @@ import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.changemanagment.ChangePackage;
 import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentFactory;
+import org.unicase.emfstore.esmodel.changemanagment.LogMessage;
 import org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.changemanagment.VersionSpec;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.Project;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
+import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
+import org.unicase.workspace.connectionmanager.ConnectionManager;
 
 /**
  * <!-- begin-user-doc -->
@@ -477,45 +483,74 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @throws EmfStoreException 
+	 * @generated NOT
 	 */
-	public PrimaryVersionSpec commit() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+	public PrimaryVersionSpec commit() throws EmfStoreException {
+		LogMessage logMessage = ChangemanagmentFactory.eINSTANCE.createLogMessage();
+		logMessage.setAuthor("(Not set)");
+		logMessage.setDate(new Date());
+		logMessage.setMessage("(Not set)");
+		return commit(logMessage);
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @throws EmfStoreException 
+	 * @generated NOT
+	 */
+	public PrimaryVersionSpec commit(LogMessage logMessage) throws EmfStoreException {
+		// ask/tell via gui?
+		update();
+		save();
+		ConnectionManager cm = WorkspaceManager.getInstance().getConnectionManager();
+		// which sessionId? ask via gui?
+		return cm.createVersion(EsmodelFactory.eINSTANCE.createSessionId(), getProjectId(), getBaseVersion(), getLocalChanges(), logMessage);
+	}
+	
+	
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @throws EmfStoreException 
+	 * @generated NOT
+	 */
+	public void update() throws EmfStoreException {
+		update(ChangemanagmentFactory.eINSTANCE.createHeadVersionSpec());
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @throws EmfStoreException 
+	 * @generated NOT
 	 */
-	public void update() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+	public void update(VersionSpec version) throws EmfStoreException {
+	//TODO: update
+		ConnectionManager cm = WorkspaceManager.getInstance().getConnectionManager();
+		// which sessionId? ask via gui?
+		List<ChangePackage> changes = cm.getChanges(EsmodelFactory.eINSTANCE.createSessionId(), getProjectId(), getBaseVersion(), version);
+		for(ChangePackage change : changes) {
+			//TODO: check whether this also effects all elements contained in the project
+			//TODO: check whether one has to stop recording while updating
+			//TODO: manage conflicts
+			List<FeatureChange> featureChanges = change.getFowardDelta().getObjectChanges().get(project);
+			for(FeatureChange fChanges : featureChanges) {
+				fChanges.apply(project);
+			}
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void update(VersionSpec version) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void revert() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		setLocalChanges(null);
+		init();
 	}
 
 	/**
