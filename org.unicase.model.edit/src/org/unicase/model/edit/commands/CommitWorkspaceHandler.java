@@ -8,6 +8,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.ProjectSpace;
 
 
@@ -50,7 +51,14 @@ public class CommitWorkspaceHandler extends AbstractHandler  {
 		}
 		
 		ProjectSpace projectSpace = (ProjectSpace) o;
-		projectSpace.commit();
+		
+		//TODO: handle exception
+		try {
+			projectSpace.commit();
+		} catch (EmfStoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 				
 		return null;
 	}
