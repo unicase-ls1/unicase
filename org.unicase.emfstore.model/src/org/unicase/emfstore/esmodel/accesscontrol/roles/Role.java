@@ -31,7 +31,7 @@ import org.unicase.model.ModelElement;
 public interface Role extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Projects</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.esmodel.ProjectInfo}.
+	 * The list contents are of type {@link org.unicase.emfstore.esmodel.ProjectInfo}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Projects</em>' reference list isn't clear,
