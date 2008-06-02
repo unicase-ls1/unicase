@@ -10,8 +10,11 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.unicase.workspace.*;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.ServerInfo;
+import org.unicase.workspace.Usersession;
+import org.unicase.workspace.Workspace;
+import org.unicase.workspace.WorkspacePackage;
 
 /**
  * <!-- begin-user-doc -->
