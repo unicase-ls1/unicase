@@ -42,7 +42,7 @@ public interface EsmodelPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://unicase.org/esmodel";
+	String eNS_URI = "http://unicase.org/emfstore/esmodel";
 
 	/**
 	 * The package namespace name.

@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.emfstore.esmodel.*;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
 import org.unicase.emfstore.esmodel.ProjectHistory;
@@ -34,7 +35,7 @@ public class EsmodelFactoryImpl extends EFactoryImpl implements EsmodelFactory {
 	 */
 	public static EsmodelFactory init() {
 		try {
-			EsmodelFactory theEsmodelFactory = (EsmodelFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/esmodel"); 
+			EsmodelFactory theEsmodelFactory = (EsmodelFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/emfstore/esmodel"); 
 			if (theEsmodelFactory != null) {
 				return theEsmodelFactory;
 			}
