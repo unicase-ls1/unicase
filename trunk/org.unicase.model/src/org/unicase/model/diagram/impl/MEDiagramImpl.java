@@ -20,6 +20,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.task.ActionItem;
 
 /**
  * <!-- begin-user-doc -->
@@ -59,7 +60,7 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	 * @generated
 	 * @ordered
 	 */
-	protected Diagram gmfdiagram;
+	protected ActionItem gmfdiagram;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -97,7 +98,7 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Diagram getGmfdiagram() {
+	public ActionItem getGmfdiagram() {
 		return gmfdiagram;
 	}
 
@@ -106,8 +107,8 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetGmfdiagram(Diagram newGmfdiagram, NotificationChain msgs) {
-		Diagram oldGmfdiagram = gmfdiagram;
+	public NotificationChain basicSetGmfdiagram(ActionItem newGmfdiagram, NotificationChain msgs) {
+		ActionItem oldGmfdiagram = gmfdiagram;
 		gmfdiagram = newGmfdiagram;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DiagramPackage.ME_DIAGRAM__GMFDIAGRAM, oldGmfdiagram, newGmfdiagram);
@@ -121,7 +122,7 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setGmfdiagram(Diagram newGmfdiagram) {
+	public void setGmfdiagram(ActionItem newGmfdiagram) {
 		if (newGmfdiagram != gmfdiagram) {
 			NotificationChain msgs = null;
 			if (gmfdiagram != null)
@@ -179,7 +180,7 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 				getElements().addAll((Collection<? extends ModelElement>)newValue);
 				return;
 			case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM:
-				setGmfdiagram((Diagram)newValue);
+				setGmfdiagram((ActionItem)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -197,7 +198,7 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 				getElements().clear();
 				return;
 			case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM:
-				setGmfdiagram((Diagram)null);
+				setGmfdiagram((ActionItem)null);
 				return;
 		}
 		super.eUnset(featureID);

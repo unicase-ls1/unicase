@@ -30,5 +30,5 @@ Export-Package: org.unicase.model,
  org.unicase.model.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.gmf.runtime.notation
+ org.eclipse.gmf.runtime.notation;visibility:=reexport
 Bundle-ActivationPolicy: lazy

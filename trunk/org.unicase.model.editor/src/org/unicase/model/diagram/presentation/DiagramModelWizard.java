@@ -8,6 +8,7 @@ package org.unicase.model.diagram.presentation;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -16,78 +17,52 @@ import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.StringTokenizer;
 
-import org.eclipse.emf.common.CommonPlugin;
-
-import org.eclipse.emf.common.util.URI;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
-
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-
-import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.emf.ecore.xmi.XMLResource;
-
-import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
-
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
-
 import org.eclipse.core.runtime.IProgressMonitor;
-
+import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.common.CommonPlugin;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.jface.dialogs.MessageDialog;
-
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
-
 import org.eclipse.swt.SWT;
-
-import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.ModifyEvent;
-
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
-
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
-
-import org.eclipse.ui.actions.WorkspaceModifyOperation;
-
-import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
-
-import org.eclipse.ui.part.FileEditorInput;
-import org.eclipse.ui.part.ISetSelectionTarget;
-
-import org.unicase.model.diagram.DiagramFactory;
-import org.unicase.model.diagram.DiagramPackage;
-import org.unicase.model.provider.ModelEditPlugin;
-
-
-import org.eclipse.core.runtime.Path;
-
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.StructuredSelection;
-
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
-
+import org.eclipse.ui.actions.WorkspaceModifyOperation;
+import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
+import org.eclipse.ui.part.FileEditorInput;
+import org.eclipse.ui.part.ISetSelectionTarget;
+import org.unicase.model.diagram.DiagramFactory;
+import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.presentation.ModelEditorPlugin;
+import org.unicase.model.provider.ModelEditPlugin;
 
 
 /**
@@ -97,6 +72,24 @@ import org.unicase.model.presentation.ModelEditorPlugin;
  * @generated
  */
 public class DiagramModelWizard extends Wizard implements INewWizard {
+	/**
+	 * The supported extensions for created files.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final List<String> FILE_EXTENSIONS =
+		Collections.unmodifiableList(Arrays.asList(ModelEditorPlugin.INSTANCE.getString("_UI_DiagramEditorFilenameExtensions").split("\\s*,\\s*")));
+
+	/**
+	 * A formatted list of supported file extensions, suitable for display.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String FORMATTED_FILE_EXTENSIONS =
+		ModelEditorPlugin.INSTANCE.getString("_UI_DiagramEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
+
 	/**
 	 * This caches an instance of the model package.
 	 * <!-- begin-user-doc -->
@@ -317,21 +310,15 @@ public class DiagramModelWizard extends Wizard implements INewWizard {
 	@Override
 		protected boolean validatePage() {
 			if (super.validatePage()) {
-				// Make sure the file ends in ".diagram".
-				//
-				String requiredExt = ModelEditorPlugin.INSTANCE.getString("_UI_DiagramEditorFilenameExtension");
-				String enteredExt = new Path(getFileName()).getFileExtension();
-				if (enteredExt == null || !enteredExt.equals(requiredExt)) {
-					setErrorMessage(ModelEditorPlugin.INSTANCE.getString("_WARN_FilenameExtension", new Object [] { requiredExt }));
+				String extension = new Path(getFileName()).getFileExtension();
+				if (extension == null || !FILE_EXTENSIONS.contains(extension)) {
+					String key = FILE_EXTENSIONS.size() > 1 ? "_WARN_FilenameExtensions" : "_WARN_FilenameExtension";
+					setErrorMessage(ModelEditorPlugin.INSTANCE.getString(key, new Object [] { FORMATTED_FILE_EXTENSIONS }));
 					return false;
 				}
-				else {
-					return true;
-				}
+				return true;
 			}
-			else {
-				return false;
-			}
+			return false;
 		}
 
 		/**
@@ -565,7 +552,7 @@ public class DiagramModelWizard extends Wizard implements INewWizard {
 		newFileCreationPage = new DiagramModelWizardNewFileCreationPage("Whatever", selection);
 		newFileCreationPage.setTitle(ModelEditorPlugin.INSTANCE.getString("_UI_DiagramModelWizard_label"));
 		newFileCreationPage.setDescription(ModelEditorPlugin.INSTANCE.getString("_UI_DiagramModelWizard_description"));
-		newFileCreationPage.setFileName(ModelEditorPlugin.INSTANCE.getString("_UI_DiagramEditorFilenameDefaultBase") + "." + ModelEditorPlugin.INSTANCE.getString("_UI_DiagramEditorFilenameExtension"));
+		newFileCreationPage.setFileName(ModelEditorPlugin.INSTANCE.getString("_UI_DiagramEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
 		addPage(newFileCreationPage);
 
 		// Try and get the resource selection to determine a current directory for the file dialog.
@@ -592,7 +579,7 @@ public class DiagramModelWizard extends Wizard implements INewWizard {
 					// Make up a unique new name here.
 					//
 					String defaultModelBaseFilename = ModelEditorPlugin.INSTANCE.getString("_UI_DiagramEditorFilenameDefaultBase");
-					String defaultModelFilenameExtension = ModelEditorPlugin.INSTANCE.getString("_UI_DiagramEditorFilenameExtension");
+					String defaultModelFilenameExtension = FILE_EXTENSIONS.get(0);
 					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
 					for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i) {
 						modelFilename = defaultModelBaseFilename + i + "." + defaultModelFilenameExtension;
