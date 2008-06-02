@@ -237,7 +237,7 @@ public interface EsmodelPackage extends EPackage {
 	int SERVER_SPACE__OPEN_SESSIONS = 2;
 
 	/**
-	 * The feature id for the '<em><b>Users</b></em>' containment reference.
+	 * The feature id for the '<em><b>Users</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -445,10 +445,10 @@ public interface EsmodelPackage extends EPackage {
 	EReference getServerSpace_OpenSessions();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.unicase.emfstore.esmodel.ServerSpace#getUsers <em>Users</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.unicase.emfstore.esmodel.ServerSpace#getUsers <em>Users</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Users</em>'.
+	 * @return the meta object for the containment reference list '<em>Users</em>'.
 	 * @see org.unicase.emfstore.esmodel.ServerSpace#getUsers()
 	 * @see #getServerSpace()
 	 * @generated
@@ -616,7 +616,7 @@ public interface EsmodelPackage extends EPackage {
 		EReference SERVER_SPACE__OPEN_SESSIONS = eINSTANCE.getServerSpace_OpenSessions();
 
 		/**
-		 * The meta object literal for the '<em><b>Users</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Users</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

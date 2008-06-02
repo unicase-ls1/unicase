@@ -81,29 +81,19 @@ public interface ServerSpace extends EObject {
 	EList<SessionId> getOpenSessions();
 
 	/**
-	 * Returns the value of the '<em><b>Users</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Users</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.emfstore.esmodel.accesscontrol.ACUser}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Users</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Users</em>' containment reference.
-	 * @see #setUsers(ACUser)
+	 * @return the value of the '<em>Users</em>' containment reference list.
 	 * @see org.unicase.emfstore.esmodel.EsmodelPackage#getServerSpace_Users()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ACUser getUsers();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.ServerSpace#getUsers <em>Users</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Users</em>' containment reference.
-	 * @see #getUsers()
-	 * @generated
-	 */
-	void setUsers(ACUser value);
+	EList<ACUser> getUsers();
 
 } // ServerSpace
