@@ -73,14 +73,14 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 	protected EList<SessionId> openSessions;
 
 	/**
-	 * The cached value of the '{@link #getUsers() <em>Users</em>}' containment reference.
+	 * The cached value of the '{@link #getUsers() <em>Users</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getUsers()
 	 * @generated
 	 * @ordered
 	 */
-	protected ACUser users;
+	protected EList<ACUser> users;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -142,42 +142,11 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ACUser getUsers() {
+	public EList<ACUser> getUsers() {
+		if (users == null) {
+			users = new EObjectContainmentEList<ACUser>(ACUser.class, this, EsmodelPackage.SERVER_SPACE__USERS);
+		}
 		return users;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetUsers(ACUser newUsers, NotificationChain msgs) {
-		ACUser oldUsers = users;
-		users = newUsers;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EsmodelPackage.SERVER_SPACE__USERS, oldUsers, newUsers);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setUsers(ACUser newUsers) {
-		if (newUsers != users) {
-			NotificationChain msgs = null;
-			if (users != null)
-				msgs = ((InternalEObject)users).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EsmodelPackage.SERVER_SPACE__USERS, null, msgs);
-			if (newUsers != null)
-				msgs = ((InternalEObject)newUsers).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EsmodelPackage.SERVER_SPACE__USERS, null, msgs);
-			msgs = basicSetUsers(newUsers, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EsmodelPackage.SERVER_SPACE__USERS, newUsers, newUsers));
 	}
 
 	/**
@@ -195,7 +164,7 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 			case EsmodelPackage.SERVER_SPACE__OPEN_SESSIONS:
 				return ((InternalEList<?>)getOpenSessions()).basicRemove(otherEnd, msgs);
 			case EsmodelPackage.SERVER_SPACE__USERS:
-				return basicSetUsers(null, msgs);
+				return ((InternalEList<?>)getUsers()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -242,7 +211,8 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 				getOpenSessions().addAll((Collection<? extends SessionId>)newValue);
 				return;
 			case EsmodelPackage.SERVER_SPACE__USERS:
-				setUsers((ACUser)newValue);
+				getUsers().clear();
+				getUsers().addAll((Collection<? extends ACUser>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -266,7 +236,7 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 				getOpenSessions().clear();
 				return;
 			case EsmodelPackage.SERVER_SPACE__USERS:
-				setUsers((ACUser)null);
+				getUsers().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -287,7 +257,7 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 			case EsmodelPackage.SERVER_SPACE__OPEN_SESSIONS:
 				return openSessions != null && !openSessions.isEmpty();
 			case EsmodelPackage.SERVER_SPACE__USERS:
-				return users != null;
+				return users != null && !users.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

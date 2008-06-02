@@ -29,8 +29,8 @@
         eType="#//ProjectHistory" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="openSessions" upperBound="-1"
         eType="#//SessionId" transient="true" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="users" eType="#//accesscontrol/ACUser"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="users" upperBound="-1"
+        eType="#//accesscontrol/ACUser" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProjectId" eSuperTypes="../../org.unicase.model/model/model.ecore#//UniqueIdentifier"/>
   <eSubpackages name="changemanagment" nsURI="http://unicase.org/esmodel/changemanagment"
