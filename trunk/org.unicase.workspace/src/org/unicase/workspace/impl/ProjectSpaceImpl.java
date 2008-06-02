@@ -28,6 +28,7 @@ import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentFactory;
 import org.unicase.emfstore.esmodel.changemanagment.LogMessage;
 import org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.changemanagment.VersionSpec;
+import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.Project;
 import org.unicase.workspace.ProjectSpace;
@@ -501,12 +502,14 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @generated NOT
 	 */
 	public PrimaryVersionSpec commit(LogMessage logMessage) throws EmfStoreException {
-		// ask/tell via gui?
-		update();
+		// autosave?
 		save();
 		ConnectionManager cm = WorkspaceManager.getInstance().getConnectionManager();
-		// which sessionId? ask via gui?
-		return cm.createVersion(EsmodelFactory.eINSTANCE.createSessionId(), getProjectId(), getBaseVersion(), getLocalChanges(), logMessage);
+		PrimaryVersionSpec resolvedVersion = cm.resolveVersionSpec(getUsersession().getSessionId(), ChangemanagmentFactory.eINSTANCE.createHeadVersionSpec());
+		if(!(getBaseVersion().equals(resolvedVersion))) {
+			throw new BaseVersionOutdatedException("BaseVersion outdated, please update before commit.");
+		}
+		return cm.createVersion(getUsersession().getSessionId(), getProjectId(), getBaseVersion(), getLocalChanges(), logMessage);
 	}
 	
 	
@@ -530,8 +533,8 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	public void update(VersionSpec version) throws EmfStoreException {
 	//TODO: update
 		ConnectionManager cm = WorkspaceManager.getInstance().getConnectionManager();
-		// which sessionId? ask via gui?
-		List<ChangePackage> changes = cm.getChanges(EsmodelFactory.eINSTANCE.createSessionId(), getProjectId(), getBaseVersion(), version);
+		PrimaryVersionSpec resolvedVersion = cm.resolveVersionSpec(getUsersession().getSessionId(), version);
+		List<ChangePackage> changes = cm.getChanges(getUsersession().getSessionId(), getProjectId(), getBaseVersion(), resolvedVersion);
 		for(ChangePackage change : changes) {
 			//TODO: check whether this also effects all elements contained in the project
 			//TODO: check whether one has to stop recording while updating
@@ -541,6 +544,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 				fChanges.apply(project);
 			}
 		}
+		setBaseVersion(resolvedVersion);
 	}
 
 	/**
@@ -549,6 +553,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @generated NOT
 	 */
 	public void revert() {
+		//TODO: revert changes
 		setLocalChanges(null);
 		init();
 	}
