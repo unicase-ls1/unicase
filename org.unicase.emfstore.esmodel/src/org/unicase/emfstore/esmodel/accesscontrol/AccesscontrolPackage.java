@@ -71,33 +71,6 @@ public interface AccesscontrolPackage extends EPackage {
 	int AC_USER = 0;
 
 	/**
-	 * The feature id for the '<em><b>First Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AC_USER__FIRST_NAME = 0;
-
-	/**
-	 * The feature id for the '<em><b>Last Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AC_USER__LAST_NAME = 1;
-
-	/**
-	 * The number of structural features of the '<em>AC User</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AC_USER_FEATURE_COUNT = 2;
-
-	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.accesscontrol.impl.ACOrgUnitImpl <em>AC Org Unit</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -151,6 +124,69 @@ public interface AccesscontrolPackage extends EPackage {
 	 * @ordered
 	 */
 	int AC_ORG_UNIT_FEATURE_COUNT = 4;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AC_USER__NAME = AC_ORG_UNIT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Roles</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AC_USER__ROLES = AC_ORG_UNIT__ROLES;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AC_USER__ID = AC_ORG_UNIT__ID;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AC_USER__DESCRIPTION = AC_ORG_UNIT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>First Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AC_USER__FIRST_NAME = AC_ORG_UNIT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Last Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AC_USER__LAST_NAME = AC_ORG_UNIT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>AC User</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AC_USER_FEATURE_COUNT = AC_ORG_UNIT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.accesscontrol.impl.ACGroupImpl <em>AC Group</em>}' class.

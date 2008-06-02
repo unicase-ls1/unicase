@@ -27,7 +27,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
  *
  * @generated
  */
-public class ACUserImpl extends EObjectImpl implements ACUser {
+public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 	/**
 	 * The default value of the '{@link #getFirstName() <em>First Name</em>}' attribute.
 	 * <!-- begin-user-doc -->

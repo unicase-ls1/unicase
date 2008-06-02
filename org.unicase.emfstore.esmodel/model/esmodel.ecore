@@ -89,7 +89,7 @@
   </eSubpackages>
   <eSubpackages name="accesscontrol" nsURI="http://unicase.org/esmodel/accesscontrol"
       nsPrefix="org.unicase.accesscontrol">
-    <eClassifiers xsi:type="ecore:EClass" name="ACUser">
+    <eClassifiers xsi:type="ecore:EClass" name="ACUser" eSuperTypes="#//accesscontrol/ACOrgUnit">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="firstName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>

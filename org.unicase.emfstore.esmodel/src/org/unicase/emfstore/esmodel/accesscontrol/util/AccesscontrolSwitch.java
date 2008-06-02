@@ -95,6 +95,7 @@ public class AccesscontrolSwitch<T> {
 			case AccesscontrolPackage.AC_USER: {
 				ACUser acUser = (ACUser)theEObject;
 				T result = caseACUser(acUser);
+				if (result == null) result = caseACOrgUnit(acUser);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
