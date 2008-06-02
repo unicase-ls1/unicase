@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.model.organization.presentation;
+package org.unicase.model.requirement.presentation;
 
 
 import java.io.IOException;
@@ -132,12 +132,12 @@ import org.unicase.model.task.provider.TaskItemProviderAdapterFactory;
 
 
 /**
- * This is an example of a Organization model editor.
+ * This is an example of a Requirement model editor.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class OrganizationEditor
+public class RequirementEditor
 	extends MultiPageEditorPart
 	implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
 	/**
@@ -299,18 +299,18 @@ public class OrganizationEditor
 			public void partActivated(IWorkbenchPart p) {
 				if (p instanceof ContentOutline) {
 					if (((ContentOutline)p).getCurrentPage() == contentOutlinePage) {
-						getActionBarContributor().setActiveEditor(OrganizationEditor.this);
+						getActionBarContributor().setActiveEditor(RequirementEditor.this);
 
 						setCurrentViewer(contentOutlineViewer);
 					}
 				}
 				else if (p instanceof PropertySheet) {
 					if (((PropertySheet)p).getCurrentPage() == propertySheetPage) {
-						getActionBarContributor().setActiveEditor(OrganizationEditor.this);
+						getActionBarContributor().setActiveEditor(RequirementEditor.this);
 						handleActivate();
 					}
 				}
-				else if (p == OrganizationEditor.this) {
+				else if (p == RequirementEditor.this) {
 					handleActivate();
 				}
 			}
@@ -473,8 +473,8 @@ public class OrganizationEditor
 							getSite().getShell().getDisplay().asyncExec
 								(new Runnable() {
 									 public void run() {
-										 getSite().getPage().closeEditor(OrganizationEditor.this, false);
-										 OrganizationEditor.this.dispose();
+										 getSite().getPage().closeEditor(RequirementEditor.this, false);
+										 RequirementEditor.this.dispose();
 									 }
 								 });
 						}
@@ -482,7 +482,7 @@ public class OrganizationEditor
 
 					if (!visitor.getChangedResources().isEmpty()) {
 						changedResources.addAll(visitor.getChangedResources());
-						if (getSite().getPage().getActiveEditor() == OrganizationEditor.this) {
+						if (getSite().getPage().getActiveEditor() == RequirementEditor.this) {
 							getSite().getShell().getDisplay().asyncExec
 								(new Runnable() {
 									 public void run() {
@@ -517,8 +517,8 @@ public class OrganizationEditor
 
 		if (!removedResources.isEmpty()) {
 			if (handleDirtyConflict()) {
-				getSite().getPage().closeEditor(OrganizationEditor.this, false);
-				OrganizationEditor.this.dispose();
+				getSite().getPage().closeEditor(RequirementEditor.this, false);
+				RequirementEditor.this.dispose();
 			}
 			else {
 				removedResources.clear();
@@ -648,7 +648,7 @@ public class OrganizationEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OrganizationEditor() {
+	public RequirementEditor() {
 		super();
 		initializeEditingDomain();
 	}
@@ -990,7 +990,7 @@ public class OrganizationEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), OrganizationEditor.this) {
+					new ViewerPane(getSite().getPage(), RequirementEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							Tree tree = new Tree(composite, SWT.MULTI);
@@ -1024,7 +1024,7 @@ public class OrganizationEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), OrganizationEditor.this) {
+					new ViewerPane(getSite().getPage(), RequirementEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							Tree tree = new Tree(composite, SWT.MULTI);
@@ -1053,7 +1053,7 @@ public class OrganizationEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), OrganizationEditor.this) {
+					new ViewerPane(getSite().getPage(), RequirementEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new ListViewer(composite);
@@ -1078,7 +1078,7 @@ public class OrganizationEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), OrganizationEditor.this) {
+					new ViewerPane(getSite().getPage(), RequirementEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TreeViewer(composite);
@@ -1105,7 +1105,7 @@ public class OrganizationEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), OrganizationEditor.this) {
+					new ViewerPane(getSite().getPage(), RequirementEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TableViewer(composite);
@@ -1148,7 +1148,7 @@ public class OrganizationEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), OrganizationEditor.this) {
+					new ViewerPane(getSite().getPage(), RequirementEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TreeViewer(composite);
@@ -1369,8 +1369,8 @@ public class OrganizationEditor
 				new ExtendedPropertySheetPage(editingDomain) {
 					@Override
 					public void setSelectionToViewer(List<?> selection) {
-						OrganizationEditor.this.setSelectionToViewer(selection);
-						OrganizationEditor.this.setFocus();
+						RequirementEditor.this.setSelectionToViewer(selection);
+						RequirementEditor.this.setFocus();
 					}
 
 					@Override

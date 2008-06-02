@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.model.diagram.presentation;
+package org.unicase.model.classes.presentation;
 
 
 import java.util.ArrayList;
@@ -59,8 +59,8 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
-import org.unicase.model.diagram.DiagramFactory;
-import org.unicase.model.diagram.DiagramPackage;
+import org.unicase.model.classes.ClassesFactory;
+import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.presentation.ModelEditorPlugin;
 import org.unicase.model.provider.ModelEditPlugin;
 
@@ -71,7 +71,7 @@ import org.unicase.model.provider.ModelEditPlugin;
  * <!-- end-user-doc -->
  * @generated
  */
-public class DiagramModelWizard extends Wizard implements INewWizard {
+public class ClassesModelWizard extends Wizard implements INewWizard {
 	/**
 	 * The supported extensions for created files.
 	 * <!-- begin-user-doc -->
@@ -79,7 +79,7 @@ public class DiagramModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final List<String> FILE_EXTENSIONS =
-		Collections.unmodifiableList(Arrays.asList(ModelEditorPlugin.INSTANCE.getString("_UI_DiagramEditorFilenameExtensions").split("\\s*,\\s*")));
+		Collections.unmodifiableList(Arrays.asList(ModelEditorPlugin.INSTANCE.getString("_UI_ClassesEditorFilenameExtensions").split("\\s*,\\s*")));
 
 	/**
 	 * A formatted list of supported file extensions, suitable for display.
@@ -88,7 +88,7 @@ public class DiagramModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final String FORMATTED_FILE_EXTENSIONS =
-		ModelEditorPlugin.INSTANCE.getString("_UI_DiagramEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
+		ModelEditorPlugin.INSTANCE.getString("_UI_ClassesEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
 
 	/**
 	 * This caches an instance of the model package.
@@ -96,7 +96,7 @@ public class DiagramModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DiagramPackage diagramPackage = DiagramPackage.eINSTANCE;
+	protected ClassesPackage classesPackage = ClassesPackage.eINSTANCE;
 
 	/**
 	 * This caches an instance of the model factory.
@@ -104,7 +104,7 @@ public class DiagramModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DiagramFactory diagramFactory = diagramPackage.getDiagramFactory();
+	protected ClassesFactory classesFactory = classesPackage.getClassesFactory();
 
 	/**
 	 * This is the file creation page.
@@ -112,7 +112,7 @@ public class DiagramModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DiagramModelWizardNewFileCreationPage newFileCreationPage;
+	protected ClassesModelWizardNewFileCreationPage newFileCreationPage;
 
 	/**
 	 * This is the initial object creation page.
@@ -120,7 +120,7 @@ public class DiagramModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DiagramModelWizardInitialObjectCreationPage initialObjectCreationPage;
+	protected ClassesModelWizardInitialObjectCreationPage initialObjectCreationPage;
 
 	/**
 	 * Remember the selection during initialization for populating the default container.
@@ -156,7 +156,7 @@ public class DiagramModelWizard extends Wizard implements INewWizard {
 		this.workbench = workbench;
 		this.selection = selection;
 		setWindowTitle(ModelEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
-		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(ModelEditorPlugin.INSTANCE.getImage("full/wizban/NewDiagram")));
+		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(ModelEditorPlugin.INSTANCE.getImage("full/wizban/NewClasses")));
 	}
 
 	/**
@@ -168,7 +168,7 @@ public class DiagramModelWizard extends Wizard implements INewWizard {
 	protected Collection<String> getInitialObjectNames() {
 		if (initialObjectNames == null) {
 			initialObjectNames = new ArrayList<String>();
-			for (EClassifier eClassifier : diagramPackage.getEClassifiers()) {
+			for (EClassifier eClassifier : classesPackage.getEClassifiers()) {
 				if (eClassifier instanceof EClass) {
 					EClass eClass = (EClass)eClassifier;
 					if (!eClass.isAbstract()) {
@@ -188,8 +188,8 @@ public class DiagramModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	protected EObject createInitialModel() {
-		EClass eClass = (EClass)diagramPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
-		EObject rootObject = diagramFactory.create(eClass);
+		EClass eClass = (EClass)classesPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
+		EObject rootObject = classesFactory.create(eClass);
 		return rootObject;
 	}
 
@@ -290,14 +290,14 @@ public class DiagramModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public class DiagramModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
+	public class ClassesModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
 		/**
 		 * Pass in the selection.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public DiagramModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
+		public ClassesModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
 			super(pageId, selection);
 		}
 
@@ -307,7 +307,7 @@ public class DiagramModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-	@Override
+		@Override
 		protected boolean validatePage() {
 			if (super.validatePage()) {
 				String extension = new Path(getFileName()).getFileExtension();
@@ -337,7 +337,7 @@ public class DiagramModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public class DiagramModelWizardInitialObjectCreationPage extends WizardPage {
+	public class ClassesModelWizardInitialObjectCreationPage extends WizardPage {
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -365,7 +365,7 @@ public class DiagramModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public DiagramModelWizardInitialObjectCreationPage(String pageId) {
+		public ClassesModelWizardInitialObjectCreationPage(String pageId) {
 			super(pageId);
 		}
 
@@ -549,10 +549,10 @@ public class DiagramModelWizard extends Wizard implements INewWizard {
 	public void addPages() {
 		// Create a page, set the title, and the initial model file name.
 		//
-		newFileCreationPage = new DiagramModelWizardNewFileCreationPage("Whatever", selection);
-		newFileCreationPage.setTitle(ModelEditorPlugin.INSTANCE.getString("_UI_DiagramModelWizard_label"));
-		newFileCreationPage.setDescription(ModelEditorPlugin.INSTANCE.getString("_UI_DiagramModelWizard_description"));
-		newFileCreationPage.setFileName(ModelEditorPlugin.INSTANCE.getString("_UI_DiagramEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
+		newFileCreationPage = new ClassesModelWizardNewFileCreationPage("Whatever", selection);
+		newFileCreationPage.setTitle(ModelEditorPlugin.INSTANCE.getString("_UI_ClassesModelWizard_label"));
+		newFileCreationPage.setDescription(ModelEditorPlugin.INSTANCE.getString("_UI_ClassesModelWizard_description"));
+		newFileCreationPage.setFileName(ModelEditorPlugin.INSTANCE.getString("_UI_ClassesEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
 		addPage(newFileCreationPage);
 
 		// Try and get the resource selection to determine a current directory for the file dialog.
@@ -578,7 +578,7 @@ public class DiagramModelWizard extends Wizard implements INewWizard {
 
 					// Make up a unique new name here.
 					//
-					String defaultModelBaseFilename = ModelEditorPlugin.INSTANCE.getString("_UI_DiagramEditorFilenameDefaultBase");
+					String defaultModelBaseFilename = ModelEditorPlugin.INSTANCE.getString("_UI_ClassesEditorFilenameDefaultBase");
 					String defaultModelFilenameExtension = FILE_EXTENSIONS.get(0);
 					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
 					for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i) {
@@ -588,8 +588,8 @@ public class DiagramModelWizard extends Wizard implements INewWizard {
 				}
 			}
 		}
-		initialObjectCreationPage = new DiagramModelWizardInitialObjectCreationPage("Whatever2");
-		initialObjectCreationPage.setTitle(ModelEditorPlugin.INSTANCE.getString("_UI_DiagramModelWizard_label"));
+		initialObjectCreationPage = new ClassesModelWizardInitialObjectCreationPage("Whatever2");
+		initialObjectCreationPage.setTitle(ModelEditorPlugin.INSTANCE.getString("_UI_ClassesModelWizard_label"));
 		initialObjectCreationPage.setDescription(ModelEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
 		addPage(initialObjectCreationPage);
 	}

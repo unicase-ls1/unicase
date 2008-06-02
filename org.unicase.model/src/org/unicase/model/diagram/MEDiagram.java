@@ -10,6 +10,7 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.unicase.model.ModelElement;
+import org.unicase.model.task.ActionItem;
 
 /**
  * <!-- begin-user-doc -->
@@ -54,12 +55,12 @@ public interface MEDiagram extends ModelElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Gmfdiagram</em>' containment reference.
-	 * @see #setGmfdiagram(Diagram)
+	 * @see #setGmfdiagram(ActionItem)
 	 * @see org.unicase.model.diagram.DiagramPackage#getMEDiagram_Gmfdiagram()
 	 * @model containment="true"
 	 * @generated
 	 */
-	Diagram getGmfdiagram();
+	ActionItem getGmfdiagram();
 
 	/**
 	 * Sets the value of the '{@link org.unicase.model.diagram.MEDiagram#getGmfdiagram <em>Gmfdiagram</em>}' containment reference.
@@ -69,6 +70,6 @@ public interface MEDiagram extends ModelElement {
 	 * @see #getGmfdiagram()
 	 * @generated
 	 */
-	void setGmfdiagram(Diagram value);
+	void setGmfdiagram(ActionItem value);
 
 } // MEDiagram

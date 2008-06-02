@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.model.task.presentation;
+package org.unicase.model.requirement.presentation;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -40,12 +40,12 @@ import org.eclipse.ui.PartInitException;
 import org.unicase.model.presentation.ModelEditorPlugin;
 
 /**
- * This is the action bar contributor for the Task model editor.
+ * This is the action bar contributor for the Requirement model editor.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class TaskActionBarContributor
+public class RequirementActionBarContributor
 	extends EditingDomainActionBarContributor
 	implements ISelectionChangedListener {
 	/**
@@ -148,7 +148,7 @@ public class TaskActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TaskActionBarContributor() {
+	public RequirementActionBarContributor() {
 		super(ADDITIONS_LAST_STYLE);
 		loadResourceAction = new LoadResourceAction();
 		validateAction = new ValidateAction();
@@ -163,8 +163,8 @@ public class TaskActionBarContributor
 	 */
 	@Override
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
-		toolBarManager.add(new Separator("task-settings"));
-		toolBarManager.add(new Separator("task-additions"));
+		toolBarManager.add(new Separator("requirement-settings"));
+		toolBarManager.add(new Separator("requirement-additions"));
 	}
 
 	/**
@@ -178,7 +178,7 @@ public class TaskActionBarContributor
 	public void contributeToMenu(IMenuManager menuManager) {
 		super.contributeToMenu(menuManager);
 
-		IMenuManager submenuManager = new MenuManager(ModelEditorPlugin.INSTANCE.getString("_UI_TaskEditor_menu"), "org.unicase.model.taskMenuID");
+		IMenuManager submenuManager = new MenuManager(ModelEditorPlugin.INSTANCE.getString("_UI_RequirementEditor_menu"), "org.unicase.model.requirementMenuID");
 		menuManager.insertAfter("additions", submenuManager);
 		submenuManager.add(new Separator("settings"));
 		submenuManager.add(new Separator("actions"));

@@ -103,9 +103,6 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 
 		isInited = true;
 
-		// Initialize simple dependencies
-		NotationPackage.eINSTANCE.eClass();
-
 		// Obtain or create and register interdependencies
 		ModelPackageImpl theModelPackage = (ModelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI) : ModelPackage.eINSTANCE);
 		OrganizationPackageImpl theOrganizationPackage = (OrganizationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(OrganizationPackage.eNS_URI) : OrganizationPackage.eINSTANCE);
@@ -223,7 +220,7 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 
 		// Obtain other dependent packages
 		ModelPackage theModelPackage = (ModelPackage)EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
-		NotationPackage theNotationPackage = (NotationPackage)EPackage.Registry.INSTANCE.getEPackage(NotationPackage.eNS_URI);
+		TaskPackage theTaskPackage = (TaskPackage)EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -235,7 +232,7 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		// Initialize classes and features; add operations and parameters
 		initEClass(meDiagramEClass, MEDiagram.class, "MEDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMEDiagram_Elements(), theModelPackage.getModelElement(), null, "elements", null, 0, -1, MEDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMEDiagram_Gmfdiagram(), theNotationPackage.getDiagram(), null, "gmfdiagram", null, 0, 1, MEDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMEDiagram_Gmfdiagram(), theTaskPackage.getActionItem(), null, "gmfdiagram", null, 0, 1, MEDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 } //DiagramPackageImpl
