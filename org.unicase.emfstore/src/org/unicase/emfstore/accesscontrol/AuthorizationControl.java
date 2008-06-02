@@ -4,18 +4,19 @@ import java.util.Set;
 
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.SessionId;
-import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.model.ModelElement;
 
 public interface AuthorizationControl {
 	
-	public void checkSession(SessionId sessionId);
+	public void checkSession(SessionId sessionId) throws AccessControlException;
 	
-	public Role getRole(SessionId sessionId);
+	public void checkProjectAdminAccess(SessionId sessionId, ProjectId projectId) throws AccessControlException;
 	
-	public void checkReadAccess(SessionId sessionId, ProjectId projectId);
+	public void checkServerAdminAccess(SessionId sessionId) throws AccessControlException;
 	
-	public void checkWriteAccess(SessionId sessionId, ProjectId projectId, Set<ModelElement> modelElements);
+	public void checkReadAccess(SessionId sessionId, ProjectId projectId, Set<ModelElement> modelElements) throws AccessControlException;
+	
+	public void checkWriteAccess(SessionId sessionId, ProjectId projectId, Set<ModelElement> modelElements) throws AccessControlException;
 	
 	
 	
