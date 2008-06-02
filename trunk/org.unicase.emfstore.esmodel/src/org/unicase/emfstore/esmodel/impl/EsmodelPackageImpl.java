@@ -265,7 +265,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getServerSpace_OrgUnits() {
+	public EReference getServerSpace_Groups() {
 		return (EReference)serverSpaceEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -285,6 +285,15 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 */
 	public EReference getServerSpace_OpenSessions() {
 		return (EReference)serverSpaceEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getServerSpace_Users() {
+		return (EReference)serverSpaceEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -339,9 +348,10 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		sessionIdEClass = createEClass(SESSION_ID);
 
 		serverSpaceEClass = createEClass(SERVER_SPACE);
-		createEReference(serverSpaceEClass, SERVER_SPACE__ORG_UNITS);
+		createEReference(serverSpaceEClass, SERVER_SPACE__GROUPS);
 		createEReference(serverSpaceEClass, SERVER_SPACE__PROJECTS);
 		createEReference(serverSpaceEClass, SERVER_SPACE__OPEN_SESSIONS);
+		createEReference(serverSpaceEClass, SERVER_SPACE__USERS);
 
 		projectIdEClass = createEClass(PROJECT_ID);
 	}
@@ -402,9 +412,10 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		initEClass(sessionIdEClass, SessionId.class, "SessionId", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(serverSpaceEClass, ServerSpace.class, "ServerSpace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getServerSpace_OrgUnits(), theAccesscontrolPackage.getACOrgUnit(), null, "orgUnits", null, 0, -1, ServerSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getServerSpace_Groups(), theAccesscontrolPackage.getACGroup(), null, "groups", null, 0, -1, ServerSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getServerSpace_Projects(), this.getProjectHistory(), null, "projects", null, 0, -1, ServerSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getServerSpace_OpenSessions(), this.getSessionId(), null, "openSessions", null, 0, -1, ServerSpace.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getServerSpace_Users(), theAccesscontrolPackage.getACUser(), null, "users", null, 0, 1, ServerSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(projectIdEClass, ProjectId.class, "ProjectId", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
