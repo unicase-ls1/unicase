@@ -7,9 +7,7 @@
 package org.unicase.workspace;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.unicase.emfstore.esmodel.ProjectInfo;
 
 /**
@@ -140,7 +138,7 @@ public interface ServerInfo extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Project Infos</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.emfstore.esmodel.ProjectInfo}.
+	 * The list contents are of type {@link org.unicase.esmodel.ProjectInfo}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Project Infos</em>' reference list isn't clear,

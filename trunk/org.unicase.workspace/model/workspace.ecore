@@ -6,7 +6,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Workspace">
     <eOperations name="checkout" eType="#//ProjectSpace">
       <eParameters name="usersession" eType="#//Usersession"/>
-      <eParameters name="projectInfo" eType="ecore:EClass ../../org.unicase.emfstore.model/model/esmodel.ecore#//ProjectInfo"/>
+      <eParameters name="projectInfo" eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//ProjectInfo"/>
     </eOperations>
     <eOperations name="save"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="projectSpaces" upperBound="-1"
@@ -22,7 +22,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="port" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="displayName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="projectInfos" upperBound="-1"
-        eType="ecore:EClass ../../org.unicase.emfstore.model/model/esmodel.ecore#//ProjectInfo"
+        eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//ProjectInfo"
         transient="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="lastUsersession" eType="#//Usersession"
         eOpposite="#//Usersession/serverInfo"/>
@@ -31,12 +31,12 @@
     <eOperations name="isLoggedIn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eOperations name="logIn"/>
     <eOperations name="checkout" eType="#//ProjectSpace">
-      <eParameters name="projectInfo" eType="ecore:EClass ../../org.unicase.emfstore.model/model/esmodel.ecore#//ProjectInfo"/>
+      <eParameters name="projectInfo" eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//ProjectInfo"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="username" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="password" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         transient="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sessionId" eType="ecore:EClass ../../org.unicase.emfstore.model/model/esmodel.ecore#//SessionId"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sessionId" eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//SessionId"
         transient="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="persistentPassword" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="serverInfo" eType="#//ServerInfo"
@@ -44,31 +44,31 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="savePassword" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProjectSpace">
-    <eOperations name="commit" eType="ecore:EClass ../../org.unicase.emfstore.model/model/esmodel.ecore#//changemanagment/PrimaryVersionSpec"/>
+    <eOperations name="commit" eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//changemanagment/PrimaryVersionSpec"/>
     <eOperations name="update"/>
     <eOperations name="update">
-      <eParameters name="version" eType="ecore:EClass ../../org.unicase.emfstore.model/model/esmodel.ecore#//changemanagment/VersionSpec"/>
+      <eParameters name="version" eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//changemanagment/VersionSpec"/>
     </eOperations>
     <eOperations name="revert"/>
     <eOperations name="save"/>
     <eOperations name="init"/>
-    <eOperations name="getProjectInfo" eType="ecore:EClass ../../org.unicase.emfstore.model/model/esmodel.ecore#//ProjectInfo"/>
+    <eOperations name="getProjectInfo" eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//ProjectInfo"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="project" lowerBound="1"
         eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="projectId" lowerBound="1"
-        eType="ecore:EClass ../../org.unicase.emfstore.model/model/esmodel.ecore#//ProjectId"
+        eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//ProjectId"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="projectName" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="projectDescription" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="localChanges" eType="ecore:EClass ../../org.unicase.emfstore.model/model/esmodel.ecore#//changemanagment/ChangePackage"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="localChanges" eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//changemanagment/ChangePackage"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="usersession" eType="#//Usersession"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastUpdated" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="baseVersion" lowerBound="1"
-        eType="ecore:EClass ../../org.unicase.emfstore.model/model/esmodel.ecore#//changemanagment/PrimaryVersionSpec"
+        eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//changemanagment/PrimaryVersionSpec"
         containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

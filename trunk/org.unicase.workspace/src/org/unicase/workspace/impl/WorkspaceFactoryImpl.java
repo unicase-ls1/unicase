@@ -9,12 +9,14 @@ package org.unicase.workspace.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.unicase.workspace.*;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.ServerInfo;
+import org.unicase.workspace.Usersession;
+import org.unicase.workspace.Workspace;
+import org.unicase.workspace.WorkspaceFactory;
+import org.unicase.workspace.WorkspacePackage;
 
 /**
  * <!-- begin-user-doc -->
