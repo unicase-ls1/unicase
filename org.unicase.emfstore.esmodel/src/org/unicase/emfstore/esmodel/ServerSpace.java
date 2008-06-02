@@ -8,6 +8,8 @@ package org.unicase.emfstore.esmodel;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
+import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 
 /**
@@ -18,9 +20,10 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.ServerSpace#getOrgUnits <em>Org Units</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.ServerSpace#getGroups <em>Groups</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.ServerSpace#getProjects <em>Projects</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.ServerSpace#getOpenSessions <em>Open Sessions</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.ServerSpace#getUsers <em>Users</em>}</li>
  * </ul>
  * </p>
  *
@@ -30,20 +33,20 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
  */
 public interface ServerSpace extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Org Units</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit}.
+	 * Returns the value of the '<em><b>Groups</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.emfstore.esmodel.accesscontrol.ACGroup}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Org Units</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Groups</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Org Units</em>' containment reference list.
-	 * @see org.unicase.emfstore.esmodel.EsmodelPackage#getServerSpace_OrgUnits()
+	 * @return the value of the '<em>Groups</em>' containment reference list.
+	 * @see org.unicase.emfstore.esmodel.EsmodelPackage#getServerSpace_Groups()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ACOrgUnit> getOrgUnits();
+	EList<ACGroup> getGroups();
 
 	/**
 	 * Returns the value of the '<em><b>Projects</b></em>' containment reference list.
@@ -76,5 +79,31 @@ public interface ServerSpace extends EObject {
 	 * @generated
 	 */
 	EList<SessionId> getOpenSessions();
+
+	/**
+	 * Returns the value of the '<em><b>Users</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Users</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Users</em>' containment reference.
+	 * @see #setUsers(ACUser)
+	 * @see org.unicase.emfstore.esmodel.EsmodelPackage#getServerSpace_Users()
+	 * @model containment="true"
+	 * @generated
+	 */
+	ACUser getUsers();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.ServerSpace#getUsers <em>Users</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Users</em>' containment reference.
+	 * @see #getUsers()
+	 * @generated
+	 */
+	void setUsers(ACUser value);
 
 } // ServerSpace

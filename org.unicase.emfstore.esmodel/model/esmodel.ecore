@@ -23,12 +23,14 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SessionId" eSuperTypes="../../org.unicase.model/model/model.ecore#//UniqueIdentifier"/>
   <eClassifiers xsi:type="ecore:EClass" name="ServerSpace">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="orgUnits" upperBound="-1"
-        eType="#//accesscontrol/ACOrgUnit" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="groups" upperBound="-1"
+        eType="#//accesscontrol/ACGroup" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="projects" upperBound="-1"
         eType="#//ProjectHistory" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="openSessions" upperBound="-1"
         eType="#//SessionId" transient="true" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="users" eType="#//accesscontrol/ACUser"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProjectId" eSuperTypes="../../org.unicase.model/model/model.ecore#//UniqueIdentifier"/>
   <eSubpackages name="changemanagment" nsURI="http://unicase.org/esmodel/changemanagment"

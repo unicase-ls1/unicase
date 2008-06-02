@@ -79,9 +79,10 @@ public class ServerSpaceItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(EsmodelPackage.Literals.SERVER_SPACE__ORG_UNITS);
+			childrenFeatures.add(EsmodelPackage.Literals.SERVER_SPACE__GROUPS);
 			childrenFeatures.add(EsmodelPackage.Literals.SERVER_SPACE__PROJECTS);
 			childrenFeatures.add(EsmodelPackage.Literals.SERVER_SPACE__OPEN_SESSIONS);
+			childrenFeatures.add(EsmodelPackage.Literals.SERVER_SPACE__USERS);
 		}
 		return childrenFeatures;
 	}
@@ -133,9 +134,10 @@ public class ServerSpaceItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ServerSpace.class)) {
-			case EsmodelPackage.SERVER_SPACE__ORG_UNITS:
+			case EsmodelPackage.SERVER_SPACE__GROUPS:
 			case EsmodelPackage.SERVER_SPACE__PROJECTS:
 			case EsmodelPackage.SERVER_SPACE__OPEN_SESSIONS:
+			case EsmodelPackage.SERVER_SPACE__USERS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -155,12 +157,7 @@ public class ServerSpaceItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(EsmodelPackage.Literals.SERVER_SPACE__ORG_UNITS,
-				 AccesscontrolFactory.eINSTANCE.createACOrgUnit()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(EsmodelPackage.Literals.SERVER_SPACE__ORG_UNITS,
+				(EsmodelPackage.Literals.SERVER_SPACE__GROUPS,
 				 AccesscontrolFactory.eINSTANCE.createACGroup()));
 
 		newChildDescriptors.add
@@ -172,6 +169,11 @@ public class ServerSpaceItemProvider
 			(createChildParameter
 				(EsmodelPackage.Literals.SERVER_SPACE__OPEN_SESSIONS,
 				 EsmodelFactory.eINSTANCE.createSessionId()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(EsmodelPackage.Literals.SERVER_SPACE__USERS,
+				 AccesscontrolFactory.eINSTANCE.createACUser()));
 	}
 
 	/**

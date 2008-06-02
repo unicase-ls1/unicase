@@ -210,13 +210,13 @@ public interface EsmodelPackage extends EPackage {
 	int SERVER_SPACE = 3;
 
 	/**
-	 * The feature id for the '<em><b>Org Units</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Groups</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SPACE__ORG_UNITS = 0;
+	int SERVER_SPACE__GROUPS = 0;
 
 	/**
 	 * The feature id for the '<em><b>Projects</b></em>' containment reference list.
@@ -237,13 +237,22 @@ public interface EsmodelPackage extends EPackage {
 	int SERVER_SPACE__OPEN_SESSIONS = 2;
 
 	/**
+	 * The feature id for the '<em><b>Users</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVER_SPACE__USERS = 3;
+
+	/**
 	 * The number of structural features of the '<em>Server Space</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SPACE_FEATURE_COUNT = 3;
+	int SERVER_SPACE_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.impl.ProjectIdImpl <em>Project Id</em>}' class.
@@ -403,15 +412,15 @@ public interface EsmodelPackage extends EPackage {
 	EClass getServerSpace();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.emfstore.esmodel.ServerSpace#getOrgUnits <em>Org Units</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.unicase.emfstore.esmodel.ServerSpace#getGroups <em>Groups</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Org Units</em>'.
-	 * @see org.unicase.emfstore.esmodel.ServerSpace#getOrgUnits()
+	 * @return the meta object for the containment reference list '<em>Groups</em>'.
+	 * @see org.unicase.emfstore.esmodel.ServerSpace#getGroups()
 	 * @see #getServerSpace()
 	 * @generated
 	 */
-	EReference getServerSpace_OrgUnits();
+	EReference getServerSpace_Groups();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.unicase.emfstore.esmodel.ServerSpace#getProjects <em>Projects</em>}'.
@@ -434,6 +443,17 @@ public interface EsmodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getServerSpace_OpenSessions();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.unicase.emfstore.esmodel.ServerSpace#getUsers <em>Users</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Users</em>'.
+	 * @see org.unicase.emfstore.esmodel.ServerSpace#getUsers()
+	 * @see #getServerSpace()
+	 * @generated
+	 */
+	EReference getServerSpace_Users();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.ProjectId <em>Project Id</em>}'.
@@ -572,12 +592,12 @@ public interface EsmodelPackage extends EPackage {
 		EClass SERVER_SPACE = eINSTANCE.getServerSpace();
 
 		/**
-		 * The meta object literal for the '<em><b>Org Units</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Groups</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SERVER_SPACE__ORG_UNITS = eINSTANCE.getServerSpace_OrgUnits();
+		EReference SERVER_SPACE__GROUPS = eINSTANCE.getServerSpace_Groups();
 
 		/**
 		 * The meta object literal for the '<em><b>Projects</b></em>' containment reference list feature.
@@ -594,6 +614,14 @@ public interface EsmodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SERVER_SPACE__OPEN_SESSIONS = eINSTANCE.getServerSpace_OpenSessions();
+
+		/**
+		 * The meta object literal for the '<em><b>Users</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERVER_SPACE__USERS = eINSTANCE.getServerSpace_Users();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.impl.ProjectIdImpl <em>Project Id</em>}' class.

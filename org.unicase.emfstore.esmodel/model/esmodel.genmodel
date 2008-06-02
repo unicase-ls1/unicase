@@ -21,9 +21,10 @@
     </genClasses>
     <genClasses ecoreClass="esmodel.ecore#//SessionId"/>
     <genClasses ecoreClass="esmodel.ecore#//ServerSpace">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//ServerSpace/orgUnits"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//ServerSpace/groups"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//ServerSpace/projects"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//ServerSpace/openSessions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//ServerSpace/users"/>
     </genClasses>
     <genClasses ecoreClass="esmodel.ecore#//ProjectId"/>
     <nestedGenPackages prefix="Changemanagment" basePackage="org.unicase.emfstore.esmodel"
