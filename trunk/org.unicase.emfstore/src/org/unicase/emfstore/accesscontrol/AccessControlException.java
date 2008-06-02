@@ -10,4 +10,12 @@ package org.unicase.emfstore.accesscontrol;
 @SuppressWarnings("serial")
 public class AccessControlException extends Exception {
 
+	public AccessControlException(String string) {
+		super(string);
+	}
+
+	public AccessControlException() {
+		super("Access denied!");
+	}
+
 }

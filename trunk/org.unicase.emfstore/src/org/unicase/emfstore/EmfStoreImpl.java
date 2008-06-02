@@ -27,42 +27,16 @@ import org.unicase.model.Project;
 
 public class EmfStoreImpl implements EmfStore {
 
-	private final Resource resource;
-	
 	private ServerSpace serverSpace;
 	
 	private final static Logger logger = Logger.getLogger(EmfStoreImpl.class);
 	
 	private EmfStoreStub stub;
 	
-	public EmfStoreImpl(ResourceStorage storage, Properties properties) {
-		
-		URI resourceUri = storage.init(properties);
-		ResourceSet resourceSet = new ResourceSetImpl();
-		resource = resourceSet.createResource(resourceUri);
-		
-		stub = new EmfStoreStub();
-		
-		EList<EObject> contents = resource.getContents();
-		for (EObject content: contents) {
-			if (content instanceof ServerSpace) {
-				this.serverSpace=(ServerSpace)content;
-				return;
+	public EmfStoreImpl(ServerSpace serverSpace, Properties properties) {
+				this.stub = new EmfStoreStub();
+				this.serverSpace = serverSpace;
 			}
-		}
-
-		//if no serverspace can be loaded, create one
-		logger.debug("Creating dummy server space...");
-		serverSpace = EsmodelFactory.eINSTANCE.createServerSpace();
-		stub.createDummyProjectHistories(serverSpace);
-		resource.getContents().add(serverSpace);
-		try {
-			resource.save(null);
-		} catch (IOException e) {
-			// MK Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 
 	public PrimaryVersionSpec createVersion(SessionId sessionId,
 			ProjectId projectId, PrimaryVersionSpec baseVersionSpec,
@@ -96,5 +70,10 @@ public class EmfStoreImpl implements EmfStore {
 	public PrimaryVersionSpec resolveVersionSpec(SessionId sessionId,
 			VersionSpec versionSpec) throws EmfStoreException {
 		return stub.resolveVersionSpec(sessionId, versionSpec);
+	}
+
+	public Properties getServerSpace() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

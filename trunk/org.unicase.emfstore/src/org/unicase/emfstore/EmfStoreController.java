@@ -13,12 +13,20 @@ import org.apache.log4j.FileAppender;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.SimpleLayout;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.unicase.emfstore.accesscontrol.AuthenticationControl;
 import org.unicase.emfstore.accesscontrol.AccessControlImpl;
 import org.unicase.emfstore.connection.ConnectionHandler;
 import org.unicase.emfstore.connection.rmi.RMIConnectionHandler;
+import org.unicase.emfstore.esmodel.EsmodelFactory;
+import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.storage.ResourceStorage;
 
@@ -29,6 +37,7 @@ public class EmfStoreController implements IApplication {
 	private Set<ConnectionHandler> connectionHandlers;
 	private Properties properties;
 	private static Logger logger;
+	private ServerSpace serverSpace;
 
 	private static EmfStoreController instance;
 
@@ -47,8 +56,9 @@ public class EmfStoreController implements IApplication {
 		properties = initProperties();
 		initLogging(properties);
 		logger = Logger.getLogger(EmfStoreController.class);
-		emfStore = initEmfStore(properties);
-		accessControl = initAccessControl(properties);
+		this.serverSpace=initServerSpace();
+		emfStore = new EmfStoreImpl(serverSpace, properties);
+		accessControl = initAccessControl(serverSpace, properties);
 		connectionHandlers = initConnectionHandlers(emfStore, accessControl);
 		logger.info("Initialitation COMPLETE.");
 
@@ -76,10 +86,33 @@ public class EmfStoreController implements IApplication {
 		return connectionHandlers;
 	}
 
-	private EmfStoreImpl initEmfStore(Properties properties)
-			throws FatalEmfStoreException {
+	private ServerSpace initServerSpace() throws FatalEmfStoreException {
 		ResourceStorage storage = initStorage(properties);
-		return new EmfStoreImpl(storage, properties);
+		URI resourceUri = storage.init(properties);
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Resource resource = resourceSet.createResource(resourceUri);
+		
+		EList<EObject> contents = resource.getContents();
+		for (EObject content: contents) {
+			if (content instanceof ServerSpace) {
+				return (ServerSpace)content;
+			}
+		}
+
+		//if no serverspace can be loaded, create one
+		logger.debug("Creating dummy server space...");
+		ServerSpace serverSpace = EsmodelFactory.eINSTANCE.createServerSpace();
+		
+		EmfStoreStub.createDummyProjectHistories(serverSpace);
+		
+		resource.getContents().add(serverSpace);
+		try {
+			resource.save(null);
+		} catch (IOException e) {
+			// MK Auto-generated catch block
+			e.printStackTrace();
+		}
+		return serverSpace;
 	}
 
 	public static EmfStoreController getInstance() {
@@ -138,8 +171,8 @@ public class EmfStoreController implements IApplication {
 		}
 	}
 
-	private AuthenticationControl initAccessControl(Properties properties) {
-		return new AccessControlImpl();
+	private AuthenticationControl initAccessControl(ServerSpace serverSpace, Properties properties) {
+		return new AccessControlImpl(serverSpace);
 	}
 
 	private Properties initProperties() {

@@ -167,7 +167,7 @@ public class EmfStoreStub implements EmfStore {
 		// end of generation
 	}
 
-	public void createDummyProjectHistories(ServerSpace serverSpace) {
+	public static void createDummyProjectHistories(ServerSpace serverSpace) {
 		EsmodelFactory esmodelFactory = EsmodelFactory.eINSTANCE;
 		ProjectHistory projectHistory = esmodelFactory.createProjectHistory();
 		projectHistory.setProjectDescription("This is a autogen test project");
