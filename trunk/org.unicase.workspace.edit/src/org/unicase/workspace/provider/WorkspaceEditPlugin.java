@@ -10,7 +10,7 @@ import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.change.provider.ChangeEditPlugin;
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
-import org.unicase.emfstore.model.provider.EsmodelEditPlugin;
+import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
 import org.unicase.model.provider.ModelEditPlugin;
 
 /**
@@ -49,7 +49,6 @@ public final class WorkspaceEditPlugin extends EMFPlugin {
 		     EcoreEditPlugin.INSTANCE,
 		     EsmodelEditPlugin.INSTANCE,
 		     ModelEditPlugin.INSTANCE,
-		     NotationEditPlugin.INSTANCE,
 		   });
 	}
 

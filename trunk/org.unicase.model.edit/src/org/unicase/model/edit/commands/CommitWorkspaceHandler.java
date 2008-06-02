@@ -51,7 +51,7 @@ public class CommitWorkspaceHandler extends AbstractHandler  {
 		}
 		
 		ProjectSpace projectSpace = (ProjectSpace) o;
-		
+
 		//TODO: handle exception
 		try {
 			projectSpace.commit();
@@ -59,7 +59,7 @@ public class CommitWorkspaceHandler extends AbstractHandler  {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-				
+
 		return null;
 	}
 
