@@ -35,7 +35,7 @@ import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
  * @generated
  */
 public class ACUserItemProvider
-	extends ItemProviderAdapter
+	extends ACOrgUnitItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -132,7 +132,7 @@ public class ACUserItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ACUser)object).getFirstName();
+		String label = ((ACUser)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ACUser_type") :
 			getString("_UI_ACUser_type") + " " + label;
@@ -168,17 +168,6 @@ public class ACUserItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return EsmodelEditPlugin.INSTANCE;
 	}
 
 }

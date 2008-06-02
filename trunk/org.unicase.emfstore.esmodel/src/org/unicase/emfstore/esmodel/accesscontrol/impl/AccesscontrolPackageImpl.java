@@ -322,6 +322,7 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		acUserEClass.getESuperTypes().add(this.getACOrgUnit());
 		acGroupEClass.getESuperTypes().add(this.getACOrgUnit());
 		acOrgUnitIdEClass.getESuperTypes().add(theModelPackage.getUniqueIdentifier());
 
