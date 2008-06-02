@@ -286,63 +286,11 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetLastUsersession(Usersession newLastUsersession, NotificationChain msgs) {
+	public void setLastUsersession(Usersession newLastUsersession) {
 		Usersession oldLastUsersession = lastUsersession;
 		lastUsersession = newLastUsersession;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WorkspacePackage.SERVER_INFO__LAST_USERSESSION, oldLastUsersession, newLastUsersession);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setLastUsersession(Usersession newLastUsersession) {
-		if (newLastUsersession != lastUsersession) {
-			NotificationChain msgs = null;
-			if (lastUsersession != null)
-				msgs = ((InternalEObject)lastUsersession).eInverseRemove(this, WorkspacePackage.USERSESSION__SERVER_INFO, Usersession.class, msgs);
-			if (newLastUsersession != null)
-				msgs = ((InternalEObject)newLastUsersession).eInverseAdd(this, WorkspacePackage.USERSESSION__SERVER_INFO, Usersession.class, msgs);
-			msgs = basicSetLastUsersession(newLastUsersession, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.SERVER_INFO__LAST_USERSESSION, newLastUsersession, newLastUsersession));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case WorkspacePackage.SERVER_INFO__LAST_USERSESSION:
-				if (lastUsersession != null)
-					msgs = ((InternalEObject)lastUsersession).eInverseRemove(this, WorkspacePackage.USERSESSION__SERVER_INFO, Usersession.class, msgs);
-				return basicSetLastUsersession((Usersession)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case WorkspacePackage.SERVER_INFO__LAST_USERSESSION:
-				return basicSetLastUsersession(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.SERVER_INFO__LAST_USERSESSION, oldLastUsersession, lastUsersession));
 	}
 
 	/**

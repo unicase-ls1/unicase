@@ -143,7 +143,6 @@ public interface Usersession extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Server Info</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.unicase.workspace.ServerInfo#getLastUsersession <em>Last Usersession</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Server Info</em>' reference isn't clear,
@@ -153,8 +152,7 @@ public interface Usersession extends EObject {
 	 * @return the value of the '<em>Server Info</em>' reference.
 	 * @see #setServerInfo(ServerInfo)
 	 * @see org.unicase.workspace.WorkspacePackage#getUsersession_ServerInfo()
-	 * @see org.unicase.workspace.ServerInfo#getLastUsersession
-	 * @model opposite="lastUsersession"
+	 * @model
 	 * @generated
 	 */
 	ServerInfo getServerInfo();

@@ -146,6 +146,7 @@ public class RepositoryLoginDialog extends Dialog implements Listener, Selection
 				session.setPassword(password.getText());
 				session.setSavePassword(savePassword.getSelection());
 				session.setServerInfo(serverInfo);
+				serverInfo.setLastUsersession(session);
 				WorkspaceManager.getInstance().getCurrentWorkspace().save();
 			}else{
 				session = null;

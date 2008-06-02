@@ -314,33 +314,11 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetServerInfo(ServerInfo newServerInfo, NotificationChain msgs) {
+	public void setServerInfo(ServerInfo newServerInfo) {
 		ServerInfo oldServerInfo = serverInfo;
 		serverInfo = newServerInfo;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WorkspacePackage.USERSESSION__SERVER_INFO, oldServerInfo, newServerInfo);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setServerInfo(ServerInfo newServerInfo) {
-		if (newServerInfo != serverInfo) {
-			NotificationChain msgs = null;
-			if (serverInfo != null)
-				msgs = ((InternalEObject)serverInfo).eInverseRemove(this, WorkspacePackage.SERVER_INFO__LAST_USERSESSION, ServerInfo.class, msgs);
-			if (newServerInfo != null)
-				msgs = ((InternalEObject)newServerInfo).eInverseAdd(this, WorkspacePackage.SERVER_INFO__LAST_USERSESSION, ServerInfo.class, msgs);
-			msgs = basicSetServerInfo(newServerInfo, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.USERSESSION__SERVER_INFO, newServerInfo, newServerInfo));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.USERSESSION__SERVER_INFO, oldServerInfo, serverInfo));
 	}
 
 	/**
@@ -371,8 +349,11 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 */
 	public void setSavePassword(boolean newSavePassword) {
 		setSavePasswordGen(newSavePassword);
-		if (getPassword()!=null) {
+		if (newSavePassword) {
 			setPersistentPassword(getPassword());
+		}
+		else {
+			setPersistentPassword(null);
 		}
 	}
 
@@ -408,36 +389,6 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 */
 	public ProjectSpace checkout(ProjectInfo projectInfo) throws EmfStoreException {
 		return this.getWorkspaceManager().getCurrentWorkspace().checkout(this, projectInfo);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case WorkspacePackage.USERSESSION__SERVER_INFO:
-				if (serverInfo != null)
-					msgs = ((InternalEObject)serverInfo).eInverseRemove(this, WorkspacePackage.SERVER_INFO__LAST_USERSESSION, ServerInfo.class, msgs);
-				return basicSetServerInfo((ServerInfo)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case WorkspacePackage.USERSESSION__SERVER_INFO:
-				return basicSetServerInfo(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
