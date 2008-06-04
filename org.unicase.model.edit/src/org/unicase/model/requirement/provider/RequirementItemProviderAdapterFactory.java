@@ -12,7 +12,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -24,7 +23,6 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.unicase.model.requirement.util.RequirementAdapterFactory;
 
 /**
@@ -120,6 +118,76 @@ public class RequirementItemProviderAdapterFactory extends RequirementAdapterFac
 
 		return functionalRequirementItemProvider;
 	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.requirement.UseCase} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected UseCaseItemProvider useCaseItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.requirement.UseCase}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createUseCaseAdapter() {
+		if (useCaseItemProvider == null) {
+			useCaseItemProvider = new UseCaseItemProvider(this);
+		}
+
+		return useCaseItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.requirement.Scenario} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ScenarioItemProvider scenarioItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.requirement.Scenario}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createScenarioAdapter() {
+		if (scenarioItemProvider == null) {
+			scenarioItemProvider = new ScenarioItemProvider(this);
+		}
+
+		return scenarioItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.requirement.Actor} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ActorItemProvider actorItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.requirement.Actor}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createActorAdapter() {
+		if (actorItemProvider == null) {
+			actorItemProvider = new ActorItemProvider(this);
+		}
+
+		return actorItemProvider;
+	}
+
 
 	/**
 	 * This returns the root adapter factory that contains this factory.
@@ -222,6 +290,9 @@ public class RequirementItemProviderAdapterFactory extends RequirementAdapterFac
 	public void dispose() {
 		if (nonFunctionalRequirementItemProvider != null) nonFunctionalRequirementItemProvider.dispose();
 		if (functionalRequirementItemProvider != null) functionalRequirementItemProvider.dispose();
+		if (useCaseItemProvider != null) useCaseItemProvider.dispose();
+		if (scenarioItemProvider != null) scenarioItemProvider.dispose();
+		if (actorItemProvider != null) actorItemProvider.dispose();
 	}
 
 }
