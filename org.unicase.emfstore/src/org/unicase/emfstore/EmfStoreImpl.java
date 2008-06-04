@@ -11,6 +11,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.unicase.emfstore.accesscontrol.AuthenticationControl;
+import org.unicase.emfstore.accesscontrol.AuthorizationControl;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
@@ -33,15 +35,19 @@ public class EmfStoreImpl implements EmfStore {
 	
 	private EmfStoreStub stub;
 	
-	public EmfStoreImpl(ServerSpace serverSpace, Properties properties) {
+	private AuthorizationControl authorizationControl;
+	
+	public EmfStoreImpl(ServerSpace serverSpace, AuthorizationControl authorizationControl, Properties properties) {
 				this.stub = new EmfStoreStub();
 				this.serverSpace = serverSpace;
+				this.authorizationControl=authorizationControl;
 			}
 
 	public PrimaryVersionSpec createVersion(SessionId sessionId,
 			ProjectId projectId, PrimaryVersionSpec baseVersionSpec,
 			ChangePackage changePackage, LogMessage logMessage)
 			throws EmfStoreException {
+		//authorizationControl.checkWriteAccess(sessionId, projectId, modelElements);
 		throw new UnsupportedOperationException();
 	}
 
