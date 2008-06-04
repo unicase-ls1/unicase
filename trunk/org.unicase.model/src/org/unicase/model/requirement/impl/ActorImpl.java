@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.unicase.model.impl.ModelElementImpl;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.UseCase;
@@ -39,7 +40,7 @@ import org.unicase.model.requirement.UseCase;
  *
  * @generated
  */
-public class ActorImpl extends EObjectImpl implements Actor {
+public class ActorImpl extends ModelElementImpl implements Actor {
 	/**
 	 * The cached value of the '{@link #getInitiatedUseCases() <em>Initiated Use Cases</em>}' reference list.
 	 * <!-- begin-user-doc -->

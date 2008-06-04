@@ -15,6 +15,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -22,11 +23,15 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
 import org.unicase.model.provider.ModelEditPlugin;
 
+import org.unicase.model.provider.ModelElementItemProvider;
+import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.RequirementPackage;
+import org.unicase.model.requirement.Scenario;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.model.requirement.Scenario} object.
@@ -35,7 +40,7 @@ import org.unicase.model.requirement.RequirementPackage;
  * @generated
  */
 public class ScenarioItemProvider
-	extends ItemProviderAdapter
+	extends ModelElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -63,9 +68,57 @@ public class ScenarioItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addInitiatingActorInstancePropertyDescriptor(object);
+			addParticipatingActorInstancesPropertyDescriptor(object);
 			addInstantiatedUseCasesPropertyDescriptor(object);
+			addFunctionalRequirementsPropertyDescriptor(object);
+			addNonFunctionalRequirementsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Initiating Actor Instance feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addInitiatingActorInstancePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Scenario_initiatingActorInstance_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Scenario_initiatingActorInstance_feature", "_UI_Scenario_type"),
+				 RequirementPackage.Literals.SCENARIO__INITIATING_ACTOR_INSTANCE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Participating Actor Instances feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addParticipatingActorInstancesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Scenario_participatingActorInstances_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Scenario_participatingActorInstances_feature", "_UI_Scenario_type"),
+				 RequirementPackage.Literals.SCENARIO__PARTICIPATING_ACTOR_INSTANCES,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -91,6 +144,80 @@ public class ScenarioItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Functional Requirements feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFunctionalRequirementsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Scenario_functionalRequirements_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Scenario_functionalRequirements_feature", "_UI_Scenario_type"),
+				 RequirementPackage.Literals.SCENARIO__FUNCTIONAL_REQUIREMENTS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Non Functional Requirements feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNonFunctionalRequirementsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Scenario_nonFunctionalRequirements_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Scenario_nonFunctionalRequirements_feature", "_UI_Scenario_type"),
+				 RequirementPackage.Literals.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(RequirementPackage.Literals.SCENARIO__STEPS);
+		}
+		return childrenFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
+	}
+
+	/**
 	 * This returns Scenario.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -109,7 +236,10 @@ public class ScenarioItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_Scenario_type");
+		String label = ((Scenario)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Scenario_type") :
+			getString("_UI_Scenario_type") + " " + label;
 	}
 
 	/**
@@ -122,6 +252,12 @@ public class ScenarioItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(Scenario.class)) {
+			case RequirementPackage.SCENARIO__STEPS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 
@@ -135,6 +271,11 @@ public class ScenarioItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RequirementPackage.Literals.SCENARIO__STEPS,
+				 RequirementFactory.eINSTANCE.createStep()));
 	}
 
 	/**

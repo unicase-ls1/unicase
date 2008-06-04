@@ -8,6 +8,7 @@ package org.unicase.model.requirement.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.unicase.model.rationale.impl.CriterionImpl;
 import org.unicase.model.impl.ModelElementImpl;
 
 import org.unicase.model.requirement.NonFunctionalRequirement;
@@ -22,7 +23,7 @@ import org.unicase.model.requirement.RequirementPackage;
  *
  * @generated
  */
-public class NonFunctionalRequirementImpl extends ModelElementImpl implements NonFunctionalRequirement {
+public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFunctionalRequirement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -190,6 +190,53 @@ public class RequirementItemProviderAdapterFactory extends RequirementAdapterFac
 
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.requirement.ActorInstance} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ActorInstanceItemProvider actorInstanceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.requirement.ActorInstance}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createActorInstanceAdapter() {
+		if (actorInstanceItemProvider == null) {
+			actorInstanceItemProvider = new ActorInstanceItemProvider(this);
+		}
+
+		return actorInstanceItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.requirement.Step} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StepItemProvider stepItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.requirement.Step}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStepAdapter() {
+		if (stepItemProvider == null) {
+			stepItemProvider = new StepItemProvider(this);
+		}
+
+		return stepItemProvider;
+	}
+
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -293,6 +340,8 @@ public class RequirementItemProviderAdapterFactory extends RequirementAdapterFac
 		if (useCaseItemProvider != null) useCaseItemProvider.dispose();
 		if (scenarioItemProvider != null) scenarioItemProvider.dispose();
 		if (actorItemProvider != null) actorItemProvider.dispose();
+		if (actorInstanceItemProvider != null) actorInstanceItemProvider.dispose();
+		if (stepItemProvider != null) stepItemProvider.dispose();
 	}
 
 }

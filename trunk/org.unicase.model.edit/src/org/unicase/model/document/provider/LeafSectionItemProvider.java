@@ -42,6 +42,7 @@ import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.ModelElementItemProvider;
 
+import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.task.TaskFactory;
 
@@ -244,6 +245,56 @@ public class LeafSectionItemProvider
 			(createChildParameter
 				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				 RequirementFactory.eINSTANCE.createFunctionalRequirement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 RequirementFactory.eINSTANCE.createUseCase()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 RequirementFactory.eINSTANCE.createScenario()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 RequirementFactory.eINSTANCE.createActor()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 RequirementFactory.eINSTANCE.createActorInstance()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 RequirementFactory.eINSTANCE.createStep()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 RationaleFactory.eINSTANCE.createIssue()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 RationaleFactory.eINSTANCE.createProposal()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 RationaleFactory.eINSTANCE.createSolution()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 RationaleFactory.eINSTANCE.createCriterion()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 RationaleFactory.eINSTANCE.createAssessment()));
 	}
 
 	/**
