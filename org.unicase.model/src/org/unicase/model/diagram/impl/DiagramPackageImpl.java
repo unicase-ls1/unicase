@@ -28,6 +28,8 @@ import org.unicase.model.impl.ModelPackageImpl;
 import org.unicase.model.organization.OrganizationPackage;
 
 import org.unicase.model.organization.impl.OrganizationPackageImpl;
+import org.unicase.model.rationale.RationalePackage;
+import org.unicase.model.rationale.impl.RationalePackageImpl;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.impl.RequirementPackageImpl;
 import org.unicase.model.task.TaskPackage;
@@ -110,6 +112,7 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		ClassesPackageImpl theClassesPackage = (ClassesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ClassesPackage.eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ClassesPackage.eNS_URI) : ClassesPackage.eINSTANCE);
 		DocumentPackageImpl theDocumentPackage = (DocumentPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI) : DocumentPackage.eINSTANCE);
 		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI) : RequirementPackage.eINSTANCE);
+		RationalePackageImpl theRationalePackage = (RationalePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RationalePackage.eNS_URI) instanceof RationalePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RationalePackage.eNS_URI) : RationalePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theDiagramPackage.createPackageContents();
@@ -119,6 +122,7 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		theClassesPackage.createPackageContents();
 		theDocumentPackage.createPackageContents();
 		theRequirementPackage.createPackageContents();
+		theRationalePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theDiagramPackage.initializePackageContents();
@@ -128,6 +132,7 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		theClassesPackage.initializePackageContents();
 		theDocumentPackage.initializePackageContents();
 		theRequirementPackage.initializePackageContents();
+		theRationalePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theDiagramPackage.freeze();

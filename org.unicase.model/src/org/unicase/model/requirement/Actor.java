@@ -8,6 +8,7 @@ package org.unicase.model.requirement;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.unicase.model.ModelElement;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -27,7 +28,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Actor extends EObject {
+public interface Actor extends ModelElement {
 	/**
 	 * Returns the value of the '<em><b>Initiated Use Cases</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.model.requirement.UseCase}.

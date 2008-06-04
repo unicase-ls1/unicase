@@ -6,6 +6,7 @@
  */
 package org.unicase.model.requirement;
 
+import org.unicase.model.rationale.Criterion;
 import org.unicase.model.ModelElement;
 
 /**
@@ -18,5 +19,5 @@ import org.unicase.model.ModelElement;
  * @model
  * @generated
  */
-public interface NonFunctionalRequirement extends ModelElement {
+public interface NonFunctionalRequirement extends Criterion {
 } // NonFunctionalRequirement

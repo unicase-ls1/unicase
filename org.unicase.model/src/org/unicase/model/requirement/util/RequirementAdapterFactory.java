@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import org.unicase.model.ModelElement;
 
+import org.unicase.model.rationale.Criterion;
 import org.unicase.model.requirement.*;
 
 /**
@@ -94,8 +95,20 @@ public class RequirementAdapterFactory extends AdapterFactoryImpl {
 				return createActorAdapter();
 			}
 			@Override
+			public Adapter caseActorInstance(ActorInstance object) {
+				return createActorInstanceAdapter();
+			}
+			@Override
+			public Adapter caseStep(Step object) {
+				return createStepAdapter();
+			}
+			@Override
 			public Adapter caseModelElement(ModelElement object) {
 				return createModelElementAdapter();
+			}
+			@Override
+			public Adapter caseCriterion(Criterion object) {
+				return createCriterionAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -188,6 +201,34 @@ public class RequirementAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.requirement.ActorInstance <em>Actor Instance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.requirement.ActorInstance
+	 * @generated
+	 */
+	public Adapter createActorInstanceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.requirement.Step <em>Step</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.requirement.Step
+	 * @generated
+	 */
+	public Adapter createStepAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.unicase.model.ModelElement <em>Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -198,6 +239,20 @@ public class RequirementAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createModelElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.rationale.Criterion <em>Criterion</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.rationale.Criterion
+	 * @generated
+	 */
+	public Adapter createCriterionAdapter() {
 		return null;
 	}
 

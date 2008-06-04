@@ -26,6 +26,8 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
 import org.unicase.model.provider.ModelEditPlugin;
 
+import org.unicase.model.provider.ModelElementItemProvider;
+import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.RequirementPackage;
 
 /**
@@ -35,7 +37,7 @@ import org.unicase.model.requirement.RequirementPackage;
  * @generated
  */
 public class ActorItemProvider
-	extends ItemProviderAdapter
+	extends ModelElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -132,7 +134,10 @@ public class ActorItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_Actor_type");
+		String label = ((Actor)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Actor_type") :
+			getString("_UI_Actor_type") + " " + label;
 	}
 
 	/**

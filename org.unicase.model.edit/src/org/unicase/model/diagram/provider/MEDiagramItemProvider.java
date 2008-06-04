@@ -30,6 +30,7 @@ import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.ModelElementItemProvider;
+import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.task.TaskFactory;
 
@@ -246,6 +247,56 @@ public class MEDiagramItemProvider
 			(createChildParameter
 				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
 				 RequirementFactory.eINSTANCE.createFunctionalRequirement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				 RequirementFactory.eINSTANCE.createUseCase()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				 RequirementFactory.eINSTANCE.createScenario()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				 RequirementFactory.eINSTANCE.createActor()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				 RequirementFactory.eINSTANCE.createActorInstance()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				 RequirementFactory.eINSTANCE.createStep()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				 RationaleFactory.eINSTANCE.createIssue()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				 RationaleFactory.eINSTANCE.createProposal()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				 RationaleFactory.eINSTANCE.createSolution()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				 RationaleFactory.eINSTANCE.createCriterion()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				 RationaleFactory.eINSTANCE.createAssessment()));
 	}
 
 	/**

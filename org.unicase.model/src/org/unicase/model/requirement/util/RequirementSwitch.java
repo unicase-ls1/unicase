@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import org.unicase.model.ModelElement;
 
+import org.unicase.model.rationale.Criterion;
 import org.unicase.model.requirement.*;
 
 /**
@@ -92,6 +93,7 @@ public class RequirementSwitch<T> {
 			case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT: {
 				NonFunctionalRequirement nonFunctionalRequirement = (NonFunctionalRequirement)theEObject;
 				T result = caseNonFunctionalRequirement(nonFunctionalRequirement);
+				if (result == null) result = caseCriterion(nonFunctionalRequirement);
 				if (result == null) result = caseModelElement(nonFunctionalRequirement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -106,18 +108,35 @@ public class RequirementSwitch<T> {
 			case RequirementPackage.USE_CASE: {
 				UseCase useCase = (UseCase)theEObject;
 				T result = caseUseCase(useCase);
+				if (result == null) result = caseModelElement(useCase);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case RequirementPackage.SCENARIO: {
 				Scenario scenario = (Scenario)theEObject;
 				T result = caseScenario(scenario);
+				if (result == null) result = caseModelElement(scenario);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case RequirementPackage.ACTOR: {
 				Actor actor = (Actor)theEObject;
 				T result = caseActor(actor);
+				if (result == null) result = caseModelElement(actor);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RequirementPackage.ACTOR_INSTANCE: {
+				ActorInstance actorInstance = (ActorInstance)theEObject;
+				T result = caseActorInstance(actorInstance);
+				if (result == null) result = caseModelElement(actorInstance);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RequirementPackage.STEP: {
+				Step step = (Step)theEObject;
+				T result = caseStep(step);
+				if (result == null) result = caseModelElement(step);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -201,6 +220,36 @@ public class RequirementSwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Actor Instance</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Actor Instance</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseActorInstance(ActorInstance object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Step</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Step</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStep(Step object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -212,6 +261,21 @@ public class RequirementSwitch<T> {
 	 * @generated
 	 */
 	public T caseModelElement(ModelElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Criterion</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Criterion</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCriterion(Criterion object) {
 		return null;
 	}
 

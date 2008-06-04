@@ -71,6 +71,24 @@ public interface RequirementFactory extends EFactory {
 	Actor createActor();
 
 	/**
+	 * Returns a new object of class '<em>Actor Instance</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Actor Instance</em>'.
+	 * @generated
+	 */
+	ActorInstance createActorInstance();
+
+	/**
+	 * Returns a new object of class '<em>Step</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Step</em>'.
+	 * @generated
+	 */
+	Step createStep();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

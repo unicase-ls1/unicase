@@ -65,6 +65,8 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 			case RequirementPackage.USE_CASE: return createUseCase();
 			case RequirementPackage.SCENARIO: return createScenario();
 			case RequirementPackage.ACTOR: return createActor();
+			case RequirementPackage.ACTOR_INSTANCE: return createActorInstance();
+			case RequirementPackage.STEP: return createStep();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -118,6 +120,26 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 	public Actor createActor() {
 		ActorImpl actor = new ActorImpl();
 		return actor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ActorInstance createActorInstance() {
+		ActorInstanceImpl actorInstance = new ActorInstanceImpl();
+		return actorInstance;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Step createStep() {
+		StepImpl step = new StepImpl();
+		return step;
 	}
 
 	/**

@@ -89,24 +89,77 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/FunctionalRequirement/date"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//requirement/FunctionalRequirement/refiningRequirements"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//requirement/FunctionalRequirement/refinedRequirement"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//requirement/FunctionalRequirement/scenarios"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//requirement/FunctionalRequirement/useCases"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//requirement/UseCase">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/steps"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/initiatingActor"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/participatingActors"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/scenarios"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/participatingActors"/>
+            ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/functionalRequirements"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/nonFunctionalRequirements"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/identifiedClasses"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//requirement/Scenario">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//requirement/Scenario/steps"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//requirement/Scenario/initiatingActorInstance"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//requirement/Scenario/participatingActorInstances"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/Scenario/instantiatedUseCases"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//requirement/Scenario/functionalRequirements"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//requirement/Scenario/nonFunctionalRequirements"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//requirement/Actor">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/Actor/initiatedUseCases"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/Actor/participatedUseCases"/>
+      </genClasses>
+      <genClasses ecoreClass="model.ecore#//requirement/ActorInstance">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//requirement/ActorInstance/initiatedScenarios"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//requirement/ActorInstance/participatedScenarios"/>
+      </genClasses>
+      <genClasses ecoreClass="model.ecore#//requirement/Step">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/Step/userStep"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Rationale" basePackage="org.unicase.model" disposableProviderFactory="true"
+        ecorePackage="model.ecore#//rationale">
+      <genClasses ecoreClass="model.ecore#//rationale/Issue">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//rationale/Issue/proposals"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//rationale/Issue/solution"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//rationale/Issue/criteria"/>
+      </genClasses>
+      <genClasses ecoreClass="model.ecore#//rationale/Proposal">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//rationale/Proposal/assessments"/>
+      </genClasses>
+      <genClasses ecoreClass="model.ecore#//rationale/Solution">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//rationale/Solution/underlyingProposals"/>
+      </genClasses>
+      <genClasses ecoreClass="model.ecore#//rationale/Criterion"/>
+      <genClasses ecoreClass="model.ecore#//rationale/Assessment">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//rationale/Assessment/proposal"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//rationale/Assessment/criterion"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//rationale/Assessment/value"/>
       </genClasses>
     </nestedGenPackages>
   </genPackages>
