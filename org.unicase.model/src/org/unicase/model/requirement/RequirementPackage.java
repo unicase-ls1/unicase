@@ -246,6 +246,117 @@ public interface RequirementPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.unicase.model.requirement.impl.UseCaseImpl <em>Use Case</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.requirement.impl.UseCaseImpl
+	 * @see org.unicase.model.requirement.impl.RequirementPackageImpl#getUseCase()
+	 * @generated
+	 */
+	int USE_CASE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Initiating Actor</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USE_CASE__INITIATING_ACTOR = 0;
+
+	/**
+	 * The feature id for the '<em><b>Scenarios</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USE_CASE__SCENARIOS = 1;
+
+	/**
+	 * The feature id for the '<em><b>Participating Actors</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USE_CASE__PARTICIPATING_ACTORS = 2;
+
+	/**
+	 * The number of structural features of the '<em>Use Case</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USE_CASE_FEATURE_COUNT = 3;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.model.requirement.impl.ScenarioImpl <em>Scenario</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.requirement.impl.ScenarioImpl
+	 * @see org.unicase.model.requirement.impl.RequirementPackageImpl#getScenario()
+	 * @generated
+	 */
+	int SCENARIO = 3;
+
+	/**
+	 * The feature id for the '<em><b>Instantiated Use Cases</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCENARIO__INSTANTIATED_USE_CASES = 0;
+
+	/**
+	 * The number of structural features of the '<em>Scenario</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCENARIO_FEATURE_COUNT = 1;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.model.requirement.impl.ActorImpl <em>Actor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.requirement.impl.ActorImpl
+	 * @see org.unicase.model.requirement.impl.RequirementPackageImpl#getActor()
+	 * @generated
+	 */
+	int ACTOR = 4;
+
+	/**
+	 * The feature id for the '<em><b>Initiated Use Cases</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTOR__INITIATED_USE_CASES = 0;
+
+	/**
+	 * The feature id for the '<em><b>Participated Use Cases</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTOR__PARTICIPATED_USE_CASES = 1;
+
+	/**
+	 * The number of structural features of the '<em>Actor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTOR_FEATURE_COUNT = 2;
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.model.requirement.NonFunctionalRequirement <em>Non Functional Requirement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -332,6 +443,102 @@ public interface RequirementPackage extends EPackage {
 	EReference getFunctionalRequirement_RefinedRequirement();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.model.requirement.UseCase <em>Use Case</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Use Case</em>'.
+	 * @see org.unicase.model.requirement.UseCase
+	 * @generated
+	 */
+	EClass getUseCase();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.model.requirement.UseCase#getInitiatingActor <em>Initiating Actor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Initiating Actor</em>'.
+	 * @see org.unicase.model.requirement.UseCase#getInitiatingActor()
+	 * @see #getUseCase()
+	 * @generated
+	 */
+	EReference getUseCase_InitiatingActor();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.requirement.UseCase#getScenarios <em>Scenarios</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Scenarios</em>'.
+	 * @see org.unicase.model.requirement.UseCase#getScenarios()
+	 * @see #getUseCase()
+	 * @generated
+	 */
+	EReference getUseCase_Scenarios();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.requirement.UseCase#getParticipatingActors <em>Participating Actors</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Participating Actors</em>'.
+	 * @see org.unicase.model.requirement.UseCase#getParticipatingActors()
+	 * @see #getUseCase()
+	 * @generated
+	 */
+	EReference getUseCase_ParticipatingActors();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.model.requirement.Scenario <em>Scenario</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Scenario</em>'.
+	 * @see org.unicase.model.requirement.Scenario
+	 * @generated
+	 */
+	EClass getScenario();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.requirement.Scenario#getInstantiatedUseCases <em>Instantiated Use Cases</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Instantiated Use Cases</em>'.
+	 * @see org.unicase.model.requirement.Scenario#getInstantiatedUseCases()
+	 * @see #getScenario()
+	 * @generated
+	 */
+	EReference getScenario_InstantiatedUseCases();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.model.requirement.Actor <em>Actor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Actor</em>'.
+	 * @see org.unicase.model.requirement.Actor
+	 * @generated
+	 */
+	EClass getActor();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.requirement.Actor#getInitiatedUseCases <em>Initiated Use Cases</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Initiated Use Cases</em>'.
+	 * @see org.unicase.model.requirement.Actor#getInitiatedUseCases()
+	 * @see #getActor()
+	 * @generated
+	 */
+	EReference getActor_InitiatedUseCases();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.requirement.Actor#getParticipatedUseCases <em>Participated Use Cases</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Participated Use Cases</em>'.
+	 * @see org.unicase.model.requirement.Actor#getParticipatedUseCases()
+	 * @see #getActor()
+	 * @generated
+	 */
+	EReference getActor_ParticipatedUseCases();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -413,6 +620,75 @@ public interface RequirementPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT = eINSTANCE.getFunctionalRequirement_RefinedRequirement();
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.requirement.impl.UseCaseImpl <em>Use Case</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.requirement.impl.UseCaseImpl
+		 * @see org.unicase.model.requirement.impl.RequirementPackageImpl#getUseCase()
+		 * @generated
+		 */
+		EClass USE_CASE = eINSTANCE.getUseCase();
+		/**
+		 * The meta object literal for the '<em><b>Initiating Actor</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USE_CASE__INITIATING_ACTOR = eINSTANCE.getUseCase_InitiatingActor();
+		/**
+		 * The meta object literal for the '<em><b>Scenarios</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USE_CASE__SCENARIOS = eINSTANCE.getUseCase_Scenarios();
+		/**
+		 * The meta object literal for the '<em><b>Participating Actors</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USE_CASE__PARTICIPATING_ACTORS = eINSTANCE.getUseCase_ParticipatingActors();
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.requirement.impl.ScenarioImpl <em>Scenario</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.requirement.impl.ScenarioImpl
+		 * @see org.unicase.model.requirement.impl.RequirementPackageImpl#getScenario()
+		 * @generated
+		 */
+		EClass SCENARIO = eINSTANCE.getScenario();
+		/**
+		 * The meta object literal for the '<em><b>Instantiated Use Cases</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SCENARIO__INSTANTIATED_USE_CASES = eINSTANCE.getScenario_InstantiatedUseCases();
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.requirement.impl.ActorImpl <em>Actor</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.requirement.impl.ActorImpl
+		 * @see org.unicase.model.requirement.impl.RequirementPackageImpl#getActor()
+		 * @generated
+		 */
+		EClass ACTOR = eINSTANCE.getActor();
+		/**
+		 * The meta object literal for the '<em><b>Initiated Use Cases</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ACTOR__INITIATED_USE_CASES = eINSTANCE.getActor_InitiatedUseCases();
+		/**
+		 * The meta object literal for the '<em><b>Participated Use Cases</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ACTOR__PARTICIPATED_USE_CASES = eINSTANCE.getActor_ParticipatedUseCases();
 
 	}
 

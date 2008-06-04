@@ -2,8 +2,8 @@
 <gmfgen:GenEditorGenerator xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:gmfgen="http://www.eclipse.org/gmf/2008/GenModel" sameFileForDiagramAndModel="true"
-    templateDirectory="">
+    xmlns:gmfgen="http://www.eclipse.org/gmf/2008/GenModel" packageNamePrefix="org.unicase.model.classDiagram"
+    sameFileForDiagramAndModel="true">
   <diagram
       visualID="79"
       editPartClassName="MEDiagramEditPart"
@@ -24,29 +24,23 @@
         href="model.genmodel#//model/diagram/MEDiagram"/>
     <topLevelNodes
         visualID="1001"
-        editPartClassName="ClassEditPart"
-        itemSemanticEditPolicyClassName="ClassItemSemanticEditPolicy"
-        notationViewFactoryClassName="ClassViewFactory"
-        canonicalEditPolicyClassName="ClassCanonicalEditPolicy"
-        graphicalNodeEditPolicyClassName="ClassGraphicalNodeEditPolicy"
-        createCommandClassName="ClassCreateCommand">
+        editPartClassName="MEDiagram2EditPart"
+        itemSemanticEditPolicyClassName="MEDiagram2ItemSemanticEditPolicy"
+        notationViewFactoryClassName="MEDiagram2ViewFactory"
+        canonicalEditPolicyClassName="MEDiagram2CanonicalEditPolicy"
+        graphicalNodeEditPolicyClassName="MEDiagramGraphicalNodeEditPolicy"
+        createCommandClassName="MEDiagramCreateCommand">
       <diagramRunTimeClass
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
       <elementType
-          xsi:type="gmfgen:MetamodelType"
-          editHelperClassName="ClassEditHelper"/>
+          xsi:type="gmfgen:SpecializationType"
+          metamodelType="//@diagram/@elementType"/>
       <viewmap
-          xsi:type="gmfgen:InnerClassViewmap"
-          layoutType="TOOLBAR_LAYOUT"
-          className="NodeRectangle"
-          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class NodeRectangle extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public NodeRectangle() {&#xA;&#x9;&#x9;&#xA;&#xA;&#x9;org.eclipse.draw2d.ToolbarLayout layoutThis = new org.eclipse.draw2d.ToolbarLayout();&#xA;&#x9;layoutThis.setStretchMinorAxis(true);&#xA;&#x9;layoutThis.setMinorAlignment(org.eclipse.draw2d.ToolbarLayout.ALIGN_CENTER&#xA;);&#xA;&#xA;&#x9;layoutThis.setSpacing(0);&#xA;&#x9;layoutThis.setVertical(true);&#xA;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
-        <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-      </viewmap>
-      <behaviour
-          xsi:type="gmfgen:OpenDiagramBehaviour"/>
+          xsi:type="gmfgen:FigureViewmap"
+          figureQualifiedClassName="org.eclipse.draw2d.RoundedRectangle"/>
       <modelFacet>
         <metaClass
-            href="model.genmodel#//model/classes/Class"/>
+            href="model.genmodel#//model/diagram/MEDiagram"/>
         <containmentMetaFeature
             href="model.genmodel#//model/diagram/MEDiagram/elements"/>
         <childMetaFeature
@@ -55,17 +49,15 @@
       <labels
           xsi:type="gmfgen:GenExternalNodeLabel"
           visualID="4001"
-          editPartClassName="ClassNameEditPart"
-          itemSemanticEditPolicyClassName="ClassNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="ClassNameViewFactory"
+          editPartClassName="MEDiagramNameEditPart"
+          itemSemanticEditPolicyClassName="MEDiagramNameItemSemanticEditPolicy"
+          notationViewFactoryClassName="MEDiagramNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            figureQualifiedClassName="org.eclipse.draw2d.Label"/>
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet">
           <metaFeatures
@@ -115,7 +107,8 @@
           kind="Pathmaps"/>
     </preferencePages>
   </diagram>
-  <plugin/>
+  <plugin
+      iD="org.unicase.classDiagram"/>
   <editor/>
   <navigator>
     <childReferences

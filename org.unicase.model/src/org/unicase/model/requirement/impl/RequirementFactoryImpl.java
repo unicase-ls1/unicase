@@ -62,6 +62,9 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 		switch (eClass.getClassifierID()) {
 			case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT: return createNonFunctionalRequirement();
 			case RequirementPackage.FUNCTIONAL_REQUIREMENT: return createFunctionalRequirement();
+			case RequirementPackage.USE_CASE: return createUseCase();
+			case RequirementPackage.SCENARIO: return createScenario();
+			case RequirementPackage.ACTOR: return createActor();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -85,6 +88,36 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 	public FunctionalRequirement createFunctionalRequirement() {
 		FunctionalRequirementImpl functionalRequirement = new FunctionalRequirementImpl();
 		return functionalRequirement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UseCase createUseCase() {
+		UseCaseImpl useCase = new UseCaseImpl();
+		return useCase;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Scenario createScenario() {
+		ScenarioImpl scenario = new ScenarioImpl();
+		return scenario;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Actor createActor() {
+		ActorImpl actor = new ActorImpl();
+		return actor;
 	}
 
 	/**

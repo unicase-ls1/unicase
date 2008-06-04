@@ -82,6 +82,18 @@ public class RequirementAdapterFactory extends AdapterFactoryImpl {
 				return createFunctionalRequirementAdapter();
 			}
 			@Override
+			public Adapter caseUseCase(UseCase object) {
+				return createUseCaseAdapter();
+			}
+			@Override
+			public Adapter caseScenario(Scenario object) {
+				return createScenarioAdapter();
+			}
+			@Override
+			public Adapter caseActor(Actor object) {
+				return createActorAdapter();
+			}
+			@Override
 			public Adapter caseModelElement(ModelElement object) {
 				return createModelElementAdapter();
 			}
@@ -130,6 +142,48 @@ public class RequirementAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFunctionalRequirementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.requirement.UseCase <em>Use Case</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.requirement.UseCase
+	 * @generated
+	 */
+	public Adapter createUseCaseAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.requirement.Scenario <em>Scenario</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.requirement.Scenario
+	 * @generated
+	 */
+	public Adapter createScenarioAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.requirement.Actor <em>Actor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.requirement.Actor
+	 * @generated
+	 */
+	public Adapter createActorAdapter() {
 		return null;
 	}
 

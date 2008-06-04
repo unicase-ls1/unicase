@@ -7,16 +7,13 @@
   <nodes>
     <containmentFeature
         href="model.ecore#//diagram/MEDiagram/elements"/>
-    <childrenFeature
-        href="model.ecore#//diagram/MEDiagram/elements"/>
-    <ownedChild
-        relatedDiagrams="//@diagram">
+    <ownedChild>
       <domainMetaElement
-          href="model.ecore#//classes/Class"/>
+          href="model.ecore#//diagram/MEDiagram"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping">
         <diagramLabel
-            href="../../../plugin/org.eclipse.gmf.graphdef/models/basic.gmfgraph#Label"/>
+            href="model.gmfgraph#Name"/>
         <features
             href="model.ecore#//ModelElement/name"/>
       </labelMappings>
@@ -24,14 +21,14 @@
           xsi:type="gmftool:CreationTool"
           href="model.gmftool#//@palette/@tools.0"/>
       <diagramNode
-          href="../../../plugin/org.eclipse.gmf.graphdef/models/basic.gmfgraph#Node"/>
+          href="model.gmfgraph#Class"/>
     </ownedChild>
   </nodes>
   <diagram>
     <diagramCanvas
-        href="../../../plugin/org.eclipse.gmf.graphdef/models/basic.gmfgraph#Surface"/>
+        href="model.gmfgraph#MEDiagram"/>
     <domainModel
-        href="model.ecore#/"/>
+        href="model.ecore#//diagram"/>
     <domainMetaElement
         href="model.ecore#//diagram/MEDiagram"/>
     <palette

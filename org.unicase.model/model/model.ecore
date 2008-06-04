@@ -66,7 +66,7 @@
   <eSubpackages name="diagram" nsURI="http://unicase.org/model/diagram" nsPrefix="org.unicase.model.diagram">
     <eClassifiers xsi:type="ecore:EClass" name="MEDiagram" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
-          eType="#//ModelElement"/>
+          eType="#//ModelElement" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="gmfdiagram" eType="#//task/ActionItem"
           containment="true"/>
     </eClassifiers>
@@ -108,6 +108,23 @@
           eOpposite="#//requirement/FunctionalRequirement/refinedRequirement"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="refinedRequirement" eType="#//requirement/FunctionalRequirement"
           eOpposite="#//requirement/FunctionalRequirement/refiningRequirements"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="UseCase">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="initiatingActor" eType="#//requirement/Actor"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="scenarios" upperBound="-1"
+          eType="#//requirement/Scenario" eOpposite="#//requirement/Scenario/instantiatedUseCases"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="participatingActors"
+          upperBound="-1" eType="#//requirement/Actor" eOpposite="#//requirement/Actor/participatedUseCases"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Scenario">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="instantiatedUseCases"
+          upperBound="-1" eType="#//requirement/UseCase" eOpposite="#//requirement/UseCase/scenarios"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Actor">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="initiatedUseCases" upperBound="-1"
+          eType="#//requirement/UseCase"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="participatedUseCases"
+          upperBound="-1" eType="#//requirement/UseCase" eOpposite="#//requirement/UseCase/participatingActors"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

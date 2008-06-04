@@ -14,6 +14,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.unicase.model.ModelElement;
@@ -43,7 +45,7 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	private static final long serialVersionUID = -1316169257375326716L;
 
 	/**
-	 * The cached value of the '{@link #getElements() <em>Elements</em>}' reference list.
+	 * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getElements()
@@ -88,7 +90,7 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	 */
 	public EList<ModelElement> getElements() {
 		if (elements == null) {
-			elements = new EObjectResolvingEList<ModelElement>(ModelElement.class, this, DiagramPackage.ME_DIAGRAM__ELEMENTS);
+			elements = new EObjectContainmentEList<ModelElement>(ModelElement.class, this, DiagramPackage.ME_DIAGRAM__ELEMENTS);
 		}
 		return elements;
 	}
@@ -144,6 +146,8 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case DiagramPackage.ME_DIAGRAM__ELEMENTS:
+				return ((InternalEList<?>)getElements()).basicRemove(otherEnd, msgs);
 			case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM:
 				return basicSetGmfdiagram(null, msgs);
 		}

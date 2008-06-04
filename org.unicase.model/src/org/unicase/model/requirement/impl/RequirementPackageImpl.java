@@ -9,39 +9,26 @@ package org.unicase.model.requirement.impl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-import org.eclipse.gmf.runtime.notation.NotationPackage;
-
 import org.unicase.model.ModelPackage;
-
 import org.unicase.model.classes.ClassesPackage;
-
 import org.unicase.model.classes.impl.ClassesPackageImpl;
-
 import org.unicase.model.diagram.DiagramPackage;
-
 import org.unicase.model.diagram.impl.DiagramPackageImpl;
-
 import org.unicase.model.document.DocumentPackage;
-
 import org.unicase.model.document.impl.DocumentPackageImpl;
-
 import org.unicase.model.impl.ModelPackageImpl;
-
 import org.unicase.model.organization.OrganizationPackage;
-
 import org.unicase.model.organization.impl.OrganizationPackageImpl;
-
+import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.requirement.NonFunctionalRequirement;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.RequirementPackage;
-
+import org.unicase.model.requirement.Scenario;
+import org.unicase.model.requirement.UseCase;
 import org.unicase.model.task.TaskPackage;
-
 import org.unicase.model.task.impl.TaskPackageImpl;
 
 /**
@@ -64,6 +51,27 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	 * @generated
 	 */
 	private EClass functionalRequirementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass useCaseEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass scenarioEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass actorEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -230,6 +238,87 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getUseCase() {
+		return useCaseEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getUseCase_InitiatingActor() {
+		return (EReference)useCaseEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getUseCase_Scenarios() {
+		return (EReference)useCaseEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getUseCase_ParticipatingActors() {
+		return (EReference)useCaseEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getScenario() {
+		return scenarioEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getScenario_InstantiatedUseCases() {
+		return (EReference)scenarioEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getActor() {
+		return actorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getActor_InitiatedUseCases() {
+		return (EReference)actorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getActor_ParticipatedUseCases() {
+		return (EReference)actorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public RequirementFactory getRequirementFactory() {
 		return (RequirementFactory)getEFactoryInstance();
 	}
@@ -262,6 +351,18 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		createEAttribute(functionalRequirementEClass, FUNCTIONAL_REQUIREMENT__DATE);
 		createEReference(functionalRequirementEClass, FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS);
 		createEReference(functionalRequirementEClass, FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT);
+
+		useCaseEClass = createEClass(USE_CASE);
+		createEReference(useCaseEClass, USE_CASE__INITIATING_ACTOR);
+		createEReference(useCaseEClass, USE_CASE__SCENARIOS);
+		createEReference(useCaseEClass, USE_CASE__PARTICIPATING_ACTORS);
+
+		scenarioEClass = createEClass(SCENARIO);
+		createEReference(scenarioEClass, SCENARIO__INSTANTIATED_USE_CASES);
+
+		actorEClass = createEClass(ACTOR);
+		createEReference(actorEClass, ACTOR__INITIATED_USE_CASES);
+		createEReference(actorEClass, ACTOR__PARTICIPATED_USE_CASES);
 	}
 
 	/**
@@ -308,6 +409,18 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		initEAttribute(getFunctionalRequirement_Date(), ecorePackage.getEDate(), "date", null, 0, 1, FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionalRequirement_RefiningRequirements(), this.getFunctionalRequirement(), this.getFunctionalRequirement_RefinedRequirement(), "refiningRequirements", null, 0, -1, FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionalRequirement_RefinedRequirement(), this.getFunctionalRequirement(), this.getFunctionalRequirement_RefiningRequirements(), "refinedRequirement", null, 0, 1, FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(useCaseEClass, UseCase.class, "UseCase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUseCase_InitiatingActor(), this.getActor(), null, "initiatingActor", null, 0, 1, UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUseCase_Scenarios(), this.getScenario(), this.getScenario_InstantiatedUseCases(), "scenarios", null, 0, -1, UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUseCase_ParticipatingActors(), this.getActor(), this.getActor_ParticipatedUseCases(), "participatingActors", null, 0, -1, UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(scenarioEClass, Scenario.class, "Scenario", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getScenario_InstantiatedUseCases(), this.getUseCase(), this.getUseCase_Scenarios(), "instantiatedUseCases", null, 0, -1, Scenario.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(actorEClass, Actor.class, "Actor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getActor_InitiatedUseCases(), this.getUseCase(), null, "initiatedUseCases", null, 0, -1, Actor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getActor_ParticipatedUseCases(), this.getUseCase(), this.getUseCase_ParticipatingActors(), "participatedUseCases", null, 0, -1, Actor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 } //RequirementPackageImpl

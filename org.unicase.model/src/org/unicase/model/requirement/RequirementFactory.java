@@ -44,6 +44,33 @@ public interface RequirementFactory extends EFactory {
 	FunctionalRequirement createFunctionalRequirement();
 
 	/**
+	 * Returns a new object of class '<em>Use Case</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Use Case</em>'.
+	 * @generated
+	 */
+	UseCase createUseCase();
+
+	/**
+	 * Returns a new object of class '<em>Scenario</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Scenario</em>'.
+	 * @generated
+	 */
+	Scenario createScenario();
+
+	/**
+	 * Returns a new object of class '<em>Actor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Actor</em>'.
+	 * @generated
+	 */
+	Actor createActor();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
