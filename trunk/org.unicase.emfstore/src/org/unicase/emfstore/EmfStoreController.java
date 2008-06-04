@@ -33,7 +33,7 @@ import org.unicase.emfstore.storage.ResourceStorage;
 public class EmfStoreController implements IApplication {
 
 	private EmfStoreImpl emfStore;
-	private AuthenticationControl accessControl;
+	private AccessControlImpl accessControl;
 	private Set<ConnectionHandler> connectionHandlers;
 	private Properties properties;
 	private static Logger logger;
@@ -57,8 +57,9 @@ public class EmfStoreController implements IApplication {
 		initLogging(properties);
 		logger = Logger.getLogger(EmfStoreController.class);
 		this.serverSpace=initServerSpace();
-		emfStore = new EmfStoreImpl(serverSpace, properties);
 		accessControl = initAccessControl(serverSpace, properties);
+		emfStore = new EmfStoreImpl(serverSpace, accessControl, properties);
+		
 		connectionHandlers = initConnectionHandlers(emfStore, accessControl);
 		logger.info("Initialitation COMPLETE.");
 
@@ -171,7 +172,7 @@ public class EmfStoreController implements IApplication {
 		}
 	}
 
-	private AuthenticationControl initAccessControl(ServerSpace serverSpace, Properties properties) {
+	private AccessControlImpl initAccessControl(ServerSpace serverSpace, Properties properties) {
 		return new AccessControlImpl(serverSpace);
 	}
 
