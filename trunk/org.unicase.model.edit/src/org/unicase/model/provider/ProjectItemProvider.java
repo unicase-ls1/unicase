@@ -26,6 +26,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
+import org.unicase.model.change.ChangeFactory;
 import org.unicase.model.classes.ClassesFactory;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.document.DocumentFactory;
@@ -179,12 +180,27 @@ public class ProjectItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				 TaskFactory.eINSTANCE.createWorkPackage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 				 DiagramFactory.eINSTANCE.createMEDiagram()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 				 ClassesFactory.eINSTANCE.createClass()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				 ClassesFactory.eINSTANCE.createPackage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				 ClassesFactory.eINSTANCE.createAssociation()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -255,6 +271,11 @@ public class ProjectItemProvider
 			(createChildParameter
 				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 				 RationaleFactory.eINSTANCE.createAssessment()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				 ChangeFactory.eINSTANCE.createModelChangePackage()));
 	}
 
 	/**

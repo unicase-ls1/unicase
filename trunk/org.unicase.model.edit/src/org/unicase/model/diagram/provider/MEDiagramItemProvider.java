@@ -21,6 +21,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.unicase.model.change.ChangeFactory;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.classes.ClassesFactory;
 import org.unicase.model.diagram.DiagramFactory;
@@ -226,7 +227,22 @@ public class MEDiagramItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				 TaskFactory.eINSTANCE.createWorkPackage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
 				 ClassesFactory.eINSTANCE.createClass()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				 ClassesFactory.eINSTANCE.createPackage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				 ClassesFactory.eINSTANCE.createAssociation()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -297,6 +313,11 @@ public class MEDiagramItemProvider
 			(createChildParameter
 				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
 				 RationaleFactory.eINSTANCE.createAssessment()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				 ChangeFactory.eINSTANCE.createModelChangePackage()));
 	}
 
 	/**

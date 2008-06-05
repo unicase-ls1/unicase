@@ -118,13 +118,31 @@ public interface RequirementPackage extends EPackage {
 	int NON_FUNCTIONAL_REQUIREMENT__ACTION_ITEMS = RationalePackage.CRITERION__ACTION_ITEMS;
 
 	/**
+	 * The feature id for the '<em><b>Restricted Scenarios</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_SCENARIOS = RationalePackage.CRITERION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Restricted Use Cases</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_USE_CASES = RationalePackage.CRITERION_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Non Functional Requirement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NON_FUNCTIONAL_REQUIREMENT_FEATURE_COUNT = RationalePackage.CRITERION_FEATURE_COUNT + 0;
+	int NON_FUNCTIONAL_REQUIREMENT_FEATURE_COUNT = RationalePackage.CRITERION_FEATURE_COUNT + 2;
 
 
 	/**
@@ -210,22 +228,13 @@ public interface RequirementPackage extends EPackage {
 	int FUNCTIONAL_REQUIREMENT__PRIORITY = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTIONAL_REQUIREMENT__DATE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
 	 * The feature id for the '<em><b>Refining Requirements</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Refined Requirement</b></em>' container reference.
@@ -234,25 +243,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
-
-	/**
-	 * The feature id for the '<em><b>Scenarios</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTIONAL_REQUIREMENT__SCENARIOS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 6;
-
-	/**
-	 * The feature id for the '<em><b>Use Cases</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTIONAL_REQUIREMENT__USE_CASES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 7;
+	int FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Functional Requirement</em>' class.
@@ -261,7 +252,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTIONAL_REQUIREMENT_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 8;
+	int FUNCTIONAL_REQUIREMENT_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
 
 
 	/**
@@ -757,6 +748,28 @@ public interface RequirementPackage extends EPackage {
 	EClass getNonFunctionalRequirement();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.requirement.NonFunctionalRequirement#getRestrictedScenarios <em>Restricted Scenarios</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Restricted Scenarios</em>'.
+	 * @see org.unicase.model.requirement.NonFunctionalRequirement#getRestrictedScenarios()
+	 * @see #getNonFunctionalRequirement()
+	 * @generated
+	 */
+	EReference getNonFunctionalRequirement_RestrictedScenarios();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.requirement.NonFunctionalRequirement#getRestrictedUseCases <em>Restricted Use Cases</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Restricted Use Cases</em>'.
+	 * @see org.unicase.model.requirement.NonFunctionalRequirement#getRestrictedUseCases()
+	 * @see #getNonFunctionalRequirement()
+	 * @generated
+	 */
+	EReference getNonFunctionalRequirement_RestrictedUseCases();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.model.requirement.FunctionalRequirement <em>Functional Requirement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -800,17 +813,6 @@ public interface RequirementPackage extends EPackage {
 	EAttribute getFunctionalRequirement_Priority();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.requirement.FunctionalRequirement#getDate <em>Date</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Date</em>'.
-	 * @see org.unicase.model.requirement.FunctionalRequirement#getDate()
-	 * @see #getFunctionalRequirement()
-	 * @generated
-	 */
-	EAttribute getFunctionalRequirement_Date();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link org.unicase.model.requirement.FunctionalRequirement#getRefiningRequirements <em>Refining Requirements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -831,28 +833,6 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFunctionalRequirement_RefinedRequirement();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.requirement.FunctionalRequirement#getScenarios <em>Scenarios</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Scenarios</em>'.
-	 * @see org.unicase.model.requirement.FunctionalRequirement#getScenarios()
-	 * @see #getFunctionalRequirement()
-	 * @generated
-	 */
-	EReference getFunctionalRequirement_Scenarios();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.requirement.FunctionalRequirement#getUseCases <em>Use Cases</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Use Cases</em>'.
-	 * @see org.unicase.model.requirement.FunctionalRequirement#getUseCases()
-	 * @see #getFunctionalRequirement()
-	 * @generated
-	 */
-	EReference getFunctionalRequirement_UseCases();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.requirement.UseCase <em>Use Case</em>}'.
@@ -1134,6 +1114,20 @@ public interface RequirementPackage extends EPackage {
 		 */
 		EClass NON_FUNCTIONAL_REQUIREMENT = eINSTANCE.getNonFunctionalRequirement();
 		/**
+		 * The meta object literal for the '<em><b>Restricted Scenarios</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_SCENARIOS = eINSTANCE.getNonFunctionalRequirement_RestrictedScenarios();
+		/**
+		 * The meta object literal for the '<em><b>Restricted Use Cases</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_USE_CASES = eINSTANCE.getNonFunctionalRequirement_RestrictedUseCases();
+		/**
 		 * The meta object literal for the '{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl <em>Functional Requirement</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1164,13 +1158,6 @@ public interface RequirementPackage extends EPackage {
 		 */
 		EAttribute FUNCTIONAL_REQUIREMENT__PRIORITY = eINSTANCE.getFunctionalRequirement_Priority();
 		/**
-		 * The meta object literal for the '<em><b>Date</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FUNCTIONAL_REQUIREMENT__DATE = eINSTANCE.getFunctionalRequirement_Date();
-		/**
 		 * The meta object literal for the '<em><b>Refining Requirements</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1184,20 +1171,6 @@ public interface RequirementPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT = eINSTANCE.getFunctionalRequirement_RefinedRequirement();
-		/**
-		 * The meta object literal for the '<em><b>Scenarios</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FUNCTIONAL_REQUIREMENT__SCENARIOS = eINSTANCE.getFunctionalRequirement_Scenarios();
-		/**
-		 * The meta object literal for the '<em><b>Use Cases</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FUNCTIONAL_REQUIREMENT__USE_CASES = eINSTANCE.getFunctionalRequirement_UseCases();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.requirement.impl.UseCaseImpl <em>Use Case</em>}' class.
 		 * <!-- begin-user-doc -->

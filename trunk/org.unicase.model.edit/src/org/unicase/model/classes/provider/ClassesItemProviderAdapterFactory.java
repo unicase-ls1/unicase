@@ -99,6 +99,52 @@ public class ClassesItemProviderAdapterFactory extends ClassesAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.classes.Package} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PackageItemProvider packageItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.classes.Package}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPackageAdapter() {
+		if (packageItemProvider == null) {
+			packageItemProvider = new PackageItemProvider(this);
+		}
+
+		return packageItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.classes.Association} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AssociationItemProvider associationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.classes.Association}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAssociationAdapter() {
+		if (associationItemProvider == null) {
+			associationItemProvider = new AssociationItemProvider(this);
+		}
+
+		return associationItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -198,6 +244,8 @@ public class ClassesItemProviderAdapterFactory extends ClassesAdapterFactory imp
 	 */
 	public void dispose() {
 		if (classItemProvider != null) classItemProvider.dispose();
+		if (packageItemProvider != null) packageItemProvider.dispose();
+		if (associationItemProvider != null) associationItemProvider.dispose();
 	}
 
 }

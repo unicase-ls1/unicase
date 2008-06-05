@@ -62,6 +62,88 @@ public interface TaskPackage extends EPackage {
 	TaskPackage eINSTANCE = org.unicase.model.task.impl.TaskPackageImpl.init();
 
 	/**
+	 * The meta object id for the '{@link org.unicase.model.task.WorkItem <em>Work Item</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.task.WorkItem
+	 * @see org.unicase.model.task.impl.TaskPackageImpl#getWorkItem()
+	 * @generated
+	 */
+	int WORK_ITEM = 2;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM__NAME = ModelPackage.MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
+
+	/**
+	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM__ACTION_ITEMS = ModelPackage.MODEL_ELEMENT__ACTION_ITEMS;
+
+	/**
+	 * The feature id for the '<em><b>Containing Workpackage</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM__CONTAINING_WORKPACKAGE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Associated Change Packages</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Work Item</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The meta object id for the '{@link org.unicase.model.task.impl.ActionItemImpl <em>Action Item</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,7 +160,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM__NAME = ModelPackage.MODEL_ELEMENT__NAME;
+	int ACTION_ITEM__NAME = WORK_ITEM__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -87,7 +169,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int ACTION_ITEM__DESCRIPTION = WORK_ITEM__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
@@ -96,7 +178,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
+	int ACTION_ITEM__IDENTIFIER = WORK_ITEM__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
@@ -105,7 +187,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
+	int ACTION_ITEM__READER_INFOS = WORK_ITEM__READER_INFOS;
 
 	/**
 	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
@@ -114,7 +196,25 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM__ACTION_ITEMS = ModelPackage.MODEL_ELEMENT__ACTION_ITEMS;
+	int ACTION_ITEM__ACTION_ITEMS = WORK_ITEM__ACTION_ITEMS;
+
+	/**
+	 * The feature id for the '<em><b>Containing Workpackage</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_ITEM__CONTAINING_WORKPACKAGE = WORK_ITEM__CONTAINING_WORKPACKAGE;
+
+	/**
+	 * The feature id for the '<em><b>Associated Change Packages</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES = WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES;
 
 	/**
 	 * The feature id for the '<em><b>Assigned To</b></em>' reference list.
@@ -123,7 +223,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM__ASSIGNED_TO = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int ACTION_ITEM__ASSIGNED_TO = WORK_ITEM_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Due Date</b></em>' attribute.
@@ -132,7 +232,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM__DUE_DATE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int ACTION_ITEM__DUE_DATE = WORK_ITEM_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Done</b></em>' attribute.
@@ -141,7 +241,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM__DONE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int ACTION_ITEM__DONE = WORK_ITEM_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Estimate</b></em>' attribute.
@@ -150,7 +250,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM__ESTIMATE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int ACTION_ITEM__ESTIMATE = WORK_ITEM_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Action Item</em>' class.
@@ -159,7 +259,99 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int ACTION_ITEM_FEATURE_COUNT = WORK_ITEM_FEATURE_COUNT + 4;
+
+
+	/**
+	 * The meta object id for the '{@link org.unicase.model.task.impl.WorkPackageImpl <em>Work Package</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.task.impl.WorkPackageImpl
+	 * @see org.unicase.model.task.impl.TaskPackageImpl#getWorkPackage()
+	 * @generated
+	 */
+	int WORK_PACKAGE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE__NAME = WORK_ITEM__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE__DESCRIPTION = WORK_ITEM__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE__IDENTIFIER = WORK_ITEM__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE__READER_INFOS = WORK_ITEM__READER_INFOS;
+
+	/**
+	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE__ACTION_ITEMS = WORK_ITEM__ACTION_ITEMS;
+
+	/**
+	 * The feature id for the '<em><b>Containing Workpackage</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE__CONTAINING_WORKPACKAGE = WORK_ITEM__CONTAINING_WORKPACKAGE;
+
+	/**
+	 * The feature id for the '<em><b>Associated Change Packages</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE__ASSOCIATED_CHANGE_PACKAGES = WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES;
+
+	/**
+	 * The feature id for the '<em><b>Contained Work Items</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE__CONTAINED_WORK_ITEMS = WORK_ITEM_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Work Package</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE_FEATURE_COUNT = WORK_ITEM_FEATURE_COUNT + 1;
 
 
 	/**
@@ -215,6 +407,59 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getActionItem_Estimate();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.model.task.WorkPackage <em>Work Package</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Work Package</em>'.
+	 * @see org.unicase.model.task.WorkPackage
+	 * @generated
+	 */
+	EClass getWorkPackage();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.unicase.model.task.WorkPackage#getContainedWorkItems <em>Contained Work Items</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Contained Work Items</em>'.
+	 * @see org.unicase.model.task.WorkPackage#getContainedWorkItems()
+	 * @see #getWorkPackage()
+	 * @generated
+	 */
+	EReference getWorkPackage_ContainedWorkItems();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.model.task.WorkItem <em>Work Item</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Work Item</em>'.
+	 * @see org.unicase.model.task.WorkItem
+	 * @generated
+	 */
+	EClass getWorkItem();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.unicase.model.task.WorkItem#getContainingWorkpackage <em>Containing Workpackage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Containing Workpackage</em>'.
+	 * @see org.unicase.model.task.WorkItem#getContainingWorkpackage()
+	 * @see #getWorkItem()
+	 * @generated
+	 */
+	EReference getWorkItem_ContainingWorkpackage();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.task.WorkItem#getAssociatedChangePackages <em>Associated Change Packages</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Associated Change Packages</em>'.
+	 * @see org.unicase.model.task.WorkItem#getAssociatedChangePackages()
+	 * @see #getWorkItem()
+	 * @generated
+	 */
+	EReference getWorkItem_AssociatedChangePackages();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -279,6 +524,50 @@ public interface TaskPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ACTION_ITEM__ESTIMATE = eINSTANCE.getActionItem_Estimate();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.task.impl.WorkPackageImpl <em>Work Package</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.task.impl.WorkPackageImpl
+		 * @see org.unicase.model.task.impl.TaskPackageImpl#getWorkPackage()
+		 * @generated
+		 */
+		EClass WORK_PACKAGE = eINSTANCE.getWorkPackage();
+
+		/**
+		 * The meta object literal for the '<em><b>Contained Work Items</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference WORK_PACKAGE__CONTAINED_WORK_ITEMS = eINSTANCE.getWorkPackage_ContainedWorkItems();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.task.WorkItem <em>Work Item</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.task.WorkItem
+		 * @see org.unicase.model.task.impl.TaskPackageImpl#getWorkItem()
+		 * @generated
+		 */
+		EClass WORK_ITEM = eINSTANCE.getWorkItem();
+
+		/**
+		 * The meta object literal for the '<em><b>Containing Workpackage</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference WORK_ITEM__CONTAINING_WORKPACKAGE = eINSTANCE.getWorkItem_ContainingWorkpackage();
+
+		/**
+		 * The meta object literal for the '<em><b>Associated Change Packages</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES = eINSTANCE.getWorkItem_AssociatedChangePackages();
 
 	}
 

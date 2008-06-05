@@ -32,7 +32,7 @@ import org.unicase.model.organization.User;
  * @model
  * @generated
  */
-public interface ActionItem extends ModelElement {
+public interface ActionItem extends WorkItem {
 	/**
 	 * Returns the value of the '<em><b>Assigned To</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.model.organization.User}.

@@ -61,6 +61,7 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case TaskPackage.ACTION_ITEM: return createActionItem();
+			case TaskPackage.WORK_PACKAGE: return createWorkPackage();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -74,6 +75,16 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 	public ActionItem createActionItem() {
 		ActionItemImpl actionItem = new ActionItemImpl();
 		return actionItem;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WorkPackage createWorkPackage() {
+		WorkPackageImpl workPackage = new WorkPackageImpl();
+		return workPackage;
 	}
 
 	/**

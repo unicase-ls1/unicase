@@ -78,6 +78,14 @@ public class TaskAdapterFactory extends AdapterFactoryImpl {
 				return createActionItemAdapter();
 			}
 			@Override
+			public Adapter caseWorkPackage(WorkPackage object) {
+				return createWorkPackageAdapter();
+			}
+			@Override
+			public Adapter caseWorkItem(WorkItem object) {
+				return createWorkItemAdapter();
+			}
+			@Override
 			public Adapter caseModelElement(ModelElement object) {
 				return createModelElementAdapter();
 			}
@@ -112,6 +120,34 @@ public class TaskAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createActionItemAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.task.WorkPackage <em>Work Package</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.task.WorkPackage
+	 * @generated
+	 */
+	public Adapter createWorkPackageAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.task.WorkItem <em>Work Item</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.task.WorkItem
+	 * @generated
+	 */
+	public Adapter createWorkItemAdapter() {
 		return null;
 	}
 

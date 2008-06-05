@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.impl.ModelElementImpl;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.FunctionalRequirement;
@@ -211,7 +212,7 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	 */
 	public EList<FunctionalRequirement> getFunctionalRequirements() {
 		if (functionalRequirements == null) {
-			functionalRequirements = new EObjectWithInverseResolvingEList.ManyInverse<FunctionalRequirement>(FunctionalRequirement.class, this, RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS, RequirementPackage.FUNCTIONAL_REQUIREMENT__USE_CASES);
+			functionalRequirements = new EObjectResolvingEList<FunctionalRequirement>(FunctionalRequirement.class, this, RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS);
 		}
 		return functionalRequirements;
 	}
@@ -223,7 +224,7 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	 */
 	public EList<NonFunctionalRequirement> getNonFunctionalRequirements() {
 		if (nonFunctionalRequirements == null) {
-			nonFunctionalRequirements = new EObjectResolvingEList<NonFunctionalRequirement>(NonFunctionalRequirement.class, this, RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS);
+			nonFunctionalRequirements = new EObjectWithInverseResolvingEList.ManyInverse<NonFunctionalRequirement>(NonFunctionalRequirement.class, this, RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS, RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_USE_CASES);
 		}
 		return nonFunctionalRequirements;
 	}
@@ -235,7 +236,7 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	 */
 	public EList<org.unicase.model.classes.Class> getIdentifiedClasses() {
 		if (identifiedClasses == null) {
-			identifiedClasses = new EObjectResolvingEList<org.unicase.model.classes.Class>(org.unicase.model.classes.Class.class, this, RequirementPackage.USE_CASE__IDENTIFIED_CLASSES);
+			identifiedClasses = new EObjectWithInverseResolvingEList.ManyInverse<org.unicase.model.classes.Class>(org.unicase.model.classes.Class.class, this, RequirementPackage.USE_CASE__IDENTIFIED_CLASSES, ClassesPackage.CLASS__PARTICIPATED_USE_CASES);
 		}
 		return identifiedClasses;
 	}
@@ -265,8 +266,10 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getParticipatingActors()).basicAdd(otherEnd, msgs);
 			case RequirementPackage.USE_CASE__SCENARIOS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getScenarios()).basicAdd(otherEnd, msgs);
-			case RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getFunctionalRequirements()).basicAdd(otherEnd, msgs);
+			case RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getNonFunctionalRequirements()).basicAdd(otherEnd, msgs);
+			case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getIdentifiedClasses()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -285,8 +288,10 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 				return ((InternalEList<?>)getParticipatingActors()).basicRemove(otherEnd, msgs);
 			case RequirementPackage.USE_CASE__SCENARIOS:
 				return ((InternalEList<?>)getScenarios()).basicRemove(otherEnd, msgs);
-			case RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS:
-				return ((InternalEList<?>)getFunctionalRequirements()).basicRemove(otherEnd, msgs);
+			case RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS:
+				return ((InternalEList<?>)getNonFunctionalRequirements()).basicRemove(otherEnd, msgs);
+			case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES:
+				return ((InternalEList<?>)getIdentifiedClasses()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}

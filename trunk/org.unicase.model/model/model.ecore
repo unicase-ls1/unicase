@@ -42,7 +42,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ReaderInfo">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="readerId" eType="#//organization/OrgUnitId"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="readerId" eType="#//organization/OrgUnit"/>
   </eClassifiers>
   <eSubpackages name="organization" nsURI="http://unicase.org/model/organization"
       nsPrefix="org.unicase.model.organization">
@@ -55,12 +55,23 @@
     <eClassifiers xsi:type="ecore:EClass" name="Group" eSuperTypes="#//organization/OrgUnit"/>
   </eSubpackages>
   <eSubpackages name="task" nsURI="http://unicase.org/model/task" nsPrefix="org.unicase.model.task">
-    <eClassifiers xsi:type="ecore:EClass" name="ActionItem" eSuperTypes="#//ModelElement">
+    <eClassifiers xsi:type="ecore:EClass" name="ActionItem" eSuperTypes="#//task/WorkItem">
       <eStructuralFeatures xsi:type="ecore:EReference" name="assignedTo" lowerBound="1"
           upperBound="-1" eType="#//organization/User"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="dueDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="done" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="estimate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="WorkPackage" eSuperTypes="#//task/WorkItem">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="containedWorkItems" upperBound="-1"
+          eType="#//task/WorkItem" containment="true" eOpposite="#//task/WorkItem/containingWorkpackage"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="WorkItem" abstract="true" interface="true"
+        eSuperTypes="#//ModelElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="containingWorkpackage"
+          eType="#//task/WorkPackage" eOpposite="#//task/WorkPackage/containedWorkItems"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="associatedChangePackages"
+          upperBound="-1" eType="#//change/ModelChangePackage"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="diagram" nsURI="http://unicase.org/model/diagram" nsPrefix="org.unicase.model.diagram">
@@ -72,7 +83,35 @@
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="classes" nsURI="http://unicase.org/model/classes" nsPrefix="org.unicase.model.classes">
-    <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//ModelElement"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//classes/PackageElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="participatedUseCases"
+          upperBound="-1" eType="#//requirement/UseCase" eOpposite="#//requirement/UseCase/identifiedClasses"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="superClass" eType="#//classes/Class"
+          eOpposite="#//classes/Class/subClasses"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="subClasses" upperBound="-1"
+          eType="#//classes/Class" eOpposite="#//classes/Class/superClass"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Package" eSuperTypes="#//classes/PackageElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="containedPackageElements"
+          upperBound="-1" eType="#//classes/PackageElement" containment="true" eOpposite="#//classes/PackageElement/parentPackage"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="PackageElement" abstract="true" eSuperTypes="#//ModelElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parentPackage" eType="#//classes/Package"
+          derived="true" eOpposite="#//classes/Package/containedPackageElements"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Association" eSuperTypes="#//ModelElement">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="directed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//classes/Class"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//classes/Class"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//classes/AssociationType"
+          defaultValueLiteral=""/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="AssociationType" instanceTypeName="AssociationTypeInstance">
+      <eLiterals name="Association" literal="ASSOCIATION"/>
+      <eLiterals name="Aggregation" value="1" literal="AGGREGATION"/>
+      <eLiterals name="Composition" value="2" literal="COMPOSITION"/>
+      <eLiterals name="Depenedency" value="3" literal="DEPENDENCY"/>
+    </eClassifiers>
   </eSubpackages>
   <eSubpackages name="document" nsURI="http://unicase.org/model/document" nsPrefix="org.unicase.model.document">
     <eClassifiers xsi:type="ecore:EClass" name="LeafSection" eSuperTypes="#//document/Section">
@@ -97,21 +136,21 @@
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="requirement" nsURI="http://unicase.org/model/requirement" nsPrefix="org.unicase.model.requirement">
-    <eClassifiers xsi:type="ecore:EClass" name="NonFunctionalRequirement" eSuperTypes="#//rationale/Criterion"/>
+    <eClassifiers xsi:type="ecore:EClass" name="NonFunctionalRequirement" eSuperTypes="#//rationale/Criterion">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="restrictedScenarios"
+          upperBound="-1" eType="#//requirement/Scenario" eOpposite="#//requirement/Scenario/nonFunctionalRequirements"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="restrictedUseCases" upperBound="-1"
+          eType="#//requirement/UseCase" eOpposite="#//requirement/UseCase/nonFunctionalRequirements"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="FunctionalRequirement" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="reviewed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="storyPoints" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="priority" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="refiningRequirements"
           upperBound="-1" eType="#//requirement/FunctionalRequirement" containment="true"
           eOpposite="#//requirement/FunctionalRequirement/refinedRequirement"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="refinedRequirement" eType="#//requirement/FunctionalRequirement"
           eOpposite="#//requirement/FunctionalRequirement/refiningRequirements"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="scenarios" upperBound="-1"
-          eType="#//requirement/Scenario" eOpposite="#//requirement/Scenario/functionalRequirements"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="useCases" upperBound="-1"
-          eType="#//requirement/UseCase" eOpposite="#//requirement/UseCase/functionalRequirements"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="UseCase" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="steps" upperBound="-1"
@@ -122,11 +161,11 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="scenarios" upperBound="-1"
           eType="#//requirement/Scenario" eOpposite="#//requirement/Scenario/instantiatedUseCases"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="functionalRequirements"
-          upperBound="-1" eType="#//requirement/FunctionalRequirement" eOpposite="#//requirement/FunctionalRequirement/useCases"/>
+          upperBound="-1" eType="#//requirement/FunctionalRequirement"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="nonFunctionalRequirements"
-          upperBound="-1" eType="#//requirement/NonFunctionalRequirement"/>
+          upperBound="-1" eType="#//requirement/NonFunctionalRequirement" eOpposite="#//requirement/NonFunctionalRequirement/restrictedUseCases"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="identifiedClasses" upperBound="-1"
-          eType="#//classes/Class"/>
+          eType="#//classes/Class" eOpposite="#//classes/Class/participatedUseCases"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Scenario" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="steps" upperBound="-1"
@@ -138,9 +177,9 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="instantiatedUseCases"
           upperBound="-1" eType="#//requirement/UseCase" eOpposite="#//requirement/UseCase/scenarios"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="functionalRequirements"
-          upperBound="-1" eType="#//requirement/FunctionalRequirement" eOpposite="#//requirement/FunctionalRequirement/scenarios"/>
+          upperBound="-1" eType="#//requirement/FunctionalRequirement"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="nonFunctionalRequirements"
-          upperBound="-1" eType="#//requirement/NonFunctionalRequirement"/>
+          upperBound="-1" eType="#//requirement/NonFunctionalRequirement" eOpposite="#//requirement/NonFunctionalRequirement/restrictedScenarios"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Actor" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="initiatedUseCases" upperBound="-1"
@@ -182,6 +221,12 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="criterion" lowerBound="1"
           eType="#//rationale/Criterion"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="change" nsURI="http://unicase.org/model/change" nsPrefix="org.unicase.model.rationale">
+    <eClassifiers xsi:type="ecore:EClass" name="ModelChangePackage" eSuperTypes="#//ModelElement">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceVersion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetVersion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

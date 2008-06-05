@@ -6,18 +6,26 @@
  */
 package org.unicase.model.classes.impl;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 
 import org.unicase.model.ModelPackage;
 
+import org.unicase.model.change.ChangePackage;
+import org.unicase.model.change.impl.ChangePackageImpl;
+import org.unicase.model.classes.Association;
+import org.unicase.model.classes.AssociationType;
 import org.unicase.model.classes.ClassesFactory;
 import org.unicase.model.classes.ClassesPackage;
 
+import org.unicase.model.classes.PackageElement;
 import org.unicase.model.diagram.DiagramPackage;
 
 import org.unicase.model.diagram.impl.DiagramPackageImpl;
@@ -51,6 +59,31 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 	 * @generated
 	 */
 	private EClass classEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass packageEClass = null;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass packageElementEClass = null;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass associationEClass = null;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum associationTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -116,6 +149,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		DocumentPackageImpl theDocumentPackage = (DocumentPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI) : DocumentPackage.eINSTANCE);
 		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI) : RequirementPackage.eINSTANCE);
 		RationalePackageImpl theRationalePackage = (RationalePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RationalePackage.eNS_URI) instanceof RationalePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RationalePackage.eNS_URI) : RationalePackage.eINSTANCE);
+		ChangePackageImpl theChangePackage = (ChangePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI) : ChangePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theClassesPackage.createPackageContents();
@@ -126,6 +160,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		theDocumentPackage.createPackageContents();
 		theRequirementPackage.createPackageContents();
 		theRationalePackage.createPackageContents();
+		theChangePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theClassesPackage.initializePackageContents();
@@ -136,6 +171,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		theDocumentPackage.initializePackageContents();
 		theRequirementPackage.initializePackageContents();
 		theRationalePackage.initializePackageContents();
+		theChangePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theClassesPackage.freeze();
@@ -150,6 +186,123 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 	 */
 	public EClass getClass_() {
 		return classEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getClass_ParticipatedUseCases() {
+		return (EReference)classEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getClass_SuperClass() {
+		return (EReference)classEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getClass_SubClasses() {
+		return (EReference)classEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPackage() {
+		return packageEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPackage_ContainedPackageElements() {
+		return (EReference)packageEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPackageElement() {
+		return packageElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPackageElement_ParentPackage() {
+		return (EReference)packageElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getAssociation() {
+		return associationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAssociation_Directed() {
+		return (EAttribute)associationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAssociation_Source() {
+		return (EReference)associationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAssociation_Target() {
+		return (EReference)associationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAssociation_Type() {
+		return (EAttribute)associationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getAssociationType() {
+		return associationTypeEEnum;
 	}
 
 	/**
@@ -181,6 +334,24 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 		// Create classes and their features
 		classEClass = createEClass(CLASS);
+		createEReference(classEClass, CLASS__PARTICIPATED_USE_CASES);
+		createEReference(classEClass, CLASS__SUPER_CLASS);
+		createEReference(classEClass, CLASS__SUB_CLASSES);
+
+		packageEClass = createEClass(PACKAGE);
+		createEReference(packageEClass, PACKAGE__CONTAINED_PACKAGE_ELEMENTS);
+
+		packageElementEClass = createEClass(PACKAGE_ELEMENT);
+		createEReference(packageElementEClass, PACKAGE_ELEMENT__PARENT_PACKAGE);
+
+		associationEClass = createEClass(ASSOCIATION);
+		createEAttribute(associationEClass, ASSOCIATION__DIRECTED);
+		createEReference(associationEClass, ASSOCIATION__SOURCE);
+		createEReference(associationEClass, ASSOCIATION__TARGET);
+		createEAttribute(associationEClass, ASSOCIATION__TYPE);
+
+		// Create enums
+		associationTypeEEnum = createEEnum(ASSOCIATION_TYPE);
 	}
 
 	/**
@@ -207,6 +378,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
+		RequirementPackage theRequirementPackage = (RequirementPackage)EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI);
 		ModelPackage theModelPackage = (ModelPackage)EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 
 		// Create type parameters
@@ -214,10 +386,35 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		classEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		classEClass.getESuperTypes().add(this.getPackageElement());
+		packageEClass.getESuperTypes().add(this.getPackageElement());
+		packageElementEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		associationEClass.getESuperTypes().add(theModelPackage.getModelElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(classEClass, org.unicase.model.classes.Class.class, "Class", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getClass_ParticipatedUseCases(), theRequirementPackage.getUseCase(), theRequirementPackage.getUseCase_IdentifiedClasses(), "participatedUseCases", null, 0, -1, org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClass_SuperClass(), this.getClass_(), this.getClass_SubClasses(), "superClass", null, 0, 1, org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClass_SubClasses(), this.getClass_(), this.getClass_SuperClass(), "subClasses", null, 0, -1, org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(packageEClass, org.unicase.model.classes.Package.class, "Package", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPackage_ContainedPackageElements(), this.getPackageElement(), this.getPackageElement_ParentPackage(), "containedPackageElements", null, 0, -1, org.unicase.model.classes.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(packageElementEClass, PackageElement.class, "PackageElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPackageElement_ParentPackage(), this.getPackage(), this.getPackage_ContainedPackageElements(), "parentPackage", null, 0, 1, PackageElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+		initEClass(associationEClass, Association.class, "Association", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAssociation_Directed(), ecorePackage.getEBoolean(), "directed", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAssociation_Source(), this.getClass_(), null, "source", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAssociation_Target(), this.getClass_(), null, "target", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAssociation_Type(), this.getAssociationType(), "type", "", 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(associationTypeEEnum, AssociationType.class, "AssociationType");
+		addEEnumLiteral(associationTypeEEnum, AssociationType.ASSOCIATION);
+		addEEnumLiteral(associationTypeEEnum, AssociationType.AGGREGATION);
+		addEEnumLiteral(associationTypeEEnum, AssociationType.COMPOSITION);
+		addEEnumLiteral(associationTypeEEnum, AssociationType.DEPENEDENCY);
 	}
 
 } //ClassesPackageImpl

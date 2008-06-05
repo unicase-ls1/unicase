@@ -15,6 +15,8 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.unicase.model.ModelPackage;
 
+import org.unicase.model.change.ChangePackage;
+import org.unicase.model.change.impl.ChangePackageImpl;
 import org.unicase.model.classes.ClassesPackage;
 
 import org.unicase.model.classes.impl.ClassesPackageImpl;
@@ -155,6 +157,7 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 		ClassesPackageImpl theClassesPackage = (ClassesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ClassesPackage.eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ClassesPackage.eNS_URI) : ClassesPackage.eINSTANCE);
 		DocumentPackageImpl theDocumentPackage = (DocumentPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI) : DocumentPackage.eINSTANCE);
 		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI) : RequirementPackage.eINSTANCE);
+		ChangePackageImpl theChangePackage = (ChangePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI) : ChangePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theRationalePackage.createPackageContents();
@@ -165,6 +168,7 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 		theClassesPackage.createPackageContents();
 		theDocumentPackage.createPackageContents();
 		theRequirementPackage.createPackageContents();
+		theChangePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theRationalePackage.initializePackageContents();
@@ -175,6 +179,7 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 		theClassesPackage.initializePackageContents();
 		theDocumentPackage.initializePackageContents();
 		theRequirementPackage.initializePackageContents();
+		theChangePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theRationalePackage.freeze();

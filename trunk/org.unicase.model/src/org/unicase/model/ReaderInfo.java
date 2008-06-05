@@ -10,6 +10,7 @@ import java.util.Date;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrgUnitId;
 
 /**
@@ -65,12 +66,12 @@ public interface ReaderInfo extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Reader Id</em>' reference.
-	 * @see #setReaderId(OrgUnitId)
+	 * @see #setReaderId(OrgUnit)
 	 * @see org.unicase.model.ModelPackage#getReaderInfo_ReaderId()
 	 * @model
 	 * @generated
 	 */
-	OrgUnitId getReaderId();
+	OrgUnit getReaderId();
 
 	/**
 	 * Sets the value of the '{@link org.unicase.model.ReaderInfo#getReaderId <em>Reader Id</em>}' reference.
@@ -80,6 +81,6 @@ public interface ReaderInfo extends EObject {
 	 * @see #getReaderId()
 	 * @generated
 	 */
-	void setReaderId(OrgUnitId value);
+	void setReaderId(OrgUnit value);
 
 } // ReaderInfo

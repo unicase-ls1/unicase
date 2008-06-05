@@ -21,6 +21,8 @@ import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.ReaderInfo;
 import org.unicase.model.UniqueIdentifier;
+import org.unicase.model.change.ChangePackage;
+import org.unicase.model.change.impl.ChangePackageImpl;
 import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.classes.impl.ClassesPackageImpl;
 import org.unicase.model.diagram.DiagramPackage;
@@ -146,6 +148,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		DocumentPackageImpl theDocumentPackage = (DocumentPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI) : DocumentPackage.eINSTANCE);
 		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI) : RequirementPackage.eINSTANCE);
 		RationalePackageImpl theRationalePackage = (RationalePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RationalePackage.eNS_URI) instanceof RationalePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RationalePackage.eNS_URI) : RationalePackage.eINSTANCE);
+		ChangePackageImpl theChangePackage = (ChangePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI) : ChangePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theModelPackage.createPackageContents();
@@ -156,6 +159,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		theDocumentPackage.createPackageContents();
 		theRequirementPackage.createPackageContents();
 		theRationalePackage.createPackageContents();
+		theChangePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theModelPackage.initializePackageContents();
@@ -166,6 +170,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		theDocumentPackage.initializePackageContents();
 		theRequirementPackage.initializePackageContents();
 		theRationalePackage.initializePackageContents();
+		theChangePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theModelPackage.freeze();
@@ -378,6 +383,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		DocumentPackage theDocumentPackage = (DocumentPackage)EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI);
 		RequirementPackage theRequirementPackage = (RequirementPackage)EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI);
 		RationalePackage theRationalePackage = (RationalePackage)EPackage.Registry.INSTANCE.getEPackage(RationalePackage.eNS_URI);
+		ChangePackage theChangePackage = (ChangePackage)EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theOrganizationPackage);
@@ -387,6 +393,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		getESubpackages().add(theDocumentPackage);
 		getESubpackages().add(theRequirementPackage);
 		getESubpackages().add(theRationalePackage);
+		getESubpackages().add(theChangePackage);
 
 		// Create type parameters
 
@@ -422,7 +429,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 		initEClass(readerInfoEClass, ReaderInfo.class, "ReaderInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getReaderInfo_Date(), ecorePackage.getEDate(), "date", null, 0, 1, ReaderInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getReaderInfo_ReaderId(), theOrganizationPackage.getOrgUnitId(), null, "readerId", null, 0, 1, ReaderInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getReaderInfo_ReaderId(), theOrganizationPackage.getOrgUnit(), null, "readerId", null, 0, 1, ReaderInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

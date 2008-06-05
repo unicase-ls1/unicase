@@ -97,7 +97,6 @@ public interface UseCase extends ModelElement {
 	/**
 	 * Returns the value of the '<em><b>Functional Requirements</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.model.requirement.FunctionalRequirement}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.FunctionalRequirement#getUseCases <em>Use Cases</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Functional Requirements</em>' reference list isn't clear,
@@ -106,8 +105,7 @@ public interface UseCase extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Functional Requirements</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_FunctionalRequirements()
-	 * @see org.unicase.model.requirement.FunctionalRequirement#getUseCases
-	 * @model opposite="useCases"
+	 * @model
 	 * @generated
 	 */
 	EList<FunctionalRequirement> getFunctionalRequirements();
@@ -115,6 +113,7 @@ public interface UseCase extends ModelElement {
 	/**
 	 * Returns the value of the '<em><b>Non Functional Requirements</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.model.requirement.NonFunctionalRequirement}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.NonFunctionalRequirement#getRestrictedUseCases <em>Restricted Use Cases</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Non Functional Requirements</em>' reference list isn't clear,
@@ -123,7 +122,8 @@ public interface UseCase extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Non Functional Requirements</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_NonFunctionalRequirements()
-	 * @model
+	 * @see org.unicase.model.requirement.NonFunctionalRequirement#getRestrictedUseCases
+	 * @model opposite="restrictedUseCases"
 	 * @generated
 	 */
 	EList<NonFunctionalRequirement> getNonFunctionalRequirements();
@@ -131,6 +131,7 @@ public interface UseCase extends ModelElement {
 	/**
 	 * Returns the value of the '<em><b>Identified Classes</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.model.classes.Class}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.classes.Class#getParticipatedUseCases <em>Participated Use Cases</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Identified Classes</em>' reference list isn't clear,
@@ -139,7 +140,8 @@ public interface UseCase extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Identified Classes</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_IdentifiedClasses()
-	 * @model
+	 * @see org.unicase.model.classes.Class#getParticipatedUseCases
+	 * @model opposite="participatedUseCases"
 	 * @generated
 	 */
 	EList<org.unicase.model.classes.Class> getIdentifiedClasses();

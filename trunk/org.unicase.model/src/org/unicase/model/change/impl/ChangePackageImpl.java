@@ -1,0 +1,258 @@
+/**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
+ */
+package org.unicase.model.change.impl;
+
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EPackage;
+
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import org.unicase.model.ModelPackage;
+
+import org.unicase.model.change.ChangeFactory;
+import org.unicase.model.change.ChangePackage;
+import org.unicase.model.change.ModelChangePackage;
+
+import org.unicase.model.classes.ClassesPackage;
+
+import org.unicase.model.classes.impl.ClassesPackageImpl;
+
+import org.unicase.model.diagram.DiagramPackage;
+
+import org.unicase.model.diagram.impl.DiagramPackageImpl;
+
+import org.unicase.model.document.DocumentPackage;
+
+import org.unicase.model.document.impl.DocumentPackageImpl;
+
+import org.unicase.model.impl.ModelPackageImpl;
+
+import org.unicase.model.organization.OrganizationPackage;
+
+import org.unicase.model.organization.impl.OrganizationPackageImpl;
+
+import org.unicase.model.rationale.RationalePackage;
+
+import org.unicase.model.rationale.impl.RationalePackageImpl;
+
+import org.unicase.model.requirement.RequirementPackage;
+
+import org.unicase.model.requirement.impl.RequirementPackageImpl;
+
+import org.unicase.model.task.TaskPackage;
+
+import org.unicase.model.task.impl.TaskPackageImpl;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model <b>Package</b>.
+ * <!-- end-user-doc -->
+ * @generated
+ */
+public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass modelChangePackageEClass = null;
+
+	/**
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * package URI value.
+	 * <p>Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ecore.EPackage.Registry
+	 * @see org.unicase.model.change.ChangePackage#eNS_URI
+	 * @see #init()
+	 * @generated
+	 */
+	private ChangePackageImpl() {
+		super(eNS_URI, ChangeFactory.eINSTANCE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static boolean isInited = false;
+
+	/**
+	 * Creates, registers, and initializes the <b>Package</b> for this
+	 * model, and for any others upon which it depends.  Simple
+	 * dependencies are satisfied by calling this method on all
+	 * dependent packages before doing anything else.  This method drives
+	 * initialization for interdependent packages directly, in parallel
+	 * with this package, itself.
+	 * <p>Of this package and its interdependencies, all packages which
+	 * have not yet been registered by their URI values are first created
+	 * and registered.  The packages are then initialized in two steps:
+	 * meta-model objects for all of the packages are created before any
+	 * are initialized, since one package's meta-model objects may refer to
+	 * those of another.
+	 * <p>Invocation of this method will not affect any packages that have
+	 * already been initialized.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #eNS_URI
+	 * @see #createPackageContents()
+	 * @see #initializePackageContents()
+	 * @generated
+	 */
+	public static ChangePackage init() {
+		if (isInited) return (ChangePackage)EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI);
+
+		// Obtain or create and register package
+		ChangePackageImpl theChangePackage = (ChangePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new ChangePackageImpl());
+
+		isInited = true;
+
+		// Obtain or create and register interdependencies
+		ModelPackageImpl theModelPackage = (ModelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI) : ModelPackage.eINSTANCE);
+		OrganizationPackageImpl theOrganizationPackage = (OrganizationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(OrganizationPackage.eNS_URI) : OrganizationPackage.eINSTANCE);
+		TaskPackageImpl theTaskPackage = (TaskPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) : TaskPackage.eINSTANCE);
+		DiagramPackageImpl theDiagramPackage = (DiagramPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI) : DiagramPackage.eINSTANCE);
+		ClassesPackageImpl theClassesPackage = (ClassesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ClassesPackage.eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ClassesPackage.eNS_URI) : ClassesPackage.eINSTANCE);
+		DocumentPackageImpl theDocumentPackage = (DocumentPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI) : DocumentPackage.eINSTANCE);
+		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI) : RequirementPackage.eINSTANCE);
+		RationalePackageImpl theRationalePackage = (RationalePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RationalePackage.eNS_URI) instanceof RationalePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RationalePackage.eNS_URI) : RationalePackage.eINSTANCE);
+
+		// Create package meta-data objects
+		theChangePackage.createPackageContents();
+		theModelPackage.createPackageContents();
+		theOrganizationPackage.createPackageContents();
+		theTaskPackage.createPackageContents();
+		theDiagramPackage.createPackageContents();
+		theClassesPackage.createPackageContents();
+		theDocumentPackage.createPackageContents();
+		theRequirementPackage.createPackageContents();
+		theRationalePackage.createPackageContents();
+
+		// Initialize created meta-data
+		theChangePackage.initializePackageContents();
+		theModelPackage.initializePackageContents();
+		theOrganizationPackage.initializePackageContents();
+		theTaskPackage.initializePackageContents();
+		theDiagramPackage.initializePackageContents();
+		theClassesPackage.initializePackageContents();
+		theDocumentPackage.initializePackageContents();
+		theRequirementPackage.initializePackageContents();
+		theRationalePackage.initializePackageContents();
+
+		// Mark meta-data to indicate it can't be changed
+		theChangePackage.freeze();
+
+		return theChangePackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getModelChangePackage() {
+		return modelChangePackageEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getModelChangePackage_SourceVersion() {
+		return (EAttribute)modelChangePackageEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getModelChangePackage_TargetVersion() {
+		return (EAttribute)modelChangePackageEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ChangeFactory getChangeFactory() {
+		return (ChangeFactory)getEFactoryInstance();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private boolean isCreated = false;
+
+	/**
+	 * Creates the meta-model objects for the package.  This method is
+	 * guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void createPackageContents() {
+		if (isCreated) return;
+		isCreated = true;
+
+		// Create classes and their features
+		modelChangePackageEClass = createEClass(MODEL_CHANGE_PACKAGE);
+		createEAttribute(modelChangePackageEClass, MODEL_CHANGE_PACKAGE__SOURCE_VERSION);
+		createEAttribute(modelChangePackageEClass, MODEL_CHANGE_PACKAGE__TARGET_VERSION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private boolean isInitialized = false;
+
+	/**
+	 * Complete the initialization of the package and its meta-model.  This
+	 * method is guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void initializePackageContents() {
+		if (isInitialized) return;
+		isInitialized = true;
+
+		// Initialize package
+		setName(eNAME);
+		setNsPrefix(eNS_PREFIX);
+		setNsURI(eNS_URI);
+
+		// Obtain other dependent packages
+		ModelPackage theModelPackage = (ModelPackage)EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
+
+		// Create type parameters
+
+		// Set bounds for type parameters
+
+		// Add supertypes to classes
+		modelChangePackageEClass.getESuperTypes().add(theModelPackage.getModelElement());
+
+		// Initialize classes and features; add operations and parameters
+		initEClass(modelChangePackageEClass, ModelChangePackage.class, "ModelChangePackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getModelChangePackage_SourceVersion(), ecorePackage.getEInt(), "sourceVersion", null, 0, 1, ModelChangePackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getModelChangePackage_TargetVersion(), ecorePackage.getEInt(), "targetVersion", null, 0, 1, ModelChangePackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+	}
+
+} //ChangePackageImpl

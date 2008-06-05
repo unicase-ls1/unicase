@@ -112,7 +112,6 @@ public interface Scenario extends ModelElement {
 	/**
 	 * Returns the value of the '<em><b>Functional Requirements</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.model.requirement.FunctionalRequirement}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.FunctionalRequirement#getScenarios <em>Scenarios</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Functional Requirements</em>' reference list isn't clear,
@@ -121,8 +120,7 @@ public interface Scenario extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Functional Requirements</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getScenario_FunctionalRequirements()
-	 * @see org.unicase.model.requirement.FunctionalRequirement#getScenarios
-	 * @model opposite="scenarios"
+	 * @model
 	 * @generated
 	 */
 	EList<FunctionalRequirement> getFunctionalRequirements();
@@ -130,6 +128,7 @@ public interface Scenario extends ModelElement {
 	/**
 	 * Returns the value of the '<em><b>Non Functional Requirements</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.model.requirement.NonFunctionalRequirement}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.NonFunctionalRequirement#getRestrictedScenarios <em>Restricted Scenarios</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Non Functional Requirements</em>' reference list isn't clear,
@@ -138,7 +137,8 @@ public interface Scenario extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Non Functional Requirements</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getScenario_NonFunctionalRequirements()
-	 * @model
+	 * @see org.unicase.model.requirement.NonFunctionalRequirement#getRestrictedScenarios
+	 * @model opposite="restrictedScenarios"
 	 * @generated
 	 */
 	EList<NonFunctionalRequirement> getNonFunctionalRequirements();
