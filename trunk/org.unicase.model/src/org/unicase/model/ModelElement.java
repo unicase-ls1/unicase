@@ -96,7 +96,7 @@ public interface ModelElement extends EObject {
 	 * @return the value of the '<em>Identifier</em>' containment reference.
 	 * @see #setIdentifier(ModelElementId)
 	 * @see org.unicase.model.ModelPackage#getModelElement_Identifier()
-	 * @model containment="true" keys="id" required="true"
+	 * @model containment="true" keys="id"
 	 * @generated
 	 */
 	ModelElementId getIdentifier();

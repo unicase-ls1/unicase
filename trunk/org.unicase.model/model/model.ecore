@@ -21,8 +21,8 @@
         <details key="type" value="TEXT_AREA"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="identifier" lowerBound="1"
-        eType="#//ModelElementId" containment="true" eKeys="#//UniqueIdentifier/id"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="identifier" eType="#//ModelElementId"
+        containment="true" eKeys="#//UniqueIdentifier/id"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="readerInfos" upperBound="-1"
         eType="#//ReaderInfo" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="actionItems" upperBound="-1"
