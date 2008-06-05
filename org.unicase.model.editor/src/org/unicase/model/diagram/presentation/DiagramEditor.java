@@ -111,6 +111,7 @@ import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
+import org.unicase.model.change.provider.ChangeItemProviderAdapterFactory;
 import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.ide.IGotoMarker;
 import org.eclipse.ui.part.FileEditorInput;
@@ -127,6 +128,7 @@ import org.unicase.model.document.provider.DocumentItemProviderAdapterFactory;
 import org.unicase.model.organization.provider.OrganizationItemProviderAdapterFactory;
 import org.unicase.model.presentation.ModelEditorPlugin;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
+import org.unicase.model.rationale.provider.RationaleItemProviderAdapterFactory;
 import org.unicase.model.requirement.provider.RequirementItemProviderAdapterFactory;
 import org.unicase.model.task.provider.TaskItemProviderAdapterFactory;
 
@@ -672,6 +674,8 @@ public class DiagramEditor
 		adapterFactory.addAdapterFactory(new ClassesItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new DocumentItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new RequirementItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new RationaleItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ChangeItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		// Create the command stack that will notify this editor as commands are executed.
@@ -1462,8 +1466,11 @@ public class DiagramEditor
 					for (Resource resource : editingDomain.getResourceSet().getResources()) {
 						if ((first || !resource.getContents().isEmpty() || isPersisted(resource)) && !editingDomain.isReadOnly(resource)) {
 							try {
-								savedResources.add(resource);
+								long timeStamp = resource.getTimeStamp();
 								resource.save(saveOptions);
+								if (resource.getTimeStamp() != timeStamp) {
+									savedResources.add(resource);
+								}
 							}
 							catch (Exception exception) {
 								resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
