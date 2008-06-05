@@ -29,9 +29,9 @@ public class AccessControlImpl implements AuthenticationControl,
 			throws AccessControlException {
 
 		SessionId sessionId = EsmodelFactory.eINSTANCE.createSessionId();
-		ACUser user = resolveUser(username);
-		// FIXME:checkpassword here
-		sessionUserMap.put(sessionId, user);
+//		ACUser user = resolveUser(username);
+//		// FIXME:checkpassword here
+//		sessionUserMap.put(sessionId, user);
 		return sessionId;
 	}
 
