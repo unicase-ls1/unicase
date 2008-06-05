@@ -23,11 +23,8 @@ import org.unicase.model.ModelPackage;
  *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#isReviewed <em>Reviewed</em>}</li>
  *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getStoryPoints <em>Story Points</em>}</li>
  *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getPriority <em>Priority</em>}</li>
- *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getDate <em>Date</em>}</li>
  *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getRefiningRequirements <em>Refining Requirements</em>}</li>
  *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getRefinedRequirement <em>Refined Requirement</em>}</li>
- *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getScenarios <em>Scenarios</em>}</li>
- *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getUseCases <em>Use Cases</em>}</li>
  * </ul>
  * </p>
  *
@@ -115,32 +112,6 @@ public interface FunctionalRequirement extends ModelElement {
 	void setPriority(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Date</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Date</em>' attribute.
-	 * @see #setDate(Date)
-	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_Date()
-	 * @model
-	 * @generated
-	 */
-	Date getDate();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.model.requirement.FunctionalRequirement#getDate <em>Date</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Date</em>' attribute.
-	 * @see #getDate()
-	 * @generated
-	 */
-	void setDate(Date value);
-
-	/**
 	 * Returns the value of the '<em><b>Refining Requirements</b></em>' containment reference list.
 	 * The list contents are of type {@link org.unicase.model.requirement.FunctionalRequirement}.
 	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.FunctionalRequirement#getRefinedRequirement <em>Refined Requirement</em>}'.
@@ -185,41 +156,5 @@ public interface FunctionalRequirement extends ModelElement {
 	 * @generated
 	 */
 	void setRefinedRequirement(FunctionalRequirement value);
-
-	/**
-	 * Returns the value of the '<em><b>Scenarios</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.requirement.Scenario}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.Scenario#getFunctionalRequirements <em>Functional Requirements</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Scenarios</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Scenarios</em>' reference list.
-	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_Scenarios()
-	 * @see org.unicase.model.requirement.Scenario#getFunctionalRequirements
-	 * @model opposite="functionalRequirements"
-	 * @generated
-	 */
-	EList<Scenario> getScenarios();
-
-	/**
-	 * Returns the value of the '<em><b>Use Cases</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.requirement.UseCase}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.UseCase#getFunctionalRequirements <em>Functional Requirements</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Use Cases</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Use Cases</em>' reference list.
-	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_UseCases()
-	 * @see org.unicase.model.requirement.UseCase#getFunctionalRequirements
-	 * @model opposite="functionalRequirements"
-	 * @generated
-	 */
-	EList<UseCase> getUseCases();
 
 } // FunctionalRequirement

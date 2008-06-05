@@ -97,6 +97,29 @@ public class TaskItemProviderAdapterFactory extends TaskAdapterFactory implement
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.task.WorkPackage} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected WorkPackageItemProvider workPackageItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.task.WorkPackage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createWorkPackageAdapter() {
+		if (workPackageItemProvider == null) {
+			workPackageItemProvider = new WorkPackageItemProvider(this);
+		}
+
+		return workPackageItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -196,6 +219,7 @@ public class TaskItemProviderAdapterFactory extends TaskAdapterFactory implement
 	 */
 	public void dispose() {
 		if (actionItemItemProvider != null) actionItemItemProvider.dispose();
+		if (workPackageItemProvider != null) workPackageItemProvider.dispose();
 	}
 
 }

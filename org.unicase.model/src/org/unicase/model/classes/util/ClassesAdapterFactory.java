@@ -15,7 +15,9 @@ import org.eclipse.emf.ecore.EObject;
 
 import org.unicase.model.ModelElement;
 
+import org.unicase.model.classes.Association;
 import org.unicase.model.classes.ClassesPackage;
+import org.unicase.model.classes.PackageElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -78,6 +80,18 @@ public class ClassesAdapterFactory extends AdapterFactoryImpl {
 				return createClassAdapter();
 			}
 			@Override
+			public Adapter casePackage(org.unicase.model.classes.Package object) {
+				return createPackageAdapter();
+			}
+			@Override
+			public Adapter casePackageElement(PackageElement object) {
+				return createPackageElementAdapter();
+			}
+			@Override
+			public Adapter caseAssociation(Association object) {
+				return createAssociationAdapter();
+			}
+			@Override
 			public Adapter caseModelElement(ModelElement object) {
 				return createModelElementAdapter();
 			}
@@ -112,6 +126,48 @@ public class ClassesAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createClassAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.classes.Package <em>Package</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.classes.Package
+	 * @generated
+	 */
+	public Adapter createPackageAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.classes.PackageElement <em>Package Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.classes.PackageElement
+	 * @generated
+	 */
+	public Adapter createPackageElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.classes.Association <em>Association</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.classes.Association
+	 * @generated
+	 */
+	public Adapter createAssociationAdapter() {
 		return null;
 	}
 

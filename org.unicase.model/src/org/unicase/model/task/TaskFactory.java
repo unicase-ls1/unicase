@@ -35,6 +35,15 @@ public interface TaskFactory extends EFactory {
 	ActionItem createActionItem();
 
 	/**
+	 * Returns a new object of class '<em>Work Package</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Work Package</em>'.
+	 * @generated
+	 */
+	WorkPackage createWorkPackage();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

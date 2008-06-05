@@ -72,9 +72,6 @@ public class FunctionalRequirementItemProvider
 			addReviewedPropertyDescriptor(object);
 			addStoryPointsPropertyDescriptor(object);
 			addPriorityPropertyDescriptor(object);
-			addDatePropertyDescriptor(object);
-			addScenariosPropertyDescriptor(object);
-			addUseCasesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -141,72 +138,6 @@ public class FunctionalRequirementItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Date feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_FunctionalRequirement_date_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_date_feature", "_UI_FunctionalRequirement_type"),
-				 RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__DATE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Scenarios feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addScenariosPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_FunctionalRequirement_scenarios_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_scenarios_feature", "_UI_FunctionalRequirement_type"),
-				 RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__SCENARIOS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Use Cases feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addUseCasesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_FunctionalRequirement_useCases_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_useCases_feature", "_UI_FunctionalRequirement_type"),
-				 RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__USE_CASES,
-				 true,
-				 false,
-				 true,
-				 null,
 				 null,
 				 null));
 	}
@@ -281,7 +212,6 @@ public class FunctionalRequirementItemProvider
 			case RequirementPackage.FUNCTIONAL_REQUIREMENT__REVIEWED:
 			case RequirementPackage.FUNCTIONAL_REQUIREMENT__STORY_POINTS:
 			case RequirementPackage.FUNCTIONAL_REQUIREMENT__PRIORITY:
-			case RequirementPackage.FUNCTIONAL_REQUIREMENT__DATE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS:

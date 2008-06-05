@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.ReaderInfo;
 
+import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrgUnitId;
 
 /**
@@ -64,7 +65,7 @@ public class ReaderInfoImpl extends EObjectImpl implements ReaderInfo {
 	 * @generated
 	 * @ordered
 	 */
-	protected OrgUnitId readerId;
+	protected OrgUnit readerId;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -111,10 +112,10 @@ public class ReaderInfoImpl extends EObjectImpl implements ReaderInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OrgUnitId getReaderId() {
+	public OrgUnit getReaderId() {
 		if (readerId != null && readerId.eIsProxy()) {
 			InternalEObject oldReaderId = (InternalEObject)readerId;
-			readerId = (OrgUnitId)eResolveProxy(oldReaderId);
+			readerId = (OrgUnit)eResolveProxy(oldReaderId);
 			if (readerId != oldReaderId) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackage.READER_INFO__READER_ID, oldReaderId, readerId));
@@ -128,7 +129,7 @@ public class ReaderInfoImpl extends EObjectImpl implements ReaderInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OrgUnitId basicGetReaderId() {
+	public OrgUnit basicGetReaderId() {
 		return readerId;
 	}
 
@@ -137,8 +138,8 @@ public class ReaderInfoImpl extends EObjectImpl implements ReaderInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReaderId(OrgUnitId newReaderId) {
-		OrgUnitId oldReaderId = readerId;
+	public void setReaderId(OrgUnit newReaderId) {
+		OrgUnit oldReaderId = readerId;
 		readerId = newReaderId;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.READER_INFO__READER_ID, oldReaderId, readerId));
@@ -173,7 +174,7 @@ public class ReaderInfoImpl extends EObjectImpl implements ReaderInfo {
 				setDate((Date)newValue);
 				return;
 			case ModelPackage.READER_INFO__READER_ID:
-				setReaderId((OrgUnitId)newValue);
+				setReaderId((OrgUnit)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -191,7 +192,7 @@ public class ReaderInfoImpl extends EObjectImpl implements ReaderInfo {
 				setDate(DATE_EDEFAULT);
 				return;
 			case ModelPackage.READER_INFO__READER_ID:
-				setReaderId((OrgUnitId)null);
+				setReaderId((OrgUnit)null);
 				return;
 		}
 		super.eUnset(featureID);

@@ -13,7 +13,9 @@ import org.eclipse.emf.ecore.EObject;
 
 import org.unicase.model.ModelElement;
 
+import org.unicase.model.classes.Association;
 import org.unicase.model.classes.ClassesPackage;
+import org.unicase.model.classes.PackageElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -92,7 +94,30 @@ public class ClassesSwitch<T> {
 			case ClassesPackage.CLASS: {
 				org.unicase.model.classes.Class class_ = (org.unicase.model.classes.Class)theEObject;
 				T result = caseClass(class_);
+				if (result == null) result = casePackageElement(class_);
 				if (result == null) result = caseModelElement(class_);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ClassesPackage.PACKAGE: {
+				org.unicase.model.classes.Package package_ = (org.unicase.model.classes.Package)theEObject;
+				T result = casePackage(package_);
+				if (result == null) result = casePackageElement(package_);
+				if (result == null) result = caseModelElement(package_);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ClassesPackage.PACKAGE_ELEMENT: {
+				PackageElement packageElement = (PackageElement)theEObject;
+				T result = casePackageElement(packageElement);
+				if (result == null) result = caseModelElement(packageElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ClassesPackage.ASSOCIATION: {
+				Association association = (Association)theEObject;
+				T result = caseAssociation(association);
+				if (result == null) result = caseModelElement(association);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -112,6 +137,51 @@ public class ClassesSwitch<T> {
 	 * @generated
 	 */
 	public T caseClass(org.unicase.model.classes.Class object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Package</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Package</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePackage(org.unicase.model.classes.Package object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Package Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Package Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePackageElement(PackageElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Association</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Association</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAssociation(Association object) {
 		return null;
 	}
 

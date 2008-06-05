@@ -10,14 +10,19 @@ import java.util.Collection;
 import java.util.Date;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.unicase.model.change.ModelChangePackage;
 import org.unicase.model.impl.ModelElementImpl;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskPackage;
+import org.unicase.model.task.WorkPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,6 +31,8 @@ import org.unicase.model.task.TaskPackage;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getContainingWorkpackage <em>Containing Workpackage</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getAssociatedChangePackages <em>Associated Change Packages</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getAssignedTo <em>Assigned To</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getDueDate <em>Due Date</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#isDone <em>Done</em>}</li>
@@ -36,6 +43,16 @@ import org.unicase.model.task.TaskPackage;
  * @generated
  */
 public class ActionItemImpl extends ModelElementImpl implements ActionItem {
+	/**
+	 * The cached value of the '{@link #getAssociatedChangePackages() <em>Associated Change Packages</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAssociatedChangePackages()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ModelChangePackage> associatedChangePackages;
+
 	/**
 	 * The cached value of the '{@link #getAssignedTo() <em>Assigned To</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -130,6 +147,59 @@ public class ActionItemImpl extends ModelElementImpl implements ActionItem {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public WorkPackage getContainingWorkpackage() {
+		if (eContainerFeatureID != TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE) return null;
+		return (WorkPackage)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetContainingWorkpackage(WorkPackage newContainingWorkpackage, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newContainingWorkpackage, TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setContainingWorkpackage(WorkPackage newContainingWorkpackage) {
+		if (newContainingWorkpackage != eInternalContainer() || (eContainerFeatureID != TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE && newContainingWorkpackage != null)) {
+			if (EcoreUtil.isAncestor(this, newContainingWorkpackage))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newContainingWorkpackage != null)
+				msgs = ((InternalEObject)newContainingWorkpackage).eInverseAdd(this, TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS, WorkPackage.class, msgs);
+			msgs = basicSetContainingWorkpackage(newContainingWorkpackage, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE, newContainingWorkpackage, newContainingWorkpackage));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ModelChangePackage> getAssociatedChangePackages() {
+		if (associatedChangePackages == null) {
+			associatedChangePackages = new EObjectResolvingEList<ModelChangePackage>(ModelChangePackage.class, this, TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES);
+		}
+		return associatedChangePackages;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<User> getAssignedTo() {
 		if (assignedTo == null) {
 			assignedTo = new EObjectResolvingEList<User>(User.class, this, TaskPackage.ACTION_ITEM__ASSIGNED_TO);
@@ -206,8 +276,56 @@ public class ActionItemImpl extends ModelElementImpl implements ActionItem {
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetContainingWorkpackage((WorkPackage)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
+				return basicSetContainingWorkpackage(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID) {
+			case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
+				return eInternalContainer().eInverseRemove(this, TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS, WorkPackage.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
+				return getContainingWorkpackage();
+			case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES:
+				return getAssociatedChangePackages();
 			case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
 				return getAssignedTo();
 			case TaskPackage.ACTION_ITEM__DUE_DATE:
@@ -229,6 +347,13 @@ public class ActionItemImpl extends ModelElementImpl implements ActionItem {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
+				setContainingWorkpackage((WorkPackage)newValue);
+				return;
+			case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES:
+				getAssociatedChangePackages().clear();
+				getAssociatedChangePackages().addAll((Collection<? extends ModelChangePackage>)newValue);
+				return;
 			case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
 				getAssignedTo().clear();
 				getAssignedTo().addAll((Collection<? extends User>)newValue);
@@ -254,6 +379,12 @@ public class ActionItemImpl extends ModelElementImpl implements ActionItem {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
+				setContainingWorkpackage((WorkPackage)null);
+				return;
+			case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES:
+				getAssociatedChangePackages().clear();
+				return;
 			case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
 				getAssignedTo().clear();
 				return;
@@ -278,6 +409,10 @@ public class ActionItemImpl extends ModelElementImpl implements ActionItem {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
+				return getContainingWorkpackage() != null;
+			case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES:
+				return associatedChangePackages != null && !associatedChangePackages.isEmpty();
 			case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
 				return assignedTo != null && !assignedTo.isEmpty();
 			case TaskPackage.ACTION_ITEM__DUE_DATE:

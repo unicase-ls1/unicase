@@ -208,7 +208,7 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 	 */
 	public EList<FunctionalRequirement> getFunctionalRequirements() {
 		if (functionalRequirements == null) {
-			functionalRequirements = new EObjectWithInverseResolvingEList.ManyInverse<FunctionalRequirement>(FunctionalRequirement.class, this, RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS, RequirementPackage.FUNCTIONAL_REQUIREMENT__SCENARIOS);
+			functionalRequirements = new EObjectResolvingEList<FunctionalRequirement>(FunctionalRequirement.class, this, RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS);
 		}
 		return functionalRequirements;
 	}
@@ -220,7 +220,7 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 	 */
 	public EList<NonFunctionalRequirement> getNonFunctionalRequirements() {
 		if (nonFunctionalRequirements == null) {
-			nonFunctionalRequirements = new EObjectResolvingEList<NonFunctionalRequirement>(NonFunctionalRequirement.class, this, RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS);
+			nonFunctionalRequirements = new EObjectWithInverseResolvingEList.ManyInverse<NonFunctionalRequirement>(NonFunctionalRequirement.class, this, RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS, RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_SCENARIOS);
 		}
 		return nonFunctionalRequirements;
 	}
@@ -236,8 +236,8 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 		switch (featureID) {
 			case RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getInstantiatedUseCases()).basicAdd(otherEnd, msgs);
-			case RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getFunctionalRequirements()).basicAdd(otherEnd, msgs);
+			case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getNonFunctionalRequirements()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -254,8 +254,8 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 				return ((InternalEList<?>)getSteps()).basicRemove(otherEnd, msgs);
 			case RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES:
 				return ((InternalEList<?>)getInstantiatedUseCases()).basicRemove(otherEnd, msgs);
-			case RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS:
-				return ((InternalEList<?>)getFunctionalRequirements()).basicRemove(otherEnd, msgs);
+			case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS:
+				return ((InternalEList<?>)getNonFunctionalRequirements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
