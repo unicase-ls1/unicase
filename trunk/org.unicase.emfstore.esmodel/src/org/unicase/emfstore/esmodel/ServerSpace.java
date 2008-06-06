@@ -6,8 +6,11 @@
  */
 package org.unicase.emfstore.esmodel;
 
+import java.io.IOException;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
@@ -95,5 +98,23 @@ public interface ServerSpace extends EObject {
 	 * @generated
 	 */
 	EList<ACUser> getUsers();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @throws IOException 
+	 * @model
+	 * @generated NOT
+	 */
+	void save() throws IOException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param resource 
+	 * @model
+	 * @generated NOT
+	 */
+	void setResource(Resource resource);
 
 } // ServerSpace
