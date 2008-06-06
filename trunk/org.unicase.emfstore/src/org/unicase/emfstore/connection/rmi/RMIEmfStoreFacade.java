@@ -27,7 +27,7 @@ public interface RMIEmfStoreFacade extends Remote {
 			String baseVersionSpec, String changePackage, String logMessage)
 			throws RemoteException, EmfStoreException;
 
-	public String resolveVersionSpec(String sessionId, String versionSpec)
+	public String resolveVersionSpec(String sessionId, String projectId, String versionSpec)
 			throws RemoteException, EmfStoreException;
 
 	public List<String> getChanges(String sessionId, String projectId,

@@ -24,6 +24,7 @@ import org.unicase.emfstore.esmodel.changemanagment.LogMessage;
 import org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.changemanagment.VersionSpec;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.storage.ResourceStorage;
 import org.unicase.model.Project;
 
@@ -73,13 +74,25 @@ public class EmfStoreImpl implements EmfStore {
 		return stub.getProjectList(sessionId);
 	}
 
-	public PrimaryVersionSpec resolveVersionSpec(SessionId sessionId,
+	public PrimaryVersionSpec resolveVersionSpec(SessionId sessionId, ProjectId projectId,
 			VersionSpec versionSpec) throws EmfStoreException {
-		return stub.resolveVersionSpec(sessionId, versionSpec);
+		return stub.resolveVersionSpec(sessionId, projectId, versionSpec);
 	}
 
 	public Properties getServerSpace() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	private final static String NOSAVE = "Couldn't save data in database.";
+	
+	private void save() throws EmfStoreException {
+		try {
+			serverSpace.save();
+		} catch (IOException e) {
+			throw new EmfStoreException(NOSAVE,e);
+		} catch (NullPointerException e) {
+			throw new EmfStoreException(NOSAVE,e);
+		}
 	}
 }

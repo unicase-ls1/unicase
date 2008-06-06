@@ -87,12 +87,14 @@ public interface EmfStore {
 	 *            the session id for authentication
 	 * @param versionSpec
 	 *            the version specifier to resolve
+	 * @param projectId 
+	 * 			  the project id
 	 * @return a primary version specifier identifing the same version
 	 * @throws EmfStoreException
 	 *             if any error in the EmfStore occurs
 	 * @generated NOT
 	 */
-	PrimaryVersionSpec resolveVersionSpec(SessionId sessionId,
+	PrimaryVersionSpec resolveVersionSpec(SessionId sessionId, ProjectId projectId,
 			VersionSpec versionSpec) throws EmfStoreException;
 
 	/**

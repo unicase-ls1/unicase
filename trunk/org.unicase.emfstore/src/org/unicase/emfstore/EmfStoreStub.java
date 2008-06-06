@@ -75,7 +75,7 @@ public class EmfStoreStub implements EmfStore {
 		return ret;
 	}
 
-	public PrimaryVersionSpec resolveVersionSpec(SessionId sessionId,
+	public PrimaryVersionSpec resolveVersionSpec(SessionId sessionId, ProjectId projectId,
 			VersionSpec versionSpec) throws EmfStoreException {
 		PrimaryVersionSpec primaryVersionSpec = ChangemanagmentFactory.eINSTANCE.createPrimaryVersionSpec();
 		primaryVersionSpec.setIdentifier(1);
@@ -189,7 +189,7 @@ public class EmfStoreStub implements EmfStore {
 		PrimaryVersionSpec primaryVersionSpec = changemanagmentFactory.createPrimaryVersionSpec();
 		primaryVersionSpec.setIdentifier(0);
 		version.setPrimarySpec(primaryVersionSpec);
-		//version.setProjectState(createDummyProject());
+		version.setProjectState(createDummyProject());
 		
 		projectHistory.getVersions().add(version);
 		serverSpace.getProjects().add(projectHistory);
