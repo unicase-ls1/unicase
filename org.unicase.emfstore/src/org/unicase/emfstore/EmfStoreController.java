@@ -92,11 +92,17 @@ public class EmfStoreController implements IApplication {
 		URI resourceUri = storage.init(properties);
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource resource = resourceSet.createResource(resourceUri);
-		
+		try {
+			resource.load(null);
+		} catch (IOException e) {
+			throw new FatalEmfStoreException("Couldn't load data from database.",e);
+		}
 		EList<EObject> contents = resource.getContents();
 		for (EObject content: contents) {
 			if (content instanceof ServerSpace) {
-				return (ServerSpace)content;
+				ServerSpace result = (ServerSpace) content;
+				result.setResource(resource);
+				return result;
 			}
 		}
 
@@ -104,13 +110,13 @@ public class EmfStoreController implements IApplication {
 		logger.debug("Creating dummy server space...");
 		ServerSpace serverSpace = EsmodelFactory.eINSTANCE.createServerSpace();
 		
-		EmfStoreStub.createDummyProjectHistories(serverSpace);
+		EmfStoreStub.createDummyProjectHistories(serverSpace);		
 		
+		serverSpace.setResource(resource);
 		resource.getContents().add(serverSpace);
 		try {
-			resource.save(null);
+			serverSpace.save();
 		} catch (IOException e) {
-			// MK Auto-generated catch block
 			e.printStackTrace();
 		}
 		return serverSpace;

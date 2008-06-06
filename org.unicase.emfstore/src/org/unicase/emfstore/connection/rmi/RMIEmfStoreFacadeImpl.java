@@ -140,12 +140,13 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 		}
 	}
 
-	public String resolveVersionSpec(String sessionId, String versionSpec)
+	public String resolveVersionSpec(String sessionId, String projectId, String versionSpec)
 			throws RemoteException, EmfStoreException {
 		logger.debug("Client call on resolveVersionSpec RECEIVED.");
 		try {
 			return RMIUtil.eObjectToString(emfStore.resolveVersionSpec(
 					(SessionId) RMIUtil.stringToEObject(sessionId),
+					(ProjectId) RMIUtil.stringToEObject(projectId),
 					(VersionSpec) RMIUtil.stringToEObject(versionSpec)));
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
