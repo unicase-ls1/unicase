@@ -157,11 +157,12 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 		return null;
 	}
 
-	public PrimaryVersionSpec resolveVersionSpec(SessionId sessionId,
+	public PrimaryVersionSpec resolveVersionSpec(SessionId sessionId, ProjectId projectId,
 			VersionSpec versionSpec) {
 		try {
 			return (PrimaryVersionSpec) RMIUtil.stringToEObject(getFacade(sessionId)
 					.resolveVersionSpec(RMIUtil.eObjectToString(sessionId),
+							RMIUtil.eObjectToString(projectId),
 							RMIUtil.eObjectToString(versionSpec)));
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block

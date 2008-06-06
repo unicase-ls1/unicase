@@ -160,7 +160,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 			primaryVersionSpec = (PrimaryVersionSpec) projectInfo.getVersion();
 		}
 		else {
-			primaryVersionSpec = this.connectionManager.resolveVersionSpec(usersession.getSessionId(), projectInfo.getVersion());
+			primaryVersionSpec = this.connectionManager.resolveVersionSpec(usersession.getSessionId(), projectInfo.getProjectId(), projectInfo.getVersion());
 		}
 		//init project space
 		ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE.createProjectSpace();

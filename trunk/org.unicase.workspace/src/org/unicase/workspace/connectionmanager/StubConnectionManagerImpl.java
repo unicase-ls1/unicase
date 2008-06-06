@@ -57,7 +57,7 @@ public class StubConnectionManagerImpl implements ConnectionManager {
 		projectInfo.setName("TestProject");
 		projectInfo.setDescription("A test Project");
 		projectInfo.setProjectId(projectId);
-		projectInfo.setVersion(resolveVersionSpec(sessionId, headVersionSpec));
+		projectInfo.setVersion(resolveVersionSpec(sessionId, projectId, headVersionSpec));
 		
 		ret.add(projectInfo);
 		return ret;
@@ -68,7 +68,7 @@ public class StubConnectionManagerImpl implements ConnectionManager {
 		return EsmodelFactory.eINSTANCE.createSessionId();
 	}
 
-	public PrimaryVersionSpec resolveVersionSpec(SessionId sessionId, VersionSpec versionSpec) {
+	public PrimaryVersionSpec resolveVersionSpec(SessionId sessionId, ProjectId projectId, VersionSpec versionSpec) {
 		PrimaryVersionSpec primaryVersionSpec = ChangemanagmentFactory.eINSTANCE.createPrimaryVersionSpec();
 		primaryVersionSpec.setIdentifier(1);
 		return primaryVersionSpec;

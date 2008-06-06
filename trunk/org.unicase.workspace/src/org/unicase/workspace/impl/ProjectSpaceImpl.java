@@ -505,7 +505,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 		// autosave?
 		save();
 		ConnectionManager cm = WorkspaceManager.getInstance().getConnectionManager();
-		PrimaryVersionSpec resolvedVersion = cm.resolveVersionSpec(getUsersession().getSessionId(), ChangemanagmentFactory.eINSTANCE.createHeadVersionSpec());
+		PrimaryVersionSpec resolvedVersion = cm.resolveVersionSpec(getUsersession().getSessionId(), getProjectId(),ChangemanagmentFactory.eINSTANCE.createHeadVersionSpec());
 		if(!(getBaseVersion().equals(resolvedVersion))) {
 			throw new BaseVersionOutdatedException("BaseVersion outdated, please update before commit.");
 		}
@@ -533,7 +533,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	public void update(VersionSpec version) throws EmfStoreException {
 	//TODO: update
 		ConnectionManager cm = WorkspaceManager.getInstance().getConnectionManager();
-		PrimaryVersionSpec resolvedVersion = cm.resolveVersionSpec(getUsersession().getSessionId(), version);
+		PrimaryVersionSpec resolvedVersion = cm.resolveVersionSpec(getUsersession().getSessionId(), getProjectId(), version);
 		List<ChangePackage> changes = cm.getChanges(getUsersession().getSessionId(), getProjectId(), getBaseVersion(), resolvedVersion);
 		for(ChangePackage change : changes) {
 			//TODO: check whether this also effects all elements contained in the project
