@@ -6,6 +6,7 @@
  */
 package org.unicase.emfstore.esmodel.impl;
 
+import java.io.IOException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -15,6 +16,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
@@ -81,6 +83,8 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 	 * @ordered
 	 */
 	protected EList<ACUser> users;
+
+	private Resource resource;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -260,6 +264,21 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 				return users != null && !users.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @throws IOException 
+	 */
+	public void save() throws IOException {
+		this.resource.save(null);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void setResource(Resource resource) {
+		this.resource = resource;
 	}
 
 } //ServerSpaceImpl
