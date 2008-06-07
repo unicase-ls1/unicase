@@ -138,4 +138,18 @@ public interface EmfStore {
 	 */
 	List<HistoryInfo> getHistoryInfo(SessionId sessionId, ProjectId projectId,
 			VersionSpec source, VersionSpec target) throws EmfStoreException;
+	
+	/**
+	 * Create a new project on the server.
+	 * @param name
+	 * 				the name of the server
+	 * @param description
+	 * 				the description
+	 * @return a {@link ProjectInfo} for the new project
+	 * @throws EmfStoreException
+	 *             if any error in the EmfStore occurs
+	 * 
+	 * @generated NOT
+	 */
+	ProjectInfo createProject(String name, String description) throws EmfStoreException;
 }
