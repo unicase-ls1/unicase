@@ -21,12 +21,14 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
-import org.unicase.emfstore.accesscontrol.AuthenticationControl;
 import org.unicase.emfstore.accesscontrol.AccessControlImpl;
+import org.unicase.emfstore.accesscontrol.AuthenticationControl;
 import org.unicase.emfstore.connection.ConnectionHandler;
 import org.unicase.emfstore.connection.rmi.RMIConnectionHandler;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ServerSpace;
+import org.unicase.emfstore.exceptions.DataBaseException;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.storage.ResourceStorage;
 
@@ -87,7 +89,7 @@ public class EmfStoreController implements IApplication {
 		return connectionHandlers;
 	}
 
-	private ServerSpace initServerSpace() throws FatalEmfStoreException {
+	private ServerSpace initServerSpace() throws FatalEmfStoreException, DataBaseException {
 		ResourceStorage storage = initStorage(properties);
 		URI resourceUri = storage.init(properties);
 		ResourceSet resourceSet = new ResourceSetImpl();
@@ -95,7 +97,7 @@ public class EmfStoreController implements IApplication {
 		try {
 			resource.load(null);
 		} catch (IOException e) {
-			throw new FatalEmfStoreException("Couldn't load data from database.",e);
+			throw new DataBaseException(DataBaseException.NOLOAD,e);
 		}
 		EList<EObject> contents = resource.getContents();
 		for (EObject content: contents) {
@@ -117,7 +119,7 @@ public class EmfStoreController implements IApplication {
 		try {
 			serverSpace.save();
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new DataBaseException(DataBaseException.NOSAVE,e);
 		}
 		return serverSpace;
 	}
