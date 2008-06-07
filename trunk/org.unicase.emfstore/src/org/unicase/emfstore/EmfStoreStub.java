@@ -195,5 +195,11 @@ public class EmfStoreStub implements EmfStore {
 		serverSpace.getProjects().add(projectHistory);
 	}
 
+	public ProjectInfo createProject(SessionId sessionId, String name, String description, LogMessage logMessage)
+			throws EmfStoreException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

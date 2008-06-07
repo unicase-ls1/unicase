@@ -151,5 +151,5 @@ public interface EmfStore {
 	 * 
 	 * @generated NOT
 	 */
-	ProjectInfo createProject(String name, String description) throws EmfStoreException;
+	ProjectInfo createProject(SessionId sessionid, String name, String description, LogMessage logMessage) throws EmfStoreException;
 }
