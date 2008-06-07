@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
@@ -28,7 +29,6 @@ import org.unicase.emfstore.connection.rmi.RMIConnectionHandler;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.exceptions.DataBaseException;
-import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.storage.ResourceStorage;
 
@@ -95,7 +95,7 @@ public class EmfStoreController implements IApplication {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource resource = resourceSet.createResource(resourceUri);
 		try {
-			resource.load(null);
+			resource.load(Collections.EMPTY_MAP);
 		} catch (IOException e) {
 			throw new DataBaseException(DataBaseException.NOLOAD,e);
 		}

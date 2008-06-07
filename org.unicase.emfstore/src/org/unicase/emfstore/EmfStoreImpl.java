@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
-import org.eclipse.emf.ecore.change.ChangeDescription;
-import org.eclipse.emf.ecore.change.ChangeFactory;
 import org.unicase.emfstore.accesscontrol.AuthorizationControl;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectHistory;
@@ -70,8 +68,7 @@ public class EmfStoreImpl implements EmfStore {
 		version.setChanges(changePackage);
 		version.setLogMessage(logMessage);
 		version.setPrimarySpec(finalVersion);
-		version.setNextVersion(versions.get(0));
-		versions.get(0).setPreviousVersion(version);
+		version.setNextVersion(null);
 		version.setPreviousVersion(versions.get(versions.size() - 1));
 		versions.get(versions.size() - 1).setNextVersion(version);
 
@@ -88,8 +85,10 @@ public class EmfStoreImpl implements EmfStore {
 			ProjectId projectId, VersionSpec source, VersionSpec target)
 			throws EmfStoreException {
 		// TODO: authorization
+
 		List<ChangePackage> result = new ArrayList<ChangePackage>();
-		for (Version version : getVersions(projectId, source, target)) {
+		for (Version version : getVersions(projectId, resolveVersionSpec(
+				projectId, source), resolveVersionSpec(projectId, target))) {
 			result.add(version.getChanges());
 		}
 		return result;
@@ -103,7 +102,8 @@ public class EmfStoreImpl implements EmfStore {
 			throws EmfStoreException {
 		// TODO: authorization
 		List<HistoryInfo> result = new ArrayList<HistoryInfo>();
-		for (Version version : getVersions(projectId, source, target)) {
+		for (Version version : getVersions(projectId, resolveVersionSpec(
+				projectId, source), resolveVersionSpec(projectId, target))) {
 			HistoryInfo history = ChangemanagmentFactory.eINSTANCE
 					.createHistoryInfo();
 			history.setLogMessage(version.getLogMessage());
@@ -119,7 +119,8 @@ public class EmfStoreImpl implements EmfStore {
 	public Project getProject(SessionId sessionId, ProjectId projectId,
 			VersionSpec versionSpec) throws EmfStoreException {
 		// TODO: authorization
-		return getVersion(projectId, versionSpec).getProjectState();
+		return getVersion(projectId, resolveVersionSpec(projectId, versionSpec))
+				.getProjectState();
 	}
 
 	/**
@@ -142,26 +143,7 @@ public class EmfStoreImpl implements EmfStore {
 			ProjectId projectId, VersionSpec versionSpec)
 			throws EmfStoreException {
 		// TODO: authorization
-		ProjectHistory projectHistory = getProject(projectId);
-
-		// PrimaryVersionSpec
-		if (versionSpec instanceof PrimaryVersionSpec
-				&& 0 <= ((PrimaryVersionSpec) versionSpec).getIdentifier()
-				&& ((PrimaryVersionSpec) versionSpec).getIdentifier() <= projectHistory
-						.getVersions().size()) {
-			return ((PrimaryVersionSpec) versionSpec);
-
-			// HeadVersionSpec
-		} else if (versionSpec instanceof HeadVersionSpec) {
-			PrimaryVersionSpec primary = ChangemanagmentFactory.eINSTANCE
-					.createPrimaryVersionSpec();
-			primary.setIdentifier(projectHistory.getVersions().size());
-			return primary;
-
-		} else {
-			// TODO: Tag- and DateVersionSpec
-			throw new InvalidVersionSpecException("");
-		}
+		return resolveVersionSpec(projectId, versionSpec);
 	}
 
 	/**
@@ -178,17 +160,13 @@ public class EmfStoreImpl implements EmfStore {
 
 		Version firstVersion = ChangemanagmentFactory.eINSTANCE.createVersion();
 		firstVersion.setLogMessage(logMessage);
-		firstVersion.setChanges(ChangemanagmentFactory.eINSTANCE
-				.createChangePackage());
-		
+
 		PrimaryVersionSpec primary = ChangemanagmentFactory.eINSTANCE
 				.createPrimaryVersionSpec();
 		primary.setIdentifier(0);
 		firstVersion.setPrimarySpec(primary);
 
 		firstVersion.setProjectState(ModelFactory.eINSTANCE.createProject());
-		firstVersion.setNextVersion(firstVersion);
-		firstVersion.setPreviousVersion(firstVersion);
 
 		projectHistory.getVersions().add(firstVersion);
 		serverSpace.getProjects().add(projectHistory);
@@ -222,6 +200,30 @@ public class EmfStoreImpl implements EmfStore {
 		info.setVersion(project.getVersions().get(0).getPreviousVersion()
 				.getPrimarySpec());
 		return info;
+	}
+
+	private PrimaryVersionSpec resolveVersionSpec(ProjectId projectId,
+			VersionSpec versionSpec) throws EmfStoreException {
+		ProjectHistory projectHistory = getProject(projectId);
+
+		// PrimaryVersionSpec
+		if (versionSpec instanceof PrimaryVersionSpec
+				&& 0 <= ((PrimaryVersionSpec) versionSpec).getIdentifier()
+				&& ((PrimaryVersionSpec) versionSpec).getIdentifier() <= projectHistory
+						.getVersions().size()) {
+			return ((PrimaryVersionSpec) versionSpec);
+
+			// HeadVersionSpec
+		} else if (versionSpec instanceof HeadVersionSpec) {
+			PrimaryVersionSpec primary = ChangemanagmentFactory.eINSTANCE
+					.createPrimaryVersionSpec();
+			primary.setIdentifier(projectHistory.getVersions().size());
+			return primary;
+
+		} else {
+			// TODO: Tag- and DateVersionSpec
+			throw new InvalidVersionSpecException("");
+		}
 	}
 
 	private Version getVersion(ProjectId projectId, VersionSpec versionSpec)

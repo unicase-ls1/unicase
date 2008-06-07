@@ -49,7 +49,7 @@ public class TeneoStorage implements ResourceStorage {
 		
 		dataStore.initialize();
 		
-		logger.debug("Using hibernate mapping: " + dataStore.getMappingXML());
+		//logger.debug("Using hibernate mapping: " + dataStore.getMappingXML());
 		
 		String uriStr = "hibernate://?" + HibernateResource.DS_NAME_PARAM + "="
 				+ hbStoreName;
