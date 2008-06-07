@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
+import org.eclipse.emf.ecore.change.ChangeDescription;
+import org.eclipse.emf.ecore.change.ChangeFactory;
 import org.unicase.emfstore.accesscontrol.AuthorizationControl;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectHistory;
@@ -25,6 +27,7 @@ import org.unicase.emfstore.exceptions.DataBaseException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidProjectIdException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
+import org.unicase.model.ModelFactory;
 import org.unicase.model.Project;
 
 public class EmfStoreImpl implements EmfStore {
@@ -55,7 +58,7 @@ public class EmfStoreImpl implements EmfStore {
 		// modelElements);
 		// TODO: authorization
 		List<Version> versions = getProject(projectId).getVersions();
-		if (versions.size() != baseVersionSpec.getIdentifier()) {
+		if (versions.size() - 1 != baseVersionSpec.getIdentifier()) {
 			throw new InvalidVersionSpecException("");
 		}
 
@@ -69,8 +72,8 @@ public class EmfStoreImpl implements EmfStore {
 		version.setPrimarySpec(finalVersion);
 		version.setNextVersion(versions.get(0));
 		versions.get(0).setPreviousVersion(version);
-		version.setPreviousVersion(versions.get(versions.size()));
-		versions.get(versions.size()).setNextVersion(version);
+		version.setPreviousVersion(versions.get(versions.size() - 1));
+		versions.get(versions.size() - 1).setNextVersion(version);
 
 		versions.add(version);
 		save();
@@ -127,13 +130,7 @@ public class EmfStoreImpl implements EmfStore {
 		// TODO: authorization
 		List<ProjectInfo> result = new ArrayList<ProjectInfo>();
 		for (ProjectHistory project : serverSpace.getProjects()) {
-			ProjectInfo info = EsmodelFactory.eINSTANCE.createProjectInfo();
-			info.setName(project.getProjectName());
-			info.setDescription(project.getProjectDescription());
-			info.setProjectId(project.getProjectId());
-			info.setVersion(project.getVersions().get(0).getPreviousVersion()
-					.getPrimarySpec());
-			result.add(info);
+			result.add(getProjectInfo(project));
 		}
 		return result;
 	}
@@ -167,6 +164,39 @@ public class EmfStoreImpl implements EmfStore {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public ProjectInfo createProject(SessionId sessionId, String name,
+			String description, LogMessage logMessage) throws EmfStoreException {
+		// TODO: authorization
+		ProjectHistory projectHistory = EsmodelFactory.eINSTANCE
+				.createProjectHistory();
+		projectHistory.setProjectName(name);
+		projectHistory.setProjectDescription(description);
+		projectHistory.setProjectId(EsmodelFactory.eINSTANCE.createProjectId());
+
+		Version firstVersion = ChangemanagmentFactory.eINSTANCE.createVersion();
+		firstVersion.setLogMessage(logMessage);
+		firstVersion.setChanges(ChangemanagmentFactory.eINSTANCE
+				.createChangePackage());
+		
+		PrimaryVersionSpec primary = ChangemanagmentFactory.eINSTANCE
+				.createPrimaryVersionSpec();
+		primary.setIdentifier(0);
+		firstVersion.setPrimarySpec(primary);
+
+		firstVersion.setProjectState(ModelFactory.eINSTANCE.createProject());
+		firstVersion.setNextVersion(firstVersion);
+		firstVersion.setPreviousVersion(firstVersion);
+
+		projectHistory.getVersions().add(firstVersion);
+		serverSpace.getProjects().add(projectHistory);
+		save();
+
+		return getProjectInfo(projectHistory);
+	}
+
 	public Properties getServerSpace() {
 		// TODO Auto-generated method stub
 		return null;
@@ -182,6 +212,16 @@ public class EmfStoreImpl implements EmfStore {
 		throw new InvalidProjectIdException("Project with the id:"
 				+ ((projectId == null) ? "null" : projectId)
 				+ " doesn't exist.");
+	}
+
+	private ProjectInfo getProjectInfo(ProjectHistory project) {
+		ProjectInfo info = EsmodelFactory.eINSTANCE.createProjectInfo();
+		info.setName(project.getProjectName());
+		info.setDescription(project.getProjectDescription());
+		info.setProjectId(project.getProjectId());
+		info.setVersion(project.getVersions().get(0).getPreviousVersion()
+				.getPrimarySpec());
+		return info;
 	}
 
 	private Version getVersion(ProjectId projectId, VersionSpec versionSpec)
@@ -224,4 +264,5 @@ public class EmfStoreImpl implements EmfStore {
 			throw new DataBaseException(DataBaseException.NOSAVE, e);
 		}
 	}
+
 }

@@ -27,8 +27,8 @@ public interface RMIEmfStoreFacade extends Remote {
 			String baseVersionSpec, String changePackage, String logMessage)
 			throws RemoteException, EmfStoreException;
 
-	public String resolveVersionSpec(String sessionId, String projectId, String versionSpec)
-			throws RemoteException, EmfStoreException;
+	public String resolveVersionSpec(String sessionId, String projectId,
+			String versionSpec) throws RemoteException, EmfStoreException;
 
 	public List<String> getChanges(String sessionId, String projectId,
 			String source, String target) throws RemoteException,
@@ -38,9 +38,13 @@ public interface RMIEmfStoreFacade extends Remote {
 			String source, String target) throws RemoteException,
 			EmfStoreException;
 
+	public String createProject(String sessionId, String name,
+			String description, String logMessage) throws RemoteException,
+			EmfStoreException;
+
 	public String login(String username, String password, String serverInfo)
 			throws RemoteException, AccessControlException;
-	
+
 	public void sendString(String str) throws RemoteException;
 
 }
