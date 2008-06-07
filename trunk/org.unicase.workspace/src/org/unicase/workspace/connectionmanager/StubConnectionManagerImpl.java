@@ -17,6 +17,7 @@ import org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.changemanagment.VersionSpec;
 import org.unicase.emfstore.esmodel.changemanagment.impl.ChangemanagmentFactoryImpl;
 import org.unicase.emfstore.exceptions.ConnectionException;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.Project;
 import org.unicase.workspace.ServerInfo;
 
@@ -72,6 +73,13 @@ public class StubConnectionManagerImpl implements ConnectionManager {
 		PrimaryVersionSpec primaryVersionSpec = ChangemanagmentFactory.eINSTANCE.createPrimaryVersionSpec();
 		primaryVersionSpec.setIdentifier(1);
 		return primaryVersionSpec;
+	}
+
+	@Override
+	public ProjectInfo createProject(SessionId sessionid, String name,
+			String description, LogMessage logMessage) throws EmfStoreException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
