@@ -33,7 +33,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 
 	private Map<SessionId, RMIEmfStoreFacade> facadeMap;
 
-	public RMIConnectionManagerImpl() throws ConnectionException{
+	public RMIConnectionManagerImpl() throws ConnectionException {
 		facadeMap = new HashMap<SessionId, RMIEmfStoreFacade>();
 	}
 
@@ -43,12 +43,13 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 			throws ConnectionException {
 
 		try {
-			return (PrimaryVersionSpec) RMIUtil.stringToEObject(getFacade(sessionId)
-					.createVersion(RMIUtil.eObjectToString(sessionId), RMIUtil
-							.eObjectToString(projectId), RMIUtil
-							.eObjectToString(baseVersionSpec), RMIUtil
-							.eObjectToString(changePackage), RMIUtil
-							.eObjectToString(logMessage)));
+			return (PrimaryVersionSpec) RMIUtil.stringToEObject(getFacade(
+					sessionId).createVersion(
+					RMIUtil.eObjectToString(sessionId),
+					RMIUtil.eObjectToString(projectId),
+					RMIUtil.eObjectToString(baseVersionSpec),
+					RMIUtil.eObjectToString(changePackage),
+					RMIUtil.eObjectToString(logMessage)));
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -75,7 +76,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 	public List<HistoryInfo> getHistoryInfo(SessionId sessionId,
 			ProjectId projectId, VersionSpec source, VersionSpec target)
 			throws EmfStoreException {
-	RMIEmfStoreFacade facade = getFacade(sessionId);
+		RMIEmfStoreFacade facade = getFacade(sessionId);
 		try {
 			List<HistoryInfo> result = new ArrayList<HistoryInfo>();
 			for (String str : facade.getHistoryInfo(RMIUtil
@@ -102,10 +103,12 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 		return null;
 	}
 
-	private RMIEmfStoreFacade getFacade(SessionId sessionId) throws UnknownSessionException {
+	private RMIEmfStoreFacade getFacade(SessionId sessionId)
+			throws UnknownSessionException {
 		RMIEmfStoreFacade facade = facadeMap.get(sessionId);
-		if (facade==null) {
-			throw new UnknownSessionException("Session unkown to Connection manager, log in first!");
+		if (facade == null) {
+			throw new UnknownSessionException(
+					"Session unkown to Connection manager, log in first!");
 		}
 		return facade;
 	}
@@ -113,10 +116,10 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 	public Project getProject(SessionId sessionId, ProjectId projectId,
 			VersionSpec versionSpec) throws EmfStoreException {
 		try {
-			return (Project) RMIUtil.stringToEObject(getFacade(sessionId).getProject(RMIUtil
-					.eObjectToString(sessionId), RMIUtil
-					.eObjectToString(projectId), RMIUtil
-					.eObjectToString(versionSpec)));
+			return (Project) RMIUtil.stringToEObject(getFacade(sessionId)
+					.getProject(RMIUtil.eObjectToString(sessionId),
+							RMIUtil.eObjectToString(projectId),
+							RMIUtil.eObjectToString(versionSpec)));
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -136,8 +139,8 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 	public List<ProjectInfo> getProjectList(SessionId sessionId) {
 		try {
 			List<ProjectInfo> result = new ArrayList<ProjectInfo>();
-			for (String str : getFacade(sessionId).getProjectList(RMIUtil
-					.eObjectToString(sessionId))) {
+			for (String str : getFacade(sessionId).getProjectList(
+					RMIUtil.eObjectToString(sessionId))) {
 				result.add((ProjectInfo) RMIUtil.stringToEObject(str));
 			}
 			return result;
@@ -157,13 +160,14 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 		return null;
 	}
 
-	public PrimaryVersionSpec resolveVersionSpec(SessionId sessionId, ProjectId projectId,
-			VersionSpec versionSpec) {
+	public PrimaryVersionSpec resolveVersionSpec(SessionId sessionId,
+			ProjectId projectId, VersionSpec versionSpec) {
 		try {
-			return (PrimaryVersionSpec) RMIUtil.stringToEObject(getFacade(sessionId)
-					.resolveVersionSpec(RMIUtil.eObjectToString(sessionId),
-							RMIUtil.eObjectToString(projectId),
-							RMIUtil.eObjectToString(versionSpec)));
+			return (PrimaryVersionSpec) RMIUtil.stringToEObject(getFacade(
+					sessionId).resolveVersionSpec(
+					RMIUtil.eObjectToString(sessionId),
+					RMIUtil.eObjectToString(projectId),
+					RMIUtil.eObjectToString(versionSpec)));
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -180,23 +184,44 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 		return null;
 	}
 
+	public ProjectInfo createProject(SessionId sessionid, String name,
+			String description, LogMessage logMessage) throws EmfStoreException {
+		try {
+			return (ProjectInfo) RMIUtil.stringToEObject(getFacade(sessionid)
+					.createProject(RMIUtil.eObjectToString(sessionid), name,
+							description, RMIUtil.eObjectToString(logMessage)));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	public SessionId logIn(String username, String password,
 			ServerInfo serverInfo) throws ConnectionException {
 
 		Registry registry;
 		try {
-			registry = LocateRegistry.getRegistry(serverInfo.getUrl(),serverInfo.getPort());
-			RMIEmfStoreFacade facade = (RMIEmfStoreFacade) registry.lookup(RMIConnectionHandler.RMI_NAME);
-			SessionId sessionId = (SessionId) RMIUtil.stringToEObject(facade.login(username,
-						password, RMIUtil.eObjectToString(serverInfo)));
+			registry = LocateRegistry.getRegistry(serverInfo.getUrl(),
+					serverInfo.getPort());
+			RMIEmfStoreFacade facade = (RMIEmfStoreFacade) registry
+					.lookup(RMIConnectionHandler.RMI_NAME);
+			SessionId sessionId = (SessionId) RMIUtil.stringToEObject(facade
+					.login(username, password, RMIUtil
+							.eObjectToString(serverInfo)));
 			facadeMap.put(sessionId, facade);
 			return sessionId;
 		} catch (RemoteException e) {
 			throw new ConnectionException("Connection to server refused.", e);
 		} catch (NotBoundException e) {
 			throw new ConnectionException("RMI Registry not available.");
-		}
-		 catch (UnsupportedEncodingException e) {
+		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
