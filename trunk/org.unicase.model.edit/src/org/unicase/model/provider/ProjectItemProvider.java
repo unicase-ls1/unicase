@@ -26,8 +26,10 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
+import org.unicase.model.bug.BugFactory;
 import org.unicase.model.change.ChangeFactory;
 import org.unicase.model.classes.ClassesFactory;
+import org.unicase.model.component.ComponentFactory;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.CompositeSection;
@@ -276,6 +278,41 @@ public class ProjectItemProvider
 			(createChildParameter
 				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 				 ChangeFactory.eINSTANCE.createModelChangePackage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				 ChangeFactory.eINSTANCE.createMergingIssue()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				 ChangeFactory.eINSTANCE.createMergingProposal()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				 BugFactory.eINSTANCE.createBugReport()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				 BugFactory.eINSTANCE.createBugResolution()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				 ComponentFactory.eINSTANCE.createComponent()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				 ComponentFactory.eINSTANCE.createComponentService()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				 ComponentFactory.eINSTANCE.createNode()));
 	}
 
 	/**

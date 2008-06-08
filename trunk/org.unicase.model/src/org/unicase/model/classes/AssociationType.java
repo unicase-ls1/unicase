@@ -18,52 +18,52 @@ import org.eclipse.emf.common.util.Enumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * @see org.unicase.model.classes.ClassesPackage#getAssociationType()
- * @model instanceClass="org.unicase.model.classes.AssociationType"
+ * @model
  * @generated
  */
 public enum AssociationType implements Enumerator {
 	/**
-	 * The '<em><b>Association</b></em>' literal object.
+	 * The '<em><b>ASSOCIATION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #ASSOCIATION_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ASSOCIATION(0, "Association", "ASSOCIATION"),
+	ASSOCIATION(0, "ASSOCIATION", "ASSOCIATION"),
 
 	/**
-	 * The '<em><b>Aggregation</b></em>' literal object.
+	 * The '<em><b>AGGREGATION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #AGGREGATION_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	AGGREGATION(1, "Aggregation", "AGGREGATION"),
+	AGGREGATION(1, "AGGREGATION", "AGGREGATION"),
 
 	/**
-	 * The '<em><b>Composition</b></em>' literal object.
+	 * The '<em><b>COMPOSITION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #COMPOSITION_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	COMPOSITION(2, "Composition", "COMPOSITION"),
+	COMPOSITION(2, "COMPOSITION", "COMPOSITION"),
 
 	/**
-	 * The '<em><b>Depenedency</b></em>' literal object.
+	 * The '<em><b>DEPENDENCY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DEPENEDENCY_VALUE
+	 * @see #DEPENDENCY_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DEPENEDENCY(3, "Depenedency", "DEPENDENCY");
+	DEPENDENCY(3, "DEPENDENCY", "DEPENDENCY");
 
 	/**
-	 * The '<em><b>Association</b></em>' literal value.
+	 * The '<em><b>ASSOCIATION</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>Association</b></em>' literal object isn't clear,
@@ -71,14 +71,14 @@ public enum AssociationType implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #ASSOCIATION
-	 * @model name="Association" literal="ASSOCIATION"
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
 	public static final int ASSOCIATION_VALUE = 0;
 
 	/**
-	 * The '<em><b>Aggregation</b></em>' literal value.
+	 * The '<em><b>AGGREGATION</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>Aggregation</b></em>' literal object isn't clear,
@@ -86,14 +86,14 @@ public enum AssociationType implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #AGGREGATION
-	 * @model name="Aggregation" literal="AGGREGATION"
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
 	public static final int AGGREGATION_VALUE = 1;
 
 	/**
-	 * The '<em><b>Composition</b></em>' literal value.
+	 * The '<em><b>COMPOSITION</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>Composition</b></em>' literal object isn't clear,
@@ -101,26 +101,26 @@ public enum AssociationType implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #COMPOSITION
-	 * @model name="Composition" literal="COMPOSITION"
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
 	public static final int COMPOSITION_VALUE = 2;
 
 	/**
-	 * The '<em><b>Depenedency</b></em>' literal value.
+	 * The '<em><b>DEPENDENCY</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Depenedency</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>DEPENDENCY</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DEPENEDENCY
-	 * @model name="Depenedency" literal="DEPENDENCY"
+	 * @see #DEPENDENCY
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DEPENEDENCY_VALUE = 3;
+	public static final int DEPENDENCY_VALUE = 3;
 
 	/**
 	 * An array of all the '<em><b>Association Type</b></em>' enumerators.
@@ -133,7 +133,7 @@ public enum AssociationType implements Enumerator {
 			ASSOCIATION,
 			AGGREGATION,
 			COMPOSITION,
-			DEPENEDENCY,
+			DEPENDENCY,
 		};
 
 	/**
@@ -187,7 +187,7 @@ public enum AssociationType implements Enumerator {
 			case ASSOCIATION_VALUE: return ASSOCIATION;
 			case AGGREGATION_VALUE: return AGGREGATION;
 			case COMPOSITION_VALUE: return COMPOSITION;
-			case DEPENEDENCY_VALUE: return DEPENEDENCY;
+			case DEPENDENCY_VALUE: return DEPENDENCY;
 		}
 		return null;
 	}

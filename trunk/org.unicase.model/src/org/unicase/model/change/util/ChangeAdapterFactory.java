@@ -16,6 +16,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.ModelElement;
 
 import org.unicase.model.change.*;
+import org.unicase.model.rationale.Issue;
+import org.unicase.model.rationale.Proposal;
 
 /**
  * <!-- begin-user-doc -->
@@ -78,8 +80,24 @@ public class ChangeAdapterFactory extends AdapterFactoryImpl {
 				return createModelChangePackageAdapter();
 			}
 			@Override
+			public Adapter caseMergingIssue(MergingIssue object) {
+				return createMergingIssueAdapter();
+			}
+			@Override
+			public Adapter caseMergingProposal(MergingProposal object) {
+				return createMergingProposalAdapter();
+			}
+			@Override
 			public Adapter caseModelElement(ModelElement object) {
 				return createModelElementAdapter();
+			}
+			@Override
+			public Adapter caseIssue(Issue object) {
+				return createIssueAdapter();
+			}
+			@Override
+			public Adapter caseProposal(Proposal object) {
+				return createProposalAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -116,6 +134,34 @@ public class ChangeAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.change.MergingIssue <em>Merging Issue</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.change.MergingIssue
+	 * @generated
+	 */
+	public Adapter createMergingIssueAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.change.MergingProposal <em>Merging Proposal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.change.MergingProposal
+	 * @generated
+	 */
+	public Adapter createMergingProposalAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.unicase.model.ModelElement <em>Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -126,6 +172,34 @@ public class ChangeAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createModelElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.rationale.Issue <em>Issue</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.rationale.Issue
+	 * @generated
+	 */
+	public Adapter createIssueAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.rationale.Proposal <em>Proposal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.rationale.Proposal
+	 * @generated
+	 */
+	public Adapter createProposalAdapter() {
 		return null;
 	}
 

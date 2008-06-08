@@ -14,6 +14,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.ModelElement;
 
 import org.unicase.model.change.*;
+import org.unicase.model.rationale.Issue;
+import org.unicase.model.rationale.Proposal;
 
 /**
  * <!-- begin-user-doc -->
@@ -96,6 +98,22 @@ public class ChangeSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ChangePackage.MERGING_ISSUE: {
+				MergingIssue mergingIssue = (MergingIssue)theEObject;
+				T result = caseMergingIssue(mergingIssue);
+				if (result == null) result = caseIssue(mergingIssue);
+				if (result == null) result = caseModelElement(mergingIssue);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ChangePackage.MERGING_PROPOSAL: {
+				MergingProposal mergingProposal = (MergingProposal)theEObject;
+				T result = caseMergingProposal(mergingProposal);
+				if (result == null) result = caseProposal(mergingProposal);
+				if (result == null) result = caseModelElement(mergingProposal);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -116,6 +134,36 @@ public class ChangeSwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Merging Issue</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Merging Issue</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMergingIssue(MergingIssue object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Merging Proposal</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Merging Proposal</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMergingProposal(MergingProposal object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -127,6 +175,36 @@ public class ChangeSwitch<T> {
 	 * @generated
 	 */
 	public T caseModelElement(ModelElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Issue</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Issue</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIssue(Issue object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Proposal</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Proposal</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseProposal(Proposal object) {
 		return null;
 	}
 

@@ -120,7 +120,7 @@ public interface Association extends ModelElement {
 	 * @see org.unicase.model.classes.AssociationType
 	 * @see #setType(AssociationType)
 	 * @see org.unicase.model.classes.ClassesPackage#getAssociation_Type()
-	 * @model default="" dataType="org.unicase.model.classes.AssociationType"
+	 * @model default=""
 	 * @generated
 	 */
 	AssociationType getType();

@@ -14,10 +14,14 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.bug.BugPackage;
+import org.unicase.model.bug.impl.BugPackageImpl;
 import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.impl.ChangePackageImpl;
 import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.classes.impl.ClassesPackageImpl;
+import org.unicase.model.component.ComponentPackage;
+import org.unicase.model.component.impl.ComponentPackageImpl;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.impl.DiagramPackageImpl;
 import org.unicase.model.document.CompositeSection;
@@ -125,6 +129,8 @@ public class DocumentPackageImpl extends EPackageImpl implements DocumentPackage
 		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI) : RequirementPackage.eINSTANCE);
 		RationalePackageImpl theRationalePackage = (RationalePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RationalePackage.eNS_URI) instanceof RationalePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RationalePackage.eNS_URI) : RationalePackage.eINSTANCE);
 		ChangePackageImpl theChangePackage = (ChangePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI) : ChangePackage.eINSTANCE);
+		BugPackageImpl theBugPackage = (BugPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BugPackage.eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BugPackage.eNS_URI) : BugPackage.eINSTANCE);
+		ComponentPackageImpl theComponentPackage = (ComponentPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ComponentPackage.eNS_URI) instanceof ComponentPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ComponentPackage.eNS_URI) : ComponentPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theDocumentPackage.createPackageContents();
@@ -136,6 +142,8 @@ public class DocumentPackageImpl extends EPackageImpl implements DocumentPackage
 		theRequirementPackage.createPackageContents();
 		theRationalePackage.createPackageContents();
 		theChangePackage.createPackageContents();
+		theBugPackage.createPackageContents();
+		theComponentPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theDocumentPackage.initializePackageContents();
@@ -147,6 +155,8 @@ public class DocumentPackageImpl extends EPackageImpl implements DocumentPackage
 		theRequirementPackage.initializePackageContents();
 		theRationalePackage.initializePackageContents();
 		theChangePackage.initializePackageContents();
+		theBugPackage.initializePackageContents();
+		theComponentPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theDocumentPackage.freeze();
@@ -179,6 +189,15 @@ public class DocumentPackageImpl extends EPackageImpl implements DocumentPackage
 	 */
 	public EReference getLeafSection_ModelElements() {
 		return (EReference)leafSectionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLeafSection_ReferencedModelElements() {
+		return (EReference)leafSectionEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -248,6 +267,7 @@ public class DocumentPackageImpl extends EPackageImpl implements DocumentPackage
 		leafSectionEClass = createEClass(LEAF_SECTION);
 		createEAttribute(leafSectionEClass, LEAF_SECTION__ELEMENT_CLASS);
 		createEReference(leafSectionEClass, LEAF_SECTION__MODEL_ELEMENTS);
+		createEReference(leafSectionEClass, LEAF_SECTION__REFERENCED_MODEL_ELEMENTS);
 
 		compositeSectionEClass = createEClass(COMPOSITE_SECTION);
 		createEReference(compositeSectionEClass, COMPOSITE_SECTION__SUBSECTIONS);
@@ -300,6 +320,7 @@ public class DocumentPackageImpl extends EPackageImpl implements DocumentPackage
 		g2.setEUpperBound(g3);
 		initEAttribute(getLeafSection_ElementClass(), g1, "elementClass", null, 0, 1, LeafSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLeafSection_ModelElements(), theModelPackage.getModelElement(), null, "modelElements", null, 0, -1, LeafSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLeafSection_ReferencedModelElements(), theModelPackage.getModelElement(), null, "referencedModelElements", null, 0, -1, LeafSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(compositeSectionEClass, CompositeSection.class, "CompositeSection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompositeSection_Subsections(), this.getSection(), this.getSection_Parent(), "subsections", null, 0, -1, CompositeSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

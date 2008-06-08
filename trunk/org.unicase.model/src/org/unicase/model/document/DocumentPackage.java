@@ -216,13 +216,22 @@ public interface DocumentPackage extends EPackage {
 	int LEAF_SECTION__MODEL_ELEMENTS = SECTION_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Referenced Model Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEAF_SECTION__REFERENCED_MODEL_ELEMENTS = SECTION_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Leaf Section</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEAF_SECTION_FEATURE_COUNT = SECTION_FEATURE_COUNT + 2;
+	int LEAF_SECTION_FEATURE_COUNT = SECTION_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.document.impl.CompositeSectionImpl <em>Composite Section</em>}' class.
@@ -340,6 +349,17 @@ public interface DocumentPackage extends EPackage {
 	EReference getLeafSection_ModelElements();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.document.LeafSection#getReferencedModelElements <em>Referenced Model Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Referenced Model Elements</em>'.
+	 * @see org.unicase.model.document.LeafSection#getReferencedModelElements()
+	 * @see #getLeafSection()
+	 * @generated
+	 */
+	EReference getLeafSection_ReferencedModelElements();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.model.document.CompositeSection <em>Composite Section</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -426,6 +446,13 @@ public interface DocumentPackage extends EPackage {
 		 * @generated
 		 */
 		EReference LEAF_SECTION__MODEL_ELEMENTS = eINSTANCE.getLeafSection_ModelElements();
+		/**
+		 * The meta object literal for the '<em><b>Referenced Model Elements</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LEAF_SECTION__REFERENCED_MODEL_ELEMENTS = eINSTANCE.getLeafSection_ReferencedModelElements();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.document.impl.CompositeSectionImpl <em>Composite Section</em>}' class.
 		 * <!-- begin-user-doc -->

@@ -10,7 +10,9 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 
+import org.eclipse.emf.ecore.EReference;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.rationale.RationalePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -144,6 +146,216 @@ public interface ChangePackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.unicase.model.change.impl.MergingIssueImpl <em>Merging Issue</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.change.impl.MergingIssueImpl
+	 * @see org.unicase.model.change.impl.ChangePackageImpl#getMergingIssue()
+	 * @generated
+	 */
+	int MERGING_ISSUE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_ISSUE__NAME = RationalePackage.ISSUE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_ISSUE__DESCRIPTION = RationalePackage.ISSUE__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_ISSUE__IDENTIFIER = RationalePackage.ISSUE__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_ISSUE__READER_INFOS = RationalePackage.ISSUE__READER_INFOS;
+
+	/**
+	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_ISSUE__ACTION_ITEMS = RationalePackage.ISSUE__ACTION_ITEMS;
+
+	/**
+	 * The feature id for the '<em><b>Proposals</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_ISSUE__PROPOSALS = RationalePackage.ISSUE__PROPOSALS;
+
+	/**
+	 * The feature id for the '<em><b>Solution</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_ISSUE__SOLUTION = RationalePackage.ISSUE__SOLUTION;
+
+	/**
+	 * The feature id for the '<em><b>Criteria</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_ISSUE__CRITERIA = RationalePackage.ISSUE__CRITERIA;
+
+	/**
+	 * The feature id for the '<em><b>Refining Issues</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_ISSUE__REFINING_ISSUES = RationalePackage.ISSUE__REFINING_ISSUES;
+
+	/**
+	 * The feature id for the '<em><b>Refined Issue</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_ISSUE__REFINED_ISSUE = RationalePackage.ISSUE__REFINED_ISSUE;
+
+	/**
+	 * The feature id for the '<em><b>Resolving Revision</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_ISSUE__RESOLVING_REVISION = RationalePackage.ISSUE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Merging Issue</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_ISSUE_FEATURE_COUNT = RationalePackage.ISSUE_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.model.change.impl.MergingProposalImpl <em>Merging Proposal</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.change.impl.MergingProposalImpl
+	 * @see org.unicase.model.change.impl.ChangePackageImpl#getMergingProposal()
+	 * @generated
+	 */
+	int MERGING_PROPOSAL = 2;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_PROPOSAL__NAME = RationalePackage.PROPOSAL__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_PROPOSAL__DESCRIPTION = RationalePackage.PROPOSAL__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_PROPOSAL__IDENTIFIER = RationalePackage.PROPOSAL__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_PROPOSAL__READER_INFOS = RationalePackage.PROPOSAL__READER_INFOS;
+
+	/**
+	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_PROPOSAL__ACTION_ITEMS = RationalePackage.PROPOSAL__ACTION_ITEMS;
+
+	/**
+	 * The feature id for the '<em><b>Assessments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_PROPOSAL__ASSESSMENTS = RationalePackage.PROPOSAL__ASSESSMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Conflicting Proposals</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_PROPOSAL__CONFLICTING_PROPOSALS = RationalePackage.PROPOSAL_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Pending Changes</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_PROPOSAL__PENDING_CHANGES = RationalePackage.PROPOSAL_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Merging Proposal</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_PROPOSAL_FEATURE_COUNT = RationalePackage.PROPOSAL_FEATURE_COUNT + 2;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.model.change.ModelChangePackage <em>Model Change Package</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -174,6 +386,59 @@ public interface ChangePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getModelChangePackage_TargetVersion();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.model.change.MergingIssue <em>Merging Issue</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Merging Issue</em>'.
+	 * @see org.unicase.model.change.MergingIssue
+	 * @generated
+	 */
+	EClass getMergingIssue();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.change.MergingIssue#getResolvingRevision <em>Resolving Revision</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Resolving Revision</em>'.
+	 * @see org.unicase.model.change.MergingIssue#getResolvingRevision()
+	 * @see #getMergingIssue()
+	 * @generated
+	 */
+	EAttribute getMergingIssue_ResolvingRevision();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.model.change.MergingProposal <em>Merging Proposal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Merging Proposal</em>'.
+	 * @see org.unicase.model.change.MergingProposal
+	 * @generated
+	 */
+	EClass getMergingProposal();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.change.MergingProposal#getConflictingProposals <em>Conflicting Proposals</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Conflicting Proposals</em>'.
+	 * @see org.unicase.model.change.MergingProposal#getConflictingProposals()
+	 * @see #getMergingProposal()
+	 * @generated
+	 */
+	EReference getMergingProposal_ConflictingProposals();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.model.change.MergingProposal#getPendingChanges <em>Pending Changes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Pending Changes</em>'.
+	 * @see org.unicase.model.change.MergingProposal#getPendingChanges()
+	 * @see #getMergingProposal()
+	 * @generated
+	 */
+	EReference getMergingProposal_PendingChanges();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -222,6 +487,50 @@ public interface ChangePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MODEL_CHANGE_PACKAGE__TARGET_VERSION = eINSTANCE.getModelChangePackage_TargetVersion();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.change.impl.MergingIssueImpl <em>Merging Issue</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.change.impl.MergingIssueImpl
+		 * @see org.unicase.model.change.impl.ChangePackageImpl#getMergingIssue()
+		 * @generated
+		 */
+		EClass MERGING_ISSUE = eINSTANCE.getMergingIssue();
+
+		/**
+		 * The meta object literal for the '<em><b>Resolving Revision</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MERGING_ISSUE__RESOLVING_REVISION = eINSTANCE.getMergingIssue_ResolvingRevision();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.change.impl.MergingProposalImpl <em>Merging Proposal</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.change.impl.MergingProposalImpl
+		 * @see org.unicase.model.change.impl.ChangePackageImpl#getMergingProposal()
+		 * @generated
+		 */
+		EClass MERGING_PROPOSAL = eINSTANCE.getMergingProposal();
+
+		/**
+		 * The meta object literal for the '<em><b>Conflicting Proposals</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MERGING_PROPOSAL__CONFLICTING_PROPOSALS = eINSTANCE.getMergingProposal_ConflictingProposals();
+
+		/**
+		 * The meta object literal for the '<em><b>Pending Changes</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MERGING_PROPOSAL__PENDING_CHANGES = eINSTANCE.getMergingProposal_PendingChanges();
 
 	}
 

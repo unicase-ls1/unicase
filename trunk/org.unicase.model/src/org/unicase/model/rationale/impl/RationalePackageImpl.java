@@ -15,12 +15,16 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.unicase.model.ModelPackage;
 
+import org.unicase.model.bug.BugPackage;
+import org.unicase.model.bug.impl.BugPackageImpl;
 import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.impl.ChangePackageImpl;
 import org.unicase.model.classes.ClassesPackage;
 
 import org.unicase.model.classes.impl.ClassesPackageImpl;
 
+import org.unicase.model.component.ComponentPackage;
+import org.unicase.model.component.impl.ComponentPackageImpl;
 import org.unicase.model.diagram.DiagramPackage;
 
 import org.unicase.model.diagram.impl.DiagramPackageImpl;
@@ -158,6 +162,8 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 		DocumentPackageImpl theDocumentPackage = (DocumentPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI) : DocumentPackage.eINSTANCE);
 		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI) : RequirementPackage.eINSTANCE);
 		ChangePackageImpl theChangePackage = (ChangePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI) : ChangePackage.eINSTANCE);
+		BugPackageImpl theBugPackage = (BugPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BugPackage.eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BugPackage.eNS_URI) : BugPackage.eINSTANCE);
+		ComponentPackageImpl theComponentPackage = (ComponentPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ComponentPackage.eNS_URI) instanceof ComponentPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ComponentPackage.eNS_URI) : ComponentPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theRationalePackage.createPackageContents();
@@ -169,6 +175,8 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 		theDocumentPackage.createPackageContents();
 		theRequirementPackage.createPackageContents();
 		theChangePackage.createPackageContents();
+		theBugPackage.createPackageContents();
+		theComponentPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theRationalePackage.initializePackageContents();
@@ -180,6 +188,8 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 		theDocumentPackage.initializePackageContents();
 		theRequirementPackage.initializePackageContents();
 		theChangePackage.initializePackageContents();
+		theBugPackage.initializePackageContents();
+		theComponentPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theRationalePackage.freeze();
@@ -221,6 +231,24 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 	 */
 	public EReference getIssue_Criteria() {
 		return (EReference)issueEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getIssue_RefiningIssues() {
+		return (EReference)issueEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getIssue_RefinedIssue() {
+		return (EReference)issueEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -336,6 +364,8 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 		createEReference(issueEClass, ISSUE__PROPOSALS);
 		createEReference(issueEClass, ISSUE__SOLUTION);
 		createEReference(issueEClass, ISSUE__CRITERIA);
+		createEReference(issueEClass, ISSUE__REFINING_ISSUES);
+		createEReference(issueEClass, ISSUE__REFINED_ISSUE);
 
 		proposalEClass = createEClass(PROPOSAL);
 		createEReference(proposalEClass, PROPOSAL__ASSESSMENTS);
@@ -393,6 +423,8 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 		initEReference(getIssue_Proposals(), this.getProposal(), null, "proposals", null, 0, -1, Issue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIssue_Solution(), this.getSolution(), null, "solution", null, 0, 1, Issue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIssue_Criteria(), this.getCriterion(), null, "criteria", null, 0, -1, Issue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIssue_RefiningIssues(), this.getIssue(), this.getIssue_RefinedIssue(), "refiningIssues", null, 0, -1, Issue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIssue_RefinedIssue(), this.getIssue(), this.getIssue_RefiningIssues(), "refinedIssue", null, 0, 1, Issue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(proposalEClass, Proposal.class, "Proposal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getProposal_Assessments(), this.getAssessment(), null, "assessments", null, 0, -1, Proposal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

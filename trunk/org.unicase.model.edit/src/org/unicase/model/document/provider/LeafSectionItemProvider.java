@@ -27,11 +27,13 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.unicase.model.bug.BugFactory;
 import org.unicase.model.change.ChangeFactory;
 import org.unicase.model.ModelFactory;
 
 import org.unicase.model.classes.ClassesFactory;
 
+import org.unicase.model.component.ComponentFactory;
 import org.unicase.model.diagram.DiagramFactory;
 
 import org.unicase.model.document.DocumentFactory;
@@ -83,6 +85,7 @@ public class LeafSectionItemProvider
 			super.getPropertyDescriptors(object);
 
 			addElementClassPropertyDescriptor(object);
+			addReferencedModelElementsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -105,6 +108,28 @@ public class LeafSectionItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Referenced Model Elements feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addReferencedModelElementsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LeafSection_referencedModelElements_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LeafSection_referencedModelElements_feature", "_UI_LeafSection_type"),
+				 DocumentPackage.Literals.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
@@ -316,6 +341,41 @@ public class LeafSectionItemProvider
 			(createChildParameter
 				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				 ChangeFactory.eINSTANCE.createModelChangePackage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 ChangeFactory.eINSTANCE.createMergingIssue()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 ChangeFactory.eINSTANCE.createMergingProposal()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 BugFactory.eINSTANCE.createBugReport()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 BugFactory.eINSTANCE.createBugResolution()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 ComponentFactory.eINSTANCE.createComponent()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 ComponentFactory.eINSTANCE.createComponentService()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 ComponentFactory.eINSTANCE.createNode()));
 	}
 
 	/**

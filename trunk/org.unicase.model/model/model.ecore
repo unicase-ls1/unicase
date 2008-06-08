@@ -106,11 +106,11 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//classes/AssociationType"
           defaultValueLiteral=""/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EEnum" name="AssociationType" instanceTypeName="AssociationTypeInstance">
-      <eLiterals name="Association" literal="ASSOCIATION"/>
-      <eLiterals name="Aggregation" value="1" literal="AGGREGATION"/>
-      <eLiterals name="Composition" value="2" literal="COMPOSITION"/>
-      <eLiterals name="Depenedency" value="3" literal="DEPENDENCY"/>
+    <eClassifiers xsi:type="ecore:EEnum" name="AssociationType">
+      <eLiterals name="ASSOCIATION" literal="ASSOCIATION"/>
+      <eLiterals name="AGGREGATION" value="1" literal="AGGREGATION"/>
+      <eLiterals name="COMPOSITION" value="2" literal="COMPOSITION"/>
+      <eLiterals name="DEPENDENCY" value="3" literal="DEPENDENCY"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="document" nsURI="http://unicase.org/model/document" nsPrefix="org.unicase.model.document">
@@ -124,6 +124,8 @@
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="modelElements" upperBound="-1"
           eType="#//ModelElement" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="referencedModelElements"
+          upperBound="-1" eType="#//ModelElement"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CompositeSection" eSuperTypes="#//document/Section">
       <eStructuralFeatures xsi:type="ecore:EReference" name="subsections" upperBound="-1"
@@ -205,6 +207,10 @@
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="criteria" upperBound="-1"
           eType="#//rationale/Criterion"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="refiningIssues" upperBound="-1"
+          eType="#//rationale/Issue" containment="true" eOpposite="#//rationale/Issue/refinedIssue"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="refinedIssue" eType="#//rationale/Issue"
+          eOpposite="#//rationale/Issue/refiningIssues"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Proposal" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="assessments" upperBound="-1"
@@ -227,6 +233,68 @@
     <eClassifiers xsi:type="ecore:EClass" name="ModelChangePackage" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceVersion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetVersion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="MergingIssue" eSuperTypes="#//rationale/Issue">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="resolvingRevision" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="MergingProposal" eSuperTypes="#//rationale/Proposal">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="conflictingProposals"
+          upperBound="-1" eType="#//change/MergingProposal"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="pendingChanges" eType="#//change/ModelChangePackage"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="bug" nsURI="http://unicase.org/model/bug" nsPrefix="org.unicase.model.bug">
+    <eClassifiers xsi:type="ecore:EClass" name="BugReport" eSuperTypes="#//ModelElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="stepsToReproduce" upperBound="-1"
+          eType="#//requirement/Step"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="Status" eType="#//bug/BugStatus"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="assignedTo" eType="#//organization/OrgUnit"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="resolution" eType="#//bug/BugResolution"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="involvedClasses" upperBound="-1"
+          eType="#//classes/Class"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="severity" eType="#//bug/Severity"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="BugStatus">
+      <eLiterals name="NEW" literal="NEW"/>
+      <eLiterals name="CONFIRMED" value="1" literal="CONFIRMED"/>
+      <eLiterals name="ASSIGNED" value="2" literal="ASSIGNED"/>
+      <eLiterals name="RESOLVED" value="3" literal="RESOLVED"/>
+      <eLiterals name="CLOSED" value="4" literal="CLOSED"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="Severity">
+      <eLiterals name="FEATURE" literal="FEATURE"/>
+      <eLiterals name="TRIVIAL" value="1" literal="TRIVIAL"/>
+      <eLiterals name="MINOR" value="2" literal="MINOR"/>
+      <eLiterals name="MAJOR" value="3" literal="MAJOR"/>
+      <eLiterals name="BLOCKER" value="4" literal="BLOCKER"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="BugResolution" eSuperTypes="#//ModelElement">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="resoultionType" eType="#//bug/ResolutionType"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="ResolutionType">
+      <eLiterals name="FIXED" literal="FIXED"/>
+      <eLiterals name="CANNOT_REPRODUCE" value="1" literal="CANNOT_REPRODUCE"/>
+      <eLiterals name="WONT_FIX" value="2" literal="WONT_FIX"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="component" nsURI="http://unicase.org/model/component" nsPrefix="org.unicase.model.component">
+    <eClassifiers xsi:type="ecore:EClass" name="Component" eSuperTypes="#//ModelElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="packages" upperBound="-1"
+          eType="#//classes/Package"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="offeredServices" upperBound="-1"
+          eType="#//component/ComponentService" containment="true" eOpposite="#//component/ComponentService/offeringComponent"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="consumedServices" upperBound="-1"
+          eType="#//component/ComponentService" eOpposite="#//component/ComponentService/consumingComponents"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ComponentService" eSuperTypes="#//ModelElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="offeringComponent" eType="#//component/Component"
+          eOpposite="#//component/Component/offeredServices"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="consumingComponents"
+          upperBound="-1" eType="#//component/Component" eOpposite="#//component/Component/consumedServices"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Node" eSuperTypes="#//ModelElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="components" upperBound="-1"
+          eType="#//component/Component"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

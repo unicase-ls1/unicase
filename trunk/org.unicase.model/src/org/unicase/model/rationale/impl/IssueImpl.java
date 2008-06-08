@@ -19,7 +19,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.unicase.model.impl.ModelElementImpl;
@@ -40,6 +42,8 @@ import org.unicase.model.rationale.Solution;
  *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getProposals <em>Proposals</em>}</li>
  *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getSolution <em>Solution</em>}</li>
  *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getCriteria <em>Criteria</em>}</li>
+ *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getRefiningIssues <em>Refining Issues</em>}</li>
+ *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getRefinedIssue <em>Refined Issue</em>}</li>
  * </ul>
  * </p>
  *
@@ -75,6 +79,16 @@ public class IssueImpl extends ModelElementImpl implements Issue {
 	 * @ordered
 	 */
 	protected EList<Criterion> criteria;
+
+	/**
+	 * The cached value of the '{@link #getRefiningIssues() <em>Refining Issues</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRefiningIssues()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Issue> refiningIssues;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -167,6 +181,78 @@ public class IssueImpl extends ModelElementImpl implements Issue {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Issue> getRefiningIssues() {
+		if (refiningIssues == null) {
+			refiningIssues = new EObjectContainmentWithInverseEList<Issue>(Issue.class, this, RationalePackage.ISSUE__REFINING_ISSUES, RationalePackage.ISSUE__REFINED_ISSUE);
+		}
+		return refiningIssues;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Issue getRefinedIssue() {
+		if (eContainerFeatureID != RationalePackage.ISSUE__REFINED_ISSUE) return null;
+		return (Issue)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetRefinedIssue(Issue newRefinedIssue, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newRefinedIssue, RationalePackage.ISSUE__REFINED_ISSUE, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRefinedIssue(Issue newRefinedIssue) {
+		if (newRefinedIssue != eInternalContainer() || (eContainerFeatureID != RationalePackage.ISSUE__REFINED_ISSUE && newRefinedIssue != null)) {
+			if (EcoreUtil.isAncestor(this, newRefinedIssue))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newRefinedIssue != null)
+				msgs = ((InternalEObject)newRefinedIssue).eInverseAdd(this, RationalePackage.ISSUE__REFINING_ISSUES, Issue.class, msgs);
+			msgs = basicSetRefinedIssue(newRefinedIssue, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RationalePackage.ISSUE__REFINED_ISSUE, newRefinedIssue, newRefinedIssue));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case RationalePackage.ISSUE__REFINING_ISSUES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getRefiningIssues()).basicAdd(otherEnd, msgs);
+			case RationalePackage.ISSUE__REFINED_ISSUE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetRefinedIssue((Issue)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -174,8 +260,26 @@ public class IssueImpl extends ModelElementImpl implements Issue {
 				return ((InternalEList<?>)getProposals()).basicRemove(otherEnd, msgs);
 			case RationalePackage.ISSUE__SOLUTION:
 				return basicSetSolution(null, msgs);
+			case RationalePackage.ISSUE__REFINING_ISSUES:
+				return ((InternalEList<?>)getRefiningIssues()).basicRemove(otherEnd, msgs);
+			case RationalePackage.ISSUE__REFINED_ISSUE:
+				return basicSetRefinedIssue(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID) {
+			case RationalePackage.ISSUE__REFINED_ISSUE:
+				return eInternalContainer().eInverseRemove(this, RationalePackage.ISSUE__REFINING_ISSUES, Issue.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -192,6 +296,10 @@ public class IssueImpl extends ModelElementImpl implements Issue {
 				return getSolution();
 			case RationalePackage.ISSUE__CRITERIA:
 				return getCriteria();
+			case RationalePackage.ISSUE__REFINING_ISSUES:
+				return getRefiningIssues();
+			case RationalePackage.ISSUE__REFINED_ISSUE:
+				return getRefinedIssue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -216,6 +324,13 @@ public class IssueImpl extends ModelElementImpl implements Issue {
 				getCriteria().clear();
 				getCriteria().addAll((Collection<? extends Criterion>)newValue);
 				return;
+			case RationalePackage.ISSUE__REFINING_ISSUES:
+				getRefiningIssues().clear();
+				getRefiningIssues().addAll((Collection<? extends Issue>)newValue);
+				return;
+			case RationalePackage.ISSUE__REFINED_ISSUE:
+				setRefinedIssue((Issue)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -237,6 +352,12 @@ public class IssueImpl extends ModelElementImpl implements Issue {
 			case RationalePackage.ISSUE__CRITERIA:
 				getCriteria().clear();
 				return;
+			case RationalePackage.ISSUE__REFINING_ISSUES:
+				getRefiningIssues().clear();
+				return;
+			case RationalePackage.ISSUE__REFINED_ISSUE:
+				setRefinedIssue((Issue)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -255,6 +376,10 @@ public class IssueImpl extends ModelElementImpl implements Issue {
 				return solution != null;
 			case RationalePackage.ISSUE__CRITERIA:
 				return criteria != null && !criteria.isEmpty();
+			case RationalePackage.ISSUE__REFINING_ISSUES:
+				return refiningIssues != null && !refiningIssues.isEmpty();
+			case RationalePackage.ISSUE__REFINED_ISSUE:
+				return getRefinedIssue() != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -35,6 +35,24 @@ public interface ChangeFactory extends EFactory {
 	ModelChangePackage createModelChangePackage();
 
 	/**
+	 * Returns a new object of class '<em>Merging Issue</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Merging Issue</em>'.
+	 * @generated
+	 */
+	MergingIssue createMergingIssue();
+
+	/**
+	 * Returns a new object of class '<em>Merging Proposal</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Merging Proposal</em>'.
+	 * @generated
+	 */
+	MergingProposal createMergingProposal();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -12,10 +12,14 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.bug.BugPackage;
+import org.unicase.model.bug.impl.BugPackageImpl;
 import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.impl.ChangePackageImpl;
 import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.classes.impl.ClassesPackageImpl;
+import org.unicase.model.component.ComponentPackage;
+import org.unicase.model.component.impl.ComponentPackageImpl;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.impl.DiagramPackageImpl;
 import org.unicase.model.document.DocumentPackage;
@@ -158,6 +162,8 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		DocumentPackageImpl theDocumentPackage = (DocumentPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI) : DocumentPackage.eINSTANCE);
 		RationalePackageImpl theRationalePackage = (RationalePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RationalePackage.eNS_URI) instanceof RationalePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RationalePackage.eNS_URI) : RationalePackage.eINSTANCE);
 		ChangePackageImpl theChangePackage = (ChangePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI) : ChangePackage.eINSTANCE);
+		BugPackageImpl theBugPackage = (BugPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BugPackage.eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BugPackage.eNS_URI) : BugPackage.eINSTANCE);
+		ComponentPackageImpl theComponentPackage = (ComponentPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ComponentPackage.eNS_URI) instanceof ComponentPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ComponentPackage.eNS_URI) : ComponentPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theRequirementPackage.createPackageContents();
@@ -169,6 +175,8 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		theDocumentPackage.createPackageContents();
 		theRationalePackage.createPackageContents();
 		theChangePackage.createPackageContents();
+		theBugPackage.createPackageContents();
+		theComponentPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theRequirementPackage.initializePackageContents();
@@ -180,6 +188,8 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		theDocumentPackage.initializePackageContents();
 		theRationalePackage.initializePackageContents();
 		theChangePackage.initializePackageContents();
+		theBugPackage.initializePackageContents();
+		theComponentPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theRequirementPackage.freeze();
