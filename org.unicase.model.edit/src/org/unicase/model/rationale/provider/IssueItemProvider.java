@@ -26,6 +26,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.unicase.model.change.ChangeFactory;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.ModelElementItemProvider;
 
@@ -109,6 +110,7 @@ public class IssueItemProvider
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(RationalePackage.Literals.ISSUE__PROPOSALS);
 			childrenFeatures.add(RationalePackage.Literals.ISSUE__SOLUTION);
+			childrenFeatures.add(RationalePackage.Literals.ISSUE__REFINING_ISSUES);
 		}
 		return childrenFeatures;
 	}
@@ -165,6 +167,7 @@ public class IssueItemProvider
 		switch (notification.getFeatureID(Issue.class)) {
 			case RationalePackage.ISSUE__PROPOSALS:
 			case RationalePackage.ISSUE__SOLUTION:
+			case RationalePackage.ISSUE__REFINING_ISSUES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -189,8 +192,23 @@ public class IssueItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(RationalePackage.Literals.ISSUE__PROPOSALS,
+				 ChangeFactory.eINSTANCE.createMergingProposal()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(RationalePackage.Literals.ISSUE__SOLUTION,
 				 RationaleFactory.eINSTANCE.createSolution()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RationalePackage.Literals.ISSUE__REFINING_ISSUES,
+				 RationaleFactory.eINSTANCE.createIssue()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RationalePackage.Literals.ISSUE__REFINING_ISSUES,
+				 ChangeFactory.eINSTANCE.createMergingIssue()));
 	}
 
 	/**

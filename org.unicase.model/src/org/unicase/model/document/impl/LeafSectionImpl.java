@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -37,6 +38,7 @@ import org.unicase.model.impl.ModelElementImpl;
  *   <li>{@link org.unicase.model.document.impl.LeafSectionImpl#getParent <em>Parent</em>}</li>
  *   <li>{@link org.unicase.model.document.impl.LeafSectionImpl#getElementClass <em>Element Class</em>}</li>
  *   <li>{@link org.unicase.model.document.impl.LeafSectionImpl#getModelElements <em>Model Elements</em>}</li>
+ *   <li>{@link org.unicase.model.document.impl.LeafSectionImpl#getReferencedModelElements <em>Referenced Model Elements</em>}</li>
  * </ul>
  * </p>
  *
@@ -61,6 +63,15 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	 * @ordered
 	 */
 	protected EList<ModelElement> modelElements;
+	/**
+	 * The cached value of the '{@link #getReferencedModelElements() <em>Referenced Model Elements</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReferencedModelElements()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ModelElement> referencedModelElements;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -159,6 +170,18 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<ModelElement> getReferencedModelElements() {
+		if (referencedModelElements == null) {
+			referencedModelElements = new EObjectResolvingEList<ModelElement>(ModelElement.class, this, DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS);
+		}
+		return referencedModelElements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -214,6 +237,8 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 				return getElementClass();
 			case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
 				return getModelElements();
+			case DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS:
+				return getReferencedModelElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -237,6 +262,10 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 				getModelElements().clear();
 				getModelElements().addAll((Collection<? extends ModelElement>)newValue);
 				return;
+			case DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS:
+				getReferencedModelElements().clear();
+				getReferencedModelElements().addAll((Collection<? extends ModelElement>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -258,6 +287,9 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 			case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
 				getModelElements().clear();
 				return;
+			case DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS:
+				getReferencedModelElements().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -276,6 +308,8 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 				return elementClass != null;
 			case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
 				return modelElements != null && !modelElements.isEmpty();
+			case DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS:
+				return referencedModelElements != null && !referencedModelElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

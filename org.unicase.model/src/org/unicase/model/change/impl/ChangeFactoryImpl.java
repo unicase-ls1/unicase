@@ -61,6 +61,8 @@ public class ChangeFactoryImpl extends EFactoryImpl implements ChangeFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case ChangePackage.MODEL_CHANGE_PACKAGE: return createModelChangePackage();
+			case ChangePackage.MERGING_ISSUE: return createMergingIssue();
+			case ChangePackage.MERGING_PROPOSAL: return createMergingProposal();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -74,6 +76,26 @@ public class ChangeFactoryImpl extends EFactoryImpl implements ChangeFactory {
 	public ModelChangePackage createModelChangePackage() {
 		ModelChangePackageImpl modelChangePackage = new ModelChangePackageImpl();
 		return modelChangePackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MergingIssue createMergingIssue() {
+		MergingIssueImpl mergingIssue = new MergingIssueImpl();
+		return mergingIssue;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MergingProposal createMergingProposal() {
+		MergingProposalImpl mergingProposal = new MergingProposalImpl();
+		return mergingProposal;
 	}
 
 	/**

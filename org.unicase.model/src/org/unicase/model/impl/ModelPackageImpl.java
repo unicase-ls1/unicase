@@ -21,10 +21,14 @@ import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.ReaderInfo;
 import org.unicase.model.UniqueIdentifier;
+import org.unicase.model.bug.BugPackage;
+import org.unicase.model.bug.impl.BugPackageImpl;
 import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.impl.ChangePackageImpl;
 import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.classes.impl.ClassesPackageImpl;
+import org.unicase.model.component.ComponentPackage;
+import org.unicase.model.component.impl.ComponentPackageImpl;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.impl.DiagramPackageImpl;
 import org.unicase.model.document.CompositeSection;
@@ -149,6 +153,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI) : RequirementPackage.eINSTANCE);
 		RationalePackageImpl theRationalePackage = (RationalePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RationalePackage.eNS_URI) instanceof RationalePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RationalePackage.eNS_URI) : RationalePackage.eINSTANCE);
 		ChangePackageImpl theChangePackage = (ChangePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI) : ChangePackage.eINSTANCE);
+		BugPackageImpl theBugPackage = (BugPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BugPackage.eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BugPackage.eNS_URI) : BugPackage.eINSTANCE);
+		ComponentPackageImpl theComponentPackage = (ComponentPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ComponentPackage.eNS_URI) instanceof ComponentPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ComponentPackage.eNS_URI) : ComponentPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theModelPackage.createPackageContents();
@@ -160,6 +166,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		theRequirementPackage.createPackageContents();
 		theRationalePackage.createPackageContents();
 		theChangePackage.createPackageContents();
+		theBugPackage.createPackageContents();
+		theComponentPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theModelPackage.initializePackageContents();
@@ -171,6 +179,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		theRequirementPackage.initializePackageContents();
 		theRationalePackage.initializePackageContents();
 		theChangePackage.initializePackageContents();
+		theBugPackage.initializePackageContents();
+		theComponentPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theModelPackage.freeze();
@@ -384,6 +394,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		RequirementPackage theRequirementPackage = (RequirementPackage)EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI);
 		RationalePackage theRationalePackage = (RationalePackage)EPackage.Registry.INSTANCE.getEPackage(RationalePackage.eNS_URI);
 		ChangePackage theChangePackage = (ChangePackage)EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI);
+		BugPackage theBugPackage = (BugPackage)EPackage.Registry.INSTANCE.getEPackage(BugPackage.eNS_URI);
+		ComponentPackage theComponentPackage = (ComponentPackage)EPackage.Registry.INSTANCE.getEPackage(ComponentPackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theOrganizationPackage);
@@ -394,6 +406,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		getESubpackages().add(theRequirementPackage);
 		getESubpackages().add(theRationalePackage);
 		getESubpackages().add(theChangePackage);
+		getESubpackages().add(theBugPackage);
+		getESubpackages().add(theComponentPackage);
 
 		// Create type parameters
 

@@ -8,12 +8,18 @@ Bundle-Vendor: unicase.org
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.unicase.model,
+ org.unicase.model.bug,
+ org.unicase.model.bug.impl,
+ org.unicase.model.bug.util,
  org.unicase.model.change,
  org.unicase.model.change.impl,
  org.unicase.model.change.util,
  org.unicase.model.classes,
  org.unicase.model.classes.impl,
  org.unicase.model.classes.util,
+ org.unicase.model.component,
+ org.unicase.model.component.impl,
+ org.unicase.model.component.util,
  org.unicase.model.diagram,
  org.unicase.model.diagram.impl,
  org.unicase.model.diagram.util,

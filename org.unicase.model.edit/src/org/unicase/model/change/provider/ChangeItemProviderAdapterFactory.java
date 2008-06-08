@@ -99,6 +99,52 @@ public class ChangeItemProviderAdapterFactory extends ChangeAdapterFactory imple
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.change.MergingIssue} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MergingIssueItemProvider mergingIssueItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.change.MergingIssue}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMergingIssueAdapter() {
+		if (mergingIssueItemProvider == null) {
+			mergingIssueItemProvider = new MergingIssueItemProvider(this);
+		}
+
+		return mergingIssueItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.change.MergingProposal} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MergingProposalItemProvider mergingProposalItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.change.MergingProposal}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMergingProposalAdapter() {
+		if (mergingProposalItemProvider == null) {
+			mergingProposalItemProvider = new MergingProposalItemProvider(this);
+		}
+
+		return mergingProposalItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -198,6 +244,8 @@ public class ChangeItemProviderAdapterFactory extends ChangeAdapterFactory imple
 	 */
 	public void dispose() {
 		if (modelChangePackageItemProvider != null) modelChangePackageItemProvider.dispose();
+		if (mergingIssueItemProvider != null) mergingIssueItemProvider.dispose();
+		if (mergingProposalItemProvider != null) mergingProposalItemProvider.dispose();
 	}
 
 }

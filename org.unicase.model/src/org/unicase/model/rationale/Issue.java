@@ -21,6 +21,8 @@ import org.unicase.model.ModelElement;
  *   <li>{@link org.unicase.model.rationale.Issue#getProposals <em>Proposals</em>}</li>
  *   <li>{@link org.unicase.model.rationale.Issue#getSolution <em>Solution</em>}</li>
  *   <li>{@link org.unicase.model.rationale.Issue#getCriteria <em>Criteria</em>}</li>
+ *   <li>{@link org.unicase.model.rationale.Issue#getRefiningIssues <em>Refining Issues</em>}</li>
+ *   <li>{@link org.unicase.model.rationale.Issue#getRefinedIssue <em>Refined Issue</em>}</li>
  * </ul>
  * </p>
  *
@@ -86,5 +88,51 @@ public interface Issue extends ModelElement {
 	 * @generated
 	 */
 	EList<Criterion> getCriteria();
+
+	/**
+	 * Returns the value of the '<em><b>Refining Issues</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.model.rationale.Issue}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.rationale.Issue#getRefinedIssue <em>Refined Issue</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Refining Issues</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Refining Issues</em>' containment reference list.
+	 * @see org.unicase.model.rationale.RationalePackage#getIssue_RefiningIssues()
+	 * @see org.unicase.model.rationale.Issue#getRefinedIssue
+	 * @model opposite="refinedIssue" containment="true"
+	 * @generated
+	 */
+	EList<Issue> getRefiningIssues();
+
+	/**
+	 * Returns the value of the '<em><b>Refined Issue</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.rationale.Issue#getRefiningIssues <em>Refining Issues</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Refined Issue</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Refined Issue</em>' container reference.
+	 * @see #setRefinedIssue(Issue)
+	 * @see org.unicase.model.rationale.RationalePackage#getIssue_RefinedIssue()
+	 * @see org.unicase.model.rationale.Issue#getRefiningIssues
+	 * @model opposite="refiningIssues" transient="false"
+	 * @generated
+	 */
+	Issue getRefinedIssue();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.rationale.Issue#getRefinedIssue <em>Refined Issue</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Refined Issue</em>' container reference.
+	 * @see #getRefinedIssue()
+	 * @generated
+	 */
+	void setRefinedIssue(Issue value);
 
 } // Issue

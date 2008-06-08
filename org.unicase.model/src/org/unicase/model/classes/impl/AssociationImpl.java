@@ -77,6 +77,16 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	protected org.unicase.model.classes.Class target;
 
 	/**
+	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final AssociationType TYPE_EDEFAULT = AssociationType.ASSOCIATION;
+
+	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -84,7 +94,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	 * @generated
 	 * @ordered
 	 */
-	protected AssociationType type;
+	protected AssociationType type = TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -218,7 +228,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	 */
 	public void setType(AssociationType newType) {
 		AssociationType oldType = type;
-		type = newType == null ? null : newType;
+		type = newType == null ? TYPE_EDEFAULT : newType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ASSOCIATION__TYPE, oldType, type));
 	}
@@ -249,8 +259,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 * FIXME: compile problem occurs if this method is generated
+	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
@@ -265,7 +274,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 				setTarget((org.unicase.model.classes.Class)newValue);
 				return;
 			case ClassesPackage.ASSOCIATION__TYPE:
-				setType((AssociationType) newValue);
+				setType((AssociationType)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -289,7 +298,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 				setTarget((org.unicase.model.classes.Class)null);
 				return;
 			case ClassesPackage.ASSOCIATION__TYPE:
-				setType((AssociationType)null);
+				setType(TYPE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -310,7 +319,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 			case ClassesPackage.ASSOCIATION__TARGET:
 				return target != null;
 			case ClassesPackage.ASSOCIATION__TYPE:
-				return type != null;
+				return type != TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -21,6 +21,7 @@ import org.unicase.model.ModelPackage;
  * <ul>
  *   <li>{@link org.unicase.model.document.LeafSection#getElementClass <em>Element Class</em>}</li>
  *   <li>{@link org.unicase.model.document.LeafSection#getModelElements <em>Model Elements</em>}</li>
+ *   <li>{@link org.unicase.model.document.LeafSection#getReferencedModelElements <em>Referenced Model Elements</em>}</li>
  * </ul>
  * </p>
  *
@@ -70,5 +71,21 @@ public interface LeafSection extends Section {
 	 * @generated
 	 */
 	EList<ModelElement> getModelElements();
+
+	/**
+	 * Returns the value of the '<em><b>Referenced Model Elements</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.ModelElement}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Referenced Model Elements</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Referenced Model Elements</em>' reference list.
+	 * @see org.unicase.model.document.DocumentPackage#getLeafSection_ReferencedModelElements()
+	 * @model
+	 * @generated
+	 */
+	EList<ModelElement> getReferencedModelElements();
 
 } // LeafSection

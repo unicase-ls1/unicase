@@ -21,9 +21,11 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.unicase.model.bug.BugFactory;
 import org.unicase.model.change.ChangeFactory;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.classes.ClassesFactory;
+import org.unicase.model.component.ComponentFactory;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
@@ -318,6 +320,41 @@ public class MEDiagramItemProvider
 			(createChildParameter
 				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
 				 ChangeFactory.eINSTANCE.createModelChangePackage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				 ChangeFactory.eINSTANCE.createMergingIssue()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				 ChangeFactory.eINSTANCE.createMergingProposal()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				 BugFactory.eINSTANCE.createBugReport()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				 BugFactory.eINSTANCE.createBugResolution()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				 ComponentFactory.eINSTANCE.createComponent()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				 ComponentFactory.eINSTANCE.createComponentService()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				 ComponentFactory.eINSTANCE.createNode()));
 	}
 
 	/**
