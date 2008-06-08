@@ -75,7 +75,6 @@ public class StubConnectionManagerImpl implements ConnectionManager {
 		return primaryVersionSpec;
 	}
 
-	@Override
 	public ProjectInfo createProject(SessionId sessionid, String name,
 			String description, LogMessage logMessage) throws EmfStoreException {
 		// TODO Auto-generated method stub
