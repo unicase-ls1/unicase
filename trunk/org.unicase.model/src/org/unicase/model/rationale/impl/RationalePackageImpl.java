@@ -41,6 +41,7 @@ import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.impl.OrganizationPackageImpl;
 
 import org.unicase.model.rationale.Assessment;
+import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.Criterion;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.Proposal;
@@ -97,6 +98,13 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 	 * @generated
 	 */
 	private EClass assessmentEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass commentEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -260,6 +268,24 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getIssue_Facilitator() {
+		return (EReference)issueEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getIssue_Participants() {
+		return (EReference)issueEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getProposal() {
 		return proposalEClass;
 	}
@@ -271,6 +297,15 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 	 */
 	public EReference getProposal_Assessments() {
 		return (EReference)proposalEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getProposal_Issue() {
+		return (EReference)proposalEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -296,8 +331,26 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getSolution_Issue() {
+		return (EReference)solutionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCriterion() {
 		return criterionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCriterion_Assessments() {
+		return (EReference)criterionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -341,6 +394,24 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getComment() {
+		return commentEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getComment_Replies() {
+		return (EReference)commentEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public RationaleFactory getRationaleFactory() {
 		return (RationaleFactory)getEFactoryInstance();
 	}
@@ -370,19 +441,27 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 		createEReference(issueEClass, ISSUE__CRITERIA);
 		createEReference(issueEClass, ISSUE__REFINING_ISSUES);
 		createEReference(issueEClass, ISSUE__REFINED_ISSUE);
+		createEReference(issueEClass, ISSUE__FACILITATOR);
+		createEReference(issueEClass, ISSUE__PARTICIPANTS);
 
 		proposalEClass = createEClass(PROPOSAL);
 		createEReference(proposalEClass, PROPOSAL__ASSESSMENTS);
+		createEReference(proposalEClass, PROPOSAL__ISSUE);
 
 		solutionEClass = createEClass(SOLUTION);
 		createEReference(solutionEClass, SOLUTION__UNDERLYING_PROPOSALS);
+		createEReference(solutionEClass, SOLUTION__ISSUE);
 
 		criterionEClass = createEClass(CRITERION);
+		createEReference(criterionEClass, CRITERION__ASSESSMENTS);
 
 		assessmentEClass = createEClass(ASSESSMENT);
 		createEReference(assessmentEClass, ASSESSMENT__PROPOSAL);
 		createEReference(assessmentEClass, ASSESSMENT__CRITERION);
 		createEAttribute(assessmentEClass, ASSESSMENT__VALUE);
+
+		commentEClass = createEClass(COMMENT);
+		createEReference(commentEClass, COMMENT__REPLIES);
 	}
 
 	/**
@@ -410,38 +489,48 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 		// Obtain other dependent packages
 		ModelPackage theModelPackage = (ModelPackage)EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
+		OrganizationPackage theOrganizationPackage = (OrganizationPackage)EPackage.Registry.INSTANCE.getEPackage(OrganizationPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		issueEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		issueEClass.getESuperTypes().add(theModelPackage.getAnnotation());
 		proposalEClass.getESuperTypes().add(theModelPackage.getModelElement());
 		solutionEClass.getESuperTypes().add(theModelPackage.getModelElement());
 		criterionEClass.getESuperTypes().add(theModelPackage.getModelElement());
 		assessmentEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		commentEClass.getESuperTypes().add(theModelPackage.getAnnotation());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(issueEClass, Issue.class, "Issue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getIssue_Proposals(), this.getProposal(), null, "proposals", null, 0, -1, Issue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getIssue_Solution(), this.getSolution(), null, "solution", null, 0, 1, Issue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIssue_Proposals(), this.getProposal(), this.getProposal_Issue(), "proposals", null, 0, -1, Issue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIssue_Solution(), this.getSolution(), this.getSolution_Issue(), "solution", null, 0, 1, Issue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIssue_Criteria(), this.getCriterion(), null, "criteria", null, 0, -1, Issue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIssue_RefiningIssues(), this.getIssue(), this.getIssue_RefinedIssue(), "refiningIssues", null, 0, -1, Issue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIssue_RefinedIssue(), this.getIssue(), this.getIssue_RefiningIssues(), "refinedIssue", null, 0, 1, Issue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIssue_Facilitator(), theOrganizationPackage.getUser(), null, "facilitator", null, 0, 1, Issue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIssue_Participants(), theOrganizationPackage.getOrgUnit(), null, "participants", null, 0, -1, Issue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(proposalEClass, Proposal.class, "Proposal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProposal_Assessments(), this.getAssessment(), null, "assessments", null, 0, -1, Proposal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProposal_Assessments(), this.getAssessment(), this.getAssessment_Proposal(), "assessments", null, 0, -1, Proposal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProposal_Issue(), this.getIssue(), this.getIssue_Proposals(), "issue", null, 0, 1, Proposal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(solutionEClass, Solution.class, "Solution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSolution_UnderlyingProposals(), this.getProposal(), null, "underlyingProposals", null, 0, -1, Solution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSolution_Issue(), this.getIssue(), this.getIssue_Solution(), "issue", null, 0, 1, Solution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(criterionEClass, Criterion.class, "Criterion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCriterion_Assessments(), this.getAssessment(), this.getAssessment_Criterion(), "assessments", null, 0, -1, Criterion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(assessmentEClass, Assessment.class, "Assessment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAssessment_Proposal(), this.getProposal(), null, "proposal", null, 1, 1, Assessment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAssessment_Criterion(), this.getCriterion(), null, "criterion", null, 1, 1, Assessment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAssessment_Proposal(), this.getProposal(), this.getProposal_Assessments(), "proposal", null, 1, 1, Assessment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAssessment_Criterion(), this.getCriterion(), this.getCriterion_Assessments(), "criterion", null, 1, 1, Assessment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAssessment_Value(), ecorePackage.getEInt(), "value", null, 0, 1, Assessment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(commentEClass, Comment.class, "Comment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getComment_Replies(), this.getComment(), null, "replies", null, 0, -1, Comment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 } //RationalePackageImpl

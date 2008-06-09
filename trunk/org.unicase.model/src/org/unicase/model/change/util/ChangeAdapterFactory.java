@@ -13,11 +13,13 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
 
 import org.unicase.model.change.*;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.Proposal;
+import org.unicase.model.rationale.Solution;
 
 /**
  * <!-- begin-user-doc -->
@@ -88,8 +90,16 @@ public class ChangeAdapterFactory extends AdapterFactoryImpl {
 				return createMergingProposalAdapter();
 			}
 			@Override
+			public Adapter caseMergingSolution(MergingSolution object) {
+				return createMergingSolutionAdapter();
+			}
+			@Override
 			public Adapter caseModelElement(ModelElement object) {
 				return createModelElementAdapter();
+			}
+			@Override
+			public Adapter caseAnnotation(Annotation object) {
+				return createAnnotationAdapter();
 			}
 			@Override
 			public Adapter caseIssue(Issue object) {
@@ -98,6 +108,10 @@ public class ChangeAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseProposal(Proposal object) {
 				return createProposalAdapter();
+			}
+			@Override
+			public Adapter caseSolution(Solution object) {
+				return createSolutionAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -162,6 +176,20 @@ public class ChangeAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.change.MergingSolution <em>Merging Solution</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.change.MergingSolution
+	 * @generated
+	 */
+	public Adapter createMergingSolutionAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.unicase.model.ModelElement <em>Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -172,6 +200,20 @@ public class ChangeAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createModelElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.Annotation <em>Annotation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.Annotation
+	 * @generated
+	 */
+	public Adapter createAnnotationAdapter() {
 		return null;
 	}
 
@@ -200,6 +242,20 @@ public class ChangeAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createProposalAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.rationale.Solution <em>Solution</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.rationale.Solution
+	 * @generated
+	 */
+	public Adapter createSolutionAdapter() {
 		return null;
 	}
 

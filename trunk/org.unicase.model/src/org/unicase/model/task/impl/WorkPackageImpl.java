@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.unicase.model.change.ModelChangePackage;
 
+import org.unicase.model.impl.AnnotationImpl;
 import org.unicase.model.impl.ModelElementImpl;
 
 import org.unicase.model.task.TaskPackage;
@@ -46,7 +47,7 @@ import org.unicase.model.task.WorkPackage;
  *
  * @generated
  */
-public class WorkPackageImpl extends ModelElementImpl implements WorkPackage {
+public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	/**
 	 * The cached value of the '{@link #getAssociatedChangePackages() <em>Associated Change Packages</em>}' reference list.
 	 * <!-- begin-user-doc -->

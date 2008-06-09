@@ -24,6 +24,9 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.unicase.model.impl.AnnotationImpl;
+import org.unicase.model.organization.OrgUnit;
+import org.unicase.model.organization.User;
 import org.unicase.model.impl.ModelElementImpl;
 
 import org.unicase.model.rationale.Criterion;
@@ -44,12 +47,14 @@ import org.unicase.model.rationale.Solution;
  *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getCriteria <em>Criteria</em>}</li>
  *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getRefiningIssues <em>Refining Issues</em>}</li>
  *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getRefinedIssue <em>Refined Issue</em>}</li>
+ *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getFacilitator <em>Facilitator</em>}</li>
+ *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getParticipants <em>Participants</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class IssueImpl extends ModelElementImpl implements Issue {
+public class IssueImpl extends AnnotationImpl implements Issue {
 	/**
 	 * The cached value of the '{@link #getProposals() <em>Proposals</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -91,6 +96,26 @@ public class IssueImpl extends ModelElementImpl implements Issue {
 	protected EList<Issue> refiningIssues;
 
 	/**
+	 * The cached value of the '{@link #getFacilitator() <em>Facilitator</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFacilitator()
+	 * @generated
+	 * @ordered
+	 */
+	protected User facilitator;
+
+	/**
+	 * The cached value of the '{@link #getParticipants() <em>Participants</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getParticipants()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<OrgUnit> participants;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -116,7 +141,7 @@ public class IssueImpl extends ModelElementImpl implements Issue {
 	 */
 	public EList<Proposal> getProposals() {
 		if (proposals == null) {
-			proposals = new EObjectContainmentEList<Proposal>(Proposal.class, this, RationalePackage.ISSUE__PROPOSALS);
+			proposals = new EObjectContainmentWithInverseEList<Proposal>(Proposal.class, this, RationalePackage.ISSUE__PROPOSALS, RationalePackage.PROPOSAL__ISSUE);
 		}
 		return proposals;
 	}
@@ -154,9 +179,9 @@ public class IssueImpl extends ModelElementImpl implements Issue {
 		if (newSolution != solution) {
 			NotificationChain msgs = null;
 			if (solution != null)
-				msgs = ((InternalEObject)solution).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RationalePackage.ISSUE__SOLUTION, null, msgs);
+				msgs = ((InternalEObject)solution).eInverseRemove(this, RationalePackage.SOLUTION__ISSUE, Solution.class, msgs);
 			if (newSolution != null)
-				msgs = ((InternalEObject)newSolution).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RationalePackage.ISSUE__SOLUTION, null, msgs);
+				msgs = ((InternalEObject)newSolution).eInverseAdd(this, RationalePackage.SOLUTION__ISSUE, Solution.class, msgs);
 			msgs = basicSetSolution(newSolution, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -234,10 +259,66 @@ public class IssueImpl extends ModelElementImpl implements Issue {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public User getFacilitator() {
+		if (facilitator != null && facilitator.eIsProxy()) {
+			InternalEObject oldFacilitator = (InternalEObject)facilitator;
+			facilitator = (User)eResolveProxy(oldFacilitator);
+			if (facilitator != oldFacilitator) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RationalePackage.ISSUE__FACILITATOR, oldFacilitator, facilitator));
+			}
+		}
+		return facilitator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public User basicGetFacilitator() {
+		return facilitator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFacilitator(User newFacilitator) {
+		User oldFacilitator = facilitator;
+		facilitator = newFacilitator;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RationalePackage.ISSUE__FACILITATOR, oldFacilitator, facilitator));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<OrgUnit> getParticipants() {
+		if (participants == null) {
+			participants = new EObjectResolvingEList<OrgUnit>(OrgUnit.class, this, RationalePackage.ISSUE__PARTICIPANTS);
+		}
+		return participants;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case RationalePackage.ISSUE__PROPOSALS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getProposals()).basicAdd(otherEnd, msgs);
+			case RationalePackage.ISSUE__SOLUTION:
+				if (solution != null)
+					msgs = ((InternalEObject)solution).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RationalePackage.ISSUE__SOLUTION, null, msgs);
+				return basicSetSolution((Solution)otherEnd, msgs);
 			case RationalePackage.ISSUE__REFINING_ISSUES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getRefiningIssues()).basicAdd(otherEnd, msgs);
 			case RationalePackage.ISSUE__REFINED_ISSUE:
@@ -300,6 +381,11 @@ public class IssueImpl extends ModelElementImpl implements Issue {
 				return getRefiningIssues();
 			case RationalePackage.ISSUE__REFINED_ISSUE:
 				return getRefinedIssue();
+			case RationalePackage.ISSUE__FACILITATOR:
+				if (resolve) return getFacilitator();
+				return basicGetFacilitator();
+			case RationalePackage.ISSUE__PARTICIPANTS:
+				return getParticipants();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -331,6 +417,13 @@ public class IssueImpl extends ModelElementImpl implements Issue {
 			case RationalePackage.ISSUE__REFINED_ISSUE:
 				setRefinedIssue((Issue)newValue);
 				return;
+			case RationalePackage.ISSUE__FACILITATOR:
+				setFacilitator((User)newValue);
+				return;
+			case RationalePackage.ISSUE__PARTICIPANTS:
+				getParticipants().clear();
+				getParticipants().addAll((Collection<? extends OrgUnit>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -358,6 +451,12 @@ public class IssueImpl extends ModelElementImpl implements Issue {
 			case RationalePackage.ISSUE__REFINED_ISSUE:
 				setRefinedIssue((Issue)null);
 				return;
+			case RationalePackage.ISSUE__FACILITATOR:
+				setFacilitator((User)null);
+				return;
+			case RationalePackage.ISSUE__PARTICIPANTS:
+				getParticipants().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -380,6 +479,10 @@ public class IssueImpl extends ModelElementImpl implements Issue {
 				return refiningIssues != null && !refiningIssues.isEmpty();
 			case RationalePackage.ISSUE__REFINED_ISSUE:
 				return getRefinedIssue() != null;
+			case RationalePackage.ISSUE__FACILITATOR:
+				return facilitator != null;
+			case RationalePackage.ISSUE__PARTICIPANTS:
+				return participants != null && !participants.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -28,26 +28,28 @@ import org.unicase.model.ModelElement;
  */
 public interface Assessment extends ModelElement {
 	/**
-	 * Returns the value of the '<em><b>Proposal</b></em>' reference.
+	 * Returns the value of the '<em><b>Proposal</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.rationale.Proposal#getAssessments <em>Assessments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Proposal</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Proposal</em>' reference.
+	 * @return the value of the '<em>Proposal</em>' container reference.
 	 * @see #setProposal(Proposal)
 	 * @see org.unicase.model.rationale.RationalePackage#getAssessment_Proposal()
-	 * @model required="true"
+	 * @see org.unicase.model.rationale.Proposal#getAssessments
+	 * @model opposite="assessments" required="true" transient="false"
 	 * @generated
 	 */
 	Proposal getProposal();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.rationale.Assessment#getProposal <em>Proposal</em>}' reference.
+	 * Sets the value of the '{@link org.unicase.model.rationale.Assessment#getProposal <em>Proposal</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Proposal</em>' reference.
+	 * @param value the new value of the '<em>Proposal</em>' container reference.
 	 * @see #getProposal()
 	 * @generated
 	 */
@@ -55,6 +57,7 @@ public interface Assessment extends ModelElement {
 
 	/**
 	 * Returns the value of the '<em><b>Criterion</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.rationale.Criterion#getAssessments <em>Assessments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Criterion</em>' reference isn't clear,
@@ -64,7 +67,8 @@ public interface Assessment extends ModelElement {
 	 * @return the value of the '<em>Criterion</em>' reference.
 	 * @see #setCriterion(Criterion)
 	 * @see org.unicase.model.rationale.RationalePackage#getAssessment_Criterion()
-	 * @model required="true"
+	 * @see org.unicase.model.rationale.Criterion#getAssessments
+	 * @model opposite="assessments" required="true"
 	 * @generated
 	 */
 	Criterion getCriterion();

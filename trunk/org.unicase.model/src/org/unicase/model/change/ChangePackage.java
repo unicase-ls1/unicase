@@ -109,13 +109,13 @@ public interface ChangePackage extends EPackage {
 	int MODEL_CHANGE_PACKAGE__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
 
 	/**
-	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CHANGE_PACKAGE__ACTION_ITEMS = ModelPackage.MODEL_ELEMENT__ACTION_ITEMS;
+	int MODEL_CHANGE_PACKAGE__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -210,13 +210,13 @@ public interface ChangePackage extends EPackage {
 	int MERGING_ISSUE__READER_INFOS = RationalePackage.ISSUE__READER_INFOS;
 
 	/**
-	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MERGING_ISSUE__ACTION_ITEMS = RationalePackage.ISSUE__ACTION_ITEMS;
+	int MERGING_ISSUE__ANNOTATIONS = RationalePackage.ISSUE__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -235,6 +235,15 @@ public interface ChangePackage extends EPackage {
 	 * @ordered
 	 */
 	int MERGING_ISSUE__LEAF_SECTION = RationalePackage.ISSUE__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_ISSUE__ANNOTATED_MODEL_ELEMENTS = RationalePackage.ISSUE__ANNOTATED_MODEL_ELEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Proposals</b></em>' containment reference list.
@@ -280,6 +289,24 @@ public interface ChangePackage extends EPackage {
 	 * @ordered
 	 */
 	int MERGING_ISSUE__REFINED_ISSUE = RationalePackage.ISSUE__REFINED_ISSUE;
+
+	/**
+	 * The feature id for the '<em><b>Facilitator</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_ISSUE__FACILITATOR = RationalePackage.ISSUE__FACILITATOR;
+
+	/**
+	 * The feature id for the '<em><b>Participants</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_ISSUE__PARTICIPANTS = RationalePackage.ISSUE__PARTICIPANTS;
 
 	/**
 	 * The feature id for the '<em><b>Resolving Revision</b></em>' attribute.
@@ -346,13 +373,13 @@ public interface ChangePackage extends EPackage {
 	int MERGING_PROPOSAL__READER_INFOS = RationalePackage.PROPOSAL__READER_INFOS;
 
 	/**
-	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MERGING_PROPOSAL__ACTION_ITEMS = RationalePackage.PROPOSAL__ACTION_ITEMS;
+	int MERGING_PROPOSAL__ANNOTATIONS = RationalePackage.PROPOSAL__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -382,6 +409,15 @@ public interface ChangePackage extends EPackage {
 	int MERGING_PROPOSAL__ASSESSMENTS = RationalePackage.PROPOSAL__ASSESSMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Issue</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_PROPOSAL__ISSUE = RationalePackage.PROPOSAL__ISSUE;
+
+	/**
 	 * The feature id for the '<em><b>Conflicting Proposals</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -407,6 +443,116 @@ public interface ChangePackage extends EPackage {
 	 * @ordered
 	 */
 	int MERGING_PROPOSAL_FEATURE_COUNT = RationalePackage.PROPOSAL_FEATURE_COUNT + 2;
+
+
+	/**
+	 * The meta object id for the '{@link org.unicase.model.change.impl.MergingSolutionImpl <em>Merging Solution</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.change.impl.MergingSolutionImpl
+	 * @see org.unicase.model.change.impl.ChangePackageImpl#getMergingSolution()
+	 * @generated
+	 */
+	int MERGING_SOLUTION = 3;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_SOLUTION__NAME = RationalePackage.SOLUTION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_SOLUTION__DESCRIPTION = RationalePackage.SOLUTION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_SOLUTION__IDENTIFIER = RationalePackage.SOLUTION__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_SOLUTION__READER_INFOS = RationalePackage.SOLUTION__READER_INFOS;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_SOLUTION__ANNOTATIONS = RationalePackage.SOLUTION__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_SOLUTION__INCOMING_DOCUMENT_REFERENCES = RationalePackage.SOLUTION__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_SOLUTION__LEAF_SECTION = RationalePackage.SOLUTION__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>Underlying Proposals</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_SOLUTION__UNDERLYING_PROPOSALS = RationalePackage.SOLUTION__UNDERLYING_PROPOSALS;
+
+	/**
+	 * The feature id for the '<em><b>Issue</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_SOLUTION__ISSUE = RationalePackage.SOLUTION__ISSUE;
+
+	/**
+	 * The feature id for the '<em><b>Applied Changes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_SOLUTION__APPLIED_CHANGES = RationalePackage.SOLUTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Merging Solution</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_SOLUTION_FEATURE_COUNT = RationalePackage.SOLUTION_FEATURE_COUNT + 1;
 
 
 	/**
@@ -493,6 +639,27 @@ public interface ChangePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getMergingProposal_PendingChanges();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.model.change.MergingSolution <em>Merging Solution</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Merging Solution</em>'.
+	 * @see org.unicase.model.change.MergingSolution
+	 * @generated
+	 */
+	EClass getMergingSolution();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.change.MergingSolution#getAppliedChanges <em>Applied Changes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Applied Changes</em>'.
+	 * @see org.unicase.model.change.MergingSolution#getAppliedChanges()
+	 * @see #getMergingSolution()
+	 * @generated
+	 */
+	EReference getMergingSolution_AppliedChanges();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -585,6 +752,24 @@ public interface ChangePackage extends EPackage {
 		 * @generated
 		 */
 		EReference MERGING_PROPOSAL__PENDING_CHANGES = eINSTANCE.getMergingProposal_PendingChanges();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.change.impl.MergingSolutionImpl <em>Merging Solution</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.change.impl.MergingSolutionImpl
+		 * @see org.unicase.model.change.impl.ChangePackageImpl#getMergingSolution()
+		 * @generated
+		 */
+		EClass MERGING_SOLUTION = eINSTANCE.getMergingSolution();
+
+		/**
+		 * The meta object literal for the '<em><b>Applied Changes</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MERGING_SOLUTION__APPLIED_CHANGES = eINSTANCE.getMergingSolution_AppliedChanges();
 
 	}
 

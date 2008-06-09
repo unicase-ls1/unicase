@@ -22,6 +22,7 @@ import org.unicase.model.change.ChangeFactory;
 import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.MergingIssue;
 import org.unicase.model.change.MergingProposal;
+import org.unicase.model.change.MergingSolution;
 import org.unicase.model.change.ModelChangePackage;
 
 import org.unicase.model.classes.ClassesPackage;
@@ -82,6 +83,13 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 	 * @generated
 	 */
 	private EClass mergingProposalEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass mergingSolutionEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -263,6 +271,24 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getMergingSolution() {
+		return mergingSolutionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMergingSolution_AppliedChanges() {
+		return (EReference)mergingSolutionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ChangeFactory getChangeFactory() {
 		return (ChangeFactory)getEFactoryInstance();
 	}
@@ -296,6 +322,9 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 		mergingProposalEClass = createEClass(MERGING_PROPOSAL);
 		createEReference(mergingProposalEClass, MERGING_PROPOSAL__CONFLICTING_PROPOSALS);
 		createEReference(mergingProposalEClass, MERGING_PROPOSAL__PENDING_CHANGES);
+
+		mergingSolutionEClass = createEClass(MERGING_SOLUTION);
+		createEReference(mergingSolutionEClass, MERGING_SOLUTION__APPLIED_CHANGES);
 	}
 
 	/**
@@ -333,6 +362,7 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 		modelChangePackageEClass.getESuperTypes().add(theModelPackage.getModelElement());
 		mergingIssueEClass.getESuperTypes().add(theRationalePackage.getIssue());
 		mergingProposalEClass.getESuperTypes().add(theRationalePackage.getProposal());
+		mergingSolutionEClass.getESuperTypes().add(theRationalePackage.getSolution());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(modelChangePackageEClass, ModelChangePackage.class, "ModelChangePackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -345,6 +375,9 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 		initEClass(mergingProposalEClass, MergingProposal.class, "MergingProposal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMergingProposal_ConflictingProposals(), this.getMergingProposal(), null, "conflictingProposals", null, 0, -1, MergingProposal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMergingProposal_PendingChanges(), this.getModelChangePackage(), null, "pendingChanges", null, 0, 1, MergingProposal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(mergingSolutionEClass, MergingSolution.class, "MergingSolution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getMergingSolution_AppliedChanges(), this.getModelChangePackage(), null, "appliedChanges", null, 0, -1, MergingSolution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 } //ChangePackageImpl

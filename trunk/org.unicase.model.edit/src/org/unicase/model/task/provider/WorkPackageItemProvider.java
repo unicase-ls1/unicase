@@ -26,6 +26,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.unicase.model.provider.AnnotationItemProvider;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.ModelElementItemProvider;
 
@@ -40,7 +41,7 @@ import org.unicase.model.task.WorkPackage;
  * @generated
  */
 public class WorkPackageItemProvider
-	extends ModelElementItemProvider
+	extends AnnotationItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,

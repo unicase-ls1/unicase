@@ -64,7 +64,7 @@ public class ModelElementItemProvider
 
 			addNamePropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
-			addActionItemsPropertyDescriptor(object);
+			addAnnotationsPropertyDescriptor(object);
 			addIncomingDocumentReferencesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -115,19 +115,19 @@ public class ModelElementItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Action Items feature.
+	 * This adds a property descriptor for the Annotations feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addActionItemsPropertyDescriptor(Object object) {
+	protected void addAnnotationsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ModelElement_actionItems_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModelElement_actionItems_feature", "_UI_ModelElement_type"),
-				 ModelPackage.Literals.MODEL_ELEMENT__ACTION_ITEMS,
+				 getString("_UI_ModelElement_annotations_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModelElement_annotations_feature", "_UI_ModelElement_type"),
+				 ModelPackage.Literals.MODEL_ELEMENT__ANNOTATIONS,
 				 true,
 				 false,
 				 true,

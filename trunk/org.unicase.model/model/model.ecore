@@ -25,8 +25,8 @@
         containment="true" eKeys="#//UniqueIdentifier/id"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="readerInfos" upperBound="-1"
         eType="#//ReaderInfo" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="actionItems" upperBound="-1"
-        eType="#//task/ActionItem"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="annotations" upperBound="-1"
+        eType="#//Annotation" eOpposite="#//Annotation/annotatedModelElements"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="incomingDocumentReferences"
         upperBound="-1" eType="#//document/LeafSection"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="leafSection" eType="#//document/LeafSection"
@@ -48,7 +48,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="readerId" eType="#//organization/OrgUnit"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Annotation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Annotation" eSuperTypes="#//ModelElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="annotatedModelElements"
+        upperBound="-1" eType="#//ModelElement" eOpposite="#//ModelElement/annotations"/>
+  </eClassifiers>
   <eSubpackages name="organization" nsURI="http://unicase.org/model/organization"
       nsPrefix="org.unicase.model.organization">
     <eClassifiers xsi:type="ecore:EClass" name="User" eSuperTypes="#//organization/OrgUnit"/>
@@ -72,7 +75,7 @@
           eType="#//task/WorkItem" containment="true" eOpposite="#//task/WorkItem/containingWorkpackage"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="WorkItem" abstract="true" interface="true"
-        eSuperTypes="#//ModelElement">
+        eSuperTypes="#//Annotation">
       <eStructuralFeatures xsi:type="ecore:EReference" name="containingWorkpackage"
           eType="#//task/WorkPackage" eOpposite="#//task/WorkPackage/containedWorkItems"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="associatedChangePackages"
@@ -224,33 +227,47 @@
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="rationale" nsURI="http://unicase.org/model/rationale" nsPrefix="org.unicase.model.rationale">
-    <eClassifiers xsi:type="ecore:EClass" name="Issue" eSuperTypes="#//ModelElement">
+    <eClassifiers xsi:type="ecore:EClass" name="Issue" eSuperTypes="#//Annotation">
       <eStructuralFeatures xsi:type="ecore:EReference" name="proposals" upperBound="-1"
-          eType="#//rationale/Proposal" containment="true"/>
+          eType="#//rationale/Proposal" containment="true" eOpposite="#//rationale/Proposal/issue"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="solution" eType="#//rationale/Solution"
-          containment="true"/>
+          containment="true" eOpposite="#//rationale/Solution/issue"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="criteria" upperBound="-1"
           eType="#//rationale/Criterion"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="refiningIssues" upperBound="-1"
           eType="#//rationale/Issue" containment="true" eOpposite="#//rationale/Issue/refinedIssue"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="refinedIssue" eType="#//rationale/Issue"
           eOpposite="#//rationale/Issue/refiningIssues"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="facilitator" eType="#//organization/User"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="participants" upperBound="-1"
+          eType="#//organization/OrgUnit"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Proposal" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="assessments" upperBound="-1"
-          eType="#//rationale/Assessment" containment="true"/>
+          eType="#//rationale/Assessment" containment="true" eOpposite="#//rationale/Assessment/proposal"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="issue" eType="#//rationale/Issue"
+          eOpposite="#//rationale/Issue/proposals"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Solution" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="underlyingProposals"
           upperBound="-1" eType="#//rationale/Proposal"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="issue" eType="#//rationale/Issue"
+          eOpposite="#//rationale/Issue/solution"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Criterion" eSuperTypes="#//ModelElement"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Criterion" eSuperTypes="#//ModelElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="assessments" upperBound="-1"
+          eType="#//rationale/Assessment" eOpposite="#//rationale/Assessment/criterion"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Assessment" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="proposal" lowerBound="1"
-          eType="#//rationale/Proposal"/>
+          eType="#//rationale/Proposal" eOpposite="#//rationale/Proposal/assessments"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="criterion" lowerBound="1"
-          eType="#//rationale/Criterion"/>
+          eType="#//rationale/Criterion" eOpposite="#//rationale/Criterion/assessments"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Comment" eSuperTypes="#//Annotation">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="replies" upperBound="-1"
+          eType="#//rationale/Comment"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="change" nsURI="http://unicase.org/model/change" nsPrefix="org.unicase.model.rationale">
@@ -265,6 +282,10 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="conflictingProposals"
           upperBound="-1" eType="#//change/MergingProposal"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="pendingChanges" eType="#//change/ModelChangePackage"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="MergingSolution" eSuperTypes="#//rationale/Solution">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="appliedChanges" upperBound="-1"
+          eType="#//change/ModelChangePackage"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="bug" nsURI="http://unicase.org/model/bug" nsPrefix="org.unicase.model.bug">

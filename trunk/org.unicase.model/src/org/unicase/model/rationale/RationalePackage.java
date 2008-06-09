@@ -78,7 +78,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__NAME = ModelPackage.MODEL_ELEMENT__NAME;
+	int ISSUE__NAME = ModelPackage.ANNOTATION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -87,7 +87,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int ISSUE__DESCRIPTION = ModelPackage.ANNOTATION__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
@@ -96,7 +96,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
+	int ISSUE__IDENTIFIER = ModelPackage.ANNOTATION__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
@@ -105,16 +105,16 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
+	int ISSUE__READER_INFOS = ModelPackage.ANNOTATION__READER_INFOS;
 
 	/**
-	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__ACTION_ITEMS = ModelPackage.MODEL_ELEMENT__ACTION_ITEMS;
+	int ISSUE__ANNOTATIONS = ModelPackage.ANNOTATION__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -123,7 +123,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int ISSUE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.ANNOTATION__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
@@ -132,7 +132,16 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int ISSUE__LEAF_SECTION = ModelPackage.ANNOTATION__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISSUE__ANNOTATED_MODEL_ELEMENTS = ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Proposals</b></em>' containment reference list.
@@ -141,7 +150,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__PROPOSALS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int ISSUE__PROPOSALS = ModelPackage.ANNOTATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Solution</b></em>' containment reference.
@@ -150,7 +159,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__SOLUTION = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int ISSUE__SOLUTION = ModelPackage.ANNOTATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Criteria</b></em>' reference list.
@@ -159,7 +168,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__CRITERIA = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int ISSUE__CRITERIA = ModelPackage.ANNOTATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Refining Issues</b></em>' containment reference list.
@@ -168,7 +177,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__REFINING_ISSUES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int ISSUE__REFINING_ISSUES = ModelPackage.ANNOTATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Refined Issue</b></em>' container reference.
@@ -177,7 +186,25 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__REFINED_ISSUE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int ISSUE__REFINED_ISSUE = ModelPackage.ANNOTATION_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Facilitator</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISSUE__FACILITATOR = ModelPackage.ANNOTATION_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Participants</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISSUE__PARTICIPANTS = ModelPackage.ANNOTATION_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Issue</em>' class.
@@ -186,7 +213,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
+	int ISSUE_FEATURE_COUNT = ModelPackage.ANNOTATION_FEATURE_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.rationale.impl.ProposalImpl <em>Proposal</em>}' class.
@@ -235,13 +262,13 @@ public interface RationalePackage extends EPackage {
 	int PROPOSAL__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
 
 	/**
-	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPOSAL__ACTION_ITEMS = ModelPackage.MODEL_ELEMENT__ACTION_ITEMS;
+	int PROPOSAL__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -271,13 +298,22 @@ public interface RationalePackage extends EPackage {
 	int PROPOSAL__ASSESSMENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Issue</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPOSAL__ISSUE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Proposal</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPOSAL_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int PROPOSAL_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.rationale.impl.SolutionImpl <em>Solution</em>}' class.
@@ -326,13 +362,13 @@ public interface RationalePackage extends EPackage {
 	int SOLUTION__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
 
 	/**
-	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOLUTION__ACTION_ITEMS = ModelPackage.MODEL_ELEMENT__ACTION_ITEMS;
+	int SOLUTION__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -362,13 +398,22 @@ public interface RationalePackage extends EPackage {
 	int SOLUTION__UNDERLYING_PROPOSALS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Issue</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOLUTION__ISSUE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Solution</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOLUTION_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int SOLUTION_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.rationale.impl.CriterionImpl <em>Criterion</em>}' class.
@@ -417,13 +462,13 @@ public interface RationalePackage extends EPackage {
 	int CRITERION__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
 
 	/**
-	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CRITERION__ACTION_ITEMS = ModelPackage.MODEL_ELEMENT__ACTION_ITEMS;
+	int CRITERION__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -444,13 +489,22 @@ public interface RationalePackage extends EPackage {
 	int CRITERION__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
+	 * The feature id for the '<em><b>Assessments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CRITERION__ASSESSMENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Criterion</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CRITERION_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int CRITERION_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.rationale.impl.AssessmentImpl <em>Assessment</em>}' class.
@@ -499,13 +553,13 @@ public interface RationalePackage extends EPackage {
 	int ASSESSMENT__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
 
 	/**
-	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSESSMENT__ACTION_ITEMS = ModelPackage.MODEL_ELEMENT__ACTION_ITEMS;
+	int ASSESSMENT__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -526,7 +580,7 @@ public interface RationalePackage extends EPackage {
 	int ASSESSMENT__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>Proposal</b></em>' reference.
+	 * The feature id for the '<em><b>Proposal</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -560,6 +614,107 @@ public interface RationalePackage extends EPackage {
 	 * @ordered
 	 */
 	int ASSESSMENT_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+
+
+	/**
+	 * The meta object id for the '{@link org.unicase.model.rationale.impl.CommentImpl <em>Comment</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.rationale.impl.CommentImpl
+	 * @see org.unicase.model.rationale.impl.RationalePackageImpl#getComment()
+	 * @generated
+	 */
+	int COMMENT = 5;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT__NAME = ModelPackage.ANNOTATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT__DESCRIPTION = ModelPackage.ANNOTATION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT__IDENTIFIER = ModelPackage.ANNOTATION__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT__READER_INFOS = ModelPackage.ANNOTATION__READER_INFOS;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT__ANNOTATIONS = ModelPackage.ANNOTATION__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT__INCOMING_DOCUMENT_REFERENCES = ModelPackage.ANNOTATION__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT__LEAF_SECTION = ModelPackage.ANNOTATION__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT__ANNOTATED_MODEL_ELEMENTS = ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Replies</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT__REPLIES = ModelPackage.ANNOTATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Comment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT_FEATURE_COUNT = ModelPackage.ANNOTATION_FEATURE_COUNT + 1;
 
 
 	/**
@@ -628,6 +783,28 @@ public interface RationalePackage extends EPackage {
 	EReference getIssue_RefinedIssue();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.unicase.model.rationale.Issue#getFacilitator <em>Facilitator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Facilitator</em>'.
+	 * @see org.unicase.model.rationale.Issue#getFacilitator()
+	 * @see #getIssue()
+	 * @generated
+	 */
+	EReference getIssue_Facilitator();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.rationale.Issue#getParticipants <em>Participants</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Participants</em>'.
+	 * @see org.unicase.model.rationale.Issue#getParticipants()
+	 * @see #getIssue()
+	 * @generated
+	 */
+	EReference getIssue_Participants();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.model.rationale.Proposal <em>Proposal</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -647,6 +824,17 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getProposal_Assessments();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.unicase.model.rationale.Proposal#getIssue <em>Issue</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Issue</em>'.
+	 * @see org.unicase.model.rationale.Proposal#getIssue()
+	 * @see #getProposal()
+	 * @generated
+	 */
+	EReference getProposal_Issue();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.rationale.Solution <em>Solution</em>}'.
@@ -670,6 +858,17 @@ public interface RationalePackage extends EPackage {
 	EReference getSolution_UnderlyingProposals();
 
 	/**
+	 * Returns the meta object for the container reference '{@link org.unicase.model.rationale.Solution#getIssue <em>Issue</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Issue</em>'.
+	 * @see org.unicase.model.rationale.Solution#getIssue()
+	 * @see #getSolution()
+	 * @generated
+	 */
+	EReference getSolution_Issue();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.model.rationale.Criterion <em>Criterion</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -678,6 +877,17 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getCriterion();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.rationale.Criterion#getAssessments <em>Assessments</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Assessments</em>'.
+	 * @see org.unicase.model.rationale.Criterion#getAssessments()
+	 * @see #getCriterion()
+	 * @generated
+	 */
+	EReference getCriterion_Assessments();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.rationale.Assessment <em>Assessment</em>}'.
@@ -690,10 +900,10 @@ public interface RationalePackage extends EPackage {
 	EClass getAssessment();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.rationale.Assessment#getProposal <em>Proposal</em>}'.
+	 * Returns the meta object for the container reference '{@link org.unicase.model.rationale.Assessment#getProposal <em>Proposal</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Proposal</em>'.
+	 * @return the meta object for the container reference '<em>Proposal</em>'.
 	 * @see org.unicase.model.rationale.Assessment#getProposal()
 	 * @see #getAssessment()
 	 * @generated
@@ -721,6 +931,27 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getAssessment_Value();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.model.rationale.Comment <em>Comment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Comment</em>'.
+	 * @see org.unicase.model.rationale.Comment
+	 * @generated
+	 */
+	EClass getComment();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.rationale.Comment#getReplies <em>Replies</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Replies</em>'.
+	 * @see org.unicase.model.rationale.Comment#getReplies()
+	 * @see #getComment()
+	 * @generated
+	 */
+	EReference getComment_Replies();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -795,6 +1026,22 @@ public interface RationalePackage extends EPackage {
 		EReference ISSUE__REFINED_ISSUE = eINSTANCE.getIssue_RefinedIssue();
 
 		/**
+		 * The meta object literal for the '<em><b>Facilitator</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ISSUE__FACILITATOR = eINSTANCE.getIssue_Facilitator();
+
+		/**
+		 * The meta object literal for the '<em><b>Participants</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ISSUE__PARTICIPANTS = eINSTANCE.getIssue_Participants();
+
+		/**
 		 * The meta object literal for the '{@link org.unicase.model.rationale.impl.ProposalImpl <em>Proposal</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -811,6 +1058,14 @@ public interface RationalePackage extends EPackage {
 		 * @generated
 		 */
 		EReference PROPOSAL__ASSESSMENTS = eINSTANCE.getProposal_Assessments();
+
+		/**
+		 * The meta object literal for the '<em><b>Issue</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROPOSAL__ISSUE = eINSTANCE.getProposal_Issue();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.rationale.impl.SolutionImpl <em>Solution</em>}' class.
@@ -831,6 +1086,14 @@ public interface RationalePackage extends EPackage {
 		EReference SOLUTION__UNDERLYING_PROPOSALS = eINSTANCE.getSolution_UnderlyingProposals();
 
 		/**
+		 * The meta object literal for the '<em><b>Issue</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SOLUTION__ISSUE = eINSTANCE.getSolution_Issue();
+
+		/**
 		 * The meta object literal for the '{@link org.unicase.model.rationale.impl.CriterionImpl <em>Criterion</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -839,6 +1102,14 @@ public interface RationalePackage extends EPackage {
 		 * @generated
 		 */
 		EClass CRITERION = eINSTANCE.getCriterion();
+
+		/**
+		 * The meta object literal for the '<em><b>Assessments</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CRITERION__ASSESSMENTS = eINSTANCE.getCriterion_Assessments();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.rationale.impl.AssessmentImpl <em>Assessment</em>}' class.
@@ -851,7 +1122,7 @@ public interface RationalePackage extends EPackage {
 		EClass ASSESSMENT = eINSTANCE.getAssessment();
 
 		/**
-		 * The meta object literal for the '<em><b>Proposal</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Proposal</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -873,6 +1144,24 @@ public interface RationalePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ASSESSMENT__VALUE = eINSTANCE.getAssessment_Value();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.rationale.impl.CommentImpl <em>Comment</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.rationale.impl.CommentImpl
+		 * @see org.unicase.model.rationale.impl.RationalePackageImpl#getComment()
+		 * @generated
+		 */
+		EClass COMMENT = eINSTANCE.getComment();
+
+		/**
+		 * The meta object literal for the '<em><b>Replies</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMMENT__REPLIES = eINSTANCE.getComment_Replies();
 
 	}
 

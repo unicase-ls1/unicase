@@ -24,7 +24,7 @@ import org.unicase.model.task.ActionItem;
  *   <li>{@link org.unicase.model.ModelElement#getDescription <em>Description</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getReaderInfos <em>Reader Infos</em>}</li>
- *   <li>{@link org.unicase.model.ModelElement#getActionItems <em>Action Items</em>}</li>
+ *   <li>{@link org.unicase.model.ModelElement#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getIncomingDocumentReferences <em>Incoming Document References</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getLeafSection <em>Leaf Section</em>}</li>
  * </ul>
@@ -131,20 +131,22 @@ public interface ModelElement extends EObject {
 	EList<ReaderInfo> getReaderInfos();
 
 	/**
-	 * Returns the value of the '<em><b>Action Items</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.task.ActionItem}.
+	 * Returns the value of the '<em><b>Annotations</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.Annotation}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.Annotation#getAnnotatedModelElements <em>Annotated Model Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Action Items</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Annotations</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Action Items</em>' reference list.
-	 * @see org.unicase.model.ModelPackage#getModelElement_ActionItems()
-	 * @model
+	 * @return the value of the '<em>Annotations</em>' reference list.
+	 * @see org.unicase.model.ModelPackage#getModelElement_Annotations()
+	 * @see org.unicase.model.Annotation#getAnnotatedModelElements
+	 * @model opposite="annotatedModelElements"
 	 * @generated
 	 */
-	EList<ActionItem> getActionItems();
+	EList<Annotation> getAnnotations();
 
 	/**
 	 * Returns the value of the '<em><b>Incoming Document References</b></em>' reference list.

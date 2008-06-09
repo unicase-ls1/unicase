@@ -65,6 +65,7 @@ public class RationaleFactoryImpl extends EFactoryImpl implements RationaleFacto
 			case RationalePackage.SOLUTION: return createSolution();
 			case RationalePackage.CRITERION: return createCriterion();
 			case RationalePackage.ASSESSMENT: return createAssessment();
+			case RationalePackage.COMMENT: return createComment();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -118,6 +119,16 @@ public class RationaleFactoryImpl extends EFactoryImpl implements RationaleFacto
 	public Assessment createAssessment() {
 		AssessmentImpl assessment = new AssessmentImpl();
 		return assessment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Comment createComment() {
+		CommentImpl comment = new CommentImpl();
+		return comment;
 	}
 
 	/**

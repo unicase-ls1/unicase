@@ -125,6 +125,7 @@ public class ModelSwitch<T> {
 			case ModelPackage.ANNOTATION: {
 				Annotation annotation = (Annotation)theEObject;
 				T result = caseAnnotation(annotation);
+				if (result == null) result = caseModelElement(annotation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

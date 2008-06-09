@@ -13,6 +13,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -21,6 +22,8 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.unicase.model.Annotation;
+import org.unicase.model.ModelPackage;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
 /**
@@ -30,7 +33,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
  * @generated
  */
 public class AnnotationItemProvider
-	extends ItemProviderAdapter
+	extends ModelElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -58,8 +61,31 @@ public class AnnotationItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addAnnotatedModelElementsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Annotated Model Elements feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAnnotatedModelElementsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Annotation_annotatedModelElements_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Annotation_annotatedModelElements_feature", "_UI_Annotation_type"),
+				 ModelPackage.Literals.ANNOTATION__ANNOTATED_MODEL_ELEMENTS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -81,7 +107,10 @@ public class AnnotationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_Annotation_type");
+		String label = ((Annotation)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Annotation_type") :
+			getString("_UI_Annotation_type") + " " + label;
 	}
 
 	/**
@@ -107,17 +136,6 @@ public class AnnotationItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return ModelEditPlugin.INSTANCE;
 	}
 
 }

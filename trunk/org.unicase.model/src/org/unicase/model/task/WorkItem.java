@@ -8,6 +8,7 @@ package org.unicase.model.task;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
 
 import org.unicase.model.change.ModelChangePackage;
@@ -29,7 +30,7 @@ import org.unicase.model.change.ModelChangePackage;
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface WorkItem extends ModelElement {
+public interface WorkItem extends Annotation {
 	/**
 	 * Returns the value of the '<em><b>Containing Workpackage</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.unicase.model.task.WorkPackage#getContainedWorkItems <em>Contained Work Items</em>}'.
