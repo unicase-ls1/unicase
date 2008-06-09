@@ -6,6 +6,7 @@
  */
 package org.unicase.workspace.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -18,6 +19,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
+import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentFactory;
+import org.unicase.emfstore.esmodel.changemanagment.LogMessage;
+import org.unicase.emfstore.esmodel.changemanagment.impl.LogMessageImpl;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
@@ -537,6 +541,24 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	public List<ProjectInfo> getRemoteProjectList() throws EmfStoreException {
 		//MK sanity checks for usersession state
 		return getWorkspaceManager().getConnectionManager().getProjectList(sessionId);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Creates a new project in the server for this {@link Usersession}
+	 * @param name the name
+	 * @param description the description
+ 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void createProject(String name, String description)
+			throws AccessControlException, EmfStoreException {
+		ConnectionManager connectionManager = this.getWorkspaceManager().getConnectionManager();
+		LogMessage log = ChangemanagmentFactory.eINSTANCE.createLogMessage();
+		log.setMessage("Creating project '"+name+"'");
+		log.setAuthor("ESBrowser");
+		log.setDate(new Date());
+		connectionManager.createProject(this.getSessionId(), name, description, log);
 	}
 
 } //UsersessionImpl

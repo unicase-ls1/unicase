@@ -231,4 +231,11 @@ public interface Usersession extends EObject {
 	 */
 	List<ProjectInfo> getRemoteProjectList() throws EmfStoreException;
 	
+	/**
+	 * @throws AccessControlException
+	 * @throws EmfStoreException
+	 * 
+	 * @generated NOT
+	 */
+	void createProject(String name, String description) throws AccessControlException, EmfStoreException;
 } // Usersession
