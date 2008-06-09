@@ -235,6 +235,11 @@ public class LeafSectionItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 ModelFactory.eINSTANCE.createTestForDiagram()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				 OrganizationFactory.eINSTANCE.createOrgUnit()));
 
 		newChildDescriptors.add
