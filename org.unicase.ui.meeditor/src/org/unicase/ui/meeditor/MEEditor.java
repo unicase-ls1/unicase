@@ -52,18 +52,10 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 	@Override
 	public void doSave(IProgressMonitor monitor) {
-		if (pages == null) {
-			return;
-		}
+		
 		monitor.beginTask("Saving...", 1);
-		for (Object page : pages) {
-			if (page != null) {
-				FormPage formPage = (FormPage) page;
-				if (formPage.isDirty()) {
-					formPage.doSave(monitor);
-				}
-			}
-		}
+		//MK: make save happen :-)
+		commandStack.flush();
 		editorDirtyStateChanged();
 		monitor.done();
 	}
@@ -131,18 +123,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 	@Override
 	public boolean isDirty() {
-		if (pages == null) {
-			return false;
-		}
-		for (Object page : pages) {
-			if (page != null) {
-				FormPage formPage = (FormPage) page;
-				if (formPage.isDirty()) {
-					return true;
-				}
-			}
-		}
-		return false;
+		return commandStack.isSaveNeeded();
 	}
 
 }
