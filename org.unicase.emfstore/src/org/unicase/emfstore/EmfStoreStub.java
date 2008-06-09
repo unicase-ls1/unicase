@@ -62,85 +62,87 @@ public class EmfStoreStub implements EmfStore {
 	public List<ProjectInfo> getProjectList(SessionId sessionId)
 			throws EmfStoreException {
 		EList<ProjectInfo> ret = new BasicEList<ProjectInfo>();
-		
+
 		ProjectId projectId = EsmodelFactory.eINSTANCE.createProjectId();
-		
+
 		ProjectInfo projectInfo = EsmodelFactory.eINSTANCE.createProjectInfo();
 		projectInfo.setName("TestProject");
 		projectInfo.setDescription("A test Project");
 		projectInfo.setProjectId(projectId);
-		projectInfo.setVersion(ChangemanagmentFactory.eINSTANCE.createPrimaryVersionSpec());
-		
+		projectInfo.setVersion(ChangemanagmentFactory.eINSTANCE
+				.createPrimaryVersionSpec());
+
 		ret.add(projectInfo);
 		return ret;
 	}
 
-	public PrimaryVersionSpec resolveVersionSpec(SessionId sessionId, ProjectId projectId,
-			VersionSpec versionSpec) throws EmfStoreException {
-		PrimaryVersionSpec primaryVersionSpec = ChangemanagmentFactory.eINSTANCE.createPrimaryVersionSpec();
+	public PrimaryVersionSpec resolveVersionSpec(SessionId sessionId,
+			ProjectId projectId, VersionSpec versionSpec)
+			throws EmfStoreException {
+		PrimaryVersionSpec primaryVersionSpec = ChangemanagmentFactory.eINSTANCE
+				.createPrimaryVersionSpec();
 		primaryVersionSpec.setIdentifier(1);
 		return primaryVersionSpec;
 	}
-	
+
 	public static Project createDummyProject() {
-// Generate the elements of the model
-		
+		// Generate the elements of the model
+
 		ModelFactory factory = ModelFactory.eINSTANCE;
-		DocumentFactory documentFactory =DocumentFactory.eINSTANCE;
+		DocumentFactory documentFactory = DocumentFactory.eINSTANCE;
 		RequirementFactory requirementFactory = RequirementFactory.eINSTANCE;
 		Project project = factory.createProject();
-		
-		//RootSection
+
+		// RootSection
 		CompositeSection rootSection = documentFactory.createCompositeSection();
 		rootSection.setName("RAD");
 		rootSection
 				.setDescription("The requirements analysis document of the project");
 		project.addModelElement(rootSection);
 
-		//Functional Requirements
+		// Functional Requirements
 		LeafSection reqLeafSection = documentFactory.createLeafSection();
 		reqLeafSection.setName("Functional Requirements");
 		reqLeafSection
 				.setDescription("Lists all functional requirements in this project");
 		reqLeafSection.setElementClass(FunctionalRequirement.class);
 		reqLeafSection.setParent(rootSection);
-		FunctionalRequirement fr = requirementFactory.createFunctionalRequirement();
+		FunctionalRequirement fr = requirementFactory
+				.createFunctionalRequirement();
 		fr.setName("My Reuirement");
-		FunctionalRequirement fr2 = requirementFactory.createFunctionalRequirement();
+		FunctionalRequirement fr2 = requirementFactory
+				.createFunctionalRequirement();
 		fr2.setName("My Reuirement2");
 		reqLeafSection.getModelElements().add(fr);
 		reqLeafSection.getModelElements().add(fr2);
 
-		//ActionItems
+		// ActionItems
 		LeafSection actionItemLeafSection = documentFactory.createLeafSection();
 		actionItemLeafSection.setName("Action Items");
 		actionItemLeafSection.setDescription("Lists all ais of this project.");
 		actionItemLeafSection.setParent(rootSection);
 		actionItemLeafSection.setElementClass(FunctionalRequirement.class);
-		//TODO: Create some AI«s here
-		
-		
-		//Diagrams
+		// TODO: Create some AI«s here
+
+		// Diagrams
 		LeafSection diagramSection = documentFactory.createLeafSection();
 		diagramSection.setName("Diagrams");
 		diagramSection.setDescription("Lists all diagrams of this project.");
 		diagramSection.setParent(rootSection);
 		diagramSection.setElementClass(FunctionalRequirement.class);
-		
+
 		DiagramFactory diagramFactory = DiagramFactory.eINSTANCE;
 		MEDiagram diagram = diagramFactory.createMEDiagram();
 		diagram.setName("Super Diagram");
 		diagramSection.getModelElements().add(diagram);
-		
-		
-		//Other Crap
-		CompositeSection ucmCompositeSection = documentFactory.createCompositeSection();
+
+		// Other Crap
+		CompositeSection ucmCompositeSection = documentFactory
+				.createCompositeSection();
 		ucmCompositeSection.setName("Use Case Modeling");
 		ucmCompositeSection
 				.setDescription("Contains sections concerning use cases.");
 		ucmCompositeSection.setParent(rootSection);
-
-		
 
 		LeafSection useCaseLeafSection = documentFactory.createLeafSection();
 		useCaseLeafSection.setName("Use Cases");
@@ -149,14 +151,14 @@ public class EmfStoreStub implements EmfStore {
 		useCaseLeafSection.setParent(ucmCompositeSection);
 		useCaseLeafSection.setElementClass(FunctionalRequirement.class);
 
-		LeafSection useCaseDiagramLeafSection = documentFactory.createLeafSection();
+		LeafSection useCaseDiagramLeafSection = documentFactory
+				.createLeafSection();
 		useCaseDiagramLeafSection.setName("Use Case Diagrams");
 		useCaseDiagramLeafSection
 				.setDescription("Lists all use case diagrams of this project.");
 		useCaseDiagramLeafSection.setParent(ucmCompositeSection);
 		useCaseDiagramLeafSection.setElementClass(FunctionalRequirement.class);
-		
-		
+
 		useCaseDiagramLeafSection.setName("Use Case Diagrams");
 		useCaseDiagramLeafSection
 				.setDescription("Lists all use case diagrams of this project.");
@@ -174,11 +176,12 @@ public class EmfStoreStub implements EmfStore {
 		projectHistory.setProjectId(esmodelFactory.createProjectId());
 		projectHistory.setProjectName("TestProject1");
 		ChangemanagmentFactory changemanagmentFactory = ChangemanagmentFactory.eINSTANCE;
-		
-		//create Version
+
+		// create Version
 		ChangemanagmentFactory changemanagmentFactory2 = changemanagmentFactory;
 		Version version = changemanagmentFactory2.createVersion();
-		TagVersionSpec tagVersionSpec = changemanagmentFactory2.createTagVersionSpec();
+		TagVersionSpec tagVersionSpec = changemanagmentFactory2
+				.createTagVersionSpec();
 		tagVersionSpec.setName("InitialVersion");
 		version.getTagSpecs().add(tagVersionSpec);
 		LogMessage logMessage = changemanagmentFactory2.createLogMessage();
@@ -186,20 +189,46 @@ public class EmfStoreStub implements EmfStore {
 		logMessage.setAuthor("es");
 		logMessage.setMessage("Auto generated");
 		version.setLogMessage(logMessage);
-		PrimaryVersionSpec primaryVersionSpec = changemanagmentFactory.createPrimaryVersionSpec();
+		PrimaryVersionSpec primaryVersionSpec = changemanagmentFactory
+				.createPrimaryVersionSpec();
 		primaryVersionSpec.setIdentifier(0);
 		version.setPrimarySpec(primaryVersionSpec);
 		version.setProjectState(createDummyProject());
-		
+
 		projectHistory.getVersions().add(version);
 		serverSpace.getProjects().add(projectHistory);
 	}
 
-	public ProjectInfo createProject(SessionId sessionId, String name, String description, LogMessage logMessage)
-			throws EmfStoreException {
-		// TODO Auto-generated method stub
-		return null;
+	public ProjectInfo createProject(SessionId sessionId, String name,
+			String description, LogMessage logMessage) throws EmfStoreException {
+		ProjectHistory projectHistory = EsmodelFactory.eINSTANCE
+				.createProjectHistory();
+		projectHistory.setProjectName(name);
+		projectHistory.setProjectDescription(description);
+		projectHistory.setProjectId(EsmodelFactory.eINSTANCE.createProjectId());
+
+		Version firstVersion = ChangemanagmentFactory.eINSTANCE.createVersion();
+		firstVersion.setLogMessage(logMessage);
+
+		PrimaryVersionSpec primary = ChangemanagmentFactory.eINSTANCE
+				.createPrimaryVersionSpec();
+		primary.setIdentifier(0);
+		firstVersion.setPrimarySpec(primary);
+
+		firstVersion.setProjectState(ModelFactory.eINSTANCE.createProject());
+
+		projectHistory.getVersions().add(firstVersion);
+
+		return getProjectInfo(projectHistory);
 	}
 
+	private ProjectInfo getProjectInfo(ProjectHistory project) {
+		ProjectInfo info = EsmodelFactory.eINSTANCE.createProjectInfo();
+		info.setName(project.getProjectName());
+		info.setDescription(project.getProjectDescription());
+		info.setProjectId(project.getProjectId());
+		info.setVersion(project.getVersions().get(0).getPrimarySpec());
+		return info;
+	}
 
 }
