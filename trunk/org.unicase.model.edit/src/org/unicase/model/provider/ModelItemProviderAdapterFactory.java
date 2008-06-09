@@ -143,29 +143,6 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.model.TestForDiagram} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected TestForDiagramItemProvider testForDiagramItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.model.TestForDiagram}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createTestForDiagramAdapter() {
-		if (testForDiagramItemProvider == null) {
-			testForDiagramItemProvider = new TestForDiagramItemProvider(this);
-		}
-
-		return testForDiagramItemProvider;
-	}
-
-	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -267,7 +244,6 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 		if (projectItemProvider != null) projectItemProvider.dispose();
 		if (modelElementIdItemProvider != null) modelElementIdItemProvider.dispose();
 		if (readerInfoItemProvider != null) readerInfoItemProvider.dispose();
-		if (testForDiagramItemProvider != null) testForDiagramItemProvider.dispose();
 	}
 
 }

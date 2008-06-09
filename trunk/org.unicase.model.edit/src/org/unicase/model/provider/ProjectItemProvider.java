@@ -162,11 +162,6 @@ public class ProjectItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 ModelFactory.eINSTANCE.createTestForDiagram()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 				 OrganizationFactory.eINSTANCE.createOrgUnit()));
 
 		newChildDescriptors.add

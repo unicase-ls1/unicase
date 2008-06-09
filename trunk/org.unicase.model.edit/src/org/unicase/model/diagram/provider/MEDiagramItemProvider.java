@@ -209,11 +209,6 @@ public class MEDiagramItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 ModelFactory.eINSTANCE.createTestForDiagram()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
 				 OrganizationFactory.eINSTANCE.createOrgUnit()));
 
 		newChildDescriptors.add
