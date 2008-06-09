@@ -62,7 +62,7 @@ public class ComponentFactoryImpl extends EFactoryImpl implements ComponentFacto
 		switch (eClass.getClassifierID()) {
 			case ComponentPackage.COMPONENT: return createComponent();
 			case ComponentPackage.COMPONENT_SERVICE: return createComponentService();
-			case ComponentPackage.NODE: return createNode();
+			case ComponentPackage.DEPLOYMENT_NODE: return createDeploymentNode();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -93,9 +93,9 @@ public class ComponentFactoryImpl extends EFactoryImpl implements ComponentFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Node createNode() {
-		NodeImpl node = new NodeImpl();
-		return node;
+	public DeploymentNode createDeploymentNode() {
+		DeploymentNodeImpl deploymentNode = new DeploymentNodeImpl();
+		return deploymentNode;
 	}
 
 	/**

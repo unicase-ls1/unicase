@@ -292,7 +292,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="consumingComponents"
           upperBound="-1" eType="#//component/Component" eOpposite="#//component/Component/consumedServices"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Node" eSuperTypes="#//ModelElement">
+    <eClassifiers xsi:type="ecore:EClass" name="DeploymentNode" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="components" upperBound="-1"
           eType="#//component/Component"/>
     </eClassifiers>

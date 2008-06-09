@@ -30,7 +30,7 @@ import org.unicase.model.component.Component;
 import org.unicase.model.component.ComponentFactory;
 import org.unicase.model.component.ComponentPackage;
 import org.unicase.model.component.ComponentService;
-import org.unicase.model.component.Node;
+import org.unicase.model.component.DeploymentNode;
 
 import org.unicase.model.diagram.DiagramPackage;
 
@@ -84,7 +84,7 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass nodeEClass = null;
+	private EClass deploymentNodeEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -254,8 +254,8 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getNode() {
-		return nodeEClass;
+	public EClass getDeploymentNode() {
+		return deploymentNodeEClass;
 	}
 
 	/**
@@ -263,8 +263,8 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNode_Components() {
-		return (EReference)nodeEClass.getEStructuralFeatures().get(0);
+	public EReference getDeploymentNode_Components() {
+		return (EReference)deploymentNodeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -304,8 +304,8 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 		createEReference(componentServiceEClass, COMPONENT_SERVICE__OFFERING_COMPONENT);
 		createEReference(componentServiceEClass, COMPONENT_SERVICE__CONSUMING_COMPONENTS);
 
-		nodeEClass = createEClass(NODE);
-		createEReference(nodeEClass, NODE__COMPONENTS);
+		deploymentNodeEClass = createEClass(DEPLOYMENT_NODE);
+		createEReference(deploymentNodeEClass, DEPLOYMENT_NODE__COMPONENTS);
 	}
 
 	/**
@@ -342,7 +342,7 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 		// Add supertypes to classes
 		componentEClass.getESuperTypes().add(theModelPackage.getModelElement());
 		componentServiceEClass.getESuperTypes().add(theModelPackage.getModelElement());
-		nodeEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		deploymentNodeEClass.getESuperTypes().add(theModelPackage.getModelElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(componentEClass, Component.class, "Component", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -354,8 +354,8 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 		initEReference(getComponentService_OfferingComponent(), this.getComponent(), this.getComponent_OfferedServices(), "offeringComponent", null, 0, 1, ComponentService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getComponentService_ConsumingComponents(), this.getComponent(), this.getComponent_ConsumedServices(), "consumingComponents", null, 0, -1, ComponentService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(nodeEClass, Node.class, "Node", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNode_Components(), this.getComponent(), null, "components", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(deploymentNodeEClass, DeploymentNode.class, "DeploymentNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDeploymentNode_Components(), this.getComponent(), null, "components", null, 0, -1, DeploymentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 } //ComponentPackageImpl

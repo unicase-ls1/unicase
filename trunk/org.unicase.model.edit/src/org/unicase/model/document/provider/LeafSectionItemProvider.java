@@ -380,7 +380,7 @@ public class LeafSectionItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-				 ComponentFactory.eINSTANCE.createNode()));
+				 ComponentFactory.eINSTANCE.createDeploymentNode()));
 	}
 
 	/**

@@ -122,26 +122,26 @@ public class ComponentItemProviderAdapterFactory extends ComponentAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.model.component.Node} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.component.DeploymentNode} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected NodeItemProvider nodeItemProvider;
+	protected DeploymentNodeItemProvider deploymentNodeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.model.component.Node}.
+	 * This creates an adapter for a {@link org.unicase.model.component.DeploymentNode}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createNodeAdapter() {
-		if (nodeItemProvider == null) {
-			nodeItemProvider = new NodeItemProvider(this);
+	public Adapter createDeploymentNodeAdapter() {
+		if (deploymentNodeItemProvider == null) {
+			deploymentNodeItemProvider = new DeploymentNodeItemProvider(this);
 		}
 
-		return nodeItemProvider;
+		return deploymentNodeItemProvider;
 	}
 
 	/**
@@ -245,7 +245,7 @@ public class ComponentItemProviderAdapterFactory extends ComponentAdapterFactory
 	public void dispose() {
 		if (componentItemProvider != null) componentItemProvider.dispose();
 		if (componentServiceItemProvider != null) componentServiceItemProvider.dispose();
-		if (nodeItemProvider != null) nodeItemProvider.dispose();
+		if (deploymentNodeItemProvider != null) deploymentNodeItemProvider.dispose();
 	}
 
 }

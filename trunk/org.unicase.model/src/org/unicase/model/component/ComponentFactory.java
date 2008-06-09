@@ -44,13 +44,13 @@ public interface ComponentFactory extends EFactory {
 	ComponentService createComponentService();
 
 	/**
-	 * Returns a new object of class '<em>Node</em>'.
+	 * Returns a new object of class '<em>Deployment Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Node</em>'.
+	 * @return a new object of class '<em>Deployment Node</em>'.
 	 * @generated
 	 */
-	Node createNode();
+	DeploymentNode createDeploymentNode();
 
 	/**
 	 * Returns the package supported by this factory.

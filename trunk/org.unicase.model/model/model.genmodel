@@ -268,9 +268,9 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//component/ComponentService/consumingComponents"/>
       </genClasses>
-      <genClasses ecoreClass="model.ecore#//component/Node">
+      <genClasses ecoreClass="model.ecore#//component/DeploymentNode">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference model.ecore#//component/Node/components"/>
+            ecoreFeature="ecore:EReference model.ecore#//component/DeploymentNode/components"/>
       </genClasses>
     </nestedGenPackages>
   </genPackages>

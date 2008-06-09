@@ -103,10 +103,10 @@ public class ComponentSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ComponentPackage.NODE: {
-				Node node = (Node)theEObject;
-				T result = caseNode(node);
-				if (result == null) result = caseModelElement(node);
+			case ComponentPackage.DEPLOYMENT_NODE: {
+				DeploymentNode deploymentNode = (DeploymentNode)theEObject;
+				T result = caseDeploymentNode(deploymentNode);
+				if (result == null) result = caseModelElement(deploymentNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -145,17 +145,17 @@ public class ComponentSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Node</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Deployment Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Node</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Deployment Node</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseNode(Node object) {
+	public T caseDeploymentNode(DeploymentNode object) {
 		return null;
 	}
 

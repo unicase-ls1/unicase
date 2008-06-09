@@ -24,18 +24,18 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 import org.unicase.model.component.ComponentPackage;
-import org.unicase.model.component.Node;
+import org.unicase.model.component.DeploymentNode;
 
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.ModelElementItemProvider;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.component.Node} object.
+ * This is the item provider adapter for a {@link org.unicase.model.component.DeploymentNode} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class NodeItemProvider
+public class DeploymentNodeItemProvider
 	extends ModelElementItemProvider
 	implements
 		IEditingDomainItemProvider,
@@ -49,7 +49,7 @@ public class NodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NodeItemProvider(AdapterFactory adapterFactory) {
+	public DeploymentNodeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -80,9 +80,9 @@ public class NodeItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Node_components_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Node_components_feature", "_UI_Node_type"),
-				 ComponentPackage.Literals.NODE__COMPONENTS,
+				 getString("_UI_DeploymentNode_components_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DeploymentNode_components_feature", "_UI_DeploymentNode_type"),
+				 ComponentPackage.Literals.DEPLOYMENT_NODE__COMPONENTS,
 				 true,
 				 false,
 				 true,
@@ -92,14 +92,14 @@ public class NodeItemProvider
 	}
 
 	/**
-	 * This returns Node.gif.
+	 * This returns DeploymentNode.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Node"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/DeploymentNode"));
 	}
 
 	/**
@@ -110,10 +110,10 @@ public class NodeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Node)object).getName();
+		String label = ((DeploymentNode)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Node_type") :
-			getString("_UI_Node_type") + " " + label;
+			getString("_UI_DeploymentNode_type") :
+			getString("_UI_DeploymentNode_type") + " " + label;
 	}
 
 	/**
