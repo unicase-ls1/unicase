@@ -58,4 +58,7 @@ public class MELinkControl extends AbstractMEControl {
 		return linkComposite;
 	}
 
+	public Composite getLinkComposite(){
+		return this.linkComposite;
+	}
 }
