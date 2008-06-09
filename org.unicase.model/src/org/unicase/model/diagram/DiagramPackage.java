@@ -116,7 +116,7 @@ public interface DiagramPackage extends EPackage {
 	int ME_DIAGRAM__ACTION_ITEMS = ModelPackage.MODEL_ELEMENT__ACTION_ITEMS;
 
 	/**
-	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Elements</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -154,10 +154,10 @@ public interface DiagramPackage extends EPackage {
 	EClass getMEDiagram();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.model.diagram.MEDiagram#getElements <em>Elements</em>}'.
+	 * Returns the meta object for the reference list '{@link org.unicase.model.diagram.MEDiagram#getElements <em>Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Elements</em>'.
+	 * @return the meta object for the reference list '<em>Elements</em>'.
 	 * @see org.unicase.model.diagram.MEDiagram#getElements()
 	 * @see #getMEDiagram()
 	 * @generated
@@ -208,7 +208,7 @@ public interface DiagramPackage extends EPackage {
 		EClass ME_DIAGRAM = eINSTANCE.getMEDiagram();
 
 		/**
-		 * The meta object literal for the '<em><b>Elements</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Elements</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

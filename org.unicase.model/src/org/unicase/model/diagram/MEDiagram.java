@@ -31,7 +31,7 @@ import org.unicase.model.task.ActionItem;
  */
 public interface MEDiagram extends ModelElement {
 	/**
-	 * Returns the value of the '<em><b>Elements</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Elements</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.model.ModelElement}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -39,9 +39,9 @@ public interface MEDiagram extends ModelElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Elements</em>' containment reference list.
+	 * @return the value of the '<em>Elements</em>' reference list.
 	 * @see org.unicase.model.diagram.DiagramPackage#getMEDiagram_Elements()
-	 * @model containment="true"
+	 * @model
 	 * @generated
 	 */
 	EList<ModelElement> getElements();

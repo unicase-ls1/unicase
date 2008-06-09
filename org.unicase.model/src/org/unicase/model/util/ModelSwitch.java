@@ -122,13 +122,6 @@ public class ModelSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ModelPackage.TEST_FOR_DIAGRAM: {
-				TestForDiagram testForDiagram = (TestForDiagram)theEObject;
-				T result = caseTestForDiagram(testForDiagram);
-				if (result == null) result = caseModelElement(testForDiagram);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -205,21 +198,6 @@ public class ModelSwitch<T> {
 	 * @generated
 	 */
 	public T caseReaderInfo(ReaderInfo object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test For Diagram</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test For Diagram</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseTestForDiagram(TestForDiagram object) {
 		return null;
 	}
 
