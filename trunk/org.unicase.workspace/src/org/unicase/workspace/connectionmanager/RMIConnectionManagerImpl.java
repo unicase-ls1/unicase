@@ -29,18 +29,36 @@ import org.unicase.emfstore.exceptions.UnknownSessionException;
 import org.unicase.model.Project;
 import org.unicase.workspace.ServerInfo;
 
+/**
+ * The RMIConnectionManager implements the {@link ConnectionManager} using the
+ * RMI technology. Please notice that the EMF objects have to be serialized into
+ * String via {@link RMIUtil} in order to avoid letting the EMF objects
+ * implement the Serializable interface, which was discouraged from the EMF newsgroup.
+ * 
+ * @author Wesendonk
+ */
 public class RMIConnectionManagerImpl implements ConnectionManager {
+
+	private static final String UNSUPPORTED_ENCODING = "Problem with en/decoding.";
+
+	private static final String REMOTE = "A rmi communication-related exception.";
 
 	private Map<SessionId, RMIEmfStoreFacade> facadeMap;
 
-	public RMIConnectionManagerImpl() throws ConnectionException {
+	/**
+	 * Default constructor.
+	 */
+	public RMIConnectionManagerImpl() {
 		facadeMap = new HashMap<SessionId, RMIEmfStoreFacade>();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public PrimaryVersionSpec createVersion(SessionId sessionId,
 			ProjectId projectId, PrimaryVersionSpec baseVersionSpec,
 			ChangePackage changePackage, LogMessage logMessage)
-			throws ConnectionException {
+			throws EmfStoreException {
 
 		try {
 			return (PrimaryVersionSpec) RMIUtil.stringToEObject(getFacade(
@@ -51,28 +69,42 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 					RMIUtil.eObjectToString(changePackage),
 					RMIUtil.eObjectToString(logMessage)));
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ConnectionException(REMOTE, e);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (EmfStoreException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ConnectionException(REMOTE, e);
 		}
-		return null;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public List<ChangePackage> getChanges(SessionId sessionId,
 			ProjectId projectId, VersionSpec source, VersionSpec target)
 			throws EmfStoreException {
-		// TODO Auto-generated method stub
-		return null;
+		List<ChangePackage> result = new ArrayList<ChangePackage>();
+		try {
+			for (String str : getFacade(sessionId).getChanges(
+					RMIUtil.eObjectToString(sessionId),
+					RMIUtil.eObjectToString(projectId),
+					RMIUtil.eObjectToString(source),
+					RMIUtil.eObjectToString(target))) {
+				result.add((ChangePackage) RMIUtil.stringToEObject(str));
+			}
+		} catch (UnsupportedEncodingException e) {
+			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
+		} catch (RemoteException e) {
+			throw new ConnectionException(REMOTE, e);
+		} catch (IOException e) {
+			throw new ConnectionException(REMOTE, e);
+		}
+		return result;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public List<HistoryInfo> getHistoryInfo(SessionId sessionId,
 			ProjectId projectId, VersionSpec source, VersionSpec target)
 			throws EmfStoreException {
@@ -85,34 +117,19 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 					.eObjectToString(source), RMIUtil.eObjectToString(target))) {
 				result.add((HistoryInfo) RMIUtil.stringToEObject(str));
 			}
-
 			return result;
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ConnectionException(REMOTE, e);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (EmfStoreException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ConnectionException(REMOTE, e);
 		}
-		return null;
 	}
 
-	private RMIEmfStoreFacade getFacade(SessionId sessionId)
-			throws UnknownSessionException {
-		RMIEmfStoreFacade facade = facadeMap.get(sessionId);
-		if (facade == null) {
-			throw new UnknownSessionException(
-					"Session unkown to Connection manager, log in first!");
-		}
-		return facade;
-	}
-
+	/**
+	 * {@inheritDoc}
+	 */
 	public Project getProject(SessionId sessionId, ProjectId projectId,
 			VersionSpec versionSpec) throws EmfStoreException {
 		try {
@@ -121,22 +138,19 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 							RMIUtil.eObjectToString(projectId),
 							RMIUtil.eObjectToString(versionSpec)));
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ConnectionException(REMOTE, e);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (EmfStoreException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ConnectionException(REMOTE, e);
 		}
-		return null;
 	}
 
-	public List<ProjectInfo> getProjectList(SessionId sessionId) {
+	/**
+	 * {@inheritDoc}
+	 */
+	public List<ProjectInfo> getProjectList(SessionId sessionId)
+			throws EmfStoreException {
 		try {
 			List<ProjectInfo> result = new ArrayList<ProjectInfo>();
 			for (String str : getFacade(sessionId).getProjectList(
@@ -145,23 +159,20 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 			}
 			return result;
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ConnectionException(REMOTE, e);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (EmfStoreException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ConnectionException(REMOTE, e);
 		}
-		return null;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public PrimaryVersionSpec resolveVersionSpec(SessionId sessionId,
-			ProjectId projectId, VersionSpec versionSpec) {
+			ProjectId projectId, VersionSpec versionSpec)
+			throws EmfStoreException {
 		try {
 			return (PrimaryVersionSpec) RMIUtil.stringToEObject(getFacade(
 					sessionId).resolveVersionSpec(
@@ -169,21 +180,17 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 					RMIUtil.eObjectToString(projectId),
 					RMIUtil.eObjectToString(versionSpec)));
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ConnectionException(REMOTE, e);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (EmfStoreException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ConnectionException(REMOTE, e);
 		}
-		return null;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public ProjectInfo createProject(SessionId sessionid, String name,
 			String description, LogMessage logMessage) throws EmfStoreException {
 		try {
@@ -191,18 +198,17 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 					.createProject(RMIUtil.eObjectToString(sessionid), name,
 							description, RMIUtil.eObjectToString(logMessage)));
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ConnectionException(REMOTE, e);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ConnectionException(REMOTE, e);
 		}
-		return null;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public SessionId logIn(String username, String password,
 			ServerInfo serverInfo) throws ConnectionException {
 
@@ -218,19 +224,25 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 			facadeMap.put(sessionId, facade);
 			return sessionId;
 		} catch (RemoteException e) {
-			throw new ConnectionException("Connection to server refused.", e);
+			throw new ConnectionException(REMOTE, e);
 		} catch (NotBoundException e) {
 			throw new ConnectionException("RMI Registry not available.");
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ConnectionException(REMOTE, e);
 		} catch (AccessControlException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ConnectionException("Login refused.", e);
 		}
-		return null;
+	}
+
+	private RMIEmfStoreFacade getFacade(SessionId sessionId)
+			throws UnknownSessionException {
+		RMIEmfStoreFacade facade = facadeMap.get(sessionId);
+		if (facade == null) {
+			throw new UnknownSessionException(
+					"Session unkown to Connection manager, log in first!");
+		}
+		return facade;
 	}
 }
