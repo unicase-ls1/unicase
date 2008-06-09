@@ -65,13 +65,7 @@ public final class WorkspaceManager {
 	 */
 	private ConnectionManager initConnectionManager() {
 		// return new StubConnectionManagerImpl();
-		try {
 			return new RMIConnectionManagerImpl();
-		} catch (ConnectionException e) {
-			// MK Auto-generated catch block
-			e.printStackTrace();
-			throw new RuntimeException();
-		}
 	}
 
 	/**
