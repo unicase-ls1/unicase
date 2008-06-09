@@ -38,6 +38,8 @@ import org.unicase.model.requirement.UseCase;
  *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getPriority <em>Priority</em>}</li>
  *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getRefiningRequirements <em>Refining Requirements</em>}</li>
  *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getRefinedRequirement <em>Refined Requirement</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getUseCases <em>Use Cases</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getScenarios <em>Scenarios</em>}</li>
  * </ul>
  * </p>
  *
@@ -115,6 +117,26 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 	 * @ordered
 	 */
 	protected EList<FunctionalRequirement> refiningRequirements;
+
+	/**
+	 * The cached value of the '{@link #getUseCases() <em>Use Cases</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUseCases()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<UseCase> useCases;
+
+	/**
+	 * The cached value of the '{@link #getScenarios() <em>Scenarios</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getScenarios()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Scenario> scenarios;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -256,6 +278,30 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<UseCase> getUseCases() {
+		if (useCases == null) {
+			useCases = new EObjectWithInverseResolvingEList.ManyInverse<UseCase>(UseCase.class, this, RequirementPackage.FUNCTIONAL_REQUIREMENT__USE_CASES, RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS);
+		}
+		return useCases;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Scenario> getScenarios() {
+		if (scenarios == null) {
+			scenarios = new EObjectWithInverseResolvingEList.ManyInverse<Scenario>(Scenario.class, this, RequirementPackage.FUNCTIONAL_REQUIREMENT__SCENARIOS, RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS);
+		}
+		return scenarios;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -266,6 +312,10 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetRefinedRequirement((FunctionalRequirement)otherEnd, msgs);
+			case RequirementPackage.FUNCTIONAL_REQUIREMENT__USE_CASES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getUseCases()).basicAdd(otherEnd, msgs);
+			case RequirementPackage.FUNCTIONAL_REQUIREMENT__SCENARIOS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getScenarios()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -282,6 +332,10 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 				return ((InternalEList<?>)getRefiningRequirements()).basicRemove(otherEnd, msgs);
 			case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT:
 				return basicSetRefinedRequirement(null, msgs);
+			case RequirementPackage.FUNCTIONAL_REQUIREMENT__USE_CASES:
+				return ((InternalEList<?>)getUseCases()).basicRemove(otherEnd, msgs);
+			case RequirementPackage.FUNCTIONAL_REQUIREMENT__SCENARIOS:
+				return ((InternalEList<?>)getScenarios()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -318,6 +372,10 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 				return getRefiningRequirements();
 			case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT:
 				return getRefinedRequirement();
+			case RequirementPackage.FUNCTIONAL_REQUIREMENT__USE_CASES:
+				return getUseCases();
+			case RequirementPackage.FUNCTIONAL_REQUIREMENT__SCENARIOS:
+				return getScenarios();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -347,6 +405,14 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 			case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT:
 				setRefinedRequirement((FunctionalRequirement)newValue);
 				return;
+			case RequirementPackage.FUNCTIONAL_REQUIREMENT__USE_CASES:
+				getUseCases().clear();
+				getUseCases().addAll((Collection<? extends UseCase>)newValue);
+				return;
+			case RequirementPackage.FUNCTIONAL_REQUIREMENT__SCENARIOS:
+				getScenarios().clear();
+				getScenarios().addAll((Collection<? extends Scenario>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -374,6 +440,12 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 			case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT:
 				setRefinedRequirement((FunctionalRequirement)null);
 				return;
+			case RequirementPackage.FUNCTIONAL_REQUIREMENT__USE_CASES:
+				getUseCases().clear();
+				return;
+			case RequirementPackage.FUNCTIONAL_REQUIREMENT__SCENARIOS:
+				getScenarios().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -396,6 +468,10 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 				return refiningRequirements != null && !refiningRequirements.isEmpty();
 			case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT:
 				return getRefinedRequirement() != null;
+			case RequirementPackage.FUNCTIONAL_REQUIREMENT__USE_CASES:
+				return useCases != null && !useCases.isEmpty();
+			case RequirementPackage.FUNCTIONAL_REQUIREMENT__SCENARIOS:
+				return scenarios != null && !scenarios.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

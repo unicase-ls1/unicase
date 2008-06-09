@@ -60,6 +60,51 @@
             figureQualifiedClassName="org.eclipse.draw2d.Label"/>
       </labels>
     </topLevelNodes>
+    <links
+        visualID="3001"
+        editPartClassName="AssociationEditPart"
+        itemSemanticEditPolicyClassName="AssociationItemSemanticEditPolicy"
+        notationViewFactoryClassName="AssociationViewFactory"
+        createCommandClassName="AssociationCreateCommand"
+        reorientCommandClassName="AssociationReorientCommand">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+      <elementType
+          xsi:type="gmfgen:MetamodelType"
+          editHelperClassName="AssociationEditHelper"/>
+      <viewmap
+          xsi:type="gmfgen:FigureViewmap"
+          figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx"/>
+      <modelFacet
+          xsi:type="gmfgen:TypeLinkModelFacet">
+        <metaClass
+            href="model.genmodel#//model/classes/Association"/>
+        <containmentMetaFeature
+            href="model.genmodel#//model/diagram/MEDiagram/newElements"/>
+        <childMetaFeature
+            href="model.genmodel#//model/diagram/MEDiagram/newElements"/>
+        <sourceMetaFeature
+            href="model.genmodel#//model/classes/Association/source"/>
+        <targetMetaFeature
+            href="model.genmodel#//model/classes/Association/target"/>
+      </modelFacet>
+      <labels
+          visualID="4002"
+          editPartClassName="LabelEditPart"
+          itemSemanticEditPolicyClassName="LabelItemSemanticEditPolicy"
+          notationViewFactoryClassName="LabelViewFactory"
+          elementIcon="true">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.draw2d.Label">
+          <attributes
+              xsi:type="gmfgen:LabelOffsetAttributes"
+              y="40"/>
+        </viewmap>
+      </labels>
+    </links>
     <palette>
       <groups
           title="Default"
@@ -69,6 +114,10 @@
             title="Class"
             description=""
             genNodes="//@diagram/@topLevelNodes.0"/>
+        <entries
+            xsi:type="gmfgen:ToolEntry"
+            title="Association"
+            genLinks="//@diagram/@links.0"/>
       </groups>
     </palette>
     <preferencePages
@@ -111,6 +160,35 @@
     <childReferences
         parent="//@diagram"
         child="//@diagram/@topLevelNodes.0"/>
+    <childReferences
+        parent="//@diagram"
+        child="//@diagram/@links.0"
+        groupName="links"
+        groupIcon="icons/linksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.0"
+        child="//@diagram/@topLevelNodes.0"
+        referenceType="out_target"
+        groupName="target"
+        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.0"
+        child="//@diagram/@links.0"
+        referenceType="in_source"
+        groupName="incoming links"
+        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.0"
+        child="//@diagram/@topLevelNodes.0"
+        referenceType="in_source"
+        groupName="source"
+        groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.0"
+        child="//@diagram/@links.0"
+        referenceType="out_target"
+        groupName="outgoing links"
+        groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
   </navigator>
   <diagramUpdater/>
   <propertySheet>

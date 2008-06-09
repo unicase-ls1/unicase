@@ -117,6 +117,24 @@ public interface RationalePackage extends EPackage {
 	int ISSUE__ACTION_ITEMS = ModelPackage.MODEL_ELEMENT__ACTION_ITEMS;
 
 	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISSUE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISSUE__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+
+	/**
 	 * The feature id for the '<em><b>Proposals</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -226,6 +244,24 @@ public interface RationalePackage extends EPackage {
 	int PROPOSAL__ACTION_ITEMS = ModelPackage.MODEL_ELEMENT__ACTION_ITEMS;
 
 	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPOSAL__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPOSAL__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+
+	/**
 	 * The feature id for the '<em><b>Assessments</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -297,6 +333,24 @@ public interface RationalePackage extends EPackage {
 	 * @ordered
 	 */
 	int SOLUTION__ACTION_ITEMS = ModelPackage.MODEL_ELEMENT__ACTION_ITEMS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOLUTION__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOLUTION__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>Underlying Proposals</b></em>' reference list.
@@ -372,6 +426,24 @@ public interface RationalePackage extends EPackage {
 	int CRITERION__ACTION_ITEMS = ModelPackage.MODEL_ELEMENT__ACTION_ITEMS;
 
 	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CRITERION__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CRITERION__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+
+	/**
 	 * The number of structural features of the '<em>Criterion</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -434,6 +506,24 @@ public interface RationalePackage extends EPackage {
 	 * @ordered
 	 */
 	int ASSESSMENT__ACTION_ITEMS = ModelPackage.MODEL_ELEMENT__ACTION_ITEMS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSESSMENT__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSESSMENT__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>Proposal</b></em>' reference.

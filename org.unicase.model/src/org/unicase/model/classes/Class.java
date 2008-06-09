@@ -21,6 +21,8 @@ import org.unicase.model.ModelElement;
  *   <li>{@link org.unicase.model.classes.Class#getParticipatedUseCases <em>Participated Use Cases</em>}</li>
  *   <li>{@link org.unicase.model.classes.Class#getSuperClass <em>Super Class</em>}</li>
  *   <li>{@link org.unicase.model.classes.Class#getSubClasses <em>Sub Classes</em>}</li>
+ *   <li>{@link org.unicase.model.classes.Class#getIncomingAssociations <em>Incoming Associations</em>}</li>
+ *   <li>{@link org.unicase.model.classes.Class#getOutgoingAssociations <em>Outgoing Associations</em>}</li>
  * </ul>
  * </p>
  *
@@ -93,4 +95,40 @@ public interface Class extends PackageElement {
 	 * @generated
 	 */
 	EList<Class> getSubClasses();
+
+	/**
+	 * Returns the value of the '<em><b>Incoming Associations</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.classes.Association}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.classes.Association#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Incoming Associations</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Incoming Associations</em>' reference list.
+	 * @see org.unicase.model.classes.ClassesPackage#getClass_IncomingAssociations()
+	 * @see org.unicase.model.classes.Association#getTarget
+	 * @model opposite="target"
+	 * @generated
+	 */
+	EList<Association> getIncomingAssociations();
+
+	/**
+	 * Returns the value of the '<em><b>Outgoing Associations</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.classes.Association}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.classes.Association#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Outgoing Associations</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Outgoing Associations</em>' reference list.
+	 * @see org.unicase.model.classes.ClassesPackage#getClass_OutgoingAssociations()
+	 * @see org.unicase.model.classes.Association#getSource
+	 * @model opposite="source"
+	 * @generated
+	 */
+	EList<Association> getOutgoingAssociations();
 } // Class

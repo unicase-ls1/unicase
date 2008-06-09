@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -160,7 +161,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	 */
 	public EList<ModelElement> getModelElements() {
 		if (modelElements == null) {
-			modelElements = new EObjectContainmentEList<ModelElement>(ModelElement.class, this, DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS);
+			modelElements = new EObjectContainmentWithInverseEList<ModelElement>(ModelElement.class, this, DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS, ModelPackage.MODEL_ELEMENT__LEAF_SECTION);
 		}
 		return modelElements;
 	}
@@ -182,6 +183,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -189,6 +191,8 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetParent((CompositeSection)otherEnd, msgs);
+			case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getModelElements()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}

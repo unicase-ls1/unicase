@@ -116,6 +116,24 @@ public interface ComponentPackage extends EPackage {
 	int COMPONENT__ACTION_ITEMS = ModelPackage.MODEL_ELEMENT__ACTION_ITEMS;
 
 	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+
+	/**
 	 * The feature id for the '<em><b>Packages</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -207,6 +225,24 @@ public interface ComponentPackage extends EPackage {
 	int COMPONENT_SERVICE__ACTION_ITEMS = ModelPackage.MODEL_ELEMENT__ACTION_ITEMS;
 
 	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_SERVICE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_SERVICE__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+
+	/**
 	 * The feature id for the '<em><b>Offering Component</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -287,6 +323,24 @@ public interface ComponentPackage extends EPackage {
 	 * @ordered
 	 */
 	int DEPLOYMENT_NODE__ACTION_ITEMS = ModelPackage.MODEL_ELEMENT__ACTION_ITEMS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPLOYMENT_NODE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPLOYMENT_NODE__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>Components</b></em>' reference list.

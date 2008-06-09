@@ -115,13 +115,31 @@ public interface ModelPackage extends EPackage {
 	int MODEL_ELEMENT__ACTION_ITEMS = 4;
 
 	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES = 5;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT__LEAF_SECTION = 6;
+
+	/**
 	 * The number of structural features of the '<em>Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_FEATURE_COUNT = 5;
+	int MODEL_ELEMENT_FEATURE_COUNT = 7;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.impl.ProjectImpl <em>Project</em>}' class.
@@ -247,6 +265,25 @@ public interface ModelPackage extends EPackage {
 	int READER_INFO_FEATURE_COUNT = 2;
 
 	/**
+	 * The meta object id for the '{@link org.unicase.model.impl.AnnotationImpl <em>Annotation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.impl.AnnotationImpl
+	 * @see org.unicase.model.impl.ModelPackageImpl#getAnnotation()
+	 * @generated
+	 */
+	int ANNOTATION = 5;
+
+	/**
+	 * The number of structural features of the '<em>Annotation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION_FEATURE_COUNT = 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.model.ModelElement <em>Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -310,6 +347,28 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getModelElement_ActionItems();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.ModelElement#getIncomingDocumentReferences <em>Incoming Document References</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Incoming Document References</em>'.
+	 * @see org.unicase.model.ModelElement#getIncomingDocumentReferences()
+	 * @see #getModelElement()
+	 * @generated
+	 */
+	EReference getModelElement_IncomingDocumentReferences();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.unicase.model.ModelElement#getLeafSection <em>Leaf Section</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Leaf Section</em>'.
+	 * @see org.unicase.model.ModelElement#getLeafSection()
+	 * @see #getModelElement()
+	 * @generated
+	 */
+	EReference getModelElement_LeafSection();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.Project <em>Project</em>}'.
@@ -396,6 +455,16 @@ public interface ModelPackage extends EPackage {
 	EReference getReaderInfo_ReaderId();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.model.Annotation <em>Annotation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Annotation</em>'.
+	 * @see org.unicase.model.Annotation
+	 * @generated
+	 */
+	EClass getAnnotation();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -468,6 +537,22 @@ public interface ModelPackage extends EPackage {
 		EReference MODEL_ELEMENT__ACTION_ITEMS = eINSTANCE.getModelElement_ActionItems();
 
 		/**
+		 * The meta object literal for the '<em><b>Incoming Document References</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES = eINSTANCE.getModelElement_IncomingDocumentReferences();
+
+		/**
+		 * The meta object literal for the '<em><b>Leaf Section</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODEL_ELEMENT__LEAF_SECTION = eINSTANCE.getModelElement_LeafSection();
+
+		/**
 		 * The meta object literal for the '{@link org.unicase.model.impl.ProjectImpl <em>Project</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -538,6 +623,16 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference READER_INFO__READER_ID = eINSTANCE.getReaderInfo_ReaderId();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.impl.AnnotationImpl <em>Annotation</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.impl.AnnotationImpl
+		 * @see org.unicase.model.impl.ModelPackageImpl#getAnnotation()
+		 * @generated
+		 */
+		EClass ANNOTATION = eINSTANCE.getAnnotation();
 
 	}
 

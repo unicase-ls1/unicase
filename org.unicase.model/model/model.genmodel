@@ -3,7 +3,7 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.unicase.model/src"
     modelPluginID="org.unicase.model" modelName="Model" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="5.0" copyrightFields="false" providerRootExtendsClass="">
+    complianceLevel="5.0" copyrightFields="false" providerRootExtendsClass="" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation">
   <foreignModel>model.ecore</foreignModel>
   <genPackages prefix="Model" basePackage="org.unicase" disposableProviderFactory="true"
       ecorePackage="model.ecore#/">
@@ -15,6 +15,8 @@
       <genFeatures property="None" createChild="false" propertyCategory="" propertyDescription=""
           ecoreFeature="ecore:EReference model.ecore#//ModelElement/readerInfos"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//ModelElement/actionItems"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//ModelElement/incomingDocumentReferences"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//ModelElement/leafSection"/>
       <genOperations ecoreOperation="model.ecore#//ModelElement/getProject"/>
       <genOperations ecoreOperation="model.ecore#//ModelElement/addReader">
         <genParameters ecoreParameter="model.ecore#//ModelElement/addReader/readerName"/>
@@ -34,6 +36,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ReaderInfo/date"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//ReaderInfo/readerId"/>
     </genClasses>
+    <genClasses ecoreClass="model.ecore#//Annotation"/>
     <nestedGenPackages prefix="Organization" basePackage="org.unicase.model" disposableProviderFactory="true"
         ecorePackage="model.ecore#//organization">
       <genClasses ecoreClass="model.ecore#//organization/User"/>
@@ -86,6 +89,10 @@
             ecoreFeature="ecore:EReference model.ecore#//classes/Class/superClass"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//classes/Class/subClasses"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//classes/Class/incomingAssociations"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//classes/Class/outgoingAssociations"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//classes/Package">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//classes/Package/containedPackageElements"/>
@@ -131,6 +138,10 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/FunctionalRequirement/priority"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//requirement/FunctionalRequirement/refiningRequirements"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//requirement/FunctionalRequirement/refinedRequirement"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//requirement/FunctionalRequirement/useCases"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//requirement/FunctionalRequirement/scenarios"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//requirement/UseCase">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/steps"/>
@@ -165,12 +176,16 @@
             ecoreFeature="ecore:EReference model.ecore#//requirement/Actor/initiatedUseCases"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/Actor/participatedUseCases"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//requirement/Actor/instances"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//requirement/ActorInstance">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/ActorInstance/initiatedScenarios"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/ActorInstance/participatedScenarios"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//requirement/ActorInstance/instantiatedActor"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//requirement/Step">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/Step/userStep"/>

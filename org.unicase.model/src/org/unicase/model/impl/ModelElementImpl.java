@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
@@ -24,6 +25,8 @@ import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.ReaderInfo;
+import org.unicase.model.document.DocumentPackage;
+import org.unicase.model.document.LeafSection;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.ActionItem;
 
@@ -39,6 +42,8 @@ import org.unicase.model.task.ActionItem;
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getReaderInfos <em>Reader Infos</em>}</li>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getActionItems <em>Action Items</em>}</li>
+ *   <li>{@link org.unicase.model.impl.ModelElementImpl#getIncomingDocumentReferences <em>Incoming Document References</em>}</li>
+ *   <li>{@link org.unicase.model.impl.ModelElementImpl#getLeafSection <em>Leaf Section</em>}</li>
  * </ul>
  * </p>
  *
@@ -114,6 +119,16 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 	 * @ordered
 	 */
 	protected EList<ActionItem> actionItems;
+
+	/**
+	 * The cached value of the '{@link #getIncomingDocumentReferences() <em>Incoming Document References</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIncomingDocumentReferences()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<LeafSection> incomingDocumentReferences;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -247,6 +262,59 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<LeafSection> getIncomingDocumentReferences() {
+		if (incomingDocumentReferences == null) {
+			incomingDocumentReferences = new EObjectResolvingEList<LeafSection>(LeafSection.class, this, ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES);
+		}
+		return incomingDocumentReferences;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LeafSection getLeafSection() {
+		if (eContainerFeatureID != ModelPackage.MODEL_ELEMENT__LEAF_SECTION) return null;
+		return (LeafSection)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetLeafSection(LeafSection newLeafSection, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newLeafSection, ModelPackage.MODEL_ELEMENT__LEAF_SECTION, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLeafSection(LeafSection newLeafSection) {
+		if (newLeafSection != eInternalContainer() || (eContainerFeatureID != ModelPackage.MODEL_ELEMENT__LEAF_SECTION && newLeafSection != null)) {
+			if (EcoreUtil.isAncestor(this, newLeafSection))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newLeafSection != null)
+				msgs = ((InternalEObject)newLeafSection).eInverseAdd(this, DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS, LeafSection.class, msgs);
+			msgs = basicSetLeafSection(newLeafSection, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.MODEL_ELEMENT__LEAF_SECTION, newLeafSection, newLeafSection));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public Project getProject() {
@@ -281,14 +349,46 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetLeafSection((LeafSection)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case ModelPackage.MODEL_ELEMENT__IDENTIFIER:
 				return basicSetIdentifier(null, msgs);
 			case ModelPackage.MODEL_ELEMENT__READER_INFOS:
 				return ((InternalEList<?>)getReaderInfos()).basicRemove(otherEnd, msgs);
+			case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
+				return basicSetLeafSection(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID) {
+			case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
+				return eInternalContainer().eInverseRemove(this, DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS, LeafSection.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -309,6 +409,10 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 				return getReaderInfos();
 			case ModelPackage.MODEL_ELEMENT__ACTION_ITEMS:
 				return getActionItems();
+			case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
+				return getIncomingDocumentReferences();
+			case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
+				return getLeafSection();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -339,6 +443,13 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 				getActionItems().clear();
 				getActionItems().addAll((Collection<? extends ActionItem>)newValue);
 				return;
+			case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
+				getIncomingDocumentReferences().clear();
+				getIncomingDocumentReferences().addAll((Collection<? extends LeafSection>)newValue);
+				return;
+			case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
+				setLeafSection((LeafSection)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -366,6 +477,12 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 			case ModelPackage.MODEL_ELEMENT__ACTION_ITEMS:
 				getActionItems().clear();
 				return;
+			case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
+				getIncomingDocumentReferences().clear();
+				return;
+			case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
+				setLeafSection((LeafSection)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -388,6 +505,10 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 				return readerInfos != null && !readerInfos.isEmpty();
 			case ModelPackage.MODEL_ELEMENT__ACTION_ITEMS:
 				return actionItems != null && !actionItems.isEmpty();
+			case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
+				return incomingDocumentReferences != null && !incomingDocumentReferences.isEmpty();
+			case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
+				return getLeafSection() != null;
 		}
 		return super.eIsSet(featureID);
 	}

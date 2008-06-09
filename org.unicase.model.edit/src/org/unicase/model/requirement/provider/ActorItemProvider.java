@@ -67,6 +67,7 @@ public class ActorItemProvider
 
 			addInitiatedUseCasesPropertyDescriptor(object);
 			addParticipatedUseCasesPropertyDescriptor(object);
+			addInstancesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -107,6 +108,28 @@ public class ActorItemProvider
 				 getString("_UI_Actor_participatedUseCases_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Actor_participatedUseCases_feature", "_UI_Actor_type"),
 				 RequirementPackage.Literals.ACTOR__PARTICIPATED_USE_CASES,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Instances feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addInstancesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Actor_instances_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Actor_instances_feature", "_UI_Actor_type"),
+				 RequirementPackage.Literals.ACTOR__INSTANCES,
 				 true,
 				 false,
 				 true,

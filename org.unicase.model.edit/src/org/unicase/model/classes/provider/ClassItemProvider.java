@@ -65,6 +65,8 @@ public class ClassItemProvider
 			addParticipatedUseCasesPropertyDescriptor(object);
 			addSuperClassPropertyDescriptor(object);
 			addSubClassesPropertyDescriptor(object);
+			addIncomingAssociationsPropertyDescriptor(object);
+			addOutgoingAssociationsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -127,6 +129,50 @@ public class ClassItemProvider
 				 getString("_UI_Class_subClasses_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Class_subClasses_feature", "_UI_Class_type"),
 				 ClassesPackage.Literals.CLASS__SUB_CLASSES,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Incoming Associations feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIncomingAssociationsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Class_incomingAssociations_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Class_incomingAssociations_feature", "_UI_Class_type"),
+				 ClassesPackage.Literals.CLASS__INCOMING_ASSOCIATIONS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Outgoing Associations feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOutgoingAssociationsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Class_outgoingAssociations_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Class_outgoingAssociations_feature", "_UI_Class_type"),
+				 ClassesPackage.Literals.CLASS__OUTGOING_ASSOCIATIONS,
 				 true,
 				 false,
 				 true,

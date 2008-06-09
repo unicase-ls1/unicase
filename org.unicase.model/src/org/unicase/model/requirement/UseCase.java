@@ -52,6 +52,7 @@ public interface UseCase extends ModelElement {
 
 	/**
 	 * Returns the value of the '<em><b>Initiating Actor</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.Actor#getInitiatedUseCases <em>Initiated Use Cases</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Initiating Actor</em>' reference isn't clear,
@@ -61,7 +62,8 @@ public interface UseCase extends ModelElement {
 	 * @return the value of the '<em>Initiating Actor</em>' reference.
 	 * @see #setInitiatingActor(Actor)
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_InitiatingActor()
-	 * @model
+	 * @see org.unicase.model.requirement.Actor#getInitiatedUseCases
+	 * @model opposite="initiatedUseCases"
 	 * @generated
 	 */
 	Actor getInitiatingActor();
@@ -97,6 +99,7 @@ public interface UseCase extends ModelElement {
 	/**
 	 * Returns the value of the '<em><b>Functional Requirements</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.model.requirement.FunctionalRequirement}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.FunctionalRequirement#getUseCases <em>Use Cases</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Functional Requirements</em>' reference list isn't clear,
@@ -105,7 +108,8 @@ public interface UseCase extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Functional Requirements</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_FunctionalRequirements()
-	 * @model
+	 * @see org.unicase.model.requirement.FunctionalRequirement#getUseCases
+	 * @model opposite="useCases"
 	 * @generated
 	 */
 	EList<FunctionalRequirement> getFunctionalRequirements();

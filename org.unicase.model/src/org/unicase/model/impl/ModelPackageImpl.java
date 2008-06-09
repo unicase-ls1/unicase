@@ -12,6 +12,8 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelFactory;
@@ -83,6 +85,13 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	private EClass readerInfoEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass annotationEClass = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -137,6 +146,9 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		ModelPackageImpl theModelPackage = (ModelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new ModelPackageImpl());
 
 		isInited = true;
+
+		// Initialize simple dependencies
+		NotationPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		OrganizationPackageImpl theOrganizationPackage = (OrganizationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(OrganizationPackage.eNS_URI) : OrganizationPackage.eINSTANCE);
@@ -241,6 +253,24 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getModelElement_IncomingDocumentReferences() {
+		return (EReference)modelElementEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getModelElement_LeafSection() {
+		return (EReference)modelElementEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getProject() {
 		return projectEClass;
 	}
@@ -313,6 +343,15 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getAnnotation() {
+		return annotationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ModelFactory getModelFactory() {
 		return (ModelFactory)getEFactoryInstance();
 	}
@@ -342,6 +381,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		createEReference(modelElementEClass, MODEL_ELEMENT__IDENTIFIER);
 		createEReference(modelElementEClass, MODEL_ELEMENT__READER_INFOS);
 		createEReference(modelElementEClass, MODEL_ELEMENT__ACTION_ITEMS);
+		createEReference(modelElementEClass, MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES);
+		createEReference(modelElementEClass, MODEL_ELEMENT__LEAF_SECTION);
 
 		projectEClass = createEClass(PROJECT);
 		createEReference(projectEClass, PROJECT__MODEL_ELEMENTS);
@@ -354,6 +395,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		readerInfoEClass = createEClass(READER_INFO);
 		createEAttribute(readerInfoEClass, READER_INFO__DATE);
 		createEReference(readerInfoEClass, READER_INFO__READER_ID);
+
+		annotationEClass = createEClass(ANNOTATION);
 	}
 
 	/**
@@ -418,6 +461,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		getModelElement_Identifier().getEKeys().add(this.getUniqueIdentifier_Id());
 		initEReference(getModelElement_ReaderInfos(), this.getReaderInfo(), null, "readerInfos", null, 0, -1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModelElement_ActionItems(), theTaskPackage.getActionItem(), null, "actionItems", null, 0, -1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModelElement_IncomingDocumentReferences(), theDocumentPackage.getLeafSection(), null, "incomingDocumentReferences", null, 0, -1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModelElement_LeafSection(), theDocumentPackage.getLeafSection(), theDocumentPackage.getLeafSection_ModelElements(), "leafSection", null, 0, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		addEOperation(modelElementEClass, this.getProject(), "getProject", 0, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -438,6 +483,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEClass(readerInfoEClass, ReaderInfo.class, "ReaderInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getReaderInfo_Date(), ecorePackage.getEDate(), "date", null, 0, 1, ReaderInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getReaderInfo_ReaderId(), theOrganizationPackage.getOrgUnit(), null, "readerId", null, 0, 1, ReaderInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(annotationEClass, Annotation.class, "Annotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

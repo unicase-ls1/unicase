@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.unicase.model.impl.ModelElementImpl;
 import org.unicase.model.requirement.Actor;
+import org.unicase.model.requirement.ActorInstance;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.UseCase;
 
@@ -35,6 +36,7 @@ import org.unicase.model.requirement.UseCase;
  * <ul>
  *   <li>{@link org.unicase.model.requirement.impl.ActorImpl#getInitiatedUseCases <em>Initiated Use Cases</em>}</li>
  *   <li>{@link org.unicase.model.requirement.impl.ActorImpl#getParticipatedUseCases <em>Participated Use Cases</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.ActorImpl#getInstances <em>Instances</em>}</li>
  * </ul>
  * </p>
  *
@@ -62,6 +64,16 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 	protected EList<UseCase> participatedUseCases;
 
 	/**
+	 * The cached value of the '{@link #getInstances() <em>Instances</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInstances()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ActorInstance> instances;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -87,7 +99,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 	 */
 	public EList<UseCase> getInitiatedUseCases() {
 		if (initiatedUseCases == null) {
-			initiatedUseCases = new EObjectResolvingEList<UseCase>(UseCase.class, this, RequirementPackage.ACTOR__INITIATED_USE_CASES);
+			initiatedUseCases = new EObjectWithInverseResolvingEList<UseCase>(UseCase.class, this, RequirementPackage.ACTOR__INITIATED_USE_CASES, RequirementPackage.USE_CASE__INITIATING_ACTOR);
 		}
 		return initiatedUseCases;
 	}
@@ -109,12 +121,28 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<ActorInstance> getInstances() {
+		if (instances == null) {
+			instances = new EObjectWithInverseResolvingEList<ActorInstance>(ActorInstance.class, this, RequirementPackage.ACTOR__INSTANCES, RequirementPackage.ACTOR_INSTANCE__INSTANTIATED_ACTOR);
+		}
+		return instances;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case RequirementPackage.ACTOR__INITIATED_USE_CASES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getInitiatedUseCases()).basicAdd(otherEnd, msgs);
 			case RequirementPackage.ACTOR__PARTICIPATED_USE_CASES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getParticipatedUseCases()).basicAdd(otherEnd, msgs);
+			case RequirementPackage.ACTOR__INSTANCES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getInstances()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -127,8 +155,12 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case RequirementPackage.ACTOR__INITIATED_USE_CASES:
+				return ((InternalEList<?>)getInitiatedUseCases()).basicRemove(otherEnd, msgs);
 			case RequirementPackage.ACTOR__PARTICIPATED_USE_CASES:
 				return ((InternalEList<?>)getParticipatedUseCases()).basicRemove(otherEnd, msgs);
+			case RequirementPackage.ACTOR__INSTANCES:
+				return ((InternalEList<?>)getInstances()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -145,6 +177,8 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 				return getInitiatedUseCases();
 			case RequirementPackage.ACTOR__PARTICIPATED_USE_CASES:
 				return getParticipatedUseCases();
+			case RequirementPackage.ACTOR__INSTANCES:
+				return getInstances();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -166,6 +200,10 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 				getParticipatedUseCases().clear();
 				getParticipatedUseCases().addAll((Collection<? extends UseCase>)newValue);
 				return;
+			case RequirementPackage.ACTOR__INSTANCES:
+				getInstances().clear();
+				getInstances().addAll((Collection<? extends ActorInstance>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -184,6 +222,9 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 			case RequirementPackage.ACTOR__PARTICIPATED_USE_CASES:
 				getParticipatedUseCases().clear();
 				return;
+			case RequirementPackage.ACTOR__INSTANCES:
+				getInstances().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -200,6 +241,8 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 				return initiatedUseCases != null && !initiatedUseCases.isEmpty();
 			case RequirementPackage.ACTOR__PARTICIPATED_USE_CASES:
 				return participatedUseCases != null && !participatedUseCases.isEmpty();
+			case RequirementPackage.ACTOR__INSTANCES:
+				return instances != null && !instances.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

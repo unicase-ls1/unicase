@@ -51,6 +51,7 @@ public interface Scenario extends ModelElement {
 
 	/**
 	 * Returns the value of the '<em><b>Initiating Actor Instance</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.ActorInstance#getInitiatedScenarios <em>Initiated Scenarios</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Initiating Actor Instance</em>' reference isn't clear,
@@ -60,7 +61,8 @@ public interface Scenario extends ModelElement {
 	 * @return the value of the '<em>Initiating Actor Instance</em>' reference.
 	 * @see #setInitiatingActorInstance(ActorInstance)
 	 * @see org.unicase.model.requirement.RequirementPackage#getScenario_InitiatingActorInstance()
-	 * @model
+	 * @see org.unicase.model.requirement.ActorInstance#getInitiatedScenarios
+	 * @model opposite="initiatedScenarios"
 	 * @generated
 	 */
 	ActorInstance getInitiatingActorInstance();
@@ -78,6 +80,7 @@ public interface Scenario extends ModelElement {
 	/**
 	 * Returns the value of the '<em><b>Participating Actor Instances</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.model.requirement.ActorInstance}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.ActorInstance#getParticipatedScenarios <em>Participated Scenarios</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Participating Actor Instances</em>' reference list isn't clear,
@@ -86,7 +89,8 @@ public interface Scenario extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Participating Actor Instances</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getScenario_ParticipatingActorInstances()
-	 * @model
+	 * @see org.unicase.model.requirement.ActorInstance#getParticipatedScenarios
+	 * @model opposite="participatedScenarios"
 	 * @generated
 	 */
 	EList<ActorInstance> getParticipatingActorInstances();
@@ -112,6 +116,7 @@ public interface Scenario extends ModelElement {
 	/**
 	 * Returns the value of the '<em><b>Functional Requirements</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.model.requirement.FunctionalRequirement}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.FunctionalRequirement#getScenarios <em>Scenarios</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Functional Requirements</em>' reference list isn't clear,
@@ -120,7 +125,8 @@ public interface Scenario extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Functional Requirements</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getScenario_FunctionalRequirements()
-	 * @model
+	 * @see org.unicase.model.requirement.FunctionalRequirement#getScenarios
+	 * @model opposite="scenarios"
 	 * @generated
 	 */
 	EList<FunctionalRequirement> getFunctionalRequirements();

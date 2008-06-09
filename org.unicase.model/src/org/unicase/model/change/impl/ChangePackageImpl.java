@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.model.ModelPackage;
 
 import org.unicase.model.bug.BugPackage;
@@ -137,6 +138,9 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 		ChangePackageImpl theChangePackage = (ChangePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new ChangePackageImpl());
 
 		isInited = true;
+
+		// Initialize simple dependencies
+		NotationPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		ModelPackageImpl theModelPackage = (ModelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI) : ModelPackage.eINSTANCE);

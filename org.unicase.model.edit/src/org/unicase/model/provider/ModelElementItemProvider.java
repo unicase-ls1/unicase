@@ -65,6 +65,7 @@ public class ModelElementItemProvider
 			addNamePropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
 			addActionItemsPropertyDescriptor(object);
+			addIncomingDocumentReferencesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -127,6 +128,28 @@ public class ModelElementItemProvider
 				 getString("_UI_ModelElement_actionItems_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ModelElement_actionItems_feature", "_UI_ModelElement_type"),
 				 ModelPackage.Literals.MODEL_ELEMENT__ACTION_ITEMS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Incoming Document References feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIncomingDocumentReferencesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ModelElement_incomingDocumentReferences_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModelElement_incomingDocumentReferences_feature", "_UI_ModelElement_type"),
+				 ModelPackage.Literals.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES,
 				 true,
 				 false,
 				 true,

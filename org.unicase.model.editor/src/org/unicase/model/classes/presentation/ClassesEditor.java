@@ -111,7 +111,9 @@ import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
+import org.unicase.model.bug.provider.BugItemProviderAdapterFactory;
 import org.unicase.model.change.provider.ChangeItemProviderAdapterFactory;
+import org.unicase.model.component.provider.ComponentItemProviderAdapterFactory;
 import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.ide.IGotoMarker;
 import org.eclipse.ui.part.FileEditorInput;
@@ -123,6 +125,8 @@ import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.ui.views.properties.PropertySheetPage;
 import org.unicase.model.classes.provider.ClassesItemProviderAdapterFactory;
+import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
+import org.eclipse.gmf.runtime.notation.provider.NotationItemProviderAdapterFactory;
 import org.unicase.model.diagram.provider.DiagramItemProviderAdapterFactory;
 import org.unicase.model.document.provider.DocumentItemProviderAdapterFactory;
 import org.unicase.model.organization.provider.OrganizationItemProviderAdapterFactory;
@@ -676,6 +680,10 @@ public class ClassesEditor
 		adapterFactory.addAdapterFactory(new RequirementItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new RationaleItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ChangeItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new BugItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ComponentItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new NotationItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		// Create the command stack that will notify this editor as commands are executed.
@@ -1466,11 +1474,8 @@ public class ClassesEditor
 					for (Resource resource : editingDomain.getResourceSet().getResources()) {
 						if ((first || !resource.getContents().isEmpty() || isPersisted(resource)) && !editingDomain.isReadOnly(resource)) {
 							try {
-								long timeStamp = resource.getTimeStamp();
+								savedResources.add(resource);
 								resource.save(saveOptions);
-								if (resource.getTimeStamp() != timeStamp) {
-									savedResources.add(resource);
-								}
 							}
 							catch (Exception exception) {
 								resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
