@@ -1,6 +1,8 @@
 package org.unicase.ui.navigator;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.common.ui.URIEditorInput;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.TreeSelection;
@@ -69,7 +71,16 @@ public class TreeView extends CommonNavigator {
 		Object object = selection.getFirstElement();
 		if (object instanceof ModelElement) {
 			if (object instanceof MEDiagram) {
-				MessageDialog.openInformation(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),"Problem", "Diagrams are not yet supported");
+				ModelElement modelElement = (ModelElement)object;
+				URIEditorInput input = new URIEditorInput(URI.createURI("URI"));
+				try {
+					PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+					.getActivePage().openEditor(input,
+							"org.unicase.model.classDiagram.part.ModelDiagramEditorID", true);
+				} catch (PartInitException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			} else {
 				MEEditorInput input = new MEEditorInput((ModelElement) object);
 				try {
