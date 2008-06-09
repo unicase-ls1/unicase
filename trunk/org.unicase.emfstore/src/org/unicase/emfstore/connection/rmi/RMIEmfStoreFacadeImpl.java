@@ -7,7 +7,8 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.unicase.emfstore.EmfStore;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.accesscontrol.AuthenticationControl;
@@ -30,8 +31,8 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 
 	private AuthenticationControl accessControl;
 
-	private static final Logger logger = Logger
-			.getLogger(RMIEmfStoreFacade.class);
+	private static final Log logger = LogFactory
+			.getLog(RMIEmfStoreFacade.class);
 
 	public RMIEmfStoreFacadeImpl(EmfStore emfStore,
 			AuthenticationControl accessControl) throws RemoteException {
@@ -117,7 +118,7 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 			return RMIUtil.eObjectToString(emfStore.getProject(
 					(SessionId) RMIUtil.stringToEObject(sessionId),
 					(ProjectId) RMIUtil.stringToEObject(projectId),
-					(PrimaryVersionSpec) RMIUtil.stringToEObject(versionSpec)));
+					(VersionSpec) RMIUtil.stringToEObject(versionSpec)));
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

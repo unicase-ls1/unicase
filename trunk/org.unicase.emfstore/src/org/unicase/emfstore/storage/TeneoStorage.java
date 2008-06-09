@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -17,13 +18,14 @@ import org.eclipse.emf.teneo.hibernate.HbDataStore;
 import org.eclipse.emf.teneo.hibernate.HbHelper;
 import org.eclipse.emf.teneo.hibernate.resource.HibernateResource;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.hibernate.Hibernate;
 import org.hibernate.cfg.Environment;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
 import org.unicase.model.ModelPackage;
 
 public class TeneoStorage implements ResourceStorage {
 
-	private final Logger logger = Logger.getLogger(this.getClass());
+	private final Log logger = LogFactory.getLog(this.getClass());
 
 	public URI init(Properties properties) {
 		
@@ -40,6 +42,8 @@ public class TeneoStorage implements ResourceStorage {
 		props.setProperty(Environment.URL, "jdbc:mysql://localhost/" + "model");
 		props.setProperty(Environment.DIALECT,
 				org.hibernate.dialect.MySQLInnoDBDialect.class.getName());
+		// Lazy loading to avoid too many joins exception
+		props.setProperty(Environment.MAX_FETCH_DEPTH, "0");
 		
 		props.setProperty(PersistenceOptions.INHERITANCE_MAPPING, "JOINED");
 		dataStore.setProperties(props);
