@@ -71,7 +71,15 @@ public interface ProjectHistory extends EObject {
 	 * @generated
 	 */
 	EList<Version> getVersions();
-
+	
+	/**
+	 * Returns the last version (the last element in the version list).
+	 * 
+	 * @return the last version
+	 * @generated NOT
+	 */
+	Version getLastVersion();
+	
 	/**
 	 * Returns the value of the '<em><b>Project Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
