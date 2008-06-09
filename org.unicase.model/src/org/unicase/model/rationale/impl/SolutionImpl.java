@@ -8,14 +8,20 @@ package org.unicase.model.rationale.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.model.impl.ModelElementImpl;
 
+import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.Proposal;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.rationale.Solution;
@@ -28,6 +34,7 @@ import org.unicase.model.rationale.Solution;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.unicase.model.rationale.impl.SolutionImpl#getUnderlyingProposals <em>Underlying Proposals</em>}</li>
+ *   <li>{@link org.unicase.model.rationale.impl.SolutionImpl#getIssue <em>Issue</em>}</li>
  * </ul>
  * </p>
  *
@@ -80,11 +87,98 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Issue getIssue() {
+		if (eContainerFeatureID != RationalePackage.SOLUTION__ISSUE) return null;
+		return (Issue)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetIssue(Issue newIssue, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newIssue, RationalePackage.SOLUTION__ISSUE, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIssue(Issue newIssue) {
+		if (newIssue != eInternalContainer() || (eContainerFeatureID != RationalePackage.SOLUTION__ISSUE && newIssue != null)) {
+			if (EcoreUtil.isAncestor(this, newIssue))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newIssue != null)
+				msgs = ((InternalEObject)newIssue).eInverseAdd(this, RationalePackage.ISSUE__SOLUTION, Issue.class, msgs);
+			msgs = basicSetIssue(newIssue, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RationalePackage.SOLUTION__ISSUE, newIssue, newIssue));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case RationalePackage.SOLUTION__ISSUE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetIssue((Issue)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case RationalePackage.SOLUTION__ISSUE:
+				return basicSetIssue(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID) {
+			case RationalePackage.SOLUTION__ISSUE:
+				return eInternalContainer().eInverseRemove(this, RationalePackage.ISSUE__SOLUTION, Issue.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case RationalePackage.SOLUTION__UNDERLYING_PROPOSALS:
 				return getUnderlyingProposals();
+			case RationalePackage.SOLUTION__ISSUE:
+				return getIssue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -102,6 +196,9 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 				getUnderlyingProposals().clear();
 				getUnderlyingProposals().addAll((Collection<? extends Proposal>)newValue);
 				return;
+			case RationalePackage.SOLUTION__ISSUE:
+				setIssue((Issue)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -117,6 +214,9 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 			case RationalePackage.SOLUTION__UNDERLYING_PROPOSALS:
 				getUnderlyingProposals().clear();
 				return;
+			case RationalePackage.SOLUTION__ISSUE:
+				setIssue((Issue)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -131,6 +231,8 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 		switch (featureID) {
 			case RationalePackage.SOLUTION__UNDERLYING_PROPOSALS:
 				return underlyingProposals != null && !underlyingProposals.isEmpty();
+			case RationalePackage.SOLUTION__ISSUE:
+				return getIssue() != null;
 		}
 		return super.eIsSet(featureID);
 	}

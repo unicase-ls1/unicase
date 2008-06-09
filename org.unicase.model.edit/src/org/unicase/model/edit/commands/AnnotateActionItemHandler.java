@@ -120,7 +120,7 @@ public class AnnotateActionItemHandler extends AbstractHandler {
 	
 	
 	private void attachActionItem (ModelElement me, ActionItem ai) {
-			me.getActionItems().add(ai);
+			me.getAnnotations().add(ai);
 	}
 	
 	

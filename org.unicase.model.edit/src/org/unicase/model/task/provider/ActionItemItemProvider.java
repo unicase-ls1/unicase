@@ -8,6 +8,7 @@ package org.unicase.model.task.provider;
 
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -22,6 +23,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.unicase.model.provider.AnnotationItemProvider;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.ModelElementItemProvider;
 import org.unicase.model.task.ActionItem;
@@ -34,7 +36,7 @@ import org.unicase.model.task.TaskPackage;
  * @generated
  */
 public class ActionItemItemProvider
-	extends ModelElementItemProvider
+	extends AnnotationItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,

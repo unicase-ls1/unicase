@@ -107,13 +107,13 @@ public interface DocumentPackage extends EPackage {
 	int SECTION__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
 
 	/**
-	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION__ACTION_ITEMS = ModelPackage.MODEL_ELEMENT__ACTION_ITEMS;
+	int SECTION__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -198,13 +198,13 @@ public interface DocumentPackage extends EPackage {
 	int LEAF_SECTION__READER_INFOS = SECTION__READER_INFOS;
 
 	/**
-	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEAF_SECTION__ACTION_ITEMS = SECTION__ACTION_ITEMS;
+	int LEAF_SECTION__ANNOTATIONS = SECTION__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -316,13 +316,13 @@ public interface DocumentPackage extends EPackage {
 	int COMPOSITE_SECTION__READER_INFOS = SECTION__READER_INFOS;
 
 	/**
-	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITE_SECTION__ACTION_ITEMS = SECTION__ACTION_ITEMS;
+	int COMPOSITE_SECTION__ANNOTATIONS = SECTION__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.

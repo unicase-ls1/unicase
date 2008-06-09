@@ -11,6 +11,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
+import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
 
 import org.unicase.model.task.*;
@@ -93,6 +94,7 @@ public class TaskSwitch<T> {
 				ActionItem actionItem = (ActionItem)theEObject;
 				T result = caseActionItem(actionItem);
 				if (result == null) result = caseWorkItem(actionItem);
+				if (result == null) result = caseAnnotation(actionItem);
 				if (result == null) result = caseModelElement(actionItem);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -101,6 +103,7 @@ public class TaskSwitch<T> {
 				WorkPackage workPackage = (WorkPackage)theEObject;
 				T result = caseWorkPackage(workPackage);
 				if (result == null) result = caseWorkItem(workPackage);
+				if (result == null) result = caseAnnotation(workPackage);
 				if (result == null) result = caseModelElement(workPackage);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -108,6 +111,7 @@ public class TaskSwitch<T> {
 			case TaskPackage.WORK_ITEM: {
 				WorkItem workItem = (WorkItem)theEObject;
 				T result = caseWorkItem(workItem);
+				if (result == null) result = caseAnnotation(workItem);
 				if (result == null) result = caseModelElement(workItem);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -173,6 +177,21 @@ public class TaskSwitch<T> {
 	 * @generated
 	 */
 	public T caseModelElement(ModelElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Annotation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Annotation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAnnotation(Annotation object) {
 		return null;
 	}
 

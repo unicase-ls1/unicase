@@ -191,6 +191,29 @@ public class RationaleItemProviderAdapterFactory extends RationaleAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.rationale.Comment} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CommentItemProvider commentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.rationale.Comment}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCommentAdapter() {
+		if (commentItemProvider == null) {
+			commentItemProvider = new CommentItemProvider(this);
+		}
+
+		return commentItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -294,6 +317,7 @@ public class RationaleItemProviderAdapterFactory extends RationaleAdapterFactory
 		if (solutionItemProvider != null) solutionItemProvider.dispose();
 		if (criterionItemProvider != null) criterionItemProvider.dispose();
 		if (assessmentItemProvider != null) assessmentItemProvider.dispose();
+		if (commentItemProvider != null) commentItemProvider.dispose();
 	}
 
 }

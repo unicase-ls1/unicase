@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.model.rationale.provider;
+package org.unicase.model.change.provider;
 
 
 import java.util.Collection;
@@ -23,20 +23,21 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
-import org.unicase.model.provider.ModelEditPlugin;
-import org.unicase.model.provider.ModelElementItemProvider;
+import org.unicase.model.change.ChangePackage;
+import org.unicase.model.change.MergingSolution;
 
-import org.unicase.model.rationale.Criterion;
-import org.unicase.model.rationale.RationalePackage;
+import org.unicase.model.provider.ModelEditPlugin;
+
+import org.unicase.model.rationale.provider.SolutionItemProvider;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.rationale.Criterion} object.
+ * This is the item provider adapter for a {@link org.unicase.model.change.MergingSolution} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class CriterionItemProvider
-	extends ModelElementItemProvider
+public class MergingSolutionItemProvider
+	extends SolutionItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -49,7 +50,7 @@ public class CriterionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CriterionItemProvider(AdapterFactory adapterFactory) {
+	public MergingSolutionItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -64,25 +65,25 @@ public class CriterionItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addAssessmentsPropertyDescriptor(object);
+			addAppliedChangesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Assessments feature.
+	 * This adds a property descriptor for the Applied Changes feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addAssessmentsPropertyDescriptor(Object object) {
+	protected void addAppliedChangesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Criterion_assessments_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Criterion_assessments_feature", "_UI_Criterion_type"),
-				 RationalePackage.Literals.CRITERION__ASSESSMENTS,
+				 getString("_UI_MergingSolution_appliedChanges_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MergingSolution_appliedChanges_feature", "_UI_MergingSolution_type"),
+				 ChangePackage.Literals.MERGING_SOLUTION__APPLIED_CHANGES,
 				 true,
 				 false,
 				 true,
@@ -92,14 +93,14 @@ public class CriterionItemProvider
 	}
 
 	/**
-	 * This returns Criterion.gif.
+	 * This returns MergingSolution.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Criterion"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/MergingSolution"));
 	}
 
 	/**
@@ -110,10 +111,10 @@ public class CriterionItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Criterion)object).getName();
+		String label = ((MergingSolution)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Criterion_type") :
-			getString("_UI_Criterion_type") + " " + label;
+			getString("_UI_MergingSolution_type") :
+			getString("_UI_MergingSolution_type") + " " + label;
 	}
 
 	/**

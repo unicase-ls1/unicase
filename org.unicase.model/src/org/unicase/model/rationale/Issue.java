@@ -8,6 +8,9 @@ package org.unicase.model.rationale;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.unicase.model.Annotation;
+import org.unicase.model.organization.OrgUnit;
+import org.unicase.model.organization.User;
 import org.unicase.model.ModelElement;
 
 /**
@@ -23,6 +26,8 @@ import org.unicase.model.ModelElement;
  *   <li>{@link org.unicase.model.rationale.Issue#getCriteria <em>Criteria</em>}</li>
  *   <li>{@link org.unicase.model.rationale.Issue#getRefiningIssues <em>Refining Issues</em>}</li>
  *   <li>{@link org.unicase.model.rationale.Issue#getRefinedIssue <em>Refined Issue</em>}</li>
+ *   <li>{@link org.unicase.model.rationale.Issue#getFacilitator <em>Facilitator</em>}</li>
+ *   <li>{@link org.unicase.model.rationale.Issue#getParticipants <em>Participants</em>}</li>
  * </ul>
  * </p>
  *
@@ -30,10 +35,11 @@ import org.unicase.model.ModelElement;
  * @model
  * @generated
  */
-public interface Issue extends ModelElement {
+public interface Issue extends Annotation {
 	/**
 	 * Returns the value of the '<em><b>Proposals</b></em>' containment reference list.
 	 * The list contents are of type {@link org.unicase.model.rationale.Proposal}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.rationale.Proposal#getIssue <em>Issue</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Proposals</em>' containment reference list isn't clear,
@@ -42,13 +48,15 @@ public interface Issue extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Proposals</em>' containment reference list.
 	 * @see org.unicase.model.rationale.RationalePackage#getIssue_Proposals()
-	 * @model containment="true"
+	 * @see org.unicase.model.rationale.Proposal#getIssue
+	 * @model opposite="issue" containment="true"
 	 * @generated
 	 */
 	EList<Proposal> getProposals();
 
 	/**
 	 * Returns the value of the '<em><b>Solution</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.rationale.Solution#getIssue <em>Issue</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Solution</em>' containment reference isn't clear,
@@ -58,7 +66,8 @@ public interface Issue extends ModelElement {
 	 * @return the value of the '<em>Solution</em>' containment reference.
 	 * @see #setSolution(Solution)
 	 * @see org.unicase.model.rationale.RationalePackage#getIssue_Solution()
-	 * @model containment="true"
+	 * @see org.unicase.model.rationale.Solution#getIssue
+	 * @model opposite="issue" containment="true"
 	 * @generated
 	 */
 	Solution getSolution();
@@ -134,5 +143,47 @@ public interface Issue extends ModelElement {
 	 * @generated
 	 */
 	void setRefinedIssue(Issue value);
+
+	/**
+	 * Returns the value of the '<em><b>Facilitator</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Facilitator</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Facilitator</em>' reference.
+	 * @see #setFacilitator(User)
+	 * @see org.unicase.model.rationale.RationalePackage#getIssue_Facilitator()
+	 * @model
+	 * @generated
+	 */
+	User getFacilitator();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.rationale.Issue#getFacilitator <em>Facilitator</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Facilitator</em>' reference.
+	 * @see #getFacilitator()
+	 * @generated
+	 */
+	void setFacilitator(User value);
+
+	/**
+	 * Returns the value of the '<em><b>Participants</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.organization.OrgUnit}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Participants</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Participants</em>' reference list.
+	 * @see org.unicase.model.rationale.RationalePackage#getIssue_Participants()
+	 * @model
+	 * @generated
+	 */
+	EList<OrgUnit> getParticipants();
 
 } // Issue

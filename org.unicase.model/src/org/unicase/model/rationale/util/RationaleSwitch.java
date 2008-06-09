@@ -11,6 +11,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
+import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
 
 import org.unicase.model.rationale.*;
@@ -92,6 +93,7 @@ public class RationaleSwitch<T> {
 			case RationalePackage.ISSUE: {
 				Issue issue = (Issue)theEObject;
 				T result = caseIssue(issue);
+				if (result == null) result = caseAnnotation(issue);
 				if (result == null) result = caseModelElement(issue);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -121,6 +123,14 @@ public class RationaleSwitch<T> {
 				Assessment assessment = (Assessment)theEObject;
 				T result = caseAssessment(assessment);
 				if (result == null) result = caseModelElement(assessment);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RationalePackage.COMMENT: {
+				Comment comment = (Comment)theEObject;
+				T result = caseComment(comment);
+				if (result == null) result = caseAnnotation(comment);
+				if (result == null) result = caseModelElement(comment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -200,6 +210,36 @@ public class RationaleSwitch<T> {
 	 * @generated
 	 */
 	public T caseAssessment(Assessment object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Comment</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Comment</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseComment(Comment object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Annotation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Annotation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAnnotation(Annotation object) {
 		return null;
 	}
 

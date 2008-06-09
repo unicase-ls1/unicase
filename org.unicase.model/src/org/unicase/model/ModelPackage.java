@@ -106,13 +106,13 @@ public interface ModelPackage extends EPackage {
 	int MODEL_ELEMENT__READER_INFOS = 3;
 
 	/**
-	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__ACTION_ITEMS = 4;
+	int MODEL_ELEMENT__ANNOTATIONS = 4;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -275,13 +275,85 @@ public interface ModelPackage extends EPackage {
 	int ANNOTATION = 5;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__NAME = MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__DESCRIPTION = MODEL_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__IDENTIFIER = MODEL_ELEMENT__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__READER_INFOS = MODEL_ELEMENT__READER_INFOS;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__ANNOTATIONS = MODEL_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__INCOMING_DOCUMENT_REFERENCES = MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__LEAF_SECTION = MODEL_ELEMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__ANNOTATED_MODEL_ELEMENTS = MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Annotation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION_FEATURE_COUNT = 0;
+	int ANNOTATION_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.ModelElement <em>Element</em>}'.
@@ -338,15 +410,15 @@ public interface ModelPackage extends EPackage {
 	EReference getModelElement_ReaderInfos();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.ModelElement#getActionItems <em>Action Items</em>}'.
+	 * Returns the meta object for the reference list '{@link org.unicase.model.ModelElement#getAnnotations <em>Annotations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Action Items</em>'.
-	 * @see org.unicase.model.ModelElement#getActionItems()
+	 * @return the meta object for the reference list '<em>Annotations</em>'.
+	 * @see org.unicase.model.ModelElement#getAnnotations()
 	 * @see #getModelElement()
 	 * @generated
 	 */
-	EReference getModelElement_ActionItems();
+	EReference getModelElement_Annotations();
 
 	/**
 	 * Returns the meta object for the reference list '{@link org.unicase.model.ModelElement#getIncomingDocumentReferences <em>Incoming Document References</em>}'.
@@ -465,6 +537,17 @@ public interface ModelPackage extends EPackage {
 	EClass getAnnotation();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.Annotation#getAnnotatedModelElements <em>Annotated Model Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Annotated Model Elements</em>'.
+	 * @see org.unicase.model.Annotation#getAnnotatedModelElements()
+	 * @see #getAnnotation()
+	 * @generated
+	 */
+	EReference getAnnotation_AnnotatedModelElements();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -529,12 +612,12 @@ public interface ModelPackage extends EPackage {
 		EReference MODEL_ELEMENT__READER_INFOS = eINSTANCE.getModelElement_ReaderInfos();
 
 		/**
-		 * The meta object literal for the '<em><b>Action Items</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Annotations</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODEL_ELEMENT__ACTION_ITEMS = eINSTANCE.getModelElement_ActionItems();
+		EReference MODEL_ELEMENT__ANNOTATIONS = eINSTANCE.getModelElement_Annotations();
 
 		/**
 		 * The meta object literal for the '<em><b>Incoming Document References</b></em>' reference list feature.
@@ -633,6 +716,14 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass ANNOTATION = eINSTANCE.getAnnotation();
+
+		/**
+		 * The meta object literal for the '<em><b>Annotated Model Elements</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ANNOTATION__ANNOTATED_MODEL_ELEMENTS = eINSTANCE.getAnnotation_AnnotatedModelElements();
 
 	}
 

@@ -17,8 +17,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelFactory;
@@ -41,7 +43,7 @@ import org.unicase.model.task.ActionItem;
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getReaderInfos <em>Reader Infos</em>}</li>
- *   <li>{@link org.unicase.model.impl.ModelElementImpl#getActionItems <em>Action Items</em>}</li>
+ *   <li>{@link org.unicase.model.impl.ModelElementImpl#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getIncomingDocumentReferences <em>Incoming Document References</em>}</li>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getLeafSection <em>Leaf Section</em>}</li>
  * </ul>
@@ -111,14 +113,14 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 	protected EList<ReaderInfo> readerInfos;
 
 	/**
-	 * The cached value of the '{@link #getActionItems() <em>Action Items</em>}' reference list.
+	 * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getActionItems()
+	 * @see #getAnnotations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ActionItem> actionItems;
+	protected EList<Annotation> annotations;
 
 	/**
 	 * The cached value of the '{@link #getIncomingDocumentReferences() <em>Incoming Document References</em>}' reference list.
@@ -252,11 +254,11 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ActionItem> getActionItems() {
-		if (actionItems == null) {
-			actionItems = new EObjectResolvingEList<ActionItem>(ActionItem.class, this, ModelPackage.MODEL_ELEMENT__ACTION_ITEMS);
+	public EList<Annotation> getAnnotations() {
+		if (annotations == null) {
+			annotations = new EObjectWithInverseResolvingEList.ManyInverse<Annotation>(Annotation.class, this, ModelPackage.MODEL_ELEMENT__ANNOTATIONS, ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS);
 		}
-		return actionItems;
+		return annotations;
 	}
 
 	/**
@@ -348,9 +350,12 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAnnotations()).basicAdd(otherEnd, msgs);
 			case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -371,6 +376,8 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 				return basicSetIdentifier(null, msgs);
 			case ModelPackage.MODEL_ELEMENT__READER_INFOS:
 				return ((InternalEList<?>)getReaderInfos()).basicRemove(otherEnd, msgs);
+			case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:
+				return ((InternalEList<?>)getAnnotations()).basicRemove(otherEnd, msgs);
 			case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
 				return basicSetLeafSection(null, msgs);
 		}
@@ -407,8 +414,8 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 				return getIdentifier();
 			case ModelPackage.MODEL_ELEMENT__READER_INFOS:
 				return getReaderInfos();
-			case ModelPackage.MODEL_ELEMENT__ACTION_ITEMS:
-				return getActionItems();
+			case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:
+				return getAnnotations();
 			case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
 				return getIncomingDocumentReferences();
 			case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
@@ -439,9 +446,9 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 				getReaderInfos().clear();
 				getReaderInfos().addAll((Collection<? extends ReaderInfo>)newValue);
 				return;
-			case ModelPackage.MODEL_ELEMENT__ACTION_ITEMS:
-				getActionItems().clear();
-				getActionItems().addAll((Collection<? extends ActionItem>)newValue);
+			case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:
+				getAnnotations().clear();
+				getAnnotations().addAll((Collection<? extends Annotation>)newValue);
 				return;
 			case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
 				getIncomingDocumentReferences().clear();
@@ -474,8 +481,8 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 			case ModelPackage.MODEL_ELEMENT__READER_INFOS:
 				getReaderInfos().clear();
 				return;
-			case ModelPackage.MODEL_ELEMENT__ACTION_ITEMS:
-				getActionItems().clear();
+			case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:
+				getAnnotations().clear();
 				return;
 			case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
 				getIncomingDocumentReferences().clear();
@@ -503,8 +510,8 @@ public abstract class ModelElementImpl extends EObjectImpl implements ModelEleme
 				return identifier != null;
 			case ModelPackage.MODEL_ELEMENT__READER_INFOS:
 				return readerInfos != null && !readerInfos.isEmpty();
-			case ModelPackage.MODEL_ELEMENT__ACTION_ITEMS:
-				return actionItems != null && !actionItems.isEmpty();
+			case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:
+				return annotations != null && !annotations.isEmpty();
 			case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
 				return incomingDocumentReferences != null && !incomingDocumentReferences.isEmpty();
 			case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:

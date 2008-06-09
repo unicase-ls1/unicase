@@ -53,6 +53,15 @@ public interface ChangeFactory extends EFactory {
 	MergingProposal createMergingProposal();
 
 	/**
+	 * Returns a new object of class '<em>Merging Solution</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Merging Solution</em>'.
+	 * @generated
+	 */
+	MergingSolution createMergingSolution();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

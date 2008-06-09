@@ -78,7 +78,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_ITEM__NAME = ModelPackage.MODEL_ELEMENT__NAME;
+	int WORK_ITEM__NAME = ModelPackage.ANNOTATION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -87,7 +87,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_ITEM__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int WORK_ITEM__DESCRIPTION = ModelPackage.ANNOTATION__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
@@ -96,7 +96,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_ITEM__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
+	int WORK_ITEM__IDENTIFIER = ModelPackage.ANNOTATION__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
@@ -105,16 +105,16 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_ITEM__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
+	int WORK_ITEM__READER_INFOS = ModelPackage.ANNOTATION__READER_INFOS;
 
 	/**
-	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_ITEM__ACTION_ITEMS = ModelPackage.MODEL_ELEMENT__ACTION_ITEMS;
+	int WORK_ITEM__ANNOTATIONS = ModelPackage.ANNOTATION__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -123,7 +123,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_ITEM__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int WORK_ITEM__INCOMING_DOCUMENT_REFERENCES = ModelPackage.ANNOTATION__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
@@ -132,7 +132,16 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_ITEM__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int WORK_ITEM__LEAF_SECTION = ModelPackage.ANNOTATION__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM__ANNOTATED_MODEL_ELEMENTS = ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Containing Workpackage</b></em>' container reference.
@@ -141,7 +150,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_ITEM__CONTAINING_WORKPACKAGE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int WORK_ITEM__CONTAINING_WORKPACKAGE = ModelPackage.ANNOTATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Associated Change Packages</b></em>' reference list.
@@ -150,7 +159,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES = ModelPackage.ANNOTATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Work Item</em>' class.
@@ -159,7 +168,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_ITEM_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int WORK_ITEM_FEATURE_COUNT = ModelPackage.ANNOTATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.task.impl.ActionItemImpl <em>Action Item</em>}' class.
@@ -208,13 +217,13 @@ public interface TaskPackage extends EPackage {
 	int ACTION_ITEM__READER_INFOS = WORK_ITEM__READER_INFOS;
 
 	/**
-	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM__ACTION_ITEMS = WORK_ITEM__ACTION_ITEMS;
+	int ACTION_ITEM__ANNOTATIONS = WORK_ITEM__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -233,6 +242,15 @@ public interface TaskPackage extends EPackage {
 	 * @ordered
 	 */
 	int ACTION_ITEM__LEAF_SECTION = WORK_ITEM__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_ITEM__ANNOTATED_MODEL_ELEMENTS = WORK_ITEM__ANNOTATED_MODEL_ELEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Containing Workpackage</b></em>' container reference.
@@ -345,13 +363,13 @@ public interface TaskPackage extends EPackage {
 	int WORK_PACKAGE__READER_INFOS = WORK_ITEM__READER_INFOS;
 
 	/**
-	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_PACKAGE__ACTION_ITEMS = WORK_ITEM__ACTION_ITEMS;
+	int WORK_PACKAGE__ANNOTATIONS = WORK_ITEM__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -370,6 +388,15 @@ public interface TaskPackage extends EPackage {
 	 * @ordered
 	 */
 	int WORK_PACKAGE__LEAF_SECTION = WORK_ITEM__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE__ANNOTATED_MODEL_ELEMENTS = WORK_ITEM__ANNOTATED_MODEL_ELEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Containing Workpackage</b></em>' container reference.

@@ -109,13 +109,13 @@ public interface BugPackage extends EPackage {
 	int BUG_REPORT__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
 
 	/**
-	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BUG_REPORT__ACTION_ITEMS = ModelPackage.MODEL_ELEMENT__ACTION_ITEMS;
+	int BUG_REPORT__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -245,13 +245,13 @@ public interface BugPackage extends EPackage {
 	int BUG_RESOLUTION__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
 
 	/**
-	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BUG_RESOLUTION__ACTION_ITEMS = ModelPackage.MODEL_ELEMENT__ACTION_ITEMS;
+	int BUG_RESOLUTION__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.

@@ -8,11 +8,13 @@ package org.unicase.model.rationale.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.model.impl.ModelElementImpl;
 
 import org.unicase.model.rationale.Assessment;
@@ -36,16 +38,6 @@ import org.unicase.model.rationale.RationalePackage;
  * @generated
  */
 public class AssessmentImpl extends ModelElementImpl implements Assessment {
-	/**
-	 * The cached value of the '{@link #getProposal() <em>Proposal</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getProposal()
-	 * @generated
-	 * @ordered
-	 */
-	protected Proposal proposal;
-
 	/**
 	 * The cached value of the '{@link #getCriterion() <em>Criterion</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -101,15 +93,8 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 	 * @generated
 	 */
 	public Proposal getProposal() {
-		if (proposal != null && proposal.eIsProxy()) {
-			InternalEObject oldProposal = (InternalEObject)proposal;
-			proposal = (Proposal)eResolveProxy(oldProposal);
-			if (proposal != oldProposal) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RationalePackage.ASSESSMENT__PROPOSAL, oldProposal, proposal));
-			}
-		}
-		return proposal;
+		if (eContainerFeatureID != RationalePackage.ASSESSMENT__PROPOSAL) return null;
+		return (Proposal)eContainer();
 	}
 
 	/**
@@ -117,8 +102,9 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Proposal basicGetProposal() {
-		return proposal;
+	public NotificationChain basicSetProposal(Proposal newProposal, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newProposal, RationalePackage.ASSESSMENT__PROPOSAL, msgs);
+		return msgs;
 	}
 
 	/**
@@ -127,10 +113,19 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 	 * @generated
 	 */
 	public void setProposal(Proposal newProposal) {
-		Proposal oldProposal = proposal;
-		proposal = newProposal;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RationalePackage.ASSESSMENT__PROPOSAL, oldProposal, proposal));
+		if (newProposal != eInternalContainer() || (eContainerFeatureID != RationalePackage.ASSESSMENT__PROPOSAL && newProposal != null)) {
+			if (EcoreUtil.isAncestor(this, newProposal))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newProposal != null)
+				msgs = ((InternalEObject)newProposal).eInverseAdd(this, RationalePackage.PROPOSAL__ASSESSMENTS, Proposal.class, msgs);
+			msgs = basicSetProposal(newProposal, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RationalePackage.ASSESSMENT__PROPOSAL, newProposal, newProposal));
 	}
 
 	/**
@@ -164,11 +159,33 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCriterion(Criterion newCriterion) {
+	public NotificationChain basicSetCriterion(Criterion newCriterion, NotificationChain msgs) {
 		Criterion oldCriterion = criterion;
 		criterion = newCriterion;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RationalePackage.ASSESSMENT__CRITERION, oldCriterion, criterion));
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RationalePackage.ASSESSMENT__CRITERION, oldCriterion, newCriterion);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCriterion(Criterion newCriterion) {
+		if (newCriterion != criterion) {
+			NotificationChain msgs = null;
+			if (criterion != null)
+				msgs = ((InternalEObject)criterion).eInverseRemove(this, RationalePackage.CRITERION__ASSESSMENTS, Criterion.class, msgs);
+			if (newCriterion != null)
+				msgs = ((InternalEObject)newCriterion).eInverseAdd(this, RationalePackage.CRITERION__ASSESSMENTS, Criterion.class, msgs);
+			msgs = basicSetCriterion(newCriterion, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RationalePackage.ASSESSMENT__CRITERION, newCriterion, newCriterion));
 	}
 
 	/**
@@ -198,11 +215,60 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case RationalePackage.ASSESSMENT__PROPOSAL:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetProposal((Proposal)otherEnd, msgs);
+			case RationalePackage.ASSESSMENT__CRITERION:
+				if (criterion != null)
+					msgs = ((InternalEObject)criterion).eInverseRemove(this, RationalePackage.CRITERION__ASSESSMENTS, Criterion.class, msgs);
+				return basicSetCriterion((Criterion)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case RationalePackage.ASSESSMENT__PROPOSAL:
+				return basicSetProposal(null, msgs);
+			case RationalePackage.ASSESSMENT__CRITERION:
+				return basicSetCriterion(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID) {
+			case RationalePackage.ASSESSMENT__PROPOSAL:
+				return eInternalContainer().eInverseRemove(this, RationalePackage.PROPOSAL__ASSESSMENTS, Proposal.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case RationalePackage.ASSESSMENT__PROPOSAL:
-				if (resolve) return getProposal();
-				return basicGetProposal();
+				return getProposal();
 			case RationalePackage.ASSESSMENT__CRITERION:
 				if (resolve) return getCriterion();
 				return basicGetCriterion();
@@ -263,7 +329,7 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case RationalePackage.ASSESSMENT__PROPOSAL:
-				return proposal != null;
+				return getProposal() != null;
 			case RationalePackage.ASSESSMENT__CRITERION:
 				return criterion != null;
 			case RationalePackage.ASSESSMENT__VALUE:

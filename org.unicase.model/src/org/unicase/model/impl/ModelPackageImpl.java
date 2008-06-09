@@ -244,7 +244,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModelElement_ActionItems() {
+	public EReference getModelElement_Annotations() {
 		return (EReference)modelElementEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -352,6 +352,15 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getAnnotation_AnnotatedModelElements() {
+		return (EReference)annotationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ModelFactory getModelFactory() {
 		return (ModelFactory)getEFactoryInstance();
 	}
@@ -380,7 +389,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		createEAttribute(modelElementEClass, MODEL_ELEMENT__DESCRIPTION);
 		createEReference(modelElementEClass, MODEL_ELEMENT__IDENTIFIER);
 		createEReference(modelElementEClass, MODEL_ELEMENT__READER_INFOS);
-		createEReference(modelElementEClass, MODEL_ELEMENT__ACTION_ITEMS);
+		createEReference(modelElementEClass, MODEL_ELEMENT__ANNOTATIONS);
 		createEReference(modelElementEClass, MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES);
 		createEReference(modelElementEClass, MODEL_ELEMENT__LEAF_SECTION);
 
@@ -397,6 +406,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		createEReference(readerInfoEClass, READER_INFO__READER_ID);
 
 		annotationEClass = createEClass(ANNOTATION);
+		createEReference(annotationEClass, ANNOTATION__ANNOTATED_MODEL_ELEMENTS);
 	}
 
 	/**
@@ -452,6 +462,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 		// Add supertypes to classes
 		modelElementIdEClass.getESuperTypes().add(this.getUniqueIdentifier());
+		annotationEClass.getESuperTypes().add(this.getModelElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(modelElementEClass, ModelElement.class, "ModelElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -460,7 +471,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEReference(getModelElement_Identifier(), this.getModelElementId(), null, "identifier", null, 0, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getModelElement_Identifier().getEKeys().add(this.getUniqueIdentifier_Id());
 		initEReference(getModelElement_ReaderInfos(), this.getReaderInfo(), null, "readerInfos", null, 0, -1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModelElement_ActionItems(), theTaskPackage.getActionItem(), null, "actionItems", null, 0, -1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModelElement_Annotations(), this.getAnnotation(), this.getAnnotation_AnnotatedModelElements(), "annotations", null, 0, -1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModelElement_IncomingDocumentReferences(), theDocumentPackage.getLeafSection(), null, "incomingDocumentReferences", null, 0, -1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModelElement_LeafSection(), theDocumentPackage.getLeafSection(), theDocumentPackage.getLeafSection_ModelElements(), "leafSection", null, 0, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -485,6 +496,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEReference(getReaderInfo_ReaderId(), theOrganizationPackage.getOrgUnit(), null, "readerId", null, 0, 1, ReaderInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(annotationEClass, Annotation.class, "Annotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAnnotation_AnnotatedModelElements(), this.getModelElement(), this.getModelElement_Annotations(), "annotatedModelElements", null, 0, -1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

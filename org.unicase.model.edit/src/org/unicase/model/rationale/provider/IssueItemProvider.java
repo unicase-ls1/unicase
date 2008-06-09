@@ -27,6 +27,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.unicase.model.change.ChangeFactory;
+import org.unicase.model.provider.AnnotationItemProvider;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.ModelElementItemProvider;
 
@@ -41,7 +42,7 @@ import org.unicase.model.rationale.RationalePackage;
  * @generated
  */
 public class IssueItemProvider
-	extends ModelElementItemProvider
+	extends AnnotationItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -70,6 +71,8 @@ public class IssueItemProvider
 			super.getPropertyDescriptors(object);
 
 			addCriteriaPropertyDescriptor(object);
+			addFacilitatorPropertyDescriptor(object);
+			addParticipantsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -88,6 +91,50 @@ public class IssueItemProvider
 				 getString("_UI_Issue_criteria_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Issue_criteria_feature", "_UI_Issue_type"),
 				 RationalePackage.Literals.ISSUE__CRITERIA,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Facilitator feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFacilitatorPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Issue_facilitator_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Issue_facilitator_feature", "_UI_Issue_type"),
+				 RationalePackage.Literals.ISSUE__FACILITATOR,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Participants feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addParticipantsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Issue_participants_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Issue_participants_feature", "_UI_Issue_type"),
+				 RationalePackage.Literals.ISSUE__PARTICIPANTS,
 				 true,
 				 false,
 				 true,
@@ -199,6 +246,11 @@ public class IssueItemProvider
 			(createChildParameter
 				(RationalePackage.Literals.ISSUE__SOLUTION,
 				 RationaleFactory.eINSTANCE.createSolution()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RationalePackage.Literals.ISSUE__SOLUTION,
+				 ChangeFactory.eINSTANCE.createMergingSolution()));
 
 		newChildDescriptors.add
 			(createChildParameter

@@ -109,13 +109,13 @@ public interface ClassesPackage extends EPackage {
 	int PACKAGE_ELEMENT__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
 
 	/**
-	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_ELEMENT__ACTION_ITEMS = ModelPackage.MODEL_ELEMENT__ACTION_ITEMS;
+	int PACKAGE_ELEMENT__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -200,13 +200,13 @@ public interface ClassesPackage extends EPackage {
 	int CLASS__READER_INFOS = PACKAGE_ELEMENT__READER_INFOS;
 
 	/**
-	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__ACTION_ITEMS = PACKAGE_ELEMENT__ACTION_ITEMS;
+	int CLASS__ANNOTATIONS = PACKAGE_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -337,13 +337,13 @@ public interface ClassesPackage extends EPackage {
 	int PACKAGE__READER_INFOS = PACKAGE_ELEMENT__READER_INFOS;
 
 	/**
-	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__ACTION_ITEMS = PACKAGE_ELEMENT__ACTION_ITEMS;
+	int PACKAGE__ANNOTATIONS = PACKAGE_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -437,13 +437,13 @@ public interface ClassesPackage extends EPackage {
 	int ASSOCIATION__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
 
 	/**
-	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__ACTION_ITEMS = ModelPackage.MODEL_ELEMENT__ACTION_ITEMS;
+	int ASSOCIATION__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.

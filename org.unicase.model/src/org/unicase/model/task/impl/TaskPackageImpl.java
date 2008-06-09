@@ -341,7 +341,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		// Add supertypes to classes
 		actionItemEClass.getESuperTypes().add(this.getWorkItem());
 		workPackageEClass.getESuperTypes().add(this.getWorkItem());
-		workItemEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		workItemEClass.getESuperTypes().add(theModelPackage.getAnnotation());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(actionItemEClass, ActionItem.class, "ActionItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
