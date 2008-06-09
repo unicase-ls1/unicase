@@ -188,7 +188,9 @@ public class RepositoryView extends ViewPart {
 		ISelection selection = viewer.getSelection();
 		Object obj = ((IStructuredSelection) selection).getFirstElement();
 		if (obj instanceof ServerInfo) {
-			manager.add(serverAddProject);
+			if (((ServerInfo)obj).getLastUsersession().isLoggedIn()){
+				manager.add(serverAddProject);
+			}
 			manager.add(serverLogin);
 			manager.add(serverChangeSession);
 			manager.add(new Separator());
@@ -260,7 +262,18 @@ public class RepositoryView extends ViewPart {
 				ISelection selection = viewer.getSelection();
 				Object obj = ((IStructuredSelection) selection).getFirstElement();
 				ServerInfo serverInfo = ((ServerInfo)obj); 
-				ProjectInfo newProjectInfo = EsmodelFactory.eINSTANCE.createProjectInfo();
+				if (serverInfo.getLastUsersession().isLoggedIn()){
+					try {
+						serverInfo.getLastUsersession().createProject("Test", "Test Desc");
+						viewer.refresh(obj);
+					} catch (AccessControlException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (EmfStoreException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+				}
+				}
 			}
 		};
 		serverAddProject.setText("Create new project");
