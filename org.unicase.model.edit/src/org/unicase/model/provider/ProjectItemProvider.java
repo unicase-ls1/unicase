@@ -317,7 +317,7 @@ public class ProjectItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 ComponentFactory.eINSTANCE.createNode()));
+				 ComponentFactory.eINSTANCE.createDeploymentNode()));
 	}
 
 	/**

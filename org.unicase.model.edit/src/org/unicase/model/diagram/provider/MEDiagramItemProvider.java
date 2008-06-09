@@ -359,7 +359,7 @@ public class MEDiagramItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 ComponentFactory.eINSTANCE.createNode()));
+				 ComponentFactory.eINSTANCE.createDeploymentNode()));
 	}
 
 	/**

@@ -18,15 +18,15 @@ import org.unicase.model.ModelElement;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.model.component.Node#getComponents <em>Components</em>}</li>
+ *   <li>{@link org.unicase.model.component.DeploymentNode#getComponents <em>Components</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.unicase.model.component.ComponentPackage#getNode()
+ * @see org.unicase.model.component.ComponentPackage#getDeploymentNode()
  * @model
  * @generated
  */
-public interface Node extends ModelElement {
+public interface DeploymentNode extends ModelElement {
 	/**
 	 * Returns the value of the '<em><b>Components</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.model.component.Component}.
@@ -37,7 +37,7 @@ public interface Node extends ModelElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Components</em>' reference list.
-	 * @see org.unicase.model.component.ComponentPackage#getNode_Components()
+	 * @see org.unicase.model.component.ComponentPackage#getDeploymentNode_Components()
 	 * @model
 	 * @generated
 	 */

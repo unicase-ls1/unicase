@@ -82,8 +82,8 @@ public class ComponentAdapterFactory extends AdapterFactoryImpl {
 				return createComponentServiceAdapter();
 			}
 			@Override
-			public Adapter caseNode(Node object) {
-				return createNodeAdapter();
+			public Adapter caseDeploymentNode(DeploymentNode object) {
+				return createDeploymentNodeAdapter();
 			}
 			@Override
 			public Adapter caseModelElement(ModelElement object) {
@@ -138,16 +138,16 @@ public class ComponentAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.component.Node <em>Node</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.component.DeploymentNode <em>Deployment Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.unicase.model.component.Node
+	 * @see org.unicase.model.component.DeploymentNode
 	 * @generated
 	 */
-	public Adapter createNodeAdapter() {
+	public Adapter createDeploymentNodeAdapter() {
 		return null;
 	}
 

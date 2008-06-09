@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.unicase.model.component.Component;
 import org.unicase.model.component.ComponentPackage;
-import org.unicase.model.component.Node;
+import org.unicase.model.component.DeploymentNode;
 
 import org.unicase.model.impl.ModelElementImpl;
 
@@ -27,13 +27,13 @@ import org.unicase.model.impl.ModelElementImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.component.impl.NodeImpl#getComponents <em>Components</em>}</li>
+ *   <li>{@link org.unicase.model.component.impl.DeploymentNodeImpl#getComponents <em>Components</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class NodeImpl extends ModelElementImpl implements Node {
+public class DeploymentNodeImpl extends ModelElementImpl implements DeploymentNode {
 	/**
 	 * The cached value of the '{@link #getComponents() <em>Components</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -49,7 +49,7 @@ public class NodeImpl extends ModelElementImpl implements Node {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected NodeImpl() {
+	protected DeploymentNodeImpl() {
 		super();
 	}
 
@@ -60,7 +60,7 @@ public class NodeImpl extends ModelElementImpl implements Node {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ComponentPackage.Literals.NODE;
+		return ComponentPackage.Literals.DEPLOYMENT_NODE;
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class NodeImpl extends ModelElementImpl implements Node {
 	 */
 	public EList<Component> getComponents() {
 		if (components == null) {
-			components = new EObjectResolvingEList<Component>(Component.class, this, ComponentPackage.NODE__COMPONENTS);
+			components = new EObjectResolvingEList<Component>(Component.class, this, ComponentPackage.DEPLOYMENT_NODE__COMPONENTS);
 		}
 		return components;
 	}
@@ -83,7 +83,7 @@ public class NodeImpl extends ModelElementImpl implements Node {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ComponentPackage.NODE__COMPONENTS:
+			case ComponentPackage.DEPLOYMENT_NODE__COMPONENTS:
 				return getComponents();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -98,7 +98,7 @@ public class NodeImpl extends ModelElementImpl implements Node {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ComponentPackage.NODE__COMPONENTS:
+			case ComponentPackage.DEPLOYMENT_NODE__COMPONENTS:
 				getComponents().clear();
 				getComponents().addAll((Collection<? extends Component>)newValue);
 				return;
@@ -114,7 +114,7 @@ public class NodeImpl extends ModelElementImpl implements Node {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ComponentPackage.NODE__COMPONENTS:
+			case ComponentPackage.DEPLOYMENT_NODE__COMPONENTS:
 				getComponents().clear();
 				return;
 		}
@@ -129,7 +129,7 @@ public class NodeImpl extends ModelElementImpl implements Node {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ComponentPackage.NODE__COMPONENTS:
+			case ComponentPackage.DEPLOYMENT_NODE__COMPONENTS:
 				return components != null && !components.isEmpty();
 		}
 		return super.eIsSet(featureID);

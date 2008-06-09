@@ -234,14 +234,14 @@ public interface ComponentPackage extends EPackage {
 	int COMPONENT_SERVICE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.model.component.impl.NodeImpl <em>Node</em>}' class.
+	 * The meta object id for the '{@link org.unicase.model.component.impl.DeploymentNodeImpl <em>Deployment Node</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.unicase.model.component.impl.NodeImpl
-	 * @see org.unicase.model.component.impl.ComponentPackageImpl#getNode()
+	 * @see org.unicase.model.component.impl.DeploymentNodeImpl
+	 * @see org.unicase.model.component.impl.ComponentPackageImpl#getDeploymentNode()
 	 * @generated
 	 */
-	int NODE = 2;
+	int DEPLOYMENT_NODE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -250,7 +250,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NODE__NAME = ModelPackage.MODEL_ELEMENT__NAME;
+	int DEPLOYMENT_NODE__NAME = ModelPackage.MODEL_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -259,7 +259,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NODE__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int DEPLOYMENT_NODE__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
@@ -268,7 +268,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NODE__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
+	int DEPLOYMENT_NODE__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
@@ -277,7 +277,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NODE__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
+	int DEPLOYMENT_NODE__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
 
 	/**
 	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
@@ -286,7 +286,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NODE__ACTION_ITEMS = ModelPackage.MODEL_ELEMENT__ACTION_ITEMS;
+	int DEPLOYMENT_NODE__ACTION_ITEMS = ModelPackage.MODEL_ELEMENT__ACTION_ITEMS;
 
 	/**
 	 * The feature id for the '<em><b>Components</b></em>' reference list.
@@ -295,17 +295,16 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NODE__COMPONENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int DEPLOYMENT_NODE__COMPONENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Node</em>' class.
+	 * The number of structural features of the '<em>Deployment Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NODE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
-
+	int DEPLOYMENT_NODE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.component.Component <em>Component</em>}'.
@@ -383,25 +382,25 @@ public interface ComponentPackage extends EPackage {
 	EReference getComponentService_ConsumingComponents();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.model.component.Node <em>Node</em>}'.
+	 * Returns the meta object for class '{@link org.unicase.model.component.DeploymentNode <em>Deployment Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Node</em>'.
-	 * @see org.unicase.model.component.Node
+	 * @return the meta object for class '<em>Deployment Node</em>'.
+	 * @see org.unicase.model.component.DeploymentNode
 	 * @generated
 	 */
-	EClass getNode();
+	EClass getDeploymentNode();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.component.Node#getComponents <em>Components</em>}'.
+	 * Returns the meta object for the reference list '{@link org.unicase.model.component.DeploymentNode#getComponents <em>Components</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Components</em>'.
-	 * @see org.unicase.model.component.Node#getComponents()
-	 * @see #getNode()
+	 * @see org.unicase.model.component.DeploymentNode#getComponents()
+	 * @see #getDeploymentNode()
 	 * @generated
 	 */
-	EReference getNode_Components();
+	EReference getDeploymentNode_Components();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -486,14 +485,14 @@ public interface ComponentPackage extends EPackage {
 		EReference COMPONENT_SERVICE__CONSUMING_COMPONENTS = eINSTANCE.getComponentService_ConsumingComponents();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.component.impl.NodeImpl <em>Node</em>}' class.
+		 * The meta object literal for the '{@link org.unicase.model.component.impl.DeploymentNodeImpl <em>Deployment Node</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.unicase.model.component.impl.NodeImpl
-		 * @see org.unicase.model.component.impl.ComponentPackageImpl#getNode()
+		 * @see org.unicase.model.component.impl.DeploymentNodeImpl
+		 * @see org.unicase.model.component.impl.ComponentPackageImpl#getDeploymentNode()
 		 * @generated
 		 */
-		EClass NODE = eINSTANCE.getNode();
+		EClass DEPLOYMENT_NODE = eINSTANCE.getDeploymentNode();
 
 		/**
 		 * The meta object literal for the '<em><b>Components</b></em>' reference list feature.
@@ -501,7 +500,7 @@ public interface ComponentPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference NODE__COMPONENTS = eINSTANCE.getNode_Components();
+		EReference DEPLOYMENT_NODE__COMPONENTS = eINSTANCE.getDeploymentNode_Components();
 
 	}
 
