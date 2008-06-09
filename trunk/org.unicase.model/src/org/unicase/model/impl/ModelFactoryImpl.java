@@ -64,6 +64,7 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 			case ModelPackage.PROJECT: return createProject();
 			case ModelPackage.MODEL_ELEMENT_ID: return createModelElementId();
 			case ModelPackage.READER_INFO: return createReaderInfo();
+			case ModelPackage.ANNOTATION: return createAnnotation();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -96,6 +97,16 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	public ReaderInfo createReaderInfo() {
 		ReaderInfoImpl readerInfo = new ReaderInfoImpl();
 		return readerInfo;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Annotation createAnnotation() {
+		AnnotationImpl annotation = new AnnotationImpl();
+		return annotation;
 	}
 
 	/**

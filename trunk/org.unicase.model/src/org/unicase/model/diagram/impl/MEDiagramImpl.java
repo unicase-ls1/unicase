@@ -63,7 +63,7 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	 * @generated
 	 * @ordered
 	 */
-	protected ActionItem gmfdiagram;
+	protected Diagram gmfdiagram;
 
 	/**
 	 * The cached value of the '{@link #getNewElements() <em>New Elements</em>}' containment reference.
@@ -111,7 +111,7 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActionItem getGmfdiagram() {
+	public Diagram getGmfdiagram() {
 		return gmfdiagram;
 	}
 
@@ -120,8 +120,8 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetGmfdiagram(ActionItem newGmfdiagram, NotificationChain msgs) {
-		ActionItem oldGmfdiagram = gmfdiagram;
+	public NotificationChain basicSetGmfdiagram(Diagram newGmfdiagram, NotificationChain msgs) {
+		Diagram oldGmfdiagram = gmfdiagram;
 		gmfdiagram = newGmfdiagram;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DiagramPackage.ME_DIAGRAM__GMFDIAGRAM, oldGmfdiagram, newGmfdiagram);
@@ -135,7 +135,7 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setGmfdiagram(ActionItem newGmfdiagram) {
+	public void setGmfdiagram(Diagram newGmfdiagram) {
 		if (newGmfdiagram != gmfdiagram) {
 			NotificationChain msgs = null;
 			if (gmfdiagram != null)
@@ -240,7 +240,7 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 				getElements().addAll((Collection<? extends ModelElement>)newValue);
 				return;
 			case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM:
-				setGmfdiagram((ActionItem)newValue);
+				setGmfdiagram((Diagram)newValue);
 				return;
 			case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
 				setNewElements((ModelElement)newValue);
@@ -261,7 +261,7 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 				getElements().clear();
 				return;
 			case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM:
-				setGmfdiagram((ActionItem)null);
+				setGmfdiagram((Diagram)null);
 				return;
 			case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
 				setNewElements((ModelElement)null);

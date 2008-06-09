@@ -8,6 +8,7 @@ package org.unicase.model;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.model.document.LeafSection;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.ActionItem;
 
@@ -24,6 +25,8 @@ import org.unicase.model.task.ActionItem;
  *   <li>{@link org.unicase.model.ModelElement#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getReaderInfos <em>Reader Infos</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getActionItems <em>Action Items</em>}</li>
+ *   <li>{@link org.unicase.model.ModelElement#getIncomingDocumentReferences <em>Incoming Document References</em>}</li>
+ *   <li>{@link org.unicase.model.ModelElement#getLeafSection <em>Leaf Section</em>}</li>
  * </ul>
  * </p>
  *
@@ -142,6 +145,50 @@ public interface ModelElement extends EObject {
 	 * @generated
 	 */
 	EList<ActionItem> getActionItems();
+
+	/**
+	 * Returns the value of the '<em><b>Incoming Document References</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.document.LeafSection}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Incoming Document References</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Incoming Document References</em>' reference list.
+	 * @see org.unicase.model.ModelPackage#getModelElement_IncomingDocumentReferences()
+	 * @model
+	 * @generated
+	 */
+	EList<LeafSection> getIncomingDocumentReferences();
+
+	/**
+	 * Returns the value of the '<em><b>Leaf Section</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.document.LeafSection#getModelElements <em>Model Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Leaf Section</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Leaf Section</em>' container reference.
+	 * @see #setLeafSection(LeafSection)
+	 * @see org.unicase.model.ModelPackage#getModelElement_LeafSection()
+	 * @see org.unicase.model.document.LeafSection#getModelElements
+	 * @model opposite="modelElements" transient="false"
+	 * @generated
+	 */
+	LeafSection getLeafSection();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.ModelElement#getLeafSection <em>Leaf Section</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Leaf Section</em>' container reference.
+	 * @see #getLeafSection()
+	 * @generated
+	 */
+	void setLeafSection(LeafSection value);
 
 	/**
 	 * <!-- begin-user-doc -->

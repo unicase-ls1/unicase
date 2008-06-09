@@ -186,11 +186,33 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setInitiatingActor(Actor newInitiatingActor) {
+	public NotificationChain basicSetInitiatingActor(Actor newInitiatingActor, NotificationChain msgs) {
 		Actor oldInitiatingActor = initiatingActor;
 		initiatingActor = newInitiatingActor;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.USE_CASE__INITIATING_ACTOR, oldInitiatingActor, initiatingActor));
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RequirementPackage.USE_CASE__INITIATING_ACTOR, oldInitiatingActor, newInitiatingActor);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setInitiatingActor(Actor newInitiatingActor) {
+		if (newInitiatingActor != initiatingActor) {
+			NotificationChain msgs = null;
+			if (initiatingActor != null)
+				msgs = ((InternalEObject)initiatingActor).eInverseRemove(this, RequirementPackage.ACTOR__INITIATED_USE_CASES, Actor.class, msgs);
+			if (newInitiatingActor != null)
+				msgs = ((InternalEObject)newInitiatingActor).eInverseAdd(this, RequirementPackage.ACTOR__INITIATED_USE_CASES, Actor.class, msgs);
+			msgs = basicSetInitiatingActor(newInitiatingActor, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.USE_CASE__INITIATING_ACTOR, newInitiatingActor, newInitiatingActor));
 	}
 
 	/**
@@ -212,7 +234,7 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	 */
 	public EList<FunctionalRequirement> getFunctionalRequirements() {
 		if (functionalRequirements == null) {
-			functionalRequirements = new EObjectResolvingEList<FunctionalRequirement>(FunctionalRequirement.class, this, RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS);
+			functionalRequirements = new EObjectWithInverseResolvingEList.ManyInverse<FunctionalRequirement>(FunctionalRequirement.class, this, RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS, RequirementPackage.FUNCTIONAL_REQUIREMENT__USE_CASES);
 		}
 		return functionalRequirements;
 	}
@@ -262,10 +284,16 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case RequirementPackage.USE_CASE__INITIATING_ACTOR:
+				if (initiatingActor != null)
+					msgs = ((InternalEObject)initiatingActor).eInverseRemove(this, RequirementPackage.ACTOR__INITIATED_USE_CASES, Actor.class, msgs);
+				return basicSetInitiatingActor((Actor)otherEnd, msgs);
 			case RequirementPackage.USE_CASE__PARTICIPATING_ACTORS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getParticipatingActors()).basicAdd(otherEnd, msgs);
 			case RequirementPackage.USE_CASE__SCENARIOS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getScenarios()).basicAdd(otherEnd, msgs);
+			case RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getFunctionalRequirements()).basicAdd(otherEnd, msgs);
 			case RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getNonFunctionalRequirements()).basicAdd(otherEnd, msgs);
 			case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES:
@@ -284,10 +312,14 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 		switch (featureID) {
 			case RequirementPackage.USE_CASE__STEPS:
 				return ((InternalEList<?>)getSteps()).basicRemove(otherEnd, msgs);
+			case RequirementPackage.USE_CASE__INITIATING_ACTOR:
+				return basicSetInitiatingActor(null, msgs);
 			case RequirementPackage.USE_CASE__PARTICIPATING_ACTORS:
 				return ((InternalEList<?>)getParticipatingActors()).basicRemove(otherEnd, msgs);
 			case RequirementPackage.USE_CASE__SCENARIOS:
 				return ((InternalEList<?>)getScenarios()).basicRemove(otherEnd, msgs);
+			case RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS:
+				return ((InternalEList<?>)getFunctionalRequirements()).basicRemove(otherEnd, msgs);
 			case RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS:
 				return ((InternalEList<?>)getNonFunctionalRequirements()).basicRemove(otherEnd, msgs);
 			case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES:

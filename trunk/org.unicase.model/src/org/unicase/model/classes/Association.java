@@ -56,6 +56,7 @@ public interface Association extends ModelElement {
 
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.classes.Class#getOutgoingAssociations <em>Outgoing Associations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source</em>' reference isn't clear,
@@ -65,7 +66,8 @@ public interface Association extends ModelElement {
 	 * @return the value of the '<em>Source</em>' reference.
 	 * @see #setSource(org.unicase.model.classes.Class)
 	 * @see org.unicase.model.classes.ClassesPackage#getAssociation_Source()
-	 * @model
+	 * @see org.unicase.model.classes.Class#getOutgoingAssociations
+	 * @model opposite="outgoingAssociations"
 	 * @generated
 	 */
 	org.unicase.model.classes.Class getSource();
@@ -82,6 +84,7 @@ public interface Association extends ModelElement {
 
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.classes.Class#getIncomingAssociations <em>Incoming Associations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target</em>' reference isn't clear,
@@ -91,7 +94,8 @@ public interface Association extends ModelElement {
 	 * @return the value of the '<em>Target</em>' reference.
 	 * @see #setTarget(org.unicase.model.classes.Class)
 	 * @see org.unicase.model.classes.ClassesPackage#getAssociation_Target()
-	 * @model
+	 * @see org.unicase.model.classes.Class#getIncomingAssociations
+	 * @model opposite="incomingAssociations"
 	 * @generated
 	 */
 	org.unicase.model.classes.Class getTarget();

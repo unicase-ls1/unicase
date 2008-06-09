@@ -9,9 +9,14 @@
         name="Rectangle"/>
     <figures
         xsi:type="gmfgraph:Ellipse"/>
+    <figures
+        xsi:type="gmfgraph:Polyline"
+        name="Association"/>
   </figures>
   <nodes
       name="Class"/>
+  <connections
+      name="Association"/>
   <labels
       name="Name"/>
 </gmfgraph:Canvas>

@@ -66,6 +66,7 @@ public class ActorInstanceItemProvider
 
 			addInitiatedScenariosPropertyDescriptor(object);
 			addParticipatedScenariosPropertyDescriptor(object);
+			addInstantiatedActorPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -106,6 +107,28 @@ public class ActorInstanceItemProvider
 				 getString("_UI_ActorInstance_participatedScenarios_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ActorInstance_participatedScenarios_feature", "_UI_ActorInstance_type"),
 				 RequirementPackage.Literals.ACTOR_INSTANCE__PARTICIPATED_SCENARIOS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Instantiated Actor feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addInstantiatedActorPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ActorInstance_instantiatedActor_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ActorInstance_instantiatedActor_feature", "_UI_ActorInstance_type"),
+				 RequirementPackage.Literals.ACTOR_INSTANCE__INSTANTIATED_ACTOR,
 				 true,
 				 false,
 				 true,

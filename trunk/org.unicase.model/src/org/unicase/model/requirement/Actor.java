@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.unicase.model.requirement.Actor#getInitiatedUseCases <em>Initiated Use Cases</em>}</li>
  *   <li>{@link org.unicase.model.requirement.Actor#getParticipatedUseCases <em>Participated Use Cases</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.Actor#getInstances <em>Instances</em>}</li>
  * </ul>
  * </p>
  *
@@ -32,6 +33,7 @@ public interface Actor extends ModelElement {
 	/**
 	 * Returns the value of the '<em><b>Initiated Use Cases</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.model.requirement.UseCase}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.UseCase#getInitiatingActor <em>Initiating Actor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Initiated Use Cases</em>' reference list isn't clear,
@@ -40,7 +42,8 @@ public interface Actor extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Initiated Use Cases</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getActor_InitiatedUseCases()
-	 * @model
+	 * @see org.unicase.model.requirement.UseCase#getInitiatingActor
+	 * @model opposite="initiatingActor"
 	 * @generated
 	 */
 	EList<UseCase> getInitiatedUseCases();
@@ -62,5 +65,23 @@ public interface Actor extends ModelElement {
 	 * @generated
 	 */
 	EList<UseCase> getParticipatedUseCases();
+
+	/**
+	 * Returns the value of the '<em><b>Instances</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.requirement.ActorInstance}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.ActorInstance#getInstantiatedActor <em>Instantiated Actor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Instances</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Instances</em>' reference list.
+	 * @see org.unicase.model.requirement.RequirementPackage#getActor_Instances()
+	 * @see org.unicase.model.requirement.ActorInstance#getInstantiatedActor
+	 * @model opposite="instantiatedActor" derived="true"
+	 * @generated
+	 */
+	EList<ActorInstance> getInstances();
 
 } // Actor

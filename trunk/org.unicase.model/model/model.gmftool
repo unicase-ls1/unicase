@@ -9,5 +9,8 @@
         xsi:type="gmftool:CreationTool"
         title="Class"
         description=""/>
+    <tools
+        xsi:type="gmftool:CreationTool"
+        title="Association"/>
   </palette>
 </gmftool:ToolRegistry>

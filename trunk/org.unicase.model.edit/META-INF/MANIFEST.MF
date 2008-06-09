@@ -29,5 +29,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.notation,
  org.eclipse.gmf.runtime.diagram.core,
  org.eclipse.core.expressions,
- org.unicase.workspace
+ org.unicase.workspace,
+ org.eclipse.emf.ecore.edit;visibility:=reexport,
+ org.eclipse.gmf.runtime.notation.edit;visibility:=reexport
 Bundle-ActivationPolicy: lazy

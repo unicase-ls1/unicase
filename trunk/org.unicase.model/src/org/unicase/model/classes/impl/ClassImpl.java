@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.unicase.model.classes.Association;
 import org.unicase.model.classes.ClassesPackage;
 
 import org.unicase.model.requirement.RequirementPackage;
@@ -32,6 +33,8 @@ import org.unicase.model.impl.ModelElementImpl;
  *   <li>{@link org.unicase.model.classes.impl.ClassImpl#getParticipatedUseCases <em>Participated Use Cases</em>}</li>
  *   <li>{@link org.unicase.model.classes.impl.ClassImpl#getSuperClass <em>Super Class</em>}</li>
  *   <li>{@link org.unicase.model.classes.impl.ClassImpl#getSubClasses <em>Sub Classes</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.ClassImpl#getIncomingAssociations <em>Incoming Associations</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.ClassImpl#getOutgoingAssociations <em>Outgoing Associations</em>}</li>
  * </ul>
  * </p>
  *
@@ -65,6 +68,25 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 	 * @ordered
 	 */
 	protected EList<org.unicase.model.classes.Class> subClasses;
+
+	/**
+	 * The cached value of the '{@link #getIncomingAssociations() <em>Incoming Associations</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIncomingAssociations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Association> incomingAssociations;
+	/**
+	 * The cached value of the '{@link #getOutgoingAssociations() <em>Outgoing Associations</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOutgoingAssociations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Association> outgoingAssociations;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -174,6 +196,30 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Association> getIncomingAssociations() {
+		if (incomingAssociations == null) {
+			incomingAssociations = new EObjectWithInverseResolvingEList<Association>(Association.class, this, ClassesPackage.CLASS__INCOMING_ASSOCIATIONS, ClassesPackage.ASSOCIATION__TARGET);
+		}
+		return incomingAssociations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Association> getOutgoingAssociations() {
+		if (outgoingAssociations == null) {
+			outgoingAssociations = new EObjectWithInverseResolvingEList<Association>(Association.class, this, ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS, ClassesPackage.ASSOCIATION__SOURCE);
+		}
+		return outgoingAssociations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -186,6 +232,10 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 				return basicSetSuperClass((org.unicase.model.classes.Class)otherEnd, msgs);
 			case ClassesPackage.CLASS__SUB_CLASSES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSubClasses()).basicAdd(otherEnd, msgs);
+			case ClassesPackage.CLASS__INCOMING_ASSOCIATIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getIncomingAssociations()).basicAdd(otherEnd, msgs);
+			case ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOutgoingAssociations()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -204,6 +254,10 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 				return basicSetSuperClass(null, msgs);
 			case ClassesPackage.CLASS__SUB_CLASSES:
 				return ((InternalEList<?>)getSubClasses()).basicRemove(otherEnd, msgs);
+			case ClassesPackage.CLASS__INCOMING_ASSOCIATIONS:
+				return ((InternalEList<?>)getIncomingAssociations()).basicRemove(otherEnd, msgs);
+			case ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS:
+				return ((InternalEList<?>)getOutgoingAssociations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -223,6 +277,10 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 				return basicGetSuperClass();
 			case ClassesPackage.CLASS__SUB_CLASSES:
 				return getSubClasses();
+			case ClassesPackage.CLASS__INCOMING_ASSOCIATIONS:
+				return getIncomingAssociations();
+			case ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS:
+				return getOutgoingAssociations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -247,6 +305,14 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 				getSubClasses().clear();
 				getSubClasses().addAll((Collection<? extends org.unicase.model.classes.Class>)newValue);
 				return;
+			case ClassesPackage.CLASS__INCOMING_ASSOCIATIONS:
+				getIncomingAssociations().clear();
+				getIncomingAssociations().addAll((Collection<? extends Association>)newValue);
+				return;
+			case ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS:
+				getOutgoingAssociations().clear();
+				getOutgoingAssociations().addAll((Collection<? extends Association>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -268,6 +334,12 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 			case ClassesPackage.CLASS__SUB_CLASSES:
 				getSubClasses().clear();
 				return;
+			case ClassesPackage.CLASS__INCOMING_ASSOCIATIONS:
+				getIncomingAssociations().clear();
+				return;
+			case ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS:
+				getOutgoingAssociations().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -286,6 +358,10 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 				return superClass != null;
 			case ClassesPackage.CLASS__SUB_CLASSES:
 				return subClasses != null && !subClasses.isEmpty();
+			case ClassesPackage.CLASS__INCOMING_ASSOCIATIONS:
+				return incomingAssociations != null && !incomingAssociations.isEmpty();
+			case ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS:
+				return outgoingAssociations != null && !outgoingAssociations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
