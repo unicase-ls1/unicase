@@ -172,6 +172,15 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 		}
 		return versions;
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 * @generated NOT
+	 */
+	public Version getLastVersion() {
+		EList<Version> versions = getVersions();
+		return (versions.size()==0)?null:versions.get(versions.size()-1);
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
