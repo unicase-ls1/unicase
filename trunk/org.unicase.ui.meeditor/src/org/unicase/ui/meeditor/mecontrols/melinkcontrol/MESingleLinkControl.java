@@ -35,13 +35,13 @@ public class MESingleLinkControl extends AbstractMEControl {
 
 	Composite linkArea;
 
-	Composite linkComposite;
-
 	Composite parent;
 
 	int style;
 
 	Control control;
+
+	private MELinkControl meControl;
 
 	public MESingleLinkControl(EditingDomain editingDomain,
 			EObject modelElement, FormToolkit toolkit, EReference reference) {
@@ -104,17 +104,17 @@ public class MESingleLinkControl extends AbstractMEControl {
 	}
 
 	private void updateLink() {
-//		if (linkComposite != null) {
-//			linkComposite.dispose();
-//		}
+		if (meControl != null) {
+			meControl.getLinkComposite().dispose();
+		}
 
-		linkComposite = toolkit.createComposite(linkArea);
+		Composite linkComposite = toolkit.createComposite(linkArea);
 
 		linkComposite.setLayout(new GridLayout(1, false));
 		EObject opposite = (EObject) modelElement.eGet(eReference);
 		ModelElement me = (ModelElement) modelElement;
 		if (opposite != null) {
-			MELinkControl meControl = new MELinkControl(editingDomain,
+			meControl = new MELinkControl(editingDomain,
 					opposite, toolkit, me, eReference);
 			control = meControl.createControl(linkComposite, style);
 		} else {
@@ -122,12 +122,6 @@ public class MESingleLinkControl extends AbstractMEControl {
 			label.setForeground(parent.getShell().getDisplay().getSystemColor(
 					SWT.COLOR_GRAY));
 		}
-		linkComposite.layout(true);
-		linkComposite.redraw();
 		linkArea.layout(true);
-		linkArea.redraw();
-		composite.layout(true);
-		composite.redraw();
 	}
-
 }

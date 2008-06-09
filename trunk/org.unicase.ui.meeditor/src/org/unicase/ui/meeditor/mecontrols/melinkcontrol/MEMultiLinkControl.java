@@ -38,7 +38,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 	Composite composite;
 	EList<EObject> value;
 	HyperlinkGroup hyperLinkGroup;
-	List<Composite> linkComposites;
+	List<MELinkControl> linkControls;
 	Composite linkArea;
 	int style;
 	private IItemPropertyDescriptor descriptor;
@@ -48,7 +48,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 		super(editingDomain, modelElement, toolkit);
 		this.eReference = reference;
 		this.descriptor=descriptor;
-		linkComposites = new ArrayList<Composite>();
+		linkControls = new ArrayList<MELinkControl>();
 		
 		modelElement.eAdapters().add(new AdapterImpl() {
 			@Override
@@ -122,11 +122,12 @@ public class MEMultiLinkControl extends AbstractMEControl {
 
 	public void rebuildLinkSection() {
 		value = (EList<EObject>) modelElement.eGet(eReference);
-//		if (linkComposites != null) {
-//			for (Composite composite : linkComposites) {
-//				composite.dispose();
-//			}
-//		}
+		if (linkControls != null) {
+			for (MELinkControl control : linkControls) {
+				control.getLinkComposite().dispose();
+			}
+			linkArea.pack(true);
+		}
 		MELinkControl meControl;
 		for (EObject object : value) {
 			if (object instanceof ModelElement) {
@@ -134,13 +135,10 @@ public class MEMultiLinkControl extends AbstractMEControl {
 				ModelElement me = (ModelElement) object;
 				meControl= new MELinkControl(editingDomain, me, toolkit, modelElement, eReference);
 				meControl.createControl(linkArea, style);
-//				linkComposites.add(linkComposite);
+				linkControls.add(meControl);
 			}
 		}
-		// Force relayout.
-		section.setExpanded(false);
-		section.setExpanded(true);
-
+		section.layout(true);
 	}
 
 }
