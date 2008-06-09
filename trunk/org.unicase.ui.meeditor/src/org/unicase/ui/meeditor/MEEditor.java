@@ -21,6 +21,7 @@ import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
 import org.unicase.model.ModelElement;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
+import org.unicase.workspace.WorkspaceManager;
 
 
 public class MEEditor extends SharedHeaderFormEditor {
@@ -54,7 +55,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	public void doSave(IProgressMonitor monitor) {
 		
 		monitor.beginTask("Saving...", 1);
-		//MK: make save happen :-)
+		WorkspaceManager.getInstance().getCurrentWorkspace().save();
 		commandStack.flush();
 		editorDirtyStateChanged();
 		monitor.done();
