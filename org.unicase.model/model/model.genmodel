@@ -68,6 +68,7 @@
             ecoreFeature="ecore:EReference model.ecore#//diagram/MEDiagram/elements"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//diagram/MEDiagram/gmfdiagram"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//diagram/MEDiagram/newElements"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Classes" basePackage="org.unicase.model" disposableProviderFactory="true"

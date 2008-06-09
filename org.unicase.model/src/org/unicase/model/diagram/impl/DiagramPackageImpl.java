@@ -187,6 +187,15 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getMEDiagram_NewElements() {
+		return (EReference)meDiagramEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DiagramFactory getDiagramFactory() {
 		return (DiagramFactory)getEFactoryInstance();
 	}
@@ -213,6 +222,7 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		meDiagramEClass = createEClass(ME_DIAGRAM);
 		createEReference(meDiagramEClass, ME_DIAGRAM__ELEMENTS);
 		createEReference(meDiagramEClass, ME_DIAGRAM__GMFDIAGRAM);
+		createEReference(meDiagramEClass, ME_DIAGRAM__NEW_ELEMENTS);
 	}
 
 	/**
@@ -253,6 +263,7 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		initEClass(meDiagramEClass, MEDiagram.class, "MEDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMEDiagram_Elements(), theModelPackage.getModelElement(), null, "elements", null, 0, -1, MEDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMEDiagram_Gmfdiagram(), theTaskPackage.getActionItem(), null, "gmfdiagram", null, 0, 1, MEDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMEDiagram_NewElements(), theModelPackage.getModelElement(), null, "newElements", null, 0, 1, MEDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 } //DiagramPackageImpl

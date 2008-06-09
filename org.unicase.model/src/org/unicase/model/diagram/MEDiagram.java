@@ -22,6 +22,7 @@ import org.unicase.model.task.ActionItem;
  * <ul>
  *   <li>{@link org.unicase.model.diagram.MEDiagram#getElements <em>Elements</em>}</li>
  *   <li>{@link org.unicase.model.diagram.MEDiagram#getGmfdiagram <em>Gmfdiagram</em>}</li>
+ *   <li>{@link org.unicase.model.diagram.MEDiagram#getNewElements <em>New Elements</em>}</li>
  * </ul>
  * </p>
  *
@@ -71,5 +72,31 @@ public interface MEDiagram extends ModelElement {
 	 * @generated
 	 */
 	void setGmfdiagram(ActionItem value);
+
+	/**
+	 * Returns the value of the '<em><b>New Elements</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>New Elements</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>New Elements</em>' containment reference.
+	 * @see #setNewElements(ModelElement)
+	 * @see org.unicase.model.diagram.DiagramPackage#getMEDiagram_NewElements()
+	 * @model containment="true"
+	 * @generated
+	 */
+	ModelElement getNewElements();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.diagram.MEDiagram#getNewElements <em>New Elements</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>New Elements</em>' containment reference.
+	 * @see #getNewElements()
+	 * @generated
+	 */
+	void setNewElements(ModelElement value);
 
 } // MEDiagram
