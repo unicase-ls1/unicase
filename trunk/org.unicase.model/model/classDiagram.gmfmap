@@ -6,51 +6,12 @@
     xmlns:gmftool="http://www.eclipse.org/gmf/2005/ToolDefinition">
   <nodes>
     <containmentFeature
-        href="model.ecore#//diagram/MEDiagram/elements"/>
-    <ownedChild>
-      <domainMetaElement
-          href="model.ecore#//diagram/MEDiagram"/>
-      <labelMappings
-          xsi:type="gmfmap:FeatureLabelMapping">
-        <diagramLabel
-            href="model.gmfgraph#Name"/>
-        <features
-            href="model.ecore#//ModelElement/name"/>
-      </labelMappings>
-      <tool
-          xsi:type="gmftool:CreationTool"
-          href="model.gmftool#//@palette/@tools.0"/>
-      <diagramNode
-          href="model.gmfgraph#Class"/>
-    </ownedChild>
-  </nodes>
-  <nodes>
-    <containmentFeature
-        href="model.ecore#//diagram/MEDiagram/elements"/>
+        href="model.ecore#//diagram/MEDiagram/newElements"/>
     <childrenFeature
         href="model.ecore#//diagram/MEDiagram/elements"/>
     <ownedChild>
       <domainMetaElement
           href="model.ecore#//classes/Class"/>
-      <labelMappings>
-        <diagramLabel
-            href="model.gmfgraph#Name"/>
-      </labelMappings>
-      <tool
-          xsi:type="gmftool:CreationTool"
-          href="model.gmftool#//@palette/@tools.0"/>
-      <diagramNode
-          href="model.gmfgraph#Class"/>
-    </ownedChild>
-  </nodes>
-  <nodes>
-    <containmentFeature
-        href="model.ecore#//diagram/MEDiagram/elements"/>
-    <childrenFeature
-        href="model.ecore#//diagram/MEDiagram/elements"/>
-    <ownedChild>
-      <domainMetaElement
-          href="model.ecore#//TestForDiagram"/>
       <labelMappings>
         <diagramLabel
             href="model.gmfgraph#Name"/>

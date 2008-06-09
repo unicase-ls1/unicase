@@ -33,6 +33,7 @@ import org.unicase.model.task.ActionItem;
  * <ul>
  *   <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getElements <em>Elements</em>}</li>
  *   <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getGmfdiagram <em>Gmfdiagram</em>}</li>
+ *   <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getNewElements <em>New Elements</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,6 +64,16 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	 * @ordered
 	 */
 	protected ActionItem gmfdiagram;
+
+	/**
+	 * The cached value of the '{@link #getNewElements() <em>New Elements</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNewElements()
+	 * @generated
+	 * @ordered
+	 */
+	protected ModelElement newElements;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -143,11 +154,56 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ModelElement getNewElements() {
+		return newElements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetNewElements(ModelElement newNewElements, NotificationChain msgs) {
+		ModelElement oldNewElements = newElements;
+		newElements = newNewElements;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS, oldNewElements, newNewElements);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNewElements(ModelElement newNewElements) {
+		if (newNewElements != newElements) {
+			NotificationChain msgs = null;
+			if (newElements != null)
+				msgs = ((InternalEObject)newElements).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS, null, msgs);
+			if (newNewElements != null)
+				msgs = ((InternalEObject)newNewElements).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS, null, msgs);
+			msgs = basicSetNewElements(newNewElements, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS, newNewElements, newNewElements));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM:
 				return basicSetGmfdiagram(null, msgs);
+			case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
+				return basicSetNewElements(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -164,6 +220,8 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 				return getElements();
 			case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM:
 				return getGmfdiagram();
+			case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
+				return getNewElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -184,6 +242,9 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 			case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM:
 				setGmfdiagram((ActionItem)newValue);
 				return;
+			case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
+				setNewElements((ModelElement)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -202,6 +263,9 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 			case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM:
 				setGmfdiagram((ActionItem)null);
 				return;
+			case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
+				setNewElements((ModelElement)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -218,6 +282,8 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 				return elements != null && !elements.isEmpty();
 			case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM:
 				return gmfdiagram != null;
+			case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
+				return newElements != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -134,13 +134,22 @@ public interface DiagramPackage extends EPackage {
 	int ME_DIAGRAM__GMFDIAGRAM = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>New Elements</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ME_DIAGRAM__NEW_ELEMENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>ME Diagram</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ME_DIAGRAM_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int ME_DIAGRAM_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 
 	/**
@@ -174,6 +183,17 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getMEDiagram_Gmfdiagram();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.unicase.model.diagram.MEDiagram#getNewElements <em>New Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>New Elements</em>'.
+	 * @see org.unicase.model.diagram.MEDiagram#getNewElements()
+	 * @see #getMEDiagram()
+	 * @generated
+	 */
+	EReference getMEDiagram_NewElements();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -222,6 +242,14 @@ public interface DiagramPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ME_DIAGRAM__GMFDIAGRAM = eINSTANCE.getMEDiagram_Gmfdiagram();
+
+		/**
+		 * The meta object literal for the '<em><b>New Elements</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ME_DIAGRAM__NEW_ELEMENTS = eINSTANCE.getMEDiagram_NewElements();
 
 	}
 

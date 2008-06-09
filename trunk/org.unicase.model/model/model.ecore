@@ -80,6 +80,8 @@
           eType="#//ModelElement"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="gmfdiagram" eType="#//task/ActionItem"
           containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="newElements" eType="#//ModelElement"
+          containment="true"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="classes" nsURI="http://unicase.org/model/classes" nsPrefix="org.unicase.model.classes">
