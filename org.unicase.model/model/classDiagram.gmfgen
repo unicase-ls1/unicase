@@ -65,6 +65,82 @@
         </modelFacet>
       </labels>
     </topLevelNodes>
+    <topLevelNodes
+        visualID="1002"
+        editPartClassName="ClassEditPart"
+        itemSemanticEditPolicyClassName="ClassItemSemanticEditPolicy"
+        notationViewFactoryClassName="ClassViewFactory"
+        canonicalEditPolicyClassName="ClassCanonicalEditPolicy"
+        graphicalNodeEditPolicyClassName="ClassGraphicalNodeEditPolicy"
+        createCommandClassName="ClassCreateCommand">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType
+          xsi:type="gmfgen:MetamodelType"
+          editHelperClassName="ClassEditHelper"/>
+      <viewmap
+          xsi:type="gmfgen:FigureViewmap"
+          figureQualifiedClassName="org.eclipse.draw2d.RoundedRectangle"/>
+      <modelFacet>
+        <metaClass
+            href="model.genmodel#//model/classes/Class"/>
+        <containmentMetaFeature
+            href="model.genmodel#//model/diagram/MEDiagram/elements"/>
+        <childMetaFeature
+            href="model.genmodel#//model/diagram/MEDiagram/elements"/>
+      </modelFacet>
+      <labels
+          xsi:type="gmfgen:GenExternalNodeLabel"
+          visualID="4002"
+          editPartClassName="LabelEditPart"
+          itemSemanticEditPolicyClassName="LabelItemSemanticEditPolicy"
+          notationViewFactoryClassName="LabelViewFactory"
+          elementIcon="true">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.draw2d.Label"/>
+      </labels>
+    </topLevelNodes>
+    <topLevelNodes
+        visualID="1003"
+        editPartClassName="TestForDiagramEditPart"
+        itemSemanticEditPolicyClassName="TestForDiagramItemSemanticEditPolicy"
+        notationViewFactoryClassName="TestForDiagramViewFactory"
+        canonicalEditPolicyClassName="TestForDiagramCanonicalEditPolicy"
+        graphicalNodeEditPolicyClassName="TestForDiagramGraphicalNodeEditPolicy"
+        createCommandClassName="TestForDiagramCreateCommand">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType
+          xsi:type="gmfgen:MetamodelType"
+          editHelperClassName="TestForDiagramEditHelper"/>
+      <viewmap
+          xsi:type="gmfgen:FigureViewmap"
+          figureQualifiedClassName="org.eclipse.draw2d.RoundedRectangle"/>
+      <modelFacet>
+        <metaClass
+            href="model.genmodel#//model/TestForDiagram"/>
+        <containmentMetaFeature
+            href="model.genmodel#//model/diagram/MEDiagram/elements"/>
+        <childMetaFeature
+            href="model.genmodel#//model/diagram/MEDiagram/elements"/>
+      </modelFacet>
+      <labels
+          xsi:type="gmfgen:GenExternalNodeLabel"
+          visualID="4003"
+          editPartClassName="Label2EditPart"
+          itemSemanticEditPolicyClassName="Label2ItemSemanticEditPolicy"
+          notationViewFactoryClassName="Label2ViewFactory"
+          elementIcon="true">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.draw2d.Label"/>
+      </labels>
+    </topLevelNodes>
     <palette>
       <groups
           title="Default"
@@ -73,7 +149,7 @@
             xsi:type="gmfgen:ToolEntry"
             title="Class"
             description=""
-            genNodes="//@diagram/@topLevelNodes.0"/>
+            genNodes="//@diagram/@topLevelNodes.0 //@diagram/@topLevelNodes.1 //@diagram/@topLevelNodes.2"/>
       </groups>
     </palette>
     <preferencePages
@@ -116,6 +192,12 @@
     <childReferences
         parent="//@diagram"
         child="//@diagram/@topLevelNodes.0"/>
+    <childReferences
+        parent="//@diagram"
+        child="//@diagram/@topLevelNodes.1"/>
+    <childReferences
+        parent="//@diagram"
+        child="//@diagram/@topLevelNodes.2"/>
   </navigator>
   <diagramUpdater/>
   <propertySheet>

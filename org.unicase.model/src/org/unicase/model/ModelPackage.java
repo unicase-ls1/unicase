@@ -247,6 +247,70 @@ public interface ModelPackage extends EPackage {
 	int READER_INFO_FEATURE_COUNT = 2;
 
 	/**
+	 * The meta object id for the '{@link org.unicase.model.impl.TestForDiagramImpl <em>Test For Diagram</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.impl.TestForDiagramImpl
+	 * @see org.unicase.model.impl.ModelPackageImpl#getTestForDiagram()
+	 * @generated
+	 */
+	int TEST_FOR_DIAGRAM = 5;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_FOR_DIAGRAM__NAME = MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_FOR_DIAGRAM__DESCRIPTION = MODEL_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_FOR_DIAGRAM__IDENTIFIER = MODEL_ELEMENT__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_FOR_DIAGRAM__READER_INFOS = MODEL_ELEMENT__READER_INFOS;
+
+	/**
+	 * The feature id for the '<em><b>Action Items</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_FOR_DIAGRAM__ACTION_ITEMS = MODEL_ELEMENT__ACTION_ITEMS;
+
+	/**
+	 * The number of structural features of the '<em>Test For Diagram</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_FOR_DIAGRAM_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.model.ModelElement <em>Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -396,6 +460,16 @@ public interface ModelPackage extends EPackage {
 	EReference getReaderInfo_ReaderId();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.model.TestForDiagram <em>Test For Diagram</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Test For Diagram</em>'.
+	 * @see org.unicase.model.TestForDiagram
+	 * @generated
+	 */
+	EClass getTestForDiagram();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -538,6 +612,16 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference READER_INFO__READER_ID = eINSTANCE.getReaderInfo_ReaderId();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.impl.TestForDiagramImpl <em>Test For Diagram</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.impl.TestForDiagramImpl
+		 * @see org.unicase.model.impl.ModelPackageImpl#getTestForDiagram()
+		 * @generated
+		 */
+		EClass TEST_FOR_DIAGRAM = eINSTANCE.getTestForDiagram();
 
 	}
 
