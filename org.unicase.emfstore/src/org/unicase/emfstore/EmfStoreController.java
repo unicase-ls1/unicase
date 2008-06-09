@@ -9,11 +9,8 @@ import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
 
-import org.apache.log4j.ConsoleAppender;
-import org.apache.log4j.FileAppender;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-import org.apache.log4j.SimpleLayout;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -38,7 +35,7 @@ public class EmfStoreController implements IApplication {
 	private AccessControlImpl accessControl;
 	private Set<ConnectionHandler> connectionHandlers;
 	private Properties properties;
-	private static Logger logger;
+	private static Log logger;
 	private ServerSpace serverSpace;
 
 	private static EmfStoreController instance;
@@ -57,7 +54,7 @@ public class EmfStoreController implements IApplication {
 		
 		properties = initProperties();
 		initLogging(properties);
-		logger = Logger.getLogger(EmfStoreController.class);
+		logger = LogFactory.getLog(EmfStoreController.class);
 		this.serverSpace=initServerSpace();
 		accessControl = initAccessControl(serverSpace, properties);
 		//emfStore = new EmfStoreImpl(serverSpace, accessControl, properties);
@@ -129,18 +126,18 @@ public class EmfStoreController implements IApplication {
 	}
 
 	private void initLogging(Properties properties) {
-		ConsoleAppender console = new ConsoleAppender(new SimpleLayout());
-		try {
-			FileAppender fileLog = new FileAppender(new SimpleLayout(),
-					ServerConfiguration.getServerHome() + "emfstore.log", true);
-			Logger rootLogger = Logger.getRootLogger();
-			rootLogger.addAppender(console);
-			rootLogger.addAppender(fileLog);
-			rootLogger.setLevel(Level.ALL);
-		} catch (IOException e) {
-			String message = "Logging initialization failed! Logging might be disabled!";
-			logger.warn(message, e);
-		}
+//		ConsoleAppender console = new ConsoleAppender(new SimpleLayout());
+//		try {
+//			FileAppender fileLog = new FileAppender(new SimpleLayout(),
+//					ServerConfiguration.getServerHome() + "emfstore.log", true);
+//			Logger rootLogger = Logger.getRootLogger();
+//			rootLogger.addAppender(console);
+//			rootLogger.addAppender(fileLog);
+//			rootLogger.setLevel(Level.ALL);
+//		} catch (IOException e) {
+//			String message = "Logging initialization failed! Logging might be disabled!";
+//			logger.warn(message, e);
+//		}
 	}
 
 	private ResourceStorage initStorage(Properties properties)

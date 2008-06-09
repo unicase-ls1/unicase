@@ -11,7 +11,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.unicase.model,
  org.eclipse.emf,
  org.unicase.emfstore.esmodel,
- org.eclipse.gmf.runtime.notation
+ org.eclipse.gmf.runtime.notation,
+ org.apache.commons.logging;bundle-version="1.0.4"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ClassPath: lib/antlr.jar,
  lib/commons-collections-3.2.1.jar,
@@ -19,9 +20,7 @@ Bundle-ClassPath: lib/antlr.jar,
  lib/hibernate3.jar,
  lib/jta.jar,
  lib/mysql-connector-java-3.1.14-bin.jar,
- lib/log4j-1.2.15.jar,
- .,
- lib/commons-logging-1.1.1.jar
+ .
 Export-Package: org.unicase.emfstore,
  org.unicase.emfstore.accesscontrol,
  org.unicase.emfstore.connection.rmi,

@@ -7,7 +7,8 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.RemoteServer;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.unicase.emfstore.Activator;
@@ -26,7 +27,7 @@ public class RMIConnectionHandler implements ConnectionHandler {
 	
 	private RMIEmfStoreFacade stub;
 	
-	private static Logger logger = Logger.getLogger(ConnectionHandler.class);
+	private static Log logger = LogFactory.getLog(ConnectionHandler.class);
 	
 	public RMIConnectionHandler() {
 		port = Registry.REGISTRY_PORT;
