@@ -24,6 +24,44 @@
           href="model.gmfgraph#Class"/>
     </ownedChild>
   </nodes>
+  <nodes>
+    <containmentFeature
+        href="model.ecore#//diagram/MEDiagram/elements"/>
+    <childrenFeature
+        href="model.ecore#//diagram/MEDiagram/elements"/>
+    <ownedChild>
+      <domainMetaElement
+          href="model.ecore#//classes/Class"/>
+      <labelMappings>
+        <diagramLabel
+            href="model.gmfgraph#Name"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="model.gmftool#//@palette/@tools.0"/>
+      <diagramNode
+          href="model.gmfgraph#Class"/>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="model.ecore#//diagram/MEDiagram/elements"/>
+    <childrenFeature
+        href="model.ecore#//diagram/MEDiagram/elements"/>
+    <ownedChild>
+      <domainMetaElement
+          href="model.ecore#//TestForDiagram"/>
+      <labelMappings>
+        <diagramLabel
+            href="model.gmfgraph#Name"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="model.gmftool#//@palette/@tools.0"/>
+      <diagramNode
+          href="model.gmfgraph#Class"/>
+    </ownedChild>
+  </nodes>
   <diagram>
     <diagramCanvas
         href="model.gmfgraph#MEDiagram"/>

@@ -20,6 +20,7 @@ import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.ReaderInfo;
+import org.unicase.model.TestForDiagram;
 import org.unicase.model.UniqueIdentifier;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.bug.impl.BugPackageImpl;
@@ -87,6 +88,13 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	private EClass readerInfoEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass testForDiagramEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -319,6 +327,15 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getTestForDiagram() {
+		return testForDiagramEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ModelFactory getModelFactory() {
 		return (ModelFactory)getEFactoryInstance();
 	}
@@ -360,6 +377,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		readerInfoEClass = createEClass(READER_INFO);
 		createEAttribute(readerInfoEClass, READER_INFO__DATE);
 		createEReference(readerInfoEClass, READER_INFO__READER_ID);
+
+		testForDiagramEClass = createEClass(TEST_FOR_DIAGRAM);
 	}
 
 	/**
@@ -415,6 +434,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 		// Add supertypes to classes
 		modelElementIdEClass.getESuperTypes().add(this.getUniqueIdentifier());
+		testForDiagramEClass.getESuperTypes().add(this.getModelElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(modelElementEClass, ModelElement.class, "ModelElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -444,6 +464,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEClass(readerInfoEClass, ReaderInfo.class, "ReaderInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getReaderInfo_Date(), ecorePackage.getEDate(), "date", null, 0, 1, ReaderInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getReaderInfo_ReaderId(), theOrganizationPackage.getOrgUnit(), null, "readerId", null, 0, 1, ReaderInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(testForDiagramEClass, TestForDiagram.class, "TestForDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);
