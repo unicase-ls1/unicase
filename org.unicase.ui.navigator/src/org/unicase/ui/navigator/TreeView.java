@@ -72,7 +72,8 @@ public class TreeView extends CommonNavigator {
 		if (object instanceof ModelElement) {
 			if (object instanceof MEDiagram) {
 				ModelElement modelElement = (ModelElement)object;
-				URIEditorInput input = new URIEditorInput(URI.createURI("URI"));
+				
+				URIEditorInput input = new URIEditorInput(URI.createURI(modelElement.eResource().getURIFragment(modelElement)));
 				try {
 					PlatformUI.getWorkbench().getActiveWorkbenchWindow()
 					.getActivePage().openEditor(input,
