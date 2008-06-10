@@ -16,29 +16,6 @@
        class = "org.unicase.model.ModelPackage"
        genModel = "model/model.genmodel" />
   </extension>
-  <extension
-        point="org.eclipse.emf.ecore.generated_package">
-     <package
-           class="org.unicase.model.task.TaskPackage"
-           uri="org.unicase.model.task">
-     </package>
-  </extension>
-  <extension
-        point="org.eclipse.emf.ecore.generated_package">
-     <package
-           class="org.unicase.model.document.DocumentPackage"
-           genModel="model/model.genmodel"
-           uri="http://unicase.org/model/document">
-     </package>
-  </extension>
-  <extension
-        point="org.eclipse.emf.ecore.generated_package">
-     <package
-           class="org.unicase.model.requirement.RequirementPackage"
-           genModel="model/model.genmodel"
-           uri="http://unicase.org/model/requirement">
-     </package>
-  </extension>
 
 
 </plugin>
