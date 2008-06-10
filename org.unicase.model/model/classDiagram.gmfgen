@@ -11,6 +11,7 @@
       notationViewFactoryClassName="MEDiagramViewFactory"
       canonicalEditPolicyClassName="MEDiagramCanonicalEditPolicy"
       iconProviderPriority="Low"
+      editingDomainID="org.unicase.EditingDomain"
       validationProviderPriority="Low">
     <diagramRunTimeClass
         href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
