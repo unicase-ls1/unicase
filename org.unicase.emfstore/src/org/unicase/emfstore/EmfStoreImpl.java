@@ -101,13 +101,15 @@ public class EmfStoreImpl implements EmfStore {
 			ProjectId projectId, VersionSpec source, VersionSpec target)
 			throws EmfStoreException {
 		// TODO: authorization
-		PrimaryVersionSpec resolvedSource = resolveVersionSpec(projectId,
-				source);
-		resolvedSource.setIdentifier(resolvedSource.getIdentifier() + 1);
-
+		PrimaryVersionSpec resolvedSource = resolveVersionSpec(projectId, source);
+		PrimaryVersionSpec resolvedTarget = resolveVersionSpec(projectId, target);
+		if(resolvedSource.equals(resolvedTarget)) {
+			throw new InvalidVersionSpecException("Equal version specs are not aloud for getChanges()");
+		}
+		resolvedSource.setIdentifier(resolvedSource.getIdentifier()+1);
 		List<ChangePackage> result = new ArrayList<ChangePackage>();
 		for (Version version : getVersions(projectId, resolvedSource,
-				resolveVersionSpec(projectId, target))) {
+				resolvedTarget)) {
 			result.add(version.getChanges());
 		}
 		return result;
@@ -247,13 +249,13 @@ public class EmfStoreImpl implements EmfStore {
 	private List<Version> getVersions(ProjectId projectId,
 			PrimaryVersionSpec source, PrimaryVersionSpec target)
 			throws EmfStoreException {
-		EList<Version> versions = getProject(projectId).getVersions();
 		if (source.getIdentifier() <= target.getIdentifier()) {
+			EList<Version> versions = getProject(projectId).getVersions();
 			List<Version> result = new ArrayList<Version>();
 			Iterator<Version> iter = versions.listIterator(source
 					.getIdentifier());
 			int steps = target.getIdentifier() - source.getIdentifier();
-			while (iter.hasNext() && steps-- > 0) {
+			while (iter.hasNext() && steps-- >= 0) {
 				result.add(iter.next());
 			}
 			return result;
