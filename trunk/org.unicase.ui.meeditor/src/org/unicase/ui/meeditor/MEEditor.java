@@ -1,18 +1,15 @@
 package org.unicase.ui.meeditor;
 
 import java.util.EventObject;
-import java.util.HashMap;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.command.BasicCommandStack;
+import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.command.CommandStackListener;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
@@ -28,9 +25,9 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 	ModelElement modelElement;
 	ComposedAdapterFactory adapterFactory;
-	EditingDomain editingDomain;
+	TransactionalEditingDomain editingDomain;
 	ILabelProvider labelProvider;
-	BasicCommandStack commandStack;
+	CommandStack commandStack;
 	ControlFactory controlFactory;
 
 	public MEEditor() {
@@ -100,10 +97,11 @@ public class MEEditor extends SharedHeaderFormEditor {
 				.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		// command stack that will notify this editor as commands are executed
-		commandStack = new BasicCommandStack();
+		this.editingDomain = TransactionalEditingDomain.Factory.INSTANCE.getEditingDomain(modelElement.eResource().getResourceSet());
 
+		this.commandStack=editingDomain.getCommandStack();
 		// Add a listener to set the editor dirty of commands have been executed
-		commandStack.addCommandStackListener(new CommandStackListener() {
+		editingDomain.getCommandStack().addCommandStackListener(new CommandStackListener() {
 			public void commandStackChanged(final EventObject event) {
 				getContainer().getDisplay().asyncExec(new Runnable() {
 					public void run() {
@@ -114,17 +112,16 @@ public class MEEditor extends SharedHeaderFormEditor {
 		});
 
 		// Create the editing domain with our adapterFactory and command stack.
-		this.editingDomain = new AdapterFactoryEditingDomain(adapterFactory,
-				commandStack, new HashMap<Resource, Boolean>());
+		
 		// These provide access to the model items, their property source and
 		// label
-		this.labelProvider = new AdapterFactoryLabelProvider(adapterFactory);
+		this.labelProvider = new TransactionalAdapterFactoryLabelProvider(editingDomain,adapterFactory);
 
 	}
 
 	@Override
 	public boolean isDirty() {
-		return commandStack.isSaveNeeded();
+		return modelElement.eResource().isModified();
 	}
 
 }

@@ -18,6 +18,8 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec;
 import org.unicase.emfstore.exceptions.EmfStoreException;
@@ -28,6 +30,7 @@ import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceFactory;
+import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 
@@ -47,7 +50,7 @@ import org.unicase.workspace.connectionmanager.ConnectionManager;
  * @generated
  */
 public class WorkspaceImpl extends EObjectImpl implements Workspace {
-	
+	ProjectSpace projectSpace;
 	/**
 	 * @generated NOT
 	 */
@@ -149,13 +152,13 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public ProjectSpace checkout(Usersession usersession, ProjectInfo projectInfo) throws EmfStoreException {
+	public ProjectSpace checkout(final Usersession usersession, final ProjectInfo projectInfo) throws EmfStoreException {
 		
 		//get Project from server
-		Project project = this.connectionManager.getProject(usersession.getSessionId(), projectInfo.getProjectId(), projectInfo.getVersion());
+		final Project project = this.connectionManager.getProject(usersession.getSessionId(), projectInfo.getProjectId(), projectInfo.getVersion());
 		
 		//resolve version spec if neccessary
-		PrimaryVersionSpec primaryVersionSpec;
+		final PrimaryVersionSpec primaryVersionSpec;
 		if (projectInfo.getVersion() instanceof PrimaryVersionSpec) {
 			primaryVersionSpec = (PrimaryVersionSpec) projectInfo.getVersion();
 		}
@@ -163,17 +166,23 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 			primaryVersionSpec = this.connectionManager.resolveVersionSpec(usersession.getSessionId(), projectInfo.getProjectId(), projectInfo.getVersion());
 		}
 		//init project space
-		ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE.createProjectSpace();
-		projectSpace.setProjectId(projectInfo.getProjectId());
-		projectSpace.setProjectName(projectInfo.getName());
-		projectSpace.setProjectDescription(projectInfo.getDescription());
-		projectSpace.setBaseVersion(primaryVersionSpec);
-		projectSpace.setLastUpdated(new Date());
-		projectSpace.setUsersession(usersession);
-		projectSpace.setProject(project);
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+		domain.getCommandStack().execute(new RecordingCommand(domain){
+			protected void doExecute() {
+				projectSpace = WorkspaceFactory.eINSTANCE.createProjectSpace();
+				projectSpace.setProjectId(projectInfo.getProjectId());
+				projectSpace.setProjectName(projectInfo.getName());
+				projectSpace.setProjectDescription(projectInfo.getDescription());
+				projectSpace.setBaseVersion(primaryVersionSpec);
+				projectSpace.setLastUpdated(new Date());
+				projectSpace.setUsersession(usersession);
+				projectSpace.setProject(project);
+				
+				getProjectSpaces().add(projectSpace);
+				save();
+			}
+		});
 		
-		this.getProjectSpaces().add(projectSpace);
-		save();
 		return projectSpace;
 	}
 
@@ -325,7 +334,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	public void init() {
 		//initialize all projectSpaces
 		for (ProjectSpace projectSpace: getProjectSpaces()) {
-			projectSpace.init();
+			//projectSpace.init();
 		}	
 	}
 } //WorkspaceImpl

@@ -2,6 +2,8 @@ package org.unicase.ui.esbrowser.views;
 
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.swt.widgets.Dialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -134,20 +136,32 @@ public class RepositoryLoginDialog extends Dialog implements Listener, Selection
 	 * {@inheritDoc}
 	 */
 	public void handleEvent(Event event) {
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 		if (event.type == SWT.Selection) {
 			if (event.widget.equals(buttonOK)) {
 				if(username.getEnabled()){
 					session = WorkspaceFactory.eINSTANCE.createUsersession();
 					session.setUsername(username.getText());
-					WorkspaceManager.getInstance().getCurrentWorkspace().getUsersessions().add(session);
+					
+					domain.getCommandStack().execute(new RecordingCommand(domain){
+						protected void doExecute() {
+							WorkspaceManager.getInstance().getCurrentWorkspace().getUsersessions().add(session);
+						}
+					});
+					
 				}else{
 					session = savedSessionsList.get(savedSessionsCombo.getSelectionIndex()-1);
 				}
-				session.setPassword(password.getText());
-				session.setSavePassword(savePassword.getSelection());
-				session.setServerInfo(serverInfo);
-				serverInfo.setLastUsersession(session);
-				WorkspaceManager.getInstance().getCurrentWorkspace().save();
+				domain.getCommandStack().execute(new RecordingCommand(domain){
+					protected void doExecute() {
+						session.setPassword(password.getText());
+						session.setSavePassword(savePassword.getSelection());
+						session.setServerInfo(serverInfo);
+						serverInfo.setLastUsersession(session);
+						WorkspaceManager.getInstance().getCurrentWorkspace().save();
+					}
+				});
+				
 			}else{
 				session = null;
 			}

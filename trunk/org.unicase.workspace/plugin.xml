@@ -16,5 +16,11 @@
        class = "org.unicase.workspace.WorkspacePackage"
        genModel = "model/workspace.genmodel" /> 
   </extension>
+  <extension
+        point="org.eclipse.emf.transaction.editingDomains">
+     <editingDomain
+           id="org.unicase.workspace.editingDomain">
+     </editingDomain>
+  </extension>
 
 </plugin>

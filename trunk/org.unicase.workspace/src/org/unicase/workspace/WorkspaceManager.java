@@ -9,7 +9,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.exceptions.ConnectionException;
+import org.unicase.model.classes.Class;
+import org.unicase.model.classes.ClassesFactory;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.connectionmanager.RMIConnectionManagerImpl;
 import org.unicase.workspace.impl.WorkspaceImpl;
@@ -78,31 +82,45 @@ public final class WorkspaceManager {
 	 */
 	private Workspace initWorkSpace() {
 		ResourceSet resourceSet = new ResourceSetImpl();
-
+		
 		// register an editing domain on the ressource
-		// TransactionalEditingDomain editingDomain =
-		// TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(resourceSet);
-		// TransactionalEditingDomain.Registry.INSTANCE.add(MODEL_EDIT_DOMAIN,
-		// editingDomain);
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(
+		resourceSet);
+		TransactionalEditingDomain.Registry.INSTANCE.add("org.unicase.EditingDomain", domain);
+		domain.setID("org.unicase.EditingDomain");
+		
+	
+		
 
 		URI fileURI = URI.createFileURI(Configuration.getWorkspacePath());
 		File workspaceFile = new File(Configuration.getWorkspacePath());
 		if (!workspaceFile.exists()) {
 
 			// no workspace content found, create a workspace
-			Resource resource = resourceSet.createResource(fileURI);
-			Workspace workspace = WorkspaceFactory.eINSTANCE.createWorkspace();
+			final Resource resource = resourceSet.createResource(fileURI);
+			//Resource resource = Resource.Factory.Registry.INSTANCE.getFactory(fileURI).createResource(fileURI);
+			
+			final Workspace workspace = WorkspaceFactory.eINSTANCE.createWorkspace();
 			workspace.setConnectionManager(this.connectionManager);
 			workspace.setResource(resource);
 			workspace.getServerInfos()
 					.add(Configuration.getDefaultServerInfo());
-			resource.getContents().add(workspace);
+			domain.getCommandStack().execute(new RecordingCommand(domain){
+				protected void doExecute() {
+					resource.getContents().add(workspace);
+				}
+			});
+			
 			try {
 				resource.save(Configuration.getResourceSaveOptions());
 			} catch (IOException e) {
 				// MK Auto-generated catch block
 				e.printStackTrace();
 			}
+			//FIXME: duplicate code
+			workspace.setConnectionManager(this.connectionManager);
+			workspace.setResource(resource);
+			workspace.init();
 			return workspace;
 		}
 
@@ -133,7 +151,8 @@ public final class WorkspaceManager {
 	}
 
 	/**
-	 * Get the connection manager. Return the connection manager for this workspace.
+	 * Get the connection manager. Return the connection manager for this
+	 * workspace.
 	 * 
 	 * @return the connectionManager
 	 */
