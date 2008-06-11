@@ -22,6 +22,8 @@ import org.unicase.emfstore.esmodel.changemanagment.VersionSpec;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.Project;
+import org.unicase.model.classes.Class;
+import org.unicase.model.classes.ClassesFactory;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.document.CompositeSection;
@@ -135,6 +137,16 @@ public class EmfStoreStub implements EmfStore {
 		MEDiagram diagram = diagramFactory.createMEDiagram();
 		diagram.setName("Super Diagram");
 		diagramSection.getModelElements().add(diagram);
+		ClassesFactory classesFactory= ClassesFactory.eINSTANCE;
+		Class class1 = classesFactory.createClass();
+		class1.setName("Class 1");
+		Class class2 = classesFactory.createClass();
+		class2.setName("Class2");
+		project.addModelElement(class1);
+		project.addModelElement(class2);
+		
+		diagram.getElements().add(class1);
+		diagram.getElements().add(class2);
 
 		// Other Crap
 		CompositeSection ucmCompositeSection = documentFactory
