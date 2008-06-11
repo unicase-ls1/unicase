@@ -87,10 +87,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 		domain.getCommandStack().execute(new RecordingCommand(domain){
 			protected void doExecute() {
 				meDiagram.eResource().getContents().add(diagram);
-//				meDiagram.setGmfdiagram(diagram);
-				Class clazz = ClassesFactory.eINSTANCE.createClass();
-				meDiagram.getProject().addModelElement(clazz);
-				meDiagram.getElements().add(clazz);
+
 			}
 		});
 		
