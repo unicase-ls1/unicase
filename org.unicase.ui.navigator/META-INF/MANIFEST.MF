@@ -12,7 +12,8 @@ Require-Bundle: org.eclipse.ui,
  org.unicase.ui.meeditor,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
- org.unicase.workspace.edit
+ org.unicase.workspace.edit,
+ org.eclipse.emf.transaction.ui
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: src/

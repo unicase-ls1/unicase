@@ -8,6 +8,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
@@ -55,6 +57,7 @@ public class RepositoryView extends ViewPart {
 	private Action serverAddProject;
 	private Action serverChangeSession;
 	private Action serverProperties;
+	Usersession session;
 	private HashMap<ProjectInfo, ServerInfo> projectServerMap = new HashMap<ProjectInfo, ServerInfo>();
 
 	/**
@@ -79,8 +82,8 @@ public class RepositoryView extends ViewPart {
 			if (object instanceof Workspace) {
 				return ((Workspace) object).getServerInfos().toArray();
 			} else if (object instanceof ServerInfo) {
-				ServerInfo serverInfo = (ServerInfo) object;
-				Usersession session = serverInfo.getLastUsersession();
+				final ServerInfo serverInfo = (ServerInfo) object;
+				session = serverInfo.getLastUsersession();
 				if (session == null || session.getPassword() == null) {
 					RepositoryLoginDialog dialog = new RepositoryLoginDialog(
 							PlatformUI.getWorkbench().getDisplay()
@@ -90,24 +93,31 @@ public class RepositoryView extends ViewPart {
 				if(session == null){
 					return new Object[0];
 				}
-				try {
-					session.logIn();
-					serverInfo.getProjectInfos().clear();
-					serverInfo.getProjectInfos().addAll(
-							session.getRemoteProjectList());
-					serverInfo.setLastUsersession(session);
-					WorkspaceManager.getInstance().getCurrentWorkspace().save();
-				} catch (EmfStoreException e) {
-					// TODO server timed out
-					//
-					//
-					e.printStackTrace();
-				} catch (AccessControlException e) {
-					// TODO wrong password/user
-					//
-					//
-					e.printStackTrace();
-				}
+				
+					TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+					domain.getCommandStack().execute(new RecordingCommand(domain){
+						protected void doExecute() {
+							try {session.logIn();
+							serverInfo.getProjectInfos().clear();
+							serverInfo.getProjectInfos().addAll(
+									session.getRemoteProjectList());
+							serverInfo.setLastUsersession(session);
+							WorkspaceManager.getInstance().getCurrentWorkspace().save();
+							} catch (EmfStoreException e) {
+								// TODO server timed out
+								//
+								//
+								e.printStackTrace();
+							} catch (AccessControlException e) {
+								// TODO wrong password/user
+								//
+								//
+								e.printStackTrace();
+							}
+						}
+					});
+					
+				
 				EList<ProjectInfo> pis = serverInfo.getProjectInfos();
 				for (ProjectInfo pi : pis) {
 					projectServerMap.put(pi, serverInfo);
