@@ -187,7 +187,7 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 
 		public int compare(EClassCount arg0, EClassCount arg1) {
 			
-			return arg0.getCount() - arg1.getCount();
+			return arg1.getCount() - arg0.getCount();
 		}
 
 	}
