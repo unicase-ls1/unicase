@@ -76,6 +76,11 @@
               </iterate>
            </visibleWhen>
         </command>
+        <separator
+              name="org.unicase.model.edit.annotateActionItemSeperator"
+              visible="true">
+      	 </separator>
+        
      </menuContribution>
      <menuContribution
            locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=additions">

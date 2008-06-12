@@ -7,6 +7,8 @@ import org.eclipse.core.commands.NotEnabledException;
 import org.eclipse.core.commands.NotHandledException;
 import org.eclipse.core.commands.common.NotDefinedException;
 import org.eclipse.core.expressions.IEvaluationContext;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -99,28 +101,38 @@ public class AnnotateActionItemHandler extends AbstractHandler {
 	
 	
 	
-	private ActionItem createActionItem(Project project){
-		ActionItem ai = TaskFactory.eINSTANCE.createActionItem();
+	private ActionItem createActionItem(final Project project){
+		final ActionItem ai = TaskFactory.eINSTANCE.createActionItem();
 		ai.setName("NewActionItem");
 		ai.setDescription("");
 		ai.setDone(false);
 		ai.setEstimate(5);
-		project.addModelElement(ai);
+		TransactionalEditingDomain domain = 
+			TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain");
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			protected void doExecute() {
+				project.addModelElement(ai);
+			}
+		});
 		
-//		User user = OrganizationFactory.eINSTANCE.createUser();
-//		user.setName("testUser");
-//		user.setDescription("test user to assign an action item to.");
-//		project.addModelElement(user);
-//		ai.getAssignedTo().add(user);
-		
+			
 		return ai;
 	}
 
 
 	
 	
-	private void attachActionItem (ModelElement me, ActionItem ai) {
-			me.getAnnotations().add(ai);
+	private void attachActionItem (final ModelElement me, final ActionItem ai) {
+		TransactionalEditingDomain domain = 
+			TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain");
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			protected void doExecute() {
+				me.getAnnotations().add(ai);
+			}
+		});
+		
 	}
 	
 	
