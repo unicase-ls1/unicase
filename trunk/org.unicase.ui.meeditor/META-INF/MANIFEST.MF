@@ -24,3 +24,5 @@ Require-Bundle: org.eclipse.ui,
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.unicase.ui.meeditor
+Bundle-ClassPath: lib/org.eclipse.nebula.widgets.calendarcombo-1.0-NIGHTLY.jar,
+ .

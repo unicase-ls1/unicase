@@ -26,23 +26,34 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 
-//JH implement
+/**
+ * GUI Control for the ME reference single links.
+ * @author helming
+ *
+ */
 public class MESingleLinkControl extends AbstractMEControl {
 
 	private Composite composite;
 
 	private final EReference eReference;
 
-	Composite linkArea;
+	private Composite linkArea;
 
-	Composite parent;
+	private Composite parent;
 
-	int style;
+	private int style;
 
-	Control control;
+	private Control control;
 
 	private MELinkControl meControl;
-
+	
+	/**
+	 * Default constructor.
+	 * @param editingDomain the editing domain
+	 * @param modelElement the ME
+	 * @param toolkit gui toolkit used for rendering
+	 * @param reference the reference link
+	 */
 	public MESingleLinkControl(EditingDomain editingDomain,
 			EObject modelElement, FormToolkit toolkit, EReference reference) {
 		super(editingDomain, modelElement, toolkit);
@@ -59,6 +70,9 @@ public class MESingleLinkControl extends AbstractMEControl {
 		});
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Control createControl(final Composite parent, int style) {
 		composite = toolkit.createComposite(parent, style);
 		composite.setLayout(new GridLayout(2, false));

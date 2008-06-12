@@ -8,17 +8,27 @@ import org.eclipse.ui.forms.events.IHyperlinkListener;
 import org.unicase.model.ModelElement;
 import org.unicase.ui.meeditor.MEEditorInput;
 
+/**
+ * A {@link HyperlinkAdapter} to the model elements.
+ * @author helming
+ */
 public class MEHyperLinkAdapter extends HyperlinkAdapter implements
 		IHyperlinkListener {
 
-	ModelElement me;
+	private ModelElement me;
 	
+	/**
+	 * Default constructor.
+	 * @param me the model element
+	 */
 	public MEHyperLinkAdapter(ModelElement me) {
 		super();
 		this.me = me;
 	}
 
-	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public void linkActivated(HyperlinkEvent event) {
 		MEEditorInput input = new MEEditorInput(me);
 		try {

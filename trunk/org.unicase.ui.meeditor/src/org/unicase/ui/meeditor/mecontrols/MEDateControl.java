@@ -6,6 +6,8 @@ import org.eclipse.emf.databinding.edit.EMFEditObservables;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.nebula.widgets.calendarcombo.*;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -16,6 +18,7 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
  * Standard widgets to edit a date attribute.
  * 
  * @author helming
+ * @author shterev
  * 
  */
 public class MEDateControl extends AbstractMEControl implements MEControl {
@@ -41,19 +44,22 @@ public class MEDateControl extends AbstractMEControl implements MEControl {
 	}
 
 	/**
-	 * @return A composite with a DateTime and a DatePicker on it. {@inheritDoc}
+	 * @return A composite with a DateTime and a DatePicker on it.
 	 */
 	public Control createControl(Composite parent, int style) {
 		Composite composite = toolkit.createComposite(parent);
 		composite.setLayout(new GridLayout(2, false));
 
-		DateTime date = new DateTime(composite, style);
-		IObservableValue model = EMFEditObservables.observeValue(editingDomain,
-				modelElement, attribute);
+		CalendarCombo date = new CalendarCombo(composite, SWT.READ_ONLY);
+		// DateTime date = new DateTime(composite, style);
+		// IObservableValue model =
+		// EMFEditObservables.observeValue(editingDomain,
+		// modelElement, attribute);
+
 		// JH: make this work if SWTObserveable.observeDate is released
 		// JH: include date Picker
 		// IObservableValue target = SWTObservables.observeEditable(date);
-		EMFDataBindingContext dbc = new EMFDataBindingContext();
+		// EMFDataBindingContext dbc = new EMFDataBindingContext();
 		// dbc.bindValue(target, model, null, null);
 
 		return composite;
