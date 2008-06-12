@@ -51,10 +51,10 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 		//show the children only when argument is an EPackage.
 		//Also remove the Children that are abstract or not ModelElement.
 		if (object instanceof EPackage){
+			//remove classes that do not inherit ModelElement 
+			//or are abstract.
 			Object[] children = 
-				//remove classes that do not inherit ModelElement 
-				//or are abstract.
-				removeNonModelElements(super.getChildren(object));
+					removeNonModelElements(super.getChildren(object));
 			return children;
 		
 		}else {

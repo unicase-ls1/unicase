@@ -20,7 +20,7 @@ import org.unicase.ui.navigator.wizards.NewModelElementWizard;
  * The handler initializes and shows the AddNewModelElementWizard
  *
  */
-public class AddNewModelElementHandler extends AbstractHandler implements IHandler{
+public class NewModelElementWizardHandler extends AbstractHandler implements IHandler{
 
 	private static final String WIZARD_TITLE = "Add new model element";
 	
