@@ -235,6 +235,11 @@ public class LeafSectionItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 ModelFactory.eINSTANCE.createAnnotation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				 OrganizationFactory.eINSTANCE.createOrgUnit()));
 
 		newChildDescriptors.add
@@ -340,6 +345,11 @@ public class LeafSectionItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 RationaleFactory.eINSTANCE.createComment()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				 ChangeFactory.eINSTANCE.createModelChangePackage()));
 
 		newChildDescriptors.add
@@ -351,6 +361,11 @@ public class LeafSectionItemProvider
 			(createChildParameter
 				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				 ChangeFactory.eINSTANCE.createMergingProposal()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				 ChangeFactory.eINSTANCE.createMergingSolution()));
 
 		newChildDescriptors.add
 			(createChildParameter

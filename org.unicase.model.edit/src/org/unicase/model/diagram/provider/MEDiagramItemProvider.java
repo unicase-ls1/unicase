@@ -217,6 +217,11 @@ public class MEDiagramItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				 ModelFactory.eINSTANCE.createAnnotation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
 				 OrganizationFactory.eINSTANCE.createOrgUnit()));
 
 		newChildDescriptors.add
@@ -327,6 +332,11 @@ public class MEDiagramItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				 RationaleFactory.eINSTANCE.createComment()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
 				 ChangeFactory.eINSTANCE.createModelChangePackage()));
 
 		newChildDescriptors.add
@@ -338,6 +348,11 @@ public class MEDiagramItemProvider
 			(createChildParameter
 				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
 				 ChangeFactory.eINSTANCE.createMergingProposal()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				 ChangeFactory.eINSTANCE.createMergingSolution()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -372,6 +387,11 @@ public class MEDiagramItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				 ModelFactory.eINSTANCE.createAnnotation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
 				 OrganizationFactory.eINSTANCE.createOrgUnit()));
 
 		newChildDescriptors.add
@@ -482,6 +502,11 @@ public class MEDiagramItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				 RationaleFactory.eINSTANCE.createComment()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
 				 ChangeFactory.eINSTANCE.createModelChangePackage()));
 
 		newChildDescriptors.add
@@ -493,6 +518,11 @@ public class MEDiagramItemProvider
 			(createChildParameter
 				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
 				 ChangeFactory.eINSTANCE.createMergingProposal()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				 ChangeFactory.eINSTANCE.createMergingSolution()));
 
 		newChildDescriptors.add
 			(createChildParameter
