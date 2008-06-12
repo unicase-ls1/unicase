@@ -35,7 +35,11 @@ import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
+import org.unicase.emfstore.esmodel.provider.EsmodelItemProviderAdapterFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.ui.esbrowser.dialogs.RepositoryCreateProjectDialog;
+import org.unicase.ui.esbrowser.dialogs.RepositoryLoginDialog;
+import org.unicase.ui.esbrowser.dialogs.RepositoryWizard;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
@@ -57,7 +61,7 @@ public class RepositoryView extends ViewPart {
 	private Action serverAddProject;
 	private Action serverChangeSession;
 	private Action serverProperties;
-	Usersession session;
+	private Usersession session;
 	private HashMap<ProjectInfo, ServerInfo> projectServerMap = new HashMap<ProjectInfo, ServerInfo>();
 
 	/**
@@ -162,9 +166,12 @@ public class RepositoryView extends ViewPart {
 	public void createPartControl(Composite parent) {
 		viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
 		viewer.setContentProvider(new WorkspaceRootContentProvider());
-		viewer.setLabelProvider(new AdapterFactoryLabelProvider(
-				new ComposedAdapterFactory(
-						ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
+		viewer.setLabelProvider(
+				new AdapterFactoryLabelProvider(new EsmodelItemProviderAdapterFactory()));
+//				
+//				new AdapterFactoryLabelProvider(
+//				new ComposedAdapterFactory(
+//						ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
 		viewer.setSorter(new ViewerSorter());
 		viewer.setInput(getViewSite());
 
@@ -198,7 +205,8 @@ public class RepositoryView extends ViewPart {
 		ISelection selection = viewer.getSelection();
 		Object obj = ((IStructuredSelection) selection).getFirstElement();
 		if (obj instanceof ServerInfo) {
-			if (((ServerInfo)obj).getLastUsersession().isLoggedIn()){
+			Usersession session = ((ServerInfo)obj).getLastUsersession();
+			if (session!=null && session.isLoggedIn()){
 				manager.add(serverAddProject);
 			}
 			manager.add(serverLogin);
@@ -273,16 +281,10 @@ public class RepositoryView extends ViewPart {
 				Object obj = ((IStructuredSelection) selection).getFirstElement();
 				ServerInfo serverInfo = ((ServerInfo)obj); 
 				if (serverInfo.getLastUsersession().isLoggedIn()){
-					try {
-						serverInfo.getLastUsersession().createProject("Test", "Test Desc");
-						viewer.refresh(obj);
-					} catch (AccessControlException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (EmfStoreException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-				}
+					RepositoryCreateProjectDialog dialog = new RepositoryCreateProjectDialog(PlatformUI.getWorkbench().getDisplay()
+							.getActiveShell(),serverInfo.getLastUsersession());
+					dialog.open();
+					viewer.refresh(obj);
 				}
 			}
 		};
