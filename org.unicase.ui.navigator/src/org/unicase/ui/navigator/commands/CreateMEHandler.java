@@ -5,6 +5,8 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.PartInitException;
@@ -51,15 +53,23 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 		Object o = event.getObjectParameterForExecution(COMMAND_ECLASS_PARAM);
 		if (o instanceof EClass) {
 			EClass newMEType = (EClass) o;
-			ModelElement newMEInstance;
+			final ModelElement newMEInstance;
 			//create a new model element from this EClass
 			newMEInstance = (ModelElement) newMEType.getEPackage()
 								.getEFactoryInstance().create(newMEType);
 			newMEInstance.setName("new " + newMEType.getName());
 			//add this newly created model element to LeafSection
-			LeafSection leafSection = getLeafSection(event);
+			final LeafSection leafSection = getLeafSection(event);
 			if (leafSection != null) {
-				leafSection.getModelElements().add(newMEInstance);
+				TransactionalEditingDomain domain = 
+					TransactionalEditingDomain.Registry.INSTANCE
+						.getEditingDomain("org.unicase.EditingDomain");
+				domain.getCommandStack().execute(new RecordingCommand(domain) {
+					protected void doExecute() {
+						leafSection.getModelElements().add(newMEInstance);
+					}
+				});
+	
 				openModelElement(newMEInstance);
 			}
 		}
