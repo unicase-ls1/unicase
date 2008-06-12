@@ -70,7 +70,7 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 				ePackage.getEFactoryInstance().create(newMEType);
 			newMEInstance.setName("new " + newMEType.getName());
 			
-			//2.add newly created ME to ME that was selected in navigator
+			//2.add the newly created ME to LeafSection that was selected in navigator
 			if (selectedME instanceof LeafSection){
 				((LeafSection)selectedME).getModelElements().add(newMEInstance);
 
