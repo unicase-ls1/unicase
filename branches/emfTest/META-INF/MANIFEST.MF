@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: EmfTest Plug-in
+Bundle-SymbolicName: emfTest; singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: emftest.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ org.unicase.workspace;bundle-version="0.0.1"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
