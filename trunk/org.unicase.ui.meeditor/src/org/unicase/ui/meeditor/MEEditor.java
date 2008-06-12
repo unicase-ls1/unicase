@@ -31,7 +31,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	ControlFactory controlFactory;
 
 	public MEEditor() {
-		initializeEditingDomain();
+//		initializeEditingDomain();
 	}
 
 	@Override
@@ -81,6 +81,8 @@ public class MEEditor extends SharedHeaderFormEditor {
 			setTitleImage(input.getImageDescriptor().createImage());
 			
 			modelElement = meInput.getModelElement();
+			// AS: confirm that the method should be placed here.
+			initializeEditingDomain();
 		} else {
 			throw new PartInitException(
 					"MEEditor is only appliable for MEEditorInputs");
