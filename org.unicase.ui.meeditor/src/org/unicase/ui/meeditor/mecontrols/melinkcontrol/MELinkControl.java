@@ -19,13 +19,24 @@ import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.model.ModelElement;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 
-
+/**
+ * GUI Control for the ME reference links.
+ * @author helming
+ */
 public class MELinkControl extends AbstractMEControl {
 
 	private Composite linkComposite;
 	private EObject contextModelElement;
 	private EReference reference;
 	
+	/**
+	 * Default constructor.
+	 * @param editingDomain the editing domain
+	 * @param modelElement the ME
+	 * @param toolkit gui toolkit used for rendering
+	 * @param contextModelElement the context model element
+	 * @param reference the reference link
+	 */
 	public MELinkControl(EditingDomain editingDomain, EObject modelElement,
 			FormToolkit toolkit, EObject contextModelElement, EReference reference) {
 		super(editingDomain, modelElement, toolkit);
@@ -33,6 +44,9 @@ public class MELinkControl extends AbstractMEControl {
 		this.reference=reference;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Control createControl(Composite parent, int style) {
 		linkComposite = toolkit.createComposite(parent,
 				style);
@@ -57,7 +71,10 @@ public class MELinkControl extends AbstractMEControl {
 				contextModelElement, reference, modelElement));
 		return linkComposite;
 	}
-
+	
+	/**
+	 * @return the {@link Composite} for this link control
+	 */
 	public Composite getLinkComposite(){
 		return this.linkComposite;
 	}

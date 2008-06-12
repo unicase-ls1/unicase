@@ -18,11 +18,22 @@ import org.unicase.ui.meeditor.mecontrols.METextControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEMultiLinkControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MESingleLinkControl;
 
+/**
+ * Factory for generating {@link MEControl}'s according to a {@link IItemPropertyDescriptor}.
+ * @author shterev
+ *
+ */
 public class ControlFactory {
 	private final EObject modelElement;
 	private final EditingDomain editingDomain;
 	private FormToolkit toolkit;
 
+	/**
+	 * Default constructor.
+	 * @param editingDomain the editing domain
+	 * @param modelElement the model element
+	 * @param toolkit the gui toolkit
+	 */
 	public ControlFactory(EditingDomain editingDomain, EObject modelElement,
 			FormToolkit toolkit) {
 		this.editingDomain = editingDomain;
@@ -30,14 +41,17 @@ public class ControlFactory {
 		this.toolkit = toolkit;
 	}
 
+	/**
+	 * Creates a {@link MEControl} according to the {@link IItemPropertyDescriptor}.
+	 * @param itemPropertyDescriptor  the descriptor
+	 * @return the {@link MEControl}
+	 */
 	public MEControl createControl(IItemPropertyDescriptor itemPropertyDescriptor) {
 
 		EStructuralFeature feature = (EStructuralFeature)itemPropertyDescriptor.getFeature(modelElement);
 		if (feature instanceof EAttribute) {
 
-			if (itemPropertyDescriptor.isMultiLine(modelElement)
-					|| ((EAttribute)feature).getName().equalsIgnoreCase("Description")) {
-				//TODO: Delete hardcoded condition
+			if (itemPropertyDescriptor.isMultiLine(modelElement)) {
 				return createMETextAreaControl((EAttribute) feature);
 			}
 			if (feature.getEType().getInstanceClass().equals(boolean.class)) {

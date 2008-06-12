@@ -5,7 +5,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.forms.widgets.FormToolkit;
-
+// AS: implement
 public class MEGantControl extends AbstractMEControl{
 
 	public MEGantControl(EditingDomain editingDomain, EObject modelElement,

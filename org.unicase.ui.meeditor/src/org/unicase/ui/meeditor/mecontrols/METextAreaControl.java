@@ -84,11 +84,17 @@ import org.unicase.ui.meeditor.mecontrols.richtext.widgets.JavaScriptCommands;
  */
 public class METextAreaControl extends AbstractMEControl implements MEControl {
 	
-	EAttribute attribute;
+	private EAttribute attribute;
 	
-	IDocument document;
-	Section section;
+	private Section section;
 
+	/**
+	 * Default constructor.
+	 * @param attribute the attribute being edited 
+	 * @param toolkit the gui toolkit
+	 * @param modelElement the ME
+	 * @param editingDomain the editing domain
+	 */
 	public METextAreaControl(EAttribute attribute, FormToolkit toolkit,
 			EObject modelElement, EditingDomain editingDomain) {
 		super(editingDomain, modelElement, toolkit);
@@ -98,6 +104,9 @@ public class METextAreaControl extends AbstractMEControl implements MEControl {
 		this.editingDomain = editingDomain;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Control createControl(Composite parent, int style) {
 		section = toolkit.createSection(parent, Section.DESCRIPTION
 				| Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);

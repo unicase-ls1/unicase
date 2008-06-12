@@ -28,21 +28,34 @@ import org.eclipse.ui.forms.widgets.Section;
 import org.unicase.model.ModelElement;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 
-
+/**
+ * GUI Control for the ME reference multilinks.
+ * @author helming
+ *
+ */
 public class MEMultiLinkControl extends AbstractMEControl {
 
 	
-	final EReference eReference;
+	private final EReference eReference;
 	
-	Section section;
-	Composite composite;
-	EList<EObject> value;
-	HyperlinkGroup hyperLinkGroup;
-	List<MELinkControl> linkControls;
-	Composite linkArea;
-	int style;
+	private Section section;
+	private Composite composite;
+	private EList<EObject> value;
+	private HyperlinkGroup hyperLinkGroup;
+	private List<MELinkControl> linkControls;
+	private Composite linkArea;
+	private int style;
 	private IItemPropertyDescriptor descriptor;
 
+	/**
+	 * Default constructor.
+	 * Default constructor.
+	 * @param editingDomain the editing domain
+	 * @param modelElement the ME
+	 * @param toolkit gui toolkit used for rendering
+	 * @param reference the reference link
+	 * @param descriptor
+	 */
 	public MEMultiLinkControl(EObject modelElement, EReference reference,
 			FormToolkit toolkit, EditingDomain editingDomain, IItemPropertyDescriptor descriptor) {
 		super(editingDomain, modelElement, toolkit);
@@ -62,6 +75,9 @@ public class MEMultiLinkControl extends AbstractMEControl {
 		});
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Control createControl(final Composite parent, int style) {
 		this.style = style;
 		section = toolkit.createSection(parent, Section.DESCRIPTION
@@ -82,14 +98,12 @@ public class MEMultiLinkControl extends AbstractMEControl {
 		editButton.addSelectionListener(new SelectionAdapter() {
 
 			public void widgetSelected(SelectionEvent e) {
-				Class<? extends EObject> clazz = (Class<? extends EObject>) eReference
-						.getEReferenceType().getInstanceClass();
+				Class<? extends EObject> clazz = (Class<? extends EObject>) eReference.getEReferenceType().getInstanceClass();
 				ElementListSelectionDialog dlg = new ElementListSelectionDialog(
 						parent.getShell(), new AdapterFactoryLabelProvider(
 								new	ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
 				// JH: fill only with right elements
-				Collection<ModelElement> allElements = ((ModelElement)modelElement)
-						.getProject().getElementsByClass(clazz);
+				Collection<ModelElement> allElements = ((ModelElement)modelElement).getProject().getElementsByClass(clazz);
 				allElements.remove(modelElement);
 				Object objectList = modelElement.eGet(eReference);
 				EList<EObject> list;
@@ -120,7 +134,11 @@ public class MEMultiLinkControl extends AbstractMEControl {
 		return section;
 	}
 
-	public void rebuildLinkSection() {
+	/**
+	 * Method for refreshing (rebuilding) the composite section.
+	 */
+	private void rebuildLinkSection() {
+		// AS: confirm if public modifier is needed
 		value = (EList<EObject>) modelElement.eGet(eReference);
 		if (linkControls != null) {
 			for (MELinkControl control : linkControls) {
