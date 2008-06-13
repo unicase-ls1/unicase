@@ -348,7 +348,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	public void init() {
 		//initialize all projectSpaces
 		for (ProjectSpace projectSpace: getProjectSpaces()) {
-			//projectSpace.init();
+			projectSpace.init();
 		}	
 	}
 } //WorkspaceImpl
