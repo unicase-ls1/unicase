@@ -116,16 +116,16 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 		this.commandStack=editingDomain.getCommandStack();
 		// Add a listener to set the editor dirty of commands have been executed
-		editingDomain.getCommandStack().addCommandStackListener(new CommandStackListener() {
-			public void commandStackChanged(final EventObject event) {
-				getContainer().getDisplay().asyncExec(new Runnable() {
-					public void run() {
-						dirty = true;
-						editorDirtyStateChanged();
-					}
-				});
-			}
-		});
+//		editingDomain.getCommandStack().addCommandStackListener(new CommandStackListener() {
+//			public void commandStackChanged(final EventObject event) {
+//				getContainer().getDisplay().asyncExec(new Runnable() {
+//					public void run() {
+//						dirty = true;
+//						editorDirtyStateChanged();
+//					}
+//				});
+//			}
+//		});
 
 		// Create the editing domain with our adapterFactory and command stack.
 		
