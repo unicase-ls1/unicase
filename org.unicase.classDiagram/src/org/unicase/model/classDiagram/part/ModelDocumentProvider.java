@@ -148,11 +148,12 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected IDocument createEmptyDocument() {
 		DiagramDocument document = new DiagramDocument();
-		document.setEditingDomain(TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain"));
+		document.setEditingDomain(TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain"));
 		return document;
 	}
 
@@ -162,7 +163,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 	private TransactionalEditingDomain createEditingDomain() {
 		TransactionalEditingDomain editingDomain = DiagramEditingDomainFactory
 				.getInstance().createEditingDomain();
-		editingDomain.setID("org.unicase.classDiagram.EditingDomain"); //$NON-NLS-1$
+		editingDomain.setID("org.unicase.EditingDomain"); //$NON-NLS-1$
 		final NotificationFilter diagramResourceModifiedFilter = NotificationFilter
 				.createNotifierFilter(editingDomain.getResourceSet()).and(
 						NotificationFilter
@@ -889,13 +890,14 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 		 * @generated
 		 */
 		public void dispose() {
-			stopResourceListening();
-			getResourceSet().eAdapters().remove(myResourceSetListener);
-			for (Iterator it = getResourceSet().getResources().iterator(); it
-					.hasNext();) {
-				Resource resource = (Resource) it.next();
-				resource.unload();
-			}
+			//JH: Check this
+//			stopResourceListening();
+//			getResourceSet().eAdapters().remove(myResourceSetListener);
+//			for (Iterator it = getResourceSet().getResources().iterator(); it
+//					.hasNext();) {
+//				Resource resource = (Resource) it.next();
+//				resource.unload();
+//			}
 		}
 
 		/**
