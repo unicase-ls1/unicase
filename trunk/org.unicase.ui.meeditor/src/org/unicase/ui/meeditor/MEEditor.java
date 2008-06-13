@@ -18,6 +18,7 @@ import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
 import org.unicase.model.ModelElement;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
+import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 
 
@@ -123,7 +124,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 	@Override
 	public boolean isDirty() {
-		return modelElement.eResource().isModified();
+		return WorkspaceManager.getInstance().getCurrentWorkspace().isDirty();
 	}
 
 }
