@@ -31,6 +31,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	ILabelProvider labelProvider;
 	CommandStack commandStack;
 	ControlFactory controlFactory;
+	private boolean dirty = false;
 
 	public MEEditor() {
 //		initializeEditingDomain();
@@ -67,6 +68,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 		commandStack.flush();
 		editorDirtyStateChanged();
 		monitor.done();
+		dirty=false;
 	}
 
 	@Override
@@ -118,6 +120,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 			public void commandStackChanged(final EventObject event) {
 				getContainer().getDisplay().asyncExec(new Runnable() {
 					public void run() {
+						dirty = true;
 						editorDirtyStateChanged();
 					}
 				});
@@ -134,7 +137,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 	@Override
 	public boolean isDirty() {
-		return WorkspaceManager.getInstance().getCurrentWorkspace().isDirty();
+		return dirty;
 	}
 
 }
