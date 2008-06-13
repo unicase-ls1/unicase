@@ -2,6 +2,7 @@ package org.unicase.model.classDiagram.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
@@ -11,6 +12,7 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
+import org.eclipse.gef.editpolicies.ResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
@@ -94,14 +96,15 @@ public class MEDiagram2EditPart extends AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new RoundedRectangle();
+		ClassFigure figure = new ClassFigure();
+		return primaryShape = figure;
 	}
 
 	/**
 	 * @generated
 	 */
-	public RoundedRectangle getPrimaryShape() {
-		return (RoundedRectangle) primaryShape;
+	public ClassFigure getPrimaryShape() {
+		return (ClassFigure) primaryShape;
 	}
 
 	/**
@@ -171,6 +174,39 @@ public class MEDiagram2EditPart extends AbstractBorderedShapeEditPart {
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(org.unicase.model.classDiagram.part.ModelVisualIDRegistry
 				.getType(org.unicase.model.classDiagram.edit.parts.MEDiagramNameEditPart.VISUAL_ID));
+	}
+
+	/**
+	 * @generated
+	 */
+	public class ClassFigure extends RectangleFigure {
+
+		/**
+		 * @generated
+		 */
+		public ClassFigure() {
+			this.setLineWidth(2);
+		}
+
+		/**
+		 * @generated
+		 */
+		private boolean myUseLocalCoordinates = false;
+
+		/**
+		 * @generated
+		 */
+		protected boolean useLocalCoordinates() {
+			return myUseLocalCoordinates;
+		}
+
+		/**
+		 * @generated
+		 */
+		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
+			myUseLocalCoordinates = useLocalCoordinates;
+		}
+
 	}
 
 }

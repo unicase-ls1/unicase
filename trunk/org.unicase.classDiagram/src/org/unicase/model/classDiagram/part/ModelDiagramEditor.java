@@ -299,11 +299,11 @@ public class ModelDiagramEditor extends DiagramDocumentEditor implements
 		}
 
 		// set the resource in the resourcetoreadonly map
-		final ResourceSet rs = getEditingDomain().getResourceSet();
-		for (Resource res : rs.getResources()) {
-			((AdapterFactoryEditingDomain) getEditingDomain())
-					.getResourceToReadOnlyMap().put(res, new Boolean(false));
-		}
+//		final ResourceSet rs = getEditingDomain().getResourceSet();
+//		for (Resource res : rs.getResources()) {
+//			((AdapterFactoryEditingDomain) getEditingDomain())
+//					.getResourceToReadOnlyMap().put(res, new Boolean(false));
+//		}
 	}
 
 }

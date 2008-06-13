@@ -38,7 +38,6 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	boolean initialized = false;
 	MEDiagram meDiagram;
 	Diagram diagram;
-	
 
 	public MEDiagramResource() {
 		super();
@@ -64,36 +63,31 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 			initialize();
 			initialized = true;
 		}
-//		return super.getContents();
+		// return super.getContents();
 		EList<EObject> list = new BasicEList<EObject>();
 		list.add(meDiagram);
-		list.add(diagram);
+		list.add(meDiagram.getGmfdiagram());
 		return list;
 	}
 
 	private void initialize() {
-		// Create test Node
-		// Create gmf diagram
-		diagram = ViewService.createDiagram(meDiagram, "Model",
-				ModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
-		// Put the content in the meDiagram
-		
-		// super.getContents().add(meDiagram);
-		//WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces(
-		// ).get(0).getProject().addModelElement(meDiagram);
-		// Set root of the gmf diagram
-		diagram.setElement(meDiagram);
-		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(meDiagram);
-		domain.getCommandStack().execute(new RecordingCommand(domain){
-			protected void doExecute() {
-				meDiagram.eResource().getContents().add(diagram);
+		if (meDiagram.getGmfdiagram() == null) {
+			// Create gmf diagram
+			diagram = ViewService.createDiagram(meDiagram, "Model",
+					ModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+			diagram.setElement(meDiagram);
+			TransactionalEditingDomain domain = TransactionUtil
+					.getEditingDomain(meDiagram);
+			domain.getCommandStack().execute(new RecordingCommand(domain) {
+				protected void doExecute() {
+					meDiagram.setGmfdiagram(diagram);
 
-			}
-		});
-		
-		
-//		this.resourceSet.getResources().add(meDiagram.eResource());
-		
+				}
+			});
+		}
+
+		// this.resourceSet.getResources().add(meDiagram.eResource());
+
 		// super.getContents().add(meDiagram);
 		// super.getContents().add(diagram);
 		// Add Transactional domain. Otherwise: Nullpointer Exception
