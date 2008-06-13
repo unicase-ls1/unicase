@@ -20,6 +20,8 @@ import org.eclipse.emf.ecore.change.util.ChangeRecorder;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
@@ -696,13 +698,22 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @generated NOT
 	 */
 	public void init() {
-		this.changeRecorder = new ChangeRecorder();
-		if (this.getLocalChanges() == null) {
-			changeRecorder.beginRecording(Collections.singleton(this.project));
-		} else {
-			changeRecorder.beginRecording(localChanges.getBackwardDelta(),
-					Collections.singleton(this.project));
-		}
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+		domain.getCommandStack().execute(new RecordingCommand(domain){
+			@Override
+			protected void doExecute() {
+				changeRecorder = new ChangeRecorder();
+				if (getLocalChanges() == null) {
+					changeRecorder.beginRecording(Collections.singleton(project));
+				} else {
+					changeRecorder.beginRecording(localChanges.getBackwardDelta(),
+							Collections.singleton(project));
+				}
+				
+			}
+			
+		});
+		
 	}
 
 	/**
