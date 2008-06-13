@@ -137,7 +137,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 	@Override
 	public boolean isDirty() {
-		return dirty;
+		return true;
 	}
 
 }
