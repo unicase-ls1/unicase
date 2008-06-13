@@ -8,6 +8,7 @@ import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -53,7 +54,16 @@ public class MEEditor extends SharedHeaderFormEditor {
 	public void doSave(IProgressMonitor monitor) {
 		
 		monitor.beginTask("Saving...", 1);
-		WorkspaceManager.getInstance().getCurrentWorkspace().save();
+		editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain){
+
+			@Override
+			protected void doExecute() {
+				WorkspaceManager.getInstance().getCurrentWorkspace().save();
+				
+			}
+			
+		});
+		
 		commandStack.flush();
 		editorDirtyStateChanged();
 		monitor.done();
