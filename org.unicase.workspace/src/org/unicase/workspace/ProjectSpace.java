@@ -307,5 +307,13 @@ public interface ProjectSpace extends EObject {
 	 * @generated
 	 */
 	ProjectInfo getProjectInfo();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	boolean isDirty();
 	
 } // ProjectContainer

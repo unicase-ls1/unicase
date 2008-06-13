@@ -477,6 +477,8 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 		addEOperation(workspaceEClass, null, "save", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		addEOperation(workspaceEClass, ecorePackage.getEBoolean(), "isDirty", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(serverInfoEClass, ServerInfo.class, "ServerInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getServerInfo_Name(), ecorePackage.getEString(), "name", null, 1, 1, ServerInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getServerInfo_Url(), ecorePackage.getEString(), "url", null, 1, 1, ServerInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -524,6 +526,8 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		addEOperation(projectSpaceEClass, null, "init", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		addEOperation(projectSpaceEClass, theEsmodelPackage.getProjectInfo(), "getProjectInfo", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		addEOperation(projectSpaceEClass, ecorePackage.getEBoolean(), "isDirty", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -207,6 +207,20 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean isDirty() {
+		for (ProjectSpace projectSpace: this.projectSpaces) {
+			if (projectSpace.isDirty()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

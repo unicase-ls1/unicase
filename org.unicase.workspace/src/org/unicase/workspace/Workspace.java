@@ -100,6 +100,14 @@ public interface Workspace extends EObject, IAdaptable {
 	void save();
 	
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	boolean isDirty();
+
+	/**
 	 * @param connectionManager
 	 *
 	 * @generated NOT
