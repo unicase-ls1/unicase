@@ -28,12 +28,12 @@ public class TeneoStorage implements ResourceStorage {
 	private final Log logger = LogFactory.getLog(this.getClass());
 
 	public URI init(Properties properties) {
-		
-		//create hb store
+
+		// create hb store
 		final String hbStoreName = "modelStore";
 		HbDataStore dataStore = HbHelper.INSTANCE
-		.createRegisterDataStore(hbStoreName);
-		
+				.createRegisterDataStore(hbStoreName);
+
 		// Set the hibernate properties
 		final Properties props = new Properties();
 		props.setProperty(Environment.DRIVER, "com.mysql.jdbc.Driver");
@@ -44,59 +44,61 @@ public class TeneoStorage implements ResourceStorage {
 				org.hibernate.dialect.MySQLInnoDBDialect.class.getName());
 		// Lazy loading to avoid too many joins exception
 		props.setProperty(Environment.MAX_FETCH_DEPTH, "0");
-		
+
 		props.setProperty(PersistenceOptions.INHERITANCE_MAPPING, "JOINED");
 		dataStore.setProperties(props);
-				
-		//set epackages
+
+		// set epackages
 		dataStore.setEPackages(getUnicaseModelPackages());
-		
+
 		dataStore.initialize();
-		
-		//logger.debug("Using hibernate mapping: " + dataStore.getMappingXML());
-		
+
+		// logger.debug("Using hibernate mapping: " +
+		// dataStore.getMappingXML());
+
 		String uriStr = "hibernate://?" + HibernateResource.DS_NAME_PARAM + "="
 				+ hbStoreName;
 		return URI.createURI(uriStr);
 	}
 
 	private EPackage[] getUnicaseModelPackages() {
-		
+
 		List<EPackage> packages = new ArrayList<EPackage>();
-		
-		//add model and its subpackages
+
+		// add model and its subpackages
 		EPackage modelPackage = ModelPackage.eINSTANCE;
 		packages.add(modelPackage);
 		packages.addAll(getSubPackages(modelPackage));
-		
-		//add es model and its subpackages
+
+		// add es model and its subpackages
 		EPackage esmodelPackage = EsmodelPackage.eINSTANCE;
 		packages.add(esmodelPackage);
 		packages.addAll(getSubPackages(esmodelPackage));
-		
-		//add ecore packages
+
+		// add ecore packages
 		EPackage changePackage = ChangePackage.eINSTANCE;
 		packages.add(changePackage);
 		EPackage ecorePackage = EcorePackage.eINSTANCE;
 		packages.add(ecorePackage);
-		
-		//add gmf packages
+
+		// add gmf packages
 		NotationPackage gmfPackage = NotationPackage.eINSTANCE;
 		packages.add(gmfPackage);
-		
+
 		return packages.toArray(new EPackageImpl[packages.size()]);
 	}
 
 	/**
 	 * Get all subpackages recursivly
+	 * 
 	 * @param package1
 	 * @return
-	 *
+	 * 
 	 * @generated NOT
 	 */
 	private Set<EPackage> getSubPackages(EPackage package1) {
 		Set<EPackage> subPackages = new HashSet<EPackage>();
-		for (EPackage subPackage: package1.getESubpackages()) {
+		for (EPackage subPackage : package1.getESubpackages()) {
 			subPackages.add(subPackage);
 			subPackages.addAll(getSubPackages(subPackage));
 		}

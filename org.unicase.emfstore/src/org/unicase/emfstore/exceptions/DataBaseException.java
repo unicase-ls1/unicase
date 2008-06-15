@@ -12,9 +12,9 @@ package org.unicase.emfstore.exceptions;
 public class DataBaseException extends EmfStoreException {
 
 	public final static String NOLOAD = "Couldn't load data from database.";
-	
+
 	public final static String NOSAVE = "Couldn't save data in database.";
-	
+
 	public DataBaseException(String message, Throwable cause) {
 		super(message, cause);
 	}
@@ -23,4 +23,3 @@ public class DataBaseException extends EmfStoreException {
 		super(message);
 	}
 }
-

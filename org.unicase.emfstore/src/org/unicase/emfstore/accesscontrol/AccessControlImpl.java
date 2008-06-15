@@ -29,9 +29,9 @@ public class AccessControlImpl implements AuthenticationControl,
 			throws AccessControlException {
 
 		SessionId sessionId = EsmodelFactory.eINSTANCE.createSessionId();
-//		ACUser user = resolveUser(username);
-//		// FIXME:checkpassword here
-//		sessionUserMap.put(sessionId, user);
+		// ACUser user = resolveUser(username);
+		// // FIXME:checkpassword here
+		// sessionUserMap.put(sessionId, user);
 		return sessionId;
 	}
 
@@ -83,6 +83,7 @@ public class AccessControlImpl implements AuthenticationControl,
 		}
 		return false;
 	}
+
 	public void checkReadAccess(SessionId sessionId, ProjectId projectId,
 			Set<ModelElement> modelElements) throws AccessControlException {
 		checkSession(sessionId);
@@ -105,7 +106,7 @@ public class AccessControlImpl implements AuthenticationControl,
 				return;
 			}
 		}
-		throw new AccessControlException();	
+		throw new AccessControlException();
 	}
 
 	public void checkServerAdminAccess(SessionId sessionId)
@@ -118,10 +119,8 @@ public class AccessControlImpl implements AuthenticationControl,
 				return;
 			}
 		}
-		throw new AccessControlException();	
-	
+		throw new AccessControlException();
+
 	}
-	
-	
 
 }

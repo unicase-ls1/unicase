@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.emfstore;
 
 import java.util.List;
@@ -22,8 +28,12 @@ import org.unicase.model.Project;
  * 
  * @generated NOT
  */
+/**
+ * @author koegel
+ *
+ */
 public interface EmfStore {
-	
+
 	/**
 	 * Get a list of projects the user of the session id can access. The server
 	 * should is determined by the session id.
@@ -87,15 +97,16 @@ public interface EmfStore {
 	 *            the session id for authentication
 	 * @param versionSpec
 	 *            the version specifier to resolve
-	 * @param projectId 
-	 * 			  the project id
+	 * @param projectId
+	 *            the project id
 	 * @return a primary version specifier identifing the same version
 	 * @throws EmfStoreException
 	 *             if any error in the EmfStore occurs
 	 * @generated NOT
 	 */
-	PrimaryVersionSpec resolveVersionSpec(SessionId sessionId, ProjectId projectId,
-			VersionSpec versionSpec) throws EmfStoreException;
+	PrimaryVersionSpec resolveVersionSpec(SessionId sessionId,
+			ProjectId projectId, VersionSpec versionSpec)
+			throws EmfStoreException;
 
 	/**
 	 * Get changes from the server.
@@ -138,18 +149,20 @@ public interface EmfStore {
 	 */
 	List<HistoryInfo> getHistoryInfo(SessionId sessionId, ProjectId projectId,
 			VersionSpec source, VersionSpec target) throws EmfStoreException;
-	
+
 	/**
 	 * Create a new project on the server.
+	 * 
 	 * @param name
-	 * 				the name of the server
+	 *            the name of the server
 	 * @param description
-	 * 				the description
+	 *            the description
 	 * @return a {@link ProjectInfo} for the new project
 	 * @throws EmfStoreException
 	 *             if any error in the EmfStore occurs
 	 * 
 	 * @generated NOT
 	 */
-	ProjectInfo createProject(SessionId sessionid, String name, String description, LogMessage logMessage) throws EmfStoreException;
+	ProjectInfo createProject(SessionId sessionid, String name,
+			String description, LogMessage logMessage) throws EmfStoreException;
 }

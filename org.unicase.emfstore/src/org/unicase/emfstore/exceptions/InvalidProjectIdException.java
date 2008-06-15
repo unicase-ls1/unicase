@@ -1,8 +1,7 @@
 package org.unicase.emfstore.exceptions;
 
-
 @SuppressWarnings("serial")
-public class InvalidProjectIdException extends EmfStoreException{
+public class InvalidProjectIdException extends EmfStoreException {
 
 	public InvalidProjectIdException(String message, Throwable cause) {
 		super(message, cause);

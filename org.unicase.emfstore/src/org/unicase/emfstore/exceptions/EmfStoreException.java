@@ -20,10 +20,12 @@ public class EmfStoreException extends Exception {
 
 	/**
 	 * Constructor.
-	 *
-	 * @param message the message
-	 * @param cause the causing exception
-	 *
+	 * 
+	 * @param message
+	 *            the message
+	 * @param cause
+	 *            the causing exception
+	 * 
 	 * @generated NOT
 	 */
 	public EmfStoreException(String message, Throwable cause) {
@@ -33,8 +35,9 @@ public class EmfStoreException extends Exception {
 	/**
 	 * Constructor.
 	 * 
-	 * @param message the message
-	 *
+	 * @param message
+	 *            the message
+	 * 
 	 * @generated NOT
 	 */
 	public EmfStoreException(String message) {

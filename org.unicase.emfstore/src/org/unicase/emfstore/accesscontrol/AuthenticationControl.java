@@ -4,9 +4,9 @@ import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 
 public interface AuthenticationControl {
-	
+
 	/**
-	 * Log into the server given by server info. 
+	 * Log into the server given by server info.
 	 * 
 	 * @param username
 	 *            the user name
@@ -18,6 +18,7 @@ public interface AuthenticationControl {
 	 * 
 	 * @generated NOT
 	 */
-	SessionId logIn(String username, String password) throws AccessControlException;
+	SessionId logIn(String username, String password)
+			throws AccessControlException;
 
 }

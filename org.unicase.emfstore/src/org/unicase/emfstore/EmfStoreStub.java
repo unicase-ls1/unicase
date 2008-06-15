@@ -137,14 +137,14 @@ public class EmfStoreStub implements EmfStore {
 		MEDiagram diagram = diagramFactory.createMEDiagram();
 		diagram.setName("Super Diagram");
 		diagramSection.getModelElements().add(diagram);
-		ClassesFactory classesFactory= ClassesFactory.eINSTANCE;
+		ClassesFactory classesFactory = ClassesFactory.eINSTANCE;
 		Class class1 = classesFactory.createClass();
 		class1.setName("Class 1");
 		Class class2 = classesFactory.createClass();
 		class2.setName("Class2");
 		project.addModelElement(class1);
 		project.addModelElement(class2);
-		
+
 		diagram.getElements().add(class1);
 		diagram.getElements().add(class2);
 
