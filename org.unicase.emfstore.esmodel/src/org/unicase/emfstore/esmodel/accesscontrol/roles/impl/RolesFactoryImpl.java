@@ -1,5 +1,5 @@
 /**
- * <copyright>
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * </copyright>
  *
  * $Id$
@@ -20,35 +20,35 @@ import org.unicase.emfstore.esmodel.accesscontrol.roles.ServerAdmin;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.WriterRole;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Factory</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
+ * end-user-doc -->
+ * 
  * @generated
  */
 public class RolesFactoryImpl extends EFactoryImpl implements RolesFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static RolesFactory init() {
 		try {
-			RolesFactory theRolesFactory = (RolesFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/esmodel/accesscontrol/roles"); 
+			RolesFactory theRolesFactory = (RolesFactory) EPackage.Registry.INSTANCE
+					.getEFactory("http://unicase.org/esmodel/accesscontrol/roles");
 			if (theRolesFactory != null) {
 				return theRolesFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new RolesFactoryImpl();
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public RolesFactoryImpl() {
@@ -56,25 +56,30 @@ public class RolesFactoryImpl extends EFactoryImpl implements RolesFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case RolesPackage.READER_ROLE: return createReaderRole();
-			case RolesPackage.WRITER_ROLE: return createWriterRole();
-			case RolesPackage.PROJECT_ADMIN_ROLE: return createProjectAdminRole();
-			case RolesPackage.SERVER_ADMIN: return createServerAdmin();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case RolesPackage.READER_ROLE:
+			return createReaderRole();
+		case RolesPackage.WRITER_ROLE:
+			return createWriterRole();
+		case RolesPackage.PROJECT_ADMIN_ROLE:
+			return createProjectAdminRole();
+		case RolesPackage.SERVER_ADMIN:
+			return createServerAdmin();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ReaderRole createReaderRole() {
@@ -83,8 +88,8 @@ public class RolesFactoryImpl extends EFactoryImpl implements RolesFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public WriterRole createWriterRole() {
@@ -93,8 +98,8 @@ public class RolesFactoryImpl extends EFactoryImpl implements RolesFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProjectAdminRole createProjectAdminRole() {
@@ -103,8 +108,8 @@ public class RolesFactoryImpl extends EFactoryImpl implements RolesFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ServerAdmin createServerAdmin() {
@@ -113,17 +118,17 @@ public class RolesFactoryImpl extends EFactoryImpl implements RolesFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public RolesPackage getRolesPackage() {
-		return (RolesPackage)getEPackage();
+		return (RolesPackage) getEPackage();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
@@ -132,4 +137,4 @@ public class RolesFactoryImpl extends EFactoryImpl implements RolesFactory {
 		return RolesPackage.eINSTANCE;
 	}
 
-} //RolesFactoryImpl
+} // RolesFactoryImpl

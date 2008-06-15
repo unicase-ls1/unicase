@@ -1,5 +1,5 @@
 /**
- * <copyright>
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * </copyright>
  *
  * $Id$
@@ -13,12 +13,11 @@ import org.unicase.emfstore.esmodel.accesscontrol.roles.WriterRole;
 import org.unicase.model.ModelElement;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Writer Role</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>Writer Role</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class WriterRoleImpl extends RoleImpl implements WriterRole {
@@ -48,8 +47,8 @@ public class WriterRoleImpl extends RoleImpl implements WriterRole {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected WriterRoleImpl() {
@@ -57,8 +56,8 @@ public class WriterRoleImpl extends RoleImpl implements WriterRole {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -66,4 +65,4 @@ public class WriterRoleImpl extends RoleImpl implements WriterRole {
 		return RolesPackage.Literals.WRITER_ROLE;
 	}
 
-} //WriterRoleImpl
+} // WriterRoleImpl
