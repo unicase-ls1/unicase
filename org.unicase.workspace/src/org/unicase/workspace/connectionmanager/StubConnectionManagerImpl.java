@@ -37,7 +37,8 @@ public class StubConnectionManagerImpl implements ConnectionManager {
 	}
 
 	public List<HistoryInfo> getHistoryInfo(SessionId sessionId,
-			ProjectId projectId, VersionSpec source, VersionSpec target) throws ConnectionException {
+			ProjectId projectId, VersionSpec source, VersionSpec target)
+			throws ConnectionException {
 		throw new UnsupportedOperationException();
 	}
 
@@ -49,17 +50,19 @@ public class StubConnectionManagerImpl implements ConnectionManager {
 	public List<ProjectInfo> getProjectList(SessionId sessionId)
 			throws ConnectionException {
 		List<ProjectInfo> ret = new ArrayList<ProjectInfo>();
-		
+
 		ProjectId projectId = EsmodelFactory.eINSTANCE.createProjectId();
-		
-		HeadVersionSpec headVersionSpec = ChangemanagmentFactoryImpl.eINSTANCE.createHeadVersionSpec();
-		
+
+		HeadVersionSpec headVersionSpec = ChangemanagmentFactoryImpl.eINSTANCE
+				.createHeadVersionSpec();
+
 		ProjectInfo projectInfo = EsmodelFactory.eINSTANCE.createProjectInfo();
 		projectInfo.setName("TestProject");
 		projectInfo.setDescription("A test Project");
 		projectInfo.setProjectId(projectId);
-		projectInfo.setVersion(resolveVersionSpec(sessionId, projectId, headVersionSpec));
-		
+		projectInfo.setVersion(resolveVersionSpec(sessionId, projectId,
+				headVersionSpec));
+
 		ret.add(projectInfo);
 		return ret;
 	}
@@ -69,8 +72,10 @@ public class StubConnectionManagerImpl implements ConnectionManager {
 		return EsmodelFactory.eINSTANCE.createSessionId();
 	}
 
-	public PrimaryVersionSpec resolveVersionSpec(SessionId sessionId, ProjectId projectId, VersionSpec versionSpec) {
-		PrimaryVersionSpec primaryVersionSpec = ChangemanagmentFactory.eINSTANCE.createPrimaryVersionSpec();
+	public PrimaryVersionSpec resolveVersionSpec(SessionId sessionId,
+			ProjectId projectId, VersionSpec versionSpec) {
+		PrimaryVersionSpec primaryVersionSpec = ChangemanagmentFactory.eINSTANCE
+				.createPrimaryVersionSpec();
 		primaryVersionSpec.setIdentifier(1);
 		return primaryVersionSpec;
 	}
@@ -80,7 +85,5 @@ public class StubConnectionManagerImpl implements ConnectionManager {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
 
 }

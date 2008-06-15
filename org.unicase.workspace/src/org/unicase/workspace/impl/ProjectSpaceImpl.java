@@ -1,5 +1,5 @@
 /**
- * <copyright>
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * </copyright>
  *
  * $Id$
@@ -698,22 +698,25 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @generated NOT
 	 */
 	public void init() {
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain){
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain");
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
 				changeRecorder = new ChangeRecorder();
 				if (getLocalChanges() == null) {
-					changeRecorder.beginRecording(Collections.singleton(project));
+					changeRecorder.beginRecording(Collections
+							.singleton(project));
 				} else {
-					changeRecorder.beginRecording(localChanges.getBackwardDelta(),
-							Collections.singleton(project));
+					changeRecorder
+							.beginRecording(localChanges.getBackwardDelta(),
+									Collections.singleton(project));
 				}
-				
+
 			}
-			
+
 		});
-		
+
 	}
 
 	/**

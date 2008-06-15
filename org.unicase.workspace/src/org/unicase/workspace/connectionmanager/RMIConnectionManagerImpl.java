@@ -33,7 +33,8 @@ import org.unicase.workspace.ServerInfo;
  * The RMIConnectionManager implements the {@link ConnectionManager} using the
  * RMI technology. Please notice that the EMF objects have to be serialized into
  * String via {@link RMIUtil} in order to avoid letting the EMF objects
- * implement the Serializable interface, which was discouraged from the EMF newsgroup.
+ * implement the Serializable interface, which was discouraged from the EMF
+ * newsgroup.
  * 
  * @author Wesendonk
  */

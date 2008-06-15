@@ -1,5 +1,5 @@
 /**
- * <copyright>
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * </copyright>
  *
  * $Id$
@@ -33,9 +33,10 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspacePackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.workspace.ProjectSpace} object.
- * <!-- begin-user-doc -->
+ * This is the item provider adapter for a
+ * {@link org.unicase.workspace.ProjectSpace} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ProjectSpaceItemProvider extends ItemProviderAdapter implements
@@ -79,63 +80,53 @@ public class ProjectSpaceItemProvider extends ItemProviderAdapter implements
 	 * @generated
 	 */
 	protected void addProjectPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ProjectSpace_project_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ProjectSpace_project_feature", "_UI_ProjectSpace_type"),
-				 WorkspacePackage.Literals.PROJECT_SPACE__PROJECT,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_ProjectSpace_project_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_ProjectSpace_project_feature",
+						"_UI_ProjectSpace_type"),
+				WorkspacePackage.Literals.PROJECT_SPACE__PROJECT, true, false,
+				true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Project Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Project Name feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addProjectNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ProjectSpace_projectName_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ProjectSpace_projectName_feature", "_UI_ProjectSpace_type"),
-				 WorkspacePackage.Literals.PROJECT_SPACE__PROJECT_NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_ProjectSpace_projectName_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_ProjectSpace_projectName_feature",
+						"_UI_ProjectSpace_type"),
+				WorkspacePackage.Literals.PROJECT_SPACE__PROJECT_NAME, true,
+				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Project Description feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Project Description feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addProjectDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ProjectSpace_projectDescription_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ProjectSpace_projectDescription_feature", "_UI_ProjectSpace_type"),
-				 WorkspacePackage.Literals.PROJECT_SPACE__PROJECT_DESCRIPTION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_ProjectSpace_projectDescription_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ProjectSpace_projectDescription_feature",
+						"_UI_ProjectSpace_type"),
+				WorkspacePackage.Literals.PROJECT_SPACE__PROJECT_DESCRIPTION,
+				true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null, null));
 	}
 
 	/**
@@ -145,19 +136,15 @@ public class ProjectSpaceItemProvider extends ItemProviderAdapter implements
 	 * @generated
 	 */
 	protected void addLocalChangesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ProjectSpace_localChanges_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ProjectSpace_localChanges_feature", "_UI_ProjectSpace_type"),
-				 WorkspacePackage.Literals.PROJECT_SPACE__LOCAL_CHANGES,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_ProjectSpace_localChanges_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_ProjectSpace_localChanges_feature",
+						"_UI_ProjectSpace_type"),
+				WorkspacePackage.Literals.PROJECT_SPACE__LOCAL_CHANGES, true,
+				false, true, null, null, null));
 	}
 
 	/**
@@ -167,69 +154,68 @@ public class ProjectSpaceItemProvider extends ItemProviderAdapter implements
 	 * @generated
 	 */
 	protected void addUsersessionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ProjectSpace_usersession_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ProjectSpace_usersession_feature", "_UI_ProjectSpace_type"),
-				 WorkspacePackage.Literals.PROJECT_SPACE__USERSESSION,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_ProjectSpace_usersession_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_ProjectSpace_usersession_feature",
+						"_UI_ProjectSpace_type"),
+				WorkspacePackage.Literals.PROJECT_SPACE__USERSESSION, true,
+				false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Last Updated feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Last Updated feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addLastUpdatedPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ProjectSpace_lastUpdated_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ProjectSpace_lastUpdated_feature", "_UI_ProjectSpace_type"),
-				 WorkspacePackage.Literals.PROJECT_SPACE__LAST_UPDATED,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_ProjectSpace_lastUpdated_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_ProjectSpace_lastUpdated_feature",
+						"_UI_ProjectSpace_type"),
+				WorkspacePackage.Literals.PROJECT_SPACE__LAST_UPDATED, true,
+				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This specifies how to implement {@link #getChildren} and is used to
+	 * deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand},
+	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in
+	 * {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(
+			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(WorkspacePackage.Literals.PROJECT_SPACE__PROJECT_ID);
-			childrenFeatures.add(WorkspacePackage.Literals.PROJECT_SPACE__BASE_VERSION);
+			childrenFeatures
+					.add(WorkspacePackage.Literals.PROJECT_SPACE__PROJECT_ID);
+			childrenFeatures
+					.add(WorkspacePackage.Literals.PROJECT_SPACE__BASE_VERSION);
 		}
 		return childrenFeatures;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
+		// Check the type of the specified child object and return the proper
+		// feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
 		return super.getChildFeature(object, child);
@@ -244,8 +230,8 @@ public class ProjectSpaceItemProvider extends ItemProviderAdapter implements
 	@SuppressWarnings("deprecation")
 	@Override
 	public Object getImage(Object object) {
-		return PlatformUI.getWorkbench().getSharedImages()
-		.getImage(ISharedImages.IMG_OBJ_PROJECT);
+		return PlatformUI.getWorkbench().getSharedImages().getImage(
+				ISharedImages.IMG_OBJ_PROJECT);
 	}
 
 	/**
@@ -258,16 +244,18 @@ public class ProjectSpaceItemProvider extends ItemProviderAdapter implements
 	public String getText(Object object) {
 		if (object instanceof ProjectSpace) {
 			ProjectSpace projectSpace = (ProjectSpace) object;
-			return projectSpace.getProjectName()+"@"+projectSpace.getBaseVersion().getIdentifier();
+			return projectSpace.getProjectName() + "@"
+					+ projectSpace.getBaseVersion().getIdentifier();
 		}
 		return getString("_UI_ProjectSpace_type");
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to
+	 * update any cached children and by creating a viewer notification, which
+	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -275,15 +263,17 @@ public class ProjectSpaceItemProvider extends ItemProviderAdapter implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ProjectSpace.class)) {
-			case WorkspacePackage.PROJECT_SPACE__PROJECT_NAME:
-			case WorkspacePackage.PROJECT_SPACE__PROJECT_DESCRIPTION:
-			case WorkspacePackage.PROJECT_SPACE__LAST_UPDATED:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case WorkspacePackage.PROJECT_SPACE__PROJECT_ID:
-			case WorkspacePackage.PROJECT_SPACE__BASE_VERSION:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case WorkspacePackage.PROJECT_SPACE__PROJECT_NAME:
+		case WorkspacePackage.PROJECT_SPACE__PROJECT_DESCRIPTION:
+		case WorkspacePackage.PROJECT_SPACE__LAST_UPDATED:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), false, true));
+			return;
+		case WorkspacePackage.PROJECT_SPACE__PROJECT_ID:
+		case WorkspacePackage.PROJECT_SPACE__BASE_VERSION:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -300,15 +290,13 @@ public class ProjectSpaceItemProvider extends ItemProviderAdapter implements
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(WorkspacePackage.Literals.PROJECT_SPACE__PROJECT_ID,
-				 EsmodelFactory.eINSTANCE.createProjectId()));
+		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__PROJECT_ID,
+				EsmodelFactory.eINSTANCE.createProjectId()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(WorkspacePackage.Literals.PROJECT_SPACE__BASE_VERSION,
-				 ChangemanagmentFactory.eINSTANCE.createPrimaryVersionSpec()));
+		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__BASE_VERSION,
+				ChangemanagmentFactory.eINSTANCE.createPrimaryVersionSpec()));
 	}
 
 	/**
