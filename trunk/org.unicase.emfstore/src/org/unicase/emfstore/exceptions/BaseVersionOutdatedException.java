@@ -1,6 +1,5 @@
 package org.unicase.emfstore.exceptions;
 
-
 @SuppressWarnings("serial")
 public class BaseVersionOutdatedException extends EmfStoreException {
 

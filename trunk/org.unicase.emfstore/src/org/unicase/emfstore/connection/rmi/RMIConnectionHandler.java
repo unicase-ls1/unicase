@@ -20,20 +20,21 @@ import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 public class RMIConnectionHandler implements ConnectionHandler {
 
 	private final static String NAME = "RMI Connection Handler";
-	
+
 	public final static String RMI_NAME = "RMIEmfStoreFacade";
-	
+
 	private int port;
-	
+
 	private RMIEmfStoreFacade stub;
-	
+
 	private static Log logger = LogFactory.getLog(ConnectionHandler.class);
-	
+
 	public RMIConnectionHandler() {
 		port = Registry.REGISTRY_PORT;
 	}
 
-	public void init(EmfStore emfStore, AuthenticationControl accessControl) throws FatalEmfStoreException {
+	public void init(EmfStore emfStore, AuthenticationControl accessControl)
+			throws FatalEmfStoreException {
 		/**
 		 * Little hack to solve classloading issues. Is there a better solution?
 		 */
@@ -50,7 +51,7 @@ public class RMIConnectionHandler implements ConnectionHandler {
 
 			RemoteServer.setLog(System.out);
 
-			stub = new RMIEmfStoreFacadeImpl(emfStore,accessControl);
+			stub = new RMIEmfStoreFacadeImpl(emfStore, accessControl);
 
 			Registry registry = LocateRegistry.getRegistry();
 			registry.rebind(RMI_NAME, stub);
@@ -83,9 +84,6 @@ public class RMIConnectionHandler implements ConnectionHandler {
 			logger.warn("Locate registry failed!", e2);
 			return;
 		}
-		
-		
-		
-		
+
 	}
 }

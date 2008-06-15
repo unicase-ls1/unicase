@@ -47,17 +47,17 @@ public class EmfStoreController implements IApplication {
 					"Another EmfStore Controller seems to be ruinning already!");
 		}
 		instance = this;
-		
+
 		System.out.println("*------------------*");
 		System.out.println("| unicase EmfStore |");
 		System.out.println("*------------------*");
-		
+
 		properties = initProperties();
 		initLogging(properties);
 		logger = LogFactory.getLog(EmfStoreController.class);
-		this.serverSpace=initServerSpace();
+		this.serverSpace = initServerSpace();
 		accessControl = initAccessControl(serverSpace, properties);
-		//emfStore = new EmfStoreImpl(serverSpace, accessControl, properties);
+		// emfStore = new EmfStoreImpl(serverSpace, accessControl, properties);
 		emfStore = new EmfStoreStub();
 		connectionHandlers = initConnectionHandlers(emfStore, accessControl);
 		logger.info("Initialitation COMPLETE.");
@@ -86,7 +86,8 @@ public class EmfStoreController implements IApplication {
 		return connectionHandlers;
 	}
 
-	private ServerSpace initServerSpace() throws FatalEmfStoreException, DataBaseException {
+	private ServerSpace initServerSpace() throws FatalEmfStoreException,
+			DataBaseException {
 		ResourceStorage storage = initStorage(properties);
 		URI resourceUri = storage.init(properties);
 		ResourceSet resourceSet = new ResourceSetImpl();
@@ -94,10 +95,10 @@ public class EmfStoreController implements IApplication {
 		try {
 			resource.load(Collections.EMPTY_MAP);
 		} catch (IOException e) {
-			throw new DataBaseException(DataBaseException.NOLOAD,e);
+			throw new DataBaseException(DataBaseException.NOLOAD, e);
 		}
 		EList<EObject> contents = resource.getContents();
-		for (EObject content: contents) {
+		for (EObject content : contents) {
 			if (content instanceof ServerSpace) {
 				ServerSpace result = (ServerSpace) content;
 				result.setResource(resource);
@@ -105,18 +106,18 @@ public class EmfStoreController implements IApplication {
 			}
 		}
 
-		//if no serverspace can be loaded, create one
+		// if no serverspace can be loaded, create one
 		logger.debug("Creating dummy server space...");
 		ServerSpace serverSpace = EsmodelFactory.eINSTANCE.createServerSpace();
-		
-		EmfStoreStub.createDummyProjectHistories(serverSpace);		
-		
+
+		EmfStoreStub.createDummyProjectHistories(serverSpace);
+
 		serverSpace.setResource(resource);
 		resource.getContents().add(serverSpace);
 		try {
 			serverSpace.save();
 		} catch (IOException e) {
-			throw new DataBaseException(DataBaseException.NOSAVE,e);
+			throw new DataBaseException(DataBaseException.NOSAVE, e);
 		}
 		return serverSpace;
 	}
@@ -126,18 +127,19 @@ public class EmfStoreController implements IApplication {
 	}
 
 	private void initLogging(Properties properties) {
-//		ConsoleAppender console = new ConsoleAppender(new SimpleLayout());
-//		try {
-//			FileAppender fileLog = new FileAppender(new SimpleLayout(),
-//					ServerConfiguration.getServerHome() + "emfstore.log", true);
-//			Logger rootLogger = Logger.getRootLogger();
-//			rootLogger.addAppender(console);
-//			rootLogger.addAppender(fileLog);
-//			rootLogger.setLevel(Level.ALL);
-//		} catch (IOException e) {
-//			String message = "Logging initialization failed! Logging might be disabled!";
-//			logger.warn(message, e);
-//		}
+		// ConsoleAppender console = new ConsoleAppender(new SimpleLayout());
+		// try {
+		// FileAppender fileLog = new FileAppender(new SimpleLayout(),
+		// ServerConfiguration.getServerHome() + "emfstore.log", true);
+		// Logger rootLogger = Logger.getRootLogger();
+		// rootLogger.addAppender(console);
+		// rootLogger.addAppender(fileLog);
+		// rootLogger.setLevel(Level.ALL);
+		// } catch (IOException e) {
+		// String message =
+		// "Logging initialization failed! Logging might be disabled!";
+		// logger.warn(message, e);
+		// }
 	}
 
 	private ResourceStorage initStorage(Properties properties)
@@ -177,7 +179,8 @@ public class EmfStoreController implements IApplication {
 		}
 	}
 
-	private AccessControlImpl initAccessControl(ServerSpace serverSpace, Properties properties) {
+	private AccessControlImpl initAccessControl(ServerSpace serverSpace,
+			Properties properties) {
 		return new AccessControlImpl(serverSpace);
 	}
 

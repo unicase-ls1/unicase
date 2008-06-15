@@ -101,13 +101,16 @@ public class EmfStoreImpl implements EmfStore {
 			ProjectId projectId, VersionSpec source, VersionSpec target)
 			throws EmfStoreException {
 		// TODO: authorization
-		PrimaryVersionSpec resolvedSource = resolveVersionSpec(projectId, source);
-		PrimaryVersionSpec resolvedTarget = resolveVersionSpec(projectId, target);
-		if(resolvedSource.equals(resolvedTarget)) {
-			throw new InvalidVersionSpecException("Equal version specs are not aloud for getChanges()");
-		}
-		resolvedSource.setIdentifier(resolvedSource.getIdentifier()+1);
+		PrimaryVersionSpec resolvedSource = resolveVersionSpec(projectId,
+				source);
+		PrimaryVersionSpec resolvedTarget = resolveVersionSpec(projectId,
+				target);
 		List<ChangePackage> result = new ArrayList<ChangePackage>();
+		if (resolvedSource.equals(resolvedTarget)) {
+			return result;
+		}
+		resolvedSource.setIdentifier(resolvedSource.getIdentifier() + 1);
+
 		for (Version version : getVersions(projectId, resolvedSource,
 				resolvedTarget)) {
 			result.add(version.getChanges());
@@ -232,8 +235,8 @@ public class EmfStoreImpl implements EmfStore {
 			return ((PrimaryVersionSpec) versionSpec);
 			// HeadVersionSpec
 		} else if (versionSpec instanceof HeadVersionSpec) {
-			return (PrimaryVersionSpec) EcoreUtil.copy(getProject(projectId).getLastVersion()
-					.getPrimarySpec());
+			return (PrimaryVersionSpec) EcoreUtil.copy(getProject(projectId)
+					.getLastVersion().getPrimarySpec());
 		} else {
 			// TODO: Tag- and DateVersionSpec
 			throw new InvalidVersionSpecException("");
