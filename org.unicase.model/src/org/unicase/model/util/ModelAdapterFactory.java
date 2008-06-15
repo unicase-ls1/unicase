@@ -8,16 +8,15 @@ package org.unicase.model.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.unicase.model.*;
-import org.unicase.model.document.CompositeSection;
-import org.unicase.model.document.LeafSection;
-import org.unicase.model.document.Section;
-import org.unicase.model.requirement.FunctionalRequirement;
+import org.unicase.model.Annotation;
+import org.unicase.model.ModelElement;
+import org.unicase.model.ModelElementId;
+import org.unicase.model.ModelPackage;
+import org.unicase.model.Project;
+import org.unicase.model.ReaderInfo;
+import org.unicase.model.UniqueIdentifier;
 
 /**
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides

@@ -7,9 +7,6 @@
 package org.unicase.model;
 
 import org.eclipse.emf.ecore.EFactory;
-import org.unicase.model.document.CompositeSection;
-import org.unicase.model.document.LeafSection;
-import org.unicase.model.requirement.FunctionalRequirement;
 
 /**
  * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a

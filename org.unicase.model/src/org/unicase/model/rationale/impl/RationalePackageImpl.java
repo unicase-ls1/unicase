@@ -10,36 +10,24 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.model.ModelPackage;
-
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.bug.impl.BugPackageImpl;
 import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.impl.ChangePackageImpl;
 import org.unicase.model.classes.ClassesPackage;
-
 import org.unicase.model.classes.impl.ClassesPackageImpl;
-
 import org.unicase.model.component.ComponentPackage;
 import org.unicase.model.component.impl.ComponentPackageImpl;
 import org.unicase.model.diagram.DiagramPackage;
-
 import org.unicase.model.diagram.impl.DiagramPackageImpl;
-
 import org.unicase.model.document.DocumentPackage;
-
 import org.unicase.model.document.impl.DocumentPackageImpl;
-
 import org.unicase.model.impl.ModelPackageImpl;
-
 import org.unicase.model.organization.OrganizationPackage;
-
 import org.unicase.model.organization.impl.OrganizationPackageImpl;
-
 import org.unicase.model.rationale.Assessment;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.Criterion;
@@ -48,13 +36,9 @@ import org.unicase.model.rationale.Proposal;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.rationale.Solution;
-
 import org.unicase.model.requirement.RequirementPackage;
-
 import org.unicase.model.requirement.impl.RequirementPackageImpl;
-
 import org.unicase.model.task.TaskPackage;
-
 import org.unicase.model.task.impl.TaskPackageImpl;
 
 /**

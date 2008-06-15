@@ -7,17 +7,13 @@
 package org.unicase.model.classes.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.unicase.model.classes.Association;
 import org.unicase.model.classes.AssociationType;
 import org.unicase.model.classes.ClassesPackage;
-
 import org.unicase.model.impl.ModelElementImpl;
 
 /**

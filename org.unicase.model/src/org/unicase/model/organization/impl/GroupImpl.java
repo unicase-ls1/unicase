@@ -7,7 +7,6 @@
 package org.unicase.model.organization.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrganizationPackage;
 

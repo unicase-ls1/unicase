@@ -10,12 +10,13 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.unicase.model.*;
-import org.unicase.model.document.CompositeSection;
-import org.unicase.model.document.LeafSection;
-import org.unicase.model.document.Section;
-import org.unicase.model.requirement.FunctionalRequirement;
+import org.unicase.model.Annotation;
+import org.unicase.model.ModelElement;
+import org.unicase.model.ModelElementId;
+import org.unicase.model.ModelPackage;
+import org.unicase.model.Project;
+import org.unicase.model.ReaderInfo;
+import org.unicase.model.UniqueIdentifier;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance

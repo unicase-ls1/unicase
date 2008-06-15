@@ -9,26 +9,18 @@ package org.unicase.model.bug.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.bug.BugReport;
 import org.unicase.model.bug.BugResolution;
 import org.unicase.model.bug.BugStatus;
 import org.unicase.model.bug.Severity;
-
 import org.unicase.model.impl.ModelElementImpl;
-
 import org.unicase.model.organization.OrgUnit;
-
 import org.unicase.model.requirement.Step;
 
 /**

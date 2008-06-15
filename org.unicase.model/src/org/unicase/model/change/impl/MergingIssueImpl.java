@@ -7,14 +7,10 @@
 package org.unicase.model.change.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.MergingIssue;
-
 import org.unicase.model.rationale.impl.IssueImpl;
 
 /**

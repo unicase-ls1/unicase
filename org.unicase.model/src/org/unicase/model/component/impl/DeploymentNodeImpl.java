@@ -9,15 +9,11 @@ package org.unicase.model.component.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import org.unicase.model.component.Component;
 import org.unicase.model.component.ComponentPackage;
 import org.unicase.model.component.DeploymentNode;
-
 import org.unicase.model.impl.ModelElementImpl;
 
 /**

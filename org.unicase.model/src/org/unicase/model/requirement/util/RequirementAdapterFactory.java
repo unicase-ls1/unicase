@@ -8,15 +8,18 @@ package org.unicase.model.requirement.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.unicase.model.ModelElement;
-
 import org.unicase.model.rationale.Criterion;
-import org.unicase.model.requirement.*;
+import org.unicase.model.requirement.Actor;
+import org.unicase.model.requirement.ActorInstance;
+import org.unicase.model.requirement.FunctionalRequirement;
+import org.unicase.model.requirement.NonFunctionalRequirement;
+import org.unicase.model.requirement.RequirementPackage;
+import org.unicase.model.requirement.Scenario;
+import org.unicase.model.requirement.Step;
+import org.unicase.model.requirement.UseCase;
 
 /**
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides

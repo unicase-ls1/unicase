@@ -8,7 +8,6 @@ package org.unicase.model.document;
 
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
-import org.unicase.model.ModelPackage;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '

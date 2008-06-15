@@ -10,11 +10,13 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
-
-import org.unicase.model.change.*;
+import org.unicase.model.change.ChangePackage;
+import org.unicase.model.change.MergingIssue;
+import org.unicase.model.change.MergingProposal;
+import org.unicase.model.change.MergingSolution;
+import org.unicase.model.change.ModelChangePackage;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.Proposal;
 import org.unicase.model.rationale.Solution;

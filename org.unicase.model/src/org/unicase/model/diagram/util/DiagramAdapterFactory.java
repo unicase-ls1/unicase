@@ -8,14 +8,11 @@ package org.unicase.model.diagram.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.unicase.model.ModelElement;
-
-import org.unicase.model.diagram.*;
+import org.unicase.model.diagram.DiagramPackage;
+import org.unicase.model.diagram.MEDiagram;
 
 /**
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides

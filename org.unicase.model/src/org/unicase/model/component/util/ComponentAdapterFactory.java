@@ -8,14 +8,13 @@ package org.unicase.model.component.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.unicase.model.ModelElement;
-
-import org.unicase.model.component.*;
+import org.unicase.model.component.Component;
+import org.unicase.model.component.ComponentPackage;
+import org.unicase.model.component.ComponentService;
+import org.unicase.model.component.DeploymentNode;
 
 /**
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides

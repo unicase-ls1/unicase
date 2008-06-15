@@ -9,9 +9,7 @@ package org.unicase.model;
 import java.util.Date;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.unicase.model.organization.OrgUnit;
-import org.unicase.model.organization.OrgUnitId;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '

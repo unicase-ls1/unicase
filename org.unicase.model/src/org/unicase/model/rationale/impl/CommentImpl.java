@@ -9,13 +9,9 @@ package org.unicase.model.rationale.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import org.unicase.model.impl.AnnotationImpl;
-
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationalePackage;
 

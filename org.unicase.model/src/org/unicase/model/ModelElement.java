@@ -10,7 +10,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.organization.User;
-import org.unicase.model.task.ActionItem;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '

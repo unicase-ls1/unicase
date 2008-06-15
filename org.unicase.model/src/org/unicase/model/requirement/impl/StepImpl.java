@@ -7,13 +7,9 @@
 package org.unicase.model.requirement.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.unicase.model.impl.ModelElementImpl;
-
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.Step;
 

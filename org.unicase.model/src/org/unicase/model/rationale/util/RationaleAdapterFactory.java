@@ -8,15 +8,17 @@ package org.unicase.model.rationale.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
-
-import org.unicase.model.rationale.*;
+import org.unicase.model.rationale.Assessment;
+import org.unicase.model.rationale.Comment;
+import org.unicase.model.rationale.Criterion;
+import org.unicase.model.rationale.Issue;
+import org.unicase.model.rationale.Proposal;
+import org.unicase.model.rationale.RationalePackage;
+import org.unicase.model.rationale.Solution;
 
 /**
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides

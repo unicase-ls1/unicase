@@ -7,7 +7,6 @@
 package org.unicase.model.rationale;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.unicase.model.ModelElement;
 
 /**

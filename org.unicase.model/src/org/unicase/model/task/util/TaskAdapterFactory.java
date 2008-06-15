@@ -8,15 +8,14 @@ package org.unicase.model.task.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
-
-import org.unicase.model.task.*;
+import org.unicase.model.task.ActionItem;
+import org.unicase.model.task.TaskPackage;
+import org.unicase.model.task.WorkItem;
+import org.unicase.model.task.WorkPackage;
 
 /**
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides

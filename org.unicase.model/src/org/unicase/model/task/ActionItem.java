@@ -9,8 +9,6 @@ package org.unicase.model.task;
 import java.util.Date;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.ModelElement;
-
 import org.unicase.model.organization.User;
 
 /**

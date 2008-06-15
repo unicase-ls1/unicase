@@ -30,7 +30,6 @@ import org.unicase.model.ReaderInfo;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.organization.User;
-import org.unicase.model.task.ActionItem;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '

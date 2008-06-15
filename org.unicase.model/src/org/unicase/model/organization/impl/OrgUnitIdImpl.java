@@ -7,9 +7,7 @@
 package org.unicase.model.organization.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.unicase.model.impl.UniqueIdentifierImpl;
-
 import org.unicase.model.organization.OrgUnitId;
 import org.unicase.model.organization.OrganizationPackage;
 
