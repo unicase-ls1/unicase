@@ -1,5 +1,5 @@
 /**
- * <copyright>
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * </copyright>
  *
  * $Id$
@@ -20,35 +20,36 @@ import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspacePackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Factory</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
+ * end-user-doc -->
+ * 
  * @generated
  */
-public class WorkspaceFactoryImpl extends EFactoryImpl implements WorkspaceFactory {
+public class WorkspaceFactoryImpl extends EFactoryImpl implements
+		WorkspaceFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static WorkspaceFactory init() {
 		try {
-			WorkspaceFactory theWorkspaceFactory = (WorkspaceFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/workspace"); 
+			WorkspaceFactory theWorkspaceFactory = (WorkspaceFactory) EPackage.Registry.INSTANCE
+					.getEFactory("http://unicase.org/workspace");
 			if (theWorkspaceFactory != null) {
 				return theWorkspaceFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new WorkspaceFactoryImpl();
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public WorkspaceFactoryImpl() {
@@ -56,25 +57,30 @@ public class WorkspaceFactoryImpl extends EFactoryImpl implements WorkspaceFacto
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case WorkspacePackage.WORKSPACE: return createWorkspace();
-			case WorkspacePackage.SERVER_INFO: return createServerInfo();
-			case WorkspacePackage.USERSESSION: return createUsersession();
-			case WorkspacePackage.PROJECT_SPACE: return createProjectSpace();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case WorkspacePackage.WORKSPACE:
+			return createWorkspace();
+		case WorkspacePackage.SERVER_INFO:
+			return createServerInfo();
+		case WorkspacePackage.USERSESSION:
+			return createUsersession();
+		case WorkspacePackage.PROJECT_SPACE:
+			return createProjectSpace();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Workspace createWorkspace() {
@@ -83,8 +89,8 @@ public class WorkspaceFactoryImpl extends EFactoryImpl implements WorkspaceFacto
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ServerInfo createServerInfo() {
@@ -93,8 +99,8 @@ public class WorkspaceFactoryImpl extends EFactoryImpl implements WorkspaceFacto
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Usersession createUsersession() {
@@ -103,8 +109,8 @@ public class WorkspaceFactoryImpl extends EFactoryImpl implements WorkspaceFacto
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProjectSpace createProjectSpace() {
@@ -113,17 +119,17 @@ public class WorkspaceFactoryImpl extends EFactoryImpl implements WorkspaceFacto
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public WorkspacePackage getWorkspacePackage() {
-		return (WorkspacePackage)getEPackage();
+		return (WorkspacePackage) getEPackage();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
@@ -132,4 +138,4 @@ public class WorkspaceFactoryImpl extends EFactoryImpl implements WorkspaceFacto
 		return WorkspacePackage.eINSTANCE;
 	}
 
-} //WorkspaceFactoryImpl
+} // WorkspaceFactoryImpl

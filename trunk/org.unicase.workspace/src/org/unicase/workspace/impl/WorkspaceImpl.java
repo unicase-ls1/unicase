@@ -1,5 +1,5 @@
 /**
- * <copyright>
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * </copyright>
  *
  * $Id$
@@ -35,18 +35,20 @@ import org.unicase.workspace.WorkspacePackage;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Workspace</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>Workspace</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getProjectSpaces <em>Project Spaces</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getServerInfos <em>Server Infos</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getUsersessions <em>Usersessions</em>}</li>
+ * <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getProjectSpaces <em>
+ * Project Spaces</em>}</li>
+ * <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getServerInfos <em>Server
+ * Infos</em>}</li>
+ * <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getUsersessions <em>
+ * Usersessions</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class WorkspaceImpl extends EObjectImpl implements Workspace {
@@ -55,11 +57,12 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * @generated NOT
 	 */
 	private Resource resource;
-	
+
 	/**
-	 * The cached value of the '{@link #getProjectSpaces() <em>Project Spaces</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getProjectSpaces()
+	 * <em>Project Spaces</em>}' containment reference list. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getProjectSpaces()
 	 * @generated
 	 * @ordered
@@ -67,9 +70,9 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	protected EList<ProjectSpace> projectSpaces;
 
 	/**
-	 * The cached value of the '{@link #getServerInfos() <em>Server Infos</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getServerInfos() <em>Server Infos</em>}'
+	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getServerInfos()
 	 * @generated
 	 * @ordered
@@ -77,9 +80,10 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	protected EList<ServerInfo> serverInfos;
 
 	/**
-	 * The cached value of the '{@link #getUsersessions() <em>Usersessions</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getUsersessions() <em>Usersessions</em>}
+	 * ' containment reference list. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #getUsersessions()
 	 * @generated
 	 * @ordered
@@ -88,13 +92,14 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * The current connection manager used to connect to the server(s).
+	 * 
 	 * @generated NOT
 	 */
 	private ConnectionManager connectionManager;
-	
+
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	protected WorkspaceImpl() {
@@ -102,8 +107,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -112,87 +117,99 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ProjectSpace> getProjectSpaces() {
 		if (projectSpaces == null) {
-			projectSpaces = new EObjectContainmentEList<ProjectSpace>(ProjectSpace.class, this, WorkspacePackage.WORKSPACE__PROJECT_SPACES);
+			projectSpaces = new EObjectContainmentEList<ProjectSpace>(
+					ProjectSpace.class, this,
+					WorkspacePackage.WORKSPACE__PROJECT_SPACES);
 		}
 		return projectSpaces;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ServerInfo> getServerInfos() {
 		if (serverInfos == null) {
-			serverInfos = new EObjectContainmentEList<ServerInfo>(ServerInfo.class, this, WorkspacePackage.WORKSPACE__SERVER_INFOS);
+			serverInfos = new EObjectContainmentEList<ServerInfo>(
+					ServerInfo.class, this,
+					WorkspacePackage.WORKSPACE__SERVER_INFOS);
 		}
 		return serverInfos;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Usersession> getUsersessions() {
 		if (usersessions == null) {
-			usersessions = new EObjectContainmentEList<Usersession>(Usersession.class, this, WorkspacePackage.WORKSPACE__USERSESSIONS);
+			usersessions = new EObjectContainmentEList<Usersession>(
+					Usersession.class, this,
+					WorkspacePackage.WORKSPACE__USERSESSIONS);
 		}
 		return usersessions;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
-	public ProjectSpace checkout(final Usersession usersession, final ProjectInfo projectInfo) throws EmfStoreException {
-		
-		//get Project from server
-		final Project project = this.connectionManager.getProject(usersession.getSessionId(), projectInfo.getProjectId(), projectInfo.getVersion());
-		
-		//resolve version spec if neccessary
+	public ProjectSpace checkout(final Usersession usersession,
+			final ProjectInfo projectInfo) throws EmfStoreException {
+
+		// get Project from server
+		final Project project = this.connectionManager.getProject(usersession
+				.getSessionId(), projectInfo.getProjectId(), projectInfo
+				.getVersion());
+
+		// resolve version spec if neccessary
 		final PrimaryVersionSpec primaryVersionSpec;
 		if (projectInfo.getVersion() instanceof PrimaryVersionSpec) {
 			primaryVersionSpec = (PrimaryVersionSpec) projectInfo.getVersion();
+		} else {
+			primaryVersionSpec = this.connectionManager.resolveVersionSpec(
+					usersession.getSessionId(), projectInfo.getProjectId(),
+					projectInfo.getVersion());
 		}
-		else {
-			primaryVersionSpec = this.connectionManager.resolveVersionSpec(usersession.getSessionId(), projectInfo.getProjectId(), projectInfo.getVersion());
-		}
-		//init project space
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain){
+		// init project space
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain");
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			protected void doExecute() {
 				projectSpace = WorkspaceFactory.eINSTANCE.createProjectSpace();
 				projectSpace.setProjectId(projectInfo.getProjectId());
 				projectSpace.setProjectName(projectInfo.getName());
-				projectSpace.setProjectDescription(projectInfo.getDescription());
+				projectSpace
+						.setProjectDescription(projectInfo.getDescription());
 				projectSpace.setBaseVersion(primaryVersionSpec);
 				projectSpace.setLastUpdated(new Date());
 				projectSpace.setUsersession(usersession);
 				projectSpace.setProject(project);
-				
+
 				getProjectSpaces().add(projectSpace);
 				save();
 			}
 		});
-		
+
 		return projectSpace;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public void save() {
-		for (ProjectSpace projectSpace: this.getProjectSpaces()) {
+		for (ProjectSpace projectSpace : this.getProjectSpaces()) {
 			projectSpace.save();
 		}
 		try {
@@ -201,16 +218,16 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 			// MK Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public boolean isDirty() {
-		for (ProjectSpace projectSpace: this.projectSpaces) {
+		for (ProjectSpace projectSpace : this.projectSpaces) {
 			if (projectSpace.isDirty()) {
 				return true;
 			}
@@ -219,124 +236,131 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case WorkspacePackage.WORKSPACE__PROJECT_SPACES:
-				return ((InternalEList<?>)getProjectSpaces()).basicRemove(otherEnd, msgs);
-			case WorkspacePackage.WORKSPACE__SERVER_INFOS:
-				return ((InternalEList<?>)getServerInfos()).basicRemove(otherEnd, msgs);
-			case WorkspacePackage.WORKSPACE__USERSESSIONS:
-				return ((InternalEList<?>)getUsersessions()).basicRemove(otherEnd, msgs);
+		case WorkspacePackage.WORKSPACE__PROJECT_SPACES:
+			return ((InternalEList<?>) getProjectSpaces()).basicRemove(
+					otherEnd, msgs);
+		case WorkspacePackage.WORKSPACE__SERVER_INFOS:
+			return ((InternalEList<?>) getServerInfos()).basicRemove(otherEnd,
+					msgs);
+		case WorkspacePackage.WORKSPACE__USERSESSIONS:
+			return ((InternalEList<?>) getUsersessions()).basicRemove(otherEnd,
+					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case WorkspacePackage.WORKSPACE__PROJECT_SPACES:
-				return getProjectSpaces();
-			case WorkspacePackage.WORKSPACE__SERVER_INFOS:
-				return getServerInfos();
-			case WorkspacePackage.WORKSPACE__USERSESSIONS:
-				return getUsersessions();
+		case WorkspacePackage.WORKSPACE__PROJECT_SPACES:
+			return getProjectSpaces();
+		case WorkspacePackage.WORKSPACE__SERVER_INFOS:
+			return getServerInfos();
+		case WorkspacePackage.WORKSPACE__USERSESSIONS:
+			return getUsersessions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case WorkspacePackage.WORKSPACE__PROJECT_SPACES:
-				getProjectSpaces().clear();
-				getProjectSpaces().addAll((Collection<? extends ProjectSpace>)newValue);
-				return;
-			case WorkspacePackage.WORKSPACE__SERVER_INFOS:
-				getServerInfos().clear();
-				getServerInfos().addAll((Collection<? extends ServerInfo>)newValue);
-				return;
-			case WorkspacePackage.WORKSPACE__USERSESSIONS:
-				getUsersessions().clear();
-				getUsersessions().addAll((Collection<? extends Usersession>)newValue);
-				return;
+		case WorkspacePackage.WORKSPACE__PROJECT_SPACES:
+			getProjectSpaces().clear();
+			getProjectSpaces().addAll(
+					(Collection<? extends ProjectSpace>) newValue);
+			return;
+		case WorkspacePackage.WORKSPACE__SERVER_INFOS:
+			getServerInfos().clear();
+			getServerInfos()
+					.addAll((Collection<? extends ServerInfo>) newValue);
+			return;
+		case WorkspacePackage.WORKSPACE__USERSESSIONS:
+			getUsersessions().clear();
+			getUsersessions().addAll(
+					(Collection<? extends Usersession>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case WorkspacePackage.WORKSPACE__PROJECT_SPACES:
-				getProjectSpaces().clear();
-				return;
-			case WorkspacePackage.WORKSPACE__SERVER_INFOS:
-				getServerInfos().clear();
-				return;
-			case WorkspacePackage.WORKSPACE__USERSESSIONS:
-				getUsersessions().clear();
-				return;
+		case WorkspacePackage.WORKSPACE__PROJECT_SPACES:
+			getProjectSpaces().clear();
+			return;
+		case WorkspacePackage.WORKSPACE__SERVER_INFOS:
+			getServerInfos().clear();
+			return;
+		case WorkspacePackage.WORKSPACE__USERSESSIONS:
+			getUsersessions().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case WorkspacePackage.WORKSPACE__PROJECT_SPACES:
-				return projectSpaces != null && !projectSpaces.isEmpty();
-			case WorkspacePackage.WORKSPACE__SERVER_INFOS:
-				return serverInfos != null && !serverInfos.isEmpty();
-			case WorkspacePackage.WORKSPACE__USERSESSIONS:
-				return usersessions != null && !usersessions.isEmpty();
+		case WorkspacePackage.WORKSPACE__PROJECT_SPACES:
+			return projectSpaces != null && !projectSpaces.isEmpty();
+		case WorkspacePackage.WORKSPACE__SERVER_INFOS:
+			return serverInfos != null && !serverInfos.isEmpty();
+		case WorkspacePackage.WORKSPACE__USERSESSIONS:
+			return usersessions != null && !usersessions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
-	
+
 	/**
 	 * @param connectionManager
 	 * @generated NOT
 	 */
 	public void setConnectionManager(ConnectionManager connectionManager) {
-		this.connectionManager=connectionManager;
+		this.connectionManager = connectionManager;
 	}
-	
+
 	/**
 	 * @param resource
 	 * @generated NOT
 	 */
 	public void setResource(Resource resource) {
-		this.resource=resource;
+		this.resource = resource;
 	}
 
-	/** 
+	/**
 	 * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
-	 *
+	 * 
 	 * @generated NOT
 	 */
 	@SuppressWarnings("unchecked")
@@ -346,9 +370,9 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	}
 
 	public void init() {
-		//initialize all projectSpaces
-		for (ProjectSpace projectSpace: getProjectSpaces()) {
+		// initialize all projectSpaces
+		for (ProjectSpace projectSpace : getProjectSpaces()) {
 			projectSpace.init();
-		}	
+		}
 	}
-} //WorkspaceImpl
+} // WorkspaceImpl

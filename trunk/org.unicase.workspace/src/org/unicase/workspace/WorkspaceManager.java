@@ -69,7 +69,7 @@ public final class WorkspaceManager {
 	 */
 	private ConnectionManager initConnectionManager() {
 		// return new StubConnectionManagerImpl();
-			return new RMIConnectionManagerImpl();
+		return new RMIConnectionManagerImpl();
 	}
 
 	/**
@@ -82,15 +82,13 @@ public final class WorkspaceManager {
 	 */
 	private Workspace initWorkSpace() {
 		ResourceSet resourceSet = new ResourceSetImpl();
-		
+
 		// register an editing domain on the ressource
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(
-		resourceSet);
-		TransactionalEditingDomain.Registry.INSTANCE.add("org.unicase.EditingDomain", domain);
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Factory.INSTANCE
+				.createEditingDomain(resourceSet);
+		TransactionalEditingDomain.Registry.INSTANCE.add(
+				"org.unicase.EditingDomain", domain);
 		domain.setID("org.unicase.EditingDomain");
-		
-	
-		
 
 		URI fileURI = URI.createFileURI(Configuration.getWorkspacePath());
 		File workspaceFile = new File(Configuration.getWorkspacePath());
@@ -98,26 +96,29 @@ public final class WorkspaceManager {
 
 			// no workspace content found, create a workspace
 			final Resource resource = resourceSet.createResource(fileURI);
-			//Resource resource = Resource.Factory.Registry.INSTANCE.getFactory(fileURI).createResource(fileURI);
-			
-			final Workspace workspace = WorkspaceFactory.eINSTANCE.createWorkspace();
+			// Resource resource =
+			// Resource.Factory.Registry.INSTANCE.getFactory(
+			// fileURI).createResource(fileURI);
+
+			final Workspace workspace = WorkspaceFactory.eINSTANCE
+					.createWorkspace();
 			workspace.setConnectionManager(this.connectionManager);
 			workspace.setResource(resource);
 			workspace.getServerInfos()
 					.add(Configuration.getDefaultServerInfo());
-			domain.getCommandStack().execute(new RecordingCommand(domain){
+			domain.getCommandStack().execute(new RecordingCommand(domain) {
 				protected void doExecute() {
 					resource.getContents().add(workspace);
 				}
 			});
-			
+
 			try {
 				resource.save(Configuration.getResourceSaveOptions());
 			} catch (IOException e) {
 				// MK Auto-generated catch block
 				e.printStackTrace();
 			}
-			//FIXME: duplicate code
+			// FIXME: duplicate code
 			workspace.setConnectionManager(this.connectionManager);
 			workspace.setResource(resource);
 			workspace.init();

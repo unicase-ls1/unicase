@@ -41,7 +41,7 @@ public class Configuration {
 		}
 		return resourceSaveOptions;
 	}
-	
+
 	public static ServerInfo getDefaultServerInfo() {
 		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
 		serverInfo.setDisplayName("DefaultServer");
