@@ -7,18 +7,16 @@ import org.eclipse.emf.ecore.EPackage;
 
 /**
  * 
- * @author Hodaie
- * This is the converter for EClass parameter passed to 
- * createME command (org.unicase.ui.navigator.createME). 
+ * @author Hodaie This is the converter for EClass parameter passed to createME
+ *         command (org.unicase.ui.navigator.createME).
  * 
  */
 public class EClassTypeConverter extends AbstractParameterValueConverter {
 
-	
-	/**.
-	 * {@inheritDoc}
-	 * This creates the EClass object back from its string representation.
-	 *  
+	/**
+	 * . {@inheritDoc} This creates the EClass object back from its string
+	 * representation.
+	 * 
 	 */
 	@Override
 	public Object convertToObject(String parameterValue)
@@ -27,42 +25,36 @@ public class EClassTypeConverter extends AbstractParameterValueConverter {
 		String[] parts = parameterValue.split(";");
 		String nsURI = parts[0];
 		String name = parts[1];
-	
+
 		EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(nsURI);
 		EClass eClass = (EClass) ePackage.getEClassifier(name);
 
 		return eClass;
-		
 
 	}
 
-		
-	/**.
-	 *({@inheritDoc}) 
-	 * This creates a string representation of EClass object 
-	 * to put it in command parameters map. 
+	/**
+	 * . ({@inheritDoc}) This creates a string representation of EClass object
+	 * to put it in command parameters map.
 	 */
 	@Override
 	public String convertToString(Object parameterValue)
 			throws ParameterValueConversionException {
-		//We need and string representation of an EClass that can be
-		//turned back to an EClass object. 
-		//It was tested with serialization method MRIUtil but 
-		//it has the problem that referenced of this EClass instance are not
-		//serialized and we needed them. 
-	    
-		//I found out that all i need to create an EClass instance 
-		//is the NsURI of its package and its name.
+		// We need and string representation of an EClass that can be
+		// turned back to an EClass object.
+		// It was tested with serialization method MRIUtil but
+		// it has the problem that referenced of this EClass instance are not
+		// serialized and we needed them.
+
+		// I found out that all i need to create an EClass instance
+		// is the NsURI of its package and its name.
 		if (parameterValue instanceof EClass) {
-			
+
 			EClass eClass = (EClass) parameterValue;
-			return eClass.getEPackage().getNsURI() + ";"
-							  +  eClass.getName();
-		}else{
+			return eClass.getEPackage().getNsURI() + ";" + eClass.getName();
+		} else {
 			return null;
-		}		
+		}
 	}
-	
+
 }
-
-

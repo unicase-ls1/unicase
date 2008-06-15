@@ -17,12 +17,10 @@ package org.unicase.ui.meeditor.mecontrols.richtext.widgets;
  * 
  */
 public interface ComposerStatus {
-    
-    public static final String DISABLED = "disabled";
-    public static final String SELECTED = "selected";
-    public static final String NORMAL = "normal";
-    public static final String UNDEFINED = "undefined";
-    
-    
+
+	public static final String DISABLED = "disabled";
+	public static final String SELECTED = "selected";
+	public static final String NORMAL = "normal";
+	public static final String UNDEFINED = "undefined";
 
 }

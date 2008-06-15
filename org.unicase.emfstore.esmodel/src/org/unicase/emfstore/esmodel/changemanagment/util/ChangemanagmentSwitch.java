@@ -10,7 +10,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.emfstore.esmodel.changemanagment.*;
 import org.unicase.emfstore.esmodel.changemanagment.ChangePackage;
 import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentPackage;
 import org.unicase.emfstore.esmodel.changemanagment.DateVersionSpec;

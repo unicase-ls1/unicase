@@ -1,4 +1,5 @@
 package org.unicase.ui.navigator;
+
 //
 //import org.eclipse.emf.common.ui.URIEditorInput;
 //import org.eclipse.emf.common.util.URI;

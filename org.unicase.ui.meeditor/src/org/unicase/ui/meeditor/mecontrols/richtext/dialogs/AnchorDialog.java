@@ -28,68 +28,79 @@ import org.eclipse.swt.widgets.Text;
  */
 public class AnchorDialog extends TitleAreaDialog {
 
-    private String name = null;
-    private Text anchorText;
+	private String name = null;
+	private Text anchorText;
 
-    /**
-     * @param parentShell
-     * @param name
-     */
-    public AnchorDialog(Shell parentShell, String name) {
-        super(parentShell);
-        this.name = name != null ? name : ""; //$NON-NLS-1$
-    }
-    
-    /* (non-Javadoc)
-     * @see org.eclipse.jface.window.Window#configureShell(org.eclipse.swt.widgets.Shell)
-     */
-    @Override
-    protected void configureShell(Shell newShell) {
-        super.configureShell(newShell);
-        newShell.setText("Insert/Edit Anchor");
-        
-    }
-    
-    /* (non-Javadoc)
-     * @see org.eclipse.jface.dialogs.TitleAreaDialog#createDialogArea(org.eclipse.swt.widgets.Composite)
-     */
-    @Override
-    protected Control createDialogArea(Composite parent) {
-        setTitle("Insert/Edit Anchor");
-        setMessage("Specify the name of your anchor.");
-        Composite comp = new Composite((Composite) super.createDialogArea(parent), SWT.NONE);
-        comp.setLayout(new GridLayout(2,false));
-        GridData gd = new GridData(SWT.FILL, SWT.FILL, true, true);
-        comp.setLayoutData(gd);
-        
-        Label srcLabel = new Label(comp, SWT.NONE);
-        srcLabel.setText("Name");
-        gd = new GridData(SWT.BEGINNING, SWT.CENTER, false, false);
-        gd.widthHint = 100;
-        srcLabel.setLayoutData(gd);
-        
-        this.anchorText = new Text(comp, SWT.BORDER);
-        this.anchorText.setText(this.name);
-        gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
-        this.anchorText.setLayoutData(gd);
-        
-        return comp;
-    }
-    
-    /* (non-Javadoc)
-     * @see org.eclipse.jface.dialogs.Dialog#okPressed()
-     */
-    @Override
-    protected void okPressed() {
-        this.name = this.anchorText.getText();
-        super.okPressed();
-    }
-    
-    /**
-     * @return the name
-     */
-    public String getName() {
-        return this.name;
-    }
-    
+	/**
+	 * @param parentShell
+	 * @param name
+	 */
+	public AnchorDialog(Shell parentShell, String name) {
+		super(parentShell);
+		this.name = name != null ? name : ""; //$NON-NLS-1$
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.jface.window.Window#configureShell(org.eclipse.swt.widgets
+	 * .Shell)
+	 */
+	@Override
+	protected void configureShell(Shell newShell) {
+		super.configureShell(newShell);
+		newShell.setText("Insert/Edit Anchor");
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.jface.dialogs.TitleAreaDialog#createDialogArea(org.eclipse
+	 * .swt.widgets.Composite)
+	 */
+	@Override
+	protected Control createDialogArea(Composite parent) {
+		setTitle("Insert/Edit Anchor");
+		setMessage("Specify the name of your anchor.");
+		Composite comp = new Composite((Composite) super
+				.createDialogArea(parent), SWT.NONE);
+		comp.setLayout(new GridLayout(2, false));
+		GridData gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+		comp.setLayoutData(gd);
+
+		Label srcLabel = new Label(comp, SWT.NONE);
+		srcLabel.setText("Name");
+		gd = new GridData(SWT.BEGINNING, SWT.CENTER, false, false);
+		gd.widthHint = 100;
+		srcLabel.setLayoutData(gd);
+
+		this.anchorText = new Text(comp, SWT.BORDER);
+		this.anchorText.setText(this.name);
+		gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		this.anchorText.setLayoutData(gd);
+
+		return comp;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.jface.dialogs.Dialog#okPressed()
+	 */
+	@Override
+	protected void okPressed() {
+		this.name = this.anchorText.getText();
+		super.okPressed();
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return this.name;
+	}
+
 }

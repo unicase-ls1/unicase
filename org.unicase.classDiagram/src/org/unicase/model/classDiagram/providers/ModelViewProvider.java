@@ -39,8 +39,10 @@ public class ModelViewProvider extends AbstractViewProvider {
 		EObject domainElement = getSemanticElement(semanticAdapter);
 		int visualID;
 		if (semanticHint == null) {
-			// Semantic hint is not specified. Can be a result of call from CanonicalEditPolicy.
-			// In this situation there should be NO elementType, visualID will be determined
+			// Semantic hint is not specified. Can be a result of call from
+			// CanonicalEditPolicy.
+			// In this situation there should be NO elementType, visualID will
+			// be determined
 			// by VisualIDRegistry.getNodeVisualID() for domainElement.
 			if (elementType != null || domainElement == null) {
 				return null;
@@ -52,8 +54,10 @@ public class ModelViewProvider extends AbstractViewProvider {
 					.getVisualID(semanticHint);
 			if (elementType != null) {
 				// Semantic hint is specified together with element type.
-				// Both parameters should describe exactly the same diagram element.
-				// In addition we check that visualID returned by VisualIDRegistry.getNodeVisualID() for
+				// Both parameters should describe exactly the same diagram
+				// element.
+				// In addition we check that visualID returned by
+				// VisualIDRegistry.getNodeVisualID() for
 				// domainElement (if specified) is the same as in element type.
 				if (!org.unicase.model.classDiagram.providers.ModelElementTypes
 						.isKnownElementType(elementType)
@@ -63,18 +67,22 @@ public class ModelViewProvider extends AbstractViewProvider {
 				String elementTypeHint = ((IHintedType) elementType)
 						.getSemanticHint();
 				if (!semanticHint.equals(elementTypeHint)) {
-					return null; // if semantic hint is specified it should be the same as in element type
+					return null; // if semantic hint is specified it should be
+									// the same as in element type
 				}
 				if (domainElement != null
 						&& visualID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
 								.getNodeVisualID(containerView, domainElement)) {
-					return null; // visual id for node EClass should match visual id from element type
+					return null; // visual id for node EClass should match
+									// visual id from element type
 				}
 			} else {
-				// Element type is not specified. Domain element should be present (except pure design elements).
+				// Element type is not specified. Domain element should be
+				// present (except pure design elements).
 				// This method is called with EObjectAdapter as parameter from:
-				//   - ViewService.createNode(View container, EObject eObject, String type, PreferencesHint preferencesHint) 
-				//   - generated ViewFactory.decorateView() for parent element
+				// - ViewService.createNode(View container, EObject eObject,
+				// String type, PreferencesHint preferencesHint)
+				// - generated ViewFactory.decorateView() for parent element
 				if (!org.unicase.model.classDiagram.edit.parts.MEDiagramEditPart.MODEL_ID
 						.equals(org.unicase.model.classDiagram.part.ModelVisualIDRegistry
 								.getModelID(containerView))) {
@@ -86,7 +94,8 @@ public class ModelViewProvider extends AbstractViewProvider {
 							|| visualID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
 									.getNodeVisualID(containerView,
 											domainElement)) {
-						return null; // visual id in semantic hint should match visual id for domain element
+						return null; // visual id in semantic hint should match
+										// visual id for domain element
 					}
 					break;
 				case org.unicase.model.classDiagram.edit.parts.MEDiagramNameEditPart.VISUAL_ID:
@@ -147,7 +156,8 @@ public class ModelViewProvider extends AbstractViewProvider {
 			return null; // our hint is visual id and must be specified
 		}
 		if (semanticHint != null && !semanticHint.equals(elementTypeHint)) {
-			return null; // if semantic hint is specified it should be the same as in element type
+			return null; // if semantic hint is specified it should be the same
+							// as in element type
 		}
 		int visualID = org.unicase.model.classDiagram.part.ModelVisualIDRegistry
 				.getVisualID(elementTypeHint);
@@ -155,7 +165,8 @@ public class ModelViewProvider extends AbstractViewProvider {
 		if (domainElement != null
 				&& visualID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
 						.getLinkWithClassVisualID(domainElement)) {
-			return null; // visual id for link EClass should match visual id from element type
+			return null; // visual id for link EClass should match visual id
+							// from element type
 		}
 		return getEdgeViewClass(visualID);
 	}

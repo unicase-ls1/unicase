@@ -4,40 +4,38 @@ import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.unicase.model.ModelElement;
 
-
 /**
  * 
  * @author Hodaie
- *
+ * 
  * 
  */
-public class TableViewContentProvider implements IStructuredContentProvider	{
-	
-	/**.
-	 * ({@inheritDoc})
+public class TableViewContentProvider implements IStructuredContentProvider {
+
+	/**
+	 * . ({@inheritDoc})
 	 * 
 	 */
 	public Object[] getElements(Object inputElement) {
-		
-		return (ModelElement[])inputElement;
-		
+
+		return (ModelElement[]) inputElement;
+
 	}
 
-	/**.
-	 * ({@inheritDoc})
+	/**
+	 * . ({@inheritDoc})
 	 * 
 	 */
 	public void dispose() {
-			
+
 	}
 
-	
-	/**.
-	 *({@inheritDoc})
+	/**
+	 * . ({@inheritDoc})
 	 * 
 	 */
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-				
+
 	}
 
 }

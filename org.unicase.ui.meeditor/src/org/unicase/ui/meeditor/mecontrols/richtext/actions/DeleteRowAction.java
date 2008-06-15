@@ -18,7 +18,6 @@ import org.eclipse.jface.action.IAction;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
-
 import org.unicase.ui.meeditor.mecontrols.richtext.widgets.AllActionConstants;
 import org.unicase.ui.meeditor.mecontrols.richtext.widgets.ComposerStatus;
 import org.unicase.ui.meeditor.mecontrols.richtext.widgets.EventConstants;
@@ -31,38 +30,48 @@ import org.unicase.ui.meeditor.mecontrols.richtext.widgets.PropertyConstants;
  * @author Tom Seidel <tom.seidel@spiritlink.de>
  * 
  */
-public class DeleteRowAction extends Action implements Listener{
-    private HtmlComposer composer = null;
+public class DeleteRowAction extends Action implements Listener {
+	private HtmlComposer composer = null;
 
-    public DeleteRowAction(HtmlComposer composer) {
-        super("", IAction.AS_PUSH_BUTTON);
-        setImageDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin("org.unicase.ui.meeditor", "tiny_mce/jscripts/tiny_mce/plugins/table/images/table_delete_row.gif"));
-        this.composer = composer;
-        this.composer.addListener(EventConstants.DELETE_ROW, this);
-    }
+	public DeleteRowAction(HtmlComposer composer) {
+		super("", IAction.AS_PUSH_BUTTON);
+		setImageDescriptor(AbstractUIPlugin
+				.imageDescriptorFromPlugin("org.unicase.ui.meeditor",
+						"tiny_mce/jscripts/tiny_mce/plugins/table/images/table_delete_row.gif"));
+		this.composer = composer;
+		this.composer.addListener(EventConstants.DELETE_ROW, this);
+	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.jface.action.Action#run()
+	 */
+	@Override
+	public void run() {
+		this.composer.execute(JavaScriptCommands.DELETE_ROW);
+	}
 
-
-    /* (non-Javadoc)
-     * @see org.eclipse.jface.action.Action#run()
-     */
-    @Override
-    public void run() {
-        this.composer.execute(JavaScriptCommands.DELETE_ROW);
-    }
-
-    /* (non-Javadoc)
-     * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.Event)
-     */
-    public void handleEvent(Event event) {
-        Properties props = (Properties) event.data;
-        if (ComposerStatus.NORMAL.equals(props.getProperty(PropertyConstants.STATUS))) {
-            setEnabled(true);
-        } else if (ComposerStatus.DISABLED.equals(props.getProperty(PropertyConstants.STATUS))) {
-            setEnabled(false);
-        } else if (event.type == EventConstants.ALL && AllActionConstants.RESET_ALL.equals(props.getProperty(PropertyConstants.COMMAND))) {
-            setEnabled(false);
-        }
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.
+	 * Event)
+	 */
+	public void handleEvent(Event event) {
+		Properties props = (Properties) event.data;
+		if (ComposerStatus.NORMAL.equals(props
+				.getProperty(PropertyConstants.STATUS))) {
+			setEnabled(true);
+		} else if (ComposerStatus.DISABLED.equals(props
+				.getProperty(PropertyConstants.STATUS))) {
+			setEnabled(false);
+		} else if (event.type == EventConstants.ALL
+				&& AllActionConstants.RESET_ALL.equals(props
+						.getProperty(PropertyConstants.COMMAND))) {
+			setEnabled(false);
+		}
+	}
 
 }

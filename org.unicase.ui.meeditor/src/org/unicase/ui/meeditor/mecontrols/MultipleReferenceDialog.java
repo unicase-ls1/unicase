@@ -45,7 +45,7 @@ public class MultipleReferenceDialog extends Dialog {
 		this.oldValue = oldValue;
 		this.project = project;
 		this.type = type;
-		this.modelelement= modelelement;
+		this.modelelement = modelelement;
 	}
 
 	@Override
@@ -68,9 +68,10 @@ public class MultipleReferenceDialog extends Dialog {
 		leftTable.setLayoutData(choiceTableGridData);
 
 		final TableViewer leftViewer = new TableViewer(leftTable);
-		Collection<ModelElement> possibleValues = project.getElementsByClass(type);
-		//JH add access to stub
-		if(possibleValues.contains(modelelement)){
+		Collection<ModelElement> possibleValues = project
+				.getElementsByClass(type);
+		// JH add access to stub
+		if (possibleValues.contains(modelelement)) {
 			possibleValues.remove(modelelement);
 		}
 		for (EObject object : oldValue) {
@@ -78,22 +79,23 @@ public class MultipleReferenceDialog extends Dialog {
 				possibleValues.remove(object);
 			}
 		}
-		//JH Use Contenprovider instead of array and use a ArrayList
-		leftViewer.setLabelProvider(new AdapterFactoryLabelProvider(new ModelItemProviderAdapterFactory()));
+		// JH Use Contenprovider instead of array and use a ArrayList
+		leftViewer.setLabelProvider(new AdapterFactoryLabelProvider(
+				new ModelItemProviderAdapterFactory()));
 		leftViewer.add(possibleValues.toArray());
 
 		Composite buttonArea = toolkit.createComposite(composite);
-		buttonArea.setLayout(new GridLayout(1,false));
+		buttonArea.setLayout(new GridLayout(1, false));
 		Button addButton = toolkit.createButton(buttonArea, "Add", SWT.WRAP);
-		Button removeButton = toolkit.createButton(buttonArea, "Remove", SWT.WRAP);
+		Button removeButton = toolkit.createButton(buttonArea, "Remove",
+				SWT.WRAP);
 
-		rightTable = toolkit.createTable(composite, SWT.MULTI
-				| SWT.BORDER);
+		rightTable = toolkit.createTable(composite, SWT.MULTI | SWT.BORDER);
 		rightTable.setLayoutData(choiceTableGridData);
 		rightViewer = new TableViewer(rightTable);
-		rightViewer.setLabelProvider(new AdapterFactoryLabelProvider(new ModelItemProviderAdapterFactory()));
+		rightViewer.setLabelProvider(new AdapterFactoryLabelProvider(
+				new ModelItemProviderAdapterFactory()));
 		rightViewer.add(oldValue.toArray());
-		
 
 		addButton.addSelectionListener(new SelectionAdapter() {
 
@@ -111,7 +113,7 @@ public class MultipleReferenceDialog extends Dialog {
 			}
 
 		});
-		
+
 		removeButton.addSelectionListener(new SelectionAdapter() {
 
 			@Override
@@ -140,11 +142,11 @@ public class MultipleReferenceDialog extends Dialog {
 	protected void okPressed() {
 		result.removeAll(result);
 		int length = rightTable.getItems().length;
-		for(int i=0;i<length;i++){
-			result.add((EObject)rightViewer.getElementAt(i));
-		};
+		for (int i = 0; i < length; i++) {
+			result.add((EObject) rightViewer.getElementAt(i));
+		}
+		;
 		super.okPressed();
 	}
-	
 
 }

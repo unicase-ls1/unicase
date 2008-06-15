@@ -10,7 +10,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -21,7 +20,6 @@ import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentFactory;
 import org.unicase.emfstore.esmodel.changemanagment.LogMessage;
-import org.unicase.emfstore.esmodel.changemanagment.impl.LogMessageImpl;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;

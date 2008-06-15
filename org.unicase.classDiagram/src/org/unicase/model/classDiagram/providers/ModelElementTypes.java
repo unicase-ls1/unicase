@@ -15,7 +15,6 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.swt.graphics.Image;
-import org.unicase.model.ModelPackage;
 import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.diagram.DiagramPackage;
 

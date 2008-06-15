@@ -26,17 +26,17 @@ import org.unicase.model.classes.Class;
 import org.unicase.model.classes.ClassesFactory;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.model.diagram.edit.parts.ModelEditPartFactory;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
 
-
-public class MEDiagramResource extends ResourceImpl implements Resource , Resource.Factory, Resource.Internal, XMLResource{
+public class MEDiagramResource extends ResourceImpl implements Resource,
+		Resource.Factory, Resource.Internal, XMLResource {
 
 	ResourceSet resourceSet;
+
 	public void delete(Map<?, ?> options) throws IOException {
 		// TODO Auto-generated method stub
 
@@ -50,32 +50,32 @@ public class MEDiagramResource extends ResourceImpl implements Resource , Resour
 	public EList<EObject> getContents() {
 		Class class1 = ClassesFactory.eINSTANCE.createClass();
 		class1.setName("Max");
-		
+
 		MEDiagram meDiagram = DiagramFactory.eINSTANCE.createMEDiagram();
 		meDiagram.getElements().add(class1);
 		Workspace workspace = WorkspaceManager.getInstance()
-		.getCurrentWorkspace();
-//		workspace.getProjectSpaces().get(0).getProject().addModelElement(meDiagram);
-//		workspace.getProjectSpaces().get(0).getProject().addModelElement(fr);
-		//JH: Check why isnt it MEDiagram
-		Diagram diagram = ViewService.createDiagram(
-				meDiagram,"Model",
+				.getCurrentWorkspace();
+		// workspace.getProjectSpaces().get(0).getProject().addModelElement(
+		// meDiagram);
+		// workspace.getProjectSpaces().get(0).getProject().addModelElement(fr);
+		// JH: Check why isnt it MEDiagram
+		Diagram diagram = ViewService.createDiagram(meDiagram, "Model",
 				ModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 		super.getContents().add(diagram);
 		super.getContents().add(meDiagram);
 		super.getContents().add(class1);
-	
-	
-//		meDiagram.setGmfdiagram(diagram);
-		
+
+		// meDiagram.setGmfdiagram(diagram);
+
 		EList<EObject> list = new BasicEList<EObject>();
 		list.add(diagram);
-		ResourceSet resourceSet = 	this.getResourceSet();
-		TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(resourceSet);
-//		TransactionalEditingDomain transactionalEditingDomain = TransactionalEditingDomain.Factory.INSTANCE.getEditingDomain(resourceSet);
-		
-	
-		
+		ResourceSet resourceSet = this.getResourceSet();
+		TransactionalEditingDomain.Factory.INSTANCE
+				.createEditingDomain(resourceSet);
+		// TransactionalEditingDomain transactionalEditingDomain =
+		// TransactionalEditingDomain
+		// .Factory.INSTANCE.getEditingDomain(resourceSet);
+
 		return super.getContents();
 	}
 
@@ -90,7 +90,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource , Resour
 	}
 
 	public ResourceSet getResourceSet() {
-		if (resourceSet==null){
+		if (resourceSet == null) {
 			resourceSet = new ResourceSetImpl();
 		}
 		return resourceSet;
@@ -115,7 +115,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource , Resour
 	}
 
 	public boolean isLoaded() {
-		
+
 		return true;
 	}
 
@@ -134,14 +134,10 @@ public class MEDiagramResource extends ResourceImpl implements Resource , Resour
 
 	}
 
-	
-
 	public void save(Map<?, ?> options) throws IOException {
 		// TODO Auto-generated method stub
 
 	}
-
-	
 
 	public void setModified(boolean isModified) {
 		// TODO Auto-generated method stub
@@ -162,10 +158,6 @@ public class MEDiagramResource extends ResourceImpl implements Resource , Resour
 		// TODO Auto-generated method stub
 
 	}
-
-
-
-	
 
 	public boolean eDeliver() {
 		// TODO Auto-generated method stub
@@ -188,7 +180,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource , Resour
 
 	public void attached(EObject object) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public NotificationChain basicSetResourceSet(ResourceSet resourceSet,
@@ -199,7 +191,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource , Resour
 
 	public void detached(EObject object) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public boolean isLoading() {
@@ -263,18 +255,18 @@ public class MEDiagramResource extends ResourceImpl implements Resource , Resour
 
 	public void load(Node node, Map<?, ?> options) throws IOException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void load(InputSource inputSource, Map<?, ?> options)
 			throws IOException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void save(Writer writer, Map<?, ?> options) throws IOException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public Document save(Document document, Map<?, ?> options,
@@ -285,27 +277,27 @@ public class MEDiagramResource extends ResourceImpl implements Resource , Resour
 
 	public void setDoctypeInfo(String publicId, String systemId) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void setEncoding(String encoding) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void setID(EObject object, String id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void setUseZip(boolean useZip) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void setXMLVersion(String version) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -313,6 +305,5 @@ public class MEDiagramResource extends ResourceImpl implements Resource , Resour
 		// TODO Auto-generated method stub
 		return super.useZip();
 	}
-	
 
 }

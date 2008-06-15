@@ -10,8 +10,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.edit.parts.ClassEditPart;
-import org.unicase.model.diagram.edit.parts.FunctionalRequirement2EditPart;
-import org.unicase.model.diagram.edit.parts.FunctionalRequirementEditPart;
 import org.unicase.model.diagram.edit.parts.MEDiagramEditPart;
 
 /**

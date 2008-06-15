@@ -24,9 +24,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
-
 import org.unicase.ui.meeditor.mecontrols.richtext.util.ColorConverter;
-import org.unicase.ui.meeditor.mecontrols.richtext.widgets.AllActionConstants;
 import org.unicase.ui.meeditor.mecontrols.richtext.widgets.ComposerStatus;
 import org.unicase.ui.meeditor.mecontrols.richtext.widgets.EventConstants;
 import org.unicase.ui.meeditor.mecontrols.richtext.widgets.HtmlComposer;
@@ -39,50 +37,58 @@ import org.unicase.ui.meeditor.mecontrols.richtext.widgets.PropertyConstants;
  */
 public class BackColorAction extends Action implements Listener {
 
-    private HtmlComposer composer = null;
+	private HtmlComposer composer = null;
 
-    public BackColorAction(HtmlComposer composer) {
-        super("", IAction.AS_PUSH_BUTTON); //$NON-NLS-1$
-        setImageDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin("org.unicase.ui.meeditor", //$NON-NLS-1$
-        "tiny_mce/jscripts/tiny_mce/themes/advanced/images/backcolor.gif")); //$NON-NLS-1$
-        this.composer = composer;
-        this.composer.addListener(EventConstants.BACKCOLOR, this);
+	public BackColorAction(HtmlComposer composer) {
+		super("", IAction.AS_PUSH_BUTTON); //$NON-NLS-1$
+		setImageDescriptor(AbstractUIPlugin
+				.imageDescriptorFromPlugin("org.unicase.ui.meeditor", //$NON-NLS-1$
+						"tiny_mce/jscripts/tiny_mce/themes/advanced/images/backcolor.gif")); //$NON-NLS-1$
+		this.composer = composer;
+		this.composer.addListener(EventConstants.BACKCOLOR, this);
 
-    }
+	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.jface.action.Action#run()
+	 */
+	@Override
+	public void run() {
+		ColorDialog colorDialog = new ColorDialog(this.composer.getShell());
+		if (colorDialog.open() != null) {
+			this.composer.execute(JavaScriptCommands.BACKCOLOR(colorDialog
+					.getRGB()));
+		}
 
+	}
 
-    /* (non-Javadoc)
-     * @see org.eclipse.jface.action.Action#run()
-     */
-    @Override
-    public void run() {
-        ColorDialog colorDialog = new ColorDialog(this.composer.getShell());
-        if (colorDialog.open() != null) {
-            this.composer.execute(JavaScriptCommands.BACKCOLOR(colorDialog.getRGB()));
-        }
-        
-    }
-
-
-
-    /* (non-Javadoc)
-     * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.Event)
-     */
-    public void handleEvent(Event event) {
-        if (event.type != EventConstants.ALL) {
-            Properties evtProps = (Properties) event.data;
-            if (evtProps.getProperty(PropertyConstants.VALUE).equals(ComposerStatus.UNDEFINED)) {
-                setImageDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin("org.unicase.ui.meeditor", //$NON-NLS-1$
-                "tiny_mce/jscripts/tiny_mce/themes/advanced/images/backcolor.gif")); //$NON-NLS-1$
-            } else {
-                Image image = new Image(Display.getDefault(), 16, 16);
-                GC gc = new GC(image);
-                gc.setBackground(new Color(null, ColorConverter.convertHexToRgb(evtProps.getProperty(PropertyConstants.VALUE))));
-                gc.fillRectangle(0, 0, 16, 16);
-                gc.dispose();
-                setImageDescriptor(ImageDescriptor.createFromImage(image));
-            }
-        } 
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.
+	 * Event)
+	 */
+	public void handleEvent(Event event) {
+		if (event.type != EventConstants.ALL) {
+			Properties evtProps = (Properties) event.data;
+			if (evtProps.getProperty(PropertyConstants.VALUE).equals(
+					ComposerStatus.UNDEFINED)) {
+				setImageDescriptor(AbstractUIPlugin
+						.imageDescriptorFromPlugin("org.unicase.ui.meeditor", //$NON-NLS-1$
+								"tiny_mce/jscripts/tiny_mce/themes/advanced/images/backcolor.gif")); //$NON-NLS-1$
+			} else {
+				Image image = new Image(Display.getDefault(), 16, 16);
+				GC gc = new GC(image);
+				gc.setBackground(new Color(null, ColorConverter
+						.convertHexToRgb(evtProps
+								.getProperty(PropertyConstants.VALUE))));
+				gc.fillRectangle(0, 0, 16, 16);
+				gc.dispose();
+				setImageDescriptor(ImageDescriptor.createFromImage(image));
+			}
+		}
+	}
 }

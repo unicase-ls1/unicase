@@ -18,39 +18,36 @@ import org.unicase.model.task.TaskFactory;
 
 /**
  * 
- * @author Hodaie
- * This is a prototype implementation of this plug in.
- * This class creates a dummy array of ActionItems to show them in TableView.
- * I a real scenario this class may be initialized with a ModelElement type, 
- * and invoked from another plug-in (e.g. navigator).
+ * @author Hodaie This is a prototype implementation of this plug in. This class
+ *         creates a dummy array of ActionItems to show them in TableView. I a
+ *         real scenario this class may be initialized with a ModelElement type,
+ *         and invoked from another plug-in (e.g. navigator).
  * 
  */
 public class TableView extends ViewPart {
 
-		
 	/**
-	 * This gives the height of table rows. 
+	 * This gives the height of table rows.
 	 */
 	public static final int ROW_HEIGHT = 20;
 
 	private TableViewer viewer;
-	
-	
+
 	/**
 	 * 
 	 */
 	public TableView() {
-		
+
 	}
 
-	
-	/**.
+	/**
+	 * .
 	 * 
 	 * ({@inheritDoc})
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
-		
+
 		viewer = new TableViewer(parent, SWT.V_SCROLL | SWT.H_SCROLL);
 		viewer.setContentProvider(new TableViewContentProvider());
 
@@ -58,22 +55,23 @@ public class TableView extends ViewPart {
 		setColumns(viewer, ai);
 		ActionItem[] ais = createActionItems();
 		viewer.setInput(ais);
-		
-		//FunctionalRequirement fr = ModelFactory.eINSTANCE.createFunctionalRequirement();
-		//setColumns(viewer, fr);
-		//FunctionalRequirement[] frs = createFunctionalRequirements();
-		//viewer.setInput(frs);
-		
+
+		// FunctionalRequirement fr =
+		// ModelFactory.eINSTANCE.createFunctionalRequirement();
+		// setColumns(viewer, fr);
+		// FunctionalRequirement[] frs = createFunctionalRequirements();
+		// viewer.setInput(frs);
+
 	}
 
 	/**
 	 * 
 	 * This method takes a ModelElement and initializes the columns
-	 * (TableViewer's header row) with names of its simple attributes. 
-	 * The boolean attributes are shown at last columns.
+	 * (TableViewer's header row) with names of its simple attributes. The
+	 * boolean attributes are shown at last columns.
 	 * 
-	 * @param table 
-	 * @param modelElement 
+	 * @param table
+	 * @param modelElement
 	 * 
 	 */
 	private void setColumns(final TableViewer table, ModelElement modelElement) {
@@ -90,23 +88,24 @@ public class TableView extends ViewPart {
 		List<IItemPropertyDescriptor> booleanAttributesPropertyDescriptors = new ArrayList<IItemPropertyDescriptor>();
 		for (IItemPropertyDescriptor propertyDescriptor : propertyDescriptors) {
 			if (!propertyDescriptor.isMany(modelElement)) {
-				
+
 				if (((EStructuralFeature) propertyDescriptor
 						.getFeature(modelElement)).getEType()
 						.getInstanceClass().equals(boolean.class)) {
-					
+
 					booleanAttributesPropertyDescriptors
 							.add(propertyDescriptor);
 					continue;
 				}
-				
-				TableViewerColumn column = new TableViewerColumn(table,	SWT.CENTER);
+
+				TableViewerColumn column = new TableViewerColumn(table,
+						SWT.CENTER);
 				column.getColumn().setText(
 						propertyDescriptor.getDisplayName(modelElement));
 				column.getColumn().setWidth(100);
 				column.getColumn().setMoveable(true);
-				column.setLabelProvider(new 
-						TableViewColumnLabelProvider(propertyDescriptor));
+				column.setLabelProvider(new TableViewColumnLabelProvider(
+						propertyDescriptor));
 
 			}
 		}
@@ -117,8 +116,8 @@ public class TableView extends ViewPart {
 					propertyDescriptor.getDisplayName(modelElement));
 			column.getColumn().setWidth(100);
 			column.getColumn().setMoveable(true);
-			column.setLabelProvider(new 
-					TableViewBooleanLabelProvider(table, propertyDescriptor));
+			column.setLabelProvider(new TableViewBooleanLabelProvider(table,
+					propertyDescriptor));
 
 		}
 
@@ -127,10 +126,10 @@ public class TableView extends ViewPart {
 
 	}
 
-
 	/**
-	 * Just for test purpose. 
-	 * This method return a list of dummy ActionItems to be shown in TableView.
+	 * Just for test purpose. This method return a list of dummy ActionItems to
+	 * be shown in TableView.
+	 * 
 	 * @see JavaDoc for TableView class.
 	 * 
 	 * @return ActionItem[]
@@ -141,7 +140,7 @@ public class TableView extends ViewPart {
 			ActionItem ai = TaskFactory.eINSTANCE.createActionItem();
 			ai.setName("ai " + i);
 			ai.setDescription("ai description " + i);
-			ai.setDone((i % 2)== 0);
+			ai.setDone((i % 2) == 0);
 			actionItems[i] = ai;
 
 		}
@@ -150,8 +149,8 @@ public class TableView extends ViewPart {
 
 	}
 
-	/**.
-	 * ({@inheritDoc})
+	/**
+	 * . ({@inheritDoc})
 	 * 
 	 */
 	@Override
@@ -160,31 +159,29 @@ public class TableView extends ViewPart {
 
 	}
 
-	
-//	/**
-//	 * Just for Test. 
-//	 * This method return a list of dummy FunctionalRequirements to be 
-//	 * shown in TableView.
-//	 * @see JavaDoc for TableView class.
-//	 * 
-//	 * @return FunctionalRequirement[]
-//	 */
-//	FunctionalRequirement[] createFunctionalRequirements() {
-//
-//		FunctionalRequirement[] frs = new FunctionalRequirement[3];
-//		for (int i = 0; i < 3; i++) {
-//			FunctionalRequirement fr = ModelFactory.eINSTANCE
-//					.createFunctionalRequirement();
-//			fr.setName("fr " + i);
-//			fr.setDescription("fr description " + i);
-//			fr.setPriority(10);
-//			fr.setReviewed(false);
-//			frs[i] = fr;
-//
-//		}
-//
-//		return frs;
-//	}
+	// /**
+	// * Just for Test.
+	// * This method return a list of dummy FunctionalRequirements to be
+	// * shown in TableView.
+	// * @see JavaDoc for TableView class.
+	// *
+	// * @return FunctionalRequirement[]
+	// */
+	// FunctionalRequirement[] createFunctionalRequirements() {
+	//
+	// FunctionalRequirement[] frs = new FunctionalRequirement[3];
+	// for (int i = 0; i < 3; i++) {
+	// FunctionalRequirement fr = ModelFactory.eINSTANCE
+	// .createFunctionalRequirement();
+	// fr.setName("fr " + i);
+	// fr.setDescription("fr description " + i);
+	// fr.setPriority(10);
+	// fr.setReviewed(false);
+	// frs[i] = fr;
+	//
+	// }
+	//
+	// return frs;
+	// }
 
-	
 }

@@ -19,9 +19,11 @@ import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEMultiLinkControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MESingleLinkControl;
 
 /**
- * Factory for generating {@link MEControl}'s according to a {@link IItemPropertyDescriptor}.
+ * Factory for generating {@link MEControl}'s according to a
+ * {@link IItemPropertyDescriptor}.
+ * 
  * @author shterev
- *
+ * 
  */
 public class ControlFactory {
 	private final EObject modelElement;
@@ -30,9 +32,13 @@ public class ControlFactory {
 
 	/**
 	 * Default constructor.
-	 * @param editingDomain the editing domain
-	 * @param modelElement the model element
-	 * @param toolkit the gui toolkit
+	 * 
+	 * @param editingDomain
+	 *            the editing domain
+	 * @param modelElement
+	 *            the model element
+	 * @param toolkit
+	 *            the gui toolkit
 	 */
 	public ControlFactory(EditingDomain editingDomain, EObject modelElement,
 			FormToolkit toolkit) {
@@ -42,13 +48,18 @@ public class ControlFactory {
 	}
 
 	/**
-	 * Creates a {@link MEControl} according to the {@link IItemPropertyDescriptor}.
-	 * @param itemPropertyDescriptor  the descriptor
+	 * Creates a {@link MEControl} according to the
+	 * {@link IItemPropertyDescriptor}.
+	 * 
+	 * @param itemPropertyDescriptor
+	 *            the descriptor
 	 * @return the {@link MEControl}
 	 */
-	public MEControl createControl(IItemPropertyDescriptor itemPropertyDescriptor) {
+	public MEControl createControl(
+			IItemPropertyDescriptor itemPropertyDescriptor) {
 
-		EStructuralFeature feature = (EStructuralFeature)itemPropertyDescriptor.getFeature(modelElement);
+		EStructuralFeature feature = (EStructuralFeature) itemPropertyDescriptor
+				.getFeature(modelElement);
 		if (feature instanceof EAttribute) {
 
 			if (itemPropertyDescriptor.isMultiLine(modelElement)) {
@@ -68,7 +79,8 @@ public class ControlFactory {
 		if (feature instanceof EReference && feature.getUpperBound() != 1) {
 			EReference reference = (EReference) feature;
 			if (reference.isMany()) {
-				return createMELinkControl((EReference) feature, itemPropertyDescriptor);
+				return createMELinkControl((EReference) feature,
+						itemPropertyDescriptor);
 			}
 		}
 
@@ -83,7 +95,8 @@ public class ControlFactory {
 	}
 
 	private MEControl createMESingleLinkControl(EReference reference) {
-		return new MESingleLinkControl(editingDomain, modelElement, toolkit, reference);
+		return new MESingleLinkControl(editingDomain, modelElement, toolkit,
+				reference);
 	}
 
 	private MEControl createMEDateControl(EAttribute attribute) {
@@ -111,8 +124,10 @@ public class ControlFactory {
 				editingDomain);
 	}
 
-	private MEControl createMELinkControl(EReference reference, IItemPropertyDescriptor itemPropertyDescriptor) {
-		return new MEMultiLinkControl(modelElement, reference, toolkit, editingDomain,itemPropertyDescriptor);
+	private MEControl createMELinkControl(EReference reference,
+			IItemPropertyDescriptor itemPropertyDescriptor) {
+		return new MEMultiLinkControl(modelElement, reference, toolkit,
+				editingDomain, itemPropertyDescriptor);
 	}
 
 }

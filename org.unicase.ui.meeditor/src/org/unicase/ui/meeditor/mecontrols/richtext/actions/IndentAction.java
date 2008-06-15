@@ -14,7 +14,6 @@ package org.unicase.ui.meeditor.mecontrols.richtext.actions;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
-
 import org.unicase.ui.meeditor.mecontrols.richtext.widgets.HtmlComposer;
 import org.unicase.ui.meeditor.mecontrols.richtext.widgets.JavaScriptCommands;
 
@@ -24,24 +23,25 @@ import org.unicase.ui.meeditor.mecontrols.richtext.widgets.JavaScriptCommands;
  * 
  */
 public class IndentAction extends Action {
-    HtmlComposer composer = null;
+	HtmlComposer composer = null;
 
-    public IndentAction(HtmlComposer composer) {
-        super("", IAction.AS_PUSH_BUTTON);
-        setImageDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin("org.unicase.ui.meeditor", "tiny_mce/jscripts/tiny_mce/themes/advanced/images/indent.gif"));
-        this.composer = composer;
-        
-    }
+	public IndentAction(HtmlComposer composer) {
+		super("", IAction.AS_PUSH_BUTTON);
+		setImageDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin(
+				"org.unicase.ui.meeditor",
+				"tiny_mce/jscripts/tiny_mce/themes/advanced/images/indent.gif"));
+		this.composer = composer;
 
+	}
 
-
-    /* (non-Javadoc)
-     * @see org.eclipse.jface.action.Action#run()
-     */
-    @Override
-    public void run() {
-        this.composer.execute(JavaScriptCommands.INDENT);
-    }
-
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.jface.action.Action#run()
+	 */
+	@Override
+	public void run() {
+		this.composer.execute(JavaScriptCommands.INDENT);
+	}
 
 }

@@ -6,7 +6,6 @@
  */
 package org.unicase.emfstore.esmodel.accesscontrol;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '

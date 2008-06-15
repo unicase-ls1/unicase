@@ -24,38 +24,41 @@ import org.eclipse.swt.widgets.Listener;
  */
 class GetHtmlHandler implements Listener {
 
-    String html = null;
+	String html = null;
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.
+	 * Event)
+	 */
+	public void handleEvent(Event event) {
+		Properties evtProps = (Properties) event.data;
+		if (evtProps.getProperty(PropertyConstants.COMMAND).equals(
+				AllActionConstants.GET_HTML)) {
+			this.html = evtProps.getProperty(PropertyConstants.VALUE) == null ? "" : evtProps.getProperty(PropertyConstants.VALUE); //$NON-NLS-1$
 
-    /* (non-Javadoc)
-     * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.Event)
-     */
-    public void handleEvent(Event event) {
-        Properties evtProps = (Properties) event.data;
-        if (evtProps.getProperty(PropertyConstants.COMMAND).equals(AllActionConstants.GET_HTML)) {
-            this.html = evtProps.getProperty(PropertyConstants.VALUE) == null ? "" : evtProps.getProperty(PropertyConstants.VALUE); //$NON-NLS-1$
-            
-        }
-        
-    }
-    
-    public String getHtml() {
-        getDisplay().syncExec(new Runnable() {
-            public void run() {
-                while (GetHtmlHandler.this.html == null) {
-                    // wait
-                }
-            }
-        });
-        return this.html;
-    }
-    
-    
-    private Display getDisplay() {
-        if (Display.getCurrent() != null) {
-            return Display.getCurrent();
-        }
-        return Display.getDefault();
-    }
-    
+		}
+
+	}
+
+	public String getHtml() {
+		getDisplay().syncExec(new Runnable() {
+			public void run() {
+				while (GetHtmlHandler.this.html == null) {
+					// wait
+				}
+			}
+		});
+		return this.html;
+	}
+
+	private Display getDisplay() {
+		if (Display.getCurrent() != null) {
+			return Display.getCurrent();
+		}
+		return Display.getDefault();
+	}
+
 }

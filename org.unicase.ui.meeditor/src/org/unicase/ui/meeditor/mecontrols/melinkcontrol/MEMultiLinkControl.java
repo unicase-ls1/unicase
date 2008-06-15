@@ -30,14 +30,14 @@ import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 
 /**
  * GUI Control for the ME reference multilinks.
+ * 
  * @author helming
- *
+ * 
  */
 public class MEMultiLinkControl extends AbstractMEControl {
 
-	
 	private final EReference eReference;
-	
+
 	private Section section;
 	private Composite composite;
 	private EList<EObject> value;
@@ -48,21 +48,26 @@ public class MEMultiLinkControl extends AbstractMEControl {
 	private IItemPropertyDescriptor descriptor;
 
 	/**
-	 * Default constructor.
-	 * Default constructor.
-	 * @param editingDomain the editing domain
-	 * @param modelElement the ME
-	 * @param toolkit gui toolkit used for rendering
-	 * @param reference the reference link
+	 * Default constructor. Default constructor.
+	 * 
+	 * @param editingDomain
+	 *            the editing domain
+	 * @param modelElement
+	 *            the ME
+	 * @param toolkit
+	 *            gui toolkit used for rendering
+	 * @param reference
+	 *            the reference link
 	 * @param descriptor
 	 */
 	public MEMultiLinkControl(EObject modelElement, EReference reference,
-			FormToolkit toolkit, EditingDomain editingDomain, IItemPropertyDescriptor descriptor) {
+			FormToolkit toolkit, EditingDomain editingDomain,
+			IItemPropertyDescriptor descriptor) {
 		super(editingDomain, modelElement, toolkit);
 		this.eReference = reference;
-		this.descriptor=descriptor;
+		this.descriptor = descriptor;
 		linkControls = new ArrayList<MELinkControl>();
-		
+
 		modelElement.eAdapters().add(new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
@@ -98,18 +103,22 @@ public class MEMultiLinkControl extends AbstractMEControl {
 		editButton.addSelectionListener(new SelectionAdapter() {
 
 			public void widgetSelected(SelectionEvent e) {
-				Class<? extends EObject> clazz = (Class<? extends EObject>) eReference.getEReferenceType().getInstanceClass();
+				Class<? extends EObject> clazz = (Class<? extends EObject>) eReference
+						.getEReferenceType().getInstanceClass();
 				ElementListSelectionDialog dlg = new ElementListSelectionDialog(
-						parent.getShell(), new AdapterFactoryLabelProvider(
-								new	ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
+						parent.getShell(),
+						new AdapterFactoryLabelProvider(
+								new ComposedAdapterFactory(
+										ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
 				// JH: fill only with right elements
-				Collection<ModelElement> allElements = ((ModelElement)modelElement).getProject().getElementsByClass(clazz);
+				Collection<ModelElement> allElements = ((ModelElement) modelElement)
+						.getProject().getElementsByClass(clazz);
 				allElements.remove(modelElement);
 				Object objectList = modelElement.eGet(eReference);
 				EList<EObject> list;
 				if (objectList instanceof EList) {
 					list = (EList<EObject>) objectList;
-					for(EObject ref: list){
+					for (EObject ref : list) {
 						allElements.remove(ref);
 					}
 					dlg.setElements(allElements.toArray());
@@ -149,9 +158,10 @@ public class MEMultiLinkControl extends AbstractMEControl {
 		MELinkControl meControl;
 		for (EObject object : value) {
 			if (object instanceof ModelElement) {
-				
+
 				ModelElement me = (ModelElement) object;
-				meControl= new MELinkControl(editingDomain, me, toolkit, modelElement, eReference);
+				meControl = new MELinkControl(editingDomain, me, toolkit,
+						modelElement, eReference);
 				meControl.createControl(linkArea, style);
 				linkControls.add(meControl);
 			}

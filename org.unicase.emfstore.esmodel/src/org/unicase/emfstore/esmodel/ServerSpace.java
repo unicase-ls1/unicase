@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
-import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '

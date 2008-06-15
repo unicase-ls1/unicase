@@ -17,8 +17,8 @@ package org.unicase.ui.meeditor.mecontrols.richtext.widgets;
  * 
  */
 public interface AllActionConstants {
-    
-    public static final String RESET_ALL = "resetAll";
-    public static final String GET_HTML = "getHTML";
-   
+
+	public static final String RESET_ALL = "resetAll";
+	public static final String GET_HTML = "getHTML";
+
 }

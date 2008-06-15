@@ -14,7 +14,6 @@ package org.unicase.ui.meeditor.mecontrols.richtext.actions;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
-
 import org.unicase.ui.meeditor.mecontrols.richtext.widgets.HtmlComposer;
 import org.unicase.ui.meeditor.mecontrols.richtext.widgets.JavaScriptCommands;
 
@@ -24,27 +23,26 @@ import org.unicase.ui.meeditor.mecontrols.richtext.widgets.JavaScriptCommands;
  */
 public class InsertNonBreakingWhitespace extends Action {
 
-    private HtmlComposer composer = null;
+	private HtmlComposer composer = null;
 
-    public InsertNonBreakingWhitespace(HtmlComposer composer) {
-        super("", IAction.AS_PUSH_BUTTON); //$NON-NLS-1$
-        setImageDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin("org.unicase.ui.meeditor", //$NON-NLS-1$
-        "tiny_mce/jscripts/tiny_mce/plugins/nonbreaking/images/nonbreaking.gif")); //$NON-NLS-1$
-        this.composer = composer;
-       
+	public InsertNonBreakingWhitespace(HtmlComposer composer) {
+		super("", IAction.AS_PUSH_BUTTON); //$NON-NLS-1$
+		setImageDescriptor(AbstractUIPlugin
+				.imageDescriptorFromPlugin("org.unicase.ui.meeditor", //$NON-NLS-1$
+						"tiny_mce/jscripts/tiny_mce/plugins/nonbreaking/images/nonbreaking.gif")); //$NON-NLS-1$
+		this.composer = composer;
 
-    }
+	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.jface.action.Action#run()
+	 */
+	@Override
+	public void run() {
+		this.composer.execute(JavaScriptCommands.INSERT_NBSP);
 
+	}
 
-    /* (non-Javadoc)
-     * @see org.eclipse.jface.action.Action#run()
-     */
-    @Override
-    public void run() {
-        this.composer.execute(JavaScriptCommands.INSERT_NBSP);
-        
-    }
-    
-   
 }

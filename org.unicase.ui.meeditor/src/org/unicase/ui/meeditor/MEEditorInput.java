@@ -7,7 +7,6 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
 import org.unicase.model.ModelElement;
 
-
 public class MEEditorInput implements IEditorInput {
 
 	ModelElement modelElement;

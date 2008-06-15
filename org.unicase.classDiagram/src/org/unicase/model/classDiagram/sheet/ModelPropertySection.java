@@ -56,6 +56,7 @@ public class ModelPropertySection extends AdvancedPropertySection implements
 
 	/**
 	 * Modify/unwrap selection.
+	 * 
 	 * @generated
 	 */
 	protected Object transformSelection(Object selected) {

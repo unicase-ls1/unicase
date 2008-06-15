@@ -11,45 +11,46 @@ import org.unicase.ui.meeditor.MEEditorInput;
 
 /**
  * 
- * @author Hodaie
- *   This handler handles openModelEelement command.
- *   This handler is to be executed indirectly using IHandlerService.executeCommand()
- *   method. The Command itself does not have any UI representation.    
- *
+ * @author Hodaie This handler handles openModelEelement command. This handler
+ *         is to be executed indirectly using IHandlerService.executeCommand()
+ *         method. The Command itself does not have any UI representation.
+ * 
  */
-public class OpenModelElementHandler extends AbstractHandler  {
-	
-	/**.
-	 * ({@inheritDoc})
+public class OpenModelElementHandler extends AbstractHandler {
+
+	/**
+	 * . ({@inheritDoc})
 	 * 
-	 * ZH: We added this package and command to meeditor plug-in,
-	 * 	   we needed to open a model element from model.edit plug-in
-	 * 	   and to avoid circular references we had to execute 
-	 * 	   this command indirectly using IHandlerServise.excuteCommand
+	 * ZH: We added this package and command to meeditor plug-in, we needed to
+	 * open a model element from model.edit plug-in and to avoid circular
+	 * references we had to execute this command indirectly using
+	 * IHandlerServise.excuteCommand
 	 * 
-	 * @see //org.unicase.model.edit.commands.AnnotateActionItemHandler#openActionItem()
+	 * @see //org.unicase.model.edit.commands.AnnotateActionItemHandler#
+	 *      openActionItem()
 	 */
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		
-		//ZH: We get the required model element Through activeModelelemet variable. 
-		//ZH: This variable is already set, in the method which calls execute
-		//ZH: this command. 
+
+		// ZH: We get the required model element Through activeModelelemet
+		// variable.
+		// ZH: This variable is already set, in the method which calls execute
+		// ZH: this command.
 		Object o = HandlerUtil.getVariableChecked(event, "activeModelelement");
 		ModelElement me = (ModelElement) o;
-		
-		if (o !=null){
+
+		if (o != null) {
 			MEEditorInput input = new MEEditorInput(me);
 			try {
-					PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-							.getActivePage().openEditor(input,
-									"org.unicase.ui.meeditor", true);
-				} catch (PartInitException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+						.getActivePage().openEditor(input,
+								"org.unicase.ui.meeditor", true);
+			} catch (PartInitException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		
+
 		return null;
 	}
 

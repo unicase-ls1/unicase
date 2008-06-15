@@ -21,8 +21,6 @@ import org.eclipse.ui.IMemento;
 import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 import org.eclipse.ui.navigator.ICommonContentProvider;
 import org.unicase.model.diagram.edit.parts.ClassEditPart;
-import org.unicase.model.diagram.edit.parts.FunctionalRequirement2EditPart;
-import org.unicase.model.diagram.edit.parts.FunctionalRequirementEditPart;
 import org.unicase.model.diagram.edit.parts.MEDiagramEditPart;
 import org.unicase.model.diagram.part.ModelVisualIDRegistry;
 

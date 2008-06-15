@@ -18,8 +18,6 @@ import org.eclipse.jface.action.IAction;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
-
-import org.unicase.ui.meeditor.mecontrols.richtext.widgets.AllActionConstants;
 import org.unicase.ui.meeditor.mecontrols.richtext.widgets.ComposerStatus;
 import org.unicase.ui.meeditor.mecontrols.richtext.widgets.EventConstants;
 import org.unicase.ui.meeditor.mecontrols.richtext.widgets.HtmlComposer;
@@ -33,41 +31,48 @@ import org.unicase.ui.meeditor.mecontrols.richtext.widgets.PropertyConstants;
  */
 public class SelectFontAction extends Action implements Listener {
 
-    private HtmlComposer composer = null;
-    private Combo target;
+	private HtmlComposer composer = null;
+	private Combo target;
 
-    public SelectFontAction(HtmlComposer composer, Combo target) {
-        super("", IAction.AS_PUSH_BUTTON);
-        this.composer = composer;
-        this.composer.addListener(EventConstants.FONT, this);
-        this.target = target;
-    }
+	public SelectFontAction(HtmlComposer composer, Combo target) {
+		super("", IAction.AS_PUSH_BUTTON);
+		this.composer = composer;
+		this.composer.addListener(EventConstants.FONT, this);
+		this.target = target;
+	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.jface.action.Action#run()
+	 */
+	@Override
+	public void run() {
+		this.composer.execute(JavaScriptCommands.FONT(this.target.getText()));
+	}
 
-
-    /* (non-Javadoc)
-     * @see org.eclipse.jface.action.Action#run()
-     */
-    @Override
-    public void run() {
-        this.composer.execute(JavaScriptCommands.FONT(this.target.getText()));
-    }
-
-    /* (non-Javadoc)
-     * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.Event)
-     */
-    public void handleEvent(Event event) {
-        Properties evtProps = (Properties) event.data;
-        if (event.type != EventConstants.ALL && !ComposerStatus.UNDEFINED.equals(evtProps.getProperty(PropertyConstants.VALUE))) {
-            for (int i = 0,n = this.target.getItems().length; i < n; i++) {
-                if (this.target.getItem(i).equals(evtProps.getProperty(PropertyConstants.VALUE))) {
-                    this.target.select(i);
-                    break;
-                }
-            }
-        } else {
-            this.target.select(0);
-        }
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.
+	 * Event)
+	 */
+	public void handleEvent(Event event) {
+		Properties evtProps = (Properties) event.data;
+		if (event.type != EventConstants.ALL
+				&& !ComposerStatus.UNDEFINED.equals(evtProps
+						.getProperty(PropertyConstants.VALUE))) {
+			for (int i = 0, n = this.target.getItems().length; i < n; i++) {
+				if (this.target.getItem(i).equals(
+						evtProps.getProperty(PropertyConstants.VALUE))) {
+					this.target.select(i);
+					break;
+				}
+			}
+		} else {
+			this.target.select(0);
+		}
+	}
 
 }

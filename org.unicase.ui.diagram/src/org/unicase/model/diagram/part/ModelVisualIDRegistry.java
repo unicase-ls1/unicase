@@ -10,15 +10,12 @@ import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.edit.parts.ClassEditPart;
 import org.unicase.model.diagram.edit.parts.ClassNameEditPart;
-import org.unicase.model.diagram.edit.parts.FunctionalRequirement2EditPart;
-import org.unicase.model.diagram.edit.parts.FunctionalRequirementEditPart;
-import org.unicase.model.diagram.edit.parts.FunctionalRequirementNameEditPart;
 import org.unicase.model.diagram.edit.parts.MEDiagramEditPart;
 
 /**
  * This registry is used to determine which type of visual object should be
- * created for the corresponding Diagram, Node, ChildNode or Link represented
- * by a domain model object.
+ * created for the corresponding Diagram, Node, ChildNode or Link represented by
+ * a domain model object.
  * 
  * @generated
  */
