@@ -9,15 +9,11 @@ package org.unicase.model.change.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.MergingSolution;
 import org.unicase.model.change.ModelChangePackage;
-
 import org.unicase.model.rationale.impl.SolutionImpl;
 
 /**

@@ -7,10 +7,8 @@
 package org.unicase.model.diagram;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.unicase.model.ModelElement;
-import org.unicase.model.task.ActionItem;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '

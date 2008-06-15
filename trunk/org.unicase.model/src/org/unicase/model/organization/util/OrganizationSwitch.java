@@ -10,11 +10,13 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
 import org.unicase.model.ModelElement;
-
 import org.unicase.model.UniqueIdentifier;
-import org.unicase.model.organization.*;
+import org.unicase.model.organization.Group;
+import org.unicase.model.organization.OrgUnit;
+import org.unicase.model.organization.OrgUnitId;
+import org.unicase.model.organization.OrganizationPackage;
+import org.unicase.model.organization.User;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance

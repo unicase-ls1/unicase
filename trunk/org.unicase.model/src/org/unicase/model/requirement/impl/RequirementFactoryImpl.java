@@ -9,12 +9,17 @@ package org.unicase.model.requirement.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.unicase.model.requirement.*;
+import org.unicase.model.requirement.Actor;
+import org.unicase.model.requirement.ActorInstance;
+import org.unicase.model.requirement.FunctionalRequirement;
+import org.unicase.model.requirement.NonFunctionalRequirement;
+import org.unicase.model.requirement.RequirementFactory;
+import org.unicase.model.requirement.RequirementPackage;
+import org.unicase.model.requirement.Scenario;
+import org.unicase.model.requirement.Step;
+import org.unicase.model.requirement.UseCase;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--

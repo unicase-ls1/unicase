@@ -7,10 +7,7 @@
 package org.unicase.model.task;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.unicase.model.Annotation;
-import org.unicase.model.ModelElement;
-
 import org.unicase.model.change.ModelChangePackage;
 
 /**

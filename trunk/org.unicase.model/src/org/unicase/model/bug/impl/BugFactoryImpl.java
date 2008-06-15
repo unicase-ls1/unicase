@@ -10,12 +10,15 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.unicase.model.bug.*;
+import org.unicase.model.bug.BugFactory;
+import org.unicase.model.bug.BugPackage;
+import org.unicase.model.bug.BugReport;
+import org.unicase.model.bug.BugResolution;
+import org.unicase.model.bug.BugStatus;
+import org.unicase.model.bug.ResolutionType;
+import org.unicase.model.bug.Severity;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--

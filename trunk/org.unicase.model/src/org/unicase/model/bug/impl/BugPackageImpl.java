@@ -11,12 +11,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.model.ModelPackage;
-
 import org.unicase.model.bug.BugFactory;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.bug.BugReport;
@@ -24,43 +21,24 @@ import org.unicase.model.bug.BugResolution;
 import org.unicase.model.bug.BugStatus;
 import org.unicase.model.bug.ResolutionType;
 import org.unicase.model.bug.Severity;
-
 import org.unicase.model.change.ChangePackage;
-
 import org.unicase.model.change.impl.ChangePackageImpl;
-
 import org.unicase.model.classes.ClassesPackage;
-
 import org.unicase.model.classes.impl.ClassesPackageImpl;
-
 import org.unicase.model.component.ComponentPackage;
-
 import org.unicase.model.component.impl.ComponentPackageImpl;
-
 import org.unicase.model.diagram.DiagramPackage;
-
 import org.unicase.model.diagram.impl.DiagramPackageImpl;
-
 import org.unicase.model.document.DocumentPackage;
-
 import org.unicase.model.document.impl.DocumentPackageImpl;
-
 import org.unicase.model.impl.ModelPackageImpl;
-
 import org.unicase.model.organization.OrganizationPackage;
-
 import org.unicase.model.organization.impl.OrganizationPackageImpl;
-
 import org.unicase.model.rationale.RationalePackage;
-
 import org.unicase.model.rationale.impl.RationalePackageImpl;
-
 import org.unicase.model.requirement.RequirementPackage;
-
 import org.unicase.model.requirement.impl.RequirementPackageImpl;
-
 import org.unicase.model.task.TaskPackage;
-
 import org.unicase.model.task.impl.TaskPackageImpl;
 
 /**

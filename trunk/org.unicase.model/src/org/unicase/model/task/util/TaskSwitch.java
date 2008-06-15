@@ -10,11 +10,12 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
-
-import org.unicase.model.task.*;
+import org.unicase.model.task.ActionItem;
+import org.unicase.model.task.TaskPackage;
+import org.unicase.model.task.WorkItem;
+import org.unicase.model.task.WorkPackage;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance

@@ -7,11 +7,9 @@
 package org.unicase.model.rationale;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.unicase.model.Annotation;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
-import org.unicase.model.ModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '

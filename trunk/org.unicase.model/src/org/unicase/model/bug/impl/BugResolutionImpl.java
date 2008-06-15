@@ -7,15 +7,11 @@
 package org.unicase.model.bug.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.bug.BugResolution;
 import org.unicase.model.bug.ResolutionType;
-
 import org.unicase.model.impl.ModelElementImpl;
 
 /**

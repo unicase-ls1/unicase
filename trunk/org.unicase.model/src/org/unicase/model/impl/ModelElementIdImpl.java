@@ -7,7 +7,6 @@
 package org.unicase.model.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelPackage;
 

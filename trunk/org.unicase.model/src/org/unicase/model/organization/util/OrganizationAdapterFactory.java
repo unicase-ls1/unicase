@@ -8,15 +8,15 @@ package org.unicase.model.organization.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.unicase.model.ModelElement;
-
 import org.unicase.model.UniqueIdentifier;
-import org.unicase.model.organization.*;
+import org.unicase.model.organization.Group;
+import org.unicase.model.organization.OrgUnit;
+import org.unicase.model.organization.OrgUnitId;
+import org.unicase.model.organization.OrganizationPackage;
+import org.unicase.model.organization.User;
 
 /**
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides

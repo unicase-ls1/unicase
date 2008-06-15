@@ -10,11 +10,15 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
-
-import org.unicase.model.rationale.*;
+import org.unicase.model.rationale.Assessment;
+import org.unicase.model.rationale.Comment;
+import org.unicase.model.rationale.Criterion;
+import org.unicase.model.rationale.Issue;
+import org.unicase.model.rationale.Proposal;
+import org.unicase.model.rationale.RationalePackage;
+import org.unicase.model.rationale.Solution;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance

@@ -9,7 +9,6 @@ package org.unicase.model.component;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.unicase.model.ModelPackage;
 
 /**

@@ -9,12 +9,11 @@ package org.unicase.model.diagram.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.unicase.model.diagram.*;
+import org.unicase.model.diagram.DiagramFactory;
+import org.unicase.model.diagram.DiagramPackage;
+import org.unicase.model.diagram.MEDiagram;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--

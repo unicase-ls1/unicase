@@ -11,13 +11,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.unicase.model.*;
-import org.unicase.model.document.CompositeSection;
-import org.unicase.model.document.LeafSection;
-import org.unicase.model.document.impl.CompositeSectionImpl;
-import org.unicase.model.document.impl.LeafSectionImpl;
-import org.unicase.model.requirement.FunctionalRequirement;
-import org.unicase.model.requirement.impl.FunctionalRequirementImpl;
+import org.unicase.model.Annotation;
+import org.unicase.model.ModelElementId;
+import org.unicase.model.ModelFactory;
+import org.unicase.model.ModelPackage;
+import org.unicase.model.Project;
+import org.unicase.model.ReaderInfo;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
