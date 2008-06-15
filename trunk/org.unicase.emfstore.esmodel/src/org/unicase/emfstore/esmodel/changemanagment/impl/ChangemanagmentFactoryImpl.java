@@ -1,5 +1,5 @@
 /**
- * <copyright>
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * </copyright>
  *
  * $Id$
@@ -24,35 +24,36 @@ import org.unicase.emfstore.esmodel.changemanagment.TagVersionSpec;
 import org.unicase.emfstore.esmodel.changemanagment.Version;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Factory</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
+ * end-user-doc -->
+ * 
  * @generated
  */
-public class ChangemanagmentFactoryImpl extends EFactoryImpl implements ChangemanagmentFactory {
+public class ChangemanagmentFactoryImpl extends EFactoryImpl implements
+		ChangemanagmentFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static ChangemanagmentFactory init() {
 		try {
-			ChangemanagmentFactory theChangemanagmentFactory = (ChangemanagmentFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/esmodel/changemanagment"); 
+			ChangemanagmentFactory theChangemanagmentFactory = (ChangemanagmentFactory) EPackage.Registry.INSTANCE
+					.getEFactory("http://unicase.org/esmodel/changemanagment");
 			if (theChangemanagmentFactory != null) {
 				return theChangemanagmentFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new ChangemanagmentFactoryImpl();
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ChangemanagmentFactoryImpl() {
@@ -60,29 +61,38 @@ public class ChangemanagmentFactoryImpl extends EFactoryImpl implements Changema
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case ChangemanagmentPackage.TAG_VERSION_SPEC: return createTagVersionSpec();
-			case ChangemanagmentPackage.DATE_VERSION_SPEC: return createDateVersionSpec();
-			case ChangemanagmentPackage.PRIMARY_VERSION_SPEC: return createPrimaryVersionSpec();
-			case ChangemanagmentPackage.LOG_MESSAGE: return createLogMessage();
-			case ChangemanagmentPackage.CHANGE_PACKAGE: return createChangePackage();
-			case ChangemanagmentPackage.HISTORY_INFO: return createHistoryInfo();
-			case ChangemanagmentPackage.VERSION: return createVersion();
-			case ChangemanagmentPackage.HEAD_VERSION_SPEC: return createHeadVersionSpec();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case ChangemanagmentPackage.TAG_VERSION_SPEC:
+			return createTagVersionSpec();
+		case ChangemanagmentPackage.DATE_VERSION_SPEC:
+			return createDateVersionSpec();
+		case ChangemanagmentPackage.PRIMARY_VERSION_SPEC:
+			return createPrimaryVersionSpec();
+		case ChangemanagmentPackage.LOG_MESSAGE:
+			return createLogMessage();
+		case ChangemanagmentPackage.CHANGE_PACKAGE:
+			return createChangePackage();
+		case ChangemanagmentPackage.HISTORY_INFO:
+			return createHistoryInfo();
+		case ChangemanagmentPackage.VERSION:
+			return createVersion();
+		case ChangemanagmentPackage.HEAD_VERSION_SPEC:
+			return createHeadVersionSpec();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TagVersionSpec createTagVersionSpec() {
@@ -91,8 +101,8 @@ public class ChangemanagmentFactoryImpl extends EFactoryImpl implements Changema
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DateVersionSpec createDateVersionSpec() {
@@ -101,8 +111,8 @@ public class ChangemanagmentFactoryImpl extends EFactoryImpl implements Changema
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec createPrimaryVersionSpec() {
@@ -111,8 +121,8 @@ public class ChangemanagmentFactoryImpl extends EFactoryImpl implements Changema
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public LogMessage createLogMessage() {
@@ -121,8 +131,8 @@ public class ChangemanagmentFactoryImpl extends EFactoryImpl implements Changema
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ChangePackage createChangePackage() {
@@ -131,8 +141,8 @@ public class ChangemanagmentFactoryImpl extends EFactoryImpl implements Changema
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public HistoryInfo createHistoryInfo() {
@@ -141,8 +151,8 @@ public class ChangemanagmentFactoryImpl extends EFactoryImpl implements Changema
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Version createVersion() {
@@ -151,8 +161,8 @@ public class ChangemanagmentFactoryImpl extends EFactoryImpl implements Changema
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public HeadVersionSpec createHeadVersionSpec() {
@@ -161,17 +171,17 @@ public class ChangemanagmentFactoryImpl extends EFactoryImpl implements Changema
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ChangemanagmentPackage getChangemanagmentPackage() {
-		return (ChangemanagmentPackage)getEPackage();
+		return (ChangemanagmentPackage) getEPackage();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
@@ -180,4 +190,4 @@ public class ChangemanagmentFactoryImpl extends EFactoryImpl implements Changema
 		return ChangemanagmentPackage.eINSTANCE;
 	}
 
-} //ChangemanagmentFactoryImpl
+} // ChangemanagmentFactoryImpl

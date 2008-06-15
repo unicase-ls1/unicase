@@ -1,5 +1,5 @@
 /**
- * <copyright>
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * </copyright>
  *
  * $Id$
@@ -14,23 +14,25 @@ import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentPackage;
 import org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Primary Version Spec</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>Primary Version Spec</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.changemanagment.impl.PrimaryVersionSpecImpl#getIdentifier <em>Identifier</em>}</li>
+ * <li>
+ * {@link org.unicase.emfstore.esmodel.changemanagment.impl.PrimaryVersionSpecImpl#getIdentifier
+ * <em>Identifier</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
-public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersionSpec {
+public class PrimaryVersionSpecImpl extends EObjectImpl implements
+		PrimaryVersionSpec {
 	/**
-	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -38,9 +40,9 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersio
 	protected static final int IDENTIFIER_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -48,8 +50,8 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersio
 	protected int identifier = IDENTIFIER_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected PrimaryVersionSpecImpl() {
@@ -57,8 +59,8 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -67,8 +69,8 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getIdentifier() {
@@ -76,83 +78,86 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setIdentifier(int newIdentifier) {
 		int oldIdentifier = identifier;
 		identifier = newIdentifier;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ChangemanagmentPackage.PRIMARY_VERSION_SPEC__IDENTIFIER, oldIdentifier, identifier));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ChangemanagmentPackage.PRIMARY_VERSION_SPEC__IDENTIFIER,
+					oldIdentifier, identifier));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ChangemanagmentPackage.PRIMARY_VERSION_SPEC__IDENTIFIER:
-				return new Integer(getIdentifier());
+		case ChangemanagmentPackage.PRIMARY_VERSION_SPEC__IDENTIFIER:
+			return new Integer(getIdentifier());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ChangemanagmentPackage.PRIMARY_VERSION_SPEC__IDENTIFIER:
-				setIdentifier(((Integer)newValue).intValue());
-				return;
+		case ChangemanagmentPackage.PRIMARY_VERSION_SPEC__IDENTIFIER:
+			setIdentifier(((Integer) newValue).intValue());
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ChangemanagmentPackage.PRIMARY_VERSION_SPEC__IDENTIFIER:
-				setIdentifier(IDENTIFIER_EDEFAULT);
-				return;
+		case ChangemanagmentPackage.PRIMARY_VERSION_SPEC__IDENTIFIER:
+			setIdentifier(IDENTIFIER_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ChangemanagmentPackage.PRIMARY_VERSION_SPEC__IDENTIFIER:
-				return identifier != IDENTIFIER_EDEFAULT;
+		case ChangemanagmentPackage.PRIMARY_VERSION_SPEC__IDENTIFIER:
+			return identifier != IDENTIFIER_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (identifier: ");
@@ -161,4 +166,4 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersio
 		return result.toString();
 	}
 
-} //PrimaryVersionSpecImpl
+} // PrimaryVersionSpecImpl

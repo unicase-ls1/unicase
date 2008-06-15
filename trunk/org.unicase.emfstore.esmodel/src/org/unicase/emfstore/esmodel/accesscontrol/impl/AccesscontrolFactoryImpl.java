@@ -1,5 +1,5 @@
 /**
- * <copyright>
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * </copyright>
  *
  * $Id$
@@ -20,35 +20,36 @@ import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Factory</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
+ * end-user-doc -->
+ * 
  * @generated
  */
-public class AccesscontrolFactoryImpl extends EFactoryImpl implements AccesscontrolFactory {
+public class AccesscontrolFactoryImpl extends EFactoryImpl implements
+		AccesscontrolFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static AccesscontrolFactory init() {
 		try {
-			AccesscontrolFactory theAccesscontrolFactory = (AccesscontrolFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/esmodel/accesscontrol"); 
+			AccesscontrolFactory theAccesscontrolFactory = (AccesscontrolFactory) EPackage.Registry.INSTANCE
+					.getEFactory("http://unicase.org/esmodel/accesscontrol");
 			if (theAccesscontrolFactory != null) {
 				return theAccesscontrolFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new AccesscontrolFactoryImpl();
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AccesscontrolFactoryImpl() {
@@ -56,25 +57,30 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements Accesscont
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case AccesscontrolPackage.AC_USER: return createACUser();
-			case AccesscontrolPackage.AC_ORG_UNIT: return createACOrgUnit();
-			case AccesscontrolPackage.AC_GROUP: return createACGroup();
-			case AccesscontrolPackage.AC_ORG_UNIT_ID: return createACOrgUnitId();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case AccesscontrolPackage.AC_USER:
+			return createACUser();
+		case AccesscontrolPackage.AC_ORG_UNIT:
+			return createACOrgUnit();
+		case AccesscontrolPackage.AC_GROUP:
+			return createACGroup();
+		case AccesscontrolPackage.AC_ORG_UNIT_ID:
+			return createACOrgUnitId();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ACUser createACUser() {
@@ -83,8 +89,8 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements Accesscont
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ACOrgUnit createACOrgUnit() {
@@ -93,8 +99,8 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements Accesscont
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ACGroup createACGroup() {
@@ -103,8 +109,8 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements Accesscont
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ACOrgUnitId createACOrgUnitId() {
@@ -113,17 +119,17 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements Accesscont
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AccesscontrolPackage getAccesscontrolPackage() {
-		return (AccesscontrolPackage)getEPackage();
+		return (AccesscontrolPackage) getEPackage();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
@@ -132,4 +138,4 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements Accesscont
 		return AccesscontrolPackage.eINSTANCE;
 	}
 
-} //AccesscontrolFactoryImpl
+} // AccesscontrolFactoryImpl

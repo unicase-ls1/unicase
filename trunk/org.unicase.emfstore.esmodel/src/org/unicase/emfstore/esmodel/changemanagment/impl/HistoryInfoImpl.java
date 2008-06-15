@@ -1,5 +1,5 @@
 /**
- * <copyright>
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * </copyright>
  *
  * $Id$
@@ -17,24 +17,27 @@ import org.unicase.emfstore.esmodel.changemanagment.LogMessage;
 import org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>History Info</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>History Info</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.changemanagment.impl.HistoryInfoImpl#getPrimerySpec <em>Primery Spec</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.changemanagment.impl.HistoryInfoImpl#getLogMessage <em>Log Message</em>}</li>
+ * <li>
+ * {@link org.unicase.emfstore.esmodel.changemanagment.impl.HistoryInfoImpl#getPrimerySpec
+ * <em>Primery Spec</em>}</li>
+ * <li>
+ * {@link org.unicase.emfstore.esmodel.changemanagment.impl.HistoryInfoImpl#getLogMessage
+ * <em>Log Message</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 	/**
-	 * The cached value of the '{@link #getPrimerySpec() <em>Primery Spec</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getPrimerySpec() <em>Primery Spec</em>}'
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getPrimerySpec()
 	 * @generated
 	 * @ordered
@@ -42,9 +45,9 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 	protected PrimaryVersionSpec primerySpec;
 
 	/**
-	 * The cached value of the '{@link #getLogMessage() <em>Log Message</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getLogMessage() <em>Log Message</em>}'
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getLogMessage()
 	 * @generated
 	 * @ordered
@@ -52,8 +55,8 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 	protected LogMessage logMessage;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected HistoryInfoImpl() {
@@ -61,8 +64,8 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -71,25 +74,27 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec getPrimerySpec() {
 		if (primerySpec != null && primerySpec.eIsProxy()) {
-			InternalEObject oldPrimerySpec = (InternalEObject)primerySpec;
-			primerySpec = (PrimaryVersionSpec)eResolveProxy(oldPrimerySpec);
+			InternalEObject oldPrimerySpec = (InternalEObject) primerySpec;
+			primerySpec = (PrimaryVersionSpec) eResolveProxy(oldPrimerySpec);
 			if (primerySpec != oldPrimerySpec) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ChangemanagmentPackage.HISTORY_INFO__PRIMERY_SPEC, oldPrimerySpec, primerySpec));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							ChangemanagmentPackage.HISTORY_INFO__PRIMERY_SPEC,
+							oldPrimerySpec, primerySpec));
 			}
 		}
 		return primerySpec;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec basicGetPrimerySpec() {
@@ -97,37 +102,41 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setPrimerySpec(PrimaryVersionSpec newPrimerySpec) {
 		PrimaryVersionSpec oldPrimerySpec = primerySpec;
 		primerySpec = newPrimerySpec;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ChangemanagmentPackage.HISTORY_INFO__PRIMERY_SPEC, oldPrimerySpec, primerySpec));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ChangemanagmentPackage.HISTORY_INFO__PRIMERY_SPEC,
+					oldPrimerySpec, primerySpec));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public LogMessage getLogMessage() {
 		if (logMessage != null && logMessage.eIsProxy()) {
-			InternalEObject oldLogMessage = (InternalEObject)logMessage;
-			logMessage = (LogMessage)eResolveProxy(oldLogMessage);
+			InternalEObject oldLogMessage = (InternalEObject) logMessage;
+			logMessage = (LogMessage) eResolveProxy(oldLogMessage);
 			if (logMessage != oldLogMessage) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ChangemanagmentPackage.HISTORY_INFO__LOG_MESSAGE, oldLogMessage, logMessage));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							ChangemanagmentPackage.HISTORY_INFO__LOG_MESSAGE,
+							oldLogMessage, logMessage));
 			}
 		}
 		return logMessage;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public LogMessage basicGetLogMessage() {
@@ -135,85 +144,89 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setLogMessage(LogMessage newLogMessage) {
 		LogMessage oldLogMessage = logMessage;
 		logMessage = newLogMessage;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ChangemanagmentPackage.HISTORY_INFO__LOG_MESSAGE, oldLogMessage, logMessage));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ChangemanagmentPackage.HISTORY_INFO__LOG_MESSAGE,
+					oldLogMessage, logMessage));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ChangemanagmentPackage.HISTORY_INFO__PRIMERY_SPEC:
-				if (resolve) return getPrimerySpec();
-				return basicGetPrimerySpec();
-			case ChangemanagmentPackage.HISTORY_INFO__LOG_MESSAGE:
-				if (resolve) return getLogMessage();
-				return basicGetLogMessage();
+		case ChangemanagmentPackage.HISTORY_INFO__PRIMERY_SPEC:
+			if (resolve)
+				return getPrimerySpec();
+			return basicGetPrimerySpec();
+		case ChangemanagmentPackage.HISTORY_INFO__LOG_MESSAGE:
+			if (resolve)
+				return getLogMessage();
+			return basicGetLogMessage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ChangemanagmentPackage.HISTORY_INFO__PRIMERY_SPEC:
-				setPrimerySpec((PrimaryVersionSpec)newValue);
-				return;
-			case ChangemanagmentPackage.HISTORY_INFO__LOG_MESSAGE:
-				setLogMessage((LogMessage)newValue);
-				return;
+		case ChangemanagmentPackage.HISTORY_INFO__PRIMERY_SPEC:
+			setPrimerySpec((PrimaryVersionSpec) newValue);
+			return;
+		case ChangemanagmentPackage.HISTORY_INFO__LOG_MESSAGE:
+			setLogMessage((LogMessage) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ChangemanagmentPackage.HISTORY_INFO__PRIMERY_SPEC:
-				setPrimerySpec((PrimaryVersionSpec)null);
-				return;
-			case ChangemanagmentPackage.HISTORY_INFO__LOG_MESSAGE:
-				setLogMessage((LogMessage)null);
-				return;
+		case ChangemanagmentPackage.HISTORY_INFO__PRIMERY_SPEC:
+			setPrimerySpec((PrimaryVersionSpec) null);
+			return;
+		case ChangemanagmentPackage.HISTORY_INFO__LOG_MESSAGE:
+			setLogMessage((LogMessage) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ChangemanagmentPackage.HISTORY_INFO__PRIMERY_SPEC:
-				return primerySpec != null;
-			case ChangemanagmentPackage.HISTORY_INFO__LOG_MESSAGE:
-				return logMessage != null;
+		case ChangemanagmentPackage.HISTORY_INFO__PRIMERY_SPEC:
+			return primerySpec != null;
+		case ChangemanagmentPackage.HISTORY_INFO__LOG_MESSAGE:
+			return logMessage != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //HistoryInfoImpl
+} // HistoryInfoImpl

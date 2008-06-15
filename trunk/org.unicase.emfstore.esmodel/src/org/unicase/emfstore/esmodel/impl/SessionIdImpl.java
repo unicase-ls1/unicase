@@ -1,5 +1,5 @@
 /**
- * <copyright>
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * </copyright>
  *
  * $Id$
@@ -12,18 +12,17 @@ import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.model.impl.UniqueIdentifierImpl;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Session Id</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>Session Id</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class SessionIdImpl extends UniqueIdentifierImpl implements SessionId {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected SessionIdImpl() {
@@ -31,8 +30,8 @@ public class SessionIdImpl extends UniqueIdentifierImpl implements SessionId {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -40,4 +39,4 @@ public class SessionIdImpl extends UniqueIdentifierImpl implements SessionId {
 		return EsmodelPackage.Literals.SESSION_ID;
 	}
 
-} //SessionIdImpl
+} // SessionIdImpl

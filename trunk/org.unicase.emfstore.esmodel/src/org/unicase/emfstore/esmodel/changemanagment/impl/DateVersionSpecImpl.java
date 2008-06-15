@@ -1,5 +1,5 @@
 /**
- * <copyright>
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * </copyright>
  *
  * $Id$
@@ -16,23 +16,24 @@ import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentPackage;
 import org.unicase.emfstore.esmodel.changemanagment.DateVersionSpec;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Date Version Spec</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>Date Version Spec</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.changemanagment.impl.DateVersionSpecImpl#getDate <em>Date</em>}</li>
+ * <li>
+ * {@link org.unicase.emfstore.esmodel.changemanagment.impl.DateVersionSpecImpl#getDate
+ * <em>Date</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class DateVersionSpecImpl extends EObjectImpl implements DateVersionSpec {
 	/**
 	 * The default value of the '{@link #getDate() <em>Date</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDate()
 	 * @generated
 	 * @ordered
@@ -41,8 +42,8 @@ public class DateVersionSpecImpl extends EObjectImpl implements DateVersionSpec 
 
 	/**
 	 * The cached value of the '{@link #getDate() <em>Date</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDate()
 	 * @generated
 	 * @ordered
@@ -50,8 +51,8 @@ public class DateVersionSpecImpl extends EObjectImpl implements DateVersionSpec 
 	protected Date date = DATE_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DateVersionSpecImpl() {
@@ -59,8 +60,8 @@ public class DateVersionSpecImpl extends EObjectImpl implements DateVersionSpec 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -69,8 +70,8 @@ public class DateVersionSpecImpl extends EObjectImpl implements DateVersionSpec 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Date getDate() {
@@ -78,83 +79,87 @@ public class DateVersionSpecImpl extends EObjectImpl implements DateVersionSpec 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDate(Date newDate) {
 		Date oldDate = date;
 		date = newDate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ChangemanagmentPackage.DATE_VERSION_SPEC__DATE, oldDate, date));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ChangemanagmentPackage.DATE_VERSION_SPEC__DATE, oldDate,
+					date));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ChangemanagmentPackage.DATE_VERSION_SPEC__DATE:
-				return getDate();
+		case ChangemanagmentPackage.DATE_VERSION_SPEC__DATE:
+			return getDate();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ChangemanagmentPackage.DATE_VERSION_SPEC__DATE:
-				setDate((Date)newValue);
-				return;
+		case ChangemanagmentPackage.DATE_VERSION_SPEC__DATE:
+			setDate((Date) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ChangemanagmentPackage.DATE_VERSION_SPEC__DATE:
-				setDate(DATE_EDEFAULT);
-				return;
+		case ChangemanagmentPackage.DATE_VERSION_SPEC__DATE:
+			setDate(DATE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ChangemanagmentPackage.DATE_VERSION_SPEC__DATE:
-				return DATE_EDEFAULT == null ? date != null : !DATE_EDEFAULT.equals(date);
+		case ChangemanagmentPackage.DATE_VERSION_SPEC__DATE:
+			return DATE_EDEFAULT == null ? date != null : !DATE_EDEFAULT
+					.equals(date);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (date: ");
@@ -163,4 +168,4 @@ public class DateVersionSpecImpl extends EObjectImpl implements DateVersionSpec 
 		return result.toString();
 	}
 
-} //DateVersionSpecImpl
+} // DateVersionSpecImpl
