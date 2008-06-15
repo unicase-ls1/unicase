@@ -28,7 +28,6 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
-import org.unicase.model.diagram.edit.parts.FunctionalRequirementEditPart;
 import org.unicase.model.diagram.edit.parts.MEDiagramEditPart;
 
 /**

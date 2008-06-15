@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.HashMap;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -32,7 +31,6 @@ import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
-import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
 import org.unicase.emfstore.esmodel.provider.EsmodelItemProviderAdapterFactory;
@@ -94,41 +92,44 @@ public class RepositoryView extends ViewPart {
 									.getActiveShell(), session, serverInfo);
 					session = dialog.open();
 				}
-				if(session == null){
+				if (session == null) {
 					return new Object[0];
 				}
-				
-					TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
-					domain.getCommandStack().execute(new RecordingCommand(domain){
-						protected void doExecute() {
-							try {session.logIn();
+
+				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+						.getEditingDomain("org.unicase.EditingDomain");
+				domain.getCommandStack().execute(new RecordingCommand(domain) {
+					protected void doExecute() {
+						try {
+							session.logIn();
 							serverInfo.getProjectInfos().clear();
 							serverInfo.getProjectInfos().addAll(
 									session.getRemoteProjectList());
 							serverInfo.setLastUsersession(session);
-							WorkspaceManager.getInstance().getCurrentWorkspace().save();
-							} catch (EmfStoreException e) {
-								// TODO server timed out
-								//
-								//
-								e.printStackTrace();
-							} catch (AccessControlException e) {
-								// TODO wrong password/user
-								//
-								//
-								e.printStackTrace();
-							}
+							WorkspaceManager.getInstance()
+									.getCurrentWorkspace().save();
+						} catch (EmfStoreException e) {
+							// TODO server timed out
+							//
+							//
+							e.printStackTrace();
+						} catch (AccessControlException e) {
+							// TODO wrong password/user
+							//
+							//
+							e.printStackTrace();
 						}
-					});
-					
-				
+					}
+				});
+
 				EList<ProjectInfo> pis = serverInfo.getProjectInfos();
 				for (ProjectInfo pi : pis) {
 					projectServerMap.put(pi, serverInfo);
 				}
 				return (ProjectInfo[]) pis.toArray();
 			}
-			throw new IllegalStateException("Received parent node of unkown type: " + object.getClass());
+			throw new IllegalStateException(
+					"Received parent node of unkown type: " + object.getClass());
 		}
 
 		/**
@@ -166,12 +167,12 @@ public class RepositoryView extends ViewPart {
 	public void createPartControl(Composite parent) {
 		viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
 		viewer.setContentProvider(new WorkspaceRootContentProvider());
-		viewer.setLabelProvider(
-				new AdapterFactoryLabelProvider(new EsmodelItemProviderAdapterFactory()));
-//				
-//				new AdapterFactoryLabelProvider(
-//				new ComposedAdapterFactory(
-//						ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
+		viewer.setLabelProvider(new AdapterFactoryLabelProvider(
+				new EsmodelItemProviderAdapterFactory()));
+		//
+		// new AdapterFactoryLabelProvider(
+		// new ComposedAdapterFactory(
+		// ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
 		viewer.setSorter(new ViewerSorter());
 		viewer.setInput(getViewSite());
 
@@ -205,8 +206,8 @@ public class RepositoryView extends ViewPart {
 		ISelection selection = viewer.getSelection();
 		Object obj = ((IStructuredSelection) selection).getFirstElement();
 		if (obj instanceof ServerInfo) {
-			Usersession session = ((ServerInfo)obj).getLastUsersession();
-			if (session!=null && session.isLoggedIn()){
+			Usersession session = ((ServerInfo) obj).getLastUsersession();
+			if (session != null && session.isLoggedIn()) {
 				manager.add(serverAddProject);
 			}
 			manager.add(serverLogin);
@@ -222,9 +223,9 @@ public class RepositoryView extends ViewPart {
 		manager.add(addRepository);
 	}
 
-//	private RepositoryView getViewInstance() {
-//		return this;
-//	}
+	// private RepositoryView getViewInstance() {
+	// return this;
+	// }
 
 	private void makeActions() {
 		projectCheckout = new Action() {
@@ -232,9 +233,10 @@ public class RepositoryView extends ViewPart {
 				ISelection selection = viewer.getSelection();
 				Object obj = ((IStructuredSelection) selection)
 						.getFirstElement();
-				ProjectInfo element = (ProjectInfo)obj; 
+				ProjectInfo element = (ProjectInfo) obj;
 				try {
-					projectServerMap.get(element).getLastUsersession().checkout(element);
+					projectServerMap.get(element).getLastUsersession()
+							.checkout(element);
 				} catch (EmfStoreException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -243,8 +245,9 @@ public class RepositoryView extends ViewPart {
 		};
 		projectCheckout.setText("Checkout");
 		projectCheckout.setToolTipText("Click to checkout this project");
-		projectCheckout.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages()
-				.getImageDescriptor(ISharedImages.IMG_TOOL_FORWARD));
+		projectCheckout.setImageDescriptor(PlatformUI.getWorkbench()
+				.getSharedImages().getImageDescriptor(
+						ISharedImages.IMG_TOOL_FORWARD));
 
 		serverLogin = new Action() {
 			public void run() {
@@ -255,57 +258,69 @@ public class RepositoryView extends ViewPart {
 			}
 		};
 		serverLogin.setText("Login [last usersession]");
-		serverLogin.setToolTipText("Click to login with the last used username");
-		serverLogin.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages()
-				.getImageDescriptor(ISharedImages.IMG_OBJ_ELEMENT));
-		
+		serverLogin
+				.setToolTipText("Click to login with the last used username");
+		serverLogin.setImageDescriptor(PlatformUI.getWorkbench()
+				.getSharedImages().getImageDescriptor(
+						ISharedImages.IMG_OBJ_ELEMENT));
+
 		serverChangeSession = new Action() {
 			public void run() {
 				ISelection selection = viewer.getSelection();
 				Object obj = ((IStructuredSelection) selection)
 						.getFirstElement();
-				ServerInfo element = (ServerInfo)obj;
+				ServerInfo element = (ServerInfo) obj;
 				element.setLastUsersession(null);
 				WorkspaceManager.getInstance().getCurrentWorkspace().save();
 				serverLogin.run();
 			}
 		};
 		serverChangeSession.setText("Login as...");
-		serverChangeSession.setToolTipText("Click to login with a different username");
-		serverChangeSession.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages()
-				.getImageDescriptor(ISharedImages.IMG_OBJ_ELEMENT));
+		serverChangeSession
+				.setToolTipText("Click to login with a different username");
+		serverChangeSession.setImageDescriptor(PlatformUI.getWorkbench()
+				.getSharedImages().getImageDescriptor(
+						ISharedImages.IMG_OBJ_ELEMENT));
 
 		serverAddProject = new Action() {
 			public void run() {
 				ISelection selection = viewer.getSelection();
-				Object obj = ((IStructuredSelection) selection).getFirstElement();
-				ServerInfo serverInfo = ((ServerInfo)obj); 
-				if (serverInfo.getLastUsersession().isLoggedIn()){
-					RepositoryCreateProjectDialog dialog = new RepositoryCreateProjectDialog(PlatformUI.getWorkbench().getDisplay()
-							.getActiveShell(),serverInfo.getLastUsersession());
+				Object obj = ((IStructuredSelection) selection)
+						.getFirstElement();
+				ServerInfo serverInfo = ((ServerInfo) obj);
+				if (serverInfo.getLastUsersession().isLoggedIn()) {
+					RepositoryCreateProjectDialog dialog = new RepositoryCreateProjectDialog(
+							PlatformUI.getWorkbench().getDisplay()
+									.getActiveShell(), serverInfo
+									.getLastUsersession());
 					dialog.open();
 					viewer.refresh(obj);
 				}
 			}
 		};
 		serverAddProject.setText("Create new project");
-		serverAddProject.setToolTipText("Click to create new project on the server");
+		serverAddProject
+				.setToolTipText("Click to create new project on the server");
 		try {
-			serverAddProject.setImageDescriptor(ImageDescriptor.createFromURL
-			        (new URL(EsmodelEditPlugin.INSTANCE.getImage("full/obj16/ProjectInfo").toString())));
+			serverAddProject.setImageDescriptor(ImageDescriptor
+					.createFromURL(new URL(EsmodelEditPlugin.INSTANCE.getImage(
+							"full/obj16/ProjectInfo").toString())));
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
-		
+
 		serverProperties = new Action() {
 			public void run() {
 				ISelection selection = viewer.getSelection();
-				Object obj = ((IStructuredSelection) selection).getFirstElement();
-				ServerInfo serverInfo = ((ServerInfo)obj); 
-				RepositoryWizard wizard = new RepositoryWizard(RepositoryView.this);
+				Object obj = ((IStructuredSelection) selection)
+						.getFirstElement();
+				ServerInfo serverInfo = ((ServerInfo) obj);
+				RepositoryWizard wizard = new RepositoryWizard(
+						RepositoryView.this);
 				wizard.init(getSite().getWorkbenchWindow().getWorkbench(),
 						(IStructuredSelection) getSite().getWorkbenchWindow()
-								.getSelectionService().getSelection(), serverInfo);
+								.getSelectionService().getSelection(),
+						serverInfo);
 				WizardDialog dialog = new WizardDialog(getSite()
 						.getWorkbenchWindow().getShell(), wizard);
 				dialog.create();
@@ -313,17 +328,20 @@ public class RepositoryView extends ViewPart {
 			}
 		};
 		serverProperties.setText("Server properties");
-		serverProperties.setToolTipText("Click to modify the server properties");
+		serverProperties
+				.setToolTipText("Click to modify the server properties");
 		try {
-			serverProperties.setImageDescriptor(ImageDescriptor.createFromURL
-			        (new URL(WorkspaceEditPlugin.INSTANCE.getImage("full/obj16/ServerInfo").toString())));
+			serverProperties.setImageDescriptor(ImageDescriptor
+					.createFromURL(new URL(WorkspaceEditPlugin.INSTANCE
+							.getImage("full/obj16/ServerInfo").toString())));
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
-		}	
+		}
 
 		addRepository = new Action() {
 			public void run() {
-				RepositoryWizard wizard = new RepositoryWizard(RepositoryView.this);
+				RepositoryWizard wizard = new RepositoryWizard(
+						RepositoryView.this);
 				wizard.init(getSite().getWorkbenchWindow().getWorkbench(),
 						(IStructuredSelection) getSite().getWorkbenchWindow()
 								.getSelectionService().getSelection());
@@ -336,8 +354,9 @@ public class RepositoryView extends ViewPart {
 		addRepository.setText("New repository...");
 		addRepository.setToolTipText("Click to add new repository");
 		try {
-			addRepository.setImageDescriptor(ImageDescriptor.createFromURL
-			        (new URL(WorkspaceEditPlugin.INSTANCE.getImage("full/obj16/ServerInfo").toString())));
+			addRepository.setImageDescriptor(ImageDescriptor
+					.createFromURL(new URL(WorkspaceEditPlugin.INSTANCE
+							.getImage("full/obj16/ServerInfo").toString())));
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
@@ -358,7 +377,6 @@ public class RepositoryView extends ViewPart {
 	public void setFocus() {
 		viewer.getControl().setFocus();
 	}
-
 
 	/**
 	 * @return the {@link TreeViewer} for this view.

@@ -66,7 +66,7 @@ public class MEEditorPage extends FormPage {
 				new ComposedAdapterFactory(
 						ComposedAdapterFactory.Descriptor.Registry.INSTANCE))
 				.getImage(modelElement));
-		
+
 		// Sort and order attributes
 
 		sortAndOrderAttributes();
@@ -117,13 +117,14 @@ public class MEEditorPage extends FormPage {
 
 	private void sortAndOrderAttributes() {
 
-		AdapterFactoryItemDelegator adapterFactoryItemDelegator =new 
-			AdapterFactoryItemDelegator(new 
-					ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-	
-		List<IItemPropertyDescriptor> propertyDescriptors = adapterFactoryItemDelegator.getPropertyDescriptors(modelElement);
-		for (IItemPropertyDescriptor itemPropertyDescriptor: propertyDescriptors){
-			if(itemPropertyDescriptor.isMany(modelElement)){
+		AdapterFactoryItemDelegator adapterFactoryItemDelegator = new AdapterFactoryItemDelegator(
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+
+		List<IItemPropertyDescriptor> propertyDescriptors = adapterFactoryItemDelegator
+				.getPropertyDescriptors(modelElement);
+		for (IItemPropertyDescriptor itemPropertyDescriptor : propertyDescriptors) {
+			if (itemPropertyDescriptor.isMany(modelElement)) {
 				multiReferences.add(itemPropertyDescriptor);
 			} else {
 				simpleAttributes.add(itemPropertyDescriptor);

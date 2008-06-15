@@ -24,8 +24,6 @@ import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin;
-import org.unicase.model.classes.Class;
-import org.unicase.model.classes.ClassesFactory;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.workspace.WorkspaceManager;
 import org.w3c.dom.Document;

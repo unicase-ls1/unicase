@@ -14,16 +14,9 @@ package org.unicase.ui.meeditor.mecontrols.richtext.actions;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.IDialogConstants;
-import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Listener;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
-
 import org.unicase.ui.meeditor.mecontrols.richtext.dialogs.SetHtmlDialog;
-import org.unicase.ui.meeditor.mecontrols.richtext.widgets.AllActionConstants;
-import org.unicase.ui.meeditor.mecontrols.richtext.widgets.ComposerStatus;
-import org.unicase.ui.meeditor.mecontrols.richtext.widgets.EventConstants;
 import org.unicase.ui.meeditor.mecontrols.richtext.widgets.HtmlComposer;
 import org.unicase.ui.meeditor.mecontrols.richtext.widgets.JavaScriptCommands;
 
@@ -32,30 +25,30 @@ import org.unicase.ui.meeditor.mecontrols.richtext.widgets.JavaScriptCommands;
  * 
  */
 public class SetHtmlAction extends Action {
-    
-    private HtmlComposer composer = null;
-    
-    public SetHtmlAction(HtmlComposer composer) {
-        super("", IAction.AS_PUSH_BUTTON); //$NON-NLS-1$
-        setToolTipText("Set HTML"); //$NON-NLS-1$
-        setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(ISharedImages.IMG_OBJ_FILE));
-        this.composer = composer;
-    }
-    
-   
-    
-    /* (non-Javadoc)
-     * @see org.eclipse.jface.action.Action#run()
-     */
-    @Override
-    public void run() {
-        SetHtmlDialog dialog = new SetHtmlDialog(this.composer.getShell());
-        if (dialog.open() == IDialogConstants.OK_ID) {
-            System.out.println(JavaScriptCommands.SET_HTML(dialog.getHtml()));
-            this.composer.execute(JavaScriptCommands.SET_HTML(dialog.getHtml()));
-        }
-    }
 
-   
+	private HtmlComposer composer = null;
+
+	public SetHtmlAction(HtmlComposer composer) {
+		super("", IAction.AS_PUSH_BUTTON); //$NON-NLS-1$
+		setToolTipText("Set HTML"); //$NON-NLS-1$
+		setImageDescriptor(PlatformUI.getWorkbench().getSharedImages()
+				.getImageDescriptor(ISharedImages.IMG_OBJ_FILE));
+		this.composer = composer;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.jface.action.Action#run()
+	 */
+	@Override
+	public void run() {
+		SetHtmlDialog dialog = new SetHtmlDialog(this.composer.getShell());
+		if (dialog.open() == IDialogConstants.OK_ID) {
+			System.out.println(JavaScriptCommands.SET_HTML(dialog.getHtml()));
+			this.composer
+					.execute(JavaScriptCommands.SET_HTML(dialog.getHtml()));
+		}
+	}
 
 }

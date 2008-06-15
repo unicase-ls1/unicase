@@ -37,7 +37,8 @@ public class FunctionalRequirementEditPart extends DiagramEditPart {
 				new FunctionalRequirementItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
 				new FunctionalRequirementCanonicalEditPolicy());
-		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
+		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.
+		// EditPolicyRoles.POPUPBAR_ROLE);
 	}
 
 }

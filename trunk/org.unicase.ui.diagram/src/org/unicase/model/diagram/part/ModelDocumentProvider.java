@@ -115,12 +115,14 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 	}
 
 	/**
-	 * Sets up the given document as it would be provided for the given element. The
-	 * content of the document is not changed. This default implementation is empty.
-	 * Subclasses may reimplement.
+	 * Sets up the given document as it would be provided for the given element.
+	 * The content of the document is not changed. This default implementation
+	 * is empty. Subclasses may reimplement.
 	 * 
-	 * @param element the blue-print element
-	 * @param document the document to set up
+	 * @param element
+	 *            the blue-print element
+	 * @param document
+	 *            the document to set up
 	 * @generated
 	 */
 	protected void setupDocument(Object element, IDocument document) {
@@ -132,18 +134,19 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 	 */
 	private long computeModificationStamp(ResourceSetInfo info) {
 		int result = 0;
-		//		for (Iterator it = info.getResourceSet().getResources().iterator(); it
-		//				.hasNext();) {
-		//			Resource nextResource = (Resource) it.next();
-		//			IFile file = WorkspaceSynchronizer.getFile(nextResource);
-		//			if (file != null) {
-		//				if (file.getLocation() != null) {
-		//					result += file.getLocation().toFile().lastModified();
-		//				} else {
-		//					result += file.getModificationStamp();
-		//				}
-		//			}
-		//		}
+		// for (Iterator it = info.getResourceSet().getResources().iterator();
+		// it
+		// .hasNext();) {
+		// Resource nextResource = (Resource) it.next();
+		// IFile file = WorkspaceSynchronizer.getFile(nextResource);
+		// if (file != null) {
+		// if (file.getLocation() != null) {
+		// result += file.getLocation().toFile().lastModified();
+		// } else {
+		// result += file.getModificationStamp();
+		// }
+		// }
+		// }
 		return result;
 	}
 
@@ -226,8 +229,9 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 					try {
 						Map options = new HashMap(GMFResourceFactory
 								.getDefaultLoadOptions());
-						// @see 171060 
-						// options.put(org.eclipse.emf.ecore.xmi.XMLResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
+						// @see 171060
+						// options.put(org.eclipse.emf.ecore.xmi.XMLResource.
+						// OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
 						resource.load(options);
 					} catch (IOException e) {
 						resource.unload();
@@ -366,7 +370,10 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 				} catch (CoreException ex) {
 					ModelDiagramEditorPlugin.getInstance().logError(
 							Messages.ModelDocumentProvider_isModifiable, ex);
-					// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
+					// Error message to log was initially taken from
+					// org.eclipse.
+					// gmf.runtime.diagram.ui.resources.editor.ide.internal
+					// .l10n.EditorMessages.StorageDocumentProvider_isModifiable
 				}
 			}
 			return info.isReadOnly();
@@ -392,7 +399,10 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 				} catch (CoreException ex) {
 					ModelDiagramEditorPlugin.getInstance().logError(
 							Messages.ModelDocumentProvider_isModifiable, ex);
-					// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
+					// Error message to log was initially taken from
+					// org.eclipse.
+					// gmf.runtime.diagram.ui.resources.editor.ide.internal
+					// .l10n.EditorMessages.StorageDocumentProvider_isModifiable
 				}
 			}
 			return info.isModifiable();
@@ -594,7 +604,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 			try {
 				monitor.beginTask(
 						Messages.ModelDocumentProvider_SaveDiagramTask,
-						resources.size() + 1); //"Saving diagram"
+						resources.size() + 1); // "Saving diagram"
 				for (Iterator it = resources.iterator(); it.hasNext();) {
 					Resource nextResource = (Resource) it.next();
 					monitor
@@ -708,7 +718,11 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 						.logError(
 								Messages.ModelDocumentProvider_handleElementContentChanged,
 								ex);
-				// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.FileDocumentProvider_handleElementContentChanged
+				// Error message to log was initially taken from
+				// org.eclipse.gmf.
+				// runtime.diagram.ui.resources.editor.ide.internal
+				// .l10n.EditorMessages
+				// .FileDocumentProvider_handleElementContentChanged
 			}
 		}
 		changedResource.unload();

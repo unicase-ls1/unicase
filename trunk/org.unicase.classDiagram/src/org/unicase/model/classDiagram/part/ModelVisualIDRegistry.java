@@ -5,15 +5,14 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.unicase.model.ModelPackage;
 import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
 
 /**
  * This registry is used to determine which type of visual object should be
- * created for the corresponding Diagram, Node, ChildNode or Link represented
- * by a domain model object.
+ * created for the corresponding Diagram, Node, ChildNode or Link represented by
+ * a domain model object.
  * 
  * @generated
  */

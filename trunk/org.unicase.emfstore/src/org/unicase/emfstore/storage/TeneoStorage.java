@@ -18,7 +18,6 @@ import org.eclipse.emf.teneo.hibernate.HbDataStore;
 import org.eclipse.emf.teneo.hibernate.HbHelper;
 import org.eclipse.emf.teneo.hibernate.resource.HibernateResource;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
-import org.hibernate.Hibernate;
 import org.hibernate.cfg.Environment;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
 import org.unicase.model.ModelPackage;

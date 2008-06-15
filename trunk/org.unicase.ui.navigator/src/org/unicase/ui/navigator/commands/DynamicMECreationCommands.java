@@ -20,58 +20,56 @@ import org.unicase.model.document.LeafSection;
 
 /**
  * 
- * @author Hodaie
- * This class creates a group of commands to create different model element
- * types, which are shown in the context menu of a leaf section. 
- * The commands appear in the order of how frequent are the model element types 
- * in a leaf section. For example, if a leaf section contains 3 FRs and 2 AIs
- * the command to create a FR appears before command to create an AI. 
- * The created commands have all the same ID and are handled with the same 
- * handler class {@link CreateMEHandler}. 
- *
+ * @author Hodaie This class creates a group of commands to create different
+ *         model element types, which are shown in the context menu of a leaf
+ *         section. The commands appear in the order of how frequent are the
+ *         model element types in a leaf section. For example, if a leaf section
+ *         contains 3 FRs and 2 AIs the command to create a FR appears before
+ *         command to create an AI. The created commands have all the same ID
+ *         and are handled with the same handler class {@link CreateMEHandler}.
+ * 
  */
 public class DynamicMECreationCommands extends CompoundContributionItem {
 
 	private static final String COMMAND_ID = "org.unicase.ui.navigator.createME";
 
-	
-	/**.
-	 *({@inheritDoc})
+	/**
+	 * . ({@inheritDoc})
 	 */
 	@Override
 	protected IContributionItem[] getContributionItems() {
-		//get the leaf section right clicked on in navigator.
-		//For each ME type contained in this leaf section is a 
-		//creation command added to context menu. 
+		// get the leaf section right clicked on in navigator.
+		// For each ME type contained in this leaf section is a
+		// creation command added to context menu.
 		LeafSection leafSection = getSelectedLeafSection();
 		if (leafSection == null) {
 			return new IContributionItem[0];
 		}
 
-		// 1. get a list of MEs in this LeafSection, 
-		//	  (sorted based on their frequency)
+		// 1. get a list of MEs in this LeafSection,
+		// (sorted based on their frequency)
 		EClass[] contentTypes = getContentTypes(leafSection);
 
-		// 2. create commands for these ME types 
-		IContributionItem[] commands =  createCommands(contentTypes);
+		// 2. create commands for these ME types
+		IContributionItem[] commands = createCommands(contentTypes);
 		return commands;
-		
+
 	}
 
 	private IContributionItem[] createCommands(EClass[] contentTypes) {
-		
+
 		IContributionItem[] commands = new IContributionItem[contentTypes.length];
-		//every command take its corresponding EClass type as parameter
+		// every command take its corresponding EClass type as parameter
 		for (int i = 0; i < contentTypes.length; i++) {
 			CommandContributionItemParameter p = new CommandContributionItemParameter(
 					PlatformUI.getWorkbench(), null, COMMAND_ID,
 					CommandContributionItem.STYLE_PUSH);
-			//set the EClas parameter
+			// set the EClas parameter
 			Map<Object, Object> map = new HashMap<Object, Object>();
 			map.put(CreateMEHandler.COMMAND_ECLASS_PARAM, contentTypes[i]);
 			p.parameters = map;
-			p.label = "New " + contentTypes[i].getName(); 
-			//create command
+			p.label = "New " + contentTypes[i].getName();
+			// create command
 			CommandContributionItem command = new CommandContributionItem(p);
 			commands[i] = command;
 		}
@@ -80,33 +78,35 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 	}
 
 	/**
-	 * This method return a list of ModelElement types (EClasses)
-	 * contained in a LeafSection. 
+	 * This method return a list of ModelElement types (EClasses) contained in a
+	 * LeafSection.
+	 * 
 	 * @param leafSection
 	 * @return
 	 */
 	private EClass[] getContentTypes(LeafSection leafSection) {
-		//create a map of (EClass, EClassCount)
+		// create a map of (EClass, EClassCount)
 		Map<EClass, EClassCount> meCounts = new HashMap<EClass, EClassCount>();
 		for (ModelElement me : leafSection.getModelElements()) {
 			if (meCounts.containsKey(me.eClass())) {
-				//if EClass for this ME is already added to the map, 
-				//increment its count.
-				EClassCount eclassCount = (EClassCount)meCounts.get(me.eClass());
+				// if EClass for this ME is already added to the map,
+				// increment its count.
+				EClassCount eclassCount = (EClassCount) meCounts.get(me
+						.eClass());
 				eclassCount.setCount(eclassCount.getCount() + 1);
 			} else {
 				meCounts.put(me.eClass(), new EClassCount(me.eClass()));
 
 			}
 		}
-		
-		//get list of EClassCounts from map and sort it based on count field.
-		List<EClassCount> eclazzSortedByCount =
-			new ArrayList<EClassCount>(meCounts.values());
+
+		// get list of EClassCounts from map and sort it based on count field.
+		List<EClassCount> eclazzSortedByCount = new ArrayList<EClassCount>(
+				meCounts.values());
 		Collections.sort(eclazzSortedByCount, new EClassFrequencyComparator());
 
-		//create an array of EClass by extracting the eClass field 
-		//from elements of sorted EClassCount list.  
+		// create an array of EClass by extracting the eClass field
+		// from elements of sorted EClassCount list.
 		EClass[] contents = new EClass[eclazzSortedByCount.size()];
 		for (int i = 0; i < eclazzSortedByCount.size(); i++) {
 			contents[i] = eclazzSortedByCount.get(i).getEClass();
@@ -118,6 +118,7 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 
 	/**
 	 * Get the leaf section right clicked on in navigator.
+	 * 
 	 * @return LeafSection
 	 */
 	private LeafSection getSelectedLeafSection() {
@@ -144,12 +145,11 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 
 	/**
 	 * 
-	 * @author Hodaie
-	 * This class is a helper to sort the list of contained ModelElements 
-	 * in a LeafSection based on their frequency. 
-	 * This class just keeps track of count of every EClass type encountered
-	 * in a LeafSectoin.
-	 *
+	 * @author Hodaie This class is a helper to sort the list of contained
+	 *         ModelElements in a LeafSection based on their frequency. This
+	 *         class just keeps track of count of every EClass type encountered
+	 *         in a LeafSectoin.
+	 * 
 	 */
 	private class EClassCount {
 
@@ -176,17 +176,15 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 
 	}
 
-	
 	/**
 	 * 
-	 * @author Hodaie
-	 * This is a Comparator for EClassCount type. 
+	 * @author Hodaie This is a Comparator for EClassCount type.
 	 * 
 	 */
 	private class EClassFrequencyComparator implements Comparator<EClassCount> {
 
 		public int compare(EClassCount arg0, EClassCount arg1) {
-			
+
 			return arg1.getCount() - arg0.getCount();
 		}
 

@@ -4,9 +4,7 @@ import java.util.List;
 
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.edit.policies.MEDiagramCanonicalEditPolicy;
 import org.unicase.model.diagram.edit.policies.MEDiagramItemSemanticEditPolicy;
 
@@ -41,20 +39,21 @@ public class MEDiagramEditPart extends DiagramEditPart {
 				new MEDiagramItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
 				new MEDiagramCanonicalEditPolicy());
-		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
+		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.
+		// EditPolicyRoles.POPUPBAR_ROLE);
 	}
 
 	@Override
 	protected List getModelChildren() {
-//		Object object = getModel();
-//		if (object instanceof Diagram) {
-//			Diagram diagram = (Diagram) object;
-//			object = diagram.getElement();
-//			if (object instanceof MEDiagram) {
-//				MEDiagram meDiagram = (MEDiagram) object;
-//				return meDiagram.getElements();
-//			}
-//		}
+		// Object object = getModel();
+		// if (object instanceof Diagram) {
+		// Diagram diagram = (Diagram) object;
+		// object = diagram.getElement();
+		// if (object instanceof MEDiagram) {
+		// MEDiagram meDiagram = (MEDiagram) object;
+		// return meDiagram.getElements();
+		// }
+		// }
 
 		return super.getModelChildren();
 	}

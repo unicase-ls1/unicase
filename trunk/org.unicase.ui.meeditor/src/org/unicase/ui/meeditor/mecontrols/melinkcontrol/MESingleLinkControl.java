@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -28,8 +27,9 @@ import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 
 /**
  * GUI Control for the ME reference single links.
+ * 
  * @author helming
- *
+ * 
  */
 public class MESingleLinkControl extends AbstractMEControl {
 
@@ -46,13 +46,18 @@ public class MESingleLinkControl extends AbstractMEControl {
 	private Control control;
 
 	private MELinkControl meControl;
-	
+
 	/**
 	 * Default constructor.
-	 * @param editingDomain the editing domain
-	 * @param modelElement the ME
-	 * @param toolkit gui toolkit used for rendering
-	 * @param reference the reference link
+	 * 
+	 * @param editingDomain
+	 *            the editing domain
+	 * @param modelElement
+	 *            the ME
+	 * @param toolkit
+	 *            gui toolkit used for rendering
+	 * @param reference
+	 *            the reference link
 	 */
 	public MESingleLinkControl(EditingDomain editingDomain,
 			EObject modelElement, FormToolkit toolkit, EReference reference) {
@@ -128,8 +133,8 @@ public class MESingleLinkControl extends AbstractMEControl {
 		EObject opposite = (EObject) modelElement.eGet(eReference);
 		ModelElement me = (ModelElement) modelElement;
 		if (opposite != null) {
-			meControl = new MELinkControl(editingDomain,
-					opposite, toolkit, me, eReference);
+			meControl = new MELinkControl(editingDomain, opposite, toolkit, me,
+					eReference);
 			control = meControl.createControl(linkComposite, style);
 		} else {
 			Label label = toolkit.createLabel(linkComposite, "(Not Set)");

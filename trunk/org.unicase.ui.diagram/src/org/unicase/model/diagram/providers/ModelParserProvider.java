@@ -13,7 +13,6 @@ import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.diagram.edit.parts.ClassNameEditPart;
-import org.unicase.model.diagram.edit.parts.FunctionalRequirementNameEditPart;
 import org.unicase.model.diagram.parsers.MessageFormatParser;
 import org.unicase.model.diagram.part.ModelVisualIDRegistry;
 

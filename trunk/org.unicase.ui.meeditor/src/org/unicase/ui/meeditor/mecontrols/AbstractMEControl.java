@@ -4,24 +4,28 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 
-
 /**
  * Abstract class for the ME controls.
+ * 
  * @author helming
- *
+ * 
  */
 public abstract class AbstractMEControl implements MEControl {
-	
+
 	// AS: change to private and generate getters?
 	protected FormToolkit toolkit;
 	protected EObject modelElement;
 	protected EditingDomain editingDomain;
-	
+
 	/**
 	 * Default constructor.
-	 * @param editingDomain the editing domain
-	 * @param modelElement the ME
-	 * @param toolkit gui toolkit used for rendering
+	 * 
+	 * @param editingDomain
+	 *            the editing domain
+	 * @param modelElement
+	 *            the ME
+	 * @param toolkit
+	 *            gui toolkit used for rendering
 	 */
 	public AbstractMEControl(EditingDomain editingDomain, EObject modelElement,
 			FormToolkit toolkit) {
@@ -30,5 +34,5 @@ public abstract class AbstractMEControl implements MEControl {
 		this.modelElement = modelElement;
 		this.toolkit = toolkit;
 	}
-	
+
 }

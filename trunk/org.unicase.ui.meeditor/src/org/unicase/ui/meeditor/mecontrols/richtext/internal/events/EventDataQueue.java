@@ -21,32 +21,32 @@ import org.eclipse.swt.widgets.Event;
  * 
  */
 public class EventDataQueue {
-    
-    private Event currentEvent = null;
-    
-    public void startSequence(int eventType) {
-        this.currentEvent = new Event();
-        this.currentEvent.type = eventType;
-    }
-    
-    public void addData(String key, String value) {
-        if (this.currentEvent.data == null) {
-            Properties newProperties = new Properties();
-            this.currentEvent.data = newProperties;
-        }
-        Properties properties = (Properties) this.currentEvent.data;
-        properties.setProperty(key, value);
-    }
 
-    /**
-     * @return the currentEvent
-     */
-    public Event getCurrentEvent() {
-        return this.currentEvent;
-    }
-    
-    public void clear() {
-        this.currentEvent = null;
-    }
+	private Event currentEvent = null;
+
+	public void startSequence(int eventType) {
+		this.currentEvent = new Event();
+		this.currentEvent.type = eventType;
+	}
+
+	public void addData(String key, String value) {
+		if (this.currentEvent.data == null) {
+			Properties newProperties = new Properties();
+			this.currentEvent.data = newProperties;
+		}
+		Properties properties = (Properties) this.currentEvent.data;
+		properties.setProperty(key, value);
+	}
+
+	/**
+	 * @return the currentEvent
+	 */
+	public Event getCurrentEvent() {
+		return this.currentEvent;
+	}
+
+	public void clear() {
+		this.currentEvent = null;
+	}
 
 }

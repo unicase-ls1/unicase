@@ -8,7 +8,6 @@ import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteGroup;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.ToolEntry;
-import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeConnectionTool;
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeCreationTool;
 import org.unicase.model.diagram.providers.ModelElementTypes;
 
@@ -26,6 +25,7 @@ public class ModelPaletteFactory {
 
 	/**
 	 * Creates "Default" palette tool group
+	 * 
 	 * @generated
 	 */
 	private PaletteContainer createDefault1Group() {
@@ -40,7 +40,7 @@ public class ModelPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createClass1CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types.add(ModelElementTypes.Class_1001);
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.Class1CreationTool_title,

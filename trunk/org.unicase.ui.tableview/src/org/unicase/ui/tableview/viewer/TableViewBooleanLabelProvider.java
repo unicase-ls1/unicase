@@ -16,52 +16,57 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TableItem;
 
-
 /**
  * 
  * @author Hodaie
  * 
- * This class displays a checkbox image for columns representing boolean attributes.
- *
+ *         This class displays a checkbox image for columns representing boolean
+ *         attributes.
+ * 
  */
 public class TableViewBooleanLabelProvider extends OwnerDrawLabelProvider
-				implements ILabelProvider{
+		implements ILabelProvider {
 
-	
-	
 	private IItemPropertyDescriptor propertyDescriptor;
-	
+
 	private static final String CHECKED_KEY = "CHECKED";
 	private static final String UNCHECK_KEY = "UNCHECKED";
-	
-	
-	/**.
+
+	/**
+	 * .
 	 * 
-	 * @param viewer The ColumnViwer, on which a checkbox for boolean attribute is shown.
-	 * @param propertyDescriptor An IItemPropertyDescriptor to query the boolean value of attribute.  
+	 * @param viewer
+	 *            The ColumnViwer, on which a checkbox for boolean attribute is
+	 *            shown.
+	 * @param propertyDescriptor
+	 *            An IItemPropertyDescriptor to query the boolean value of
+	 *            attribute.
 	 */
-	public TableViewBooleanLabelProvider(ColumnViewer viewer, IItemPropertyDescriptor propertyDescriptor) {
-		
+	public TableViewBooleanLabelProvider(ColumnViewer viewer,
+			IItemPropertyDescriptor propertyDescriptor) {
+
 		this.propertyDescriptor = propertyDescriptor;
-		
+
 		// create images of a checked and an unchecked checkbox
 		if (JFaceResources.getImageRegistry().getDescriptor(CHECKED_KEY) == null) {
 			JFaceResources.getImageRegistry().put(UNCHECK_KEY,
 					makeShot(viewer.getControl().getShell(), false));
 			JFaceResources.getImageRegistry().put(CHECKED_KEY,
 					makeShot(viewer.getControl().getShell(), true));
-		
+
 		}
-		
+
 	}
 
 	/**
-	 * We need images of a checked and unchecked checkbox. These are
-	 * created using this method, so that they look native on different platforms. 
-	 * The trick here is, to create a temporary checkbox, and make an image of it.
+	 * We need images of a checked and unchecked checkbox. These are created
+	 * using this method, so that they look native on different platforms. The
+	 * trick here is, to create a temporary checkbox, and make an image of it.
 	 * 
-	 * @param Shell shell
-	 * @param Boolean type
+	 * @param Shell
+	 *            shell
+	 * @param Boolean
+	 *            type
 	 * @return Image image
 	 */
 	private Image makeShot(Shell shell, boolean type) {
@@ -81,8 +86,8 @@ public class TableViewBooleanLabelProvider extends OwnerDrawLabelProvider
 		return image;
 	}
 
-	/**.
-	 * ({@inheritDoc})
+	/**
+	 * . ({@inheritDoc})
 	 * 
 	 */
 	public Image getImage(Object element) {
@@ -98,8 +103,8 @@ public class TableViewBooleanLabelProvider extends OwnerDrawLabelProvider
 	/**
 	 * ({@inheritDoc})
 	 * 
-	 * Boolean attributes are shown using a checkbox image. Therefore getText() 
-	 * returns null.  
+	 * Boolean attributes are shown using a checkbox image. Therefore getText()
+	 * returns null.
 	 */
 	public String getText(Object element) {
 		return "";
@@ -109,16 +114,16 @@ public class TableViewBooleanLabelProvider extends OwnerDrawLabelProvider
 	 * ({@inheritDoc})
 	 * 
 	 * This returns the value of boolean attribute.
+	 * 
 	 * @param element
 	 * @return
 	 */
 	protected boolean isChecked(Object element) {
 		Boolean result;
 		if (propertyDescriptor.isPropertySet(element)) {
-			ItemPropertyDescriptor.PropertyValueWrapper valueWrapper = 
-				(ItemPropertyDescriptor.PropertyValueWrapper) propertyDescriptor
+			ItemPropertyDescriptor.PropertyValueWrapper valueWrapper = (ItemPropertyDescriptor.PropertyValueWrapper) propertyDescriptor
 					.getPropertyValue(element);
-			result = (Boolean)valueWrapper.getEditableValue(element);
+			result = (Boolean) valueWrapper.getEditableValue(element);
 		} else {
 			result = new Boolean(false);
 		}
@@ -126,51 +131,49 @@ public class TableViewBooleanLabelProvider extends OwnerDrawLabelProvider
 		return result;
 	}
 
-	
 	/**
 	 * ({@inheritDoc})
 	 * 
-	 * This changes table row height. The default height is too narrow
-	 * to show the checkebox gracefully. 
+	 * This changes table row height. The default height is too narrow to show
+	 * the checkebox gracefully.
 	 */
 	@Override
 	protected void measure(Event event, Object element) {
-		
+
 		TableItem item = (TableItem) event.item;
 		int rowHeight = TableView.ROW_HEIGHT;
-		
+
 		event.setBounds(new Rectangle(event.x, event.y, item.getBounds().width,
-				rowHeight ));
+				rowHeight));
 
 	}
 
-	/**.
-	 * ({@inheritDoc})
+	/**
+	 * . ({@inheritDoc})
 	 * 
-	 * I had to draw the checkbox image in center of table cell myself.
-	 * This is because the checkbox was drawn left aligned. And changing the 
+	 * I had to draw the checkbox image in center of table cell myself. This is
+	 * because the checkbox was drawn left aligned. And changing the
 	 * tableColumn.setAlignment(SWT.CENTER) did not have any effects.
-	 *  
+	 * 
 	 */
 	@Override
 	protected void paint(Event event, Object element) {
 		Image img = getImage(element);
 
 		if (img != null) {
-			Rectangle bounds = ((TableItem) event.item)
-					.getBounds(event.index);
+			Rectangle bounds = ((TableItem) event.item).getBounds(event.index);
 			Rectangle imgBounds = img.getBounds();
 			bounds.width /= 2;
-			bounds.width -= imgBounds.width / 2 ;
+			bounds.width -= imgBounds.width / 2;
 			bounds.height /= 2;
 			bounds.height -= imgBounds.height / 2;
 
 			int x = bounds.width > 0 ? bounds.x + bounds.width : bounds.x;
-			int y = bounds.height > 0 ? bounds.y + bounds.height  : bounds.y;
+			int y = bounds.height > 0 ? bounds.y + bounds.height : bounds.y;
 
-			event.gc.drawImage(img, x, y );
+			event.gc.drawImage(img, x, y);
 		}
-		
+
 	}
 
 }

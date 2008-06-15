@@ -10,7 +10,6 @@ import org.eclipse.gmf.runtime.diagram.ui.services.editpart.AbstractEditPartProv
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.CreateGraphicEditPartOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.IEditPartOperation;
 import org.eclipse.gmf.runtime.notation.View;
-import org.unicase.model.diagram.edit.parts.FunctionalRequirementEditPart;
 import org.unicase.model.diagram.edit.parts.MEDiagramEditPart;
 import org.unicase.model.diagram.edit.parts.ModelEditPartFactory;
 import org.unicase.model.diagram.part.ModelVisualIDRegistry;

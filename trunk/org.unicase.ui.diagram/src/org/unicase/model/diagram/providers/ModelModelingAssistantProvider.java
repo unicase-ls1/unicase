@@ -20,7 +20,6 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
-import org.unicase.model.diagram.edit.parts.FunctionalRequirementEditPart;
 import org.unicase.model.diagram.edit.parts.MEDiagramEditPart;
 import org.unicase.model.diagram.part.Messages;
 import org.unicase.model.diagram.part.ModelDiagramEditorPlugin;

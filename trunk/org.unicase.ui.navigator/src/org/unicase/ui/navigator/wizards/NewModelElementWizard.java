@@ -4,7 +4,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
@@ -18,11 +17,11 @@ import org.unicase.ui.meeditor.MEEditorInput;
 /**
  * 
  * @author Hodaie This is implementation of New Model Element wizard. This
- * 	wizard is show through "Add new model element..." command in context menu of
- * 	Navigator (only on right click on LeafSection). The wizard shows a tree of
- * 	model packages and their classes. The user can select a Model Element type
- * 	in this tree and on finish the model element is created, added to Leaf- or
- * 	CompositeSection and opend for editing.
+ *         wizard is show through "Add new model element..." command in context
+ *         menu of Navigator (only on right click on LeafSection). The wizard
+ *         shows a tree of model packages and their classes. The user can select
+ *         a Model Element type in this tree and on finish the model element is
+ *         created, added to Leaf- or CompositeSection and opend for editing.
  * 
  */
 public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
@@ -70,9 +69,8 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 			// navigator
 			if (selectedME instanceof LeafSection) {
 
-				TransactionalEditingDomain domain = 
-								TransactionalEditingDomain.Registry.INSTANCE
-									.getEditingDomain("org.unicase.EditingDomain");
+				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+						.getEditingDomain("org.unicase.EditingDomain");
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					protected void doExecute() {
 						((LeafSection) selectedME).getModelElements().add(
@@ -129,7 +127,7 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 	/**
 	 * @see newMEType
 	 * @param newMEType
-	 * 		The ME type that was in ModelTreePage selected.
+	 *            The ME type that was in ModelTreePage selected.
 	 */
 	public void setNewMEType(EClass newMEType) {
 		this.newMEType = newMEType;
@@ -138,7 +136,7 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 	/**
 	 * @see treePageCompeleted
 	 * @param treePageCompleted
-	 * 		If ModelTreePage is complete (i.e. its selection is a ME)
+	 *            If ModelTreePage is complete (i.e. its selection is a ME)
 	 */
 	public void setTreePageCompleted(boolean treePageCompleted) {
 		this.treePageCompleted = treePageCompleted;

@@ -21,6 +21,7 @@ import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 
 /**
  * GUI Control for the ME reference links.
+ * 
  * @author helming
  */
 public class MELinkControl extends AbstractMEControl {
@@ -28,42 +29,50 @@ public class MELinkControl extends AbstractMEControl {
 	private Composite linkComposite;
 	private EObject contextModelElement;
 	private EReference reference;
-	
+
 	/**
 	 * Default constructor.
-	 * @param editingDomain the editing domain
-	 * @param modelElement the ME
-	 * @param toolkit gui toolkit used for rendering
-	 * @param contextModelElement the context model element
-	 * @param reference the reference link
+	 * 
+	 * @param editingDomain
+	 *            the editing domain
+	 * @param modelElement
+	 *            the ME
+	 * @param toolkit
+	 *            gui toolkit used for rendering
+	 * @param contextModelElement
+	 *            the context model element
+	 * @param reference
+	 *            the reference link
 	 */
 	public MELinkControl(EditingDomain editingDomain, EObject modelElement,
-			FormToolkit toolkit, EObject contextModelElement, EReference reference) {
+			FormToolkit toolkit, EObject contextModelElement,
+			EReference reference) {
 		super(editingDomain, modelElement, toolkit);
-		this.contextModelElement=contextModelElement;
-		this.reference=reference;
+		this.contextModelElement = contextModelElement;
+		this.reference = reference;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public Control createControl(Composite parent, int style) {
-		linkComposite = toolkit.createComposite(parent,
-				style);
+		linkComposite = toolkit.createComposite(parent, style);
 		linkComposite.setLayout(new GridLayout(3, false));
-		ILabelProvider labelProvider = new 
-			AdapterFactoryLabelProvider(new	
-					ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		Image image = labelProvider.getImage(modelElement);
 		ImageHyperlink imageHyperlink = toolkit.createImageHyperlink(
 				linkComposite, style);
 		imageHyperlink.setImage(image);
-		Hyperlink hyperlink = toolkit.createHyperlink(linkComposite,labelProvider.getText(modelElement), style);
-		IHyperlinkListener listener = new MEHyperLinkAdapter((ModelElement)modelElement);
+		Hyperlink hyperlink = toolkit.createHyperlink(linkComposite,
+				labelProvider.getText(modelElement), style);
+		IHyperlinkListener listener = new MEHyperLinkAdapter(
+				(ModelElement) modelElement);
 		hyperlink.addHyperlinkListener(listener);
 		imageHyperlink.addHyperlinkListener(listener);
-		ImageHyperlink deleteLink = toolkit.createImageHyperlink(
-				linkComposite, style);
+		ImageHyperlink deleteLink = toolkit.createImageHyperlink(linkComposite,
+				style);
 		deleteLink.setImage(PlatformUI.getWorkbench().getSharedImages()
 				.getImage(ISharedImages.IMG_TOOL_DELETE));
 
@@ -71,11 +80,11 @@ public class MELinkControl extends AbstractMEControl {
 				contextModelElement, reference, modelElement));
 		return linkComposite;
 	}
-	
+
 	/**
 	 * @return the {@link Composite} for this link control
 	 */
-	public Composite getLinkComposite(){
+	public Composite getLinkComposite() {
 		return this.linkComposite;
 	}
 }

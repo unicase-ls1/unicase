@@ -10,9 +10,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.ui.URIEditorInput;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gef.palette.PaletteRoot;
@@ -299,11 +296,11 @@ public class ModelDiagramEditor extends DiagramDocumentEditor implements
 		}
 
 		// set the resource in the resourcetoreadonly map
-//		final ResourceSet rs = getEditingDomain().getResourceSet();
-//		for (Resource res : rs.getResources()) {
-//			((AdapterFactoryEditingDomain) getEditingDomain())
-//					.getResourceToReadOnlyMap().put(res, new Boolean(false));
-//		}
+		// final ResourceSet rs = getEditingDomain().getResourceSet();
+		// for (Resource res : rs.getResources()) {
+		// ((AdapterFactoryEditingDomain) getEditingDomain())
+		// .getResourceToReadOnlyMap().put(res, new Boolean(false));
+		// }
 	}
 
 }

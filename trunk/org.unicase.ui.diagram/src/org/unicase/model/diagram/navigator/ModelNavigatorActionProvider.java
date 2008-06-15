@@ -22,7 +22,6 @@ import org.eclipse.ui.navigator.ICommonActionConstants;
 import org.eclipse.ui.navigator.ICommonActionExtensionSite;
 import org.eclipse.ui.navigator.ICommonViewerWorkbenchSite;
 import org.eclipse.ui.part.FileEditorInput;
-import org.unicase.model.diagram.edit.parts.FunctionalRequirementEditPart;
 import org.unicase.model.diagram.edit.parts.MEDiagramEditPart;
 import org.unicase.model.diagram.part.Messages;
 import org.unicase.model.diagram.part.ModelDiagramEditor;

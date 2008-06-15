@@ -25,6 +25,7 @@ public class ModelPaletteFactory {
 
 	/**
 	 * Creates "Default" palette tool group
+	 * 
 	 * @generated
 	 */
 	private PaletteContainer createDefault1Group() {
@@ -41,7 +42,7 @@ public class ModelPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createClass1CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types
 				.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_1001);
 		NodeToolEntry entry = new NodeToolEntry(
@@ -59,7 +60,7 @@ public class ModelPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createAssociation2CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types
 				.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3001);
 		LinkToolEntry entry = new LinkToolEntry(
