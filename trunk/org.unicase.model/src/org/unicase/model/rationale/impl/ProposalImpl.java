@@ -1,5 +1,5 @@
 /**
- * <copyright>
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * </copyright>
  *
  * $Id$
@@ -30,24 +30,25 @@ import org.unicase.model.rationale.Proposal;
 import org.unicase.model.rationale.RationalePackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Proposal</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>Proposal</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.rationale.impl.ProposalImpl#getAssessments <em>Assessments</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.ProposalImpl#getIssue <em>Issue</em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.ProposalImpl#getAssessments <em>
+ * Assessments</em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.ProposalImpl#getIssue <em>Issue
+ * </em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ProposalImpl extends ModelElementImpl implements Proposal {
 	/**
-	 * The cached value of the '{@link #getAssessments() <em>Assessments</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAssessments() <em>Assessments</em>}'
+	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getAssessments()
 	 * @generated
 	 * @ordered
@@ -55,8 +56,8 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 	protected EList<Assessment> assessments;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ProposalImpl() {
@@ -64,8 +65,8 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -74,175 +75,192 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Assessment> getAssessments() {
 		if (assessments == null) {
-			assessments = new EObjectContainmentWithInverseEList<Assessment>(Assessment.class, this, RationalePackage.PROPOSAL__ASSESSMENTS, RationalePackage.ASSESSMENT__PROPOSAL);
+			assessments = new EObjectContainmentWithInverseEList<Assessment>(
+					Assessment.class, this,
+					RationalePackage.PROPOSAL__ASSESSMENTS,
+					RationalePackage.ASSESSMENT__PROPOSAL);
 		}
 		return assessments;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Issue getIssue() {
-		if (eContainerFeatureID != RationalePackage.PROPOSAL__ISSUE) return null;
-		return (Issue)eContainer();
+		if (eContainerFeatureID != RationalePackage.PROPOSAL__ISSUE)
+			return null;
+		return (Issue) eContainer();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetIssue(Issue newIssue, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newIssue, RationalePackage.PROPOSAL__ISSUE, msgs);
+	public NotificationChain basicSetIssue(Issue newIssue,
+			NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newIssue,
+				RationalePackage.PROPOSAL__ISSUE, msgs);
 		return msgs;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setIssue(Issue newIssue) {
-		if (newIssue != eInternalContainer() || (eContainerFeatureID != RationalePackage.PROPOSAL__ISSUE && newIssue != null)) {
+		if (newIssue != eInternalContainer()
+				|| (eContainerFeatureID != RationalePackage.PROPOSAL__ISSUE && newIssue != null)) {
 			if (EcoreUtil.isAncestor(this, newIssue))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException(
+						"Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newIssue != null)
-				msgs = ((InternalEObject)newIssue).eInverseAdd(this, RationalePackage.ISSUE__PROPOSALS, Issue.class, msgs);
+				msgs = ((InternalEObject) newIssue).eInverseAdd(this,
+						RationalePackage.ISSUE__PROPOSALS, Issue.class, msgs);
 			msgs = basicSetIssue(newIssue, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RationalePackage.PROPOSAL__ISSUE, newIssue, newIssue));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RationalePackage.PROPOSAL__ISSUE, newIssue, newIssue));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RationalePackage.PROPOSAL__ASSESSMENTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAssessments()).basicAdd(otherEnd, msgs);
-			case RationalePackage.PROPOSAL__ISSUE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetIssue((Issue)otherEnd, msgs);
+		case RationalePackage.PROPOSAL__ASSESSMENTS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAssessments())
+					.basicAdd(otherEnd, msgs);
+		case RationalePackage.PROPOSAL__ISSUE:
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetIssue((Issue) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RationalePackage.PROPOSAL__ASSESSMENTS:
-				return ((InternalEList<?>)getAssessments()).basicRemove(otherEnd, msgs);
-			case RationalePackage.PROPOSAL__ISSUE:
-				return basicSetIssue(null, msgs);
+		case RationalePackage.PROPOSAL__ASSESSMENTS:
+			return ((InternalEList<?>) getAssessments()).basicRemove(otherEnd,
+					msgs);
+		case RationalePackage.PROPOSAL__ISSUE:
+			return basicSetIssue(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
 		switch (eContainerFeatureID) {
-			case RationalePackage.PROPOSAL__ISSUE:
-				return eInternalContainer().eInverseRemove(this, RationalePackage.ISSUE__PROPOSALS, Issue.class, msgs);
+		case RationalePackage.PROPOSAL__ISSUE:
+			return eInternalContainer().eInverseRemove(this,
+					RationalePackage.ISSUE__PROPOSALS, Issue.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RationalePackage.PROPOSAL__ASSESSMENTS:
-				return getAssessments();
-			case RationalePackage.PROPOSAL__ISSUE:
-				return getIssue();
+		case RationalePackage.PROPOSAL__ASSESSMENTS:
+			return getAssessments();
+		case RationalePackage.PROPOSAL__ISSUE:
+			return getIssue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RationalePackage.PROPOSAL__ASSESSMENTS:
-				getAssessments().clear();
-				getAssessments().addAll((Collection<? extends Assessment>)newValue);
-				return;
-			case RationalePackage.PROPOSAL__ISSUE:
-				setIssue((Issue)newValue);
-				return;
+		case RationalePackage.PROPOSAL__ASSESSMENTS:
+			getAssessments().clear();
+			getAssessments()
+					.addAll((Collection<? extends Assessment>) newValue);
+			return;
+		case RationalePackage.PROPOSAL__ISSUE:
+			setIssue((Issue) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RationalePackage.PROPOSAL__ASSESSMENTS:
-				getAssessments().clear();
-				return;
-			case RationalePackage.PROPOSAL__ISSUE:
-				setIssue((Issue)null);
-				return;
+		case RationalePackage.PROPOSAL__ASSESSMENTS:
+			getAssessments().clear();
+			return;
+		case RationalePackage.PROPOSAL__ISSUE:
+			setIssue((Issue) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RationalePackage.PROPOSAL__ASSESSMENTS:
-				return assessments != null && !assessments.isEmpty();
-			case RationalePackage.PROPOSAL__ISSUE:
-				return getIssue() != null;
+		case RationalePackage.PROPOSAL__ASSESSMENTS:
+			return assessments != null && !assessments.isEmpty();
+		case RationalePackage.PROPOSAL__ISSUE:
+			return getIssue() != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //ProposalImpl
+} // ProposalImpl

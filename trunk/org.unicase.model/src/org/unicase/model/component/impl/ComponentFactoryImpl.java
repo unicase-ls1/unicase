@@ -1,5 +1,5 @@
 /**
- * <copyright>
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * </copyright>
  *
  * $Id$
@@ -17,35 +17,36 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.unicase.model.component.*;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Factory</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
+ * end-user-doc -->
+ * 
  * @generated
  */
-public class ComponentFactoryImpl extends EFactoryImpl implements ComponentFactory {
+public class ComponentFactoryImpl extends EFactoryImpl implements
+		ComponentFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static ComponentFactory init() {
 		try {
-			ComponentFactory theComponentFactory = (ComponentFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/model/component"); 
+			ComponentFactory theComponentFactory = (ComponentFactory) EPackage.Registry.INSTANCE
+					.getEFactory("http://unicase.org/model/component");
 			if (theComponentFactory != null) {
 				return theComponentFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new ComponentFactoryImpl();
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ComponentFactoryImpl() {
@@ -53,24 +54,28 @@ public class ComponentFactoryImpl extends EFactoryImpl implements ComponentFacto
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case ComponentPackage.COMPONENT: return createComponent();
-			case ComponentPackage.COMPONENT_SERVICE: return createComponentService();
-			case ComponentPackage.DEPLOYMENT_NODE: return createDeploymentNode();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case ComponentPackage.COMPONENT:
+			return createComponent();
+		case ComponentPackage.COMPONENT_SERVICE:
+			return createComponentService();
+		case ComponentPackage.DEPLOYMENT_NODE:
+			return createDeploymentNode();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Component createComponent() {
@@ -79,8 +84,8 @@ public class ComponentFactoryImpl extends EFactoryImpl implements ComponentFacto
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ComponentService createComponentService() {
@@ -89,8 +94,8 @@ public class ComponentFactoryImpl extends EFactoryImpl implements ComponentFacto
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DeploymentNode createDeploymentNode() {
@@ -99,17 +104,17 @@ public class ComponentFactoryImpl extends EFactoryImpl implements ComponentFacto
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ComponentPackage getComponentPackage() {
-		return (ComponentPackage)getEPackage();
+		return (ComponentPackage) getEPackage();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
@@ -118,4 +123,4 @@ public class ComponentFactoryImpl extends EFactoryImpl implements ComponentFacto
 		return ComponentPackage.eINSTANCE;
 	}
 
-} //ComponentFactoryImpl
+} // ComponentFactoryImpl

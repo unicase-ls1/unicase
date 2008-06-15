@@ -1,5 +1,5 @@
 /**
- * <copyright>
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * </copyright>
  *
  * $Id$
@@ -9,19 +9,20 @@ package org.unicase.model.rationale;
 import org.unicase.model.ModelElement;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Assessment</b></em>'.
- * <!-- end-user-doc -->
- *
+ * <!-- begin-user-doc --> A representation of the model object '
+ * <em><b>Assessment</b></em>'. <!-- end-user-doc -->
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.model.rationale.Assessment#getProposal <em>Proposal</em>}</li>
- *   <li>{@link org.unicase.model.rationale.Assessment#getCriterion <em>Criterion</em>}</li>
- *   <li>{@link org.unicase.model.rationale.Assessment#getValue <em>Value</em>}</li>
+ * <li>{@link org.unicase.model.rationale.Assessment#getProposal <em>Proposal
+ * </em>}</li>
+ * <li>{@link org.unicase.model.rationale.Assessment#getCriterion <em>Criterion
+ * </em>}</li>
+ * <li>{@link org.unicase.model.rationale.Assessment#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.unicase.model.rationale.RationalePackage#getAssessment()
  * @model
  * @generated
@@ -29,13 +30,15 @@ import org.unicase.model.ModelElement;
 public interface Assessment extends ModelElement {
 	/**
 	 * Returns the value of the '<em><b>Proposal</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.rationale.Proposal#getAssessments <em>Assessments</em>}'.
-	 * <!-- begin-user-doc -->
+	 * It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.rationale.Proposal#getAssessments
+	 * <em>Assessments</em>}'. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Proposal</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Proposal</em>' reference isn't clear, there
+	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Proposal</em>' container reference.
 	 * @see #setProposal(Proposal)
 	 * @see org.unicase.model.rationale.RationalePackage#getAssessment_Proposal()
@@ -46,24 +49,29 @@ public interface Assessment extends ModelElement {
 	Proposal getProposal();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.rationale.Assessment#getProposal <em>Proposal</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Proposal</em>' container reference.
+	 * Sets the value of the '
+	 * {@link org.unicase.model.rationale.Assessment#getProposal
+	 * <em>Proposal</em>}' container reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Proposal</em>' container reference.
 	 * @see #getProposal()
 	 * @generated
 	 */
 	void setProposal(Proposal value);
 
 	/**
-	 * Returns the value of the '<em><b>Criterion</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.rationale.Criterion#getAssessments <em>Assessments</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Criterion</b></em>' reference. It is
+	 * bidirectional and its opposite is '
+	 * {@link org.unicase.model.rationale.Criterion#getAssessments
+	 * <em>Assessments</em>}'. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Criterion</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Criterion</em>' reference isn't clear, there
+	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Criterion</em>' reference.
 	 * @see #setCriterion(Criterion)
 	 * @see org.unicase.model.rationale.RationalePackage#getAssessment_Criterion()
@@ -74,23 +82,27 @@ public interface Assessment extends ModelElement {
 	Criterion getCriterion();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.rationale.Assessment#getCriterion <em>Criterion</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Criterion</em>' reference.
+	 * Sets the value of the '
+	 * {@link org.unicase.model.rationale.Assessment#getCriterion
+	 * <em>Criterion</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Criterion</em>' reference.
 	 * @see #getCriterion()
 	 * @generated
 	 */
 	void setCriterion(Criterion value);
 
 	/**
-	 * Returns the value of the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Value</b></em>' attribute. <!--
+	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Value</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Value</em>' attribute isn't clear, there
+	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Value</em>' attribute.
 	 * @see #setValue(int)
 	 * @see org.unicase.model.rationale.RationalePackage#getAssessment_Value()
@@ -100,10 +112,12 @@ public interface Assessment extends ModelElement {
 	int getValue();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.rationale.Assessment#getValue <em>Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Value</em>' attribute.
+	 * Sets the value of the '
+	 * {@link org.unicase.model.rationale.Assessment#getValue <em>Value</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Value</em>' attribute.
 	 * @see #getValue()
 	 * @generated
 	 */

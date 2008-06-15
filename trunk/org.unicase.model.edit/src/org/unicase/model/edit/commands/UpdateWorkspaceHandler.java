@@ -11,23 +11,20 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.ProjectSpace;
 
-
 /**
  * 
- * @author Hodaie
- *   This handlers handles UpdateWorkspace command.
- *   This command is shown in UC View context menu only for Projects 
- *
+ * @author Hodaie This handlers handles UpdateWorkspace command. This command is
+ *         shown in UC View context menu only for Projects
+ * 
  */
-public class UpdateWorkspaceHandler extends AbstractHandler  {
+public class UpdateWorkspaceHandler extends AbstractHandler {
 
-	
-	/**.
-	 * ({@inheritDoc})
+	/**
+	 * . ({@inheritDoc})
 	 * 
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		
+
 		IWorkbenchWindow window = HandlerUtil
 				.getActiveWorkbenchWindowChecked(event);
 
@@ -50,8 +47,8 @@ public class UpdateWorkspaceHandler extends AbstractHandler  {
 		}
 
 		ProjectSpace projectSpace = (ProjectSpace) o;
-		
-		//TODO: handle exception
+
+		// TODO: handle exception
 		try {
 			projectSpace.update();
 		} catch (EmfStoreException e) {

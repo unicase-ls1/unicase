@@ -6,14 +6,16 @@ public class FeatureUIHint {
 	private static final String NONE = "NONE";
 	String label;
 	public String type;
-	
+
 	public FeatureUIHint(String label) {
-		this.label=label;
-		type=NONE;
+		this.label = label;
+		type = NONE;
 	}
+
 	public String getLabel() {
 		return label;
 	}
+
 	public void setLabel(String label) {
 		this.label = label;
 	}

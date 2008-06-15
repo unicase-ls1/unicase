@@ -11,48 +11,45 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.ProjectSpace;
 
-
 /**
  * 
- * @author Hodaie
- *   This handlers handles CommitWorkspace command.
- *   This command is shown in UC View context menu only for Projects 
- *
+ * @author Hodaie This handlers handles CommitWorkspace command. This command is
+ *         shown in UC View context menu only for Projects
+ * 
  */
-public class CommitWorkspaceHandler extends AbstractHandler  {
+public class CommitWorkspaceHandler extends AbstractHandler {
 
-	/**.
-	 * ({@inheritDoc})
+	/**
+	 * . ({@inheritDoc})
 	 * 
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		// TODO Auto-generated method stub
-		
+
 		IWorkbenchWindow window = HandlerUtil
 				.getActiveWorkbenchWindowChecked(event);
 
 		MessageDialog.openInformation(window.getShell(), null,
 				"CommitWorkspace!");
-		
-		
+
 		ISelection sel = HandlerUtil.getCurrentSelection(event);
-		if (!(sel instanceof IStructuredSelection )) {
+		if (!(sel instanceof IStructuredSelection)) {
 			return null;
 		}
-		
+
 		IStructuredSelection ssel = (IStructuredSelection) sel;
-		if (ssel.isEmpty()){
+		if (ssel.isEmpty()) {
 			return null;
 		}
-		
+
 		Object o = ssel.getFirstElement();
 		if (!(o instanceof ProjectSpace)) {
 			return null;
 		}
-		
+
 		ProjectSpace projectSpace = (ProjectSpace) o;
 
-		//TODO: handle exception
+		// TODO: handle exception
 		try {
 			projectSpace.commit();
 		} catch (EmfStoreException e) {
