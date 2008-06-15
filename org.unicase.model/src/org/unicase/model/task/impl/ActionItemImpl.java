@@ -1,5 +1,5 @@
 /**
- * <copyright>
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * </copyright>
  *
  * $Id$
@@ -26,28 +26,35 @@ import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Action Item</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>Action Item</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getContainingWorkpackage <em>Containing Workpackage</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getAssociatedChangePackages <em>Associated Change Packages</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getAssignedTo <em>Assigned To</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getDueDate <em>Due Date</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#isDone <em>Done</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getEstimate <em>Estimate</em>}</li>
+ * <li>
+ * {@link org.unicase.model.task.impl.ActionItemImpl#getContainingWorkpackage
+ * <em>Containing Workpackage</em>}</li>
+ * <li>
+ * {@link org.unicase.model.task.impl.ActionItemImpl#getAssociatedChangePackages
+ * <em>Associated Change Packages</em>}</li>
+ * <li>{@link org.unicase.model.task.impl.ActionItemImpl#getAssignedTo <em>
+ * Assigned To</em>}</li>
+ * <li>{@link org.unicase.model.task.impl.ActionItemImpl#getDueDate <em>Due Date
+ * </em>}</li>
+ * <li>{@link org.unicase.model.task.impl.ActionItemImpl#isDone <em>Done</em>}</li>
+ * <li>{@link org.unicase.model.task.impl.ActionItemImpl#getEstimate <em>
+ * Estimate</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	/**
-	 * The cached value of the '{@link #getAssociatedChangePackages() <em>Associated Change Packages</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAssociatedChangePackages()
+	 * <em>Associated Change Packages</em>}' reference list. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getAssociatedChangePackages()
 	 * @generated
 	 * @ordered
@@ -55,9 +62,9 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	protected EList<ModelChangePackage> associatedChangePackages;
 
 	/**
-	 * The cached value of the '{@link #getAssignedTo() <em>Assigned To</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAssignedTo() <em>Assigned To</em>}'
+	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getAssignedTo()
 	 * @generated
 	 * @ordered
@@ -65,9 +72,9 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	protected EList<User> assignedTo;
 
 	/**
-	 * The default value of the '{@link #getDueDate() <em>Due Date</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getDueDate() <em>Due Date</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDueDate()
 	 * @generated
 	 * @ordered
@@ -75,9 +82,9 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	protected static final Date DUE_DATE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDueDate() <em>Due Date</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDueDate() <em>Due Date</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDueDate()
 	 * @generated
 	 * @ordered
@@ -86,8 +93,8 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * The default value of the '{@link #isDone() <em>Done</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isDone()
 	 * @generated
 	 * @ordered
@@ -95,9 +102,9 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	protected static final boolean DONE_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isDone() <em>Done</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #isDone() <em>Done</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isDone()
 	 * @generated
 	 * @ordered
@@ -105,9 +112,9 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	protected boolean done = DONE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getEstimate() <em>Estimate</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getEstimate() <em>Estimate</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getEstimate()
 	 * @generated
 	 * @ordered
@@ -115,9 +122,9 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	protected static final int ESTIMATE_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getEstimate() <em>Estimate</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getEstimate() <em>Estimate</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getEstimate()
 	 * @generated
 	 * @ordered
@@ -125,8 +132,8 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	protected int estimate = ESTIMATE_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ActionItemImpl() {
@@ -134,8 +141,8 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -144,73 +151,86 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public WorkPackage getContainingWorkpackage() {
-		if (eContainerFeatureID != TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE) return null;
-		return (WorkPackage)eContainer();
+		if (eContainerFeatureID != TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE)
+			return null;
+		return (WorkPackage) eContainer();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetContainingWorkpackage(WorkPackage newContainingWorkpackage, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newContainingWorkpackage, TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE, msgs);
+	public NotificationChain basicSetContainingWorkpackage(
+			WorkPackage newContainingWorkpackage, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newContainingWorkpackage,
+				TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE, msgs);
 		return msgs;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setContainingWorkpackage(WorkPackage newContainingWorkpackage) {
-		if (newContainingWorkpackage != eInternalContainer() || (eContainerFeatureID != TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE && newContainingWorkpackage != null)) {
+		if (newContainingWorkpackage != eInternalContainer()
+				|| (eContainerFeatureID != TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE && newContainingWorkpackage != null)) {
 			if (EcoreUtil.isAncestor(this, newContainingWorkpackage))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException(
+						"Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newContainingWorkpackage != null)
-				msgs = ((InternalEObject)newContainingWorkpackage).eInverseAdd(this, TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS, WorkPackage.class, msgs);
+				msgs = ((InternalEObject) newContainingWorkpackage)
+						.eInverseAdd(this,
+								TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
+								WorkPackage.class, msgs);
 			msgs = basicSetContainingWorkpackage(newContainingWorkpackage, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE, newContainingWorkpackage, newContainingWorkpackage));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE,
+					newContainingWorkpackage, newContainingWorkpackage));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ModelChangePackage> getAssociatedChangePackages() {
 		if (associatedChangePackages == null) {
-			associatedChangePackages = new EObjectResolvingEList<ModelChangePackage>(ModelChangePackage.class, this, TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES);
+			associatedChangePackages = new EObjectResolvingEList<ModelChangePackage>(
+					ModelChangePackage.class, this,
+					TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES);
 		}
 		return associatedChangePackages;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<User> getAssignedTo() {
 		if (assignedTo == null) {
-			assignedTo = new EObjectResolvingEList<User>(User.class, this, TaskPackage.ACTION_ITEM__ASSIGNED_TO);
+			assignedTo = new EObjectResolvingEList<User>(User.class, this,
+					TaskPackage.ACTION_ITEM__ASSIGNED_TO);
 		}
 		return assignedTo;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Date getDueDate() {
@@ -218,20 +238,21 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDueDate(Date newDueDate) {
 		Date oldDueDate = dueDate;
 		dueDate = newDueDate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TaskPackage.ACTION_ITEM__DUE_DATE, oldDueDate, dueDate));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					TaskPackage.ACTION_ITEM__DUE_DATE, oldDueDate, dueDate));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isDone() {
@@ -239,20 +260,21 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDone(boolean newDone) {
 		boolean oldDone = done;
 		done = newDone;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TaskPackage.ACTION_ITEM__DONE, oldDone, done));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					TaskPackage.ACTION_ITEM__DONE, oldDone, done));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getEstimate() {
@@ -260,180 +282,190 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setEstimate(int newEstimate) {
 		int oldEstimate = estimate;
 		estimate = newEstimate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TaskPackage.ACTION_ITEM__ESTIMATE, oldEstimate, estimate));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					TaskPackage.ACTION_ITEM__ESTIMATE, oldEstimate, estimate));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetContainingWorkpackage((WorkPackage)otherEnd, msgs);
+		case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetContainingWorkpackage((WorkPackage) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
-				return basicSetContainingWorkpackage(null, msgs);
+		case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
+			return basicSetContainingWorkpackage(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
 		switch (eContainerFeatureID) {
-			case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
-				return eInternalContainer().eInverseRemove(this, TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS, WorkPackage.class, msgs);
+		case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
+			return eInternalContainer().eInverseRemove(this,
+					TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
+					WorkPackage.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
-				return getContainingWorkpackage();
-			case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES:
-				return getAssociatedChangePackages();
-			case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
-				return getAssignedTo();
-			case TaskPackage.ACTION_ITEM__DUE_DATE:
-				return getDueDate();
-			case TaskPackage.ACTION_ITEM__DONE:
-				return isDone() ? Boolean.TRUE : Boolean.FALSE;
-			case TaskPackage.ACTION_ITEM__ESTIMATE:
-				return new Integer(getEstimate());
+		case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
+			return getContainingWorkpackage();
+		case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES:
+			return getAssociatedChangePackages();
+		case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
+			return getAssignedTo();
+		case TaskPackage.ACTION_ITEM__DUE_DATE:
+			return getDueDate();
+		case TaskPackage.ACTION_ITEM__DONE:
+			return isDone() ? Boolean.TRUE : Boolean.FALSE;
+		case TaskPackage.ACTION_ITEM__ESTIMATE:
+			return new Integer(getEstimate());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
-				setContainingWorkpackage((WorkPackage)newValue);
-				return;
-			case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES:
-				getAssociatedChangePackages().clear();
-				getAssociatedChangePackages().addAll((Collection<? extends ModelChangePackage>)newValue);
-				return;
-			case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
-				getAssignedTo().clear();
-				getAssignedTo().addAll((Collection<? extends User>)newValue);
-				return;
-			case TaskPackage.ACTION_ITEM__DUE_DATE:
-				setDueDate((Date)newValue);
-				return;
-			case TaskPackage.ACTION_ITEM__DONE:
-				setDone(((Boolean)newValue).booleanValue());
-				return;
-			case TaskPackage.ACTION_ITEM__ESTIMATE:
-				setEstimate(((Integer)newValue).intValue());
-				return;
+		case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
+			setContainingWorkpackage((WorkPackage) newValue);
+			return;
+		case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES:
+			getAssociatedChangePackages().clear();
+			getAssociatedChangePackages().addAll(
+					(Collection<? extends ModelChangePackage>) newValue);
+			return;
+		case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
+			getAssignedTo().clear();
+			getAssignedTo().addAll((Collection<? extends User>) newValue);
+			return;
+		case TaskPackage.ACTION_ITEM__DUE_DATE:
+			setDueDate((Date) newValue);
+			return;
+		case TaskPackage.ACTION_ITEM__DONE:
+			setDone(((Boolean) newValue).booleanValue());
+			return;
+		case TaskPackage.ACTION_ITEM__ESTIMATE:
+			setEstimate(((Integer) newValue).intValue());
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
-				setContainingWorkpackage((WorkPackage)null);
-				return;
-			case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES:
-				getAssociatedChangePackages().clear();
-				return;
-			case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
-				getAssignedTo().clear();
-				return;
-			case TaskPackage.ACTION_ITEM__DUE_DATE:
-				setDueDate(DUE_DATE_EDEFAULT);
-				return;
-			case TaskPackage.ACTION_ITEM__DONE:
-				setDone(DONE_EDEFAULT);
-				return;
-			case TaskPackage.ACTION_ITEM__ESTIMATE:
-				setEstimate(ESTIMATE_EDEFAULT);
-				return;
+		case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
+			setContainingWorkpackage((WorkPackage) null);
+			return;
+		case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES:
+			getAssociatedChangePackages().clear();
+			return;
+		case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
+			getAssignedTo().clear();
+			return;
+		case TaskPackage.ACTION_ITEM__DUE_DATE:
+			setDueDate(DUE_DATE_EDEFAULT);
+			return;
+		case TaskPackage.ACTION_ITEM__DONE:
+			setDone(DONE_EDEFAULT);
+			return;
+		case TaskPackage.ACTION_ITEM__ESTIMATE:
+			setEstimate(ESTIMATE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
-				return getContainingWorkpackage() != null;
-			case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES:
-				return associatedChangePackages != null && !associatedChangePackages.isEmpty();
-			case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
-				return assignedTo != null && !assignedTo.isEmpty();
-			case TaskPackage.ACTION_ITEM__DUE_DATE:
-				return DUE_DATE_EDEFAULT == null ? dueDate != null : !DUE_DATE_EDEFAULT.equals(dueDate);
-			case TaskPackage.ACTION_ITEM__DONE:
-				return done != DONE_EDEFAULT;
-			case TaskPackage.ACTION_ITEM__ESTIMATE:
-				return estimate != ESTIMATE_EDEFAULT;
+		case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
+			return getContainingWorkpackage() != null;
+		case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES:
+			return associatedChangePackages != null
+					&& !associatedChangePackages.isEmpty();
+		case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
+			return assignedTo != null && !assignedTo.isEmpty();
+		case TaskPackage.ACTION_ITEM__DUE_DATE:
+			return DUE_DATE_EDEFAULT == null ? dueDate != null
+					: !DUE_DATE_EDEFAULT.equals(dueDate);
+		case TaskPackage.ACTION_ITEM__DONE:
+			return done != DONE_EDEFAULT;
+		case TaskPackage.ACTION_ITEM__ESTIMATE:
+			return estimate != ESTIMATE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (dueDate: ");
@@ -446,4 +478,4 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 		return result.toString();
 	}
 
-} //ActionItemImpl
+} // ActionItemImpl

@@ -1,5 +1,5 @@
 /**
- * <copyright>
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * </copyright>
  *
  * $Id$
@@ -17,35 +17,35 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.unicase.model.change.*;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Factory</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
+ * end-user-doc -->
+ * 
  * @generated
  */
 public class ChangeFactoryImpl extends EFactoryImpl implements ChangeFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static ChangeFactory init() {
 		try {
-			ChangeFactory theChangeFactory = (ChangeFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/model/change"); 
+			ChangeFactory theChangeFactory = (ChangeFactory) EPackage.Registry.INSTANCE
+					.getEFactory("http://unicase.org/model/change");
 			if (theChangeFactory != null) {
 				return theChangeFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new ChangeFactoryImpl();
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ChangeFactoryImpl() {
@@ -53,25 +53,30 @@ public class ChangeFactoryImpl extends EFactoryImpl implements ChangeFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case ChangePackage.MODEL_CHANGE_PACKAGE: return createModelChangePackage();
-			case ChangePackage.MERGING_ISSUE: return createMergingIssue();
-			case ChangePackage.MERGING_PROPOSAL: return createMergingProposal();
-			case ChangePackage.MERGING_SOLUTION: return createMergingSolution();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case ChangePackage.MODEL_CHANGE_PACKAGE:
+			return createModelChangePackage();
+		case ChangePackage.MERGING_ISSUE:
+			return createMergingIssue();
+		case ChangePackage.MERGING_PROPOSAL:
+			return createMergingProposal();
+		case ChangePackage.MERGING_SOLUTION:
+			return createMergingSolution();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelChangePackage createModelChangePackage() {
@@ -80,8 +85,8 @@ public class ChangeFactoryImpl extends EFactoryImpl implements ChangeFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public MergingIssue createMergingIssue() {
@@ -90,8 +95,8 @@ public class ChangeFactoryImpl extends EFactoryImpl implements ChangeFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public MergingProposal createMergingProposal() {
@@ -100,8 +105,8 @@ public class ChangeFactoryImpl extends EFactoryImpl implements ChangeFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public MergingSolution createMergingSolution() {
@@ -110,17 +115,17 @@ public class ChangeFactoryImpl extends EFactoryImpl implements ChangeFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ChangePackage getChangePackage() {
-		return (ChangePackage)getEPackage();
+		return (ChangePackage) getEPackage();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
@@ -129,4 +134,4 @@ public class ChangeFactoryImpl extends EFactoryImpl implements ChangeFactory {
 		return ChangePackage.eINSTANCE;
 	}
 
-} //ChangeFactoryImpl
+} // ChangeFactoryImpl

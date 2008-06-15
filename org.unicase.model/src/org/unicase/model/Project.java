@@ -1,5 +1,5 @@
 /**
- * <copyright>
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * </copyright>
  *
  * $Id$
@@ -13,32 +13,36 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Project</b></em>'.
- * @implements IAdaptable
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.Project#getModelElements <em>Model Elements</em>}</li>
- * </ul>
- * </p>
- *
+ * <!-- begin-user-doc --> A representation of the model object '
+ * <em><b>Project</b></em>'.
+ * 
+ * @implements IAdaptable <!-- end-user-doc -->
+ * 
+ *             <p>
+ *             The following features are supported:
+ *             <ul>
+ *             <li>{@link org.unicase.model.Project#getModelElements <em>Model
+ *             Elements</em>}</li>
+ *             </ul>
+ *             </p>
+ * 
  * @see org.unicase.model.ModelPackage#getProject()
  * @model
  * @generated
  */
 public interface Project extends EObject, IAdaptable {
 	/**
-	 * Returns the value of the '<em><b>Model Elements</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.model.ModelElement}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Model Elements</b></em>' containment
+	 * reference list. The list contents are of type
+	 * {@link org.unicase.model.ModelElement}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Model Elements</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Model Elements</em>' containment reference
+	 * list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Model Elements</em>' containment reference list.
+	 * 
+	 * @return the value of the '<em>Model Elements</em>' containment reference
+	 *         list.
 	 * @see org.unicase.model.ModelPackage#getProject_ModelElements()
 	 * @model containment="true"
 	 * @generated
@@ -46,8 +50,8 @@ public interface Project extends EObject, IAdaptable {
 	EList<ModelElement> getModelElements();
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @model
 	 * @generated
 	 */
@@ -55,8 +59,7 @@ public interface Project extends EObject, IAdaptable {
 
 	/**
 	 * @param elementClass
-	 * @return
-	 * * @generated NOT
+	 * @return @generated NOT
 	 */
 	Collection<ModelElement> getElementsByClass(
 			Class<? extends EObject> elementClass);

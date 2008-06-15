@@ -32,12 +32,13 @@ public class UIHintAdapterImpl implements UIHintAdapter {
 				}
 			}
 		}
-		AdapterFactoryItemDelegator adapterFactoryItemDelegator =new AdapterFactoryItemDelegator(new ModelItemProviderAdapterFactory());
-		List<IItemPropertyDescriptor> propertyDescriptors = adapterFactoryItemDelegator.getPropertyDescriptors(feature);
-		for ( IItemPropertyDescriptor itemPropertyDescriptor: propertyDescriptors){
+		AdapterFactoryItemDelegator adapterFactoryItemDelegator = new AdapterFactoryItemDelegator(
+				new ModelItemProviderAdapterFactory());
+		List<IItemPropertyDescriptor> propertyDescriptors = adapterFactoryItemDelegator
+				.getPropertyDescriptors(feature);
+		for (IItemPropertyDescriptor itemPropertyDescriptor : propertyDescriptors) {
 			System.out.println(itemPropertyDescriptor.getDisplayName(feature));
 		}
-
 
 		return featureUIHint;
 	}
