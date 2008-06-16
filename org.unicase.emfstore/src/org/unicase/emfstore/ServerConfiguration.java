@@ -7,7 +7,9 @@ public class ServerConfiguration {
 	public final static String RESOURCE_STORAGE = "ResourceStorage";
 
 	public final static String DEFAULT_RESOURCE_STORAGE = "org.unicase.emfstore.storage.TeneoStorage";
+//	public final static String DEFAULT_RESOURCE_STORAGE = "org.unicase.emfstore.storage.XMLStorage";
 
+	
 	public static String getConfDirectory() {
 		StringBuffer sb = new StringBuffer(getServerHome());
 		sb.append(".");
