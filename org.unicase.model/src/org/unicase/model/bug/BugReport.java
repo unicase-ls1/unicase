@@ -14,38 +14,33 @@ import org.unicase.model.requirement.Step;
 /**
  * <!-- begin-user-doc --> A representation of the model object '
  * <em><b>Report</b></em>'. <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.model.bug.BugReport#getStepsToReproduce <em>Steps To
- * Reproduce</em>}</li>
- * <li>{@link org.unicase.model.bug.BugReport#getStatus <em>Status</em>}</li>
- * <li>{@link org.unicase.model.bug.BugReport#getAssignedTo <em>Assigned To
- * </em>}</li>
- * <li>{@link org.unicase.model.bug.BugReport#getResolution <em>Resolution</em>}
- * </li>
- * <li>{@link org.unicase.model.bug.BugReport#getInvolvedClasses <em>Involved
- * Classes</em>}</li>
- * <li>{@link org.unicase.model.bug.BugReport#getSeverity <em>Severity</em>}</li>
+ *   <li>{@link org.unicase.model.bug.BugReport#getStepsToReproduce <em>Steps To Reproduce</em>}</li>
+ *   <li>{@link org.unicase.model.bug.BugReport#getStatus <em>Status</em>}</li>
+ *   <li>{@link org.unicase.model.bug.BugReport#getAssignedTo <em>Assigned To</em>}</li>
+ *   <li>{@link org.unicase.model.bug.BugReport#getResolution <em>Resolution</em>}</li>
+ *   <li>{@link org.unicase.model.bug.BugReport#getInvolvedClasses <em>Involved Classes</em>}</li>
+ *   <li>{@link org.unicase.model.bug.BugReport#getSeverity <em>Severity</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.model.bug.BugPackage#getBugReport()
  * @model
  * @generated
  */
 public interface BugReport extends ModelElement {
 	/**
-	 * Returns the value of the '<em><b>Steps To Reproduce</b></em>' reference
-	 * list. The list contents are of type
-	 * {@link org.unicase.model.requirement.Step}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Steps To Reproduce</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.requirement.Step}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Steps To Reproduce</em>' reference list isn't
 	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Steps To Reproduce</em>' reference list.
 	 * @see org.unicase.model.bug.BugPackage#getBugReport_StepsToReproduce()
 	 * @model
@@ -103,13 +98,10 @@ public interface BugReport extends ModelElement {
 	OrgUnit getAssignedTo();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.model.bug.BugReport#getAssignedTo
-	 * <em>Assigned To</em>}' reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.unicase.model.bug.BugReport#getAssignedTo <em>Assigned To</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Assigned To</em>' reference.
+	 * @param value the new value of the '<em>Assigned To</em>' reference.
 	 * @see #getAssignedTo()
 	 * @generated
 	 */
@@ -133,27 +125,23 @@ public interface BugReport extends ModelElement {
 	BugResolution getResolution();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.model.bug.BugReport#getResolution <em>Resolution</em>}
-	 * ' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Resolution</em>' reference.
+	 * Sets the value of the '{@link org.unicase.model.bug.BugReport#getResolution <em>Resolution</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Resolution</em>' reference.
 	 * @see #getResolution()
 	 * @generated
 	 */
 	void setResolution(BugResolution value);
 
 	/**
-	 * Returns the value of the '<em><b>Involved Classes</b></em>' reference
-	 * list. The list contents are of type
-	 * {@link org.unicase.model.classes.Class}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Involved Classes</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.classes.Class}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Involved Classes</em>' reference list isn't
 	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Involved Classes</em>' reference list.
 	 * @see org.unicase.model.bug.BugPackage#getBugReport_InvolvedClasses()
 	 * @model
@@ -162,15 +150,14 @@ public interface BugReport extends ModelElement {
 	EList<org.unicase.model.classes.Class> getInvolvedClasses();
 
 	/**
-	 * Returns the value of the '<em><b>Severity</b></em>' attribute. The
-	 * literals are from the enumeration {@link org.unicase.model.bug.Severity}.
+	 * Returns the value of the '<em><b>Severity</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.unicase.model.bug.Severity}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Severity</em>' attribute isn't clear, there
 	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Severity</em>' attribute.
 	 * @see org.unicase.model.bug.Severity
 	 * @see #setSeverity(Severity)
@@ -181,12 +168,9 @@ public interface BugReport extends ModelElement {
 	Severity getSeverity();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.model.bug.BugReport#getSeverity <em>Severity</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Severity</em>' attribute.
+	 * Sets the value of the '{@link org.unicase.model.bug.BugReport#getSeverity <em>Severity</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Severity</em>' attribute.
 	 * @see org.unicase.model.bug.Severity
 	 * @see #getSeverity()
 	 * @generated

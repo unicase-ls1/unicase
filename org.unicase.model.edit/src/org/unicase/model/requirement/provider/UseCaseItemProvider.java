@@ -28,10 +28,9 @@ import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.UseCase;
 
 /**
- * This is the item provider adapter for a
- * {@link org.unicase.model.requirement.UseCase} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.model.requirement.UseCase} object.
+ * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class UseCaseItemProvider extends ModelElementItemProvider implements
@@ -75,15 +74,19 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addInitiatingActorPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_UseCase_initiatingActor_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_UseCase_initiatingActor_feature",
-						"_UI_UseCase_type"),
-				RequirementPackage.Literals.USE_CASE__INITIATING_ACTOR, true,
-				false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_UseCase_initiatingActor_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_UseCase_initiatingActor_feature", "_UI_UseCase_type"),
+				 RequirementPackage.Literals.USE_CASE__INITIATING_ACTOR,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -93,53 +96,61 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addScenariosPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_UseCase_scenarios_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_UseCase_scenarios_feature", "_UI_UseCase_type"),
-				RequirementPackage.Literals.USE_CASE__SCENARIOS, true, false,
-				true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_UseCase_scenarios_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_UseCase_scenarios_feature", "_UI_UseCase_type"),
+				 RequirementPackage.Literals.USE_CASE__SCENARIOS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Functional Requirements feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addFunctionalRequirementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_UseCase_functionalRequirements_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_UseCase_functionalRequirements_feature",
-						"_UI_UseCase_type"),
-				RequirementPackage.Literals.USE_CASE__FUNCTIONAL_REQUIREMENTS,
-				true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_UseCase_functionalRequirements_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_UseCase_functionalRequirements_feature", "_UI_UseCase_type"),
+				 RequirementPackage.Literals.USE_CASE__FUNCTIONAL_REQUIREMENTS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Non Functional Requirements
-	 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Non Functional Requirements feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addNonFunctionalRequirementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_UseCase_nonFunctionalRequirements_feature"),
-						getString(
-								"_UI_PropertyDescriptor_description",
-								"_UI_UseCase_nonFunctionalRequirements_feature",
-								"_UI_UseCase_type"),
-						RequirementPackage.Literals.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS,
-						true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_UseCase_nonFunctionalRequirements_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_UseCase_nonFunctionalRequirements_feature", "_UI_UseCase_type"),
+				 RequirementPackage.Literals.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -149,25 +160,26 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addIdentifiedClassesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_UseCase_identifiedClasses_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_UseCase_identifiedClasses_feature",
-						"_UI_UseCase_type"),
-				RequirementPackage.Literals.USE_CASE__IDENTIFIED_CLASSES, true,
-				false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_UseCase_identifiedClasses_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_UseCase_identifiedClasses_feature", "_UI_UseCase_type"),
+				 RequirementPackage.Literals.USE_CASE__IDENTIFIED_CLASSES,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to
-	 * deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand},
-	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in
-	 * {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -182,13 +194,11 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper
-		// feature to use for
+		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
 		return super.getChildFeature(object, child);
@@ -197,51 +207,53 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements
 	/**
 	 * This adds a property descriptor for the Participating Actors feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addParticipatingActorsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_UseCase_participatingActors_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_UseCase_participatingActors_feature",
-						"_UI_UseCase_type"),
-				RequirementPackage.Literals.USE_CASE__PARTICIPATING_ACTORS,
-				true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_UseCase_participatingActors_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_UseCase_participatingActors_feature", "_UI_UseCase_type"),
+				 RequirementPackage.Literals.USE_CASE__PARTICIPATING_ACTORS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This returns UseCase.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns UseCase.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/UseCase"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/UseCase"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((UseCase) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_UseCase_type")
-				: getString("_UI_UseCase_type") + " " + label;
+		String label = ((UseCase)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_UseCase_type") :
+			getString("_UI_UseCase_type") + " " + label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -249,10 +261,9 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(UseCase.class)) {
-		case RequirementPackage.USE_CASE__STEPS:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
-			return;
+			case RequirementPackage.USE_CASE__STEPS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -269,9 +280,10 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-				RequirementPackage.Literals.USE_CASE__STEPS,
-				RequirementFactory.eINSTANCE.createStep()));
+		newChildDescriptors.add
+			(createChildParameter
+				(RequirementPackage.Literals.USE_CASE__STEPS,
+				 RequirementFactory.eINSTANCE.createStep()));
 	}
 
 	/**

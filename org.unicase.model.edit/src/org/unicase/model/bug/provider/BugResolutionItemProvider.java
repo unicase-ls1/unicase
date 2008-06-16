@@ -27,10 +27,9 @@ import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.ModelElementItemProvider;
 
 /**
- * This is the item provider adapter for a
- * {@link org.unicase.model.bug.BugResolution} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.model.bug.BugResolution} object.
+ * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class BugResolutionItemProvider extends ModelElementItemProvider
@@ -69,16 +68,19 @@ public class BugResolutionItemProvider extends ModelElementItemProvider
 	 * @generated
 	 */
 	protected void addResoultionTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_BugResolution_resoultionType_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_BugResolution_resoultionType_feature",
-						"_UI_BugResolution_type"),
-				BugPackage.Literals.BUG_RESOLUTION__RESOULTION_TYPE, true,
-				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-				null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_BugResolution_resoultionType_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BugResolution_resoultionType_feature", "_UI_BugResolution_type"),
+				 BugPackage.Literals.BUG_RESOLUTION__RESOULTION_TYPE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -89,29 +91,28 @@ public class BugResolutionItemProvider extends ModelElementItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/BugResolution"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/BugResolution"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((BugResolution) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_BugResolution_type")
-				: getString("_UI_BugResolution_type") + " " + label;
+		String label = ((BugResolution)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_BugResolution_type") :
+			getString("_UI_BugResolution_type") + " " + label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -119,10 +120,9 @@ public class BugResolutionItemProvider extends ModelElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(BugResolution.class)) {
-		case BugPackage.BUG_RESOLUTION__RESOULTION_TYPE:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
-			return;
+			case BugPackage.BUG_RESOLUTION__RESOULTION_TYPE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

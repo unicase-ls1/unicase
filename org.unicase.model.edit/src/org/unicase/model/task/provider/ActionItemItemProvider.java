@@ -27,10 +27,9 @@ import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskPackage;
 
 /**
- * This is the item provider adapter for a
- * {@link org.unicase.model.task.ActionItem} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.model.task.ActionItem} object.
+ * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ActionItemItemProvider extends AnnotationItemProvider implements
@@ -67,21 +66,24 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 	}
 
 	/**
-	 * This adds a property descriptor for the Associated Change Packages
-	 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Associated Change Packages feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addAssociatedChangePackagesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_WorkItem_associatedChangePackages_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_WorkItem_associatedChangePackages_feature",
-						"_UI_WorkItem_type"),
-				TaskPackage.Literals.WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES,
-				true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_WorkItem_associatedChangePackages_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_WorkItem_associatedChangePackages_feature", "_UI_WorkItem_type"),
+				 TaskPackage.Literals.WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -91,15 +93,19 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 	 * @generated
 	 */
 	protected void addAssignedToPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ActionItem_assignedTo_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_ActionItem_assignedTo_feature",
-						"_UI_ActionItem_type"),
-				TaskPackage.Literals.ACTION_ITEM__ASSIGNED_TO, true, false,
-				true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ActionItem_assignedTo_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ActionItem_assignedTo_feature", "_UI_ActionItem_type"),
+				 TaskPackage.Literals.ACTION_ITEM__ASSIGNED_TO,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -109,34 +115,41 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 	 * @generated
 	 */
 	protected void addDueDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(), getResourceLocator(),
-						getString("_UI_ActionItem_dueDate_feature"), getString(
-								"_UI_PropertyDescriptor_description",
-								"_UI_ActionItem_dueDate_feature",
-								"_UI_ActionItem_type"),
-						TaskPackage.Literals.ACTION_ITEM__DUE_DATE, true,
-						false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ActionItem_dueDate_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ActionItem_dueDate_feature", "_UI_ActionItem_type"),
+				 TaskPackage.Literals.ACTION_ITEM__DUE_DATE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Done feature. <!-- begin-user-doc
+	 * This adds a property descriptor for the Done feature.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addDonePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ActionItem_done_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_ActionItem_done_feature", "_UI_ActionItem_type"),
-				TaskPackage.Literals.ACTION_ITEM__DONE, true, false, false,
-				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ActionItem_done_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ActionItem_done_feature", "_UI_ActionItem_type"),
+				 TaskPackage.Literals.ACTION_ITEM__DONE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -146,15 +159,19 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 	 * @generated
 	 */
 	protected void addEstimatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ActionItem_estimate_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_ActionItem_estimate_feature",
-						"_UI_ActionItem_type"),
-				TaskPackage.Literals.ACTION_ITEM__ESTIMATE, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ActionItem_estimate_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ActionItem_estimate_feature", "_UI_ActionItem_type"),
+				 TaskPackage.Literals.ACTION_ITEM__ESTIMATE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -165,29 +182,28 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/ActionItem"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ActionItem"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ActionItem) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_ActionItem_type")
-				: getString("_UI_ActionItem_type") + " " + label;
+		String label = ((ActionItem)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ActionItem_type") :
+			getString("_UI_ActionItem_type") + " " + label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -195,12 +211,11 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ActionItem.class)) {
-		case TaskPackage.ACTION_ITEM__DUE_DATE:
-		case TaskPackage.ACTION_ITEM__DONE:
-		case TaskPackage.ACTION_ITEM__ESTIMATE:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
-			return;
+			case TaskPackage.ACTION_ITEM__DUE_DATE:
+			case TaskPackage.ACTION_ITEM__DONE:
+			case TaskPackage.ACTION_ITEM__ESTIMATE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

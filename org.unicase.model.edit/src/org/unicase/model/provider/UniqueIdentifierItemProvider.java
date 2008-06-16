@@ -26,10 +26,9 @@ import org.unicase.model.ModelPackage;
 import org.unicase.model.UniqueIdentifier;
 
 /**
- * This is the item provider adapter for a
- * {@link org.unicase.model.UniqueIdentifier} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.model.UniqueIdentifier} object.
+ * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class UniqueIdentifierItemProvider extends ItemProviderAdapter implements
@@ -62,42 +61,46 @@ public class UniqueIdentifierItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
-	 * This adds a property descriptor for the Id feature. <!-- begin-user-doc
+	 * This adds a property descriptor for the Id feature.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_UniqueIdentifier_id_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_UniqueIdentifier_id_feature",
-						"_UI_UniqueIdentifier_type"),
-				ModelPackage.Literals.UNIQUE_IDENTIFIER__ID, false, false,
-				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_UniqueIdentifier_id_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_UniqueIdentifier_id_feature", "_UI_UniqueIdentifier_type"),
+				 ModelPackage.Literals.UNIQUE_IDENTIFIER__ID,
+				 false,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((UniqueIdentifier) object).getId();
-		return label == null || label.length() == 0 ? getString("_UI_UniqueIdentifier_type")
-				: getString("_UI_UniqueIdentifier_type") + " " + label;
+		String label = ((UniqueIdentifier)object).getId();
+		return label == null || label.length() == 0 ?
+			getString("_UI_UniqueIdentifier_type") :
+			getString("_UI_UniqueIdentifier_type") + " " + label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -105,10 +108,9 @@ public class UniqueIdentifierItemProvider extends ItemProviderAdapter implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(UniqueIdentifier.class)) {
-		case ModelPackage.UNIQUE_IDENTIFIER__ID:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
-			return;
+			case ModelPackage.UNIQUE_IDENTIFIER__ID:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

@@ -20,10 +20,9 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.unicase.model.ModelElementId;
 
 /**
- * This is the item provider adapter for a
- * {@link org.unicase.model.ModelElementId} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link org.unicase.model.ModelElementId} object.
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class ModelElementIdItemProvider extends UniqueIdentifierItemProvider
@@ -55,36 +54,35 @@ public class ModelElementIdItemProvider extends UniqueIdentifierItemProvider
 	}
 
 	/**
-	 * This returns ModelElementId.gif. <!-- begin-user-doc --> <!--
+	 * This returns ModelElementId.gif.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/ModelElementId"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ModelElementId"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ModelElementId) object).getId();
-		return label == null || label.length() == 0 ? getString("_UI_ModelElementId_type")
-				: getString("_UI_ModelElementId_type") + " " + label;
+		String label = ((ModelElementId)object).getId();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ModelElementId_type") :
+			getString("_UI_ModelElementId_type") + " " + label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

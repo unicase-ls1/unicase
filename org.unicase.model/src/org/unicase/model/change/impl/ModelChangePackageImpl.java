@@ -19,24 +19,19 @@ import org.unicase.model.impl.ModelElementImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.unicase.model.change.impl.ModelChangePackageImpl#getSourceVersion
- * <em>Source Version</em>}</li>
- * <li>
- * {@link org.unicase.model.change.impl.ModelChangePackageImpl#getTargetVersion
- * <em>Target Version</em>}</li>
+ *   <li>{@link org.unicase.model.change.impl.ModelChangePackageImpl#getSourceVersion <em>Source Version</em>}</li>
+ *   <li>{@link org.unicase.model.change.impl.ModelChangePackageImpl#getTargetVersion <em>Target Version</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ModelChangePackageImpl extends ModelElementImpl implements
 		ModelChangePackage {
 	/**
-	 * The default value of the '{@link #getSourceVersion()
-	 * <em>Source Version</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getSourceVersion() <em>Source Version</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getSourceVersion()
 	 * @generated
 	 * @ordered
@@ -44,10 +39,9 @@ public class ModelChangePackageImpl extends ModelElementImpl implements
 	protected static final int SOURCE_VERSION_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getSourceVersion()
-	 * <em>Source Version</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getSourceVersion() <em>Source Version</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getSourceVersion()
 	 * @generated
 	 * @ordered
@@ -55,10 +49,9 @@ public class ModelChangePackageImpl extends ModelElementImpl implements
 	protected int sourceVersion = SOURCE_VERSION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getTargetVersion()
-	 * <em>Target Version</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getTargetVersion() <em>Target Version</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getTargetVersion()
 	 * @generated
 	 * @ordered
@@ -66,10 +59,9 @@ public class ModelChangePackageImpl extends ModelElementImpl implements
 	protected static final int TARGET_VERSION_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getTargetVersion()
-	 * <em>Target Version</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getTargetVersion() <em>Target Version</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getTargetVersion()
 	 * @generated
 	 * @ordered
@@ -78,7 +70,6 @@ public class ModelChangePackageImpl extends ModelElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ModelChangePackageImpl() {
@@ -87,7 +78,6 @@ public class ModelChangePackageImpl extends ModelElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -97,7 +87,6 @@ public class ModelChangePackageImpl extends ModelElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getSourceVersion() {
@@ -106,21 +95,17 @@ public class ModelChangePackageImpl extends ModelElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSourceVersion(int newSourceVersion) {
 		int oldSourceVersion = sourceVersion;
 		sourceVersion = newSourceVersion;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ChangePackage.MODEL_CHANGE_PACKAGE__SOURCE_VERSION,
-					oldSourceVersion, sourceVersion));
+			eNotify(new ENotificationImpl(this, Notification.SET, ChangePackage.MODEL_CHANGE_PACKAGE__SOURCE_VERSION, oldSourceVersion, sourceVersion));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getTargetVersion() {
@@ -129,95 +114,86 @@ public class ModelChangePackageImpl extends ModelElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setTargetVersion(int newTargetVersion) {
 		int oldTargetVersion = targetVersion;
 		targetVersion = newTargetVersion;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ChangePackage.MODEL_CHANGE_PACKAGE__TARGET_VERSION,
-					oldTargetVersion, targetVersion));
+			eNotify(new ENotificationImpl(this, Notification.SET, ChangePackage.MODEL_CHANGE_PACKAGE__TARGET_VERSION, oldTargetVersion, targetVersion));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case ChangePackage.MODEL_CHANGE_PACKAGE__SOURCE_VERSION:
-			return new Integer(getSourceVersion());
-		case ChangePackage.MODEL_CHANGE_PACKAGE__TARGET_VERSION:
-			return new Integer(getTargetVersion());
+			case ChangePackage.MODEL_CHANGE_PACKAGE__SOURCE_VERSION:
+				return new Integer(getSourceVersion());
+			case ChangePackage.MODEL_CHANGE_PACKAGE__TARGET_VERSION:
+				return new Integer(getTargetVersion());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case ChangePackage.MODEL_CHANGE_PACKAGE__SOURCE_VERSION:
-			setSourceVersion(((Integer) newValue).intValue());
-			return;
-		case ChangePackage.MODEL_CHANGE_PACKAGE__TARGET_VERSION:
-			setTargetVersion(((Integer) newValue).intValue());
-			return;
+			case ChangePackage.MODEL_CHANGE_PACKAGE__SOURCE_VERSION:
+				setSourceVersion(((Integer)newValue).intValue());
+				return;
+			case ChangePackage.MODEL_CHANGE_PACKAGE__TARGET_VERSION:
+				setTargetVersion(((Integer)newValue).intValue());
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case ChangePackage.MODEL_CHANGE_PACKAGE__SOURCE_VERSION:
-			setSourceVersion(SOURCE_VERSION_EDEFAULT);
-			return;
-		case ChangePackage.MODEL_CHANGE_PACKAGE__TARGET_VERSION:
-			setTargetVersion(TARGET_VERSION_EDEFAULT);
-			return;
+			case ChangePackage.MODEL_CHANGE_PACKAGE__SOURCE_VERSION:
+				setSourceVersion(SOURCE_VERSION_EDEFAULT);
+				return;
+			case ChangePackage.MODEL_CHANGE_PACKAGE__TARGET_VERSION:
+				setTargetVersion(TARGET_VERSION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case ChangePackage.MODEL_CHANGE_PACKAGE__SOURCE_VERSION:
-			return sourceVersion != SOURCE_VERSION_EDEFAULT;
-		case ChangePackage.MODEL_CHANGE_PACKAGE__TARGET_VERSION:
-			return targetVersion != TARGET_VERSION_EDEFAULT;
+			case ChangePackage.MODEL_CHANGE_PACKAGE__SOURCE_VERSION:
+				return sourceVersion != SOURCE_VERSION_EDEFAULT;
+			case ChangePackage.MODEL_CHANGE_PACKAGE__TARGET_VERSION:
+				return targetVersion != TARGET_VERSION_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (sourceVersion: ");

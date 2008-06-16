@@ -23,12 +23,10 @@ import org.unicase.model.classes.PackageElement;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.unicase.model.classes.impl.PackageImpl#getContainedPackageElements
- * <em>Contained Package Elements</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.PackageImpl#getContainedPackageElements <em>Contained Package Elements</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class PackageImpl extends PackageElementImpl implements
@@ -46,7 +44,6 @@ public class PackageImpl extends PackageElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected PackageImpl() {
@@ -55,7 +52,6 @@ public class PackageImpl extends PackageElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,22 +61,17 @@ public class PackageImpl extends PackageElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<PackageElement> getContainedPackageElements() {
 		if (containedPackageElements == null) {
-			containedPackageElements = new EObjectContainmentWithInverseEList<PackageElement>(
-					PackageElement.class, this,
-					ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS,
-					ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE);
+			containedPackageElements = new EObjectContainmentWithInverseEList<PackageElement>(PackageElement.class, this, ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS, ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE);
 		}
 		return containedPackageElements;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -88,87 +79,78 @@ public class PackageImpl extends PackageElementImpl implements
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getContainedPackageElements())
-					.basicAdd(otherEnd, msgs);
+			case ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getContainedPackageElements()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS:
-			return ((InternalEList<?>) getContainedPackageElements())
-					.basicRemove(otherEnd, msgs);
+			case ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS:
+				return ((InternalEList<?>)getContainedPackageElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS:
-			return getContainedPackageElements();
+			case ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS:
+				return getContainedPackageElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS:
-			getContainedPackageElements().clear();
-			getContainedPackageElements().addAll(
-					(Collection<? extends PackageElement>) newValue);
-			return;
+			case ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS:
+				getContainedPackageElements().clear();
+				getContainedPackageElements().addAll((Collection<? extends PackageElement>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS:
-			getContainedPackageElements().clear();
-			return;
+			case ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS:
+				getContainedPackageElements().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS:
-			return containedPackageElements != null
-					&& !containedPackageElements.isEmpty();
+			case ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS:
+				return containedPackageElements != null && !containedPackageElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

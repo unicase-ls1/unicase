@@ -21,47 +21,43 @@ import org.unicase.model.ModelPackage;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * 
  * @see org.unicase.model.diagram.DiagramFactory
  * @model kind="package"
  * @generated
  */
 public interface DiagramPackage extends EPackage {
 	/**
-	 * The package name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNAME = "diagram";
 
 	/**
-	 * The package namespace URI. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace URI.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_URI = "http://unicase.org/model/diagram";
 
 	/**
-	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_PREFIX = "org.unicase.model.diagram";
 
 	/**
-	 * The singleton instance of the package. <!-- begin-user-doc --> <!--
+	 * The singleton instance of the package.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	DiagramPackage eINSTANCE = org.unicase.model.diagram.impl.DiagramPackageImpl
-			.init();
+	DiagramPackage eINSTANCE = org.unicase.model.diagram.impl.DiagramPackageImpl.init();
 
 	/**
-	 * The meta object id for the '
-	 * {@link org.unicase.model.diagram.impl.MEDiagramImpl <em>ME Diagram</em>}'
-	 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.model.diagram.impl.MEDiagramImpl <em>ME Diagram</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.model.diagram.impl.MEDiagramImpl
 	 * @see org.unicase.model.diagram.impl.DiagramPackageImpl#getMEDiagram()
 	 * @generated
@@ -87,18 +83,16 @@ public interface DiagramPackage extends EPackage {
 	int ME_DIAGRAM__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' containment
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int ME_DIAGRAM__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Reader Infos</b></em>' containment
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -114,18 +108,16 @@ public interface DiagramPackage extends EPackage {
 	int ME_DIAGRAM__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>'
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int ME_DIAGRAM__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -141,18 +133,16 @@ public interface DiagramPackage extends EPackage {
 	int ME_DIAGRAM__ELEMENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Gmfdiagram</b></em>' containment
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Gmfdiagram</b></em>' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int ME_DIAGRAM__GMFDIAGRAM = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>New Elements</b></em>' containment
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>New Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -161,7 +151,6 @@ public interface DiagramPackage extends EPackage {
 	/**
 	 * The number of structural features of the '<em>ME Diagram</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -179,10 +168,8 @@ public interface DiagramPackage extends EPackage {
 	EClass getMEDiagram();
 
 	/**
-	 * Returns the meta object for the reference list '
-	 * {@link org.unicase.model.diagram.MEDiagram#getElements <em>Elements</em>}
-	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference list '{@link org.unicase.model.diagram.MEDiagram#getElements <em>Elements</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Elements</em>'.
 	 * @see org.unicase.model.diagram.MEDiagram#getElements()
 	 * @see #getMEDiagram()
@@ -191,12 +178,9 @@ public interface DiagramPackage extends EPackage {
 	EReference getMEDiagram_Elements();
 
 	/**
-	 * Returns the meta object for the containment reference '
-	 * {@link org.unicase.model.diagram.MEDiagram#getGmfdiagram
-	 * <em>Gmfdiagram</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the containment reference '
-	 *         <em>Gmfdiagram</em>'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.model.diagram.MEDiagram#getGmfdiagram <em>Gmfdiagram</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Gmfdiagram</em>'.
 	 * @see org.unicase.model.diagram.MEDiagram#getGmfdiagram()
 	 * @see #getMEDiagram()
 	 * @generated
@@ -204,12 +188,9 @@ public interface DiagramPackage extends EPackage {
 	EReference getMEDiagram_Gmfdiagram();
 
 	/**
-	 * Returns the meta object for the containment reference '
-	 * {@link org.unicase.model.diagram.MEDiagram#getNewElements
-	 * <em>New Elements</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the containment reference '
-	 *         <em>New Elements</em>'.
+	 * Returns the meta object for the containment reference list '{@link org.unicase.model.diagram.MEDiagram#getNewElements <em>New Elements</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>New Elements</em>'.
 	 * @see org.unicase.model.diagram.MEDiagram#getNewElements()
 	 * @see #getMEDiagram()
 	 * @generated
@@ -235,16 +216,13 @@ public interface DiagramPackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '
-		 * {@link org.unicase.model.diagram.impl.MEDiagramImpl
-		 * <em>ME Diagram</em>}' class. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '{@link org.unicase.model.diagram.impl.MEDiagramImpl <em>ME Diagram</em>}' class.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @see org.unicase.model.diagram.impl.MEDiagramImpl
 		 * @see org.unicase.model.diagram.impl.DiagramPackageImpl#getMEDiagram()
 		 * @generated
@@ -252,31 +230,27 @@ public interface DiagramPackage extends EPackage {
 		EClass ME_DIAGRAM = eINSTANCE.getMEDiagram();
 
 		/**
-		 * The meta object literal for the '<em><b>Elements</b></em>' reference
-		 * list feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Elements</b></em>' reference list feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference ME_DIAGRAM__ELEMENTS = eINSTANCE.getMEDiagram_Elements();
 
 		/**
-		 * The meta object literal for the '<em><b>Gmfdiagram</b></em>'
-		 * containment reference feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Gmfdiagram</b></em>' containment reference feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference ME_DIAGRAM__GMFDIAGRAM = eINSTANCE.getMEDiagram_Gmfdiagram();
 
 		/**
-		 * The meta object literal for the '<em><b>New Elements</b></em>'
-		 * containment reference feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>New Elements</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
-		EReference ME_DIAGRAM__NEW_ELEMENTS = eINSTANCE
-				.getMEDiagram_NewElements();
+		EReference ME_DIAGRAM__NEW_ELEMENTS = eINSTANCE.getMEDiagram_NewElements();
 
 	}
 

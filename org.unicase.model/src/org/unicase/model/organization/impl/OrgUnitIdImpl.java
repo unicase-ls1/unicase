@@ -16,13 +16,12 @@ import org.unicase.model.organization.OrganizationPackage;
  * <em><b>Org Unit Id</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class OrgUnitIdImpl extends UniqueIdentifierImpl implements OrgUnitId {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected OrgUnitIdImpl() {
@@ -31,7 +30,6 @@ public class OrgUnitIdImpl extends UniqueIdentifierImpl implements OrgUnitId {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

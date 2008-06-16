@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
+import org.unicase.model.task.*;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
@@ -24,22 +25,21 @@ import org.unicase.model.task.WorkPackage;
  * starting with the actual class of the object and proceeding up the
  * inheritance hierarchy until a non-null result is returned, which is the
  * result of the switch. <!-- end-user-doc -->
- * 
  * @see org.unicase.model.task.TaskPackage
  * @generated
  */
 public class TaskSwitch<T> {
 	/**
-	 * The cached model package <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached model package
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected static TaskPackage modelPackage;
 
 	/**
-	 * Creates an instance of the switch. <!-- begin-user-doc --> <!--
+	 * Creates an instance of the switch.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public TaskSwitch() {
@@ -49,12 +49,10 @@ public class TaskSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns
-	 * a non null result; it yields that result. <!-- begin-user-doc --> <!--
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @return the first non-null result returned by a <code>caseXXX</code>
-	 *         call.
+	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
 	public T doSwitch(EObject theEObject) {
@@ -62,87 +60,71 @@ public class TaskSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns
-	 * a non null result; it yields that result. <!-- begin-user-doc --> <!--
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @return the first non-null result returned by a <code>caseXXX</code>
-	 *         call.
+	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
 		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
-		} else {
+		}
+		else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(
-					eSuperTypes.get(0), theEObject);
+			return
+				eSuperTypes.isEmpty() ?
+					defaultCase(theEObject) :
+					doSwitch(eSuperTypes.get(0), theEObject);
 		}
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns
-	 * a non null result; it yields that result. <!-- begin-user-doc --> <!--
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @return the first non-null result returned by a <code>caseXXX</code>
-	 *         call.
+	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-		case TaskPackage.ACTION_ITEM: {
-			ActionItem actionItem = (ActionItem) theEObject;
-			T result = caseActionItem(actionItem);
-			if (result == null)
-				result = caseWorkItem(actionItem);
-			if (result == null)
-				result = caseAnnotation(actionItem);
-			if (result == null)
-				result = caseModelElement(actionItem);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case TaskPackage.WORK_PACKAGE: {
-			WorkPackage workPackage = (WorkPackage) theEObject;
-			T result = caseWorkPackage(workPackage);
-			if (result == null)
-				result = caseWorkItem(workPackage);
-			if (result == null)
-				result = caseAnnotation(workPackage);
-			if (result == null)
-				result = caseModelElement(workPackage);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case TaskPackage.WORK_ITEM: {
-			WorkItem workItem = (WorkItem) theEObject;
-			T result = caseWorkItem(workItem);
-			if (result == null)
-				result = caseAnnotation(workItem);
-			if (result == null)
-				result = caseModelElement(workItem);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		default:
-			return defaultCase(theEObject);
+			case TaskPackage.ACTION_ITEM: {
+				ActionItem actionItem = (ActionItem)theEObject;
+				T result = caseActionItem(actionItem);
+				if (result == null) result = caseWorkItem(actionItem);
+				if (result == null) result = caseAnnotation(actionItem);
+				if (result == null) result = caseModelElement(actionItem);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TaskPackage.WORK_PACKAGE: {
+				WorkPackage workPackage = (WorkPackage)theEObject;
+				T result = caseWorkPackage(workPackage);
+				if (result == null) result = caseWorkItem(workPackage);
+				if (result == null) result = caseAnnotation(workPackage);
+				if (result == null) result = caseModelElement(workPackage);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TaskPackage.WORK_ITEM: {
+				WorkItem workItem = (WorkItem)theEObject;
+				T result = caseWorkItem(workItem);
+				if (result == null) result = caseAnnotation(workItem);
+				if (result == null) result = caseModelElement(workItem);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			default: return defaultCase(theEObject);
 		}
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '
-	 * <em>Action Item</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Action Item</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '
-	 *         <em>Action Item</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Action Item</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -151,15 +133,12 @@ public class TaskSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '
-	 * <em>Work Package</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Work Package</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '
-	 *         <em>Work Package</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Work Package</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -168,15 +147,12 @@ public class TaskSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '
-	 * <em>Work Item</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Work Item</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '
-	 *         <em>Work Item</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Work Item</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -185,15 +161,12 @@ public class TaskSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '
-	 * <em>Element</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Element</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '
-	 *         <em>Element</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -202,15 +175,12 @@ public class TaskSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '
-	 * <em>Annotation</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Annotation</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '
-	 *         <em>Annotation</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Annotation</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -219,15 +189,12 @@ public class TaskSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '
-	 * <em>EObject</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch, but this is
 	 * the last case anyway. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '
-	 *         <em>EObject</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */

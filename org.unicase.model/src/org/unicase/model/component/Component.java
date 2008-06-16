@@ -12,19 +12,16 @@ import org.unicase.model.ModelElement;
 /**
  * <!-- begin-user-doc --> A representation of the model object '
  * <em><b>Component</b></em>'. <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.model.component.Component#getPackages <em>Packages
- * </em>}</li>
- * <li>{@link org.unicase.model.component.Component#getOfferedServices <em>
- * Offered Services</em>}</li>
- * <li>{@link org.unicase.model.component.Component#getConsumedServices <em>
- * Consumed Services</em>}</li>
+ *   <li>{@link org.unicase.model.component.Component#getPackages <em>Packages</em>}</li>
+ *   <li>{@link org.unicase.model.component.Component#getOfferedServices <em>Offered Services</em>}</li>
+ *   <li>{@link org.unicase.model.component.Component#getConsumedServices <em>Consumed Services</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.model.component.ComponentPackage#getComponent()
  * @model
  * @generated
@@ -48,20 +45,16 @@ public interface Component extends ModelElement {
 	EList<org.unicase.model.classes.Package> getPackages();
 
 	/**
-	 * Returns the value of the '<em><b>Offered Services</b></em>' containment
-	 * reference list. The list contents are of type
-	 * {@link org.unicase.model.component.ComponentService}. It is bidirectional
-	 * and its opposite is '
-	 * {@link org.unicase.model.component.ComponentService#getOfferingComponent
-	 * <em>Offering Component</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Offered Services</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.model.component.ComponentService}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.component.ComponentService#getOfferingComponent <em>Offering Component</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Offered Services</em>' containment reference
 	 * list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Offered Services</em>' containment
-	 *         reference list.
+	 * @return the value of the '<em>Offered Services</em>' containment reference list.
 	 * @see org.unicase.model.component.ComponentPackage#getComponent_OfferedServices()
 	 * @see org.unicase.model.component.ComponentService#getOfferingComponent
 	 * @model opposite="offeringComponent" containment="true"
@@ -70,18 +63,15 @@ public interface Component extends ModelElement {
 	EList<ComponentService> getOfferedServices();
 
 	/**
-	 * Returns the value of the '<em><b>Consumed Services</b></em>' reference
-	 * list. The list contents are of type
-	 * {@link org.unicase.model.component.ComponentService}. It is bidirectional
-	 * and its opposite is '
-	 * {@link org.unicase.model.component.ComponentService#getConsumingComponents
-	 * <em>Consuming Components</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Consumed Services</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.component.ComponentService}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.component.ComponentService#getConsumingComponents <em>Consuming Components</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Consumed Services</em>' reference list isn't
 	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Consumed Services</em>' reference list.
 	 * @see org.unicase.model.component.ComponentPackage#getComponent_ConsumedServices()
 	 * @see org.unicase.model.component.ComponentService#getConsumingComponents

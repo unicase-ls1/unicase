@@ -25,10 +25,9 @@ import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.RequirementPackage;
 
 /**
- * This is the item provider adapter for a
- * {@link org.unicase.model.requirement.Actor} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.model.requirement.Actor} object.
+ * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ActorItemProvider extends ModelElementItemProvider implements
@@ -69,34 +68,40 @@ public class ActorItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addInitiatedUseCasesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(), getResourceLocator(),
-						getString("_UI_Actor_initiatedUseCases_feature"),
-						getString("_UI_PropertyDescriptor_description",
-								"_UI_Actor_initiatedUseCases_feature",
-								"_UI_Actor_type"),
-						RequirementPackage.Literals.ACTOR__INITIATED_USE_CASES,
-						true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Actor_initiatedUseCases_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Actor_initiatedUseCases_feature", "_UI_Actor_type"),
+				 RequirementPackage.Literals.ACTOR__INITIATED_USE_CASES,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Participated Use Cases feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addParticipatedUseCasesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Actor_participatedUseCases_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Actor_participatedUseCases_feature",
-						"_UI_Actor_type"),
-				RequirementPackage.Literals.ACTOR__PARTICIPATED_USE_CASES,
-				true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Actor_participatedUseCases_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Actor_participatedUseCases_feature", "_UI_Actor_type"),
+				 RequirementPackage.Literals.ACTOR__PARTICIPATED_USE_CASES,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -106,46 +111,50 @@ public class ActorItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addInstancesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Actor_instances_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Actor_instances_feature", "_UI_Actor_type"),
-				RequirementPackage.Literals.ACTOR__INSTANCES, true, false,
-				true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Actor_instances_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Actor_instances_feature", "_UI_Actor_type"),
+				 RequirementPackage.Literals.ACTOR__INSTANCES,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This returns Actor.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns Actor.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/Actor"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Actor"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Actor) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Actor_type")
-				: getString("_UI_Actor_type") + " " + label;
+		String label = ((Actor)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Actor_type") :
+			getString("_UI_Actor_type") + " " + label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

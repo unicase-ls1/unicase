@@ -11,19 +11,17 @@ import org.eclipse.emf.ecore.EFactory;
 /**
  * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a
  * create method for each non-abstract class of the model. <!-- end-user-doc -->
- * 
  * @see org.unicase.model.requirement.RequirementPackage
  * @generated
  */
 public interface RequirementFactory extends EFactory {
 	/**
-	 * The singleton instance of the factory. <!-- begin-user-doc --> <!--
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	RequirementFactory eINSTANCE = org.unicase.model.requirement.impl.RequirementFactoryImpl
-			.init();
+	RequirementFactory eINSTANCE = org.unicase.model.requirement.impl.RequirementFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Non Functional Requirement</em>'. <!--
@@ -44,27 +42,27 @@ public interface RequirementFactory extends EFactory {
 	FunctionalRequirement createFunctionalRequirement();
 
 	/**
-	 * Returns a new object of class '<em>Use Case</em>'. <!-- begin-user-doc
+	 * Returns a new object of class '<em>Use Case</em>'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Use Case</em>'.
 	 * @generated
 	 */
 	UseCase createUseCase();
 
 	/**
-	 * Returns a new object of class '<em>Scenario</em>'. <!-- begin-user-doc
+	 * Returns a new object of class '<em>Scenario</em>'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Scenario</em>'.
 	 * @generated
 	 */
 	Scenario createScenario();
 
 	/**
-	 * Returns a new object of class '<em>Actor</em>'. <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Actor</em>'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Actor</em>'.
 	 * @generated
 	 */
@@ -80,18 +78,18 @@ public interface RequirementFactory extends EFactory {
 	ActorInstance createActorInstance();
 
 	/**
-	 * Returns a new object of class '<em>Step</em>'. <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Step</em>'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Step</em>'.
 	 * @generated
 	 */
 	Step createStep();
 
 	/**
-	 * Returns the package supported by this factory. <!-- begin-user-doc -->
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the package supported by this factory.
 	 * @generated
 	 */

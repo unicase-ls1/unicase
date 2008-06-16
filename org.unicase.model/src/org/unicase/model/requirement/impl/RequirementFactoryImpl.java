@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.model.requirement.*;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.ActorInstance;
 import org.unicase.model.requirement.FunctionalRequirement;
@@ -24,34 +25,33 @@ import org.unicase.model.requirement.UseCase;
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class RequirementFactoryImpl extends EFactoryImpl implements
 		RequirementFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static RequirementFactory init() {
 		try {
-			RequirementFactory theRequirementFactory = (RequirementFactory) EPackage.Registry.INSTANCE
-					.getEFactory("http://unicase.org/model/requirement");
+			RequirementFactory theRequirementFactory = (RequirementFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/model/requirement"); 
 			if (theRequirementFactory != null) {
 				return theRequirementFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new RequirementFactoryImpl();
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!--
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public RequirementFactoryImpl() {
@@ -60,35 +60,25 @@ public class RequirementFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT:
-			return createNonFunctionalRequirement();
-		case RequirementPackage.FUNCTIONAL_REQUIREMENT:
-			return createFunctionalRequirement();
-		case RequirementPackage.USE_CASE:
-			return createUseCase();
-		case RequirementPackage.SCENARIO:
-			return createScenario();
-		case RequirementPackage.ACTOR:
-			return createActor();
-		case RequirementPackage.ACTOR_INSTANCE:
-			return createActorInstance();
-		case RequirementPackage.STEP:
-			return createStep();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
+			case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT: return createNonFunctionalRequirement();
+			case RequirementPackage.FUNCTIONAL_REQUIREMENT: return createFunctionalRequirement();
+			case RequirementPackage.USE_CASE: return createUseCase();
+			case RequirementPackage.SCENARIO: return createScenario();
+			case RequirementPackage.ACTOR: return createActor();
+			case RequirementPackage.ACTOR_INSTANCE: return createActorInstance();
+			case RequirementPackage.STEP: return createStep();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NonFunctionalRequirement createNonFunctionalRequirement() {
@@ -98,7 +88,6 @@ public class RequirementFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public FunctionalRequirement createFunctionalRequirement() {
@@ -108,7 +97,6 @@ public class RequirementFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public UseCase createUseCase() {
@@ -118,7 +106,6 @@ public class RequirementFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Scenario createScenario() {
@@ -128,7 +115,6 @@ public class RequirementFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Actor createActor() {
@@ -138,7 +124,6 @@ public class RequirementFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ActorInstance createActorInstance() {
@@ -148,7 +133,6 @@ public class RequirementFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Step createStep() {
@@ -158,16 +142,14 @@ public class RequirementFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public RequirementPackage getRequirementPackage() {
-		return (RequirementPackage) getEPackage();
+		return (RequirementPackage)getEPackage();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

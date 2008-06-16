@@ -14,18 +14,17 @@ import org.unicase.model.organization.User;
 /**
  * <!-- begin-user-doc --> A representation of the model object '
  * <em><b>Action Item</b></em>'. <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.model.task.ActionItem#getAssignedTo <em>Assigned To
- * </em>}</li>
- * <li>{@link org.unicase.model.task.ActionItem#getDueDate <em>Due Date</em>}</li>
- * <li>{@link org.unicase.model.task.ActionItem#isDone <em>Done</em>}</li>
- * <li>{@link org.unicase.model.task.ActionItem#getEstimate <em>Estimate</em>}</li>
+ *   <li>{@link org.unicase.model.task.ActionItem#getAssignedTo <em>Assigned To</em>}</li>
+ *   <li>{@link org.unicase.model.task.ActionItem#getDueDate <em>Due Date</em>}</li>
+ *   <li>{@link org.unicase.model.task.ActionItem#isDone <em>Done</em>}</li>
+ *   <li>{@link org.unicase.model.task.ActionItem#getEstimate <em>Estimate</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.model.task.TaskPackage#getActionItem()
  * @model
  * @generated
@@ -33,14 +32,13 @@ import org.unicase.model.organization.User;
 public interface ActionItem extends WorkItem {
 	/**
 	 * Returns the value of the '<em><b>Assigned To</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.organization.User}
-	 * . <!-- begin-user-doc -->
+	 * The list contents are of type {@link org.unicase.model.organization.User}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Assigned To</em>' containment reference isn't
 	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Assigned To</em>' reference list.
 	 * @see org.unicase.model.task.TaskPackage#getActionItem_AssignedTo()
 	 * @model required="true"
@@ -66,12 +64,9 @@ public interface ActionItem extends WorkItem {
 	Date getDueDate();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.model.task.ActionItem#getDueDate <em>Due Date</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Due Date</em>' attribute.
+	 * Sets the value of the '{@link org.unicase.model.task.ActionItem#getDueDate <em>Due Date</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Due Date</em>' attribute.
 	 * @see #getDueDate()
 	 * @generated
 	 */
@@ -95,11 +90,9 @@ public interface ActionItem extends WorkItem {
 	boolean isDone();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.task.ActionItem#isDone
-	 * <em>Done</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Done</em>' attribute.
+	 * Sets the value of the '{@link org.unicase.model.task.ActionItem#isDone <em>Done</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Done</em>' attribute.
 	 * @see #isDone()
 	 * @generated
 	 */
@@ -123,12 +116,9 @@ public interface ActionItem extends WorkItem {
 	int getEstimate();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.model.task.ActionItem#getEstimate <em>Estimate</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Estimate</em>' attribute.
+	 * Sets the value of the '{@link org.unicase.model.task.ActionItem#getEstimate <em>Estimate</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Estimate</em>' attribute.
 	 * @see #getEstimate()
 	 * @generated
 	 */

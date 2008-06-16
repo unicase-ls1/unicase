@@ -27,23 +27,18 @@ import org.unicase.model.impl.ModelElementImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.component.impl.ComponentImpl#getPackages <em>
- * Packages</em>}</li>
- * <li>{@link org.unicase.model.component.impl.ComponentImpl#getOfferedServices
- * <em>Offered Services</em>}</li>
- * <li>
- * {@link org.unicase.model.component.impl.ComponentImpl#getConsumedServices
- * <em>Consumed Services</em>}</li>
+ *   <li>{@link org.unicase.model.component.impl.ComponentImpl#getPackages <em>Packages</em>}</li>
+ *   <li>{@link org.unicase.model.component.impl.ComponentImpl#getOfferedServices <em>Offered Services</em>}</li>
+ *   <li>{@link org.unicase.model.component.impl.ComponentImpl#getConsumedServices <em>Consumed Services</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ComponentImpl extends ModelElementImpl implements Component {
 	/**
-	 * The cached value of the '{@link #getPackages() <em>Packages</em>}'
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getPackages() <em>Packages</em>}' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getPackages()
 	 * @generated
 	 * @ordered
@@ -62,10 +57,9 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 	protected EList<ComponentService> offeredServices;
 
 	/**
-	 * The cached value of the '{@link #getConsumedServices()
-	 * <em>Consumed Services</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getConsumedServices() <em>Consumed Services</em>}' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getConsumedServices()
 	 * @generated
 	 * @ordered
@@ -74,7 +68,6 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ComponentImpl() {
@@ -83,7 +76,6 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -93,51 +85,39 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<org.unicase.model.classes.Package> getPackages() {
 		if (packages == null) {
-			packages = new EObjectResolvingEList<org.unicase.model.classes.Package>(
-					org.unicase.model.classes.Package.class, this,
-					ComponentPackage.COMPONENT__PACKAGES);
+			packages = new EObjectResolvingEList<org.unicase.model.classes.Package>(org.unicase.model.classes.Package.class, this, ComponentPackage.COMPONENT__PACKAGES);
 		}
 		return packages;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ComponentService> getOfferedServices() {
 		if (offeredServices == null) {
-			offeredServices = new EObjectContainmentWithInverseEList<ComponentService>(
-					ComponentService.class, this,
-					ComponentPackage.COMPONENT__OFFERED_SERVICES,
-					ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT);
+			offeredServices = new EObjectContainmentWithInverseEList<ComponentService>(ComponentService.class, this, ComponentPackage.COMPONENT__OFFERED_SERVICES, ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT);
 		}
 		return offeredServices;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ComponentService> getConsumedServices() {
 		if (consumedServices == null) {
-			consumedServices = new EObjectWithInverseResolvingEList.ManyInverse<ComponentService>(
-					ComponentService.class, this,
-					ComponentPackage.COMPONENT__CONSUMED_SERVICES,
-					ComponentPackage.COMPONENT_SERVICE__CONSUMING_COMPONENTS);
+			consumedServices = new EObjectWithInverseResolvingEList.ManyInverse<ComponentService>(ComponentService.class, this, ComponentPackage.COMPONENT__CONSUMED_SERVICES, ComponentPackage.COMPONENT_SERVICE__CONSUMING_COMPONENTS);
 		}
 		return consumedServices;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -145,117 +125,104 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ComponentPackage.COMPONENT__OFFERED_SERVICES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getOfferedServices())
-					.basicAdd(otherEnd, msgs);
-		case ComponentPackage.COMPONENT__CONSUMED_SERVICES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getConsumedServices())
-					.basicAdd(otherEnd, msgs);
+			case ComponentPackage.COMPONENT__OFFERED_SERVICES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOfferedServices()).basicAdd(otherEnd, msgs);
+			case ComponentPackage.COMPONENT__CONSUMED_SERVICES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getConsumedServices()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ComponentPackage.COMPONENT__OFFERED_SERVICES:
-			return ((InternalEList<?>) getOfferedServices()).basicRemove(
-					otherEnd, msgs);
-		case ComponentPackage.COMPONENT__CONSUMED_SERVICES:
-			return ((InternalEList<?>) getConsumedServices()).basicRemove(
-					otherEnd, msgs);
+			case ComponentPackage.COMPONENT__OFFERED_SERVICES:
+				return ((InternalEList<?>)getOfferedServices()).basicRemove(otherEnd, msgs);
+			case ComponentPackage.COMPONENT__CONSUMED_SERVICES:
+				return ((InternalEList<?>)getConsumedServices()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case ComponentPackage.COMPONENT__PACKAGES:
-			return getPackages();
-		case ComponentPackage.COMPONENT__OFFERED_SERVICES:
-			return getOfferedServices();
-		case ComponentPackage.COMPONENT__CONSUMED_SERVICES:
-			return getConsumedServices();
+			case ComponentPackage.COMPONENT__PACKAGES:
+				return getPackages();
+			case ComponentPackage.COMPONENT__OFFERED_SERVICES:
+				return getOfferedServices();
+			case ComponentPackage.COMPONENT__CONSUMED_SERVICES:
+				return getConsumedServices();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case ComponentPackage.COMPONENT__PACKAGES:
-			getPackages().clear();
-			getPackages()
-					.addAll(
-							(Collection<? extends org.unicase.model.classes.Package>) newValue);
-			return;
-		case ComponentPackage.COMPONENT__OFFERED_SERVICES:
-			getOfferedServices().clear();
-			getOfferedServices().addAll(
-					(Collection<? extends ComponentService>) newValue);
-			return;
-		case ComponentPackage.COMPONENT__CONSUMED_SERVICES:
-			getConsumedServices().clear();
-			getConsumedServices().addAll(
-					(Collection<? extends ComponentService>) newValue);
-			return;
+			case ComponentPackage.COMPONENT__PACKAGES:
+				getPackages().clear();
+				getPackages().addAll((Collection<? extends org.unicase.model.classes.Package>)newValue);
+				return;
+			case ComponentPackage.COMPONENT__OFFERED_SERVICES:
+				getOfferedServices().clear();
+				getOfferedServices().addAll((Collection<? extends ComponentService>)newValue);
+				return;
+			case ComponentPackage.COMPONENT__CONSUMED_SERVICES:
+				getConsumedServices().clear();
+				getConsumedServices().addAll((Collection<? extends ComponentService>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case ComponentPackage.COMPONENT__PACKAGES:
-			getPackages().clear();
-			return;
-		case ComponentPackage.COMPONENT__OFFERED_SERVICES:
-			getOfferedServices().clear();
-			return;
-		case ComponentPackage.COMPONENT__CONSUMED_SERVICES:
-			getConsumedServices().clear();
-			return;
+			case ComponentPackage.COMPONENT__PACKAGES:
+				getPackages().clear();
+				return;
+			case ComponentPackage.COMPONENT__OFFERED_SERVICES:
+				getOfferedServices().clear();
+				return;
+			case ComponentPackage.COMPONENT__CONSUMED_SERVICES:
+				getConsumedServices().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case ComponentPackage.COMPONENT__PACKAGES:
-			return packages != null && !packages.isEmpty();
-		case ComponentPackage.COMPONENT__OFFERED_SERVICES:
-			return offeredServices != null && !offeredServices.isEmpty();
-		case ComponentPackage.COMPONENT__CONSUMED_SERVICES:
-			return consumedServices != null && !consumedServices.isEmpty();
+			case ComponentPackage.COMPONENT__PACKAGES:
+				return packages != null && !packages.isEmpty();
+			case ComponentPackage.COMPONENT__OFFERED_SERVICES:
+				return offeredServices != null && !offeredServices.isEmpty();
+			case ComponentPackage.COMPONENT__CONSUMED_SERVICES:
+				return consumedServices != null && !consumedServices.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
