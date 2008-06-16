@@ -1,18 +1,25 @@
 package org.unicase.ui.meeditor.mecontrols;
 
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Cursor;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
@@ -75,28 +82,24 @@ import org.unicase.ui.meeditor.mecontrols.richtext.widgets.JavaScriptCommands;
 
 /**
  * RichText editor control.
- * 
  * @author shterev
  * @author HTML editor courtesy of SpriritLink.de
- * 
+ *
  */
-public class METextAreaControl extends AbstractMEControl implements MEControl {
-
+public class METextAreaControl extends AbstractMEControl implements MEControl, FocusListener {
+	
 	private EAttribute attribute;
-
+	
 	private Section section;
+
+	private Composite composite;
 
 	/**
 	 * Default constructor.
-	 * 
-	 * @param attribute
-	 *            the attribute being edited
-	 * @param toolkit
-	 *            the gui toolkit
-	 * @param modelElement
-	 *            the ME
-	 * @param editingDomain
-	 *            the editing domain
+	 * @param attribute the attribute being edited 
+	 * @param toolkit the gui toolkit
+	 * @param modelElement the ME
+	 * @param editingDomain the editing domain
 	 */
 	public METextAreaControl(EAttribute attribute, FormToolkit toolkit,
 			EObject modelElement, EditingDomain editingDomain) {
@@ -111,254 +114,267 @@ public class METextAreaControl extends AbstractMEControl implements MEControl {
 	 * {@inheritDoc}
 	 */
 	public Control createControl(Composite parent, int style) {
-		section = toolkit.createSection(parent, Section.DESCRIPTION
-				| Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
-		section.setText("Toggle editor");
-		section
-				.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, true));
-		final Composite composite = toolkit.createComposite(section, style);
+		//defining the global Composite
+		composite = toolkit.createComposite(parent, style);
 		composite.setLayout(new GridLayout(1, true));
+		
+		//creating and adding a Section to the global Composite		
+		section = toolkit.createSection(composite, Section.DESCRIPTION
+				| Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
+		section.setText("Toggle toolbars");
+		section.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, true));
+		
+		//creating and adding a Composite for the Toolbar in the Section		
+		Composite toolbarComposite = toolkit.createComposite(section, style);
+		toolbarComposite.setLayout(new GridLayout(1, true));
 
-		String content = (String) modelElement.eGet(attribute);
-
-		CoolBar coolbar = new CoolBar(composite, SWT.NONE);
-		final HtmlComposer composer = new HtmlComposer(composite, SWT.NONE);
+		//creating and adding a Composite for the Composer in the global Composite
+		HtmlComposer composer = new HtmlComposer(composite, SWT.NONE);
 		composer.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		composer.execute(JavaScriptCommands.SET_HTML(content));
-
-		GridData gd = new GridData(SWT.FILL, SWT.BEGINNING, true, false);
-		gd.widthHint = 100;
-		coolbar.setLayoutData(gd);
-
-		coolbar.addListener(SWT.Resize, new Listener() {
-			public void handleEvent(Event event) {
-				composite.getShell().layout();
-			}
-		});
-		final Composite comboComp = new Composite(coolbar, SWT.NONE);
-		comboComp.setLayout(new GridLayout(3, false));
-
-		final Combo formatCombo = new Combo(comboComp, SWT.SINGLE);
-
-		formatCombo.setItems(SelectFormatAction.formatMappings.values()
-				.toArray(new String[0]));
-		formatCombo.add("--[Format]--", 0);
-		formatCombo.select(0);
-		formatCombo.addSelectionListener(new SelectionAdapter() {
-			private Action action = new SelectFormatAction(composer,
-					formatCombo);
-
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see
-			 * org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse
-			 * .swt.events.SelectionEvent)
-			 */
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				this.action.run();
-			}
-		});
-		Point formatTextSize = formatCombo
-				.computeSize(SWT.DEFAULT, SWT.DEFAULT);
-		formatTextSize = formatCombo.computeSize(formatTextSize.x,
-				formatTextSize.y);
-
-		final Combo fontCombo = new Combo(comboComp, SWT.SINGLE);
-
-		fontCombo.setItems(getFontList());
-		fontCombo.add("--[Font]--", 0);
-		fontCombo.select(0);
-		fontCombo.addSelectionListener(new SelectionAdapter() {
-			private Action action = new SelectFontAction(composer, fontCombo);
-
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see
-			 * org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse
-			 * .swt.events.SelectionEvent)
-			 */
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				this.action.run();
-			}
-		});
-		Point fontTextSize = fontCombo.computeSize(SWT.DEFAULT, SWT.DEFAULT);
-		fontTextSize = fontCombo.computeSize(fontTextSize.x, fontTextSize.y);
-
-		final Combo fontsizeCombo = new Combo(comboComp, SWT.SINGLE);
-		fontsizeCombo.setItems(new String[] { "--[Size]--", "1", "2", "3", "4",
-				"5", "6" });
-		fontsizeCombo.select(0);
-		fontsizeCombo.addSelectionListener(new SelectionAdapter() {
-			private Action action = new SelectFontSizeAction(composer,
-					fontsizeCombo);
-
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see
-			 * org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse
-			 * .swt.events.SelectionEvent)
-			 */
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				this.action.run();
-			}
-		});
-		CoolItem comboItem = new CoolItem(coolbar, SWT.NONE);
-		comboItem.setControl(comboComp);
-
-		Point fontSizetextSize = fontsizeCombo.computeSize(SWT.DEFAULT,
-				SWT.DEFAULT);
-		fontSizetextSize = fontsizeCombo.computeSize(fontSizetextSize.x,
-				fontSizetextSize.y);
-		comboItem.setMinimumSize(formatTextSize.x + fontSizetextSize.x
-				+ fontTextSize.x, formatTextSize.y + fontSizetextSize.y
-				+ fontTextSize.y);
-		comboItem.setPreferredSize(formatTextSize.x + fontSizetextSize.x
-				+ fontTextSize.x, formatTextSize.y + fontSizetextSize.y
-				+ fontTextSize.y);
-		comboItem.setSize(formatTextSize.x + fontSizetextSize.x
-				+ fontTextSize.x, formatTextSize.y + fontSizetextSize.y
-				+ fontTextSize.y);
-
-		ToolBar menu = new ToolBar(coolbar, SWT.HORIZONTAL | SWT.FLAT);
-		ToolBarManager manager = new ToolBarManager(menu);
-		CoolItem item = new CoolItem(coolbar, SWT.NONE);
-		item.setControl(menu);
-
-		// CurrentSelectionListener currentSelectionListener = new
-		// CurrentSelectionListener(composer,currentSelectionText);
-		// composer.addListener(EventConstants.CURRENT_TEXT_SELECTION,
-		// currentSelectionListener);
-
-		manager.add(new BoldAction(composer));
-		manager.add(new ItalicAction(composer));
-		manager.add(new UnderLineAction(composer));
-		manager.add(new StrikeThroughAction(composer));
-		manager.add(new Separator());
-		manager.add(new JustifyLeftAction(composer));
-		manager.add(new JustifyCenterAction(composer));
-		manager.add(new JustifyRightAction(composer));
-		manager.add(new JustifyFullAction(composer));
-		manager.add(new Separator());
-		manager.add(new BulletListAction(composer));
-		manager.add(new NumListAction(composer));
-		manager.add(new Separator());
-		manager.add(new OutdentAction(composer));
-		manager.add(new IndentAction(composer));
-		manager.add(new Separator());
-		manager.add(new SubAction(composer));
-		manager.add(new SupAction(composer));
-		manager.update(true);
-
-		menu = new ToolBar(coolbar, SWT.HORIZONTAL | SWT.FLAT);
-		manager = new ToolBarManager(menu);
-		item = new CoolItem(coolbar, SWT.NONE);
-		item.setControl(menu);
-
-		manager.add(new SetHtmlAction(composer));
-		manager.update(true);
-
-		menu = new ToolBar(coolbar, SWT.HORIZONTAL | SWT.FLAT);
-		manager = new ToolBarManager(menu);
-		item = new CoolItem(coolbar, SWT.NONE);
-		item.setControl(menu);
-
-		manager.add(new InsertEditImageAction(composer));
-		manager.add(new InsertEditAnchorAction(composer));
-		manager.add(new InsertEditLinkAction(composer));
-		manager.add(new UnlinkAction(composer));
-		manager.add(new HrAction(composer));
-		manager.add(new InsertNonBreakingWhitespace(composer));
-		manager.add(new Separator());
-		manager.add(new CleanupAction(composer));
-		manager.add(new RemoveFormatAction(composer));
-		manager.add(new ToggleVisualAidAction(composer));
-		manager.add(new Separator());
-		manager.add(new UndoAction(composer));
-		manager.add(new RedoAction(composer));
-		manager.update(true);
-
-		menu = new ToolBar(coolbar, SWT.HORIZONTAL | SWT.FLAT);
-		manager = new ToolBarManager(menu);
-		item = new CoolItem(coolbar, SWT.NONE);
-		item.setControl(menu);
-
-		manager.add(new ForegroundAction(composer));
-		manager.add(new BackColorAction(composer));
-		manager.update(true);
-
-		menu = new ToolBar(coolbar, SWT.HORIZONTAL | SWT.FLAT);
-		manager = new ToolBarManager(menu);
-		item = new CoolItem(coolbar, SWT.NONE);
-		item.setControl(menu);
-
-		manager.add(new InsertLayerAction(composer));
-		manager.add(new MoveLayerBackwardAction(composer));
-		manager.add(new MoveLayerForwardAction(composer));
-		manager.add(new MakeLayerAbsoluteAction(composer));
-		manager.update(true);
-		//
-		menu = new ToolBar(coolbar, SWT.HORIZONTAL | SWT.FLAT);
-		manager = new ToolBarManager(menu);
-		item = new CoolItem(coolbar, SWT.NONE);
-		item.setControl(menu);
-
-		manager.add(new InsertEditTableAction(composer));
-		manager.add(new Separator());
-		manager.add(new InsertRowBeforeAction(composer));
-		manager.add(new InsertRowAfterAction(composer));
-		manager.add(new DeleteRowAction(composer));
-		manager.add(new Separator());
-		manager.add(new InsertColumnBeforeAction(composer));
-		manager.add(new InsertColumnAfterAction(composer));
-		manager.add(new DeleteColumnAction(composer));
-
-		manager.update(true);
-
-		// /* Set the sizes after adding all cool items */
-		CoolItem[] coolItems = coolbar.getItems();
-		for (int i = 0; i < coolItems.length; i++) {
-			CoolItem coolItem = coolItems[i];
-			Control control = coolItem.getControl();
-			Point size = control.computeSize(SWT.DEFAULT, SWT.DEFAULT);
-			Point coolSize = coolItem.computeSize(size.x, size.y);
-			if (control instanceof ToolBar) {
-				ToolBar bar = (ToolBar) control;
-				for (int j = 0, n = bar.getItemCount(); j < n; j++) {
-					size.x += bar.getSize().x;
-				}
-			}
-			coolItem.setMinimumSize(size);
-			coolItem.setPreferredSize(coolSize);
-			coolItem.setSize(coolSize);
+		composer.addFocusListener(this);
+		Display d = parent.getShell().getDisplay();
+		composer.setCursor(new Cursor(d, SWT.CURSOR_CROSS));
+		String content = (String)modelElement.eGet(attribute);
+		
+		createToolbar(toolbarComposite, composer);
+		section.setClient(toolbarComposite);
+		section.setExpanded(false);
+		boolean returns = false;
+		if (content!=null){
+			returns = composer.execute(JavaScriptCommands.SET_HTML("<html><body>123</body></html>"));
+			composer.getBrowser().pack(true);
+			System.out.println(returns);
 		}
-
-		section.setClient(composite);
-		return section;
+		return composite;
 	}
 
+	
+	private void createToolbar(Composite toolbarComposite, final HtmlComposer composer){
+        CoolBar coolbar = new CoolBar(toolbarComposite, SWT.NONE);
+        GridData gd = new GridData(SWT.FILL,SWT.BEGINNING, true, false);
+        gd.widthHint = 100;
+        coolbar.setLayoutData(gd);
+
+        coolbar.addListener(SWT.Resize, new Listener() {
+            public void handleEvent(Event event) {
+                composite.getShell().layout();
+            }
+        });
+        final Composite comboComp = new Composite(coolbar, SWT.NONE);
+        comboComp.setLayout(new GridLayout(3,false));
+        
+        final Combo formatCombo = new Combo (comboComp, SWT.SINGLE);
+        
+        formatCombo.setItems(SelectFormatAction.formatMappings.values().toArray(new String[0]));
+        formatCombo.add("[Format]", 0);
+        formatCombo.select(0);
+        formatCombo.addSelectionListener(new SelectionAdapter() {
+            private Action action = new SelectFormatAction(composer, formatCombo);
+            /* (non-Javadoc)
+             * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
+             */
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                this.action.run();
+            } 
+        });
+        Point formatTextSize = formatCombo.computeSize(SWT.DEFAULT, SWT.DEFAULT);
+        formatTextSize = formatCombo.computeSize(formatTextSize.x, formatTextSize.y);
+        
+        
+        final Combo fontCombo = new Combo (comboComp, SWT.SINGLE);
+        
+        fontCombo.setItems(getFontList());
+        fontCombo.add("[Font]", 0);
+        fontCombo.select(0);
+        fontCombo.addSelectionListener(new SelectionAdapter() {
+            private Action action = new SelectFontAction(composer, fontCombo);
+            /* (non-Javadoc)
+             * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
+             */
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                this.action.run();
+            } 
+        });
+        Point fontTextSize = fontCombo.computeSize(SWT.DEFAULT, SWT.DEFAULT);
+        fontTextSize = fontCombo.computeSize(fontTextSize.x, fontTextSize.y);
+        
+        
+        
+        final Combo fontsizeCombo = new Combo (comboComp, SWT.SINGLE);
+        fontsizeCombo.setItems(new String[] {"[Size]","1","2","3","4","5","6"});
+        fontsizeCombo.select(0);
+        fontsizeCombo.addSelectionListener(new SelectionAdapter() {
+            private Action action = new SelectFontSizeAction(composer, fontsizeCombo);
+            /* (non-Javadoc)
+             * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
+             */
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                this.action.run();
+            } 
+        });
+        CoolItem comboItem = new CoolItem (coolbar, SWT.NONE);
+        comboItem.setControl (comboComp);
+        
+        Point fontSizetextSize = fontsizeCombo.computeSize(SWT.DEFAULT, SWT.DEFAULT);
+        fontSizetextSize = fontsizeCombo.computeSize(fontSizetextSize.x, fontSizetextSize.y);
+        comboItem.setMinimumSize(formatTextSize.x + fontSizetextSize.x + fontTextSize.x, formatTextSize.y + fontSizetextSize.y + fontTextSize.y);
+        comboItem.setPreferredSize(formatTextSize.x + fontSizetextSize.x + fontTextSize.x, formatTextSize.y + fontSizetextSize.y + fontTextSize.y);
+        comboItem.setSize(formatTextSize.x + fontSizetextSize.x + fontTextSize.x, formatTextSize.y + fontSizetextSize.y + fontTextSize.y);
+        
+        ToolBar menu = new ToolBar(coolbar, SWT.HORIZONTAL | SWT.FLAT);
+        ToolBarManager manager = new ToolBarManager(menu);
+        CoolItem item = new CoolItem(coolbar, SWT.NONE);
+        item.setControl(menu);
+        
+        
+//        CurrentSelectionListener currentSelectionListener = new CurrentSelectionListener(composer,currentSelectionText);
+//        composer.addListener(EventConstants.CURRENT_TEXT_SELECTION, currentSelectionListener);
+      
+        manager.add(new BoldAction(composer));
+        manager.add(new ItalicAction(composer));
+        manager.add(new UnderLineAction(composer));
+        manager.add(new StrikeThroughAction(composer));
+        manager.add(new Separator());
+        manager.add(new JustifyLeftAction(composer));
+        manager.add(new JustifyCenterAction(composer));
+        manager.add(new JustifyRightAction(composer));
+        manager.add(new JustifyFullAction(composer));
+        manager.add(new Separator());
+        manager.add(new BulletListAction(composer));
+        manager.add(new NumListAction(composer));
+        manager.add(new Separator());
+        manager.add(new OutdentAction(composer));
+        manager.add(new IndentAction(composer));
+        manager.add(new Separator());
+        manager.add(new SubAction(composer));
+        manager.add(new SupAction(composer));
+        manager.update(true);
+        
+        menu = new ToolBar(coolbar, SWT.HORIZONTAL | SWT.FLAT);
+        manager = new ToolBarManager(menu);
+        item = new CoolItem(coolbar, SWT.NONE);
+        item.setControl(menu);
+        
+        manager.add(new SetHtmlAction(composer));
+        manager.update(true);
+        
+        menu = new ToolBar(coolbar, SWT.HORIZONTAL | SWT.FLAT);
+        manager = new ToolBarManager(menu);
+        item = new CoolItem(coolbar, SWT.NONE);
+        item.setControl(menu);
+        
+        manager.add(new InsertEditImageAction(composer));
+        manager.add(new InsertEditAnchorAction(composer));
+        manager.add(new InsertEditLinkAction(composer));
+        manager.add(new UnlinkAction(composer));
+        manager.add(new HrAction(composer));
+        manager.add(new InsertNonBreakingWhitespace(composer));
+        manager.add(new Separator());
+        manager.add(new CleanupAction(composer));
+        manager.add(new RemoveFormatAction(composer));
+        manager.add(new ToggleVisualAidAction(composer));
+        manager.add(new Separator());
+        manager.add(new UndoAction(composer));
+        manager.add(new RedoAction(composer));
+        manager.update(true);
+        
+        menu = new ToolBar(coolbar, SWT.HORIZONTAL | SWT.FLAT);
+        manager = new ToolBarManager(menu);
+        item = new CoolItem(coolbar, SWT.NONE);
+        item.setControl(menu);
+        
+        manager.add(new ForegroundAction(composer));
+        manager.add(new BackColorAction(composer));
+        manager.update(true);
+        
+        menu = new ToolBar(coolbar, SWT.HORIZONTAL | SWT.FLAT);
+        manager = new ToolBarManager(menu);
+        item = new CoolItem(coolbar, SWT.NONE);
+        item.setControl(menu);
+        
+        manager.add(new InsertLayerAction(composer));
+        manager.add(new MoveLayerBackwardAction(composer));
+        manager.add(new MoveLayerForwardAction(composer));
+        manager.add(new MakeLayerAbsoluteAction(composer));
+        manager.update(true);
+//        
+        menu = new ToolBar(coolbar, SWT.HORIZONTAL | SWT.FLAT);
+        manager = new ToolBarManager(menu);
+        item = new CoolItem(coolbar, SWT.NONE);
+        item.setControl(menu);
+        
+        manager.add(new InsertEditTableAction(composer));
+        manager.add(new Separator());
+        manager.add(new InsertRowBeforeAction(composer));
+        manager.add(new InsertRowAfterAction(composer));
+        manager.add(new DeleteRowAction(composer));
+        manager.add(new Separator());
+        manager.add(new InsertColumnBeforeAction(composer));
+        manager.add(new InsertColumnAfterAction(composer));
+        manager.add(new DeleteColumnAction(composer));
+        
+        manager.update(true);
+
+//        /* Set the sizes after adding all cool items */
+        CoolItem[] coolItems = coolbar.getItems();
+        for (int i = 0; i < coolItems.length; i++) {
+            CoolItem coolItem = coolItems[i];
+            Control control = coolItem.getControl();
+            Point size = control.computeSize(SWT.DEFAULT, SWT.DEFAULT);
+            Point coolSize = coolItem.computeSize(size.x, size.y);
+            if (control instanceof ToolBar) {
+                ToolBar bar = (ToolBar)control;
+                for (int j = 0, n = bar.getItemCount(); j <n ; j++){
+                    size.x += bar.getSize().x;
+                }
+            }
+            coolItem.setMinimumSize(size);
+            coolItem.setPreferredSize(coolSize);
+            coolItem.setSize(coolSize);
+        }
+	}
+    
 	private static String[] getFontList() {
-		Set<String> s = new HashSet<String>();
-		// Add names of all bitmap fonts.
-		FontData[] fds = Display.getCurrent().getFontList(null, false);
-		for (int i = 0; i < fds.length; ++i) {
-			s.add(fds[i].getName());
-		}
-		// Add names of all scalable fonts.
-		fds = Display.getCurrent().getFontList(null, true);
-		for (int i = 0; i < fds.length; ++i) {
-			s.add(fds[i].getName());
-		}
-		// Sort the result and print it.
-		String[] answer = new String[s.size()];
-		s.toArray(answer);
-		Arrays.sort(answer);
-		return answer;
-	}
+        Set<String> s = new HashSet<String>();
+        // Add names of all bitmap fonts.
+        FontData[] fds = Display.getCurrent().getFontList(null, false);
+        for (int i=0; i<fds.length; ++i){
+            s.add(fds[i].getName());
+        }
+        // Add names of all scalable fonts.
+        fds = Display.getCurrent().getFontList(null, true);
+        for (int i=0; i<fds.length; ++i){
+            s.add(fds[i].getName());
+        }
+        // Sort the result and print it.
+        String[] answer = new String[s.size()];
+        s.toArray(answer);
+        Arrays.sort(answer);
+        return answer;
+    }
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public void focusGained(FocusEvent e) {
+		// nothing to do
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public void focusLost(FocusEvent e) {
+		final HtmlComposer comp = ((HtmlComposer)e.getSource());
+		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
+		domain.getCommandStack().execute(new RecordingCommand(domain){
+			protected void doExecute() {
+				String newValue = comp.getHtml();
+				modelElement.eSet(attribute, newValue);
+			}
+		});
+	} 
+    
 }
