@@ -6,7 +6,9 @@ import java.util.Date;
 
 import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.eclipse.emf.ecore.change.util.ChangeRecorder;
+import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.EcoreValidator;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.unicase.emfstore.connection.rmi.RMIUtil;
@@ -83,6 +85,9 @@ public class Application implements IApplication {
 		project.addModelElement(com);
 		
 		ChangePackage cpp = save();
+		
+		Diagnostician.INSTANCE.validate(cpp);
+		Diagnostician.INSTANCE.validate(RMIUtil.stringToEObject(RMIUtil.eObjectToString(cpp)));
 		System.out.println("ChangePacke: "+RMIUtil.eObjectToString(cpp));
 		
 		PrimaryVersionSpec pri2 = cm.resolveVersionSpec(id, pinfo.getProjectId(), ChangemanagmentFactory.eINSTANCE.createHeadVersionSpec());
