@@ -234,6 +234,7 @@ public class HtmlComposer {
 		} else {
 			returnValue = this.pendingCommands.add(script);
 		}
+		System.out.println(script+" "+returnValue);
 		return returnValue;
 	}
 
@@ -613,6 +614,10 @@ public class HtmlComposer {
 	 */
 	public void setDelayAfterProgressCompleted(int delayAfterProgressCompleted) {
 		this.delayAfterProgressCompleted = delayAfterProgressCompleted;
+	}
+	
+	public Browser getBrowser(){
+		return this.browser;
 	}
 
 }

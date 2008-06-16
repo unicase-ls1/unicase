@@ -45,9 +45,8 @@ public class SetHtmlAction extends Action {
 	public void run() {
 		SetHtmlDialog dialog = new SetHtmlDialog(this.composer.getShell());
 		if (dialog.open() == IDialogConstants.OK_ID) {
-			System.out.println(JavaScriptCommands.SET_HTML(dialog.getHtml()));
-			this.composer
-					.execute(JavaScriptCommands.SET_HTML(dialog.getHtml()));
+			this.composer.execute(JavaScriptCommands.SET_HTML(dialog.getHtml()));
+			System.out.println("|"+dialog.getHtml()+"|");
 		}
 	}
 
