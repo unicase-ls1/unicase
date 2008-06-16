@@ -109,21 +109,25 @@ public interface ServerSpace extends EObject {
 	EList<ACUser> getUsers();
 
 	/**
+	 * Make the current ServerSpace state persistent.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @throws IOException
+	 * @throws IOException if save fails
 	 * @model
 	 * @generated NOT
 	 */
+	//FIXME: IOException???
 	void save() throws IOException;
 
 	/**
+	 * Set the resource the ServerSpace is contained in.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @param resource
+	 * @param resource the resource
 	 * @model
 	 * @generated NOT
 	 */
+	//FIXME: do we need this method?
 	void setResource(Resource resource);
 
 } // ServerSpace
