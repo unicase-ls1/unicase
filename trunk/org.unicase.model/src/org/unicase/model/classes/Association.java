@@ -11,18 +11,17 @@ import org.unicase.model.ModelElement;
 /**
  * <!-- begin-user-doc --> A representation of the model object '
  * <em><b>Association</b></em>'. <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.model.classes.Association#isDirected <em>Directed
- * </em>}</li>
- * <li>{@link org.unicase.model.classes.Association#getSource <em>Source</em>}</li>
- * <li>{@link org.unicase.model.classes.Association#getTarget <em>Target</em>}</li>
- * <li>{@link org.unicase.model.classes.Association#getType <em>Type</em>}</li>
+ *   <li>{@link org.unicase.model.classes.Association#isDirected <em>Directed</em>}</li>
+ *   <li>{@link org.unicase.model.classes.Association#getSource <em>Source</em>}</li>
+ *   <li>{@link org.unicase.model.classes.Association#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.unicase.model.classes.Association#getType <em>Type</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.model.classes.ClassesPackage#getAssociation()
  * @model
  * @generated
@@ -59,16 +58,14 @@ public interface Association extends ModelElement {
 	void setDirected(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Source</b></em>' reference. It is
-	 * bidirectional and its opposite is '
-	 * {@link org.unicase.model.classes.Class#getOutgoingAssociations
-	 * <em>Outgoing Associations</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Source</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.classes.Class#getOutgoingAssociations <em>Outgoing Associations</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source</em>' reference isn't clear, there
 	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Source</em>' reference.
 	 * @see #setSource(org.unicase.model.classes.Class)
 	 * @see org.unicase.model.classes.ClassesPackage#getAssociation_Source()
@@ -79,28 +76,23 @@ public interface Association extends ModelElement {
 	org.unicase.model.classes.Class getSource();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.model.classes.Association#getSource <em>Source</em>}'
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Source</em>' reference.
+	 * Sets the value of the '{@link org.unicase.model.classes.Association#getSource <em>Source</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Source</em>' reference.
 	 * @see #getSource()
 	 * @generated
 	 */
 	void setSource(org.unicase.model.classes.Class value);
 
 	/**
-	 * Returns the value of the '<em><b>Target</b></em>' reference. It is
-	 * bidirectional and its opposite is '
-	 * {@link org.unicase.model.classes.Class#getIncomingAssociations
-	 * <em>Incoming Associations</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Target</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.classes.Class#getIncomingAssociations <em>Incoming Associations</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target</em>' reference isn't clear, there
 	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Target</em>' reference.
 	 * @see #setTarget(org.unicase.model.classes.Class)
 	 * @see org.unicase.model.classes.ClassesPackage#getAssociation_Target()
@@ -111,28 +103,25 @@ public interface Association extends ModelElement {
 	org.unicase.model.classes.Class getTarget();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.model.classes.Association#getTarget <em>Target</em>}'
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Target</em>' reference.
+	 * Sets the value of the '{@link org.unicase.model.classes.Association#getTarget <em>Target</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Target</em>' reference.
 	 * @see #getTarget()
 	 * @generated
 	 */
 	void setTarget(org.unicase.model.classes.Class value);
 
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' attribute. The default
-	 * value is <code>""</code>. The literals are from the enumeration
-	 * {@link org.unicase.model.classes.AssociationType}. <!-- begin-user-doc
+	 * Returns the value of the '<em><b>Type</b></em>' attribute.
+	 * The default value is <code>""</code>.
+	 * The literals are from the enumeration {@link org.unicase.model.classes.AssociationType}.
+	 * <!-- begin-user-doc
 	 * -->
 	 * <p>
 	 * If the meaning of the '<em>Type</em>' attribute isn't clear, there really
 	 * should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Type</em>' attribute.
 	 * @see org.unicase.model.classes.AssociationType
 	 * @see #setType(AssociationType)
@@ -143,12 +132,9 @@ public interface Association extends ModelElement {
 	AssociationType getType();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.model.classes.Association#getType <em>Type</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Type</em>' attribute.
+	 * Sets the value of the '{@link org.unicase.model.classes.Association#getType <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Type</em>' attribute.
 	 * @see org.unicase.model.classes.AssociationType
 	 * @see #getType()
 	 * @generated

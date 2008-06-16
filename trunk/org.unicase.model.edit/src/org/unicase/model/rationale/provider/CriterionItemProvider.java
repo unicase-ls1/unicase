@@ -25,10 +25,9 @@ import org.unicase.model.rationale.Criterion;
 import org.unicase.model.rationale.RationalePackage;
 
 /**
- * This is the item provider adapter for a
- * {@link org.unicase.model.rationale.Criterion} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.model.rationale.Criterion} object.
+ * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class CriterionItemProvider extends ModelElementItemProvider implements
@@ -67,47 +66,50 @@ public class CriterionItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addAssessmentsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Criterion_assessments_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Criterion_assessments_feature",
-						"_UI_Criterion_type"),
-				RationalePackage.Literals.CRITERION__ASSESSMENTS, true, false,
-				true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Criterion_assessments_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Criterion_assessments_feature", "_UI_Criterion_type"),
+				 RationalePackage.Literals.CRITERION__ASSESSMENTS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This returns Criterion.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns Criterion.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/Criterion"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Criterion"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Criterion) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Criterion_type")
-				: getString("_UI_Criterion_type") + " " + label;
+		String label = ((Criterion)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Criterion_type") :
+			getString("_UI_Criterion_type") + " " + label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

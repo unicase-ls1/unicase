@@ -28,10 +28,9 @@ import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkPackage;
 
 /**
- * This is the item provider adapter for a
- * {@link org.unicase.model.task.WorkPackage} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.model.task.WorkPackage} object.
+ * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class WorkPackageItemProvider extends AnnotationItemProvider implements
@@ -64,31 +63,31 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 	}
 
 	/**
-	 * This adds a property descriptor for the Associated Change Packages
-	 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Associated Change Packages feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addAssociatedChangePackagesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_WorkItem_associatedChangePackages_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_WorkItem_associatedChangePackages_feature",
-						"_UI_WorkItem_type"),
-				TaskPackage.Literals.WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES,
-				true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_WorkItem_associatedChangePackages_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_WorkItem_associatedChangePackages_feature", "_UI_WorkItem_type"),
+				 TaskPackage.Literals.WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to
-	 * deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand},
-	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in
-	 * {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -96,21 +95,18 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures
-					.add(TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS);
+			childrenFeatures.add(TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS);
 		}
 		return childrenFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper
-		// feature to use for
+		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
 		return super.getChildFeature(object, child);
@@ -124,29 +120,28 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/WorkPackage"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/WorkPackage"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((WorkPackage) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_WorkPackage_type")
-				: getString("_UI_WorkPackage_type") + " " + label;
+		String label = ((WorkPackage)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_WorkPackage_type") :
+			getString("_UI_WorkPackage_type") + " " + label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -154,10 +149,9 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(WorkPackage.class)) {
-		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
-			return;
+			case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -174,13 +168,15 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
-				TaskFactory.eINSTANCE.createActionItem()));
+		newChildDescriptors.add
+			(createChildParameter
+				(TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
+				 TaskFactory.eINSTANCE.createActionItem()));
 
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
-				TaskFactory.eINSTANCE.createWorkPackage()));
+		newChildDescriptors.add
+			(createChildParameter
+				(TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
+				 TaskFactory.eINSTANCE.createWorkPackage()));
 	}
 
 	/**

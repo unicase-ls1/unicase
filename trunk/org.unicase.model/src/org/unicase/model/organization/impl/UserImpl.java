@@ -15,13 +15,12 @@ import org.unicase.model.organization.User;
  * <em><b>User</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class UserImpl extends OrgUnitImpl implements User {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected UserImpl() {
@@ -30,7 +29,6 @@ public class UserImpl extends OrgUnitImpl implements User {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -63,55 +63,54 @@ public class ComponentServiceItemProvider extends ModelElementItemProvider
 	/**
 	 * This adds a property descriptor for the Consuming Components feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addConsumingComponentsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ComponentService_consumingComponents_feature"),
-						getString(
-								"_UI_PropertyDescriptor_description",
-								"_UI_ComponentService_consumingComponents_feature",
-								"_UI_ComponentService_type"),
-						ComponentPackage.Literals.COMPONENT_SERVICE__CONSUMING_COMPONENTS,
-						true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ComponentService_consumingComponents_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ComponentService_consumingComponents_feature", "_UI_ComponentService_type"),
+				 ComponentPackage.Literals.COMPONENT_SERVICE__CONSUMING_COMPONENTS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This returns ComponentService.gif. <!-- begin-user-doc --> <!--
+	 * This returns ComponentService.gif.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/ComponentService"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ComponentService"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ComponentService) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_ComponentService_type")
-				: getString("_UI_ComponentService_type") + " " + label;
+		String label = ((ComponentService)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ComponentService_type") :
+			getString("_UI_ComponentService_type") + " " + label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

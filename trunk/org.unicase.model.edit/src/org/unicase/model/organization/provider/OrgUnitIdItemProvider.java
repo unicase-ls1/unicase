@@ -23,10 +23,9 @@ import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.UniqueIdentifierItemProvider;
 
 /**
- * This is the item provider adapter for a
- * {@link org.unicase.model.organization.OrgUnitId} object. <!-- begin-user-doc
+ * This is the item provider adapter for a {@link org.unicase.model.organization.OrgUnitId} object.
+ * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class OrgUnitIdItemProvider extends UniqueIdentifierItemProvider
@@ -58,35 +57,34 @@ public class OrgUnitIdItemProvider extends UniqueIdentifierItemProvider
 	}
 
 	/**
-	 * This returns OrgUnitId.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns OrgUnitId.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/OrgUnitId"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/OrgUnitId"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((OrgUnitId) object).getId();
-		return label == null || label.length() == 0 ? getString("_UI_OrgUnitId_type")
-				: getString("_UI_OrgUnitId_type") + " " + label;
+		String label = ((OrgUnitId)object).getId();
+		return label == null || label.length() == 0 ?
+			getString("_UI_OrgUnitId_type") :
+			getString("_UI_OrgUnitId_type") + " " + label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

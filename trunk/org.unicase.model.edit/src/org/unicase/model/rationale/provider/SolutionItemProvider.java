@@ -25,10 +25,9 @@ import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.rationale.Solution;
 
 /**
- * This is the item provider adapter for a
- * {@link org.unicase.model.rationale.Solution} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.model.rationale.Solution} object.
+ * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class SolutionItemProvider extends ModelElementItemProvider implements
@@ -63,51 +62,53 @@ public class SolutionItemProvider extends ModelElementItemProvider implements
 	/**
 	 * This adds a property descriptor for the Underlying Proposals feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addUnderlyingProposalsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Solution_underlyingProposals_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_Solution_underlyingProposals_feature",
-						"_UI_Solution_type"),
-				RationalePackage.Literals.SOLUTION__UNDERLYING_PROPOSALS, true,
-				false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Solution_underlyingProposals_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Solution_underlyingProposals_feature", "_UI_Solution_type"),
+				 RationalePackage.Literals.SOLUTION__UNDERLYING_PROPOSALS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This returns Solution.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns Solution.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/Solution"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Solution"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Solution) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Solution_type")
-				: getString("_UI_Solution_type") + " " + label;
+		String label = ((Solution)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Solution_type") :
+			getString("_UI_Solution_type") + " " + label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

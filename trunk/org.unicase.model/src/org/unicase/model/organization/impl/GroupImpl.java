@@ -15,13 +15,12 @@ import org.unicase.model.organization.OrganizationPackage;
  * <em><b>Group</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class GroupImpl extends OrgUnitImpl implements Group {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected GroupImpl() {
@@ -30,7 +29,6 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

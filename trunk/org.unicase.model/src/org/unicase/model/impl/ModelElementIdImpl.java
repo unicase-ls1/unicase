@@ -15,14 +15,13 @@ import org.unicase.model.ModelPackage;
  * <em><b>Element Id</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class ModelElementIdImpl extends UniqueIdentifierImpl implements
 		ModelElementId {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ModelElementIdImpl() {
@@ -31,7 +30,6 @@ public class ModelElementIdImpl extends UniqueIdentifierImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

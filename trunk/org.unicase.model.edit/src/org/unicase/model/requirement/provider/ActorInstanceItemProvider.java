@@ -69,38 +69,40 @@ public class ActorInstanceItemProvider extends ModelElementItemProvider
 	 * @generated
 	 */
 	protected void addInitiatedScenariosPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ActorInstance_initiatedScenarios_feature"),
-						getString("_UI_PropertyDescriptor_description",
-								"_UI_ActorInstance_initiatedScenarios_feature",
-								"_UI_ActorInstance_type"),
-						RequirementPackage.Literals.ACTOR_INSTANCE__INITIATED_SCENARIOS,
-						true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ActorInstance_initiatedScenarios_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ActorInstance_initiatedScenarios_feature", "_UI_ActorInstance_type"),
+				 RequirementPackage.Literals.ACTOR_INSTANCE__INITIATED_SCENARIOS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Participated Scenarios feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addParticipatedScenariosPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ActorInstance_participatedScenarios_feature"),
-						getString(
-								"_UI_PropertyDescriptor_description",
-								"_UI_ActorInstance_participatedScenarios_feature",
-								"_UI_ActorInstance_type"),
-						RequirementPackage.Literals.ACTOR_INSTANCE__PARTICIPATED_SCENARIOS,
-						true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ActorInstance_participatedScenarios_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ActorInstance_participatedScenarios_feature", "_UI_ActorInstance_type"),
+				 RequirementPackage.Literals.ACTOR_INSTANCE__PARTICIPATED_SCENARIOS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -110,15 +112,19 @@ public class ActorInstanceItemProvider extends ModelElementItemProvider
 	 * @generated
 	 */
 	protected void addInstantiatedActorPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ActorInstance_instantiatedActor_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_ActorInstance_instantiatedActor_feature",
-						"_UI_ActorInstance_type"),
-				RequirementPackage.Literals.ACTOR_INSTANCE__INSTANTIATED_ACTOR,
-				true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ActorInstance_instantiatedActor_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ActorInstance_instantiatedActor_feature", "_UI_ActorInstance_type"),
+				 RequirementPackage.Literals.ACTOR_INSTANCE__INSTANTIATED_ACTOR,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -129,29 +135,28 @@ public class ActorInstanceItemProvider extends ModelElementItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/ActorInstance"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ActorInstance"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ActorInstance) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_ActorInstance_type")
-				: getString("_UI_ActorInstance_type") + " " + label;
+		String label = ((ActorInstance)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ActorInstance_type") :
+			getString("_UI_ActorInstance_type") + " " + label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

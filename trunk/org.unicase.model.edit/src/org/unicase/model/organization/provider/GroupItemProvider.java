@@ -20,10 +20,9 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.unicase.model.organization.Group;
 
 /**
- * This is the item provider adapter for a
- * {@link org.unicase.model.organization.Group} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.model.organization.Group} object.
+ * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class GroupItemProvider extends OrgUnitItemProvider implements
@@ -55,35 +54,34 @@ public class GroupItemProvider extends OrgUnitItemProvider implements
 	}
 
 	/**
-	 * This returns Group.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns Group.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/Group"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Group"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Group) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Group_type")
-				: getString("_UI_Group_type") + " " + label;
+		String label = ((Group)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Group_type") :
+			getString("_UI_Group_type") + " " + label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

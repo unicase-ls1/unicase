@@ -27,9 +27,8 @@ import org.unicase.model.ModelPackage;
 import org.unicase.model.ReaderInfo;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.ReaderInfo}
- * object. <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
+ * This is the item provider adapter for a {@link org.unicase.model.ReaderInfo} object.
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
 public class ReaderInfoItemProvider extends ItemProviderAdapter implements
@@ -63,20 +62,25 @@ public class ReaderInfoItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
-	 * This adds a property descriptor for the Date feature. <!-- begin-user-doc
+	 * This adds a property descriptor for the Date feature.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ReaderInfo_date_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_ReaderInfo_date_feature", "_UI_ReaderInfo_type"),
-				ModelPackage.Literals.READER_INFO__DATE, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ReaderInfo_date_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ReaderInfo_date_feature", "_UI_ReaderInfo_type"),
+				 ModelPackage.Literals.READER_INFO__DATE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -86,15 +90,19 @@ public class ReaderInfoItemProvider extends ItemProviderAdapter implements
 	 * @generated
 	 */
 	protected void addReaderIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ReaderInfo_readerId_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_ReaderInfo_readerId_feature",
-						"_UI_ReaderInfo_type"),
-				ModelPackage.Literals.READER_INFO__READER_ID, true, false,
-				true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ReaderInfo_readerId_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ReaderInfo_readerId_feature", "_UI_ReaderInfo_type"),
+				 ModelPackage.Literals.READER_INFO__READER_ID,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -105,30 +113,29 @@ public class ReaderInfoItemProvider extends ItemProviderAdapter implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/ReaderInfo"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ReaderInfo"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((ReaderInfo) object).getDate();
+		Date labelValue = ((ReaderInfo)object).getDate();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_ReaderInfo_type")
-				: getString("_UI_ReaderInfo_type") + " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_ReaderInfo_type") :
+			getString("_UI_ReaderInfo_type") + " " + label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -136,10 +143,9 @@ public class ReaderInfoItemProvider extends ItemProviderAdapter implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ReaderInfo.class)) {
-		case ModelPackage.READER_INFO__DATE:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
-			return;
+			case ModelPackage.READER_INFO__DATE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

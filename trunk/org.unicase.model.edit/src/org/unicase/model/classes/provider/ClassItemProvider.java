@@ -21,10 +21,9 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.unicase.model.classes.ClassesPackage;
 
 /**
- * This is the item provider adapter for a
- * {@link org.unicase.model.classes.Class} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link org.unicase.model.classes.Class} object.
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class ClassItemProvider extends PackageElementItemProvider implements
@@ -63,19 +62,22 @@ public class ClassItemProvider extends PackageElementItemProvider implements
 	/**
 	 * This adds a property descriptor for the Participated Use Cases feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addParticipatedUseCasesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Class_participatedUseCases_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Class_participatedUseCases_feature",
-						"_UI_Class_type"),
-				ClassesPackage.Literals.CLASS__PARTICIPATED_USE_CASES, true,
-				false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Class_participatedUseCases_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Class_participatedUseCases_feature", "_UI_Class_type"),
+				 ClassesPackage.Literals.CLASS__PARTICIPATED_USE_CASES,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -85,14 +87,19 @@ public class ClassItemProvider extends PackageElementItemProvider implements
 	 * @generated
 	 */
 	protected void addSuperClassPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Class_superClass_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Class_superClass_feature", "_UI_Class_type"),
-				ClassesPackage.Literals.CLASS__SUPER_CLASS, true, false, true,
-				null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Class_superClass_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Class_superClass_feature", "_UI_Class_type"),
+				 ClassesPackage.Literals.CLASS__SUPER_CLASS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -102,82 +109,92 @@ public class ClassItemProvider extends PackageElementItemProvider implements
 	 * @generated
 	 */
 	protected void addSubClassesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Class_subClasses_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Class_subClasses_feature", "_UI_Class_type"),
-				ClassesPackage.Literals.CLASS__SUB_CLASSES, true, false, true,
-				null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Class_subClasses_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Class_subClasses_feature", "_UI_Class_type"),
+				 ClassesPackage.Literals.CLASS__SUB_CLASSES,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Incoming Associations feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addIncomingAssociationsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Class_incomingAssociations_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Class_incomingAssociations_feature",
-						"_UI_Class_type"),
-				ClassesPackage.Literals.CLASS__INCOMING_ASSOCIATIONS, true,
-				false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Class_incomingAssociations_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Class_incomingAssociations_feature", "_UI_Class_type"),
+				 ClassesPackage.Literals.CLASS__INCOMING_ASSOCIATIONS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Outgoing Associations feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addOutgoingAssociationsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Class_outgoingAssociations_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Class_outgoingAssociations_feature",
-						"_UI_Class_type"),
-				ClassesPackage.Literals.CLASS__OUTGOING_ASSOCIATIONS, true,
-				false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Class_outgoingAssociations_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Class_outgoingAssociations_feature", "_UI_Class_type"),
+				 ClassesPackage.Literals.CLASS__OUTGOING_ASSOCIATIONS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This returns Class.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns Class.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/Class"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Class"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((org.unicase.model.classes.Class) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Class_type")
-				: getString("_UI_Class_type") + " " + label;
+		String label = ((org.unicase.model.classes.Class)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Class_type") :
+			getString("_UI_Class_type") + " " + label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

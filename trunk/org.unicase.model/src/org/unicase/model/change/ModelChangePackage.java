@@ -11,17 +11,15 @@ import org.unicase.model.ModelElement;
 /**
  * <!-- begin-user-doc --> A representation of the model object '
  * <em><b>Model Change Package</b></em>'. <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.model.change.ModelChangePackage#getSourceVersion <em>
- * Source Version</em>}</li>
- * <li>{@link org.unicase.model.change.ModelChangePackage#getTargetVersion <em>
- * Target Version</em>}</li>
+ *   <li>{@link org.unicase.model.change.ModelChangePackage#getSourceVersion <em>Source Version</em>}</li>
+ *   <li>{@link org.unicase.model.change.ModelChangePackage#getTargetVersion <em>Target Version</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.model.change.ChangePackage#getModelChangePackage()
  * @model
  * @generated
@@ -45,13 +43,10 @@ public interface ModelChangePackage extends ModelElement {
 	int getSourceVersion();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.model.change.ModelChangePackage#getSourceVersion
-	 * <em>Source Version</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.unicase.model.change.ModelChangePackage#getSourceVersion <em>Source Version</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Source Version</em>' attribute.
+	 * @param value the new value of the '<em>Source Version</em>' attribute.
 	 * @see #getSourceVersion()
 	 * @generated
 	 */
@@ -75,13 +70,10 @@ public interface ModelChangePackage extends ModelElement {
 	int getTargetVersion();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.model.change.ModelChangePackage#getTargetVersion
-	 * <em>Target Version</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.unicase.model.change.ModelChangePackage#getTargetVersion <em>Target Version</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Target Version</em>' attribute.
+	 * @param value the new value of the '<em>Target Version</em>' attribute.
 	 * @see #getTargetVersion()
 	 * @generated
 	 */

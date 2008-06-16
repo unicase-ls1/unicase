@@ -23,48 +23,44 @@ import org.unicase.model.ModelPackage;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * 
  * @see org.unicase.model.classes.ClassesFactory
  * @model kind="package"
  * @generated
  */
 public interface ClassesPackage extends EPackage {
 	/**
-	 * The package name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNAME = "classes";
 
 	/**
-	 * The package namespace URI. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace URI.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_URI = "http://unicase.org/model/classes";
 
 	/**
-	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_PREFIX = "org.unicase.model.classes";
 
 	/**
-	 * The singleton instance of the package. <!-- begin-user-doc --> <!--
+	 * The singleton instance of the package.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	ClassesPackage eINSTANCE = org.unicase.model.classes.impl.ClassesPackageImpl
-			.init();
+	ClassesPackage eINSTANCE = org.unicase.model.classes.impl.ClassesPackageImpl.init();
 
 	/**
-	 * The meta object id for the '
-	 * {@link org.unicase.model.classes.impl.PackageElementImpl
-	 * <em>Package Element</em>}' class. <!-- begin-user-doc --> <!--
+	 * The meta object id for the '{@link org.unicase.model.classes.impl.PackageElementImpl <em>Package Element</em>}' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see org.unicase.model.classes.impl.PackageElementImpl
 	 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getPackageElement()
 	 * @generated
@@ -90,18 +86,16 @@ public interface ClassesPackage extends EPackage {
 	int PACKAGE_ELEMENT__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' containment
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int PACKAGE_ELEMENT__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Reader Infos</b></em>' containment
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -117,46 +111,40 @@ public interface ClassesPackage extends EPackage {
 	int PACKAGE_ELEMENT__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>'
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int PACKAGE_ELEMENT__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int PACKAGE_ELEMENT__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>Parent Package</b></em>' container
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Parent Package</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int PACKAGE_ELEMENT__PARENT_PACKAGE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Package Element</em>'
-	 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The number of structural features of the '<em>Package Element</em>' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int PACKAGE_ELEMENT_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '
-	 * {@link org.unicase.model.classes.impl.ClassImpl <em>Class</em>}' class.
+	 * The meta object id for the '{@link org.unicase.model.classes.impl.ClassImpl <em>Class</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see org.unicase.model.classes.impl.ClassImpl
 	 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getClass_()
 	 * @generated
@@ -182,18 +170,16 @@ public interface ClassesPackage extends EPackage {
 	int CLASS__DESCRIPTION = PACKAGE_ELEMENT__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' containment
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int CLASS__IDENTIFIER = PACKAGE_ELEMENT__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Reader Infos</b></em>' containment
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -209,36 +195,32 @@ public interface ClassesPackage extends EPackage {
 	int CLASS__ANNOTATIONS = PACKAGE_ELEMENT__ANNOTATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>'
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int CLASS__INCOMING_DOCUMENT_REFERENCES = PACKAGE_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int CLASS__LEAF_SECTION = PACKAGE_ELEMENT__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>Parent Package</b></em>' container
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Parent Package</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int CLASS__PARENT_PACKAGE = PACKAGE_ELEMENT__PARENT_PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Participated Use Cases</b></em>' reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Participated Use Cases</b></em>' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -263,18 +245,16 @@ public interface ClassesPackage extends EPackage {
 	int CLASS__SUB_CLASSES = PACKAGE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Associations</b></em>' reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Incoming Associations</b></em>' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int CLASS__INCOMING_ASSOCIATIONS = PACKAGE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Outgoing Associations</b></em>' reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Outgoing Associations</b></em>' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -290,10 +270,8 @@ public interface ClassesPackage extends EPackage {
 	int CLASS_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
-	 * The meta object id for the '
-	 * {@link org.unicase.model.classes.impl.PackageImpl <em>Package</em>}'
-	 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.model.classes.impl.PackageImpl <em>Package</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.model.classes.impl.PackageImpl
 	 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getPackage()
 	 * @generated
@@ -319,18 +297,16 @@ public interface ClassesPackage extends EPackage {
 	int PACKAGE__DESCRIPTION = PACKAGE_ELEMENT__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' containment
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int PACKAGE__IDENTIFIER = PACKAGE_ELEMENT__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Reader Infos</b></em>' containment
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -346,36 +322,32 @@ public interface ClassesPackage extends EPackage {
 	int PACKAGE__ANNOTATIONS = PACKAGE_ELEMENT__ANNOTATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>'
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int PACKAGE__INCOMING_DOCUMENT_REFERENCES = PACKAGE_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int PACKAGE__LEAF_SECTION = PACKAGE_ELEMENT__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>Parent Package</b></em>' container
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Parent Package</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int PACKAGE__PARENT_PACKAGE = PACKAGE_ELEMENT__PARENT_PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Contained Package Elements</b></em>'
-	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Contained Package Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -421,18 +393,16 @@ public interface ClassesPackage extends EPackage {
 	int ASSOCIATION__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' containment
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int ASSOCIATION__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Reader Infos</b></em>' containment
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -448,18 +418,16 @@ public interface ClassesPackage extends EPackage {
 	int ASSOCIATION__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>'
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int ASSOCIATION__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -504,18 +472,15 @@ public interface ClassesPackage extends EPackage {
 	/**
 	 * The number of structural features of the '<em>Association</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ASSOCIATION_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The meta object id for the '
-	 * {@link org.unicase.model.classes.AssociationType
-	 * <em>Association Type</em>}' enum. <!-- begin-user-doc --> <!--
+	 * The meta object id for the '{@link org.unicase.model.classes.AssociationType <em>Association Type</em>}' enum.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see org.unicase.model.classes.AssociationType
 	 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getAssociationType()
 	 * @generated
@@ -534,13 +499,10 @@ public interface ClassesPackage extends EPackage {
 	EClass getClass_();
 
 	/**
-	 * Returns the meta object for the reference list '
-	 * {@link org.unicase.model.classes.Class#getParticipatedUseCases
-	 * <em>Participated Use Cases</em>}'. <!-- begin-user-doc --> <!--
+	 * Returns the meta object for the reference list '{@link org.unicase.model.classes.Class#getParticipatedUseCases <em>Participated Use Cases</em>}'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @return the meta object for the reference list '
-	 *         <em>Participated Use Cases</em>'.
+	 * @return the meta object for the reference list '<em>Participated Use Cases</em>'.
 	 * @see org.unicase.model.classes.Class#getParticipatedUseCases()
 	 * @see #getClass_()
 	 * @generated
@@ -548,10 +510,8 @@ public interface ClassesPackage extends EPackage {
 	EReference getClass_ParticipatedUseCases();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.unicase.model.classes.Class#getSuperClass
-	 * <em>Super Class</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference '{@link org.unicase.model.classes.Class#getSuperClass <em>Super Class</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Super Class</em>'.
 	 * @see org.unicase.model.classes.Class#getSuperClass()
 	 * @see #getClass_()
@@ -560,10 +520,8 @@ public interface ClassesPackage extends EPackage {
 	EReference getClass_SuperClass();
 
 	/**
-	 * Returns the meta object for the reference list '
-	 * {@link org.unicase.model.classes.Class#getSubClasses
-	 * <em>Sub Classes</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference list '{@link org.unicase.model.classes.Class#getSubClasses <em>Sub Classes</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Sub Classes</em>'.
 	 * @see org.unicase.model.classes.Class#getSubClasses()
 	 * @see #getClass_()
@@ -572,13 +530,10 @@ public interface ClassesPackage extends EPackage {
 	EReference getClass_SubClasses();
 
 	/**
-	 * Returns the meta object for the reference list '
-	 * {@link org.unicase.model.classes.Class#getIncomingAssociations
-	 * <em>Incoming Associations</em>}'. <!-- begin-user-doc --> <!--
+	 * Returns the meta object for the reference list '{@link org.unicase.model.classes.Class#getIncomingAssociations <em>Incoming Associations</em>}'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @return the meta object for the reference list '
-	 *         <em>Incoming Associations</em>'.
+	 * @return the meta object for the reference list '<em>Incoming Associations</em>'.
 	 * @see org.unicase.model.classes.Class#getIncomingAssociations()
 	 * @see #getClass_()
 	 * @generated
@@ -586,13 +541,10 @@ public interface ClassesPackage extends EPackage {
 	EReference getClass_IncomingAssociations();
 
 	/**
-	 * Returns the meta object for the reference list '
-	 * {@link org.unicase.model.classes.Class#getOutgoingAssociations
-	 * <em>Outgoing Associations</em>}'. <!-- begin-user-doc --> <!--
+	 * Returns the meta object for the reference list '{@link org.unicase.model.classes.Class#getOutgoingAssociations <em>Outgoing Associations</em>}'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @return the meta object for the reference list '
-	 *         <em>Outgoing Associations</em>'.
+	 * @return the meta object for the reference list '<em>Outgoing Associations</em>'.
 	 * @see org.unicase.model.classes.Class#getOutgoingAssociations()
 	 * @see #getClass_()
 	 * @generated
@@ -611,13 +563,10 @@ public interface ClassesPackage extends EPackage {
 	EClass getPackage();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.unicase.model.classes.Package#getContainedPackageElements
-	 * <em>Contained Package Elements</em>}'. <!-- begin-user-doc --> <!--
+	 * Returns the meta object for the containment reference list '{@link org.unicase.model.classes.Package#getContainedPackageElements <em>Contained Package Elements</em>}'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @return the meta object for the containment reference list '
-	 *         <em>Contained Package Elements</em>'.
+	 * @return the meta object for the containment reference list '<em>Contained Package Elements</em>'.
 	 * @see org.unicase.model.classes.Package#getContainedPackageElements()
 	 * @see #getPackage()
 	 * @generated
@@ -625,10 +574,8 @@ public interface ClassesPackage extends EPackage {
 	EReference getPackage_ContainedPackageElements();
 
 	/**
-	 * Returns the meta object for class '
-	 * {@link org.unicase.model.classes.PackageElement <em>Package Element</em>}
-	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.model.classes.PackageElement <em>Package Element</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Package Element</em>'.
 	 * @see org.unicase.model.classes.PackageElement
 	 * @generated
@@ -636,12 +583,9 @@ public interface ClassesPackage extends EPackage {
 	EClass getPackageElement();
 
 	/**
-	 * Returns the meta object for the container reference '
-	 * {@link org.unicase.model.classes.PackageElement#getParentPackage
-	 * <em>Parent Package</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the container reference '
-	 *         <em>Parent Package</em>'.
+	 * Returns the meta object for the container reference '{@link org.unicase.model.classes.PackageElement#getParentPackage <em>Parent Package</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Parent Package</em>'.
 	 * @see org.unicase.model.classes.PackageElement#getParentPackage()
 	 * @see #getPackageElement()
 	 * @generated
@@ -660,10 +604,8 @@ public interface ClassesPackage extends EPackage {
 	EClass getAssociation();
 
 	/**
-	 * Returns the meta object for the attribute '
-	 * {@link org.unicase.model.classes.Association#isDirected
-	 * <em>Directed</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.model.classes.Association#isDirected <em>Directed</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Directed</em>'.
 	 * @see org.unicase.model.classes.Association#isDirected()
 	 * @see #getAssociation()
@@ -672,10 +614,8 @@ public interface ClassesPackage extends EPackage {
 	EAttribute getAssociation_Directed();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.unicase.model.classes.Association#getSource <em>Source</em>}'.
+	 * Returns the meta object for the reference '{@link org.unicase.model.classes.Association#getSource <em>Source</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the reference '<em>Source</em>'.
 	 * @see org.unicase.model.classes.Association#getSource()
 	 * @see #getAssociation()
@@ -684,10 +624,8 @@ public interface ClassesPackage extends EPackage {
 	EReference getAssociation_Source();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.unicase.model.classes.Association#getTarget <em>Target</em>}'.
+	 * Returns the meta object for the reference '{@link org.unicase.model.classes.Association#getTarget <em>Target</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the reference '<em>Target</em>'.
 	 * @see org.unicase.model.classes.Association#getTarget()
 	 * @see #getAssociation()
@@ -696,10 +634,8 @@ public interface ClassesPackage extends EPackage {
 	EReference getAssociation_Target();
 
 	/**
-	 * Returns the meta object for the attribute '
-	 * {@link org.unicase.model.classes.Association#getType <em>Type</em>}'.
+	 * Returns the meta object for the attribute '{@link org.unicase.model.classes.Association#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Type</em>'.
 	 * @see org.unicase.model.classes.Association#getType()
 	 * @see #getAssociation()
@@ -738,15 +674,12 @@ public interface ClassesPackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '
-		 * {@link org.unicase.model.classes.impl.ClassImpl <em>Class</em>}'
-		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.model.classes.impl.ClassImpl <em>Class</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.model.classes.impl.ClassImpl
 		 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getClass_()
 		 * @generated
@@ -759,19 +692,16 @@ public interface ClassesPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference CLASS__PARTICIPATED_USE_CASES = eINSTANCE
-				.getClass_ParticipatedUseCases();
+		EReference CLASS__PARTICIPATED_USE_CASES = eINSTANCE.getClass_ParticipatedUseCases();
 		/**
-		 * The meta object literal for the '<em><b>Super Class</b></em>'
-		 * reference feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Super Class</b></em>' reference feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference CLASS__SUPER_CLASS = eINSTANCE.getClass_SuperClass();
 		/**
-		 * The meta object literal for the '<em><b>Sub Classes</b></em>'
-		 * reference list feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Sub Classes</b></em>' reference list feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference CLASS__SUB_CLASSES = eINSTANCE.getClass_SubClasses();
@@ -782,8 +712,7 @@ public interface ClassesPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference CLASS__INCOMING_ASSOCIATIONS = eINSTANCE
-				.getClass_IncomingAssociations();
+		EReference CLASS__INCOMING_ASSOCIATIONS = eINSTANCE.getClass_IncomingAssociations();
 		/**
 		 * The meta object literal for the '
 		 * <em><b>Outgoing Associations</b></em>' reference list feature. <!--
@@ -791,92 +720,74 @@ public interface ClassesPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference CLASS__OUTGOING_ASSOCIATIONS = eINSTANCE
-				.getClass_OutgoingAssociations();
+		EReference CLASS__OUTGOING_ASSOCIATIONS = eINSTANCE.getClass_OutgoingAssociations();
 		/**
-		 * The meta object literal for the '
-		 * {@link org.unicase.model.classes.impl.PackageImpl <em>Package</em>}'
-		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.model.classes.impl.PackageImpl <em>Package</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.model.classes.impl.PackageImpl
 		 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getPackage()
 		 * @generated
 		 */
 		EClass PACKAGE = eINSTANCE.getPackage();
 		/**
-		 * The meta object literal for the '
-		 * <em><b>Contained Package Elements</b></em>' containment reference
-		 * list feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Contained Package Elements</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PACKAGE__CONTAINED_PACKAGE_ELEMENTS = eINSTANCE
-				.getPackage_ContainedPackageElements();
+		EReference PACKAGE__CONTAINED_PACKAGE_ELEMENTS = eINSTANCE.getPackage_ContainedPackageElements();
 		/**
-		 * The meta object literal for the '
-		 * {@link org.unicase.model.classes.impl.PackageElementImpl
-		 * <em>Package Element</em>}' class. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '{@link org.unicase.model.classes.impl.PackageElementImpl <em>Package Element</em>}' class.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @see org.unicase.model.classes.impl.PackageElementImpl
 		 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getPackageElement()
 		 * @generated
 		 */
 		EClass PACKAGE_ELEMENT = eINSTANCE.getPackageElement();
 		/**
-		 * The meta object literal for the '<em><b>Parent Package</b></em>'
-		 * container reference feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Parent Package</b></em>' container reference feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
-		EReference PACKAGE_ELEMENT__PARENT_PACKAGE = eINSTANCE
-				.getPackageElement_ParentPackage();
+		EReference PACKAGE_ELEMENT__PARENT_PACKAGE = eINSTANCE.getPackageElement_ParentPackage();
 		/**
-		 * The meta object literal for the '
-		 * {@link org.unicase.model.classes.impl.AssociationImpl
-		 * <em>Association</em>}' class. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '{@link org.unicase.model.classes.impl.AssociationImpl <em>Association</em>}' class.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @see org.unicase.model.classes.impl.AssociationImpl
 		 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getAssociation()
 		 * @generated
 		 */
 		EClass ASSOCIATION = eINSTANCE.getAssociation();
 		/**
-		 * The meta object literal for the '<em><b>Directed</b></em>' attribute
-		 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Directed</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute ASSOCIATION__DIRECTED = eINSTANCE.getAssociation_Directed();
 		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' reference
-		 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference ASSOCIATION__SOURCE = eINSTANCE.getAssociation_Source();
 		/**
-		 * The meta object literal for the '<em><b>Target</b></em>' reference
-		 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference ASSOCIATION__TARGET = eINSTANCE.getAssociation_Target();
 		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' attribute
-		 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute ASSOCIATION__TYPE = eINSTANCE.getAssociation_Type();
 		/**
-		 * The meta object literal for the '
-		 * {@link org.unicase.model.classes.AssociationType
-		 * <em>Association Type</em>}' enum. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '{@link org.unicase.model.classes.AssociationType <em>Association Type</em>}' enum.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @see org.unicase.model.classes.AssociationType
 		 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getAssociationType()
 		 * @generated

@@ -11,60 +11,58 @@ import org.eclipse.emf.ecore.EFactory;
 /**
  * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a
  * create method for each non-abstract class of the model. <!-- end-user-doc -->
- * 
  * @see org.unicase.model.organization.OrganizationPackage
  * @generated
  */
 public interface OrganizationFactory extends EFactory {
 	/**
-	 * The singleton instance of the factory. <!-- begin-user-doc --> <!--
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	OrganizationFactory eINSTANCE = org.unicase.model.organization.impl.OrganizationFactoryImpl
-			.init();
+	OrganizationFactory eINSTANCE = org.unicase.model.organization.impl.OrganizationFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>User</em>'. <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>User</em>'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>User</em>'.
 	 * @generated
 	 */
 	User createUser();
 
 	/**
-	 * Returns a new object of class '<em>Org Unit</em>'. <!-- begin-user-doc
+	 * Returns a new object of class '<em>Org Unit</em>'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Org Unit</em>'.
 	 * @generated
 	 */
 	OrgUnit createOrgUnit();
 
 	/**
-	 * Returns a new object of class '<em>Org Unit Id</em>'. <!-- begin-user-doc
+	 * Returns a new object of class '<em>Org Unit Id</em>'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Org Unit Id</em>'.
 	 * @generated
 	 */
 	OrgUnitId createOrgUnitId();
 
 	/**
-	 * Returns a new object of class '<em>Group</em>'. <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Group</em>'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Group</em>'.
 	 * @generated
 	 */
 	Group createGroup();
 
 	/**
-	 * Returns the package supported by this factory. <!-- begin-user-doc -->
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the package supported by this factory.
 	 * @generated
 	 */

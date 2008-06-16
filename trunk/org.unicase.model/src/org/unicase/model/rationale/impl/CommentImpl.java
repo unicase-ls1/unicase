@@ -21,18 +21,16 @@ import org.unicase.model.rationale.RationalePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.rationale.impl.CommentImpl#getReplies <em>
- * Replies</em>}</li>
+ *   <li>{@link org.unicase.model.rationale.impl.CommentImpl#getReplies <em>Replies</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class CommentImpl extends AnnotationImpl implements Comment {
 	/**
-	 * The cached value of the '{@link #getReplies() <em>Replies</em>}'
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getReplies() <em>Replies</em>}' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getReplies()
 	 * @generated
 	 * @ordered
@@ -41,7 +39,6 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected CommentImpl() {
@@ -50,7 +47,6 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -60,73 +56,67 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Comment> getReplies() {
 		if (replies == null) {
-			replies = new EObjectResolvingEList<Comment>(Comment.class, this,
-					RationalePackage.COMMENT__REPLIES);
+			replies = new EObjectResolvingEList<Comment>(Comment.class, this, RationalePackage.COMMENT__REPLIES);
 		}
 		return replies;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case RationalePackage.COMMENT__REPLIES:
-			return getReplies();
+			case RationalePackage.COMMENT__REPLIES:
+				return getReplies();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case RationalePackage.COMMENT__REPLIES:
-			getReplies().clear();
-			getReplies().addAll((Collection<? extends Comment>) newValue);
-			return;
+			case RationalePackage.COMMENT__REPLIES:
+				getReplies().clear();
+				getReplies().addAll((Collection<? extends Comment>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case RationalePackage.COMMENT__REPLIES:
-			getReplies().clear();
-			return;
+			case RationalePackage.COMMENT__REPLIES:
+				getReplies().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case RationalePackage.COMMENT__REPLIES:
-			return replies != null && !replies.isEmpty();
+			case RationalePackage.COMMENT__REPLIES:
+				return replies != null && !replies.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

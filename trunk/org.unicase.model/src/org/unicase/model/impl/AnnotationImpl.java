@@ -24,19 +24,17 @@ import org.unicase.model.ModelPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.impl.AnnotationImpl#getAnnotatedModelElements
- * <em>Annotated Model Elements</em>}</li>
+ *   <li>{@link org.unicase.model.impl.AnnotationImpl#getAnnotatedModelElements <em>Annotated Model Elements</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class AnnotationImpl extends ModelElementImpl implements Annotation {
 	/**
-	 * The cached value of the '{@link #getAnnotatedModelElements()
-	 * <em>Annotated Model Elements</em>}' reference list. <!-- begin-user-doc
+	 * The cached value of the '{@link #getAnnotatedModelElements() <em>Annotated Model Elements</em>}' reference list.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getAnnotatedModelElements()
 	 * @generated
 	 * @ordered
@@ -45,7 +43,6 @@ public class AnnotationImpl extends ModelElementImpl implements Annotation {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AnnotationImpl() {
@@ -54,7 +51,6 @@ public class AnnotationImpl extends ModelElementImpl implements Annotation {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -64,22 +60,17 @@ public class AnnotationImpl extends ModelElementImpl implements Annotation {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ModelElement> getAnnotatedModelElements() {
 		if (annotatedModelElements == null) {
-			annotatedModelElements = new EObjectWithInverseResolvingEList.ManyInverse<ModelElement>(
-					ModelElement.class, this,
-					ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS,
-					ModelPackage.MODEL_ELEMENT__ANNOTATIONS);
+			annotatedModelElements = new EObjectWithInverseResolvingEList.ManyInverse<ModelElement>(ModelElement.class, this, ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS, ModelPackage.MODEL_ELEMENT__ANNOTATIONS);
 		}
 		return annotatedModelElements;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -87,87 +78,78 @@ public class AnnotationImpl extends ModelElementImpl implements Annotation {
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAnnotatedModelElements())
-					.basicAdd(otherEnd, msgs);
+			case ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAnnotatedModelElements()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS:
-			return ((InternalEList<?>) getAnnotatedModelElements())
-					.basicRemove(otherEnd, msgs);
+			case ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS:
+				return ((InternalEList<?>)getAnnotatedModelElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS:
-			return getAnnotatedModelElements();
+			case ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS:
+				return getAnnotatedModelElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS:
-			getAnnotatedModelElements().clear();
-			getAnnotatedModelElements().addAll(
-					(Collection<? extends ModelElement>) newValue);
-			return;
+			case ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS:
+				getAnnotatedModelElements().clear();
+				getAnnotatedModelElements().addAll((Collection<? extends ModelElement>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS:
-			getAnnotatedModelElements().clear();
-			return;
+			case ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS:
+				getAnnotatedModelElements().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS:
-			return annotatedModelElements != null
-					&& !annotatedModelElements.isEmpty();
+			case ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS:
+				return annotatedModelElements != null && !annotatedModelElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

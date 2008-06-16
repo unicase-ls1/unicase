@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.model.task.*;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.TaskPackage;
@@ -19,33 +20,32 @@ import org.unicase.model.task.WorkPackage;
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static TaskFactory init() {
 		try {
-			TaskFactory theTaskFactory = (TaskFactory) EPackage.Registry.INSTANCE
-					.getEFactory("http://unicase.org/model/task");
+			TaskFactory theTaskFactory = (TaskFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/model/task"); 
 			if (theTaskFactory != null) {
 				return theTaskFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new TaskFactoryImpl();
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!--
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public TaskFactoryImpl() {
@@ -54,25 +54,20 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case TaskPackage.ACTION_ITEM:
-			return createActionItem();
-		case TaskPackage.WORK_PACKAGE:
-			return createWorkPackage();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
+			case TaskPackage.ACTION_ITEM: return createActionItem();
+			case TaskPackage.WORK_PACKAGE: return createWorkPackage();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ActionItem createActionItem() {
@@ -82,7 +77,6 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public WorkPackage createWorkPackage() {
@@ -92,16 +86,14 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public TaskPackage getTaskPackage() {
-		return (TaskPackage) getEPackage();
+		return (TaskPackage)getEPackage();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

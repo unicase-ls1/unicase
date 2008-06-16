@@ -12,6 +12,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
+import org.unicase.model.change.*;
 import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.MergingIssue;
 import org.unicase.model.change.MergingProposal;
@@ -25,22 +26,21 @@ import org.unicase.model.rationale.Solution;
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides
  * an adapter <code>createXXX</code> method for each class of the model. <!--
  * end-user-doc -->
- * 
  * @see org.unicase.model.change.ChangePackage
  * @generated
  */
 public class ChangeAdapterFactory extends AdapterFactoryImpl {
 	/**
-	 * The cached model package. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached model package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected static ChangePackage modelPackage;
 
 	/**
-	 * Creates an instance of the adapter factory. <!-- begin-user-doc --> <!--
+	 * Creates an instance of the adapter factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ChangeAdapterFactory() {
@@ -54,7 +54,6 @@ public class ChangeAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- begin-user-doc --> This implementation returns <code>true</code> if
 	 * the object is either the model's package or is an instance object of the
 	 * model. <!-- end-user-doc -->
-	 * 
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
@@ -64,7 +63,7 @@ public class ChangeAdapterFactory extends AdapterFactoryImpl {
 			return true;
 		}
 		if (object instanceof EObject) {
-			return ((EObject) object).eClass().getEPackage() == modelPackage;
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -76,79 +75,67 @@ public class ChangeAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	protected ChangeSwitch<Adapter> modelSwitch = new ChangeSwitch<Adapter>() {
-		@Override
-		public Adapter caseModelChangePackage(ModelChangePackage object) {
-			return createModelChangePackageAdapter();
-		}
-
-		@Override
-		public Adapter caseMergingIssue(MergingIssue object) {
-			return createMergingIssueAdapter();
-		}
-
-		@Override
-		public Adapter caseMergingProposal(MergingProposal object) {
-			return createMergingProposalAdapter();
-		}
-
-		@Override
-		public Adapter caseMergingSolution(MergingSolution object) {
-			return createMergingSolutionAdapter();
-		}
-
-		@Override
-		public Adapter caseModelElement(ModelElement object) {
-			return createModelElementAdapter();
-		}
-
-		@Override
-		public Adapter caseAnnotation(Annotation object) {
-			return createAnnotationAdapter();
-		}
-
-		@Override
-		public Adapter caseIssue(Issue object) {
-			return createIssueAdapter();
-		}
-
-		@Override
-		public Adapter caseProposal(Proposal object) {
-			return createProposalAdapter();
-		}
-
-		@Override
-		public Adapter caseSolution(Solution object) {
-			return createSolutionAdapter();
-		}
-
-		@Override
-		public Adapter defaultCase(EObject object) {
-			return createEObjectAdapter();
-		}
-	};
+			@Override
+			public Adapter caseModelChangePackage(ModelChangePackage object) {
+				return createModelChangePackageAdapter();
+			}
+			@Override
+			public Adapter caseMergingIssue(MergingIssue object) {
+				return createMergingIssueAdapter();
+			}
+			@Override
+			public Adapter caseMergingProposal(MergingProposal object) {
+				return createMergingProposalAdapter();
+			}
+			@Override
+			public Adapter caseMergingSolution(MergingSolution object) {
+				return createMergingSolutionAdapter();
+			}
+			@Override
+			public Adapter caseModelElement(ModelElement object) {
+				return createModelElementAdapter();
+			}
+			@Override
+			public Adapter caseAnnotation(Annotation object) {
+				return createAnnotationAdapter();
+			}
+			@Override
+			public Adapter caseIssue(Issue object) {
+				return createIssueAdapter();
+			}
+			@Override
+			public Adapter caseProposal(Proposal object) {
+				return createProposalAdapter();
+			}
+			@Override
+			public Adapter caseSolution(Solution object) {
+				return createSolutionAdapter();
+			}
+			@Override
+			public Adapter defaultCase(EObject object) {
+				return createEObjectAdapter();
+			}
+		};
 
 	/**
-	 * Creates an adapter for the <code>target</code>. <!-- begin-user-doc -->
+	 * Creates an adapter for the <code>target</code>.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param target
-	 *            the object to adapt.
+	 * @param target the object to adapt.
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject) target);
+		return modelSwitch.doSwitch((EObject)target);
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.unicase.model.change.ModelChangePackage
-	 * <em>Model Change Package</em>}'. <!-- begin-user-doc --> This default
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.change.ModelChangePackage <em>Model Change Package</em>}'.
+	 * <!-- begin-user-doc --> This default
 	 * implementation returns null so that we can easily ignore cases; it's
 	 * useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.unicase.model.change.ModelChangePackage
 	 * @generated
@@ -158,12 +145,10 @@ public class ChangeAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.unicase.model.change.MergingIssue <em>Merging Issue</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.change.MergingIssue <em>Merging Issue</em>}'.
 	 * <!-- begin-user-doc --> This default implementation returns null so that
 	 * we can easily ignore cases; it's useful to ignore a case when inheritance
 	 * will catch all the cases anyway. <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.unicase.model.change.MergingIssue
 	 * @generated
@@ -173,13 +158,11 @@ public class ChangeAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.unicase.model.change.MergingProposal
-	 * <em>Merging Proposal</em>}'. <!-- begin-user-doc --> This default
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.change.MergingProposal <em>Merging Proposal</em>}'.
+	 * <!-- begin-user-doc --> This default
 	 * implementation returns null so that we can easily ignore cases; it's
 	 * useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.unicase.model.change.MergingProposal
 	 * @generated
@@ -189,13 +172,11 @@ public class ChangeAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.unicase.model.change.MergingSolution
-	 * <em>Merging Solution</em>}'. <!-- begin-user-doc --> This default
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.change.MergingSolution <em>Merging Solution</em>}'.
+	 * <!-- begin-user-doc --> This default
 	 * implementation returns null so that we can easily ignore cases; it's
 	 * useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.unicase.model.change.MergingSolution
 	 * @generated
@@ -280,9 +261,9 @@ public class ChangeAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for the default case. <!-- begin-user-doc --> This
+	 * Creates a new adapter for the default case.
+	 * <!-- begin-user-doc --> This
 	 * default implementation returns null. <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @generated
 	 */

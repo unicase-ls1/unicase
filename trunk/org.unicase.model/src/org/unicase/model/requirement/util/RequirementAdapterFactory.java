@@ -12,6 +12,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.ModelElement;
 import org.unicase.model.rationale.Criterion;
+import org.unicase.model.requirement.*;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.ActorInstance;
 import org.unicase.model.requirement.FunctionalRequirement;
@@ -25,22 +26,21 @@ import org.unicase.model.requirement.UseCase;
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides
  * an adapter <code>createXXX</code> method for each class of the model. <!--
  * end-user-doc -->
- * 
  * @see org.unicase.model.requirement.RequirementPackage
  * @generated
  */
 public class RequirementAdapterFactory extends AdapterFactoryImpl {
 	/**
-	 * The cached model package. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached model package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected static RequirementPackage modelPackage;
 
 	/**
-	 * Creates an instance of the adapter factory. <!-- begin-user-doc --> <!--
+	 * Creates an instance of the adapter factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public RequirementAdapterFactory() {
@@ -54,7 +54,6 @@ public class RequirementAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- begin-user-doc --> This implementation returns <code>true</code> if
 	 * the object is either the model's package or is an instance object of the
 	 * model. <!-- end-user-doc -->
-	 * 
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
@@ -64,7 +63,7 @@ public class RequirementAdapterFactory extends AdapterFactoryImpl {
 			return true;
 		}
 		if (object instanceof EObject) {
-			return ((EObject) object).eClass().getEPackage() == modelPackage;
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -76,80 +75,67 @@ public class RequirementAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	protected RequirementSwitch<Adapter> modelSwitch = new RequirementSwitch<Adapter>() {
-		@Override
-		public Adapter caseNonFunctionalRequirement(
-				NonFunctionalRequirement object) {
-			return createNonFunctionalRequirementAdapter();
-		}
-
-		@Override
-		public Adapter caseFunctionalRequirement(FunctionalRequirement object) {
-			return createFunctionalRequirementAdapter();
-		}
-
-		@Override
-		public Adapter caseUseCase(UseCase object) {
-			return createUseCaseAdapter();
-		}
-
-		@Override
-		public Adapter caseScenario(Scenario object) {
-			return createScenarioAdapter();
-		}
-
-		@Override
-		public Adapter caseActor(Actor object) {
-			return createActorAdapter();
-		}
-
-		@Override
-		public Adapter caseActorInstance(ActorInstance object) {
-			return createActorInstanceAdapter();
-		}
-
-		@Override
-		public Adapter caseStep(Step object) {
-			return createStepAdapter();
-		}
-
-		@Override
-		public Adapter caseModelElement(ModelElement object) {
-			return createModelElementAdapter();
-		}
-
-		@Override
-		public Adapter caseCriterion(Criterion object) {
-			return createCriterionAdapter();
-		}
-
-		@Override
-		public Adapter defaultCase(EObject object) {
-			return createEObjectAdapter();
-		}
-	};
+			@Override
+			public Adapter caseNonFunctionalRequirement(NonFunctionalRequirement object) {
+				return createNonFunctionalRequirementAdapter();
+			}
+			@Override
+			public Adapter caseFunctionalRequirement(FunctionalRequirement object) {
+				return createFunctionalRequirementAdapter();
+			}
+			@Override
+			public Adapter caseUseCase(UseCase object) {
+				return createUseCaseAdapter();
+			}
+			@Override
+			public Adapter caseScenario(Scenario object) {
+				return createScenarioAdapter();
+			}
+			@Override
+			public Adapter caseActor(Actor object) {
+				return createActorAdapter();
+			}
+			@Override
+			public Adapter caseActorInstance(ActorInstance object) {
+				return createActorInstanceAdapter();
+			}
+			@Override
+			public Adapter caseStep(Step object) {
+				return createStepAdapter();
+			}
+			@Override
+			public Adapter caseModelElement(ModelElement object) {
+				return createModelElementAdapter();
+			}
+			@Override
+			public Adapter caseCriterion(Criterion object) {
+				return createCriterionAdapter();
+			}
+			@Override
+			public Adapter defaultCase(EObject object) {
+				return createEObjectAdapter();
+			}
+		};
 
 	/**
-	 * Creates an adapter for the <code>target</code>. <!-- begin-user-doc -->
+	 * Creates an adapter for the <code>target</code>.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param target
-	 *            the object to adapt.
+	 * @param target the object to adapt.
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject) target);
+		return modelSwitch.doSwitch((EObject)target);
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.unicase.model.requirement.NonFunctionalRequirement
-	 * <em>Non Functional Requirement</em>}'. <!-- begin-user-doc --> This
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.requirement.NonFunctionalRequirement <em>Non Functional Requirement</em>}'.
+	 * <!-- begin-user-doc --> This
 	 * default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases
 	 * anyway. <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.unicase.model.requirement.NonFunctionalRequirement
 	 * @generated
@@ -159,13 +145,11 @@ public class RequirementAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.unicase.model.requirement.FunctionalRequirement
-	 * <em>Functional Requirement</em>}'. <!-- begin-user-doc --> This default
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.requirement.FunctionalRequirement <em>Functional Requirement</em>}'.
+	 * <!-- begin-user-doc --> This default
 	 * implementation returns null so that we can easily ignore cases; it's
 	 * useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.unicase.model.requirement.FunctionalRequirement
 	 * @generated
@@ -220,13 +204,11 @@ public class RequirementAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.unicase.model.requirement.ActorInstance
-	 * <em>Actor Instance</em>}'. <!-- begin-user-doc --> This default
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.requirement.ActorInstance <em>Actor Instance</em>}'.
+	 * <!-- begin-user-doc --> This default
 	 * implementation returns null so that we can easily ignore cases; it's
 	 * useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.unicase.model.requirement.ActorInstance
 	 * @generated
@@ -281,9 +263,9 @@ public class RequirementAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for the default case. <!-- begin-user-doc --> This
+	 * Creates a new adapter for the default case.
+	 * <!-- begin-user-doc --> This
 	 * default implementation returns null. <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @generated
 	 */
