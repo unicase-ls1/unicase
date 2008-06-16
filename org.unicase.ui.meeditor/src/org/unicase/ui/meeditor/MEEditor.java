@@ -18,21 +18,31 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
 import org.unicase.workspace.WorkspaceManager;
 
+/**
+ * GUI view for editing MEs.
+ * @author helming
+ *
+ */
 public class MEEditor extends SharedHeaderFormEditor {
 
-	ModelElement modelElement;
-	ComposedAdapterFactory adapterFactory;
-	TransactionalEditingDomain editingDomain;
-	ILabelProvider labelProvider;
-	CommandStack commandStack;
-	ControlFactory controlFactory;
-	private boolean dirty = false;
+	private ModelElement modelElement;
+	private ComposedAdapterFactory adapterFactory;
+	private TransactionalEditingDomain editingDomain;
+	private ILabelProvider labelProvider;
+	private CommandStack commandStack;
+	private ControlFactory controlFactory;
+	private boolean dirty;
 
+	/**
+	 * Default constructor.
+	 */
 	public MEEditor() {
 		// initializeEditingDomain();
 	}
-
-	@Override
+	
+	/**
+	 * {@inheritDoc}
+	 */
 	protected void addPages() {
 
 		FormPage form = new MEEditorPage(this, "1", "Standard View",
@@ -46,7 +56,9 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 	}
 
-	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public void doSave(IProgressMonitor monitor) {
 
 		monitor.beginTask("Saving...", 1);
@@ -68,19 +80,23 @@ public class MEEditor extends SharedHeaderFormEditor {
 		dirty = false;
 	}
 
-	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public void doSaveAs() {
 	}
 
 	/**
-	 * Is save is not allowed as the editor can only modify model elements
+	 * Save is not allowed as the editor can only modify model elements.
+	 * @return false
 	 */
-	@Override
 	public boolean isSaveAsAllowed() {
 		return false;
 	}
 
-	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public void init(IEditorSite site, IEditorInput input)
 			throws PartInitException {
 		super.init(site, input);
@@ -99,6 +115,9 @@ public class MEEditor extends SharedHeaderFormEditor {
 		}
 	}
 
+	/**
+	 * Initializes the editing domain for this model element.
+	 */
 	protected void initializeEditingDomain() {
 		this.adapterFactory = new ComposedAdapterFactory(
 				ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
@@ -135,7 +154,9 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 	}
 
-	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public boolean isDirty() {
 		return true;
 	}
