@@ -153,8 +153,9 @@ public class MEMultiLinkControl extends AbstractMEControl {
 			for (MELinkControl control : linkControls) {
 				control.getLinkComposite().dispose();
 			}
-			linkArea.pack(true);
 		}
+		linkArea.pack(true);
+		
 		MELinkControl meControl;
 		for (EObject object : value) {
 			if (object instanceof ModelElement) {
