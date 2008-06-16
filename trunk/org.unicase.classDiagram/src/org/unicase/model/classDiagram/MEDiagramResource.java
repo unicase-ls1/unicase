@@ -6,6 +6,8 @@ import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.notify.impl.NotificationChainImpl;
+import org.eclipse.emf.common.notify.impl.NotificationImpl;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
@@ -48,7 +50,6 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 
 	public void delete(Map<?, ?> options) throws IOException {
 		// TODO Auto-generated method stub
-
 	}
 
 	public TreeIterator<EObject> getAllContents() {
@@ -56,6 +57,9 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 		return null;
 	}
 
+	/**
+	 * Overriden to return the MEDiagram and the GMF Diagram on root level.
+	 */
 	public EList<EObject> getContents() {
 		if (!initialized) {
 			initialize();
@@ -84,14 +88,6 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 			});
 		}
 
-		// this.resourceSet.getResources().add(meDiagram.eResource());
-
-		// super.getContents().add(meDiagram);
-		// super.getContents().add(diagram);
-		// Add Transactional domain. Otherwise: Nullpointer Exception
-		// ResourceSet resourceSet = this.getResourceSet();
-		// TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(((
-		// EObject)meDiagram).eResource().getResourceSet());
 	}
 
 	public EObject getEObject(String uriFragment) {
@@ -105,7 +101,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	}
 
 	public ResourceSet getResourceSet() {
-		return super.resourceSet;
+		return meDiagram.eResource().getResourceSet();
 	}
 
 	public long getTimeStamp() {
@@ -113,6 +109,9 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 		return 0;
 	}
 
+	/**
+	 * Forwards the URI of unicase Resource.
+	 */
 	public URI getURI() {
 		return meDiagram.eResource().getURI();
 	}
@@ -202,8 +201,9 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 
 	public NotificationChain basicSetResourceSet(ResourceSet resourceSet,
 			NotificationChain notifications) {
-		// JH Check what this is for
-		return super.basicSetResourceSet(resourceSet, notifications);
+		    return notifications;
+		// JH Check what this is for. This is called an probably makes trouble
+//		return super.basicSetResourceSet(resourceSet, notifications);
 
 	}
 
