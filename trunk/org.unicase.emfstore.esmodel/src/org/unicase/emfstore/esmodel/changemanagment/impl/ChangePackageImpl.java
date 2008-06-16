@@ -205,7 +205,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 */
 	public ChangePackage reverse() {
 		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 

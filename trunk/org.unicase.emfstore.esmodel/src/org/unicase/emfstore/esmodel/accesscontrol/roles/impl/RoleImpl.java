@@ -82,7 +82,6 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 */
 	public boolean canAdministrate(ProjectId projectId) {
 		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
@@ -93,7 +92,6 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 */
 	public boolean canCreate(ProjectId projectId, ModelElement modelElement) {
 		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
@@ -104,7 +102,6 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 */
 	public boolean canDelete(ProjectId projectId, ModelElement modelElement) {
 		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
@@ -115,7 +112,6 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 */
 	public boolean canModify(ProjectId projectId, ModelElement modelElement) {
 		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
@@ -126,7 +122,6 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 */
 	public boolean canRead(ProjectId projectId, ModelElement modelElement) {
 		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
