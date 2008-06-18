@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.ui.navigator.commands;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -67,6 +73,7 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 						.getEditingDomain(TRANSACTIONAL_EDITINGDOMAIN_ID);
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
+					@Override
 					protected void doExecute() {
 						leafSection.getModelElements().add(newMEInstance);
 					}

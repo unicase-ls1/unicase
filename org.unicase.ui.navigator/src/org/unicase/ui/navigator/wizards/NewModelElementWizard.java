@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.ui.navigator.wizards;
 
 import org.eclipse.emf.ecore.EClass;
@@ -72,6 +78,7 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 						.getEditingDomain("org.unicase.EditingDomain");
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
+					@Override
 					protected void doExecute() {
 						((LeafSection) selectedME).getModelElements().add(
 								newMEInstance);
@@ -87,7 +94,7 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 	}
 
 	private void openNewME(ModelElement me) {
-		MEEditorInput input = new MEEditorInput((ModelElement) me);
+		MEEditorInput input = new MEEditorInput(me);
 		try {
 			PlatformUI.getWorkbench().getActiveWorkbenchWindow()
 					.getActivePage()
