@@ -3,20 +3,28 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition" name="MEDiagram">
-  <figures>
-    <figures
-        xsi:type="gmfgraph:Rectangle"
-        name="Rectangle"/>
-    <figures
-        xsi:type="gmfgraph:Ellipse"/>
-    <figures
-        xsi:type="gmfgraph:Polyline"
-        name="Association"/>
+  <figures
+      name="ClassDiagram">
+    <descriptors
+        name="ClassFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="ClassFigure"
+          lineWidth="2"/>
+    </descriptors>
+    <descriptors
+        name="AssociationFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="AssociationPolyline"/>
+    </descriptors>
   </figures>
   <nodes
-      name="Class"/>
+      name="Class"
+      figure="ClassFigure"/>
   <connections
-      name="Association"/>
+      name="Association"
+      figure="AssociationFigure"/>
   <labels
       name="Name"/>
 </gmfgraph:Canvas>
