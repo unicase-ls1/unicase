@@ -5,6 +5,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -91,14 +92,13 @@ public class MESingleLinkControl extends AbstractMEControl {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				Class<? extends EObject> clazz = (Class<? extends EObject>) eReference
-						.getEReferenceType().getInstanceClass();
+				EClass clazz = eReference.getEReferenceType();
 				ElementListSelectionDialog dlg = new ElementListSelectionDialog(
 						parent.getShell(), new AdapterFactoryLabelProvider(
 								new ModelItemProviderAdapterFactory()));
 				// JH: fill only with right elements
 				Collection<ModelElement> allElements = ((ModelElement) modelElement)
-						.getProject().getElementsByClass(clazz);
+						.getProject().getAllModelElementsbyClass(clazz);
 				allElements.remove(modelElement);
 				Object object = modelElement.eGet(eReference);
 				EList<EObject> list;

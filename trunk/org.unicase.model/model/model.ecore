@@ -36,8 +36,16 @@
     <eOperations name="addModelElement">
       <eParameters name="modelElement" eType="#//ModelElement"/>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="modelElements" upperBound="-1"
-        eType="#//ModelElement" containment="true"/>
+    <eOperations name="getAllModelElements" ordered="false" upperBound="-1" eType="#//ModelElement"/>
+    <eOperations name="getAllModelElementsbyClass" ordered="false" upperBound="-1"
+        eType="#//ModelElement">
+      <eParameters name="modelElementClass" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
+    </eOperations>
+    <eOperations name="getModelElementsByClass" ordered="false" upperBound="-1" eType="#//ModelElement">
+      <eParameters name="modelElementClass" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modelElements" ordered="false"
+        upperBound="-1" eType="#//ModelElement" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModelElementId" eSuperTypes="#//UniqueIdentifier"/>
   <eClassifiers xsi:type="ecore:EClass" name="UniqueIdentifier" abstract="true">
