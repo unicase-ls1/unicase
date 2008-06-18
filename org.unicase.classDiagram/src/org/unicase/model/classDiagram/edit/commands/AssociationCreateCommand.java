@@ -9,6 +9,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.unicase.model.ModelElement;
 import org.unicase.model.classes.Association;
 import org.unicase.model.classes.Class;
 import org.unicase.model.classes.ClassesFactory;
@@ -36,10 +37,11 @@ public class AssociationCreateCommand extends CreateElementCommand {
 	private MEDiagram container;
 
 	/**
-	 * @generated
+	 * @param eContainer 
+	 * @generated NOT
 	 */
 	public AssociationCreateCommand(CreateRelationshipRequest request,
-			EObject source, EObject target) {
+			EObject source, EObject target, EObject eContainer) {
 		super(request);
 		this.source = source;
 		this.target = target;
@@ -47,11 +49,12 @@ public class AssociationCreateCommand extends CreateElementCommand {
 			setContainmentFeature(DiagramPackage.eINSTANCE
 					.getMEDiagram_NewElements());
 		}
-
+		
+		
 		// Find container element for the new link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null; element = element
+		for (EObject element = eContainer; element != null; element = element
 				.eContainer()) {
 			if (element instanceof MEDiagram) {
 				container = (MEDiagram) element;
