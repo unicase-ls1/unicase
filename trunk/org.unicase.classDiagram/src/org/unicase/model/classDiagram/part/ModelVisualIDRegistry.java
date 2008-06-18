@@ -154,7 +154,7 @@ public class ModelVisualIDRegistry {
 		}
 		switch (containerVisualID) {
 		case org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart.VISUAL_ID:
-			if (org.unicase.model.classDiagram.edit.parts.MEDiagramNameEditPart.VISUAL_ID == nodeVisualID) {
+			if (org.unicase.model.classDiagram.edit.parts.WrappingLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

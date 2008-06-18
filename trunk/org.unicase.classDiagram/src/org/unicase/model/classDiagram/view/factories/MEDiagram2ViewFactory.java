@@ -62,7 +62,7 @@ public class MEDiagram2ViewFactory extends AbstractShapeViewFactory {
 						eObjectAdapter,
 						view,
 						org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-								.getType(org.unicase.model.classDiagram.edit.parts.MEDiagramNameEditPart.VISUAL_ID),
+								.getType(org.unicase.model.classDiagram.edit.parts.WrappingLabelEditPart.VISUAL_ID),
 						ViewUtil.APPEND, true, getPreferencesHint());
 	}
 }

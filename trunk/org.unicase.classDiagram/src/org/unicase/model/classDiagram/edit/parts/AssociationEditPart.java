@@ -5,6 +5,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 
 /**
@@ -38,6 +39,12 @@ public class AssociationEditPart extends ConnectionNodeEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof org.unicase.model.classDiagram.edit.parts.LabelEditPart) {
+			((org.unicase.model.classDiagram.edit.parts.LabelEditPart) childEditPart)
+					.setLabel(getPrimaryShape()
+							.getFigureAssociationFigure_name());
+			return true;
+		}
 		return false;
 	}
 
@@ -60,14 +67,53 @@ public class AssociationEditPart extends ConnectionNodeEditPart {
 	 * @generated
 	 */
 	protected Connection createConnectionFigure() {
-		return new PolylineConnectionEx();
+		return new AssociationFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public PolylineConnectionEx getPrimaryShape() {
-		return (PolylineConnectionEx) getFigure();
+	public AssociationFigure getPrimaryShape() {
+		return (AssociationFigure) getFigure();
+	}
+
+	/**
+	 * @generated
+	 */
+	public class AssociationFigure extends PolylineConnectionEx {
+
+		/**
+		 * @generated
+		 */
+		private WrappingLabel fFigureAssociationFigure_name;
+
+		/**
+		 * @generated
+		 */
+		public AssociationFigure() {
+
+			createContents();
+		}
+
+		/**
+		 * @generated
+		 */
+		private void createContents() {
+
+			fFigureAssociationFigure_name = new WrappingLabel();
+			fFigureAssociationFigure_name.setText("");
+
+			this.add(fFigureAssociationFigure_name);
+
+		}
+
+		/**
+		 * @generated
+		 */
+		public WrappingLabel getFigureAssociationFigure_name() {
+			return fFigureAssociationFigure_name;
+		}
+
 	}
 
 }

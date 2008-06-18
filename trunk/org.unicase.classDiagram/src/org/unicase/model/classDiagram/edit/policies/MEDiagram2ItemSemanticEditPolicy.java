@@ -48,7 +48,8 @@ public class MEDiagram2ItemSemanticEditPolicy
 		if (org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3001 == req
 				.getElementType()) {
 			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.AssociationCreateCommand(
-					req, req.getSource(), req.getTarget(), ((EObject)this.getHost().getModel())));
+					req, req.getSource(), req.getTarget(), ((EObject) this
+							.getHost().getModel())));
 		}
 		return null;
 	}
@@ -61,7 +62,8 @@ public class MEDiagram2ItemSemanticEditPolicy
 		if (org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3001 == req
 				.getElementType()) {
 			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.AssociationCreateCommand(
-					req, req.getSource(), req.getTarget(),((EObject)this.getHost().getModel())));
+					req, req.getSource(), req.getTarget(), ((EObject) this
+							.getHost().getModel())));
 		}
 		return null;
 	}
