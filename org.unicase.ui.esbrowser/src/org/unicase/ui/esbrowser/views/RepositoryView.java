@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.ui.esbrowser.views;
 
 import java.net.MalformedURLException;
@@ -80,6 +86,7 @@ public class RepositoryView extends ViewPart {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public Object[] getChildren(Object object) {
 			if (object instanceof Workspace) {
 				return ((Workspace) object).getServerInfos().toArray();
@@ -99,6 +106,7 @@ public class RepositoryView extends ViewPart {
 				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 						.getEditingDomain("org.unicase.EditingDomain");
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
+					@Override
 					protected void doExecute() {
 						try {
 							session.logIn();
@@ -126,7 +134,7 @@ public class RepositoryView extends ViewPart {
 				for (ProjectInfo pi : pis) {
 					projectServerMap.put(pi, serverInfo);
 				}
-				return (ProjectInfo[]) pis.toArray();
+				return pis.toArray();
 			}
 			throw new IllegalStateException(
 					"Received parent node of unkown type: " + object.getClass());
@@ -135,6 +143,7 @@ public class RepositoryView extends ViewPart {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public boolean hasChildren(Object parent) {
 			if (parent instanceof ServerInfo) {
 				return true;
@@ -145,6 +154,7 @@ public class RepositoryView extends ViewPart {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public Object[] getElements(Object object) {
 			if (object.equals(getViewSite())) {
 				return getChildren(WorkspaceManager.getInstance()
@@ -164,6 +174,7 @@ public class RepositoryView extends ViewPart {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void createPartControl(Composite parent) {
 		viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
 		viewer.setContentProvider(new WorkspaceRootContentProvider());
@@ -229,6 +240,7 @@ public class RepositoryView extends ViewPart {
 
 	private void makeActions() {
 		projectCheckout = new Action() {
+			@Override
 			public void run() {
 				ISelection selection = viewer.getSelection();
 				Object obj = ((IStructuredSelection) selection)
@@ -250,6 +262,7 @@ public class RepositoryView extends ViewPart {
 						ISharedImages.IMG_TOOL_FORWARD));
 
 		serverLogin = new Action() {
+			@Override
 			public void run() {
 				ISelection selection = viewer.getSelection();
 				Object obj = ((IStructuredSelection) selection)
@@ -265,6 +278,7 @@ public class RepositoryView extends ViewPart {
 						ISharedImages.IMG_OBJ_ELEMENT));
 
 		serverChangeSession = new Action() {
+			@Override
 			public void run() {
 				ISelection selection = viewer.getSelection();
 				Object obj = ((IStructuredSelection) selection)
@@ -283,6 +297,7 @@ public class RepositoryView extends ViewPart {
 						ISharedImages.IMG_OBJ_ELEMENT));
 
 		serverAddProject = new Action() {
+			@Override
 			public void run() {
 				ISelection selection = viewer.getSelection();
 				Object obj = ((IStructuredSelection) selection)
@@ -310,6 +325,7 @@ public class RepositoryView extends ViewPart {
 		}
 
 		serverProperties = new Action() {
+			@Override
 			public void run() {
 				ISelection selection = viewer.getSelection();
 				Object obj = ((IStructuredSelection) selection)
@@ -339,6 +355,7 @@ public class RepositoryView extends ViewPart {
 		}
 
 		addRepository = new Action() {
+			@Override
 			public void run() {
 				RepositoryWizard wizard = new RepositoryWizard(
 						RepositoryView.this);
@@ -374,6 +391,7 @@ public class RepositoryView extends ViewPart {
 	/**
 	 * Passing the focus request to the viewer's control.
 	 */
+	@Override
 	public void setFocus() {
 		viewer.getControl().setFocus();
 	}

@@ -1,10 +1,15 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.ui.esbrowser.modeltest;
 
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
@@ -15,7 +20,7 @@ import org.eclipse.swt.widgets.Text;
 public class TestProjectParamsDialog extends Dialog {
 
 	
-	Shell shell = null;
+	private Shell shell;
 	
 	private Label lblNumOfEachME;
 	private Label lblRandomSeed;
@@ -32,8 +37,6 @@ public class TestProjectParamsDialog extends Dialog {
 		super(parentShell);
 	
 	}
-
-
 
 	@Override
 	protected Control createDialogArea(Composite parent) {
@@ -85,6 +88,7 @@ public class TestProjectParamsDialog extends Dialog {
 	}
 	
 	
+	@Override
 	protected void createButtonsForButtonBar(Composite parent) { 
 		 
 		super.createButtonsForButtonBar(parent); 

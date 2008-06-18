@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.ui.esbrowser.dialogs;
 
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -13,7 +19,6 @@ import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchWizard;
 import org.unicase.ui.esbrowser.views.RepositoryView;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Workspace;
@@ -52,6 +57,7 @@ public class RepositoryWizard extends Wizard implements INewWizard {
 	/**
 	 * Adds all pages in the wizard.
 	 */
+	@Override
 	public void addPages() {
 		mainPage = new RepositoryMainPage(workbench, selection);
 		addPage(mainPage);
@@ -88,6 +94,7 @@ public class RepositoryWizard extends Wizard implements INewWizard {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public boolean canFinish() {
 		return true;
 	}
@@ -95,6 +102,7 @@ public class RepositoryWizard extends Wizard implements INewWizard {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public boolean performFinish() {
 		if (this.getContainer().getCurrentPage().canFlipToNextPage()) {
 			// save serverInfo to workspace
@@ -201,6 +209,7 @@ class RepositoryMainPage extends WizardPage {
 	/**
 	 * @return if the input on the current page is valid.
 	 */
+	@Override
 	public boolean canFlipToNextPage() {
 		if (getErrorMessage() != null) {
 			return false;

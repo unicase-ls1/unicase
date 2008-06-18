@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.ui.esbrowser.modeltest;
 
 import java.util.ArrayList;
@@ -85,6 +91,7 @@ public class TestProject {
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain(TRANSACTIONAL_EDITINGDOMAIN_ID);
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
 			protected void doExecute() {
 				workspace.getProjectSpaces().add(projectSpace);
 			}
@@ -110,7 +117,7 @@ public class TestProject {
 		
 		//instantiate project
 		this.project = ModelFactory.eINSTANCE.createProject();
-		numOfLeafSections = (int)Math.pow((double)projectWidth, (double)projectDepth);
+		numOfLeafSections = (int)Math.pow(projectWidth, projectDepth);
 		
 		//create document structure
 		int depth = projectDepth - 2;
@@ -412,14 +419,6 @@ public class TestProject {
 		
 		return buffer.toString();
 	}
-	
-	private boolean getRandomBoolan(){
-		
-		return false;
-	}
-	
-	private Date getRandomDate(){
-		return  new Date();
-	}
+
 }
 
