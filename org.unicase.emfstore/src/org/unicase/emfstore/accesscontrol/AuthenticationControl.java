@@ -7,8 +7,12 @@
 package org.unicase.emfstore.accesscontrol;
 
 import org.unicase.emfstore.esmodel.SessionId;
-import org.unicase.emfstore.exceptions.EmfStoreException;
 
+/**
+ * Controler for the Authentication of users.
+ * @author koegel
+ *
+ */
 public interface AuthenticationControl {
 
 	/**
@@ -19,7 +23,7 @@ public interface AuthenticationControl {
 	 * @param password
 	 *            the password
 	 * @return a session id that can be used for later authentication
-	 * @throws EmfStoreException
+	 * @throws AccessControlException
 	 *             if any error in the EmfStore occurs
 	 * 
 	 * @generated NOT

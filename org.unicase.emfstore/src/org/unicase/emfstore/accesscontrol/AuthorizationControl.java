@@ -12,20 +12,75 @@ import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.model.ModelElement;
 
+/**
+ * Control for the authorization of users.
+ * 
+ * @author koegel
+ * 
+ */
 public interface AuthorizationControl {
 
-	public void checkSession(SessionId sessionId) throws AccessControlException;
+	/**
+	 * Check if the given session is valid.
+	 * 
+	 * @param sessionId
+	 *            the session id
+	 * @throws AccessControlException
+	 *             if the session is invalid
+	 */
+	void checkSession(SessionId sessionId) throws AccessControlException;
 
-	public void checkProjectAdminAccess(SessionId sessionId, ProjectId projectId)
+	/**
+	 * Check if the session is valid for admin access to the given project.
+	 * 
+	 * @param sessionId
+	 *            the session id
+	 * @param projectId
+	 *            the project id
+	 * @throws AccessControlException
+	 *             if the session is invalid for admin access
+	 */
+	void checkProjectAdminAccess(SessionId sessionId, ProjectId projectId)
 			throws AccessControlException;
 
-	public void checkServerAdminAccess(SessionId sessionId)
+	/**
+	 * Check if the session is valid for server admin access.
+	 * 
+	 * @param sessionId
+	 *            the session id
+	 * @throws AccessControlException
+	 *             if the session is invalid for server admin access
+	 */
+	void checkServerAdminAccess(SessionId sessionId)
 			throws AccessControlException;
 
-	public void checkReadAccess(SessionId sessionId, ProjectId projectId,
+	/**
+	 * Check if the session may read the given model elements in the project.
+	 * 
+	 * @param sessionId
+	 *            session id
+	 * @param projectId
+	 *            project id
+	 * @param modelElements
+	 *            a set of model elements
+	 * @throws AccessControlException
+	 *             if the session may not read any of the model elements
+	 */
+	void checkReadAccess(SessionId sessionId, ProjectId projectId,
 			Set<ModelElement> modelElements) throws AccessControlException;
-
-	public void checkWriteAccess(SessionId sessionId, ProjectId projectId,
+	/**
+	 * Check if the session may write the given model elements in the project.
+	 * 
+	 * @param sessionId
+	 *            session id
+	 * @param projectId
+	 *            project id
+	 * @param modelElements
+	 *            a set of model elements
+	 * @throws AccessControlException
+	 *             if the session may not write any of the model elements
+	 */
+	void checkWriteAccess(SessionId sessionId, ProjectId projectId,
 			Set<ModelElement> modelElements) throws AccessControlException;
 
 }
