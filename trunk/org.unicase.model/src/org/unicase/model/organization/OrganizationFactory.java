@@ -21,7 +21,8 @@ public interface OrganizationFactory extends EFactory {
 	 * end-user-doc -->
 	 * @generated
 	 */
-	OrganizationFactory eINSTANCE = org.unicase.model.organization.impl.OrganizationFactoryImpl.init();
+	OrganizationFactory eINSTANCE = org.unicase.model.organization.impl.OrganizationFactoryImpl
+			.init();
 
 	/**
 	 * Returns a new object of class '<em>User</em>'.

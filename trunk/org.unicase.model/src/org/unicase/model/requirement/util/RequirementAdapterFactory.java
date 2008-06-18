@@ -12,7 +12,6 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.ModelElement;
 import org.unicase.model.rationale.Criterion;
-import org.unicase.model.requirement.*;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.ActorInstance;
 import org.unicase.model.requirement.FunctionalRequirement;
@@ -63,7 +62,7 @@ public class RequirementAdapterFactory extends AdapterFactoryImpl {
 			return true;
 		}
 		if (object instanceof EObject) {
-			return ((EObject)object).eClass().getEPackage() == modelPackage;
+			return ((EObject) object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -75,47 +74,57 @@ public class RequirementAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	protected RequirementSwitch<Adapter> modelSwitch = new RequirementSwitch<Adapter>() {
-			@Override
-			public Adapter caseNonFunctionalRequirement(NonFunctionalRequirement object) {
-				return createNonFunctionalRequirementAdapter();
-			}
-			@Override
-			public Adapter caseFunctionalRequirement(FunctionalRequirement object) {
-				return createFunctionalRequirementAdapter();
-			}
-			@Override
-			public Adapter caseUseCase(UseCase object) {
-				return createUseCaseAdapter();
-			}
-			@Override
-			public Adapter caseScenario(Scenario object) {
-				return createScenarioAdapter();
-			}
-			@Override
-			public Adapter caseActor(Actor object) {
-				return createActorAdapter();
-			}
-			@Override
-			public Adapter caseActorInstance(ActorInstance object) {
-				return createActorInstanceAdapter();
-			}
-			@Override
-			public Adapter caseStep(Step object) {
-				return createStepAdapter();
-			}
-			@Override
-			public Adapter caseModelElement(ModelElement object) {
-				return createModelElementAdapter();
-			}
-			@Override
-			public Adapter caseCriterion(Criterion object) {
-				return createCriterionAdapter();
-			}
-			@Override
-			public Adapter defaultCase(EObject object) {
-				return createEObjectAdapter();
-			}
-		};
+		@Override
+		public Adapter caseNonFunctionalRequirement(
+				NonFunctionalRequirement object) {
+			return createNonFunctionalRequirementAdapter();
+		}
+
+		@Override
+		public Adapter caseFunctionalRequirement(FunctionalRequirement object) {
+			return createFunctionalRequirementAdapter();
+		}
+
+		@Override
+		public Adapter caseUseCase(UseCase object) {
+			return createUseCaseAdapter();
+		}
+
+		@Override
+		public Adapter caseScenario(Scenario object) {
+			return createScenarioAdapter();
+		}
+
+		@Override
+		public Adapter caseActor(Actor object) {
+			return createActorAdapter();
+		}
+
+		@Override
+		public Adapter caseActorInstance(ActorInstance object) {
+			return createActorInstanceAdapter();
+		}
+
+		@Override
+		public Adapter caseStep(Step object) {
+			return createStepAdapter();
+		}
+
+		@Override
+		public Adapter caseModelElement(ModelElement object) {
+			return createModelElementAdapter();
+		}
+
+		@Override
+		public Adapter caseCriterion(Criterion object) {
+			return createCriterionAdapter();
+		}
+
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -127,7 +136,7 @@ public class RequirementAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject)target);
+		return modelSwitch.doSwitch((EObject) target);
 	}
 
 	/**

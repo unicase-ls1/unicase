@@ -138,7 +138,8 @@ public class BugReportImpl extends ModelElementImpl implements BugReport {
 	 */
 	public EList<Step> getStepsToReproduce() {
 		if (stepsToReproduce == null) {
-			stepsToReproduce = new EObjectResolvingEList<Step>(Step.class, this, BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE);
+			stepsToReproduce = new EObjectResolvingEList<Step>(Step.class,
+					this, BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE);
 		}
 		return stepsToReproduce;
 	}
@@ -159,7 +160,8 @@ public class BugReportImpl extends ModelElementImpl implements BugReport {
 		BugStatus oldStatus = status;
 		status = newStatus == null ? STATUS_EDEFAULT : newStatus;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BugPackage.BUG_REPORT__STATUS, oldStatus, status));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					BugPackage.BUG_REPORT__STATUS, oldStatus, status));
 	}
 
 	/**
@@ -168,11 +170,13 @@ public class BugReportImpl extends ModelElementImpl implements BugReport {
 	 */
 	public OrgUnit getAssignedTo() {
 		if (assignedTo != null && assignedTo.eIsProxy()) {
-			InternalEObject oldAssignedTo = (InternalEObject)assignedTo;
-			assignedTo = (OrgUnit)eResolveProxy(oldAssignedTo);
+			InternalEObject oldAssignedTo = (InternalEObject) assignedTo;
+			assignedTo = (OrgUnit) eResolveProxy(oldAssignedTo);
 			if (assignedTo != oldAssignedTo) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BugPackage.BUG_REPORT__ASSIGNED_TO, oldAssignedTo, assignedTo));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							BugPackage.BUG_REPORT__ASSIGNED_TO, oldAssignedTo,
+							assignedTo));
 			}
 		}
 		return assignedTo;
@@ -194,7 +198,9 @@ public class BugReportImpl extends ModelElementImpl implements BugReport {
 		OrgUnit oldAssignedTo = assignedTo;
 		assignedTo = newAssignedTo;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BugPackage.BUG_REPORT__ASSIGNED_TO, oldAssignedTo, assignedTo));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					BugPackage.BUG_REPORT__ASSIGNED_TO, oldAssignedTo,
+					assignedTo));
 	}
 
 	/**
@@ -203,11 +209,13 @@ public class BugReportImpl extends ModelElementImpl implements BugReport {
 	 */
 	public BugResolution getResolution() {
 		if (resolution != null && resolution.eIsProxy()) {
-			InternalEObject oldResolution = (InternalEObject)resolution;
-			resolution = (BugResolution)eResolveProxy(oldResolution);
+			InternalEObject oldResolution = (InternalEObject) resolution;
+			resolution = (BugResolution) eResolveProxy(oldResolution);
 			if (resolution != oldResolution) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BugPackage.BUG_REPORT__RESOLUTION, oldResolution, resolution));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							BugPackage.BUG_REPORT__RESOLUTION, oldResolution,
+							resolution));
 			}
 		}
 		return resolution;
@@ -229,7 +237,9 @@ public class BugReportImpl extends ModelElementImpl implements BugReport {
 		BugResolution oldResolution = resolution;
 		resolution = newResolution;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BugPackage.BUG_REPORT__RESOLUTION, oldResolution, resolution));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					BugPackage.BUG_REPORT__RESOLUTION, oldResolution,
+					resolution));
 	}
 
 	/**
@@ -238,7 +248,9 @@ public class BugReportImpl extends ModelElementImpl implements BugReport {
 	 */
 	public EList<org.unicase.model.classes.Class> getInvolvedClasses() {
 		if (involvedClasses == null) {
-			involvedClasses = new EObjectResolvingEList<org.unicase.model.classes.Class>(org.unicase.model.classes.Class.class, this, BugPackage.BUG_REPORT__INVOLVED_CLASSES);
+			involvedClasses = new EObjectResolvingEList<org.unicase.model.classes.Class>(
+					org.unicase.model.classes.Class.class, this,
+					BugPackage.BUG_REPORT__INVOLVED_CLASSES);
 		}
 		return involvedClasses;
 	}
@@ -259,7 +271,8 @@ public class BugReportImpl extends ModelElementImpl implements BugReport {
 		Severity oldSeverity = severity;
 		severity = newSeverity == null ? SEVERITY_EDEFAULT : newSeverity;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BugPackage.BUG_REPORT__SEVERITY, oldSeverity, severity));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					BugPackage.BUG_REPORT__SEVERITY, oldSeverity, severity));
 	}
 
 	/**
@@ -269,20 +282,22 @@ public class BugReportImpl extends ModelElementImpl implements BugReport {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE:
-				return getStepsToReproduce();
-			case BugPackage.BUG_REPORT__STATUS:
-				return getStatus();
-			case BugPackage.BUG_REPORT__ASSIGNED_TO:
-				if (resolve) return getAssignedTo();
-				return basicGetAssignedTo();
-			case BugPackage.BUG_REPORT__RESOLUTION:
-				if (resolve) return getResolution();
-				return basicGetResolution();
-			case BugPackage.BUG_REPORT__INVOLVED_CLASSES:
-				return getInvolvedClasses();
-			case BugPackage.BUG_REPORT__SEVERITY:
-				return getSeverity();
+		case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE:
+			return getStepsToReproduce();
+		case BugPackage.BUG_REPORT__STATUS:
+			return getStatus();
+		case BugPackage.BUG_REPORT__ASSIGNED_TO:
+			if (resolve)
+				return getAssignedTo();
+			return basicGetAssignedTo();
+		case BugPackage.BUG_REPORT__RESOLUTION:
+			if (resolve)
+				return getResolution();
+			return basicGetResolution();
+		case BugPackage.BUG_REPORT__INVOLVED_CLASSES:
+			return getInvolvedClasses();
+		case BugPackage.BUG_REPORT__SEVERITY:
+			return getSeverity();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -295,26 +310,28 @@ public class BugReportImpl extends ModelElementImpl implements BugReport {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE:
-				getStepsToReproduce().clear();
-				getStepsToReproduce().addAll((Collection<? extends Step>)newValue);
-				return;
-			case BugPackage.BUG_REPORT__STATUS:
-				setStatus((BugStatus)newValue);
-				return;
-			case BugPackage.BUG_REPORT__ASSIGNED_TO:
-				setAssignedTo((OrgUnit)newValue);
-				return;
-			case BugPackage.BUG_REPORT__RESOLUTION:
-				setResolution((BugResolution)newValue);
-				return;
-			case BugPackage.BUG_REPORT__INVOLVED_CLASSES:
-				getInvolvedClasses().clear();
-				getInvolvedClasses().addAll((Collection<? extends org.unicase.model.classes.Class>)newValue);
-				return;
-			case BugPackage.BUG_REPORT__SEVERITY:
-				setSeverity((Severity)newValue);
-				return;
+		case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE:
+			getStepsToReproduce().clear();
+			getStepsToReproduce().addAll((Collection<? extends Step>) newValue);
+			return;
+		case BugPackage.BUG_REPORT__STATUS:
+			setStatus((BugStatus) newValue);
+			return;
+		case BugPackage.BUG_REPORT__ASSIGNED_TO:
+			setAssignedTo((OrgUnit) newValue);
+			return;
+		case BugPackage.BUG_REPORT__RESOLUTION:
+			setResolution((BugResolution) newValue);
+			return;
+		case BugPackage.BUG_REPORT__INVOLVED_CLASSES:
+			getInvolvedClasses().clear();
+			getInvolvedClasses()
+					.addAll(
+							(Collection<? extends org.unicase.model.classes.Class>) newValue);
+			return;
+		case BugPackage.BUG_REPORT__SEVERITY:
+			setSeverity((Severity) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -326,24 +343,24 @@ public class BugReportImpl extends ModelElementImpl implements BugReport {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE:
-				getStepsToReproduce().clear();
-				return;
-			case BugPackage.BUG_REPORT__STATUS:
-				setStatus(STATUS_EDEFAULT);
-				return;
-			case BugPackage.BUG_REPORT__ASSIGNED_TO:
-				setAssignedTo((OrgUnit)null);
-				return;
-			case BugPackage.BUG_REPORT__RESOLUTION:
-				setResolution((BugResolution)null);
-				return;
-			case BugPackage.BUG_REPORT__INVOLVED_CLASSES:
-				getInvolvedClasses().clear();
-				return;
-			case BugPackage.BUG_REPORT__SEVERITY:
-				setSeverity(SEVERITY_EDEFAULT);
-				return;
+		case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE:
+			getStepsToReproduce().clear();
+			return;
+		case BugPackage.BUG_REPORT__STATUS:
+			setStatus(STATUS_EDEFAULT);
+			return;
+		case BugPackage.BUG_REPORT__ASSIGNED_TO:
+			setAssignedTo((OrgUnit) null);
+			return;
+		case BugPackage.BUG_REPORT__RESOLUTION:
+			setResolution((BugResolution) null);
+			return;
+		case BugPackage.BUG_REPORT__INVOLVED_CLASSES:
+			getInvolvedClasses().clear();
+			return;
+		case BugPackage.BUG_REPORT__SEVERITY:
+			setSeverity(SEVERITY_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -355,18 +372,18 @@ public class BugReportImpl extends ModelElementImpl implements BugReport {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE:
-				return stepsToReproduce != null && !stepsToReproduce.isEmpty();
-			case BugPackage.BUG_REPORT__STATUS:
-				return status != STATUS_EDEFAULT;
-			case BugPackage.BUG_REPORT__ASSIGNED_TO:
-				return assignedTo != null;
-			case BugPackage.BUG_REPORT__RESOLUTION:
-				return resolution != null;
-			case BugPackage.BUG_REPORT__INVOLVED_CLASSES:
-				return involvedClasses != null && !involvedClasses.isEmpty();
-			case BugPackage.BUG_REPORT__SEVERITY:
-				return severity != SEVERITY_EDEFAULT;
+		case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE:
+			return stepsToReproduce != null && !stepsToReproduce.isEmpty();
+		case BugPackage.BUG_REPORT__STATUS:
+			return status != STATUS_EDEFAULT;
+		case BugPackage.BUG_REPORT__ASSIGNED_TO:
+			return assignedTo != null;
+		case BugPackage.BUG_REPORT__RESOLUTION:
+			return resolution != null;
+		case BugPackage.BUG_REPORT__INVOLVED_CLASSES:
+			return involvedClasses != null && !involvedClasses.isEmpty();
+		case BugPackage.BUG_REPORT__SEVERITY:
+			return severity != SEVERITY_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -377,7 +394,8 @@ public class BugReportImpl extends ModelElementImpl implements BugReport {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (Status: ");

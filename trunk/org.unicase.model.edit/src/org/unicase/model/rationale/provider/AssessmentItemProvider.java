@@ -70,19 +70,15 @@ public class AssessmentItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addProposalPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Assessment_proposal_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Assessment_proposal_feature", "_UI_Assessment_type"),
-				 RationalePackage.Literals.ASSESSMENT__PROPOSAL,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Assessment_proposal_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Assessment_proposal_feature",
+						"_UI_Assessment_type"),
+				RationalePackage.Literals.ASSESSMENT__PROPOSAL, true, false,
+				true, null, null, null));
 	}
 
 	/**
@@ -92,19 +88,15 @@ public class AssessmentItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addCriterionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Assessment_criterion_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Assessment_criterion_feature", "_UI_Assessment_type"),
-				 RationalePackage.Literals.ASSESSMENT__CRITERION,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Assessment_criterion_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Assessment_criterion_feature",
+						"_UI_Assessment_type"),
+				RationalePackage.Literals.ASSESSMENT__CRITERION, true, false,
+				true, null, null, null));
 	}
 
 	/**
@@ -114,19 +106,17 @@ public class AssessmentItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Assessment_value_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Assessment_value_feature", "_UI_Assessment_type"),
-				 RationalePackage.Literals.ASSESSMENT__VALUE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(), getResourceLocator(),
+						getString("_UI_Assessment_value_feature"), getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_Assessment_value_feature",
+								"_UI_Assessment_type"),
+						RationalePackage.Literals.ASSESSMENT__VALUE, true,
+						false, false,
+						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -137,7 +127,8 @@ public class AssessmentItemProvider extends ModelElementItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Assessment"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/Assessment"));
 	}
 
 	/**
@@ -148,10 +139,9 @@ public class AssessmentItemProvider extends ModelElementItemProvider implements
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Assessment)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Assessment_type") :
-			getString("_UI_Assessment_type") + " " + label;
+		String label = ((Assessment) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_Assessment_type")
+				: getString("_UI_Assessment_type") + " " + label;
 	}
 
 	/**
@@ -166,9 +156,10 @@ public class AssessmentItemProvider extends ModelElementItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Assessment.class)) {
-			case RationalePackage.ASSESSMENT__VALUE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case RationalePackage.ASSESSMENT__VALUE:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

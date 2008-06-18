@@ -72,7 +72,8 @@ public class ProposalItemProvider extends ModelElementItemProvider implements
 			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(RationalePackage.Literals.PROPOSAL__ASSESSMENTS);
+			childrenFeatures
+					.add(RationalePackage.Literals.PROPOSAL__ASSESSMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -96,7 +97,8 @@ public class ProposalItemProvider extends ModelElementItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Proposal"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/Proposal"));
 	}
 
 	/**
@@ -107,10 +109,9 @@ public class ProposalItemProvider extends ModelElementItemProvider implements
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Proposal)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Proposal_type") :
-			getString("_UI_Proposal_type") + " " + label;
+		String label = ((Proposal) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_Proposal_type")
+				: getString("_UI_Proposal_type") + " " + label;
 	}
 
 	/**
@@ -125,9 +126,10 @@ public class ProposalItemProvider extends ModelElementItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Proposal.class)) {
-			case RationalePackage.PROPOSAL__ASSESSMENTS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case RationalePackage.PROPOSAL__ASSESSMENTS:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -144,10 +146,9 @@ public class ProposalItemProvider extends ModelElementItemProvider implements
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RationalePackage.Literals.PROPOSAL__ASSESSMENTS,
-				 RationaleFactory.eINSTANCE.createAssessment()));
+		newChildDescriptors.add(createChildParameter(
+				RationalePackage.Literals.PROPOSAL__ASSESSMENTS,
+				RationaleFactory.eINSTANCE.createAssessment()));
 	}
 
 	/**

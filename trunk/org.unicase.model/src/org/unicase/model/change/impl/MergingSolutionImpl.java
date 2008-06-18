@@ -63,7 +63,9 @@ public class MergingSolutionImpl extends SolutionImpl implements
 	 */
 	public EList<ModelChangePackage> getAppliedChanges() {
 		if (appliedChanges == null) {
-			appliedChanges = new EObjectResolvingEList<ModelChangePackage>(ModelChangePackage.class, this, ChangePackage.MERGING_SOLUTION__APPLIED_CHANGES);
+			appliedChanges = new EObjectResolvingEList<ModelChangePackage>(
+					ModelChangePackage.class, this,
+					ChangePackage.MERGING_SOLUTION__APPLIED_CHANGES);
 		}
 		return appliedChanges;
 	}
@@ -75,8 +77,8 @@ public class MergingSolutionImpl extends SolutionImpl implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ChangePackage.MERGING_SOLUTION__APPLIED_CHANGES:
-				return getAppliedChanges();
+		case ChangePackage.MERGING_SOLUTION__APPLIED_CHANGES:
+			return getAppliedChanges();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -89,10 +91,11 @@ public class MergingSolutionImpl extends SolutionImpl implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ChangePackage.MERGING_SOLUTION__APPLIED_CHANGES:
-				getAppliedChanges().clear();
-				getAppliedChanges().addAll((Collection<? extends ModelChangePackage>)newValue);
-				return;
+		case ChangePackage.MERGING_SOLUTION__APPLIED_CHANGES:
+			getAppliedChanges().clear();
+			getAppliedChanges().addAll(
+					(Collection<? extends ModelChangePackage>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -104,9 +107,9 @@ public class MergingSolutionImpl extends SolutionImpl implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ChangePackage.MERGING_SOLUTION__APPLIED_CHANGES:
-				getAppliedChanges().clear();
-				return;
+		case ChangePackage.MERGING_SOLUTION__APPLIED_CHANGES:
+			getAppliedChanges().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -118,8 +121,8 @@ public class MergingSolutionImpl extends SolutionImpl implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ChangePackage.MERGING_SOLUTION__APPLIED_CHANGES:
-				return appliedChanges != null && !appliedChanges.isEmpty();
+		case ChangePackage.MERGING_SOLUTION__APPLIED_CHANGES:
+			return appliedChanges != null && !appliedChanges.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

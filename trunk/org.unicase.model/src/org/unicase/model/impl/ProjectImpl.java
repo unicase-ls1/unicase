@@ -71,7 +71,9 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 */
 	public EList<ModelElement> getModelElements() {
 		if (modelElements == null) {
-			modelElements = new EObjectContainmentEList<ModelElement>(ModelElement.class, this, ModelPackage.PROJECT__MODEL_ELEMENTS);
+			modelElements = new EObjectContainmentEList<ModelElement>(
+					ModelElement.class, this,
+					ModelPackage.PROJECT__MODEL_ELEMENTS);
 		}
 		return modelElements;
 	}
@@ -92,7 +94,8 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @generated NOT
 	 */
 	public EList<ModelElement> getAllModelElements() {
-		return this.getAllModelElementsbyClass(ModelPackage.eINSTANCE.getModelElement());	
+		return this.getAllModelElementsbyClass(ModelPackage.eINSTANCE
+				.getModelElement());
 	}
 
 	/** 
@@ -100,31 +103,33 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @see org.unicase.model.Project#getAllModelElementsbyClass(org.eclipse.emf.ecore.EClass)
 	 * @generated NOT
 	 */
-	public EList<ModelElement> getAllModelElementsbyClass(EClass modelElementClass) {
+	public EList<ModelElement> getAllModelElementsbyClass(
+			EClass modelElementClass) {
 		BasicEList<ModelElement> result = new BasicEList<ModelElement>();
-		
+
 		//sanity check
-		if (!ModelPackage.eINSTANCE.getModelElement().isSuperTypeOf(modelElementClass)) {
+		if (!ModelPackage.eINSTANCE.getModelElement().isSuperTypeOf(
+				modelElementClass)) {
 			return result;
 		}
-		
+
 		//all elements
 		Set<ModelElement> allElements = new HashSet<ModelElement>();
 		//elements to do
 		Set<ModelElement> todo = new HashSet<ModelElement>();
-		
+
 		//init with the projects direct model elements
 		EList<ModelElement> elements = this.getModelElements();
 		todo.addAll(elements);
 		allElements.addAll(elements);
-		
+
 		while (!todo.isEmpty()) {
 			ModelElement modelElement = todo.iterator().next();
 			EList<EObject> contents = modelElement.eContents();
-			for (EObject content: contents) {
+			for (EObject content : contents) {
 				if (modelElementClass.isInstance(content)) {
-					allElements.add((ModelElement)content);
-					todo.add((ModelElement)content);
+					allElements.add((ModelElement) content);
+					todo.add((ModelElement) content);
 				}
 			}
 			todo.remove(modelElement);
@@ -140,13 +145,14 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 */
 	public EList<ModelElement> getModelElementsByClass(EClass modelElementClass) {
 		BasicEList<ModelElement> result = new BasicEList<ModelElement>();
-		for (ModelElement modelElement: this.getModelElements()) {
+		for (ModelElement modelElement : this.getModelElements()) {
 			if (modelElementClass.isInstance(modelElement)) {
 				result.add(modelElement);
 			}
 		}
 		return result;
 	}
+
 	//end of custom code
 
 	/**
@@ -157,8 +163,9 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ModelPackage.PROJECT__MODEL_ELEMENTS:
-				return ((InternalEList<?>)getModelElements()).basicRemove(otherEnd, msgs);
+		case ModelPackage.PROJECT__MODEL_ELEMENTS:
+			return ((InternalEList<?>) getModelElements()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -170,8 +177,8 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ModelPackage.PROJECT__MODEL_ELEMENTS:
-				return getModelElements();
+		case ModelPackage.PROJECT__MODEL_ELEMENTS:
+			return getModelElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -184,10 +191,11 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ModelPackage.PROJECT__MODEL_ELEMENTS:
-				getModelElements().clear();
-				getModelElements().addAll((Collection<? extends ModelElement>)newValue);
-				return;
+		case ModelPackage.PROJECT__MODEL_ELEMENTS:
+			getModelElements().clear();
+			getModelElements().addAll(
+					(Collection<? extends ModelElement>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -199,9 +207,9 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ModelPackage.PROJECT__MODEL_ELEMENTS:
-				getModelElements().clear();
-				return;
+		case ModelPackage.PROJECT__MODEL_ELEMENTS:
+			getModelElements().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -213,8 +221,8 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ModelPackage.PROJECT__MODEL_ELEMENTS:
-				return modelElements != null && !modelElements.isEmpty();
+		case ModelPackage.PROJECT__MODEL_ELEMENTS:
+			return modelElements != null && !modelElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

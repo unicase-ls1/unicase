@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.unicase.model.change.*;
 import org.unicase.model.change.ChangeFactory;
 import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.MergingIssue;
@@ -33,12 +32,12 @@ public class ChangeFactoryImpl extends EFactoryImpl implements ChangeFactory {
 	 */
 	public static ChangeFactory init() {
 		try {
-			ChangeFactory theChangeFactory = (ChangeFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/model/change"); 
+			ChangeFactory theChangeFactory = (ChangeFactory) EPackage.Registry.INSTANCE
+					.getEFactory("http://unicase.org/model/change");
 			if (theChangeFactory != null) {
 				return theChangeFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new ChangeFactoryImpl();
@@ -61,12 +60,17 @@ public class ChangeFactoryImpl extends EFactoryImpl implements ChangeFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case ChangePackage.MODEL_CHANGE_PACKAGE: return createModelChangePackage();
-			case ChangePackage.MERGING_ISSUE: return createMergingIssue();
-			case ChangePackage.MERGING_PROPOSAL: return createMergingProposal();
-			case ChangePackage.MERGING_SOLUTION: return createMergingSolution();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case ChangePackage.MODEL_CHANGE_PACKAGE:
+			return createModelChangePackage();
+		case ChangePackage.MERGING_ISSUE:
+			return createMergingIssue();
+		case ChangePackage.MERGING_PROPOSAL:
+			return createMergingProposal();
+		case ChangePackage.MERGING_SOLUTION:
+			return createMergingSolution();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
@@ -111,7 +115,7 @@ public class ChangeFactoryImpl extends EFactoryImpl implements ChangeFactory {
 	 * @generated
 	 */
 	public ChangePackage getChangePackage() {
-		return (ChangePackage)getEPackage();
+		return (ChangePackage) getEPackage();
 	}
 
 	/**

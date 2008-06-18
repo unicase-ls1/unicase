@@ -72,19 +72,14 @@ public class IssueItemProvider extends AnnotationItemProvider implements
 	 * @generated
 	 */
 	protected void addCriteriaPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Issue_criteria_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Issue_criteria_feature", "_UI_Issue_type"),
-				 RationalePackage.Literals.ISSUE__CRITERIA,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Issue_criteria_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Issue_criteria_feature", "_UI_Issue_type"),
+				RationalePackage.Literals.ISSUE__CRITERIA, true, false, true,
+				null, null, null));
 	}
 
 	/**
@@ -94,19 +89,14 @@ public class IssueItemProvider extends AnnotationItemProvider implements
 	 * @generated
 	 */
 	protected void addFacilitatorPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Issue_facilitator_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Issue_facilitator_feature", "_UI_Issue_type"),
-				 RationalePackage.Literals.ISSUE__FACILITATOR,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Issue_facilitator_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Issue_facilitator_feature", "_UI_Issue_type"),
+				RationalePackage.Literals.ISSUE__FACILITATOR, true, false,
+				true, null, null, null));
 	}
 
 	/**
@@ -116,19 +106,14 @@ public class IssueItemProvider extends AnnotationItemProvider implements
 	 * @generated
 	 */
 	protected void addParticipantsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Issue_participants_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Issue_participants_feature", "_UI_Issue_type"),
-				 RationalePackage.Literals.ISSUE__PARTICIPANTS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Issue_participants_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Issue_participants_feature", "_UI_Issue_type"),
+				RationalePackage.Literals.ISSUE__PARTICIPANTS, true, false,
+				true, null, null, null));
 	}
 
 	/**
@@ -145,7 +130,8 @@ public class IssueItemProvider extends AnnotationItemProvider implements
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(RationalePackage.Literals.ISSUE__PROPOSALS);
 			childrenFeatures.add(RationalePackage.Literals.ISSUE__SOLUTION);
-			childrenFeatures.add(RationalePackage.Literals.ISSUE__REFINING_ISSUES);
+			childrenFeatures
+					.add(RationalePackage.Literals.ISSUE__REFINING_ISSUES);
 		}
 		return childrenFeatures;
 	}
@@ -169,7 +155,8 @@ public class IssueItemProvider extends AnnotationItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Issue"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/Issue"));
 	}
 
 	/**
@@ -180,10 +167,9 @@ public class IssueItemProvider extends AnnotationItemProvider implements
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Issue)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Issue_type") :
-			getString("_UI_Issue_type") + " " + label;
+		String label = ((Issue) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_Issue_type")
+				: getString("_UI_Issue_type") + " " + label;
 	}
 
 	/**
@@ -198,11 +184,12 @@ public class IssueItemProvider extends AnnotationItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Issue.class)) {
-			case RationalePackage.ISSUE__PROPOSALS:
-			case RationalePackage.ISSUE__SOLUTION:
-			case RationalePackage.ISSUE__REFINING_ISSUES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case RationalePackage.ISSUE__PROPOSALS:
+		case RationalePackage.ISSUE__SOLUTION:
+		case RationalePackage.ISSUE__REFINING_ISSUES:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -219,35 +206,29 @@ public class IssueItemProvider extends AnnotationItemProvider implements
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RationalePackage.Literals.ISSUE__PROPOSALS,
-				 RationaleFactory.eINSTANCE.createProposal()));
+		newChildDescriptors.add(createChildParameter(
+				RationalePackage.Literals.ISSUE__PROPOSALS,
+				RationaleFactory.eINSTANCE.createProposal()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RationalePackage.Literals.ISSUE__PROPOSALS,
-				 ChangeFactory.eINSTANCE.createMergingProposal()));
+		newChildDescriptors.add(createChildParameter(
+				RationalePackage.Literals.ISSUE__PROPOSALS,
+				ChangeFactory.eINSTANCE.createMergingProposal()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RationalePackage.Literals.ISSUE__SOLUTION,
-				 RationaleFactory.eINSTANCE.createSolution()));
+		newChildDescriptors.add(createChildParameter(
+				RationalePackage.Literals.ISSUE__SOLUTION,
+				RationaleFactory.eINSTANCE.createSolution()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RationalePackage.Literals.ISSUE__SOLUTION,
-				 ChangeFactory.eINSTANCE.createMergingSolution()));
+		newChildDescriptors.add(createChildParameter(
+				RationalePackage.Literals.ISSUE__SOLUTION,
+				ChangeFactory.eINSTANCE.createMergingSolution()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RationalePackage.Literals.ISSUE__REFINING_ISSUES,
-				 RationaleFactory.eINSTANCE.createIssue()));
+		newChildDescriptors.add(createChildParameter(
+				RationalePackage.Literals.ISSUE__REFINING_ISSUES,
+				RationaleFactory.eINSTANCE.createIssue()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RationalePackage.Literals.ISSUE__REFINING_ISSUES,
-				 ChangeFactory.eINSTANCE.createMergingIssue()));
+		newChildDescriptors.add(createChildParameter(
+				RationalePackage.Literals.ISSUE__REFINING_ISSUES,
+				ChangeFactory.eINSTANCE.createMergingIssue()));
 	}
 
 	/**

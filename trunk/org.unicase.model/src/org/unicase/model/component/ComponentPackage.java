@@ -53,7 +53,8 @@ public interface ComponentPackage extends EPackage {
 	 * end-user-doc -->
 	 * @generated
 	 */
-	ComponentPackage eINSTANCE = org.unicase.model.component.impl.ComponentPackageImpl.init();
+	ComponentPackage eINSTANCE = org.unicase.model.component.impl.ComponentPackageImpl
+			.init();
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.component.impl.ComponentImpl <em>Component</em>}' class.
@@ -485,14 +486,16 @@ public interface ComponentPackage extends EPackage {
 		 * end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPONENT__OFFERED_SERVICES = eINSTANCE.getComponent_OfferedServices();
+		EReference COMPONENT__OFFERED_SERVICES = eINSTANCE
+				.getComponent_OfferedServices();
 
 		/**
 		 * The meta object literal for the '<em><b>Consumed Services</b></em>' reference list feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPONENT__CONSUMED_SERVICES = eINSTANCE.getComponent_ConsumedServices();
+		EReference COMPONENT__CONSUMED_SERVICES = eINSTANCE
+				.getComponent_ConsumedServices();
 
 		/**
 		 * The meta object literal for the '
@@ -512,7 +515,8 @@ public interface ComponentPackage extends EPackage {
 		 * end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPONENT_SERVICE__OFFERING_COMPONENT = eINSTANCE.getComponentService_OfferingComponent();
+		EReference COMPONENT_SERVICE__OFFERING_COMPONENT = eINSTANCE
+				.getComponentService_OfferingComponent();
 
 		/**
 		 * The meta object literal for the '<em><b>Consuming Components</b></em>
@@ -521,7 +525,8 @@ public interface ComponentPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference COMPONENT_SERVICE__CONSUMING_COMPONENTS = eINSTANCE.getComponentService_ConsumingComponents();
+		EReference COMPONENT_SERVICE__CONSUMING_COMPONENTS = eINSTANCE
+				.getComponentService_ConsumingComponents();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.component.impl.DeploymentNodeImpl <em>Deployment Node</em>}' class.
@@ -538,7 +543,8 @@ public interface ComponentPackage extends EPackage {
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DEPLOYMENT_NODE__COMPONENTS = eINSTANCE.getDeploymentNode_Components();
+		EReference DEPLOYMENT_NODE__COMPONENTS = eINSTANCE
+				.getDeploymentNode_Components();
 
 	}
 

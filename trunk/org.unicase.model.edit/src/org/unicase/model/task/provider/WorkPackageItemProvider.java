@@ -68,19 +68,15 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 	 * @generated
 	 */
 	protected void addAssociatedChangePackagesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_WorkItem_associatedChangePackages_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_WorkItem_associatedChangePackages_feature", "_UI_WorkItem_type"),
-				 TaskPackage.Literals.WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkItem_associatedChangePackages_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_WorkItem_associatedChangePackages_feature",
+						"_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES,
+				true, false, true, null, null, null));
 	}
 
 	/**
@@ -95,7 +91,8 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS);
+			childrenFeatures
+					.add(TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS);
 		}
 		return childrenFeatures;
 	}
@@ -120,7 +117,8 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/WorkPackage"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/WorkPackage"));
 	}
 
 	/**
@@ -131,10 +129,9 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((WorkPackage)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_WorkPackage_type") :
-			getString("_UI_WorkPackage_type") + " " + label;
+		String label = ((WorkPackage) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_WorkPackage_type")
+				: getString("_UI_WorkPackage_type") + " " + label;
 	}
 
 	/**
@@ -149,9 +146,10 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(WorkPackage.class)) {
-			case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -168,15 +166,13 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
-				 TaskFactory.eINSTANCE.createActionItem()));
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
+				TaskFactory.eINSTANCE.createActionItem()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
-				 TaskFactory.eINSTANCE.createWorkPackage()));
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
+				TaskFactory.eINSTANCE.createWorkPackage()));
 	}
 
 	/**

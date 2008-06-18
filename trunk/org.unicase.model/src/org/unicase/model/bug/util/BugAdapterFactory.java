@@ -57,7 +57,7 @@ public class BugAdapterFactory extends AdapterFactoryImpl {
 			return true;
 		}
 		if (object instanceof EObject) {
-			return ((EObject)object).eClass().getEPackage() == modelPackage;
+			return ((EObject) object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -69,23 +69,26 @@ public class BugAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	protected BugSwitch<Adapter> modelSwitch = new BugSwitch<Adapter>() {
-			@Override
-			public Adapter caseBugReport(BugReport object) {
-				return createBugReportAdapter();
-			}
-			@Override
-			public Adapter caseBugResolution(BugResolution object) {
-				return createBugResolutionAdapter();
-			}
-			@Override
-			public Adapter caseModelElement(ModelElement object) {
-				return createModelElementAdapter();
-			}
-			@Override
-			public Adapter defaultCase(EObject object) {
-				return createEObjectAdapter();
-			}
-		};
+		@Override
+		public Adapter caseBugReport(BugReport object) {
+			return createBugReportAdapter();
+		}
+
+		@Override
+		public Adapter caseBugResolution(BugResolution object) {
+			return createBugResolutionAdapter();
+		}
+
+		@Override
+		public Adapter caseModelElement(ModelElement object) {
+			return createModelElementAdapter();
+		}
+
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -97,7 +100,7 @@ public class BugAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject)target);
+		return modelSwitch.doSwitch((EObject) target);
 	}
 
 	/**

@@ -128,18 +128,15 @@ public enum AssociationType implements Enumerator {
 	 * @generated
 	 */
 	private static final AssociationType[] VALUES_ARRAY = new AssociationType[] {
-			ASSOCIATION,
-			AGGREGATION,
-			COMPOSITION,
-			DEPENDENCY,
-		};
+			ASSOCIATION, AGGREGATION, COMPOSITION, DEPENDENCY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Association Type</b></em>' enumerators.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<AssociationType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<AssociationType> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Association Type</b></em>' literal with the specified literal value.
@@ -178,10 +175,14 @@ public enum AssociationType implements Enumerator {
 	 */
 	public static AssociationType get(int value) {
 		switch (value) {
-			case ASSOCIATION_VALUE: return ASSOCIATION;
-			case AGGREGATION_VALUE: return AGGREGATION;
-			case COMPOSITION_VALUE: return COMPOSITION;
-			case DEPENDENCY_VALUE: return DEPENDENCY;
+		case ASSOCIATION_VALUE:
+			return ASSOCIATION;
+		case AGGREGATION_VALUE:
+			return AGGREGATION;
+		case COMPOSITION_VALUE:
+			return COMPOSITION;
+		case DEPENDENCY_VALUE:
+			return DEPENDENCY;
 		}
 		return null;
 	}
@@ -221,7 +222,7 @@ public enum AssociationType implements Enumerator {
 	 * @generated
 	 */
 	public int getValue() {
-	  return value;
+		return value;
 	}
 
 	/**
@@ -229,7 +230,7 @@ public enum AssociationType implements Enumerator {
 	 * @generated
 	 */
 	public String getName() {
-	  return name;
+		return name;
 	}
 
 	/**
@@ -237,7 +238,7 @@ public enum AssociationType implements Enumerator {
 	 * @generated
 	 */
 	public String getLiteral() {
-	  return literal;
+		return literal;
 	}
 
 	/**

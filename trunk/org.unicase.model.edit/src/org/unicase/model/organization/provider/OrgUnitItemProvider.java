@@ -96,7 +96,8 @@ public class OrgUnitItemProvider extends ModelElementItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/OrgUnit"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/OrgUnit"));
 	}
 
 	/**
@@ -107,10 +108,9 @@ public class OrgUnitItemProvider extends ModelElementItemProvider implements
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((OrgUnit)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_OrgUnit_type") :
-			getString("_UI_OrgUnit_type") + " " + label;
+		String label = ((OrgUnit) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_OrgUnit_type")
+				: getString("_UI_OrgUnit_type") + " " + label;
 	}
 
 	/**
@@ -125,9 +125,10 @@ public class OrgUnitItemProvider extends ModelElementItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(OrgUnit.class)) {
-			case OrganizationPackage.ORG_UNIT__ORG_ID:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case OrganizationPackage.ORG_UNIT__ORG_ID:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -144,10 +145,9 @@ public class OrgUnitItemProvider extends ModelElementItemProvider implements
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(OrganizationPackage.Literals.ORG_UNIT__ORG_ID,
-				 OrganizationFactory.eINSTANCE.createOrgUnitId()));
+		newChildDescriptors.add(createChildParameter(
+				OrganizationPackage.Literals.ORG_UNIT__ORG_ID,
+				OrganizationFactory.eINSTANCE.createOrgUnitId()));
 	}
 
 	/**

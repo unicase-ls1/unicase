@@ -65,19 +65,15 @@ public class SolutionItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addUnderlyingProposalsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Solution_underlyingProposals_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Solution_underlyingProposals_feature", "_UI_Solution_type"),
-				 RationalePackage.Literals.SOLUTION__UNDERLYING_PROPOSALS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Solution_underlyingProposals_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Solution_underlyingProposals_feature",
+						"_UI_Solution_type"),
+				RationalePackage.Literals.SOLUTION__UNDERLYING_PROPOSALS, true,
+				false, true, null, null, null));
 	}
 
 	/**
@@ -87,7 +83,8 @@ public class SolutionItemProvider extends ModelElementItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Solution"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/Solution"));
 	}
 
 	/**
@@ -98,10 +95,9 @@ public class SolutionItemProvider extends ModelElementItemProvider implements
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Solution)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Solution_type") :
-			getString("_UI_Solution_type") + " " + label;
+		String label = ((Solution) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_Solution_type")
+				: getString("_UI_Solution_type") + " " + label;
 	}
 
 	/**

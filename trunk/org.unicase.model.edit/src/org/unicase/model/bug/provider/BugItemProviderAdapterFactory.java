@@ -126,7 +126,8 @@ public class BugItemProviderAdapterFactory extends BugAdapterFactory implements
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+		return parentAdapterFactory == null ? this : parentAdapterFactory
+				.getRootAdapterFactory();
 	}
 
 	/**
@@ -167,7 +168,8 @@ public class BugItemProviderAdapterFactory extends BugAdapterFactory implements
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter))) {
+			if (!(type instanceof Class)
+					|| (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -215,8 +217,10 @@ public class BugItemProviderAdapterFactory extends BugAdapterFactory implements
 	 * @generated
 	 */
 	public void dispose() {
-		if (bugReportItemProvider != null) bugReportItemProvider.dispose();
-		if (bugResolutionItemProvider != null) bugResolutionItemProvider.dispose();
+		if (bugReportItemProvider != null)
+			bugReportItemProvider.dispose();
+		if (bugResolutionItemProvider != null)
+			bugResolutionItemProvider.dispose();
 	}
 
 }

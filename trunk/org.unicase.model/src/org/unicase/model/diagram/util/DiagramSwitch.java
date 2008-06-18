@@ -11,7 +11,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.ModelElement;
-import org.unicase.model.diagram.*;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
 
@@ -66,13 +65,10 @@ public class DiagramSwitch<T> {
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
 		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
-		}
-		else {
+		} else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return
-				eSuperTypes.isEmpty() ?
-					defaultCase(theEObject) :
-					doSwitch(eSuperTypes.get(0), theEObject);
+			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(
+					eSuperTypes.get(0), theEObject);
 		}
 	}
 
@@ -85,14 +81,17 @@ public class DiagramSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case DiagramPackage.ME_DIAGRAM: {
-				MEDiagram meDiagram = (MEDiagram)theEObject;
-				T result = caseMEDiagram(meDiagram);
-				if (result == null) result = caseModelElement(meDiagram);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			default: return defaultCase(theEObject);
+		case DiagramPackage.ME_DIAGRAM: {
+			MEDiagram meDiagram = (MEDiagram) theEObject;
+			T result = caseMEDiagram(meDiagram);
+			if (result == null)
+				result = caseModelElement(meDiagram);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 

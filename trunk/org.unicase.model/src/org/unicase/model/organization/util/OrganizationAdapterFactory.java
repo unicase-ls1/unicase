@@ -12,7 +12,6 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.ModelElement;
 import org.unicase.model.UniqueIdentifier;
-import org.unicase.model.organization.*;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrgUnitId;
@@ -60,7 +59,7 @@ public class OrganizationAdapterFactory extends AdapterFactoryImpl {
 			return true;
 		}
 		if (object instanceof EObject) {
-			return ((EObject)object).eClass().getEPackage() == modelPackage;
+			return ((EObject) object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -72,35 +71,41 @@ public class OrganizationAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	protected OrganizationSwitch<Adapter> modelSwitch = new OrganizationSwitch<Adapter>() {
-			@Override
-			public Adapter caseUser(User object) {
-				return createUserAdapter();
-			}
-			@Override
-			public Adapter caseOrgUnit(OrgUnit object) {
-				return createOrgUnitAdapter();
-			}
-			@Override
-			public Adapter caseOrgUnitId(OrgUnitId object) {
-				return createOrgUnitIdAdapter();
-			}
-			@Override
-			public Adapter caseGroup(Group object) {
-				return createGroupAdapter();
-			}
-			@Override
-			public Adapter caseModelElement(ModelElement object) {
-				return createModelElementAdapter();
-			}
-			@Override
-			public Adapter caseUniqueIdentifier(UniqueIdentifier object) {
-				return createUniqueIdentifierAdapter();
-			}
-			@Override
-			public Adapter defaultCase(EObject object) {
-				return createEObjectAdapter();
-			}
-		};
+		@Override
+		public Adapter caseUser(User object) {
+			return createUserAdapter();
+		}
+
+		@Override
+		public Adapter caseOrgUnit(OrgUnit object) {
+			return createOrgUnitAdapter();
+		}
+
+		@Override
+		public Adapter caseOrgUnitId(OrgUnitId object) {
+			return createOrgUnitIdAdapter();
+		}
+
+		@Override
+		public Adapter caseGroup(Group object) {
+			return createGroupAdapter();
+		}
+
+		@Override
+		public Adapter caseModelElement(ModelElement object) {
+			return createModelElementAdapter();
+		}
+
+		@Override
+		public Adapter caseUniqueIdentifier(UniqueIdentifier object) {
+			return createUniqueIdentifierAdapter();
+		}
+
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -112,7 +117,7 @@ public class OrganizationAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject)target);
+		return modelSwitch.doSwitch((EObject) target);
 	}
 
 	/**

@@ -66,19 +66,18 @@ public class ComponentServiceItemProvider extends ModelElementItemProvider
 	 * @generated
 	 */
 	protected void addConsumingComponentsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ComponentService_consumingComponents_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ComponentService_consumingComponents_feature", "_UI_ComponentService_type"),
-				 ComponentPackage.Literals.COMPONENT_SERVICE__CONSUMING_COMPONENTS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_ComponentService_consumingComponents_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_ComponentService_consumingComponents_feature",
+								"_UI_ComponentService_type"),
+						ComponentPackage.Literals.COMPONENT_SERVICE__CONSUMING_COMPONENTS,
+						true, false, true, null, null, null));
 	}
 
 	/**
@@ -89,7 +88,8 @@ public class ComponentServiceItemProvider extends ModelElementItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ComponentService"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/ComponentService"));
 	}
 
 	/**
@@ -100,10 +100,9 @@ public class ComponentServiceItemProvider extends ModelElementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ComponentService)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_ComponentService_type") :
-			getString("_UI_ComponentService_type") + " " + label;
+		String label = ((ComponentService) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_ComponentService_type")
+				: getString("_UI_ComponentService_type") + " " + label;
 	}
 
 	/**

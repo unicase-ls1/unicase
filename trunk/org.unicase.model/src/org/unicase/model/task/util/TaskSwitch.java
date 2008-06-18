@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
-import org.unicase.model.task.*;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
@@ -69,13 +68,10 @@ public class TaskSwitch<T> {
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
 		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
-		}
-		else {
+		} else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return
-				eSuperTypes.isEmpty() ?
-					defaultCase(theEObject) :
-					doSwitch(eSuperTypes.get(0), theEObject);
+			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(
+					eSuperTypes.get(0), theEObject);
 		}
 	}
 
@@ -88,33 +84,45 @@ public class TaskSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case TaskPackage.ACTION_ITEM: {
-				ActionItem actionItem = (ActionItem)theEObject;
-				T result = caseActionItem(actionItem);
-				if (result == null) result = caseWorkItem(actionItem);
-				if (result == null) result = caseAnnotation(actionItem);
-				if (result == null) result = caseModelElement(actionItem);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case TaskPackage.WORK_PACKAGE: {
-				WorkPackage workPackage = (WorkPackage)theEObject;
-				T result = caseWorkPackage(workPackage);
-				if (result == null) result = caseWorkItem(workPackage);
-				if (result == null) result = caseAnnotation(workPackage);
-				if (result == null) result = caseModelElement(workPackage);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case TaskPackage.WORK_ITEM: {
-				WorkItem workItem = (WorkItem)theEObject;
-				T result = caseWorkItem(workItem);
-				if (result == null) result = caseAnnotation(workItem);
-				if (result == null) result = caseModelElement(workItem);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			default: return defaultCase(theEObject);
+		case TaskPackage.ACTION_ITEM: {
+			ActionItem actionItem = (ActionItem) theEObject;
+			T result = caseActionItem(actionItem);
+			if (result == null)
+				result = caseWorkItem(actionItem);
+			if (result == null)
+				result = caseAnnotation(actionItem);
+			if (result == null)
+				result = caseModelElement(actionItem);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case TaskPackage.WORK_PACKAGE: {
+			WorkPackage workPackage = (WorkPackage) theEObject;
+			T result = caseWorkPackage(workPackage);
+			if (result == null)
+				result = caseWorkItem(workPackage);
+			if (result == null)
+				result = caseAnnotation(workPackage);
+			if (result == null)
+				result = caseModelElement(workPackage);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case TaskPackage.WORK_ITEM: {
+			WorkItem workItem = (WorkItem) theEObject;
+			T result = caseWorkItem(workItem);
+			if (result == null)
+				result = caseAnnotation(workItem);
+			if (result == null)
+				result = caseModelElement(workItem);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 

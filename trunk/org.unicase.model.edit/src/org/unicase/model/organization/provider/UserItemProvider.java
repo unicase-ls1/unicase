@@ -60,7 +60,8 @@ public class UserItemProvider extends OrgUnitItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/User"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/User"));
 	}
 
 	/**
@@ -71,10 +72,9 @@ public class UserItemProvider extends OrgUnitItemProvider implements
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((User)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_User_type") :
-			getString("_UI_User_type") + " " + label;
+		String label = ((User) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_User_type")
+				: getString("_UI_User_type") + " " + label;
 	}
 
 	/**

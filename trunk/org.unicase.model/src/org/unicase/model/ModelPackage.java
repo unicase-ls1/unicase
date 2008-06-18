@@ -561,7 +561,8 @@ public interface ModelPackage extends EPackage {
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MODEL_ELEMENT__DESCRIPTION = eINSTANCE.getModelElement_Description();
+		EAttribute MODEL_ELEMENT__DESCRIPTION = eINSTANCE
+				.getModelElement_Description();
 
 		/**
 		 * The meta object literal for the '<em><b>Identifier</b></em>' containment reference feature.
@@ -569,7 +570,8 @@ public interface ModelPackage extends EPackage {
 		 * end-user-doc -->
 		 * @generated
 		 */
-		EReference MODEL_ELEMENT__IDENTIFIER = eINSTANCE.getModelElement_Identifier();
+		EReference MODEL_ELEMENT__IDENTIFIER = eINSTANCE
+				.getModelElement_Identifier();
 
 		/**
 		 * The meta object literal for the '<em><b>Reader Infos</b></em>' containment reference list feature.
@@ -577,21 +579,24 @@ public interface ModelPackage extends EPackage {
 		 * end-user-doc -->
 		 * @generated
 		 */
-		EReference MODEL_ELEMENT__READER_INFOS = eINSTANCE.getModelElement_ReaderInfos();
+		EReference MODEL_ELEMENT__READER_INFOS = eINSTANCE
+				.getModelElement_ReaderInfos();
 
 		/**
 		 * The meta object literal for the '<em><b>Annotations</b></em>' reference list feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODEL_ELEMENT__ANNOTATIONS = eINSTANCE.getModelElement_Annotations();
+		EReference MODEL_ELEMENT__ANNOTATIONS = eINSTANCE
+				.getModelElement_Annotations();
 
 		/**
 		 * The meta object literal for the '<em><b>Incoming Document References</b></em>' reference list feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES = eINSTANCE.getModelElement_IncomingDocumentReferences();
+		EReference MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES = eINSTANCE
+				.getModelElement_IncomingDocumentReferences();
 
 		/**
 		 * The meta object literal for the '<em><b>Leaf Section</b></em>' container reference feature.
@@ -599,7 +604,8 @@ public interface ModelPackage extends EPackage {
 		 * end-user-doc -->
 		 * @generated
 		 */
-		EReference MODEL_ELEMENT__LEAF_SECTION = eINSTANCE.getModelElement_LeafSection();
+		EReference MODEL_ELEMENT__LEAF_SECTION = eINSTANCE
+				.getModelElement_LeafSection();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.impl.ProjectImpl <em>Project</em>}' class.
@@ -616,7 +622,8 @@ public interface ModelPackage extends EPackage {
 		 * end-user-doc -->
 		 * @generated
 		 */
-		EReference PROJECT__MODEL_ELEMENTS = eINSTANCE.getProject_ModelElements();
+		EReference PROJECT__MODEL_ELEMENTS = eINSTANCE
+				.getProject_ModelElements();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.impl.ModelElementIdImpl <em>Element Id</em>}' class.
@@ -681,7 +688,8 @@ public interface ModelPackage extends EPackage {
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ANNOTATION__ANNOTATED_MODEL_ELEMENTS = eINSTANCE.getAnnotation_AnnotatedModelElements();
+		EReference ANNOTATION__ANNOTATED_MODEL_ELEMENTS = eINSTANCE
+				.getAnnotation_AnnotatedModelElements();
 
 	}
 

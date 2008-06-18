@@ -177,7 +177,8 @@ public class OrganizationItemProviderAdapterFactory extends
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+		return parentAdapterFactory == null ? this : parentAdapterFactory
+				.getRootAdapterFactory();
 	}
 
 	/**
@@ -218,7 +219,8 @@ public class OrganizationItemProviderAdapterFactory extends
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter))) {
+			if (!(type instanceof Class)
+					|| (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -266,10 +268,14 @@ public class OrganizationItemProviderAdapterFactory extends
 	 * @generated
 	 */
 	public void dispose() {
-		if (userItemProvider != null) userItemProvider.dispose();
-		if (orgUnitItemProvider != null) orgUnitItemProvider.dispose();
-		if (orgUnitIdItemProvider != null) orgUnitIdItemProvider.dispose();
-		if (groupItemProvider != null) groupItemProvider.dispose();
+		if (userItemProvider != null)
+			userItemProvider.dispose();
+		if (orgUnitItemProvider != null)
+			orgUnitItemProvider.dispose();
+		if (orgUnitIdItemProvider != null)
+			orgUnitIdItemProvider.dispose();
+		if (groupItemProvider != null)
+			groupItemProvider.dispose();
 	}
 
 }

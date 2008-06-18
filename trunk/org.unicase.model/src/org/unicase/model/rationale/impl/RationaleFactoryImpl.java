@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.unicase.model.rationale.*;
 import org.unicase.model.rationale.Assessment;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.Criterion;
@@ -36,12 +35,12 @@ public class RationaleFactoryImpl extends EFactoryImpl implements
 	 */
 	public static RationaleFactory init() {
 		try {
-			RationaleFactory theRationaleFactory = (RationaleFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/model/rationale"); 
+			RationaleFactory theRationaleFactory = (RationaleFactory) EPackage.Registry.INSTANCE
+					.getEFactory("http://unicase.org/model/rationale");
 			if (theRationaleFactory != null) {
 				return theRationaleFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new RationaleFactoryImpl();
@@ -64,14 +63,21 @@ public class RationaleFactoryImpl extends EFactoryImpl implements
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case RationalePackage.ISSUE: return createIssue();
-			case RationalePackage.PROPOSAL: return createProposal();
-			case RationalePackage.SOLUTION: return createSolution();
-			case RationalePackage.CRITERION: return createCriterion();
-			case RationalePackage.ASSESSMENT: return createAssessment();
-			case RationalePackage.COMMENT: return createComment();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case RationalePackage.ISSUE:
+			return createIssue();
+		case RationalePackage.PROPOSAL:
+			return createProposal();
+		case RationalePackage.SOLUTION:
+			return createSolution();
+		case RationalePackage.CRITERION:
+			return createCriterion();
+		case RationalePackage.ASSESSMENT:
+			return createAssessment();
+		case RationalePackage.COMMENT:
+			return createComment();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
@@ -134,7 +140,7 @@ public class RationaleFactoryImpl extends EFactoryImpl implements
 	 * @generated
 	 */
 	public RationalePackage getRationalePackage() {
-		return (RationalePackage)getEPackage();
+		return (RationalePackage) getEPackage();
 	}
 
 	/**

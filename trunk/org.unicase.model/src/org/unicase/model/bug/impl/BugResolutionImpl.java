@@ -79,9 +79,12 @@ public class BugResolutionImpl extends ModelElementImpl implements
 	 */
 	public void setResoultionType(ResolutionType newResoultionType) {
 		ResolutionType oldResoultionType = resoultionType;
-		resoultionType = newResoultionType == null ? RESOULTION_TYPE_EDEFAULT : newResoultionType;
+		resoultionType = newResoultionType == null ? RESOULTION_TYPE_EDEFAULT
+				: newResoultionType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BugPackage.BUG_RESOLUTION__RESOULTION_TYPE, oldResoultionType, resoultionType));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					BugPackage.BUG_RESOLUTION__RESOULTION_TYPE,
+					oldResoultionType, resoultionType));
 	}
 
 	/**
@@ -91,8 +94,8 @@ public class BugResolutionImpl extends ModelElementImpl implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BugPackage.BUG_RESOLUTION__RESOULTION_TYPE:
-				return getResoultionType();
+		case BugPackage.BUG_RESOLUTION__RESOULTION_TYPE:
+			return getResoultionType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -104,9 +107,9 @@ public class BugResolutionImpl extends ModelElementImpl implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BugPackage.BUG_RESOLUTION__RESOULTION_TYPE:
-				setResoultionType((ResolutionType)newValue);
-				return;
+		case BugPackage.BUG_RESOLUTION__RESOULTION_TYPE:
+			setResoultionType((ResolutionType) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -118,9 +121,9 @@ public class BugResolutionImpl extends ModelElementImpl implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BugPackage.BUG_RESOLUTION__RESOULTION_TYPE:
-				setResoultionType(RESOULTION_TYPE_EDEFAULT);
-				return;
+		case BugPackage.BUG_RESOLUTION__RESOULTION_TYPE:
+			setResoultionType(RESOULTION_TYPE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -132,8 +135,8 @@ public class BugResolutionImpl extends ModelElementImpl implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BugPackage.BUG_RESOLUTION__RESOULTION_TYPE:
-				return resoultionType != RESOULTION_TYPE_EDEFAULT;
+		case BugPackage.BUG_RESOLUTION__RESOULTION_TYPE:
+			return resoultionType != RESOULTION_TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -144,7 +147,8 @@ public class BugResolutionImpl extends ModelElementImpl implements
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (resoultionType: ");

@@ -64,7 +64,10 @@ public class CriterionImpl extends ModelElementImpl implements Criterion {
 	 */
 	public EList<Assessment> getAssessments() {
 		if (assessments == null) {
-			assessments = new EObjectWithInverseResolvingEList<Assessment>(Assessment.class, this, RationalePackage.CRITERION__ASSESSMENTS, RationalePackage.ASSESSMENT__CRITERION);
+			assessments = new EObjectWithInverseResolvingEList<Assessment>(
+					Assessment.class, this,
+					RationalePackage.CRITERION__ASSESSMENTS,
+					RationalePackage.ASSESSMENT__CRITERION);
 		}
 		return assessments;
 	}
@@ -78,8 +81,9 @@ public class CriterionImpl extends ModelElementImpl implements Criterion {
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RationalePackage.CRITERION__ASSESSMENTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAssessments()).basicAdd(otherEnd, msgs);
+		case RationalePackage.CRITERION__ASSESSMENTS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAssessments())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -92,8 +96,9 @@ public class CriterionImpl extends ModelElementImpl implements Criterion {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RationalePackage.CRITERION__ASSESSMENTS:
-				return ((InternalEList<?>)getAssessments()).basicRemove(otherEnd, msgs);
+		case RationalePackage.CRITERION__ASSESSMENTS:
+			return ((InternalEList<?>) getAssessments()).basicRemove(otherEnd,
+					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -105,8 +110,8 @@ public class CriterionImpl extends ModelElementImpl implements Criterion {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RationalePackage.CRITERION__ASSESSMENTS:
-				return getAssessments();
+		case RationalePackage.CRITERION__ASSESSMENTS:
+			return getAssessments();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -119,10 +124,11 @@ public class CriterionImpl extends ModelElementImpl implements Criterion {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RationalePackage.CRITERION__ASSESSMENTS:
-				getAssessments().clear();
-				getAssessments().addAll((Collection<? extends Assessment>)newValue);
-				return;
+		case RationalePackage.CRITERION__ASSESSMENTS:
+			getAssessments().clear();
+			getAssessments()
+					.addAll((Collection<? extends Assessment>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -134,9 +140,9 @@ public class CriterionImpl extends ModelElementImpl implements Criterion {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RationalePackage.CRITERION__ASSESSMENTS:
-				getAssessments().clear();
-				return;
+		case RationalePackage.CRITERION__ASSESSMENTS:
+			getAssessments().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -148,8 +154,8 @@ public class CriterionImpl extends ModelElementImpl implements Criterion {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RationalePackage.CRITERION__ASSESSMENTS:
-				return assessments != null && !assessments.isEmpty();
+		case RationalePackage.CRITERION__ASSESSMENTS:
+			return assessments != null && !assessments.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

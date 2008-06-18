@@ -119,7 +119,8 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 		boolean oldDirected = directed;
 		directed = newDirected;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ASSOCIATION__DIRECTED, oldDirected, directed));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ClassesPackage.ASSOCIATION__DIRECTED, oldDirected, directed));
 	}
 
 	/**
@@ -128,11 +129,13 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	 */
 	public org.unicase.model.classes.Class getSource() {
 		if (source != null && source.eIsProxy()) {
-			InternalEObject oldSource = (InternalEObject)source;
-			source = (org.unicase.model.classes.Class)eResolveProxy(oldSource);
+			InternalEObject oldSource = (InternalEObject) source;
+			source = (org.unicase.model.classes.Class) eResolveProxy(oldSource);
 			if (source != oldSource) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ClassesPackage.ASSOCIATION__SOURCE, oldSource, source));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							ClassesPackage.ASSOCIATION__SOURCE, oldSource,
+							source));
 			}
 		}
 		return source;
@@ -155,8 +158,13 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 		org.unicase.model.classes.Class oldSource = source;
 		source = newSource;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ClassesPackage.ASSOCIATION__SOURCE, oldSource, newSource);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET, ClassesPackage.ASSOCIATION__SOURCE,
+					oldSource, newSource);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -169,14 +177,19 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 		if (newSource != source) {
 			NotificationChain msgs = null;
 			if (source != null)
-				msgs = ((InternalEObject)source).eInverseRemove(this, ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS, org.unicase.model.classes.Class.class, msgs);
+				msgs = ((InternalEObject) source).eInverseRemove(this,
+						ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS,
+						org.unicase.model.classes.Class.class, msgs);
 			if (newSource != null)
-				msgs = ((InternalEObject)newSource).eInverseAdd(this, ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS, org.unicase.model.classes.Class.class, msgs);
+				msgs = ((InternalEObject) newSource).eInverseAdd(this,
+						ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS,
+						org.unicase.model.classes.Class.class, msgs);
 			msgs = basicSetSource(newSource, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ASSOCIATION__SOURCE, newSource, newSource));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ClassesPackage.ASSOCIATION__SOURCE, newSource, newSource));
 	}
 
 	/**
@@ -185,11 +198,13 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	 */
 	public org.unicase.model.classes.Class getTarget() {
 		if (target != null && target.eIsProxy()) {
-			InternalEObject oldTarget = (InternalEObject)target;
-			target = (org.unicase.model.classes.Class)eResolveProxy(oldTarget);
+			InternalEObject oldTarget = (InternalEObject) target;
+			target = (org.unicase.model.classes.Class) eResolveProxy(oldTarget);
 			if (target != oldTarget) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ClassesPackage.ASSOCIATION__TARGET, oldTarget, target));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							ClassesPackage.ASSOCIATION__TARGET, oldTarget,
+							target));
 			}
 		}
 		return target;
@@ -212,8 +227,13 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 		org.unicase.model.classes.Class oldTarget = target;
 		target = newTarget;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ClassesPackage.ASSOCIATION__TARGET, oldTarget, newTarget);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET, ClassesPackage.ASSOCIATION__TARGET,
+					oldTarget, newTarget);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -226,14 +246,19 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 		if (newTarget != target) {
 			NotificationChain msgs = null;
 			if (target != null)
-				msgs = ((InternalEObject)target).eInverseRemove(this, ClassesPackage.CLASS__INCOMING_ASSOCIATIONS, org.unicase.model.classes.Class.class, msgs);
+				msgs = ((InternalEObject) target).eInverseRemove(this,
+						ClassesPackage.CLASS__INCOMING_ASSOCIATIONS,
+						org.unicase.model.classes.Class.class, msgs);
 			if (newTarget != null)
-				msgs = ((InternalEObject)newTarget).eInverseAdd(this, ClassesPackage.CLASS__INCOMING_ASSOCIATIONS, org.unicase.model.classes.Class.class, msgs);
+				msgs = ((InternalEObject) newTarget).eInverseAdd(this,
+						ClassesPackage.CLASS__INCOMING_ASSOCIATIONS,
+						org.unicase.model.classes.Class.class, msgs);
 			msgs = basicSetTarget(newTarget, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ASSOCIATION__TARGET, newTarget, newTarget));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ClassesPackage.ASSOCIATION__TARGET, newTarget, newTarget));
 	}
 
 	/**
@@ -252,7 +277,8 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 		AssociationType oldType = type;
 		type = newType == null ? TYPE_EDEFAULT : newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ASSOCIATION__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ClassesPackage.ASSOCIATION__TYPE, oldType, type));
 	}
 
 	/**
@@ -263,14 +289,20 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ClassesPackage.ASSOCIATION__SOURCE:
-				if (source != null)
-					msgs = ((InternalEObject)source).eInverseRemove(this, ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS, org.unicase.model.classes.Class.class, msgs);
-				return basicSetSource((org.unicase.model.classes.Class)otherEnd, msgs);
-			case ClassesPackage.ASSOCIATION__TARGET:
-				if (target != null)
-					msgs = ((InternalEObject)target).eInverseRemove(this, ClassesPackage.CLASS__INCOMING_ASSOCIATIONS, org.unicase.model.classes.Class.class, msgs);
-				return basicSetTarget((org.unicase.model.classes.Class)otherEnd, msgs);
+		case ClassesPackage.ASSOCIATION__SOURCE:
+			if (source != null)
+				msgs = ((InternalEObject) source).eInverseRemove(this,
+						ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS,
+						org.unicase.model.classes.Class.class, msgs);
+			return basicSetSource((org.unicase.model.classes.Class) otherEnd,
+					msgs);
+		case ClassesPackage.ASSOCIATION__TARGET:
+			if (target != null)
+				msgs = ((InternalEObject) target).eInverseRemove(this,
+						ClassesPackage.CLASS__INCOMING_ASSOCIATIONS,
+						org.unicase.model.classes.Class.class, msgs);
+			return basicSetTarget((org.unicase.model.classes.Class) otherEnd,
+					msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -283,10 +315,10 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ClassesPackage.ASSOCIATION__SOURCE:
-				return basicSetSource(null, msgs);
-			case ClassesPackage.ASSOCIATION__TARGET:
-				return basicSetTarget(null, msgs);
+		case ClassesPackage.ASSOCIATION__SOURCE:
+			return basicSetSource(null, msgs);
+		case ClassesPackage.ASSOCIATION__TARGET:
+			return basicSetTarget(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -298,16 +330,18 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ClassesPackage.ASSOCIATION__DIRECTED:
-				return isDirected() ? Boolean.TRUE : Boolean.FALSE;
-			case ClassesPackage.ASSOCIATION__SOURCE:
-				if (resolve) return getSource();
-				return basicGetSource();
-			case ClassesPackage.ASSOCIATION__TARGET:
-				if (resolve) return getTarget();
-				return basicGetTarget();
-			case ClassesPackage.ASSOCIATION__TYPE:
-				return getType();
+		case ClassesPackage.ASSOCIATION__DIRECTED:
+			return isDirected() ? Boolean.TRUE : Boolean.FALSE;
+		case ClassesPackage.ASSOCIATION__SOURCE:
+			if (resolve)
+				return getSource();
+			return basicGetSource();
+		case ClassesPackage.ASSOCIATION__TARGET:
+			if (resolve)
+				return getTarget();
+			return basicGetTarget();
+		case ClassesPackage.ASSOCIATION__TYPE:
+			return getType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -319,18 +353,18 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ClassesPackage.ASSOCIATION__DIRECTED:
-				setDirected(((Boolean)newValue).booleanValue());
-				return;
-			case ClassesPackage.ASSOCIATION__SOURCE:
-				setSource((org.unicase.model.classes.Class)newValue);
-				return;
-			case ClassesPackage.ASSOCIATION__TARGET:
-				setTarget((org.unicase.model.classes.Class)newValue);
-				return;
-			case ClassesPackage.ASSOCIATION__TYPE:
-				setType((AssociationType)newValue);
-				return;
+		case ClassesPackage.ASSOCIATION__DIRECTED:
+			setDirected(((Boolean) newValue).booleanValue());
+			return;
+		case ClassesPackage.ASSOCIATION__SOURCE:
+			setSource((org.unicase.model.classes.Class) newValue);
+			return;
+		case ClassesPackage.ASSOCIATION__TARGET:
+			setTarget((org.unicase.model.classes.Class) newValue);
+			return;
+		case ClassesPackage.ASSOCIATION__TYPE:
+			setType((AssociationType) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -342,18 +376,18 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ClassesPackage.ASSOCIATION__DIRECTED:
-				setDirected(DIRECTED_EDEFAULT);
-				return;
-			case ClassesPackage.ASSOCIATION__SOURCE:
-				setSource((org.unicase.model.classes.Class)null);
-				return;
-			case ClassesPackage.ASSOCIATION__TARGET:
-				setTarget((org.unicase.model.classes.Class)null);
-				return;
-			case ClassesPackage.ASSOCIATION__TYPE:
-				setType(TYPE_EDEFAULT);
-				return;
+		case ClassesPackage.ASSOCIATION__DIRECTED:
+			setDirected(DIRECTED_EDEFAULT);
+			return;
+		case ClassesPackage.ASSOCIATION__SOURCE:
+			setSource((org.unicase.model.classes.Class) null);
+			return;
+		case ClassesPackage.ASSOCIATION__TARGET:
+			setTarget((org.unicase.model.classes.Class) null);
+			return;
+		case ClassesPackage.ASSOCIATION__TYPE:
+			setType(TYPE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -365,14 +399,14 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ClassesPackage.ASSOCIATION__DIRECTED:
-				return directed != DIRECTED_EDEFAULT;
-			case ClassesPackage.ASSOCIATION__SOURCE:
-				return source != null;
-			case ClassesPackage.ASSOCIATION__TARGET:
-				return target != null;
-			case ClassesPackage.ASSOCIATION__TYPE:
-				return type != TYPE_EDEFAULT;
+		case ClassesPackage.ASSOCIATION__DIRECTED:
+			return directed != DIRECTED_EDEFAULT;
+		case ClassesPackage.ASSOCIATION__SOURCE:
+			return source != null;
+		case ClassesPackage.ASSOCIATION__TARGET:
+			return target != null;
+		case ClassesPackage.ASSOCIATION__TYPE:
+			return type != TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -383,7 +417,8 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (directed: ");

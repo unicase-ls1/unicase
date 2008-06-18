@@ -92,7 +92,8 @@ public class ChangeItemProviderAdapterFactory extends ChangeAdapterFactory
 	@Override
 	public Adapter createModelChangePackageAdapter() {
 		if (modelChangePackageItemProvider == null) {
-			modelChangePackageItemProvider = new ModelChangePackageItemProvider(this);
+			modelChangePackageItemProvider = new ModelChangePackageItemProvider(
+					this);
 		}
 
 		return modelChangePackageItemProvider;
@@ -177,7 +178,8 @@ public class ChangeItemProviderAdapterFactory extends ChangeAdapterFactory
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+		return parentAdapterFactory == null ? this : parentAdapterFactory
+				.getRootAdapterFactory();
 	}
 
 	/**
@@ -218,7 +220,8 @@ public class ChangeItemProviderAdapterFactory extends ChangeAdapterFactory
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter))) {
+			if (!(type instanceof Class)
+					|| (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -266,10 +269,14 @@ public class ChangeItemProviderAdapterFactory extends ChangeAdapterFactory
 	 * @generated
 	 */
 	public void dispose() {
-		if (modelChangePackageItemProvider != null) modelChangePackageItemProvider.dispose();
-		if (mergingIssueItemProvider != null) mergingIssueItemProvider.dispose();
-		if (mergingProposalItemProvider != null) mergingProposalItemProvider.dispose();
-		if (mergingSolutionItemProvider != null) mergingSolutionItemProvider.dispose();
+		if (modelChangePackageItemProvider != null)
+			modelChangePackageItemProvider.dispose();
+		if (mergingIssueItemProvider != null)
+			mergingIssueItemProvider.dispose();
+		if (mergingProposalItemProvider != null)
+			mergingProposalItemProvider.dispose();
+		if (mergingSolutionItemProvider != null)
+			mergingSolutionItemProvider.dispose();
 	}
 
 }

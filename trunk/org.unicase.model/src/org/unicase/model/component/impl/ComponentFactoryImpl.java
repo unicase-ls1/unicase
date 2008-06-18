@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.unicase.model.component.*;
 import org.unicase.model.component.Component;
 import org.unicase.model.component.ComponentFactory;
 import org.unicase.model.component.ComponentPackage;
@@ -33,12 +32,12 @@ public class ComponentFactoryImpl extends EFactoryImpl implements
 	 */
 	public static ComponentFactory init() {
 		try {
-			ComponentFactory theComponentFactory = (ComponentFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/model/component"); 
+			ComponentFactory theComponentFactory = (ComponentFactory) EPackage.Registry.INSTANCE
+					.getEFactory("http://unicase.org/model/component");
 			if (theComponentFactory != null) {
 				return theComponentFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new ComponentFactoryImpl();
@@ -61,11 +60,15 @@ public class ComponentFactoryImpl extends EFactoryImpl implements
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case ComponentPackage.COMPONENT: return createComponent();
-			case ComponentPackage.COMPONENT_SERVICE: return createComponentService();
-			case ComponentPackage.DEPLOYMENT_NODE: return createDeploymentNode();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case ComponentPackage.COMPONENT:
+			return createComponent();
+		case ComponentPackage.COMPONENT_SERVICE:
+			return createComponentService();
+		case ComponentPackage.DEPLOYMENT_NODE:
+			return createDeploymentNode();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
@@ -101,7 +104,7 @@ public class ComponentFactoryImpl extends EFactoryImpl implements
 	 * @generated
 	 */
 	public ComponentPackage getComponentPackage() {
-		return (ComponentPackage)getEPackage();
+		return (ComponentPackage) getEPackage();
 	}
 
 	/**

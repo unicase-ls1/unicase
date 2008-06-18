@@ -124,7 +124,8 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 	 */
 	public EList<Step> getSteps() {
 		if (steps == null) {
-			steps = new EObjectContainmentEList<Step>(Step.class, this, RequirementPackage.SCENARIO__STEPS);
+			steps = new EObjectContainmentEList<Step>(Step.class, this,
+					RequirementPackage.SCENARIO__STEPS);
 		}
 		return steps;
 	}
@@ -134,12 +135,17 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 	 * @generated
 	 */
 	public ActorInstance getInitiatingActorInstance() {
-		if (initiatingActorInstance != null && initiatingActorInstance.eIsProxy()) {
-			InternalEObject oldInitiatingActorInstance = (InternalEObject)initiatingActorInstance;
-			initiatingActorInstance = (ActorInstance)eResolveProxy(oldInitiatingActorInstance);
+		if (initiatingActorInstance != null
+				&& initiatingActorInstance.eIsProxy()) {
+			InternalEObject oldInitiatingActorInstance = (InternalEObject) initiatingActorInstance;
+			initiatingActorInstance = (ActorInstance) eResolveProxy(oldInitiatingActorInstance);
 			if (initiatingActorInstance != oldInitiatingActorInstance) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE, oldInitiatingActorInstance, initiatingActorInstance));
+					eNotify(new ENotificationImpl(
+							this,
+							Notification.RESOLVE,
+							RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE,
+							oldInitiatingActorInstance, initiatingActorInstance));
 			}
 		}
 		return initiatingActorInstance;
@@ -162,8 +168,14 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 		ActorInstance oldInitiatingActorInstance = initiatingActorInstance;
 		initiatingActorInstance = newInitiatingActorInstance;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE, oldInitiatingActorInstance, newInitiatingActorInstance);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET,
+					RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE,
+					oldInitiatingActorInstance, newInitiatingActorInstance);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -177,14 +189,25 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 		if (newInitiatingActorInstance != initiatingActorInstance) {
 			NotificationChain msgs = null;
 			if (initiatingActorInstance != null)
-				msgs = ((InternalEObject)initiatingActorInstance).eInverseRemove(this, RequirementPackage.ACTOR_INSTANCE__INITIATED_SCENARIOS, ActorInstance.class, msgs);
+				msgs = ((InternalEObject) initiatingActorInstance)
+						.eInverseRemove(
+								this,
+								RequirementPackage.ACTOR_INSTANCE__INITIATED_SCENARIOS,
+								ActorInstance.class, msgs);
 			if (newInitiatingActorInstance != null)
-				msgs = ((InternalEObject)newInitiatingActorInstance).eInverseAdd(this, RequirementPackage.ACTOR_INSTANCE__INITIATED_SCENARIOS, ActorInstance.class, msgs);
-			msgs = basicSetInitiatingActorInstance(newInitiatingActorInstance, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE, newInitiatingActorInstance, newInitiatingActorInstance));
+				msgs = ((InternalEObject) newInitiatingActorInstance)
+						.eInverseAdd(
+								this,
+								RequirementPackage.ACTOR_INSTANCE__INITIATED_SCENARIOS,
+								ActorInstance.class, msgs);
+			msgs = basicSetInitiatingActorInstance(newInitiatingActorInstance,
+					msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE,
+					newInitiatingActorInstance, newInitiatingActorInstance));
 	}
 
 	/**
@@ -193,7 +216,10 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 	 */
 	public EList<ActorInstance> getParticipatingActorInstances() {
 		if (participatingActorInstances == null) {
-			participatingActorInstances = new EObjectWithInverseResolvingEList.ManyInverse<ActorInstance>(ActorInstance.class, this, RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES, RequirementPackage.ACTOR_INSTANCE__PARTICIPATED_SCENARIOS);
+			participatingActorInstances = new EObjectWithInverseResolvingEList.ManyInverse<ActorInstance>(
+					ActorInstance.class, this,
+					RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES,
+					RequirementPackage.ACTOR_INSTANCE__PARTICIPATED_SCENARIOS);
 		}
 		return participatingActorInstances;
 	}
@@ -204,7 +230,10 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 	 */
 	public EList<UseCase> getInstantiatedUseCases() {
 		if (instantiatedUseCases == null) {
-			instantiatedUseCases = new EObjectWithInverseResolvingEList.ManyInverse<UseCase>(UseCase.class, this, RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES, RequirementPackage.USE_CASE__SCENARIOS);
+			instantiatedUseCases = new EObjectWithInverseResolvingEList.ManyInverse<UseCase>(
+					UseCase.class, this,
+					RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES,
+					RequirementPackage.USE_CASE__SCENARIOS);
 		}
 		return instantiatedUseCases;
 	}
@@ -215,7 +244,10 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 	 */
 	public EList<FunctionalRequirement> getFunctionalRequirements() {
 		if (functionalRequirements == null) {
-			functionalRequirements = new EObjectWithInverseResolvingEList.ManyInverse<FunctionalRequirement>(FunctionalRequirement.class, this, RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS, RequirementPackage.FUNCTIONAL_REQUIREMENT__SCENARIOS);
+			functionalRequirements = new EObjectWithInverseResolvingEList.ManyInverse<FunctionalRequirement>(
+					FunctionalRequirement.class, this,
+					RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS,
+					RequirementPackage.FUNCTIONAL_REQUIREMENT__SCENARIOS);
 		}
 		return functionalRequirements;
 	}
@@ -226,7 +258,11 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 	 */
 	public EList<NonFunctionalRequirement> getNonFunctionalRequirements() {
 		if (nonFunctionalRequirements == null) {
-			nonFunctionalRequirements = new EObjectWithInverseResolvingEList.ManyInverse<NonFunctionalRequirement>(NonFunctionalRequirement.class, this, RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS, RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_SCENARIOS);
+			nonFunctionalRequirements = new EObjectWithInverseResolvingEList.ManyInverse<NonFunctionalRequirement>(
+					NonFunctionalRequirement.class,
+					this,
+					RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS,
+					RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_SCENARIOS);
 		}
 		return nonFunctionalRequirements;
 	}
@@ -240,18 +276,27 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE:
-				if (initiatingActorInstance != null)
-					msgs = ((InternalEObject)initiatingActorInstance).eInverseRemove(this, RequirementPackage.ACTOR_INSTANCE__INITIATED_SCENARIOS, ActorInstance.class, msgs);
-				return basicSetInitiatingActorInstance((ActorInstance)otherEnd, msgs);
-			case RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getParticipatingActorInstances()).basicAdd(otherEnd, msgs);
-			case RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getInstantiatedUseCases()).basicAdd(otherEnd, msgs);
-			case RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getFunctionalRequirements()).basicAdd(otherEnd, msgs);
-			case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getNonFunctionalRequirements()).basicAdd(otherEnd, msgs);
+		case RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE:
+			if (initiatingActorInstance != null)
+				msgs = ((InternalEObject) initiatingActorInstance)
+						.eInverseRemove(
+								this,
+								RequirementPackage.ACTOR_INSTANCE__INITIATED_SCENARIOS,
+								ActorInstance.class, msgs);
+			return basicSetInitiatingActorInstance((ActorInstance) otherEnd,
+					msgs);
+		case RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipatingActorInstances())
+					.basicAdd(otherEnd, msgs);
+		case RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getInstantiatedUseCases())
+					.basicAdd(otherEnd, msgs);
+		case RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getFunctionalRequirements())
+					.basicAdd(otherEnd, msgs);
+		case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getNonFunctionalRequirements())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -264,18 +309,22 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RequirementPackage.SCENARIO__STEPS:
-				return ((InternalEList<?>)getSteps()).basicRemove(otherEnd, msgs);
-			case RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE:
-				return basicSetInitiatingActorInstance(null, msgs);
-			case RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES:
-				return ((InternalEList<?>)getParticipatingActorInstances()).basicRemove(otherEnd, msgs);
-			case RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES:
-				return ((InternalEList<?>)getInstantiatedUseCases()).basicRemove(otherEnd, msgs);
-			case RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS:
-				return ((InternalEList<?>)getFunctionalRequirements()).basicRemove(otherEnd, msgs);
-			case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS:
-				return ((InternalEList<?>)getNonFunctionalRequirements()).basicRemove(otherEnd, msgs);
+		case RequirementPackage.SCENARIO__STEPS:
+			return ((InternalEList<?>) getSteps()).basicRemove(otherEnd, msgs);
+		case RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE:
+			return basicSetInitiatingActorInstance(null, msgs);
+		case RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES:
+			return ((InternalEList<?>) getParticipatingActorInstances())
+					.basicRemove(otherEnd, msgs);
+		case RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES:
+			return ((InternalEList<?>) getInstantiatedUseCases()).basicRemove(
+					otherEnd, msgs);
+		case RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS:
+			return ((InternalEList<?>) getFunctionalRequirements())
+					.basicRemove(otherEnd, msgs);
+		case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS:
+			return ((InternalEList<?>) getNonFunctionalRequirements())
+					.basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -287,19 +336,20 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RequirementPackage.SCENARIO__STEPS:
-				return getSteps();
-			case RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE:
-				if (resolve) return getInitiatingActorInstance();
-				return basicGetInitiatingActorInstance();
-			case RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES:
-				return getParticipatingActorInstances();
-			case RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES:
-				return getInstantiatedUseCases();
-			case RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS:
-				return getFunctionalRequirements();
-			case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS:
-				return getNonFunctionalRequirements();
+		case RequirementPackage.SCENARIO__STEPS:
+			return getSteps();
+		case RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE:
+			if (resolve)
+				return getInitiatingActorInstance();
+			return basicGetInitiatingActorInstance();
+		case RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES:
+			return getParticipatingActorInstances();
+		case RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES:
+			return getInstantiatedUseCases();
+		case RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS:
+			return getFunctionalRequirements();
+		case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS:
+			return getNonFunctionalRequirements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -312,29 +362,33 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RequirementPackage.SCENARIO__STEPS:
-				getSteps().clear();
-				getSteps().addAll((Collection<? extends Step>)newValue);
-				return;
-			case RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE:
-				setInitiatingActorInstance((ActorInstance)newValue);
-				return;
-			case RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES:
-				getParticipatingActorInstances().clear();
-				getParticipatingActorInstances().addAll((Collection<? extends ActorInstance>)newValue);
-				return;
-			case RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES:
-				getInstantiatedUseCases().clear();
-				getInstantiatedUseCases().addAll((Collection<? extends UseCase>)newValue);
-				return;
-			case RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS:
-				getFunctionalRequirements().clear();
-				getFunctionalRequirements().addAll((Collection<? extends FunctionalRequirement>)newValue);
-				return;
-			case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS:
-				getNonFunctionalRequirements().clear();
-				getNonFunctionalRequirements().addAll((Collection<? extends NonFunctionalRequirement>)newValue);
-				return;
+		case RequirementPackage.SCENARIO__STEPS:
+			getSteps().clear();
+			getSteps().addAll((Collection<? extends Step>) newValue);
+			return;
+		case RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE:
+			setInitiatingActorInstance((ActorInstance) newValue);
+			return;
+		case RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES:
+			getParticipatingActorInstances().clear();
+			getParticipatingActorInstances().addAll(
+					(Collection<? extends ActorInstance>) newValue);
+			return;
+		case RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES:
+			getInstantiatedUseCases().clear();
+			getInstantiatedUseCases().addAll(
+					(Collection<? extends UseCase>) newValue);
+			return;
+		case RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS:
+			getFunctionalRequirements().clear();
+			getFunctionalRequirements().addAll(
+					(Collection<? extends FunctionalRequirement>) newValue);
+			return;
+		case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS:
+			getNonFunctionalRequirements().clear();
+			getNonFunctionalRequirements().addAll(
+					(Collection<? extends NonFunctionalRequirement>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -346,24 +400,24 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RequirementPackage.SCENARIO__STEPS:
-				getSteps().clear();
-				return;
-			case RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE:
-				setInitiatingActorInstance((ActorInstance)null);
-				return;
-			case RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES:
-				getParticipatingActorInstances().clear();
-				return;
-			case RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES:
-				getInstantiatedUseCases().clear();
-				return;
-			case RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS:
-				getFunctionalRequirements().clear();
-				return;
-			case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS:
-				getNonFunctionalRequirements().clear();
-				return;
+		case RequirementPackage.SCENARIO__STEPS:
+			getSteps().clear();
+			return;
+		case RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE:
+			setInitiatingActorInstance((ActorInstance) null);
+			return;
+		case RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES:
+			getParticipatingActorInstances().clear();
+			return;
+		case RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES:
+			getInstantiatedUseCases().clear();
+			return;
+		case RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS:
+			getFunctionalRequirements().clear();
+			return;
+		case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS:
+			getNonFunctionalRequirements().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -375,18 +429,22 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RequirementPackage.SCENARIO__STEPS:
-				return steps != null && !steps.isEmpty();
-			case RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE:
-				return initiatingActorInstance != null;
-			case RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES:
-				return participatingActorInstances != null && !participatingActorInstances.isEmpty();
-			case RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES:
-				return instantiatedUseCases != null && !instantiatedUseCases.isEmpty();
-			case RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS:
-				return functionalRequirements != null && !functionalRequirements.isEmpty();
-			case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS:
-				return nonFunctionalRequirements != null && !nonFunctionalRequirements.isEmpty();
+		case RequirementPackage.SCENARIO__STEPS:
+			return steps != null && !steps.isEmpty();
+		case RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE:
+			return initiatingActorInstance != null;
+		case RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES:
+			return participatingActorInstances != null
+					&& !participatingActorInstances.isEmpty();
+		case RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES:
+			return instantiatedUseCases != null
+					&& !instantiatedUseCases.isEmpty();
+		case RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS:
+			return functionalRequirements != null
+					&& !functionalRequirements.isEmpty();
+		case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS:
+			return nonFunctionalRequirements != null
+					&& !nonFunctionalRequirements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

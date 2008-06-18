@@ -91,7 +91,8 @@ public class ReaderInfoImpl extends EObjectImpl implements ReaderInfo {
 		Date oldDate = date;
 		date = newDate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.READER_INFO__DATE, oldDate, date));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ModelPackage.READER_INFO__DATE, oldDate, date));
 	}
 
 	/**
@@ -100,11 +101,13 @@ public class ReaderInfoImpl extends EObjectImpl implements ReaderInfo {
 	 */
 	public OrgUnit getReaderId() {
 		if (readerId != null && readerId.eIsProxy()) {
-			InternalEObject oldReaderId = (InternalEObject)readerId;
-			readerId = (OrgUnit)eResolveProxy(oldReaderId);
+			InternalEObject oldReaderId = (InternalEObject) readerId;
+			readerId = (OrgUnit) eResolveProxy(oldReaderId);
 			if (readerId != oldReaderId) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackage.READER_INFO__READER_ID, oldReaderId, readerId));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							ModelPackage.READER_INFO__READER_ID, oldReaderId,
+							readerId));
 			}
 		}
 		return readerId;
@@ -126,7 +129,8 @@ public class ReaderInfoImpl extends EObjectImpl implements ReaderInfo {
 		OrgUnit oldReaderId = readerId;
 		readerId = newReaderId;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.READER_INFO__READER_ID, oldReaderId, readerId));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ModelPackage.READER_INFO__READER_ID, oldReaderId, readerId));
 	}
 
 	/**
@@ -136,11 +140,12 @@ public class ReaderInfoImpl extends EObjectImpl implements ReaderInfo {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ModelPackage.READER_INFO__DATE:
-				return getDate();
-			case ModelPackage.READER_INFO__READER_ID:
-				if (resolve) return getReaderId();
-				return basicGetReaderId();
+		case ModelPackage.READER_INFO__DATE:
+			return getDate();
+		case ModelPackage.READER_INFO__READER_ID:
+			if (resolve)
+				return getReaderId();
+			return basicGetReaderId();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -152,12 +157,12 @@ public class ReaderInfoImpl extends EObjectImpl implements ReaderInfo {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ModelPackage.READER_INFO__DATE:
-				setDate((Date)newValue);
-				return;
-			case ModelPackage.READER_INFO__READER_ID:
-				setReaderId((OrgUnit)newValue);
-				return;
+		case ModelPackage.READER_INFO__DATE:
+			setDate((Date) newValue);
+			return;
+		case ModelPackage.READER_INFO__READER_ID:
+			setReaderId((OrgUnit) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -169,12 +174,12 @@ public class ReaderInfoImpl extends EObjectImpl implements ReaderInfo {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ModelPackage.READER_INFO__DATE:
-				setDate(DATE_EDEFAULT);
-				return;
-			case ModelPackage.READER_INFO__READER_ID:
-				setReaderId((OrgUnit)null);
-				return;
+		case ModelPackage.READER_INFO__DATE:
+			setDate(DATE_EDEFAULT);
+			return;
+		case ModelPackage.READER_INFO__READER_ID:
+			setReaderId((OrgUnit) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -186,10 +191,11 @@ public class ReaderInfoImpl extends EObjectImpl implements ReaderInfo {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ModelPackage.READER_INFO__DATE:
-				return DATE_EDEFAULT == null ? date != null : !DATE_EDEFAULT.equals(date);
-			case ModelPackage.READER_INFO__READER_ID:
-				return readerId != null;
+		case ModelPackage.READER_INFO__DATE:
+			return DATE_EDEFAULT == null ? date != null : !DATE_EDEFAULT
+					.equals(date);
+		case ModelPackage.READER_INFO__READER_ID:
+			return readerId != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -200,7 +206,8 @@ public class ReaderInfoImpl extends EObjectImpl implements ReaderInfo {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (date: ");

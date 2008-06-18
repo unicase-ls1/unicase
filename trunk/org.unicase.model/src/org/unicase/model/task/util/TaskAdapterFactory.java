@@ -12,7 +12,6 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
-import org.unicase.model.task.*;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
@@ -59,7 +58,7 @@ public class TaskAdapterFactory extends AdapterFactoryImpl {
 			return true;
 		}
 		if (object instanceof EObject) {
-			return ((EObject)object).eClass().getEPackage() == modelPackage;
+			return ((EObject) object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -71,31 +70,36 @@ public class TaskAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	protected TaskSwitch<Adapter> modelSwitch = new TaskSwitch<Adapter>() {
-			@Override
-			public Adapter caseActionItem(ActionItem object) {
-				return createActionItemAdapter();
-			}
-			@Override
-			public Adapter caseWorkPackage(WorkPackage object) {
-				return createWorkPackageAdapter();
-			}
-			@Override
-			public Adapter caseWorkItem(WorkItem object) {
-				return createWorkItemAdapter();
-			}
-			@Override
-			public Adapter caseModelElement(ModelElement object) {
-				return createModelElementAdapter();
-			}
-			@Override
-			public Adapter caseAnnotation(Annotation object) {
-				return createAnnotationAdapter();
-			}
-			@Override
-			public Adapter defaultCase(EObject object) {
-				return createEObjectAdapter();
-			}
-		};
+		@Override
+		public Adapter caseActionItem(ActionItem object) {
+			return createActionItemAdapter();
+		}
+
+		@Override
+		public Adapter caseWorkPackage(WorkPackage object) {
+			return createWorkPackageAdapter();
+		}
+
+		@Override
+		public Adapter caseWorkItem(WorkItem object) {
+			return createWorkItemAdapter();
+		}
+
+		@Override
+		public Adapter caseModelElement(ModelElement object) {
+			return createModelElementAdapter();
+		}
+
+		@Override
+		public Adapter caseAnnotation(Annotation object) {
+			return createAnnotationAdapter();
+		}
+
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -107,7 +111,7 @@ public class TaskAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject)target);
+		return modelSwitch.doSwitch((EObject) target);
 	}
 
 	/**

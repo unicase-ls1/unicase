@@ -73,7 +73,8 @@ public class CompositeSectionItemProvider extends ModelElementItemProvider
 			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(DocumentPackage.Literals.COMPOSITE_SECTION__SUBSECTIONS);
+			childrenFeatures
+					.add(DocumentPackage.Literals.COMPOSITE_SECTION__SUBSECTIONS);
 		}
 		return childrenFeatures;
 	}
@@ -98,7 +99,8 @@ public class CompositeSectionItemProvider extends ModelElementItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/CompositeSection"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/CompositeSection"));
 	}
 
 	/**
@@ -109,10 +111,9 @@ public class CompositeSectionItemProvider extends ModelElementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((CompositeSection)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_CompositeSection_type") :
-			getString("_UI_CompositeSection_type") + " " + label;
+		String label = ((CompositeSection) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_CompositeSection_type")
+				: getString("_UI_CompositeSection_type") + " " + label;
 	}
 
 	/**
@@ -127,9 +128,10 @@ public class CompositeSectionItemProvider extends ModelElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(CompositeSection.class)) {
-			case DocumentPackage.COMPOSITE_SECTION__SUBSECTIONS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case DocumentPackage.COMPOSITE_SECTION__SUBSECTIONS:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -146,15 +148,13 @@ public class CompositeSectionItemProvider extends ModelElementItemProvider
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(DocumentPackage.Literals.COMPOSITE_SECTION__SUBSECTIONS,
-				 DocumentFactory.eINSTANCE.createLeafSection()));
+		newChildDescriptors.add(createChildParameter(
+				DocumentPackage.Literals.COMPOSITE_SECTION__SUBSECTIONS,
+				DocumentFactory.eINSTANCE.createLeafSection()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(DocumentPackage.Literals.COMPOSITE_SECTION__SUBSECTIONS,
-				 DocumentFactory.eINSTANCE.createCompositeSection()));
+		newChildDescriptors.add(createChildParameter(
+				DocumentPackage.Literals.COMPOSITE_SECTION__SUBSECTIONS,
+				DocumentFactory.eINSTANCE.createCompositeSection()));
 	}
 
 	/**

@@ -131,10 +131,15 @@ public class RationalePackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public static RationalePackage init() {
-		if (isInited) return (RationalePackage)EPackage.Registry.INSTANCE.getEPackage(RationalePackage.eNS_URI);
+		if (isInited)
+			return (RationalePackage) EPackage.Registry.INSTANCE
+					.getEPackage(RationalePackage.eNS_URI);
 
 		// Obtain or create and register package
-		RationalePackageImpl theRationalePackage = (RationalePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof RationalePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new RationalePackageImpl());
+		RationalePackageImpl theRationalePackage = (RationalePackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(eNS_URI) instanceof RationalePackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(eNS_URI)
+				: new RationalePackageImpl());
 
 		isInited = true;
 
@@ -142,16 +147,46 @@ public class RationalePackageImpl extends EPackageImpl implements
 		NotationPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		ModelPackageImpl theModelPackage = (ModelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI) : ModelPackage.eINSTANCE);
-		OrganizationPackageImpl theOrganizationPackage = (OrganizationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(OrganizationPackage.eNS_URI) : OrganizationPackage.eINSTANCE);
-		TaskPackageImpl theTaskPackage = (TaskPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) : TaskPackage.eINSTANCE);
-		DiagramPackageImpl theDiagramPackage = (DiagramPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI) : DiagramPackage.eINSTANCE);
-		ClassesPackageImpl theClassesPackage = (ClassesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ClassesPackage.eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ClassesPackage.eNS_URI) : ClassesPackage.eINSTANCE);
-		DocumentPackageImpl theDocumentPackage = (DocumentPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI) : DocumentPackage.eINSTANCE);
-		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI) : RequirementPackage.eINSTANCE);
-		ChangePackageImpl theChangePackage = (ChangePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI) : ChangePackage.eINSTANCE);
-		BugPackageImpl theBugPackage = (BugPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BugPackage.eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BugPackage.eNS_URI) : BugPackage.eINSTANCE);
-		ComponentPackageImpl theComponentPackage = (ComponentPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ComponentPackage.eNS_URI) instanceof ComponentPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ComponentPackage.eNS_URI) : ComponentPackage.eINSTANCE);
+		ModelPackageImpl theModelPackage = (ModelPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(ModelPackage.eNS_URI)
+				: ModelPackage.eINSTANCE);
+		OrganizationPackageImpl theOrganizationPackage = (OrganizationPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(OrganizationPackage.eNS_URI)
+				: OrganizationPackage.eINSTANCE);
+		TaskPackageImpl theTaskPackage = (TaskPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(TaskPackage.eNS_URI)
+				: TaskPackage.eINSTANCE);
+		DiagramPackageImpl theDiagramPackage = (DiagramPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(DiagramPackage.eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(DiagramPackage.eNS_URI)
+				: DiagramPackage.eINSTANCE);
+		ClassesPackageImpl theClassesPackage = (ClassesPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(ClassesPackage.eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(ClassesPackage.eNS_URI)
+				: ClassesPackage.eINSTANCE);
+		DocumentPackageImpl theDocumentPackage = (DocumentPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(DocumentPackage.eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(DocumentPackage.eNS_URI)
+				: DocumentPackage.eINSTANCE);
+		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(RequirementPackage.eNS_URI)
+				: RequirementPackage.eINSTANCE);
+		ChangePackageImpl theChangePackage = (ChangePackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(ChangePackage.eNS_URI)
+				: ChangePackage.eINSTANCE);
+		BugPackageImpl theBugPackage = (BugPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(BugPackage.eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(BugPackage.eNS_URI)
+				: BugPackage.eINSTANCE);
+		ComponentPackageImpl theComponentPackage = (ComponentPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(ComponentPackage.eNS_URI) instanceof ComponentPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(ComponentPackage.eNS_URI)
+				: ComponentPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theRationalePackage.createPackageContents();
@@ -198,7 +233,7 @@ public class RationalePackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getIssue_Proposals() {
-		return (EReference)issueEClass.getEStructuralFeatures().get(0);
+		return (EReference) issueEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -206,7 +241,7 @@ public class RationalePackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getIssue_Solution() {
-		return (EReference)issueEClass.getEStructuralFeatures().get(1);
+		return (EReference) issueEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -214,7 +249,7 @@ public class RationalePackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getIssue_Criteria() {
-		return (EReference)issueEClass.getEStructuralFeatures().get(2);
+		return (EReference) issueEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -222,7 +257,7 @@ public class RationalePackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getIssue_RefiningIssues() {
-		return (EReference)issueEClass.getEStructuralFeatures().get(3);
+		return (EReference) issueEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -230,7 +265,7 @@ public class RationalePackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getIssue_RefinedIssue() {
-		return (EReference)issueEClass.getEStructuralFeatures().get(4);
+		return (EReference) issueEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -238,7 +273,7 @@ public class RationalePackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getIssue_Facilitator() {
-		return (EReference)issueEClass.getEStructuralFeatures().get(5);
+		return (EReference) issueEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -246,7 +281,7 @@ public class RationalePackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getIssue_Participants() {
-		return (EReference)issueEClass.getEStructuralFeatures().get(6);
+		return (EReference) issueEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -262,7 +297,7 @@ public class RationalePackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getProposal_Assessments() {
-		return (EReference)proposalEClass.getEStructuralFeatures().get(0);
+		return (EReference) proposalEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -270,7 +305,7 @@ public class RationalePackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getProposal_Issue() {
-		return (EReference)proposalEClass.getEStructuralFeatures().get(1);
+		return (EReference) proposalEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -286,7 +321,7 @@ public class RationalePackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getSolution_UnderlyingProposals() {
-		return (EReference)solutionEClass.getEStructuralFeatures().get(0);
+		return (EReference) solutionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -294,7 +329,7 @@ public class RationalePackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getSolution_Issue() {
-		return (EReference)solutionEClass.getEStructuralFeatures().get(1);
+		return (EReference) solutionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -310,7 +345,7 @@ public class RationalePackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getCriterion_Assessments() {
-		return (EReference)criterionEClass.getEStructuralFeatures().get(0);
+		return (EReference) criterionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -326,7 +361,7 @@ public class RationalePackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getAssessment_Proposal() {
-		return (EReference)assessmentEClass.getEStructuralFeatures().get(0);
+		return (EReference) assessmentEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -334,7 +369,7 @@ public class RationalePackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getAssessment_Criterion() {
-		return (EReference)assessmentEClass.getEStructuralFeatures().get(1);
+		return (EReference) assessmentEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -342,7 +377,7 @@ public class RationalePackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EAttribute getAssessment_Value() {
-		return (EAttribute)assessmentEClass.getEStructuralFeatures().get(2);
+		return (EAttribute) assessmentEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -358,7 +393,7 @@ public class RationalePackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getComment_Replies() {
-		return (EReference)commentEClass.getEStructuralFeatures().get(0);
+		return (EReference) commentEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -366,7 +401,7 @@ public class RationalePackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public RationaleFactory getRationaleFactory() {
-		return (RationaleFactory)getEFactoryInstance();
+		return (RationaleFactory) getEFactoryInstance();
 	}
 
 	/**
@@ -383,7 +418,8 @@ public class RationalePackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if (isCreated)
+			return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -430,7 +466,8 @@ public class RationalePackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if (isInitialized)
+			return;
 		isInitialized = true;
 
 		// Initialize package
@@ -439,8 +476,10 @@ public class RationalePackageImpl extends EPackageImpl implements
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ModelPackage theModelPackage = (ModelPackage)EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
-		OrganizationPackage theOrganizationPackage = (OrganizationPackage)EPackage.Registry.INSTANCE.getEPackage(OrganizationPackage.eNS_URI);
+		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE
+				.getEPackage(ModelPackage.eNS_URI);
+		OrganizationPackage theOrganizationPackage = (OrganizationPackage) EPackage.Registry.INSTANCE
+				.getEPackage(OrganizationPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -451,37 +490,105 @@ public class RationalePackageImpl extends EPackageImpl implements
 		proposalEClass.getESuperTypes().add(theModelPackage.getModelElement());
 		solutionEClass.getESuperTypes().add(theModelPackage.getModelElement());
 		criterionEClass.getESuperTypes().add(theModelPackage.getModelElement());
-		assessmentEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		assessmentEClass.getESuperTypes()
+				.add(theModelPackage.getModelElement());
 		commentEClass.getESuperTypes().add(theModelPackage.getAnnotation());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(issueEClass, Issue.class, "Issue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getIssue_Proposals(), this.getProposal(), this.getProposal_Issue(), "proposals", null, 0, -1, Issue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getIssue_Solution(), this.getSolution(), this.getSolution_Issue(), "solution", null, 0, 1, Issue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getIssue_Criteria(), this.getCriterion(), null, "criteria", null, 0, -1, Issue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getIssue_RefiningIssues(), this.getIssue(), this.getIssue_RefinedIssue(), "refiningIssues", null, 0, -1, Issue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getIssue_RefinedIssue(), this.getIssue(), this.getIssue_RefiningIssues(), "refinedIssue", null, 0, 1, Issue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getIssue_Facilitator(), theOrganizationPackage.getUser(), null, "facilitator", null, 0, 1, Issue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getIssue_Participants(), theOrganizationPackage.getOrgUnit(), null, "participants", null, 0, -1, Issue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(issueEClass, Issue.class, "Issue", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getIssue_Proposals(), this.getProposal(), this
+				.getProposal_Issue(), "proposals", null, 0, -1, Issue.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEReference(getIssue_Solution(), this.getSolution(), this
+				.getSolution_Issue(), "solution", null, 0, 1, Issue.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEReference(getIssue_Criteria(), this.getCriterion(), null,
+				"criteria", null, 0, -1, Issue.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIssue_RefiningIssues(), this.getIssue(), this
+				.getIssue_RefinedIssue(), "refiningIssues", null, 0, -1,
+				Issue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEReference(getIssue_RefinedIssue(), this.getIssue(), this
+				.getIssue_RefiningIssues(), "refinedIssue", null, 0, 1,
+				Issue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEReference(getIssue_Facilitator(),
+				theOrganizationPackage.getUser(), null, "facilitator", null, 0,
+				1, Issue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEReference(getIssue_Participants(), theOrganizationPackage
+				.getOrgUnit(), null, "participants", null, 0, -1, Issue.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
-		initEClass(proposalEClass, Proposal.class, "Proposal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProposal_Assessments(), this.getAssessment(), this.getAssessment_Proposal(), "assessments", null, 0, -1, Proposal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProposal_Issue(), this.getIssue(), this.getIssue_Proposals(), "issue", null, 0, 1, Proposal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(proposalEClass, Proposal.class, "Proposal", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getProposal_Assessments(), this.getAssessment(), this
+				.getAssessment_Proposal(), "assessments", null, 0, -1,
+				Proposal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEReference(getProposal_Issue(), this.getIssue(), this
+				.getIssue_Proposals(), "issue", null, 0, 1, Proposal.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
-		initEClass(solutionEClass, Solution.class, "Solution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSolution_UnderlyingProposals(), this.getProposal(), null, "underlyingProposals", null, 0, -1, Solution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSolution_Issue(), this.getIssue(), this.getIssue_Solution(), "issue", null, 0, 1, Solution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(solutionEClass, Solution.class, "Solution", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSolution_UnderlyingProposals(), this.getProposal(),
+				null, "underlyingProposals", null, 0, -1, Solution.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEReference(getSolution_Issue(), this.getIssue(), this
+				.getIssue_Solution(), "issue", null, 0, 1, Solution.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
-		initEClass(criterionEClass, Criterion.class, "Criterion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCriterion_Assessments(), this.getAssessment(), this.getAssessment_Criterion(), "assessments", null, 0, -1, Criterion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(criterionEClass, Criterion.class, "Criterion", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCriterion_Assessments(), this.getAssessment(), this
+				.getAssessment_Criterion(), "assessments", null, 0, -1,
+				Criterion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
-		initEClass(assessmentEClass, Assessment.class, "Assessment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAssessment_Proposal(), this.getProposal(), this.getProposal_Assessments(), "proposal", null, 1, 1, Assessment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAssessment_Criterion(), this.getCriterion(), this.getCriterion_Assessments(), "criterion", null, 1, 1, Assessment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAssessment_Value(), ecorePackage.getEInt(), "value", null, 0, 1, Assessment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(assessmentEClass, Assessment.class, "Assessment",
+				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAssessment_Proposal(), this.getProposal(), this
+				.getProposal_Assessments(), "proposal", null, 1, 1,
+				Assessment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEReference(getAssessment_Criterion(), this.getCriterion(), this
+				.getCriterion_Assessments(), "criterion", null, 1, 1,
+				Assessment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAssessment_Value(), ecorePackage.getEInt(), "value",
+				null, 0, 1, Assessment.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
-		initEClass(commentEClass, Comment.class, "Comment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getComment_Replies(), this.getComment(), null, "replies", null, 0, -1, Comment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(commentEClass, Comment.class, "Comment", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getComment_Replies(), this.getComment(), null,
+				"replies", null, 0, -1, Comment.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 } // RationalePackageImpl

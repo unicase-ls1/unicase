@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.ModelElement;
 import org.unicase.model.UniqueIdentifier;
-import org.unicase.model.organization.*;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrgUnitId;
@@ -70,13 +69,10 @@ public class OrganizationSwitch<T> {
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
 		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
-		}
-		else {
+		} else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return
-				eSuperTypes.isEmpty() ?
-					defaultCase(theEObject) :
-					doSwitch(eSuperTypes.get(0), theEObject);
+			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(
+					eSuperTypes.get(0), theEObject);
 		}
 	}
 
@@ -89,37 +85,48 @@ public class OrganizationSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case OrganizationPackage.USER: {
-				User user = (User)theEObject;
-				T result = caseUser(user);
-				if (result == null) result = caseOrgUnit(user);
-				if (result == null) result = caseModelElement(user);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case OrganizationPackage.ORG_UNIT: {
-				OrgUnit orgUnit = (OrgUnit)theEObject;
-				T result = caseOrgUnit(orgUnit);
-				if (result == null) result = caseModelElement(orgUnit);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case OrganizationPackage.ORG_UNIT_ID: {
-				OrgUnitId orgUnitId = (OrgUnitId)theEObject;
-				T result = caseOrgUnitId(orgUnitId);
-				if (result == null) result = caseUniqueIdentifier(orgUnitId);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case OrganizationPackage.GROUP: {
-				Group group = (Group)theEObject;
-				T result = caseGroup(group);
-				if (result == null) result = caseOrgUnit(group);
-				if (result == null) result = caseModelElement(group);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			default: return defaultCase(theEObject);
+		case OrganizationPackage.USER: {
+			User user = (User) theEObject;
+			T result = caseUser(user);
+			if (result == null)
+				result = caseOrgUnit(user);
+			if (result == null)
+				result = caseModelElement(user);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case OrganizationPackage.ORG_UNIT: {
+			OrgUnit orgUnit = (OrgUnit) theEObject;
+			T result = caseOrgUnit(orgUnit);
+			if (result == null)
+				result = caseModelElement(orgUnit);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case OrganizationPackage.ORG_UNIT_ID: {
+			OrgUnitId orgUnitId = (OrgUnitId) theEObject;
+			T result = caseOrgUnitId(orgUnitId);
+			if (result == null)
+				result = caseUniqueIdentifier(orgUnitId);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case OrganizationPackage.GROUP: {
+			Group group = (Group) theEObject;
+			T result = caseGroup(group);
+			if (result == null)
+				result = caseOrgUnit(group);
+			if (result == null)
+				result = caseModelElement(group);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 

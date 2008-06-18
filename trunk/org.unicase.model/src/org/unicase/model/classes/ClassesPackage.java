@@ -55,7 +55,8 @@ public interface ClassesPackage extends EPackage {
 	 * end-user-doc -->
 	 * @generated
 	 */
-	ClassesPackage eINSTANCE = org.unicase.model.classes.impl.ClassesPackageImpl.init();
+	ClassesPackage eINSTANCE = org.unicase.model.classes.impl.ClassesPackageImpl
+			.init();
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.classes.impl.PackageElementImpl <em>Package Element</em>}' class.
@@ -692,7 +693,8 @@ public interface ClassesPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference CLASS__PARTICIPATED_USE_CASES = eINSTANCE.getClass_ParticipatedUseCases();
+		EReference CLASS__PARTICIPATED_USE_CASES = eINSTANCE
+				.getClass_ParticipatedUseCases();
 		/**
 		 * The meta object literal for the '<em><b>Super Class</b></em>' reference feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -712,7 +714,8 @@ public interface ClassesPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference CLASS__INCOMING_ASSOCIATIONS = eINSTANCE.getClass_IncomingAssociations();
+		EReference CLASS__INCOMING_ASSOCIATIONS = eINSTANCE
+				.getClass_IncomingAssociations();
 		/**
 		 * The meta object literal for the '
 		 * <em><b>Outgoing Associations</b></em>' reference list feature. <!--
@@ -720,7 +723,8 @@ public interface ClassesPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference CLASS__OUTGOING_ASSOCIATIONS = eINSTANCE.getClass_OutgoingAssociations();
+		EReference CLASS__OUTGOING_ASSOCIATIONS = eINSTANCE
+				.getClass_OutgoingAssociations();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.classes.impl.PackageImpl <em>Package</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -734,7 +738,8 @@ public interface ClassesPackage extends EPackage {
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PACKAGE__CONTAINED_PACKAGE_ELEMENTS = eINSTANCE.getPackage_ContainedPackageElements();
+		EReference PACKAGE__CONTAINED_PACKAGE_ELEMENTS = eINSTANCE
+				.getPackage_ContainedPackageElements();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.classes.impl.PackageElementImpl <em>Package Element</em>}' class.
 		 * <!-- begin-user-doc --> <!--
@@ -750,7 +755,8 @@ public interface ClassesPackage extends EPackage {
 		 * end-user-doc -->
 		 * @generated
 		 */
-		EReference PACKAGE_ELEMENT__PARENT_PACKAGE = eINSTANCE.getPackageElement_ParentPackage();
+		EReference PACKAGE_ELEMENT__PARENT_PACKAGE = eINSTANCE
+				.getPackageElement_ParentPackage();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.classes.impl.AssociationImpl <em>Association</em>}' class.
 		 * <!-- begin-user-doc --> <!--

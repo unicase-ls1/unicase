@@ -66,13 +66,10 @@ public class ClassesSwitch<T> {
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
 		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
-		}
-		else {
+		} else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return
-				eSuperTypes.isEmpty() ?
-					defaultCase(theEObject) :
-					doSwitch(eSuperTypes.get(0), theEObject);
+			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(
+					eSuperTypes.get(0), theEObject);
 		}
 	}
 
@@ -85,37 +82,48 @@ public class ClassesSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case ClassesPackage.CLASS: {
-				org.unicase.model.classes.Class class_ = (org.unicase.model.classes.Class)theEObject;
-				T result = caseClass(class_);
-				if (result == null) result = casePackageElement(class_);
-				if (result == null) result = caseModelElement(class_);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ClassesPackage.PACKAGE: {
-				org.unicase.model.classes.Package package_ = (org.unicase.model.classes.Package)theEObject;
-				T result = casePackage(package_);
-				if (result == null) result = casePackageElement(package_);
-				if (result == null) result = caseModelElement(package_);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ClassesPackage.PACKAGE_ELEMENT: {
-				PackageElement packageElement = (PackageElement)theEObject;
-				T result = casePackageElement(packageElement);
-				if (result == null) result = caseModelElement(packageElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ClassesPackage.ASSOCIATION: {
-				Association association = (Association)theEObject;
-				T result = caseAssociation(association);
-				if (result == null) result = caseModelElement(association);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			default: return defaultCase(theEObject);
+		case ClassesPackage.CLASS: {
+			org.unicase.model.classes.Class class_ = (org.unicase.model.classes.Class) theEObject;
+			T result = caseClass(class_);
+			if (result == null)
+				result = casePackageElement(class_);
+			if (result == null)
+				result = caseModelElement(class_);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case ClassesPackage.PACKAGE: {
+			org.unicase.model.classes.Package package_ = (org.unicase.model.classes.Package) theEObject;
+			T result = casePackage(package_);
+			if (result == null)
+				result = casePackageElement(package_);
+			if (result == null)
+				result = caseModelElement(package_);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case ClassesPackage.PACKAGE_ELEMENT: {
+			PackageElement packageElement = (PackageElement) theEObject;
+			T result = casePackageElement(packageElement);
+			if (result == null)
+				result = caseModelElement(packageElement);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case ClassesPackage.ASSOCIATION: {
+			Association association = (Association) theEObject;
+			T result = caseAssociation(association);
+			if (result == null)
+				result = caseModelElement(association);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 

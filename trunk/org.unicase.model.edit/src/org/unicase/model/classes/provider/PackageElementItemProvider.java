@@ -64,10 +64,9 @@ public class PackageElementItemProvider extends ModelElementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((PackageElement)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_PackageElement_type") :
-			getString("_UI_PackageElement_type") + " " + label;
+		String label = ((PackageElement) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_PackageElement_type")
+				: getString("_UI_PackageElement_type") + " " + label;
 	}
 
 	/**
