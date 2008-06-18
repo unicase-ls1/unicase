@@ -7,6 +7,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -103,8 +104,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 		editButton.addSelectionListener(new SelectionAdapter() {
 
 			public void widgetSelected(SelectionEvent e) {
-				Class<? extends EObject> clazz = (Class<? extends EObject>) eReference
-						.getEReferenceType().getInstanceClass();
+				EClass clazz = eReference.getEReferenceType();
 				ElementListSelectionDialog dlg = new ElementListSelectionDialog(
 						parent.getShell(),
 						new AdapterFactoryLabelProvider(
@@ -112,7 +112,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 										ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
 				// JH: fill only with right elements
 				Collection<ModelElement> allElements = ((ModelElement) modelElement)
-						.getProject().getElementsByClass(clazz);
+						.getProject().getAllModelElementsbyClass(clazz);
 				allElements.remove(modelElement);
 				Object objectList = modelElement.eGet(eReference);
 				EList<EObject> list;

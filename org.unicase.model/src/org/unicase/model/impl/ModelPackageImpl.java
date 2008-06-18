@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.model.Annotation;
@@ -413,6 +414,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		ChangePackage theChangePackage = (ChangePackage)EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI);
 		BugPackage theBugPackage = (BugPackage)EPackage.Registry.INSTANCE.getEPackage(BugPackage.eNS_URI);
 		ComponentPackage theComponentPackage = (ComponentPackage)EPackage.Registry.INSTANCE.getEPackage(ComponentPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theOrganizationPackage);
@@ -451,10 +453,18 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		addEParameter(op, theOrganizationPackage.getUser(), "readerName", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(projectEClass, Project.class, "Project", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProject_ModelElements(), this.getModelElement(), null, "modelElements", null, 0, -1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProject_ModelElements(), this.getModelElement(), null, "modelElements", null, 0, -1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		op = addEOperation(projectEClass, null, "addModelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelElement(), "modelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		addEOperation(projectEClass, this.getModelElement(), "getAllModelElements", 0, -1, IS_UNIQUE, !IS_ORDERED);
+
+		op = addEOperation(projectEClass, this.getModelElement(), "getAllModelElementsbyClass", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEClass(), "modelElementClass", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(projectEClass, this.getModelElement(), "getModelElementsByClass", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEClass(), "modelElementClass", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(modelElementIdEClass, ModelElementId.class, "ModelElementId", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -32,14 +32,16 @@ import org.unicase.model.component.ComponentFactory;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
+import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.task.TaskFactory;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.Project} object.
- * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.model.Project}
+ * object. <!-- begin-user-doc --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ProjectItemProvider extends ItemProviderAdapter implements
@@ -71,10 +73,13 @@ public class ProjectItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This specifies how to implement {@link #getChildren} and is used to
+	 * deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand},
+	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in
+	 * {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -89,30 +94,33 @@ public class ProjectItemProvider extends ItemProviderAdapter implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
+		// Check the type of the specified child object and return the proper
+		// feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
 		return super.getChildFeature(object, child);
 	}
 
 	/**
-	 * This returns Project.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns Project.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Project"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/Project"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
+	 * This returns the label text for the adapted class. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -121,10 +129,11 @@ public class ProjectItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to
+	 * update any cached children and by creating a viewer notification, which
+	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -132,9 +141,10 @@ public class ProjectItemProvider extends ItemProviderAdapter implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Project.class)) {
-			case ModelPackage.PROJECT__MODEL_ELEMENTS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case ModelPackage.PROJECT__MODEL_ELEMENTS:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -151,175 +161,141 @@ public class ProjectItemProvider extends ItemProviderAdapter implements
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 ModelFactory.eINSTANCE.createAnnotation()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ModelFactory.eINSTANCE.createAnnotation()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 OrganizationFactory.eINSTANCE.createOrgUnit()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				OrganizationFactory.eINSTANCE.createOrgUnit()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 OrganizationFactory.eINSTANCE.createUser()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				OrganizationFactory.eINSTANCE.createUser()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 OrganizationFactory.eINSTANCE.createGroup()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				OrganizationFactory.eINSTANCE.createGroup()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 TaskFactory.eINSTANCE.createActionItem()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				TaskFactory.eINSTANCE.createActionItem()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 TaskFactory.eINSTANCE.createWorkPackage()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				TaskFactory.eINSTANCE.createWorkPackage()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 DiagramFactory.eINSTANCE.createMEDiagram()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				DiagramFactory.eINSTANCE.createMEDiagram()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 ClassesFactory.eINSTANCE.createClass()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ClassesFactory.eINSTANCE.createClass()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 ClassesFactory.eINSTANCE.createPackage()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ClassesFactory.eINSTANCE.createPackage()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 ClassesFactory.eINSTANCE.createAssociation()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ClassesFactory.eINSTANCE.createAssociation()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 DocumentFactory.eINSTANCE.createLeafSection()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				DocumentFactory.eINSTANCE.createLeafSection()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 DocumentFactory.eINSTANCE.createCompositeSection()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				DocumentFactory.eINSTANCE.createCompositeSection()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 RequirementFactory.eINSTANCE.createNonFunctionalRequirement()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				RequirementFactory.eINSTANCE.createNonFunctionalRequirement()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 RequirementFactory.eINSTANCE.createFunctionalRequirement()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				RequirementFactory.eINSTANCE.createFunctionalRequirement()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 RequirementFactory.eINSTANCE.createUseCase()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				RequirementFactory.eINSTANCE.createUseCase()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 RequirementFactory.eINSTANCE.createScenario()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				RequirementFactory.eINSTANCE.createScenario()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 RequirementFactory.eINSTANCE.createActor()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				RequirementFactory.eINSTANCE.createActor()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 RequirementFactory.eINSTANCE.createActorInstance()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				RequirementFactory.eINSTANCE.createActorInstance()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 RequirementFactory.eINSTANCE.createStep()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				RequirementFactory.eINSTANCE.createStep()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 RationaleFactory.eINSTANCE.createIssue()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				RationaleFactory.eINSTANCE.createIssue()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 RationaleFactory.eINSTANCE.createProposal()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				RationaleFactory.eINSTANCE.createProposal()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 RationaleFactory.eINSTANCE.createSolution()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				RationaleFactory.eINSTANCE.createSolution()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 RationaleFactory.eINSTANCE.createCriterion()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				RationaleFactory.eINSTANCE.createCriterion()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 RationaleFactory.eINSTANCE.createAssessment()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				RationaleFactory.eINSTANCE.createAssessment()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 RationaleFactory.eINSTANCE.createComment()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				RationaleFactory.eINSTANCE.createComment()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 ChangeFactory.eINSTANCE.createModelChangePackage()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ChangeFactory.eINSTANCE.createModelChangePackage()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 ChangeFactory.eINSTANCE.createMergingIssue()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ChangeFactory.eINSTANCE.createMergingIssue()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 ChangeFactory.eINSTANCE.createMergingProposal()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ChangeFactory.eINSTANCE.createMergingProposal()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 ChangeFactory.eINSTANCE.createMergingSolution()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ChangeFactory.eINSTANCE.createMergingSolution()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 BugFactory.eINSTANCE.createBugReport()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				BugFactory.eINSTANCE.createBugReport()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 BugFactory.eINSTANCE.createBugResolution()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				BugFactory.eINSTANCE.createBugResolution()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 ComponentFactory.eINSTANCE.createComponent()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ComponentFactory.eINSTANCE.createComponent()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 ComponentFactory.eINSTANCE.createComponentService()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ComponentFactory.eINSTANCE.createComponentService()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				 ComponentFactory.eINSTANCE.createDeploymentNode()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ComponentFactory.eINSTANCE.createDeploymentNode()));
 	}
 
 	/**
@@ -338,7 +314,8 @@ public class ProjectItemProvider extends ItemProviderAdapter implements
 		if (object instanceof Project) {
 			Project project = (Project) object;
 			Collection<ModelElement> ret = project
-					.getElementsByClass(CompositeSection.class);
+					.getModelElementsByClass(DocumentPackage.eINSTANCE
+							.getCompositeSection());
 			return ret;
 
 		} else {

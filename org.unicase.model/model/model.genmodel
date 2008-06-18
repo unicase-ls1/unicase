@@ -28,6 +28,13 @@
       <genOperations ecoreOperation="model.ecore#//Project/addModelElement">
         <genParameters ecoreParameter="model.ecore#//Project/addModelElement/modelElement"/>
       </genOperations>
+      <genOperations ecoreOperation="model.ecore#//Project/getAllModelElements"/>
+      <genOperations ecoreOperation="model.ecore#//Project/getAllModelElementsbyClass">
+        <genParameters ecoreParameter="model.ecore#//Project/getAllModelElementsbyClass/modelElementClass"/>
+      </genOperations>
+      <genOperations ecoreOperation="model.ecore#//Project/getModelElementsByClass">
+        <genParameters ecoreParameter="model.ecore#//Project/getModelElementsByClass/modelElementClass"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//ModelElementId"/>
     <genClasses image="false" ecoreClass="model.ecore#//UniqueIdentifier">
