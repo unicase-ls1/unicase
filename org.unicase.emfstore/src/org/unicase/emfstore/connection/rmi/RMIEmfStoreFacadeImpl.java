@@ -28,6 +28,11 @@ import org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.changemanagment.VersionSpec;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 
+/**
+ * Implementation of a RMIEmfStoreFacade.
+ * @author koegel
+ *
+ */
 public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 		RMIEmfStoreFacade {
 
@@ -37,20 +42,30 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 
 	private AuthenticationControl accessControl;
 
-	private static final Log logger = LogFactory
+	private static final Log LOGGER = LogFactory
 			.getLog(RMIEmfStoreFacade.class);
 
+	/**
+	 * Default constructor.
+	 * @param emfStore the emf store
+	 * @param authenticationControl the authentication controler
+	 * @throws RemoteException if an RMI problem occurs
+	 */
 	public RMIEmfStoreFacadeImpl(EmfStore emfStore,
-			AuthenticationControl accessControl) throws RemoteException {
+			AuthenticationControl authenticationControl) throws RemoteException {
 		super();
 		this.emfStore = emfStore;
-		this.accessControl = accessControl;
+		this.accessControl = authenticationControl;
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade#createVersion(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+	 */
 	public String createVersion(String sessionId, String projectId,
 			String baseVersionSpec, String changePackage, String logMessage)
 			throws RemoteException, EmfStoreException {
-		logger.debug("Client call on createRevision RECEIVED.");
+		LOGGER.debug("Client call on createRevision RECEIVED.");
 		try {
 			return RMIUtil.eObjectToString(emfStore.createVersion(
 					(SessionId) RMIUtil.stringToEObject(sessionId),
@@ -69,11 +84,15 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 		return null;
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade#getChanges(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+	 */
 	public List<String> getChanges(String sessionId, String projectId,
 			String source, String target) throws RemoteException,
 			EmfStoreException {
 
-		logger.debug("Client call on getChanges RECEIVED.");
+		LOGGER.debug("Client call on getChanges RECEIVED.");
 		try {
 			List<String> result = new ArrayList<String>();
 			for (ChangePackage cp : emfStore.getChanges((SessionId) RMIUtil
@@ -94,10 +113,14 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 		return null;
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade#getHistoryInfo(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+	 */
 	public List<String> getHistoryInfo(String sessionId, String projectId,
 			String source, String target) throws RemoteException,
 			EmfStoreException {
-		logger.debug("Client call on getHistoryInfo RECEIVED.");
+		LOGGER.debug("Client call on getHistoryInfo RECEIVED.");
 		List<String> result = new ArrayList<String>();
 		try {
 			for (HistoryInfo info : emfStore.getHistoryInfo((SessionId) RMIUtil
@@ -117,9 +140,13 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 		return result;
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade#getProject(java.lang.String, java.lang.String, java.lang.String)
+	 */
 	public String getProject(String sessionId, String projectId,
 			String versionSpec) throws RemoteException, EmfStoreException {
-		logger.debug("Client call on getProject RECEIVED.");
+		LOGGER.debug("Client call on getProject RECEIVED.");
 		try {
 			return RMIUtil.eObjectToString(emfStore.getProject(
 					(SessionId) RMIUtil.stringToEObject(sessionId),
@@ -135,9 +162,13 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 		return null;
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade#getProjectList(java.lang.String)
+	 */
 	public List<String> getProjectList(String sessionId)
 			throws RemoteException, EmfStoreException {
-		logger.debug("Client call on getProjectList RECEIVED.");
+		LOGGER.debug("Client call on getProjectList RECEIVED.");
 		try {
 			List<String> result = new ArrayList<String>();
 			for (ProjectInfo pi : emfStore.getProjectList((SessionId) RMIUtil
@@ -155,9 +186,13 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 		return null;
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade#login(java.lang.String, java.lang.String, java.lang.String)
+	 */
 	public String login(String username, String password, String serverInfo)
 			throws RemoteException, AccessControlException {
-		logger.debug("Client call on login RECEIVED.");
+		LOGGER.debug("Client call on login RECEIVED.");
 		try {
 			return RMIUtil.eObjectToString(accessControl.logIn(username,
 					password));
@@ -166,9 +201,13 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 		}
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade#resolveVersionSpec(java.lang.String, java.lang.String, java.lang.String)
+	 */
 	public String resolveVersionSpec(String sessionId, String projectId,
 			String versionSpec) throws RemoteException, EmfStoreException {
-		logger.debug("Client call on resolveVersionSpec RECEIVED.");
+		LOGGER.debug("Client call on resolveVersionSpec RECEIVED.");
 		try {
 			return RMIUtil.eObjectToString(emfStore.resolveVersionSpec(
 					(SessionId) RMIUtil.stringToEObject(sessionId),
@@ -184,10 +223,14 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 		return null;
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade#createProject(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+	 */
 	public String createProject(String sessionId, String name,
 			String description, String logMessage) throws RemoteException,
 			EmfStoreException {
-		logger.debug("Client call on createProject RECEIVED.");
+		LOGGER.debug("Client call on createProject RECEIVED.");
 		try {
 			return RMIUtil.eObjectToString(emfStore.createProject(
 					(SessionId) RMIUtil.stringToEObject(sessionId), name,
@@ -203,6 +246,10 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 		return null;
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade#sendString(java.lang.String)
+	 */
 	public void sendString(String str) throws RemoteException {
 		System.out.println("....");
 		System.out.println(str);

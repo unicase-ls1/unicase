@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.emfstore.storage;
 
 import java.util.ArrayList;
@@ -6,8 +12,6 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -22,10 +26,17 @@ import org.hibernate.cfg.Environment;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
 import org.unicase.model.ModelPackage;
 
+/**
+ * Implementation of a {@link ResourceStorage} backed by a TeneoDBResource.
+ * @author koegel
+ *
+ */
 public class TeneoStorage implements ResourceStorage {
 
-	private final Log logger = LogFactory.getLog(this.getClass());
-
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.emfstore.storage.ResourceStorage#init(java.util.Properties)
+	 */
 	public URI init(Properties properties) {
 
 		// create hb store
@@ -60,6 +71,10 @@ public class TeneoStorage implements ResourceStorage {
 		return URI.createURI(uriStr);
 	}
 
+	/**
+	 * Retrieve all unicase EPackages.
+	 * @return a list of EPackages
+	 */
 	private EPackage[] getUnicaseModelPackages() {
 
 		List<EPackage> packages = new ArrayList<EPackage>();
@@ -88,10 +103,10 @@ public class TeneoStorage implements ResourceStorage {
 	}
 
 	/**
-	 * Get all subpackages recursivly
+	 * Get all subpackages recursivly.
 	 * 
-	 * @param package1
-	 * @return
+	 * @param package1 parent package
+	 * @return a set of sibling packages
 	 * 
 	 * @generated NOT
 	 */
