@@ -75,8 +75,7 @@ public class AssociationCreateCommand extends CreateElementCommand {
 			return false;
 		}
 		if (getSource() == null) {
-			return true; // link creation is in progress; source is not defined
-							// yet
+			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
 		if (getContainer() == null) {
@@ -92,7 +91,7 @@ public class AssociationCreateCommand extends CreateElementCommand {
 	 */
 	protected EObject doDefaultElementCreation() {
 		Association newElement = ClassesFactory.eINSTANCE.createAssociation();
-		getContainer().setNewElements(newElement);
+		getContainer().getNewElements().add(newElement);
 		newElement.setSource(getSource());
 		newElement.setTarget(getTarget());
 		return newElement;

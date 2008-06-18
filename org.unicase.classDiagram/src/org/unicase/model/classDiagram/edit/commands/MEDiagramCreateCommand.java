@@ -37,17 +37,6 @@ public class MEDiagramCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	public boolean canExecute() {
-		MEDiagram container = (MEDiagram) getElementToEdit();
-		if (container.getNewElements() != null) {
-			return false;
-		}
-		return true;
-	}
-
-	/**
-	 * @generated
-	 */
 	protected EClass getEClassToEdit() {
 		return DiagramPackage.eINSTANCE.getMEDiagram();
 	}
@@ -59,7 +48,7 @@ public class MEDiagramCreateCommand extends CreateElementCommand {
 		Class newElement = ClassesFactory.eINSTANCE.createClass();
 
 		MEDiagram owner = (MEDiagram) getElementToEdit();
-		owner.setNewElements(newElement);
+		owner.getNewElements().add(newElement);
 
 		MEDiagram childHolder = (MEDiagram) getElementToEdit();
 		childHolder.getElements().add(newElement);

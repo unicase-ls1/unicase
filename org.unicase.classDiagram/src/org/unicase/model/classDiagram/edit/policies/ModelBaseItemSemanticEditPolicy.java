@@ -349,11 +349,6 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public static boolean canCreateAssociation_3001(MEDiagram container,
 				Class source, Class target) {
-			if (container != null) {
-				if (container.getNewElements() != null) {
-					return false;
-				}
-			}
 			return canExistAssociation_3001(container, source, target);
 		}
 

@@ -374,10 +374,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 							.logError(
 									org.unicase.model.classDiagram.part.Messages.ModelDocumentProvider_isModifiable,
 									ex);
-					// Error message to log was initially taken from
-					// org.eclipse.
-					// gmf.runtime.diagram.ui.resources.editor.ide.internal
-					// .l10n.EditorMessages.StorageDocumentProvider_isModifiable
+					// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
 				}
 			}
 			return info.isReadOnly();
@@ -406,10 +403,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 							.logError(
 									org.unicase.model.classDiagram.part.Messages.ModelDocumentProvider_isModifiable,
 									ex);
-					// Error message to log was initially taken from
-					// org.eclipse.
-					// gmf.runtime.diagram.ui.resources.editor.ide.internal
-					// .l10n.EditorMessages.StorageDocumentProvider_isModifiable
+					// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
 				}
 			}
 			return info.isModifiable();
@@ -612,7 +606,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 				monitor
 						.beginTask(
 								org.unicase.model.classDiagram.part.Messages.ModelDocumentProvider_SaveDiagramTask,
-								resources.size() + 1); // "Saving diagram"
+								resources.size() + 1); //"Saving diagram"
 				for (Iterator it = resources.iterator(); it.hasNext();) {
 					Resource nextResource = (Resource) it.next();
 					monitor
@@ -737,11 +731,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 						.logError(
 								org.unicase.model.classDiagram.part.Messages.ModelDocumentProvider_handleElementContentChanged,
 								ex);
-				// Error message to log was initially taken from
-				// org.eclipse.gmf.
-				// runtime.diagram.ui.resources.editor.ide.internal
-				// .l10n.EditorMessages
-				// .FileDocumentProvider_handleElementContentChanged
+				// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.FileDocumentProvider_handleElementContentChanged
 			}
 		}
 		changedResource.unload();
@@ -901,7 +891,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 		}
 
 		/**
-		 * @generated
+		 * @generated NOT
 		 */
 		public void dispose() {
 			// JH: Check this
