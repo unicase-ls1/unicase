@@ -226,9 +226,10 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 					password));
 	}
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	//begin of custom code
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.workspace.Usersession#setPassword(java.lang.String)
 	 * @generated NOT
 	 */
 	public void setPassword(String newPassword) {
@@ -237,6 +238,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 			setPersistentPassword(newPassword);
 		}
 	}
+	//end of custom code
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -368,9 +370,10 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 					oldSavePassword, savePassword));
 	}
 
-	/**
+	//begin of custom code
+	/** 
+	 * {@inheritDoc}
 	 * @see org.unicase.workspace.Usersession#setSavePassword(boolean)
-	 * 
 	 * @generated NOT
 	 */
 	public void setSavePassword(boolean newSavePassword) {
@@ -381,9 +384,12 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 			setPersistentPassword(null);
 		}
 	}
-
+	//begin of custom code
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * Return whether session is logged in.
+	 * @return true if session is logged in
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -391,9 +397,9 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 		return this.sessionId != null;
 	}
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.workspace.Usersession#logIn()
 	 * @generated NOT
 	 */
 	public void logIn() throws EmfStoreException, AccessControlException {
@@ -408,9 +414,9 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 		this.setSessionId(connectionManager.logIn(username, password, copy));
 	}
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.workspace.Usersession#checkout(org.unicase.emfstore.esmodel.ProjectIfo)
 	 * @generated NOT
 	 */
 	public ProjectSpace checkout(ProjectInfo projectInfo)
@@ -429,7 +435,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 		}
 		return this.workspaceManager;
 	}
-
+	//end of custom code
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 

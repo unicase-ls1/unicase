@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
-import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 
 /**
@@ -226,42 +225,53 @@ public interface Usersession extends EObject {
 	 */
 	boolean isLoggedIn();
 
+	//begin of custom code
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * Log in. 
+	 * @throws AccessControlException if login fails.
+	 * @throws EmfStoreException if anything else fails.
+	 * <!-- end-user-doc -->
 	 * 
-	 * @throws ConnectionException
-	 * @throws EmfStoreException
 	 * @model
 	 * @generated NOT
 	 */
 	void logIn() throws AccessControlException, EmfStoreException;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * Checkout a project to the local workspace.
+	 * @param projectInfo a project info describing the project and its version
+	 * @return a Project space containing the project
+	 * @throws EmfStoreException
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @model
-	 * @return
-	 * @throws EmfStoreException
 	 * 
 	 * @generated NOT
 	 */
 	ProjectSpace checkout(ProjectInfo projectInfo) throws EmfStoreException;
 
 	/**
-	 * @return
-	 * @throws ConnectionException
-	 * @throws EmfStoreException
+	 * Get the list of remotely available projects.
+	 * @return a list of project infos
+	 * @throws EmfStoreException if retrieval fails
 	 * 
 	 * @generated NOT
 	 */
 	List<ProjectInfo> getRemoteProjectList() throws EmfStoreException;
 
 	/**
-	 * @throws AccessControlException
-	 * @throws EmfStoreException
+	 * Create a project on the server.
+	 * @param name the project name
+	 * @param description the project description
+	 * @throws AccessControlException if creating projects is not allowed
+	 * @throws EmfStoreException if creation fails
 	 * 
 	 * @generated NOT
 	 */
 	void createProject(String name, String description)
 			throws AccessControlException, EmfStoreException;
+	//end of custom code
 } // Usersession
