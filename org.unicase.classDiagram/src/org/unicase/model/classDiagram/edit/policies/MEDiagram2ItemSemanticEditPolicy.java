@@ -41,7 +41,7 @@ public class MEDiagram2ItemSemanticEditPolicy
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
@@ -54,7 +54,7 @@ public class MEDiagram2ItemSemanticEditPolicy
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
