@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.ui.navigator.commands;
 
 import java.util.ArrayList;
@@ -91,7 +97,7 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 			if (meCounts.containsKey(me.eClass())) {
 				// if EClass for this ME is already added to the map,
 				// increment its count.
-				EClassCount eclassCount = (EClassCount) meCounts.get(me
+				EClassCount eclassCount = meCounts.get(me
 						.eClass());
 				eclassCount.setCount(eclassCount.getCount() + 1);
 			} else {
