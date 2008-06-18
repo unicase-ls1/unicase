@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.ui.esbrowser.dialogs;
 
 import org.eclipse.emf.common.util.EList;
@@ -147,6 +153,7 @@ public class RepositoryLoginDialog extends Dialog implements Listener,
 
 					domain.getCommandStack().execute(
 							new RecordingCommand(domain) {
+								@Override
 								protected void doExecute() {
 									WorkspaceManager.getInstance()
 											.getCurrentWorkspace()
@@ -159,6 +166,7 @@ public class RepositoryLoginDialog extends Dialog implements Listener,
 							.getSelectionIndex() - 1);
 				}
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
+					@Override
 					protected void doExecute() {
 						session.setPassword(password.getText());
 						session.setSavePassword(savePassword.getSelection());
