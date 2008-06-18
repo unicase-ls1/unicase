@@ -29,7 +29,7 @@ import org.unicase.emfstore.esmodel.changemanagment.LogMessage;
 import org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.changemanagment.Version;
 import org.unicase.emfstore.esmodel.changemanagment.VersionSpec;
-import org.unicase.emfstore.exceptions.DataBaseException;
+import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidProjectIdException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
@@ -274,9 +274,9 @@ public class EmfStoreImpl implements EmfStore {
 		try {
 			getServerSpace().save();
 		} catch (IOException e) {
-			throw new DataBaseException(DataBaseException.NOSAVE, e);
+			throw new StorageException(StorageException.NOSAVE, e);
 		} catch (NullPointerException e) {
-			throw new DataBaseException(DataBaseException.NOSAVE, e);
+			throw new StorageException(StorageException.NOSAVE, e);
 		}
 	}
 
