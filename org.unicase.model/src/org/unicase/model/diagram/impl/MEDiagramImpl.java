@@ -148,7 +148,8 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 		if (newElements == null) {
 			newElements = new EObjectContainmentEList<ModelElement>(ModelElement.class, this, DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS);
 		}
-		return newElements;
+		//JH: cache instance
+		return new DiagramNewElementsList(getElements(), getProject());
 	}
 
 	/**
