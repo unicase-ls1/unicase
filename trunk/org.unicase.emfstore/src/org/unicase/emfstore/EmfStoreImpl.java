@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.emfstore;
 
 import java.io.IOException;
@@ -6,8 +12,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.accesscontrol.AuthorizationControl;
@@ -41,9 +45,9 @@ public class EmfStoreImpl implements EmfStore {
 
 	private ServerSpace serverSpace;
 
-	private static final Log logger = LogFactory.getLog(EmfStoreImpl.class);
+	//private static final Log LOGGER = LogFactory.getLog(EmfStoreImpl.class);
 
-	private AuthorizationControl authorizationControl;
+	//private AuthorizationControl authorizationControl;
 
 	/**
 	 * Default constructor.
@@ -58,7 +62,7 @@ public class EmfStoreImpl implements EmfStore {
 	public EmfStoreImpl(ServerSpace serverSpace,
 			AuthorizationControl authorizationControl, Properties properties) {
 		this.serverSpace = serverSpace;
-		this.authorizationControl = authorizationControl;
+		//this.authorizationControl = authorizationControl;
 	}
 
 	/**

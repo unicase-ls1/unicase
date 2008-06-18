@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.emfstore;
 
 import java.util.Date;
@@ -32,8 +38,19 @@ import org.unicase.model.document.LeafSection;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.requirement.RequirementFactory;
 
+/**
+ * A Stub implementation of the EmfStore interface.
+ * Will only return dummy values.
+ * 
+ * @author koegel
+ *
+ */
 public class EmfStoreStub implements EmfStore {
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.emfstore.EmfStore#createVersion(org.unicase.emfstore.esmodel.SessionId, org.unicase.emfstore.esmodel.ProjectId, org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec, org.unicase.emfstore.esmodel.changemanagment.ChangePackage, org.unicase.emfstore.esmodel.changemanagment.LogMessage)
+	 */
 	public PrimaryVersionSpec createVersion(SessionId sessionId,
 			ProjectId projectId, PrimaryVersionSpec baseVersionSpec,
 			ChangePackage changePackage, LogMessage logMessage)
@@ -42,6 +59,10 @@ public class EmfStoreStub implements EmfStore {
 		return null;
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.emfstore.EmfStore#getChanges(org.unicase.emfstore.esmodel.SessionId, org.unicase.emfstore.esmodel.ProjectId, org.unicase.emfstore.esmodel.changemanagment.VersionSpec, org.unicase.emfstore.esmodel.changemanagment.VersionSpec)
+	 */
 	public List<ChangePackage> getChanges(SessionId sessionId,
 			ProjectId projectId, VersionSpec source, VersionSpec target)
 			throws EmfStoreException {
@@ -49,6 +70,10 @@ public class EmfStoreStub implements EmfStore {
 		return null;
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.emfstore.EmfStore#getHistoryInfo(org.unicase.emfstore.esmodel.SessionId, org.unicase.emfstore.esmodel.ProjectId, org.unicase.emfstore.esmodel.changemanagment.VersionSpec, org.unicase.emfstore.esmodel.changemanagment.VersionSpec)
+	 */
 	public List<HistoryInfo> getHistoryInfo(SessionId sessionId,
 			ProjectId projectId, VersionSpec source, VersionSpec target)
 			throws EmfStoreException {
@@ -56,11 +81,19 @@ public class EmfStoreStub implements EmfStore {
 		return null;
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.emfstore.EmfStore#getProject(org.unicase.emfstore.esmodel.SessionId, org.unicase.emfstore.esmodel.ProjectId, org.unicase.emfstore.esmodel.changemanagment.VersionSpec)
+	 */
 	public Project getProject(SessionId sessionId, ProjectId projectId,
 			VersionSpec versionSpec) throws EmfStoreException {
 		return createDummyProject();
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.emfstore.EmfStore#getProjectList(org.unicase.emfstore.esmodel.SessionId)
+	 */
 	public List<ProjectInfo> getProjectList(SessionId sessionId)
 			throws EmfStoreException {
 		EList<ProjectInfo> ret = new BasicEList<ProjectInfo>();
@@ -78,6 +111,10 @@ public class EmfStoreStub implements EmfStore {
 		return ret;
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.emfstore.EmfStore#resolveVersionSpec(org.unicase.emfstore.esmodel.SessionId, org.unicase.emfstore.esmodel.ProjectId, org.unicase.emfstore.esmodel.changemanagment.VersionSpec)
+	 */
 	public PrimaryVersionSpec resolveVersionSpec(SessionId sessionId,
 			ProjectId projectId, VersionSpec versionSpec)
 			throws EmfStoreException {
@@ -87,6 +124,10 @@ public class EmfStoreStub implements EmfStore {
 		return primaryVersionSpec;
 	}
 
+	/**
+	 * Returns a dummy project instance.
+	 * @return a project
+	 */
 	public static Project createDummyProject() {
 		// Generate the elements of the model
 
@@ -181,6 +222,10 @@ public class EmfStoreStub implements EmfStore {
 		// end of generation
 	}
 
+	/**
+	 * Creates a dummy project history instance.
+	 * @param serverSpace the serverspace to add the history to
+	 */
 	public static void createDummyProjectHistories(ServerSpace serverSpace) {
 		EsmodelFactory esmodelFactory = EsmodelFactory.eINSTANCE;
 		ProjectHistory projectHistory = esmodelFactory.createProjectHistory();
@@ -211,6 +256,10 @@ public class EmfStoreStub implements EmfStore {
 		serverSpace.getProjects().add(projectHistory);
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.emfstore.EmfStore#createProject(org.unicase.emfstore.esmodel.SessionId, java.lang.String, java.lang.String, org.unicase.emfstore.esmodel.changemanagment.LogMessage)
+	 */
 	public ProjectInfo createProject(SessionId sessionId, String name,
 			String description, LogMessage logMessage) throws EmfStoreException {
 		ProjectHistory projectHistory = EsmodelFactory.eINSTANCE
