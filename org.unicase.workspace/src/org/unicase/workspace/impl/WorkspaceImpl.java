@@ -89,17 +89,20 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 */
 	protected EList<Usersession> usersessions;
 
+	//begin of custom code
 	/**
 	 * The current connection manager used to connect to the server(s).
 	 * 
 	 * @generated NOT
 	 */
 	private ConnectionManager connectionManager;
-
+	//end of custom code
+	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated 
+	 * 
 	 */
 	protected WorkspaceImpl() {
 		super();
@@ -170,19 +173,13 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 				.getSessionId(), projectInfo.getProjectId(), projectInfo
 				.getVersion());
 
-		// resolve version spec if neccessary
-		final PrimaryVersionSpec primaryVersionSpec;
-		if (projectInfo.getVersion() instanceof PrimaryVersionSpec) {
-			primaryVersionSpec = (PrimaryVersionSpec) projectInfo.getVersion();
-		} else {
-			primaryVersionSpec = this.connectionManager.resolveVersionSpec(
-					usersession.getSessionId(), projectInfo.getProjectId(),
-					projectInfo.getVersion());
-		}
+		final PrimaryVersionSpec primaryVersionSpec = projectInfo.getVersion();
+		
 		// init project space
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
 			protected void doExecute() {
 				projectSpace = WorkspaceFactory.eINSTANCE.createProjectSpace();
 				projectSpace.setProjectId(projectInfo.getProjectId());

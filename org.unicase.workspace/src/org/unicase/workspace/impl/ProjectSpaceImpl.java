@@ -186,6 +186,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 */
 	protected PrimaryVersionSpec baseVersion;
 
+	//begin of custom code
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -194,7 +195,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	protected ProjectSpaceImpl() {
 		super();
 	}
-
+	//end of custom code
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 

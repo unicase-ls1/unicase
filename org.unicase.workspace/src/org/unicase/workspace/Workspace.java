@@ -92,9 +92,11 @@ public interface Workspace extends EObject, IAdaptable {
 	EList<Usersession> getUsersessions();
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @throws EmfStoreException
+	 * Checkout a project to the workspace.
+	 * @param usersession the usersession
+	 * @param projectInfo the project info describing the project and version
+	 * @throws EmfStoreException if checkout fails
+	 * @return the project space containing the project
 	 * @model
 	 * @generated NOT
 	 */
@@ -102,7 +104,9 @@ public interface Workspace extends EObject, IAdaptable {
 			throws EmfStoreException;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * Save the workspace to the resource.
+	 * <!-- end-user-doc -->
 	 * 
 	 * @model
 	 * @generated
@@ -118,24 +122,26 @@ public interface Workspace extends EObject, IAdaptable {
 	boolean isDirty();
 
 	/**
-	 * @param connectionManager
+	 * Set the workspace connection manager.
+	 * @param connectionManager the connection manager
 	 * 
 	 * @generated NOT
 	 */
-	public void setConnectionManager(ConnectionManager connectionManager);
+	void setConnectionManager(ConnectionManager connectionManager);
 
 	/**
-	 * @param resource
+	 * Set the workspace resource.
+	 * @param resource the resource
 	 * 
 	 * @generated NOT
 	 */
-	public void setResource(Resource resource);
+	void setResource(Resource resource);
 
 	/**
-	 * 
+	 * Init the workspace and its projectspaces.
 	 * 
 	 * @generated NOT
 	 */
-	public void init();
+	void init();
 
 } // Workspace

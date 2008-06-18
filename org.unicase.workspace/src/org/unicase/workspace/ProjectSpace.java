@@ -291,34 +291,44 @@ public interface ProjectSpace extends EObject {
 	void setBaseVersion(PrimaryVersionSpec value);
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @throws EmfStoreException
+	 * <!-- begin-user-doc -->
+	 * Commit the all pending changes of the project.
+	 * @return new base version
+	 * @throws EmfStoreException if commit fails
+	 * <!-- end-user-doc -->
 	 * @model
 	 * @generated NOT
 	 */
 	PrimaryVersionSpec commit() throws EmfStoreException;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * Update the project to the head version.
+	 * @throws EmfStoreException if update fails
+	 * <!-- end-user-doc -->
 	 * 
-	 * @throws EmfStoreException
 	 * @model
 	 * @generated NOT
 	 */
 	void update() throws EmfStoreException;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * Update the project to the given version.
+	 * @param version the version to update to
+	 * @throws EmfStoreException if update fails
 	 * 
-	 * @throws EmfStoreException
+	 * <!-- end-user-doc -->
+	 * 
 	 * @model
 	 * @generated NOT
 	 */
 	void update(VersionSpec version) throws EmfStoreException;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * Drop all changes to the local project.
+	 * <!-- end-user-doc -->
 	 * 
 	 * @model
 	 * @generated
@@ -326,7 +336,9 @@ public interface ProjectSpace extends EObject {
 	void revert();
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * Save the current state and changes.
+	 * <!-- end-user-doc -->
 	 * 
 	 * @model
 	 * @generated
@@ -334,7 +346,9 @@ public interface ProjectSpace extends EObject {
 	void save();
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * Initialize project space. Start change tracking.
+	 * <!-- end-user-doc -->
 	 * 
 	 * @model
 	 * @generated
@@ -342,7 +356,9 @@ public interface ProjectSpace extends EObject {
 	void init();
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * Retrieve the project info.
+	 * <!-- end-user-doc -->
 	 * 
 	 * @model kind="operation"
 	 * @generated
@@ -350,7 +366,9 @@ public interface ProjectSpace extends EObject {
 	ProjectInfo getProjectInfo();
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * Returns if this project has pending changes.
+	 * <!-- end-user-doc -->
 	 * 
 	 * @model kind="operation"
 	 * @generated
