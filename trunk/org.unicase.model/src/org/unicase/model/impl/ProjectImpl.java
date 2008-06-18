@@ -224,15 +224,4 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-//	public Collection<ModelElement> getElementsByClass(
-//			Class<? extends EObject> elementType) {
-//		Collection<ModelElement> returnList = new ArrayList<ModelElement>();
-//		for (ModelElement currentME : modelElements) {
-//			if (elementType.isAssignableFrom(currentME.getClass())) {
-//				returnList.add(currentME);
-//			}
-//		}
-//		return returnList;
-//	}
-} // ProjectImpl
+}
