@@ -153,16 +153,19 @@ public interface EmfStore {
 	/**
 	 * Create a new project on the server.
 	 * 
+	 * @param sessionId
+	 *            the session id for authentication
 	 * @param name
 	 *            the name of the server
 	 * @param description
 	 *            the description
+	 * @param logMessage the logMessage
 	 * @return a {@link ProjectInfo} for the new project
 	 * @throws EmfStoreException
 	 *             if any error in the EmfStore occurs
 	 * 
 	 * @generated NOT
 	 */
-	ProjectInfo createProject(SessionId sessionid, String name,
+	ProjectInfo createProject(SessionId sessionId, String name,
 			String description, LogMessage logMessage) throws EmfStoreException;
 }

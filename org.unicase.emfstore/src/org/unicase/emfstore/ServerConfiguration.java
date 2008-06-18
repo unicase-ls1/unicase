@@ -8,14 +8,33 @@ package org.unicase.emfstore;
 
 import java.io.File;
 
-public class ServerConfiguration {
+/**
+ * Represents the current server configuration.
+ * @author koegel
+ *
+ */
+public final class ServerConfiguration {
 
-	public final static String RESOURCE_STORAGE = "ResourceStorage";
+	/**
+	 * Constant for the name of the Resource Storage Property.
+	 */
+	public static final String RESOURCE_STORAGE = "ResourceStorage";
 
-	public final static String DEFAULT_RESOURCE_STORAGE = "org.unicase.emfstore.storage.TeneoStorage";
+	/**
+	 * Constant for the Default Resource Storage.
+	 */
+	public static final String DEFAULT_RESOURCE_STORAGE = "org.unicase.emfstore.storage.TeneoStorage";
 //	public final static String DEFAULT_RESOURCE_STORAGE = "org.unicase.emfstore.storage.XMLStorage";
 
 	
+	private ServerConfiguration() {
+		//nothing to do
+	}
+	
+	/**
+	 * Return the configuration directory location.
+	 * @return the dir path string
+	 */
 	public static String getConfDirectory() {
 		StringBuffer sb = new StringBuffer(getServerHome());
 		sb.append(".");
@@ -25,10 +44,18 @@ public class ServerConfiguration {
 		return sb.toString();
 	}
 
+	/**
+	 * Return the configuration file location.
+	 * @return the file path string
+	 */
 	public static String getConfFile() {
 		return getConfDirectory() + "es.properties";
 	}
 
+	/**
+	 * Return the server home directory location.
+	 * @return the dir path string
+	 */
 	public static String getServerHome() {
 		StringBuffer sb = new StringBuffer(getUserHome());
 		sb.append(".unison");
@@ -38,6 +65,10 @@ public class ServerConfiguration {
 		return sb.toString();
 	}
 
+	/**
+	 * Return the user home directory location.
+	 * @return the dir path string
+	 */
 	public static String getUserHome() {
 		StringBuffer sb = new StringBuffer();
 		sb.append(System.getProperty("user.home"));

@@ -8,6 +8,7 @@ package org.unicase.emfstore;
 
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
+import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 
 /**
  * The activator class controls the emfstore life cycle.
@@ -28,8 +29,14 @@ public class Activator extends Plugin {
 	 * @see org.eclipse.core.runtime.Plugin#start(org.osgi.framework.BundleContext)
 	 */
 	@Override
-	public void start(BundleContext context) throws Exception {
-		super.start(context);
+	public void start(BundleContext context) throws FatalEmfStoreException {
+		try {
+			super.start(context);
+		//BEGIN SUPRESS CATCH EXCEPTION
+		} catch (Exception e) {
+			throw new FatalEmfStoreException("Plugin Bundle start failed!", e);
+		}
+		//END SUPRESS CATCH EXCEPTION
 		plugin = this;
 	}
 
@@ -38,13 +45,20 @@ public class Activator extends Plugin {
 	 * {@inheritDoc}
 	 * @see org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
 	 */
-	public void stop(BundleContext context) throws Exception {
+	@Override
+	public void stop(BundleContext context) throws FatalEmfStoreException {
 		plugin = null;
-		super.stop(context);
+		try {
+			super.stop(context);
+		//BEGIN SUPRESS CATCH EXCEPTION
+		} catch (Exception e) {
+			throw new FatalEmfStoreException("Plugin Bundle stop failed!", e);
+		}
+		//END SUPRESS CATCH EXCEPTION
 	}
 
 	/**
-	 * Returns the shared instance
+	 * Returns the shared instance.
 	 * 
 	 * @return the shared instance
 	 */

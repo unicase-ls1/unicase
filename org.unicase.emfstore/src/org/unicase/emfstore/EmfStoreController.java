@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.emfstore;
 
 import java.io.File;
@@ -29,6 +35,13 @@ import org.unicase.emfstore.exceptions.DataBaseException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.storage.ResourceStorage;
 
+/**
+ * The {@link EmfStoreController} is controlling startup and shutdown of the
+ * EmfStore.
+ * 
+ * @author koegel
+ * 
+ */
 public class EmfStoreController implements IApplication {
 
 	private EmfStore emfStore;
@@ -40,7 +53,11 @@ public class EmfStoreController implements IApplication {
 
 	private static EmfStoreController instance;
 
-	public Object start(IApplicationContext context) throws Exception {
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.equinox.app.IApplication#start(org.eclipse.equinox.app.IApplicationContext)
+	 */
+	public Object start(IApplicationContext context) throws FatalEmfStoreException {
 
 		if (instance != null) {
 			throw new FatalEmfStoreException(
@@ -86,8 +103,8 @@ public class EmfStoreController implements IApplication {
 		return connectionHandlers;
 	}
 
-	private ServerSpace initServerSpace() throws FatalEmfStoreException,
-			DataBaseException {
+	private ServerSpace initServerSpace() throws FatalEmfStoreException
+			 {
 		ResourceStorage storage = initStorage(properties);
 		URI resourceUri = storage.init(properties);
 		ResourceSet resourceSet = new ResourceSetImpl();
@@ -95,7 +112,7 @@ public class EmfStoreController implements IApplication {
 		try {
 			resource.load(Collections.EMPTY_MAP);
 		} catch (IOException e) {
-			throw new DataBaseException(DataBaseException.NOLOAD, e);
+			throw new FatalEmfStoreException(DataBaseException.NOLOAD, e);
 		}
 		EList<EObject> contents = resource.getContents();
 		for (EObject content : contents) {
@@ -117,16 +134,21 @@ public class EmfStoreController implements IApplication {
 		try {
 			serverSpace.save();
 		} catch (IOException e) {
-			throw new DataBaseException(DataBaseException.NOSAVE, e);
+			throw new FatalEmfStoreException(DataBaseException.NOSAVE, e);
 		}
 		return serverSpace;
 	}
 
+	/**
+	 * Return the singleton instance of EmfStoreControler.
+	 * @return the instance
+	 */
 	public static EmfStoreController getInstance() {
 		return instance;
 	}
 
 	private void initLogging(Properties properties) {
+		//FIXME: fix logging config
 		// ConsoleAppender console = new ConsoleAppender(new SimpleLayout());
 		// try {
 		// FileAppender fileLog = new FileAppender(new SimpleLayout(),
@@ -198,6 +220,10 @@ public class EmfStoreController implements IApplication {
 		return properties;
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.equinox.app.IApplication#stop()
+	 */
 	public void stop() {
 		wakeForTermination();
 		for (ConnectionHandler handler : connectionHandlers) {
@@ -209,6 +235,8 @@ public class EmfStoreController implements IApplication {
 
 	/**
 	 * Shutdown EmfStore due to an fatal exception.
+	 * 
+	 * @param exception the fatal exception that triggered the shutdown
 	 * 
 	 * @generated NOT
 	 */
