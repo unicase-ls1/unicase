@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.emfstore.connection.rmi;
 
 import java.net.URL;
@@ -17,11 +23,23 @@ import org.unicase.emfstore.accesscontrol.AuthenticationControl;
 import org.unicase.emfstore.connection.ConnectionHandler;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 
+/**
+ * A connection handler implementation using RMI as trasnport layer.
+ * 
+ * @author koegel
+ *
+ */
 public class RMIConnectionHandler implements ConnectionHandler {
 
-	private final static String NAME = "RMI Connection Handler";
+	/**
+	 * String constant for the handlers name.
+	 */
+	private static final String NAME = "RMI Connection Handler";
 
-	public final static String RMI_NAME = "RMIEmfStoreFacade";
+	/**
+	 * String constant for the RMI Binding name.
+	 */
+	public static final String RMI_NAME = "RMIEmfStoreFacade";
 
 	private int port;
 
@@ -29,10 +47,17 @@ public class RMIConnectionHandler implements ConnectionHandler {
 
 	private static Log logger = LogFactory.getLog(ConnectionHandler.class);
 
+	/**
+	 * Default constructor.
+	 */
 	public RMIConnectionHandler() {
 		port = Registry.REGISTRY_PORT;
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.emfstore.connection.ConnectionHandler#init(org.unicase.emfstore.EmfStore, org.unicase.emfstore.accesscontrol.AuthenticationControl)
+	 */
 	public void init(EmfStore emfStore, AuthenticationControl accessControl)
 			throws FatalEmfStoreException {
 		/**
@@ -65,10 +90,18 @@ public class RMIConnectionHandler implements ConnectionHandler {
 		logger.debug("RMIConnectionHandler is running.");
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.emfstore.connection.ConnectionHandler#getName()
+	 */
 	public String getName() {
 		return NAME;
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.emfstore.connection.ConnectionHandler#stop(boolean)
+	 */
 	public void stop(boolean force) {
 		if (force) {
 			return;
