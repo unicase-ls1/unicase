@@ -142,7 +142,9 @@
         <module name="NestedIfDepth">
             <property name="max" value="2"/>
         </module>
-        <module name="IllegalCatch"/>
+        <module name="IllegalCatch">
+            <property name="id" value="IllegalExceptionCatch"/>
+        </module>
         <module name="IllegalThrows">
             <property name="illegalClassNames" value="java.lang.Throwable, java.lang.Error, java.lang.RuntimeException, java.lang.Exception"/>
         </module>
@@ -174,5 +176,11 @@
         <metadata name="com.atlassw.tools.eclipse.checkstyle.comment" value="No Supress Warning on manual code"/>
         <property name="offCommentFormat" value="//end of custom code"/>
         <property name="onCommentFormat" value="//begin of custom code"/>
+    </module>
+    <module name="SuppressionCommentFilter">
+        <metadata name="com.atlassw.tools.eclipse.checkstyle.comment" value="SupressCatchExceptionWarning"/>
+        <property name="offCommentFormat" value="//BEGIN SUPRESS CATCH EXCEPTION"/>
+        <property name="onCommentFormat" value="//END SUPRESS CATCH EXCEPTION"/>
+        <property name="messageFormat" value=".*Exception.*"/>
     </module>
 </module>
