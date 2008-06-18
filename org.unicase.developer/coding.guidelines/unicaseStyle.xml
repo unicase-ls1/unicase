@@ -164,7 +164,9 @@
     <module name="PackageHtml">
         <property name="severity" value="ignore"/>
     </module>
-    <module name="NewlineAtEndOfFile"/>
+    <module name="NewlineAtEndOfFile">
+        <property name="severity" value="ignore"/>
+    </module>
     <module name="Translation"/>
     <module name="SuppressionCommentFilter">
         <metadata name="com.atlassw.tools.eclipse.checkstyle.comment" value="Supress Warnings on EMF generated code"/>
