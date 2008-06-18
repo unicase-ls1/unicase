@@ -45,8 +45,10 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 	 */
 	private static final String MEEDITOR_PLUGIN_ID = "org.unicase.ui.meeditor";
 
-	/**
-	 * . ({@inheritDoc})
+	private static final String TRANSACTIONAL_EDITINGDOMAIN_ID = "org.unicase.EditingDomain";
+	
+	/**.
+	 * ({@inheritDoc})
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
@@ -63,7 +65,7 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 			final LeafSection leafSection = getLeafSection(event);
 			if (leafSection != null) {
 				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-						.getEditingDomain("org.unicase.EditingDomain");
+						.getEditingDomain(TRANSACTIONAL_EDITINGDOMAIN_ID);
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					protected void doExecute() {
 						leafSection.getModelElements().add(newMEInstance);
