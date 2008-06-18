@@ -77,7 +77,9 @@ public class MergingProposalImpl extends ProposalImpl implements
 	 */
 	public EList<MergingProposal> getConflictingProposals() {
 		if (conflictingProposals == null) {
-			conflictingProposals = new EObjectResolvingEList<MergingProposal>(MergingProposal.class, this, ChangePackage.MERGING_PROPOSAL__CONFLICTING_PROPOSALS);
+			conflictingProposals = new EObjectResolvingEList<MergingProposal>(
+					MergingProposal.class, this,
+					ChangePackage.MERGING_PROPOSAL__CONFLICTING_PROPOSALS);
 		}
 		return conflictingProposals;
 	}
@@ -88,11 +90,13 @@ public class MergingProposalImpl extends ProposalImpl implements
 	 */
 	public ModelChangePackage getPendingChanges() {
 		if (pendingChanges != null && pendingChanges.eIsProxy()) {
-			InternalEObject oldPendingChanges = (InternalEObject)pendingChanges;
-			pendingChanges = (ModelChangePackage)eResolveProxy(oldPendingChanges);
+			InternalEObject oldPendingChanges = (InternalEObject) pendingChanges;
+			pendingChanges = (ModelChangePackage) eResolveProxy(oldPendingChanges);
 			if (pendingChanges != oldPendingChanges) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ChangePackage.MERGING_PROPOSAL__PENDING_CHANGES, oldPendingChanges, pendingChanges));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							ChangePackage.MERGING_PROPOSAL__PENDING_CHANGES,
+							oldPendingChanges, pendingChanges));
 			}
 		}
 		return pendingChanges;
@@ -114,7 +118,9 @@ public class MergingProposalImpl extends ProposalImpl implements
 		ModelChangePackage oldPendingChanges = pendingChanges;
 		pendingChanges = newPendingChanges;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ChangePackage.MERGING_PROPOSAL__PENDING_CHANGES, oldPendingChanges, pendingChanges));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ChangePackage.MERGING_PROPOSAL__PENDING_CHANGES,
+					oldPendingChanges, pendingChanges));
 	}
 
 	/**
@@ -124,11 +130,12 @@ public class MergingProposalImpl extends ProposalImpl implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ChangePackage.MERGING_PROPOSAL__CONFLICTING_PROPOSALS:
-				return getConflictingProposals();
-			case ChangePackage.MERGING_PROPOSAL__PENDING_CHANGES:
-				if (resolve) return getPendingChanges();
-				return basicGetPendingChanges();
+		case ChangePackage.MERGING_PROPOSAL__CONFLICTING_PROPOSALS:
+			return getConflictingProposals();
+		case ChangePackage.MERGING_PROPOSAL__PENDING_CHANGES:
+			if (resolve)
+				return getPendingChanges();
+			return basicGetPendingChanges();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -141,13 +148,14 @@ public class MergingProposalImpl extends ProposalImpl implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ChangePackage.MERGING_PROPOSAL__CONFLICTING_PROPOSALS:
-				getConflictingProposals().clear();
-				getConflictingProposals().addAll((Collection<? extends MergingProposal>)newValue);
-				return;
-			case ChangePackage.MERGING_PROPOSAL__PENDING_CHANGES:
-				setPendingChanges((ModelChangePackage)newValue);
-				return;
+		case ChangePackage.MERGING_PROPOSAL__CONFLICTING_PROPOSALS:
+			getConflictingProposals().clear();
+			getConflictingProposals().addAll(
+					(Collection<? extends MergingProposal>) newValue);
+			return;
+		case ChangePackage.MERGING_PROPOSAL__PENDING_CHANGES:
+			setPendingChanges((ModelChangePackage) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -159,12 +167,12 @@ public class MergingProposalImpl extends ProposalImpl implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ChangePackage.MERGING_PROPOSAL__CONFLICTING_PROPOSALS:
-				getConflictingProposals().clear();
-				return;
-			case ChangePackage.MERGING_PROPOSAL__PENDING_CHANGES:
-				setPendingChanges((ModelChangePackage)null);
-				return;
+		case ChangePackage.MERGING_PROPOSAL__CONFLICTING_PROPOSALS:
+			getConflictingProposals().clear();
+			return;
+		case ChangePackage.MERGING_PROPOSAL__PENDING_CHANGES:
+			setPendingChanges((ModelChangePackage) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -176,10 +184,11 @@ public class MergingProposalImpl extends ProposalImpl implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ChangePackage.MERGING_PROPOSAL__CONFLICTING_PROPOSALS:
-				return conflictingProposals != null && !conflictingProposals.isEmpty();
-			case ChangePackage.MERGING_PROPOSAL__PENDING_CHANGES:
-				return pendingChanges != null;
+		case ChangePackage.MERGING_PROPOSAL__CONFLICTING_PROPOSALS:
+			return conflictingProposals != null
+					&& !conflictingProposals.isEmpty();
+		case ChangePackage.MERGING_PROPOSAL__PENDING_CHANGES:
+			return pendingChanges != null;
 		}
 		return super.eIsSet(featureID);
 	}

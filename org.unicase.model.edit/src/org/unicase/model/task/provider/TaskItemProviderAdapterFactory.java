@@ -125,7 +125,8 @@ public class TaskItemProviderAdapterFactory extends TaskAdapterFactory
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+		return parentAdapterFactory == null ? this : parentAdapterFactory
+				.getRootAdapterFactory();
 	}
 
 	/**
@@ -166,7 +167,8 @@ public class TaskItemProviderAdapterFactory extends TaskAdapterFactory
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter))) {
+			if (!(type instanceof Class)
+					|| (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -214,8 +216,10 @@ public class TaskItemProviderAdapterFactory extends TaskAdapterFactory
 	 * @generated
 	 */
 	public void dispose() {
-		if (actionItemItemProvider != null) actionItemItemProvider.dispose();
-		if (workPackageItemProvider != null) workPackageItemProvider.dispose();
+		if (actionItemItemProvider != null)
+			actionItemItemProvider.dispose();
+		if (workPackageItemProvider != null)
+			workPackageItemProvider.dispose();
 	}
 
 }

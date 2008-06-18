@@ -66,19 +66,15 @@ public class CriterionItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addAssessmentsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Criterion_assessments_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Criterion_assessments_feature", "_UI_Criterion_type"),
-				 RationalePackage.Literals.CRITERION__ASSESSMENTS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Criterion_assessments_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Criterion_assessments_feature",
+						"_UI_Criterion_type"),
+				RationalePackage.Literals.CRITERION__ASSESSMENTS, true, false,
+				true, null, null, null));
 	}
 
 	/**
@@ -88,7 +84,8 @@ public class CriterionItemProvider extends ModelElementItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Criterion"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/Criterion"));
 	}
 
 	/**
@@ -99,10 +96,9 @@ public class CriterionItemProvider extends ModelElementItemProvider implements
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Criterion)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Criterion_type") :
-			getString("_UI_Criterion_type") + " " + label;
+		String label = ((Criterion) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_Criterion_type")
+				: getString("_UI_Criterion_type") + " " + label;
 	}
 
 	/**

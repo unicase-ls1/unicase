@@ -132,10 +132,15 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	public static ModelPackage init() {
-		if (isInited) return (ModelPackage)EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
+		if (isInited)
+			return (ModelPackage) EPackage.Registry.INSTANCE
+					.getEPackage(ModelPackage.eNS_URI);
 
 		// Obtain or create and register package
-		ModelPackageImpl theModelPackage = (ModelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new ModelPackageImpl());
+		ModelPackageImpl theModelPackage = (ModelPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(eNS_URI)
+				: new ModelPackageImpl());
 
 		isInited = true;
 
@@ -143,16 +148,46 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		NotationPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		OrganizationPackageImpl theOrganizationPackage = (OrganizationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(OrganizationPackage.eNS_URI) : OrganizationPackage.eINSTANCE);
-		TaskPackageImpl theTaskPackage = (TaskPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) : TaskPackage.eINSTANCE);
-		DiagramPackageImpl theDiagramPackage = (DiagramPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI) : DiagramPackage.eINSTANCE);
-		ClassesPackageImpl theClassesPackage = (ClassesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ClassesPackage.eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ClassesPackage.eNS_URI) : ClassesPackage.eINSTANCE);
-		DocumentPackageImpl theDocumentPackage = (DocumentPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI) : DocumentPackage.eINSTANCE);
-		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI) : RequirementPackage.eINSTANCE);
-		RationalePackageImpl theRationalePackage = (RationalePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RationalePackage.eNS_URI) instanceof RationalePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RationalePackage.eNS_URI) : RationalePackage.eINSTANCE);
-		ChangePackageImpl theChangePackage = (ChangePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI) : ChangePackage.eINSTANCE);
-		BugPackageImpl theBugPackage = (BugPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BugPackage.eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BugPackage.eNS_URI) : BugPackage.eINSTANCE);
-		ComponentPackageImpl theComponentPackage = (ComponentPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ComponentPackage.eNS_URI) instanceof ComponentPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ComponentPackage.eNS_URI) : ComponentPackage.eINSTANCE);
+		OrganizationPackageImpl theOrganizationPackage = (OrganizationPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(OrganizationPackage.eNS_URI)
+				: OrganizationPackage.eINSTANCE);
+		TaskPackageImpl theTaskPackage = (TaskPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(TaskPackage.eNS_URI)
+				: TaskPackage.eINSTANCE);
+		DiagramPackageImpl theDiagramPackage = (DiagramPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(DiagramPackage.eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(DiagramPackage.eNS_URI)
+				: DiagramPackage.eINSTANCE);
+		ClassesPackageImpl theClassesPackage = (ClassesPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(ClassesPackage.eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(ClassesPackage.eNS_URI)
+				: ClassesPackage.eINSTANCE);
+		DocumentPackageImpl theDocumentPackage = (DocumentPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(DocumentPackage.eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(DocumentPackage.eNS_URI)
+				: DocumentPackage.eINSTANCE);
+		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(RequirementPackage.eNS_URI)
+				: RequirementPackage.eINSTANCE);
+		RationalePackageImpl theRationalePackage = (RationalePackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(RationalePackage.eNS_URI) instanceof RationalePackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(RationalePackage.eNS_URI)
+				: RationalePackage.eINSTANCE);
+		ChangePackageImpl theChangePackage = (ChangePackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(ChangePackage.eNS_URI)
+				: ChangePackage.eINSTANCE);
+		BugPackageImpl theBugPackage = (BugPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(BugPackage.eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(BugPackage.eNS_URI)
+				: BugPackage.eINSTANCE);
+		ComponentPackageImpl theComponentPackage = (ComponentPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(ComponentPackage.eNS_URI) instanceof ComponentPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(ComponentPackage.eNS_URI)
+				: ComponentPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theModelPackage.createPackageContents();
@@ -199,7 +234,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	public EAttribute getModelElement_Name() {
-		return (EAttribute)modelElementEClass.getEStructuralFeatures().get(0);
+		return (EAttribute) modelElementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -207,7 +242,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	public EAttribute getModelElement_Description() {
-		return (EAttribute)modelElementEClass.getEStructuralFeatures().get(1);
+		return (EAttribute) modelElementEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -215,7 +250,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	public EReference getModelElement_Identifier() {
-		return (EReference)modelElementEClass.getEStructuralFeatures().get(2);
+		return (EReference) modelElementEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -223,7 +258,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	public EReference getModelElement_ReaderInfos() {
-		return (EReference)modelElementEClass.getEStructuralFeatures().get(3);
+		return (EReference) modelElementEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -231,7 +266,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	public EReference getModelElement_Annotations() {
-		return (EReference)modelElementEClass.getEStructuralFeatures().get(4);
+		return (EReference) modelElementEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -239,7 +274,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	public EReference getModelElement_IncomingDocumentReferences() {
-		return (EReference)modelElementEClass.getEStructuralFeatures().get(5);
+		return (EReference) modelElementEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -247,7 +282,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	public EReference getModelElement_LeafSection() {
-		return (EReference)modelElementEClass.getEStructuralFeatures().get(6);
+		return (EReference) modelElementEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -263,7 +298,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	public EReference getProject_ModelElements() {
-		return (EReference)projectEClass.getEStructuralFeatures().get(0);
+		return (EReference) projectEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -287,7 +322,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	public EAttribute getUniqueIdentifier_Id() {
-		return (EAttribute)uniqueIdentifierEClass.getEStructuralFeatures().get(0);
+		return (EAttribute) uniqueIdentifierEClass.getEStructuralFeatures()
+				.get(0);
 	}
 
 	/**
@@ -303,7 +339,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	public EAttribute getReaderInfo_Date() {
-		return (EAttribute)readerInfoEClass.getEStructuralFeatures().get(0);
+		return (EAttribute) readerInfoEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -311,7 +347,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	public EReference getReaderInfo_ReaderId() {
-		return (EReference)readerInfoEClass.getEStructuralFeatures().get(1);
+		return (EReference) readerInfoEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -327,7 +363,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	public EReference getAnnotation_AnnotatedModelElements() {
-		return (EReference)annotationEClass.getEStructuralFeatures().get(0);
+		return (EReference) annotationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -335,7 +371,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	public ModelFactory getModelFactory() {
-		return (ModelFactory)getEFactoryInstance();
+		return (ModelFactory) getEFactoryInstance();
 	}
 
 	/**
@@ -352,7 +388,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if (isCreated)
+			return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -362,7 +399,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		createEReference(modelElementEClass, MODEL_ELEMENT__IDENTIFIER);
 		createEReference(modelElementEClass, MODEL_ELEMENT__READER_INFOS);
 		createEReference(modelElementEClass, MODEL_ELEMENT__ANNOTATIONS);
-		createEReference(modelElementEClass, MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES);
+		createEReference(modelElementEClass,
+				MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES);
 		createEReference(modelElementEClass, MODEL_ELEMENT__LEAF_SECTION);
 
 		projectEClass = createEClass(PROJECT);
@@ -395,7 +433,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if (isInitialized)
+			return;
 		isInitialized = true;
 
 		// Initialize package
@@ -404,17 +443,28 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		OrganizationPackage theOrganizationPackage = (OrganizationPackage)EPackage.Registry.INSTANCE.getEPackage(OrganizationPackage.eNS_URI);
-		TaskPackage theTaskPackage = (TaskPackage)EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI);
-		DiagramPackage theDiagramPackage = (DiagramPackage)EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI);
-		ClassesPackage theClassesPackage = (ClassesPackage)EPackage.Registry.INSTANCE.getEPackage(ClassesPackage.eNS_URI);
-		DocumentPackage theDocumentPackage = (DocumentPackage)EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI);
-		RequirementPackage theRequirementPackage = (RequirementPackage)EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI);
-		RationalePackage theRationalePackage = (RationalePackage)EPackage.Registry.INSTANCE.getEPackage(RationalePackage.eNS_URI);
-		ChangePackage theChangePackage = (ChangePackage)EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI);
-		BugPackage theBugPackage = (BugPackage)EPackage.Registry.INSTANCE.getEPackage(BugPackage.eNS_URI);
-		ComponentPackage theComponentPackage = (ComponentPackage)EPackage.Registry.INSTANCE.getEPackage(ComponentPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		OrganizationPackage theOrganizationPackage = (OrganizationPackage) EPackage.Registry.INSTANCE
+				.getEPackage(OrganizationPackage.eNS_URI);
+		TaskPackage theTaskPackage = (TaskPackage) EPackage.Registry.INSTANCE
+				.getEPackage(TaskPackage.eNS_URI);
+		DiagramPackage theDiagramPackage = (DiagramPackage) EPackage.Registry.INSTANCE
+				.getEPackage(DiagramPackage.eNS_URI);
+		ClassesPackage theClassesPackage = (ClassesPackage) EPackage.Registry.INSTANCE
+				.getEPackage(ClassesPackage.eNS_URI);
+		DocumentPackage theDocumentPackage = (DocumentPackage) EPackage.Registry.INSTANCE
+				.getEPackage(DocumentPackage.eNS_URI);
+		RequirementPackage theRequirementPackage = (RequirementPackage) EPackage.Registry.INSTANCE
+				.getEPackage(RequirementPackage.eNS_URI);
+		RationalePackage theRationalePackage = (RationalePackage) EPackage.Registry.INSTANCE
+				.getEPackage(RationalePackage.eNS_URI);
+		ChangePackage theChangePackage = (ChangePackage) EPackage.Registry.INSTANCE
+				.getEPackage(ChangePackage.eNS_URI);
+		BugPackage theBugPackage = (BugPackage) EPackage.Registry.INSTANCE
+				.getEPackage(BugPackage.eNS_URI);
+		ComponentPackage theComponentPackage = (ComponentPackage) EPackage.Registry.INSTANCE
+				.getEPackage(ComponentPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
+				.getEPackage(EcorePackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theOrganizationPackage);
@@ -437,46 +487,112 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		annotationEClass.getESuperTypes().add(this.getModelElement());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(modelElementEClass, ModelElement.class, "ModelElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getModelElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getModelElement_Description(), ecorePackage.getEString(), "description", null, 0, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModelElement_Identifier(), this.getModelElementId(), null, "identifier", null, 0, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getModelElement_Identifier().getEKeys().add(this.getUniqueIdentifier_Id());
-		initEReference(getModelElement_ReaderInfos(), this.getReaderInfo(), null, "readerInfos", null, 0, -1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModelElement_Annotations(), this.getAnnotation(), this.getAnnotation_AnnotatedModelElements(), "annotations", null, 0, -1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModelElement_IncomingDocumentReferences(), theDocumentPackage.getLeafSection(), null, "incomingDocumentReferences", null, 0, -1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModelElement_LeafSection(), theDocumentPackage.getLeafSection(), theDocumentPackage.getLeafSection_ModelElements(), "leafSection", null, 0, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(modelElementEClass, ModelElement.class, "ModelElement",
+				IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getModelElement_Name(), ecorePackage.getEString(),
+				"name", null, 0, 1, ModelElement.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getModelElement_Description(),
+				ecorePackage.getEString(), "description", null, 0, 1,
+				ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModelElement_Identifier(), this.getModelElementId(),
+				null, "identifier", null, 0, 1, ModelElement.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		getModelElement_Identifier().getEKeys().add(
+				this.getUniqueIdentifier_Id());
+		initEReference(getModelElement_ReaderInfos(), this.getReaderInfo(),
+				null, "readerInfos", null, 0, -1, ModelElement.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEReference(getModelElement_Annotations(), this.getAnnotation(),
+				this.getAnnotation_AnnotatedModelElements(), "annotations",
+				null, 0, -1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModelElement_IncomingDocumentReferences(),
+				theDocumentPackage.getLeafSection(), null,
+				"incomingDocumentReferences", null, 0, -1, ModelElement.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEReference(getModelElement_LeafSection(), theDocumentPackage
+				.getLeafSection(), theDocumentPackage
+				.getLeafSection_ModelElements(), "leafSection", null, 0, 1,
+				ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
-		addEOperation(modelElementEClass, this.getProject(), "getProject", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(modelElementEClass, this.getProject(), "getProject", 0,
+				1, IS_UNIQUE, IS_ORDERED);
 
-		EOperation op = addEOperation(modelElementEClass, null, "addReader", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theOrganizationPackage.getUser(), "readerName", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = addEOperation(modelElementEClass, null, "addReader", 0,
+				1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theOrganizationPackage.getUser(), "readerName", 0, 1,
+				IS_UNIQUE, IS_ORDERED);
 
-		initEClass(projectEClass, Project.class, "Project", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProject_ModelElements(), this.getModelElement(), null, "modelElements", null, 0, -1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(projectEClass, Project.class, "Project", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getProject_ModelElements(), this.getModelElement(),
+				null, "modelElements", null, 0, -1, Project.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				!IS_ORDERED);
 
-		op = addEOperation(projectEClass, null, "addModelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getModelElement(), "modelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(projectEClass, null, "addModelElement", 0, 1,
+				IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getModelElement(), "modelElement", 0, 1,
+				IS_UNIQUE, IS_ORDERED);
 
-		addEOperation(projectEClass, this.getModelElement(), "getAllModelElements", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEOperation(projectEClass, this.getModelElement(),
+				"getAllModelElements", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		op = addEOperation(projectEClass, this.getModelElement(), "getAllModelElementsbyClass", 0, -1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, theEcorePackage.getEClass(), "modelElementClass", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(projectEClass, this.getModelElement(),
+				"getAllModelElementsbyClass", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEClass(), "modelElementClass", 0,
+				1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(projectEClass, this.getModelElement(), "getModelElementsByClass", 0, -1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, theEcorePackage.getEClass(), "modelElementClass", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(projectEClass, this.getModelElement(),
+				"getModelElementsByClass", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEClass(), "modelElementClass", 0,
+				1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(modelElementIdEClass, ModelElementId.class, "ModelElementId", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(modelElementIdEClass, ModelElementId.class,
+				"ModelElementId", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(uniqueIdentifierEClass, UniqueIdentifier.class, "UniqueIdentifier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getUniqueIdentifier_Id(), ecorePackage.getEString(), "id", "Default Value Literal\t", 1, 1, UniqueIdentifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(uniqueIdentifierEClass, UniqueIdentifier.class,
+				"UniqueIdentifier", IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getUniqueIdentifier_Id(), ecorePackage.getEString(),
+				"id", "Default Value Literal\t", 1, 1, UniqueIdentifier.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(readerInfoEClass, ReaderInfo.class, "ReaderInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getReaderInfo_Date(), ecorePackage.getEDate(), "date", null, 0, 1, ReaderInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getReaderInfo_ReaderId(), theOrganizationPackage.getOrgUnit(), null, "readerId", null, 0, 1, ReaderInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(readerInfoEClass, ReaderInfo.class, "ReaderInfo",
+				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getReaderInfo_Date(), ecorePackage.getEDate(), "date",
+				null, 0, 1, ReaderInfo.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEReference(getReaderInfo_ReaderId(), theOrganizationPackage
+				.getOrgUnit(), null, "readerId", null, 0, 1, ReaderInfo.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
-		initEClass(annotationEClass, Annotation.class, "Annotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAnnotation_AnnotatedModelElements(), this.getModelElement(), this.getModelElement_Annotations(), "annotatedModelElements", null, 0, -1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(annotationEClass, Annotation.class, "Annotation",
+				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAnnotation_AnnotatedModelElements(), this
+				.getModelElement(), this.getModelElement_Annotations(),
+				"annotatedModelElements", null, 0, -1, Annotation.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -494,19 +610,11 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	protected void createVisibilityAnnotations() {
-		String source = "http://unicase.org/visibility";		
-		addAnnotation
-		  (getModelElement_Name(), 
-		   source, 
-		   new String[] {
-			 "VisibilityValue", "MANDATORY"
-		   });		
-		addAnnotation
-		  (getModelElement_Description(), 
-		   source, 
-		   new String[] {
-			 "VisibilityValue", "VIEWWHENSET"
-		   });	
+		String source = "http://unicase.org/visibility";
+		addAnnotation(getModelElement_Name(), source, new String[] {
+				"VisibilityValue", "MANDATORY" });
+		addAnnotation(getModelElement_Description(), source, new String[] {
+				"VisibilityValue", "VIEWWHENSET" });
 	}
 
 	/**
@@ -516,13 +624,9 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	protected void createUIHintsAnnotations() {
-		String source = "http://unicase.org/UIHints";				
-		addAnnotation
-		  (getModelElement_Description(), 
-		   source, 
-		   new String[] {
-			 "type", "TEXT_AREA"
-		   });
+		String source = "http://unicase.org/UIHints";
+		addAnnotation(getModelElement_Description(), source, new String[] {
+				"type", "TEXT_AREA" });
 	}
 
 } // ModelPackageImpl

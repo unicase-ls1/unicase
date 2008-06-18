@@ -11,7 +11,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.ModelElement;
-import org.unicase.model.bug.*;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.bug.BugReport;
 import org.unicase.model.bug.BugResolution;
@@ -67,13 +66,10 @@ public class BugSwitch<T> {
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
 		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
-		}
-		else {
+		} else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return
-				eSuperTypes.isEmpty() ?
-					defaultCase(theEObject) :
-					doSwitch(eSuperTypes.get(0), theEObject);
+			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(
+					eSuperTypes.get(0), theEObject);
 		}
 	}
 
@@ -86,21 +82,26 @@ public class BugSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case BugPackage.BUG_REPORT: {
-				BugReport bugReport = (BugReport)theEObject;
-				T result = caseBugReport(bugReport);
-				if (result == null) result = caseModelElement(bugReport);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BugPackage.BUG_RESOLUTION: {
-				BugResolution bugResolution = (BugResolution)theEObject;
-				T result = caseBugResolution(bugResolution);
-				if (result == null) result = caseModelElement(bugResolution);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			default: return defaultCase(theEObject);
+		case BugPackage.BUG_REPORT: {
+			BugReport bugReport = (BugReport) theEObject;
+			T result = caseBugReport(bugReport);
+			if (result == null)
+				result = caseModelElement(bugReport);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case BugPackage.BUG_RESOLUTION: {
+			BugResolution bugResolution = (BugResolution) theEObject;
+			T result = caseBugResolution(bugResolution);
+			if (result == null)
+				result = caseModelElement(bugResolution);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 

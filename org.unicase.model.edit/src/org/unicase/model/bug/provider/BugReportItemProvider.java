@@ -73,19 +73,15 @@ public class BugReportItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addStepsToReproducePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_BugReport_stepsToReproduce_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_BugReport_stepsToReproduce_feature", "_UI_BugReport_type"),
-				 BugPackage.Literals.BUG_REPORT__STEPS_TO_REPRODUCE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_BugReport_stepsToReproduce_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_BugReport_stepsToReproduce_feature",
+						"_UI_BugReport_type"),
+				BugPackage.Literals.BUG_REPORT__STEPS_TO_REPRODUCE, true,
+				false, true, null, null, null));
 	}
 
 	/**
@@ -95,19 +91,14 @@ public class BugReportItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addStatusPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_BugReport_Status_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_BugReport_Status_feature", "_UI_BugReport_type"),
-				 BugPackage.Literals.BUG_REPORT__STATUS,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_BugReport_Status_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_BugReport_Status_feature", "_UI_BugReport_type"),
+				BugPackage.Literals.BUG_REPORT__STATUS, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -117,19 +108,15 @@ public class BugReportItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addAssignedToPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_BugReport_assignedTo_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_BugReport_assignedTo_feature", "_UI_BugReport_type"),
-				 BugPackage.Literals.BUG_REPORT__ASSIGNED_TO,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_BugReport_assignedTo_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_BugReport_assignedTo_feature",
+						"_UI_BugReport_type"),
+				BugPackage.Literals.BUG_REPORT__ASSIGNED_TO, true, false, true,
+				null, null, null));
 	}
 
 	/**
@@ -139,19 +126,15 @@ public class BugReportItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addResolutionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_BugReport_resolution_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_BugReport_resolution_feature", "_UI_BugReport_type"),
-				 BugPackage.Literals.BUG_REPORT__RESOLUTION,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_BugReport_resolution_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_BugReport_resolution_feature",
+						"_UI_BugReport_type"),
+				BugPackage.Literals.BUG_REPORT__RESOLUTION, true, false, true,
+				null, null, null));
 	}
 
 	/**
@@ -161,19 +144,15 @@ public class BugReportItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addInvolvedClassesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_BugReport_involvedClasses_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_BugReport_involvedClasses_feature", "_UI_BugReport_type"),
-				 BugPackage.Literals.BUG_REPORT__INVOLVED_CLASSES,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_BugReport_involvedClasses_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_BugReport_involvedClasses_feature",
+						"_UI_BugReport_type"),
+				BugPackage.Literals.BUG_REPORT__INVOLVED_CLASSES, true, false,
+				true, null, null, null));
 	}
 
 	/**
@@ -183,19 +162,17 @@ public class BugReportItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addSeverityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_BugReport_severity_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_BugReport_severity_feature", "_UI_BugReport_type"),
-				 BugPackage.Literals.BUG_REPORT__SEVERITY,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(), getResourceLocator(),
+						getString("_UI_BugReport_severity_feature"), getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_BugReport_severity_feature",
+								"_UI_BugReport_type"),
+						BugPackage.Literals.BUG_REPORT__SEVERITY, true, false,
+						false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+						null, null));
 	}
 
 	/**
@@ -205,7 +182,8 @@ public class BugReportItemProvider extends ModelElementItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/BugReport"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/BugReport"));
 	}
 
 	/**
@@ -216,10 +194,9 @@ public class BugReportItemProvider extends ModelElementItemProvider implements
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((BugReport)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_BugReport_type") :
-			getString("_UI_BugReport_type") + " " + label;
+		String label = ((BugReport) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_BugReport_type")
+				: getString("_UI_BugReport_type") + " " + label;
 	}
 
 	/**
@@ -234,10 +211,11 @@ public class BugReportItemProvider extends ModelElementItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(BugReport.class)) {
-			case BugPackage.BUG_REPORT__STATUS:
-			case BugPackage.BUG_REPORT__SEVERITY:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case BugPackage.BUG_REPORT__STATUS:
+		case BugPackage.BUG_REPORT__SEVERITY:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

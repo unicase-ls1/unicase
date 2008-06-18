@@ -53,7 +53,8 @@ public interface OrganizationPackage extends EPackage {
 	 * end-user-doc -->
 	 * @generated
 	 */
-	OrganizationPackage eINSTANCE = org.unicase.model.organization.impl.OrganizationPackageImpl.init();
+	OrganizationPackage eINSTANCE = org.unicase.model.organization.impl.OrganizationPackageImpl
+			.init();
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.organization.impl.UserImpl <em>User</em>}' class.

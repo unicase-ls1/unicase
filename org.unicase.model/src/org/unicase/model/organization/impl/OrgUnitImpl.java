@@ -72,8 +72,13 @@ public class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 		OrgUnitId oldOrgId = orgId;
 		orgId = newOrgId;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OrganizationPackage.ORG_UNIT__ORG_ID, oldOrgId, newOrgId);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET, OrganizationPackage.ORG_UNIT__ORG_ID,
+					oldOrgId, newOrgId);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -86,14 +91,21 @@ public class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 		if (newOrgId != orgId) {
 			NotificationChain msgs = null;
 			if (orgId != null)
-				msgs = ((InternalEObject)orgId).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OrganizationPackage.ORG_UNIT__ORG_ID, null, msgs);
+				msgs = ((InternalEObject) orgId).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+								- OrganizationPackage.ORG_UNIT__ORG_ID, null,
+						msgs);
 			if (newOrgId != null)
-				msgs = ((InternalEObject)newOrgId).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OrganizationPackage.ORG_UNIT__ORG_ID, null, msgs);
+				msgs = ((InternalEObject) newOrgId).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE
+								- OrganizationPackage.ORG_UNIT__ORG_ID, null,
+						msgs);
 			msgs = basicSetOrgId(newOrgId, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OrganizationPackage.ORG_UNIT__ORG_ID, newOrgId, newOrgId));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					OrganizationPackage.ORG_UNIT__ORG_ID, newOrgId, newOrgId));
 	}
 
 	/**
@@ -104,8 +116,8 @@ public class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case OrganizationPackage.ORG_UNIT__ORG_ID:
-				return basicSetOrgId(null, msgs);
+		case OrganizationPackage.ORG_UNIT__ORG_ID:
+			return basicSetOrgId(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -117,8 +129,8 @@ public class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OrganizationPackage.ORG_UNIT__ORG_ID:
-				return getOrgId();
+		case OrganizationPackage.ORG_UNIT__ORG_ID:
+			return getOrgId();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -130,9 +142,9 @@ public class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OrganizationPackage.ORG_UNIT__ORG_ID:
-				setOrgId((OrgUnitId)newValue);
-				return;
+		case OrganizationPackage.ORG_UNIT__ORG_ID:
+			setOrgId((OrgUnitId) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -144,9 +156,9 @@ public class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OrganizationPackage.ORG_UNIT__ORG_ID:
-				setOrgId((OrgUnitId)null);
-				return;
+		case OrganizationPackage.ORG_UNIT__ORG_ID:
+			setOrgId((OrgUnitId) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -158,8 +170,8 @@ public class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OrganizationPackage.ORG_UNIT__ORG_ID:
-				return orgId != null;
+		case OrganizationPackage.ORG_UNIT__ORG_ID:
+			return orgId != null;
 		}
 		return super.eIsSet(featureID);
 	}

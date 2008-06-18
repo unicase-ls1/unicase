@@ -80,19 +80,16 @@ public class MEDiagramItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addElementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MEDiagram_elements_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MEDiagram_elements_feature", "_UI_MEDiagram_type"),
-				 DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(), getResourceLocator(),
+						getString("_UI_MEDiagram_elements_feature"), getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_MEDiagram_elements_feature",
+								"_UI_MEDiagram_type"),
+						DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS, true,
+						false, true, null, null, null));
 	}
 
 	/**
@@ -102,19 +99,15 @@ public class MEDiagramItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addGmfdiagramPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MEDiagram_gmfdiagram_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MEDiagram_gmfdiagram_feature", "_UI_MEDiagram_type"),
-				 DiagramPackage.Literals.ME_DIAGRAM__GMFDIAGRAM,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_MEDiagram_gmfdiagram_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_MEDiagram_gmfdiagram_feature",
+						"_UI_MEDiagram_type"),
+				DiagramPackage.Literals.ME_DIAGRAM__GMFDIAGRAM, true, false,
+				true, null, null, null));
 	}
 
 	/**
@@ -130,7 +123,8 @@ public class MEDiagramItemProvider extends ModelElementItemProvider implements
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS);
-			childrenFeatures.add(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS);
+			childrenFeatures
+					.add(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -154,7 +148,8 @@ public class MEDiagramItemProvider extends ModelElementItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/MEDiagram"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/MEDiagram"));
 	}
 
 	/**
@@ -165,10 +160,9 @@ public class MEDiagramItemProvider extends ModelElementItemProvider implements
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((MEDiagram)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_MEDiagram_type") :
-			getString("_UI_MEDiagram_type") + " " + label;
+		String label = ((MEDiagram) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_MEDiagram_type")
+				: getString("_UI_MEDiagram_type") + " " + label;
 	}
 
 	/**
@@ -183,9 +177,10 @@ public class MEDiagramItemProvider extends ModelElementItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(MEDiagram.class)) {
-			case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -202,345 +197,277 @@ public class MEDiagramItemProvider extends ModelElementItemProvider implements
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 DiagramFactory.eINSTANCE.createMEDiagram()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 ModelFactory.eINSTANCE.createAnnotation()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 OrganizationFactory.eINSTANCE.createOrgUnit()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 OrganizationFactory.eINSTANCE.createUser()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 OrganizationFactory.eINSTANCE.createGroup()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 TaskFactory.eINSTANCE.createActionItem()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 TaskFactory.eINSTANCE.createWorkPackage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 ClassesFactory.eINSTANCE.createClass()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 ClassesFactory.eINSTANCE.createPackage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 ClassesFactory.eINSTANCE.createAssociation()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 DocumentFactory.eINSTANCE.createLeafSection()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 DocumentFactory.eINSTANCE.createCompositeSection()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 RequirementFactory.eINSTANCE.createNonFunctionalRequirement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 RequirementFactory.eINSTANCE.createFunctionalRequirement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 RequirementFactory.eINSTANCE.createUseCase()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 RequirementFactory.eINSTANCE.createScenario()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 RequirementFactory.eINSTANCE.createActor()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 RequirementFactory.eINSTANCE.createActorInstance()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 RequirementFactory.eINSTANCE.createStep()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 RationaleFactory.eINSTANCE.createIssue()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 RationaleFactory.eINSTANCE.createProposal()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 RationaleFactory.eINSTANCE.createSolution()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 RationaleFactory.eINSTANCE.createCriterion()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 RationaleFactory.eINSTANCE.createAssessment()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 RationaleFactory.eINSTANCE.createComment()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 ChangeFactory.eINSTANCE.createModelChangePackage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 ChangeFactory.eINSTANCE.createMergingIssue()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 ChangeFactory.eINSTANCE.createMergingProposal()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 ChangeFactory.eINSTANCE.createMergingSolution()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 BugFactory.eINSTANCE.createBugReport()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 BugFactory.eINSTANCE.createBugResolution()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 ComponentFactory.eINSTANCE.createComponent()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 ComponentFactory.eINSTANCE.createComponentService()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				 ComponentFactory.eINSTANCE.createDeploymentNode()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 DiagramFactory.eINSTANCE.createMEDiagram()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 ModelFactory.eINSTANCE.createAnnotation()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 OrganizationFactory.eINSTANCE.createOrgUnit()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 OrganizationFactory.eINSTANCE.createUser()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 OrganizationFactory.eINSTANCE.createGroup()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 TaskFactory.eINSTANCE.createActionItem()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 TaskFactory.eINSTANCE.createWorkPackage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 ClassesFactory.eINSTANCE.createClass()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 ClassesFactory.eINSTANCE.createPackage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 ClassesFactory.eINSTANCE.createAssociation()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 DocumentFactory.eINSTANCE.createLeafSection()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 DocumentFactory.eINSTANCE.createCompositeSection()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 RequirementFactory.eINSTANCE.createNonFunctionalRequirement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 RequirementFactory.eINSTANCE.createFunctionalRequirement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 RequirementFactory.eINSTANCE.createUseCase()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 RequirementFactory.eINSTANCE.createScenario()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 RequirementFactory.eINSTANCE.createActor()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 RequirementFactory.eINSTANCE.createActorInstance()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 RequirementFactory.eINSTANCE.createStep()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 RationaleFactory.eINSTANCE.createIssue()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 RationaleFactory.eINSTANCE.createProposal()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 RationaleFactory.eINSTANCE.createSolution()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 RationaleFactory.eINSTANCE.createCriterion()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 RationaleFactory.eINSTANCE.createAssessment()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 RationaleFactory.eINSTANCE.createComment()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 ChangeFactory.eINSTANCE.createModelChangePackage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 ChangeFactory.eINSTANCE.createMergingIssue()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 ChangeFactory.eINSTANCE.createMergingProposal()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 ChangeFactory.eINSTANCE.createMergingSolution()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 BugFactory.eINSTANCE.createBugReport()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 BugFactory.eINSTANCE.createBugResolution()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 ComponentFactory.eINSTANCE.createComponent()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 ComponentFactory.eINSTANCE.createComponentService()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				 ComponentFactory.eINSTANCE.createDeploymentNode()));
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				DiagramFactory.eINSTANCE.createMEDiagram()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				ModelFactory.eINSTANCE.createAnnotation()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				OrganizationFactory.eINSTANCE.createOrgUnit()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				OrganizationFactory.eINSTANCE.createUser()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				OrganizationFactory.eINSTANCE.createGroup()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				TaskFactory.eINSTANCE.createActionItem()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				TaskFactory.eINSTANCE.createWorkPackage()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				ClassesFactory.eINSTANCE.createClass()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				ClassesFactory.eINSTANCE.createPackage()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				ClassesFactory.eINSTANCE.createAssociation()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				DocumentFactory.eINSTANCE.createLeafSection()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				DocumentFactory.eINSTANCE.createCompositeSection()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				RequirementFactory.eINSTANCE.createNonFunctionalRequirement()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				RequirementFactory.eINSTANCE.createFunctionalRequirement()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				RequirementFactory.eINSTANCE.createUseCase()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				RequirementFactory.eINSTANCE.createScenario()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				RequirementFactory.eINSTANCE.createActor()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				RequirementFactory.eINSTANCE.createActorInstance()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				RequirementFactory.eINSTANCE.createStep()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				RationaleFactory.eINSTANCE.createIssue()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				RationaleFactory.eINSTANCE.createProposal()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				RationaleFactory.eINSTANCE.createSolution()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				RationaleFactory.eINSTANCE.createCriterion()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				RationaleFactory.eINSTANCE.createAssessment()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				RationaleFactory.eINSTANCE.createComment()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				ChangeFactory.eINSTANCE.createModelChangePackage()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				ChangeFactory.eINSTANCE.createMergingIssue()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				ChangeFactory.eINSTANCE.createMergingProposal()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				ChangeFactory.eINSTANCE.createMergingSolution()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				BugFactory.eINSTANCE.createBugReport()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				BugFactory.eINSTANCE.createBugResolution()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				ComponentFactory.eINSTANCE.createComponent()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				ComponentFactory.eINSTANCE.createComponentService()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				ComponentFactory.eINSTANCE.createDeploymentNode()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				DiagramFactory.eINSTANCE.createMEDiagram()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				ModelFactory.eINSTANCE.createAnnotation()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				OrganizationFactory.eINSTANCE.createOrgUnit()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				OrganizationFactory.eINSTANCE.createUser()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				OrganizationFactory.eINSTANCE.createGroup()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				TaskFactory.eINSTANCE.createActionItem()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				TaskFactory.eINSTANCE.createWorkPackage()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				ClassesFactory.eINSTANCE.createClass()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				ClassesFactory.eINSTANCE.createPackage()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				ClassesFactory.eINSTANCE.createAssociation()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				DocumentFactory.eINSTANCE.createLeafSection()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				DocumentFactory.eINSTANCE.createCompositeSection()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				RequirementFactory.eINSTANCE.createNonFunctionalRequirement()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				RequirementFactory.eINSTANCE.createFunctionalRequirement()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				RequirementFactory.eINSTANCE.createUseCase()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				RequirementFactory.eINSTANCE.createScenario()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				RequirementFactory.eINSTANCE.createActor()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				RequirementFactory.eINSTANCE.createActorInstance()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				RequirementFactory.eINSTANCE.createStep()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				RationaleFactory.eINSTANCE.createIssue()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				RationaleFactory.eINSTANCE.createProposal()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				RationaleFactory.eINSTANCE.createSolution()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				RationaleFactory.eINSTANCE.createCriterion()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				RationaleFactory.eINSTANCE.createAssessment()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				RationaleFactory.eINSTANCE.createComment()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				ChangeFactory.eINSTANCE.createModelChangePackage()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				ChangeFactory.eINSTANCE.createMergingIssue()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				ChangeFactory.eINSTANCE.createMergingProposal()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				ChangeFactory.eINSTANCE.createMergingSolution()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				BugFactory.eINSTANCE.createBugReport()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				BugFactory.eINSTANCE.createBugResolution()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				ComponentFactory.eINSTANCE.createComponent()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				ComponentFactory.eINSTANCE.createComponentService()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				ComponentFactory.eINSTANCE.createDeploymentNode()));
 	}
 
 	/**
@@ -556,14 +483,13 @@ public class MEDiagramItemProvider extends ModelElementItemProvider implements
 		Object childFeature = feature;
 		Object childObject = child;
 
-		boolean qualify =
-			childFeature == DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS ||
-			childFeature == DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS;
+		boolean qualify = childFeature == DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS
+				|| childFeature == DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS;
 
 		if (qualify) {
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+			return getString("_UI_CreateChild_text2", new Object[] {
+					getTypeText(childObject), getFeatureText(childFeature),
+					getTypeText(owner) });
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}

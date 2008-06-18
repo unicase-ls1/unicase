@@ -117,7 +117,8 @@ public class ComponentItemProviderAdapterFactory extends
 	@Override
 	public Adapter createComponentServiceAdapter() {
 		if (componentServiceItemProvider == null) {
-			componentServiceItemProvider = new ComponentServiceItemProvider(this);
+			componentServiceItemProvider = new ComponentServiceItemProvider(
+					this);
 		}
 
 		return componentServiceItemProvider;
@@ -154,7 +155,8 @@ public class ComponentItemProviderAdapterFactory extends
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+		return parentAdapterFactory == null ? this : parentAdapterFactory
+				.getRootAdapterFactory();
 	}
 
 	/**
@@ -195,7 +197,8 @@ public class ComponentItemProviderAdapterFactory extends
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter))) {
+			if (!(type instanceof Class)
+					|| (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -243,9 +246,12 @@ public class ComponentItemProviderAdapterFactory extends
 	 * @generated
 	 */
 	public void dispose() {
-		if (componentItemProvider != null) componentItemProvider.dispose();
-		if (componentServiceItemProvider != null) componentServiceItemProvider.dispose();
-		if (deploymentNodeItemProvider != null) deploymentNodeItemProvider.dispose();
+		if (componentItemProvider != null)
+			componentItemProvider.dispose();
+		if (componentServiceItemProvider != null)
+			componentServiceItemProvider.dispose();
+		if (deploymentNodeItemProvider != null)
+			deploymentNodeItemProvider.dispose();
 	}
 
 }

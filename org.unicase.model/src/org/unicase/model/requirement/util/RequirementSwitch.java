@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.ModelElement;
 import org.unicase.model.rationale.Criterion;
-import org.unicase.model.requirement.*;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.ActorInstance;
 import org.unicase.model.requirement.FunctionalRequirement;
@@ -73,13 +72,10 @@ public class RequirementSwitch<T> {
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
 		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
-		}
-		else {
+		} else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return
-				eSuperTypes.isEmpty() ?
-					defaultCase(theEObject) :
-					doSwitch(eSuperTypes.get(0), theEObject);
+			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(
+					eSuperTypes.get(0), theEObject);
 		}
 	}
 
@@ -92,57 +88,73 @@ public class RequirementSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT: {
-				NonFunctionalRequirement nonFunctionalRequirement = (NonFunctionalRequirement)theEObject;
-				T result = caseNonFunctionalRequirement(nonFunctionalRequirement);
-				if (result == null) result = caseCriterion(nonFunctionalRequirement);
-				if (result == null) result = caseModelElement(nonFunctionalRequirement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case RequirementPackage.FUNCTIONAL_REQUIREMENT: {
-				FunctionalRequirement functionalRequirement = (FunctionalRequirement)theEObject;
-				T result = caseFunctionalRequirement(functionalRequirement);
-				if (result == null) result = caseModelElement(functionalRequirement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case RequirementPackage.USE_CASE: {
-				UseCase useCase = (UseCase)theEObject;
-				T result = caseUseCase(useCase);
-				if (result == null) result = caseModelElement(useCase);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case RequirementPackage.SCENARIO: {
-				Scenario scenario = (Scenario)theEObject;
-				T result = caseScenario(scenario);
-				if (result == null) result = caseModelElement(scenario);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case RequirementPackage.ACTOR: {
-				Actor actor = (Actor)theEObject;
-				T result = caseActor(actor);
-				if (result == null) result = caseModelElement(actor);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case RequirementPackage.ACTOR_INSTANCE: {
-				ActorInstance actorInstance = (ActorInstance)theEObject;
-				T result = caseActorInstance(actorInstance);
-				if (result == null) result = caseModelElement(actorInstance);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case RequirementPackage.STEP: {
-				Step step = (Step)theEObject;
-				T result = caseStep(step);
-				if (result == null) result = caseModelElement(step);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			default: return defaultCase(theEObject);
+		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT: {
+			NonFunctionalRequirement nonFunctionalRequirement = (NonFunctionalRequirement) theEObject;
+			T result = caseNonFunctionalRequirement(nonFunctionalRequirement);
+			if (result == null)
+				result = caseCriterion(nonFunctionalRequirement);
+			if (result == null)
+				result = caseModelElement(nonFunctionalRequirement);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT: {
+			FunctionalRequirement functionalRequirement = (FunctionalRequirement) theEObject;
+			T result = caseFunctionalRequirement(functionalRequirement);
+			if (result == null)
+				result = caseModelElement(functionalRequirement);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case RequirementPackage.USE_CASE: {
+			UseCase useCase = (UseCase) theEObject;
+			T result = caseUseCase(useCase);
+			if (result == null)
+				result = caseModelElement(useCase);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case RequirementPackage.SCENARIO: {
+			Scenario scenario = (Scenario) theEObject;
+			T result = caseScenario(scenario);
+			if (result == null)
+				result = caseModelElement(scenario);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case RequirementPackage.ACTOR: {
+			Actor actor = (Actor) theEObject;
+			T result = caseActor(actor);
+			if (result == null)
+				result = caseModelElement(actor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case RequirementPackage.ACTOR_INSTANCE: {
+			ActorInstance actorInstance = (ActorInstance) theEObject;
+			T result = caseActorInstance(actorInstance);
+			if (result == null)
+				result = caseModelElement(actorInstance);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case RequirementPackage.STEP: {
+			Step step = (Step) theEObject;
+			T result = caseStep(step);
+			if (result == null)
+				result = caseModelElement(step);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 

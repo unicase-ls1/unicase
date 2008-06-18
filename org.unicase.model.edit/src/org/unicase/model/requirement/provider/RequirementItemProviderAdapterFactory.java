@@ -92,7 +92,8 @@ public class RequirementItemProviderAdapterFactory extends
 	@Override
 	public Adapter createNonFunctionalRequirementAdapter() {
 		if (nonFunctionalRequirementItemProvider == null) {
-			nonFunctionalRequirementItemProvider = new NonFunctionalRequirementItemProvider(this);
+			nonFunctionalRequirementItemProvider = new NonFunctionalRequirementItemProvider(
+					this);
 		}
 
 		return nonFunctionalRequirementItemProvider;
@@ -115,7 +116,8 @@ public class RequirementItemProviderAdapterFactory extends
 	@Override
 	public Adapter createFunctionalRequirementAdapter() {
 		if (functionalRequirementItemProvider == null) {
-			functionalRequirementItemProvider = new FunctionalRequirementItemProvider(this);
+			functionalRequirementItemProvider = new FunctionalRequirementItemProvider(
+					this);
 		}
 
 		return functionalRequirementItemProvider;
@@ -245,7 +247,8 @@ public class RequirementItemProviderAdapterFactory extends
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+		return parentAdapterFactory == null ? this : parentAdapterFactory
+				.getRootAdapterFactory();
 	}
 
 	/**
@@ -286,7 +289,8 @@ public class RequirementItemProviderAdapterFactory extends
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter))) {
+			if (!(type instanceof Class)
+					|| (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -334,13 +338,20 @@ public class RequirementItemProviderAdapterFactory extends
 	 * @generated
 	 */
 	public void dispose() {
-		if (nonFunctionalRequirementItemProvider != null) nonFunctionalRequirementItemProvider.dispose();
-		if (functionalRequirementItemProvider != null) functionalRequirementItemProvider.dispose();
-		if (useCaseItemProvider != null) useCaseItemProvider.dispose();
-		if (scenarioItemProvider != null) scenarioItemProvider.dispose();
-		if (actorItemProvider != null) actorItemProvider.dispose();
-		if (actorInstanceItemProvider != null) actorInstanceItemProvider.dispose();
-		if (stepItemProvider != null) stepItemProvider.dispose();
+		if (nonFunctionalRequirementItemProvider != null)
+			nonFunctionalRequirementItemProvider.dispose();
+		if (functionalRequirementItemProvider != null)
+			functionalRequirementItemProvider.dispose();
+		if (useCaseItemProvider != null)
+			useCaseItemProvider.dispose();
+		if (scenarioItemProvider != null)
+			scenarioItemProvider.dispose();
+		if (actorItemProvider != null)
+			actorItemProvider.dispose();
+		if (actorInstanceItemProvider != null)
+			actorInstanceItemProvider.dispose();
+		if (stepItemProvider != null)
+			stepItemProvider.dispose();
 	}
 
 }

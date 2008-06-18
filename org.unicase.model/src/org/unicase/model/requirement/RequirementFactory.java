@@ -21,7 +21,8 @@ public interface RequirementFactory extends EFactory {
 	 * end-user-doc -->
 	 * @generated
 	 */
-	RequirementFactory eINSTANCE = org.unicase.model.requirement.impl.RequirementFactoryImpl.init();
+	RequirementFactory eINSTANCE = org.unicase.model.requirement.impl.RequirementFactoryImpl
+			.init();
 
 	/**
 	 * Returns a new object of class '<em>Non Functional Requirement</em>'. <!--

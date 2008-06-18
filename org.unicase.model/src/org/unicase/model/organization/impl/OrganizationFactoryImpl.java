@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.unicase.model.organization.*;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrgUnitId;
@@ -34,12 +33,12 @@ public class OrganizationFactoryImpl extends EFactoryImpl implements
 	 */
 	public static OrganizationFactory init() {
 		try {
-			OrganizationFactory theOrganizationFactory = (OrganizationFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/model/organization"); 
+			OrganizationFactory theOrganizationFactory = (OrganizationFactory) EPackage.Registry.INSTANCE
+					.getEFactory("http://unicase.org/model/organization");
 			if (theOrganizationFactory != null) {
 				return theOrganizationFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new OrganizationFactoryImpl();
@@ -62,12 +61,17 @@ public class OrganizationFactoryImpl extends EFactoryImpl implements
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case OrganizationPackage.USER: return createUser();
-			case OrganizationPackage.ORG_UNIT: return createOrgUnit();
-			case OrganizationPackage.ORG_UNIT_ID: return createOrgUnitId();
-			case OrganizationPackage.GROUP: return createGroup();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case OrganizationPackage.USER:
+			return createUser();
+		case OrganizationPackage.ORG_UNIT:
+			return createOrgUnit();
+		case OrganizationPackage.ORG_UNIT_ID:
+			return createOrgUnitId();
+		case OrganizationPackage.GROUP:
+			return createGroup();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
@@ -112,7 +116,7 @@ public class OrganizationFactoryImpl extends EFactoryImpl implements
 	 * @generated
 	 */
 	public OrganizationPackage getOrganizationPackage() {
-		return (OrganizationPackage)getEPackage();
+		return (OrganizationPackage) getEPackage();
 	}
 
 	/**

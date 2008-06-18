@@ -56,7 +56,7 @@ public class ClassesAdapterFactory extends AdapterFactoryImpl {
 			return true;
 		}
 		if (object instanceof EObject) {
-			return ((EObject)object).eClass().getEPackage() == modelPackage;
+			return ((EObject) object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -68,31 +68,36 @@ public class ClassesAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	protected ClassesSwitch<Adapter> modelSwitch = new ClassesSwitch<Adapter>() {
-			@Override
-			public Adapter caseClass(org.unicase.model.classes.Class object) {
-				return createClassAdapter();
-			}
-			@Override
-			public Adapter casePackage(org.unicase.model.classes.Package object) {
-				return createPackageAdapter();
-			}
-			@Override
-			public Adapter casePackageElement(PackageElement object) {
-				return createPackageElementAdapter();
-			}
-			@Override
-			public Adapter caseAssociation(Association object) {
-				return createAssociationAdapter();
-			}
-			@Override
-			public Adapter caseModelElement(ModelElement object) {
-				return createModelElementAdapter();
-			}
-			@Override
-			public Adapter defaultCase(EObject object) {
-				return createEObjectAdapter();
-			}
-		};
+		@Override
+		public Adapter caseClass(org.unicase.model.classes.Class object) {
+			return createClassAdapter();
+		}
+
+		@Override
+		public Adapter casePackage(org.unicase.model.classes.Package object) {
+			return createPackageAdapter();
+		}
+
+		@Override
+		public Adapter casePackageElement(PackageElement object) {
+			return createPackageElementAdapter();
+		}
+
+		@Override
+		public Adapter caseAssociation(Association object) {
+			return createAssociationAdapter();
+		}
+
+		@Override
+		public Adapter caseModelElement(ModelElement object) {
+			return createModelElementAdapter();
+		}
+
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -104,7 +109,7 @@ public class ClassesAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject)target);
+		return modelSwitch.doSwitch((EObject) target);
 	}
 
 	/**

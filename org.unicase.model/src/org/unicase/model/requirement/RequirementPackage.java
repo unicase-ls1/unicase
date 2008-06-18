@@ -55,7 +55,8 @@ public interface RequirementPackage extends EPackage {
 	 * end-user-doc -->
 	 * @generated
 	 */
-	RequirementPackage eINSTANCE = org.unicase.model.requirement.impl.RequirementPackageImpl.init();
+	RequirementPackage eINSTANCE = org.unicase.model.requirement.impl.RequirementPackageImpl
+			.init();
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl <em>Non Functional Requirement</em>}' class.
@@ -1275,7 +1276,8 @@ public interface RequirementPackage extends EPackage {
 		 * @see org.unicase.model.requirement.impl.RequirementPackageImpl#getNonFunctionalRequirement()
 		 * @generated
 		 */
-		EClass NON_FUNCTIONAL_REQUIREMENT = eINSTANCE.getNonFunctionalRequirement();
+		EClass NON_FUNCTIONAL_REQUIREMENT = eINSTANCE
+				.getNonFunctionalRequirement();
 		/**
 		 * The meta object literal for the '<em><b>Restricted Scenarios</b></em>
 		 * ' reference list feature. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1283,7 +1285,8 @@ public interface RequirementPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_SCENARIOS = eINSTANCE.getNonFunctionalRequirement_RestrictedScenarios();
+		EReference NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_SCENARIOS = eINSTANCE
+				.getNonFunctionalRequirement_RestrictedScenarios();
 		/**
 		 * The meta object literal for the '<em><b>Restricted Use Cases</b></em>
 		 * ' reference list feature. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1291,7 +1294,8 @@ public interface RequirementPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_USE_CASES = eINSTANCE.getNonFunctionalRequirement_RestrictedUseCases();
+		EReference NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_USE_CASES = eINSTANCE
+				.getNonFunctionalRequirement_RestrictedUseCases();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl <em>Functional Requirement</em>}' class.
 		 * <!-- begin-user-doc --> <!--
@@ -1306,44 +1310,51 @@ public interface RequirementPackage extends EPackage {
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute FUNCTIONAL_REQUIREMENT__REVIEWED = eINSTANCE.getFunctionalRequirement_Reviewed();
+		EAttribute FUNCTIONAL_REQUIREMENT__REVIEWED = eINSTANCE
+				.getFunctionalRequirement_Reviewed();
 		/**
 		 * The meta object literal for the '<em><b>Story Points</b></em>' attribute feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute FUNCTIONAL_REQUIREMENT__STORY_POINTS = eINSTANCE.getFunctionalRequirement_StoryPoints();
+		EAttribute FUNCTIONAL_REQUIREMENT__STORY_POINTS = eINSTANCE
+				.getFunctionalRequirement_StoryPoints();
 		/**
 		 * The meta object literal for the '<em><b>Priority</b></em>' attribute feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute FUNCTIONAL_REQUIREMENT__PRIORITY = eINSTANCE.getFunctionalRequirement_Priority();
+		EAttribute FUNCTIONAL_REQUIREMENT__PRIORITY = eINSTANCE
+				.getFunctionalRequirement_Priority();
 		/**
 		 * The meta object literal for the '<em><b>Refining Requirements</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS = eINSTANCE.getFunctionalRequirement_RefiningRequirements();
+		EReference FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS = eINSTANCE
+				.getFunctionalRequirement_RefiningRequirements();
 		/**
 		 * The meta object literal for the '<em><b>Refined Requirement</b></em>' container reference feature.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * @generated
 		 */
-		EReference FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT = eINSTANCE.getFunctionalRequirement_RefinedRequirement();
+		EReference FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT = eINSTANCE
+				.getFunctionalRequirement_RefinedRequirement();
 		/**
 		 * The meta object literal for the '<em><b>Use Cases</b></em>' reference list feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FUNCTIONAL_REQUIREMENT__USE_CASES = eINSTANCE.getFunctionalRequirement_UseCases();
+		EReference FUNCTIONAL_REQUIREMENT__USE_CASES = eINSTANCE
+				.getFunctionalRequirement_UseCases();
 		/**
 		 * The meta object literal for the '<em><b>Scenarios</b></em>' reference list feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FUNCTIONAL_REQUIREMENT__SCENARIOS = eINSTANCE.getFunctionalRequirement_Scenarios();
+		EReference FUNCTIONAL_REQUIREMENT__SCENARIOS = eINSTANCE
+				.getFunctionalRequirement_Scenarios();
 		/**
 		 * The meta object literal for the '
 		 * {@link org.unicase.model.requirement.impl.UseCaseImpl
@@ -1366,7 +1377,8 @@ public interface RequirementPackage extends EPackage {
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference USE_CASE__INITIATING_ACTOR = eINSTANCE.getUseCase_InitiatingActor();
+		EReference USE_CASE__INITIATING_ACTOR = eINSTANCE
+				.getUseCase_InitiatingActor();
 		/**
 		 * The meta object literal for the '<em><b>Scenarios</b></em>' reference list feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1380,19 +1392,22 @@ public interface RequirementPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference USE_CASE__FUNCTIONAL_REQUIREMENTS = eINSTANCE.getUseCase_FunctionalRequirements();
+		EReference USE_CASE__FUNCTIONAL_REQUIREMENTS = eINSTANCE
+				.getUseCase_FunctionalRequirements();
 		/**
 		 * The meta object literal for the '<em><b>Non Functional Requirements</b></em>' reference list feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference USE_CASE__NON_FUNCTIONAL_REQUIREMENTS = eINSTANCE.getUseCase_NonFunctionalRequirements();
+		EReference USE_CASE__NON_FUNCTIONAL_REQUIREMENTS = eINSTANCE
+				.getUseCase_NonFunctionalRequirements();
 		/**
 		 * The meta object literal for the '<em><b>Identified Classes</b></em>' reference list feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference USE_CASE__IDENTIFIED_CLASSES = eINSTANCE.getUseCase_IdentifiedClasses();
+		EReference USE_CASE__IDENTIFIED_CLASSES = eINSTANCE
+				.getUseCase_IdentifiedClasses();
 		/**
 		 * The meta object literal for the '<em><b>Participating Actors</b></em>
 		 * ' reference list feature. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1400,7 +1415,8 @@ public interface RequirementPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference USE_CASE__PARTICIPATING_ACTORS = eINSTANCE.getUseCase_ParticipatingActors();
+		EReference USE_CASE__PARTICIPATING_ACTORS = eINSTANCE
+				.getUseCase_ParticipatingActors();
 		/**
 		 * The meta object literal for the '
 		 * {@link org.unicase.model.requirement.impl.ScenarioImpl
@@ -1425,13 +1441,15 @@ public interface RequirementPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference SCENARIO__INITIATING_ACTOR_INSTANCE = eINSTANCE.getScenario_InitiatingActorInstance();
+		EReference SCENARIO__INITIATING_ACTOR_INSTANCE = eINSTANCE
+				.getScenario_InitiatingActorInstance();
 		/**
 		 * The meta object literal for the '<em><b>Participating Actor Instances</b></em>' reference list feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SCENARIO__PARTICIPATING_ACTOR_INSTANCES = eINSTANCE.getScenario_ParticipatingActorInstances();
+		EReference SCENARIO__PARTICIPATING_ACTOR_INSTANCES = eINSTANCE
+				.getScenario_ParticipatingActorInstances();
 		/**
 		 * The meta object literal for the '
 		 * <em><b>Instantiated Use Cases</b></em>' reference list feature. <!--
@@ -1439,7 +1457,8 @@ public interface RequirementPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference SCENARIO__INSTANTIATED_USE_CASES = eINSTANCE.getScenario_InstantiatedUseCases();
+		EReference SCENARIO__INSTANTIATED_USE_CASES = eINSTANCE
+				.getScenario_InstantiatedUseCases();
 		/**
 		 * The meta object literal for the '
 		 * <em><b>Functional Requirements</b></em>' reference list feature. <!--
@@ -1447,13 +1466,15 @@ public interface RequirementPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference SCENARIO__FUNCTIONAL_REQUIREMENTS = eINSTANCE.getScenario_FunctionalRequirements();
+		EReference SCENARIO__FUNCTIONAL_REQUIREMENTS = eINSTANCE
+				.getScenario_FunctionalRequirements();
 		/**
 		 * The meta object literal for the '<em><b>Non Functional Requirements</b></em>' reference list feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SCENARIO__NON_FUNCTIONAL_REQUIREMENTS = eINSTANCE.getScenario_NonFunctionalRequirements();
+		EReference SCENARIO__NON_FUNCTIONAL_REQUIREMENTS = eINSTANCE
+				.getScenario_NonFunctionalRequirements();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.requirement.impl.ActorImpl <em>Actor</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1467,7 +1488,8 @@ public interface RequirementPackage extends EPackage {
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ACTOR__INITIATED_USE_CASES = eINSTANCE.getActor_InitiatedUseCases();
+		EReference ACTOR__INITIATED_USE_CASES = eINSTANCE
+				.getActor_InitiatedUseCases();
 		/**
 		 * The meta object literal for the '
 		 * <em><b>Participated Use Cases</b></em>' reference list feature. <!--
@@ -1475,7 +1497,8 @@ public interface RequirementPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference ACTOR__PARTICIPATED_USE_CASES = eINSTANCE.getActor_ParticipatedUseCases();
+		EReference ACTOR__PARTICIPATED_USE_CASES = eINSTANCE
+				.getActor_ParticipatedUseCases();
 		/**
 		 * The meta object literal for the '<em><b>Instances</b></em>' reference list feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1496,7 +1519,8 @@ public interface RequirementPackage extends EPackage {
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ACTOR_INSTANCE__INITIATED_SCENARIOS = eINSTANCE.getActorInstance_InitiatedScenarios();
+		EReference ACTOR_INSTANCE__INITIATED_SCENARIOS = eINSTANCE
+				.getActorInstance_InitiatedScenarios();
 		/**
 		 * The meta object literal for the '
 		 * <em><b>Participated Scenarios</b></em>' reference list feature. <!--
@@ -1504,13 +1528,15 @@ public interface RequirementPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference ACTOR_INSTANCE__PARTICIPATED_SCENARIOS = eINSTANCE.getActorInstance_ParticipatedScenarios();
+		EReference ACTOR_INSTANCE__PARTICIPATED_SCENARIOS = eINSTANCE
+				.getActorInstance_ParticipatedScenarios();
 		/**
 		 * The meta object literal for the '<em><b>Instantiated Actor</b></em>' reference feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ACTOR_INSTANCE__INSTANTIATED_ACTOR = eINSTANCE.getActorInstance_InstantiatedActor();
+		EReference ACTOR_INSTANCE__INSTANTIATED_ACTOR = eINSTANCE
+				.getActorInstance_InstantiatedActor();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.requirement.impl.StepImpl <em>Step</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->

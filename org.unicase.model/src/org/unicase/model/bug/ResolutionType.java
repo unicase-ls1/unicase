@@ -104,17 +104,15 @@ public enum ResolutionType implements Enumerator {
 	 * @generated
 	 */
 	private static final ResolutionType[] VALUES_ARRAY = new ResolutionType[] {
-			FIXED,
-			CANNOT_REPRODUCE,
-			WONT_FIX,
-		};
+			FIXED, CANNOT_REPRODUCE, WONT_FIX, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Resolution Type</b></em>' enumerators.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<ResolutionType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<ResolutionType> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Resolution Type</b></em>' literal with the specified literal value.
@@ -153,9 +151,12 @@ public enum ResolutionType implements Enumerator {
 	 */
 	public static ResolutionType get(int value) {
 		switch (value) {
-			case FIXED_VALUE: return FIXED;
-			case CANNOT_REPRODUCE_VALUE: return CANNOT_REPRODUCE;
-			case WONT_FIX_VALUE: return WONT_FIX;
+		case FIXED_VALUE:
+			return FIXED;
+		case CANNOT_REPRODUCE_VALUE:
+			return CANNOT_REPRODUCE;
+		case WONT_FIX_VALUE:
+			return WONT_FIX;
 		}
 		return null;
 	}
@@ -195,7 +196,7 @@ public enum ResolutionType implements Enumerator {
 	 * @generated
 	 */
 	public int getValue() {
-	  return value;
+		return value;
 	}
 
 	/**
@@ -203,7 +204,7 @@ public enum ResolutionType implements Enumerator {
 	 * @generated
 	 */
 	public String getName() {
-	  return name;
+		return name;
 	}
 
 	/**
@@ -211,7 +212,7 @@ public enum ResolutionType implements Enumerator {
 	 * @generated
 	 */
 	public String getLiteral() {
-	  return literal;
+		return literal;
 	}
 
 	/**

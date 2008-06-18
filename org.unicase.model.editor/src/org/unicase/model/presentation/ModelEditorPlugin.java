@@ -41,11 +41,8 @@ public final class ModelEditorPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public ModelEditorPlugin() {
-		super
-			(new ResourceLocator [] {
-				EcoreEditPlugin.INSTANCE,
-				NotationEditPlugin.INSTANCE,
-			});
+		super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE,
+				NotationEditPlugin.INSTANCE, });
 	}
 
 	/**
@@ -85,7 +82,7 @@ public final class ModelEditorPlugin extends EMFPlugin {
 		 */
 		public Implementation() {
 			super();
-	
+
 			// Remember the static instance.
 			//
 			plugin = this;

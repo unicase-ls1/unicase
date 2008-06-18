@@ -138,8 +138,9 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	 * @generated
 	 */
 	public WorkPackage getContainingWorkpackage() {
-		if (eContainerFeatureID != TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE) return null;
-		return (WorkPackage)eContainer();
+		if (eContainerFeatureID != TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE)
+			return null;
+		return (WorkPackage) eContainer();
 	}
 
 	/**
@@ -148,7 +149,8 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	 */
 	public NotificationChain basicSetContainingWorkpackage(
 			WorkPackage newContainingWorkpackage, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newContainingWorkpackage, TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE, msgs);
+		msgs = eBasicSetContainer((InternalEObject) newContainingWorkpackage,
+				TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE, msgs);
 		return msgs;
 	}
 
@@ -157,19 +159,26 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	 * @generated
 	 */
 	public void setContainingWorkpackage(WorkPackage newContainingWorkpackage) {
-		if (newContainingWorkpackage != eInternalContainer() || (eContainerFeatureID != TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE && newContainingWorkpackage != null)) {
+		if (newContainingWorkpackage != eInternalContainer()
+				|| (eContainerFeatureID != TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE && newContainingWorkpackage != null)) {
 			if (EcoreUtil.isAncestor(this, newContainingWorkpackage))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException(
+						"Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newContainingWorkpackage != null)
-				msgs = ((InternalEObject)newContainingWorkpackage).eInverseAdd(this, TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS, WorkPackage.class, msgs);
+				msgs = ((InternalEObject) newContainingWorkpackage)
+						.eInverseAdd(this,
+								TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
+								WorkPackage.class, msgs);
 			msgs = basicSetContainingWorkpackage(newContainingWorkpackage, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE, newContainingWorkpackage, newContainingWorkpackage));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE,
+					newContainingWorkpackage, newContainingWorkpackage));
 	}
 
 	/**
@@ -178,7 +187,9 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	 */
 	public EList<ModelChangePackage> getAssociatedChangePackages() {
 		if (associatedChangePackages == null) {
-			associatedChangePackages = new EObjectResolvingEList<ModelChangePackage>(ModelChangePackage.class, this, TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES);
+			associatedChangePackages = new EObjectResolvingEList<ModelChangePackage>(
+					ModelChangePackage.class, this,
+					TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES);
 		}
 		return associatedChangePackages;
 	}
@@ -189,7 +200,8 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	 */
 	public EList<User> getAssignedTo() {
 		if (assignedTo == null) {
-			assignedTo = new EObjectResolvingEList<User>(User.class, this, TaskPackage.ACTION_ITEM__ASSIGNED_TO);
+			assignedTo = new EObjectResolvingEList<User>(User.class, this,
+					TaskPackage.ACTION_ITEM__ASSIGNED_TO);
 		}
 		return assignedTo;
 	}
@@ -210,7 +222,8 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 		Date oldDueDate = dueDate;
 		dueDate = newDueDate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TaskPackage.ACTION_ITEM__DUE_DATE, oldDueDate, dueDate));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					TaskPackage.ACTION_ITEM__DUE_DATE, oldDueDate, dueDate));
 	}
 
 	/**
@@ -229,7 +242,8 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 		boolean oldDone = done;
 		done = newDone;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TaskPackage.ACTION_ITEM__DONE, oldDone, done));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					TaskPackage.ACTION_ITEM__DONE, oldDone, done));
 	}
 
 	/**
@@ -248,7 +262,8 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 		int oldEstimate = estimate;
 		estimate = newEstimate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TaskPackage.ACTION_ITEM__ESTIMATE, oldEstimate, estimate));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					TaskPackage.ACTION_ITEM__ESTIMATE, oldEstimate, estimate));
 	}
 
 	/**
@@ -259,10 +274,10 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetContainingWorkpackage((WorkPackage)otherEnd, msgs);
+		case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetContainingWorkpackage((WorkPackage) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -275,8 +290,8 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
-				return basicSetContainingWorkpackage(null, msgs);
+		case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
+			return basicSetContainingWorkpackage(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -289,8 +304,10 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	public NotificationChain eBasicRemoveFromContainerFeature(
 			NotificationChain msgs) {
 		switch (eContainerFeatureID) {
-			case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
-				return eInternalContainer().eInverseRemove(this, TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS, WorkPackage.class, msgs);
+		case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
+			return eInternalContainer().eInverseRemove(this,
+					TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
+					WorkPackage.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -302,18 +319,18 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
-				return getContainingWorkpackage();
-			case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES:
-				return getAssociatedChangePackages();
-			case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
-				return getAssignedTo();
-			case TaskPackage.ACTION_ITEM__DUE_DATE:
-				return getDueDate();
-			case TaskPackage.ACTION_ITEM__DONE:
-				return isDone() ? Boolean.TRUE : Boolean.FALSE;
-			case TaskPackage.ACTION_ITEM__ESTIMATE:
-				return new Integer(getEstimate());
+		case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
+			return getContainingWorkpackage();
+		case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES:
+			return getAssociatedChangePackages();
+		case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
+			return getAssignedTo();
+		case TaskPackage.ACTION_ITEM__DUE_DATE:
+			return getDueDate();
+		case TaskPackage.ACTION_ITEM__DONE:
+			return isDone() ? Boolean.TRUE : Boolean.FALSE;
+		case TaskPackage.ACTION_ITEM__ESTIMATE:
+			return new Integer(getEstimate());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -326,26 +343,27 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
-				setContainingWorkpackage((WorkPackage)newValue);
-				return;
-			case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES:
-				getAssociatedChangePackages().clear();
-				getAssociatedChangePackages().addAll((Collection<? extends ModelChangePackage>)newValue);
-				return;
-			case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
-				getAssignedTo().clear();
-				getAssignedTo().addAll((Collection<? extends User>)newValue);
-				return;
-			case TaskPackage.ACTION_ITEM__DUE_DATE:
-				setDueDate((Date)newValue);
-				return;
-			case TaskPackage.ACTION_ITEM__DONE:
-				setDone(((Boolean)newValue).booleanValue());
-				return;
-			case TaskPackage.ACTION_ITEM__ESTIMATE:
-				setEstimate(((Integer)newValue).intValue());
-				return;
+		case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
+			setContainingWorkpackage((WorkPackage) newValue);
+			return;
+		case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES:
+			getAssociatedChangePackages().clear();
+			getAssociatedChangePackages().addAll(
+					(Collection<? extends ModelChangePackage>) newValue);
+			return;
+		case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
+			getAssignedTo().clear();
+			getAssignedTo().addAll((Collection<? extends User>) newValue);
+			return;
+		case TaskPackage.ACTION_ITEM__DUE_DATE:
+			setDueDate((Date) newValue);
+			return;
+		case TaskPackage.ACTION_ITEM__DONE:
+			setDone(((Boolean) newValue).booleanValue());
+			return;
+		case TaskPackage.ACTION_ITEM__ESTIMATE:
+			setEstimate(((Integer) newValue).intValue());
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -357,24 +375,24 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
-				setContainingWorkpackage((WorkPackage)null);
-				return;
-			case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES:
-				getAssociatedChangePackages().clear();
-				return;
-			case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
-				getAssignedTo().clear();
-				return;
-			case TaskPackage.ACTION_ITEM__DUE_DATE:
-				setDueDate(DUE_DATE_EDEFAULT);
-				return;
-			case TaskPackage.ACTION_ITEM__DONE:
-				setDone(DONE_EDEFAULT);
-				return;
-			case TaskPackage.ACTION_ITEM__ESTIMATE:
-				setEstimate(ESTIMATE_EDEFAULT);
-				return;
+		case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
+			setContainingWorkpackage((WorkPackage) null);
+			return;
+		case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES:
+			getAssociatedChangePackages().clear();
+			return;
+		case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
+			getAssignedTo().clear();
+			return;
+		case TaskPackage.ACTION_ITEM__DUE_DATE:
+			setDueDate(DUE_DATE_EDEFAULT);
+			return;
+		case TaskPackage.ACTION_ITEM__DONE:
+			setDone(DONE_EDEFAULT);
+			return;
+		case TaskPackage.ACTION_ITEM__ESTIMATE:
+			setEstimate(ESTIMATE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -386,18 +404,20 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
-				return getContainingWorkpackage() != null;
-			case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES:
-				return associatedChangePackages != null && !associatedChangePackages.isEmpty();
-			case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
-				return assignedTo != null && !assignedTo.isEmpty();
-			case TaskPackage.ACTION_ITEM__DUE_DATE:
-				return DUE_DATE_EDEFAULT == null ? dueDate != null : !DUE_DATE_EDEFAULT.equals(dueDate);
-			case TaskPackage.ACTION_ITEM__DONE:
-				return done != DONE_EDEFAULT;
-			case TaskPackage.ACTION_ITEM__ESTIMATE:
-				return estimate != ESTIMATE_EDEFAULT;
+		case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
+			return getContainingWorkpackage() != null;
+		case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES:
+			return associatedChangePackages != null
+					&& !associatedChangePackages.isEmpty();
+		case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
+			return assignedTo != null && !assignedTo.isEmpty();
+		case TaskPackage.ACTION_ITEM__DUE_DATE:
+			return DUE_DATE_EDEFAULT == null ? dueDate != null
+					: !DUE_DATE_EDEFAULT.equals(dueDate);
+		case TaskPackage.ACTION_ITEM__DONE:
+			return done != DONE_EDEFAULT;
+		case TaskPackage.ACTION_ITEM__ESTIMATE:
+			return estimate != ESTIMATE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -408,7 +428,8 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (dueDate: ");

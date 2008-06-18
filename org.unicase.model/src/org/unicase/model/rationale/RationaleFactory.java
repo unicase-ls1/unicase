@@ -21,7 +21,8 @@ public interface RationaleFactory extends EFactory {
 	 * end-user-doc -->
 	 * @generated
 	 */
-	RationaleFactory eINSTANCE = org.unicase.model.rationale.impl.RationaleFactoryImpl.init();
+	RationaleFactory eINSTANCE = org.unicase.model.rationale.impl.RationaleFactoryImpl
+			.init();
 
 	/**
 	 * Returns a new object of class '<em>Issue</em>'.

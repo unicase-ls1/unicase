@@ -12,7 +12,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -94,7 +93,9 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	 */
 	public EList<ModelElement> getElements() {
 		if (elements == null) {
-			elements = new EObjectResolvingEList<ModelElement>(ModelElement.class, this, DiagramPackage.ME_DIAGRAM__ELEMENTS);
+			elements = new EObjectResolvingEList<ModelElement>(
+					ModelElement.class, this,
+					DiagramPackage.ME_DIAGRAM__ELEMENTS);
 		}
 		return elements;
 	}
@@ -116,8 +117,13 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 		Diagram oldGmfdiagram = gmfdiagram;
 		gmfdiagram = newGmfdiagram;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DiagramPackage.ME_DIAGRAM__GMFDIAGRAM, oldGmfdiagram, newGmfdiagram);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET, DiagramPackage.ME_DIAGRAM__GMFDIAGRAM,
+					oldGmfdiagram, newGmfdiagram);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -130,28 +136,40 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 		if (newGmfdiagram != gmfdiagram) {
 			NotificationChain msgs = null;
 			if (gmfdiagram != null)
-				msgs = ((InternalEObject)gmfdiagram).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.ME_DIAGRAM__GMFDIAGRAM, null, msgs);
+				msgs = ((InternalEObject) gmfdiagram).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+								- DiagramPackage.ME_DIAGRAM__GMFDIAGRAM, null,
+						msgs);
 			if (newGmfdiagram != null)
-				msgs = ((InternalEObject)newGmfdiagram).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.ME_DIAGRAM__GMFDIAGRAM, null, msgs);
+				msgs = ((InternalEObject) newGmfdiagram).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE
+								- DiagramPackage.ME_DIAGRAM__GMFDIAGRAM, null,
+						msgs);
 			msgs = basicSetGmfdiagram(newGmfdiagram, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.ME_DIAGRAM__GMFDIAGRAM, newGmfdiagram, newGmfdiagram));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					DiagramPackage.ME_DIAGRAM__GMFDIAGRAM, newGmfdiagram,
+					newGmfdiagram));
 	}
 
+	//begin of custom code
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public EList<ModelElement> getNewElements() {
 		if (newElements == null) {
-			newElements = new EObjectContainmentEList<ModelElement>(ModelElement.class, this, DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS);
+			newElements = new EObjectContainmentEList<ModelElement>(
+					ModelElement.class, this,
+					DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS);
 		}
 		//JH: cache instance
 		return new DiagramNewElementsList(getElements(), getProject());
 	}
 
+	//end of custom code
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -160,10 +178,11 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM:
-				return basicSetGmfdiagram(null, msgs);
-			case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
-				return ((InternalEList<?>)getNewElements()).basicRemove(otherEnd, msgs);
+		case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM:
+			return basicSetGmfdiagram(null, msgs);
+		case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
+			return ((InternalEList<?>) getNewElements()).basicRemove(otherEnd,
+					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -175,12 +194,12 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DiagramPackage.ME_DIAGRAM__ELEMENTS:
-				return getElements();
-			case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM:
-				return getGmfdiagram();
-			case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
-				return getNewElements();
+		case DiagramPackage.ME_DIAGRAM__ELEMENTS:
+			return getElements();
+		case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM:
+			return getGmfdiagram();
+		case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
+			return getNewElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -193,17 +212,18 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DiagramPackage.ME_DIAGRAM__ELEMENTS:
-				getElements().clear();
-				getElements().addAll((Collection<? extends ModelElement>)newValue);
-				return;
-			case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM:
-				setGmfdiagram((Diagram)newValue);
-				return;
-			case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
-				getNewElements().clear();
-				getNewElements().addAll((Collection<? extends ModelElement>)newValue);
-				return;
+		case DiagramPackage.ME_DIAGRAM__ELEMENTS:
+			getElements().clear();
+			getElements().addAll((Collection<? extends ModelElement>) newValue);
+			return;
+		case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM:
+			setGmfdiagram((Diagram) newValue);
+			return;
+		case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
+			getNewElements().clear();
+			getNewElements().addAll(
+					(Collection<? extends ModelElement>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -215,15 +235,15 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DiagramPackage.ME_DIAGRAM__ELEMENTS:
-				getElements().clear();
-				return;
-			case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM:
-				setGmfdiagram((Diagram)null);
-				return;
-			case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
-				getNewElements().clear();
-				return;
+		case DiagramPackage.ME_DIAGRAM__ELEMENTS:
+			getElements().clear();
+			return;
+		case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM:
+			setGmfdiagram((Diagram) null);
+			return;
+		case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
+			getNewElements().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -235,12 +255,12 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DiagramPackage.ME_DIAGRAM__ELEMENTS:
-				return elements != null && !elements.isEmpty();
-			case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM:
-				return gmfdiagram != null;
-			case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
-				return newElements != null && !newElements.isEmpty();
+		case DiagramPackage.ME_DIAGRAM__ELEMENTS:
+			return elements != null && !elements.isEmpty();
+		case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM:
+			return gmfdiagram != null;
+		case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
+			return newElements != null && !newElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

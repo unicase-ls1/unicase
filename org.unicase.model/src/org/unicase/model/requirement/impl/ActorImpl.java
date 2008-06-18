@@ -87,7 +87,10 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 	 */
 	public EList<UseCase> getInitiatedUseCases() {
 		if (initiatedUseCases == null) {
-			initiatedUseCases = new EObjectWithInverseResolvingEList<UseCase>(UseCase.class, this, RequirementPackage.ACTOR__INITIATED_USE_CASES, RequirementPackage.USE_CASE__INITIATING_ACTOR);
+			initiatedUseCases = new EObjectWithInverseResolvingEList<UseCase>(
+					UseCase.class, this,
+					RequirementPackage.ACTOR__INITIATED_USE_CASES,
+					RequirementPackage.USE_CASE__INITIATING_ACTOR);
 		}
 		return initiatedUseCases;
 	}
@@ -98,7 +101,10 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 	 */
 	public EList<UseCase> getParticipatedUseCases() {
 		if (participatedUseCases == null) {
-			participatedUseCases = new EObjectWithInverseResolvingEList.ManyInverse<UseCase>(UseCase.class, this, RequirementPackage.ACTOR__PARTICIPATED_USE_CASES, RequirementPackage.USE_CASE__PARTICIPATING_ACTORS);
+			participatedUseCases = new EObjectWithInverseResolvingEList.ManyInverse<UseCase>(
+					UseCase.class, this,
+					RequirementPackage.ACTOR__PARTICIPATED_USE_CASES,
+					RequirementPackage.USE_CASE__PARTICIPATING_ACTORS);
 		}
 		return participatedUseCases;
 	}
@@ -109,7 +115,10 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 	 */
 	public EList<ActorInstance> getInstances() {
 		if (instances == null) {
-			instances = new EObjectWithInverseResolvingEList<ActorInstance>(ActorInstance.class, this, RequirementPackage.ACTOR__INSTANCES, RequirementPackage.ACTOR_INSTANCE__INSTANTIATED_ACTOR);
+			instances = new EObjectWithInverseResolvingEList<ActorInstance>(
+					ActorInstance.class, this,
+					RequirementPackage.ACTOR__INSTANCES,
+					RequirementPackage.ACTOR_INSTANCE__INSTANTIATED_ACTOR);
 		}
 		return instances;
 	}
@@ -123,12 +132,15 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RequirementPackage.ACTOR__INITIATED_USE_CASES:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getInitiatedUseCases()).basicAdd(otherEnd, msgs);
-			case RequirementPackage.ACTOR__PARTICIPATED_USE_CASES:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getParticipatedUseCases()).basicAdd(otherEnd, msgs);
-			case RequirementPackage.ACTOR__INSTANCES:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getInstances()).basicAdd(otherEnd, msgs);
+		case RequirementPackage.ACTOR__INITIATED_USE_CASES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getInitiatedUseCases())
+					.basicAdd(otherEnd, msgs);
+		case RequirementPackage.ACTOR__PARTICIPATED_USE_CASES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipatedUseCases())
+					.basicAdd(otherEnd, msgs);
+		case RequirementPackage.ACTOR__INSTANCES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getInstances())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -141,12 +153,15 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RequirementPackage.ACTOR__INITIATED_USE_CASES:
-				return ((InternalEList<?>)getInitiatedUseCases()).basicRemove(otherEnd, msgs);
-			case RequirementPackage.ACTOR__PARTICIPATED_USE_CASES:
-				return ((InternalEList<?>)getParticipatedUseCases()).basicRemove(otherEnd, msgs);
-			case RequirementPackage.ACTOR__INSTANCES:
-				return ((InternalEList<?>)getInstances()).basicRemove(otherEnd, msgs);
+		case RequirementPackage.ACTOR__INITIATED_USE_CASES:
+			return ((InternalEList<?>) getInitiatedUseCases()).basicRemove(
+					otherEnd, msgs);
+		case RequirementPackage.ACTOR__PARTICIPATED_USE_CASES:
+			return ((InternalEList<?>) getParticipatedUseCases()).basicRemove(
+					otherEnd, msgs);
+		case RequirementPackage.ACTOR__INSTANCES:
+			return ((InternalEList<?>) getInstances()).basicRemove(otherEnd,
+					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -158,12 +173,12 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RequirementPackage.ACTOR__INITIATED_USE_CASES:
-				return getInitiatedUseCases();
-			case RequirementPackage.ACTOR__PARTICIPATED_USE_CASES:
-				return getParticipatedUseCases();
-			case RequirementPackage.ACTOR__INSTANCES:
-				return getInstances();
+		case RequirementPackage.ACTOR__INITIATED_USE_CASES:
+			return getInitiatedUseCases();
+		case RequirementPackage.ACTOR__PARTICIPATED_USE_CASES:
+			return getParticipatedUseCases();
+		case RequirementPackage.ACTOR__INSTANCES:
+			return getInstances();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -176,18 +191,21 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RequirementPackage.ACTOR__INITIATED_USE_CASES:
-				getInitiatedUseCases().clear();
-				getInitiatedUseCases().addAll((Collection<? extends UseCase>)newValue);
-				return;
-			case RequirementPackage.ACTOR__PARTICIPATED_USE_CASES:
-				getParticipatedUseCases().clear();
-				getParticipatedUseCases().addAll((Collection<? extends UseCase>)newValue);
-				return;
-			case RequirementPackage.ACTOR__INSTANCES:
-				getInstances().clear();
-				getInstances().addAll((Collection<? extends ActorInstance>)newValue);
-				return;
+		case RequirementPackage.ACTOR__INITIATED_USE_CASES:
+			getInitiatedUseCases().clear();
+			getInitiatedUseCases().addAll(
+					(Collection<? extends UseCase>) newValue);
+			return;
+		case RequirementPackage.ACTOR__PARTICIPATED_USE_CASES:
+			getParticipatedUseCases().clear();
+			getParticipatedUseCases().addAll(
+					(Collection<? extends UseCase>) newValue);
+			return;
+		case RequirementPackage.ACTOR__INSTANCES:
+			getInstances().clear();
+			getInstances().addAll(
+					(Collection<? extends ActorInstance>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -199,15 +217,15 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RequirementPackage.ACTOR__INITIATED_USE_CASES:
-				getInitiatedUseCases().clear();
-				return;
-			case RequirementPackage.ACTOR__PARTICIPATED_USE_CASES:
-				getParticipatedUseCases().clear();
-				return;
-			case RequirementPackage.ACTOR__INSTANCES:
-				getInstances().clear();
-				return;
+		case RequirementPackage.ACTOR__INITIATED_USE_CASES:
+			getInitiatedUseCases().clear();
+			return;
+		case RequirementPackage.ACTOR__PARTICIPATED_USE_CASES:
+			getParticipatedUseCases().clear();
+			return;
+		case RequirementPackage.ACTOR__INSTANCES:
+			getInstances().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -219,12 +237,13 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RequirementPackage.ACTOR__INITIATED_USE_CASES:
-				return initiatedUseCases != null && !initiatedUseCases.isEmpty();
-			case RequirementPackage.ACTOR__PARTICIPATED_USE_CASES:
-				return participatedUseCases != null && !participatedUseCases.isEmpty();
-			case RequirementPackage.ACTOR__INSTANCES:
-				return instances != null && !instances.isEmpty();
+		case RequirementPackage.ACTOR__INITIATED_USE_CASES:
+			return initiatedUseCases != null && !initiatedUseCases.isEmpty();
+		case RequirementPackage.ACTOR__PARTICIPATED_USE_CASES:
+			return participatedUseCases != null
+					&& !participatedUseCases.isEmpty();
+		case RequirementPackage.ACTOR__INSTANCES:
+			return instances != null && !instances.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

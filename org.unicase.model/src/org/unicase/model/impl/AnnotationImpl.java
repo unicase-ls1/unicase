@@ -64,7 +64,10 @@ public class AnnotationImpl extends ModelElementImpl implements Annotation {
 	 */
 	public EList<ModelElement> getAnnotatedModelElements() {
 		if (annotatedModelElements == null) {
-			annotatedModelElements = new EObjectWithInverseResolvingEList.ManyInverse<ModelElement>(ModelElement.class, this, ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS, ModelPackage.MODEL_ELEMENT__ANNOTATIONS);
+			annotatedModelElements = new EObjectWithInverseResolvingEList.ManyInverse<ModelElement>(
+					ModelElement.class, this,
+					ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS,
+					ModelPackage.MODEL_ELEMENT__ANNOTATIONS);
 		}
 		return annotatedModelElements;
 	}
@@ -78,8 +81,9 @@ public class AnnotationImpl extends ModelElementImpl implements Annotation {
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAnnotatedModelElements()).basicAdd(otherEnd, msgs);
+		case ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAnnotatedModelElements())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -92,8 +96,9 @@ public class AnnotationImpl extends ModelElementImpl implements Annotation {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS:
-				return ((InternalEList<?>)getAnnotatedModelElements()).basicRemove(otherEnd, msgs);
+		case ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS:
+			return ((InternalEList<?>) getAnnotatedModelElements())
+					.basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -105,8 +110,8 @@ public class AnnotationImpl extends ModelElementImpl implements Annotation {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS:
-				return getAnnotatedModelElements();
+		case ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS:
+			return getAnnotatedModelElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -119,10 +124,11 @@ public class AnnotationImpl extends ModelElementImpl implements Annotation {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS:
-				getAnnotatedModelElements().clear();
-				getAnnotatedModelElements().addAll((Collection<? extends ModelElement>)newValue);
-				return;
+		case ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS:
+			getAnnotatedModelElements().clear();
+			getAnnotatedModelElements().addAll(
+					(Collection<? extends ModelElement>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -134,9 +140,9 @@ public class AnnotationImpl extends ModelElementImpl implements Annotation {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS:
-				getAnnotatedModelElements().clear();
-				return;
+		case ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS:
+			getAnnotatedModelElements().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -148,8 +154,9 @@ public class AnnotationImpl extends ModelElementImpl implements Annotation {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS:
-				return annotatedModelElements != null && !annotatedModelElements.isEmpty();
+		case ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS:
+			return annotatedModelElements != null
+					&& !annotatedModelElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

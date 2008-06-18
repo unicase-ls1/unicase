@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.unicase.model.document.*;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.DocumentPackage;
@@ -32,12 +31,12 @@ public class DocumentFactoryImpl extends EFactoryImpl implements
 	 */
 	public static DocumentFactory init() {
 		try {
-			DocumentFactory theDocumentFactory = (DocumentFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/model/document"); 
+			DocumentFactory theDocumentFactory = (DocumentFactory) EPackage.Registry.INSTANCE
+					.getEFactory("http://unicase.org/model/document");
 			if (theDocumentFactory != null) {
 				return theDocumentFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new DocumentFactoryImpl();
@@ -60,10 +59,13 @@ public class DocumentFactoryImpl extends EFactoryImpl implements
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case DocumentPackage.LEAF_SECTION: return createLeafSection();
-			case DocumentPackage.COMPOSITE_SECTION: return createCompositeSection();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case DocumentPackage.LEAF_SECTION:
+			return createLeafSection();
+		case DocumentPackage.COMPOSITE_SECTION:
+			return createCompositeSection();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
@@ -90,7 +92,7 @@ public class DocumentFactoryImpl extends EFactoryImpl implements
 	 * @generated
 	 */
 	public DocumentPackage getDocumentPackage() {
-		return (DocumentPackage)getEPackage();
+		return (DocumentPackage) getEPackage();
 	}
 
 	/**

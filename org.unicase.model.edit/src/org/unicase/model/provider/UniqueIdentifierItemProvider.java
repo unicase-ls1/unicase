@@ -67,19 +67,15 @@ public class UniqueIdentifierItemProvider extends ItemProviderAdapter implements
 	 * @generated
 	 */
 	protected void addIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_UniqueIdentifier_id_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_UniqueIdentifier_id_feature", "_UI_UniqueIdentifier_type"),
-				 ModelPackage.Literals.UNIQUE_IDENTIFIER__ID,
-				 false,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_UniqueIdentifier_id_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_UniqueIdentifier_id_feature",
+						"_UI_UniqueIdentifier_type"),
+				ModelPackage.Literals.UNIQUE_IDENTIFIER__ID, false, false,
+				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -90,10 +86,9 @@ public class UniqueIdentifierItemProvider extends ItemProviderAdapter implements
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((UniqueIdentifier)object).getId();
-		return label == null || label.length() == 0 ?
-			getString("_UI_UniqueIdentifier_type") :
-			getString("_UI_UniqueIdentifier_type") + " " + label;
+		String label = ((UniqueIdentifier) object).getId();
+		return label == null || label.length() == 0 ? getString("_UI_UniqueIdentifier_type")
+				: getString("_UI_UniqueIdentifier_type") + " " + label;
 	}
 
 	/**
@@ -108,9 +103,10 @@ public class UniqueIdentifierItemProvider extends ItemProviderAdapter implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(UniqueIdentifier.class)) {
-			case ModelPackage.UNIQUE_IDENTIFIER__ID:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case ModelPackage.UNIQUE_IDENTIFIER__ID:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

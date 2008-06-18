@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.unicase.model.*;
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelFactory;
@@ -33,12 +32,12 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 */
 	public static ModelFactory init() {
 		try {
-			ModelFactory theModelFactory = (ModelFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/model"); 
+			ModelFactory theModelFactory = (ModelFactory) EPackage.Registry.INSTANCE
+					.getEFactory("http://unicase.org/model");
 			if (theModelFactory != null) {
 				return theModelFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new ModelFactoryImpl();
@@ -61,12 +60,17 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case ModelPackage.PROJECT: return createProject();
-			case ModelPackage.MODEL_ELEMENT_ID: return createModelElementId();
-			case ModelPackage.READER_INFO: return createReaderInfo();
-			case ModelPackage.ANNOTATION: return createAnnotation();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case ModelPackage.PROJECT:
+			return createProject();
+		case ModelPackage.MODEL_ELEMENT_ID:
+			return createModelElementId();
+		case ModelPackage.READER_INFO:
+			return createReaderInfo();
+		case ModelPackage.ANNOTATION:
+			return createAnnotation();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
@@ -111,7 +115,7 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * @generated
 	 */
 	public ModelPackage getModelPackage() {
-		return (ModelPackage)getEPackage();
+		return (ModelPackage) getEPackage();
 	}
 
 	/**

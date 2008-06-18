@@ -12,7 +12,6 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
-import org.unicase.model.change.*;
 import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.MergingIssue;
 import org.unicase.model.change.MergingProposal;
@@ -63,7 +62,7 @@ public class ChangeAdapterFactory extends AdapterFactoryImpl {
 			return true;
 		}
 		if (object instanceof EObject) {
-			return ((EObject)object).eClass().getEPackage() == modelPackage;
+			return ((EObject) object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -75,47 +74,56 @@ public class ChangeAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	protected ChangeSwitch<Adapter> modelSwitch = new ChangeSwitch<Adapter>() {
-			@Override
-			public Adapter caseModelChangePackage(ModelChangePackage object) {
-				return createModelChangePackageAdapter();
-			}
-			@Override
-			public Adapter caseMergingIssue(MergingIssue object) {
-				return createMergingIssueAdapter();
-			}
-			@Override
-			public Adapter caseMergingProposal(MergingProposal object) {
-				return createMergingProposalAdapter();
-			}
-			@Override
-			public Adapter caseMergingSolution(MergingSolution object) {
-				return createMergingSolutionAdapter();
-			}
-			@Override
-			public Adapter caseModelElement(ModelElement object) {
-				return createModelElementAdapter();
-			}
-			@Override
-			public Adapter caseAnnotation(Annotation object) {
-				return createAnnotationAdapter();
-			}
-			@Override
-			public Adapter caseIssue(Issue object) {
-				return createIssueAdapter();
-			}
-			@Override
-			public Adapter caseProposal(Proposal object) {
-				return createProposalAdapter();
-			}
-			@Override
-			public Adapter caseSolution(Solution object) {
-				return createSolutionAdapter();
-			}
-			@Override
-			public Adapter defaultCase(EObject object) {
-				return createEObjectAdapter();
-			}
-		};
+		@Override
+		public Adapter caseModelChangePackage(ModelChangePackage object) {
+			return createModelChangePackageAdapter();
+		}
+
+		@Override
+		public Adapter caseMergingIssue(MergingIssue object) {
+			return createMergingIssueAdapter();
+		}
+
+		@Override
+		public Adapter caseMergingProposal(MergingProposal object) {
+			return createMergingProposalAdapter();
+		}
+
+		@Override
+		public Adapter caseMergingSolution(MergingSolution object) {
+			return createMergingSolutionAdapter();
+		}
+
+		@Override
+		public Adapter caseModelElement(ModelElement object) {
+			return createModelElementAdapter();
+		}
+
+		@Override
+		public Adapter caseAnnotation(Annotation object) {
+			return createAnnotationAdapter();
+		}
+
+		@Override
+		public Adapter caseIssue(Issue object) {
+			return createIssueAdapter();
+		}
+
+		@Override
+		public Adapter caseProposal(Proposal object) {
+			return createProposalAdapter();
+		}
+
+		@Override
+		public Adapter caseSolution(Solution object) {
+			return createSolutionAdapter();
+		}
+
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -127,7 +135,7 @@ public class ChangeAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject)target);
+		return modelSwitch.doSwitch((EObject) target);
 	}
 
 	/**

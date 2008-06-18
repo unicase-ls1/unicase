@@ -546,7 +546,8 @@ public interface TaskPackage extends EPackage {
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ACTION_ITEM__ASSIGNED_TO = eINSTANCE.getActionItem_AssignedTo();
+		EReference ACTION_ITEM__ASSIGNED_TO = eINSTANCE
+				.getActionItem_AssignedTo();
 
 		/**
 		 * The meta object literal for the '<em><b>Due Date</b></em>' attribute feature.
@@ -585,7 +586,8 @@ public interface TaskPackage extends EPackage {
 		 * end-user-doc -->
 		 * @generated
 		 */
-		EReference WORK_PACKAGE__CONTAINED_WORK_ITEMS = eINSTANCE.getWorkPackage_ContainedWorkItems();
+		EReference WORK_PACKAGE__CONTAINED_WORK_ITEMS = eINSTANCE
+				.getWorkPackage_ContainedWorkItems();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.task.WorkItem <em>Work Item</em>}' class.
@@ -601,14 +603,16 @@ public interface TaskPackage extends EPackage {
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference WORK_ITEM__CONTAINING_WORKPACKAGE = eINSTANCE.getWorkItem_ContainingWorkpackage();
+		EReference WORK_ITEM__CONTAINING_WORKPACKAGE = eINSTANCE
+				.getWorkItem_ContainingWorkpackage();
 
 		/**
 		 * The meta object literal for the '<em><b>Associated Change Packages</b></em>' reference list feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES = eINSTANCE.getWorkItem_AssociatedChangePackages();
+		EReference WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES = eINSTANCE
+				.getWorkItem_AssociatedChangePackages();
 
 	}
 

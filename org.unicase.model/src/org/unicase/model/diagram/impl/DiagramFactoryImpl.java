@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.unicase.model.diagram.*;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
@@ -30,12 +29,12 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	 */
 	public static DiagramFactory init() {
 		try {
-			DiagramFactory theDiagramFactory = (DiagramFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/model/diagram"); 
+			DiagramFactory theDiagramFactory = (DiagramFactory) EPackage.Registry.INSTANCE
+					.getEFactory("http://unicase.org/model/diagram");
 			if (theDiagramFactory != null) {
 				return theDiagramFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new DiagramFactoryImpl();
@@ -58,9 +57,11 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case DiagramPackage.ME_DIAGRAM: return createMEDiagram();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case DiagramPackage.ME_DIAGRAM:
+			return createMEDiagram();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
@@ -78,7 +79,7 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	 * @generated
 	 */
 	public DiagramPackage getDiagramPackage() {
-		return (DiagramPackage)getEPackage();
+		return (DiagramPackage) getEPackage();
 	}
 
 	/**

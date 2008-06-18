@@ -77,7 +77,8 @@ public class StepImpl extends ModelElementImpl implements Step {
 		boolean oldUserStep = userStep;
 		userStep = newUserStep;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.STEP__USER_STEP, oldUserStep, userStep));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RequirementPackage.STEP__USER_STEP, oldUserStep, userStep));
 	}
 
 	/**
@@ -87,8 +88,8 @@ public class StepImpl extends ModelElementImpl implements Step {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RequirementPackage.STEP__USER_STEP:
-				return isUserStep() ? Boolean.TRUE : Boolean.FALSE;
+		case RequirementPackage.STEP__USER_STEP:
+			return isUserStep() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -100,9 +101,9 @@ public class StepImpl extends ModelElementImpl implements Step {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RequirementPackage.STEP__USER_STEP:
-				setUserStep(((Boolean)newValue).booleanValue());
-				return;
+		case RequirementPackage.STEP__USER_STEP:
+			setUserStep(((Boolean) newValue).booleanValue());
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -114,9 +115,9 @@ public class StepImpl extends ModelElementImpl implements Step {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RequirementPackage.STEP__USER_STEP:
-				setUserStep(USER_STEP_EDEFAULT);
-				return;
+		case RequirementPackage.STEP__USER_STEP:
+			setUserStep(USER_STEP_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -128,8 +129,8 @@ public class StepImpl extends ModelElementImpl implements Step {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RequirementPackage.STEP__USER_STEP:
-				return userStep != USER_STEP_EDEFAULT;
+		case RequirementPackage.STEP__USER_STEP:
+			return userStep != USER_STEP_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -140,7 +141,8 @@ public class StepImpl extends ModelElementImpl implements Step {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (userStep: ");

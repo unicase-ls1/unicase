@@ -116,7 +116,8 @@ public class DocumentItemProviderAdapterFactory extends DocumentAdapterFactory
 	@Override
 	public Adapter createCompositeSectionAdapter() {
 		if (compositeSectionItemProvider == null) {
-			compositeSectionItemProvider = new CompositeSectionItemProvider(this);
+			compositeSectionItemProvider = new CompositeSectionItemProvider(
+					this);
 		}
 
 		return compositeSectionItemProvider;
@@ -129,7 +130,8 @@ public class DocumentItemProviderAdapterFactory extends DocumentAdapterFactory
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+		return parentAdapterFactory == null ? this : parentAdapterFactory
+				.getRootAdapterFactory();
 	}
 
 	/**
@@ -170,7 +172,8 @@ public class DocumentItemProviderAdapterFactory extends DocumentAdapterFactory
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter))) {
+			if (!(type instanceof Class)
+					|| (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -218,8 +221,10 @@ public class DocumentItemProviderAdapterFactory extends DocumentAdapterFactory
 	 * @generated
 	 */
 	public void dispose() {
-		if (leafSectionItemProvider != null) leafSectionItemProvider.dispose();
-		if (compositeSectionItemProvider != null) compositeSectionItemProvider.dispose();
+		if (leafSectionItemProvider != null)
+			leafSectionItemProvider.dispose();
+		if (compositeSectionItemProvider != null)
+			compositeSectionItemProvider.dispose();
 	}
 
 }

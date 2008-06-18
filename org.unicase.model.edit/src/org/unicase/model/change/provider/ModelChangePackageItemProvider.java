@@ -70,19 +70,16 @@ public class ModelChangePackageItemProvider extends ModelElementItemProvider
 	 * @generated
 	 */
 	protected void addSourceVersionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ModelChangePackage_sourceVersion_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModelChangePackage_sourceVersion_feature", "_UI_ModelChangePackage_type"),
-				 ChangePackage.Literals.MODEL_CHANGE_PACKAGE__SOURCE_VERSION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_ModelChangePackage_sourceVersion_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ModelChangePackage_sourceVersion_feature",
+						"_UI_ModelChangePackage_type"),
+				ChangePackage.Literals.MODEL_CHANGE_PACKAGE__SOURCE_VERSION,
+				true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -92,19 +89,16 @@ public class ModelChangePackageItemProvider extends ModelElementItemProvider
 	 * @generated
 	 */
 	protected void addTargetVersionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ModelChangePackage_targetVersion_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModelChangePackage_targetVersion_feature", "_UI_ModelChangePackage_type"),
-				 ChangePackage.Literals.MODEL_CHANGE_PACKAGE__TARGET_VERSION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_ModelChangePackage_targetVersion_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ModelChangePackage_targetVersion_feature",
+						"_UI_ModelChangePackage_type"),
+				ChangePackage.Literals.MODEL_CHANGE_PACKAGE__TARGET_VERSION,
+				true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -115,7 +109,8 @@ public class ModelChangePackageItemProvider extends ModelElementItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ModelChangePackage"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/ModelChangePackage"));
 	}
 
 	/**
@@ -126,10 +121,9 @@ public class ModelChangePackageItemProvider extends ModelElementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ModelChangePackage)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_ModelChangePackage_type") :
-			getString("_UI_ModelChangePackage_type") + " " + label;
+		String label = ((ModelChangePackage) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_ModelChangePackage_type")
+				: getString("_UI_ModelChangePackage_type") + " " + label;
 	}
 
 	/**
@@ -144,10 +138,11 @@ public class ModelChangePackageItemProvider extends ModelElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ModelChangePackage.class)) {
-			case ChangePackage.MODEL_CHANGE_PACKAGE__SOURCE_VERSION:
-			case ChangePackage.MODEL_CHANGE_PACKAGE__TARGET_VERSION:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case ChangePackage.MODEL_CHANGE_PACKAGE__SOURCE_VERSION:
+		case ChangePackage.MODEL_CHANGE_PACKAGE__TARGET_VERSION:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

@@ -68,19 +68,16 @@ public class MergingIssueItemProvider extends IssueItemProvider implements
 	 * @generated
 	 */
 	protected void addResolvingRevisionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MergingIssue_resolvingRevision_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MergingIssue_resolvingRevision_feature", "_UI_MergingIssue_type"),
-				 ChangePackage.Literals.MERGING_ISSUE__RESOLVING_REVISION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_MergingIssue_resolvingRevision_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_MergingIssue_resolvingRevision_feature",
+						"_UI_MergingIssue_type"),
+				ChangePackage.Literals.MERGING_ISSUE__RESOLVING_REVISION, true,
+				false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				null, null));
 	}
 
 	/**
@@ -91,7 +88,8 @@ public class MergingIssueItemProvider extends IssueItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/MergingIssue"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/MergingIssue"));
 	}
 
 	/**
@@ -102,10 +100,9 @@ public class MergingIssueItemProvider extends IssueItemProvider implements
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((MergingIssue)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_MergingIssue_type") :
-			getString("_UI_MergingIssue_type") + " " + label;
+		String label = ((MergingIssue) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_MergingIssue_type")
+				: getString("_UI_MergingIssue_type") + " " + label;
 	}
 
 	/**
@@ -120,9 +117,10 @@ public class MergingIssueItemProvider extends IssueItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(MergingIssue.class)) {
-			case ChangePackage.MERGING_ISSUE__RESOLVING_REVISION:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case ChangePackage.MERGING_ISSUE__RESOLVING_REVISION:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

@@ -53,7 +53,8 @@ public interface DiagramPackage extends EPackage {
 	 * end-user-doc -->
 	 * @generated
 	 */
-	DiagramPackage eINSTANCE = org.unicase.model.diagram.impl.DiagramPackageImpl.init();
+	DiagramPackage eINSTANCE = org.unicase.model.diagram.impl.DiagramPackageImpl
+			.init();
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.diagram.impl.MEDiagramImpl <em>ME Diagram</em>}' class.
@@ -250,7 +251,8 @@ public interface DiagramPackage extends EPackage {
 		 * end-user-doc -->
 		 * @generated
 		 */
-		EReference ME_DIAGRAM__NEW_ELEMENTS = eINSTANCE.getMEDiagram_NewElements();
+		EReference ME_DIAGRAM__NEW_ELEMENTS = eINSTANCE
+				.getMEDiagram_NewElements();
 
 	}
 

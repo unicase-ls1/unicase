@@ -65,19 +65,15 @@ public class ClassItemProvider extends PackageElementItemProvider implements
 	 * @generated
 	 */
 	protected void addParticipatedUseCasesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Class_participatedUseCases_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Class_participatedUseCases_feature", "_UI_Class_type"),
-				 ClassesPackage.Literals.CLASS__PARTICIPATED_USE_CASES,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Class_participatedUseCases_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Class_participatedUseCases_feature",
+						"_UI_Class_type"),
+				ClassesPackage.Literals.CLASS__PARTICIPATED_USE_CASES, true,
+				false, true, null, null, null));
 	}
 
 	/**
@@ -87,19 +83,14 @@ public class ClassItemProvider extends PackageElementItemProvider implements
 	 * @generated
 	 */
 	protected void addSuperClassPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Class_superClass_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Class_superClass_feature", "_UI_Class_type"),
-				 ClassesPackage.Literals.CLASS__SUPER_CLASS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Class_superClass_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Class_superClass_feature", "_UI_Class_type"),
+				ClassesPackage.Literals.CLASS__SUPER_CLASS, true, false, true,
+				null, null, null));
 	}
 
 	/**
@@ -109,19 +100,14 @@ public class ClassItemProvider extends PackageElementItemProvider implements
 	 * @generated
 	 */
 	protected void addSubClassesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Class_subClasses_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Class_subClasses_feature", "_UI_Class_type"),
-				 ClassesPackage.Literals.CLASS__SUB_CLASSES,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Class_subClasses_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Class_subClasses_feature", "_UI_Class_type"),
+				ClassesPackage.Literals.CLASS__SUB_CLASSES, true, false, true,
+				null, null, null));
 	}
 
 	/**
@@ -130,19 +116,15 @@ public class ClassItemProvider extends PackageElementItemProvider implements
 	 * @generated
 	 */
 	protected void addIncomingAssociationsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Class_incomingAssociations_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Class_incomingAssociations_feature", "_UI_Class_type"),
-				 ClassesPackage.Literals.CLASS__INCOMING_ASSOCIATIONS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Class_incomingAssociations_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Class_incomingAssociations_feature",
+						"_UI_Class_type"),
+				ClassesPackage.Literals.CLASS__INCOMING_ASSOCIATIONS, true,
+				false, true, null, null, null));
 	}
 
 	/**
@@ -151,19 +133,15 @@ public class ClassItemProvider extends PackageElementItemProvider implements
 	 * @generated
 	 */
 	protected void addOutgoingAssociationsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Class_outgoingAssociations_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Class_outgoingAssociations_feature", "_UI_Class_type"),
-				 ClassesPackage.Literals.CLASS__OUTGOING_ASSOCIATIONS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Class_outgoingAssociations_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Class_outgoingAssociations_feature",
+						"_UI_Class_type"),
+				ClassesPackage.Literals.CLASS__OUTGOING_ASSOCIATIONS, true,
+				false, true, null, null, null));
 	}
 
 	/**
@@ -173,7 +151,8 @@ public class ClassItemProvider extends PackageElementItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Class"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/Class"));
 	}
 
 	/**
@@ -184,10 +163,9 @@ public class ClassItemProvider extends PackageElementItemProvider implements
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((org.unicase.model.classes.Class)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Class_type") :
-			getString("_UI_Class_type") + " " + label;
+		String label = ((org.unicase.model.classes.Class) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_Class_type")
+				: getString("_UI_Class_type") + " " + label;
 	}
 
 	/**

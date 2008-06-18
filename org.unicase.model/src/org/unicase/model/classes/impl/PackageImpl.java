@@ -65,7 +65,10 @@ public class PackageImpl extends PackageElementImpl implements
 	 */
 	public EList<PackageElement> getContainedPackageElements() {
 		if (containedPackageElements == null) {
-			containedPackageElements = new EObjectContainmentWithInverseEList<PackageElement>(PackageElement.class, this, ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS, ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE);
+			containedPackageElements = new EObjectContainmentWithInverseEList<PackageElement>(
+					PackageElement.class, this,
+					ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS,
+					ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE);
 		}
 		return containedPackageElements;
 	}
@@ -79,8 +82,9 @@ public class PackageImpl extends PackageElementImpl implements
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getContainedPackageElements()).basicAdd(otherEnd, msgs);
+		case ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getContainedPackageElements())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -93,8 +97,9 @@ public class PackageImpl extends PackageElementImpl implements
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS:
-				return ((InternalEList<?>)getContainedPackageElements()).basicRemove(otherEnd, msgs);
+		case ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS:
+			return ((InternalEList<?>) getContainedPackageElements())
+					.basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -106,8 +111,8 @@ public class PackageImpl extends PackageElementImpl implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS:
-				return getContainedPackageElements();
+		case ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS:
+			return getContainedPackageElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -120,10 +125,11 @@ public class PackageImpl extends PackageElementImpl implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS:
-				getContainedPackageElements().clear();
-				getContainedPackageElements().addAll((Collection<? extends PackageElement>)newValue);
-				return;
+		case ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS:
+			getContainedPackageElements().clear();
+			getContainedPackageElements().addAll(
+					(Collection<? extends PackageElement>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -135,9 +141,9 @@ public class PackageImpl extends PackageElementImpl implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS:
-				getContainedPackageElements().clear();
-				return;
+		case ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS:
+			getContainedPackageElements().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -149,8 +155,9 @@ public class PackageImpl extends PackageElementImpl implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS:
-				return containedPackageElements != null && !containedPackageElements.isEmpty();
+		case ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS:
+			return containedPackageElements != null
+					&& !containedPackageElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

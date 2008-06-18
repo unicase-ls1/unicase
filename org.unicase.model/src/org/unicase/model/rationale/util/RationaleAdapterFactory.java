@@ -12,7 +12,6 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
-import org.unicase.model.rationale.*;
 import org.unicase.model.rationale.Assessment;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.Criterion;
@@ -62,7 +61,7 @@ public class RationaleAdapterFactory extends AdapterFactoryImpl {
 			return true;
 		}
 		if (object instanceof EObject) {
-			return ((EObject)object).eClass().getEPackage() == modelPackage;
+			return ((EObject) object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -74,43 +73,51 @@ public class RationaleAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	protected RationaleSwitch<Adapter> modelSwitch = new RationaleSwitch<Adapter>() {
-			@Override
-			public Adapter caseIssue(Issue object) {
-				return createIssueAdapter();
-			}
-			@Override
-			public Adapter caseProposal(Proposal object) {
-				return createProposalAdapter();
-			}
-			@Override
-			public Adapter caseSolution(Solution object) {
-				return createSolutionAdapter();
-			}
-			@Override
-			public Adapter caseCriterion(Criterion object) {
-				return createCriterionAdapter();
-			}
-			@Override
-			public Adapter caseAssessment(Assessment object) {
-				return createAssessmentAdapter();
-			}
-			@Override
-			public Adapter caseComment(Comment object) {
-				return createCommentAdapter();
-			}
-			@Override
-			public Adapter caseModelElement(ModelElement object) {
-				return createModelElementAdapter();
-			}
-			@Override
-			public Adapter caseAnnotation(Annotation object) {
-				return createAnnotationAdapter();
-			}
-			@Override
-			public Adapter defaultCase(EObject object) {
-				return createEObjectAdapter();
-			}
-		};
+		@Override
+		public Adapter caseIssue(Issue object) {
+			return createIssueAdapter();
+		}
+
+		@Override
+		public Adapter caseProposal(Proposal object) {
+			return createProposalAdapter();
+		}
+
+		@Override
+		public Adapter caseSolution(Solution object) {
+			return createSolutionAdapter();
+		}
+
+		@Override
+		public Adapter caseCriterion(Criterion object) {
+			return createCriterionAdapter();
+		}
+
+		@Override
+		public Adapter caseAssessment(Assessment object) {
+			return createAssessmentAdapter();
+		}
+
+		@Override
+		public Adapter caseComment(Comment object) {
+			return createCommentAdapter();
+		}
+
+		@Override
+		public Adapter caseModelElement(ModelElement object) {
+			return createModelElementAdapter();
+		}
+
+		@Override
+		public Adapter caseAnnotation(Annotation object) {
+			return createAnnotationAdapter();
+		}
+
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -122,7 +129,7 @@ public class RationaleAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject)target);
+		return modelSwitch.doSwitch((EObject) target);
 	}
 
 	/**

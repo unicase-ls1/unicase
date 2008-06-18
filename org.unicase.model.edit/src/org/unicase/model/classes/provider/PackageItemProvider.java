@@ -68,7 +68,8 @@ public class PackageItemProvider extends PackageElementItemProvider implements
 			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ClassesPackage.Literals.PACKAGE__CONTAINED_PACKAGE_ELEMENTS);
+			childrenFeatures
+					.add(ClassesPackage.Literals.PACKAGE__CONTAINED_PACKAGE_ELEMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -92,7 +93,8 @@ public class PackageItemProvider extends PackageElementItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Package"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/Package"));
 	}
 
 	/**
@@ -103,10 +105,9 @@ public class PackageItemProvider extends PackageElementItemProvider implements
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((org.unicase.model.classes.Package)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Package_type") :
-			getString("_UI_Package_type") + " " + label;
+		String label = ((org.unicase.model.classes.Package) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_Package_type")
+				: getString("_UI_Package_type") + " " + label;
 	}
 
 	/**
@@ -120,10 +121,12 @@ public class PackageItemProvider extends PackageElementItemProvider implements
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(org.unicase.model.classes.Package.class)) {
-			case ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		switch (notification
+				.getFeatureID(org.unicase.model.classes.Package.class)) {
+		case ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -140,15 +143,13 @@ public class PackageItemProvider extends PackageElementItemProvider implements
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ClassesPackage.Literals.PACKAGE__CONTAINED_PACKAGE_ELEMENTS,
-				 ClassesFactory.eINSTANCE.createClass()));
+		newChildDescriptors.add(createChildParameter(
+				ClassesPackage.Literals.PACKAGE__CONTAINED_PACKAGE_ELEMENTS,
+				ClassesFactory.eINSTANCE.createClass()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ClassesPackage.Literals.PACKAGE__CONTAINED_PACKAGE_ELEMENTS,
-				 ClassesFactory.eINSTANCE.createPackage()));
+		newChildDescriptors.add(createChildParameter(
+				ClassesPackage.Literals.PACKAGE__CONTAINED_PACKAGE_ELEMENTS,
+				ClassesFactory.eINSTANCE.createPackage()));
 	}
 
 }

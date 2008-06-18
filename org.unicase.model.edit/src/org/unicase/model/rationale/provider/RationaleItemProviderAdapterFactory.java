@@ -223,7 +223,8 @@ public class RationaleItemProviderAdapterFactory extends
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+		return parentAdapterFactory == null ? this : parentAdapterFactory
+				.getRootAdapterFactory();
 	}
 
 	/**
@@ -264,7 +265,8 @@ public class RationaleItemProviderAdapterFactory extends
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter))) {
+			if (!(type instanceof Class)
+					|| (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -312,12 +314,18 @@ public class RationaleItemProviderAdapterFactory extends
 	 * @generated
 	 */
 	public void dispose() {
-		if (issueItemProvider != null) issueItemProvider.dispose();
-		if (proposalItemProvider != null) proposalItemProvider.dispose();
-		if (solutionItemProvider != null) solutionItemProvider.dispose();
-		if (criterionItemProvider != null) criterionItemProvider.dispose();
-		if (assessmentItemProvider != null) assessmentItemProvider.dispose();
-		if (commentItemProvider != null) commentItemProvider.dispose();
+		if (issueItemProvider != null)
+			issueItemProvider.dispose();
+		if (proposalItemProvider != null)
+			proposalItemProvider.dispose();
+		if (solutionItemProvider != null)
+			solutionItemProvider.dispose();
+		if (criterionItemProvider != null)
+			criterionItemProvider.dispose();
+		if (assessmentItemProvider != null)
+			assessmentItemProvider.dispose();
+		if (commentItemProvider != null)
+			commentItemProvider.dispose();
 	}
 
 }

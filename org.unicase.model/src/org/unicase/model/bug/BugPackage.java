@@ -464,7 +464,8 @@ public interface BugPackage extends EPackage {
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BUG_REPORT__STEPS_TO_REPRODUCE = eINSTANCE.getBugReport_StepsToReproduce();
+		EReference BUG_REPORT__STEPS_TO_REPRODUCE = eINSTANCE
+				.getBugReport_StepsToReproduce();
 
 		/**
 		 * The meta object literal for the '<em><b>Status</b></em>' attribute feature.
@@ -478,7 +479,8 @@ public interface BugPackage extends EPackage {
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BUG_REPORT__ASSIGNED_TO = eINSTANCE.getBugReport_AssignedTo();
+		EReference BUG_REPORT__ASSIGNED_TO = eINSTANCE
+				.getBugReport_AssignedTo();
 
 		/**
 		 * The meta object literal for the '<em><b>Resolution</b></em>' reference feature.
@@ -492,7 +494,8 @@ public interface BugPackage extends EPackage {
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BUG_REPORT__INVOLVED_CLASSES = eINSTANCE.getBugReport_InvolvedClasses();
+		EReference BUG_REPORT__INVOLVED_CLASSES = eINSTANCE
+				.getBugReport_InvolvedClasses();
 
 		/**
 		 * The meta object literal for the '<em><b>Severity</b></em>' attribute feature.
@@ -516,7 +519,8 @@ public interface BugPackage extends EPackage {
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute BUG_RESOLUTION__RESOULTION_TYPE = eINSTANCE.getBugResolution_ResoultionType();
+		EAttribute BUG_RESOLUTION__RESOULTION_TYPE = eINSTANCE
+				.getBugResolution_ResoultionType();
 
 		/**
 		 * The meta object literal for the '

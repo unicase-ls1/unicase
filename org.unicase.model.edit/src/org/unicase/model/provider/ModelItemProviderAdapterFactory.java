@@ -172,7 +172,8 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+		return parentAdapterFactory == null ? this : parentAdapterFactory
+				.getRootAdapterFactory();
 	}
 
 	/**
@@ -213,7 +214,8 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter))) {
+			if (!(type instanceof Class)
+					|| (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -261,10 +263,14 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory
 	 * @generated
 	 */
 	public void dispose() {
-		if (projectItemProvider != null) projectItemProvider.dispose();
-		if (modelElementIdItemProvider != null) modelElementIdItemProvider.dispose();
-		if (readerInfoItemProvider != null) readerInfoItemProvider.dispose();
-		if (annotationItemProvider != null) annotationItemProvider.dispose();
+		if (projectItemProvider != null)
+			projectItemProvider.dispose();
+		if (modelElementIdItemProvider != null)
+			modelElementIdItemProvider.dispose();
+		if (readerInfoItemProvider != null)
+			readerInfoItemProvider.dispose();
+		if (annotationItemProvider != null)
+			annotationItemProvider.dispose();
 	}
 
 }

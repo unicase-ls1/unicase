@@ -11,7 +11,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.ModelElement;
-import org.unicase.model.document.*;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.LeafSection;
@@ -68,13 +67,10 @@ public class DocumentSwitch<T> {
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
 		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
-		}
-		else {
+		} else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return
-				eSuperTypes.isEmpty() ?
-					defaultCase(theEObject) :
-					doSwitch(eSuperTypes.get(0), theEObject);
+			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(
+					eSuperTypes.get(0), theEObject);
 		}
 	}
 
@@ -87,30 +83,39 @@ public class DocumentSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case DocumentPackage.LEAF_SECTION: {
-				LeafSection leafSection = (LeafSection)theEObject;
-				T result = caseLeafSection(leafSection);
-				if (result == null) result = caseSection(leafSection);
-				if (result == null) result = caseModelElement(leafSection);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DocumentPackage.COMPOSITE_SECTION: {
-				CompositeSection compositeSection = (CompositeSection)theEObject;
-				T result = caseCompositeSection(compositeSection);
-				if (result == null) result = caseSection(compositeSection);
-				if (result == null) result = caseModelElement(compositeSection);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DocumentPackage.SECTION: {
-				Section section = (Section)theEObject;
-				T result = caseSection(section);
-				if (result == null) result = caseModelElement(section);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			default: return defaultCase(theEObject);
+		case DocumentPackage.LEAF_SECTION: {
+			LeafSection leafSection = (LeafSection) theEObject;
+			T result = caseLeafSection(leafSection);
+			if (result == null)
+				result = caseSection(leafSection);
+			if (result == null)
+				result = caseModelElement(leafSection);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DocumentPackage.COMPOSITE_SECTION: {
+			CompositeSection compositeSection = (CompositeSection) theEObject;
+			T result = caseCompositeSection(compositeSection);
+			if (result == null)
+				result = caseSection(compositeSection);
+			if (result == null)
+				result = caseModelElement(compositeSection);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DocumentPackage.SECTION: {
+			Section section = (Section) theEObject;
+			T result = caseSection(section);
+			if (result == null)
+				result = caseModelElement(section);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 
