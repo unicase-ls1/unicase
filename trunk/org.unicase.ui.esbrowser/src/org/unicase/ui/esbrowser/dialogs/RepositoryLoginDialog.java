@@ -19,6 +19,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceFactory;
@@ -142,6 +143,7 @@ public class RepositoryLoginDialog extends Dialog implements Listener,
 				if (username.getEnabled()) {
 					session = WorkspaceFactory.eINSTANCE.createUsersession();
 					session.setUsername(username.getText());
+					session.setServerInfo(Configuration.getDefaultServerInfo());
 
 					domain.getCommandStack().execute(
 							new RecordingCommand(domain) {
