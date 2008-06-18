@@ -1,30 +1,39 @@
 package org.unicase.model.classDiagram.edit.parts;
 
+import org.eclipse.draw2d.BorderLayout;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.LineBorder;
+import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.Request;
-import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
-import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
-import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ConstrainedToolbarLayoutEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * @generated
  */
-public class MEDiagram2EditPart extends AbstractBorderedShapeEditPart {
+public class MEDiagram2EditPart extends ShapeNodeEditPart {
 
 	/**
 	 * @generated
@@ -65,26 +74,16 @@ public class MEDiagram2EditPart extends AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
-		LayoutEditPolicy lep = new LayoutEditPolicy() {
+
+		ConstrainedToolbarLayoutEditPolicy lep = new ConstrainedToolbarLayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				if (child instanceof IBorderItemEditPart) {
-					return new BorderItemSelectionEditPolicy();
+				if (child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE) == null) {
+					if (child instanceof ITextAwareEditPart) {
+						return new org.unicase.model.classDiagram.edit.policies.ModelTextSelectionEditPolicy();
+					}
 				}
-				EditPolicy result = child
-						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
-					result = new NonResizableEditPolicy();
-				}
-				return result;
-			}
-
-			protected Command getMoveChildrenCommand(Request request) {
-				return null;
-			}
-
-			protected Command getCreateCommand(CreateRequest request) {
-				return null;
+				return super.createChildEditPolicy(child);
 			}
 		};
 		return lep;
@@ -108,16 +107,49 @@ public class MEDiagram2EditPart extends AbstractBorderedShapeEditPart {
 	/**
 	 * @generated
 	 */
-	protected void addBorderItem(IFigure borderItemContainer,
-			IBorderItemEditPart borderItemEditPart) {
-		if (borderItemEditPart instanceof org.unicase.model.classDiagram.edit.parts.MEDiagramNameEditPart) {
-			BorderItemLocator locator = new BorderItemLocator(getMainFigure(),
-					PositionConstants.SOUTH);
-			locator.setBorderItemOffset(new Dimension(-20, -20));
-			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else {
-			super.addBorderItem(borderItemContainer, borderItemEditPart);
+	protected boolean addFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof org.unicase.model.classDiagram.edit.parts.WrappingLabelEditPart) {
+			((org.unicase.model.classDiagram.edit.parts.WrappingLabelEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getFigureClassFigure_name());
+			return true;
 		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean removeFixedChild(EditPart childEditPart) {
+
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void addChildVisual(EditPart childEditPart, int index) {
+		if (addFixedChild(childEditPart)) {
+			return;
+		}
+		super.addChildVisual(childEditPart, -1);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void removeChildVisual(EditPart childEditPart) {
+		if (removeFixedChild(childEditPart)) {
+			return;
+		}
+		super.removeChildVisual(childEditPart);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
+
+		return super.getContentPaneFor(editPart);
 	}
 
 	/**
@@ -132,12 +164,12 @@ public class MEDiagram2EditPart extends AbstractBorderedShapeEditPart {
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so
-	 * you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
-	protected NodeFigure createMainFigure() {
+	protected NodeFigure createNodeFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
 		IFigure shape = createNodeShape();
@@ -155,6 +187,11 @@ public class MEDiagram2EditPart extends AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
+		if (nodeShape.getLayoutManager() == null) {
+			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
+			layout.setSpacing(getMapMode().DPtoLP(5));
+			nodeShape.setLayoutManager(layout);
+		}
 		return nodeShape; // use nodeShape itself as contentPane
 	}
 
@@ -173,7 +210,7 @@ public class MEDiagram2EditPart extends AbstractBorderedShapeEditPart {
 	 */
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-				.getType(org.unicase.model.classDiagram.edit.parts.MEDiagramNameEditPart.VISUAL_ID));
+				.getType(org.unicase.model.classDiagram.edit.parts.WrappingLabelEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -184,8 +221,68 @@ public class MEDiagram2EditPart extends AbstractBorderedShapeEditPart {
 		/**
 		 * @generated
 		 */
+		private WrappingLabel fFigureClassFigure_name;
+
+		/**
+		 * @generated
+		 */
 		public ClassFigure() {
+
+			ToolbarLayout layoutThis = new ToolbarLayout();
+			layoutThis.setStretchMinorAxis(true);
+			layoutThis.setMinorAlignment(ToolbarLayout.ALIGN_CENTER);
+
+			layoutThis.setSpacing(0);
+			layoutThis.setVertical(true);
+
+			this.setLayoutManager(layoutThis);
+
 			this.setLineWidth(2);
+			createContents();
+		}
+
+		/**
+		 * @generated
+		 */
+		private void createContents() {
+
+			RectangleFigure classFigure_Header0 = new RectangleFigure();
+			classFigure_Header0.setBorder(new LineBorder(null, getMapMode()
+					.DPtoLP(1)));
+
+			this.add(classFigure_Header0);
+
+			ToolbarLayout layoutClassFigure_Header0 = new ToolbarLayout();
+			layoutClassFigure_Header0.setStretchMinorAxis(true);
+			layoutClassFigure_Header0
+					.setMinorAlignment(ToolbarLayout.ALIGN_TOPLEFT);
+
+			layoutClassFigure_Header0.setSpacing(0);
+			layoutClassFigure_Header0.setVertical(true);
+
+			classFigure_Header0.setLayoutManager(layoutClassFigure_Header0);
+
+			RectangleFigure classFigure_NameContainer1 = new RectangleFigure();
+			classFigure_NameContainer1.setOutline(false);
+
+			classFigure_Header0.add(classFigure_NameContainer1);
+
+			org.unicase.model.classDiagram.unicase.CenterLayout layoutClassFigure_NameContainer1 = new org.unicase.model.classDiagram.unicase.CenterLayout();
+
+			classFigure_NameContainer1
+					.setLayoutManager(layoutClassFigure_NameContainer1);
+
+			fFigureClassFigure_name = new WrappingLabel();
+			fFigureClassFigure_name.setText("");
+
+			fFigureClassFigure_name.setFont(FFIGURECLASSFIGURE_NAME_FONT);
+
+			fFigureClassFigure_name.setBorder(new MarginBorder(getMapMode()
+					.DPtoLP(0), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5),
+					getMapMode().DPtoLP(5)));
+
+			classFigure_NameContainer1.add(fFigureClassFigure_name);
+
 		}
 
 		/**
@@ -207,6 +304,21 @@ public class MEDiagram2EditPart extends AbstractBorderedShapeEditPart {
 			myUseLocalCoordinates = useLocalCoordinates;
 		}
 
+		/**
+		 * @generated
+		 */
+		public WrappingLabel getFigureClassFigure_name() {
+			return fFigureClassFigure_name;
+		}
+
 	}
+
+	/**
+	 * @generated
+	 */
+	static final Font FFIGURECLASSFIGURE_NAME_FONT = new Font(Display
+			.getCurrent(),
+			Display.getDefault().getSystemFont().getFontData()[0].getName(), 9,
+			SWT.NORMAL);
 
 }

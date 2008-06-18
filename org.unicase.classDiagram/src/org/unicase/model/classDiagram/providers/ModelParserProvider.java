@@ -1,6 +1,7 @@
 package org.unicase.model.classDiagram.providers;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.service.AbstractProvider;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
@@ -10,6 +11,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParserProvider;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
+import org.unicase.model.ModelPackage;
 
 /**
  * @generated
@@ -20,8 +22,64 @@ public class ModelParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
+	private IParser className_4001Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getClassName_4001Parser() {
+		if (className_4001Parser == null) {
+			className_4001Parser = createClassName_4001Parser();
+		}
+		return className_4001Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IParser createClassName_4001Parser() {
+		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE
+				.getModelElement_Name(), };
+		org.unicase.model.classDiagram.parsers.MessageFormatParser parser = new org.unicase.model.classDiagram.parsers.MessageFormatParser(
+				features);
+		return parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser associationName_4002Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getAssociationName_4002Parser() {
+		if (associationName_4002Parser == null) {
+			associationName_4002Parser = createAssociationName_4002Parser();
+		}
+		return associationName_4002Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IParser createAssociationName_4002Parser() {
+		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE
+				.getModelElement_Name(), };
+		org.unicase.model.classDiagram.parsers.MessageFormatParser parser = new org.unicase.model.classDiagram.parsers.MessageFormatParser(
+				features);
+		return parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
+		case org.unicase.model.classDiagram.edit.parts.WrappingLabelEditPart.VISUAL_ID:
+			return getClassName_4001Parser();
+		case org.unicase.model.classDiagram.edit.parts.LabelEditPart.VISUAL_ID:
+			return getAssociationName_4002Parser();
 		}
 		return null;
 	}

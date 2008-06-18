@@ -89,7 +89,7 @@ public class ModelViewProvider extends AbstractViewProvider {
 						return null; // visual id in semantic hint should match visual id for domain element
 					}
 					break;
-				case org.unicase.model.classDiagram.edit.parts.MEDiagramNameEditPart.VISUAL_ID:
+				case org.unicase.model.classDiagram.edit.parts.WrappingLabelEditPart.VISUAL_ID:
 					if (org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart.VISUAL_ID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
 							.getVisualID(containerView)
 							|| containerView.getElement() != domainElement) {
@@ -123,8 +123,8 @@ public class ModelViewProvider extends AbstractViewProvider {
 		switch (visualID) {
 		case org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart.VISUAL_ID:
 			return org.unicase.model.classDiagram.view.factories.MEDiagram2ViewFactory.class;
-		case org.unicase.model.classDiagram.edit.parts.MEDiagramNameEditPart.VISUAL_ID:
-			return org.unicase.model.classDiagram.view.factories.MEDiagramNameViewFactory.class;
+		case org.unicase.model.classDiagram.edit.parts.WrappingLabelEditPart.VISUAL_ID:
+			return org.unicase.model.classDiagram.view.factories.WrappingLabelViewFactory.class;
 		case org.unicase.model.classDiagram.edit.parts.LabelEditPart.VISUAL_ID:
 			return org.unicase.model.classDiagram.view.factories.LabelViewFactory.class;
 		}
