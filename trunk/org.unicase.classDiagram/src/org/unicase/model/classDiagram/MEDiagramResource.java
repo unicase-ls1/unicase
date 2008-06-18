@@ -153,6 +153,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 
 	public void setModified(boolean isModified) {
 		// TODO Auto-generated method stub
+		System.out.print("huha");
 
 	}
 
@@ -196,14 +197,14 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 
 	public void attached(EObject object) {
 		// JH Implement this?
-		super.attached(object);
 	}
 
 	public NotificationChain basicSetResourceSet(ResourceSet resourceSet,
 			NotificationChain notifications) {
-		    return notifications;
-		// JH Check what this is for. This is called an probably makes trouble
-//		return super.basicSetResourceSet(resourceSet, notifications);
+
+		
+		// JH Check what this is for. This is called and maybe causes trouble
+		 return super.basicSetResourceSet(resourceSet, notifications);
 
 	}
 
