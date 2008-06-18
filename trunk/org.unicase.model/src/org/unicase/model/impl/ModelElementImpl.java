@@ -125,6 +125,7 @@ public abstract class ModelElementImpl extends EObjectImpl implements
 	 */
 	protected EList<LeafSection> incomingDocumentReferences;
 
+	//begin of custom code
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -134,6 +135,7 @@ public abstract class ModelElementImpl extends EObjectImpl implements
 		super();
 		this.identifier = ModelFactory.eINSTANCE.createModelElementId();
 	}
+	//end of custom code
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -564,6 +566,7 @@ public abstract class ModelElementImpl extends EObjectImpl implements
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 * @generated NOT
 	 */
+	@Override
 	public boolean equals(Object otherObject) {
 		if (otherObject instanceof ModelElementImpl) {
 			ModelElementImpl otherModelElement = (ModelElementImpl) otherObject;
@@ -572,6 +575,11 @@ public abstract class ModelElementImpl extends EObjectImpl implements
 		} else {
 			return false;
 		}
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.identifier.hashCode();
 	}
 
 } // ModelElementImpl

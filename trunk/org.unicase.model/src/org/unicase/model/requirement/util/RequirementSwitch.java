@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.ModelElement;
 import org.unicase.model.rationale.Criterion;
-import org.unicase.model.requirement.*;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.ActorInstance;
 import org.unicase.model.requirement.FunctionalRequirement;

@@ -11,7 +11,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.ModelElement;
-import org.unicase.model.diagram.*;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
 
