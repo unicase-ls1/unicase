@@ -35,5 +35,23 @@
             file="contexts.xml">
       </contexts>
    </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.unicase.ui.esbrowser.commands.NewTestProjectHandler"
+            id="org.unicase.ui.esbrowser.newTestProjectCommand"
+            name="create unicase test project...">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="toolbar:org.unicase.ui.repository.views.RepositoryView?after=additions">
+         <command
+               commandId="org.unicase.ui.esbrowser.newTestProjectCommand"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
 
 </plugin>
