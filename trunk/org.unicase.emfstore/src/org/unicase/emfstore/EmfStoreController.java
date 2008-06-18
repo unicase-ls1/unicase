@@ -31,7 +31,7 @@ import org.unicase.emfstore.connection.ConnectionHandler;
 import org.unicase.emfstore.connection.rmi.RMIConnectionHandler;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ServerSpace;
-import org.unicase.emfstore.exceptions.DataBaseException;
+import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.storage.ResourceStorage;
 
@@ -112,7 +112,7 @@ public class EmfStoreController implements IApplication {
 		try {
 			resource.load(Collections.EMPTY_MAP);
 		} catch (IOException e) {
-			throw new FatalEmfStoreException(DataBaseException.NOLOAD, e);
+			throw new FatalEmfStoreException(StorageException.NOLOAD, e);
 		}
 		EList<EObject> contents = resource.getContents();
 		for (EObject content : contents) {
@@ -134,7 +134,7 @@ public class EmfStoreController implements IApplication {
 		try {
 			serverSpace.save();
 		} catch (IOException e) {
-			throw new FatalEmfStoreException(DataBaseException.NOSAVE, e);
+			throw new FatalEmfStoreException(StorageException.NOSAVE, e);
 		}
 		return serverSpace;
 	}
