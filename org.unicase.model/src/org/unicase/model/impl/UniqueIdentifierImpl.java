@@ -50,6 +50,7 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements
 	 */
 	protected String id = ID_EDEFAULT;
 
+	//begin of custom code
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -59,6 +60,7 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements
 		super();
 		this.id = UUID.randomUUID().toString();
 	}
+	//end of custom code
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -162,7 +164,8 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements
 	/**
 	 * Returns true if the two identifiers are identical. False in any other
 	 * case.
-	 * 
+	 * @param otherObject the other object
+	 * @return true if the two object are considered equal
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 * @generated NOT
 	 */
@@ -174,6 +177,15 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements
 		} else {
 			return false;
 		}
+	}
+	
+	/** 
+	 * {@inheritDoc}
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		return this.id.hashCode();
 	}
 
 } // UniqueIdentifierImpl
