@@ -16,20 +16,47 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
-public class RMIUtil {
+/**
+ * Helper class for serializing and deserializing EObjects for RMI transport.
+ * @author wesendonk
+ *
+ */
+public final class RMIUtil {
 
+	/**
+	 * Private constructor.
+	 */
+	private RMIUtil() {
+		//nothing to do
+	}
+	
+	/**
+	 * Converts an EObject to a String.
+	 * 
+	 * @param object the eObject
+	 * @return String representation of the EObject
+	 * @throws IOException if a serialization problem occurs
+	 */
+	//FIXME: Exception
 	public static String eObjectToString(EObject object) throws IOException {
 		// TODO Uri
 		Resource res = (new ResourceSetImpl()).createResource(URI
 				.createURI("eineTolleUri"));
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		//begin trasnaction
 		res.getContents().add(object);
 		res.save(out, null);
-		//end transaction
 		return out.toString();
 	}
 
+	/**
+	 * Converts a String to an EObject.
+	 * Note: String must be the result of {@link RMIUtil#eObjectToString(EObject)}
+	 * @param object the String representation of the EObject
+	 * @return the deserialized EObject
+	 * @throws UnsupportedEncodingException if encoding is invalid
+	 * @throws IOException if deserialization fails
+	 */
+	//FIXME: Exceptions
 	public static EObject stringToEObject(String object)
 			throws UnsupportedEncodingException, IOException {
 		// TODO Uri
