@@ -473,7 +473,6 @@ public class BugEditor extends MultiPageEditorPart implements
 									public void run() {
 										getSite().getPage().closeEditor(
 												BugEditor.this, false);
-										BugEditor.this.dispose();
 									}
 								});
 					}
@@ -516,7 +515,6 @@ public class BugEditor extends MultiPageEditorPart implements
 		if (!removedResources.isEmpty()) {
 			if (handleDirtyConflict()) {
 				getSite().getPage().closeEditor(BugEditor.this, false);
-				BugEditor.this.dispose();
 			} else {
 				removedResources.clear();
 				changedResources.clear();

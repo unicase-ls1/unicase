@@ -475,7 +475,6 @@ public class DocumentEditor extends MultiPageEditorPart implements
 									public void run() {
 										getSite().getPage().closeEditor(
 												DocumentEditor.this, false);
-										DocumentEditor.this.dispose();
 									}
 								});
 					}
@@ -518,7 +517,6 @@ public class DocumentEditor extends MultiPageEditorPart implements
 		if (!removedResources.isEmpty()) {
 			if (handleDirtyConflict()) {
 				getSite().getPage().closeEditor(DocumentEditor.this, false);
-				DocumentEditor.this.dispose();
 			} else {
 				removedResources.clear();
 				changedResources.clear();

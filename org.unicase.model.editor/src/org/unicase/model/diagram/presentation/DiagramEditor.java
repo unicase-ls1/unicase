@@ -475,7 +475,6 @@ public class DiagramEditor extends MultiPageEditorPart implements
 									public void run() {
 										getSite().getPage().closeEditor(
 												DiagramEditor.this, false);
-										DiagramEditor.this.dispose();
 									}
 								});
 					}
@@ -518,7 +517,6 @@ public class DiagramEditor extends MultiPageEditorPart implements
 		if (!removedResources.isEmpty()) {
 			if (handleDirtyConflict()) {
 				getSite().getPage().closeEditor(DiagramEditor.this, false);
-				DiagramEditor.this.dispose();
 			} else {
 				removedResources.clear();
 				changedResources.clear();
