@@ -14,7 +14,7 @@
       editingDomainID="org.unicase.EditingDomain"
       validationProviderPriority="Low">
     <diagramRunTimeClass
-        href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
+        href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
     <elementType
         xsi:type="gmfgen:MetamodelType"
         editHelperClassName="MEDiagramEditHelper"/>
@@ -22,7 +22,7 @@
         xsi:type="gmfgen:FigureViewmap"
         figureQualifiedClassName="org.eclipse.draw2d.FreeformLayer"/>
     <domainDiagramElement
-        href="model.genmodel#//model/diagram/MEDiagram"/>
+        href="../model.genmodel#//model/diagram/MEDiagram"/>
     <topLevelNodes
         visualID="1001"
         editPartClassName="MEDiagram2EditPart"
@@ -32,7 +32,7 @@
         graphicalNodeEditPolicyClassName="MEDiagramGraphicalNodeEditPolicy"
         createCommandClassName="MEDiagramCreateCommand">
       <diagramRunTimeClass
-          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
       <elementType
           xsi:type="gmfgen:MetamodelType"
           editHelperClassName="ClassEditHelper"/>
@@ -46,11 +46,11 @@
       </viewmap>
       <modelFacet>
         <metaClass
-            href="model.genmodel#//model/classes/Class"/>
+            href="../model.genmodel#//model/classes/Class"/>
         <containmentMetaFeature
-            href="model.genmodel#//model/diagram/MEDiagram/newElements"/>
+            href="../model.genmodel#//model/diagram/MEDiagram/newElements"/>
         <childMetaFeature
-            href="model.genmodel#//model/diagram/MEDiagram/elements"/>
+            href="../model.genmodel#//model/diagram/MEDiagram/elements"/>
       </modelFacet>
       <labels
           visualID="4001"
@@ -59,7 +59,7 @@
           notationViewFactoryClassName="WrappingLabelViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
-            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+            href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getFigureClassFigure_name"
@@ -72,7 +72,7 @@
             xsi:type="gmfgen:FeatureLabelModelFacet"
             editorPattern="">
           <metaFeatures
-              href="model.genmodel#//model/ModelElement/name"/>
+              href="../model.genmodel#//model/ModelElement/name"/>
         </modelFacet>
       </labels>
     </topLevelNodes>
@@ -84,7 +84,7 @@
         createCommandClassName="AssociationCreateCommand"
         reorientCommandClassName="AssociationReorientCommand">
       <diagramRunTimeClass
-          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+          href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
       <elementType
           xsi:type="gmfgen:MetamodelType"
           editHelperClassName="AssociationEditHelper"/>
@@ -98,15 +98,15 @@
       <modelFacet
           xsi:type="gmfgen:TypeLinkModelFacet">
         <metaClass
-            href="model.genmodel#//model/classes/Association"/>
+            href="../model.genmodel#//model/classes/Association"/>
         <containmentMetaFeature
-            href="model.genmodel#//model/diagram/MEDiagram/newElements"/>
+            href="../model.genmodel#//model/diagram/MEDiagram/newElements"/>
         <childMetaFeature
-            href="model.genmodel#//model/diagram/MEDiagram/newElements"/>
+            href="../model.genmodel#//model/diagram/MEDiagram/newElements"/>
         <sourceMetaFeature
-            href="model.genmodel#//model/classes/Association/source"/>
+            href="../model.genmodel#//model/classes/Association/source"/>
         <targetMetaFeature
-            href="model.genmodel#//model/classes/Association/target"/>
+            href="../model.genmodel#//model/classes/Association/target"/>
       </modelFacet>
       <labels
           visualID="4002"
@@ -115,7 +115,7 @@
           notationViewFactoryClassName="LabelViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
-            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+            href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getFigureAssociationFigure_name"
@@ -128,7 +128,7 @@
             xsi:type="gmfgen:FeatureLabelModelFacet"
             editorPattern="">
           <metaFeatures
-              href="model.genmodel#//model/ModelElement/name"/>
+              href="../model.genmodel#//model/ModelElement/name"/>
         </modelFacet>
       </labels>
     </links>
@@ -247,5 +247,5 @@
     </tabs>
   </propertySheet>
   <domainGenModel
-      href="model.genmodel#/"/>
+      href="../model.genmodel#/"/>
 </gmfgen:GenEditorGenerator>
