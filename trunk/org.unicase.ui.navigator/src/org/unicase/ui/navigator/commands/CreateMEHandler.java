@@ -20,7 +20,9 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.model.ModelElement;
 import org.unicase.model.document.LeafSection;
+import org.unicase.ui.meeditor.MEEditor;
 import org.unicase.ui.meeditor.MEEditorInput;
+import org.unicase.workspace.WorkspaceManager;
 
 /**
  * 
@@ -45,13 +47,6 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 	 * type is created in this handler.
 	 */
 	public static final String COMMAND_ECLASS_PARAM = "org.unicase.ui.navigator.eClassParameter";
-
-	/**
-	 * The Id for MEEditor. We need this to open the created model element.
-	 */
-	private static final String MEEDITOR_PLUGIN_ID = "org.unicase.ui.meeditor";
-
-	private static final String TRANSACTIONAL_EDITINGDOMAIN_ID = "org.unicase.EditingDomain";
 	
 	/**.
 	 * ({@inheritDoc})
@@ -71,7 +66,7 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 			final LeafSection leafSection = getLeafSection(event);
 			if (leafSection != null) {
 				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-						.getEditingDomain(TRANSACTIONAL_EDITINGDOMAIN_ID);
+						.getEditingDomain(WorkspaceManager.TRANSACTIONAL_EDITINGDOMAIN_ID);
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					@Override
 					protected void doExecute() {
@@ -91,7 +86,7 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 		try {
 			PlatformUI.getWorkbench().getActiveWorkbenchWindow()
 					.getActivePage()
-					.openEditor(input, MEEDITOR_PLUGIN_ID, true);
+					.openEditor(input, MEEditor.ID, true);
 		} catch (PartInitException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

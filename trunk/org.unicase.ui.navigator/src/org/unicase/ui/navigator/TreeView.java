@@ -16,6 +16,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.navigator.CommonNavigator;
 import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.MEDiagram;
+import org.unicase.ui.meeditor.MEEditor;
 import org.unicase.ui.meeditor.MEEditorInput;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
@@ -63,7 +64,7 @@ public class TreeView extends CommonNavigator {
 				try {
 					PlatformUI.getWorkbench().getActiveWorkbenchWindow()
 							.getActivePage().openEditor(input,
-									"org.unicase.ui.meeditor", true);
+									MEEditor.ID, true);
 				} catch (PartInitException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
