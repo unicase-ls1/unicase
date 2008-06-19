@@ -114,27 +114,29 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		}
 
 		//all elements
-		Set<ModelElement> allElements = new HashSet<ModelElement>();
+		//Set<ModelElement> allElements = new HashSet<ModelElement>();
 		//elements to do
-		Set<ModelElement> todo = new HashSet<ModelElement>();
+		Set<EObject> todo = new HashSet<EObject>();
 
 		//init with the projects direct model elements
 		EList<ModelElement> elements = this.getModelElements();
 		todo.addAll(elements);
-		allElements.addAll(elements);
+		//allElements.addAll(elements);
 
 		while (!todo.isEmpty()) {
-			ModelElement modelElement = todo.iterator().next();
-			EList<EObject> contents = modelElement.eContents();
+			EObject obj = todo.iterator().next();
+			EList<EObject> contents = obj.eContents();
 			for (EObject content : contents) {
 				if (modelElementClass.isInstance(content)) {
-					allElements.add((ModelElement) content);
+					//allElements.add((ModelElement) content);
+					result.add((ModelElement) content);
+				} else {
 					todo.add((ModelElement) content);
 				}
 			}
-			todo.remove(modelElement);
+			todo.remove(obj);
 		}
-		result.addAllUnique(todo);
+		//result.addAllUnique(todo);
 		return result;
 	}
 
@@ -151,6 +153,28 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			}
 		}
 		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<EObject> getInstancesByClass(EClass instanceClass) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<EObject> getAllInstancesByClass(EClass instanceClass) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	//end of custom code

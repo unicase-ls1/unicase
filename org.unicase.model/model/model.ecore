@@ -44,6 +44,12 @@
     <eOperations name="getModelElementsByClass" ordered="false" upperBound="-1" eType="#//ModelElement">
       <eParameters name="modelElementClass" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
     </eOperations>
+    <eOperations name="getInstancesByClass" ordered="false" upperBound="-1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject">
+      <eParameters name="instanceClass" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
+    </eOperations>
+    <eOperations name="getAllInstancesByClass" ordered="false" upperBound="-1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject">
+      <eParameters name="instanceClass" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="modelElements" ordered="false"
         upperBound="-1" eType="#//ModelElement" containment="true"/>
   </eClassifiers>
