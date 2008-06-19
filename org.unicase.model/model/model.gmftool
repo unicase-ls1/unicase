@@ -12,5 +12,14 @@
     <tools
         xsi:type="gmftool:CreationTool"
         title="Association"/>
+    <tools
+        xsi:type="gmftool:CreationTool"
+        title="Aggregation"/>
+    <tools
+        xsi:type="gmftool:CreationTool"
+        title="Composition"/>
+    <tools
+        xsi:type="gmftool:CreationTool"
+        title="Directed Association"/>
   </palette>
 </gmftool:ToolRegistry>
