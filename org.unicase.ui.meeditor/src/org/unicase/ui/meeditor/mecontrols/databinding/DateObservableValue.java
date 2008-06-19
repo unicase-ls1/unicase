@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.ui.meeditor.mecontrols.databinding;
 
 import java.util.Calendar;
@@ -5,21 +11,9 @@ import java.util.Date;
 
 import org.eclipse.core.databinding.observable.Diffs;
 import org.eclipse.core.databinding.observable.Realm;
-import org.eclipse.core.runtime.Assert;
-import org.eclipse.jface.databinding.swt.ISWTObservableValue;
 import org.eclipse.jface.internal.databinding.provisional.swt.AbstractSWTObservableValue;
-import org.eclipse.jface.internal.databinding.swt.SWTProperties;
-import org.eclipse.jface.internal.databinding.swt.SpinnerObservableValue;
-import org.eclipse.jface.util.Util;
 import org.eclipse.nebula.widgets.calendarcombo.CalendarCombo;
 import org.eclipse.nebula.widgets.calendarcombo.ICalendarListener;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Listener;
-import org.eclipse.swt.widgets.Spinner;
-import org.eclipse.swt.widgets.Text;
 
 /**
  * Defines the observable value for the date widget.
@@ -34,7 +28,6 @@ public class DateObservableValue extends AbstractSWTObservableValue {
 	private boolean updating;
 	private Date currentSelection;
 	private ICalendarListener listener;
-	private Calendar none;
 
 	/**
 	 * @param date
@@ -71,12 +64,8 @@ public class DateObservableValue extends AbstractSWTObservableValue {
 		date.addCalendarListener(listener);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.core.databinding.observable.value.AbstractObservableValue
-	 * #dispose()
+	/**
+	 * {@inheritDoc}
 	 */
 	public synchronized void dispose() {
 		super.dispose();
@@ -96,34 +85,22 @@ public class DateObservableValue extends AbstractSWTObservableValue {
 		this.date = date;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.core.databinding.observable.value.AbstractObservableValue
-	 * #doGetValue()
+	/**
+	 * {@inheritDoc}
 	 */
 	protected Object doGetValue() {
 		return date.getDate().getTime();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.core.databinding.observable.value.IObservableValue#getValueType
-	 * ()
+	/**
+	 * {@inheritDoc}
 	 */
 	public Object getValueType() {
 		return Date.class;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.core.databinding.observable.value.AbstractObservableValue
-	 * #doSetValue(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	protected void doSetValue(Object value) {
 		Date oldValue;
