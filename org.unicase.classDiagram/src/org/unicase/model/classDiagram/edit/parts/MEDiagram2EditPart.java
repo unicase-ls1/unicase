@@ -237,7 +237,6 @@ public class MEDiagram2EditPart extends ShapeNodeEditPart {
 
 			this.setLayoutManager(layoutThis);
 
-			this.setLineWidth(2);
 			createContents();
 		}
 

@@ -9,7 +9,6 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.unicase.model.ModelElement;
 import org.unicase.model.classes.Association;
 import org.unicase.model.classes.Class;
 import org.unicase.model.classes.ClassesFactory;
@@ -181,4 +180,5 @@ public class AssociationCreateCommand extends CreateElementCommand {
 	public MEDiagram getContainer() {
 		return container;
 	}
+
 }
