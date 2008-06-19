@@ -473,7 +473,6 @@ public class TaskEditor extends MultiPageEditorPart implements
 									public void run() {
 										getSite().getPage().closeEditor(
 												TaskEditor.this, false);
-										TaskEditor.this.dispose();
 									}
 								});
 					}
@@ -516,7 +515,6 @@ public class TaskEditor extends MultiPageEditorPart implements
 		if (!removedResources.isEmpty()) {
 			if (handleDirtyConflict()) {
 				getSite().getPage().closeEditor(TaskEditor.this, false);
-				TaskEditor.this.dispose();
 			} else {
 				removedResources.clear();
 				changedResources.clear();
