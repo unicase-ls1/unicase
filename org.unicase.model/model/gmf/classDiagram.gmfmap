@@ -7,19 +7,19 @@
     xmlns:gmftool="http://www.eclipse.org/gmf/2005/ToolDefinition">
   <nodes>
     <containmentFeature
-        href="model.ecore#//diagram/MEDiagram/newElements"/>
+        href="../model.ecore#//diagram/MEDiagram/newElements"/>
     <childrenFeature
-        href="model.ecore#//diagram/MEDiagram/elements"/>
+        href="../model.ecore#//diagram/MEDiagram/elements"/>
     <ownedChild>
       <domainMetaElement
-          href="model.ecore#//classes/Class"/>
+          href="../model.ecore#//classes/Class"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
           editorPattern="">
         <diagramLabel
             href="model.gmfgraph#ClassNode_name"/>
         <features
-            href="model.ecore#//ModelElement/name"/>
+            href="../model.ecore#//ModelElement/name"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -31,17 +31,17 @@
   <links
       relatedDiagrams="//@diagram">
     <domainMetaElement
-        href="model.ecore#//classes/Association"/>
+        href="../model.ecore#//classes/Association"/>
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping"
         editorPattern="">
       <diagramLabel
           href="model.gmfgraph#AssociationLine_name"/>
       <features
-          href="model.ecore#//ModelElement/name"/>
+          href="../model.ecore#//ModelElement/name"/>
     </labelMappings>
     <containmentFeature
-        href="model.ecore#//diagram/MEDiagram/newElements"/>
+        href="../model.ecore#//diagram/MEDiagram/newElements"/>
     <tool
         xsi:type="gmftool:CreationTool"
         href="model.gmftool#//@palette/@tools.1"/>
@@ -49,18 +49,18 @@
         href="model.gmfgraph#Association"/>
     <sourceMetaFeature
         xsi:type="ecore:EReference"
-        href="model.ecore#//classes/Association/source"/>
+        href="../model.ecore#//classes/Association/source"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="model.ecore#//classes/Association/target"/>
+        href="../model.ecore#//classes/Association/target"/>
   </links>
   <diagram>
     <diagramCanvas
         href="model.gmfgraph#MEDiagram"/>
     <domainModel
-        href="model.ecore#//diagram"/>
+        href="../model.ecore#//diagram"/>
     <domainMetaElement
-        href="model.ecore#//diagram/MEDiagram"/>
+        href="../model.ecore#//diagram/MEDiagram"/>
     <palette
         href="model.gmftool#//@palette"/>
   </diagram>
