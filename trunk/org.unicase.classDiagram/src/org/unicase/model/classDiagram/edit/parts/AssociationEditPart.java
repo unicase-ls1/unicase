@@ -1,12 +1,15 @@
 package org.unicase.model.classDiagram.edit.parts;
 
 import org.eclipse.draw2d.Connection;
+import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.runtime.notation.impl.EdgeImpl;
+import org.unicase.model.classes.Association;
 
 /**
  * @generated
@@ -93,6 +96,8 @@ public class AssociationEditPart extends ConnectionNodeEditPart {
 		public AssociationFigure() {
 
 			createContents();
+			setSourceDecoration(createSourceDecoration());
+			setTargetDecoration(createTargetDecoration());
 		}
 
 		/**
@@ -105,6 +110,46 @@ public class AssociationEditPart extends ConnectionNodeEditPart {
 
 			this.add(fFigureAssociationFigure_name);
 
+		}
+
+		/**
+		 * @generated NOT
+		 */
+		private RotatableDecoration createSourceDecoration() {
+			org.unicase.model.classDiagram.unicase.AssociationDecoration df;
+			Object object = getModel();
+			if (object instanceof EdgeImpl) {
+				EdgeImpl edgeImpl = (EdgeImpl) object;
+				object = edgeImpl.getElement();
+			}
+			if (object instanceof Association) {
+				Association association = (Association) object;
+				df = new org.unicase.model.classDiagram.unicase.AssociationDecoration(
+						association, true);
+			} else
+				throw new IllegalArgumentException();
+
+			return df;
+		}
+
+		/**
+		 * @generated NOT
+		 */
+		private RotatableDecoration createTargetDecoration() {
+			org.unicase.model.classDiagram.unicase.AssociationDecoration df;
+			Object object = getModel();
+			if (object instanceof EdgeImpl) {
+				EdgeImpl edgeImpl = (EdgeImpl) object;
+				object = edgeImpl.getElement();
+			}
+			if (object instanceof Association) {
+				Association association = (Association) object;
+				df = new org.unicase.model.classDiagram.unicase.AssociationDecoration(
+						association, false);
+			} else
+				throw new IllegalArgumentException();
+
+			return df;
 		}
 
 		/**

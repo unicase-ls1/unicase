@@ -35,6 +35,9 @@ public class ModelPaletteFactory {
 				.setDescription(org.unicase.model.classDiagram.part.Messages.Default1Group_desc);
 		paletteContainer.add(createClass1CreationTool());
 		paletteContainer.add(createAssociation2CreationTool());
+		paletteContainer.add(createAggregation3CreationTool());
+		paletteContainer.add(createComposition4CreationTool());
+		paletteContainer.add(createDirectedAssociation5CreationTool());
 		return paletteContainer;
 	}
 
@@ -70,6 +73,39 @@ public class ModelPaletteFactory {
 				.setSmallIcon(org.unicase.model.classDiagram.providers.ModelElementTypes
 						.getImageDescriptor(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3001));
 		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createAggregation3CreationTool() {
+		ToolEntry entry = new ToolEntry(
+				org.unicase.model.classDiagram.part.Messages.Aggregation3CreationTool_title,
+				null, null, null) {
+		};
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createComposition4CreationTool() {
+		ToolEntry entry = new ToolEntry(
+				org.unicase.model.classDiagram.part.Messages.Composition4CreationTool_title,
+				null, null, null) {
+		};
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createDirectedAssociation5CreationTool() {
+		ToolEntry entry = new ToolEntry(
+				org.unicase.model.classDiagram.part.Messages.DirectedAssociation5CreationTool_title,
+				null, null, null) {
+		};
 		return entry;
 	}
 
