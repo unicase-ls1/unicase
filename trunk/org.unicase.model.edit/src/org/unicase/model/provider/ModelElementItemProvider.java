@@ -96,7 +96,7 @@ public class ModelElementItemProvider extends ItemProviderAdapter implements
 						"_UI_PropertyDescriptor_description",
 						"_UI_ModelElement_description_feature",
 						"_UI_ModelElement_type"),
-				ModelPackage.Literals.MODEL_ELEMENT__DESCRIPTION, true, false,
+				ModelPackage.Literals.MODEL_ELEMENT__DESCRIPTION, true, true,
 				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 

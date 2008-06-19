@@ -135,6 +135,7 @@ public abstract class ModelElementImpl extends EObjectImpl implements
 		super();
 		this.identifier = ModelFactory.eINSTANCE.createModelElementId();
 	}
+
 	//end of custom code
 
 	/**
@@ -576,7 +577,7 @@ public abstract class ModelElementImpl extends EObjectImpl implements
 			return false;
 		}
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return this.identifier.hashCode();
