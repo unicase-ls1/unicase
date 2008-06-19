@@ -60,6 +60,7 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements
 		super();
 		this.id = UUID.randomUUID().toString();
 	}
+
 	//end of custom code
 
 	/**
@@ -178,7 +179,7 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements
 			return false;
 		}
 	}
-	
+
 	/** 
 	 * {@inheritDoc}
 	 * @see java.lang.Object#hashCode()
