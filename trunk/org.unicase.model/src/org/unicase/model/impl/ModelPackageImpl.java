@@ -561,6 +561,16 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		addEParameter(op, theEcorePackage.getEClass(), "modelElementClass", 0,
 				1, IS_UNIQUE, IS_ORDERED);
 
+		op = addEOperation(projectEClass, theEcorePackage.getEObject(),
+				"getInstancesByClass", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEClass(), "instanceClass", 0, 1,
+				IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(projectEClass, theEcorePackage.getEObject(),
+				"getAllInstancesByClass", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEClass(), "instanceClass", 0, 1,
+				IS_UNIQUE, IS_ORDERED);
+
 		initEClass(modelElementIdEClass, ModelElementId.class,
 				"ModelElementId", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);

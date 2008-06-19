@@ -84,4 +84,20 @@ public interface Project extends EObject, IAdaptable {
 	 */
 	EList<ModelElement> getModelElementsByClass(EClass modelElementClass);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model ordered="false"
+	 * @generated
+	 */
+	EList<EObject> getInstancesByClass(EClass instanceClass);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model ordered="false"
+	 * @generated
+	 */
+	EList<EObject> getAllInstancesByClass(EClass instanceClass);
+
 } // Project
