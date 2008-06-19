@@ -1,29 +1,32 @@
-/**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
- */
 package emftest;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.rmi.registry.Registry;
 import java.util.Collections;
 import java.util.Date;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.eclipse.emf.ecore.change.util.ChangeRecorder;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.EcoreValidator;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
-import org.unicase.emfstore.connection.rmi.RMIUtil;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.changemanagment.ChangePackage;
 import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentFactory;
 import org.unicase.emfstore.esmodel.changemanagment.LogMessage;
-import org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec;
 import org.unicase.model.Project;
 import org.unicase.model.component.Component;
 import org.unicase.model.component.ComponentFactory;
@@ -45,6 +48,9 @@ public class Application implements IApplication {
 	public Object start(IApplicationContext context) throws Exception {
 		System.out.println("Hello RCP World!");
 		ConnectionManager cm = WorkspaceManager.getInstance().getConnectionManager();
+		WorkspaceManager.getInstance().getCurrentWorkspace();
+		
+		
 		ServerInfo si = WorkspaceFactory.eINSTANCE.createServerInfo();
 		si.setDisplayName("");
 		si.setUrl("localhost");
@@ -93,14 +99,20 @@ public class Application implements IApplication {
 		ChangePackage cpp = save();
 		
 		Diagnostician.INSTANCE.validate(cpp);
-		Diagnostician.INSTANCE.validate(RMIUtil.stringToEObject(RMIUtil.eObjectToString(cpp)));
-		System.out.println("ChangePacke: "+RMIUtil.eObjectToString(cpp));
+
+		rs = WorkspaceManager.getInstance().resourceSet;
 		
-		PrimaryVersionSpec pri2 = cm.resolveVersionSpec(id, pinfo.getProjectId(), ChangemanagmentFactory.eINSTANCE.createHeadVersionSpec());
+		//System.out.println("ChangePacke: "+eObjectToString(cpp));
 		
-		PrimaryVersionSpec resolvedVersion = cm.resolveVersionSpec(id, pinfo.getProjectId(),ChangemanagmentFactory.eINSTANCE.createHeadVersionSpec());
-		PrimaryVersionSpec pri = cm.createVersion(id, pinfo.getProjectId(), pri2, cpp, log);
-		System.out.println("Primary: "+pri);
+		Diagnostician.INSTANCE.validate(stringToEObject(eObjectToString(cpp)));
+
+		System.out.println("ENDE");
+//		
+//		PrimaryVersionSpec pri2 = cm.resolveVersionSpec(id, pinfo.getProjectId(), ChangemanagmentFactory.eINSTANCE.createHeadVersionSpec());
+//		
+//		PrimaryVersionSpec resolvedVersion = cm.resolveVersionSpec(id, pinfo.getProjectId(),ChangemanagmentFactory.eINSTANCE.createHeadVersionSpec());
+//		PrimaryVersionSpec pri = cm.createVersion(id, pinfo.getProjectId(), pri2, cpp, log);
+//		System.out.println("Primary: "+pri);
 		
 		return IApplication.EXIT_OK;
 	}
@@ -123,5 +135,52 @@ public class Application implements IApplication {
 	 */
 	public void stop() {
 		// nothing to do
+	}
+	
+	public static URI eObjectToString = URI.createURI("unicase.org/eObject_to_String");
+	
+	public static URI stringToEobject = URI.createURI("unicase.org/String_to_eObject");
+	
+	public ResourceSet rs;
+	
+	public String eObjectToString(final EObject object) throws IOException {
+		// TODO Uri
+		final Resource res = rs.createResource(eObjectToString);
+		final ByteArrayOutputStream out = new ByteArrayOutputStream();
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+		domain.getCommandStack().execute(new RecordingCommand(domain){
+		protected void doExecute() {
+			res.getContents().add(object);
+		try {
+			res.save(out, null);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
+		});
+		res.delete(null);
+		return out.toString();
+	}
+
+	public EObject stringToEObject(final String object)
+			throws UnsupportedEncodingException, IOException {
+		// TODO Uri
+		final Resource res = rs.createResource(eObjectToString);
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+		domain.getCommandStack().execute(new RecordingCommand(domain){
+		protected void doExecute() {
+			try {
+				res.load(new ByteArrayInputStream(object.getBytes("UTF-8")), null);
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		});
+		return res.getContents().get(0);
 	}
 }
