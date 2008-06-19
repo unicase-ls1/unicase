@@ -80,7 +80,7 @@ public class METextAreaControl extends AbstractMEControl implements MEControl {
 
 		});
 
-		formatText= toolkit.createFormText(composite, true);
+//		formatText= toolkit.createFormText(composite, true);
 		setFormatText();
 		
 		document.addDocumentListener(new IDocumentListener(){
@@ -93,21 +93,22 @@ public class METextAreaControl extends AbstractMEControl implements MEControl {
 			public void documentChanged(DocumentEvent event) {
 				setFormatText();
 				
-			}
+			}	
 			
 		});
 
 		section.setClient(composite);
+		section.setExpanded(false);
 		return section;
 	}
 
 	private void setFormatText() {
-		try {
-			formatText.setText("<root>" + document.get() + "</root>", true, true);
-		} catch (Exception e) {
-			// JH catch only right Exception
-			formatText.setText("<root>Input not valid</root>", false, false);
-		}
+//		try {
+//			formatText.setText("<root>" + document.get() + "</root>", true, true);
+//		} catch (Exception e) {
+//			// JH catch only right Exception
+//			formatText.setText("<root>Input not valid</root>", false, false);
+//		}
 	}
 }
 
