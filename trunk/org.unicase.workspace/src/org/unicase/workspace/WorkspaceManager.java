@@ -31,6 +31,8 @@ import org.unicase.workspace.impl.WorkspaceImpl;
  */
 public final class WorkspaceManager {
 
+	public static final String TRANSACTIONAL_EDITINGDOMAIN_ID = "org.unicase.EditingDomain";
+
 	private static WorkspaceManager instance;
 
 	private Workspace currentWorkspace;
@@ -90,8 +92,8 @@ public final class WorkspaceManager {
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Factory.INSTANCE
 				.createEditingDomain(resourceSet);
 		TransactionalEditingDomain.Registry.INSTANCE.add(
-				"org.unicase.EditingDomain", domain);
-		domain.setID("org.unicase.EditingDomain");
+				TRANSACTIONAL_EDITINGDOMAIN_ID, domain);
+		domain.setID(TRANSACTIONAL_EDITINGDOMAIN_ID);
 
 		URI fileURI = URI.createFileURI(Configuration.getWorkspacePath());
 		File workspaceFile = new File(Configuration.getWorkspacePath());
