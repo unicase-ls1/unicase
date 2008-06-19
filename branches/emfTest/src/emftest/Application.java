@@ -2,6 +2,7 @@ package emftest;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.rmi.registry.Registry;
@@ -22,15 +23,22 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
+import org.unicase.emfstore.connection.rmi.RMIUtil;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.changemanagment.ChangePackage;
 import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentFactory;
 import org.unicase.emfstore.esmodel.changemanagment.LogMessage;
+import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.model.ModelFactory;
 import org.unicase.model.Project;
 import org.unicase.model.component.Component;
 import org.unicase.model.component.ComponentFactory;
+import org.unicase.workspace.Configuration;
+import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
+import org.unicase.workspace.Usersession;
+import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
@@ -41,6 +49,7 @@ import org.unicase.workspace.connectionmanager.ConnectionManager;
 public class Application implements IApplication {
 
 	private ChangeRecorder changeRecorder;
+	private ChangePackage cpp;
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.equinox.app.IApplication#start(org.eclipse.equinox.app.IApplicationContext)
@@ -48,7 +57,7 @@ public class Application implements IApplication {
 	public Object start(IApplicationContext context) throws Exception {
 		System.out.println("Hello RCP World!");
 		ConnectionManager cm = WorkspaceManager.getInstance().getConnectionManager();
-		WorkspaceManager.getInstance().getCurrentWorkspace();
+		final Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 		
 		
 		ServerInfo si = WorkspaceFactory.eINSTANCE.createServerInfo();
@@ -81,30 +90,62 @@ public class Application implements IApplication {
 		log.setAuthor("blub");
 		log.setDate(new Date());
 		
-		ProjectInfo pinfo = cm.createProject(id, "name", "description", log);
+		final Usersession usersession = WorkspaceFactory.eINSTANCE.createUsersession();
+		usersession.setServerInfo(si);
+		usersession.setUsername("");
+		usersession.setPassword("");
+		usersession.logIn();
+		
+		final ProjectInfo pinfo = cm.createProject(id, "name", "description", log);
 		System.out.println("ProjectInfo: "+pinfo);
 		
-		Project project = cm.getProject(id, pinfo.getProjectId(), ChangemanagmentFactory.eINSTANCE.createHeadVersionSpec());
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+		domain.getCommandStack().execute(new RecordingCommand(domain){
+
+		protected void doExecute() {
+			try {
+				ProjectSpace projectSpace = currentWorkspace.checkout(usersession, pinfo);
+				currentWorkspace.getProjectSpaces().add(projectSpace);
+				project = projectSpace.getProject();
+				
+				changeRecorder=new ChangeRecorder();
+				changeRecorder.beginRecording(Collections.singleton(project));
+			
+				Component com = ComponentFactory.eINSTANCE.createComponent();
+				com.setDescription("a component");
+				com.setName("component");
+				
+				project.addModelElement(com);
+				
+				cpp = save();
+			} catch (EmfStoreException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		}
+		});
+ 
+		
+		
+		//cm.getProject(id, pinfo.getProjectId(), ChangemanagmentFactory.eINSTANCE.createHeadVersionSpec());
 		System.out.println("Project: "+project);
 		
-		this.changeRecorder=new ChangeRecorder();
-		changeRecorder.beginRecording(Collections.singleton(project));
-	
-		Component com = ComponentFactory.eINSTANCE.createComponent();
-		com.setDescription("a component");
-		com.setName("component");
+//		Project project = ModelFactory.eINSTANCE.createProject();		
 		
-		project.addModelElement(com);
 		
-		ChangePackage cpp = save();
 		
 		Diagnostician.INSTANCE.validate(cpp);
 
-		rs = WorkspaceManager.getInstance().resourceSet;
+//		rs = WorkspaceManager.getInstance().resourceSet;
 		
-		//System.out.println("ChangePacke: "+eObjectToString(cpp));
+		rs = new ResourceSetImpl();
 		
-		Diagnostician.INSTANCE.validate(stringToEObject(eObjectToString(cpp)));
+//		System.out.println("ChangePacke: "+eObjectToString(cpp));
+		;
+		System.out.println(eObjectToString(cpp));
+		ChangePackage cppp = (ChangePackage) stringToEObject(eObjectToString(cpp));
+		System.out.println(cppp);
+		
+		Diagnostician.INSTANCE.validate(cppp);
 
 		System.out.println("ENDE");
 //		
@@ -137,15 +178,33 @@ public class Application implements IApplication {
 		// nothing to do
 	}
 	
-	public static URI eObjectToString = URI.createURI("unicase.org/eObject_to_String");
+	public static String filePath = Configuration.getWorkspaceDirectory()+"test";
 	
-	public static URI stringToEobject = URI.createURI("unicase.org/String_to_eObject");
+//	public static URI eObjectToString = URI.createFileURI(filePath);
+	
+	public static URI eObjectToString = URI.createURI("my.eobject/uri");
 	
 	public ResourceSet rs;
+
+	private Project project;
+	
+	public Resource initTestResource() {
+		File test = new File(filePath);
+//		rs.getURIConverter().getURIMap().put(RMIUtil.eObjectToString, URI.createFileURI(Configuration.getWorkspacePath()));
+//		if(!test.exists()) {
+			return rs.createResource(eObjectToString);
+//		} else {
+//			
+//			return rs.getResource(eObjectToString,true);
+//		}
+//		return rs.getResource(eObjectToString, true);
+
+	}
 	
 	public String eObjectToString(final EObject object) throws IOException {
 		// TODO Uri
-		final Resource res = rs.createResource(eObjectToString);
+		final Resource res = initTestResource();
+		res.save(options)
 		final ByteArrayOutputStream out = new ByteArrayOutputStream();
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain){
@@ -153,24 +212,26 @@ public class Application implements IApplication {
 			res.getContents().add(object);
 		try {
 			res.save(out, null);
+			res.save(null);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		}
 		});
-		res.delete(null);
-		return out.toString();
+//		return out.toString();
+		return "";
 	}
 
 	public EObject stringToEObject(final String object)
 			throws UnsupportedEncodingException, IOException {
 		// TODO Uri
-		final Resource res = rs.createResource(eObjectToString);
+		final Resource res = initTestResource();
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain){
 		protected void doExecute() {
 			try {
+				//res.load(null);
 				res.load(new ByteArrayInputStream(object.getBytes("UTF-8")), null);
 			} catch (UnsupportedEncodingException e) {
 				// TODO Auto-generated catch block
