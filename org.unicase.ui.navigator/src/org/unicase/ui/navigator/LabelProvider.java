@@ -10,6 +10,7 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.unicase.workspace.WorkspaceManager;
 
 public class LabelProvider extends TransactionalAdapterFactoryLabelProvider
 		implements ILabelProvider {
@@ -17,7 +18,7 @@ public class LabelProvider extends TransactionalAdapterFactoryLabelProvider
 	public LabelProvider() {
 
 		super(TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain"),
+				.getEditingDomain(WorkspaceManager.TRANSACTIONAL_EDITINGDOMAIN_ID),
 				new ComposedAdapterFactory(
 						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}

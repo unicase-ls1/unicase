@@ -18,7 +18,9 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelElement;
 import org.unicase.model.document.LeafSection;
+import org.unicase.ui.meeditor.MEEditor;
 import org.unicase.ui.meeditor.MEEditorInput;
+import org.unicase.workspace.WorkspaceManager;
 
 /**
  * 
@@ -32,7 +34,7 @@ import org.unicase.ui.meeditor.MEEditorInput;
  */
 public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 
-	private static final String MEEDITOR_PLUGIN_ID = "org.unicase.ui.meeditor";
+	
 	private ModelElement selectedME;
 	/**
 	 * . Through this field, the ModelTreePage tells the wizard which model
@@ -76,7 +78,7 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 			if (selectedME instanceof LeafSection) {
 
 				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-						.getEditingDomain("org.unicase.EditingDomain");
+						.getEditingDomain(WorkspaceManager.TRANSACTIONAL_EDITINGDOMAIN_ID);
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					@Override
 					protected void doExecute() {
@@ -98,7 +100,7 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 		try {
 			PlatformUI.getWorkbench().getActiveWorkbenchWindow()
 					.getActivePage()
-					.openEditor(input, MEEDITOR_PLUGIN_ID, true);
+					.openEditor(input, MEEditor.ID, true);
 		} catch (PartInitException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

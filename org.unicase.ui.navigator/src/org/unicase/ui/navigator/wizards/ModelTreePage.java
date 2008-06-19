@@ -17,7 +17,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
-import org.unicase.workspace.WorkspaceManager;
 
 /**
  * 
@@ -63,8 +62,8 @@ public class ModelTreePage extends WizardPage implements Listener {
 		treeViewer.getControl().setLayoutData(new GridData(GridData.FILL_BOTH));
 		treeViewer.setContentProvider(new ModelTreeContentProvider());
 		treeViewer.setLabelProvider(new ModelTreeLabelProvider());
-		treeViewer.setInput(WorkspaceManager.getInstance()
-				.getCurrentWorkspace());
+		//give an empty object, otherwise it does not initialize
+		treeViewer.setInput(new Object());
 		treeViewer.getTree().addListener(SWT.Selection, this);
 
 		setControl(composite);

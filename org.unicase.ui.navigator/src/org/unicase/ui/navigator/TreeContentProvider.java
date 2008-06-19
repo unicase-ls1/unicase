@@ -9,13 +9,14 @@ package org.unicase.ui.navigator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider;
+import org.unicase.workspace.WorkspaceManager;
 
 public class TreeContentProvider extends
 		TransactionalAdapterFactoryContentProvider {
 
 	public TreeContentProvider() {
 		super(TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain"),
+				.getEditingDomain(WorkspaceManager.TRANSACTIONAL_EDITINGDOMAIN_ID),
 				new ComposedAdapterFactory(
 						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
