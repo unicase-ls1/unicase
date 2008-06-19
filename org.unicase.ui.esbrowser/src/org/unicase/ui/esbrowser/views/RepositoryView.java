@@ -118,13 +118,9 @@ public class RepositoryView extends ViewPart {
 									.getCurrentWorkspace().save();
 						} catch (EmfStoreException e) {
 							// TODO server timed out
-							//
-							//
 							e.printStackTrace();
 						} catch (AccessControlException e) {
 							// TODO wrong password/user
-							//
-							//
 							e.printStackTrace();
 						}
 					}
