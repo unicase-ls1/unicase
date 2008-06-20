@@ -34,7 +34,6 @@ import org.unicase.workspace.WorkspaceManager;
  */
 public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 
-	
 	private ModelElement selectedME;
 	/**
 	 * . Through this field, the ModelTreePage tells the wizard which model
@@ -77,8 +76,8 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 			// navigator
 			if (selectedME instanceof LeafSection) {
 
-				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-						.getEditingDomain(WorkspaceManager.TRANSACTIONAL_EDITINGDOMAIN_ID);
+				TransactionalEditingDomain domain = WorkspaceManager
+						.getInstance().getCurrentWorkspace().getEditingDomain();
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					@Override
 					protected void doExecute() {
@@ -99,8 +98,7 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 		MEEditorInput input = new MEEditorInput(me);
 		try {
 			PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-					.getActivePage()
-					.openEditor(input, MEEditor.ID, true);
+					.getActivePage().openEditor(input, MEEditor.ID, true);
 		} catch (PartInitException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

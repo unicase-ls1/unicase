@@ -31,7 +31,7 @@ import org.unicase.workspace.impl.WorkspaceImpl;
  */
 public final class WorkspaceManager {
 
-	public static final String TRANSACTIONAL_EDITINGDOMAIN_ID = "org.unicase.EditingDomain";
+	private static final String TRANSACTIONAL_EDITINGDOMAIN_ID = "org.unicase.EditingDomain";
 
 	private static WorkspaceManager instance;
 
@@ -97,18 +97,13 @@ public final class WorkspaceManager {
 
 		URI fileURI = URI.createFileURI(Configuration.getWorkspacePath());
 		File workspaceFile = new File(Configuration.getWorkspacePath());
+		final Workspace workspace;
+		final Resource resource;
 		if (!workspaceFile.exists()) {
 
 			// no workspace content found, create a workspace
-			final Resource resource = resourceSet.createResource(fileURI);
-			// Resource resource =
-			// Resource.Factory.Registry.INSTANCE.getFactory(
-			// fileURI).createResource(fileURI);
-
-			final Workspace workspace = WorkspaceFactory.eINSTANCE
-					.createWorkspace();
-			workspace.setConnectionManager(this.connectionManager);
-			workspace.setResource(resource);
+			resource = resourceSet.createResource(fileURI);
+			workspace = WorkspaceFactory.eINSTANCE.createWorkspace();
 			workspace.getServerInfos()
 					.add(Configuration.getDefaultServerInfo());
 			domain.getCommandStack().execute(new RecordingCommand(domain) {
@@ -124,27 +119,22 @@ public final class WorkspaceManager {
 				// MK Auto-generated catch block
 				e.printStackTrace();
 			}
-			// FIXME: duplicate code
-			workspace.setConnectionManager(this.connectionManager);
-			workspace.setResource(resource);
-			workspace.init();
-			return workspace;
-		}
-
-		// if file exists load it
-		Resource resource = resourceSet.getResource(fileURI, true);
-		EList<EObject> directContents = resource.getContents();
-		for (EObject eObject : directContents) {
-			if (eObject instanceof WorkspaceImpl) {
-				Workspace workspace = (Workspace) eObject;
-				workspace.setConnectionManager(this.connectionManager);
-				workspace.setResource(resource);
-				workspace.init();
-				return workspace;
+		} else {
+			// if file exists load it
+			resource = resourceSet.getResource(fileURI, true);
+			EList<EObject> directContents = resource.getContents();
+			for (EObject eObject : directContents) {
+				if (eObject instanceof WorkspaceImpl) {
+					workspace = (Workspace) eObject;
+					break;
+				}
 			}
+			throw new IllegalStateException();
 		}
-
-		throw new IllegalStateException();
+		workspace.setConnectionManager(this.connectionManager);
+		workspace.setResource(resource);
+		workspace.init(domain);
+		return workspace;
 
 	}
 

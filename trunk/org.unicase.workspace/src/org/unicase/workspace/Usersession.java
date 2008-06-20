@@ -266,12 +266,14 @@ public interface Usersession extends EObject {
 	 * Create a project on the server.
 	 * @param name the project name
 	 * @param description the project description
+	 * @return the ProjectInfo of the new Project
+	 * 
 	 * @throws AccessControlException if creating projects is not allowed
 	 * @throws EmfStoreException if creation fails
 	 * 
 	 * @generated NOT
 	 */
-	void createProject(String name, String description)
+	ProjectInfo createProject(String name, String description)
 			throws AccessControlException, EmfStoreException;
 	//end of custom code
 } // Usersession
