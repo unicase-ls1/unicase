@@ -204,7 +204,6 @@ public class Application implements IApplication {
 	public String eObjectToString(final EObject object) throws IOException {
 		// TODO Uri
 		final Resource res = initTestResource();
-		res.save(options)
 		final ByteArrayOutputStream out = new ByteArrayOutputStream();
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain){
