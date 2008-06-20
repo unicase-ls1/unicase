@@ -37,18 +37,25 @@
       <eParameters name="modelElement" eType="#//ModelElement"/>
     </eOperations>
     <eOperations name="getAllModelElements" ordered="false" upperBound="-1" eType="#//ModelElement"/>
-    <eOperations name="getAllModelElementsbyClass" ordered="false" upperBound="-1"
-        eType="#//ModelElement">
+    <eOperations name="getAllModelElementsbyClass" ordered="false" upperBound="-1">
+      <eGenericType eTypeParameter="#//Project/getAllModelElementsbyClass/T"/>
+      <eTypeParameters name="T">
+        <eBounds eClassifier="#//ModelElement"/>
+      </eTypeParameters>
+      <eParameters name="modelElementClass" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+      <eParameters name="list" upperBound="-1">
+        <eGenericType eTypeParameter="#//Project/getAllModelElementsbyClass/T"/>
+      </eParameters>
+    </eOperations>
+    <eOperations name="getModelElementsByClass" ordered="false" upperBound="-1">
+      <eGenericType eTypeParameter="#//Project/getModelElementsByClass/T"/>
+      <eTypeParameters name="T">
+        <eBounds eClassifier="#//ModelElement"/>
+      </eTypeParameters>
       <eParameters name="modelElementClass" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
-    </eOperations>
-    <eOperations name="getModelElementsByClass" ordered="false" upperBound="-1" eType="#//ModelElement">
-      <eParameters name="modelElementClass" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
-    </eOperations>
-    <eOperations name="getInstancesByClass" ordered="false" upperBound="-1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject">
-      <eParameters name="instanceClass" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
-    </eOperations>
-    <eOperations name="getAllInstancesByClass" ordered="false" upperBound="-1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject">
-      <eParameters name="instanceClass" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
+      <eParameters name="list" upperBound="-1">
+        <eGenericType eTypeParameter="#//Project/getModelElementsByClass/T"/>
+      </eParameters>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="modelElements" ordered="false"
         upperBound="-1" eType="#//ModelElement" containment="true"/>

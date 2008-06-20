@@ -475,6 +475,7 @@ public class OrganizationEditor extends MultiPageEditorPart implements
 									public void run() {
 										getSite().getPage().closeEditor(
 												OrganizationEditor.this, false);
+										OrganizationEditor.this.dispose();
 									}
 								});
 					}
@@ -517,6 +518,7 @@ public class OrganizationEditor extends MultiPageEditorPart implements
 		if (!removedResources.isEmpty()) {
 			if (handleDirtyConflict()) {
 				getSite().getPage().closeEditor(OrganizationEditor.this, false);
+				OrganizationEditor.this.dispose();
 			} else {
 				removedResources.clear();
 				changedResources.clear();

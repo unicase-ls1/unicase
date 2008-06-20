@@ -95,7 +95,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 */
 	public EList<ModelElement> getAllModelElements() {
 		return this.getAllModelElementsbyClass(ModelPackage.eINSTANCE
-				.getModelElement());
+				.getModelElement(), new BasicEList<ModelElement>());
 	}
 
 	/** 
@@ -103,14 +103,13 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @see org.unicase.model.Project#getAllModelElementsbyClass(org.eclipse.emf.ecore.EClass)
 	 * @generated NOT
 	 */
-	public EList<ModelElement> getAllModelElementsbyClass(
-			EClass modelElementClass) {
-		BasicEList<ModelElement> result = new BasicEList<ModelElement>();
-
+	public <T extends ModelElement> EList<T> getAllModelElementsbyClass(
+			EClass modelElementClass, EList<T> list) {
+		
 		//sanity check
 		if (!ModelPackage.eINSTANCE.getModelElement().isSuperTypeOf(
 				modelElementClass)) {
-			return result;
+			return list;
 		}
 
 		//elements to do
@@ -118,13 +117,13 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 		//init with the project itself
 		todo.add(this);
-		
+
 		while (!todo.isEmpty()) {
 			EObject obj = todo.iterator().next();
 			EList<EObject> contents = obj.eContents();
 			for (EObject content : contents) {
 				if (modelElementClass.isInstance(content)) {
-					result.add((ModelElement) content);
+					list.add((T) content);
 					todo.add((ModelElement) content);
 				} else {
 					todo.add(content);
@@ -133,7 +132,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			todo.remove(obj);
 		}
 
-		return result;
+		return list;
 	}
 
 	/** 
@@ -141,65 +140,23 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @see org.unicase.model.Project#getModelElementsByClass(org.eclipse.emf.ecore.EClass)
 	 * @generated NOT
 	 */
-	public EList<ModelElement> getModelElementsByClass(EClass modelElementClass) {
-		BasicEList<ModelElement> result = new BasicEList<ModelElement>();
+	public <T extends ModelElement> EList<T> getModelElementsByClass(
+			EClass modelElementClass, EList<T> list) {
+		
+		if (!ModelPackage.eINSTANCE.getModelElement().isSuperTypeOf(
+				modelElementClass)) {
+			return list;
+		}
 		for (ModelElement modelElement : this.getModelElements()) {
 			if (modelElementClass.isInstance(modelElement)) {
-				result.add(modelElement);
+				list.add((T)modelElement);
 			}
 		}
-		return result;
+		return list;
 	}
+
 	//end of custom code
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public EList<EObject> getInstancesByClass(EClass instanceClass) {
-		BasicEList<EObject> result = new BasicEList<EObject>();
-		for (EObject obj : this.eContents()) {
-			if (instanceClass.isInstance(obj)) {
-				result.add(obj);
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public EList<EObject> getAllInstancesByClass(EClass instanceClass) {
-		
-		BasicEList<EObject> result = new BasicEList<EObject>();
-
-		//elements to do
-		Set<EObject> todo = new HashSet<EObject>();
-
-		//init with the projects direct model elements
-		todo.add(this);
-		
-		while (!todo.isEmpty()) {
-			EObject obj = todo.iterator().next();
-			EList<EObject> contents = obj.eContents();
-			for (EObject content : contents) {
-				if (instanceClass.isInstance(content)) {
-					result.add(content);
-					todo.add( content);
-				} else {
-					todo.add( content);
-				}
-			}
-			todo.remove(obj);
-		}
-		
-		return result;
-	}
-
-
+	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated

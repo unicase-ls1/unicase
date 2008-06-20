@@ -66,38 +66,20 @@ public interface Project extends EObject, IAdaptable {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Return all model elements that are instances of the given class in the project
-	 * including model elements transitively contained by project.
 	 * <!-- end-user-doc -->
-	 * @model ordered="false"
+	 * @model ordered="false" listMany="true"
 	 * @generated
 	 */
-	EList<ModelElement> getAllModelElementsbyClass(EClass modelElementClass);
-
-	/**
-	 * <!-- begin-user-doc --> 
-	 * Return model elements that are instances of the given class in the project.
-	 * Only returns Model Elements directly contained in the project.
-	 * <!-- end-user-doc -->
-	 * @model ordered="false"
-	 * @generated
-	 */
-	EList<ModelElement> getModelElementsByClass(EClass modelElementClass);
+	<T extends ModelElement> EList<T> getAllModelElementsbyClass(
+			EClass modelElementClass, EList<T> list);
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model ordered="false"
+	 * @model ordered="false" listMany="true"
 	 * @generated
 	 */
-	EList<EObject> getInstancesByClass(EClass instanceClass);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model ordered="false"
-	 * @generated
-	 */
-	EList<EObject> getAllInstancesByClass(EClass instanceClass);
+	<T extends ModelElement> EList<T> getModelElementsByClass(
+			EClass modelElementClass, EList<T> list);
 
 } // Project
