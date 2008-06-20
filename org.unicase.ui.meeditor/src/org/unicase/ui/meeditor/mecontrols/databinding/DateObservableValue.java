@@ -67,6 +67,7 @@ public class DateObservableValue extends AbstractSWTObservableValue {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public synchronized void dispose() {
 		super.dispose();
 		if (listener != null && !date.isDisposed()) {
@@ -88,6 +89,7 @@ public class DateObservableValue extends AbstractSWTObservableValue {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected Object doGetValue() {
 		return date.getDate().getTime();
 	}
@@ -102,6 +104,7 @@ public class DateObservableValue extends AbstractSWTObservableValue {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected void doSetValue(Object value) {
 		Date oldValue;
 		Date newValue;

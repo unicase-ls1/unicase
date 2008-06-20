@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
 import org.eclipse.ui.PartInitException;
@@ -32,6 +38,7 @@ public class MEHyperLinkAdapter extends HyperlinkAdapter implements
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void linkActivated(HyperlinkEvent event) {
 		MEEditorInput input = new MEEditorInput(me);
 		try {

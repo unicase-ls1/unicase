@@ -84,6 +84,7 @@ public class MEDateControl extends AbstractMEControl implements MEControl, ICale
 	final Calendar newDate = date;
 	TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
 	domain.getCommandStack().execute(new RecordingCommand(domain){
+		@Override
 		protected void doExecute() {
 			if(widget.getCombo().getText().equals(" ")){
 				modelElement.eSet(attribute, null);
