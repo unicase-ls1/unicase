@@ -121,15 +121,11 @@ public final class WorkspaceManager {
 			}
 		} else {
 			// if file exists load it
+			
 			resource = resourceSet.getResource(fileURI, true);
 			EList<EObject> directContents = resource.getContents();
-			for (EObject eObject : directContents) {
-				if (eObject instanceof WorkspaceImpl) {
-					workspace = (Workspace) eObject;
-					break;
-				}
-			}
-			throw new IllegalStateException();
+			//FIXME cast
+			workspace = (Workspace) directContents.get(0);
 		}
 		workspace.setConnectionManager(this.connectionManager);
 		workspace.setResource(resource);
