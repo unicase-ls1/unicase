@@ -55,8 +55,8 @@ public class Application implements IApplication {
 	
 	public static String filePath = Configuration.getWorkspaceDirectory()+"test";
 	
-	public static URI eObjectToString = URI.createFileURI(filePath);
-//	public static URI eObjectToString = URI.createURI("my.eobject/uri");
+//	public static URI eObjectToString = URI.createFileURI(filePath);
+	public static URI eObjectToString = URI.createURI("my.eobject/uri");
 	
 	public ResourceSet rs = WorkspaceManager.getInstance().getCurrentWorkspace().eResource().getResourceSet();
 
@@ -98,6 +98,13 @@ public class Application implements IApplication {
 				project.addModelElement(com);
 				
 				cpBefore = save();
+//				projectSpace.setProject(null);
+//				ResourceSet resourceSet = new ResourceSetImpl();
+//				rs=resourceSet;
+//				Resource resource2 = rs.createResource(URI.createURI("jfdksdddd"));
+//				resource2.getContents().add(project);
+
+				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -166,15 +173,15 @@ public class Application implements IApplication {
 			res.getContents().add(object);
 		try {
 			res.save(out, null);
-			res.save(null);
+			//res.save(null);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		}
 		});
-//		return out.toString();
-		return "";
+		return out.toString();
+//		return "";
 	}
 
 	public EObject stringToEObject(final String object)
@@ -185,8 +192,8 @@ public class Application implements IApplication {
 		domain.getCommandStack().execute(new RecordingCommand(domain){
 		protected void doExecute() {
 			try {
-				res.load(null);
-				//res.load(new ByteArrayInputStream(object.getBytes("UTF-8")), null);
+				//res.load(null);
+				res.load(new ByteArrayInputStream(object.getBytes("UTF-8")), null);
 			} catch (UnsupportedEncodingException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
