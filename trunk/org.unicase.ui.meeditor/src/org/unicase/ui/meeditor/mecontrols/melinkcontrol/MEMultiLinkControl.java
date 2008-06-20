@@ -12,6 +12,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -119,7 +120,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 										ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
 				// JH: fill only with right elements
 				Collection<ModelElement> allElements = ((ModelElement) modelElement)
-						.getProject().getAllModelElementsbyClass(clazz);
+						.getProject().getAllModelElementsbyClass(clazz, new BasicEList<ModelElement>());
 				allElements.remove(modelElement);
 				Object objectList = modelElement.eGet(eReference);
 				EList<EObject> list;

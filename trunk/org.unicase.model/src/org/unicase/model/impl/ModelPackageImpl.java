@@ -8,9 +8,11 @@ package org.unicase.model.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -551,25 +553,29 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		addEOperation(projectEClass, this.getModelElement(),
 				"getAllModelElements", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		op = addEOperation(projectEClass, this.getModelElement(),
-				"getAllModelElementsbyClass", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		op = addEOperation(projectEClass, null, "getAllModelElementsbyClass",
+				0, -1, IS_UNIQUE, !IS_ORDERED);
+		ETypeParameter t1 = addETypeParameter(op, "T");
+		EGenericType g1 = createEGenericType(this.getModelElement());
+		t1.getEBounds().add(g1);
+		addEParameter(op, ecorePackage.getEClass(), "modelElementClass", 0, 1,
+				IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(t1);
+		addEParameter(op, g1, "list", 0, -1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(t1);
+		initEOperation(op, g1);
+
+		op = addEOperation(projectEClass, null, "getModelElementsByClass", 0,
+				-1, IS_UNIQUE, !IS_ORDERED);
+		t1 = addETypeParameter(op, "T");
+		g1 = createEGenericType(this.getModelElement());
+		t1.getEBounds().add(g1);
 		addEParameter(op, theEcorePackage.getEClass(), "modelElementClass", 0,
 				1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(projectEClass, this.getModelElement(),
-				"getModelElementsByClass", 0, -1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, theEcorePackage.getEClass(), "modelElementClass", 0,
-				1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(projectEClass, theEcorePackage.getEObject(),
-				"getInstancesByClass", 0, -1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, theEcorePackage.getEClass(), "instanceClass", 0, 1,
-				IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(projectEClass, theEcorePackage.getEObject(),
-				"getAllInstancesByClass", 0, -1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, theEcorePackage.getEClass(), "instanceClass", 0, 1,
-				IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(t1);
+		addEParameter(op, g1, "list", 0, -1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(t1);
+		initEOperation(op, g1);
 
 		initEClass(modelElementIdEClass, ModelElementId.class,
 				"ModelElementId", !IS_ABSTRACT, !IS_INTERFACE,

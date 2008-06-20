@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -305,9 +306,9 @@ public class ProjectItemProvider extends ItemProviderAdapter implements
 	public Collection<?> getChildren(Object object) {
 		if (object instanceof Project) {
 			Project project = (Project) object;
-			Collection<ModelElement> ret = project
-					.getModelElementsByClass(DocumentPackage.eINSTANCE
-							.getCompositeSection());
+			Collection<ModelElement> ret = project.getModelElementsByClass(
+					DocumentPackage.eINSTANCE.getCompositeSection(),
+					new BasicEList<ModelElement>());
 			return ret;
 
 		} else {

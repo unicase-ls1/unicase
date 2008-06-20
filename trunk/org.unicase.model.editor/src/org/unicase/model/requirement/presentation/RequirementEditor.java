@@ -475,6 +475,7 @@ public class RequirementEditor extends MultiPageEditorPart implements
 									public void run() {
 										getSite().getPage().closeEditor(
 												RequirementEditor.this, false);
+										RequirementEditor.this.dispose();
 									}
 								});
 					}
@@ -517,6 +518,7 @@ public class RequirementEditor extends MultiPageEditorPart implements
 		if (!removedResources.isEmpty()) {
 			if (handleDirtyConflict()) {
 				getSite().getPage().closeEditor(RequirementEditor.this, false);
+				RequirementEditor.this.dispose();
 			} else {
 				removedResources.clear();
 				changedResources.clear();

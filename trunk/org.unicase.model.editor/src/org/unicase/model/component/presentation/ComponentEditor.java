@@ -475,6 +475,7 @@ public class ComponentEditor extends MultiPageEditorPart implements
 									public void run() {
 										getSite().getPage().closeEditor(
 												ComponentEditor.this, false);
+										ComponentEditor.this.dispose();
 									}
 								});
 					}
@@ -517,6 +518,7 @@ public class ComponentEditor extends MultiPageEditorPart implements
 		if (!removedResources.isEmpty()) {
 			if (handleDirtyConflict()) {
 				getSite().getPage().closeEditor(ComponentEditor.this, false);
+				ComponentEditor.this.dispose();
 			} else {
 				removedResources.clear();
 				changedResources.clear();

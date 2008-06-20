@@ -475,6 +475,7 @@ public class ChangeEditor extends MultiPageEditorPart implements
 									public void run() {
 										getSite().getPage().closeEditor(
 												ChangeEditor.this, false);
+										ChangeEditor.this.dispose();
 									}
 								});
 					}
@@ -517,6 +518,7 @@ public class ChangeEditor extends MultiPageEditorPart implements
 		if (!removedResources.isEmpty()) {
 			if (handleDirtyConflict()) {
 				getSite().getPage().closeEditor(ChangeEditor.this, false);
+				ChangeEditor.this.dispose();
 			} else {
 				removedResources.clear();
 				changedResources.clear();

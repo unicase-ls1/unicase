@@ -475,6 +475,7 @@ public class RationaleEditor extends MultiPageEditorPart implements
 									public void run() {
 										getSite().getPage().closeEditor(
 												RationaleEditor.this, false);
+										RationaleEditor.this.dispose();
 									}
 								});
 					}
@@ -517,6 +518,7 @@ public class RationaleEditor extends MultiPageEditorPart implements
 		if (!removedResources.isEmpty()) {
 			if (handleDirtyConflict()) {
 				getSite().getPage().closeEditor(RationaleEditor.this, false);
+				RationaleEditor.this.dispose();
 			} else {
 				removedResources.clear();
 				changedResources.clear();
