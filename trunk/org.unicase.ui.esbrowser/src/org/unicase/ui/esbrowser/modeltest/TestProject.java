@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.ETypedElementImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
@@ -118,17 +119,6 @@ public class TestProject {
 		//	 1.2. the created instances are added to project
 		
 		
-		//(and distribute them randomly on LeafSections)
-		// 2.initialize their references:
-		// 2.1. take a random number for references.
-		// 2.2. if project contains this number of instances of the 
-		//      referenced type, pick'em randomly from project
-		//		else create the lacking number of instances
-		// 3.initialize simple attribute of all instances in project
-		// Attention: distribution of elements on LeafSections
-		//			  is done during their creation.
-		
-		
 		this.project = ModelFactory.eINSTANCE.createProject();
 
 		//create document structure
@@ -148,18 +138,18 @@ public class TestProject {
 		createReferences();
 		
 		
-		EList<EObject> list = project.getAllInstancesByClass(TaskPackage.eINSTANCE.getActionItem());
-		EList<EObject> leafSections = project.getAllInstancesByClass(DocumentPackage.eINSTANCE.getLeafSection());
-//		for (EObject ls : leafSections){
-//			distributeMEsOnLeafSection2((LeafSection)ls);
-//		}
+		EList<ModelElement> list = project.getAllModelElementsbyClass(TaskPackage.eINSTANCE.getActionItem(), new BasicEList<ModelElement>());
+		EList<ModelElement> leafSections = project.getAllModelElementsbyClass(DocumentPackage.eINSTANCE.getLeafSection(), new BasicEList<ModelElement>());
+		for (EObject ls : leafSections){
+			distributeMEsOnLeafSection((LeafSection)ls);
+		}
 		Object obj = new Object();
 
 //		
 
 	}
 	
-	
+	/*
 	private void distributeMEsOnLeafSection2(LeafSection ls) {
 		int numOfRefs = MAX_NUM_OF_ELEMENTS_IN_LEAFSECTION;
 		
@@ -201,7 +191,9 @@ public class TestProject {
 		
 		
 	}
-
+	*/
+	
+	
 	//recursively create the subsections (Composite and LeafSections)
 	//under a Composite section (based of projectWidth and projectDepth)
 	private  void createDocStructure(int remainingDepth, CompositeSection comp) {
@@ -239,7 +231,7 @@ public class TestProject {
 				if (!(eClass.isAbstract() || 
 					  eClass.isInterface() || 
 					  eClass.equals(ModelPackage.eINSTANCE.getProject()) ||
-					  DocumentPackage.eINSTANCE.getSection().isSuperTypeOf(eClass) )) {
+					  DocumentPackage.eINSTANCE.getSection().isSuperTypeOf(eClass))) {
 					
 					createInstances(eClass);
 					
@@ -260,7 +252,8 @@ public class TestProject {
 	//initialize simple attributes
 	//add them to project of list of non-ME instances
 	private  void createInstances(EClass eClass) {
-         if (eClass.equals(ModelPackage.eINSTANCE.getModelElementId())) {return;}
+        
+		if (eClass.equals(ModelPackage.eINSTANCE.getModelElementId())) {return;}
 		// create the specified minimum number of instances of this EClass
 		//initialize their simple attributes
 		// add them to project, or list of non-ModelElement instances
@@ -292,7 +285,7 @@ public class TestProject {
 		for(EReference ref : references){
 			
 			if(ref.isContainment())	{
-				createContainmentRef(me, ref, ref.getLowerBound(), ref.getUpperBound());
+				//createContainmentRef(me, ref, ref.getLowerBound(), ref.getUpperBound());
 			}else if(ref.isContainer()){
 				//do nothing, the container references are automatically
 				//set when the containment references are set.
@@ -317,9 +310,9 @@ public class TestProject {
 		
 		if(ModelPackage.eINSTANCE.getModelElement()
 				.isSuperTypeOf(ref.getEReferenceType())){
-			instancesOfRefType = project.getAllInstancesByClass(ref.getEReferenceType());
+			instancesOfRefType.addAll(project.getAllModelElementsbyClass(ref.getEReferenceType(),new BasicEList<ModelElement>()));
 		}else{
-			instancesOfRefType = getNonMEInstancesByClass(ref.getEReferenceType());
+			instancesOfRefType.addAll(getNonMEInstancesByClass(ref.getEReferenceType()));
 			
 		}
 		
@@ -343,7 +336,8 @@ public class TestProject {
 		}
 		
 		if(DocumentPackage.eINSTANCE.getSection().isSuperTypeOf(ref.getEReferenceType())){
-			numOfRefs = project.getAllInstancesByClass(DocumentPackage.eINSTANCE.getSection()).size();
+			//if ref type is section, create no more sections
+			numOfRefs = project.getAllModelElementsbyClass(ref.getEReferenceType(), new BasicEList<ModelElement>()).size();
 			
 		}else if(instancesOfRefType.size() < numOfRefs){
 			int lackingInstances = numOfRefs - instancesOfRefType.size();
@@ -378,6 +372,7 @@ public class TestProject {
 		}
 	}
 
+	
 	/*
 	private void createContainerRef(ModelElement me, EReference ref) {
 		
@@ -423,34 +418,44 @@ public class TestProject {
 										int upperBound) {
 		
 		if(ref.getEReferenceType().equals(ModelPackage.eINSTANCE.getModelElementId())){
-			//for all created instances the model elment id is 
-			//during creation set.
+			//for all instances the model element id is set
+			//during creation in createInstances method
 			return;
 		}
 		if(me instanceof Section && ref.getName().equals("subsections")) { 
 			//subsections are set during building of document structure
 			return;
 		}
-		
+			
 		if(me instanceof LeafSection && ref.getName().equals("modelElements")){
-			distributeMEsOnLeafSection((LeafSection)me);
+			//distributeMEsOnLeafSection((LeafSection)me);
+			//distribution of model elements among leaf sections occurs 
+			//in the last step in createTestProject method
+			//distributeMEsOnLeafSection((LeafSection)me);
 			return;
 		}		
-			
+		
+		if (DocumentPackage.eINSTANCE.getSection().isSuperTypeOf(ref.getEReferenceType())){
+			//we don't want to break apart the document structure.
+			//a containment reference whose target is Section is not considered.
+			return;
+		}
+		
 		List<EObject> allInstancesOfRefType = new ArrayList<EObject>();
 		List<EObject> freeInstancesOfRefType = new ArrayList<EObject>();
 		
 		if(ModelPackage.eINSTANCE.getModelElement()
 				.isSuperTypeOf(ref.getEReferenceType())){
-			allInstancesOfRefType = project.getAllInstancesByClass(ref.getEReferenceType());
+			allInstancesOfRefType.addAll(project.getAllModelElementsbyClass(ref.getEReferenceType(), new BasicEList<ModelElement>()));
 		}else{
-			allInstancesOfRefType = getNonMEInstancesByClass(ref.getEReferenceType());
+			allInstancesOfRefType.addAll(getNonMEInstancesByClass(ref.getEReferenceType()));
 			
 		}
 		
 		for (EObject obj : allInstancesOfRefType){
 			if (obj.eContainer() == null ||
-				 obj.eContainer().equals(project)){
+				obj.eContainer().equals(project) ||
+				!EcoreUtil.isAncestor(obj, me)){
 				
 				freeInstancesOfRefType.add(obj);
 			}
@@ -485,7 +490,7 @@ public class TestProject {
 		}
 			
 		for(int i = 0 ; i < numOfRefs; i++){
-			//pick random instance of ref's type from free instances
+			//pick random instance from free instances
 			int index = random.nextInt(freeInstancesOfRefType.size());
 			EObject referencedInstance = freeInstancesOfRefType.get(index);
 			referencedInstances.add(referencedInstance);
@@ -508,7 +513,7 @@ public class TestProject {
 		List<ModelElement> allMEs = new ArrayList<ModelElement>();
 		List<ModelElement> freeMEs = new ArrayList<ModelElement>();
 		
-		allMEs = project.getAllModelElements();
+		allMEs.addAll(project.getAllModelElements());
 		
 		
 		for (ModelElement me : allMEs){
@@ -526,6 +531,7 @@ public class TestProject {
 			int lackingFreeInstances = numOfRefs - freeMEs.size();
 			for(int i = 0; i < lackingFreeInstances; i++){
 				EObject obj;
+				//if required, create new instances, but take care not to create Sections
 				while(!(( obj = createInstance(ModelPackage.eINSTANCE.getModelElement())) instanceof Section)){
 					freeMEs.add((ModelElement)obj);
 				}
@@ -571,7 +577,7 @@ public class TestProject {
 			//if instanceClass is abstract, find one of its subclasses in this package
 			//if instanceClass is model element, return some instance of model element
 			//sub classes
-			List<EClass> subClazz = getNonAbstractSubClassOf(instanceClass);
+			List<EClass> subClazz = getNonAbstractSubClassesOf(instanceClass);
 			int index = random.nextInt(subClazz.size());
 			EClass subClass = subClazz.get(index);
 			EPackage ePackage = subClass.getEPackage();
@@ -626,7 +632,7 @@ public class TestProject {
 	}
 
 	
-	private List<EClass> getNonAbstractSubClassOf(EClass superClass){
+	private List<EClass> getNonAbstractSubClassesOf(EClass superClass){
 		List<EClass> result = new ArrayList<EClass>();
 		List<EObject> todo = new ArrayList<EObject>();
 		todo.addAll(ModelPackage.eINSTANCE.eContents());
