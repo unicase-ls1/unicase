@@ -167,27 +167,27 @@ public class EmfStoreStub implements EmfStore {
 		actionItemLeafSection.setElementClass(FunctionalRequirement.class);
 		// TODO: Create some AI«s here
 
-		// Diagrams
-		LeafSection diagramSection = documentFactory.createLeafSection();
-		diagramSection.setName("Diagrams");
-		diagramSection.setDescription("Lists all diagrams of this project.");
-		diagramSection.setParent(rootSection);
-		diagramSection.setElementClass(FunctionalRequirement.class);
-
-		DiagramFactory diagramFactory = DiagramFactory.eINSTANCE;
-		MEDiagram diagram = diagramFactory.createMEDiagram();
-		diagram.setName("Super Diagram");
-		diagramSection.getModelElements().add(diagram);
-		ClassesFactory classesFactory = ClassesFactory.eINSTANCE;
-		Class class1 = classesFactory.createClass();
-		class1.setName("Class 1");
-		Class class2 = classesFactory.createClass();
-		class2.setName("Class2");
-		project.addModelElement(class1);
-		project.addModelElement(class2);
-
-		diagram.getElements().add(class1);
-		diagram.getElements().add(class2);
+//		// Diagrams
+//		LeafSection diagramSection = documentFactory.createLeafSection();
+//		diagramSection.setName("Diagrams");
+//		diagramSection.setDescription("Lists all diagrams of this project.");
+//		diagramSection.setParent(rootSection);
+//		diagramSection.setElementClass(FunctionalRequirement.class);
+//
+//		DiagramFactory diagramFactory = DiagramFactory.eINSTANCE;
+//		MEDiagram diagram = diagramFactory.createMEDiagram();
+//		diagram.setName("Super Diagram");
+//		diagramSection.getModelElements().add(diagram);
+//		ClassesFactory classesFactory = ClassesFactory.eINSTANCE;
+//		Class class1 = classesFactory.createClass();
+//		class1.setName("Class 1");
+//		Class class2 = classesFactory.createClass();
+//		class2.setName("Class2");
+//		project.addModelElement(class1);
+//		project.addModelElement(class2);
+//
+//		diagram.getElements().add(class1);
+//		diagram.getElements().add(class2);
 
 		// Other Crap
 		CompositeSection ucmCompositeSection = documentFactory
