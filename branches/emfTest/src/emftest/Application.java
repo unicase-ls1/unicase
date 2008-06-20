@@ -42,6 +42,7 @@ import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
+import org.unicase.workspace.impl.WorkspaceImpl;
 
 /**
  * This class controls all aspects of the application's execution
@@ -49,7 +50,17 @@ import org.unicase.workspace.connectionmanager.ConnectionManager;
 public class Application implements IApplication {
 
 	private ChangeRecorder changeRecorder;
-	private ChangePackage cpp;
+	private ChangePackage cpBefore;
+	
+	
+	public static String filePath = Configuration.getWorkspaceDirectory()+"test";
+	
+	public static URI eObjectToString = URI.createFileURI(filePath);
+//	public static URI eObjectToString = URI.createURI("my.eobject/uri");
+	
+	public ResourceSet rs = WorkspaceManager.getInstance().getCurrentWorkspace().eResource().getResourceSet();
+
+	private Project project;
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.equinox.app.IApplication#start(org.eclipse.equinox.app.IApplicationContext)
@@ -58,53 +69,22 @@ public class Application implements IApplication {
 		System.out.println("Hello RCP World!");
 		ConnectionManager cm = WorkspaceManager.getInstance().getConnectionManager();
 		final Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
-		
-		
-		ServerInfo si = WorkspaceFactory.eINSTANCE.createServerInfo();
-		si.setDisplayName("");
-		si.setUrl("localhost");
-		si.setPort(Registry.REGISTRY_PORT);
-		
-		SessionId id = cm.logIn("", "", si);
-		System.out.println(id);
-		
-//		for(ProjectInfo info: cm.getProjectList(id)) {
-//			System.out.println(info);
-//			System.out.println(cm.resolveVersionSpec(id, info.getProjectId(), ChangemanagmentFactory.eINSTANCE.createHeadVersionSpec()));
-//			System.out.println("::");
-//			System.out.println(cm.getProject(id, info.getProjectId(), ChangemanagmentFactory.eINSTANCE.createHeadVersionSpec()));
-//			PrimaryVersionSpec pri = ChangemanagmentFactory.eINSTANCE.createPrimaryVersionSpec();
-//			pri.setIdentifier(0);
-//			System.out.println("HistoryInfo");
-//			for(HistoryInfo hi : cm.getHistoryInfo(id, info.getProjectId(), pri, ChangemanagmentFactory.eINSTANCE.createHeadVersionSpec())) {
-//				System.out.println(hi);
-//			}
-//			for(ChangePackage cp : cm.getChanges(id, info.getProjectId(), pri, ChangemanagmentFactory.eINSTANCE.createHeadVersionSpec())) {
-//				System.out.println(cp);
-//			}
-//		}
-		
-		
-		LogMessage log = ChangemanagmentFactory.eINSTANCE.createLogMessage();
-		log.setMessage("Test");
-		log.setAuthor("blub");
-		log.setDate(new Date());
-		
-		final Usersession usersession = WorkspaceFactory.eINSTANCE.createUsersession();
-		usersession.setServerInfo(si);
-		usersession.setUsername("");
-		usersession.setPassword("");
-		usersession.logIn();
-		
-		final ProjectInfo pinfo = cm.createProject(id, "name", "description", log);
-		System.out.println("ProjectInfo: "+pinfo);
-		
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+		TransactionalEditingDomain domain = currentWorkspace.getEditingDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain){
 
 		protected void doExecute() {
 			try {
-				ProjectSpace projectSpace = currentWorkspace.checkout(usersession, pinfo);
+				//login
+				final Usersession usersession = WorkspaceFactory.eINSTANCE.createUsersession();
+				ServerInfo defaultServerInfo = Configuration.getDefaultServerInfo();
+				currentWorkspace.getServerInfos().add(defaultServerInfo);
+				usersession.setServerInfo(defaultServerInfo);
+				usersession.setUsername("");
+				usersession.setPassword("");
+				usersession.logIn();
+
+				final ProjectInfo projectInfo = usersession.createProject("name", "description");
+				ProjectSpace projectSpace = currentWorkspace.checkout(usersession, projectInfo);
 				currentWorkspace.getProjectSpaces().add(projectSpace);
 				project = projectSpace.getProject();
 				
@@ -117,35 +97,22 @@ public class Application implements IApplication {
 				
 				project.addModelElement(com);
 				
-				cpp = save();
-			} catch (EmfStoreException e) {
+				cpBefore = save();
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}		}
 		});
- 
 		
-		
-		//cm.getProject(id, pinfo.getProjectId(), ChangemanagmentFactory.eINSTANCE.createHeadVersionSpec());
-		System.out.println("Project: "+project);
-		
-//		Project project = ModelFactory.eINSTANCE.createProject();		
-		
-		
-		
-		Diagnostician.INSTANCE.validate(cpp);
+		Diagnostician.INSTANCE.validate(cpBefore);
 
-//		rs = WorkspaceManager.getInstance().resourceSet;
+		System.out.println(eObjectToString(cpBefore));
+
+		ChangePackage cpAfter = (ChangePackage) stringToEObject(eObjectToString(cpBefore));
 		
-		rs = new ResourceSetImpl();
+		System.out.println(cpAfter);
 		
-//		System.out.println("ChangePacke: "+eObjectToString(cpp));
-		;
-		System.out.println(eObjectToString(cpp));
-		ChangePackage cppp = (ChangePackage) stringToEObject(eObjectToString(cpp));
-		System.out.println(cppp);
-		
-		Diagnostician.INSTANCE.validate(cppp);
+		Diagnostician.INSTANCE.validate(cpAfter);
 
 		System.out.println("ENDE");
 //		
@@ -159,7 +126,6 @@ public class Application implements IApplication {
 	}
 
 	private ChangePackage save() {
-		//FIXME MK this does not work forward change description is empty
 		ChangeDescription changeDescription = this.changeRecorder.endRecording();
 		ChangeDescription backwardChangeDescription= (ChangeDescription)EcoreUtil.copy(changeDescription);
 		changeDescription.applyAndReverse();
@@ -171,22 +137,11 @@ public class Application implements IApplication {
 		return changePackage;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipse.equinox.app.IApplication#stop()
-	 */
 	public void stop() {
 		// nothing to do
 	}
 	
-	public static String filePath = Configuration.getWorkspaceDirectory()+"test";
-	
-//	public static URI eObjectToString = URI.createFileURI(filePath);
-	
-	public static URI eObjectToString = URI.createURI("my.eobject/uri");
-	
-	public ResourceSet rs;
 
-	private Project project;
 	
 	public Resource initTestResource() {
 		File test = new File(filePath);
@@ -230,8 +185,8 @@ public class Application implements IApplication {
 		domain.getCommandStack().execute(new RecordingCommand(domain){
 		protected void doExecute() {
 			try {
-				//res.load(null);
-				res.load(new ByteArrayInputStream(object.getBytes("UTF-8")), null);
+				res.load(null);
+				//res.load(new ByteArrayInputStream(object.getBytes("UTF-8")), null);
 			} catch (UnsupportedEncodingException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
