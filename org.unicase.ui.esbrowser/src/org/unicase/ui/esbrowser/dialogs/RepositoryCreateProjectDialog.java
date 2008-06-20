@@ -26,7 +26,7 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.Usersession;
 
 /**
- * Class for the login dialog.
+ * Create project dialog.
  * 
  * @author shterev
  */
@@ -114,10 +114,10 @@ public class RepositoryCreateProjectDialog extends Dialog implements Listener {
 							session.createProject(projetname.getText(),
 									projectdesc.getText());
 						} catch (AccessControlException e) {
-							// TODO Auto-generated catch block
+							//TODO show dialog
 							e.printStackTrace();
 						} catch (EmfStoreException e) {
-							// TODO Auto-generated catch block
+							//TODO show dialog
 							e.printStackTrace();
 						}
 					}
