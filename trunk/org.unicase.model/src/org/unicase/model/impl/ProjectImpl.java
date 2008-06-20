@@ -113,30 +113,25 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			return result;
 		}
 
-		//all elements
-		//Set<ModelElement> allElements = new HashSet<ModelElement>();
 		//elements to do
 		Set<EObject> todo = new HashSet<EObject>();
 
 		//init with the projects direct model elements
 		EList<ModelElement> elements = this.getModelElements();
 		todo.addAll(elements);
-		//allElements.addAll(elements);
 
 		while (!todo.isEmpty()) {
 			EObject obj = todo.iterator().next();
 			EList<EObject> contents = obj.eContents();
 			for (EObject content : contents) {
 				if (modelElementClass.isInstance(content)) {
-					//allElements.add((ModelElement) content);
 					result.add((ModelElement) content);
 				} else {
-					todo.add((ModelElement) content);
+					todo.add(content);
 				}
 			}
 			todo.remove(obj);
 		}
-		//result.addAllUnique(todo);
 		return result;
 	}
 
@@ -154,6 +149,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		}
 		return result;
 	}
+	//end of custom code
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -176,8 +172,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
-
-	//end of custom code
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
