@@ -8,9 +8,13 @@ package org.unicase.ui.esbrowser.views;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
+import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -41,6 +45,7 @@ import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
 import org.unicase.emfstore.esmodel.provider.EsmodelItemProviderAdapterFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.model.provider.ModelItemProviderAdapterFactory;
 import org.unicase.ui.esbrowser.dialogs.RepositoryCreateProjectDialog;
 import org.unicase.ui.esbrowser.dialogs.RepositoryLoginDialog;
 import org.unicase.ui.esbrowser.dialogs.RepositoryWizard;
@@ -67,7 +72,7 @@ public class RepositoryView extends ViewPart {
 	private Action serverProperties;
 	private Usersession session;
 	private HashMap<ProjectInfo, ServerInfo> projectServerMap = new HashMap<ProjectInfo, ServerInfo>();
-
+	
 	/**
 	 * Content provider for the tree view.
 	 * 
@@ -113,7 +118,7 @@ public class RepositoryView extends ViewPart {
 							serverInfo.setLastUsersession(session);
 							WorkspaceManager.getInstance().getCurrentWorkspace().save();
 						} catch (EmfStoreException e) {
-							// TODO server timed out
+							// TODO not server connection
 							e.printStackTrace();
 						} catch (AccessControlException e) {
 							// TODO wrong password/user
@@ -168,11 +173,16 @@ public class RepositoryView extends ViewPart {
 	public void createPartControl(Composite parent) {
 		viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
 		viewer.setContentProvider(new WorkspaceRootContentProvider());
-		viewer.setLabelProvider(new AdapterFactoryLabelProvider(new EsmodelItemProviderAdapterFactory()));
-		//
-		// new AdapterFactoryLabelProvider(
-		// new ComposedAdapterFactory(
-		// ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
+		
+		List<AdapterFactory> factories = new ArrayList<AdapterFactory>();
+		factories.add(new WorkspaceItemProviderAdapterFactory());
+		factories.add(new EsmodelItemProviderAdapterFactory());
+		factories.add(new ModelItemProviderAdapterFactory());
+		
+		//TODO: fix problem with registry
+		ComposedAdapterFactory composedAdapterFactory = new ComposedAdapterFactory(factories);
+		viewer.setLabelProvider(new AdapterFactoryLabelProvider(composedAdapterFactory));
+
 		viewer.setSorter(new ViewerSorter());
 		viewer.setInput(getViewSite());
 
@@ -236,8 +246,7 @@ public class RepositoryView extends ViewPart {
 				try {
 					projectServerMap.get(element).getLastUsersession().checkout(element);
 				} catch (EmfStoreException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					//TODO show error dialog
 				}
 			}
 		};
@@ -298,6 +307,7 @@ public class RepositoryView extends ViewPart {
 			serverAddProject.setImageDescriptor(ImageDescriptor.createFromURL(new URL(EsmodelEditPlugin.INSTANCE.getImage("full/obj16/ProjectInfo")
 					.toString())));
 		} catch (MalformedURLException e) {
+			//TODO logging
 			e.printStackTrace();
 		}
 
@@ -321,7 +331,7 @@ public class RepositoryView extends ViewPart {
 			serverProperties.setImageDescriptor(ImageDescriptor.createFromURL(new URL(WorkspaceEditPlugin.INSTANCE.getImage("full/obj16/ServerInfo")
 					.toString())));
 		} catch (MalformedURLException e) {
-			e.printStackTrace();
+			//TODO logging
 		}
 
 		addRepository = new Action() {
@@ -341,7 +351,7 @@ public class RepositoryView extends ViewPart {
 			addRepository.setImageDescriptor(ImageDescriptor.createFromURL(new URL(WorkspaceEditPlugin.INSTANCE.getImage("full/obj16/ServerInfo")
 					.toString())));
 		} catch (MalformedURLException e) {
-			e.printStackTrace();
+			//TODO logging
 		}
 
 	}
