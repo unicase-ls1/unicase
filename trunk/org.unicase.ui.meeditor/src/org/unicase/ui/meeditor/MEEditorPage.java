@@ -39,12 +39,12 @@ import org.unicase.ui.meeditor.mecontrols.MEControl;
 
 public class MEEditorPage extends FormPage {
 
-	EditingDomain editingDomain;
-	ModelElement modelElement;
-	Composite body;
-	FormToolkit toolkit;
-	List<MEControl> meControls = new ArrayList<MEControl>();
-	UIHintAdapter uiHintAdapter;
+	private EditingDomain editingDomain;
+	private ModelElement modelElement;
+	private Composite body;
+	private FormToolkit toolkit;
+	private List<MEControl> meControls = new ArrayList<MEControl>();
+	private UIHintAdapter uiHintAdapter;
 	static String activeModelelement = "activeModelelement";
 	private ScrolledForm form;
 	private List<IItemPropertyDescriptor> simpleAttributes = new ArrayList<IItemPropertyDescriptor>();

@@ -53,6 +53,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected void addPages() {
 
 		FormPage form = new MEEditorPage(this, "1", "Standard View",
@@ -69,6 +70,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void doSave(IProgressMonitor monitor) {
 
 		monitor.beginTask("Saving...", 1);
@@ -93,6 +95,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void doSaveAs() {
 	}
 
@@ -100,6 +103,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 * Save is not allowed as the editor can only modify model elements.
 	 * @return false
 	 */
+	@Override
 	public boolean isSaveAsAllowed() {
 		return false;
 	}
@@ -107,6 +111,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void init(IEditorSite site, IEditorInput input)
 			throws PartInitException {
 		super.init(site, input);
@@ -167,6 +172,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public boolean isDirty() {
 		return true;
 	}

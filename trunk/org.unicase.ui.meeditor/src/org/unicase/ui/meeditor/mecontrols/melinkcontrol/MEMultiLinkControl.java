@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
 import java.util.ArrayList;
@@ -103,6 +109,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 		Button editButton = toolkit.createButton(composite, "Add", SWT.PUSH);
 		editButton.addSelectionListener(new SelectionAdapter() {
 
+			@Override
 			public void widgetSelected(SelectionEvent e) {
 				EClass clazz = eReference.getEReferenceType();
 				ElementListSelectionDialog dlg = new ElementListSelectionDialog(
