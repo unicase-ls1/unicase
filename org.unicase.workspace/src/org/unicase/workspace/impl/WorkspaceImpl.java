@@ -96,6 +96,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * @generated NOT
 	 */
 	private ConnectionManager connectionManager;
+	private TransactionalEditingDomain transactionalEditingDomain;
 	//end of custom code
 	
 	/**
@@ -365,10 +366,15 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		return null;
 	}
 
-	public void init() {
+	public void init(TransactionalEditingDomain editingDomain) {
+		this.transactionalEditingDomain=editingDomain;
 		// initialize all projectSpaces
 		for (ProjectSpace projectSpace : getProjectSpaces()) {
 			projectSpace.init();
 		}
+	}
+
+	public TransactionalEditingDomain getEditingDomain() {
+		return this.transactionalEditingDomain;
 	}
 } // WorkspaceImpl

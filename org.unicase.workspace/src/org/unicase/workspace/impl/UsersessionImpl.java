@@ -580,26 +580,23 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 				sessionId);
 	}
 
-	/**
-	 * <!-- begin-user-doc --> Creates a new project in the server for this
-	 * {@link Usersession}
-	 * 
-	 * @param name
-	 *            the name
-	 * @param description
-	 *            the description <!-- end-user-doc -->
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.workspace.Usersession#createProject(java.lang.String, java.lang.String)
 	 * @generated NOT
 	 */
-	public void createProject(String name, String description)
+	public ProjectInfo createProject(String name, String description)
 			throws AccessControlException, EmfStoreException {
 		ConnectionManager connectionManager = this.getWorkspaceManager()
 				.getConnectionManager();
 		LogMessage log = ChangemanagmentFactory.eINSTANCE.createLogMessage();
 		log.setMessage("Creating project '" + name + "'");
-		log.setAuthor("ESBrowser");
+		log.setAuthor(this.getUsername());
 		log.setDate(new Date());
-		connectionManager.createProject(this.getSessionId(), name, description,
+		return connectionManager.createProject(this.getSessionId(), name, description,
 				log);
+		
+		
 	}
 
 } // UsersessionImpl

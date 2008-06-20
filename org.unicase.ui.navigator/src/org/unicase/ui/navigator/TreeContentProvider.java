@@ -15,8 +15,7 @@ public class TreeContentProvider extends
 		TransactionalAdapterFactoryContentProvider {
 
 	public TreeContentProvider() {
-		super(TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain(WorkspaceManager.TRANSACTIONAL_EDITINGDOMAIN_ID),
+		super(WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain(),
 				new ComposedAdapterFactory(
 						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}

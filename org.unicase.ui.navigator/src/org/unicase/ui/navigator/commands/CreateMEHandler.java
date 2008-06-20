@@ -65,8 +65,7 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 			// add this newly created model element to LeafSection
 			final LeafSection leafSection = getLeafSection(event);
 			if (leafSection != null) {
-				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-						.getEditingDomain(WorkspaceManager.TRANSACTIONAL_EDITINGDOMAIN_ID);
+				TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain();
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					@Override
 					protected void doExecute() {
