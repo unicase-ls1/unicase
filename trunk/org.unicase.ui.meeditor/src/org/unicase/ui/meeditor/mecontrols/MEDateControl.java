@@ -6,7 +6,6 @@
  */
 package org.unicase.ui.meeditor.mecontrols;
 
-import java.util.Calendar;
 import java.util.Date;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -15,9 +14,12 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
-import org.eclipse.nebula.widgets.calendarcombo.CalendarCombo;
-import org.eclipse.nebula.widgets.calendarcombo.ICalendarListener;
+//import org.eclipse.nebula.widgets.cdatetime.CDT;
+//import org.eclipse.nebula.widgets.cdatetime.CDateTime;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -28,10 +30,10 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
  * 
  * @author shterev
  */
-public class MEDateControl extends AbstractMEControl implements MEControl, ICalendarListener {
+public class MEDateControl extends AbstractMEControl implements MEControl, SelectionListener {
 
 	private EAttribute attribute;
-	private CalendarCombo widget;
+//	private CDateTime widget;
 
 	/**
 	 * default constructor.
@@ -58,58 +60,47 @@ public class MEDateControl extends AbstractMEControl implements MEControl, ICale
 		Composite composite = toolkit.createComposite(parent);
 		composite.setLayout(new GridLayout(2, false));
 
-		widget = new CalendarCombo(composite, SWT.READ_ONLY);
-		Date newDate = (Date)modelElement.eGet(attribute);
-		if(newDate!=null){
-			Calendar calendar = Calendar.getInstance();
-			calendar.setTime(newDate);
-			widget.setDate(calendar);
-		}
+//		widget = new CDateTime(composite, CDT.BORDER | CDT.DROP_DOWN | CDT.COMPACT);
+//		widget.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+//		widget.setFormat(CDT.DATE_MEDIUM);
+//		Date newDate = (Date)modelElement.eGet(attribute);
+//		if(newDate!=null){
+//			widget.setSelection(newDate);
+//		}
 
 // 		TODO AS: Implement with databindings
 //		IObservableValue model = EMFEditObservables.observeValue(editingDomain,	modelElement, attribute);
 //		IObservableValue target = new DateObservableValue(date);
 //		EMFDataBindingContext dbc = new EMFDataBindingContext();
 //		dbc.bindValue(target, model, null, null);
-		widget.addCalendarListener(this);
+
+//		widget.addSelectionListener(this);
+//		widget.addCalendarListener(this);
 		return composite;
 
 	}
-
-	/**
-	 * Perform if the widget's date changed.
-	 * @param date the new date 
-	 */
-	public void dateChanged(Calendar date) {
-	final Calendar newDate = date;
-	TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
-	domain.getCommandStack().execute(new RecordingCommand(domain){
-		@Override
-		protected void doExecute() {
-			if(widget.getCombo().getText().equals(" ")){
-				modelElement.eSet(attribute, null);
-			}else{
-				modelElement.eSet(attribute, newDate.getTime());
-			}
-		}
-		});
+	
+	public void widgetDefaultSelected(SelectionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
+
 	
 	/**
-	 * Perform if the widget's date ranges changed.
-	 * @param start the new start date 
-	 * @param end the new end date 
+	 * {@inheritDoc}
 	 */
-	public void dateRangeChanged(Calendar start, Calendar end) {
-		// TODO Auto-generated method stub
-		
-	}
-	/**
-	 * Perform when the widget is closed.
-	 */
-	public void popupClosed() {
-		// TODO Auto-generated method stub
-		
+	public void widgetSelected(SelectionEvent e) {
+		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
+		domain.getCommandStack().execute(new RecordingCommand(domain){
+			@Override
+			protected void doExecute() {
+//				if(widget.getText().equals(" ")){
+//					modelElement.eSet(attribute, null);
+//				}else{
+//					modelElement.eSet(attribute, widget.getSelection());
+//				}
+			}
+		});
 	}
 
 }
