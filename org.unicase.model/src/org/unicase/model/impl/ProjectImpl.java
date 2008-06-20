@@ -116,22 +116,23 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		//elements to do
 		Set<EObject> todo = new HashSet<EObject>();
 
-		//init with the projects direct model elements
-		EList<ModelElement> elements = this.getModelElements();
-		todo.addAll(elements);
-
+		//init with the project itself
+		todo.add(this);
+		
 		while (!todo.isEmpty()) {
 			EObject obj = todo.iterator().next();
 			EList<EObject> contents = obj.eContents();
 			for (EObject content : contents) {
 				if (modelElementClass.isInstance(content)) {
 					result.add((ModelElement) content);
+					todo.add((ModelElement) content);
 				} else {
 					todo.add(content);
 				}
 			}
 			todo.remove(obj);
 		}
+
 		return result;
 	}
 
@@ -154,24 +155,50 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<EObject> getInstancesByClass(EClass instanceClass) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		BasicEList<EObject> result = new BasicEList<EObject>();
+		for (EObject obj : this.eContents()) {
+			if (instanceClass.isInstance(obj)) {
+				result.add(obj);
+			}
+		}
+		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<EObject> getAllInstancesByClass(EClass instanceClass) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		
+		BasicEList<EObject> result = new BasicEList<EObject>();
+
+		//elements to do
+		Set<EObject> todo = new HashSet<EObject>();
+
+		//init with the projects direct model elements
+		todo.add(this);
+		
+		while (!todo.isEmpty()) {
+			EObject obj = todo.iterator().next();
+			EList<EObject> contents = obj.eContents();
+			for (EObject content : contents) {
+				if (instanceClass.isInstance(content)) {
+					result.add(content);
+					todo.add( content);
+				} else {
+					todo.add( content);
+				}
+			}
+			todo.remove(obj);
+		}
+		
+		return result;
 	}
+
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
