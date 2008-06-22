@@ -59,7 +59,7 @@ public interface ProjectSpace extends EObject {
 	 * @return the value of the '<em>Project</em>' containment reference.
 	 * @see #setProject(Project)
 	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_Project()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	Project getProject();
@@ -291,21 +291,21 @@ public interface ProjectSpace extends EObject {
 	void setBaseVersion(PrimaryVersionSpec value);
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * Commit the all pending changes of the project.
+	 * <!-- begin-user-doc --> Commit the all pending changes of the project.
+	 * 
 	 * @return new base version
-	 * @throws EmfStoreException if commit fails
-	 * <!-- end-user-doc -->
+	 * @throws EmfStoreException
+	 *             if commit fails <!-- end-user-doc -->
 	 * @model
 	 * @generated NOT
 	 */
 	PrimaryVersionSpec commit() throws EmfStoreException;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * Update the project to the head version.
-	 * @throws EmfStoreException if update fails
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> Update the project to the head version.
+	 * 
+	 * @throws EmfStoreException
+	 *             if update fails <!-- end-user-doc -->
 	 * 
 	 * @model
 	 * @generated NOT
@@ -313,12 +313,14 @@ public interface ProjectSpace extends EObject {
 	void update() throws EmfStoreException;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * Update the project to the given version.
-	 * @param version the version to update to
-	 * @throws EmfStoreException if update fails
+	 * <!-- begin-user-doc --> Update the project to the given version.
 	 * 
-	 * <!-- end-user-doc -->
+	 * @param version
+	 *            the version to update to
+	 * @throws EmfStoreException
+	 *             if update fails
+	 * 
+	 *             <!-- end-user-doc -->
 	 * 
 	 * @model
 	 * @generated NOT
@@ -326,9 +328,8 @@ public interface ProjectSpace extends EObject {
 	void update(VersionSpec version) throws EmfStoreException;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * Drop all changes to the local project.
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> Drop all changes to the local project. <!--
+	 * end-user-doc -->
 	 * 
 	 * @model
 	 * @generated
@@ -336,9 +337,8 @@ public interface ProjectSpace extends EObject {
 	void revert();
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * Save the current state and changes.
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> Save the current state and changes. <!--
+	 * end-user-doc -->
 	 * 
 	 * @model
 	 * @generated
@@ -346,8 +346,7 @@ public interface ProjectSpace extends EObject {
 	void save();
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * Initialize project space. Start change tracking.
+	 * <!-- begin-user-doc --> Initialize project space. Start change tracking.
 	 * <!-- end-user-doc -->
 	 * 
 	 * @model
@@ -356,9 +355,7 @@ public interface ProjectSpace extends EObject {
 	void init();
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * Retrieve the project info.
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> Retrieve the project info. <!-- end-user-doc -->
 	 * 
 	 * @model kind="operation"
 	 * @generated
@@ -366,9 +363,8 @@ public interface ProjectSpace extends EObject {
 	ProjectInfo getProjectInfo();
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * Returns if this project has pending changes.
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> Returns if this project has pending changes. <!--
+	 * end-user-doc -->
 	 * 
 	 * @model kind="operation"
 	 * @generated

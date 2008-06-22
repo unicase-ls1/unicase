@@ -225,13 +225,14 @@ public interface Usersession extends EObject {
 	 */
 	boolean isLoggedIn();
 
-	//begin of custom code
+	// begin of custom code
 	/**
-	 * <!-- begin-user-doc --> 
-	 * Log in. 
-	 * @throws AccessControlException if login fails.
-	 * @throws EmfStoreException if anything else fails.
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> Log in.
+	 * 
+	 * @throws AccessControlException
+	 *             if login fails.
+	 * @throws EmfStoreException
+	 *             if anything else fails. <!-- end-user-doc -->
 	 * 
 	 * @model
 	 * @generated NOT
@@ -239,13 +240,14 @@ public interface Usersession extends EObject {
 	void logIn() throws AccessControlException, EmfStoreException;
 
 	/**
-	 * <!-- begin-user-doc --> 
-	 * Checkout a project to the local workspace.
-	 * @param projectInfo a project info describing the project and its version
+	 * <!-- begin-user-doc --> Checkout a project to the local workspace.
+	 * 
+	 * @param projectInfo
+	 *            a project info describing the project and its version
 	 * @return a Project space containing the project
 	 * @throws EmfStoreException
 	 * 
-	 * <!-- end-user-doc -->
+	 *             <!-- end-user-doc -->
 	 * 
 	 * @model
 	 * 
@@ -255,8 +257,10 @@ public interface Usersession extends EObject {
 
 	/**
 	 * Get the list of remotely available projects.
+	 * 
 	 * @return a list of project infos
-	 * @throws EmfStoreException if retrieval fails
+	 * @throws EmfStoreException
+	 *             if retrieval fails
 	 * 
 	 * @generated NOT
 	 */
@@ -264,16 +268,21 @@ public interface Usersession extends EObject {
 
 	/**
 	 * Create a project on the server.
-	 * @param name the project name
-	 * @param description the project description
+	 * 
+	 * @param name
+	 *            the project name
+	 * @param description
+	 *            the project description
 	 * @return the ProjectInfo of the new Project
 	 * 
-	 * @throws AccessControlException if creating projects is not allowed
-	 * @throws EmfStoreException if creation fails
+	 * @throws AccessControlException
+	 *             if creating projects is not allowed
+	 * @throws EmfStoreException
+	 *             if creation fails
 	 * 
 	 * @generated NOT
 	 */
 	ProjectInfo createProject(String name, String description)
 			throws AccessControlException, EmfStoreException;
-	//end of custom code
+	// end of custom code
 } // Usersession

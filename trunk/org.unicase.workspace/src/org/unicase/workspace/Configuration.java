@@ -14,19 +14,21 @@ import org.eclipse.emf.ecore.resource.Resource;
 
 /**
  * Represents the current Workspace Configuration.
+ * 
  * @author koegel
- *
+ * 
  */
 public final class Configuration {
-	
+
 	private Configuration() {
-		//nothing to do
+		// nothing to do
 	}
 
 	private static Map<Object, Object> resourceSaveOptions;
 
 	/**
 	 * Get the Workspace directory.
+	 * 
 	 * @return the workspace directory path string
 	 */
 	public static String getWorkspaceDirectory() {
@@ -41,9 +43,10 @@ public final class Configuration {
 		}
 		return sb.toString();
 	}
-	
+
 	/**
 	 * Get the Workspace file path.
+	 * 
 	 * @return the workspace file path string
 	 */
 	public static String getWorkspacePath() {
@@ -53,6 +56,7 @@ public final class Configuration {
 
 	/**
 	 * Get the default resource save options.
+	 * 
 	 * @return the resource save options
 	 */
 	public static Map<Object, Object> getResourceSaveOptions() {

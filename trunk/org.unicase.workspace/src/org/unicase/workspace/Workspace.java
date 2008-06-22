@@ -94,9 +94,13 @@ public interface Workspace extends EObject, IAdaptable {
 
 	/**
 	 * Checkout a project to the workspace.
-	 * @param usersession the usersession
-	 * @param projectInfo the project info describing the project and version
-	 * @throws EmfStoreException if checkout fails
+	 * 
+	 * @param usersession
+	 *            the usersession
+	 * @param projectInfo
+	 *            the project info describing the project and version
+	 * @throws EmfStoreException
+	 *             if checkout fails
 	 * @return the project space containing the project
 	 * @model
 	 * @generated NOT
@@ -105,9 +109,8 @@ public interface Workspace extends EObject, IAdaptable {
 			throws EmfStoreException;
 
 	/**
-	 * <!-- begin-user-doc --> 
-	 * Save the workspace to the resource.
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> Save the workspace to the resource. <!--
+	 * end-user-doc -->
 	 * 
 	 * @model
 	 * @generated
@@ -124,7 +127,9 @@ public interface Workspace extends EObject, IAdaptable {
 
 	/**
 	 * Set the workspace connection manager.
-	 * @param connectionManager the connection manager
+	 * 
+	 * @param connectionManager
+	 *            the connection manager
 	 * 
 	 * @generated NOT
 	 */
@@ -132,7 +137,9 @@ public interface Workspace extends EObject, IAdaptable {
 
 	/**
 	 * Set the workspace resource.
-	 * @param resource the resource
+	 * 
+	 * @param resource
+	 *            the resource
 	 * 
 	 * @generated NOT
 	 */
@@ -141,17 +148,19 @@ public interface Workspace extends EObject, IAdaptable {
 	/**
 	 * Init the workspace and its projectspaces.
 	 * 
-	 * @param editingDomain the editing domain of the workspace
+	 * @param editingDomain
+	 *            the editing domain of the workspace
 	 * 
 	 * @generated NOT
 	 */
 	void init(TransactionalEditingDomain editingDomain);
-	
+
 	/**
 	 * Return this workspace«s transactional editing domain.
+	 * 
 	 * @return the editing domain
 	 * 
 	 * @generated NOT
 	 */
-	 TransactionalEditingDomain getEditingDomain();
+	TransactionalEditingDomain getEditingDomain();
 } // Workspace
