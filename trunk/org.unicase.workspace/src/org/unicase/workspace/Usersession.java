@@ -17,23 +17,19 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 /**
  * <!-- begin-user-doc --> A representation of the model object '
  * <em><b>Usersession</b></em>'. <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.workspace.Usersession#getUsername <em>Username</em>}</li>
- * <li>{@link org.unicase.workspace.Usersession#getPassword <em>Password</em>}</li>
- * <li>{@link org.unicase.workspace.Usersession#getSessionId <em>Session Id
- * </em>}</li>
- * <li>{@link org.unicase.workspace.Usersession#getPersistentPassword <em>
- * Persistent Password</em>}</li>
- * <li>{@link org.unicase.workspace.Usersession#getServerInfo <em>Server Info
- * </em>}</li>
- * <li>{@link org.unicase.workspace.Usersession#isSavePassword <em>Save Password
- * </em>}</li>
+ *   <li>{@link org.unicase.workspace.Usersession#getUsername <em>Username</em>}</li>
+ *   <li>{@link org.unicase.workspace.Usersession#getPassword <em>Password</em>}</li>
+ *   <li>{@link org.unicase.workspace.Usersession#getSessionId <em>Session Id</em>}</li>
+ *   <li>{@link org.unicase.workspace.Usersession#getPersistentPassword <em>Persistent Password</em>}</li>
+ *   <li>{@link org.unicase.workspace.Usersession#getServerInfo <em>Server Info</em>}</li>
+ *   <li>{@link org.unicase.workspace.Usersession#isSavePassword <em>Save Password</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.workspace.WorkspacePackage#getUsersession()
  * @model
  * @generated
@@ -57,12 +53,9 @@ public interface Usersession extends EObject {
 	String getUsername();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.workspace.Usersession#getUsername <em>Username</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Username</em>' attribute.
+	 * Sets the value of the '{@link org.unicase.workspace.Usersession#getUsername <em>Username</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Username</em>' attribute.
 	 * @see #getUsername()
 	 * @generated
 	 */
@@ -86,12 +79,9 @@ public interface Usersession extends EObject {
 	String getPassword();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.workspace.Usersession#getPassword <em>Password</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Password</em>' attribute.
+	 * Sets the value of the '{@link org.unicase.workspace.Usersession#getPassword <em>Password</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Password</em>' attribute.
 	 * @see #getPassword()
 	 * @generated
 	 */
@@ -115,13 +105,10 @@ public interface Usersession extends EObject {
 	SessionId getSessionId();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.workspace.Usersession#getSessionId
-	 * <em>Session Id</em>}' reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.unicase.workspace.Usersession#getSessionId <em>Session Id</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Session Id</em>' reference.
+	 * @param value the new value of the '<em>Session Id</em>' reference.
 	 * @see #getSessionId()
 	 * @generated
 	 */
@@ -135,7 +122,6 @@ public interface Usersession extends EObject {
 	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Persistent Password</em>' attribute.
 	 * @see #setPersistentPassword(String)
 	 * @see org.unicase.workspace.WorkspacePackage#getUsersession_PersistentPassword()
@@ -145,13 +131,10 @@ public interface Usersession extends EObject {
 	String getPersistentPassword();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.workspace.Usersession#getPersistentPassword
-	 * <em>Persistent Password</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.unicase.workspace.Usersession#getPersistentPassword <em>Persistent Password</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Persistent Password</em>' attribute.
+	 * @param value the new value of the '<em>Persistent Password</em>' attribute.
 	 * @see #getPersistentPassword()
 	 * @generated
 	 */
@@ -175,13 +158,10 @@ public interface Usersession extends EObject {
 	ServerInfo getServerInfo();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.workspace.Usersession#getServerInfo
-	 * <em>Server Info</em>}' reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.unicase.workspace.Usersession#getServerInfo <em>Server Info</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Server Info</em>' reference.
+	 * @param value the new value of the '<em>Server Info</em>' reference.
 	 * @see #getServerInfo()
 	 * @generated
 	 */
@@ -205,13 +185,10 @@ public interface Usersession extends EObject {
 	boolean isSavePassword();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.workspace.Usersession#isSavePassword
-	 * <em>Save Password</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.unicase.workspace.Usersession#isSavePassword <em>Save Password</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Save Password</em>' attribute.
+	 * @param value the new value of the '<em>Save Password</em>' attribute.
 	 * @see #isSavePassword()
 	 * @generated
 	 */
@@ -219,7 +196,6 @@ public interface Usersession extends EObject {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation"
 	 * @generated
 	 */

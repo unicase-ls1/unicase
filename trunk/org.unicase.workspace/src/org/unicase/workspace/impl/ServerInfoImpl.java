@@ -26,25 +26,21 @@ import org.unicase.workspace.WorkspacePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.workspace.impl.ServerInfoImpl#getName <em>Name</em>}</li>
- * <li>{@link org.unicase.workspace.impl.ServerInfoImpl#getUrl <em>Url</em>}</li>
- * <li>{@link org.unicase.workspace.impl.ServerInfoImpl#getPort <em>Port</em>}</li>
- * <li>{@link org.unicase.workspace.impl.ServerInfoImpl#getDisplayName <em>
- * Display Name</em>}</li>
- * <li>{@link org.unicase.workspace.impl.ServerInfoImpl#getProjectInfos <em>
- * Project Infos</em>}</li>
- * <li>{@link org.unicase.workspace.impl.ServerInfoImpl#getLastUsersession <em>
- * Last Usersession</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.ServerInfoImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.ServerInfoImpl#getUrl <em>Url</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.ServerInfoImpl#getPort <em>Port</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.ServerInfoImpl#getDisplayName <em>Display Name</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.ServerInfoImpl#getProjectInfos <em>Project Infos</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.ServerInfoImpl#getLastUsersession <em>Last Usersession</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -54,7 +50,6 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -84,7 +79,6 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 	/**
 	 * The default value of the '{@link #getPort() <em>Port</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getPort()
 	 * @generated
 	 * @ordered
@@ -94,7 +88,6 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 	/**
 	 * The cached value of the '{@link #getPort() <em>Port</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getPort()
 	 * @generated
 	 * @ordered
@@ -102,9 +95,8 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 	protected int port = PORT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}
-	 * ' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getDisplayName()
 	 * @generated
 	 * @ordered
@@ -112,9 +104,8 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 	protected static final String DISPLAY_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getDisplayName()
 	 * @generated
 	 * @ordered
@@ -122,10 +113,9 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 	protected String displayName = DISPLAY_NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getProjectInfos()
-	 * <em>Project Infos</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getProjectInfos() <em>Project Infos</em>}' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getProjectInfos()
 	 * @generated
 	 * @ordered
@@ -133,10 +123,9 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 	protected EList<ProjectInfo> projectInfos;
 
 	/**
-	 * The cached value of the '{@link #getLastUsersession()
-	 * <em>Last Usersession</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getLastUsersession() <em>Last Usersession</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getLastUsersession()
 	 * @generated
 	 * @ordered
@@ -145,7 +134,6 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ServerInfoImpl() {
@@ -154,7 +142,6 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -164,7 +151,6 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -173,7 +159,6 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setName(String newName) {
@@ -186,7 +171,6 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getUrl() {
@@ -195,7 +179,6 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setUrl(String newUrl) {
@@ -208,7 +191,6 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getPort() {
@@ -217,7 +199,6 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setPort(int newPort) {
@@ -230,7 +211,6 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getDisplayName() {
@@ -239,7 +219,6 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDisplayName(String newDisplayName) {
@@ -253,7 +232,6 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ProjectInfo> getProjectInfos() {
@@ -267,7 +245,6 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Usersession getLastUsersession() {
@@ -286,7 +263,6 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Usersession basicGetLastUsersession() {
@@ -295,7 +271,6 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setLastUsersession(Usersession newLastUsersession) {
@@ -309,7 +284,6 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -335,7 +309,6 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -368,7 +341,6 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -398,7 +370,6 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -425,7 +396,6 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

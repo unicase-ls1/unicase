@@ -13,22 +13,19 @@ import org.unicase.emfstore.esmodel.ProjectInfo;
 /**
  * <!-- begin-user-doc --> A representation of the model object '
  * <em><b>Server Info</b></em>'. <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.workspace.ServerInfo#getName <em>Name</em>}</li>
- * <li>{@link org.unicase.workspace.ServerInfo#getUrl <em>Url</em>}</li>
- * <li>{@link org.unicase.workspace.ServerInfo#getPort <em>Port</em>}</li>
- * <li>{@link org.unicase.workspace.ServerInfo#getDisplayName <em>Display Name
- * </em>}</li>
- * <li>{@link org.unicase.workspace.ServerInfo#getProjectInfos <em>Project Infos
- * </em>}</li>
- * <li>{@link org.unicase.workspace.ServerInfo#getLastUsersession <em>Last
- * Usersession</em>}</li>
+ *   <li>{@link org.unicase.workspace.ServerInfo#getName <em>Name</em>}</li>
+ *   <li>{@link org.unicase.workspace.ServerInfo#getUrl <em>Url</em>}</li>
+ *   <li>{@link org.unicase.workspace.ServerInfo#getPort <em>Port</em>}</li>
+ *   <li>{@link org.unicase.workspace.ServerInfo#getDisplayName <em>Display Name</em>}</li>
+ *   <li>{@link org.unicase.workspace.ServerInfo#getProjectInfos <em>Project Infos</em>}</li>
+ *   <li>{@link org.unicase.workspace.ServerInfo#getLastUsersession <em>Last Usersession</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.workspace.WorkspacePackage#getServerInfo()
  * @model
  * @generated
@@ -52,11 +49,9 @@ public interface ServerInfo extends EObject {
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.workspace.ServerInfo#getName
-	 * <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Name</em>' attribute.
+	 * Sets the value of the '{@link org.unicase.workspace.ServerInfo#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
 	 * @generated
 	 */
@@ -80,11 +75,9 @@ public interface ServerInfo extends EObject {
 	String getUrl();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.workspace.ServerInfo#getUrl
-	 * <em>Url</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Url</em>' attribute.
+	 * Sets the value of the '{@link org.unicase.workspace.ServerInfo#getUrl <em>Url</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Url</em>' attribute.
 	 * @see #getUrl()
 	 * @generated
 	 */
@@ -108,11 +101,9 @@ public interface ServerInfo extends EObject {
 	int getPort();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.workspace.ServerInfo#getPort
-	 * <em>Port</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Port</em>' attribute.
+	 * Sets the value of the '{@link org.unicase.workspace.ServerInfo#getPort <em>Port</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Port</em>' attribute.
 	 * @see #getPort()
 	 * @generated
 	 */
@@ -136,13 +127,10 @@ public interface ServerInfo extends EObject {
 	String getDisplayName();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.workspace.ServerInfo#getDisplayName
-	 * <em>Display Name</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.unicase.workspace.ServerInfo#getDisplayName <em>Display Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Display Name</em>' attribute.
+	 * @param value the new value of the '<em>Display Name</em>' attribute.
 	 * @see #getDisplayName()
 	 * @generated
 	 */
@@ -150,14 +138,13 @@ public interface ServerInfo extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Project Infos</b></em>' reference list.
-	 * The list contents are of type
-	 * {@link org.unicase.emfstore.esmodel.ProjectInfo}. <!-- begin-user-doc -->
+	 * The list contents are of type {@link org.unicase.emfstore.esmodel.ProjectInfo}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Project Infos</em>' reference list isn't
 	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Project Infos</em>' reference list.
 	 * @see org.unicase.workspace.WorkspacePackage#getServerInfo_ProjectInfos()
 	 * @model transient="true"
@@ -173,7 +160,6 @@ public interface ServerInfo extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Last Usersession</em>' reference.
 	 * @see #setLastUsersession(Usersession)
 	 * @see org.unicase.workspace.WorkspacePackage#getServerInfo_LastUsersession()
@@ -183,13 +169,10 @@ public interface ServerInfo extends EObject {
 	Usersession getLastUsersession();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.workspace.ServerInfo#getLastUsersession
-	 * <em>Last Usersession</em>}' reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.unicase.workspace.ServerInfo#getLastUsersession <em>Last Usersession</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Last Usersession</em>' reference.
+	 * @param value the new value of the '<em>Last Usersession</em>' reference.
 	 * @see #getLastUsersession()
 	 * @generated
 	 */
