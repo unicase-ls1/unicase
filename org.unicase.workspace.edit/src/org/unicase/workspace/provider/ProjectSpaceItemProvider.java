@@ -221,9 +221,10 @@ public class ProjectSpaceItemProvider extends ItemProviderAdapter implements
 		return super.getChildFeature(object, child);
 	}
 
-	//begin of custom code
-	/** 
+	// begin of custom code
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.edit.provider.ItemProviderAdapter#getImage(java.lang.Object)
 	 * @generated NOT
 	 */
@@ -234,8 +235,9 @@ public class ProjectSpaceItemProvider extends ItemProviderAdapter implements
 				ISharedImages.IMG_OBJ_PROJECT);
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.edit.provider.ItemProviderAdapter#getText(java.lang.Object)
 	 * @generated NOT
 	 */
@@ -248,8 +250,9 @@ public class ProjectSpaceItemProvider extends ItemProviderAdapter implements
 		}
 		return getString("_UI_ProjectSpace_type");
 	}
-	//end of custom code
-	
+
+	// end of custom code
+
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to
 	 * update any cached children and by creating a viewer notification, which

@@ -89,7 +89,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 */
 	protected EList<Usersession> usersessions;
 
-	//begin of custom code
+	// begin of custom code
 	/**
 	 * The current connection manager used to connect to the server(s).
 	 * 
@@ -97,13 +97,13 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 */
 	private ConnectionManager connectionManager;
 	private TransactionalEditingDomain transactionalEditingDomain;
-	//end of custom code
-	
+
+	// end of custom code
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated 
-	 * 
+	 * @generated
 	 */
 	protected WorkspaceImpl() {
 		super();
@@ -175,7 +175,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 				.getVersion());
 
 		final PrimaryVersionSpec primaryVersionSpec = projectInfo.getVersion();
-		
+
 		// init project space
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
@@ -367,7 +367,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	}
 
 	public void init(TransactionalEditingDomain editingDomain) {
-		this.transactionalEditingDomain=editingDomain;
+		this.transactionalEditingDomain = editingDomain;
 		// initialize all projectSpaces
 		for (ProjectSpace projectSpace : getProjectSpaces()) {
 			projectSpace.init();

@@ -19,7 +19,6 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.connectionmanager.RMIConnectionManagerImpl;
-import org.unicase.workspace.impl.WorkspaceImpl;
 
 /**
  * Controller for workspaces. Workspace Manager is a singleton.
@@ -121,10 +120,10 @@ public final class WorkspaceManager {
 			}
 		} else {
 			// if file exists load it
-			
+
 			resource = resourceSet.getResource(fileURI, true);
 			EList<EObject> directContents = resource.getContents();
-			//FIXME cast
+			// FIXME cast
 			workspace = (Workspace) directContents.get(0);
 		}
 		workspace.setConnectionManager(this.connectionManager);

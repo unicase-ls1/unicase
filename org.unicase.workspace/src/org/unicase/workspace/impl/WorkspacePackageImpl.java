@@ -577,7 +577,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 		initEClass(projectSpaceEClass, ProjectSpace.class, "ProjectSpace",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getProjectSpace_Project(), theModelPackage.getProject(),
-				null, "project", null, 1, 1, ProjectSpace.class, !IS_TRANSIENT,
+				null, "project", null, 0, 1, ProjectSpace.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProjectSpace_ProjectId(), theEsmodelPackage
