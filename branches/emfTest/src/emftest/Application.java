@@ -42,6 +42,7 @@ import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
+import org.unicase.workspace.impl.ProjectSpaceImpl;
 import org.unicase.workspace.impl.WorkspaceImpl;
 
 /**
@@ -98,22 +99,25 @@ public class Application implements IApplication {
 				project.addModelElement(com);
 				
 				cpBefore = save();
-//				projectSpace.setProject(null);
-//				ResourceSet resourceSet = new ResourceSetImpl();
-//				rs=resourceSet;
-//				Resource resource2 = rs.createResource(URI.createURI("jfdksdddd"));
-//				resource2.getContents().add(project);
+				((ProjectSpaceImpl)projectSpace).setProjectGen(null);
+				ResourceSet resourceSet = new ResourceSetImpl();
+				
+				Resource resource2 = resourceSet.createResource(URI.createURI("jfdksdddd"));
+				resource2.getContents().add(project);
+				rs=resourceSet;
+				resource2.save(null);
 
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}		}
+			}		
+			}
 		});
 		
 		Diagnostician.INSTANCE.validate(cpBefore);
 
-		System.out.println(eObjectToString(cpBefore));
+		//System.out.println(eObjectToString(cpBefore));
 
 		ChangePackage cpAfter = (ChangePackage) stringToEObject(eObjectToString(cpBefore));
 		
