@@ -24,19 +24,16 @@ import org.unicase.model.ModelElement;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RoleImpl#getProjects
- * <em>Projects</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RoleImpl#getProjects <em>Projects</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class RoleImpl extends EObjectImpl implements Role {
 	/**
-	 * The cached value of the '{@link #getProjects() <em>Projects</em>}'
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getProjects() <em>Projects</em>}' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getProjects()
 	 * @generated
 	 * @ordered
@@ -45,7 +42,6 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected RoleImpl() {
@@ -54,7 +50,6 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -64,7 +59,6 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ProjectInfo> getProjects() {
@@ -77,57 +71,56 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean canAdministrate(ProjectId projectId) {
 		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean canCreate(ProjectId projectId, ModelElement modelElement) {
 		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean canDelete(ProjectId projectId, ModelElement modelElement) {
 		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean canModify(ProjectId projectId, ModelElement modelElement) {
 		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean canRead(ProjectId projectId, ModelElement modelElement) {
 		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -141,7 +134,6 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -158,7 +150,6 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -173,7 +164,6 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

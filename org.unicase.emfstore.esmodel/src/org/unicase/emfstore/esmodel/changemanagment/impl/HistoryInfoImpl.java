@@ -22,22 +22,17 @@ import org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.unicase.emfstore.esmodel.changemanagment.impl.HistoryInfoImpl#getPrimerySpec
- * <em>Primery Spec</em>}</li>
- * <li>
- * {@link org.unicase.emfstore.esmodel.changemanagment.impl.HistoryInfoImpl#getLogMessage
- * <em>Log Message</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.changemanagment.impl.HistoryInfoImpl#getPrimerySpec <em>Primery Spec</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.changemanagment.impl.HistoryInfoImpl#getLogMessage <em>Log Message</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 	/**
-	 * The cached value of the '{@link #getPrimerySpec() <em>Primery Spec</em>}'
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getPrimerySpec() <em>Primery Spec</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getPrimerySpec()
 	 * @generated
 	 * @ordered
@@ -45,9 +40,8 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 	protected PrimaryVersionSpec primerySpec;
 
 	/**
-	 * The cached value of the '{@link #getLogMessage() <em>Log Message</em>}'
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getLogMessage() <em>Log Message</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getLogMessage()
 	 * @generated
 	 * @ordered
@@ -56,7 +50,6 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected HistoryInfoImpl() {
@@ -65,7 +58,6 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -75,7 +67,6 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec getPrimerySpec() {
@@ -94,7 +85,6 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec basicGetPrimerySpec() {
@@ -103,7 +93,6 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setPrimerySpec(PrimaryVersionSpec newPrimerySpec) {
@@ -117,7 +106,6 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public LogMessage getLogMessage() {
@@ -136,7 +124,6 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public LogMessage basicGetLogMessage() {
@@ -145,7 +132,6 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setLogMessage(LogMessage newLogMessage) {
@@ -159,7 +145,6 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -179,7 +164,6 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -197,7 +181,6 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -215,7 +198,6 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -25,15 +25,14 @@ import org.unicase.emfstore.esmodel.changemanagment.Version;
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class ChangemanagmentFactoryImpl extends EFactoryImpl implements
 		ChangemanagmentFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static ChangemanagmentFactory init() {
@@ -50,9 +49,9 @@ public class ChangemanagmentFactoryImpl extends EFactoryImpl implements
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!--
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ChangemanagmentFactoryImpl() {
@@ -61,7 +60,6 @@ public class ChangemanagmentFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -91,7 +89,6 @@ public class ChangemanagmentFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public TagVersionSpec createTagVersionSpec() {
@@ -101,7 +98,6 @@ public class ChangemanagmentFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public DateVersionSpec createDateVersionSpec() {
@@ -111,7 +107,6 @@ public class ChangemanagmentFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec createPrimaryVersionSpec() {
@@ -121,7 +116,6 @@ public class ChangemanagmentFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public LogMessage createLogMessage() {
@@ -131,7 +125,6 @@ public class ChangemanagmentFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ChangePackage createChangePackage() {
@@ -141,7 +134,6 @@ public class ChangemanagmentFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public HistoryInfo createHistoryInfo() {
@@ -151,7 +143,6 @@ public class ChangemanagmentFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Version createVersion() {
@@ -161,7 +152,6 @@ public class ChangemanagmentFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public HeadVersionSpec createHeadVersionSpec() {
@@ -171,7 +161,6 @@ public class ChangemanagmentFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ChangemanagmentPackage getChangemanagmentPackage() {
@@ -180,7 +169,6 @@ public class ChangemanagmentFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

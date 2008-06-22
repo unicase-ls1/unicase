@@ -8,6 +8,7 @@ package org.unicase.emfstore;
 
 import java.util.List;
 
+import org.eclipse.emf.common.util.URI;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
@@ -33,6 +34,16 @@ import org.unicase.model.Project;
  *
  */
 public interface EmfStore {
+	
+	/**
+	 * Virtual Uri for change package de-/serialization.
+	 */
+	URI CHANGEPACKAGE_URI = URI.createURI("unicaseVirtualChangePackageUri");
+	
+	/**
+	 * Virtual Uri for project de-/serialization.
+	 */
+	URI PROJECT_URI = URI.createURI("unicaseVirtualProjectUri");
 
 	/**
 	 * Get a list of projects the user of the session id can access. The server

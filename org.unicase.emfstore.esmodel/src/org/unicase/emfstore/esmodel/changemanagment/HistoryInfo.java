@@ -11,19 +11,15 @@ import org.eclipse.emf.ecore.EObject;
 /**
  * <!-- begin-user-doc --> A representation of the model object '
  * <em><b>History Info</b></em>'. <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>
- * {@link org.unicase.emfstore.esmodel.changemanagment.HistoryInfo#getPrimerySpec
- * <em>Primery Spec</em>}</li>
- * <li>
- * {@link org.unicase.emfstore.esmodel.changemanagment.HistoryInfo#getLogMessage
- * <em>Log Message</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.changemanagment.HistoryInfo#getPrimerySpec <em>Primery Spec</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.changemanagment.HistoryInfo#getLogMessage <em>Log Message</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentPackage#getHistoryInfo()
  * @model
  * @generated
@@ -47,13 +43,10 @@ public interface HistoryInfo extends EObject {
 	PrimaryVersionSpec getPrimerySpec();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.emfstore.esmodel.changemanagment.HistoryInfo#getPrimerySpec
-	 * <em>Primery Spec</em>}' reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.changemanagment.HistoryInfo#getPrimerySpec <em>Primery Spec</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Primery Spec</em>' reference.
+	 * @param value the new value of the '<em>Primery Spec</em>' reference.
 	 * @see #getPrimerySpec()
 	 * @generated
 	 */
@@ -77,13 +70,10 @@ public interface HistoryInfo extends EObject {
 	LogMessage getLogMessage();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.emfstore.esmodel.changemanagment.HistoryInfo#getLogMessage
-	 * <em>Log Message</em>}' reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.changemanagment.HistoryInfo#getLogMessage <em>Log Message</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Log Message</em>' reference.
+	 * @param value the new value of the '<em>Log Message</em>' reference.
 	 * @see #getLogMessage()
 	 * @generated
 	 */

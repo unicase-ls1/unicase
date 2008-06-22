@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.unicase.emfstore.esmodel.changemanagment.ChangePackage;
 import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentPackage;
+import org.unicase.model.Project;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '
@@ -22,22 +23,18 @@ import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.unicase.emfstore.esmodel.changemanagment.impl.ChangePackageImpl#getFowardDelta
- * <em>Foward Delta</em>}</li>
- * <li>
- * {@link org.unicase.emfstore.esmodel.changemanagment.impl.ChangePackageImpl#getBackwardDelta
- * <em>Backward Delta</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.changemanagment.impl.ChangePackageImpl#getFowardDelta <em>Foward Delta</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.changemanagment.impl.ChangePackageImpl#getBackwardDelta <em>Backward Delta</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.changemanagment.impl.ChangePackageImpl#getProjectState <em>Project State</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	/**
-	 * The cached value of the '{@link #getFowardDelta() <em>Foward Delta</em>}'
-	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getFowardDelta() <em>Foward Delta</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getFowardDelta()
 	 * @generated
 	 * @ordered
@@ -45,10 +42,9 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	protected ChangeDescription fowardDelta;
 
 	/**
-	 * The cached value of the '{@link #getBackwardDelta()
-	 * <em>Backward Delta</em>}' containment reference. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getBackwardDelta() <em>Backward Delta</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getBackwardDelta()
 	 * @generated
 	 * @ordered
@@ -56,8 +52,17 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	protected ChangeDescription backwardDelta;
 
 	/**
+	 * The cached value of the '{@link #getProjectState() <em>Project State</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProjectState()
+	 * @generated
+	 * @ordered
+	 */
+	protected Project projectState;
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ChangePackageImpl() {
@@ -66,7 +71,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -76,7 +80,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ChangeDescription getFowardDelta() {
@@ -85,7 +88,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetFowardDelta(
@@ -107,7 +109,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setFowardDelta(ChangeDescription newFowardDelta) {
@@ -138,7 +139,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ChangeDescription getBackwardDelta() {
@@ -147,7 +147,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetBackwardDelta(
@@ -169,7 +168,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setBackwardDelta(ChangeDescription newBackwardDelta) {
@@ -199,18 +197,61 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Project getProjectState() {
+		if (projectState != null && projectState.eIsProxy()) {
+			InternalEObject oldProjectState = (InternalEObject) projectState;
+			projectState = (Project) eResolveProxy(oldProjectState);
+			if (projectState != oldProjectState) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(
+							this,
+							Notification.RESOLVE,
+							ChangemanagmentPackage.CHANGE_PACKAGE__PROJECT_STATE,
+							oldProjectState, projectState));
+			}
+		}
+		return projectState;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Project basicGetProjectState() {
+		return projectState;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProjectState(Project newProjectState) {
+		Project oldProjectState = projectState;
+		projectState = newProjectState;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ChangemanagmentPackage.CHANGE_PACKAGE__PROJECT_STATE,
+					oldProjectState, projectState));
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ChangePackage reverse() {
 		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -227,7 +268,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -237,13 +277,16 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 			return getFowardDelta();
 		case ChangemanagmentPackage.CHANGE_PACKAGE__BACKWARD_DELTA:
 			return getBackwardDelta();
+		case ChangemanagmentPackage.CHANGE_PACKAGE__PROJECT_STATE:
+			if (resolve)
+				return getProjectState();
+			return basicGetProjectState();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -255,13 +298,15 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		case ChangemanagmentPackage.CHANGE_PACKAGE__BACKWARD_DELTA:
 			setBackwardDelta((ChangeDescription) newValue);
 			return;
+		case ChangemanagmentPackage.CHANGE_PACKAGE__PROJECT_STATE:
+			setProjectState((Project) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -273,13 +318,15 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		case ChangemanagmentPackage.CHANGE_PACKAGE__BACKWARD_DELTA:
 			setBackwardDelta((ChangeDescription) null);
 			return;
+		case ChangemanagmentPackage.CHANGE_PACKAGE__PROJECT_STATE:
+			setProjectState((Project) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -289,6 +336,8 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 			return fowardDelta != null;
 		case ChangemanagmentPackage.CHANGE_PACKAGE__BACKWARD_DELTA:
 			return backwardDelta != null;
+		case ChangemanagmentPackage.CHANGE_PACKAGE__PROJECT_STATE:
+			return projectState != null;
 		}
 		return super.eIsSet(featureID);
 	}

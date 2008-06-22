@@ -21,25 +21,18 @@ import org.unicase.emfstore.esmodel.changemanagment.LogMessage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.unicase.emfstore.esmodel.changemanagment.impl.LogMessageImpl#getMessage
- * <em>Message</em>}</li>
- * <li>
- * {@link org.unicase.emfstore.esmodel.changemanagment.impl.LogMessageImpl#getDate
- * <em>Date</em>}</li>
- * <li>
- * {@link org.unicase.emfstore.esmodel.changemanagment.impl.LogMessageImpl#getAuthor
- * <em>Author</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.changemanagment.impl.LogMessageImpl#getMessage <em>Message</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.changemanagment.impl.LogMessageImpl#getDate <em>Date</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.changemanagment.impl.LogMessageImpl#getAuthor <em>Author</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class LogMessageImpl extends EObjectImpl implements LogMessage {
 	/**
-	 * The default value of the '{@link #getMessage() <em>Message</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getMessage() <em>Message</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getMessage()
 	 * @generated
 	 * @ordered
@@ -47,9 +40,8 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 	protected static final String MESSAGE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getMessage() <em>Message</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getMessage() <em>Message</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getMessage()
 	 * @generated
 	 * @ordered
@@ -59,7 +51,6 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 	/**
 	 * The default value of the '{@link #getDate() <em>Date</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getDate()
 	 * @generated
 	 * @ordered
@@ -69,7 +60,6 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 	/**
 	 * The cached value of the '{@link #getDate() <em>Date</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getDate()
 	 * @generated
 	 * @ordered
@@ -77,9 +67,8 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 	protected Date date = DATE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getAuthor() <em>Author</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getAuthor() <em>Author</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getAuthor()
 	 * @generated
 	 * @ordered
@@ -89,7 +78,6 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 	/**
 	 * The cached value of the '{@link #getAuthor() <em>Author</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getAuthor()
 	 * @generated
 	 * @ordered
@@ -98,7 +86,6 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected LogMessageImpl() {
@@ -107,7 +94,6 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -117,7 +103,6 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getMessage() {
@@ -126,7 +111,6 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setMessage(String newMessage) {
@@ -140,7 +124,6 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getAuthor() {
@@ -149,7 +132,6 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setAuthor(String newAuthor) {
@@ -163,7 +145,6 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Date getDate() {
@@ -172,7 +153,6 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDate(Date newDate) {
@@ -185,7 +165,6 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -203,7 +182,6 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -224,7 +202,6 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -245,7 +222,6 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -266,7 +242,6 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

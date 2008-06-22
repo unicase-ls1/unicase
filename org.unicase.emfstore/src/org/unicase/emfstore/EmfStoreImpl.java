@@ -29,10 +29,10 @@ import org.unicase.emfstore.esmodel.changemanagment.LogMessage;
 import org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.changemanagment.Version;
 import org.unicase.emfstore.esmodel.changemanagment.VersionSpec;
-import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidProjectIdException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
+import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.Project;
 
@@ -83,15 +83,23 @@ public class EmfStoreImpl implements EmfStore {
 		PrimaryVersionSpec finalVersion = ChangemanagmentFactory.eINSTANCE
 				.createPrimaryVersionSpec();
 		finalVersion.setIdentifier(baseVersionSpec.getIdentifier() + 1);
-
+		
 		Version version = ChangemanagmentFactory.eINSTANCE.createVersion();
+		
+		Version previousHeadVersion = versions.get(versions.size() - 1);
+		Project project = changePackage.getProjectState();
+		changePackage.getFowardDelta().apply();
+		version.setProjectState(project);
+		//continue here with testing: is the changepackage really applied, does the client call arrive here?
+		
 		version.setChanges(changePackage);
 		version.setLogMessage(logMessage);
 		version.setPrimarySpec(finalVersion);
 		version.setNextVersion(null);
-		version.setPreviousVersion(versions.get(versions.size() - 1));
-		versions.get(versions.size() - 1).setNextVersion(version);
-
+		
+		version.setPreviousVersion(previousHeadVersion);
+		previousHeadVersion.setNextVersion(version);
+		
 		versions.add(version);
 		save();
 

@@ -9,16 +9,14 @@ package org.unicase.emfstore.esmodel.changemanagment;
 /**
  * <!-- begin-user-doc --> A representation of the model object '
  * <em><b>Primary Version Spec</b></em>'. <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>
- * {@link org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec#getIdentifier
- * <em>Identifier</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec#getIdentifier <em>Identifier</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentPackage#getPrimaryVersionSpec()
  * @model
  * @generated
@@ -42,13 +40,10 @@ public interface PrimaryVersionSpec extends VersionSpec {
 	int getIdentifier();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec#getIdentifier
-	 * <em>Identifier</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec#getIdentifier <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Identifier</em>' attribute.
+	 * @param value the new value of the '<em>Identifier</em>' attribute.
 	 * @see #getIdentifier()
 	 * @generated
 	 */

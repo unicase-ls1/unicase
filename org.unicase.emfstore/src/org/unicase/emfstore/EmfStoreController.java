@@ -31,8 +31,8 @@ import org.unicase.emfstore.connection.ConnectionHandler;
 import org.unicase.emfstore.connection.rmi.RMIConnectionHandler;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ServerSpace;
-import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
+import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.emfstore.storage.ResourceStorage;
 
 /**
@@ -74,8 +74,8 @@ public class EmfStoreController implements IApplication {
 		logger = LogFactory.getLog(EmfStoreController.class);
 		this.serverSpace = initServerSpace();
 		accessControl = initAccessControl(serverSpace, properties);
-		// emfStore = new EmfStoreImpl(serverSpace, accessControl, properties);
-		emfStore = new EmfStoreStub();
+		emfStore = new EmfStoreImpl(serverSpace, accessControl, properties);
+		//emfStore = new EmfStoreStub();
 		connectionHandlers = initConnectionHandlers(emfStore, accessControl);
 		logger.info("Initialitation COMPLETE.");
 

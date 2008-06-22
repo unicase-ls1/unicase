@@ -19,20 +19,17 @@ import org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.unicase.emfstore.esmodel.changemanagment.impl.PrimaryVersionSpecImpl#getIdentifier
- * <em>Identifier</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.changemanagment.impl.PrimaryVersionSpecImpl#getIdentifier <em>Identifier</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class PrimaryVersionSpecImpl extends EObjectImpl implements
 		PrimaryVersionSpec {
 	/**
-	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -40,9 +37,8 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements
 	protected static final int IDENTIFIER_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -51,7 +47,6 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected PrimaryVersionSpecImpl() {
@@ -60,7 +55,6 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -70,7 +64,6 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getIdentifier() {
@@ -79,7 +72,6 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setIdentifier(int newIdentifier) {
@@ -93,7 +85,6 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -107,7 +98,6 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -122,7 +112,6 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -137,7 +126,6 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -151,7 +139,6 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

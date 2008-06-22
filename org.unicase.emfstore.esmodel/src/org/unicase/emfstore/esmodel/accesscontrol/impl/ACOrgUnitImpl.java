@@ -26,28 +26,19 @@ import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.unicase.emfstore.esmodel.accesscontrol.impl.ACOrgUnitImpl#getName
- * <em>Name</em>}</li>
- * <li>
- * {@link org.unicase.emfstore.esmodel.accesscontrol.impl.ACOrgUnitImpl#getRoles
- * <em>Roles</em>}</li>
- * <li>
- * {@link org.unicase.emfstore.esmodel.accesscontrol.impl.ACOrgUnitImpl#getId
- * <em>Id</em>}</li>
- * <li>
- * {@link org.unicase.emfstore.esmodel.accesscontrol.impl.ACOrgUnitImpl#getDescription
- * <em>Description</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.accesscontrol.impl.ACOrgUnitImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.accesscontrol.impl.ACOrgUnitImpl#getRoles <em>Roles</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.accesscontrol.impl.ACOrgUnitImpl#getId <em>Id</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.accesscontrol.impl.ACOrgUnitImpl#getDescription <em>Description</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ACOrgUnitImpl extends EObjectImpl implements ACOrgUnit {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -57,7 +48,6 @@ public class ACOrgUnitImpl extends EObjectImpl implements ACOrgUnit {
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -65,9 +55,8 @@ public class ACOrgUnitImpl extends EObjectImpl implements ACOrgUnit {
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getRoles() <em>Roles</em>}' reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getRoles() <em>Roles</em>}' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getRoles()
 	 * @generated
 	 * @ordered
@@ -85,9 +74,8 @@ public class ACOrgUnitImpl extends EObjectImpl implements ACOrgUnit {
 	protected ACOrgUnitId id;
 
 	/**
-	 * The default value of the '{@link #getDescription() <em>Description</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -95,9 +83,8 @@ public class ACOrgUnitImpl extends EObjectImpl implements ACOrgUnit {
 	protected static final String DESCRIPTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -106,7 +93,6 @@ public class ACOrgUnitImpl extends EObjectImpl implements ACOrgUnit {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ACOrgUnitImpl() {
@@ -115,7 +101,6 @@ public class ACOrgUnitImpl extends EObjectImpl implements ACOrgUnit {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -125,7 +110,6 @@ public class ACOrgUnitImpl extends EObjectImpl implements ACOrgUnit {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -134,7 +118,6 @@ public class ACOrgUnitImpl extends EObjectImpl implements ACOrgUnit {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setName(String newName) {
@@ -147,7 +130,6 @@ public class ACOrgUnitImpl extends EObjectImpl implements ACOrgUnit {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Role> getRoles() {
@@ -160,7 +142,6 @@ public class ACOrgUnitImpl extends EObjectImpl implements ACOrgUnit {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ACOrgUnitId getId() {
@@ -178,7 +159,6 @@ public class ACOrgUnitImpl extends EObjectImpl implements ACOrgUnit {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ACOrgUnitId basicGetId() {
@@ -187,7 +167,6 @@ public class ACOrgUnitImpl extends EObjectImpl implements ACOrgUnit {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setId(ACOrgUnitId newId) {
@@ -200,7 +179,6 @@ public class ACOrgUnitImpl extends EObjectImpl implements ACOrgUnit {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getDescription() {
@@ -209,7 +187,6 @@ public class ACOrgUnitImpl extends EObjectImpl implements ACOrgUnit {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
@@ -223,7 +200,6 @@ public class ACOrgUnitImpl extends EObjectImpl implements ACOrgUnit {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -245,7 +221,6 @@ public class ACOrgUnitImpl extends EObjectImpl implements ACOrgUnit {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -271,7 +246,6 @@ public class ACOrgUnitImpl extends EObjectImpl implements ACOrgUnit {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -295,7 +269,6 @@ public class ACOrgUnitImpl extends EObjectImpl implements ACOrgUnit {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -317,7 +290,6 @@ public class ACOrgUnitImpl extends EObjectImpl implements ACOrgUnit {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

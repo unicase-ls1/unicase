@@ -24,10 +24,8 @@ import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentPackage;
 import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
 
 /**
- * This is the item provider adapter for a
- * {@link org.unicase.emfstore.esmodel.changemanagment.ChangePackage} object.
+ * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.changemanagment.ChangePackage} object.
  * <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ChangePackageItemProvider extends ItemProviderAdapter implements
@@ -56,6 +54,7 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 
 			addFowardDeltaPropertyDescriptor(object);
 			addBackwardDeltaPropertyDescriptor(object);
+			addProjectStatePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -97,6 +96,24 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
+	 * This adds a property descriptor for the Project State feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addProjectStatePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_ChangePackage_projectState_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_ChangePackage_projectState_feature",
+						"_UI_ChangePackage_type"),
+				ChangemanagmentPackage.Literals.CHANGE_PACKAGE__PROJECT_STATE,
+				true, false, true, null, null, null));
+	}
+
+	/**
 	 * This returns ChangePackage.gif. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
@@ -109,9 +126,9 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -120,11 +137,10 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

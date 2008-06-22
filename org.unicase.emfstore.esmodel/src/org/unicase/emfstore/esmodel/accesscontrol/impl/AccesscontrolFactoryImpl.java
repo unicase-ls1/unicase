@@ -21,15 +21,14 @@ import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class AccesscontrolFactoryImpl extends EFactoryImpl implements
 		AccesscontrolFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static AccesscontrolFactory init() {
@@ -46,9 +45,9 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!--
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AccesscontrolFactoryImpl() {
@@ -57,7 +56,6 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -79,7 +77,6 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ACUser createACUser() {
@@ -89,7 +86,6 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ACOrgUnit createACOrgUnit() {
@@ -99,7 +95,6 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ACGroup createACGroup() {
@@ -109,7 +104,6 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ACOrgUnitId createACOrgUnitId() {
@@ -119,7 +113,6 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AccesscontrolPackage getAccesscontrolPackage() {
@@ -128,7 +121,6 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

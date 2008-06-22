@@ -16,13 +16,12 @@ import org.unicase.model.impl.UniqueIdentifierImpl;
  * <em><b>Session Id</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class SessionIdImpl extends UniqueIdentifierImpl implements SessionId {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected SessionIdImpl() {
@@ -31,7 +30,6 @@ public class SessionIdImpl extends UniqueIdentifierImpl implements SessionId {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

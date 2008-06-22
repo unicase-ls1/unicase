@@ -22,47 +22,44 @@ import org.unicase.model.ModelPackage;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * 
  * @see org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory
  * @model kind="package"
  * @generated
  */
 public interface AccesscontrolPackage extends EPackage {
 	/**
-	 * The package name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNAME = "accesscontrol";
 
 	/**
-	 * The package namespace URI. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace URI.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_URI = "http://unicase.org/esmodel/accesscontrol";
 
 	/**
-	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_PREFIX = "org.unicase.accesscontrol";
 
 	/**
-	 * The singleton instance of the package. <!-- begin-user-doc --> <!--
+	 * The singleton instance of the package.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	AccesscontrolPackage eINSTANCE = org.unicase.emfstore.esmodel.accesscontrol.impl.AccesscontrolPackageImpl
 			.init();
 
 	/**
-	 * The meta object id for the '
-	 * {@link org.unicase.emfstore.esmodel.accesscontrol.impl.ACUserImpl
-	 * <em>AC User</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.accesscontrol.impl.ACUserImpl <em>AC User</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.impl.ACUserImpl
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.impl.AccesscontrolPackageImpl#getACUser()
 	 * @generated
@@ -120,7 +117,6 @@ public interface AccesscontrolPackage extends EPackage {
 	/**
 	 * The number of structural features of the '<em>AC Org Unit</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -190,10 +186,8 @@ public interface AccesscontrolPackage extends EPackage {
 	int AC_USER_FEATURE_COUNT = AC_ORG_UNIT_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '
-	 * {@link org.unicase.emfstore.esmodel.accesscontrol.impl.ACGroupImpl
-	 * <em>AC Group</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.accesscontrol.impl.ACGroupImpl <em>AC Group</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.impl.ACGroupImpl
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.impl.AccesscontrolPackageImpl#getACGroup()
 	 * @generated
@@ -255,11 +249,9 @@ public interface AccesscontrolPackage extends EPackage {
 	int AC_GROUP_FEATURE_COUNT = AC_ORG_UNIT_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '
-	 * {@link org.unicase.emfstore.esmodel.accesscontrol.impl.ACOrgUnitIdImpl
-	 * <em>AC Org Unit Id</em>}' class. <!-- begin-user-doc --> <!--
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.accesscontrol.impl.ACOrgUnitIdImpl <em>AC Org Unit Id</em>}' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.impl.ACOrgUnitIdImpl
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.impl.AccesscontrolPackageImpl#getACOrgUnitId()
 	 * @generated
@@ -278,17 +270,14 @@ public interface AccesscontrolPackage extends EPackage {
 	/**
 	 * The number of structural features of the '<em>AC Org Unit Id</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int AC_ORG_UNIT_ID_FEATURE_COUNT = ModelPackage.UNIQUE_IDENTIFIER_FEATURE_COUNT + 0;
 
 	/**
-	 * Returns the meta object for class '
-	 * {@link org.unicase.emfstore.esmodel.accesscontrol.ACUser
-	 * <em>AC User</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.accesscontrol.ACUser <em>AC User</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>AC User</em>'.
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.ACUser
 	 * @generated
@@ -296,10 +285,8 @@ public interface AccesscontrolPackage extends EPackage {
 	EClass getACUser();
 
 	/**
-	 * Returns the meta object for the attribute '
-	 * {@link org.unicase.emfstore.esmodel.accesscontrol.ACUser#getFirstName
-	 * <em>First Name</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.accesscontrol.ACUser#getFirstName <em>First Name</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>First Name</em>'.
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.ACUser#getFirstName()
 	 * @see #getACUser()
@@ -308,10 +295,8 @@ public interface AccesscontrolPackage extends EPackage {
 	EAttribute getACUser_FirstName();
 
 	/**
-	 * Returns the meta object for the attribute '
-	 * {@link org.unicase.emfstore.esmodel.accesscontrol.ACUser#getLastName
-	 * <em>Last Name</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.accesscontrol.ACUser#getLastName <em>Last Name</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Last Name</em>'.
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.ACUser#getLastName()
 	 * @see #getACUser()
@@ -320,10 +305,8 @@ public interface AccesscontrolPackage extends EPackage {
 	EAttribute getACUser_LastName();
 
 	/**
-	 * Returns the meta object for class '
-	 * {@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit
-	 * <em>AC Org Unit</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit <em>AC Org Unit</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>AC Org Unit</em>'.
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit
 	 * @generated
@@ -331,10 +314,8 @@ public interface AccesscontrolPackage extends EPackage {
 	EClass getACOrgUnit();
 
 	/**
-	 * Returns the meta object for the attribute '
-	 * {@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit#getName
-	 * <em>Name</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit#getName()
 	 * @see #getACOrgUnit()
@@ -343,10 +324,8 @@ public interface AccesscontrolPackage extends EPackage {
 	EAttribute getACOrgUnit_Name();
 
 	/**
-	 * Returns the meta object for the reference list '
-	 * {@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit#getRoles
-	 * <em>Roles</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference list '{@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit#getRoles <em>Roles</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Roles</em>'.
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit#getRoles()
 	 * @see #getACOrgUnit()
@@ -355,10 +334,8 @@ public interface AccesscontrolPackage extends EPackage {
 	EReference getACOrgUnit_Roles();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit#getId
-	 * <em>Id</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Id</em>'.
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit#getId()
 	 * @see #getACOrgUnit()
@@ -367,10 +344,8 @@ public interface AccesscontrolPackage extends EPackage {
 	EReference getACOrgUnit_Id();
 
 	/**
-	 * Returns the meta object for the attribute '
-	 * {@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit#getDescription
-	 * <em>Description</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Description</em>'.
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit#getDescription()
 	 * @see #getACOrgUnit()
@@ -379,10 +354,8 @@ public interface AccesscontrolPackage extends EPackage {
 	EAttribute getACOrgUnit_Description();
 
 	/**
-	 * Returns the meta object for class '
-	 * {@link org.unicase.emfstore.esmodel.accesscontrol.ACGroup
-	 * <em>AC Group</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.accesscontrol.ACGroup <em>AC Group</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>AC Group</em>'.
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.ACGroup
 	 * @generated
@@ -390,10 +363,8 @@ public interface AccesscontrolPackage extends EPackage {
 	EClass getACGroup();
 
 	/**
-	 * Returns the meta object for the reference list '
-	 * {@link org.unicase.emfstore.esmodel.accesscontrol.ACGroup#getMembers
-	 * <em>Members</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference list '{@link org.unicase.emfstore.esmodel.accesscontrol.ACGroup#getMembers <em>Members</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Members</em>'.
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.ACGroup#getMembers()
 	 * @see #getACGroup()
@@ -402,10 +373,8 @@ public interface AccesscontrolPackage extends EPackage {
 	EReference getACGroup_Members();
 
 	/**
-	 * Returns the meta object for class '
-	 * {@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId
-	 * <em>AC Org Unit Id</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId <em>AC Org Unit Id</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>AC Org Unit Id</em>'.
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId
 	 * @generated
@@ -431,7 +400,6 @@ public interface AccesscontrolPackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	interface Literals {
@@ -448,27 +416,23 @@ public interface AccesscontrolPackage extends EPackage {
 		EClass AC_USER = eINSTANCE.getACUser();
 
 		/**
-		 * The meta object literal for the '<em><b>First Name</b></em>'
-		 * attribute feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>First Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute AC_USER__FIRST_NAME = eINSTANCE.getACUser_FirstName();
 
 		/**
-		 * The meta object literal for the '<em><b>Last Name</b></em>' attribute
-		 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Last Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute AC_USER__LAST_NAME = eINSTANCE.getACUser_LastName();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.unicase.emfstore.esmodel.accesscontrol.impl.ACOrgUnitImpl
-		 * <em>AC Org Unit</em>}' class. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.accesscontrol.impl.ACOrgUnitImpl <em>AC Org Unit</em>}' class.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @see org.unicase.emfstore.esmodel.accesscontrol.impl.ACOrgUnitImpl
 		 * @see org.unicase.emfstore.esmodel.accesscontrol.impl.AccesscontrolPackageImpl#getACOrgUnit()
 		 * @generated
@@ -476,33 +440,29 @@ public interface AccesscontrolPackage extends EPackage {
 		EClass AC_ORG_UNIT = eINSTANCE.getACOrgUnit();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute
-		 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute AC_ORG_UNIT__NAME = eINSTANCE.getACOrgUnit_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Roles</b></em>' reference
-		 * list feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Roles</b></em>' reference list feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference AC_ORG_UNIT__ROLES = eINSTANCE.getACOrgUnit_Roles();
 
 		/**
-		 * The meta object literal for the '<em><b>Id</b></em>' reference
-		 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Id</b></em>' reference feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference AC_ORG_UNIT__ID = eINSTANCE.getACOrgUnit_Id();
 
 		/**
-		 * The meta object literal for the '<em><b>Description</b></em>'
-		 * attribute feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute AC_ORG_UNIT__DESCRIPTION = eINSTANCE
@@ -521,19 +481,16 @@ public interface AccesscontrolPackage extends EPackage {
 		EClass AC_GROUP = eINSTANCE.getACGroup();
 
 		/**
-		 * The meta object literal for the '<em><b>Members</b></em>' reference
-		 * list feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Members</b></em>' reference list feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference AC_GROUP__MEMBERS = eINSTANCE.getACGroup_Members();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.unicase.emfstore.esmodel.accesscontrol.impl.ACOrgUnitIdImpl
-		 * <em>AC Org Unit Id</em>}' class. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.accesscontrol.impl.ACOrgUnitIdImpl <em>AC Org Unit Id</em>}' class.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @see org.unicase.emfstore.esmodel.accesscontrol.impl.ACOrgUnitIdImpl
 		 * @see org.unicase.emfstore.esmodel.accesscontrol.impl.AccesscontrolPackageImpl#getACOrgUnitId()
 		 * @generated

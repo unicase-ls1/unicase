@@ -11,15 +11,14 @@ import org.eclipse.emf.ecore.EFactory;
 /**
  * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a
  * create method for each non-abstract class of the model. <!-- end-user-doc -->
- * 
  * @see org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentPackage
  * @generated
  */
 public interface ChangemanagmentFactory extends EFactory {
 	/**
-	 * The singleton instance of the factory. <!-- begin-user-doc --> <!--
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	ChangemanagmentFactory eINSTANCE = org.unicase.emfstore.esmodel.changemanagment.impl.ChangemanagmentFactoryImpl
@@ -53,9 +52,9 @@ public interface ChangemanagmentFactory extends EFactory {
 	PrimaryVersionSpec createPrimaryVersionSpec();
 
 	/**
-	 * Returns a new object of class '<em>Log Message</em>'. <!-- begin-user-doc
+	 * Returns a new object of class '<em>Log Message</em>'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Log Message</em>'.
 	 * @generated
 	 */
@@ -80,9 +79,9 @@ public interface ChangemanagmentFactory extends EFactory {
 	HistoryInfo createHistoryInfo();
 
 	/**
-	 * Returns a new object of class '<em>Version</em>'. <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Version</em>'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Version</em>'.
 	 * @generated
 	 */
@@ -98,9 +97,9 @@ public interface ChangemanagmentFactory extends EFactory {
 	HeadVersionSpec createHeadVersionSpec();
 
 	/**
-	 * Returns the package supported by this factory. <!-- begin-user-doc -->
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the package supported by this factory.
 	 * @generated
 	 */
