@@ -116,7 +116,9 @@ public class RepositoryView extends ViewPart {
 							serverInfo.getProjectInfos().clear();
 							serverInfo.getProjectInfos().addAll(session.getRemoteProjectList());
 							serverInfo.setLastUsersession(session);
-							WorkspaceManager.getInstance().getCurrentWorkspace().save();
+							Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+							currentWorkspace.getUsersessions().add(session);
+							currentWorkspace.save();
 						} catch (EmfStoreException e) {
 							// TODO not server connection
 							e.printStackTrace();
