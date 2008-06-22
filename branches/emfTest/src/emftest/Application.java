@@ -52,6 +52,7 @@ public class Application implements IApplication {
 
 	private ChangeRecorder changeRecorder;
 	private ChangePackage cpBefore;
+	private TransactionalEditingDomain  domain;
 	
 	
 	public static String filePath = Configuration.getWorkspaceDirectory()+"test";
@@ -70,7 +71,7 @@ public class Application implements IApplication {
 		System.out.println("Hello RCP World!");
 		ConnectionManager cm = WorkspaceManager.getInstance().getConnectionManager();
 		final Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
-		TransactionalEditingDomain domain = currentWorkspace.getEditingDomain();
+		domain = currentWorkspace.getEditingDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain){
 
 		protected void doExecute() {
@@ -171,7 +172,6 @@ public class Application implements IApplication {
 		// TODO Uri
 		final Resource res = initTestResource();
 		final ByteArrayOutputStream out = new ByteArrayOutputStream();
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain){
 		protected void doExecute() {
 			res.getContents().add(object);
@@ -192,7 +192,6 @@ public class Application implements IApplication {
 			throws UnsupportedEncodingException, IOException {
 		// TODO Uri
 		final Resource res = initTestResource();
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain){
 		protected void doExecute() {
 			try {
