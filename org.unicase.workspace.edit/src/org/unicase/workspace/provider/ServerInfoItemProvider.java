@@ -26,10 +26,9 @@ import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.WorkspacePackage;
 
 /**
- * This is the item provider adapter for a
- * {@link org.unicase.workspace.ServerInfo} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link org.unicase.workspace.ServerInfo} object.
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class ServerInfoItemProvider extends ItemProviderAdapter implements
@@ -67,9 +66,9 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature. <!-- begin-user-doc
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
@@ -84,9 +83,9 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
-	 * This adds a property descriptor for the Url feature. <!-- begin-user-doc
+	 * This adds a property descriptor for the Url feature.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addUrlPropertyDescriptor(Object object) {
@@ -101,9 +100,9 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
-	 * This adds a property descriptor for the Port feature. <!-- begin-user-doc
+	 * This adds a property descriptor for the Port feature.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addPortPropertyDescriptor(Object object) {
@@ -188,9 +187,9 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -201,11 +200,10 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

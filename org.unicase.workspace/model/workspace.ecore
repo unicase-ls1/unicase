@@ -53,6 +53,9 @@
     <eOperations name="init"/>
     <eOperations name="getProjectInfo" eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//ProjectInfo"/>
     <eOperations name="isDirty" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eOperations name="resolveVersionSpec" eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//changemanagment/PrimaryVersionSpec">
+      <eParameters name="versionSpec" eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//changemanagment/VersionSpec"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="projectId" lowerBound="1"
