@@ -13,20 +13,16 @@ import org.eclipse.emf.ecore.EObject;
 /**
  * <!-- begin-user-doc --> A representation of the model object '
  * <em><b>Log Message</b></em>'. <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>
- * {@link org.unicase.emfstore.esmodel.changemanagment.LogMessage#getMessage
- * <em>Message</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.changemanagment.LogMessage#getDate
- * <em>Date</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.changemanagment.LogMessage#getAuthor
- * <em>Author</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.changemanagment.LogMessage#getMessage <em>Message</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.changemanagment.LogMessage#getDate <em>Date</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.changemanagment.LogMessage#getAuthor <em>Author</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentPackage#getLogMessage()
  * @model
  * @generated
@@ -110,12 +106,9 @@ public interface LogMessage extends EObject {
 	Date getDate();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.emfstore.esmodel.changemanagment.LogMessage#getDate
-	 * <em>Date</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Date</em>' attribute.
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.changemanagment.LogMessage#getDate <em>Date</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Date</em>' attribute.
 	 * @see #getDate()
 	 * @generated
 	 */

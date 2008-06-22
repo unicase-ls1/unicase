@@ -28,26 +28,19 @@ import org.unicase.emfstore.esmodel.changemanagment.Version;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.impl.ProjectHistoryImpl#getProjectId
- * <em>Project Id</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.impl.ProjectHistoryImpl#getVersions
- * <em>Versions</em>}</li>
- * <li>
- * {@link org.unicase.emfstore.esmodel.impl.ProjectHistoryImpl#getProjectName
- * <em>Project Name</em>}</li>
- * <li>
- * {@link org.unicase.emfstore.esmodel.impl.ProjectHistoryImpl#getProjectDescription
- * <em>Project Description</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.impl.ProjectHistoryImpl#getProjectId <em>Project Id</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.impl.ProjectHistoryImpl#getVersions <em>Versions</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.impl.ProjectHistoryImpl#getProjectName <em>Project Name</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.impl.ProjectHistoryImpl#getProjectDescription <em>Project Description</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	/**
-	 * The cached value of the '{@link #getProjectId() <em>Project Id</em>}'
-	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getProjectId() <em>Project Id</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getProjectId()
 	 * @generated
 	 * @ordered
@@ -55,9 +48,8 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	protected ProjectId projectId;
 
 	/**
-	 * The cached value of the '{@link #getVersions() <em>Versions</em>}'
-	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getVersions() <em>Versions</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getVersions()
 	 * @generated
 	 * @ordered
@@ -65,9 +57,8 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	protected EList<Version> versions;
 
 	/**
-	 * The default value of the '{@link #getProjectName() <em>Project Name</em>}
-	 * ' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getProjectName() <em>Project Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getProjectName()
 	 * @generated
 	 * @ordered
@@ -75,9 +66,8 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	protected static final String PROJECT_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getProjectName() <em>Project Name</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getProjectName() <em>Project Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getProjectName()
 	 * @generated
 	 * @ordered
@@ -85,10 +75,9 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	protected String projectName = PROJECT_NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getProjectDescription()
-	 * <em>Project Description</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getProjectDescription() <em>Project Description</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getProjectDescription()
 	 * @generated
 	 * @ordered
@@ -96,10 +85,9 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	protected static final String PROJECT_DESCRIPTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getProjectDescription()
-	 * <em>Project Description</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getProjectDescription() <em>Project Description</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getProjectDescription()
 	 * @generated
 	 * @ordered
@@ -108,7 +96,6 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ProjectHistoryImpl() {
@@ -117,7 +104,6 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -127,7 +113,6 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ProjectId getProjectId() {
@@ -136,7 +121,6 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetProjectId(ProjectId newProjectId,
@@ -158,7 +142,6 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setProjectId(ProjectId newProjectId) {
@@ -185,7 +168,6 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Version> getVersions() {
@@ -207,11 +189,11 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 		return (versions.size() == 0) ? null : versions
 				.get(versions.size() - 1);
 	}
+
 	//end of custom code
-	
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getProjectName() {
@@ -220,7 +202,6 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setProjectName(String newProjectName) {
@@ -234,7 +215,6 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getProjectDescription() {
@@ -243,7 +223,6 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setProjectDescription(String newProjectDescription) {
@@ -257,7 +236,6 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -275,7 +253,6 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -295,7 +272,6 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -321,7 +297,6 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -345,7 +320,6 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -367,7 +341,6 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

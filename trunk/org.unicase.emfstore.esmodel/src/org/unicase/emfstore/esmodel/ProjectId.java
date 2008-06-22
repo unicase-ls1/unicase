@@ -11,8 +11,8 @@ import org.unicase.model.UniqueIdentifier;
 /**
  * <!-- begin-user-doc --> A representation of the model object '
  * <em><b>Project Id</b></em>'. <!-- end-user-doc -->
- * 
- * 
+ *
+ *
  * @see org.unicase.emfstore.esmodel.EsmodelPackage#getProjectId()
  * @model
  * @generated

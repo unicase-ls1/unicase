@@ -11,15 +11,14 @@ import org.eclipse.emf.ecore.EFactory;
 /**
  * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a
  * create method for each non-abstract class of the model. <!-- end-user-doc -->
- * 
  * @see org.unicase.emfstore.esmodel.EsmodelPackage
  * @generated
  */
 public interface EsmodelFactory extends EFactory {
 	/**
-	 * The singleton instance of the factory. <!-- begin-user-doc --> <!--
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	EsmodelFactory eINSTANCE = org.unicase.emfstore.esmodel.impl.EsmodelFactoryImpl
@@ -44,9 +43,9 @@ public interface EsmodelFactory extends EFactory {
 	ProjectInfo createProjectInfo();
 
 	/**
-	 * Returns a new object of class '<em>Session Id</em>'. <!-- begin-user-doc
+	 * Returns a new object of class '<em>Session Id</em>'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Session Id</em>'.
 	 * @generated
 	 */
@@ -62,18 +61,18 @@ public interface EsmodelFactory extends EFactory {
 	ServerSpace createServerSpace();
 
 	/**
-	 * Returns a new object of class '<em>Project Id</em>'. <!-- begin-user-doc
+	 * Returns a new object of class '<em>Project Id</em>'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Project Id</em>'.
 	 * @generated
 	 */
 	ProjectId createProjectId();
 
 	/**
-	 * Returns the package supported by this factory. <!-- begin-user-doc -->
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the package supported by this factory.
 	 * @generated
 	 */

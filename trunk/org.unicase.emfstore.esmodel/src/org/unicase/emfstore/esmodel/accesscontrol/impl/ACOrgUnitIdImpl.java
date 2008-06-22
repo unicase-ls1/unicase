@@ -16,14 +16,13 @@ import org.unicase.model.impl.UniqueIdentifierImpl;
  * <em><b>AC Org Unit Id</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class ACOrgUnitIdImpl extends UniqueIdentifierImpl implements
 		ACOrgUnitId {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ACOrgUnitIdImpl() {
@@ -32,7 +31,6 @@ public class ACOrgUnitIdImpl extends UniqueIdentifierImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

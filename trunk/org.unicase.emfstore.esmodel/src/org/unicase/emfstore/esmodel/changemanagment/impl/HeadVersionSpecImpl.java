@@ -16,13 +16,12 @@ import org.unicase.emfstore.esmodel.changemanagment.HeadVersionSpec;
  * <em><b>Head Version Spec</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class HeadVersionSpecImpl extends EObjectImpl implements HeadVersionSpec {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected HeadVersionSpecImpl() {
@@ -31,7 +30,6 @@ public class HeadVersionSpecImpl extends EObjectImpl implements HeadVersionSpec 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

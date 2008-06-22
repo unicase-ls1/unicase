@@ -22,14 +22,13 @@ import org.unicase.emfstore.esmodel.SessionId;
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class EsmodelFactoryImpl extends EFactoryImpl implements EsmodelFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static EsmodelFactory init() {
@@ -46,9 +45,9 @@ public class EsmodelFactoryImpl extends EFactoryImpl implements EsmodelFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!--
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EsmodelFactoryImpl() {
@@ -57,7 +56,6 @@ public class EsmodelFactoryImpl extends EFactoryImpl implements EsmodelFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -81,7 +79,6 @@ public class EsmodelFactoryImpl extends EFactoryImpl implements EsmodelFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ProjectHistory createProjectHistory() {
@@ -91,7 +88,6 @@ public class EsmodelFactoryImpl extends EFactoryImpl implements EsmodelFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ProjectInfo createProjectInfo() {
@@ -101,7 +97,6 @@ public class EsmodelFactoryImpl extends EFactoryImpl implements EsmodelFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SessionId createSessionId() {
@@ -111,7 +106,6 @@ public class EsmodelFactoryImpl extends EFactoryImpl implements EsmodelFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ServerSpace createServerSpace() {
@@ -121,7 +115,6 @@ public class EsmodelFactoryImpl extends EFactoryImpl implements EsmodelFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ProjectId createProjectId() {
@@ -131,7 +124,6 @@ public class EsmodelFactoryImpl extends EFactoryImpl implements EsmodelFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EsmodelPackage getEsmodelPackage() {
@@ -140,7 +132,6 @@ public class EsmodelFactoryImpl extends EFactoryImpl implements EsmodelFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

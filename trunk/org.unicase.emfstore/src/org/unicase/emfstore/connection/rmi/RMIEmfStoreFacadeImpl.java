@@ -15,6 +15,10 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.EmfStore;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.accesscontrol.AuthenticationControl;
@@ -27,11 +31,13 @@ import org.unicase.emfstore.esmodel.changemanagment.LogMessage;
 import org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.changemanagment.VersionSpec;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.model.Project;
 
 /**
  * Implementation of a RMIEmfStoreFacade.
+ * 
  * @author koegel
- *
+ * 
  */
 public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 		RMIEmfStoreFacade {
@@ -47,9 +53,13 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 
 	/**
 	 * Default constructor.
-	 * @param emfStore the emf store
-	 * @param authenticationControl the authentication controler
-	 * @throws RemoteException if an RMI problem occurs
+	 * 
+	 * @param emfStore
+	 *            the emf store
+	 * @param authenticationControl
+	 *            the authentication controler
+	 * @throws RemoteException
+	 *             if an RMI problem occurs
 	 */
 	public RMIEmfStoreFacadeImpl(EmfStore emfStore,
 			AuthenticationControl authenticationControl) throws RemoteException {
@@ -58,21 +68,39 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 		this.accessControl = authenticationControl;
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
-	 * @see org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade#createVersion(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+	 * 
+	 * @see org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade#createVersion(java.lang.String,
+	 *      java.lang.String, java.lang.String, java.lang.String,
+	 *      java.lang.String)
 	 */
 	public String createVersion(String sessionId, String projectId,
 			String baseVersionSpec, String changePackage, String logMessage)
 			throws RemoteException, EmfStoreException {
 		LOGGER.debug("Client call on createRevision RECEIVED.");
+		
 		try {
+			SessionId sessionIdObject = (SessionId) RMIUtil.stringToEObject(sessionId);
+			ProjectId projectIdObject = (ProjectId) RMIUtil.stringToEObject(projectId);
+			PrimaryVersionSpec primaryVersionSpec = (PrimaryVersionSpec) RMIUtil
+					.stringToEObject(baseVersionSpec);
+			
+			//prepare resource set for change package deserialization
+			ResourceSet tempResourceSet = new ResourceSetImpl();
+			//copy project and add to virtual resource
+			Project project = (Project)EcoreUtil.copy(emfStore.getProject(sessionIdObject, projectIdObject, primaryVersionSpec));
+			Resource projectResource = tempResourceSet.createResource(EmfStore.PROJECT_URI);
+			projectResource.getContents().add(project);
+			Resource changePackageResource = tempResourceSet.createResource(EmfStore.CHANGEPACKAGE_URI);
+			ChangePackage changePackageObject = (ChangePackage) RMIUtil.stringToEObject(changePackage, changePackageResource);
+			changePackageObject.setProjectState(project);
+			
 			return RMIUtil.eObjectToString(emfStore.createVersion(
-					(SessionId) RMIUtil.stringToEObject(sessionId),
-					(ProjectId) RMIUtil.stringToEObject(projectId),
-					(PrimaryVersionSpec) RMIUtil
-							.stringToEObject(baseVersionSpec),
-					(ChangePackage) RMIUtil.stringToEObject(changePackage),
+					sessionIdObject,
+					projectIdObject,
+					primaryVersionSpec,
+					changePackageObject,
 					(LogMessage) RMIUtil.stringToEObject(logMessage)));
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
@@ -81,12 +109,14 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		throw new IllegalStateException();
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
-	 * @see org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade#getChanges(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+	 * 
+	 * @see org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade#getChanges(java.lang.String,
+	 *      java.lang.String, java.lang.String, java.lang.String)
 	 */
 	public List<String> getChanges(String sessionId, String projectId,
 			String source, String target) throws RemoteException,
@@ -113,9 +143,11 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 		return null;
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
-	 * @see org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade#getHistoryInfo(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+	 * 
+	 * @see org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade#getHistoryInfo(java.lang.String,
+	 *      java.lang.String, java.lang.String, java.lang.String)
 	 */
 	public List<String> getHistoryInfo(String sessionId, String projectId,
 			String source, String target) throws RemoteException,
@@ -140,9 +172,11 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 		return result;
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
-	 * @see org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade#getProject(java.lang.String, java.lang.String, java.lang.String)
+	 * 
+	 * @see org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade#getProject(java.lang.String,
+	 *      java.lang.String, java.lang.String)
 	 */
 	public String getProject(String sessionId, String projectId,
 			String versionSpec) throws RemoteException, EmfStoreException {
@@ -162,8 +196,9 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 		return null;
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade#getProjectList(java.lang.String)
 	 */
 	public List<String> getProjectList(String sessionId)
@@ -186,9 +221,11 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 		return null;
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
-	 * @see org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade#login(java.lang.String, java.lang.String, java.lang.String)
+	 * 
+	 * @see org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade#login(java.lang.String,
+	 *      java.lang.String, java.lang.String)
 	 */
 	public String login(String username, String password, String serverInfo)
 			throws RemoteException, AccessControlException {
@@ -201,9 +238,11 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 		}
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
-	 * @see org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade#resolveVersionSpec(java.lang.String, java.lang.String, java.lang.String)
+	 * 
+	 * @see org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade#resolveVersionSpec(java.lang.String,
+	 *      java.lang.String, java.lang.String)
 	 */
 	public String resolveVersionSpec(String sessionId, String projectId,
 			String versionSpec) throws RemoteException, EmfStoreException {
@@ -223,9 +262,11 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 		return null;
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
-	 * @see org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade#createProject(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+	 * 
+	 * @see org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade#createProject(java.lang.String,
+	 *      java.lang.String, java.lang.String, java.lang.String)
 	 */
 	public String createProject(String sessionId, String name,
 			String description, String logMessage) throws RemoteException,
@@ -246,8 +287,9 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 		return null;
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade#sendString(java.lang.String)
 	 */
 	public void sendString(String str) throws RemoteException {

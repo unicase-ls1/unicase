@@ -21,19 +21,16 @@ import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.unicase.emfstore.esmodel.accesscontrol.impl.ACGroupImpl#getMembers
- * <em>Members</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.accesscontrol.impl.ACGroupImpl#getMembers <em>Members</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ACGroupImpl extends ACOrgUnitImpl implements ACGroup {
 	/**
-	 * The cached value of the '{@link #getMembers() <em>Members</em>}'
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getMembers() <em>Members</em>}' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getMembers()
 	 * @generated
 	 * @ordered
@@ -42,7 +39,6 @@ public class ACGroupImpl extends ACOrgUnitImpl implements ACGroup {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ACGroupImpl() {
@@ -51,7 +47,6 @@ public class ACGroupImpl extends ACOrgUnitImpl implements ACGroup {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -61,7 +56,6 @@ public class ACGroupImpl extends ACOrgUnitImpl implements ACGroup {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ACOrgUnit> getMembers() {
@@ -74,7 +68,6 @@ public class ACGroupImpl extends ACOrgUnitImpl implements ACGroup {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -88,7 +81,6 @@ public class ACGroupImpl extends ACOrgUnitImpl implements ACGroup {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -105,7 +97,6 @@ public class ACGroupImpl extends ACOrgUnitImpl implements ACGroup {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -120,7 +111,6 @@ public class ACGroupImpl extends ACOrgUnitImpl implements ACGroup {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

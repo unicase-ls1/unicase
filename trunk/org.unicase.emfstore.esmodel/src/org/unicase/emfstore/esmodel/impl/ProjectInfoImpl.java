@@ -24,24 +24,19 @@ import org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.impl.ProjectInfoImpl#getName <em>Name
- * </em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.impl.ProjectInfoImpl#getDescription
- * <em>Description</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.impl.ProjectInfoImpl#getProjectId
- * <em>Project Id</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.impl.ProjectInfoImpl#getVersion <em>
- * Version</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.impl.ProjectInfoImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.impl.ProjectInfoImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.impl.ProjectInfoImpl#getProjectId <em>Project Id</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.impl.ProjectInfoImpl#getVersion <em>Version</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -51,7 +46,6 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -59,9 +53,8 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDescription() <em>Description</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -69,9 +62,8 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 	protected static final String DESCRIPTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -79,9 +71,8 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getProjectId() <em>Project Id</em>}'
-	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getProjectId() <em>Project Id</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getProjectId()
 	 * @generated
 	 * @ordered
@@ -89,9 +80,8 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 	protected ProjectId projectId;
 
 	/**
-	 * The cached value of the '{@link #getVersion() <em>Version</em>}'
-	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getVersion() <em>Version</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getVersion()
 	 * @generated
 	 * @ordered
@@ -100,7 +90,6 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ProjectInfoImpl() {
@@ -109,7 +98,6 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -119,7 +107,6 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -128,7 +115,6 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setName(String newName) {
@@ -141,7 +127,6 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getDescription() {
@@ -150,7 +135,6 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
@@ -173,7 +157,6 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ProjectId getProjectIdGen() {
@@ -182,7 +165,6 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetProjectId(ProjectId newProjectId,
@@ -212,7 +194,6 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setProjectIdGen(ProjectId newProjectId) {
@@ -248,7 +229,6 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec getVersionGen() {
@@ -257,7 +237,6 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetVersion(PrimaryVersionSpec newVersion,
@@ -287,7 +266,6 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setVersionGen(PrimaryVersionSpec newVersion) {
@@ -314,7 +292,6 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -331,7 +308,6 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -351,7 +327,6 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -375,7 +350,6 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -399,7 +373,6 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -421,7 +394,6 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -17,13 +17,12 @@ import org.unicase.model.ModelElement;
  * <em><b>Project Admin Role</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class ProjectAdminRoleImpl extends RoleImpl implements ProjectAdminRole {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ProjectAdminRoleImpl() {
@@ -32,7 +31,6 @@ public class ProjectAdminRoleImpl extends RoleImpl implements ProjectAdminRole {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * Helper class for serializing and deserializing EObjects for RMI transport.
@@ -28,6 +29,22 @@ public final class RMIUtil {
 	 */
 	private RMIUtil() {
 		//nothing to do
+	}
+
+	/**
+	 * Converts an EObject to a String using the resource attached to the object.
+	 * 
+	 * @param object the eObject
+	 * @return String representation of the EObject
+	 * @throws IOException if a serialization problem occurs
+	 */
+	//FIXME: Exception
+	public static String eObjectToStringByResource(EObject object) throws IOException {
+		// TODO null safety
+		Resource res = object.eResource();
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		res.save(out, null);
+		return out.toString();
 	}
 	
 	/**
@@ -43,7 +60,7 @@ public final class RMIUtil {
 		Resource res = (new ResourceSetImpl()).createResource(URI
 				.createURI("eineTolleUri"));
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		res.getContents().add(object);
+		res.getContents().add(EcoreUtil.copy(object));
 		res.save(out, null);
 		return out.toString();
 	}
@@ -62,6 +79,22 @@ public final class RMIUtil {
 		// TODO Uri
 		Resource res = (new ResourceSetImpl()).createResource(URI
 				.createURI("eineNochTollereUri"));
+		res.load(new ByteArrayInputStream(object.getBytes("UTF-8")), null);
+		return res.getContents().get(0);
+	}
+	/**
+	 * Converts a String to an EObject using a given resource.
+	 * 
+	 * Note: String must be the result of {@link RMIUtil#eObjectToString(EObject)}
+	 * @param object the String representation of the EObject
+	 * @param the resource
+	 * @return the deserialized EObject
+	 * @throws UnsupportedEncodingException if encoding is invalid
+	 * @throws IOException if deserialization fails
+	 */
+	//FIXME: Exceptions
+	public static EObject stringToEObject(String object, Resource res)
+			throws UnsupportedEncodingException, IOException {
 		res.load(new ByteArrayInputStream(object.getBytes("UTF-8")), null);
 		return res.getContents().get(0);
 	}
