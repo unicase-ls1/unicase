@@ -39,7 +39,7 @@ public interface ChangePackage extends EObject {
 	 * @return the value of the '<em>Foward Delta</em>' containment reference.
 	 * @see #setFowardDelta(ChangeDescription)
 	 * @see org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentPackage#getChangePackage_FowardDelta()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	ChangeDescription getFowardDelta();
@@ -65,7 +65,7 @@ public interface ChangePackage extends EObject {
 	 * @return the value of the '<em>Backward Delta</em>' containment reference.
 	 * @see #setBackwardDelta(ChangeDescription)
 	 * @see org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentPackage#getChangePackage_BackwardDelta()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	ChangeDescription getBackwardDelta();

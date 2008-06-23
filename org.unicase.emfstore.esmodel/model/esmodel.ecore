@@ -58,11 +58,9 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ChangePackage">
       <eOperations name="reverse" eType="#//changemanagment/ChangePackage"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="fowardDelta" lowerBound="1"
-          eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore.change/model/Change.ecore#//ChangeDescription"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="fowardDelta" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore.change/model/Change.ecore#//ChangeDescription"
           containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="backwardDelta" lowerBound="1"
-          eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore.change/model/Change.ecore#//ChangeDescription"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="backwardDelta" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore.change/model/Change.ecore#//ChangeDescription"
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="projectState" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"
           transient="true"/>
