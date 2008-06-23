@@ -362,7 +362,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		initEClass(actionItemEClass, ActionItem.class, "ActionItem",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getActionItem_AssignedTo(), theOrganizationPackage
-				.getUser(), null, "assignedTo", null, 1, -1, ActionItem.class,
+				.getUser(), null, "assignedTo", null, 0, -1, ActionItem.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);

@@ -31,15 +31,13 @@
       <genOperations ecoreOperation="model.ecore#//Project/getAllModelElements"/>
       <genOperations ecoreOperation="model.ecore#//Project/getAllModelElementsbyClass">
         <genParameters ecoreParameter="model.ecore#//Project/getAllModelElementsbyClass/modelElementClass"/>
+        <genParameters ecoreParameter="model.ecore#//Project/getAllModelElementsbyClass/list"/>
+        <genTypeParameters ecoreTypeParameter="model.ecore#//Project/getAllModelElementsbyClass/T"/>
       </genOperations>
       <genOperations ecoreOperation="model.ecore#//Project/getModelElementsByClass">
         <genParameters ecoreParameter="model.ecore#//Project/getModelElementsByClass/modelElementClass"/>
-      </genOperations>
-      <genOperations ecoreOperation="model.ecore#//Project/getInstancesByClass">
-        <genParameters ecoreParameter="model.ecore#//Project/getInstancesByClass/instanceClass"/>
-      </genOperations>
-      <genOperations ecoreOperation="model.ecore#//Project/getAllInstancesByClass">
-        <genParameters ecoreParameter="model.ecore#//Project/getAllInstancesByClass/instanceClass"/>
+        <genParameters ecoreParameter="model.ecore#//Project/getModelElementsByClass/list"/>
+        <genTypeParameters ecoreTypeParameter="model.ecore#//Project/getModelElementsByClass/T"/>
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//ModelElementId"/>
