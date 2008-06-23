@@ -152,5 +152,16 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements
 		result.append(')');
 		return result.toString();
 	}
+	
+	@Override
+	public boolean equals(Object object) {
+		if (object instanceof PrimaryVersionSpec) {
+			PrimaryVersionSpec otherPrimaryVersionSpec = (PrimaryVersionSpec)object;
+			return this.getIdentifier() == otherPrimaryVersionSpec.getIdentifier();
+		}
+		else {
+			return false;
+		}
+	}
 
 } // PrimaryVersionSpecImpl
