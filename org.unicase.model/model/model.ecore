@@ -85,8 +85,8 @@
   </eSubpackages>
   <eSubpackages name="task" nsURI="http://unicase.org/model/task" nsPrefix="org.unicase.model.task">
     <eClassifiers xsi:type="ecore:EClass" name="ActionItem" eSuperTypes="#//task/WorkItem">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="assignedTo" lowerBound="1"
-          upperBound="-1" eType="#//organization/User"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="assignedTo" upperBound="-1"
+          eType="#//organization/User"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="dueDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="done" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="estimate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>

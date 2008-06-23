@@ -105,7 +105,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 */
 	public <T extends ModelElement> EList<T> getAllModelElementsbyClass(
 			EClass modelElementClass, EList<T> list) {
-		
+
 		//sanity check
 		if (!ModelPackage.eINSTANCE.getModelElement().isSuperTypeOf(
 				modelElementClass)) {
@@ -142,21 +142,21 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 */
 	public <T extends ModelElement> EList<T> getModelElementsByClass(
 			EClass modelElementClass, EList<T> list) {
-		
+
 		if (!ModelPackage.eINSTANCE.getModelElement().isSuperTypeOf(
 				modelElementClass)) {
 			return list;
 		}
 		for (ModelElement modelElement : this.getModelElements()) {
 			if (modelElementClass.isInstance(modelElement)) {
-				list.add((T)modelElement);
+				list.add((T) modelElement);
 			}
 		}
 		return list;
 	}
 
 	//end of custom code
-	
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated

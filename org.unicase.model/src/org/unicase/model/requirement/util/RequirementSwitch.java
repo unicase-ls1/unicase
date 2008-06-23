@@ -8,17 +8,10 @@ package org.unicase.model.requirement.util;
 
 import java.util.List;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
-import org.unicase.model.ModelFactory;
-import org.unicase.model.ModelPackage;
-import org.unicase.model.Project;
 import org.unicase.model.rationale.Criterion;
-import org.unicase.model.requirement.*;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.ActorInstance;
 import org.unicase.model.requirement.FunctionalRequirement;

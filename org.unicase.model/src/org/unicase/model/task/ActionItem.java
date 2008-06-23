@@ -41,7 +41,7 @@ public interface ActionItem extends WorkItem {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Assigned To</em>' reference list.
 	 * @see org.unicase.model.task.TaskPackage#getActionItem_AssignedTo()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	EList<User> getAssignedTo();
