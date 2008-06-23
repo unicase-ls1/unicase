@@ -239,7 +239,7 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 					ChangemanagmentPackage.CHANGE_PACKAGE__PROJECT_STATE,
 					oldProjectState, projectState));
 	}
-
+	//begin of custom code
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -249,7 +249,8 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
-
+	//end of custom code
+	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
