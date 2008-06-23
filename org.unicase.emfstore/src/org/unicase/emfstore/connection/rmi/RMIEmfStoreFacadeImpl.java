@@ -89,7 +89,7 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 			//prepare resource set for change package deserialization
 			ResourceSet tempResourceSet = new ResourceSetImpl();
 			//copy project and add to virtual resource
-			Project project = (Project)EcoreUtil.copy(emfStore.getProject(sessionIdObject, projectIdObject, primaryVersionSpec));
+			Project project = (Project)emfStore.getProject(sessionIdObject, projectIdObject, primaryVersionSpec);
 			Resource projectResource = tempResourceSet.createResource(EmfStore.PROJECT_URI);
 			projectResource.getContents().add(project);
 			Resource changePackageResource = tempResourceSet.createResource(EmfStore.CHANGEPACKAGE_URI);

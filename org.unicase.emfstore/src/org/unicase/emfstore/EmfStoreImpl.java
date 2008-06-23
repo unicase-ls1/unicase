@@ -89,7 +89,9 @@ public class EmfStoreImpl implements EmfStore {
 		Version previousHeadVersion = versions.get(versions.size() - 1);
 		Project project = changePackage.getProjectState();
 		changePackage.getFowardDelta().apply();
+		previousHeadVersion.setProjectState(null);
 		version.setProjectState(project);
+		
 		//continue here with testing: is the changepackage really applied, does the client call arrive here?
 		
 		version.setChanges(changePackage);

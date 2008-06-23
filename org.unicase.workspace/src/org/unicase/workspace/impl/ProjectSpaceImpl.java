@@ -624,7 +624,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 			stopChangeRecording();
 			PrimaryVersionSpec resolvedVersion = resolveVersionSpec(VersionSpec.HEAD_VERSION);
 			// FIXME insert not and write equals method
-			if ((getBaseVersion().equals(resolvedVersion))) {
+			if ((!getBaseVersion().equals(resolvedVersion))) {
 				throw new BaseVersionOutdatedException(
 						"BaseVersion outdated, please update before commit.");
 			}
