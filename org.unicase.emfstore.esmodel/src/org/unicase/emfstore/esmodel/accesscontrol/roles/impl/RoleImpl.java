@@ -24,16 +24,19 @@ import org.unicase.model.ModelElement;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RoleImpl#getProjects <em>Projects</em>}</li>
+ * <li>
+ * {@link org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RoleImpl#getProjects
+ * <em>Projects</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class RoleImpl extends EObjectImpl implements Role {
 	/**
-	 * The cached value of the '{@link #getProjects() <em>Projects</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getProjects() <em>Projects</em>}'
+	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getProjects()
 	 * @generated
 	 * @ordered
@@ -42,6 +45,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected RoleImpl() {
@@ -50,6 +54,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -59,6 +64,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ProjectInfo> getProjects() {
@@ -71,6 +77,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean canAdministrate(ProjectId projectId) {
@@ -80,7 +87,10 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.Role#canCreate(org.unicase.emfstore.esmodel.ProjectId,
+	 *      org.unicase.model.ModelElement)
 	 * @generated
 	 */
 	public boolean canCreate(ProjectId projectId, ModelElement modelElement) {
@@ -90,7 +100,10 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.Role#canDelete(org.unicase.emfstore.esmodel.ProjectId,
+	 *      org.unicase.model.ModelElement)
 	 * @generated
 	 */
 	public boolean canDelete(ProjectId projectId, ModelElement modelElement) {
@@ -100,7 +113,10 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.Role#canModify(org.unicase.emfstore.esmodel.ProjectId,
+	 *      org.unicase.model.ModelElement)
 	 * @generated
 	 */
 	public boolean canModify(ProjectId projectId, ModelElement modelElement) {
@@ -110,7 +126,10 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.Role#canRead(org.unicase.emfstore.esmodel.ProjectId,
+	 *      org.unicase.model.ModelElement)
 	 * @generated
 	 */
 	public boolean canRead(ProjectId projectId, ModelElement modelElement) {
@@ -120,7 +139,10 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.ecore.impl.BasicEObjectImpl#eGet(int, boolean,
+	 *      boolean)
 	 * @generated
 	 */
 	@Override
@@ -134,6 +156,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -150,6 +173,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -164,6 +188,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
