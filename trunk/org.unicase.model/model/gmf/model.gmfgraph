@@ -79,9 +79,38 @@
           figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
     </descriptors>
   </figures>
+  <figures
+      name="UseCaseDiagram">
+    <descriptors
+        name="UseCaseFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Ellipse"
+          name="UseCaseFigure"/>
+    </descriptors>
+    <descriptors
+        name="ActorFigure">
+      <actualFigure
+          xsi:type="gmfgraph:CustomFigure"
+          name="ActorFigure"
+          qualifiedClassName="org.unicase.ui.usecaseDiagram.unicase.StickMan"/>
+    </descriptors>
+  </figures>
   <nodes
       name="Class"
       figure="ClassFigure"/>
+  <nodes
+      name="UseCase"
+      figure="UseCaseFigure"/>
+  <nodes
+      name="Actor"
+      figure="ActorFigure">
+    <facets
+        xsi:type="gmfgraph:DefaultSizeFacet">
+      <defaultSize
+          dx="30"
+          dy="50"/>
+    </facets>
+  </nodes>
   <connections
       name="Association"
       figure="AssociationFigure"/>
