@@ -9,6 +9,8 @@ package org.unicase.model.edit.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -16,6 +18,8 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.Workspace;
+import org.unicase.workspace.WorkspaceManager;
 
 /**
  * 
@@ -53,16 +57,24 @@ public class CommitWorkspaceHandler extends AbstractHandler {
 			return null;
 		}
 
-		ProjectSpace projectSpace = (ProjectSpace) o;
+		final ProjectSpace projectSpace = (ProjectSpace) o;
 
 		// TODO: handle exception
-		try {
-			projectSpace.commit();
-		} catch (EmfStoreException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Workspace currentWorkspace = WorkspaceManager.getInstance()
+				.getCurrentWorkspace();
+		TransactionalEditingDomain domain = currentWorkspace.getEditingDomain();
 
+		RecordingCommand command = new RecordingCommand(domain) {
+			protected void doExecute() {
+				try {
+					projectSpace.commit();
+				} catch (EmfStoreException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		};
+		domain.getCommandStack().execute(command);
 		return null;
 	}
 
