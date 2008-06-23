@@ -66,7 +66,7 @@
   <extension
         point="org.eclipse.ui.menus">
      <menuContribution
-           locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.model.edit.worksapceCommands">
+           locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.workspace.edit.worksapceCommands">
         <command
               commandId="org.unicase.model.edit.annotateActionItem"
               icon="icons/full/ctool16/AnnotateWithActionItem.gif"
@@ -105,70 +105,6 @@
            </visibleWhen> 
         </command>
      </menuContribution> 
-  </extension>
-  <extension
-        point="org.eclipse.ui.commands">
-     <category
-           id="org.unicase.model.edit.workspace"
-           name="workspaceCategory">
-     </category>
-     <command
-           categoryId="org.unicase.model.edit.workspace"
-           id="org.unicase.model.edit.commitWorkspace"
-           name="commitWorkspace">
-     </command>
-     <command
-           categoryId="org.unicase.model.edit.workspace"
-           id="org.unicase.model.edit.updateWorkspace"
-           name="updateWorkspace">
-     </command>
-  </extension>
-  <extension
-        point="org.eclipse.ui.handlers">
-     <handler
-           class="org.unicase.model.edit.commands.CommitWorkspaceHandler"
-           commandId="org.unicase.model.edit.commitWorkspace">
-     </handler>
-     <handler
-           class="org.unicase.model.edit.commands.UpdateWorkspaceHandler"
-           commandId="org.unicase.model.edit.updateWorkspace">
-     </handler>
-  </extension>
-  <extension
-        point="org.eclipse.ui.menus">
-     <menuContribution
-           locationURI="popup:org.unicase.ui.navigator.viewer?before=additions">
-        <command
-              commandId="org.unicase.model.edit.commitWorkspace"
-              label="Commit Workspace"
-              style="push">
-           <visibleWhen
-                 checkEnabled="false">
-              <iterate>
-                 <instanceof
-                       value="org.unicase.workspace.ProjectSpace">
-                 </instanceof>
-              </iterate>
-           </visibleWhen>
-        </command>
-        <command
-              commandId="org.unicase.model.edit.updateWorkspace"
-              label="Update Workspace"
-              style="push">
-           <visibleWhen
-                 checkEnabled="false">
-              <iterate>
-                 <instanceof
-                       value="org.unicase.workspace.ProjectSpace">
-                 </instanceof>
-              </iterate>
-           </visibleWhen>
-        </command>
-        <separator
-              name="org.unicase.model.edit.worksapceCommands"
-              visible="true">
-        </separator>
-     </menuContribution>
   </extension>
   <extension
         point="org.eclipse.core.expressions.definitions">
