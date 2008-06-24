@@ -127,7 +127,11 @@ public class EmfStoreImpl implements EmfStore {
 
 		for (Version version : getVersions(projectId, resolvedSource,
 				resolvedTarget)) {
-			result.add(version.getChanges());
+			ChangePackage changes = version.getChanges();
+			//FIXME hack add project to changepackage 
+			
+			changes.setProjectState(version.getProjectState());
+			result.add(changes);
 		}
 		return result;
 	}
