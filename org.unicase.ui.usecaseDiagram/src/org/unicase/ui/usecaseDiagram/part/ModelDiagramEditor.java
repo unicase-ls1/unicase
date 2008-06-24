@@ -31,7 +31,9 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorMatchingStrategy;
 import org.eclipse.ui.IEditorReference;
+import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.ide.IGotoMarker;
@@ -277,5 +279,20 @@ public class ModelDiagramEditor extends DiagramDocumentEditor implements
 		}
 		return StructuredSelection.EMPTY;
 	}
+
+	@Override
+	public void setInput(IEditorInput input) {
+		try {
+			doSetInput(input, true);
+		} catch (CoreException x) {
+			x.printStackTrace(System.err);
+			String title = x.getMessage();
+			String msg = x.getMessage();
+			Shell shell = getSite().getShell();
+			ErrorDialog.openError(shell, title, msg, x.getStatus());
+		}
+	}
+
+
 
 }

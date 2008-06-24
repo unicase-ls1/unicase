@@ -201,7 +201,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void setDocumentContent(IDocument document, IEditorInput element)
 			throws CoreException {
@@ -220,7 +220,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 						uri.trimFragment(), false);
 				if (resource == null) {
 					resource = domain.getResourceSet().createResource(
-							uri.trimFragment());
+							uri.trimFragment(), "UseCaseDiagram");
 				}
 				if (!resource.isLoaded()) {
 					try {
