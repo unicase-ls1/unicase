@@ -4,7 +4,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:gmftool="http://www.eclipse.org/gmf/2005/ToolDefinition">
   <palette
-      title="Standard"
+      title="Use Case Palette"
       description=""
       default="//@palette">
     <tools
