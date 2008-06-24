@@ -20,9 +20,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.jface.text,
  org.unicase.workspace,
  org.eclipse.emf.transaction,
- org.eclipse.emf.transaction.ui
+ org.eclipse.emf.transaction.ui,
+ org.eclipse.nebula.widgets.cdatetime;bundle-version="0.10.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.unicase.ui.meeditor
-Bundle-ClassPath: lib/org.eclipse.nebula.widgets.calendarcombo-1.0-NIGHTLY.jar,
- .
+Bundle-ClassPath: .

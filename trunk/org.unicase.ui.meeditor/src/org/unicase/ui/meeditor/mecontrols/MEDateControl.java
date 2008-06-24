@@ -14,8 +14,8 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
-//import org.eclipse.nebula.widgets.cdatetime.CDT;
-//import org.eclipse.nebula.widgets.cdatetime.CDateTime;
+import org.eclipse.nebula.widgets.cdatetime.CDT;
+import org.eclipse.nebula.widgets.cdatetime.CDateTime;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -30,10 +30,11 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
  * 
  * @author shterev
  */
-public class MEDateControl extends AbstractMEControl implements MEControl, SelectionListener {
+public class MEDateControl extends AbstractMEControl implements MEControl,
+		SelectionListener {
 
 	private EAttribute attribute;
-//	private CDateTime widget;
+	private CDateTime widget;
 
 	/**
 	 * default constructor.
@@ -51,6 +52,17 @@ public class MEDateControl extends AbstractMEControl implements MEControl, Selec
 			EObject modelElement, EditingDomain editingDomain) {
 		super(editingDomain, modelElement, toolkit);
 		this.attribute = attribute;
+		// modelElement.eAdapters().add(new AdapterImpl() {
+		// @Override
+		// public void notifyChanged(Notification msg) {
+		// if (msg.getFeature().equals(MEDateControl.this.attribute)) {
+		// update();
+		// System.out.println(msg.getNewValue());
+		// }
+		// super.notifyChanged(msg);
+		// }
+		//
+		// });
 	}
 
 	/**
@@ -60,45 +72,47 @@ public class MEDateControl extends AbstractMEControl implements MEControl, Selec
 		Composite composite = toolkit.createComposite(parent);
 		composite.setLayout(new GridLayout(2, false));
 
-//		widget = new CDateTime(composite, CDT.BORDER | CDT.DROP_DOWN | CDT.COMPACT);
-//		widget.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-//		widget.setFormat(CDT.DATE_MEDIUM);
-//		Date newDate = (Date)modelElement.eGet(attribute);
-//		if(newDate!=null){
-//			widget.setSelection(newDate);
-//		}
-
-// 		TODO AS: Implement with databindings
-//		IObservableValue model = EMFEditObservables.observeValue(editingDomain,	modelElement, attribute);
-//		IObservableValue target = new DateObservableValue(date);
-//		EMFDataBindingContext dbc = new EMFDataBindingContext();
-//		dbc.bindValue(target, model, null, null);
-
-//		widget.addSelectionListener(this);
-//		widget.addCalendarListener(this);
+		widget = new CDateTime(composite, CDT.BORDER | CDT.DROP_DOWN
+				| CDT.COMPACT);
+		widget.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		widget.setFormat(CDT.DATE_MEDIUM);
+		widget.addSelectionListener(this);
+		update();
 		return composite;
 
 	}
-	
-	public void widgetDefaultSelected(SelectionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	
 	/**
 	 * {@inheritDoc}
 	 */
 	public void widgetSelected(SelectionEvent e) {
-		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
-		domain.getCommandStack().execute(new RecordingCommand(domain){
+		// nothing to do here
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void widgetDefaultSelected(SelectionEvent e) {
+		TransactionalEditingDomain domain = TransactionUtil
+				.getEditingDomain(modelElement);
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-//				if(widget.getText().equals(" ")){
-//					modelElement.eSet(attribute, null);
-//				}else{
-//					modelElement.eSet(attribute, widget.getSelection());
-//				}
+				modelElement.eSet(attribute, widget.getSelection());
+			}
+		});
+	}
+
+	private void update() {
+		TransactionalEditingDomain domain = TransactionUtil
+				.getEditingDomain(modelElement);
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
+			protected void doExecute() {
+				Date newDate = (Date) modelElement.eGet(attribute);
+				if (newDate != null) {
+					widget.setSelection(newDate);
+				}
 			}
 		});
 	}
