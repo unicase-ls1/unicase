@@ -727,8 +727,16 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @generated NOT
 	 */
 	public void save() {
-		stopChangeRecording();
-		startChangeRecording();
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain");
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
+			protected void doExecute() {
+				stopChangeRecording();
+				startChangeRecording();
+			}
+
+		});
 	}
 
 	/**
@@ -763,24 +771,15 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @generated NOT
 	 */
 	private void startChangeRecording() {
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-			@Override
-			protected void doExecute() {
-				changeRecorder = new ChangeRecorder();
-				if (getLocalChanges() == null) {
-					changeRecorder.beginRecording(Collections
-							.singleton(project));
-				} else {
-					changeRecorder
-							.beginRecording(localChanges.getBackwardDelta(),
-									Collections.singleton(project));
-				}
 
-			}
+		changeRecorder = new ChangeRecorder();
+		if (getLocalChanges() == null) {
+			changeRecorder.beginRecording(Collections.singleton(project));
+		} else {
+			changeRecorder.beginRecording(localChanges.getBackwardDelta(),
+					Collections.singleton(project));
+		}
 
-		});
 	}
 
 	/**
@@ -790,7 +789,14 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @generated NOT
 	 */
 	public void init() {
-		startChangeRecording();
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain");
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
+			protected void doExecute() {
+				startChangeRecording();
+			}
+		});
 	}
 
 	/**
