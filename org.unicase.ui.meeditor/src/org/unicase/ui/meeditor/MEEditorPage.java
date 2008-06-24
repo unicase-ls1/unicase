@@ -33,8 +33,6 @@ import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.ui.menus.IMenuService;
 import org.eclipse.ui.services.IEvaluationService;
 import org.unicase.model.ModelElement;
-import org.unicase.model.edit.uihint.UIHintAdapter;
-import org.unicase.model.edit.uihint.UIHintAdapterImpl;
 import org.unicase.ui.meeditor.mecontrols.MEControl;
 
 public class MEEditorPage extends FormPage {
@@ -44,7 +42,7 @@ public class MEEditorPage extends FormPage {
 	private Composite body;
 	private FormToolkit toolkit;
 	private List<MEControl> meControls = new ArrayList<MEControl>();
-	private UIHintAdapter uiHintAdapter;
+	
 	static String activeModelelement = "activeModelelement";
 	private ScrolledForm form;
 	private List<IItemPropertyDescriptor> simpleAttributes = new ArrayList<IItemPropertyDescriptor>();
@@ -55,7 +53,7 @@ public class MEEditorPage extends FormPage {
 		super(editor, id, title);
 		this.editingDomain = editingDomain;
 		this.modelElement = modelElement;
-		uiHintAdapter = new UIHintAdapterImpl();
+		
 	}
 
 	@Override
