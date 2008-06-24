@@ -148,11 +148,12 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected IDocument createEmptyDocument() {
 		DiagramDocument document = new DiagramDocument();
-		document.setEditingDomain(createEditingDomain());
+		document.setEditingDomain(TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain"));
 		return document;
 	}
 
