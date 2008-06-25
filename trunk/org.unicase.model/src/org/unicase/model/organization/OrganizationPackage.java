@@ -134,15 +134,6 @@ public interface OrganizationPackage extends EPackage {
 	int ORG_UNIT__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>Mestate</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORG_UNIT__MESTATE = ModelPackage.MODEL_ELEMENT__MESTATE;
-
-	/**
 	 * The feature id for the '<em><b>Org Id</b></em>' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -217,15 +208,6 @@ public interface OrganizationPackage extends EPackage {
 	 * @ordered
 	 */
 	int USER__LEAF_SECTION = ORG_UNIT__LEAF_SECTION;
-
-	/**
-	 * The feature id for the '<em><b>Mestate</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USER__MESTATE = ORG_UNIT__MESTATE;
 
 	/**
 	 * The feature id for the '<em><b>Org Id</b></em>' containment reference.
@@ -340,15 +322,6 @@ public interface OrganizationPackage extends EPackage {
 	 * @ordered
 	 */
 	int GROUP__LEAF_SECTION = ORG_UNIT__LEAF_SECTION;
-
-	/**
-	 * The feature id for the '<em><b>Mestate</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GROUP__MESTATE = ORG_UNIT__MESTATE;
 
 	/**
 	 * The feature id for the '<em><b>Org Id</b></em>' containment reference.

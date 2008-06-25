@@ -128,15 +128,6 @@ public interface ClassesPackage extends EPackage {
 	int PACKAGE_ELEMENT__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>Mestate</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE_ELEMENT__MESTATE = ModelPackage.MODEL_ELEMENT__MESTATE;
-
-	/**
 	 * The feature id for the '<em><b>Parent Package</b></em>' container reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -219,15 +210,6 @@ public interface ClassesPackage extends EPackage {
 	 * @ordered
 	 */
 	int CLASS__LEAF_SECTION = PACKAGE_ELEMENT__LEAF_SECTION;
-
-	/**
-	 * The feature id for the '<em><b>Mestate</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS__MESTATE = PACKAGE_ELEMENT__MESTATE;
 
 	/**
 	 * The feature id for the '<em><b>Parent Package</b></em>' container reference.
@@ -357,15 +339,6 @@ public interface ClassesPackage extends EPackage {
 	int PACKAGE__LEAF_SECTION = PACKAGE_ELEMENT__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>Mestate</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE__MESTATE = PACKAGE_ELEMENT__MESTATE;
-
-	/**
 	 * The feature id for the '<em><b>Parent Package</b></em>' container reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -460,15 +433,6 @@ public interface ClassesPackage extends EPackage {
 	 * @ordered
 	 */
 	int ASSOCIATION__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
-
-	/**
-	 * The feature id for the '<em><b>Mestate</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION__MESTATE = ModelPackage.MODEL_ELEMENT__MESTATE;
 
 	/**
 	 * The feature id for the '<em><b>Directed</b></em>' attribute. <!--

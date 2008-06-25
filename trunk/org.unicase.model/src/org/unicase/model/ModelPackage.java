@@ -124,22 +124,13 @@ public interface ModelPackage extends EPackage {
 	int MODEL_ELEMENT__LEAF_SECTION = 6;
 
 	/**
-	 * The feature id for the '<em><b>Mestate</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT__MESTATE = 7;
-
-	/**
 	 * The number of structural features of the '<em>Element</em>' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_FEATURE_COUNT = 8;
+	int MODEL_ELEMENT_FEATURE_COUNT = 7;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.impl.ProjectImpl <em>Project</em>}' class.
@@ -328,15 +319,6 @@ public interface ModelPackage extends EPackage {
 	int ANNOTATION__LEAF_SECTION = MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>Mestate</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__MESTATE = MODEL_ELEMENT__MESTATE;
-
-	/**
 	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -433,17 +415,6 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getModelElement_LeafSection();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.ModelElement#getMestate <em>Mestate</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Mestate</em>'.
-	 * @see org.unicase.model.ModelElement#getMestate()
-	 * @see #getModelElement()
-	 * @generated
-	 */
-	EReference getModelElement_Mestate();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.Project <em>Project</em>}'.
@@ -635,14 +606,6 @@ public interface ModelPackage extends EPackage {
 		 */
 		EReference MODEL_ELEMENT__LEAF_SECTION = eINSTANCE
 				.getModelElement_LeafSection();
-
-		/**
-		 * The meta object literal for the '<em><b>Mestate</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MODEL_ELEMENT__MESTATE = eINSTANCE.getModelElement_Mestate();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.impl.ProjectImpl <em>Project</em>}' class.

@@ -126,15 +126,6 @@ public interface RationalePackage extends EPackage {
 	int ISSUE__LEAF_SECTION = ModelPackage.ANNOTATION__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>Mestate</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ISSUE__MESTATE = ModelPackage.ANNOTATION__MESTATE;
-
-	/**
 	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -278,15 +269,6 @@ public interface RationalePackage extends EPackage {
 	int PROPOSAL__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>Mestate</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPOSAL__MESTATE = ModelPackage.MODEL_ELEMENT__MESTATE;
-
-	/**
 	 * The feature id for the '<em><b>Assessments</b></em>' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -379,15 +361,6 @@ public interface RationalePackage extends EPackage {
 	 * @ordered
 	 */
 	int SOLUTION__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
-
-	/**
-	 * The feature id for the '<em><b>Mestate</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SOLUTION__MESTATE = ModelPackage.MODEL_ELEMENT__MESTATE;
 
 	/**
 	 * The feature id for the '<em><b>Underlying Proposals</b></em>' reference list.
@@ -484,15 +457,6 @@ public interface RationalePackage extends EPackage {
 	int CRITERION__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>Mestate</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CRITERION__MESTATE = ModelPackage.MODEL_ELEMENT__MESTATE;
-
-	/**
 	 * The feature id for the '<em><b>Assessments</b></em>' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -580,15 +544,6 @@ public interface RationalePackage extends EPackage {
 	 * @ordered
 	 */
 	int ASSESSMENT__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
-
-	/**
-	 * The feature id for the '<em><b>Mestate</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSESSMENT__MESTATE = ModelPackage.MODEL_ELEMENT__MESTATE;
 
 	/**
 	 * The feature id for the '<em><b>Proposal</b></em>' container reference.
@@ -691,15 +646,6 @@ public interface RationalePackage extends EPackage {
 	 * @ordered
 	 */
 	int COMMENT__LEAF_SECTION = ModelPackage.ANNOTATION__LEAF_SECTION;
-
-	/**
-	 * The feature id for the '<em><b>Mestate</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMMENT__MESTATE = ModelPackage.ANNOTATION__MESTATE;
 
 	/**
 	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list.

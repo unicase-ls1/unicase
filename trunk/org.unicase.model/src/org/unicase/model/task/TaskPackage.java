@@ -126,15 +126,6 @@ public interface TaskPackage extends EPackage {
 	int WORK_ITEM__LEAF_SECTION = ModelPackage.ANNOTATION__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>Mestate</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_ITEM__MESTATE = ModelPackage.ANNOTATION__MESTATE;
-
-	/**
 	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -234,15 +225,6 @@ public interface TaskPackage extends EPackage {
 	 * @ordered
 	 */
 	int ACTION_ITEM__LEAF_SECTION = WORK_ITEM__LEAF_SECTION;
-
-	/**
-	 * The feature id for the '<em><b>Mestate</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTION_ITEM__MESTATE = WORK_ITEM__MESTATE;
 
 	/**
 	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list.
@@ -381,15 +363,6 @@ public interface TaskPackage extends EPackage {
 	int WORK_PACKAGE__LEAF_SECTION = WORK_ITEM__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>Mestate</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_PACKAGE__MESTATE = WORK_ITEM__MESTATE;
-
-	/**
 	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -428,44 +401,6 @@ public interface TaskPackage extends EPackage {
 	 * @ordered
 	 */
 	int WORK_PACKAGE_FEATURE_COUNT = WORK_ITEM_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.unicase.model.task.impl.MEStateImpl <em>ME State</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.unicase.model.task.impl.MEStateImpl
-	 * @see org.unicase.model.task.impl.TaskPackageImpl#getMEState()
-	 * @generated
-	 */
-	int ME_STATE = 3;
-
-	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ME_STATE__STATE = 0;
-
-	/**
-	 * The number of structural features of the '<em>ME State</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ME_STATE_FEATURE_COUNT = 1;
-
-	/**
-	 * The meta object id for the '{@link org.unicase.model.task.StateType <em>State Type</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.unicase.model.task.StateType
-	 * @see org.unicase.model.task.impl.TaskPackageImpl#getStateType()
-	 * @generated
-	 */
-	int STATE_TYPE = 4;
 
 	/**
 	 * Returns the meta object for class '
@@ -576,37 +511,6 @@ public interface TaskPackage extends EPackage {
 	EReference getWorkItem_AssociatedChangePackages();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.model.task.MEState <em>ME State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>ME State</em>'.
-	 * @see org.unicase.model.task.MEState
-	 * @generated
-	 */
-	EClass getMEState();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.task.MEState#getState <em>State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>State</em>'.
-	 * @see org.unicase.model.task.MEState#getState()
-	 * @see #getMEState()
-	 * @generated
-	 */
-	EAttribute getMEState_State();
-
-	/**
-	 * Returns the meta object for enum '{@link org.unicase.model.task.StateType <em>State Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>State Type</em>'.
-	 * @see org.unicase.model.task.StateType
-	 * @generated
-	 */
-	EEnum getStateType();
-
-	/**
 	 * Returns the factory that creates the instances of the model. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -710,34 +614,6 @@ public interface TaskPackage extends EPackage {
 		 */
 		EReference WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES = eINSTANCE
 				.getWorkItem_AssociatedChangePackages();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.model.task.impl.MEStateImpl <em>ME State</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.unicase.model.task.impl.MEStateImpl
-		 * @see org.unicase.model.task.impl.TaskPackageImpl#getMEState()
-		 * @generated
-		 */
-		EClass ME_STATE = eINSTANCE.getMEState();
-
-		/**
-		 * The meta object literal for the '<em><b>State</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ME_STATE__STATE = eINSTANCE.getMEState_State();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.model.task.StateType <em>State Type</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.unicase.model.task.StateType
-		 * @see org.unicase.model.task.impl.TaskPackageImpl#getStateType()
-		 * @generated
-		 */
-		EEnum STATE_TYPE = eINSTANCE.getStateType();
 
 	}
 

@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.MEState;
+import org.unicase.model.task.util.CircularDependencyException;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '
@@ -26,7 +27,6 @@ import org.unicase.model.task.MEState;
  *   <li>{@link org.unicase.model.ModelElement#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getIncomingDocumentReferences <em>Incoming Document References</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getLeafSection <em>Leaf Section</em>}</li>
- *   <li>{@link org.unicase.model.ModelElement#getMestate <em>Mestate</em>}</li>
  * </ul>
  * </p>
  *
@@ -195,32 +195,6 @@ public interface ModelElement extends EObject {
 	void setLeafSection(LeafSection value);
 
 	/**
-	 * Returns the value of the '<em><b>Mestate</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Mestate</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Mestate</em>' reference.
-	 * @see #isSetMestate()
-	 * @see org.unicase.model.ModelPackage#getModelElement_Mestate()
-	 * @model unsettable="true" changeable="false"
-	 * @generated
-	 */
-	MEState getMestate();
-
-	/**
-	 * Returns whether the value of the '{@link org.unicase.model.ModelElement#getMestate <em>Mestate</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Mestate</em>' reference is set.
-	 * @see #getMestate()
-	 * @generated
-	 */
-	boolean isSetMestate();
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Project</em>' reference isn't clear, there
@@ -238,5 +212,13 @@ public interface ModelElement extends EObject {
 	 * @generated
 	 */
 	void addReader(User readerName);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	void getMEState();
 
 } // ModelElement
