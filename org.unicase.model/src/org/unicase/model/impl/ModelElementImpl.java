@@ -31,6 +31,8 @@ import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.MEState;
+import org.unicase.model.task.TaskFactory;
+import org.unicase.model.task.util.CircularDependencyException;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '
@@ -45,7 +47,6 @@ import org.unicase.model.task.MEState;
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getIncomingDocumentReferences <em>Incoming Document References</em>}</li>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getLeafSection <em>Leaf Section</em>}</li>
- *   <li>{@link org.unicase.model.impl.ModelElementImpl#getMestate <em>Mestate</em>}</li>
  * </ul>
  * </p>
  *
@@ -127,26 +128,9 @@ public abstract class ModelElementImpl extends EObjectImpl implements
 	 */
 	protected EList<LeafSection> incomingDocumentReferences;
 
-	/**
-	 * The cached value of the '{@link #getMestate() <em>Mestate</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMestate()
-	 * @generated
-	 * @ordered
-	 */
-	protected MEState mestate;
+	private boolean calculatingState;
 
-	/**
-	 * This is true if the Mestate reference has been set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean mestateESet;
-
-	//begin of custom code
+	// begin of custom code
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -157,7 +141,7 @@ public abstract class ModelElementImpl extends EObjectImpl implements
 		this.identifier = ModelFactory.eINSTANCE.createModelElementId();
 	}
 
-	//end of custom code
+	// end of custom code
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -351,43 +335,6 @@ public abstract class ModelElementImpl extends EObjectImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MEState getMestate() {
-		if (mestate != null && mestate.eIsProxy()) {
-			InternalEObject oldMestate = (InternalEObject) mestate;
-			mestate = (MEState) eResolveProxy(oldMestate);
-			if (mestate != oldMestate) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ModelPackage.MODEL_ELEMENT__MESTATE, oldMestate,
-							mestate));
-			}
-		}
-		return mestate;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MEState basicGetMestate() {
-		return mestate;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetMestate() {
-		return mestateESet;
-	}
-
-	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -413,6 +360,17 @@ public abstract class ModelElementImpl extends EObjectImpl implements
 	 * @generated
 	 */
 	public void addReader(User readerName) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void getMEState() {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -497,10 +455,6 @@ public abstract class ModelElementImpl extends EObjectImpl implements
 			return getIncomingDocumentReferences();
 		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
 			return getLeafSection();
-		case ModelPackage.MODEL_ELEMENT__MESTATE:
-			if (resolve)
-				return getMestate();
-			return basicGetMestate();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -600,8 +554,6 @@ public abstract class ModelElementImpl extends EObjectImpl implements
 					&& !incomingDocumentReferences.isEmpty();
 		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
 			return getLeafSection() != null;
-		case ModelPackage.MODEL_ELEMENT__MESTATE:
-			return isSetMestate();
 		}
 		return super.eIsSet(featureID);
 	}

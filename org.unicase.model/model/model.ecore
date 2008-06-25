@@ -8,6 +8,7 @@
     <eOperations name="addReader">
       <eParameters name="readerName" eType="#//organization/User"/>
     </eOperations>
+    <eOperations name="getMEState"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://unicase.org/visibility">
         <details key="VisibilityValue" value="MANDATORY"/>
@@ -31,8 +32,6 @@
         upperBound="-1" eType="#//document/LeafSection"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="leafSection" eType="#//document/LeafSection"
         eOpposite="#//document/LeafSection/modelElements"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="mestate" eType="#//task/MEState"
-        changeable="false" unsettable="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Project">
     <eOperations name="addModelElement">
@@ -103,14 +102,6 @@
           eType="#//task/WorkPackage" eOpposite="#//task/WorkPackage/containedWorkItems"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="associatedChangePackages"
           upperBound="-1" eType="#//change/ModelChangePackage"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="MEState">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#//task/StateType"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EEnum" name="StateType">
-      <eLiterals name="CLOSED"/>
-      <eLiterals name="OPEN" value="1"/>
-      <eLiterals name="BLOCKED" value="2"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="diagram" nsURI="http://unicase.org/model/diagram" nsPrefix="org.unicase.model.diagram">
