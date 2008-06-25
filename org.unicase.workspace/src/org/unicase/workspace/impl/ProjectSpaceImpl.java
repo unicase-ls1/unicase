@@ -620,54 +620,63 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 
 		// MK: save projectspace if single resource
 
-		try {
-			stopChangeRecording();
-			PrimaryVersionSpec resolvedVersion = resolveVersionSpec(VersionSpec.HEAD_VERSION);
-			// FIXME insert not and write equals method
-			if ((!getBaseVersion().equals(resolvedVersion))) {
-				throw new BaseVersionOutdatedException(
-						"BaseVersion outdated, please update before commit.");
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain");
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			protected void doExecute() {
+				try {
+					stopChangeRecording();
+					PrimaryVersionSpec resolvedVersion = resolveVersionSpec(VersionSpec.HEAD_VERSION);
+					// FIXME insert not and write equals method
+					if ((!getBaseVersion().equals(resolvedVersion))) {
+						throw new BaseVersionOutdatedException(
+								"BaseVersion outdated, please update before commit.");
+					}
+					final ConnectionManager connectionManager = WorkspaceManager
+							.getInstance().getConnectionManager();
+
+					// FIMXE: put this somewhere else
+					// integrate project into one resource set with change
+					// package for
+					// serialization
+					ResourceSet tempResourceSet = new ResourceSetImpl();
+					// disconnect project and add to virtual resource
+					Project project = getProject();
+					setProjectGen(null);
+					Resource projectResource = tempResourceSet
+							.createResource(ConnectionManager.PROJECT_URI);
+					projectResource.getContents().add(project);
+					// disconnect change package and add to virtual resource
+					ChangePackage changePackage = getLocalChanges();
+					// remove backward delta information
+					changePackage.setBackwardDelta(null );
+
+					setLocalChanges(null);
+					Resource changePackageResource = tempResourceSet
+							.createResource(ConnectionManager.CHANGEPACKAGE_URI);
+					changePackageResource.getContents().add(changePackage);
+
+					newBaseVersion = connectionManager.createVersion(
+							getUsersession().getSessionId(), getProjectId(),
+							getBaseVersion(), changePackage, logMessage);
+
+					// FIMXE: put this somewhere else
+					// reconnect project to projectSpace
+					setProjectGen(project);
+					setProjectName("test");
+					setBaseVersion(newBaseVersion);
+					// MK: save projectspace if single resource
+					startChangeRecording();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					throw new IllegalStateException();
+				}
+
 			}
-			final ConnectionManager connectionManager = WorkspaceManager
-					.getInstance().getConnectionManager();
+		});
 
-			// FIMXE: put this somewhere else
-			// integrate project into one resource set with change package for
-			// serialization
-			ResourceSet tempResourceSet = new ResourceSetImpl();
-			// disconnect project and add to virtual resource
-			Project project = getProject();
-			setProjectGen(null);
-			Resource projectResource = tempResourceSet
-					.createResource(ConnectionManager.PROJECT_URI);
-			projectResource.getContents().add(project);
-			// disconnect change package and add to virtual resource
-			ChangePackage changePackage = getLocalChanges();
-			// remove backward delta information
-			changePackage.setBackwardDelta(null);
-
-			setLocalChanges(null);
-			Resource changePackageResource = tempResourceSet
-					.createResource(ConnectionManager.CHANGEPACKAGE_URI);
-			changePackageResource.getContents().add(changePackage);
-
-			newBaseVersion = connectionManager.createVersion(getUsersession()
-					.getSessionId(), getProjectId(), getBaseVersion(),
-					changePackage, logMessage);
-
-			// FIMXE: put this somewhere else
-			// reconnect project to projectSpace
-			setProjectGen(project);
-
-			setBaseVersion(newBaseVersion);
-			// MK: save projectspace if single resource
-			startChangeRecording();
-			return newBaseVersion;
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			throw new IllegalStateException();
-		}
+		return newBaseVersion;
 	}
 
 	/**
@@ -692,13 +701,13 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 				.getConnectionManager();
 		PrimaryVersionSpec resolvedVersion = cm.resolveVersionSpec(
 				getUsersession().getSessionId(), getProjectId(), version);
-		
-		if(getBaseVersion().equals(resolvedVersion)) {
+
+		if (getBaseVersion().getIdentifier() > resolvedVersion.getIdentifier()) {
 			return;
 		}
-		
+
 		stopChangeRecording();
-		
+
 		List<ChangePackage> changes = cm.getChanges(getUsersession()
 				.getSessionId(), getProjectId(), getBaseVersion(),
 				resolvedVersion);
@@ -708,7 +717,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 		}
 		setProjectGen(project);
 		setBaseVersion(resolvedVersion);
-	
+
 		startChangeRecording();
 	}
 
