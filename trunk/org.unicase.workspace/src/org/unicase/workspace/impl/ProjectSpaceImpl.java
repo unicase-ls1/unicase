@@ -688,25 +688,28 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 */
 	public void update(VersionSpec version) throws EmfStoreException {
 		// TODO: update
-		ConnectionManager cm = WorkspaceManager.getInstance()
+		final ConnectionManager cm = WorkspaceManager.getInstance()
 				.getConnectionManager();
 		PrimaryVersionSpec resolvedVersion = cm.resolveVersionSpec(
 				getUsersession().getSessionId(), getProjectId(), version);
+		
+		if(getBaseVersion().equals(resolvedVersion)) {
+			return;
+		}
+		
+		stopChangeRecording();
+		
 		List<ChangePackage> changes = cm.getChanges(getUsersession()
 				.getSessionId(), getProjectId(), getBaseVersion(),
 				resolvedVersion);
+		Project project = changes.get(0).getProjectState();
 		for (ChangePackage change : changes) {
-			// TODO: check whether this also effects all elements contained in
-			// the project
-			// TODO: check whether one has to stop recording while updating
-			// TODO: manage conflicts
-			List<FeatureChange> featureChanges = change.getFowardDelta()
-					.getObjectChanges().get(project);
-			for (FeatureChange fChanges : featureChanges) {
-				fChanges.apply(project);
-			}
+			change.getFowardDelta().apply();
 		}
+		setProjectGen(project);
 		setBaseVersion(resolvedVersion);
+	
+		startChangeRecording();
 	}
 
 	/**
