@@ -1,24 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
-<extension
-         point="org.eclipse.ui.commands">
-      <command
-            defaultHandler="org.unicase.ui.test.commands.NewTestProjectHandler"
-            id="org.unicase.ui.test.newTestProjectCommand"
-            name="create unicase test project...">
-      </command>
-   </extension>
-   <extension
-         point="org.eclipse.ui.menus">
-      <menuContribution
-            locationURI="toolbar:org.unicase.ui.test.modelTestView?after=additions">
-         <command
-               commandId="org.unicase.ui.test.newTestProjectCommand"
-               style="push">
-         </command>
-      </menuContribution>
-   </extension>
    <extension
          point="org.eclipse.ui.views">
       <view
