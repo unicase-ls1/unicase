@@ -78,14 +78,14 @@
           accessor="getFigureAssociationFigure_name"
           figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
     </descriptors>
-  </figures>
-  <figures
-      name="UseCaseDiagram">
     <descriptors
         name="UseCaseFigure">
       <actualFigure
           xsi:type="gmfgraph:Ellipse"
-          name="UseCaseFigure"/>
+          name="UseCaseFigure">
+        <layout
+            xsi:type="gmfgraph:FlowLayout"/>
+      </actualFigure>
     </descriptors>
     <descriptors
         name="ActorFigure">
@@ -95,6 +95,8 @@
           qualifiedClassName="org.unicase.ui.usecaseDiagram.unicase.StickMan"/>
     </descriptors>
   </figures>
+  <figures
+      name="UseCaseDiagram"/>
   <nodes
       name="Class"
       figure="ClassFigure"/>
@@ -122,4 +124,7 @@
       name="AssociationLine_name"
       figure="AssociationFigure"
       accessor="//@figures.0/@descriptors.1/@accessors.0"/>
+  <labels
+      name="ActorNode_name"
+      figure="ActorFigure"/>
 </gmfgraph:Canvas>
