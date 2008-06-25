@@ -25,7 +25,7 @@ public class MEStateImpl implements MEState {
 
 	public String getStatus() {
 		// TODO Auto-generated method stub
-		return MEState.OPEN;
+		return MEState.CLOSED;
 	}
 
 	public boolean isRecursivlyModified() {
