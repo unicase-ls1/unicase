@@ -156,7 +156,7 @@
         point="org.eclipse.ui.decorators">
      <decorator
            adaptable="true"
-           class="org.unicase.model.edit.decorators.ReadOnly"
+           class="org.unicase.model.edit.decorators.StateDecorator"
            id="org.unicase.model.edit.decorators.StateDecorator"
            label="State Decorator"
            lightweight="true"
