@@ -10,8 +10,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.organization.User;
-import org.unicase.model.task.MEState;
 import org.unicase.model.task.util.CircularDependencyException;
+import org.unicase.model.task.util.MEState;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '
@@ -216,9 +216,10 @@ public interface ModelElement extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @throws CircularDependencyException 
 	 * @model kind="operation"
-	 * @generated
+	 * @generated NOT
 	 */
-	void getMEState();
+	MEState getMEState() throws CircularDependencyException;
 
 } // ModelElement
