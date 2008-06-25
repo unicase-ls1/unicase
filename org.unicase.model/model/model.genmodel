@@ -18,6 +18,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//ModelElement/annotations"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//ModelElement/incomingDocumentReferences"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//ModelElement/leafSection"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//ModelElement/mestate"/>
       <genOperations ecoreOperation="model.ecore#//ModelElement/getProject"/>
       <genOperations ecoreOperation="model.ecore#//ModelElement/addReader">
         <genParameters ecoreParameter="model.ecore#//ModelElement/addReader/readerName"/>
@@ -62,6 +63,11 @@
     </nestedGenPackages>
     <nestedGenPackages prefix="Task" basePackage="org.unicase.model" disposableProviderFactory="true"
         ecorePackage="model.ecore#//task">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="model.ecore#//task/StateType">
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//task/StateType/CLOSED"/>
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//task/StateType/OPEN"/>
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//task/StateType/BLOCKED"/>
+      </genEnums>
       <genClasses ecoreClass="model.ecore#//task/ActionItem">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//task/ActionItem/assignedTo"/>
@@ -76,6 +82,9 @@
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//task/WorkItem/containingWorkpackage"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//task/WorkItem/associatedChangePackages"/>
+      </genClasses>
+      <genClasses ecoreClass="model.ecore#//task/MEState">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//task/MEState/state"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Diagram" basePackage="org.unicase.model" disposableProviderFactory="true"

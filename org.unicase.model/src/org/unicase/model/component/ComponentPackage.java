@@ -125,6 +125,15 @@ public interface ComponentPackage extends EPackage {
 	int COMPONENT__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
+	 * The feature id for the '<em><b>Mestate</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT__MESTATE = ModelPackage.MODEL_ELEMENT__MESTATE;
+
+	/**
 	 * The feature id for the '<em><b>Packages</b></em>' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -227,6 +236,15 @@ public interface ComponentPackage extends EPackage {
 	int COMPONENT_SERVICE__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
+	 * The feature id for the '<em><b>Mestate</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_SERVICE__MESTATE = ModelPackage.MODEL_ELEMENT__MESTATE;
+
+	/**
 	 * The feature id for the '<em><b>Offering Component</b></em>' container reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -319,6 +337,15 @@ public interface ComponentPackage extends EPackage {
 	 * @ordered
 	 */
 	int DEPLOYMENT_NODE__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>Mestate</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPLOYMENT_NODE__MESTATE = ModelPackage.MODEL_ELEMENT__MESTATE;
 
 	/**
 	 * The feature id for the '<em><b>Components</b></em>' reference list. <!--

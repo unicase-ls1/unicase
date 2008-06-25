@@ -8,6 +8,7 @@ package org.unicase.model.task.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -33,6 +34,8 @@ import org.unicase.model.rationale.impl.RationalePackageImpl;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.impl.RequirementPackageImpl;
 import org.unicase.model.task.ActionItem;
+import org.unicase.model.task.MEState;
+import org.unicase.model.task.StateType;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
@@ -60,6 +63,20 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * @generated
 	 */
 	private EClass workItemEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass meStateEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum stateTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -278,6 +295,33 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMEState() {
+		return meStateEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMEState_State() {
+		return (EAttribute) meStateEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getStateType() {
+		return stateTypeEEnum;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -316,6 +360,12 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		workItemEClass = createEClass(WORK_ITEM);
 		createEReference(workItemEClass, WORK_ITEM__CONTAINING_WORKPACKAGE);
 		createEReference(workItemEClass, WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES);
+
+		meStateEClass = createEClass(ME_STATE);
+		createEAttribute(meStateEClass, ME_STATE__STATE);
+
+		// Create enums
+		stateTypeEEnum = createEEnum(STATE_TYPE);
 	}
 
 	/**
@@ -400,6 +450,19 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 				null, 0, -1, WorkItem.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(meStateEClass, MEState.class, "MEState", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getMEState_State(), this.getStateType(), "state", null,
+				0, 1, MEState.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(stateTypeEEnum, StateType.class, "StateType");
+		addEEnumLiteral(stateTypeEEnum, StateType.CLOSED);
+		addEEnumLiteral(stateTypeEEnum, StateType.OPEN);
+		addEEnumLiteral(stateTypeEEnum, StateType.BLOCKED);
 	}
 
 } // TaskPackageImpl
