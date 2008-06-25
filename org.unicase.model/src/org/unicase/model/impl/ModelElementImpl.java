@@ -30,9 +30,10 @@ import org.unicase.model.ReaderInfo;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.organization.User;
-import org.unicase.model.task.MEState;
+
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.util.CircularDependencyException;
+import org.unicase.model.task.util.MEStateImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '
@@ -129,6 +130,8 @@ public abstract class ModelElementImpl extends EObjectImpl implements
 	protected EList<LeafSection> incomingDocumentReferences;
 
 	private boolean calculatingState;
+
+	private org.unicase.model.task.util.MEState meState;
 
 	// begin of custom code
 	/**
@@ -368,12 +371,22 @@ public abstract class ModelElementImpl extends EObjectImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @throws CircularDependencyException 
+	 * @generated NOT
 	 */
-	public void getMEState() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+	public org.unicase.model.task.util.MEState getMEState() throws CircularDependencyException {
+		if (meState==null){
+			synchronized (this) {
+				if (calculatingState){
+					throw new CircularDependencyException(this);
+				}
+				calculatingState = true;
+			}
+			meState=new MEStateImpl(this);
+			calculatingState=false;
+		}
+
+		return meState;
 	}
 
 	/**
