@@ -119,6 +119,29 @@ public class TaskItemProviderAdapterFactory extends TaskAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.task.MEState} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MEStateItemProvider meStateItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.task.MEState}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMEStateAdapter() {
+		if (meStateItemProvider == null) {
+			meStateItemProvider = new MEStateItemProvider(this);
+		}
+
+		return meStateItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -220,6 +243,8 @@ public class TaskItemProviderAdapterFactory extends TaskAdapterFactory
 			actionItemItemProvider.dispose();
 		if (workPackageItemProvider != null)
 			workPackageItemProvider.dispose();
+		if (meStateItemProvider != null)
+			meStateItemProvider.dispose();
 	}
 
 }

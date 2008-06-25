@@ -60,6 +60,7 @@ public class ModelElementItemProvider extends ItemProviderAdapter implements
 			addDescriptionPropertyDescriptor(object);
 			addAnnotationsPropertyDescriptor(object);
 			addIncomingDocumentReferencesPropertyDescriptor(object);
+			addMestatePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -136,6 +137,24 @@ public class ModelElementItemProvider extends ItemProviderAdapter implements
 								"_UI_ModelElement_type"),
 						ModelPackage.Literals.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES,
 						true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Mestate feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addMestatePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_ModelElement_mestate_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_ModelElement_mestate_feature",
+						"_UI_ModelElement_type"),
+				ModelPackage.Literals.MODEL_ELEMENT__MESTATE, false, false,
+				false, null, null, null));
 	}
 
 	/**

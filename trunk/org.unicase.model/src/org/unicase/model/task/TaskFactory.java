@@ -42,6 +42,15 @@ public interface TaskFactory extends EFactory {
 	WorkPackage createWorkPackage();
 
 	/**
+	 * Returns a new object of class '<em>ME State</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>ME State</em>'.
+	 * @generated
+	 */
+	MEState createMEState();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

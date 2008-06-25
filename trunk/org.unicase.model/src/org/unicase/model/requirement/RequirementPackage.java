@@ -128,6 +128,15 @@ public interface RequirementPackage extends EPackage {
 	int NON_FUNCTIONAL_REQUIREMENT__LEAF_SECTION = RationalePackage.CRITERION__LEAF_SECTION;
 
 	/**
+	 * The feature id for the '<em><b>Mestate</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NON_FUNCTIONAL_REQUIREMENT__MESTATE = RationalePackage.CRITERION__MESTATE;
+
+	/**
 	 * The feature id for the '<em><b>Assessments</b></em>' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -229,6 +238,15 @@ public interface RequirementPackage extends EPackage {
 	 * @ordered
 	 */
 	int FUNCTIONAL_REQUIREMENT__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>Mestate</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTIONAL_REQUIREMENT__MESTATE = ModelPackage.MODEL_ELEMENT__MESTATE;
 
 	/**
 	 * The feature id for the '<em><b>Reviewed</b></em>' attribute. <!--
@@ -368,6 +386,15 @@ public interface RequirementPackage extends EPackage {
 	int USE_CASE__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
+	 * The feature id for the '<em><b>Mestate</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USE_CASE__MESTATE = ModelPackage.MODEL_ELEMENT__MESTATE;
+
+	/**
 	 * The feature id for the '<em><b>Steps</b></em>' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -503,6 +530,15 @@ public interface RequirementPackage extends EPackage {
 	int SCENARIO__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
+	 * The feature id for the '<em><b>Mestate</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCENARIO__MESTATE = ModelPackage.MODEL_ELEMENT__MESTATE;
+
+	/**
 	 * The feature id for the '<em><b>Steps</b></em>' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -628,6 +664,15 @@ public interface RequirementPackage extends EPackage {
 	int ACTOR__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
+	 * The feature id for the '<em><b>Mestate</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTOR__MESTATE = ModelPackage.MODEL_ELEMENT__MESTATE;
+
+	/**
 	 * The feature id for the '<em><b>Initiated Use Cases</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -731,6 +776,15 @@ public interface RequirementPackage extends EPackage {
 	int ACTOR_INSTANCE__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
+	 * The feature id for the '<em><b>Mestate</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTOR_INSTANCE__MESTATE = ModelPackage.MODEL_ELEMENT__MESTATE;
+
+	/**
 	 * The feature id for the '<em><b>Initiated Scenarios</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -829,6 +883,15 @@ public interface RequirementPackage extends EPackage {
 	 * @ordered
 	 */
 	int STEP__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>Mestate</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP__MESTATE = ModelPackage.MODEL_ELEMENT__MESTATE;
 
 	/**
 	 * The feature id for the '<em><b>User Step</b></em>' attribute. <!--

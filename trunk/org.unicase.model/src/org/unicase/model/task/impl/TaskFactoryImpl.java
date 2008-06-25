@@ -7,10 +7,12 @@
 package org.unicase.model.task.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.model.task.*;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.TaskPackage;
@@ -62,9 +64,43 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 			return createActionItem();
 		case TaskPackage.WORK_PACKAGE:
 			return createWorkPackage();
+		case TaskPackage.ME_STATE:
+			return createMEState();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName()
 					+ "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+		case TaskPackage.STATE_TYPE:
+			return createStateTypeFromString(eDataType, initialValue);
+		default:
+			throw new IllegalArgumentException("The datatype '"
+					+ eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+		case TaskPackage.STATE_TYPE:
+			return convertStateTypeToString(eDataType, instanceValue);
+		default:
+			throw new IllegalArgumentException("The datatype '"
+					+ eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -84,6 +120,41 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 	public WorkPackage createWorkPackage() {
 		WorkPackageImpl workPackage = new WorkPackageImpl();
 		return workPackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MEState createMEState() {
+		MEStateImpl meState = new MEStateImpl();
+		return meState;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StateType createStateTypeFromString(EDataType eDataType,
+			String initialValue) {
+		StateType result = StateType.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue
+					+ "' is not a valid enumerator of '" + eDataType.getName()
+					+ "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertStateTypeToString(EDataType eDataType,
+			Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**
