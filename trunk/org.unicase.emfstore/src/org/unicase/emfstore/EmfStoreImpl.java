@@ -87,8 +87,11 @@ public class EmfStoreImpl implements EmfStore {
 		Version version = ChangemanagmentFactory.eINSTANCE.createVersion();
 		
 		Version previousHeadVersion = versions.get(versions.size() - 1);
+		
 		Project project = changePackage.getProjectState();
+		
 		changePackage.getFowardDelta().apply();
+		
 		previousHeadVersion.setProjectState(null);
 		version.setProjectState(project);
 		
@@ -120,7 +123,8 @@ public class EmfStoreImpl implements EmfStore {
 		PrimaryVersionSpec resolvedTarget = resolveVersionSpec(projectId,
 				target);
 		List<ChangePackage> result = new ArrayList<ChangePackage>();
-		if (resolvedSource.equals(resolvedTarget)) {
+		if (resolvedSource.getIdentifier() > resolvedTarget.getIdentifier()) {
+			//TODO: throw exception?
 			return result;
 		}
 		resolvedSource.setIdentifier(resolvedSource.getIdentifier() + 1);
@@ -129,7 +133,6 @@ public class EmfStoreImpl implements EmfStore {
 				resolvedTarget)) {
 			ChangePackage changes = version.getChanges();
 			//FIXME hack add project to changepackage 
-			
 			changes.setProjectState(version.getProjectState());
 			result.add(changes);
 		}
