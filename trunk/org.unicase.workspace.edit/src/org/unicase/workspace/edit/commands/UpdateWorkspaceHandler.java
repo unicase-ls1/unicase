@@ -14,6 +14,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
+import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.ProjectSpace;
 
@@ -52,12 +53,15 @@ public class UpdateWorkspaceHandler extends AbstractHandler {
 			return null;
 		}
 
-		ProjectSpace projectSpace = (ProjectSpace) o;
-
+		final ProjectSpace projectSpace = (ProjectSpace) o;
+		
 		// TODO: handle exception
 		try {
 			projectSpace.update();
 		} catch (EmfStoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
