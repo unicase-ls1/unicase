@@ -686,7 +686,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @generated NOT
 	 */
 	public void update() throws EmfStoreException {
-		update(ChangemanagmentFactory.eINSTANCE.createHeadVersionSpec());
+		update(VersionSpec.HEAD_VERSION);
 	}
 
 	/**
