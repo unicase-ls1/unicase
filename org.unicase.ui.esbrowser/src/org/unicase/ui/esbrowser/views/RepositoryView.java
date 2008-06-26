@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kögel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * </copyright>
  *
  * $Id$
@@ -101,7 +101,8 @@ public class RepositoryView extends ViewPart {
 				if (session == null || session.getPassword() == null) {
 					RepositoryLoginDialog dialog = new RepositoryLoginDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(), session,
 							serverInfo);
-					session = dialog.open();
+					dialog.open();
+					session = dialog.getUsersession();
 				}
 				if (session == null) {
 					return new Object[0];
@@ -234,10 +235,6 @@ public class RepositoryView extends ViewPart {
 		manager.add(addRepository);
 	}
 
-	// private RepositoryView getViewInstance() {
-	// return this;
-	// }
-
 	private void makeActions() {
 		projectCheckout = new Action() {
 			@Override
@@ -261,7 +258,8 @@ public class RepositoryView extends ViewPart {
 			public void run() {
 				ISelection selection = viewer.getSelection();
 				Object obj = ((IStructuredSelection) selection).getFirstElement();
-				viewer.refresh(obj);
+				viewer.collapseToLevel(obj,-1);
+				viewer.expandToLevel(obj, -1);
 			}
 		};
 		serverLogin.setText("Login [last usersession]");
