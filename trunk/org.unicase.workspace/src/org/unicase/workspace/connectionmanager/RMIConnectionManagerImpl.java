@@ -17,6 +17,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.unicase.emfstore.EmfStore;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.connection.rmi.RMIConnectionHandler;
 import org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade;
@@ -33,6 +37,7 @@ import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.UnknownSessionException;
 import org.unicase.model.Project;
+import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
 
 /**
@@ -95,13 +100,30 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 			throws EmfStoreException {
 		List<ChangePackage> result = new ArrayList<ChangePackage>();
 		try {
-			for (String str : getFacade(sessionId).getChanges(
+			ProjectSpace ps = (ProjectSpace) projectId.eContainer();
+			Project project = ps.getProject();
+			ps.setProject(null);
+			
+			for (String changePackage : getFacade(sessionId).getChanges(
 					RMIUtil.eObjectToString(sessionId),
 					RMIUtil.eObjectToString(projectId),
 					RMIUtil.eObjectToString(source),
 					RMIUtil.eObjectToString(target))) {
-				result.add((ChangePackage) RMIUtil.stringToEObject(str));
+				
+				System.out.println(changePackage);
+				
+				//prepare resource set for change package deserialization
+				ResourceSet tempResourceSet = new ResourceSetImpl();
+				//copy project and add to virtual resource
+				Resource projectResource = tempResourceSet.createResource(EmfStore.PROJECT_URI);
+				projectResource.getContents().add(project);
+				Resource changePackageResource = tempResourceSet.createResource(EmfStore.CHANGEPACKAGE_URI);
+				ChangePackage changePackageObject = (ChangePackage) RMIUtil.stringToEObject(changePackage, changePackageResource);
+				changePackageObject.setProjectState(project);
+				result.add(changePackageObject);
 			}
+			ps.setProject(project);
+			
 		} catch (UnsupportedEncodingException e) {
 			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
 		} catch (RemoteException e) {
