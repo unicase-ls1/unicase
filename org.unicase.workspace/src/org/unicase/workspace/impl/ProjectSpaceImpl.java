@@ -625,6 +625,10 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			protected void doExecute() {
 				try {
+					
+					//FIXME: GUI has to relogin.
+					getUsersession().logIn();
+					
 					stopChangeRecording();
 					PrimaryVersionSpec resolvedVersion = resolveVersionSpec(VersionSpec.HEAD_VERSION);
 					// FIXME insert not and write equals method
@@ -649,7 +653,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 					// disconnect change package and add to virtual resource
 					ChangePackage changePackage = getLocalChanges();
 					// remove backward delta information
-					changePackage.setBackwardDelta(null );
+					changePackage.setBackwardDelta(null);
 
 					setLocalChanges(null);
 					Resource changePackageResource = tempResourceSet
@@ -663,7 +667,6 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 					// FIMXE: put this somewhere else
 					// reconnect project to projectSpace
 					setProjectGen(project);
-					setProjectName("test");
 					setBaseVersion(newBaseVersion);
 					// MK: save projectspace if single resource
 					startChangeRecording();
@@ -695,30 +698,48 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @see org.unicase.workspace.ProjectSpace#update(org.unicase.emfstore.esmodel.changemanagment.VersionSpec)
 	 * @generated NOT
 	 */
-	public void update(VersionSpec version) throws EmfStoreException {
+	public void update(final VersionSpec version) throws EmfStoreException {
 		// TODO: update
-		final ConnectionManager cm = WorkspaceManager.getInstance()
-				.getConnectionManager();
-		PrimaryVersionSpec resolvedVersion = cm.resolveVersionSpec(
-				getUsersession().getSessionId(), getProjectId(), version);
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain");
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			protected void doExecute() {
+				try {
+					
+					//FIXME: GUI has to relogin.
+					getUsersession().logIn();
+					
+					final ConnectionManager cm = WorkspaceManager.getInstance()
+							.getConnectionManager();
+					PrimaryVersionSpec resolvedVersion = cm.resolveVersionSpec(
+							getUsersession().getSessionId(), getProjectId(),
+							version);
 
-		if (getBaseVersion().getIdentifier() > resolvedVersion.getIdentifier()) {
-			return;
-		}
+					if (getBaseVersion().getIdentifier() > resolvedVersion
+							.getIdentifier()) {
+						return;
+					}
 
-		stopChangeRecording();
+					stopChangeRecording();
 
-		List<ChangePackage> changes = cm.getChanges(getUsersession()
-				.getSessionId(), getProjectId(), getBaseVersion(),
-				resolvedVersion);
-		Project project = changes.get(0).getProjectState();
-		for (ChangePackage change : changes) {
-			change.getFowardDelta().apply();
-		}
-		setProjectGen(project);
-		setBaseVersion(resolvedVersion);
+					List<ChangePackage> changes = cm.getChanges(
+							getUsersession().getSessionId(), getProjectId(),
+							getBaseVersion(), resolvedVersion);
+					Project project = getProject();
+					for (ChangePackage change : changes) {
+						//FIXME hack to set project state
+						project = change.getProjectState();
+						change.getFowardDelta().apply();
+					}
+					setProjectGen(project);
+					setBaseVersion(resolvedVersion);
 
-		startChangeRecording();
+					startChangeRecording();
+				} catch (Exception e) {
+						e.printStackTrace();
+				}
+			}
+		});
 	}
 
 	/**
