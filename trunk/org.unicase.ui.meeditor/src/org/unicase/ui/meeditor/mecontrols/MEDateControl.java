@@ -30,8 +30,7 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
  * 
  * @author shterev
  */
-public class MEDateControl extends AbstractMEControl implements MEControl,
-		SelectionListener {
+public class MEDateControl extends AbstractMEControl implements MEControl, SelectionListener {
 
 	private EAttribute attribute;
 	private CDateTime widget;
@@ -48,8 +47,7 @@ public class MEDateControl extends AbstractMEControl implements MEControl,
 	 * @param editingDomain
 	 *            see {@link AbstractMEControl}
 	 */
-	public MEDateControl(EAttribute attribute, FormToolkit toolkit,
-			EObject modelElement, EditingDomain editingDomain) {
+	public MEDateControl(EAttribute attribute, FormToolkit toolkit, EObject modelElement, EditingDomain editingDomain) {
 		super(editingDomain, modelElement, toolkit);
 		this.attribute = attribute;
 		// modelElement.eAdapters().add(new AdapterImpl() {
@@ -72,8 +70,7 @@ public class MEDateControl extends AbstractMEControl implements MEControl,
 		Composite composite = toolkit.createComposite(parent);
 		composite.setLayout(new GridLayout(2, false));
 
-		widget = new CDateTime(composite, CDT.BORDER | CDT.DROP_DOWN
-				| CDT.COMPACT);
+		widget = new CDateTime(composite, CDT.BORDER | CDT.DROP_DOWN | CDT.COMPACT);
 		widget.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		widget.setFormat(CDT.DATE_MEDIUM);
 		widget.addSelectionListener(this);
@@ -93,8 +90,7 @@ public class MEDateControl extends AbstractMEControl implements MEControl,
 	 * {@inheritDoc}
 	 */
 	public void widgetDefaultSelected(SelectionEvent e) {
-		TransactionalEditingDomain domain = TransactionUtil
-				.getEditingDomain(modelElement);
+		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
@@ -104,8 +100,7 @@ public class MEDateControl extends AbstractMEControl implements MEControl,
 	}
 
 	private void update() {
-		TransactionalEditingDomain domain = TransactionUtil
-				.getEditingDomain(modelElement);
+		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {

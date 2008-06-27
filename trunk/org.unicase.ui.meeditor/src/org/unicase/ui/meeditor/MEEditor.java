@@ -22,6 +22,7 @@ import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
 import org.unicase.model.ModelElement;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
+import org.unicase.ui.meeditor.mecontrols.MEControl;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
@@ -42,6 +43,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	private CommandStack commandStack;
 	private ControlFactory controlFactory;
 	private boolean dirty;
+	private MEEditorPage form;
 
 	/**
 	 * Default constructor.
@@ -56,7 +58,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	@Override
 	protected void addPages() {
 
-		FormPage form = new MEEditorPage(this, "1", "Standard View",
+		form = new MEEditorPage(this, "1", "Standard View",
 				editingDomain, modelElement);
 		try {
 			addPage(form);
@@ -175,6 +177,14 @@ public class MEEditor extends SharedHeaderFormEditor {
 	@Override
 	public boolean isDirty() {
 		return true;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public void dispose(){
+		super.dispose();
+		form.dispose();
 	}
 
 }

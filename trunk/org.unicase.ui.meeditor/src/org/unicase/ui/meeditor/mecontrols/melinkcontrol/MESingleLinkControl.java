@@ -130,7 +130,7 @@ public class MESingleLinkControl extends AbstractMEControl {
 
 	private void updateLink() {
 		if (meControl != null) {
-			meControl.getLinkComposite().dispose();
+			meControl.dispose();
 		}
 
 		Composite linkComposite = toolkit.createComposite(linkArea);
