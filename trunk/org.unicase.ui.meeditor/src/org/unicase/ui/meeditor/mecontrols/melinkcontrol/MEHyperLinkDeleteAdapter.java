@@ -52,6 +52,7 @@ public class MEHyperLinkDeleteAdapter extends HyperlinkAdapter implements IHyper
 	public void linkActivated(HyperlinkEvent e) {
 		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			
 			@Override
 			protected void doExecute() {
 				Object object = modelElement.eGet(reference);
@@ -68,6 +69,7 @@ public class MEHyperLinkDeleteAdapter extends HyperlinkAdapter implements IHyper
 				}
 
 				if (object instanceof EList) {
+					@SuppressWarnings("unchecked")
 					EList<EObject> list = (EList<EObject>) object;
 					list.remove(opposite);
 					return;

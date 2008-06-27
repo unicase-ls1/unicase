@@ -82,6 +82,8 @@ public class MEEditorPage extends FormPage {
 		createMultiReferences();
 
 		createToolbar();
+		this.form.layout();
+		this.form.pack();
 
 	}
 
