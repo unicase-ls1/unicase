@@ -50,6 +50,7 @@ public class METextControl extends AbstractMEControl implements MEControl {
 	}
 
 	/**
+	 * {@inheritDoc}
 	 * @return A Text Control. {@inheritDoc}
 	 */
 	public Control createControl(Composite parent, int style) {

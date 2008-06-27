@@ -178,13 +178,5 @@ public class MEEditor extends SharedHeaderFormEditor {
 	public boolean isDirty() {
 		return true;
 	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	public void dispose(){
-		super.dispose();
-		form.dispose();
-	}
 
 }

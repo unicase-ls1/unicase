@@ -26,9 +26,11 @@ public interface MEControl {
 	 *            the style for rendering
 	 * @return the control
 	 */
-	public Control createControl(Composite parent, int style);
-	
-	
-	public void dispose();
+	Control createControl(Composite parent, int style);
+
+	/**
+	 * Disposes the control correctly by removing all model listeners.
+	 */
+	void dispose();
 
 }

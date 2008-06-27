@@ -42,23 +42,21 @@ public class MEIntControl extends AbstractMEControl implements MEControl {
 	 * @param editingDomain
 	 *            see {@link AbstractMEControl}
 	 */
-	public MEIntControl(EAttribute attribute, FormToolkit toolkit,
-			EObject modelElement, EditingDomain editingDomain) {
+	public MEIntControl(EAttribute attribute, FormToolkit toolkit, EObject modelElement, EditingDomain editingDomain) {
 		super(editingDomain, modelElement, toolkit);
 		this.attribute = attribute;
 	}
 
 	/**
-	 * @return A spinner for the int value. {@inheritDoc}
+	 * {@inheritDoc}
+	 * @return A spinner for the int value.
 	 */
 	public Control createControl(Composite parent, int style) {
 		spinner = new Spinner(parent, style);
 
-		IObservableValue model = EMFEditObservables.observeValue(editingDomain,
-				modelElement, attribute);
+		IObservableValue model = EMFEditObservables.observeValue(editingDomain, modelElement, attribute);
 		EMFDataBindingContext dbc = new EMFDataBindingContext();
-		dbc.bindValue(SWTObservables.observeSelection(spinner), model, null,
-				null);
+		dbc.bindValue(SWTObservables.observeSelection(spinner), model, null, null);
 
 		return spinner;
 	}
