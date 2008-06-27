@@ -8,8 +8,6 @@ package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
-import java.util.List;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -35,7 +33,6 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
-import org.eclipse.ui.forms.HyperlinkGroup;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
 import org.unicase.model.ModelElement;
@@ -66,15 +63,16 @@ public class MEMultiLinkControl extends AbstractMEControl {
 	/**
 	 * Default constructor. Default constructor.
 	 * 
-	 * @param editingDomain
-	 *            the editing domain
-	 * @param modelElement
-	 *            the ME
 	 * @param toolkit
-	 *            gui toolkit used for rendering
+	 *            see {@link AbstractMEControl}
+	 * @param modelElement
+	 *            see {@link AbstractMEControl}
+	 * @param editingDomain
+	 *            see {@link AbstractMEControl}
 	 * @param reference
 	 *            the reference link
 	 * @param descriptor
+	 * 				?
 	 */
 	public MEMultiLinkControl(EObject modelElement, EReference reference, FormToolkit toolkit, EditingDomain editingDomain,
 			IItemPropertyDescriptor descriptor) {
@@ -100,7 +98,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 	 */
 	public Control createControl(final Composite parent, int style) {
 		this.style = style;
-		section = toolkit.createSection(parent, Section.DESCRIPTION | Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
+		section = toolkit.createSection(parent, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
 		section.setText(descriptor.getDisplayName(modelElement));
 		composite = toolkit.createComposite(section, style);
 		composite.setLayout(new GridLayout());
@@ -182,11 +180,15 @@ public class MEMultiLinkControl extends AbstractMEControl {
 				}
 			}
 		});
-		
 		linkArea.layout(true);
-		section.layout(true);
+		
+		section.redraw();
+		section.update();//layout(true);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void dispose(){
 		modelElement.eAdapters().remove(eAdapter);

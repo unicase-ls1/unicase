@@ -60,7 +60,7 @@ public class METextAreaControl extends AbstractMEControl implements MEControl {
 	 * {@inheritDoc}
 	 */
 	public Control createControl(Composite parent, int style) {
-		section = toolkit.createSection(parent, Section.DESCRIPTION | Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
+		section = toolkit.createSection(parent, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
 		section.setText(attribute.getName());
 		Composite composite = toolkit.createComposite(section, style);
 		composite.setLayout(new GridLayout(2, true));

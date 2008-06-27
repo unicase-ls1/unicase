@@ -155,7 +155,7 @@ public class MEEditorPage extends FormPage {
 	private void createSimpleAttributes() {
 
 		Section attributeSection = toolkit.createSection(body,
-				Section.DESCRIPTION | Section.TITLE_BAR | Section.TWISTIE
+				Section.TITLE_BAR | Section.TWISTIE
 						| Section.EXPANDED);
 		attributeSection.setText("Attributes");
 		Composite attributeComposite = toolkit

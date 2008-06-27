@@ -69,7 +69,8 @@ public class ControlFactory {
 		if (feature instanceof EAttribute) {
 
 			if (itemPropertyDescriptor.isMultiLine(modelElement)) {
-				return createMETextAreaControl((EAttribute) feature);
+				//AS: deactivated until the RichText is implemented.
+				//return createMETextAreaControl((EAttribute) feature);
 			}
 			if (feature.getEType().getInstanceClass().equals(boolean.class)) {
 				return createMEBoolControl((EAttribute) feature);
@@ -120,6 +121,7 @@ public class ControlFactory {
 
 	}
 
+	@SuppressWarnings("unused")
 	private MEControl createMETextAreaControl(EAttribute attribute) {
 		return new METextAreaControl(attribute, toolkit, modelElement,
 				editingDomain);
