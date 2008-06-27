@@ -19,6 +19,7 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryLabelProvider;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
@@ -184,7 +185,7 @@ public class RepositoryView extends ViewPart {
 		
 		//TODO: fix problem with registry
 		ComposedAdapterFactory composedAdapterFactory = new ComposedAdapterFactory(factories);
-		viewer.setLabelProvider(new AdapterFactoryLabelProvider(composedAdapterFactory));
+		viewer.setLabelProvider(new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
 
 		viewer.setSorter(new ViewerSorter());
 		viewer.setInput(getViewSite());
