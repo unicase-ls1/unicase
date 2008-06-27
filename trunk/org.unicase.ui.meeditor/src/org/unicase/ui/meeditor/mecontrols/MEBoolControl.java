@@ -43,8 +43,7 @@ public class MEBoolControl extends AbstractMEControl implements MEControl {
 	 * @param editingDomain
 	 *            see {@link AbstractMEControl}
 	 */
-	public MEBoolControl(EAttribute attribute, FormToolkit toolkit,
-			EObject modelElement, EditingDomain editingDomain) {
+	public MEBoolControl(EAttribute attribute, FormToolkit toolkit, EObject modelElement, EditingDomain editingDomain) {
 		super(editingDomain, modelElement, toolkit);
 		this.attribute = attribute;
 	}
@@ -56,12 +55,9 @@ public class MEBoolControl extends AbstractMEControl implements MEControl {
 	 */
 	public Control createControl(Composite parent, int style) {
 		check = toolkit.createButton(parent, "", SWT.CHECK);
-		IObservableValue model = EMFEditObservables.observeValue(editingDomain,
-				modelElement, attribute);
+		IObservableValue model = EMFEditObservables.observeValue(editingDomain, modelElement, attribute);
 		EMFDataBindingContext dbc = new EMFDataBindingContext();
-		dbc
-				.bindValue(SWTObservables.observeSelection(check), model, null,
-						null);
+		dbc.bindValue(SWTObservables.observeSelection(check), model, null, null);
 		return check;
 	}
 

@@ -85,7 +85,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 		eAdapter = new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
-				if (msg.getFeature().equals(eReference)) {
+				if (msg.getFeature()!=null && msg.getFeature().equals(eReference)) {
 					rebuildLinkSection();
 				}
 				super.notifyChanged(msg);

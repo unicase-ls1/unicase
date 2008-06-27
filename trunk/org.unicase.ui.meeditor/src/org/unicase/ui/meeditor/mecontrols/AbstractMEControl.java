@@ -18,7 +18,6 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
  */
 public abstract class AbstractMEControl implements MEControl {
 
-	// AS: change to private and generate getters?
 	protected FormToolkit toolkit;
 	protected EObject modelElement;
 	protected EditingDomain editingDomain;
@@ -41,6 +40,9 @@ public abstract class AbstractMEControl implements MEControl {
 		this.toolkit = toolkit;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public void dispose(){
 		
 	}

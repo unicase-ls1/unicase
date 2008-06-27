@@ -144,6 +144,7 @@ public class MEEditorPage extends FormPage {
 			MEControl meControl = controlFactory
 					.createControl(itemPropertyDescriptor);
 			if (meControl != null) {
+				meControls.add(meControl);
 				Control control = meControl.createControl(body, SWT.WRAP);
 				control.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 			}
@@ -171,6 +172,7 @@ public class MEEditorPage extends FormPage {
 					.getDisplayName(modelElement));
 			MEControl meControl = controlFactory
 					.createControl(itemPropertyDescriptor);
+			meControls.add(meControl);
 			Control control = meControl.createControl(attributeComposite,
 					SWT.WRAP);
 			control.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
