@@ -181,9 +181,12 @@ public class MEMultiLinkControl extends AbstractMEControl {
 			}
 		});
 		linkArea.layout(true);
-		
-		section.redraw();
-		section.update();//layout(true);
+		section.setExpanded(false);
+		section.setExpanded(true);
+//		section.pack();
+//		section.layout(true);
+//		section.redraw();
+//		section.update();//layout(true);
 	}
 	
 	/**
