@@ -11,15 +11,10 @@
 <plugin>
     
   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-    <factory 
-       uri = "http://unicase.org/esmodel" 
-       class = "org.unicase.emfstore.esmodel.provider.EsmodelItemProviderAdapterFactory" 
-       supportedTypes = 
-         "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
-          org.eclipse.emf.edit.provider.IStructuredItemContentProvider
-          org.eclipse.emf.edit.provider.ITreeItemContentProvider
-          org.eclipse.emf.edit.provider.IItemLabelProvider
-          org.eclipse.emf.edit.provider.IItemPropertySource" />
+    <factory
+          class="org.unicase.emfstore.esmodel.provider.EsmodelItemProviderAdapterFactory"
+          supportedTypes="org.unicaseorg.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource.model.edit.factory1"
+          uri="http://unicase.org/emfstore/esmodel"/>
   </extension>
     
   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
