@@ -178,5 +178,15 @@ public class MEEditorPage extends FormPage {
 		attributeSection.setClient(attributeComposite);
 
 	}
-
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void dispose(){
+		for(MEControl control : meControls){
+			control.dispose();
+		}
+		super.dispose();
+	}
 }

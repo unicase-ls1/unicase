@@ -40,5 +40,9 @@ public abstract class AbstractMEControl implements MEControl {
 		this.modelElement = modelElement;
 		this.toolkit = toolkit;
 	}
+	
+	public void dispose(){
+		
+	}
 
 }

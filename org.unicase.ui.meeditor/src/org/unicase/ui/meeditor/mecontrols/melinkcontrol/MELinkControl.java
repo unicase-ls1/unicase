@@ -50,9 +50,7 @@ public class MELinkControl extends AbstractMEControl {
 	 * @param reference
 	 *            the reference link
 	 */
-	public MELinkControl(EditingDomain editingDomain, EObject modelElement,
-			FormToolkit toolkit, EObject contextModelElement,
-			EReference reference) {
+	public MELinkControl(EditingDomain editingDomain, EObject modelElement, FormToolkit toolkit, EObject contextModelElement, EReference reference) {
 		super(editingDomain, modelElement, toolkit);
 		this.contextModelElement = contextModelElement;
 		this.reference = reference;
@@ -65,32 +63,25 @@ public class MELinkControl extends AbstractMEControl {
 		linkComposite = toolkit.createComposite(parent, style);
 		linkComposite.setLayout(new GridLayout(3, false));
 		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(
-				new ComposedAdapterFactory(
-						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+				new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		Image image = labelProvider.getImage(modelElement);
-		ImageHyperlink imageHyperlink = toolkit.createImageHyperlink(
-				linkComposite, style);
+		ImageHyperlink imageHyperlink = toolkit.createImageHyperlink(linkComposite, style);
 		imageHyperlink.setImage(image);
-		Hyperlink hyperlink = toolkit.createHyperlink(linkComposite,
-				labelProvider.getText(modelElement), style);
-		IHyperlinkListener listener = new MEHyperLinkAdapter(
-				(ModelElement) modelElement);
+		Hyperlink hyperlink = toolkit.createHyperlink(linkComposite, labelProvider.getText(modelElement), style);
+		IHyperlinkListener listener = new MEHyperLinkAdapter((ModelElement) modelElement);
 		hyperlink.addHyperlinkListener(listener);
 		imageHyperlink.addHyperlinkListener(listener);
-		ImageHyperlink deleteLink = toolkit.createImageHyperlink(linkComposite,
-				style);
-		deleteLink.setImage(PlatformUI.getWorkbench().getSharedImages()
-				.getImage(ISharedImages.IMG_TOOL_DELETE));
+		ImageHyperlink deleteLink = toolkit.createImageHyperlink(linkComposite, style);
+		deleteLink.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_DELETE));
 
-		deleteLink.addHyperlinkListener(new MEHyperLinkDeleteAdapter(
-				contextModelElement, reference, modelElement));
+		deleteLink.addHyperlinkListener(new MEHyperLinkDeleteAdapter(contextModelElement, reference, modelElement));
 		return linkComposite;
 	}
 
 	/**
-	 * @return the {@link Composite} for this link control
+	 * Disposes the Composite of this {@link MELinkControl}.
 	 */
-	public Composite getLinkComposite() {
-		return this.linkComposite;
+	public void dispose() {
+		linkComposite.dispose();
 	}
 }
