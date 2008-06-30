@@ -10,5 +10,9 @@
             name="model test view"
             restorable="true">
       </view>
+      <category
+            id="org.unicase"
+            name="unicase">
+      </category>
    </extension>
 </plugin>
