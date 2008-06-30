@@ -14,7 +14,7 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.model.testproject.TestProject;
+import org.unicase.ui.test.TestProject;
 
 
 public class TestView extends ViewPart {
