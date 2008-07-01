@@ -240,13 +240,13 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 	 *      java.lang.String, java.lang.String)
 	 */
 	public String login(String username, String password, String serverInfo)
-			throws RemoteException, EmfStoreException, AccessControlException {
+			throws RemoteException, AccessControlException {
 		LOGGER.debug("Client call on login RECEIVED.");
 		try {
 			return RMIUtil.eObjectToString(accessControl.logIn(username,
 					password));
 		} catch (IOException e) {
-			throw new EmfStoreException(SERIALEX,e);
+			throw new AccessControlException(SERIALEX);
 		}
 	}
 

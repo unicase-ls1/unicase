@@ -128,8 +128,7 @@ public interface RMIEmfStoreFacade extends Remote {
 	 * @return the session id
 	 * @throws RemoteException if RMI remote invocation fails
 	 * @throws AccessControlException if access was denied
-	 * @throws EmfStoreException 
 	 */
 	 String login(String username, String password, String serverInfo)
-			throws RemoteException, AccessControlException, EmfStoreException;
+			throws RemoteException, AccessControlException;
 }
