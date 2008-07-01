@@ -42,6 +42,22 @@
             file="contexts.xml">
       </contexts>
    </extension>
+   <extension
+        point="org.eclipse.ui.decorators">
+     <decorator
+           adaptable="true"
+           class="org.unicase.ui.esbrowser.LoginDecorator"
+           id="org.unicase.ui.esbrowser.LoginDecorator"
+           label="Login Decorator"
+           lightweight="true"
+           state="true">
+        <enablement>
+           <objectClass
+                 name="org.unicase.workspace.ServerInfo">
+           </objectClass>
+        </enablement>
+     </decorator>
+  </extension>
    
 
 </plugin>

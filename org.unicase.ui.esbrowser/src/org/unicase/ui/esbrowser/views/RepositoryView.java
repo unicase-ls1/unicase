@@ -8,18 +8,15 @@ package org.unicase.ui.esbrowser.views;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
-import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryLabelProvider;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
@@ -27,6 +24,7 @@ import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
@@ -40,13 +38,13 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
-import org.unicase.emfstore.esmodel.provider.EsmodelItemProviderAdapterFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.model.provider.ModelItemProviderAdapterFactory;
+import org.unicase.ui.esbrowser.LoginDecorator;
 import org.unicase.ui.esbrowser.dialogs.RepositoryCreateProjectDialog;
 import org.unicase.ui.esbrowser.dialogs.RepositoryLoginDialog;
 import org.unicase.ui.esbrowser.dialogs.RepositoryWizard;
@@ -177,16 +175,12 @@ public class RepositoryView extends ViewPart {
 	public void createPartControl(Composite parent) {
 		viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
 		viewer.setContentProvider(new WorkspaceRootContentProvider());
-		
-		List<AdapterFactory> factories = new ArrayList<AdapterFactory>();
-		factories.add(new WorkspaceItemProviderAdapterFactory());
-		factories.add(new EsmodelItemProviderAdapterFactory());
-		factories.add(new ModelItemProviderAdapterFactory());
-		
-		//TODO: fix problem with registry
-		ComposedAdapterFactory composedAdapterFactory = new ComposedAdapterFactory(factories);
-		viewer.setLabelProvider(new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
+		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		viewer.setLabelProvider(new
+				DecoratingLabelProvider(adapterFactoryLabelProvider,
+				((DecoratingLabelProvider)WorkbenchLabelProvider.getDecoratingWorkbenchLabelProvider()).getLabelDecorator()));
 
+		
 		viewer.setSorter(new ViewerSorter());
 		viewer.setInput(getViewSite());
 
@@ -272,15 +266,10 @@ public class RepositoryView extends ViewPart {
 			public void run() {
 				ISelection selection = viewer.getSelection();
 				Object obj = ((IStructuredSelection) selection).getFirstElement();
-				final ServerInfo element = (ServerInfo) obj;
+				ServerInfo element = (ServerInfo) obj;
+//				element.
 				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
-				domain.getCommandStack().execute(new RecordingCommand(domain) {
-					@Override
-					protected void doExecute() {
-							element.setLastUsersession(null);
-							WorkspaceManager.getInstance().getCurrentWorkspace().save();
-					}
-				});
+//				domain.getCommandStack().execute(new SetCommand(domain, element, obj..feature, null));
 				serverLogin.run();
 			}
 		};

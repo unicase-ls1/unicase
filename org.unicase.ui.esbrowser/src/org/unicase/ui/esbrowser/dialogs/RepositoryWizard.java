@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kögel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * </copyright>
  *
  * $Id$
@@ -21,7 +21,6 @@ import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchWizard;
 import org.unicase.ui.esbrowser.views.RepositoryView;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Workspace;
@@ -45,6 +44,7 @@ public class RepositoryWizard extends Wizard implements INewWizard {
 	private IWorkbench workbench;
 
 	private RepositoryView view;
+	private boolean edit;
 
 	/**
 	 * Default constructor.
@@ -92,6 +92,7 @@ public class RepositoryWizard extends Wizard implements INewWizard {
 			ServerInfo serverInfo) {
 		init(workbench, selection);
 		this.serverInfo = serverInfo;
+		this.edit = true;
 	}
 
 	/**
@@ -115,7 +116,9 @@ public class RepositoryWizard extends Wizard implements INewWizard {
 					// save serverInfo to workspace
 					Workspace workspace = WorkspaceManager.getInstance()
 					.getCurrentWorkspace();
-					workspace.getServerInfos().add(RepositoryWizard.this.serverInfo);
+					if(!RepositoryWizard.this.edit){
+						workspace.getServerInfos().add(RepositoryWizard.this.serverInfo);
+					}
 					workspace.save();
 				}
 			});
@@ -236,12 +239,18 @@ class RepositoryMainPage extends WizardPage {
 	 * page
 	 */
 	private void saveDataToModel() {
-		RepositoryWizard wizard = (RepositoryWizard) getWizard();
-		ServerInfo serverInfo = wizard.getServerInfo();
-		serverInfo.setDisplayName(displayName.getText());
-		serverInfo.setName(name.getText());
-		serverInfo.setUrl(url.getText());
-		serverInfo.setPort(port.getSelection());
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
+			protected void doExecute() {
+				RepositoryWizard wizard = (RepositoryWizard) getWizard();
+				ServerInfo serverInfo = wizard.getServerInfo();
+				serverInfo.setDisplayName(displayName.getText());
+				serverInfo.setName(name.getText());
+				serverInfo.setUrl(url.getText());
+				serverInfo.setPort(port.getSelection());
+			}
+		});
 	}
 
 	private static boolean isTextNonEmpty(Text t) {
