@@ -52,6 +52,8 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 
 	private static final Log LOGGER = LogFactory
 			.getLog(RMIEmfStoreFacade.class);
+	
+	private static final String SERIALEX = "An exception occured while serializing the objects."; 
 
 	/**
 	 * Default constructor.
@@ -105,13 +107,10 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 					changePackageObject,
 					(LogMessage) RMIUtil.stringToEObject(logMessage)));
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new EmfStoreException(SERIALEX,e);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new EmfStoreException(SERIALEX,e);
 		}
-		throw new IllegalStateException();
 	}
 
 	/**
@@ -158,13 +157,10 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 			}
 			return result;
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new EmfStoreException(SERIALEX,e);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new EmfStoreException(SERIALEX,e);
 		}
-		return null;
 	}
 
 	/**
@@ -186,14 +182,12 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 					.stringToEObject(target))) {
 				result.add(RMIUtil.eObjectToString(info));
 			}
+			return result;
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new EmfStoreException(SERIALEX,e);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new EmfStoreException(SERIALEX,e);
 		}
-		return result;
 	}
 
 	/**
@@ -211,13 +205,10 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 					(ProjectId) RMIUtil.stringToEObject(projectId),
 					(VersionSpec) RMIUtil.stringToEObject(versionSpec)));
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new EmfStoreException(SERIALEX,e);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new EmfStoreException(SERIALEX,e);
 		}
-		return null;
 	}
 
 	/**
@@ -236,13 +227,10 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 			}
 			return result;
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new EmfStoreException(SERIALEX,e);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new EmfStoreException(SERIALEX,e);
 		}
-		return null;
 	}
 
 	/**
@@ -252,13 +240,13 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 	 *      java.lang.String, java.lang.String)
 	 */
 	public String login(String username, String password, String serverInfo)
-			throws RemoteException, AccessControlException {
+			throws RemoteException, EmfStoreException, AccessControlException {
 		LOGGER.debug("Client call on login RECEIVED.");
 		try {
 			return RMIUtil.eObjectToString(accessControl.logIn(username,
 					password));
 		} catch (IOException e) {
-			throw new RemoteException();
+			throw new EmfStoreException(SERIALEX,e);
 		}
 	}
 
@@ -277,13 +265,10 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 					(ProjectId) RMIUtil.stringToEObject(projectId),
 					(VersionSpec) RMIUtil.stringToEObject(versionSpec)));
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new EmfStoreException(SERIALEX,e);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new EmfStoreException(SERIALEX,e);
 		}
-		return null;
 	}
 
 	/**
@@ -302,24 +287,9 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 					description, (LogMessage) RMIUtil
 							.stringToEObject(logMessage)));
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new EmfStoreException(SERIALEX,e);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new EmfStoreException(SERIALEX,e);
 		}
-		return null;
 	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade#sendString(java.lang.String)
-	 */
-	public void sendString(String str) throws RemoteException {
-		System.out.println("....");
-		System.out.println(str);
-		System.out.println("....");
-	}
-
 }
