@@ -196,7 +196,7 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements
 	public String getText(Object object) {
 		String label = ((ServerInfo) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_ServerInfo_type")
-				: getString("_UI_ServerInfo_type") + " " + label;
+				: label;
 	}
 
 	/**
