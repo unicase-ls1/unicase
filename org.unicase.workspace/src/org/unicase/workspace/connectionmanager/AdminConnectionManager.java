@@ -4,4 +4,8 @@ import org.unicase.emfstore.AdminEmfStore;
 
 public interface AdminConnectionManager extends AdminEmfStore {
 
+	
+	
+	
+
 }
