@@ -17,6 +17,8 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.unicase.workspace.connectionmanager.AdminConnectionManager;
+import org.unicase.workspace.connectionmanager.AdminConnectionManagerStub;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.connectionmanager.RMIConnectionManagerImpl;
 
@@ -36,6 +38,7 @@ public final class WorkspaceManager {
 
 	private Workspace currentWorkspace;
 	private ConnectionManager connectionManager;
+	private AdminConnectionManager adminConnectionManager;
 
 	/**
 	 * Get an instance of the workspace manager. Will create an instance if no
@@ -59,9 +62,12 @@ public final class WorkspaceManager {
 	 */
 	private WorkspaceManager() {
 		this.connectionManager = initConnectionManager();
+		this.adminConnectionManager = initAdminConnectionManager();
 		this.currentWorkspace = initWorkSpace();
-
+		
 	}
+
+	
 
 	/**
 	 * Initialize the connection manager of the workspace. The connection
@@ -74,6 +80,20 @@ public final class WorkspaceManager {
 	private ConnectionManager initConnectionManager() {
 		// return new StubConnectionManagerImpl();
 		return new RMIConnectionManagerImpl();
+	}
+	
+	
+	/**
+	 * Initialize the connection manager of the workspace. The connection
+	 * manager connects the workspace with the emf store.
+	 * 
+	 * @return the admin connection manager
+	 * 
+	 * @generated NOT
+	 */
+	private AdminConnectionManager initAdminConnectionManager() {
+		
+		return new AdminConnectionManagerStub();
 	}
 
 	/**
@@ -150,5 +170,15 @@ public final class WorkspaceManager {
 	 */
 	public ConnectionManager getConnectionManager() {
 		return connectionManager;
+	}
+	
+	/**
+	 * Get the admin connection manager. Return the admin connection manager for this
+	 * workspace.
+	 * 
+	 * @return the connectionManager
+	 */
+	public AdminConnectionManager getAdminConnectionManager() {
+		return adminConnectionManager;
 	}
 }
