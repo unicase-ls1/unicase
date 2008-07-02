@@ -38,7 +38,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ProjectInfo> projects;
+	protected EList<ProjectId> projects;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -61,10 +61,10 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ProjectInfo> getProjects() {
+	public EList<ProjectId> getProjects() {
 		if (projects == null) {
-			projects = new EObjectResolvingEList<ProjectInfo>(
-					ProjectInfo.class, this, RolesPackage.ROLE__PROJECTS);
+			projects = new EObjectResolvingEList<ProjectId>(ProjectId.class,
+					this, RolesPackage.ROLE__PROJECTS);
 		}
 		return projects;
 	}
@@ -157,7 +157,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 		switch (featureID) {
 		case RolesPackage.ROLE__PROJECTS:
 			getProjects().clear();
-			getProjects().addAll((Collection<? extends ProjectInfo>) newValue);
+			getProjects().addAll((Collection<? extends ProjectId>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
