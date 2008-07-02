@@ -12,7 +12,12 @@ public interface AdminEmfStore {
 	public EList<ACGroup> getGroups();
 	public EList<ACUser> getUsers();
 	public EList<ACOrgUnit> getOrgUnits();
+	
 	public EList<ACGroup> getGroups(ACUser user);
+	
 	public EList<ACOrgUnit> getParticipants(ProjectInfo project);
+	
+	public void addParticipant(ProjectInfo project, ACOrgUnit participant);
+	public void removeParticipant(ProjectInfo project, ACOrgUnit participant);
 	
 }
