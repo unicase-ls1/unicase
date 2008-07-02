@@ -26,7 +26,6 @@ public class AdminConnectionManagerStub implements AdminConnectionManager {
 		createDummyProject();
 	}
 	
-	@Override
 	public EList<ProjectInfo> getProjectInfos() {
 		EList<ProjectInfo> result = new BasicEList<ProjectInfo>();
 		Workspace workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
@@ -40,13 +39,11 @@ public class AdminConnectionManagerStub implements AdminConnectionManager {
 			
 	}
 
-	@Override
 	public EList<ACGroup> getGroups() {
 		
 		return groups;
 	}
 
-	@Override
 	public EList<ACOrgUnit> getOrgUnits() {
 		EList<ACOrgUnit> result = new BasicEList<ACOrgUnit>();
 		result.addAll(groups);
@@ -54,13 +51,11 @@ public class AdminConnectionManagerStub implements AdminConnectionManager {
 		return result;
 	}
 
-	@Override
 	public EList<ACUser> getUsers() {
 	
 		return users;
 	}
 
-	@Override
 	public EList<ACGroup> getGroups(ACUser user) {
 		EList<ACGroup> result = new BasicEList<ACGroup>();
 		for(ACGroup group : groups){
@@ -72,7 +67,6 @@ public class AdminConnectionManagerStub implements AdminConnectionManager {
 		return result;
 	}
 
-	@Override
 	public EList<ACOrgUnit> getParticipants(ProjectInfo project) {
 		EList<ACOrgUnit> participants = new BasicEList<ACOrgUnit>();
 		for(ACOrgUnit orgUnit : getOrgUnits()){
@@ -86,7 +80,6 @@ public class AdminConnectionManagerStub implements AdminConnectionManager {
 		return participants;
 	}
 
-	@Override
 	public void addParticipant(ProjectInfo project, ACOrgUnit participant) {
 		ReaderRole readerRole = RolesFactory.eINSTANCE.createReaderRole();
 	    if(participant.getRoles() == null){
@@ -102,7 +95,6 @@ public class AdminConnectionManagerStub implements AdminConnectionManager {
 		
 	}
 
-	@Override
 	public void removeParticipant(ProjectInfo project, ACOrgUnit participant) {
 		for(Role role : participant.getRoles()){
 			if (role.getProjects().contains(project)){
