@@ -22,6 +22,8 @@ import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RolesPackageImpl;
 import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentPackage;
+import org.unicase.emfstore.esmodel.changemanagment.changepackage.ChangepackagePackage;
+import org.unicase.emfstore.esmodel.changemanagment.changepackage.impl.ChangepackagePackageImpl;
 import org.unicase.emfstore.esmodel.changemanagment.impl.ChangemanagmentPackageImpl;
 import org.unicase.emfstore.esmodel.impl.EsmodelPackageImpl;
 import org.unicase.model.ModelPackage;
@@ -129,6 +131,10 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements
 				.getEPackage(ChangemanagmentPackage.eNS_URI) instanceof ChangemanagmentPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(ChangemanagmentPackage.eNS_URI)
 				: ChangemanagmentPackage.eINSTANCE);
+		ChangepackagePackageImpl theChangepackagePackage = (ChangepackagePackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(ChangepackagePackage.eNS_URI) instanceof ChangepackagePackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(ChangepackagePackage.eNS_URI)
+				: ChangepackagePackage.eINSTANCE);
 		RolesPackageImpl theRolesPackage = (RolesPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(RolesPackage.eNS_URI) instanceof RolesPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(RolesPackage.eNS_URI)
@@ -138,12 +144,14 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements
 		theAccesscontrolPackage.createPackageContents();
 		theEsmodelPackage.createPackageContents();
 		theChangemanagmentPackage.createPackageContents();
+		theChangepackagePackage.createPackageContents();
 		theRolesPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theAccesscontrolPackage.initializePackageContents();
 		theEsmodelPackage.initializePackageContents();
 		theChangemanagmentPackage.initializePackageContents();
+		theChangepackagePackage.initializePackageContents();
 		theRolesPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed

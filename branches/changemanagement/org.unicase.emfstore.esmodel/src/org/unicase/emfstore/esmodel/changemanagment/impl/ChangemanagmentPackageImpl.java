@@ -27,6 +27,8 @@ import org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.changemanagment.TagVersionSpec;
 import org.unicase.emfstore.esmodel.changemanagment.Version;
 import org.unicase.emfstore.esmodel.changemanagment.VersionSpec;
+import org.unicase.emfstore.esmodel.changemanagment.changepackage.ChangepackagePackage;
+import org.unicase.emfstore.esmodel.changemanagment.changepackage.impl.ChangepackagePackageImpl;
 import org.unicase.emfstore.esmodel.impl.EsmodelPackageImpl;
 import org.unicase.model.ModelPackage;
 
@@ -159,6 +161,10 @@ public class ChangemanagmentPackageImpl extends EPackageImpl implements
 				.getEPackage(EsmodelPackage.eNS_URI) instanceof EsmodelPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(EsmodelPackage.eNS_URI)
 				: EsmodelPackage.eINSTANCE);
+		ChangepackagePackageImpl theChangepackagePackage = (ChangepackagePackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(ChangepackagePackage.eNS_URI) instanceof ChangepackagePackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(ChangepackagePackage.eNS_URI)
+				: ChangepackagePackage.eINSTANCE);
 		AccesscontrolPackageImpl theAccesscontrolPackage = (AccesscontrolPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(AccesscontrolPackage.eNS_URI) instanceof AccesscontrolPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(AccesscontrolPackage.eNS_URI)
@@ -171,12 +177,14 @@ public class ChangemanagmentPackageImpl extends EPackageImpl implements
 		// Create package meta-data objects
 		theChangemanagmentPackage.createPackageContents();
 		theEsmodelPackage.createPackageContents();
+		theChangepackagePackage.createPackageContents();
 		theAccesscontrolPackage.createPackageContents();
 		theRolesPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theChangemanagmentPackage.initializePackageContents();
 		theEsmodelPackage.initializePackageContents();
+		theChangepackagePackage.initializePackageContents();
 		theAccesscontrolPackage.initializePackageContents();
 		theRolesPackage.initializePackageContents();
 
@@ -495,10 +503,15 @@ public class ChangemanagmentPackageImpl extends EPackageImpl implements
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
+		ChangepackagePackage theChangepackagePackage = (ChangepackagePackage) EPackage.Registry.INSTANCE
+				.getEPackage(ChangepackagePackage.eNS_URI);
 		ChangePackage theChangePackage = (ChangePackage) EPackage.Registry.INSTANCE
 				.getEPackage(ChangePackage.eNS_URI);
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE
 				.getEPackage(ModelPackage.eNS_URI);
+
+		// Add subpackages
+		getESubpackages().add(theChangepackagePackage);
 
 		// Create type parameters
 
