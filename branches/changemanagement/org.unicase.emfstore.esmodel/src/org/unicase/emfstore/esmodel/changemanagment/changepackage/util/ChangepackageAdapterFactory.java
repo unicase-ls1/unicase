@@ -74,8 +74,8 @@ public class ChangepackageAdapterFactory extends AdapterFactoryImpl {
 	 */
 	protected ChangepackageSwitch<Adapter> modelSwitch = new ChangepackageSwitch<Adapter>() {
 		@Override
-		public Adapter caseChangepackage(Changepackage object) {
-			return createChangepackageAdapter();
+		public Adapter caseChangePackage(ChangePackage object) {
+			return createChangePackageAdapter();
 		}
 
 		@Override
@@ -123,16 +123,16 @@ public class ChangepackageAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.changemanagment.changepackage.Changepackage <em>Changepackage</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.changemanagment.changepackage.ChangePackage <em>Change Package</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.unicase.emfstore.esmodel.changemanagment.changepackage.Changepackage
+	 * @see org.unicase.emfstore.esmodel.changemanagment.changepackage.ChangePackage
 	 * @generated
 	 */
-	public Adapter createChangepackageAdapter() {
+	public Adapter createChangePackageAdapter() {
 		return null;
 	}
 

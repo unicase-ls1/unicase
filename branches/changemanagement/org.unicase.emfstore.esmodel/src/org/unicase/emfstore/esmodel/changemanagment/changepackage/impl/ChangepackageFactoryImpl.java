@@ -65,8 +65,8 @@ public class ChangepackageFactoryImpl extends EFactoryImpl implements
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case ChangepackagePackage.CHANGEPACKAGE:
-			return createChangepackage();
+		case ChangepackagePackage.CHANGE_PACKAGE:
+			return createChangePackage();
 		case ChangepackagePackage.ES_OPERATION:
 			return createESOperation();
 		case ChangepackagePackage.ESE_ATTRIBUTE_EVENT:
@@ -84,9 +84,9 @@ public class ChangepackageFactoryImpl extends EFactoryImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Changepackage createChangepackage() {
-		ChangepackageImpl changepackage = new ChangepackageImpl();
-		return changepackage;
+	public ChangePackage createChangePackage() {
+		ChangePackageImpl changePackage = new ChangePackageImpl();
+		return changePackage;
 	}
 
 	/**
@@ -139,10 +139,10 @@ public class ChangepackageFactoryImpl extends EFactoryImpl implements
 		return ChangepackagePackage.eINSTANCE;
 	}
 
-	public Changepackage convertToChangepackage(
+	public ChangePackage convertToChangepackage(
 			ChangeDescription changeDescription) {
-		createChangepackage();
-		
+		createChangePackage();
+
 		return null;
 	}
 

@@ -31,21 +31,21 @@ public interface ChangepackageFactory extends EFactory {
 			.init();
 
 	/**
-	 * Returns a new object of class '<em>Changepackage</em>'.
+	 * Returns a new object of class '<em>Change Package</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Changepackage</em>'.
+	 * @return a new object of class '<em>Change Package</em>'.
 	 * @generated
 	 */
-	Changepackage createChangepackage();
-	
+	ChangePackage createChangePackage();
+
 	/**
 	 * Converts a {@link ChangeDescription} into our ChangePackage format.
 	 * 
 	 * @param changeDescription a changedescription
 	 * @return a changepackage
 	 */
-	Changepackage convertToChangepackage(ChangeDescription changeDescription);
+	ChangePackage convertToChangepackage(ChangeDescription changeDescription);
 
 	/**
 	 * Returns a new object of class '<em>ES Operation</em>'.

@@ -14,24 +14,14 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ecore.change.ChangePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.unicase.emfstore.esmodel.EsmodelPackage;
-
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
-
 import org.unicase.emfstore.esmodel.accesscontrol.impl.AccesscontrolPackageImpl;
-
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
-
 import org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RolesPackageImpl;
-
 import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentPackage;
-
-import org.unicase.emfstore.esmodel.changemanagment.changepackage.Changepackage;
 import org.unicase.emfstore.esmodel.changemanagment.changepackage.ChangepackageFactory;
 import org.unicase.emfstore.esmodel.changemanagment.changepackage.ChangepackagePackage;
 import org.unicase.emfstore.esmodel.changemanagment.changepackage.ESAbstractOperation;
@@ -39,11 +29,8 @@ import org.unicase.emfstore.esmodel.changemanagment.changepackage.ESEvent;
 import org.unicase.emfstore.esmodel.changemanagment.changepackage.ESListEvent;
 import org.unicase.emfstore.esmodel.changemanagment.changepackage.ESOperation;
 import org.unicase.emfstore.esmodel.changemanagment.changepackage.ESeAttributeEvent;
-
 import org.unicase.emfstore.esmodel.changemanagment.impl.ChangemanagmentPackageImpl;
-
 import org.unicase.emfstore.esmodel.impl.EsmodelPackageImpl;
-
 import org.unicase.model.ModelPackage;
 
 /**
@@ -59,7 +46,7 @@ public class ChangepackagePackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass changepackageEClass = null;
+	private EClass changePackageEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -204,8 +191,8 @@ public class ChangepackagePackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getChangepackage() {
-		return changepackageEClass;
+	public EClass getChangePackage() {
+		return changePackageEClass;
 	}
 
 	/**
@@ -213,8 +200,8 @@ public class ChangepackagePackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getChangepackage_Operations() {
-		return (EReference) changepackageEClass.getEStructuralFeatures().get(0);
+	public EReference getChangePackage_Operations() {
+		return (EReference) changePackageEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -356,8 +343,8 @@ public class ChangepackagePackageImpl extends EPackageImpl implements
 		isCreated = true;
 
 		// Create classes and their features
-		changepackageEClass = createEClass(CHANGEPACKAGE);
-		createEReference(changepackageEClass, CHANGEPACKAGE__OPERATIONS);
+		changePackageEClass = createEClass(CHANGE_PACKAGE);
+		createEReference(changePackageEClass, CHANGE_PACKAGE__OPERATIONS);
 
 		esAbstractOperationEClass = createEClass(ES_ABSTRACT_OPERATION);
 
@@ -420,13 +407,23 @@ public class ChangepackagePackageImpl extends EPackageImpl implements
 		esListEventEClass.getESuperTypes().add(this.getESEvent());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(changepackageEClass, Changepackage.class, "Changepackage",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getChangepackage_Operations(), this
-				.getESAbstractOperation(), null, "operations", null, 0, -1,
-				Changepackage.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(
+				changePackageEClass,
+				org.unicase.emfstore.esmodel.changemanagment.changepackage.ChangePackage.class,
+				"ChangePackage", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(
+				getChangePackage_Operations(),
+				this.getESAbstractOperation(),
+				null,
+				"operations",
+				null,
+				0,
+				-1,
+				org.unicase.emfstore.esmodel.changemanagment.changepackage.ChangePackage.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
 		initEClass(esAbstractOperationEClass, ESAbstractOperation.class,
 				"ESAbstractOperation", IS_ABSTRACT, IS_INTERFACE,
