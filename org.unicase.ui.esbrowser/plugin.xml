@@ -26,6 +26,7 @@
    </extension>
    <extension
          point="org.eclipse.ui.perspectiveExtensions">
+     
       <perspectiveExtension
             targetID="org.eclipse.jdt.ui.JavaPerspective">
          <view
@@ -34,6 +35,14 @@
                relationship="right"
                id="org.unicase.ui.repository.views.RepositoryView">
          </view>
+      </perspectiveExtension>
+      
+      <perspectiveExtension
+            targetID="*">
+         <viewShortcut
+               id="org.unicase.ui.esbrowser.OrgUnitManagementView">
+         </viewShortcut>
+      
       </perspectiveExtension>
    </extension>
    <extension
