@@ -93,10 +93,10 @@ public class AdminConnectionManagerStub implements AdminConnectionManager {
 	    	
 	    }
 		if(participant.getRoles().contains(readerRole)){
-			participant.getRoles().get(participant.getRoles().indexOf(readerRole)).getProjects().add(project);
+			participant.getRoles().get(participant.getRoles().indexOf(readerRole)).getProjects().add(project.getProjectId());
 			
 		}else {
-			readerRole.getProjects().add(project);
+			readerRole.getProjects().add(project.getProjectId());
 			participant.getRoles().add(readerRole);
 		}
 		
