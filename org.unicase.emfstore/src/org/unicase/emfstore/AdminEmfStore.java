@@ -8,16 +8,16 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 
 public interface AdminEmfStore {
 
-	public EList<ProjectInfo> getProjectInfos();
-	public EList<ACGroup> getGroups();
-	public EList<ACUser> getUsers();
-	public EList<ACOrgUnit> getOrgUnits();
+	EList<ProjectInfo> getProjectInfos();
+	EList<ACGroup> getGroups();
+	EList<ACUser> getUsers();
+	EList<ACOrgUnit> getOrgUnits();
 	
-	public EList<ACGroup> getGroups(ACUser user);
+	EList<ACGroup> getGroups(ACUser user);
 	
-	public EList<ACOrgUnit> getParticipants(ProjectInfo project);
+	EList<ACOrgUnit> getParticipants(ProjectInfo project);
 	
-	public void addParticipant(ProjectInfo project, ACOrgUnit participant);
-	public void removeParticipant(ProjectInfo project, ACOrgUnit participant);
+	void addParticipant(ProjectInfo project, ACOrgUnit participant);
+	void removeParticipant(ProjectInfo project, ACOrgUnit participant);
 	
 }
