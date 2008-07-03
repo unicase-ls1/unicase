@@ -11,7 +11,6 @@ import java.net.URL;
 import java.util.HashMap;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -44,7 +43,7 @@ import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.ui.esbrowser.LoginDecorator;
+import org.unicase.ui.esbrowser.Activator;
 import org.unicase.ui.esbrowser.dialogs.RepositoryCreateProjectDialog;
 import org.unicase.ui.esbrowser.dialogs.RepositoryLoginDialog;
 import org.unicase.ui.esbrowser.dialogs.RepositoryWizard;
@@ -71,7 +70,7 @@ public class RepositoryView extends ViewPart {
 	private Action serverProperties;
 	private Usersession session;
 	private HashMap<ProjectInfo, ServerInfo> projectServerMap = new HashMap<ProjectInfo, ServerInfo>();
-	
+
 	/**
 	 * Content provider for the tree view.
 	 * 
@@ -119,8 +118,9 @@ public class RepositoryView extends ViewPart {
 							Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 							currentWorkspace.getUsersessions().add(session);
 							currentWorkspace.save();
+							viewer.refresh();
 						} catch (EmfStoreException e) {
-							// TODO not server connection
+							// TODO no server connection
 							e.printStackTrace();
 						} catch (AccessControlException e) {
 							// TODO wrong password/user
@@ -175,12 +175,11 @@ public class RepositoryView extends ViewPart {
 	public void createPartControl(Composite parent) {
 		viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
 		viewer.setContentProvider(new WorkspaceRootContentProvider());
-		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		viewer.setLabelProvider(new
-				DecoratingLabelProvider(adapterFactoryLabelProvider,
-				((DecoratingLabelProvider)WorkbenchLabelProvider.getDecoratingWorkbenchLabelProvider()).getLabelDecorator()));
+		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
+				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		viewer.setLabelProvider(new DecoratingLabelProvider(adapterFactoryLabelProvider, ((DecoratingLabelProvider) WorkbenchLabelProvider
+				.getDecoratingWorkbenchLabelProvider()).getLabelDecorator()));
 
-		
 		viewer.setSorter(new ViewerSorter());
 		viewer.setInput(getViewSite());
 
@@ -240,7 +239,7 @@ public class RepositoryView extends ViewPart {
 				try {
 					projectServerMap.get(element).getLastUsersession().checkout(element);
 				} catch (EmfStoreException e) {
-					//TODO show error dialog
+					// TODO show error dialog
 				}
 			}
 		};
@@ -253,13 +252,14 @@ public class RepositoryView extends ViewPart {
 			public void run() {
 				ISelection selection = viewer.getSelection();
 				Object obj = ((IStructuredSelection) selection).getFirstElement();
-				viewer.collapseToLevel(obj,-1);
+				viewer.collapseToLevel(obj, -1);
 				viewer.expandToLevel(obj, -1);
+				viewer.refresh();
 			}
 		};
 		serverLogin.setText("Login [last usersession]");
 		serverLogin.setToolTipText("Click to login with the last used username");
-		serverLogin.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(ISharedImages.IMG_OBJ_ELEMENT));
+		serverLogin.setImageDescriptor(Activator.getImageDescriptor("icons/serverLogin.png"));
 
 		serverChangeSession = new Action() {
 			@Override
@@ -267,15 +267,16 @@ public class RepositoryView extends ViewPart {
 				ISelection selection = viewer.getSelection();
 				Object obj = ((IStructuredSelection) selection).getFirstElement();
 				ServerInfo element = (ServerInfo) obj;
-//				element.
+				// element.
 				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
-//				domain.getCommandStack().execute(new SetCommand(domain, element, obj..feature, null));
+				// domain.getCommandStack().execute(new SetCommand(domain,
+				// element, obj..feature, null));
 				serverLogin.run();
 			}
 		};
 		serverChangeSession.setText("Login as...");
 		serverChangeSession.setToolTipText("Click to login with a different username");
-		serverChangeSession.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(ISharedImages.IMG_OBJ_ELEMENT));
+		serverChangeSession.setImageDescriptor(Activator.getImageDescriptor("icons/serverLoginAs.png"));
 
 		serverAddProject = new Action() {
 			@Override
@@ -293,13 +294,7 @@ public class RepositoryView extends ViewPart {
 		};
 		serverAddProject.setText("Create new project");
 		serverAddProject.setToolTipText("Click to create new project on the server");
-		try {
-			serverAddProject.setImageDescriptor(ImageDescriptor.createFromURL(new URL(EsmodelEditPlugin.INSTANCE.getImage("full/obj16/ProjectInfo")
-					.toString())));
-		} catch (MalformedURLException e) {
-			//TODO logging
-			e.printStackTrace();
-		}
+		serverAddProject.setImageDescriptor(Activator.getImageDescriptor("icons/projectAdd.png"));
 
 		serverProperties = new Action() {
 			@Override
@@ -317,13 +312,8 @@ public class RepositoryView extends ViewPart {
 		};
 		serverProperties.setText("Server properties");
 		serverProperties.setToolTipText("Click to modify the server properties");
-		try {
-			serverProperties.setImageDescriptor(ImageDescriptor.createFromURL(new URL(WorkspaceEditPlugin.INSTANCE.getImage("full/obj16/ServerInfo")
-					.toString())));
-		} catch (MalformedURLException e) {
-			//TODO logging
-		}
-
+		serverProperties.setImageDescriptor(Activator.getImageDescriptor("icons/serverEdit.png"));
+		
 		addRepository = new Action() {
 			@Override
 			public void run() {
@@ -337,13 +327,7 @@ public class RepositoryView extends ViewPart {
 		};
 		addRepository.setText("New repository...");
 		addRepository.setToolTipText("Click to add new repository");
-		try {
-			addRepository.setImageDescriptor(ImageDescriptor.createFromURL(new URL(WorkspaceEditPlugin.INSTANCE.getImage("full/obj16/ServerInfo")
-					.toString())));
-		} catch (MalformedURLException e) {
-			//TODO logging
-		}
-
+		addRepository.setImageDescriptor(Activator.getImageDescriptor("icons/serverAdd.png"));
 	}
 
 	private void hookDoubleClickAction() {

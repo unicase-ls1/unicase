@@ -11,7 +11,7 @@
       </category>
       <view
             name="EmfStore Browser"
-            icon="icons/sample.gif"
+            icon="icons/serverDB.png"
             category="org.unicase"
             class="org.unicase.ui.esbrowser.views.RepositoryView"
             id="org.unicase.ui.repository.views.RepositoryView">

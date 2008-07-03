@@ -13,7 +13,7 @@
   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
     <factory
           class="org.unicase.workspace.provider.WorkspaceItemProviderAdapterFactory"
-          supportedTypes="org.unicaseorg.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource.model.edit.factory1"
+          supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
           uri="http://unicase.org/workspace"/>
   </extension>
   <extension
