@@ -32,12 +32,12 @@ public class LoginDecorator implements ILightweightLabelDecorator {
 		} else {
 			return;
 		}
-		String suffix = "["
-			+ server.getLastUsersession().getUsername() + "@"
-			+ server.getUrl() + "]";
+		String suffix = "[" + server.getUrl() + "]";
 		if (server.getLastUsersession() != null
 				&& server.getLastUsersession().isLoggedIn()) {
-			suffix += " logged in";
+		 suffix = "["
+			+ server.getLastUsersession().getUsername() + "@"
+			+ server.getUrl() + "] logged in ";
 		}
 		decoration.addSuffix(suffix);
 
