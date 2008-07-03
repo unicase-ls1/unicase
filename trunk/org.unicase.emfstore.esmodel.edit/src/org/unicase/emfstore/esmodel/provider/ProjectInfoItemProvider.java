@@ -24,6 +24,8 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
 import org.unicase.emfstore.esmodel.ProjectInfo;
+import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentFactory;
+import org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.ProjectInfo} object.
@@ -149,18 +151,25 @@ public class ProjectInfoItemProvider extends ItemProviderAdapter implements
 				"full/obj16/ProjectInfo.png"));
 	}
 
+	// begin of custom code
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ProjectInfo) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_ProjectInfo_type")
-				: getString("_UI_ProjectInfo_type") + " " + label;
+		ProjectInfo projectInfo = ((ProjectInfo) object);
+		String ret = "";
+		if (projectInfo.getName() == null || projectInfo.getName().length() == 0){
+			ret = getString("_UI_ProjectInfo_type");
+		}else{
+			ret = projectInfo.getName() + "[Revision: "+((ProjectInfo)object).getVersion().getIdentifier()+"]";
+		}
+		return ret;
 	}
+	// end of custom code
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
