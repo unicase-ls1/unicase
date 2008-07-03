@@ -91,7 +91,8 @@ public class RepositoryLoginDialog extends TitleAreaDialog implements SelectionL
 
 			Label pass = new Label(contents, SWT.NULL);
 			pass.setText("Password:");
-			password = new Text(contents, SWT.PASSWORD | SWT.BORDER);
+//			password = new Text(contents, SWT.PASSWORD | SWT.BORDER);
+			password = new Text(contents, SWT.BORDER);
 			password.setSize(150, 20);
 
 			Label savePasswordLabel = new Label(contents, SWT.NULL);
@@ -190,7 +191,7 @@ public class RepositoryLoginDialog extends TitleAreaDialog implements SelectionL
 			Usersession loadSession = savedSessionsList.get(savedSessionsCombo.getSelectionIndex() - 1);
 			username.setEnabled(false);
 			username.setText(loadSession.getUsername());
-			password.setText(loadSession.getPassword() + "");
+			password.setText(loadSession.isSavePassword()?loadSession.getPersistentPassword()+"":"");
 			savePassword.setSelection(loadSession.isSavePassword());
 		}
 

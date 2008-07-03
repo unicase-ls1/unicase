@@ -6,10 +6,10 @@
  */
 package org.unicase.ui.esbrowser.views;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.HashMap;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
@@ -22,7 +22,6 @@ import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -41,7 +40,6 @@ import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.esmodel.ProjectInfo;
-import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.esbrowser.Activator;
 import org.unicase.ui.esbrowser.dialogs.RepositoryCreateProjectDialog;
@@ -51,7 +49,6 @@ import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.provider.WorkspaceEditPlugin;
 import org.unicase.workspace.provider.WorkspaceItemProviderAdapterFactory;
 
 /**
@@ -118,7 +115,7 @@ public class RepositoryView extends ViewPart {
 							Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 							currentWorkspace.getUsersessions().add(session);
 							currentWorkspace.save();
-							viewer.refresh();
+//							viewer.refresh();
 						} catch (EmfStoreException e) {
 							// TODO no server connection
 							e.printStackTrace();
@@ -166,6 +163,15 @@ public class RepositoryView extends ViewPart {
 	 * The constructor.
 	 */
 	public RepositoryView() {
+		WorkspaceManager.getInstance().getCurrentWorkspace().eAdapters().add(new AdapterImpl() {
+			 @Override
+			 public void notifyChanged(Notification msg) {
+				 if (msg.getNewValue() instanceof ServerInfo) {
+					 viewer.refresh();
+				 }
+				 super.notifyChanged(msg);
+			 }
+		 });
 	}
 
 	/**
@@ -215,9 +221,16 @@ public class RepositoryView extends ViewPart {
 			Usersession session = ((ServerInfo) obj).getLastUsersession();
 			if (session != null && session.isLoggedIn()) {
 				manager.add(serverAddProject);
+				serverChangeSession.setText("Change user...");
+				manager.add(serverChangeSession);
+			}else if(session!=null && !session.isLoggedIn()){
+				serverLogin.setText("Login as "+session.getUsername());
+				manager.add(serverLogin);
+				serverChangeSession.setText("Login as...");
+				manager.add(serverChangeSession);
+			}else{
+				manager.add(serverLogin);
 			}
-			manager.add(serverLogin);
-			manager.add(serverChangeSession);
 			manager.add(new Separator());
 			manager.add(serverProperties);
 		} else if (obj instanceof ProjectInfo) {
@@ -230,6 +243,19 @@ public class RepositoryView extends ViewPart {
 	}
 
 	private void makeActions() {
+		serverLogin = new Action() {
+			@Override
+			public void run() {
+				ISelection selection = viewer.getSelection();
+				Object obj = ((IStructuredSelection) selection).getFirstElement();
+				viewer.collapseToLevel(obj, -1);
+				viewer.expandToLevel(obj, -1);
+			}
+		};
+		serverLogin.setText("Login...");
+		serverLogin.setToolTipText("Click to login with the last used username");
+		serverLogin.setImageDescriptor(Activator.getImageDescriptor("icons/serverLogin.png"));
+		
 		projectCheckout = new Action() {
 			@Override
 			public void run() {
@@ -247,34 +273,23 @@ public class RepositoryView extends ViewPart {
 		projectCheckout.setToolTipText("Click to checkout this project");
 		projectCheckout.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(ISharedImages.IMG_TOOL_FORWARD));
 
-		serverLogin = new Action() {
-			@Override
-			public void run() {
-				ISelection selection = viewer.getSelection();
-				Object obj = ((IStructuredSelection) selection).getFirstElement();
-				viewer.collapseToLevel(obj, -1);
-				viewer.expandToLevel(obj, -1);
-				viewer.refresh();
-			}
-		};
-		serverLogin.setText("Login [last usersession]");
-		serverLogin.setToolTipText("Click to login with the last used username");
-		serverLogin.setImageDescriptor(Activator.getImageDescriptor("icons/serverLogin.png"));
-
 		serverChangeSession = new Action() {
 			@Override
 			public void run() {
 				ISelection selection = viewer.getSelection();
 				Object obj = ((IStructuredSelection) selection).getFirstElement();
-				ServerInfo element = (ServerInfo) obj;
-				// element.
+				final ServerInfo element = (ServerInfo) obj;
 				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
-				// domain.getCommandStack().execute(new SetCommand(domain,
-				// element, obj..feature, null));
-				serverLogin.run();
+				domain.getCommandStack().execute(new RecordingCommand(domain){
+					@Override
+					protected void doExecute() {
+						element.setLastUsersession(null);
+						WorkspaceManager.getInstance().getCurrentWorkspace().save();
+					}
+				});
+				viewer.refresh(obj);
 			}
 		};
-		serverChangeSession.setText("Login as...");
 		serverChangeSession.setToolTipText("Click to login with a different username");
 		serverChangeSession.setImageDescriptor(Activator.getImageDescriptor("icons/serverLoginAs.png"));
 

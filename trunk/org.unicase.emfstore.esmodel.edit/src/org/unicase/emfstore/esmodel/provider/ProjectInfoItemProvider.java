@@ -146,7 +146,7 @@ public class ProjectInfoItemProvider extends ItemProviderAdapter implements
 	@Override
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/ProjectInfo"));
+				"full/obj16/ProjectInfo.png"));
 	}
 
 	/**
