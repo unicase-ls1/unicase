@@ -6,7 +6,9 @@
  */
 package org.unicase.ui.esbrowser;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.ui.internal.util.BundleUtility;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -18,7 +20,7 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * The plug-in ID.
 	 */
-	public static final String PLUGIN_ID = "org.unicase.ui.repository";
+	public static final String PLUGIN_ID = "org.unicase.ui.esbrowser";
 
 	// The shared instance
 	private static Activator plugin;
@@ -69,6 +71,6 @@ public class Activator extends AbstractUIPlugin {
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor getImageDescriptor(String path) {
-		return imageDescriptorFromPlugin(PLUGIN_ID, path);
+		return imageDescriptorFromPlugin(PLUGIN_ID, path); 
 	}
 }

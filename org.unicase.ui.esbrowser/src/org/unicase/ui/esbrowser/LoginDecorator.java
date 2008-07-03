@@ -22,7 +22,7 @@ public class LoginDecorator implements ILightweightLabelDecorator {
 
 	/**
 	 * {@inheritDoc} Decorates the label of a {@link ServerInfo} object
-	 * accroding to its login state.
+	 * according to its login state.
 	 */
 	public void decorate(Object element, IDecoration decoration) {
 
