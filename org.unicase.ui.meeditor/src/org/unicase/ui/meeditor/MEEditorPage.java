@@ -129,11 +129,13 @@ public class MEEditorPage extends FormPage {
 
 		List<IItemPropertyDescriptor> propertyDescriptors = adapterFactoryItemDelegator
 				.getPropertyDescriptors(modelElement);
-		for (IItemPropertyDescriptor itemPropertyDescriptor : propertyDescriptors) {
-			if (itemPropertyDescriptor.isMany(modelElement)) {
-				multiReferences.add(itemPropertyDescriptor);
-			} else {
-				simpleAttributes.add(itemPropertyDescriptor);
+		if (propertyDescriptors != null){
+			for (IItemPropertyDescriptor itemPropertyDescriptor : propertyDescriptors) {
+				if (itemPropertyDescriptor.isMany(modelElement)) {
+					multiReferences.add(itemPropertyDescriptor);
+				} else {
+					simpleAttributes.add(itemPropertyDescriptor);
+				}
 			}
 		}
 
