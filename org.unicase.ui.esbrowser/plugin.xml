@@ -37,13 +37,6 @@
          </view>
       </perspectiveExtension>
       
-      <perspectiveExtension
-            targetID="*">
-         <viewShortcut
-               id="org.unicase.ui.esbrowser.OrgUnitManagementView">
-         </viewShortcut>
-      
-      </perspectiveExtension>
    </extension>
    <extension
          point="org.eclipse.help.contexts">
