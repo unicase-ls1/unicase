@@ -152,7 +152,8 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 	 * @generated not
 	 */
 	public ProjectId getProjectId() {
-		return (ProjectId) EcoreUtil.copy(getProjectIdGen());
+		//return (ProjectId) EcoreUtil.copy(getProjectIdGen());
+		return projectId;
 	}
 
 	/**
