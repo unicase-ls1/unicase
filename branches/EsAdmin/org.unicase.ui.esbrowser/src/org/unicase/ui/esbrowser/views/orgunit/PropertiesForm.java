@@ -80,6 +80,11 @@ public class PropertiesForm extends Form {
 		this.input = input;
 
 	}
+	
+		
+	public EObject getCurrentInput(){
+		return input;
+	}
 
 		
 }

@@ -9,7 +9,12 @@ import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.connectionmanager.AdminConnectionManagerStub;
 
+//
+//591
+//
 public class OrgUnitManagementGUI {
 
 	private TabFolder tabFolder;
@@ -18,6 +23,7 @@ public class OrgUnitManagementGUI {
 	private Composite parent;
 
 	public OrgUnitManagementGUI(Composite parent) {
+		AdminConnectionManagerStub.createDummyProject();
 		this.parent = parent;
 		createSash();
 	}
