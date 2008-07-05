@@ -19,62 +19,41 @@ public class OrgUnitManagementGUI {
 
 	private TabFolder tabFolder;
 	private PropertiesForm frm;
-	private SashForm sash;
-	private Composite parent;
+	
 
 	public OrgUnitManagementGUI(Composite parent) {
 		AdminConnectionManagerStub.createDummyProject();
-		this.parent = parent;
-		createSash();
+		createSash(parent);
+		
 	}
 
-	private void createSash() {
-		sash = new SashForm(parent, SWT.HORIZONTAL);
+	private void createSash(Composite parent) {
+		SashForm sash = new SashForm(parent, SWT.HORIZONTAL);
 
-		/* Create the "layout" and "control" columns */
-		createTabFolder();
-		createPropertiesForm();
+		//first create the tab folder, then the form, and then set the TabItems in tab folder.
+		//why this order? because 
+		// 1. tab folder should appear left of form (first control on sash)
+		// 2. Tabs shown in TabItems need to be aware of form (first create form, then tabs.)
+		createTabFolder(sash);
+		createPropertiesForm(sash);
 		initTabFolder();
 		
 		sash.setWeights(sashWeights());
 	}
 
 	
-	private void createTabFolder() {
+	private void createTabFolder(SashForm sash) {
 
 		tabFolder = new TabFolder(sash, SWT.NONE);
 		tabFolder.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-		}
-	
-	private void initTabFolder() {
-		
-		TabItem projectsTab = new TabItem(tabFolder, SWT.NONE);
-		Tab projectsTabPage = new Tab("Projects");
-		projectsTab.setControl(projectsTabPage.createTabFolderPage(tabFolder));
-		projectsTab.setText(projectsTabPage.getName());
-
-		TabItem groupsTab = new TabItem(tabFolder, SWT.NONE);
-		Tab groupsTabPage = new Tab("Groups");
-		groupsTab.setControl(groupsTabPage.createTabFolderPage(tabFolder));
-		groupsTab.setText(groupsTabPage.getName());
-
-		TabItem usersTab = new TabItem(tabFolder, SWT.NONE);
-		Tab usersTabPage = new Tab("Users");
-		usersTab.setControl(usersTabPage.createTabFolderPage(tabFolder));
-		usersTab.setText(usersTabPage.getName());
-
 	}
-
-
-	private void createPropertiesForm() {
+	
+	private void createPropertiesForm(SashForm sash) {
 
 		FormToolkit toolkit = new FormToolkit(sash.getDisplay());
-		// Form frm = toolkit.createForm(sash);
-
+		
 		frm = new PropertiesForm(sash, SWT.NONE);
-		//frm.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-
 		frm.setText("Properties");
 		frm.setFont(JFaceResources.getHeaderFont());
 
@@ -82,6 +61,30 @@ public class OrgUnitManagementGUI {
 
 	}
 	
+	private void initTabFolder() {
+		
+		TabItem projectsTab = new TabItem(tabFolder, SWT.NONE);
+		TabContent projectsTabContents = new TabContent("Projects");
+		projectsTabContents.setPropertiesForm(frm);
+		projectsTab.setControl(projectsTabContents.createContents(tabFolder));
+		projectsTab.setText(projectsTabContents.getName());
+
+		TabItem groupsTab = new TabItem(tabFolder, SWT.NONE);
+		TabContent groupsTabContents = new TabContent("Groups");
+		groupsTabContents.setPropertiesForm(frm);
+		groupsTab.setControl(groupsTabContents.createContents(tabFolder));
+		groupsTab.setText(groupsTabContents.getName());
+
+		TabItem usersTab = new TabItem(tabFolder, SWT.NONE);
+		TabContent usersTabContents = new TabContent("Users");
+		usersTabContents.setPropertiesForm(frm);
+		usersTab.setControl(usersTabContents.createContents(tabFolder));
+		usersTab.setText(usersTabContents.getName());
+		
+		tabFolder.setSelection(projectsTab);
+		projectsTabContents.viewStarted();
+	}
+
 
 	private int[] sashWeights() {
 		return new int[] { 25, 75 };
@@ -93,6 +96,7 @@ public class OrgUnitManagementGUI {
 
 	public void dispose() {
 		tabFolder = null;
+		frm = null;
 
 	}
 
