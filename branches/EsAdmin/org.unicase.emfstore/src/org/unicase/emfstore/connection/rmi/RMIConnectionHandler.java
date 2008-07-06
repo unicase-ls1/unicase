@@ -24,9 +24,10 @@ import org.unicase.emfstore.connection.ConnectionHandler;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 
 /**
- * A connection handler implementation using RMI as trasnport layer.
+ * A connection handler implementation using RMI as transport layer.
  * 
  * @author koegel
+ * @author Wesendonk
  *
  */
 public class RMIConnectionHandler implements ConnectionHandler {
@@ -41,8 +42,6 @@ public class RMIConnectionHandler implements ConnectionHandler {
 	 */
 	public static final String RMI_NAME = "RMIEmfStoreFacade";
 
-	private int port;
-
 	private RMIEmfStoreFacade stub;
 
 	private static Log logger = LogFactory.getLog(ConnectionHandler.class);
@@ -51,7 +50,6 @@ public class RMIConnectionHandler implements ConnectionHandler {
 	 * Default constructor.
 	 */
 	public RMIConnectionHandler() {
-		port = Registry.REGISTRY_PORT;
 	}
 
 	/** 
@@ -60,33 +58,15 @@ public class RMIConnectionHandler implements ConnectionHandler {
 	 */
 	public void init(EmfStore emfStore, AuthenticationControl accessControl)
 			throws FatalEmfStoreException {
-		/**
-		 * Little hack to solve classloading issues. Is there a better solution?
-		 */
-
 		try {
-			URL url = FileLocator.find(Activator.getDefault().getBundle(),
-					new Path("/bin/"), null);
-			System
-					.setProperty("java.rmi.server.codebase", url
-							.toExternalForm());
-
-			System.setSecurityManager(new UnicaseSecurityManager());
-			LocateRegistry.createRegistry(port);
-
-			RemoteServer.setLog(System.out);
-
 			stub = new RMIEmfStoreFacadeImpl(emfStore, accessControl);
-
-			Registry registry = LocateRegistry.getRegistry();
+			Registry registry = RMIRegistryManager.getInstance().getRegistry();
 			registry.rebind(RMI_NAME, stub);
-
 		} catch (RemoteException e) {
 			String message = "RMI initialisation failed!";
 			logger.fatal(message, e);
 			throw new FatalEmfStoreException(message, e);
 		}
-
 		logger.debug("RMIConnectionHandler is running.");
 	}
 
@@ -107,7 +87,7 @@ public class RMIConnectionHandler implements ConnectionHandler {
 			return;
 		}
 		try {
-			Registry registry = LocateRegistry.getRegistry();
+			Registry registry = RMIRegistryManager.getInstance().getRegistry();
 			try {
 				registry.unbind(RMI_NAME);
 			} catch (NotBoundException e1) {

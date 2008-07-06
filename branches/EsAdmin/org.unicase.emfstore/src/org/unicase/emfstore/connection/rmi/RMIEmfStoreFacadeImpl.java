@@ -39,6 +39,7 @@ import org.unicase.model.Project;
  * Implementation of a RMIEmfStoreFacade.
  * 
  * @author koegel
+ * @author Wesendonk
  * 
  */
 public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements

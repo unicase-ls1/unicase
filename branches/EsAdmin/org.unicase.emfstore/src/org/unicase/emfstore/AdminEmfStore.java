@@ -1,31 +1,41 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.emfstore;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.unicase.emfstore.esmodel.ProjectInfo;
+import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 
+/**
+ * 
+ * @author Hodaie
+ * @author Wesendonk
+ */
 public interface AdminEmfStore {
-
-	EList<ProjectInfo> getProjectInfos();
-	EList<ACGroup> getGroups();
-	EList<ACUser> getUsers();
-	EList<ACOrgUnit> getOrgUnits();
+	EList<ProjectInfo> getProjectInfos(SessionId sessionId) throws EmfStoreException;
+	EList<ACGroup> getGroups(SessionId sessionId) throws EmfStoreException;
+	EList<ACUser> getUsers(SessionId sessionId) throws EmfStoreException;
+	EList<ACOrgUnit> getOrgUnits(SessionId sessionId) throws EmfStoreException;
 	
-	EList<ACGroup> getGroups(ACUser user);
-	void addGroup(ACUser user, ACGroup group);
-	void removeGroup(ACUser user, ACGroup group);
+	EList<ACGroup> getGroups(SessionId sessionId, ACUser user) throws EmfStoreException;
+	void addGroup(SessionId sessionId, ACUser user, ACGroup group) throws EmfStoreException;
+	void removeGroup(SessionId sessionId, ACUser user, ACGroup group) throws EmfStoreException;
 	
-	EList<ACOrgUnit> getParticipants(ProjectInfo project);
+	EList<ACOrgUnit> getParticipants(SessionId sessionId, ProjectInfo project) throws EmfStoreException;
 	
-	void addParticipant(ProjectInfo project, ACOrgUnit participant);
-	void removeParticipant(ProjectInfo project, ACOrgUnit participant);
+	void addParticipant(SessionId sessionId, ProjectInfo project, ACOrgUnit participant) throws EmfStoreException;
+	void removeParticipant(SessionId sessionId, ProjectInfo project, ACOrgUnit participant) throws EmfStoreException;
 	
-	Role getRole(ProjectInfo project, ACOrgUnit orgUnit);
-	void changeRole(ProjectInfo projectInfo, ACOrgUnit orgUnit,	EClass role);
-
-
+	Role getRole(SessionId sessionId, ProjectInfo project, ACOrgUnit orgUnit) throws EmfStoreException;
+	void changeRole(SessionId sessionId, ProjectInfo projectInfo, ACOrgUnit orgUnit, EClass role) throws EmfStoreException;
 }

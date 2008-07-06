@@ -1,0 +1,49 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
+package org.unicase.emfstore.connection.rmi;
+
+import java.net.URL;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.rmi.server.RemoteServer;
+
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.Path;
+import org.unicase.emfstore.Activator;
+
+public class RMIRegistryManager {
+
+	private static RMIRegistryManager instance;
+
+	private int port;
+
+	private RMIRegistryManager() throws RemoteException {
+			port = Registry.REGISTRY_PORT;
+			/**
+			 * Little hack to solve classloading issues. Is there a better solution?
+			 */
+			URL url = FileLocator.find(Activator.getDefault().getBundle(),
+					new Path("/bin/"), null);
+			System.setProperty("java.rmi.server.codebase", url
+							.toExternalForm());
+			System.setSecurityManager(new UnicaseSecurityManager());
+			LocateRegistry.createRegistry(port);
+			RemoteServer.setLog(System.out);
+	}
+	
+	public Registry getRegistry() throws RemoteException {
+		return LocateRegistry.getRegistry();
+	}
+
+	public static RMIRegistryManager getInstance() throws RemoteException {
+		if (instance == null) {
+			instance = new RMIRegistryManager();
+		}
+		return instance;
+	}
+}
