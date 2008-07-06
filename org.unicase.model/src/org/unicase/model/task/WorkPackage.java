@@ -26,21 +26,19 @@ import org.unicase.model.ModelElement;
  */
 public interface WorkPackage extends ModelElement {
 	/**
-	 * Returns the value of the '<em><b>Contained Model Elements</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.model.task.WorkItem}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.task.WorkItem#getContainingWorkpackage <em>Containing Workpackage</em>}'.
+	 * Returns the value of the '<em><b>Contained Model Elements</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.ModelElement}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Contained Model Elements</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Contained Model Elements</em>' containment reference list.
+	 * @return the value of the '<em>Contained Model Elements</em>' reference list.
 	 * @see org.unicase.model.task.TaskPackage#getWorkPackage_ContainedModelElements()
-	 * @see org.unicase.model.task.WorkItem#getContainingWorkpackage
-	 * @model opposite="containingWorkpackage" containment="true"
+	 * @model
 	 * @generated
 	 */
-	EList<WorkItem> getContainedModelElements();
+	EList<ModelElement> getContainedModelElements();
 
 } // WorkPackage

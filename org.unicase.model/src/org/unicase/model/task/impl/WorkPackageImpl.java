@@ -13,11 +13,13 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.unicase.model.ModelElement;
 import org.unicase.model.impl.ModelElementImpl;
 import org.unicase.model.change.ModelChangePackage;
 import org.unicase.model.impl.AnnotationImpl;
@@ -39,14 +41,14 @@ import org.unicase.model.task.WorkPackage;
  */
 public class WorkPackageImpl extends ModelElementImpl implements WorkPackage {
 	/**
-	 * The cached value of the '{@link #getContainedModelElements() <em>Contained Model Elements</em>}' containment reference list.
+	 * The cached value of the '{@link #getContainedModelElements() <em>Contained Model Elements</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getContainedModelElements()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<WorkItem> containedModelElements;
+	protected EList<ModelElement> containedModelElements;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -70,45 +72,13 @@ public class WorkPackageImpl extends ModelElementImpl implements WorkPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<WorkItem> getContainedModelElements() {
+	public EList<ModelElement> getContainedModelElements() {
 		if (containedModelElements == null) {
-			containedModelElements = new EObjectContainmentWithInverseEList<WorkItem>(
-					WorkItem.class, this,
-					TaskPackage.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-					TaskPackage.WORK_ITEM__CONTAINING_WORKPACKAGE);
+			containedModelElements = new EObjectResolvingEList<ModelElement>(
+					ModelElement.class, this,
+					TaskPackage.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS);
 		}
 		return containedModelElements;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
-		switch (featureID) {
-		case TaskPackage.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getContainedModelElements())
-					.basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
-		switch (featureID) {
-		case TaskPackage.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS:
-			return ((InternalEList<?>) getContainedModelElements())
-					.basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -135,7 +105,7 @@ public class WorkPackageImpl extends ModelElementImpl implements WorkPackage {
 		case TaskPackage.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS:
 			getContainedModelElements().clear();
 			getContainedModelElements().addAll(
-					(Collection<? extends WorkItem>) newValue);
+					(Collection<? extends ModelElement>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

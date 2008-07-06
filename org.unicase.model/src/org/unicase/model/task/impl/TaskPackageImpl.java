@@ -384,22 +384,19 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 		initEClass(workPackageEClass, WorkPackage.class, "WorkPackage",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getWorkPackage_ContainedModelElements(), this
-				.getWorkItem(), this.getWorkItem_ContainingWorkpackage(),
-				"containedModelElements", null, 0, -1, WorkPackage.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+		initEReference(getWorkPackage_ContainedModelElements(), theModelPackage
+				.getModelElement(), null, "containedModelElements", null, 0,
+				-1, WorkPackage.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(workItemEClass, WorkItem.class, "WorkItem", IS_ABSTRACT,
 				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWorkItem_ContainingWorkpackage(), this
-				.getWorkPackage(),
-				this.getWorkPackage_ContainedModelElements(),
-				"containingWorkpackage", null, 0, 1, WorkItem.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+				.getWorkPackage(), null, "containingWorkpackage", null, 0, 1,
+				WorkItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 		initEReference(getWorkItem_AssociatedChangePackages(), theChangePackage
 				.getModelChangePackage(), null, "associatedChangePackages",
 				null, 0, -1, WorkItem.class, !IS_TRANSIENT, !IS_VOLATILE,
