@@ -134,7 +134,7 @@ public interface TaskPackage extends EPackage {
 	int WORK_ITEM__ANNOTATED_MODEL_ELEMENTS = ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Containing Workpackage</b></em>' container reference.
+	 * The feature id for the '<em><b>Containing Workpackage</b></em>' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -235,7 +235,7 @@ public interface TaskPackage extends EPackage {
 	int ACTION_ITEM__ANNOTATED_MODEL_ELEMENTS = WORK_ITEM__ANNOTATED_MODEL_ELEMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Containing Workpackage</b></em>' container reference.
+	 * The feature id for the '<em><b>Containing Workpackage</b></em>' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -363,7 +363,7 @@ public interface TaskPackage extends EPackage {
 	int WORK_PACKAGE__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>Contained Model Elements</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Contained Model Elements</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -444,10 +444,10 @@ public interface TaskPackage extends EPackage {
 	EClass getWorkPackage();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.model.task.WorkPackage#getContainedModelElements <em>Contained Model Elements</em>}'.
+	 * Returns the meta object for the reference list '{@link org.unicase.model.task.WorkPackage#getContainedModelElements <em>Contained Model Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Contained Model Elements</em>'.
+	 * @return the meta object for the reference list '<em>Contained Model Elements</em>'.
 	 * @see org.unicase.model.task.WorkPackage#getContainedModelElements()
 	 * @see #getWorkPackage()
 	 * @generated
@@ -466,10 +466,10 @@ public interface TaskPackage extends EPackage {
 	EClass getWorkItem();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.unicase.model.task.WorkItem#getContainingWorkpackage <em>Containing Workpackage</em>}'.
+	 * Returns the meta object for the reference '{@link org.unicase.model.task.WorkItem#getContainingWorkpackage <em>Containing Workpackage</em>}'.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * @return the meta object for the container reference '<em>Containing Workpackage</em>'.
+	 * @return the meta object for the reference '<em>Containing Workpackage</em>'.
 	 * @see org.unicase.model.task.WorkItem#getContainingWorkpackage()
 	 * @see #getWorkItem()
 	 * @generated
@@ -559,7 +559,7 @@ public interface TaskPackage extends EPackage {
 		EClass WORK_PACKAGE = eINSTANCE.getWorkPackage();
 
 		/**
-		 * The meta object literal for the '<em><b>Contained Model Elements</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Contained Model Elements</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -577,7 +577,7 @@ public interface TaskPackage extends EPackage {
 		EClass WORK_ITEM = eINSTANCE.getWorkItem();
 
 		/**
-		 * The meta object literal for the '<em><b>Containing Workpackage</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Containing Workpackage</b></em>' reference feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
