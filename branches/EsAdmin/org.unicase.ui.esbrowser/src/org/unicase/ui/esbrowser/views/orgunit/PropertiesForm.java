@@ -21,6 +21,7 @@ public class PropertiesForm extends Form {
 	private UserComposite userComposite;
 	
 	public static EObject dragNDropObject;
+	public static String dragSource = "";
 	
 
 	public PropertiesForm(Composite parent, int style) {

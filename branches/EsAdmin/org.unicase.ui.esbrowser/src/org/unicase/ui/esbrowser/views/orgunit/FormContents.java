@@ -8,7 +8,6 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryLabelProvider;
 import org.eclipse.jface.util.LocalSelectionTransfer;
-import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -19,6 +18,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DragSourceEvent;
 import org.eclipse.swt.dnd.DragSourceListener;
+import org.eclipse.swt.dnd.DropTarget;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.dnd.DropTargetListener;
 import org.eclipse.swt.dnd.Transfer;
@@ -29,6 +29,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
@@ -45,7 +46,7 @@ public abstract class FormContents extends Composite {
 
 	protected Group grpTable;
 	protected Group grpAttributes;
-	
+
 	protected Label lblName;
 	protected Text txtName;
 	protected Label lblDescription;
@@ -53,12 +54,12 @@ public abstract class FormContents extends Composite {
 
 	protected Table table;
 	protected TableViewer tableViewer;
-	
+
 	public FormContents(Composite parent, int style) {
 		super(parent, style);
-		createControls();
+
 	}
-	
+
 	protected void createControls() {
 		this.setLayout(new GridLayout());
 
@@ -67,9 +68,8 @@ public abstract class FormContents extends Composite {
 		createButtons(grpTable);
 
 	}
-	
-	
-	protected void createSimpleAttributes(){
+
+	protected void createSimpleAttributes() {
 		grpAttributes = new Group(this, SWT.V_SCROLL);
 		grpAttributes.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
 				false));
@@ -90,8 +90,8 @@ public abstract class FormContents extends Composite {
 		// txtDescription.setEnabled(false);
 
 	}
-	
-	protected void createTableGroup(){
+
+	protected void createTableGroup() {
 		grpTable = new Group(this, SWT.NONE);
 		grpTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		grpTable.setText("Table");
@@ -99,16 +99,16 @@ public abstract class FormContents extends Composite {
 
 		createTable(grpTable);
 		createTableViewer();
-		tableViewer.setContentProvider(new TableContentProvider());
-		tableViewer.setLabelProvider(new TableLabelProvider());
+
 	}
-	
-	
+
 	protected void createTableViewer() {
 		tableViewer = new TableViewer(table);
 		tableViewer.setUseHashlookup(true);
+		tableViewer.setContentProvider(new TableContentProvider());
+		tableViewer.setLabelProvider(new TableLabelProvider());
 		addDragNDropSupport();
-		
+
 	}
 
 	protected void createTable(Composite parent) {
@@ -123,8 +123,7 @@ public abstract class FormContents extends Composite {
 		table.setLinesVisible(true);
 		table.setHeaderVisible(true);
 
-		// 1st column with image/checkboxes - NOTE: The SWT.CENTER has no
-		// effect!!
+		// 1st column with image
 		TableColumn column = new TableColumn(table, SWT.CENTER, 0);
 		column.setText("(/*\\)");
 		column.setWidth(20);
@@ -154,9 +153,8 @@ public abstract class FormContents extends Composite {
 		// }
 		// });
 	}
-	
-	
-	protected void createButtons(Composite parent){
+
+	protected void createButtons(Composite parent) {
 		// Create and configure the "Add" button
 		Button add = new Button(parent, SWT.PUSH | SWT.CENTER);
 		add.setText("Add...");
@@ -196,18 +194,36 @@ public abstract class FormContents extends Composite {
 
 	}
 
-	protected void addDragNDropSupport(){
+	protected void addDragNDropSupport() {
 		int ops = DND.DROP_COPY;
 		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer
 				.getTransfer() };
 		DropTargetListener dropListener = new DropTargetListener() {
 			public void dragEnter(DropTargetEvent event) {
-				event.detail = DND.DROP_COPY;
+				if(PropertiesForm.dragSource.equals("Projects")){
+					event.detail = DND.DROP_NONE;
+				}else if(PropertiesForm.dragSource.equals("Users")){
+					DropTarget dropTarget = (DropTarget) event.getSource();
+					Control targetControl = dropTarget.getControl();
+					Composite targetParent = targetControl.getParent();
+					String target = "";
+					if (targetParent instanceof Group) {
+						target = ((Group) targetParent).getText();
+					}
+					if (target.equals("Groups")) {
+						event.detail = DND.DROP_NONE;
+					}else{
+						event.detail = DND.DROP_COPY;
+					}
+					
+				} else {
+					event.detail = DND.DROP_COPY;
+				}
 			}
 
 			public void drop(DropTargetEvent event) {
-				if(PropertiesForm.dragNDropObject != null){
-					if(PropertiesForm.dragNDropObject instanceof ACOrgUnit){
+				if (PropertiesForm.dragNDropObject != null) {
+					if (PropertiesForm.dragNDropObject instanceof ACOrgUnit) {
 						ACOrgUnit orgUnit = (ACOrgUnit) PropertiesForm.dragNDropObject;
 						addOrgUnit(orgUnit);
 						PropertiesForm.dragNDropObject = null;
@@ -215,42 +231,56 @@ public abstract class FormContents extends Composite {
 					}
 				}
 			}
-			public void dragLeave(DropTargetEvent event) {	}
-			public void dragOperationChanged(DropTargetEvent event) {	}
-			public void dragOver(DropTargetEvent event) {		}
-			public void dropAccept(DropTargetEvent event) {		}
+
+			public void dragLeave(DropTargetEvent event) {
+			}
+
+			public void dragOperationChanged(DropTargetEvent event) {
+			}
+
+			public void dragOver(DropTargetEvent event) {
+			}
+
+			public void dropAccept(DropTargetEvent event) {
+			}
 		};
 		tableViewer.addDropSupport(ops, transfers, dropListener);
-		
-		ops  = DND.DROP_MOVE;
-		DragSourceListener dragListener = new DragSourceListener(){
+
+		ops = DND.DROP_MOVE;
+		DragSourceListener dragListener = new DragSourceListener() {
 			public void dragFinished(DragSourceEvent event) {
-				tableViewer.refresh();	
+				tableViewer.refresh();
+				PropertiesForm.dragNDropObject = null;
 			}
+
 			public void dragSetData(DragSourceEvent event) {
 				EObject eObject = getSelectedItem();
-				if(eObject != null){
-					if(eObject instanceof ACOrgUnit){
-						ACOrgUnit orgUnit = (ACOrgUnit)eObject;
+				if (eObject != null) {
+					if (eObject instanceof ACOrgUnit) {
+						ACOrgUnit orgUnit = (ACOrgUnit) eObject;
 						PropertiesForm.dragNDropObject = orgUnit;
 					}
 				}
 			}
-			public void dragStart(DragSourceEvent event) {	}
+
+			public void dragStart(DragSourceEvent event) {
+			}
 		};
 		tableViewer.addDragSupport(ops, transfers, dragListener);
 	}
-	
-	protected void addOrgUnit(ACOrgUnit orgUnit) { }
-	
-	protected void removeOrgUnit(ACOrgUnit orgUnit){ }
-	
-	protected Object[] showDialog(Collection<ACOrgUnit> content ,String title){
+
+	protected void addOrgUnit(ACOrgUnit orgUnit) {
+	}
+
+	protected void removeOrgUnit(ACOrgUnit orgUnit) {
+	}
+
+	protected Object[] showDialog(Collection<ACOrgUnit> content, String title) {
 		ElementListSelectionDialog dlg = new ElementListSelectionDialog(this
 				.getShell(), new AdapterFactoryLabelProvider(
 				new ComposedAdapterFactory(
 						ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
-		
+
 		dlg.setElements(content.toArray(new Object[content.size()]));
 		dlg.setTitle(title);
 		dlg.setBlockOnOpen(true);
@@ -258,7 +288,7 @@ public abstract class FormContents extends Composite {
 		Object[] result = new Object[0];
 		if (dlg.open() == Window.OK) {
 			result = dlg.getResult();
-			}
+		}
 		return result;
 	}
 
@@ -266,34 +296,48 @@ public abstract class FormContents extends Composite {
 		EObject result = null;
 		ISelection sel = tableViewer.getSelection();
 		IStructuredSelection ssel = null;
-		if(sel != null){
+		if (sel != null) {
 			ssel = (IStructuredSelection) sel;
 		}
-		
+
 		if (ssel != null) {
 			Object obj = ssel.getFirstElement();
 			result = (ACOrgUnit) obj;
 		}
 		return result;
 	}
-	
+
 	private class TableContentProvider implements IStructuredContentProvider {
 
 		public Object[] getElements(Object inputElement) {
 			Object[] result = new Object[0];
-			if(inputElement instanceof ACUser){
-				EList<ACGroup> groups =WorkspaceManager.getInstance().getAdminConnectionManager().getGroups((ACUser)inputElement);
+			if (inputElement instanceof ACUser) {
+				EList<ACGroup> groups = WorkspaceManager.getInstance()
+						.getAdminConnectionManager().getGroups(
+								(ACUser) inputElement);
 				result = groups.toArray(new ACOrgUnit[groups.size()]);
-			}else if(inputElement instanceof ACGroup){
-				EList<ACOrgUnit> members = ((ACGroup)inputElement).getMembers();
-				result =  members.toArray(new ACOrgUnit[members.size()]);
+
+			} else if (inputElement instanceof ACGroup) {
+				EList<ACOrgUnit> members = ((ACGroup) inputElement)
+						.getMembers();
+				result = members.toArray(new ACOrgUnit[members.size()]);
+
+			} else if (inputElement instanceof ProjectInfo) {
+				EList<ACOrgUnit> participants = WorkspaceManager.getInstance()
+						.getAdminConnectionManager().getParticipants(
+								(ProjectInfo) inputElement);
+				result = participants
+						.toArray(new ACOrgUnit[participants.size()]);
+
 			}
 			return result;
 		}
 
-		public void dispose() {	}
+		public void dispose() {
+		}
 
-		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {	}
+		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+		}
 
 	}// TableContentProvider
 
@@ -334,5 +378,5 @@ public abstract class FormContents extends Composite {
 		}
 
 	}// TableLabelProvider
-	
-}//FormContent
+
+}// FormContent

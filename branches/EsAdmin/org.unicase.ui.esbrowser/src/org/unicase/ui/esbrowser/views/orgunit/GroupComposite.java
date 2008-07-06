@@ -16,7 +16,7 @@ public class GroupComposite extends FormContents {
 
 	public GroupComposite(Composite parent, int style) {
 		super(parent, style);
-		
+		createControls();
 	}
 
 	protected void removeOrgUnit(ACOrgUnit orgUnit){

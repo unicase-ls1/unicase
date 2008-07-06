@@ -93,8 +93,12 @@ public class TabContent {
 		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer.getTransfer() };
 
 		DragSourceListener dragListener = new DragSourceListener() {
-			public void dragFinished(DragSourceEvent event) {		}
-			public void dragStart(DragSourceEvent event) {		}
+			public void dragFinished(DragSourceEvent event) {	
+				PropertiesForm.dragNDropObject = null;
+			}
+			public void dragStart(DragSourceEvent event) {	
+				PropertiesForm.dragSource = getName();	
+			}
 
 			public void dragSetData(DragSourceEvent event) {
 				EObject eObject = getSelectedItem(null);

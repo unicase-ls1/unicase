@@ -18,6 +18,7 @@ public class UserComposite extends FormContents {
 	
 	public UserComposite(Composite parent, int style) {
 		super(parent, style);
+		createControls();
 	}
 
 	
@@ -32,6 +33,7 @@ public class UserComposite extends FormContents {
 		// (get list of all AcOrgUnits, remove those who take part in this
 		// Project)
 		// 2. add the selected participant to the project
+	
 		if (group != null){
 			WorkspaceManager.getInstance().getAdminConnectionManager().addGroup(user, (ACGroup)group);
 			
