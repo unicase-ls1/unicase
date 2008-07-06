@@ -1,3 +1,4 @@
+
 package org.unicase.ui.test.views;
 
 import org.eclipse.swt.SWT;
@@ -16,7 +17,15 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.ui.test.TestProject;
 
-
+/**
+ *
+ * @author Hodaie
+ * This the view for model tests. The view contains a list of all available
+ * model test on the left. On the right pane the user can set the parameters of
+ * selected test.
+ * Currently there is only one test available.
+ *
+ */
 public class TestView extends ViewPart {
 
 	private Label lblNumOfEachME;
@@ -39,11 +48,16 @@ public class TestView extends ViewPart {
 	private Group testsGroup, testParamsGroup;
 	private Table testsTable;
 	
-		
+	/**.
+	 * constructor
+	 */
 	public TestView() {
 		
 	}
 
+	/**.
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void createPartControl(Composite parent) {
 		
@@ -53,7 +67,8 @@ public class TestView extends ViewPart {
 		createTestParamsGroup();
 				
 		sash.setWeights(setSashWidgets());
-		
+
+		//fill list of tests
 		setTests();
 		
 	}
@@ -189,6 +204,9 @@ public class TestView extends ViewPart {
 		return new int[] {50, 50};
 	}
 
+	/**.
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void setFocus() {
 		testsTable.select(0);

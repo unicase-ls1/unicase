@@ -48,6 +48,16 @@ import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
 
+/**
+ * 
+ * @author Hodaie
+ * This class creates a test random model. The test takes parameters
+ * like minimum number of model elements, maximum number of references and structure 
+ * of project (number of LeafSections and CompositeSections). It then creates the 
+ * required number of elements, makes their references randomly, and distributes them
+ * randomly in project structure. Finally a random number of created MEs are open.
+ *  
+ */
 public class TestProject   {
 
 	private int numOfEachME = 20;
@@ -57,7 +67,9 @@ public class TestProject   {
 	private int maxNumOfMEsInLeafSection = 20;
 	private int numOfMEsToOpen = 20;
 	
+	//the text attributes are created randomly from these words.
 	private static final String[] WORDS = {"hello", "cat", "mouse", "sun", "moon", "network", "watch", "rain", "kid", "repair", "bug", "rainbow"};
+	//maximum length of a text 
 	private static final int MAX_NUM_OF_WORDS = 50;
 	
 	private Random random;
@@ -69,12 +81,20 @@ public class TestProject   {
 	private HashMap<EClass, List<EObject>> meInstancesByClass = new HashMap<EClass, List<EObject>>();
 	private HashMap<EClass, List<EObject>> nonMEInstancesByClass = new HashMap<EClass, List<EObject>>();
 	//keep a list of all classes that can be instantiated. 
-	List<EClass> meNonAbstractClasses = new ArrayList<EClass>();
-	List<EClass> nonMEnonAbstractClasses = new ArrayList<EClass>();
+	private List<EClass> meNonAbstractClasses = new ArrayList<EClass>();
+	private List<EClass> nonMEnonAbstractClasses = new ArrayList<EClass>();
 	
 	
-	
-	//constructor: set test project parameters
+	/**.
+	 * Constructor: set test project parameters
+	 * @param numOfEachME  minimum number of each ME
+	 * @param randomSeed random seed
+	 * @param projWidth number of sub-Sections in each composite section
+	 * @param porjDepth  number of levels in project structure
+	 * @param maxNumOfManyRefs maximum number of references
+	 * @param maxNumOfMEsInLeafSection max number of MEs to show on a LeafSection
+	 * @param numOfMEsToOpen number of MEs to open
+	 */
 	public TestProject(int numOfEachME, int randomSeed,
 					   int projWidth, int porjDepth, 
 					   int maxNumOfManyRefs, int maxNumOfMEsInLeafSection, 
@@ -129,13 +149,11 @@ public class TestProject   {
 		}
 	}
 
+	/**
+	 * This creates the test project and adds it to worksapce.
+	 */
 	public  void createProject() {
-		// 1.get workspace
-		// 2.create new project
-		// 3.create new projectSpace
-		// 4.projectSpace.addProject(project)
-		// 5.workspace.getProjectSpaces.add(projectSpace)
-
+		
 		final Workspace workspace = WorkspaceManager.getInstance()
 				.getCurrentWorkspace();
 
@@ -151,7 +169,7 @@ public class TestProject   {
 		primaryVersionSpec.setIdentifier(999999);
 		projectSpace.setBaseVersion(primaryVersionSpec);
 		projectSpace.setLastUpdated(new Date());
-		projectSpace.setProjectDescription("descriptopm");
+		projectSpace.setProjectDescription("Test project description");
 		projectSpace.setProjectName("ModelTestProject");
 		projectSpace.setProjectId(EsmodelFactory.eINSTANCE.createProjectId());
 
@@ -163,7 +181,7 @@ public class TestProject   {
 			}
 		});
 
-		//open some of MEs
+		//open some MEs
 		openSomeMEs();
 	}
 
@@ -186,25 +204,6 @@ public class TestProject   {
 		
 		//set references
 		createReferences();
-		
-		//test		
-		/*
-		EList<ModelElement> list1 = project.getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkItem(), new BasicEList<ModelElement>());
-		EList<ModelElement> list2 = project.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(), new BasicEList<ModelElement>());
-		EList<ModelElement> list3 = project.getAllModelElementsbyClass(RequirementPackage.eINSTANCE.getFunctionalRequirement(), new BasicEList<ModelElement>());
-		EList<ModelElement> list4 = project.getAllModelElementsbyClass(ChangePackage.eINSTANCE.getMergingIssue(), new BasicEList<ModelElement>());
-		EList<ModelElement> list5 = project.getAllModelElementsbyClass(RationalePackage.eINSTANCE.getAssessment(), new BasicEList<ModelElement>());
-		EList<ModelElement> list6 = project.getAllModelElementsbyClass(RationalePackage.eINSTANCE.getComment(), new BasicEList<ModelElement>());
-		EList<ModelElement> list7 = project.getAllModelElementsbyClass(ComponentPackage.eINSTANCE.getComponent(), new BasicEList<ModelElement>());
-		
-		List<EObject> list8 = getAllInstancesOf(TaskPackage.eINSTANCE.getWorkItem());
-		List<EObject> list9 = getAllInstancesOf(OrganizationPackage.eINSTANCE.getUser());
-		List<EObject> list10 = getAllInstancesOf(RequirementPackage.eINSTANCE.getFunctionalRequirement());
-		List<EObject> list11 = getAllInstancesOf(ChangePackage.eINSTANCE.getMergingIssue());
-		List<EObject> list12 = getAllInstancesOf(RationalePackage.eINSTANCE.getAssessment());
-		List<EObject> list13 = getAllInstancesOf(RationalePackage.eINSTANCE.getComment());
-		List<EObject> list14 = getAllInstancesOf(ComponentPackage.eINSTANCE.getComponent());
-		*/
 		
 		//distribute some model elements on LeafSections
 		EList<ModelElement> leafSections = project.getAllModelElementsbyClass(DocumentPackage.eINSTANCE.getLeafSection(), new BasicEList<ModelElement>());
@@ -390,24 +389,7 @@ public class TestProject   {
 	private void createContainmentRef(ModelElement me, EReference ref, 
 									  int lowerBound,  int upperBound) {
 		//check special cases
-		if(ref.getEReferenceType().equals(ModelPackage.eINSTANCE.getModelElementId())){
-			//for all instances the model element id is set
-			//during creation in createInstances method
-			return;
-		}
-		if(me instanceof Section && ref.getName().equals("subsections")) { 
-			//subsections are set during building of document structure
-			return;
-		}
-		if(me instanceof LeafSection && ref.getName().equals("modelElements")){
-			//distribution of model elements among leaf sections occurs 
-			//in the last step in createTestProject method
-			//distributeMEsOnLeafSection((LeafSection)me);
-			return;
-		}		
-		if (sectionEClass.isSuperTypeOf(ref.getEReferenceType())){
-			//we don't want to break apart the document structure.
-			//a containment reference whose target is Section is not considered.
+		if(checkSpecialCase(me, ref)){
 			return;
 		}
 		
@@ -460,6 +442,32 @@ public class TestProject   {
 		  				   
 	}
 	
+	//this checks ME and Ref against some special cases
+	private boolean checkSpecialCase(ModelElement me, EReference ref) {
+		boolean result = false;
+		if(ref.getEReferenceType().equals(ModelPackage.eINSTANCE.getModelElementId())){
+			//for all instances the model element id is set
+			//during creation in createInstances method
+			result = true;
+		}
+		if(me instanceof Section && ref.getName().equals("subsections")) { 
+			//subsections are set during building of document structure
+			result = true;
+		}
+		if(me instanceof LeafSection && ref.getName().equals("modelElements")){
+			//distribution of model elements among leaf sections occurs 
+			//in the last step in createTestProject method
+			//distributeMEsOnLeafSection((LeafSection)me);
+			result = true;
+		}		
+		if (sectionEClass.isSuperTypeOf(ref.getEReferenceType())){
+			//we don't want to break apart the document structure.
+			//a containment reference whose target is Section is not considered.
+			result = true;
+		}
+		return result;
+	}
+
 	//returns a random number for number of references
 	private int getNumOfRefs( EReference ref ,int lowerBound, int upperBound) {
 		int numOfRefs = maxNumOfManyRefs;
@@ -737,7 +745,6 @@ public class TestProject   {
 					.getActivePage()
 					.openEditor(input, MEEditor.ID, true);
 		} catch (PartInitException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
