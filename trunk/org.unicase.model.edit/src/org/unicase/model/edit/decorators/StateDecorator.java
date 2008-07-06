@@ -48,7 +48,10 @@ public class StateDecorator implements ILightweightLabelDecorator {
 	private int quadrant;
 
 	/** The icon image location in the project folder */
-	private String iconPath = "icons/open.gif"; // NON-NLS-1
+	private String openPath = "icons/open.gif"; // NON-NLS-1
+
+	/** The icon image location in the project folder */
+	private String blockedPath = "icons/blocked.gif"; // NON-NLS-1
 
 	/**
 	 * The image description used in
@@ -69,12 +72,7 @@ public class StateDecorator implements ILightweightLabelDecorator {
 		 * attribute and adds the decorator based on the specified image
 		 * description and the integer representation of the placement option.
 		 */
-
-		URL url = Platform.find(Platform.getBundle("org.unicase.model.edit"),
-				new Path(iconPath)); // NON-NLS-1
-
-		if (url == null)
-			return;
+		URL url = null;
 		ModelElement me;
 		if (element instanceof ModelElement) {
 			me = (ModelElement) element;
@@ -83,9 +81,15 @@ public class StateDecorator implements ILightweightLabelDecorator {
 		}
 		try {
 			if (me.getMEState().getStatus().equals(MEState.OPEN)) {
-				descriptor = ImageDescriptor.createFromURL(url);
-				quadrant = IDecoration.TOP_RIGHT;
-				decoration.addOverlay(descriptor, quadrant);
+				url = Platform.find(Platform
+						.getBundle("org.unicase.model.edit"),
+						new Path(openPath));
+
+			}
+			if (me.getMEState().getStatus().equals(MEState.BLOCKED)) {
+				url = Platform.find(Platform
+						.getBundle("org.unicase.model.edit"), new Path(
+						blockedPath));
 			}
 		} catch (CircularDependencyException e) {
 			// JH : add questionmark image
@@ -93,6 +97,13 @@ public class StateDecorator implements ILightweightLabelDecorator {
 			return;
 		}
 
+		if (url == null){
+			return;
+		}
+
+		descriptor = ImageDescriptor.createFromURL(url);
+		quadrant = IDecoration.TOP_RIGHT;
+		decoration.addOverlay(descriptor, quadrant);
 	}
 
 	/*
