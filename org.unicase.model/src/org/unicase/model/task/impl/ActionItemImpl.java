@@ -169,8 +169,9 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newContainingWorkpackage != null)
 				msgs = ((InternalEObject) newContainingWorkpackage)
-						.eInverseAdd(this,
-								TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
+						.eInverseAdd(
+								this,
+								TaskPackage.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
 								WorkPackage.class, msgs);
 			msgs = basicSetContainingWorkpackage(newContainingWorkpackage, msgs);
 			if (msgs != null)
@@ -306,7 +307,7 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 		switch (eContainerFeatureID) {
 		case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
 			return eInternalContainer().eInverseRemove(this,
-					TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
+					TaskPackage.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
 					WorkPackage.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);

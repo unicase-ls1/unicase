@@ -374,16 +374,17 @@ public abstract class ModelElementImpl extends EObjectImpl implements
 	 * @throws CircularDependencyException 
 	 * @generated NOT
 	 */
-	public org.unicase.model.task.util.MEState getMEState() throws CircularDependencyException {
-		if (meState==null){
+	public org.unicase.model.task.util.MEState getMEState()
+			throws CircularDependencyException {
+		if (meState == null) {
 			synchronized (this) {
-				if (calculatingState){
+				if (calculatingState) {
 					throw new CircularDependencyException(this);
 				}
 				calculatingState = true;
 			}
-			meState=new MEStateImpl(this);
-			calculatingState=false;
+			meState = new MEStateImpl(this);
+			calculatingState = false;
 		}
 
 		return meState;

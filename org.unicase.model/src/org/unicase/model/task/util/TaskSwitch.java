@@ -102,10 +102,6 @@ public class TaskSwitch<T> {
 			WorkPackage workPackage = (WorkPackage) theEObject;
 			T result = caseWorkPackage(workPackage);
 			if (result == null)
-				result = caseWorkItem(workPackage);
-			if (result == null)
-				result = caseAnnotation(workPackage);
-			if (result == null)
 				result = caseModelElement(workPackage);
 			if (result == null)
 				result = defaultCase(theEObject);

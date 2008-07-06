@@ -23,6 +23,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.model.provider.AnnotationItemProvider;
 import org.unicase.model.provider.ModelEditPlugin;
+import org.unicase.model.provider.ModelElementItemProvider;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkPackage;
@@ -33,7 +34,7 @@ import org.unicase.model.task.WorkPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class WorkPackageItemProvider extends AnnotationItemProvider implements
+public class WorkPackageItemProvider extends ModelElementItemProvider implements
 		IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
@@ -57,26 +58,27 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addAssociatedChangePackagesPropertyDescriptor(object);
+			addContainedModelElementsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Associated Change Packages feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Contained Model Elements feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addAssociatedChangePackagesPropertyDescriptor(Object object) {
+	protected void addContainedModelElementsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
 						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_WorkItem_associatedChangePackages_feature"),
+				getString("_UI_WorkPackage_containedModelElements_feature"),
 				getString("_UI_PropertyDescriptor_description",
-						"_UI_WorkItem_associatedChangePackages_feature",
-						"_UI_WorkItem_type"),
-				TaskPackage.Literals.WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES,
-				true, false, true, null, null, null));
+						"_UI_WorkPackage_containedModelElements_feature",
+						"_UI_WorkPackage_type"),
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				true, false, false, null, null, null));
 	}
 
 	/**
@@ -92,7 +94,7 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures
-					.add(TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS);
+					.add(TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -146,7 +148,7 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(WorkPackage.class)) {
-		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
+		case TaskPackage.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), true, false));
 			return;
@@ -167,12 +169,8 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
 				TaskFactory.eINSTANCE.createActionItem()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
-				TaskFactory.eINSTANCE.createWorkPackage()));
 	}
 
 	/**

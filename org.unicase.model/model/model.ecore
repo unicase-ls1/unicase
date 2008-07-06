@@ -92,14 +92,14 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="done" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="estimate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="WorkPackage" eSuperTypes="#//task/WorkItem">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="containedWorkItems" upperBound="-1"
-          eType="#//task/WorkItem" containment="true" eOpposite="#//task/WorkItem/containingWorkpackage"/>
+    <eClassifiers xsi:type="ecore:EClass" name="WorkPackage" eSuperTypes="#//ModelElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="containedModelElements"
+          upperBound="-1" eType="#//task/WorkItem" containment="true" eOpposite="#//task/WorkItem/containingWorkpackage"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="WorkItem" abstract="true" interface="true"
         eSuperTypes="#//Annotation">
       <eStructuralFeatures xsi:type="ecore:EReference" name="containingWorkpackage"
-          eType="#//task/WorkPackage" eOpposite="#//task/WorkPackage/containedWorkItems"/>
+          eType="#//task/WorkPackage" eOpposite="#//task/WorkPackage/containedModelElements"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="associatedChangePackages"
           upperBound="-1" eType="#//change/ModelChangePackage"/>
     </eClassifiers>

@@ -246,10 +246,11 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getWorkPackage_ContainedWorkItems() {
+	public EReference getWorkPackage_ContainedModelElements() {
 		return (EReference) workPackageEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -311,7 +312,8 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		createEAttribute(actionItemEClass, ACTION_ITEM__ESTIMATE);
 
 		workPackageEClass = createEClass(WORK_PACKAGE);
-		createEReference(workPackageEClass, WORK_PACKAGE__CONTAINED_WORK_ITEMS);
+		createEReference(workPackageEClass,
+				WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS);
 
 		workItemEClass = createEClass(WORK_ITEM);
 		createEReference(workItemEClass, WORK_ITEM__CONTAINING_WORKPACKAGE);
@@ -355,7 +357,8 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 		// Add supertypes to classes
 		actionItemEClass.getESuperTypes().add(this.getWorkItem());
-		workPackageEClass.getESuperTypes().add(this.getWorkItem());
+		workPackageEClass.getESuperTypes().add(
+				theModelPackage.getModelElement());
 		workItemEClass.getESuperTypes().add(theModelPackage.getAnnotation());
 
 		// Initialize classes and features; add operations and parameters
@@ -381,16 +384,18 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 		initEClass(workPackageEClass, WorkPackage.class, "WorkPackage",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getWorkPackage_ContainedWorkItems(), this.getWorkItem(),
-				this.getWorkItem_ContainingWorkpackage(), "containedWorkItems",
-				null, 0, -1, WorkPackage.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWorkPackage_ContainedModelElements(), this
+				.getWorkItem(), this.getWorkItem_ContainingWorkpackage(),
+				"containedModelElements", null, 0, -1, WorkPackage.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
 		initEClass(workItemEClass, WorkItem.class, "WorkItem", IS_ABSTRACT,
 				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWorkItem_ContainingWorkpackage(), this
-				.getWorkPackage(), this.getWorkPackage_ContainedWorkItems(),
+				.getWorkPackage(),
+				this.getWorkPackage_ContainedModelElements(),
 				"containingWorkpackage", null, 0, 1, WorkItem.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,

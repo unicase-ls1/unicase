@@ -71,7 +71,7 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//task/ActionItem/estimate"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//task/WorkPackage">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//task/WorkPackage/containedWorkItems"/>
+        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//task/WorkPackage/containedModelElements"/>
       </genClasses>
       <genClasses image="false" ecoreClass="model.ecore#//task/WorkItem">
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//task/WorkItem/containingWorkpackage"/>
