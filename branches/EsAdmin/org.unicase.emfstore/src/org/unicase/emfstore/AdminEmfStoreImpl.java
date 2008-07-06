@@ -21,7 +21,10 @@ import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
+import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
+import org.unicase.emfstore.esmodel.accesscontrol.roles.ReaderRole;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
+import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 
 /**
@@ -111,22 +114,47 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		return result;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void addParticipant(SessionId sessionId, ProjectInfo project,
-			ACOrgUnit participant) {
-		// TODO Auto-generated method stub
-
+		ACOrgUnit participant) throws EmfStoreException {
+		ACOrgUnit orgUnit = getOrgUnit(participant);
+		for(Role role : orgUnit.getRoles()) {
+			if(role.getProjects().contains(project.getProjectId())) {
+				return;
+			}
+		}
+		ReaderRole reader = RolesFactory.eINSTANCE.createReaderRole();
+		reader.getProjects().add(project.getProjectId());
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void removeParticipant(SessionId sessionId, ProjectInfo project,
-			ACOrgUnit participant) {
-		// TODO Auto-generated method stub
-
+			ACOrgUnit participant) throws EmfStoreException {
+		ACOrgUnit orgUnit = getOrgUnit(participant);
+		for(Role role : orgUnit.getRoles()) {
+			if(role.getProjects().contains(project.getProjectId())) {
+				role.getProjects().remove(project.getProjectId());
+				return;
+			}
+		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Role getRole(SessionId sessionId, ProjectInfo project,
-			ACOrgUnit orgUnit) {
-		// TODO Auto-generated method stub
-		return null;
+			ACOrgUnit orgUnit) throws EmfStoreException {
+		ACOrgUnit oUnit = getOrgUnit(orgUnit);
+		for(Role role : oUnit.getRoles()) {
+			if(role.getProjects().contains(project.getProjectId())) {
+				return role;
+			}
+		}
+		throw new EmfStoreException("Couldn't find given OrgUnit.");
 	}
 
 	public void changeRole(SessionId sessionId, ProjectInfo projectInfo,
