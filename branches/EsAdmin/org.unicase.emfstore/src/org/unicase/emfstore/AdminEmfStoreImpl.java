@@ -14,11 +14,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.unicase.emfstore.accesscontrol.AuthorizationControl;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectHistory;
+import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
+import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.ReaderRole;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
@@ -62,13 +64,15 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	/**
 	 * {@inheritDoc}
 	 */
-	public List<ACGroup> getGroups(SessionId sessionId, ACUser user) {
+	public List<ACGroup> getGroups(SessionId sessionId,  ACOrgUnitId orgUnitId) {
 		List<ACGroup> result = new ArrayList<ACGroup>();
 		for (ACGroup group : getServerSpace().getGroups()) {
 			// FIXME: does contains work after deserialization? maybe adapt
 			// equals method
-			if (group.getMembers().contains(user)) {
-				result.add(group);
+			for(ACOrgUnit orgUnit : group.getMembers()) {
+				if(orgUnit.getId().equals(orgUnitId) && orgUnit instanceof ACGroup) {
+					result.add((ACGroup) group);
+				}
 			}
 		}
 		return result;
@@ -77,15 +81,15 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void addGroup(SessionId sessionId, ACUser user, ACGroup group) throws EmfStoreException {
-		getGroup(group).getMembers().add(user);
+	public void addGroup(SessionId sessionId, ACUser user, ACOrgUnitId orgUnitId) throws EmfStoreException {
+		getGroup(orgUnitId).getMembers().add(user);
 
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public void removeGroup(SessionId sessionId, ACUser user, ACGroup group) throws EmfStoreException {
+	public void removeGroup(SessionId sessionId,  ACOrgUnitId user, ACOrgUnitId group) throws EmfStoreException {
 		getGroup(group).getMembers().remove(user);
 	}
 
@@ -93,18 +97,18 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	 * {@inheritDoc}
 	 */
 	public List<ACOrgUnit> getParticipants(SessionId sessionId,
-			ProjectInfo project) {
+			ProjectId projectId) {
 		List<ACOrgUnit> result = new ArrayList<ACOrgUnit>();
 		for (ACOrgUnit orgUnit : getServerSpace().getUsers()) {
 			for (Role role : orgUnit.getRoles()) {
-				if (role.getProjects().contains(project.getProjectId())) {
+				if (role.getProjects().contains(projectId)) {
 					result.add(orgUnit);
 				}
 			}
 		}
 		for (ACOrgUnit orgUnit : getServerSpace().getGroups()) {
 			for (Role role : orgUnit.getRoles()) {
-				if (role.getProjects().contains(project.getProjectId())) {
+				if (role.getProjects().contains(projectId)) {
 					result.add(orgUnit);
 				}
 			}
@@ -115,27 +119,27 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void addParticipant(SessionId sessionId, ProjectInfo project,
-		ACOrgUnit participant) throws EmfStoreException {
+	public void addParticipant(SessionId sessionId, ProjectId projectId,
+			 ACOrgUnitId participant) throws EmfStoreException {
 		ACOrgUnit orgUnit = getOrgUnit(participant);
 		for(Role role : orgUnit.getRoles()) {
-			if(role.getProjects().contains(project.getProjectId())) {
+			if(role.getProjects().contains(projectId)) {
 				return;
 			}
 		}
 		ReaderRole reader = RolesFactory.eINSTANCE.createReaderRole();
-		reader.getProjects().add(project.getProjectId());
+		reader.getProjects().add(projectId);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public void removeParticipant(SessionId sessionId, ProjectInfo project,
-			ACOrgUnit participant) throws EmfStoreException {
+	public void removeParticipant(SessionId sessionId, ProjectId projectId,
+			 ACOrgUnitId participant) throws EmfStoreException {
 		ACOrgUnit orgUnit = getOrgUnit(participant);
 		for(Role role : orgUnit.getRoles()) {
-			if(role.getProjects().contains(project.getProjectId())) {
-				role.getProjects().remove(project.getProjectId());
+			if(role.getProjects().contains(projectId)) {
+				role.getProjects().remove(projectId);
 				return;
 			}
 		}
@@ -144,19 +148,19 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	/**
 	 * {@inheritDoc}
 	 */
-	public Role getRole(SessionId sessionId, ProjectInfo project,
-			ACOrgUnit orgUnit) throws EmfStoreException {
-		ACOrgUnit oUnit = getOrgUnit(orgUnit);
+	public Role getRole(SessionId sessionId, ProjectId projectId,
+			ACOrgUnitId orgUnitId) throws EmfStoreException {
+		ACOrgUnit oUnit = getOrgUnit(orgUnitId);
 		for(Role role : oUnit.getRoles()) {
-			if(role.getProjects().contains(project.getProjectId())) {
+			if(role.getProjects().contains(projectId)) {
 				return role;
 			}
 		}
 		throw new EmfStoreException("Couldn't find given OrgUnit.");
 	}
 
-	public void changeRole(SessionId sessionId, ProjectInfo projectInfo,
-			ACOrgUnit orgUnit, EClass role) {
+	public void changeRole(SessionId sessionId, ProjectId projectId,
+			 ACOrgUnitId orgUnitId, EClass role) {
 		// TODO Auto-generated method stub
 
 	}
@@ -210,23 +214,23 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		return info;
 	}
 
-	private ACGroup getGroup(ACGroup acGroup) throws EmfStoreException {
+	private ACGroup getGroup(ACOrgUnitId orgUnitId) throws EmfStoreException {
 		for (ACGroup group : getServerSpace().getGroups()) {
-			if (group.equals(acGroup)) {
+			if (group.getId().equals(orgUnitId)) {
 				return group;
 			}
 		}
 		throw new EmfStoreException("Given group doesn't exist.");
 	}
 	
-	private ACOrgUnit getOrgUnit(ACOrgUnit orgUnit) throws EmfStoreException {
+	private ACOrgUnit getOrgUnit(ACOrgUnitId orgUnitId) throws EmfStoreException {
 		for(ACOrgUnit unit : getServerSpace().getUsers()) {
-			if(unit.equals(orgUnit)) {
+			if(unit.getId().equals(orgUnitId)) {
 				return unit;
 			}
 		}
 		for(ACOrgUnit unit : getServerSpace().getGroups()) {
-			if(unit.equals(orgUnit)) {
+			if(unit.getId().equals(orgUnitId)) {
 				return unit;
 			}
 		}

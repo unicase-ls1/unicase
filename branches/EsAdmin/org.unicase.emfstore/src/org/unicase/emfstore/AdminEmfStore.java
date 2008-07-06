@@ -10,10 +10,12 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
+import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.emfstore.exceptions.EmfStoreException;
@@ -29,15 +31,15 @@ public interface AdminEmfStore {
 	List<ACUser> getUsers(SessionId sessionId) throws EmfStoreException;
 	List<ACOrgUnit> getOrgUnits(SessionId sessionId) throws EmfStoreException;
 	
-	List<ACGroup> getGroups(SessionId sessionId, ACUser user) throws EmfStoreException;
-	void addGroup(SessionId sessionId, ACUser user, ACGroup group) throws EmfStoreException;
-	void removeGroup(SessionId sessionId, ACUser user, ACGroup group) throws EmfStoreException;
+	List<ACGroup> getGroups(SessionId sessionId, ACOrgUnitId user) throws EmfStoreException;
+	void addGroup(SessionId sessionId, ACUser user, ACOrgUnitId group) throws EmfStoreException;
+	void removeGroup(SessionId sessionId, ACOrgUnitId user, ACOrgUnitId group) throws EmfStoreException;
 	
-	List<ACOrgUnit> getParticipants(SessionId sessionId, ProjectInfo project) throws EmfStoreException;
+	List<ACOrgUnit> getParticipants(SessionId sessionId, ProjectId projectId) throws EmfStoreException;
 	
-	void addParticipant(SessionId sessionId, ProjectInfo project, ACOrgUnit participant) throws EmfStoreException;
-	void removeParticipant(SessionId sessionId, ProjectInfo project, ACOrgUnit participant) throws EmfStoreException;
+	void addParticipant(SessionId sessionId, ProjectId projectId, ACOrgUnitId participant) throws EmfStoreException;
+	void removeParticipant(SessionId sessionId, ProjectId projectId, ACOrgUnitId participant) throws EmfStoreException;
 	
-	Role getRole(SessionId sessionId, ProjectInfo project, ACOrgUnit orgUnit) throws EmfStoreException;
-	void changeRole(SessionId sessionId, ProjectInfo projectInfo, ACOrgUnit orgUnit, EClass role) throws EmfStoreException;
+	Role getRole(SessionId sessionId, ProjectId projectId, ACOrgUnitId orgUnit) throws EmfStoreException;
+	void changeRole(SessionId sessionId, ProjectId projectId, ACOrgUnitId orgUnit, EClass role) throws EmfStoreException;
 }

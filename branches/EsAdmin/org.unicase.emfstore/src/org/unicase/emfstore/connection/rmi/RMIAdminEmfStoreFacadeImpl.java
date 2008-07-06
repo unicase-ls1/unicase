@@ -21,12 +21,15 @@ import org.eclipse.emf.ecore.EClass;
 import org.hibernate.persister.collection.AbstractCollectionPersister;
 import org.unicase.emfstore.AdminEmfStore;
 import org.unicase.emfstore.accesscontrol.AuthenticationControl;
+import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
+import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.model.organization.OrgUnitId;
 import org.unicase.model.organization.User;
 
 /**
@@ -63,7 +66,7 @@ public class RMIAdminEmfStoreFacadeImpl extends UnicastRemoteObject implements
 		try {
 			adminEmfStore.addGroup((SessionId) RMIUtil
 					.stringToEObject(sessionId), (ACUser) RMIUtil
-					.stringToEObject(user), (ACGroup) RMIUtil
+					.stringToEObject(user), (ACOrgUnitId) RMIUtil
 					.stringToEObject(group));
 		} catch (UnsupportedEncodingException e) {
 			throw new EmfStoreException(SERIALEX, e);
@@ -75,12 +78,12 @@ public class RMIAdminEmfStoreFacadeImpl extends UnicastRemoteObject implements
 	/**
 	 * {@inheritDoc}
 	 */
-	public void addParticipant(String sessionId, String projectInfo,
+	public void addParticipant(String sessionId, String projectId,
 			String participant) throws RemoteException, EmfStoreException {
 		try {
 			adminEmfStore.addParticipant((SessionId) RMIUtil
-					.stringToEObject(sessionId), (ProjectInfo) RMIUtil
-					.stringToEObject(projectInfo), (ACOrgUnit) RMIUtil
+					.stringToEObject(sessionId), (ProjectId) RMIUtil
+					.stringToEObject(projectId), (ACOrgUnitId) RMIUtil
 					.stringToEObject(participant));
 		} catch (UnsupportedEncodingException e) {
 			throw new EmfStoreException(SERIALEX, e);
@@ -92,13 +95,13 @@ public class RMIAdminEmfStoreFacadeImpl extends UnicastRemoteObject implements
 	/**
 	 * {@inheritDoc}
 	 */
-	public void changeRole(String sessionId, String projectInfo,
+	public void changeRole(String sessionId, String projectId,
 			String orgUnit, String eClass) throws RemoteException,
 			EmfStoreException {
 		try {
 			adminEmfStore.changeRole((SessionId) RMIUtil
-					.stringToEObject(sessionId), (ProjectInfo) RMIUtil
-					.stringToEObject(projectInfo), (ACOrgUnit) RMIUtil
+					.stringToEObject(sessionId), (ProjectId) RMIUtil
+					.stringToEObject(projectId), (ACOrgUnitId) RMIUtil
 					.stringToEObject(orgUnit), (EClass) RMIUtil
 					.stringToEObject(eClass));
 		} catch (UnsupportedEncodingException e) {
@@ -135,7 +138,7 @@ public class RMIAdminEmfStoreFacadeImpl extends UnicastRemoteObject implements
 		try {
 			List<String> result = new ArrayList<String>();
 			for (ACGroup group : adminEmfStore.getGroups((SessionId) RMIUtil
-					.stringToEObject(sessionId), (ACUser) RMIUtil
+					.stringToEObject(sessionId), (ACOrgUnitId) RMIUtil
 					.stringToEObject(user))) {
 				result.add(RMIUtil.eObjectToString(group));
 			}
@@ -169,13 +172,13 @@ public class RMIAdminEmfStoreFacadeImpl extends UnicastRemoteObject implements
 	/**
 	 * {@inheritDoc}
 	 */
-	public List<String> getParticipants(String sessionId, String projectInfo)
+	public List<String> getParticipants(String sessionId, String projectId)
 			throws RemoteException, EmfStoreException {
 		try {
 			List<String> result = new ArrayList<String>();
 			for (ACOrgUnit orgUnit : adminEmfStore.getParticipants(
 					(SessionId) RMIUtil.stringToEObject(sessionId),
-					(ProjectInfo) RMIUtil.stringToEObject(projectInfo))) {
+					(ProjectId) RMIUtil.stringToEObject(projectId))) {
 				result.add(RMIUtil.eObjectToString(orgUnit));
 			}
 			return result;
@@ -209,13 +212,13 @@ public class RMIAdminEmfStoreFacadeImpl extends UnicastRemoteObject implements
 	/**
 	 * {@inheritDoc}
 	 */
-	public String getRole(String sessionId, String projectInfo, String orgUnit)
+	public String getRole(String sessionId, String projectId, String orgUnit)
 			throws RemoteException, EmfStoreException {
 		try {
 			return RMIUtil.eObjectToString(adminEmfStore.getRole(
 					(SessionId) RMIUtil.stringToEObject(sessionId),
-					(ProjectInfo) RMIUtil.stringToEObject(projectInfo),
-					(ACOrgUnit) RMIUtil.stringToEObject(orgUnit)));
+					(ProjectId) RMIUtil.stringToEObject(projectId),
+					(ACOrgUnitId) RMIUtil.stringToEObject(orgUnit)));
 		} catch (UnsupportedEncodingException e) {
 			throw new EmfStoreException(SERIALEX, e);
 		} catch (IOException e) {
@@ -249,8 +252,8 @@ public class RMIAdminEmfStoreFacadeImpl extends UnicastRemoteObject implements
 			throws RemoteException, EmfStoreException {
 		try {
 			adminEmfStore.removeGroup((SessionId) RMIUtil
-					.stringToEObject(sessionId), (ACUser) RMIUtil
-					.stringToEObject(user), (ACGroup) RMIUtil
+					.stringToEObject(sessionId), (ACOrgUnitId) RMIUtil
+					.stringToEObject(user), (ACOrgUnitId) RMIUtil
 					.stringToEObject(group));
 		} catch (UnsupportedEncodingException e) {
 			throw new EmfStoreException(SERIALEX, e);
@@ -262,12 +265,12 @@ public class RMIAdminEmfStoreFacadeImpl extends UnicastRemoteObject implements
 	/**
 	 * {@inheritDoc}
 	 */
-	public void removeParticipant(String sessionId, String projectInfo,
+	public void removeParticipant(String sessionId, String projectId,
 			String participant) throws RemoteException, EmfStoreException {
 		try {
 			adminEmfStore.removeParticipant((SessionId) RMIUtil
-					.stringToEObject(sessionId), (ProjectInfo) RMIUtil
-					.stringToEObject(projectInfo), (ACOrgUnit) RMIUtil
+					.stringToEObject(sessionId), (ProjectId) RMIUtil
+					.stringToEObject(projectId), (ACOrgUnitId) RMIUtil
 					.stringToEObject(participant));
 		} catch (UnsupportedEncodingException e) {
 			throw new EmfStoreException(SERIALEX, e);
