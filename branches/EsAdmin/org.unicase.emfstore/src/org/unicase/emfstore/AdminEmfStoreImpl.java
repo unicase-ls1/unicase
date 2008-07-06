@@ -6,6 +6,7 @@
  */
 package org.unicase.emfstore;
 
+import java.util.List;
 import java.util.Properties;
 
 import org.eclipse.emf.common.util.EList;
@@ -52,32 +53,32 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	}
 
 	
-	public EList<ACGroup> getGroups(SessionId sessionId) {
+	public List<ACGroup> getGroups(SessionId sessionId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	
-	public EList<ACGroup> getGroups(SessionId sessionId, ACUser user) {
+	public List<ACGroup> getGroups(SessionId sessionId, ACUser user) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	
-	public EList<ACOrgUnit> getOrgUnits(SessionId sessionId) {
+	public List<ACOrgUnit> getOrgUnits(SessionId sessionId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	
-	public EList<ACOrgUnit> getParticipants(SessionId sessionId,
+	public List<ACOrgUnit> getParticipants(SessionId sessionId,
 			ProjectInfo project) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	
-	public EList<ProjectInfo> getProjectInfos(SessionId sessionId) {
+	public List<ProjectInfo> getProjectInfos(SessionId sessionId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -90,7 +91,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	}
 
 	
-	public EList<ACUser> getUsers(SessionId sessionId) {
+	public List<ACUser> getUsers(SessionId sessionId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

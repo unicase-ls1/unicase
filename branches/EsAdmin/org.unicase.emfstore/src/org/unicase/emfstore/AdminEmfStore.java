@@ -6,6 +6,8 @@
  */
 package org.unicase.emfstore;
 
+import java.util.List;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.unicase.emfstore.esmodel.ProjectInfo;
@@ -22,16 +24,16 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
  * @author Wesendonk
  */
 public interface AdminEmfStore {
-	EList<ProjectInfo> getProjectInfos(SessionId sessionId) throws EmfStoreException;
-	EList<ACGroup> getGroups(SessionId sessionId) throws EmfStoreException;
-	EList<ACUser> getUsers(SessionId sessionId) throws EmfStoreException;
-	EList<ACOrgUnit> getOrgUnits(SessionId sessionId) throws EmfStoreException;
+	List<ProjectInfo> getProjectInfos(SessionId sessionId) throws EmfStoreException;
+	List<ACGroup> getGroups(SessionId sessionId) throws EmfStoreException;
+	List<ACUser> getUsers(SessionId sessionId) throws EmfStoreException;
+	List<ACOrgUnit> getOrgUnits(SessionId sessionId) throws EmfStoreException;
 	
-	EList<ACGroup> getGroups(SessionId sessionId, ACUser user) throws EmfStoreException;
+	List<ACGroup> getGroups(SessionId sessionId, ACUser user) throws EmfStoreException;
 	void addGroup(SessionId sessionId, ACUser user, ACGroup group) throws EmfStoreException;
 	void removeGroup(SessionId sessionId, ACUser user, ACGroup group) throws EmfStoreException;
 	
-	EList<ACOrgUnit> getParticipants(SessionId sessionId, ProjectInfo project) throws EmfStoreException;
+	List<ACOrgUnit> getParticipants(SessionId sessionId, ProjectInfo project) throws EmfStoreException;
 	
 	void addParticipant(SessionId sessionId, ProjectInfo project, ACOrgUnit participant) throws EmfStoreException;
 	void removeParticipant(SessionId sessionId, ProjectInfo project, ACOrgUnit participant) throws EmfStoreException;

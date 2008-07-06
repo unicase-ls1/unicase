@@ -13,6 +13,8 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.AuthenticationException;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -44,6 +46,7 @@ public class RMIAdminEmfStoreFacadeImpl extends UnicastRemoteObject implements
 	 * @param adminEmfStore
 	 *            the {@link AdminEmfStore}
 	 * @param accessControl
+	 *            the {@link AuthenticationControl}
 	 * @throws RemoteException
 	 *             thrown if there are rmi-related problems
 	 */
@@ -108,10 +111,10 @@ public class RMIAdminEmfStoreFacadeImpl extends UnicastRemoteObject implements
 	/**
 	 * {@inheritDoc}
 	 */
-	public EList<String> getGroups(String sessionId) throws RemoteException,
+	public List<String> getGroups(String sessionId) throws RemoteException,
 			EmfStoreException {
 		try {
-			EList<String> result = new BasicEList<String>();
+			List<String> result = new ArrayList<String>();
 			for (ACGroup group : adminEmfStore.getGroups((SessionId) RMIUtil
 					.stringToEObject(sessionId))) {
 				result.add(RMIUtil.eObjectToString(group));
@@ -127,10 +130,10 @@ public class RMIAdminEmfStoreFacadeImpl extends UnicastRemoteObject implements
 	/**
 	 * {@inheritDoc}
 	 */
-	public EList<String> getGroups(String sessionId, String user)
+	public List<String> getGroups(String sessionId, String user)
 			throws RemoteException, EmfStoreException {
 		try {
-			EList<String> result = new BasicEList<String>();
+			List<String> result = new ArrayList<String>();
 			for (ACGroup group : adminEmfStore.getGroups((SessionId) RMIUtil
 					.stringToEObject(sessionId), (ACUser) RMIUtil
 					.stringToEObject(user))) {
@@ -147,12 +150,12 @@ public class RMIAdminEmfStoreFacadeImpl extends UnicastRemoteObject implements
 	/**
 	 * {@inheritDoc}
 	 */
-	public EList<String> getOrgUnits(String sessionId) throws RemoteException,
+	public List<String> getOrgUnits(String sessionId) throws RemoteException,
 			EmfStoreException {
 		try {
-			EList<String> result = new BasicEList<String>();
-			for (ACOrgUnit orgUnit : adminEmfStore.getOrgUnits((SessionId) RMIUtil
-					.stringToEObject(sessionId))) {
+			List<String> result = new ArrayList<String>();
+			for (ACOrgUnit orgUnit : adminEmfStore
+					.getOrgUnits((SessionId) RMIUtil.stringToEObject(sessionId))) {
 				result.add(RMIUtil.eObjectToString(orgUnit));
 			}
 			return result;
@@ -166,12 +169,13 @@ public class RMIAdminEmfStoreFacadeImpl extends UnicastRemoteObject implements
 	/**
 	 * {@inheritDoc}
 	 */
-	public EList<String> getParticipants(String sessionId, String projectInfo)
+	public List<String> getParticipants(String sessionId, String projectInfo)
 			throws RemoteException, EmfStoreException {
 		try {
-			EList<String> result = new BasicEList<String>();
-			for (ACOrgUnit orgUnit : adminEmfStore.getParticipants((SessionId) RMIUtil
-					.stringToEObject(sessionId), (ProjectInfo) RMIUtil.stringToEObject(projectInfo))) {
+			List<String> result = new ArrayList<String>();
+			for (ACOrgUnit orgUnit : adminEmfStore.getParticipants(
+					(SessionId) RMIUtil.stringToEObject(sessionId),
+					(ProjectInfo) RMIUtil.stringToEObject(projectInfo))) {
 				result.add(RMIUtil.eObjectToString(orgUnit));
 			}
 			return result;
@@ -185,19 +189,20 @@ public class RMIAdminEmfStoreFacadeImpl extends UnicastRemoteObject implements
 	/**
 	 * {@inheritDoc}
 	 */
-	public EList<String> getProjectInfos(String sessionId)
+	public List<String> getProjectInfos(String sessionId)
 			throws RemoteException, EmfStoreException {
 		try {
-			EList<String> result = new BasicEList<String>();
-			for (ProjectInfo projectInfo : adminEmfStore.getProjectInfos((SessionId) RMIUtil
-					.stringToEObject(sessionId))) {
+			List<String> result = new ArrayList<String>();
+			for (ProjectInfo projectInfo : adminEmfStore
+					.getProjectInfos((SessionId) RMIUtil
+							.stringToEObject(sessionId))) {
 				result.add(RMIUtil.eObjectToString(projectInfo));
 			}
 			return result;
 		} catch (UnsupportedEncodingException e) {
-			throw new EmfStoreException(SERIALEX,e);
+			throw new EmfStoreException(SERIALEX, e);
 		} catch (IOException e) {
-			throw new EmfStoreException(SERIALEX,e);
+			throw new EmfStoreException(SERIALEX, e);
 		}
 	}
 
@@ -207,10 +212,10 @@ public class RMIAdminEmfStoreFacadeImpl extends UnicastRemoteObject implements
 	public String getRole(String sessionId, String projectInfo, String orgUnit)
 			throws RemoteException, EmfStoreException {
 		try {
-			return RMIUtil.eObjectToString(adminEmfStore.getRole((SessionId) RMIUtil
-					.stringToEObject(sessionId), (ProjectInfo) RMIUtil
-					.stringToEObject(projectInfo), (ACOrgUnit) RMIUtil
-					.stringToEObject(orgUnit)));
+			return RMIUtil.eObjectToString(adminEmfStore.getRole(
+					(SessionId) RMIUtil.stringToEObject(sessionId),
+					(ProjectInfo) RMIUtil.stringToEObject(projectInfo),
+					(ACOrgUnit) RMIUtil.stringToEObject(orgUnit)));
 		} catch (UnsupportedEncodingException e) {
 			throw new EmfStoreException(SERIALEX, e);
 		} catch (IOException e) {
@@ -221,10 +226,10 @@ public class RMIAdminEmfStoreFacadeImpl extends UnicastRemoteObject implements
 	/**
 	 * {@inheritDoc}
 	 */
-	public EList<String> getUsers(String sessionId) throws RemoteException,
+	public List<String> getUsers(String sessionId) throws RemoteException,
 			EmfStoreException {
 		try {
-			EList<String> result = new BasicEList<String>();
+			List<String> result = new ArrayList<String>();
 			for (ACUser user : adminEmfStore.getUsers((SessionId) RMIUtil
 					.stringToEObject(sessionId))) {
 				result.add(RMIUtil.eObjectToString(user));

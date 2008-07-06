@@ -2,8 +2,8 @@ package org.unicase.emfstore.connection.rmi;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.List;
 
-import org.eclipse.emf.common.util.EList;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 
 /**
@@ -11,22 +11,22 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
  * @author Wesendonk
  */
 public interface RMIAdminEmfStoreFacade extends Remote {
-//	EList<ProjectInfo> getProjectInfos(SessionId sessionId);
-	EList<String> getProjectInfos(String sessionId) throws RemoteException, EmfStoreException;
-//	EList<ACGroup> getGroups(SessionId sessionId);
-	EList<String> getGroups(String sessionId) throws RemoteException, EmfStoreException;
-//	EList<ACUser> getUsers(SessionId sessionId);
-	EList<String> getUsers(String session) throws RemoteException, EmfStoreException; 
-//	EList<ACOrgUnit> getOrgUnits(SessionId sessionId);
-	EList<String> getOrgUnits(String sessionId) throws RemoteException, EmfStoreException;
-//	EList<ACGroup> getGroups(SessionId sessionId, ACUser user);
-	EList<String> getGroups(String sessionId, String user) throws RemoteException, EmfStoreException;
+//	List<ProjectInfo> getProjectInfos(SessionId sessionId);
+	List<String> getProjectInfos(String sessionId) throws RemoteException, EmfStoreException;
+//	List<ACGroup> getGroups(SessionId sessionId);
+	List<String> getGroups(String sessionId) throws RemoteException, EmfStoreException;
+//	List<ACUser> getUsers(SessionId sessionId);
+	List<String> getUsers(String session) throws RemoteException, EmfStoreException; 
+//	List<ACOrgUnit> getOrgUnits(SessionId sessionId);
+	List<String> getOrgUnits(String sessionId) throws RemoteException, EmfStoreException;
+//	List<ACGroup> getGroups(SessionId sessionId, ACUser user);
+	List<String> getGroups(String sessionId, String user) throws RemoteException, EmfStoreException;
 //	void addGroup(SessionId sessionId, ACUser user, ACGroup group);
 	void addGroup(String sessionId, String user, String group) throws RemoteException, EmfStoreException;
 //	void removeGroup(SessionId sessionId, ACUser user, ACGroup group);
 	void removeGroup(String sessionId, String user, String group) throws RemoteException, EmfStoreException;
-//	EList<ACOrgUnit> getParticipants(SessionId sessionId, ProjectInfo project);
-	EList<String> getParticipants(String sessionId, String projectInfo) throws RemoteException, EmfStoreException;
+//	List<ACOrgUnit> getParticipants(SessionId sessionId, ProjectInfo project);
+	List<String> getParticipants(String sessionId, String projectInfo) throws RemoteException, EmfStoreException;
 //	void addParticipant(SessionId sessionId, ProjectInfo project, ACOrgUnit participant);
 	void addParticipant(String sessionId, String projectInfo, String participant) throws RemoteException, EmfStoreException;
 //	void removeParticipant(SessionId sessionId, ProjectInfo project, ACOrgUnit participant);
