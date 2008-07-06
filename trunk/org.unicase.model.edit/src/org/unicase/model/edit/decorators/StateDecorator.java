@@ -73,6 +73,7 @@ public class StateDecorator implements ILightweightLabelDecorator {
 		 * description and the integer representation of the placement option.
 		 */
 		URL url = null;
+
 		ModelElement me;
 		if (element instanceof ModelElement) {
 			me = (ModelElement) element;

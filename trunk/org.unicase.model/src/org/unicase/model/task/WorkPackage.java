@@ -7,6 +7,7 @@
 package org.unicase.model.task;
 
 import org.eclipse.emf.common.util.EList;
+import org.unicase.model.ModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '
@@ -15,7 +16,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.model.task.WorkPackage#getContainedWorkItems <em>Contained Work Items</em>}</li>
+ *   <li>{@link org.unicase.model.task.WorkPackage#getContainedModelElements <em>Contained Model Elements</em>}</li>
  * </ul>
  * </p>
  *
@@ -23,24 +24,23 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface WorkPackage extends WorkItem {
+public interface WorkPackage extends ModelElement {
 	/**
-	 * Returns the value of the '<em><b>Contained Work Items</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Contained Model Elements</b></em>' containment reference list.
 	 * The list contents are of type {@link org.unicase.model.task.WorkItem}.
 	 * It is bidirectional and its opposite is '{@link org.unicase.model.task.WorkItem#getContainingWorkpackage <em>Containing Workpackage</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Contained Work Items</em>' containment
-	 * reference list isn't clear, there really should be more of a description
-	 * here...
+	 * If the meaning of the '<em>Contained Model Elements</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Contained Work Items</em>' containment reference list.
-	 * @see org.unicase.model.task.TaskPackage#getWorkPackage_ContainedWorkItems()
+	 * @return the value of the '<em>Contained Model Elements</em>' containment reference list.
+	 * @see org.unicase.model.task.TaskPackage#getWorkPackage_ContainedModelElements()
 	 * @see org.unicase.model.task.WorkItem#getContainingWorkpackage
 	 * @model opposite="containingWorkpackage" containment="true"
 	 * @generated
 	 */
-	EList<WorkItem> getContainedWorkItems();
+	EList<WorkItem> getContainedModelElements();
 
 } // WorkPackage
