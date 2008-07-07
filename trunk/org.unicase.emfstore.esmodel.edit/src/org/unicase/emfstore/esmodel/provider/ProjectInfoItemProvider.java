@@ -24,8 +24,6 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
 import org.unicase.emfstore.esmodel.ProjectInfo;
-import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentFactory;
-import org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.ProjectInfo} object.
@@ -148,7 +146,7 @@ public class ProjectInfoItemProvider extends ItemProviderAdapter implements
 	@Override
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/ProjectInfo.png"));
+				"full/obj16/ProjectInfo"));
 	}
 
 	// begin of custom code
@@ -162,13 +160,16 @@ public class ProjectInfoItemProvider extends ItemProviderAdapter implements
 	public String getText(Object object) {
 		ProjectInfo projectInfo = ((ProjectInfo) object);
 		String ret = "";
-		if (projectInfo.getName() == null || projectInfo.getName().length() == 0){
+		if (projectInfo.getName() == null
+				|| projectInfo.getName().length() == 0) {
 			ret = getString("_UI_ProjectInfo_type");
-		}else{
-			ret = projectInfo.getName() + "[Revision: "+((ProjectInfo)object).getVersion().getIdentifier()+"]";
+		} else {
+			ret = projectInfo.getName() + "[Revision: "
+					+ ((ProjectInfo) object).getVersion().getIdentifier() + "]";
 		}
 		return ret;
 	}
+
 	// end of custom code
 
 	/**

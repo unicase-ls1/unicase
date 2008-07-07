@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.unicase.emfstore.esmodel.changemanagment.*;
 import org.unicase.emfstore.esmodel.changemanagment.ChangePackage;
 import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentFactory;
 import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentPackage;

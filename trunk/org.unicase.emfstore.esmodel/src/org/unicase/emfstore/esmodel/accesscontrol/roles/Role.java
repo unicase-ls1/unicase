@@ -9,7 +9,6 @@ package org.unicase.emfstore.esmodel.accesscontrol.roles;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.ProjectId;
-import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.model.ModelElement;
 
 /**
