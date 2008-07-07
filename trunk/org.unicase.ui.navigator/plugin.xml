@@ -29,10 +29,11 @@
       <perspectiveExtension
             targetID="org.eclipse.jdt.ui.JavaPerspective">
          <view
+               id="org.unicase.ui.navigator.viewer"
                ratio="0.5"
-               relative="org.eclipse.ui.views.TaskList"
-               relationship="left"
-               id="org.unicase.ui.navigator.viewer">
+               relationship="stack"
+               relative="org.eclipse.jdt.ui.PackageExplorer"
+               standalone="false">
          </view>
       </perspectiveExtension>
    </extension>
