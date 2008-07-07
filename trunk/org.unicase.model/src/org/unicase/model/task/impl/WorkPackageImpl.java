@@ -8,23 +8,12 @@ package org.unicase.model.task.impl;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.ModelElement;
 import org.unicase.model.impl.ModelElementImpl;
-import org.unicase.model.change.ModelChangePackage;
-import org.unicase.model.impl.AnnotationImpl;
 import org.unicase.model.task.TaskPackage;
-import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 
 /**
