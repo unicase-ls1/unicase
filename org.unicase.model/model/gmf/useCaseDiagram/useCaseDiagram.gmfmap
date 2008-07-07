@@ -12,6 +12,13 @@
     <ownedChild>
       <domainMetaElement
           href="../../model.ecore#//requirement/UseCase"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping">
+        <diagramLabel
+            href="../model.gmfgraph#ActorNode_name"/>
+        <features
+            href="../../model.ecore#//ModelElement/name"/>
+      </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
           href="useCaseDiagram.gmftool#//@palette/@tools.0"/>
