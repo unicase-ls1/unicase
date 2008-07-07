@@ -1,6 +1,7 @@
 package org.unicase.ui.usecaseDiagram.providers;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.service.AbstractProvider;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
@@ -10,6 +11,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParserProvider;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
+import org.unicase.model.ModelPackage;
 
 /**
  * @generated
@@ -20,8 +22,36 @@ public class ModelParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
+	private IParser useCaseName_4001Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getUseCaseName_4001Parser() {
+		if (useCaseName_4001Parser == null) {
+			useCaseName_4001Parser = createUseCaseName_4001Parser();
+		}
+		return useCaseName_4001Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IParser createUseCaseName_4001Parser() {
+		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE
+				.getModelElement_Name(), };
+		org.unicase.ui.usecaseDiagram.parsers.MessageFormatParser parser = new org.unicase.ui.usecaseDiagram.parsers.MessageFormatParser(
+				features);
+		return parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
+		case org.unicase.ui.usecaseDiagram.edit.parts.StickManEditPart.VISUAL_ID:
+			return getUseCaseName_4001Parser();
 		}
 		return null;
 	}
