@@ -11,9 +11,19 @@ import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryLabelP
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.unicase.workspace.WorkspaceManager;
 
+/**
+ * Transactional and composed Label provider with all registered label
+ * providers.
+ * 
+ * @author helming
+ * 
+ */
 public class LabelProvider extends TransactionalAdapterFactoryLabelProvider
 		implements ILabelProvider {
-
+	
+	/**
+	 * Default constructor.
+	 */
 	public LabelProvider() {
 
 		super(WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain(),

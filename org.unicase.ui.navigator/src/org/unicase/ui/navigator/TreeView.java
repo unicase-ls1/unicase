@@ -9,57 +9,38 @@ package org.unicase.ui.navigator;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.edit.ui.dnd.EditingDomainViewerDropAdapter;
-import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
-import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.TreeSelection;
-import org.eclipse.swt.dnd.DND;
-import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.navigator.CommonNavigator;
-import org.eclipse.ui.navigator.CommonViewer;
 import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.meeditor.MEEditor;
 import org.unicase.ui.meeditor.MEEditorInput;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
-
+/**
+ * The standard navigator tree view.
+ * @author helming
+ *
+ */
 public class TreeView extends CommonNavigator {
 
-	public TreeView() {
-		super();
-	}
-
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected IAdaptable getInitialInput() {
 		Workspace workspace = WorkspaceManager.getInstance()
 				.getCurrentWorkspace();
-//		addDNDSupport();
 		return workspace;
 		
 
 	}
 
-	private void addDNDSupport() {
-		int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
-		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
-		CommonViewer viewer = this.getCommonViewer();
-		
-		
-		viewer.addDragSupport(dndOperations, transfers, new ViewerDragAdapter(
-				viewer));
-//		viewer.addDropSupport(dndOperations, transfers,
-//				new EditingDomainViewerDropAdapter(
-//						TransactionalEditingDomain.Registry.INSTANCE
-//								.getEditingDomain("org.unicase.EditingDomain"),
-//						viewer));
 
-	}
 
 	/**
 	 * . ({@inheritDoc}) On DoubleClick open the ModelElement in Editor

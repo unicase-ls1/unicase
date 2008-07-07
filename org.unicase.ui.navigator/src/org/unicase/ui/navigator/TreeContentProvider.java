@@ -10,13 +10,22 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider;
 import org.unicase.workspace.WorkspaceManager;
 
+/**
+ * Transactional and composed content provider with all registered label
+ * providers.
+ * 
+ * @author helming
+ * 
+ */
 public class TreeContentProvider extends
 		TransactionalAdapterFactoryContentProvider {
-
+	/**
+	 * default constructor.
+	 */
 	public TreeContentProvider() {
-		super(WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain(),
-				new ComposedAdapterFactory(
-						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		super(WorkspaceManager.getInstance().getCurrentWorkspace()
+				.getEditingDomain(), new ComposedAdapterFactory(
+				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
 
 }
