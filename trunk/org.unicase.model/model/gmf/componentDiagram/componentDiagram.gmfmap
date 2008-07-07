@@ -1,13 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gmfmap:Mapping xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:gmfmap="http://www.eclipse.org/gmf/2008/mappings">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:gmfmap="http://www.eclipse.org/gmf/2008/mappings"
+    xmlns:gmftool="http://www.eclipse.org/gmf/2005/ToolDefinition">
+  <nodes>
+    <containmentFeature
+        href="../../model.ecore#//diagram/MEDiagram/newElements"/>
+    <childrenFeature
+        href="../../model.ecore#//diagram/MEDiagram/elements"/>
+    <ownedChild>
+      <domainMetaElement
+          href="../../model.ecore#//component/Component"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          editorPattern="">
+        <diagramLabel
+            href="componentDiagram.gmfgraph#ComponentNode_name"/>
+        <features
+            href="../../model.ecore#//ModelElement/name"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="componentDiagram.gmftool#//@palette/@tools.0"/>
+      <diagramNode
+          href="componentDiagram.gmfgraph#ComponentNode"/>
+    </ownedChild>
+  </nodes>
   <diagram>
     <diagramCanvas
-        href="../model.gmfgraph#MEDiagram"/>
+        href="componentDiagram.gmfgraph#ComponentDiagram"/>
     <domainModel
         href="../../model.ecore#//diagram"/>
     <domainMetaElement
         href="../../model.ecore#//diagram/MEDiagram"/>
+    <palette
+        href="componentDiagram.gmftool#//@palette"/>
   </diagram>
 </gmfmap:Mapping>

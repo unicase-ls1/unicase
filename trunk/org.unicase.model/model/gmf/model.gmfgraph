@@ -85,7 +85,18 @@
           name="UseCaseFigure">
         <layout
             xsi:type="gmfgraph:FlowLayout"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="UseCaseFigure_name">
+          <layoutData
+              xsi:type="gmfgraph:BorderLayoutData"
+              alignment="BEGINNING"
+              vertical="true"/>
+        </children>
       </actualFigure>
+      <accessors
+          accessor="getFigureUseCaseFigure_name"
+          figure="//@figures.0/@descriptors.2/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="ActorFigure">
@@ -127,4 +138,8 @@
   <labels
       name="ActorNode_name"
       figure="ActorFigure"/>
+  <labels
+      name="UseCaseNode_name"
+      figure="UseCaseFigure"
+      accessor="//@figures.0/@descriptors.2/@accessors.0"/>
 </gmfgraph:Canvas>
