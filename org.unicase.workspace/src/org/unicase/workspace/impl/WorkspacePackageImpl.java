@@ -564,8 +564,8 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProjectSpace_Usersession(), this.getUsersession(),
 				null, "usersession", null, 0, 1, ProjectSpace.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 		initEAttribute(getProjectSpace_LastUpdated(), ecorePackage.getEDate(),
 				"lastUpdated", null, 0, 1, ProjectSpace.class, !IS_TRANSIENT,

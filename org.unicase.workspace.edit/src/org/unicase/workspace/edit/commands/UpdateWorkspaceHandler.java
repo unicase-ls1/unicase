@@ -14,7 +14,6 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.ProjectSpace;
 

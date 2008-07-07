@@ -292,7 +292,7 @@ public interface WorkspacePackage extends EPackage {
 	int PROJECT_SPACE__LOCAL_CHANGES = 4;
 
 	/**
-	 * The feature id for the '<em><b>Usersession</b></em>' containment reference.
+	 * The feature id for the '<em><b>Usersession</b></em>' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -584,9 +584,9 @@ public interface WorkspacePackage extends EPackage {
 	EReference getProjectSpace_LocalChanges();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.unicase.workspace.ProjectSpace#getUsersession <em>Usersession</em>}'.
+	 * Returns the meta object for the reference '{@link org.unicase.workspace.ProjectSpace#getUsersession <em>Usersession</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Usersession</em>'.
+	 * @return the meta object for the reference '<em>Usersession</em>'.
 	 * @see org.unicase.workspace.ProjectSpace#getUsersession()
 	 * @see #getProjectSpace()
 	 * @generated
@@ -834,7 +834,7 @@ public interface WorkspacePackage extends EPackage {
 				.getProjectSpace_LocalChanges();
 
 		/**
-		 * The meta object literal for the '<em><b>Usersession</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Usersession</b></em>' reference feature.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * @generated
