@@ -21,9 +21,19 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.unicase.model.ModelFactory;
+import org.unicase.model.bug.BugFactory;
+import org.unicase.model.change.ChangeFactory;
+import org.unicase.model.classes.ClassesFactory;
+import org.unicase.model.component.ComponentFactory;
+import org.unicase.model.diagram.DiagramFactory;
+import org.unicase.model.document.DocumentFactory;
+import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.provider.AnnotationItemProvider;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.ModelElementItemProvider;
+import org.unicase.model.rationale.RationaleFactory;
+import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkPackage;
@@ -171,6 +181,138 @@ public class WorkPackageItemProvider extends ModelElementItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
 				TaskFactory.eINSTANCE.createActionItem()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				TaskFactory.eINSTANCE.createWorkPackage()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				ModelFactory.eINSTANCE.createAnnotation()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				OrganizationFactory.eINSTANCE.createOrgUnit()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				OrganizationFactory.eINSTANCE.createUser()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				OrganizationFactory.eINSTANCE.createGroup()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				DiagramFactory.eINSTANCE.createMEDiagram()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				ClassesFactory.eINSTANCE.createClass()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				ClassesFactory.eINSTANCE.createPackage()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				ClassesFactory.eINSTANCE.createAssociation()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				DocumentFactory.eINSTANCE.createLeafSection()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				DocumentFactory.eINSTANCE.createCompositeSection()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				RequirementFactory.eINSTANCE.createNonFunctionalRequirement()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				RequirementFactory.eINSTANCE.createFunctionalRequirement()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				RequirementFactory.eINSTANCE.createUseCase()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				RequirementFactory.eINSTANCE.createScenario()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				RequirementFactory.eINSTANCE.createActor()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				RequirementFactory.eINSTANCE.createActorInstance()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				RequirementFactory.eINSTANCE.createStep()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				RationaleFactory.eINSTANCE.createIssue()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				RationaleFactory.eINSTANCE.createProposal()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				RationaleFactory.eINSTANCE.createSolution()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				RationaleFactory.eINSTANCE.createCriterion()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				RationaleFactory.eINSTANCE.createAssessment()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				RationaleFactory.eINSTANCE.createComment()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				ChangeFactory.eINSTANCE.createModelChangePackage()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				ChangeFactory.eINSTANCE.createMergingIssue()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				ChangeFactory.eINSTANCE.createMergingProposal()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				ChangeFactory.eINSTANCE.createMergingSolution()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				BugFactory.eINSTANCE.createBugReport()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				BugFactory.eINSTANCE.createBugResolution()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				ComponentFactory.eINSTANCE.createComponent()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				ComponentFactory.eINSTANCE.createComponentService()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				ComponentFactory.eINSTANCE.createDeploymentNode()));
 	}
 
 	/**
