@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * </copyright>
  *
  * $Id$
@@ -28,8 +28,7 @@ import org.unicase.model.change.ModelChangePackage;
  */
 public interface WorkItem extends Annotation {
 	/**
-	 * Returns the value of the '<em><b>Containing Workpackage</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.task.WorkPackage#getContainedWorkItems <em>Contained Work Items</em>}'.
+	 * Returns the value of the '<em><b>Containing Workpackage</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Containing Workpackage</em>' container
@@ -37,11 +36,10 @@ public interface WorkItem extends Annotation {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Containing Workpackage</em>' container reference.
+	 * @return the value of the '<em>Containing Workpackage</em>' reference.
 	 * @see #setContainingWorkpackage(WorkPackage)
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_ContainingWorkpackage()
-	 * @see org.unicase.model.task.WorkPackage#getContainedWorkItems
-	 * @model opposite="containedWorkItems" transient="false"
+	 * @model
 	 * @generated
 	 */
 	WorkPackage getContainingWorkpackage();

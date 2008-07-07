@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * </copyright>
  *
  * $Id$
@@ -187,9 +187,25 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getPassword() {
+	public String getPasswordGen() {
 		return password;
 	}
+
+	//begin of custom code
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.workspace.Usersession#getPassword()
+	 * @generated NOT
+	 */
+	public String getPassword() {
+		if (isSavePassword()) {
+			return getPersistentPassword();
+		} else {
+			return getPasswordGen();
+		}
+	}
+
+	//end of custom code
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -348,12 +364,12 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 * @generated NOT
 	 */
 	public void setSavePassword(boolean newSavePassword) {
-		setSavePasswordGen(newSavePassword);
 		if (newSavePassword) {
 			setPersistentPassword(getPassword());
 		} else {
 			setPersistentPassword(null);
 		}
+		setSavePasswordGen(newSavePassword);
 	}
 
 	// begin of custom code

@@ -132,14 +132,7 @@ contentTypeIdentifier="UseCaseDiagram">
       </GlobalActionHandlerProvider>
    </extension>
 
-   <extension point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
-      <?gmfgen generated="true"?>
-      <contributionItemProvider
-            class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider"
-            checkPluginLoaded="false">
-         <Priority name="Low"/>
-      </contributionItemProvider>
-   </extension>
+   
 
    <extension point="org.eclipse.core.runtime.preferences">
       <?gmfgen generated="true"?>
@@ -326,7 +319,7 @@ contentTypeIdentifier="UseCaseDiagram">
          <enablement>
             <test
                property="org.eclipse.gmf.runtime.emf.core.editingDomain"
-               value="org.unicase.ui.usecaseDiagram.EditingDomain"/>
+               value="org.unicase.EditingDomain"/>
          </enablement>
       </clientContext> 
       <binding context="ModelClientContext">

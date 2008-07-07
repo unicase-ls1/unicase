@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * </copyright>
  *
  * $Id$
@@ -183,7 +183,7 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements
 	@Override
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/ServerInfo.png"));
+				"full/obj16/ServerInfo"));
 	}
 
 	/**
@@ -196,7 +196,7 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements
 	public String getText(Object object) {
 		String label = ((ServerInfo) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_ServerInfo_type")
-				: label;
+				: getString("_UI_ServerInfo_type") + " " + label;
 	}
 
 	/**

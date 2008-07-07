@@ -36,6 +36,10 @@ public class ModelEditPartFactory implements EditPartFactory {
 				return new org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart(
 						view);
 
+			case org.unicase.ui.usecaseDiagram.edit.parts.StickManEditPart.VISUAL_ID:
+				return new org.unicase.ui.usecaseDiagram.edit.parts.StickManEditPart(
+						view);
+
 			case org.unicase.ui.usecaseDiagram.edit.parts.ActorEditPart.VISUAL_ID:
 				return new org.unicase.ui.usecaseDiagram.edit.parts.ActorEditPart(
 						view);

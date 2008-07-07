@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * </copyright>
  *
  * $Id$
@@ -21,8 +21,18 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.model.provider.AnnotationItemProvider;
+import org.unicase.model.ModelFactory;
+import org.unicase.model.bug.BugFactory;
+import org.unicase.model.change.ChangeFactory;
+import org.unicase.model.classes.ClassesFactory;
+import org.unicase.model.component.ComponentFactory;
+import org.unicase.model.diagram.DiagramFactory;
+import org.unicase.model.document.DocumentFactory;
+import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.provider.ModelEditPlugin;
+import org.unicase.model.provider.ModelElementItemProvider;
+import org.unicase.model.rationale.RationaleFactory;
+import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkPackage;
@@ -33,7 +43,7 @@ import org.unicase.model.task.WorkPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class WorkPackageItemProvider extends AnnotationItemProvider implements
+public class WorkPackageItemProvider extends ModelElementItemProvider implements
 		IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
@@ -57,26 +67,27 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addAssociatedChangePackagesPropertyDescriptor(object);
+			addContainedModelElementsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Associated Change Packages feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Contained Model Elements feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addAssociatedChangePackagesPropertyDescriptor(Object object) {
+	protected void addContainedModelElementsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
 						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_WorkItem_associatedChangePackages_feature"),
+				getString("_UI_WorkPackage_containedModelElements_feature"),
 				getString("_UI_PropertyDescriptor_description",
-						"_UI_WorkItem_associatedChangePackages_feature",
-						"_UI_WorkItem_type"),
-				TaskPackage.Literals.WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES,
-				true, false, true, null, null, null));
+						"_UI_WorkPackage_containedModelElements_feature",
+						"_UI_WorkPackage_type"),
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				true, false, false, null, null, null));
 	}
 
 	/**
@@ -92,7 +103,7 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures
-					.add(TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS);
+					.add(TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -146,7 +157,7 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(WorkPackage.class)) {
-		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
+		case TaskPackage.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), true, false));
 			return;
@@ -167,12 +178,140 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
 				TaskFactory.eINSTANCE.createActionItem()));
 
 		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
 				TaskFactory.eINSTANCE.createWorkPackage()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				ModelFactory.eINSTANCE.createAnnotation()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				OrganizationFactory.eINSTANCE.createOrgUnit()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				OrganizationFactory.eINSTANCE.createUser()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				OrganizationFactory.eINSTANCE.createGroup()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				DiagramFactory.eINSTANCE.createMEDiagram()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				ClassesFactory.eINSTANCE.createClass()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				ClassesFactory.eINSTANCE.createPackage()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				ClassesFactory.eINSTANCE.createAssociation()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				DocumentFactory.eINSTANCE.createLeafSection()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				DocumentFactory.eINSTANCE.createCompositeSection()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				RequirementFactory.eINSTANCE.createNonFunctionalRequirement()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				RequirementFactory.eINSTANCE.createFunctionalRequirement()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				RequirementFactory.eINSTANCE.createUseCase()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				RequirementFactory.eINSTANCE.createScenario()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				RequirementFactory.eINSTANCE.createActor()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				RequirementFactory.eINSTANCE.createActorInstance()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				RequirementFactory.eINSTANCE.createStep()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				RationaleFactory.eINSTANCE.createIssue()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				RationaleFactory.eINSTANCE.createProposal()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				RationaleFactory.eINSTANCE.createSolution()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				RationaleFactory.eINSTANCE.createCriterion()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				RationaleFactory.eINSTANCE.createAssessment()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				RationaleFactory.eINSTANCE.createComment()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				ChangeFactory.eINSTANCE.createModelChangePackage()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				ChangeFactory.eINSTANCE.createMergingIssue()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				ChangeFactory.eINSTANCE.createMergingProposal()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				ChangeFactory.eINSTANCE.createMergingSolution()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				BugFactory.eINSTANCE.createBugReport()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				BugFactory.eINSTANCE.createBugResolution()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				ComponentFactory.eINSTANCE.createComponent()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				ComponentFactory.eINSTANCE.createComponentService()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				ComponentFactory.eINSTANCE.createDeploymentNode()));
 	}
 
 	/**

@@ -157,6 +157,11 @@ public class ModelVisualIDRegistry {
 			}
 		}
 		switch (containerVisualID) {
+		case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart.VISUAL_ID:
+			if (org.unicase.ui.usecaseDiagram.edit.parts.StickManEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case org.unicase.ui.usecaseDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
 			if (org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart.VISUAL_ID == nodeVisualID) {
 				return true;

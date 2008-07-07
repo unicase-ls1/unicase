@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * </copyright>
  *
  * $Id$
@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
-import org.unicase.model.task.*;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
@@ -101,10 +100,6 @@ public class TaskSwitch<T> {
 		case TaskPackage.WORK_PACKAGE: {
 			WorkPackage workPackage = (WorkPackage) theEObject;
 			T result = caseWorkPackage(workPackage);
-			if (result == null)
-				result = caseWorkItem(workPackage);
-			if (result == null)
-				result = caseAnnotation(workPackage);
 			if (result == null)
 				result = caseModelElement(workPackage);
 			if (result == null)

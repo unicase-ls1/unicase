@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * </copyright>
  *
  * $Id$
@@ -30,8 +30,6 @@ import org.unicase.model.ReaderInfo;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.organization.User;
-
-import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEStateImpl;
 
@@ -374,16 +372,17 @@ public abstract class ModelElementImpl extends EObjectImpl implements
 	 * @throws CircularDependencyException 
 	 * @generated NOT
 	 */
-	public org.unicase.model.task.util.MEState getMEState() throws CircularDependencyException {
-		if (meState==null){
+	public org.unicase.model.task.util.MEState getMEState()
+			throws CircularDependencyException {
+		if (meState == null) {
 			synchronized (this) {
-				if (calculatingState){
+				if (calculatingState) {
 					throw new CircularDependencyException(this);
 				}
 				calculatingState = true;
 			}
-			meState=new MEStateImpl(this);
-			calculatingState=false;
+			meState = new MEStateImpl(this);
+			calculatingState = false;
 		}
 
 		return meState;

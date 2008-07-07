@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * </copyright>
  *
  * $Id$
@@ -8,7 +8,6 @@ package org.unicase.model.task;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.unicase.model.ModelPackage;
@@ -134,7 +133,7 @@ public interface TaskPackage extends EPackage {
 	int WORK_ITEM__ANNOTATED_MODEL_ELEMENTS = ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Containing Workpackage</b></em>' container reference.
+	 * The feature id for the '<em><b>Containing Workpackage</b></em>' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -235,7 +234,7 @@ public interface TaskPackage extends EPackage {
 	int ACTION_ITEM__ANNOTATED_MODEL_ELEMENTS = WORK_ITEM__ANNOTATED_MODEL_ELEMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Containing Workpackage</b></em>' container reference.
+	 * The feature id for the '<em><b>Containing Workpackage</b></em>' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -310,7 +309,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_PACKAGE__NAME = WORK_ITEM__NAME;
+	int WORK_PACKAGE__NAME = ModelPackage.MODEL_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute. <!--
@@ -319,7 +318,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_PACKAGE__DESCRIPTION = WORK_ITEM__DESCRIPTION;
+	int WORK_PACKAGE__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
@@ -327,7 +326,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_PACKAGE__IDENTIFIER = WORK_ITEM__IDENTIFIER;
+	int WORK_PACKAGE__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
@@ -335,7 +334,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_PACKAGE__READER_INFOS = WORK_ITEM__READER_INFOS;
+	int WORK_PACKAGE__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!--
@@ -344,7 +343,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_PACKAGE__ANNOTATIONS = WORK_ITEM__ANNOTATIONS;
+	int WORK_PACKAGE__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -352,7 +351,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_PACKAGE__INCOMING_DOCUMENT_REFERENCES = WORK_ITEM__INCOMING_DOCUMENT_REFERENCES;
+	int WORK_PACKAGE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
@@ -360,39 +359,16 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_PACKAGE__LEAF_SECTION = WORK_ITEM__LEAF_SECTION;
+	int WORK_PACKAGE__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Contained Model Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_PACKAGE__ANNOTATED_MODEL_ELEMENTS = WORK_ITEM__ANNOTATED_MODEL_ELEMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Containing Workpackage</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_PACKAGE__CONTAINING_WORKPACKAGE = WORK_ITEM__CONTAINING_WORKPACKAGE;
-
-	/**
-	 * The feature id for the '<em><b>Associated Change Packages</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_PACKAGE__ASSOCIATED_CHANGE_PACKAGES = WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES;
-
-	/**
-	 * The feature id for the '<em><b>Contained Work Items</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_PACKAGE__CONTAINED_WORK_ITEMS = WORK_ITEM_FEATURE_COUNT + 0;
+	int WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Work Package</em>' class.
@@ -400,7 +376,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_PACKAGE_FEATURE_COUNT = WORK_ITEM_FEATURE_COUNT + 1;
+	int WORK_PACKAGE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * Returns the meta object for class '
@@ -467,15 +443,15 @@ public interface TaskPackage extends EPackage {
 	EClass getWorkPackage();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.model.task.WorkPackage#getContainedWorkItems <em>Contained Work Items</em>}'.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Contained Work Items</em>'.
-	 * @see org.unicase.model.task.WorkPackage#getContainedWorkItems()
+	 * Returns the meta object for the reference list '{@link org.unicase.model.task.WorkPackage#getContainedModelElements <em>Contained Model Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Contained Model Elements</em>'.
+	 * @see org.unicase.model.task.WorkPackage#getContainedModelElements()
 	 * @see #getWorkPackage()
 	 * @generated
 	 */
-	EReference getWorkPackage_ContainedWorkItems();
+	EReference getWorkPackage_ContainedModelElements();
 
 	/**
 	 * Returns the meta object for class '
@@ -489,10 +465,10 @@ public interface TaskPackage extends EPackage {
 	EClass getWorkItem();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.unicase.model.task.WorkItem#getContainingWorkpackage <em>Containing Workpackage</em>}'.
+	 * Returns the meta object for the reference '{@link org.unicase.model.task.WorkItem#getContainingWorkpackage <em>Containing Workpackage</em>}'.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * @return the meta object for the container reference '<em>Containing Workpackage</em>'.
+	 * @return the meta object for the reference '<em>Containing Workpackage</em>'.
 	 * @see org.unicase.model.task.WorkItem#getContainingWorkpackage()
 	 * @see #getWorkItem()
 	 * @generated
@@ -582,13 +558,13 @@ public interface TaskPackage extends EPackage {
 		EClass WORK_PACKAGE = eINSTANCE.getWorkPackage();
 
 		/**
-		 * The meta object literal for the '<em><b>Contained Work Items</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc --> <!--
-		 * end-user-doc -->
+		 * The meta object literal for the '<em><b>Contained Model Elements</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference WORK_PACKAGE__CONTAINED_WORK_ITEMS = eINSTANCE
-				.getWorkPackage_ContainedWorkItems();
+		EReference WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS = eINSTANCE
+				.getWorkPackage_ContainedModelElements();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.task.WorkItem <em>Work Item</em>}' class.
@@ -600,7 +576,7 @@ public interface TaskPackage extends EPackage {
 		EClass WORK_ITEM = eINSTANCE.getWorkItem();
 
 		/**
-		 * The meta object literal for the '<em><b>Containing Workpackage</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Containing Workpackage</b></em>' reference feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */

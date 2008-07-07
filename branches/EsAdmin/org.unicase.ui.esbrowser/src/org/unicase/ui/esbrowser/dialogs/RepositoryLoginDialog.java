@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * </copyright>
  *
  * $Id$
@@ -91,8 +91,7 @@ public class RepositoryLoginDialog extends TitleAreaDialog implements SelectionL
 
 			Label pass = new Label(contents, SWT.NULL);
 			pass.setText("Password:");
-//			password = new Text(contents, SWT.PASSWORD | SWT.BORDER);
-			password = new Text(contents, SWT.BORDER);
+			password = new Text(contents, SWT.PASSWORD | SWT.BORDER);
 			password.setSize(150, 20);
 
 			Label savePasswordLabel = new Label(contents, SWT.NULL);
@@ -145,10 +144,8 @@ public class RepositoryLoginDialog extends TitleAreaDialog implements SelectionL
 			protected void doExecute() {
 				if(savePassword.getSelection()){
 					session.setPassword(password.getText());
-					session.setPersistentPassword(password.getText());
 				}else{
 					session.setPassword(null);
-					session.setPersistentPassword(null);
 				}
 				session.setSavePassword(savePassword.getSelection());
 				session.setServerInfo(serverInfo);

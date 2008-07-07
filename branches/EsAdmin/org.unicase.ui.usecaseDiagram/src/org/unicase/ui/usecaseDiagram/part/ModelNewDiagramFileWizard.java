@@ -140,6 +140,7 @@ public class ModelNewDiagramFileWizard extends Wizard {
 								org.unicase.ui.usecaseDiagram.edit.parts.MEDiagramEditPart.MODEL_ID,
 								org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 				diagramResource.getContents().add(diagram);
+				diagramResource.getContents().add(diagram.getElement());
 				return CommandResult.newOKCommandResult();
 			}
 		};

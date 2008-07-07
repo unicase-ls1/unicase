@@ -15,6 +15,7 @@ import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gmf.runtime.common.ui.services.marker.MarkerNavigationService;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
+import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider;
@@ -280,6 +281,18 @@ public class ModelDiagramEditor extends DiagramDocumentEditor implements
 		return StructuredSelection.EMPTY;
 	}
 
+	/**
+	 * @generated
+	 */
+	protected void configureGraphicalViewer() {
+		super.configureGraphicalViewer();
+		org.unicase.ui.usecaseDiagram.part.DiagramEditorContextMenuProvider provider = new org.unicase.ui.usecaseDiagram.part.DiagramEditorContextMenuProvider(
+				this, getDiagramGraphicalViewer());
+		getDiagramGraphicalViewer().setContextMenu(provider);
+		getSite().registerContextMenu(ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU,
+				provider, getDiagramGraphicalViewer());
+	}
+
 	@Override
 	public void setInput(IEditorInput input) {
 		try {
@@ -292,7 +305,5 @@ public class ModelDiagramEditor extends DiagramDocumentEditor implements
 			ErrorDialog.openError(shell, title, msg, x.getStatus());
 		}
 	}
-
-
 
 }

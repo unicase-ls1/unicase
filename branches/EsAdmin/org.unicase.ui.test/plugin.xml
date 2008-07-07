@@ -6,8 +6,9 @@
       <view
             category="org.unicase"
             class="org.unicase.ui.test.views.TestView"
+            icon="icons/Generator.gif"
             id="org.unicase.ui.test.modelTestView"
-            name="model test view"
+            name="Project Generator"
             restorable="true">
       </view>
       <category

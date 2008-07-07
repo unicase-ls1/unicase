@@ -59,10 +59,9 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 		switch (visualID) {
 		case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart.VISUAL_ID:
 		case org.unicase.ui.usecaseDiagram.edit.parts.ActorEditPart.VISUAL_ID:
-			return !semanticChildren.contains(view.getElement())
-					|| visualID != org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
-							.getNodeVisualID((View) getHost().getModel(), view
-									.getElement());
+			if (!semanticChildren.contains(view.getElement())) {
+				return true;
+			}
 		}
 		return false;
 	}

@@ -156,7 +156,7 @@ public class ModelDiagramEditorUtil {
 	 * This method should be called within a workspace modify operation since it creates resources.
 	 * @generated
 	 */
-	public static Resource createDiagram(URI diagramURI, URI modelURI,
+	public static Resource createDiagram(URI diagramURI,
 			IProgressMonitor progressMonitor) {
 		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE
 				.createEditingDomain();
@@ -166,8 +166,6 @@ public class ModelDiagramEditorUtil {
 						3);
 		final Resource diagramResource = editingDomain.getResourceSet()
 				.createResource(diagramURI);
-		final Resource modelResource = editingDomain.getResourceSet()
-				.createResource(modelURI);
 		final String diagramName = diagramURI.lastSegment();
 		AbstractTransactionalCommand command = new AbstractTransactionalCommand(
 				editingDomain,
@@ -177,7 +175,7 @@ public class ModelDiagramEditorUtil {
 					IProgressMonitor monitor, IAdaptable info)
 					throws ExecutionException {
 				MEDiagram model = createInitialModel();
-				attachModelToResource(model, modelResource);
+				attachModelToResource(model, diagramResource);
 
 				Diagram diagram = ViewService
 						.createDiagram(
@@ -191,9 +189,7 @@ public class ModelDiagramEditorUtil {
 				}
 
 				try {
-					modelResource
-							.save(org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorUtil
-									.getSaveOptions());
+
 					diagramResource
 							.save(org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorUtil
 									.getSaveOptions());
@@ -215,7 +211,7 @@ public class ModelDiagramEditorUtil {
 					.getInstance().logError(
 							"Unable to create model and diagram", e); //$NON-NLS-1$
 		}
-		setCharset(WorkspaceSynchronizer.getFile(modelResource));
+
 		setCharset(WorkspaceSynchronizer.getFile(diagramResource));
 		return diagramResource;
 	}
