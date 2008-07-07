@@ -90,6 +90,13 @@ public class ModelViewProvider extends AbstractViewProvider {
 						return null; // visual id in semantic hint should match visual id for domain element
 					}
 					break;
+				case org.unicase.ui.usecaseDiagram.edit.parts.StickManEditPart.VISUAL_ID:
+					if (org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart.VISUAL_ID != org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
+							.getVisualID(containerView)
+							|| containerView.getElement() != domainElement) {
+						return null; // wrong container
+					}
+					break;
 				default:
 					return null;
 				}
@@ -110,6 +117,8 @@ public class ModelViewProvider extends AbstractViewProvider {
 		switch (visualID) {
 		case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart.VISUAL_ID:
 			return org.unicase.ui.usecaseDiagram.view.factories.UseCaseViewFactory.class;
+		case org.unicase.ui.usecaseDiagram.edit.parts.StickManEditPart.VISUAL_ID:
+			return org.unicase.ui.usecaseDiagram.view.factories.StickManViewFactory.class;
 		case org.unicase.ui.usecaseDiagram.edit.parts.ActorEditPart.VISUAL_ID:
 			return org.unicase.ui.usecaseDiagram.view.factories.ActorViewFactory.class;
 		}

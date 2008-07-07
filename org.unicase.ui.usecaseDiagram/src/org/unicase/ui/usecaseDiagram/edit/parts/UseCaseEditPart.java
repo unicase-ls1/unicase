@@ -1,17 +1,27 @@
 package org.unicase.ui.usecaseDiagram.edit.parts;
 
+import org.eclipse.draw2d.BorderLayout;
 import org.eclipse.draw2d.Ellipse;
+import org.eclipse.draw2d.FlowLayout;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.editpolicies.FlowLayoutEditPolicy;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
@@ -19,7 +29,7 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class UseCaseEditPart extends ShapeNodeEditPart {
+public class UseCaseEditPart extends AbstractBorderedShapeEditPart {
 
 	/**
 	 * @generated
@@ -60,18 +70,22 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
-		LayoutEditPolicy lep = new LayoutEditPolicy() {
+
+		FlowLayoutEditPolicy lep = new FlowLayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				EditPolicy result = child
-						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
-					result = new NonResizableEditPolicy();
+				if (child instanceof IBorderItemEditPart) {
+					return new BorderItemSelectionEditPolicy();
 				}
-				return result;
+				return super.createChildEditPolicy(child);
 			}
 
-			protected Command getMoveChildrenCommand(Request request) {
+			protected Command createAddCommand(EditPart child, EditPart after) {
+				return null;
+			}
+
+			protected Command createMoveChildCommand(EditPart child,
+					EditPart after) {
 				return null;
 			}
 
@@ -86,14 +100,30 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new Ellipse();
+		UseCaseFigure figure = new UseCaseFigure();
+		return primaryShape = figure;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Ellipse getPrimaryShape() {
-		return (Ellipse) primaryShape;
+	public UseCaseFigure getPrimaryShape() {
+		return (UseCaseFigure) primaryShape;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void addBorderItem(IFigure borderItemContainer,
+			IBorderItemEditPart borderItemEditPart) {
+		if (borderItemEditPart instanceof org.unicase.ui.usecaseDiagram.edit.parts.StickManEditPart) {
+			BorderItemLocator locator = new BorderItemLocator(getMainFigure(),
+					PositionConstants.SOUTH);
+			locator.setBorderItemOffset(new Dimension(-20, -20));
+			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
+		} else {
+			super.addBorderItem(borderItemContainer, borderItemEditPart);
+		}
 	}
 
 	/**
@@ -113,7 +143,7 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 	 * 
 	 * @generated
 	 */
-	protected NodeFigure createNodeFigure() {
+	protected NodeFigure createMainFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
 		IFigure shape = createNodeShape();
@@ -140,6 +170,83 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 			return contentPane;
 		}
 		return super.getContentPane();
+	}
+
+	/**
+	 * @generated
+	 */
+	public EditPart getPrimaryChildEditPart() {
+		return getChildBySemanticHint(org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
+				.getType(org.unicase.ui.usecaseDiagram.edit.parts.StickManEditPart.VISUAL_ID));
+	}
+
+	/**
+	 * @generated
+	 */
+	public class UseCaseFigure extends Ellipse {
+
+		/**
+		 * @generated
+		 */
+		private WrappingLabel fFigureUseCaseFigure_name;
+
+		/**
+		 * @generated
+		 */
+		public UseCaseFigure() {
+
+			FlowLayout layoutThis = new FlowLayout();
+			layoutThis.setStretchMinorAxis(false);
+			layoutThis.setMinorAlignment(FlowLayout.ALIGN_LEFTTOP);
+
+			layoutThis.setMajorAlignment(FlowLayout.ALIGN_LEFTTOP);
+			layoutThis.setMajorSpacing(5);
+			layoutThis.setMinorSpacing(5);
+			layoutThis.setHorizontal(true);
+
+			this.setLayoutManager(layoutThis);
+
+			createContents();
+		}
+
+		/**
+		 * @generated
+		 */
+		private void createContents() {
+
+			fFigureUseCaseFigure_name = new WrappingLabel();
+			fFigureUseCaseFigure_name.setText("");
+
+			this.add(fFigureUseCaseFigure_name, BorderLayout.TOP);
+
+		}
+
+		/**
+		 * @generated
+		 */
+		private boolean myUseLocalCoordinates = false;
+
+		/**
+		 * @generated
+		 */
+		protected boolean useLocalCoordinates() {
+			return myUseLocalCoordinates;
+		}
+
+		/**
+		 * @generated
+		 */
+		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
+			myUseLocalCoordinates = useLocalCoordinates;
+		}
+
+		/**
+		 * @generated
+		 */
+		public WrappingLabel getFigureUseCaseFigure_name() {
+			return fFigureUseCaseFigure_name;
+		}
+
 	}
 
 }

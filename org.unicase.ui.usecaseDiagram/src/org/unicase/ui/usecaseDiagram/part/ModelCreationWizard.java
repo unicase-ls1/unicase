@@ -37,11 +37,6 @@ public class ModelCreationWizard extends Wizard implements INewWizard {
 	/**
 	 * @generated
 	 */
-	protected org.unicase.ui.usecaseDiagram.part.ModelCreationWizardPage domainModelFilePage;
-
-	/**
-	 * @generated
-	 */
 	protected Resource diagram;
 
 	/**
@@ -108,27 +103,6 @@ public class ModelCreationWizard extends Wizard implements INewWizard {
 		diagramModelFilePage
 				.setDescription(org.unicase.ui.usecaseDiagram.part.Messages.ModelCreationWizard_DiagramModelFilePageDescription);
 		addPage(diagramModelFilePage);
-
-		domainModelFilePage = new org.unicase.ui.usecaseDiagram.part.ModelCreationWizardPage(
-				"DomainModelFile", getSelection(), "model") { //$NON-NLS-1$ //$NON-NLS-2$
-
-			public void setVisible(boolean visible) {
-				if (visible) {
-					String fileName = diagramModelFilePage.getFileName();
-					fileName = fileName.substring(0, fileName.length()
-							- ".model_diagram".length()); //$NON-NLS-1$
-					setFileName(org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorUtil
-							.getUniqueFileName(getContainerFullPath(),
-									fileName, "model")); //$NON-NLS-1$
-				}
-				super.setVisible(visible);
-			}
-		};
-		domainModelFilePage
-				.setTitle(org.unicase.ui.usecaseDiagram.part.Messages.ModelCreationWizard_DomainModelFilePageTitle);
-		domainModelFilePage
-				.setDescription(org.unicase.ui.usecaseDiagram.part.Messages.ModelCreationWizard_DomainModelFilePageDescription);
-		addPage(domainModelFilePage);
 	}
 
 	/**
@@ -140,8 +114,7 @@ public class ModelCreationWizard extends Wizard implements INewWizard {
 			protected void execute(IProgressMonitor monitor)
 					throws CoreException, InterruptedException {
 				diagram = org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorUtil
-						.createDiagram(diagramModelFilePage.getURI(),
-								domainModelFilePage.getURI(), monitor);
+						.createDiagram(diagramModelFilePage.getURI(), monitor);
 				if (isOpenNewlyCreatedDiagramEditor() && diagram != null) {
 					try {
 						org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorUtil

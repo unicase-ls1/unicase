@@ -56,4 +56,11 @@ public class UseCaseCreateCommand extends CreateElementCommand {
 		return newElement;
 	}
 
+	@Override
+	public boolean canExecute() {
+		// TODO Auto-generated method stub
+		boolean canExecute = super.canExecute();
+		return canExecute;
+	}
+
 }

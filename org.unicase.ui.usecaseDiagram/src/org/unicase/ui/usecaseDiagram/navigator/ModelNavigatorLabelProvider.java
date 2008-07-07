@@ -1,5 +1,9 @@
 package org.unicase.ui.usecaseDiagram.navigator;
 
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
+import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
+import org.eclipse.gmf.runtime.common.ui.services.parser.ParserService;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -173,16 +177,23 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getUseCase_1001Text(View view) {
-		UseCase domainModelElement = (UseCase) view.getElement();
-		if (domainModelElement != null) {
-			return domainModelElement.getName();
+		IAdaptable hintAdapter = new org.unicase.ui.usecaseDiagram.providers.ModelParserProvider.HintAdapter(
+				org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCase_1001,
+				(view.getElement() != null ? view.getElement() : view),
+				org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
+						.getType(org.unicase.ui.usecaseDiagram.edit.parts.StickManEditPart.VISUAL_ID));
+		IParser parser = ParserService.getInstance().getParser(hintAdapter);
+
+		if (parser != null) {
+			return parser.getPrintString(hintAdapter, ParserOptions.NONE
+					.intValue());
 		} else {
 			org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin
-					.getInstance()
-					.logError(
-							"No domain element for view with visualID = " + 1001); //$NON-NLS-1$
+					.getInstance().logError(
+							"Parser was not found for label " + 4001); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
+
 	}
 
 	/**
