@@ -67,8 +67,7 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="localChanges" eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//changemanagment/ChangePackage"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="usersession" eType="#//Usersession"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="usersession" eType="#//Usersession"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastUpdated" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="baseVersion" lowerBound="1"
         eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//changemanagment/PrimaryVersionSpec"

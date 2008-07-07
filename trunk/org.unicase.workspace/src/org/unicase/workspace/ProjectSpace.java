@@ -171,26 +171,26 @@ public interface ProjectSpace extends EObject {
 	void setLocalChanges(ChangePackage value);
 
 	/**
-	 * Returns the value of the '<em><b>Usersession</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Usersession</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Usersession</em>' reference isn't clear, there
 	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Usersession</em>' containment reference.
+	 * @return the value of the '<em>Usersession</em>' reference.
 	 * @see #setUsersession(Usersession)
 	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_Usersession()
-	 * @model containment="true"
+	 * @model
 	 * @generated
 	 */
 	Usersession getUsersession();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getUsersession <em>Usersession</em>}' containment reference.
+	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getUsersession <em>Usersession</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Usersession</em>' containment reference.
+	 * @param value the new value of the '<em>Usersession</em>' reference.
 	 * @see #getUsersession()
 	 * @generated
 	 */

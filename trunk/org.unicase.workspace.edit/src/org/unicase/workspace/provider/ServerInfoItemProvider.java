@@ -183,7 +183,7 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements
 	@Override
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/ServerInfo.png"));
+				"full/obj16/ServerInfo"));
 	}
 
 	/**
@@ -196,7 +196,7 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements
 	public String getText(Object object) {
 		String label = ((ServerInfo) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_ServerInfo_type")
-				: label;
+				: getString("_UI_ServerInfo_type") + " " + label;
 	}
 
 	/**
