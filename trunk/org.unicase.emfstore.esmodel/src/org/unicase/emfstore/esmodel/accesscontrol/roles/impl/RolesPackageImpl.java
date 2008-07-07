@@ -23,6 +23,8 @@ import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.ServerAdmin;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.WriterRole;
 import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentPackage;
+import org.unicase.emfstore.esmodel.changemanagment.changepackage.ChangepackagePackage;
+import org.unicase.emfstore.esmodel.changemanagment.changepackage.impl.ChangepackagePackageImpl;
 import org.unicase.emfstore.esmodel.changemanagment.impl.ChangemanagmentPackageImpl;
 import org.unicase.emfstore.esmodel.impl.EsmodelPackageImpl;
 import org.unicase.model.ModelPackage;
@@ -135,6 +137,10 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 				.getEPackage(ChangemanagmentPackage.eNS_URI) instanceof ChangemanagmentPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(ChangemanagmentPackage.eNS_URI)
 				: ChangemanagmentPackage.eINSTANCE);
+		ChangepackagePackageImpl theChangepackagePackage = (ChangepackagePackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(ChangepackagePackage.eNS_URI) instanceof ChangepackagePackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(ChangepackagePackage.eNS_URI)
+				: ChangepackagePackage.eINSTANCE);
 		AccesscontrolPackageImpl theAccesscontrolPackage = (AccesscontrolPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(AccesscontrolPackage.eNS_URI) instanceof AccesscontrolPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(AccesscontrolPackage.eNS_URI)
@@ -144,12 +150,14 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 		theRolesPackage.createPackageContents();
 		theEsmodelPackage.createPackageContents();
 		theChangemanagmentPackage.createPackageContents();
+		theChangepackagePackage.createPackageContents();
 		theAccesscontrolPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theRolesPackage.initializePackageContents();
 		theEsmodelPackage.initializePackageContents();
 		theChangemanagmentPackage.initializePackageContents();
+		theChangepackagePackage.initializePackageContents();
 		theAccesscontrolPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed

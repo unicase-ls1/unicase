@@ -24,6 +24,8 @@ import org.unicase.emfstore.esmodel.accesscontrol.impl.AccesscontrolPackageImpl;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RolesPackageImpl;
 import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentPackage;
+import org.unicase.emfstore.esmodel.changemanagment.changepackage.ChangepackagePackage;
+import org.unicase.emfstore.esmodel.changemanagment.changepackage.impl.ChangepackagePackageImpl;
 import org.unicase.emfstore.esmodel.changemanagment.impl.ChangemanagmentPackageImpl;
 import org.unicase.model.ModelPackage;
 
@@ -131,6 +133,10 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 				.getEPackage(ChangemanagmentPackage.eNS_URI) instanceof ChangemanagmentPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(ChangemanagmentPackage.eNS_URI)
 				: ChangemanagmentPackage.eINSTANCE);
+		ChangepackagePackageImpl theChangepackagePackage = (ChangepackagePackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(ChangepackagePackage.eNS_URI) instanceof ChangepackagePackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(ChangepackagePackage.eNS_URI)
+				: ChangepackagePackage.eINSTANCE);
 		AccesscontrolPackageImpl theAccesscontrolPackage = (AccesscontrolPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(AccesscontrolPackage.eNS_URI) instanceof AccesscontrolPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(AccesscontrolPackage.eNS_URI)
@@ -143,12 +149,14 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		// Create package meta-data objects
 		theEsmodelPackage.createPackageContents();
 		theChangemanagmentPackage.createPackageContents();
+		theChangepackagePackage.createPackageContents();
 		theAccesscontrolPackage.createPackageContents();
 		theRolesPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theEsmodelPackage.initializePackageContents();
 		theChangemanagmentPackage.initializePackageContents();
+		theChangepackagePackage.initializePackageContents();
 		theAccesscontrolPackage.initializePackageContents();
 		theRolesPackage.initializePackageContents();
 
