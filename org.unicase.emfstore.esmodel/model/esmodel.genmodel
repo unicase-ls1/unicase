@@ -77,6 +77,33 @@
             ecoreFeature="ecore:EReference esmodel.ecore#//changemanagment/Version/logMessage"/>
       </genClasses>
       <genClasses ecoreClass="esmodel.ecore#//changemanagment/HeadVersionSpec"/>
+      <nestedGenPackages prefix="Changepackage" basePackage="org.unicase.emfstore.esmodel.changemanagment"
+          disposableProviderFactory="true" ecorePackage="esmodel.ecore#//changemanagment/changepackage">
+        <genClasses ecoreClass="esmodel.ecore#//changemanagment/changepackage/ChangePackage">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//changemanagment/changepackage/ChangePackage/operations"/>
+        </genClasses>
+        <genClasses image="false" ecoreClass="esmodel.ecore#//changemanagment/changepackage/ESAbstractOperation"/>
+        <genClasses ecoreClass="esmodel.ecore#//changemanagment/changepackage/ESOperation">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//changemanagment/changepackage/ESOperation/name"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//changemanagment/changepackage/ESOperation/description"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//changemanagment/changepackage/ESOperation/operations"/>
+        </genClasses>
+        <genClasses image="false" ecoreClass="esmodel.ecore#//changemanagment/changepackage/ESEvent">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//changemanagment/changepackage/ESEvent/modelElementId"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//changemanagment/changepackage/ESEvent/featureId"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//changemanagment/changepackage/ESEvent/modelElementClass"/>
+        </genClasses>
+        <genClasses ecoreClass="esmodel.ecore#//changemanagment/changepackage/ESeAttributeEvent">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//changemanagment/changepackage/ESeAttributeEvent/previousState"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference esmodel.ecore#//changemanagment/changepackage/ESeAttributeEvent/subsequentState"/>
+        </genClasses>
+        <genClasses ecoreClass="esmodel.ecore#//changemanagment/changepackage/ESListEvent"/>
+        <genClasses ecoreClass="esmodel.ecore#//changemanagment/changepackage/ESModifyElementEvent">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//changemanagment/changepackage/ESModifyElementEvent/previousState"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//changemanagment/changepackage/ESModifyElementEvent/subsequentState"/>
+        </genClasses>
+      </nestedGenPackages>
     </nestedGenPackages>
     <nestedGenPackages prefix="Accesscontrol" basePackage="org.unicase.emfstore.esmodel"
         disposableProviderFactory="true" ecorePackage="esmodel.ecore#//accesscontrol">
