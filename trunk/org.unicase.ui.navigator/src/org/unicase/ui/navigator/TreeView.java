@@ -33,17 +33,15 @@ public class TreeView extends CommonNavigator {
 
 	public TreeView() {
 		super();
-		// int ops = DND.DROP_COPY | DND.DROP_MOVE;
-		// Transfer[] transfers = new Transfer[] { METransfer.getInstance() };
-		// this.getCommonViewer().addDragSupport(ops, transfers,
-		// new GadgetTreeDropAdapter(this.getCommonViewer()));
 	}
 
 	@Override
 	protected IAdaptable getInitialInput() {
 		Workspace workspace = WorkspaceManager.getInstance()
 				.getCurrentWorkspace();
+//		addDNDSupport();
 		return workspace;
+		
 
 	}
 
@@ -55,11 +53,11 @@ public class TreeView extends CommonNavigator {
 		
 		viewer.addDragSupport(dndOperations, transfers, new ViewerDragAdapter(
 				viewer));
-		viewer.addDropSupport(dndOperations, transfers,
-				new EditingDomainViewerDropAdapter(
-						TransactionalEditingDomain.Registry.INSTANCE
-								.getEditingDomain("org.unicase.EditingDomain"),
-						viewer));
+//		viewer.addDropSupport(dndOperations, transfers,
+//				new EditingDomainViewerDropAdapter(
+//						TransactionalEditingDomain.Registry.INSTANCE
+//								.getEditingDomain("org.unicase.EditingDomain"),
+//						viewer));
 
 	}
 
