@@ -7,7 +7,6 @@
 package org.unicase.ui.navigator;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider;
 import org.unicase.workspace.WorkspaceManager;
 
