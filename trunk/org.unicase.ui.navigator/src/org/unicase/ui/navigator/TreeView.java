@@ -6,80 +6,46 @@
  */
 package org.unicase.ui.navigator;
 
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.emf.common.ui.URIEditorInput;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.jface.dialogs.ErrorDialog;
-import org.eclipse.jface.viewers.DoubleClickEvent;
-import org.eclipse.jface.viewers.TreeSelection;
-import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.navigator.CommonNavigator;
-import org.unicase.model.ModelElement;
-import org.unicase.model.diagram.MEDiagram;
-import org.unicase.ui.meeditor.MEEditor;
-import org.unicase.ui.meeditor.MEEditorInput;
-import org.unicase.workspace.Workspace;
+import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.ui.part.ViewPart;
 import org.unicase.workspace.WorkspaceManager;
 /**
  * The standard navigator tree view.
  * @author helming
  *
  */
-public class TreeView extends CommonNavigator {
+public class TreeView extends ViewPart {
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected IAdaptable getInitialInput() {
-		Workspace workspace = WorkspaceManager.getInstance()
-				.getCurrentWorkspace();
-		return workspace;
+	private TreeViewer viewer;
+	
+	public TreeView(){
 		
-
 	}
-
-
-
-	/**
-	 * . ({@inheritDoc}) On DoubleClick open the ModelElement in Editor
-	 */
+	
 	@Override
-	protected void handleDoubleClick(DoubleClickEvent anEvent) {
-				TreeSelection selection = (TreeSelection) anEvent.getSelection();
-		Object object = selection.getFirstElement();
-		if (object instanceof ModelElement) {
-			if (object instanceof MEDiagram) {
-				ModelElement modelElement = (ModelElement) object;
-				URIEditorInput input = new URIEditorInput(URI
-						.createURI(modelElement.eResource().getURIFragment(
-								modelElement)));
-				try {
-					PlatformUI
-							.getWorkbench()
-							.getActiveWorkbenchWindow()
-							.getActivePage()
-							.openEditor(
-									input,
-									"org.unicase.model.classDiagram.part.ModelDiagramEditorID",
-									true);
-				} catch (PartInitException e) {
-					ErrorDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Error", e.getMessage(), e.getStatus());
-				}
-			} else {
-				MEEditorInput input = new MEEditorInput((ModelElement) object);
-				try {
-					PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-							.getActivePage().openEditor(input,MEEditor.ID,
-									true);
-				} catch (PartInitException e) {
-					ErrorDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Error", e.getMessage(), e.getStatus());
-				}
-			}
-		}
+	public void createPartControl(Composite parent) {
+		viewer = new TreeViewer(parent);
+		viewer.setLabelProvider(new TreeLabelProvider());
+		viewer.setContentProvider(new TreeContentProvider());
+		viewer.setInput(WorkspaceManager.getInstance().getCurrentWorkspace());
+		
+		MenuManager menuManager = new MenuManager();
+		
+		getSite().registerContextMenu(menuManager, viewer);
+		Control control = viewer.getControl();
+		Menu menu = menuManager.createContextMenu(control);
+		control.setMenu(menu);
+		
 	}
 
-
-
+	@Override
+	public void setFocus() {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }

@@ -43,6 +43,7 @@
             file="contexts.xml">
       </contexts>
    </extension>
+   <!--
    <extension
          point="org.eclipse.ui.navigator.navigatorContent">
       <navigatorContent
@@ -74,7 +75,8 @@
                   pattern="org.unicase.ui.navigator.navigatorContent">
             </contentExtension></includes>
       </viewerContentBinding>
-   </extension>
+   </extension>  -->
+   
    <extension
          point="org.eclipse.ui.commands">
       <command
@@ -98,10 +100,11 @@
             type="org.eclipse.emf.ecore.EClass">
       </commandParameterType>
    </extension>
+    <!--    -->
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.model.edit.annotateActionItemSeperator">
+         locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
          <command
                commandId="org.unicase.ui.navigator.newMEWizard"
                label="New model element..."
