@@ -104,7 +104,7 @@
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-         locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
+         locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.model.edit.annotateActionItemSeperator">
          <command
                commandId="org.unicase.ui.navigator.newMEWizard"
                label="New model element..."
@@ -120,7 +120,7 @@
          </command>
       </menuContribution>
       <menuContribution
-            locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.model.edit.annotateActionItemSeperator">
+         locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.model.edit.annotateActionItemSeperator">
          <dynamic
                class="org.unicase.ui.navigator.commands.DynamicMECreationCommands"
                id="org.unicase.ui.navigator.dynamicMECreationCommands">
