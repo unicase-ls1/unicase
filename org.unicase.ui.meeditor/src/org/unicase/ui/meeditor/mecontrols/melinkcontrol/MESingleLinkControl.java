@@ -6,7 +6,6 @@
  */
 package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
-import java.io.NotSerializableException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -15,7 +14,6 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.RecordingCommand;

@@ -115,6 +115,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 
 				TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
+					@SuppressWarnings("unchecked")
 					@Override
 					protected void doExecute() {
 						EClass clazz = eReference.getEReferenceType();
@@ -164,6 +165,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 		linkControls.clear();
 		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@SuppressWarnings("unchecked")
 			@Override
 			protected void doExecute() {
 				Object objectList = modelElement.eGet(eReference);

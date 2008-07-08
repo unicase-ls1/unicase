@@ -35,6 +35,11 @@ import org.eclipse.ui.services.IEvaluationService;
 import org.unicase.model.ModelElement;
 import org.unicase.ui.meeditor.mecontrols.MEControl;
 
+/**
+ * The editor page for the {@link MEEditor}.
+ * @author helming
+ *
+ */
 public class MEEditorPage extends FormPage {
 
 	private EditingDomain editingDomain;
@@ -43,11 +48,19 @@ public class MEEditorPage extends FormPage {
 	private FormToolkit toolkit;
 	private List<MEControl> meControls = new ArrayList<MEControl>();
 	
-	static String activeModelelement = "activeModelelement";
+	private static String activeModelelement = "activeModelelement";
 	private ScrolledForm form;
 	private List<IItemPropertyDescriptor> simpleAttributes = new ArrayList<IItemPropertyDescriptor>();
 	private List<IItemPropertyDescriptor> multiReferences = new ArrayList<IItemPropertyDescriptor>();
 
+	/**
+	 * Default constructor.
+	 * @param editor the {@link MEEditor}
+	 * @param id @see {@link FormPage#id}
+	 * @param title the title
+	 * @param editingDomain the editingDomain
+	 * @param modelElement the modelElement
+	 */
 	public MEEditorPage(MEEditor editor, String id, String title,
 			EditingDomain editingDomain, ModelElement modelElement) {
 		super(editor, id, title);
@@ -56,6 +69,9 @@ public class MEEditorPage extends FormPage {
 		
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void createFormContent(IManagedForm managedForm) {
 		super.createFormContent(managedForm);

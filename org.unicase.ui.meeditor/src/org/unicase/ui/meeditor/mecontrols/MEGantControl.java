@@ -13,6 +13,10 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 
 // AS: implement
+/**
+ * A stub for this Control.
+ * @generated
+ */
 public class MEGantControl extends AbstractMEControl {
 
 	public MEGantControl(EditingDomain editingDomain, EObject modelElement,

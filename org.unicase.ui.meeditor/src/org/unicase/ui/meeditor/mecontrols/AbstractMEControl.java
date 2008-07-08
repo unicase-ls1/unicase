@@ -18,8 +18,17 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
  */
 public abstract class AbstractMEControl implements MEControl {
 
+	/**
+	 * gui toolkit used for rendering.
+	 */
 	protected FormToolkit toolkit;
+	/**
+	 * the modelElement.
+	 */
 	protected EObject modelElement;
+	/**
+	 * the editingDomain.
+	 */
 	protected EditingDomain editingDomain;
 
 	/**
