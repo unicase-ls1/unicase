@@ -15,7 +15,7 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 // AS: implement
 /**
  * A stub for this Control.
- * @generated
+ * @stub
  */
 public class MEGantControl extends AbstractMEControl {
 
