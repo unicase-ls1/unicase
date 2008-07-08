@@ -34,6 +34,7 @@ import org.eclipse.ui.menus.IMenuService;
 import org.eclipse.ui.services.IEvaluationService;
 import org.unicase.model.ModelElement;
 import org.unicase.ui.meeditor.mecontrols.MEControl;
+import org.unicase.ui.meeditor.mecontrols.METextControl;
 
 /**
  * The editor page for the {@link MEEditor}.
@@ -211,4 +212,17 @@ public class MEEditorPage extends FormPage {
 		}
 		super.dispose();
 	}
+
+	@Override
+	public void setFocus() {
+			super.setFocus();
+			for(MEControl meControl : this.meControls){
+				if(meControl instanceof METextControl){
+					((METextControl)meControl).setFocus();
+					break;
+				}
+			}
+	}
+
+	
 }

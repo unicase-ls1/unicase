@@ -28,6 +28,8 @@ import org.unicase.workspace.WorkspaceManager;
  */
 public class MEEditor extends SharedHeaderFormEditor {
 
+	
+
 	/**
 	 * The Id for MEEditor. We need this to open a model element.
 	 */
@@ -167,6 +169,14 @@ public class MEEditor extends SharedHeaderFormEditor {
 	@Override
 	public boolean isDirty() {
 		return true;
+	}
+	
+	@Override
+	public void setFocus() {
+		
+		super.setFocus();
+		form.setFocus();
+		
 	}
 
 }

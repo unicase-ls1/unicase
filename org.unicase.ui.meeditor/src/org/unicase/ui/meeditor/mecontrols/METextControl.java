@@ -62,5 +62,9 @@ public class METextControl extends AbstractMEControl implements MEControl {
 				null, null);
 		return text;
 	}
+	
+	public void setFocus(){
+		this.text.setFocus();
+	}
 
 }
