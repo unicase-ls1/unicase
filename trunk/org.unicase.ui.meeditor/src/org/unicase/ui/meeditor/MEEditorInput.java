@@ -13,20 +13,35 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
 import org.unicase.model.ModelElement;
 
+/**
+ * The {@link IEditorInput} for the {@link MEEditor}.
+ * @author helming
+ *
+ */
 public class MEEditorInput implements IEditorInput {
 
-	ModelElement modelElement;
+	private ModelElement modelElement;
 
+	/**
+	 * Default constructor.
+	 * @param me the modelElement
+	 */
 	public MEEditorInput(ModelElement me) {
 		super();
 		this.modelElement = me;
 	}
-
+	
+	/**
+	 * {@inheritDoc}
+	 */
 	public boolean exists() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public ImageDescriptor getImageDescriptor() {
 		ImageDescriptor descriptor = ImageDescriptor
 				.createFromImage(new AdapterFactoryLabelProvider(
@@ -37,34 +52,59 @@ public class MEEditorInput implements IEditorInput {
 		return descriptor;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public String getName() {
 		return modelElement.getName();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public IPersistableElement getPersistable() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public String getToolTipText() {
 		// TODO Auto-generated method stub
 		return "";
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@SuppressWarnings("unchecked")
 	public Object getAdapter(Class adapter) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Getter for the modelElement.
+	 * @return the modelElement
+	 */
 	public ModelElement getModelElement() {
 		return modelElement;
 	}
 
+	/**
+	 * Setter for the modelElement.
+	 * @param modelElement the modelElement
+	 */
 	public void setModelElement(ModelElement modelElement) {
 		this.modelElement = modelElement;
 	}
 
+	/**
+	 * Custom equals() for this class.
+	 * @param obj the compared object.
+	 * @return the boolean state.
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof MEEditorInput) {

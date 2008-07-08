@@ -13,16 +13,12 @@ import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryLabelProvider;
-import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
 import org.unicase.model.ModelElement;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
-import org.unicase.ui.meeditor.mecontrols.MEControl;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
@@ -39,10 +35,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	private ModelElement modelElement;
 	private ComposedAdapterFactory adapterFactory;
 	private TransactionalEditingDomain editingDomain;
-	private ILabelProvider labelProvider;
 	private CommandStack commandStack;
-	private ControlFactory controlFactory;
-	private boolean dirty;
 	private MEEditorPage form;
 
 	/**
@@ -91,7 +84,6 @@ public class MEEditor extends SharedHeaderFormEditor {
 		commandStack.flush();
 		editorDirtyStateChanged();
 		monitor.done();
-		dirty = false;
 	}
 
 	/**
@@ -166,8 +158,6 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 		// These provide access to the model items, their property source and
 		// label
-		this.labelProvider = new TransactionalAdapterFactoryLabelProvider(
-				editingDomain, adapterFactory);
 
 	}
 
