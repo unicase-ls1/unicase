@@ -79,8 +79,8 @@
       <genClasses ecoreClass="esmodel.ecore#//changemanagment/HeadVersionSpec"/>
       <nestedGenPackages prefix="Changepackage" basePackage="org.unicase.emfstore.esmodel.changemanagment"
           disposableProviderFactory="true" ecorePackage="esmodel.ecore#//changemanagment/changepackage">
-        <genClasses ecoreClass="esmodel.ecore#//changemanagment/changepackage/ChangePackage">
-          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//changemanagment/changepackage/ChangePackage/operations"/>
+        <genClasses ecoreClass="esmodel.ecore#//changemanagment/changepackage/ESChangePackage">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//changemanagment/changepackage/ESChangePackage/operations"/>
         </genClasses>
         <genClasses image="false" ecoreClass="esmodel.ecore#//changemanagment/changepackage/ESAbstractOperation"/>
         <genClasses ecoreClass="esmodel.ecore#//changemanagment/changepackage/ESOperation">

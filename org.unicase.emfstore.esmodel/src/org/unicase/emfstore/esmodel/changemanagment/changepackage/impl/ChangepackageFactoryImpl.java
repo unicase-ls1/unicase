@@ -23,9 +23,9 @@ import org.eclipse.emf.ecore.change.FeatureChange;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.unicase.emfstore.esmodel.changemanagment.changepackage.ChangePackage;
 import org.unicase.emfstore.esmodel.changemanagment.changepackage.ChangepackageFactory;
 import org.unicase.emfstore.esmodel.changemanagment.changepackage.ChangepackagePackage;
+import org.unicase.emfstore.esmodel.changemanagment.changepackage.ESChangePackage;
 import org.unicase.emfstore.esmodel.changemanagment.changepackage.ESListEvent;
 import org.unicase.emfstore.esmodel.changemanagment.changepackage.ESModifyElementEvent;
 import org.unicase.emfstore.esmodel.changemanagment.changepackage.ESOperation;
@@ -36,15 +36,14 @@ import org.unicase.model.ModelElementId;
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class ChangepackageFactoryImpl extends EFactoryImpl implements
 		ChangepackageFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static ChangepackageFactory init() {
@@ -61,9 +60,9 @@ public class ChangepackageFactoryImpl extends EFactoryImpl implements
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!--
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ChangepackageFactoryImpl() {
@@ -72,14 +71,13 @@ public class ChangepackageFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case ChangepackagePackage.CHANGE_PACKAGE:
-			return createChangePackage();
+		case ChangepackagePackage.ES_CHANGE_PACKAGE:
+			return createESChangePackage();
 		case ChangepackagePackage.ES_OPERATION:
 			return createESOperation();
 		case ChangepackagePackage.ESE_ATTRIBUTE_EVENT:
@@ -95,18 +93,17 @@ public class ChangepackageFactoryImpl extends EFactoryImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ChangePackage createChangePackage() {
-		ChangePackageImpl changePackage = new ChangePackageImpl();
-		return changePackage;
+	public ESChangePackage createESChangePackage() {
+		ESChangePackageImpl esChangePackage = new ESChangePackageImpl();
+		return esChangePackage;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ESOperation createESOperation() {
@@ -116,7 +113,6 @@ public class ChangepackageFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ESeAttributeEvent createESeAttributeEvent() {
@@ -126,7 +122,6 @@ public class ChangepackageFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ESListEvent createESListEvent() {
@@ -136,7 +131,6 @@ public class ChangepackageFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ESModifyElementEvent createESModifyElementEvent() {
@@ -146,7 +140,6 @@ public class ChangepackageFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ChangepackagePackage getChangepackagePackage() {
@@ -155,7 +148,6 @@ public class ChangepackageFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */
@@ -171,9 +163,9 @@ public class ChangepackageFactoryImpl extends EFactoryImpl implements
 	 *            changeDescription from changeRecorder
 	 * @return a changepackage
 	 */
-	public ChangePackage convertToChangepackage(
+	public ESChangePackage convertToChangepackage(
 			ChangeDescription changeDescription) {
-		ChangePackage changePackage = createChangePackage();
+		ESChangePackage changePackage = createESChangePackage();
 		ChangeDescription newChangeDescription = (ChangeDescription) EcoreUtil
 				.copy(changeDescription);
 		newChangeDescription.applyAndReverse();

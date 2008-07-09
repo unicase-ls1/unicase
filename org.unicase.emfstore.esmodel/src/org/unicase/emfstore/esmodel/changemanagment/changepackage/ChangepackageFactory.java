@@ -30,13 +30,13 @@ public interface ChangepackageFactory extends EFactory {
 			.init();
 
 	/**
-	 * Returns a new object of class '<em>Change Package</em>'.
+	 * Returns a new object of class '<em>ES Change Package</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Change Package</em>'.
+	 * @return a new object of class '<em>ES Change Package</em>'.
 	 * @generated
 	 */
-	ChangePackage createChangePackage();
+	ESChangePackage createESChangePackage();
 
 	/**
 	 * Returns a new object of class '<em>ES Operation</em>'.

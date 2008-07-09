@@ -88,7 +88,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="HeadVersionSpec" eSuperTypes="#//changemanagment/VersionSpec"/>
     <eSubpackages name="changepackage" nsURI="http://unicase.org/esmodel/changemanagment/changepackage"
         nsPrefix="org.unicase.emfstore.esmodel.changemanagment.changepackage">
-      <eClassifiers xsi:type="ecore:EClass" name="ChangePackage">
+      <eClassifiers xsi:type="ecore:EClass" name="ESChangePackage">
         <eStructuralFeatures xsi:type="ecore:EReference" name="operations" upperBound="-1"
             eType="#//changemanagment/changepackage/ESAbstractOperation" containment="true"/>
       </eClassifiers>

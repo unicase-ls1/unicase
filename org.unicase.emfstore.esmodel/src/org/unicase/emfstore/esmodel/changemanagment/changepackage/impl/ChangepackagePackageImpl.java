@@ -26,6 +26,7 @@ import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentPackage;
 import org.unicase.emfstore.esmodel.changemanagment.changepackage.ChangepackageFactory;
 import org.unicase.emfstore.esmodel.changemanagment.changepackage.ChangepackagePackage;
 import org.unicase.emfstore.esmodel.changemanagment.changepackage.ESAbstractOperation;
+import org.unicase.emfstore.esmodel.changemanagment.changepackage.ESChangePackage;
 import org.unicase.emfstore.esmodel.changemanagment.changepackage.ESEvent;
 import org.unicase.emfstore.esmodel.changemanagment.changepackage.ESListEvent;
 import org.unicase.emfstore.esmodel.changemanagment.changepackage.ESModifyElementEvent;
@@ -48,7 +49,7 @@ public class ChangepackagePackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass changePackageEClass = null;
+	private EClass esChangePackageEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -200,8 +201,8 @@ public class ChangepackagePackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getChangePackage() {
-		return changePackageEClass;
+	public EClass getESChangePackage() {
+		return esChangePackageEClass;
 	}
 
 	/**
@@ -209,8 +210,9 @@ public class ChangepackagePackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getChangePackage_Operations() {
-		return (EReference) changePackageEClass.getEStructuralFeatures().get(0);
+	public EReference getESChangePackage_Operations() {
+		return (EReference) esChangePackageEClass.getEStructuralFeatures().get(
+				0);
 	}
 
 	/**
@@ -390,8 +392,8 @@ public class ChangepackagePackageImpl extends EPackageImpl implements
 		isCreated = true;
 
 		// Create classes and their features
-		changePackageEClass = createEClass(CHANGE_PACKAGE);
-		createEReference(changePackageEClass, CHANGE_PACKAGE__OPERATIONS);
+		esChangePackageEClass = createEClass(ES_CHANGE_PACKAGE);
+		createEReference(esChangePackageEClass, ES_CHANGE_PACKAGE__OPERATIONS);
 
 		esAbstractOperationEClass = createEClass(ES_ABSTRACT_OPERATION);
 
@@ -462,23 +464,14 @@ public class ChangepackagePackageImpl extends EPackageImpl implements
 		esModifyElementEventEClass.getESuperTypes().add(this.getESEvent());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(
-				changePackageEClass,
-				org.unicase.emfstore.esmodel.changemanagment.changepackage.ChangePackage.class,
-				"ChangePackage", !IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(esChangePackageEClass, ESChangePackage.class,
+				"ESChangePackage", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(
-				getChangePackage_Operations(),
-				this.getESAbstractOperation(),
-				null,
-				"operations",
-				null,
-				0,
-				-1,
-				org.unicase.emfstore.esmodel.changemanagment.changepackage.ChangePackage.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+		initEReference(getESChangePackage_Operations(), this
+				.getESAbstractOperation(), null, "operations", null, 0, -1,
+				ESChangePackage.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(esAbstractOperationEClass, ESAbstractOperation.class,
 				"ESAbstractOperation", IS_ABSTRACT, IS_INTERFACE,

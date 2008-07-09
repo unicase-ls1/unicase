@@ -13,9 +13,9 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.emfstore.esmodel.changemanagment.changepackage.ChangePackage;
 import org.unicase.emfstore.esmodel.changemanagment.changepackage.ChangepackagePackage;
 import org.unicase.emfstore.esmodel.changemanagment.changepackage.ESAbstractOperation;
+import org.unicase.emfstore.esmodel.changemanagment.changepackage.ESChangePackage;
 import org.unicase.emfstore.esmodel.changemanagment.changepackage.ESEvent;
 import org.unicase.emfstore.esmodel.changemanagment.changepackage.ESListEvent;
 import org.unicase.emfstore.esmodel.changemanagment.changepackage.ESModifyElementEvent;
@@ -93,9 +93,9 @@ public class ChangepackageSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-		case ChangepackagePackage.CHANGE_PACKAGE: {
-			ChangePackage changePackage = (ChangePackage) theEObject;
-			T result = caseChangePackage(changePackage);
+		case ChangepackagePackage.ES_CHANGE_PACKAGE: {
+			ESChangePackage esChangePackage = (ESChangePackage) theEObject;
+			T result = caseESChangePackage(esChangePackage);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -164,17 +164,17 @@ public class ChangepackageSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Change Package</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>ES Change Package</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Change Package</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>ES Change Package</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseChangePackage(ChangePackage object) {
+	public T caseESChangePackage(ESChangePackage object) {
 		return null;
 	}
 

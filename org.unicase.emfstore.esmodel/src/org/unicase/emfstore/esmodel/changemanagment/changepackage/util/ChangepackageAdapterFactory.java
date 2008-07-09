@@ -13,9 +13,9 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.emfstore.esmodel.changemanagment.changepackage.ChangePackage;
 import org.unicase.emfstore.esmodel.changemanagment.changepackage.ChangepackagePackage;
 import org.unicase.emfstore.esmodel.changemanagment.changepackage.ESAbstractOperation;
+import org.unicase.emfstore.esmodel.changemanagment.changepackage.ESChangePackage;
 import org.unicase.emfstore.esmodel.changemanagment.changepackage.ESEvent;
 import org.unicase.emfstore.esmodel.changemanagment.changepackage.ESListEvent;
 import org.unicase.emfstore.esmodel.changemanagment.changepackage.ESModifyElementEvent;
@@ -78,8 +78,8 @@ public class ChangepackageAdapterFactory extends AdapterFactoryImpl {
 	 */
 	protected ChangepackageSwitch<Adapter> modelSwitch = new ChangepackageSwitch<Adapter>() {
 		@Override
-		public Adapter caseChangePackage(ChangePackage object) {
-			return createChangePackageAdapter();
+		public Adapter caseESChangePackage(ESChangePackage object) {
+			return createESChangePackageAdapter();
 		}
 
 		@Override
@@ -132,16 +132,16 @@ public class ChangepackageAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.changemanagment.changepackage.ChangePackage <em>Change Package</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.changemanagment.changepackage.ESChangePackage <em>ES Change Package</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.unicase.emfstore.esmodel.changemanagment.changepackage.ChangePackage
+	 * @see org.unicase.emfstore.esmodel.changemanagment.changepackage.ESChangePackage
 	 * @generated
 	 */
-	public Adapter createChangePackageAdapter() {
+	public Adapter createESChangePackageAdapter() {
 		return null;
 	}
 
