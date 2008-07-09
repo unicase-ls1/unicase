@@ -37,7 +37,7 @@ public interface UniqueIdentifier extends EObject {
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(String)
 	 * @see org.unicase.model.ModelPackage#getUniqueIdentifier_Id()
-	 * @model default="Default Value Literal\t" id="true" required="true"
+	 * @model default="Default Value Literal\t" required="true"
 	 * @generated
 	 */
 	String getId();

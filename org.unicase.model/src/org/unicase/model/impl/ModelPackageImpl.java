@@ -590,7 +590,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEAttribute(getUniqueIdentifier_Id(), ecorePackage.getEString(),
 				"id", "Default Value Literal\t", 1, 1, UniqueIdentifier.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-				IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(readerInfoEClass, ReaderInfo.class, "ReaderInfo",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
