@@ -81,26 +81,26 @@ public interface ChangePackage extends EObject {
 	void setBackwardDelta(ChangeDescription value);
 
 	/**
-	 * Returns the value of the '<em><b>Project State</b></em>' reference.
+	 * Returns the value of the '<em><b>Project State</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Project State</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Project State</em>' reference.
+	 * @return the value of the '<em>Project State</em>' containment reference.
 	 * @see #setProjectState(Project)
 	 * @see org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentPackage#getChangePackage_ProjectState()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	Project getProjectState();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.changemanagment.ChangePackage#getProjectState <em>Project State</em>}' reference.
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.changemanagment.ChangePackage#getProjectState <em>Project State</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Project State</em>' reference.
+	 * @param value the new value of the '<em>Project State</em>' containment reference.
 	 * @see #getProjectState()
 	 * @generated
 	 */

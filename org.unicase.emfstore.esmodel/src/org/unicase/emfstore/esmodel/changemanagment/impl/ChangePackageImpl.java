@@ -52,7 +52,7 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	protected ChangeDescription backwardDelta;
 
 	/**
-	 * The cached value of the '{@link #getProjectState() <em>Project State</em>}' reference.
+	 * The cached value of the '{@link #getProjectState() <em>Project State</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getProjectState()
@@ -202,18 +202,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 * @generated
 	 */
 	public Project getProjectState() {
-		if (projectState != null && projectState.eIsProxy()) {
-			InternalEObject oldProjectState = (InternalEObject) projectState;
-			projectState = (Project) eResolveProxy(oldProjectState);
-			if (projectState != oldProjectState) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(
-							this,
-							Notification.RESOLVE,
-							ChangemanagmentPackage.CHANGE_PACKAGE__PROJECT_STATE,
-							oldProjectState, projectState));
-			}
-		}
 		return projectState;
 	}
 
@@ -222,8 +210,21 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Project basicGetProjectState() {
-		return projectState;
+	public NotificationChain basicSetProjectState(Project newProjectState,
+			NotificationChain msgs) {
+		Project oldProjectState = projectState;
+		projectState = newProjectState;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET,
+					ChangemanagmentPackage.CHANGE_PACKAGE__PROJECT_STATE,
+					oldProjectState, newProjectState);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -232,12 +233,29 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 * @generated
 	 */
 	public void setProjectState(Project newProjectState) {
-		Project oldProjectState = projectState;
-		projectState = newProjectState;
-		if (eNotificationRequired())
+		if (newProjectState != projectState) {
+			NotificationChain msgs = null;
+			if (projectState != null)
+				msgs = ((InternalEObject) projectState)
+						.eInverseRemove(
+								this,
+								EOPPOSITE_FEATURE_BASE
+										- ChangemanagmentPackage.CHANGE_PACKAGE__PROJECT_STATE,
+								null, msgs);
+			if (newProjectState != null)
+				msgs = ((InternalEObject) newProjectState)
+						.eInverseAdd(
+								this,
+								EOPPOSITE_FEATURE_BASE
+										- ChangemanagmentPackage.CHANGE_PACKAGE__PROJECT_STATE,
+								null, msgs);
+			msgs = basicSetProjectState(newProjectState, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
 					ChangemanagmentPackage.CHANGE_PACKAGE__PROJECT_STATE,
-					oldProjectState, projectState));
+					newProjectState, newProjectState));
 	}
 
 	//begin of custom code
@@ -265,6 +283,8 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 			return basicSetFowardDelta(null, msgs);
 		case ChangemanagmentPackage.CHANGE_PACKAGE__BACKWARD_DELTA:
 			return basicSetBackwardDelta(null, msgs);
+		case ChangemanagmentPackage.CHANGE_PACKAGE__PROJECT_STATE:
+			return basicSetProjectState(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -281,9 +301,7 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		case ChangemanagmentPackage.CHANGE_PACKAGE__BACKWARD_DELTA:
 			return getBackwardDelta();
 		case ChangemanagmentPackage.CHANGE_PACKAGE__PROJECT_STATE:
-			if (resolve)
-				return getProjectState();
-			return basicGetProjectState();
+			return getProjectState();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

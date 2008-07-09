@@ -231,7 +231,7 @@ public interface ChangemanagmentPackage extends EPackage {
 	int CHANGE_PACKAGE__BACKWARD_DELTA = 1;
 
 	/**
-	 * The feature id for the '<em><b>Project State</b></em>' reference.
+	 * The feature id for the '<em><b>Project State</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -521,10 +521,10 @@ public interface ChangemanagmentPackage extends EPackage {
 	EReference getChangePackage_BackwardDelta();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.changemanagment.ChangePackage#getProjectState <em>Project State</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.emfstore.esmodel.changemanagment.ChangePackage#getProjectState <em>Project State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Project State</em>'.
+	 * @return the meta object for the containment reference '<em>Project State</em>'.
 	 * @see org.unicase.emfstore.esmodel.changemanagment.ChangePackage#getProjectState()
 	 * @see #getChangePackage()
 	 * @generated
@@ -799,7 +799,7 @@ public interface ChangemanagmentPackage extends EPackage {
 				.getChangePackage_BackwardDelta();
 
 		/**
-		 * The meta object literal for the '<em><b>Project State</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Project State</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
