@@ -108,10 +108,7 @@ public class MEEditorPage extends FormPage {
 		IMenuService menuService = (IMenuService) PlatformUI.getWorkbench()
 				.getService(IMenuService.class);
 		ISourceProvider sourceProvider = new AbstractSourceProvider() {
-
 			public void dispose() {
-				// TODO Auto-generated method stub
-
 			}
 
 			@SuppressWarnings("unchecked")
@@ -213,9 +210,17 @@ public class MEEditorPage extends FormPage {
 		super.dispose();
 	}
 
+	/**.
+	 * {@inheritDoc}
+	 * This method is added to solve the focus bug of navigator.
+	 * Every time that a ME is opened in editor, navigator has to lose focus
+	 * so that its action contributions are set correctly for next time.
+	 *  
+	 */
 	@Override
 	public void setFocus() {
 			super.setFocus();
+			//set keyboard focus on the first Text control
 			for(MEControl meControl : this.meControls){
 				if(meControl instanceof METextControl){
 					((METextControl)meControl).setFocus();
