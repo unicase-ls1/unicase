@@ -56,6 +56,7 @@ public class TeneoStorage implements ResourceStorage {
 		props.setProperty(Environment.MAX_FETCH_DEPTH, "0");
 
 		props.setProperty(PersistenceOptions.INHERITANCE_MAPPING, "JOINED");
+		//props.setProperty(PersistenceOptions.ID_FEATURE_AS_PRIMARY_KEY, "false");
 		dataStore.setProperties(props);
 
 		// set epackages
