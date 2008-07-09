@@ -64,14 +64,14 @@ public interface ChangepackagePackage extends EPackage {
 			.init();
 
 	/**
-	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.changemanagment.changepackage.impl.ChangePackageImpl <em>Change Package</em>}' class.
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.changemanagment.changepackage.impl.ESChangePackageImpl <em>ES Change Package</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.unicase.emfstore.esmodel.changemanagment.changepackage.impl.ChangePackageImpl
-	 * @see org.unicase.emfstore.esmodel.changemanagment.changepackage.impl.ChangepackagePackageImpl#getChangePackage()
+	 * @see org.unicase.emfstore.esmodel.changemanagment.changepackage.impl.ESChangePackageImpl
+	 * @see org.unicase.emfstore.esmodel.changemanagment.changepackage.impl.ChangepackagePackageImpl#getESChangePackage()
 	 * @generated
 	 */
-	int CHANGE_PACKAGE = 0;
+	int ES_CHANGE_PACKAGE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Operations</b></em>' containment reference list.
@@ -80,16 +80,16 @@ public interface ChangepackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_PACKAGE__OPERATIONS = 0;
+	int ES_CHANGE_PACKAGE__OPERATIONS = 0;
 
 	/**
-	 * The number of structural features of the '<em>Change Package</em>' class.
+	 * The number of structural features of the '<em>ES Change Package</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_PACKAGE_FEATURE_COUNT = 1;
+	int ES_CHANGE_PACKAGE_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.changemanagment.changepackage.ESAbstractOperation <em>ES Abstract Operation</em>}' class.
@@ -377,25 +377,25 @@ public interface ChangepackagePackage extends EPackage {
 	int ES_MODIFY_ELEMENT_EVENT_FEATURE_COUNT = ES_EVENT_FEATURE_COUNT + 2;
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.changemanagment.changepackage.ChangePackage <em>Change Package</em>}'.
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.changemanagment.changepackage.ESChangePackage <em>ES Change Package</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Change Package</em>'.
-	 * @see org.unicase.emfstore.esmodel.changemanagment.changepackage.ChangePackage
+	 * @return the meta object for class '<em>ES Change Package</em>'.
+	 * @see org.unicase.emfstore.esmodel.changemanagment.changepackage.ESChangePackage
 	 * @generated
 	 */
-	EClass getChangePackage();
+	EClass getESChangePackage();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.emfstore.esmodel.changemanagment.changepackage.ChangePackage#getOperations <em>Operations</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.unicase.emfstore.esmodel.changemanagment.changepackage.ESChangePackage#getOperations <em>Operations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Operations</em>'.
-	 * @see org.unicase.emfstore.esmodel.changemanagment.changepackage.ChangePackage#getOperations()
-	 * @see #getChangePackage()
+	 * @see org.unicase.emfstore.esmodel.changemanagment.changepackage.ESChangePackage#getOperations()
+	 * @see #getESChangePackage()
 	 * @generated
 	 */
-	EReference getChangePackage_Operations();
+	EReference getESChangePackage_Operations();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.changemanagment.changepackage.ESAbstractOperation <em>ES Abstract Operation</em>}'.
@@ -590,14 +590,14 @@ public interface ChangepackagePackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.changemanagment.changepackage.impl.ChangePackageImpl <em>Change Package</em>}' class.
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.changemanagment.changepackage.impl.ESChangePackageImpl <em>ES Change Package</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.unicase.emfstore.esmodel.changemanagment.changepackage.impl.ChangePackageImpl
-		 * @see org.unicase.emfstore.esmodel.changemanagment.changepackage.impl.ChangepackagePackageImpl#getChangePackage()
+		 * @see org.unicase.emfstore.esmodel.changemanagment.changepackage.impl.ESChangePackageImpl
+		 * @see org.unicase.emfstore.esmodel.changemanagment.changepackage.impl.ChangepackagePackageImpl#getESChangePackage()
 		 * @generated
 		 */
-		EClass CHANGE_PACKAGE = eINSTANCE.getChangePackage();
+		EClass ES_CHANGE_PACKAGE = eINSTANCE.getESChangePackage();
 
 		/**
 		 * The meta object literal for the '<em><b>Operations</b></em>' containment reference list feature.
@@ -605,8 +605,8 @@ public interface ChangepackagePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CHANGE_PACKAGE__OPERATIONS = eINSTANCE
-				.getChangePackage_Operations();
+		EReference ES_CHANGE_PACKAGE__OPERATIONS = eINSTANCE
+				.getESChangePackage_Operations();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.changemanagment.changepackage.ESAbstractOperation <em>ES Abstract Operation</em>}' class.

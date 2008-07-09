@@ -79,26 +79,26 @@ public class ChangepackageItemProviderAdapterFactory extends
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.changemanagment.changepackage.ChangePackage} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.changemanagment.changepackage.ESChangePackage} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ChangePackageItemProvider changePackageItemProvider;
+	protected ESChangePackageItemProvider esChangePackageItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.changemanagment.changepackage.ChangePackage}.
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.changemanagment.changepackage.ESChangePackage}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createChangePackageAdapter() {
-		if (changePackageItemProvider == null) {
-			changePackageItemProvider = new ChangePackageItemProvider(this);
+	public Adapter createESChangePackageAdapter() {
+		if (esChangePackageItemProvider == null) {
+			esChangePackageItemProvider = new ESChangePackageItemProvider(this);
 		}
 
-		return changePackageItemProvider;
+		return esChangePackageItemProvider;
 	}
 
 	/**
@@ -297,8 +297,8 @@ public class ChangepackageItemProviderAdapterFactory extends
 	 * @generated
 	 */
 	public void dispose() {
-		if (changePackageItemProvider != null)
-			changePackageItemProvider.dispose();
+		if (esChangePackageItemProvider != null)
+			esChangePackageItemProvider.dispose();
 		if (esOperationItemProvider != null)
 			esOperationItemProvider.dispose();
 		if (eSeAttributeEventItemProvider != null)
