@@ -3,9 +3,10 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:gmfgen="http://www.eclipse.org/gmf/2008/GenModel" packageNamePrefix="org.unicase.ui.usecaseDiagram"
+    modelID="UseCase"
     sameFileForDiagramAndModel="true">
   <diagram
-      visualID="79"
+      visualID="77"
       editPartClassName="MEDiagramEditPart"
       itemSemanticEditPolicyClassName="MEDiagramItemSemanticEditPolicy"
       notationViewFactoryClassName="MEDiagramViewFactory"
@@ -17,6 +18,7 @@
         href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
     <elementType
         xsi:type="gmfgen:MetamodelType"
+        uniqueIdentifier="org.unicase.ui.usecaseDiagram.MEDiagram_77"
         editHelperClassName="MEDiagramEditHelper"/>
     <viewmap
         xsi:type="gmfgen:FigureViewmap"
