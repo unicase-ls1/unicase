@@ -27,8 +27,13 @@ import org.eclipse.emf.ecore.impl.ETypedElementImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.ui.IViewPart;
+import org.eclipse.ui.IViewReference;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.internal.WorkbenchPage;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentFactory;
 import org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec;
@@ -181,6 +186,12 @@ public class TestProject   {
 			}
 		});
 
+		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		IViewPart navigator = page.findView("org.unicase.ui.navigator.viewer");
+		if(page.isPartVisible(navigator)){
+			((TreeViewer)navigator.getSite().getSelectionProvider()).refresh();
+		}
+		
 		//open some MEs
 		openSomeMEs();
 	}
