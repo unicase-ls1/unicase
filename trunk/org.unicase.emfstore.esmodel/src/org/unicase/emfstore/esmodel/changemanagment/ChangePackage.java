@@ -91,7 +91,7 @@ public interface ChangePackage extends EObject {
 	 * @return the value of the '<em>Project State</em>' reference.
 	 * @see #setProjectState(Project)
 	 * @see org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentPackage#getChangePackage_ProjectState()
-	 * @model transient="true"
+	 * @model
 	 * @generated
 	 */
 	Project getProjectState();

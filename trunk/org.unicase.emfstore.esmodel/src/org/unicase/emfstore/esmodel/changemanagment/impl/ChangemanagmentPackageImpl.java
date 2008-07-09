@@ -604,7 +604,7 @@ public class ChangemanagmentPackageImpl extends EPackageImpl implements
 				0,
 				1,
 				org.unicase.emfstore.esmodel.changemanagment.ChangePackage.class,
-				IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 
