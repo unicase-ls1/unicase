@@ -18,9 +18,6 @@ import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.eclipse.emf.ecore.change.util.ChangeRecorder;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -188,7 +185,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 */
 	protected PrimaryVersionSpec baseVersion;
 
-	// begin of custom code
+	//begin of custom code
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -197,8 +194,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	protected ProjectSpaceImpl() {
 		super();
 	}
-
-	// end of custom code
+	//end of custom code
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -618,35 +614,22 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 		final ConnectionManager connectionManager = WorkspaceManager
 				.getInstance().getConnectionManager();
 
-		// FIMXE: put this somewhere else
-		// integrate project into one resource set with change
-		// package for
-		// serialization
-		ResourceSet tempResourceSet = new ResourceSetImpl();
-		// disconnect project and add to virtual resource
 		Project project = getProject();
-		setProjectGen(null);
-		Resource projectResource = tempResourceSet
-				.createResource(ConnectionManager.PROJECT_URI);
-		projectResource.getContents().add(project);
-		// disconnect change package and add to virtual resource
 		ChangePackage changePackage = getLocalChanges();
 		// remove backward delta information
 		changePackage.setBackwardDelta(null);
-
+		changePackage.setProjectState(project);
+		
 		setLocalChanges(null);
-		Resource changePackageResource = tempResourceSet
-				.createResource(ConnectionManager.CHANGEPACKAGE_URI);
-		changePackageResource.getContents().add(changePackage);
 
 		newBaseVersion = connectionManager.createVersion(getUsersession()
 				.getSessionId(), getProjectId(), getBaseVersion(),
 				changePackage, logMessage);
 
-		// FIMXE: put this somewhere else
 		// reconnect project to projectSpace
 		setProjectGen(project);
 		setBaseVersion(newBaseVersion);
+		
 		// MK: save projectspace if single resource
 		startChangeRecording();
 		return newBaseVersion;
@@ -669,47 +652,34 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @generated NOT
 	 */
 	public void update(final VersionSpec version) throws EmfStoreException {
-		// TODO: update
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-			protected void doExecute() {
-				try {
 
-					// FIXME: GUI has to relogin.
-					getUsersession().logIn();
+		// FIXME: GUI has to relogin.
+		getUsersession().logIn();
 
-					final ConnectionManager cm = WorkspaceManager.getInstance()
-							.getConnectionManager();
-					PrimaryVersionSpec resolvedVersion = cm.resolveVersionSpec(
-							getUsersession().getSessionId(), getProjectId(),
-							version);
+		final ConnectionManager cm = WorkspaceManager.getInstance()
+				.getConnectionManager();
+		PrimaryVersionSpec resolvedVersion = cm.resolveVersionSpec(
+				getUsersession().getSessionId(), getProjectId(), version);
 
-					if (getBaseVersion().getIdentifier() > resolvedVersion
-							.getIdentifier()) {
-						return;
-					}
+		if (getBaseVersion().getIdentifier() > resolvedVersion.getIdentifier()) {
+			return;
+		}
 
-					stopChangeRecording();
+		stopChangeRecording();
 
-					List<ChangePackage> changes = cm.getChanges(
-							getUsersession().getSessionId(), getProjectId(),
-							getBaseVersion(), resolvedVersion);
-					Project project = getProject();
-					for (ChangePackage change : changes) {
-						// FIXME hack to set project state
-						project = change.getProjectState();
-						change.getFowardDelta().apply();
-					}
-					setProjectGen(project);
-					setBaseVersion(resolvedVersion);
+		List<ChangePackage> changes = cm.getChanges(getUsersession()
+				.getSessionId(), getProjectId(), getBaseVersion(),
+				resolvedVersion);
+		Project project = getProject();
+		for (ChangePackage change : changes) {
+			// FIXME hack to set project state
+			project = change.getProjectState();
+			change.getFowardDelta().apply();
+		}
+		setProjectGen(project);
+		setBaseVersion(resolvedVersion);
 
-					startChangeRecording();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		startChangeRecording();
 	}
 
 	/**
