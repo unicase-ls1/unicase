@@ -24,9 +24,6 @@ import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Menu;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IEditorReference;
-import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
@@ -47,10 +44,16 @@ public class TreeView extends ViewPart {
 	private TreeViewer viewer;
 	private Action doubleClickAction;
 
+	/**
+	 * . Constructor
+	 */
 	public TreeView() {
 
 	}
 
+	/**.
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void createPartControl(Composite parent) {
 		viewer = new TreeViewer(parent);
@@ -69,36 +72,37 @@ public class TreeView extends ViewPart {
 
 		hookDoubleClickAction();
 		addDragNDropSupport();
-		
 
 	}
 
 	private void addDragNDropSupport() {
 		int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
 		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
-				
+
 		viewer.addDragSupport(dndOperations, transfers, new ViewerDragAdapter(
 				viewer));
-		
+
 		viewer.addDropSupport(dndOperations, transfers,
 				new TreeViewerDropAdapter(
 						TransactionalEditingDomain.Registry.INSTANCE
 								.getEditingDomain("org.unicase.EditingDomain"),
 						viewer));
 
-		
 	}
 
+	/**.
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void setFocus() {
 		// TODO Auto-generated method stub
 
 	}
 
+	
 	private void hookDoubleClickAction() {
-		
+
 		createDoubleClickAction();
-		
 		viewer.addDoubleClickListener(new IDoubleClickListener() {
 			public void doubleClick(DoubleClickEvent event) {
 				doubleClickAction.run();
@@ -107,46 +111,54 @@ public class TreeView extends ViewPart {
 	}
 
 	private void createDoubleClickAction() {
-		 doubleClickAction = new Action() {
+		doubleClickAction = new Action() {
 			public void run() {
-				TreeSelection selection = (TreeSelection)viewer.getSelection();
+				TreeSelection selection = (TreeSelection) viewer.getSelection();
 				Object object = selection.getFirstElement();
-				if (object instanceof ModelElement) {
-					if (object instanceof MEDiagram) {
-						ModelElement modelElement = (ModelElement) object;
-						URIEditorInput input = new URIEditorInput(URI
-								.createURI(modelElement.eResource().getURIFragment(
-										modelElement)));
-						try {
-							PlatformUI
-									.getWorkbench()
-									.getActiveWorkbenchWindow()
-									.getActivePage()
-									.openEditor(
-											input,
-											"org.unicase.model.classDiagram.part.ModelDiagramEditorID",
-											true);
-						} catch (PartInitException e) {
-							ErrorDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Error", e.getMessage(), e.getStatus());
-						}
-					} else {
-						MEEditorInput input = new MEEditorInput((ModelElement) object);
-						try {
-							PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-									.getActivePage().openEditor(input,MEEditor.ID,
-											true);
-							
-						
-						} catch (PartInitException e) {
-							ErrorDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Error", e.getMessage(), e.getStatus());
-						}
-					}
-				}
+				openME(object);
 			}
 		};
-		
+
 	}
 
 	
+	private void openME(Object object) {
+		if (object == null) {
+			return;
+		}
+		if (object instanceof ModelElement) {
+			if (object instanceof MEDiagram) {
+				ModelElement modelElement = (ModelElement) object;
+				URIEditorInput input = new URIEditorInput(URI
+						.createURI(modelElement.eResource().getURIFragment(
+								modelElement)));
+				try {
+					PlatformUI
+							.getWorkbench()
+							.getActiveWorkbenchWindow()
+							.getActivePage()
+							.openEditor(
+									input,
+									"org.unicase.model.classDiagram.part.ModelDiagramEditorID",
+									true);
+				} catch (PartInitException e) {
+					ErrorDialog.openError(PlatformUI.getWorkbench()
+							.getActiveWorkbenchWindow().getShell(), "Error", e
+							.getMessage(), e.getStatus());
+				}
+			} else {
+				MEEditorInput input = new MEEditorInput((ModelElement) object);
+				try {
+					PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+							.getActivePage().openEditor(input, MEEditor.ID,
+									true);
+				} catch (PartInitException e) {
+					ErrorDialog.openError(PlatformUI.getWorkbench()
+							.getActiveWorkbenchWindow().getShell(), "Error", e
+							.getMessage(), e.getStatus());
+				}
+			}
+		}
 
+	}
 }
