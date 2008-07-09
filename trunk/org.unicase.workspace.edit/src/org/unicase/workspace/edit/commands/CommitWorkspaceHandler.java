@@ -9,6 +9,8 @@ package org.unicase.workspace.edit.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -53,15 +55,21 @@ public class CommitWorkspaceHandler extends AbstractHandler {
 			return null;
 		}
 
-		ProjectSpace projectSpace = (ProjectSpace) o;
+		final ProjectSpace projectSpace = (ProjectSpace) o;
 
-		// TODO: handle exception
-		try {
-			projectSpace.commit();
-		} catch (EmfStoreException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain");
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			protected void doExecute() {
+				// TODO: handle exception
+				try {
+					projectSpace.commit();
+				} catch (EmfStoreException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 
 		return null;
 	}
