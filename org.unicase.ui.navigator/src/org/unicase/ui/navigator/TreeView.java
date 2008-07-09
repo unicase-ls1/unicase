@@ -8,6 +8,9 @@ package org.unicase.ui.navigator;
 
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
+import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
@@ -16,6 +19,8 @@ import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.swt.dnd.DND;
+import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Menu;
@@ -63,7 +68,25 @@ public class TreeView extends ViewPart {
 		control.setMenu(menu);
 
 		hookDoubleClickAction();
+		addDragNDropSupport();
+		
 
+	}
+
+	private void addDragNDropSupport() {
+		int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
+		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
+				
+		viewer.addDragSupport(dndOperations, transfers, new ViewerDragAdapter(
+				viewer));
+		
+		viewer.addDropSupport(dndOperations, transfers,
+				new TreeViewerDropAdapter(
+						TransactionalEditingDomain.Registry.INSTANCE
+								.getEditingDomain("org.unicase.EditingDomain"),
+						viewer));
+
+		
 	}
 
 	@Override
@@ -112,7 +135,7 @@ public class TreeView extends ViewPart {
 							PlatformUI.getWorkbench().getActiveWorkbenchWindow()
 									.getActivePage().openEditor(input,MEEditor.ID,
 											true);
-					
+							
 						
 						} catch (PartInitException e) {
 							ErrorDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Error", e.getMessage(), e.getStatus());
