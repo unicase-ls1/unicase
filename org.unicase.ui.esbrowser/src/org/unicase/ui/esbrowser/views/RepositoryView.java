@@ -119,10 +119,7 @@ public class RepositoryView extends ViewPart {
 						} catch (EmfStoreException e) {
 							// TODO no server connection
 							e.printStackTrace();
-						} catch (AccessControlException e) {
-							// TODO wrong password/user
-							e.printStackTrace();
-						}
+						} 
 					}
 				});
 
