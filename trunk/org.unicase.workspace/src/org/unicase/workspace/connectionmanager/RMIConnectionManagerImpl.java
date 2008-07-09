@@ -73,15 +73,13 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 			throws EmfStoreException {
 
 		try {
-			//TODO ugly special case for change package
-			String changePackageString = RMIUtil.eObjectToStringByResource(changePackage);
 			
 			return (PrimaryVersionSpec) RMIUtil.stringToEObject(getFacade(
 					sessionId).createVersion(
 					RMIUtil.eObjectToString(sessionId),
 					RMIUtil.eObjectToString(projectId),
 					RMIUtil.eObjectToString(baseVersionSpec),
-					changePackageString,
+					RMIUtil.eObjectToString(changePackage),
 					RMIUtil.eObjectToString(logMessage)));
 		} catch (UnsupportedEncodingException e) {
 			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
