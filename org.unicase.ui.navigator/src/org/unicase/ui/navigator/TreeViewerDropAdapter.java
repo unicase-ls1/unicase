@@ -60,13 +60,13 @@ public class TreeViewerDropAdapter extends EditingDomainViewerDropAdapter
 		super.dragOver(event);
 		if(event.item.getData() instanceof LeafSection){
 			Collection<?> dragSource = getDragSource(event);
-			for(Object obj : dragSource){
-				if(obj instanceof Section){
+//			for(Object obj : dragSource){
+//				if(obj instanceof Section){
 					//ZH: Test under MAC
 //					event.detail= DND.DROP_NONE;
-					break;
-				}
-			}
+//					break;
+//				}
+//			}
 		}
 		if(!(event.item.getData() instanceof Section)){
 //			event.detail= DND.DROP_NONE;
