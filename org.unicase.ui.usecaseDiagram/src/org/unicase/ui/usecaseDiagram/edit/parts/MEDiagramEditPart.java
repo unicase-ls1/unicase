@@ -12,12 +12,12 @@ public class MEDiagramEditPart extends DiagramEditPart {
 	/**
 	 * @generated
 	 */
-	public final static String MODEL_ID = "Model"; //$NON-NLS-1$
+	public final static String MODEL_ID = "UseCase"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 79;
+	public static final int VISUAL_ID = 77;
 
 	/**
 	 * @generated

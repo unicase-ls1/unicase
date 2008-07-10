@@ -111,7 +111,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	 * Forwards the URI of unicase Resource.
 	 */
 	public URI getURI() {
-		return meDiagram.eResource().getURI();
+				return meDiagram.eResource().getURI();
 	}
 
 	public String getURIFragment(EObject object) {

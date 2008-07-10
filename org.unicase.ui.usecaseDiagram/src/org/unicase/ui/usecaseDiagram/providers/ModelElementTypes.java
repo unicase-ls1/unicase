@@ -47,7 +47,8 @@ public class ModelElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static final IElementType MEDiagram_79 = getElementType("org.unicase.ui.usecaseDiagram.MEDiagram_79"); //$NON-NLS-1$
+	public static final IElementType MEDiagram_77 = getElementType("org.unicase.ui.usecaseDiagram.MEDiagram_77"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
@@ -168,7 +169,7 @@ public class ModelElementTypes extends ElementInitializers {
 		if (elements == null) {
 			elements = new IdentityHashMap();
 
-			elements.put(MEDiagram_79, DiagramPackage.eINSTANCE.getMEDiagram());
+			elements.put(MEDiagram_77, DiagramPackage.eINSTANCE.getMEDiagram());
 
 			elements.put(UseCase_1001, RequirementPackage.eINSTANCE
 					.getUseCase());
@@ -191,7 +192,7 @@ public class ModelElementTypes extends ElementInitializers {
 	public static boolean isKnownElementType(IElementType elementType) {
 		if (KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet();
-			KNOWN_ELEMENT_TYPES.add(MEDiagram_79);
+			KNOWN_ELEMENT_TYPES.add(MEDiagram_77);
 			KNOWN_ELEMENT_TYPES.add(UseCase_1001);
 			KNOWN_ELEMENT_TYPES.add(Actor_1002);
 		}
