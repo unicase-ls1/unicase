@@ -67,6 +67,7 @@ public class UpdateWorkspaceHandler extends AbstractHandler {
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			protected void doExecute() {
 				try {
+					projectSpace.getUsersession().logIn();
 					Workspace workspace = WorkspaceManager.getInstance()
 							.getCurrentWorkspace();
 					workspace.getProjectSpaces().remove(projectSpace);
