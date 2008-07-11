@@ -43,7 +43,7 @@ public interface BugReport extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Steps To Reproduce</em>' reference list.
 	 * @see org.unicase.model.bug.BugPackage#getBugReport_StepsToReproduce()
-	 * @model
+	 * @model keys="identifier"
 	 * @generated
 	 */
 	EList<Step> getStepsToReproduce();
@@ -144,7 +144,7 @@ public interface BugReport extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Involved Classes</em>' reference list.
 	 * @see org.unicase.model.bug.BugPackage#getBugReport_InvolvedClasses()
-	 * @model
+	 * @model keys="identifier"
 	 * @generated
 	 */
 	EList<org.unicase.model.classes.Class> getInvolvedClasses();

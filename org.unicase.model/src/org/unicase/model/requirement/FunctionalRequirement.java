@@ -16,13 +16,13 @@ import org.unicase.model.ModelElement;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#isReviewed <em>Reviewed</em>}</li>
  *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getStoryPoints <em>Story Points</em>}</li>
  *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getPriority <em>Priority</em>}</li>
  *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getRefiningRequirements <em>Refining Requirements</em>}</li>
  *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getRefinedRequirement <em>Refined Requirement</em>}</li>
  *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getUseCases <em>Use Cases</em>}</li>
  *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getScenarios <em>Scenarios</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#isReviewed <em>Reviewed</em>}</li>
  * </ul>
  * </p>
  *
@@ -131,7 +131,7 @@ public interface FunctionalRequirement extends ModelElement {
 	 * @return the value of the '<em>Refining Requirements</em>' containment reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_RefiningRequirements()
 	 * @see org.unicase.model.requirement.FunctionalRequirement#getRefinedRequirement
-	 * @model opposite="refinedRequirement" containment="true"
+	 * @model opposite="refinedRequirement" containment="true" keys="identifier"
 	 * @generated
 	 */
 	EList<FunctionalRequirement> getRefiningRequirements();
@@ -149,7 +149,7 @@ public interface FunctionalRequirement extends ModelElement {
 	 * @see #setRefinedRequirement(FunctionalRequirement)
 	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_RefinedRequirement()
 	 * @see org.unicase.model.requirement.FunctionalRequirement#getRefiningRequirements
-	 * @model opposite="refiningRequirements" transient="false"
+	 * @model opposite="refiningRequirements" keys="identifier" transient="false"
 	 * @generated
 	 */
 	FunctionalRequirement getRefinedRequirement();
@@ -177,7 +177,7 @@ public interface FunctionalRequirement extends ModelElement {
 	 * @return the value of the '<em>Use Cases</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_UseCases()
 	 * @see org.unicase.model.requirement.UseCase#getFunctionalRequirements
-	 * @model opposite="functionalRequirements"
+	 * @model opposite="functionalRequirements" keys="identifier"
 	 * @generated
 	 */
 	EList<UseCase> getUseCases();
@@ -195,7 +195,7 @@ public interface FunctionalRequirement extends ModelElement {
 	 * @return the value of the '<em>Scenarios</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_Scenarios()
 	 * @see org.unicase.model.requirement.Scenario#getFunctionalRequirements
-	 * @model opposite="functionalRequirements"
+	 * @model opposite="functionalRequirements" keys="identifier"
 	 * @generated
 	 */
 	EList<Scenario> getScenarios();

@@ -42,7 +42,7 @@ public interface UseCase extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Steps</em>' containment reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_Steps()
-	 * @model containment="true"
+	 * @model containment="true" keys="identifier"
 	 * @generated
 	 */
 	EList<Step> getSteps();
@@ -60,7 +60,7 @@ public interface UseCase extends ModelElement {
 	 * @see #setInitiatingActor(Actor)
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_InitiatingActor()
 	 * @see org.unicase.model.requirement.Actor#getInitiatedUseCases
-	 * @model opposite="initiatedUseCases"
+	 * @model opposite="initiatedUseCases" keys="identifier"
 	 * @generated
 	 */
 	Actor getInitiatingActor();
@@ -88,7 +88,7 @@ public interface UseCase extends ModelElement {
 	 * @return the value of the '<em>Scenarios</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_Scenarios()
 	 * @see org.unicase.model.requirement.Scenario#getInstantiatedUseCases
-	 * @model opposite="instantiatedUseCases"
+	 * @model opposite="instantiatedUseCases" keys="identifier"
 	 * @generated
 	 */
 	EList<Scenario> getScenarios();
@@ -106,7 +106,7 @@ public interface UseCase extends ModelElement {
 	 * @return the value of the '<em>Functional Requirements</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_FunctionalRequirements()
 	 * @see org.unicase.model.requirement.FunctionalRequirement#getUseCases
-	 * @model opposite="useCases"
+	 * @model opposite="useCases" keys="identifier"
 	 * @generated
 	 */
 	EList<FunctionalRequirement> getFunctionalRequirements();
@@ -124,7 +124,7 @@ public interface UseCase extends ModelElement {
 	 * @return the value of the '<em>Non Functional Requirements</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_NonFunctionalRequirements()
 	 * @see org.unicase.model.requirement.NonFunctionalRequirement#getRestrictedUseCases
-	 * @model opposite="restrictedUseCases"
+	 * @model opposite="restrictedUseCases" keys="identifier"
 	 * @generated
 	 */
 	EList<NonFunctionalRequirement> getNonFunctionalRequirements();
@@ -142,7 +142,7 @@ public interface UseCase extends ModelElement {
 	 * @return the value of the '<em>Identified Classes</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_IdentifiedClasses()
 	 * @see org.unicase.model.classes.Class#getParticipatedUseCases
-	 * @model opposite="participatedUseCases"
+	 * @model opposite="participatedUseCases" keys="identifier"
 	 * @generated
 	 */
 	EList<org.unicase.model.classes.Class> getIdentifiedClasses();
@@ -160,7 +160,7 @@ public interface UseCase extends ModelElement {
 	 * @return the value of the '<em>Participating Actors</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_ParticipatingActors()
 	 * @see org.unicase.model.requirement.Actor#getParticipatedUseCases
-	 * @model opposite="participatedUseCases"
+	 * @model opposite="participatedUseCases" keys="identifier"
 	 * @generated
 	 */
 	EList<Actor> getParticipatingActors();

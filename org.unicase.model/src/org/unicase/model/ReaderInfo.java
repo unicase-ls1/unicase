@@ -8,7 +8,6 @@ package org.unicase.model;
 
 import java.util.Date;
 
-import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.organization.OrgUnit;
 
 /**
@@ -27,7 +26,7 @@ import org.unicase.model.organization.OrgUnit;
  * @model
  * @generated
  */
-public interface ReaderInfo extends EObject {
+public interface ReaderInfo extends IdentifiableElement {
 	/**
 	 * Returns the value of the '<em><b>Date</b></em>' attribute. <!--
 	 * begin-user-doc -->

@@ -10,11 +10,10 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
-import org.unicase.model.UniqueIdentifier;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
-import org.unicase.model.organization.OrgUnitId;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 
@@ -82,23 +81,18 @@ public class OrganizationAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseOrgUnitId(OrgUnitId object) {
-			return createOrgUnitIdAdapter();
-		}
-
-		@Override
 		public Adapter caseGroup(Group object) {
 			return createGroupAdapter();
 		}
 
 		@Override
-		public Adapter caseModelElement(ModelElement object) {
-			return createModelElementAdapter();
+		public Adapter caseIdentifiableElement(IdentifiableElement object) {
+			return createIdentifiableElementAdapter();
 		}
 
 		@Override
-		public Adapter caseUniqueIdentifier(UniqueIdentifier object) {
-			return createUniqueIdentifierAdapter();
+		public Adapter caseModelElement(ModelElement object) {
+			return createModelElementAdapter();
 		}
 
 		@Override
@@ -151,19 +145,6 @@ public class OrganizationAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.organization.OrgUnitId <em>Org Unit Id</em>}'.
-	 * <!-- begin-user-doc --> This default implementation returns null so that
-	 * we can easily ignore cases; it's useful to ignore a case when inheritance
-	 * will catch all the cases anyway. <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.model.organization.OrgUnitId
-	 * @generated
-	 */
-	public Adapter createOrgUnitIdAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '
 	 * {@link org.unicase.model.organization.Group <em>Group</em>}'. <!--
 	 * begin-user-doc --> This default implementation returns null so that we
@@ -179,6 +160,20 @@ public class OrganizationAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.IdentifiableElement <em>Identifiable Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.IdentifiableElement
+	 * @generated
+	 */
+	public Adapter createIdentifiableElementAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '
 	 * {@link org.unicase.model.ModelElement <em>Element</em>}'. <!--
 	 * begin-user-doc --> This default implementation returns null so that we
@@ -190,19 +185,6 @@ public class OrganizationAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createModelElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.UniqueIdentifier <em>Unique Identifier</em>}'.
-	 * <!-- begin-user-doc --> This default implementation returns null so that
-	 * we can easily ignore cases; it's useful to ignore a case when inheritance
-	 * will catch all the cases anyway. <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.model.UniqueIdentifier
-	 * @generated
-	 */
-	public Adapter createUniqueIdentifierAdapter() {
 		return null;
 	}
 

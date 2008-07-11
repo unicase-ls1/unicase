@@ -11,8 +11,10 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.Annotation;
+import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.task.ActionItem;
+import org.unicase.model.task.Meeting;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
@@ -94,6 +96,8 @@ public class TaskSwitch<T> {
 			if (result == null)
 				result = caseModelElement(actionItem);
 			if (result == null)
+				result = caseIdentifiableElement(actionItem);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -102,6 +106,8 @@ public class TaskSwitch<T> {
 			T result = caseWorkPackage(workPackage);
 			if (result == null)
 				result = caseModelElement(workPackage);
+			if (result == null)
+				result = caseIdentifiableElement(workPackage);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -113,6 +119,19 @@ public class TaskSwitch<T> {
 				result = caseAnnotation(workItem);
 			if (result == null)
 				result = caseModelElement(workItem);
+			if (result == null)
+				result = caseIdentifiableElement(workItem);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case TaskPackage.MEETING: {
+			Meeting meeting = (Meeting) theEObject;
+			T result = caseMeeting(meeting);
+			if (result == null)
+				result = caseModelElement(meeting);
+			if (result == null)
+				result = caseIdentifiableElement(meeting);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -161,6 +180,36 @@ public class TaskSwitch<T> {
 	 * @generated
 	 */
 	public T caseWorkItem(WorkItem object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Meeting</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Meeting</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMeeting(Meeting object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIdentifiableElement(IdentifiableElement object) {
 		return null;
 	}
 

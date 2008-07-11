@@ -39,7 +39,7 @@ public interface ComponentService extends ModelElement {
 	 * @see #setOfferingComponent(Component)
 	 * @see org.unicase.model.component.ComponentPackage#getComponentService_OfferingComponent()
 	 * @see org.unicase.model.component.Component#getOfferedServices
-	 * @model opposite="offeredServices" transient="false"
+	 * @model opposite="offeredServices" keys="identifier" transient="false"
 	 * @generated
 	 */
 	Component getOfferingComponent();
@@ -67,7 +67,7 @@ public interface ComponentService extends ModelElement {
 	 * @return the value of the '<em>Consuming Components</em>' reference list.
 	 * @see org.unicase.model.component.ComponentPackage#getComponentService_ConsumingComponents()
 	 * @see org.unicase.model.component.Component#getConsumedServices
-	 * @model opposite="consumedServices"
+	 * @model opposite="consumedServices" keys="identifier"
 	 * @generated
 	 */
 	EList<Component> getConsumingComponents();

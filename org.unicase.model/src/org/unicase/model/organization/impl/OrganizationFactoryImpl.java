@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
-import org.unicase.model.organization.OrgUnitId;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
@@ -65,8 +64,6 @@ public class OrganizationFactoryImpl extends EFactoryImpl implements
 			return createUser();
 		case OrganizationPackage.ORG_UNIT:
 			return createOrgUnit();
-		case OrganizationPackage.ORG_UNIT_ID:
-			return createOrgUnitId();
 		case OrganizationPackage.GROUP:
 			return createGroup();
 		default:
@@ -91,15 +88,6 @@ public class OrganizationFactoryImpl extends EFactoryImpl implements
 	public OrgUnit createOrgUnit() {
 		OrgUnitImpl orgUnit = new OrgUnitImpl();
 		return orgUnit;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OrgUnitId createOrgUnitId() {
-		OrgUnitIdImpl orgUnitId = new OrgUnitIdImpl();
-		return orgUnitId;
 	}
 
 	/**

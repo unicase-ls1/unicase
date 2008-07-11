@@ -11,7 +11,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -20,10 +19,8 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.model.ModelElement;
-import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 
 /**
@@ -32,8 +29,8 @@ import org.unicase.model.ModelPackage;
  * end-user-doc -->
  * @generated
  */
-public class ModelElementItemProvider extends ItemProviderAdapter implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
+public class ModelElementItemProvider extends IdentifiableElementItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
@@ -165,7 +162,6 @@ public class ModelElementItemProvider extends ItemProviderAdapter implements
 		switch (notification.getFeatureID(ModelElement.class)) {
 		case ModelPackage.MODEL_ELEMENT__NAME:
 		case ModelPackage.MODEL_ELEMENT__DESCRIPTION:
-		case ModelPackage.MODEL_ELEMENT__IDENTIFIER:
 		case ModelPackage.MODEL_ELEMENT__READER_INFOS:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), false, true));
@@ -185,21 +181,6 @@ public class ModelElementItemProvider extends ItemProviderAdapter implements
 	protected void collectNewChildDescriptors(
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.MODEL_ELEMENT__IDENTIFIER,
-				ModelFactory.eINSTANCE.createModelElementId()));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return ModelEditPlugin.INSTANCE;
 	}
 
 }

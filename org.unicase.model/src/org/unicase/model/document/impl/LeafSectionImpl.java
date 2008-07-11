@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.ModelElement;
@@ -173,9 +173,10 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	 */
 	public EList<ModelElement> getReferencedModelElements() {
 		if (referencedModelElements == null) {
-			referencedModelElements = new EObjectResolvingEList<ModelElement>(
+			referencedModelElements = new EObjectWithInverseResolvingEList.ManyInverse<ModelElement>(
 					ModelElement.class, this,
-					DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS);
+					DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS,
+					ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES);
 		}
 		return referencedModelElements;
 	}
@@ -196,6 +197,9 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 		case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getModelElements())
 					.basicAdd(otherEnd, msgs);
+		case DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getReferencedModelElements())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -213,6 +217,9 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 		case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
 			return ((InternalEList<?>) getModelElements()).basicRemove(
 					otherEnd, msgs);
+		case DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS:
+			return ((InternalEList<?>) getReferencedModelElements())
+					.basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}

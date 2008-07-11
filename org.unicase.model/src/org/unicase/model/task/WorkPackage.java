@@ -36,7 +36,7 @@ public interface WorkPackage extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Contained Model Elements</em>' reference list.
 	 * @see org.unicase.model.task.TaskPackage#getWorkPackage_ContainedModelElements()
-	 * @model
+	 * @model keys="identifier"
 	 * @generated
 	 */
 	EList<ModelElement> getContainedModelElements();

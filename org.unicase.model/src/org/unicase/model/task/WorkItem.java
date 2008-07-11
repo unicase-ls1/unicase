@@ -39,7 +39,7 @@ public interface WorkItem extends Annotation {
 	 * @return the value of the '<em>Containing Workpackage</em>' reference.
 	 * @see #setContainingWorkpackage(WorkPackage)
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_ContainingWorkpackage()
-	 * @model
+	 * @model keys="identifier"
 	 * @generated
 	 */
 	WorkPackage getContainingWorkpackage();
@@ -70,7 +70,7 @@ public interface WorkItem extends Annotation {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Associated Change Packages</em>' reference list.
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_AssociatedChangePackages()
-	 * @model
+	 * @model keys="identifier"
 	 * @generated
 	 */
 	EList<ModelChangePackage> getAssociatedChangePackages();

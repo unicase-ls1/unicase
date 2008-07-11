@@ -36,7 +36,7 @@ public interface DeploymentNode extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Components</em>' reference list.
 	 * @see org.unicase.model.component.ComponentPackage#getDeploymentNode_Components()
-	 * @model
+	 * @model keys="identifier"
 	 * @generated
 	 */
 	EList<Component> getComponents();

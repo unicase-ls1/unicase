@@ -12,7 +12,6 @@
       <genFeatures createChild="false" propertyDescription="" ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/name"/>
       <genFeatures createChild="false" propertyCategory="" propertyDescription=""
           propertyMultiLine="true" ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/description"/>
-      <genFeatures property="None" createChild="true" ecoreFeature="ecore:EReference model.ecore#//ModelElement/identifier"/>
       <genFeatures property="None" createChild="false" propertyCategory="" propertyDescription=""
           ecoreFeature="ecore:EReference model.ecore#//ModelElement/readerInfos"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//ModelElement/annotations"/>
@@ -23,6 +22,7 @@
         <genParameters ecoreParameter="model.ecore#//ModelElement/addReader/readerName"/>
       </genOperations>
       <genOperations ecoreOperation="model.ecore#//ModelElement/getMEState"/>
+      <genOperations ecoreOperation="model.ecore#//ModelElement/getModelElementId"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//Project">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Project/modelElements"/>
@@ -41,7 +41,6 @@
         <genTypeParameters ecoreTypeParameter="model.ecore#//Project/getModelElementsByClass/T"/>
       </genOperations>
     </genClasses>
-    <genClasses ecoreClass="model.ecore#//ModelElementId"/>
     <genClasses image="false" ecoreClass="model.ecore#//UniqueIdentifier">
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//UniqueIdentifier/id"/>
     </genClasses>
@@ -52,14 +51,24 @@
     <genClasses ecoreClass="model.ecore#//Annotation">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Annotation/annotatedModelElements"/>
     </genClasses>
+    <genClasses ecoreClass="model.ecore#//IdentifiableElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//IdentifiableElement/identifier"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//ModelElementId"/>
     <nestedGenPackages prefix="Organization" basePackage="org.unicase.model" disposableProviderFactory="true"
         ecorePackage="model.ecore#//organization">
-      <genClasses ecoreClass="model.ecore#//organization/User"/>
-      <genClasses ecoreClass="model.ecore#//organization/OrgUnit">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//organization/OrgUnit/orgId"/>
+      <genClasses ecoreClass="model.ecore#//organization/User">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//organization/User/email"/>
       </genClasses>
-      <genClasses ecoreClass="model.ecore#//organization/OrgUnitId"/>
-      <genClasses ecoreClass="model.ecore#//organization/Group"/>
+      <genClasses ecoreClass="model.ecore#//organization/OrgUnit">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//organization/OrgUnit/acOrgId"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//organization/OrgUnit/groupMemberships"/>
+      </genClasses>
+      <genClasses ecoreClass="model.ecore#//organization/Group">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//organization/Group/orgUnits"/>
+      </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Task" basePackage="org.unicase.model" disposableProviderFactory="true"
         ecorePackage="model.ecore#//task">
@@ -78,15 +87,39 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//task/WorkItem/associatedChangePackages"/>
       </genClasses>
+      <genClasses ecoreClass="model.ecore#//task/Meeting">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//task/Meeting/location"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//task/Meeting/time"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//task/Meeting/purpose"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//task/Meeting/facilitator"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//task/Meeting/scribe"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//task/Meeting/participants"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//task/Meeting/informationExchange"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//task/Meeting/discussedActionItems"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//task/Meeting/discussedIssues"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//task/Meeting/identifiedActionItems"/>
+      </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Diagram" basePackage="org.unicase.model" disposableProviderFactory="true"
         ecorePackage="model.ecore#//diagram">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="model.ecore#//diagram/DiagramType">
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//diagram/DiagramType/CLASS_DIAGRAM"/>
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//diagram/DiagramType/USECASE_DIAGRAM"/>
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//diagram/DiagramType/COMPONENT_DIAGRAM"/>
+      </genEnums>
       <genClasses ecoreClass="model.ecore#//diagram/MEDiagram">
         <genFeatures notify="false" children="true" createChild="true" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//diagram/MEDiagram/elements"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//diagram/MEDiagram/gmfdiagram"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//diagram/MEDiagram/newElements"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//diagram/MEDiagram/type"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Classes" basePackage="org.unicase.model" disposableProviderFactory="true"
@@ -148,7 +181,6 @@
             ecoreFeature="ecore:EReference model.ecore#//requirement/NonFunctionalRequirement/restrictedUseCases"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//requirement/FunctionalRequirement">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/FunctionalRequirement/reviewed"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/FunctionalRequirement/storyPoints"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/FunctionalRequirement/priority"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//requirement/FunctionalRequirement/refiningRequirements"/>
@@ -157,6 +189,7 @@
             ecoreFeature="ecore:EReference model.ecore#//requirement/FunctionalRequirement/useCases"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/FunctionalRequirement/scenarios"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/FunctionalRequirement/reviewed"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//requirement/UseCase">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/steps"/>

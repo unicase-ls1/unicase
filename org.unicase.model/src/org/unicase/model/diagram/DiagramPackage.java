@@ -6,7 +6,9 @@
  */
 package org.unicase.model.diagram;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.unicase.model.ModelPackage;
@@ -66,6 +68,14 @@ public interface DiagramPackage extends EPackage {
 	int ME_DIAGRAM = 0;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ME_DIAGRAM__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -82,14 +92,6 @@ public interface DiagramPackage extends EPackage {
 	 * @ordered
 	 */
 	int ME_DIAGRAM__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ME_DIAGRAM__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
@@ -150,12 +152,31 @@ public interface DiagramPackage extends EPackage {
 	int ME_DIAGRAM__NEW_ELEMENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ME_DIAGRAM__TYPE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>ME Diagram</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ME_DIAGRAM_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int ME_DIAGRAM_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.model.diagram.DiagramType <em>Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.diagram.DiagramType
+	 * @see org.unicase.model.diagram.impl.DiagramPackageImpl#getDiagramType()
+	 * @generated
+	 */
+	int DIAGRAM_TYPE = 1;
 
 	/**
 	 * Returns the meta object for class '
@@ -197,6 +218,27 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getMEDiagram_NewElements();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.diagram.MEDiagram#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see org.unicase.model.diagram.MEDiagram#getType()
+	 * @see #getMEDiagram()
+	 * @generated
+	 */
+	EAttribute getMEDiagram_Type();
+
+	/**
+	 * Returns the meta object for enum '{@link org.unicase.model.diagram.DiagramType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Type</em>'.
+	 * @see org.unicase.model.diagram.DiagramType
+	 * @generated
+	 */
+	EEnum getDiagramType();
 
 	/**
 	 * Returns the factory that creates the instances of the model. <!--
@@ -253,6 +295,24 @@ public interface DiagramPackage extends EPackage {
 		 */
 		EReference ME_DIAGRAM__NEW_ELEMENTS = eINSTANCE
 				.getMEDiagram_NewElements();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ME_DIAGRAM__TYPE = eINSTANCE.getMEDiagram_Type();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.diagram.DiagramType <em>Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.diagram.DiagramType
+		 * @see org.unicase.model.diagram.impl.DiagramPackageImpl#getDiagramType()
+		 * @generated
+		 */
+		EEnum DIAGRAM_TYPE = eINSTANCE.getDiagramType();
 
 	}
 

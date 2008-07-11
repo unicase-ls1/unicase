@@ -36,7 +36,7 @@ public interface Comment extends Annotation {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Replies</em>' reference list.
 	 * @see org.unicase.model.rationale.RationalePackage#getComment_Replies()
-	 * @model
+	 * @model keys="identifier"
 	 * @generated
 	 */
 	EList<Comment> getReplies();

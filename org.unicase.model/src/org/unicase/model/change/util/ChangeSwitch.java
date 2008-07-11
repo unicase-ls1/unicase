@@ -11,6 +11,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.Annotation;
+import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.MergingIssue;
@@ -94,6 +95,8 @@ public class ChangeSwitch<T> {
 			if (result == null)
 				result = caseModelElement(modelChangePackage);
 			if (result == null)
+				result = caseIdentifiableElement(modelChangePackage);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -107,6 +110,8 @@ public class ChangeSwitch<T> {
 			if (result == null)
 				result = caseModelElement(mergingIssue);
 			if (result == null)
+				result = caseIdentifiableElement(mergingIssue);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -118,6 +123,8 @@ public class ChangeSwitch<T> {
 			if (result == null)
 				result = caseModelElement(mergingProposal);
 			if (result == null)
+				result = caseIdentifiableElement(mergingProposal);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -128,6 +135,8 @@ public class ChangeSwitch<T> {
 				result = caseSolution(mergingSolution);
 			if (result == null)
 				result = caseModelElement(mergingSolution);
+			if (result == null)
+				result = caseIdentifiableElement(mergingSolution);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -190,6 +199,21 @@ public class ChangeSwitch<T> {
 	 * @generated
 	 */
 	public T caseMergingSolution(MergingSolution object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIdentifiableElement(IdentifiableElement object) {
 		return null;
 	}
 

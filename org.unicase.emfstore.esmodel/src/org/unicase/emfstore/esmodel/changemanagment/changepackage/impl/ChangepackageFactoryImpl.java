@@ -28,7 +28,6 @@ import org.unicase.emfstore.esmodel.changemanagment.changepackage.ESModifyElemen
 import org.unicase.emfstore.esmodel.changemanagment.changepackage.ESOperation;
 import org.unicase.emfstore.esmodel.changemanagment.changepackage.ESeAttributeEvent;
 import org.unicase.model.ModelElement;
-import org.unicase.model.ModelElementId;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
@@ -179,9 +178,8 @@ public class ChangepackageFactoryImpl extends EFactoryImpl implements
 					if (featureChange.getFeature() instanceof EAttribute) {
 						ESModifyElementEvent esEvent = ChangepackageFactory.eINSTANCE
 								.createESModifyElementEvent();
-						esEvent.setModelElementId((ModelElementId) EcoreUtil
-								.copy(((ModelElement) next.getKey())
-										.getIdentifier()));
+						ModelElement modelElement = (ModelElement) next.getKey();
+						esEvent.setModelElementId(modelElement.getModelElementId());
 						esEvent.setFeatureId(featureChange.getFeature()
 								.getFeatureID());
 						esEvent.setModelElementClass(next.getKey().getClass());

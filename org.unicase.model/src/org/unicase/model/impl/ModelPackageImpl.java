@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.model.Annotation;
+import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelFactory;
@@ -67,12 +68,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass modelElementIdEClass = null;
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass uniqueIdentifierEClass = null;
 
 	/**
@@ -86,6 +81,20 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	private EClass annotationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass identifiableElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass modelElementIdEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -251,7 +260,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModelElement_Identifier() {
+	public EReference getModelElement_ReaderInfos() {
 		return (EReference) modelElementEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -259,7 +268,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModelElement_ReaderInfos() {
+	public EReference getModelElement_Annotations() {
 		return (EReference) modelElementEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -267,7 +276,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModelElement_Annotations() {
+	public EReference getModelElement_IncomingDocumentReferences() {
 		return (EReference) modelElementEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -275,16 +284,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModelElement_IncomingDocumentReferences() {
-		return (EReference) modelElementEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getModelElement_LeafSection() {
-		return (EReference) modelElementEClass.getEStructuralFeatures().get(6);
+		return (EReference) modelElementEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -301,14 +302,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 */
 	public EReference getProject_ModelElements() {
 		return (EReference) projectEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getModelElementId() {
-		return modelElementIdEClass;
 	}
 
 	/**
@@ -369,6 +362,34 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getIdentifiableElement() {
+		return identifiableElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getIdentifiableElement_Identifier() {
+		return (EAttribute) identifiableElementEClass.getEStructuralFeatures()
+				.get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getModelElementId() {
+		return modelElementIdEClass;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -398,7 +419,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		modelElementEClass = createEClass(MODEL_ELEMENT);
 		createEAttribute(modelElementEClass, MODEL_ELEMENT__NAME);
 		createEAttribute(modelElementEClass, MODEL_ELEMENT__DESCRIPTION);
-		createEReference(modelElementEClass, MODEL_ELEMENT__IDENTIFIER);
 		createEReference(modelElementEClass, MODEL_ELEMENT__READER_INFOS);
 		createEReference(modelElementEClass, MODEL_ELEMENT__ANNOTATIONS);
 		createEReference(modelElementEClass,
@@ -407,8 +427,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 		projectEClass = createEClass(PROJECT);
 		createEReference(projectEClass, PROJECT__MODEL_ELEMENTS);
-
-		modelElementIdEClass = createEClass(MODEL_ELEMENT_ID);
 
 		uniqueIdentifierEClass = createEClass(UNIQUE_IDENTIFIER);
 		createEAttribute(uniqueIdentifierEClass, UNIQUE_IDENTIFIER__ID);
@@ -419,6 +437,12 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 		annotationEClass = createEClass(ANNOTATION);
 		createEReference(annotationEClass, ANNOTATION__ANNOTATED_MODEL_ELEMENTS);
+
+		identifiableElementEClass = createEClass(IDENTIFIABLE_ELEMENT);
+		createEAttribute(identifiableElementEClass,
+				IDENTIFIABLE_ELEMENT__IDENTIFIER);
+
+		modelElementIdEClass = createEClass(MODEL_ELEMENT_ID);
 	}
 
 	/**
@@ -485,8 +509,10 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		modelElementIdEClass.getESuperTypes().add(this.getUniqueIdentifier());
+		modelElementEClass.getESuperTypes().add(this.getIdentifiableElement());
+		readerInfoEClass.getESuperTypes().add(this.getIdentifiableElement());
 		annotationEClass.getESuperTypes().add(this.getModelElement());
+		modelElementIdEClass.getESuperTypes().add(this.getUniqueIdentifier());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(modelElementEClass, ModelElement.class, "ModelElement",
@@ -499,35 +525,37 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 				ecorePackage.getEString(), "description", null, 0, 1,
 				ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModelElement_Identifier(), this.getModelElementId(),
-				null, "identifier", null, 0, 1, ModelElement.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		getModelElement_Identifier().getEKeys().add(
-				this.getUniqueIdentifier_Id());
 		initEReference(getModelElement_ReaderInfos(), this.getReaderInfo(),
 				null, "readerInfos", null, 0, -1, ModelElement.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		getModelElement_ReaderInfos().getEKeys().add(
+				this.getIdentifiableElement_Identifier());
 		initEReference(getModelElement_Annotations(), this.getAnnotation(),
 				this.getAnnotation_AnnotatedModelElements(), "annotations",
 				null, 0, -1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getModelElement_Annotations().getEKeys().add(
+				this.getIdentifiableElement_Identifier());
 		initEReference(getModelElement_IncomingDocumentReferences(),
-				theDocumentPackage.getLeafSection(), null,
+				theDocumentPackage.getLeafSection(), theDocumentPackage
+						.getLeafSection_ReferencedModelElements(),
 				"incomingDocumentReferences", null, 0, -1, ModelElement.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		getModelElement_IncomingDocumentReferences().getEKeys().add(
+				this.getIdentifiableElement_Identifier());
 		initEReference(getModelElement_LeafSection(), theDocumentPackage
 				.getLeafSection(), theDocumentPackage
 				.getLeafSection_ModelElements(), "leafSection", null, 0, 1,
 				ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		getModelElement_LeafSection().getEKeys().add(
+				this.getIdentifiableElement_Identifier());
 
 		addEOperation(modelElementEClass, this.getProject(), "getProject", 0,
 				1, IS_UNIQUE, IS_ORDERED);
@@ -540,6 +568,9 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		addEOperation(modelElementEClass, null, "getMEState", 0, 1, IS_UNIQUE,
 				IS_ORDERED);
 
+		addEOperation(modelElementEClass, this.getModelElementId(),
+				"getModelElementId", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(projectEClass, Project.class, "Project", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getProject_ModelElements(), this.getModelElement(),
@@ -547,6 +578,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				!IS_ORDERED);
+		getProject_ModelElements().getEKeys().add(
+				this.getIdentifiableElement_Identifier());
 
 		op = addEOperation(projectEClass, null, "addModelElement", 0, 1,
 				IS_UNIQUE, IS_ORDERED);
@@ -580,10 +613,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		g1 = createEGenericType(t1);
 		initEOperation(op, g1);
 
-		initEClass(modelElementIdEClass, ModelElementId.class,
-				"ModelElementId", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(uniqueIdentifierEClass, UniqueIdentifier.class,
 				"UniqueIdentifier", IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -612,6 +641,19 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+
+		initEClass(identifiableElementEClass, IdentifiableElement.class,
+				"IdentifiableElement", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getIdentifiableElement_Identifier(), ecorePackage
+				.getEString(), "identifier", null, 1, 1,
+				IdentifiableElement.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+
+		initEClass(modelElementIdEClass, ModelElementId.class,
+				"ModelElementId", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

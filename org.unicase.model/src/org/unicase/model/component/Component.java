@@ -57,7 +57,7 @@ public interface Component extends ModelElement {
 	 * @return the value of the '<em>Offered Services</em>' containment reference list.
 	 * @see org.unicase.model.component.ComponentPackage#getComponent_OfferedServices()
 	 * @see org.unicase.model.component.ComponentService#getOfferingComponent
-	 * @model opposite="offeringComponent" containment="true"
+	 * @model opposite="offeringComponent" containment="true" keys="identifier"
 	 * @generated
 	 */
 	EList<ComponentService> getOfferedServices();
@@ -75,7 +75,7 @@ public interface Component extends ModelElement {
 	 * @return the value of the '<em>Consumed Services</em>' reference list.
 	 * @see org.unicase.model.component.ComponentPackage#getComponent_ConsumedServices()
 	 * @see org.unicase.model.component.ComponentService#getConsumingComponents
-	 * @model opposite="consumingComponents"
+	 * @model opposite="consumingComponents" keys="identifier"
 	 * @generated
 	 */
 	EList<ComponentService> getConsumedServices();

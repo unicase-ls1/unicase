@@ -46,7 +46,7 @@ public interface Issue extends Annotation {
 	 * @return the value of the '<em>Proposals</em>' containment reference list.
 	 * @see org.unicase.model.rationale.RationalePackage#getIssue_Proposals()
 	 * @see org.unicase.model.rationale.Proposal#getIssue
-	 * @model opposite="issue" containment="true"
+	 * @model opposite="issue" containment="true" keys="identifier"
 	 * @generated
 	 */
 	EList<Proposal> getProposals();
@@ -64,7 +64,7 @@ public interface Issue extends Annotation {
 	 * @see #setSolution(Solution)
 	 * @see org.unicase.model.rationale.RationalePackage#getIssue_Solution()
 	 * @see org.unicase.model.rationale.Solution#getIssue
-	 * @model opposite="issue" containment="true"
+	 * @model opposite="issue" containment="true" keys="identifier"
 	 * @generated
 	 */
 	Solution getSolution();
@@ -89,7 +89,7 @@ public interface Issue extends Annotation {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Criteria</em>' reference list.
 	 * @see org.unicase.model.rationale.RationalePackage#getIssue_Criteria()
-	 * @model
+	 * @model keys="identifier"
 	 * @generated
 	 */
 	EList<Criterion> getCriteria();
@@ -107,7 +107,7 @@ public interface Issue extends Annotation {
 	 * @return the value of the '<em>Refining Issues</em>' containment reference list.
 	 * @see org.unicase.model.rationale.RationalePackage#getIssue_RefiningIssues()
 	 * @see org.unicase.model.rationale.Issue#getRefinedIssue
-	 * @model opposite="refinedIssue" containment="true"
+	 * @model opposite="refinedIssue" containment="true" keys="identifier"
 	 * @generated
 	 */
 	EList<Issue> getRefiningIssues();
@@ -125,7 +125,7 @@ public interface Issue extends Annotation {
 	 * @see #setRefinedIssue(Issue)
 	 * @see org.unicase.model.rationale.RationalePackage#getIssue_RefinedIssue()
 	 * @see org.unicase.model.rationale.Issue#getRefiningIssues
-	 * @model opposite="refiningIssues" transient="false"
+	 * @model opposite="refiningIssues" keys="identifier" transient="false"
 	 * @generated
 	 */
 	Issue getRefinedIssue();
@@ -178,7 +178,7 @@ public interface Issue extends Annotation {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Participants</em>' reference list.
 	 * @see org.unicase.model.rationale.RationalePackage#getIssue_Participants()
-	 * @model
+	 * @model keys="identifier"
 	 * @generated
 	 */
 	EList<OrgUnit> getParticipants();

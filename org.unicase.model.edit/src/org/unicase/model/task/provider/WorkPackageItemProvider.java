@@ -187,6 +187,10 @@ public class WorkPackageItemProvider extends ModelElementItemProvider implements
 
 		newChildDescriptors.add(createChildParameter(
 				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
+				TaskFactory.eINSTANCE.createMeeting()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
 				ModelFactory.eINSTANCE.createAnnotation()));
 
 		newChildDescriptors.add(createChildParameter(

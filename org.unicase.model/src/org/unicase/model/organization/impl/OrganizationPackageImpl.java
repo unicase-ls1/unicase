@@ -6,6 +6,7 @@
  */
 package org.unicase.model.organization.impl;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -27,7 +28,6 @@ import org.unicase.model.document.impl.DocumentPackageImpl;
 import org.unicase.model.impl.ModelPackageImpl;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
-import org.unicase.model.organization.OrgUnitId;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
@@ -56,11 +56,6 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	private EClass orgUnitEClass = null;
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass orgUnitIdEClass = null;
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -212,6 +207,15 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getUser_Email() {
+		return (EAttribute) userEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -220,19 +224,21 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOrgUnit_OrgId() {
-		return (EReference) orgUnitEClass.getEStructuralFeatures().get(0);
+	public EAttribute getOrgUnit_AcOrgId() {
+		return (EAttribute) orgUnitEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getOrgUnitId() {
-		return orgUnitIdEClass;
+	public EReference getOrgUnit_GroupMemberships() {
+		return (EReference) orgUnitEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -241,6 +247,15 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 	 */
 	public EClass getGroup() {
 		return groupEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGroup_OrgUnits() {
+		return (EReference) groupEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -271,13 +286,14 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 
 		// Create classes and their features
 		userEClass = createEClass(USER);
+		createEAttribute(userEClass, USER__EMAIL);
 
 		orgUnitEClass = createEClass(ORG_UNIT);
-		createEReference(orgUnitEClass, ORG_UNIT__ORG_ID);
-
-		orgUnitIdEClass = createEClass(ORG_UNIT_ID);
+		createEAttribute(orgUnitEClass, ORG_UNIT__AC_ORG_ID);
+		createEReference(orgUnitEClass, ORG_UNIT__GROUP_MEMBERSHIPS);
 
 		groupEClass = createEClass(GROUP);
+		createEReference(groupEClass, GROUP__ORG_UNITS);
 	}
 
 	/**
@@ -314,26 +330,39 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 		// Add supertypes to classes
 		userEClass.getESuperTypes().add(this.getOrgUnit());
 		orgUnitEClass.getESuperTypes().add(theModelPackage.getModelElement());
-		orgUnitIdEClass.getESuperTypes().add(
-				theModelPackage.getUniqueIdentifier());
 		groupEClass.getESuperTypes().add(this.getOrgUnit());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(userEClass, User.class, "User", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getUser_Email(), ecorePackage.getEString(), "email",
+				null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
 		initEClass(orgUnitEClass, OrgUnit.class, "OrgUnit", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getOrgUnit_OrgId(), this.getOrgUnitId(), null, "orgId",
-				null, 0, 1, OrgUnit.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(orgUnitIdEClass, OrgUnitId.class, "OrgUnitId", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getOrgUnit_AcOrgId(), ecorePackage.getEString(),
+				"acOrgId", null, 0, 1, OrgUnit.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEReference(getOrgUnit_GroupMemberships(), this.getGroup(), this
+				.getGroup_OrgUnits(), "groupMemberships", null, 0, 1,
+				OrgUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		getOrgUnit_GroupMemberships().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(groupEClass, Group.class, "Group", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getGroup_OrgUnits(), this.getOrgUnit(), this
+				.getOrgUnit_GroupMemberships(), "orgUnits", null, 0, 1,
+				Group.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		getGroup_OrgUnits().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 	}
 
 } // OrganizationPackageImpl

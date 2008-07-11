@@ -7,7 +7,6 @@
 package org.unicase.model;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.util.CircularDependencyException;
@@ -22,7 +21,6 @@ import org.unicase.model.task.util.MEState;
  * <ul>
  *   <li>{@link org.unicase.model.ModelElement#getName <em>Name</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getDescription <em>Description</em>}</li>
- *   <li>{@link org.unicase.model.ModelElement#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getReaderInfos <em>Reader Infos</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getIncomingDocumentReferences <em>Incoming Document References</em>}</li>
@@ -34,7 +32,7 @@ import org.unicase.model.task.util.MEState;
  * @model abstract="true"
  * @generated
  */
-public interface ModelElement extends EObject {
+public interface ModelElement extends IdentifiableElement {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute. <!--
 	 * begin-user-doc -->
@@ -92,31 +90,6 @@ public interface ModelElement extends EObject {
 	void setDescription(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Identifier</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Identifier</em>' containment reference isn't
-	 * clear, there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Identifier</em>' containment reference.
-	 * @see #setIdentifier(ModelElementId)
-	 * @see org.unicase.model.ModelPackage#getModelElement_Identifier()
-	 * @model containment="true" keys="id"
-	 * @generated
-	 */
-	ModelElementId getIdentifier();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.model.ModelElement#getIdentifier <em>Identifier</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Identifier</em>' containment reference.
-	 * @see #getIdentifier()
-	 * @generated
-	 */
-	void setIdentifier(ModelElementId value);
-
-	/**
 	 * Returns the value of the '<em><b>Reader Infos</b></em>' containment reference list.
 	 * The list contents are of type {@link org.unicase.model.ReaderInfo}.
 	 * <!-- begin-user-doc -->
@@ -127,7 +100,7 @@ public interface ModelElement extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Reader Infos</em>' containment reference list.
 	 * @see org.unicase.model.ModelPackage#getModelElement_ReaderInfos()
-	 * @model containment="true"
+	 * @model containment="true" keys="identifier"
 	 * @generated
 	 */
 	EList<ReaderInfo> getReaderInfos();
@@ -145,7 +118,7 @@ public interface ModelElement extends EObject {
 	 * @return the value of the '<em>Annotations</em>' reference list.
 	 * @see org.unicase.model.ModelPackage#getModelElement_Annotations()
 	 * @see org.unicase.model.Annotation#getAnnotatedModelElements
-	 * @model opposite="annotatedModelElements"
+	 * @model opposite="annotatedModelElements" keys="identifier"
 	 * @generated
 	 */
 	EList<Annotation> getAnnotations();
@@ -153,6 +126,7 @@ public interface ModelElement extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Incoming Document References</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.model.document.LeafSection}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.document.LeafSection#getReferencedModelElements <em>Referenced Model Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Incoming Document References</em>' reference
@@ -161,7 +135,8 @@ public interface ModelElement extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Incoming Document References</em>' reference list.
 	 * @see org.unicase.model.ModelPackage#getModelElement_IncomingDocumentReferences()
-	 * @model
+	 * @see org.unicase.model.document.LeafSection#getReferencedModelElements
+	 * @model opposite="referencedModelElements" keys="identifier"
 	 * @generated
 	 */
 	EList<LeafSection> getIncomingDocumentReferences();
@@ -179,7 +154,7 @@ public interface ModelElement extends EObject {
 	 * @see #setLeafSection(LeafSection)
 	 * @see org.unicase.model.ModelPackage#getModelElement_LeafSection()
 	 * @see org.unicase.model.document.LeafSection#getModelElements
-	 * @model opposite="modelElements" transient="false"
+	 * @model opposite="modelElements" keys="identifier" transient="false"
 	 * @generated
 	 */
 	LeafSection getLeafSection();
@@ -221,5 +196,13 @@ public interface ModelElement extends EObject {
 	 * @generated NOT
 	 */
 	MEState getMEState() throws CircularDependencyException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	ModelElementId getModelElementId();
 
 } // ModelElement

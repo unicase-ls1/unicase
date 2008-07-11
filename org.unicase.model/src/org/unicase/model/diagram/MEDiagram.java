@@ -20,6 +20,7 @@ import org.unicase.model.ModelElement;
  *   <li>{@link org.unicase.model.diagram.MEDiagram#getElements <em>Elements</em>}</li>
  *   <li>{@link org.unicase.model.diagram.MEDiagram#getGmfdiagram <em>Gmfdiagram</em>}</li>
  *   <li>{@link org.unicase.model.diagram.MEDiagram#getNewElements <em>New Elements</em>}</li>
+ *   <li>{@link org.unicase.model.diagram.MEDiagram#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -82,9 +83,38 @@ public interface MEDiagram extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>New Elements</em>' containment reference list.
 	 * @see org.unicase.model.diagram.DiagramPackage#getMEDiagram_NewElements()
-	 * @model containment="true"
+	 * @model containment="true" keys="identifier"
 	 * @generated
 	 */
 	EList<ModelElement> getNewElements();
+
+	/**
+	 * Returns the value of the '<em><b>Type</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.unicase.model.diagram.DiagramType}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Type</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Type</em>' attribute.
+	 * @see org.unicase.model.diagram.DiagramType
+	 * @see #setType(DiagramType)
+	 * @see org.unicase.model.diagram.DiagramPackage#getMEDiagram_Type()
+	 * @model
+	 * @generated
+	 */
+	DiagramType getType();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.diagram.MEDiagram#getType <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Type</em>' attribute.
+	 * @see org.unicase.model.diagram.DiagramType
+	 * @see #getType()
+	 * @generated
+	 */
+	void setType(DiagramType value);
 
 } // MEDiagram

@@ -70,7 +70,7 @@ public interface Association extends ModelElement {
 	 * @see #setSource(org.unicase.model.classes.Class)
 	 * @see org.unicase.model.classes.ClassesPackage#getAssociation_Source()
 	 * @see org.unicase.model.classes.Class#getOutgoingAssociations
-	 * @model opposite="outgoingAssociations"
+	 * @model opposite="outgoingAssociations" keys="identifier"
 	 * @generated
 	 */
 	org.unicase.model.classes.Class getSource();
@@ -97,7 +97,7 @@ public interface Association extends ModelElement {
 	 * @see #setTarget(org.unicase.model.classes.Class)
 	 * @see org.unicase.model.classes.ClassesPackage#getAssociation_Target()
 	 * @see org.unicase.model.classes.Class#getIncomingAssociations
-	 * @model opposite="incomingAssociations"
+	 * @model opposite="incomingAssociations" keys="identifier"
 	 * @generated
 	 */
 	org.unicase.model.classes.Class getTarget();

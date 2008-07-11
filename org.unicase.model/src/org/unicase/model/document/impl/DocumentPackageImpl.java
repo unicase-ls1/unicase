@@ -357,12 +357,17 @@ public class DocumentPackageImpl extends EPackageImpl implements
 				LeafSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		getLeafSection_ModelElements().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getLeafSection_ReferencedModelElements(),
-				theModelPackage.getModelElement(), null,
+				theModelPackage.getModelElement(), theModelPackage
+						.getModelElement_IncomingDocumentReferences(),
 				"referencedModelElements", null, 0, -1, LeafSection.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		getLeafSection_ReferencedModelElements().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(compositeSectionEClass, CompositeSection.class,
 				"CompositeSection", !IS_ABSTRACT, !IS_INTERFACE,
@@ -372,6 +377,8 @@ public class DocumentPackageImpl extends EPackageImpl implements
 				CompositeSection.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getCompositeSection_Subsections().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(sectionEClass, Section.class, "Section", IS_ABSTRACT,
 				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -380,6 +387,8 @@ public class DocumentPackageImpl extends EPackageImpl implements
 				Section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		getSection_Parent().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 	}
 
 } // DocumentPackageImpl
