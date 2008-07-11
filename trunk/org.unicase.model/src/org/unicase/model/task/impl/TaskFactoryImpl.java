@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.unicase.model.task.ActionItem;
+import org.unicase.model.task.Meeting;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkPackage;
@@ -62,6 +63,8 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 			return createActionItem();
 		case TaskPackage.WORK_PACKAGE:
 			return createWorkPackage();
+		case TaskPackage.MEETING:
+			return createMeeting();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName()
 					+ "' is not a valid classifier");
@@ -84,6 +87,16 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 	public WorkPackage createWorkPackage() {
 		WorkPackageImpl workPackage = new WorkPackageImpl();
 		return workPackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Meeting createMeeting() {
+		MeetingImpl meeting = new MeetingImpl();
+		return meeting;
 	}
 
 	/**

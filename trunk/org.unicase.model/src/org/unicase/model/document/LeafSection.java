@@ -67,7 +67,7 @@ public interface LeafSection extends Section {
 	 * @return the value of the '<em>Model Elements</em>' containment reference list.
 	 * @see org.unicase.model.document.DocumentPackage#getLeafSection_ModelElements()
 	 * @see org.unicase.model.ModelElement#getLeafSection
-	 * @model opposite="leafSection" containment="true"
+	 * @model opposite="leafSection" containment="true" keys="identifier"
 	 * @generated
 	 */
 	EList<ModelElement> getModelElements();
@@ -75,6 +75,7 @@ public interface LeafSection extends Section {
 	/**
 	 * Returns the value of the '<em><b>Referenced Model Elements</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.model.ModelElement}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.ModelElement#getIncomingDocumentReferences <em>Incoming Document References</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Referenced Model Elements</em>' reference list
@@ -83,7 +84,8 @@ public interface LeafSection extends Section {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Referenced Model Elements</em>' reference list.
 	 * @see org.unicase.model.document.DocumentPackage#getLeafSection_ReferencedModelElements()
-	 * @model
+	 * @see org.unicase.model.ModelElement#getIncomingDocumentReferences
+	 * @model opposite="incomingDocumentReferences" keys="identifier"
 	 * @generated
 	 */
 	EList<ModelElement> getReferencedModelElements();

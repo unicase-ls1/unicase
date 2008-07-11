@@ -502,35 +502,49 @@ public class RationalePackageImpl extends EPackageImpl implements
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		getIssue_Proposals().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getIssue_Solution(), this.getSolution(), this
 				.getSolution_Issue(), "solution", null, 0, 1, Issue.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		getIssue_Solution().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getIssue_Criteria(), this.getCriterion(), null,
 				"criteria", null, 0, -1, Issue.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getIssue_Criteria().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getIssue_RefiningIssues(), this.getIssue(), this
 				.getIssue_RefinedIssue(), "refiningIssues", null, 0, -1,
 				Issue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		getIssue_RefiningIssues().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getIssue_RefinedIssue(), this.getIssue(), this
 				.getIssue_RefiningIssues(), "refinedIssue", null, 0, 1,
 				Issue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		getIssue_RefinedIssue().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getIssue_Facilitator(),
 				theOrganizationPackage.getUser(), null, "facilitator", null, 0,
 				1, Issue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		getIssue_Facilitator().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getIssue_Participants(), theOrganizationPackage
 				.getOrgUnit(), null, "participants", null, 0, -1, Issue.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		getIssue_Participants().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(proposalEClass, Proposal.class, "Proposal", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -539,11 +553,15 @@ public class RationalePackageImpl extends EPackageImpl implements
 				Proposal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		getProposal_Assessments().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getProposal_Issue(), this.getIssue(), this
 				.getIssue_Proposals(), "issue", null, 0, 1, Proposal.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		getProposal_Issue().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(solutionEClass, Solution.class, "Solution", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -552,11 +570,15 @@ public class RationalePackageImpl extends EPackageImpl implements
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		getSolution_UnderlyingProposals().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getSolution_Issue(), this.getIssue(), this
 				.getIssue_Solution(), "issue", null, 0, 1, Solution.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		getSolution_Issue().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(criterionEClass, Criterion.class, "Criterion", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -565,6 +587,8 @@ public class RationalePackageImpl extends EPackageImpl implements
 				Criterion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		getCriterion_Assessments().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(assessmentEClass, Assessment.class, "Assessment",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -573,11 +597,15 @@ public class RationalePackageImpl extends EPackageImpl implements
 				Assessment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		getAssessment_Proposal().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getAssessment_Criterion(), this.getCriterion(), this
 				.getCriterion_Assessments(), "criterion", null, 1, 1,
 				Assessment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		getAssessment_Criterion().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 		initEAttribute(getAssessment_Value(), ecorePackage.getEInt(), "value",
 				null, 0, 1, Assessment.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
@@ -589,6 +617,8 @@ public class RationalePackageImpl extends EPackageImpl implements
 				"replies", null, 0, -1, Comment.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getComment_Replies().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 	}
 
 } // RationalePackageImpl

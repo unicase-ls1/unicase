@@ -43,7 +43,7 @@ public interface Class extends PackageElement {
 	 * @return the value of the '<em>Participated Use Cases</em>' reference list.
 	 * @see org.unicase.model.classes.ClassesPackage#getClass_ParticipatedUseCases()
 	 * @see org.unicase.model.requirement.UseCase#getIdentifiedClasses
-	 * @model opposite="identifiedClasses"
+	 * @model opposite="identifiedClasses" keys="identifier"
 	 * @generated
 	 */
 	EList<UseCase> getParticipatedUseCases();
@@ -61,7 +61,7 @@ public interface Class extends PackageElement {
 	 * @see #setSuperClass(Class)
 	 * @see org.unicase.model.classes.ClassesPackage#getClass_SuperClass()
 	 * @see org.unicase.model.classes.Class#getSubClasses
-	 * @model opposite="subClasses"
+	 * @model opposite="subClasses" keys="identifier"
 	 * @generated
 	 */
 	Class getSuperClass();
@@ -89,7 +89,7 @@ public interface Class extends PackageElement {
 	 * @return the value of the '<em>Sub Classes</em>' reference list.
 	 * @see org.unicase.model.classes.ClassesPackage#getClass_SubClasses()
 	 * @see org.unicase.model.classes.Class#getSuperClass
-	 * @model opposite="superClass"
+	 * @model opposite="superClass" keys="identifier"
 	 * @generated
 	 */
 	EList<Class> getSubClasses();
@@ -107,7 +107,7 @@ public interface Class extends PackageElement {
 	 * @return the value of the '<em>Incoming Associations</em>' reference list.
 	 * @see org.unicase.model.classes.ClassesPackage#getClass_IncomingAssociations()
 	 * @see org.unicase.model.classes.Association#getTarget
-	 * @model opposite="target"
+	 * @model opposite="target" keys="identifier"
 	 * @generated
 	 */
 	EList<Association> getIncomingAssociations();
@@ -125,7 +125,7 @@ public interface Class extends PackageElement {
 	 * @return the value of the '<em>Outgoing Associations</em>' reference list.
 	 * @see org.unicase.model.classes.ClassesPackage#getClass_OutgoingAssociations()
 	 * @see org.unicase.model.classes.Association#getSource
-	 * @model opposite="source"
+	 * @model opposite="source" keys="identifier"
 	 * @generated
 	 */
 	EList<Association> getOutgoingAssociations();

@@ -20,6 +20,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.bug.BugFactory;
@@ -69,6 +70,7 @@ public class MEDiagramItemProvider extends ModelElementItemProvider implements
 
 			addElementsPropertyDescriptor(object);
 			addGmfdiagramPropertyDescriptor(object);
+			addTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -108,6 +110,23 @@ public class MEDiagramItemProvider extends ModelElementItemProvider implements
 						"_UI_MEDiagram_type"),
 				DiagramPackage.Literals.ME_DIAGRAM__GMFDIAGRAM, true, false,
 				true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Type feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTypePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_MEDiagram_type_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_MEDiagram_type_feature", "_UI_MEDiagram_type"),
+				DiagramPackage.Literals.ME_DIAGRAM__TYPE, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -177,6 +196,10 @@ public class MEDiagramItemProvider extends ModelElementItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(MEDiagram.class)) {
+		case DiagramPackage.ME_DIAGRAM__TYPE:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), false, true));
+			return;
 		case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), true, false));
@@ -224,6 +247,10 @@ public class MEDiagramItemProvider extends ModelElementItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
 				TaskFactory.eINSTANCE.createWorkPackage()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				TaskFactory.eINSTANCE.createMeeting()));
 
 		newChildDescriptors.add(createChildParameter(
 				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
@@ -360,6 +387,10 @@ public class MEDiagramItemProvider extends ModelElementItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
 				TaskFactory.eINSTANCE.createWorkPackage()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
+				TaskFactory.eINSTANCE.createMeeting()));
 
 		newChildDescriptors.add(createChildParameter(
 				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,

@@ -437,26 +437,36 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 				0, -1, org.unicase.model.classes.Class.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getClass_ParticipatedUseCases().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getClass_SuperClass(), this.getClass_(), this
 				.getClass_SubClasses(), "superClass", null, 0, 1,
 				org.unicase.model.classes.Class.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getClass_SuperClass().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getClass_SubClasses(), this.getClass_(), this
 				.getClass_SuperClass(), "subClasses", null, 0, -1,
 				org.unicase.model.classes.Class.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getClass_SubClasses().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getClass_IncomingAssociations(), this.getAssociation(),
 				this.getAssociation_Target(), "incomingAssociations", null, 0,
 				-1, org.unicase.model.classes.Class.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getClass_IncomingAssociations().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getClass_OutgoingAssociations(), this.getAssociation(),
 				this.getAssociation_Source(), "outgoingAssociations", null, 0,
 				-1, org.unicase.model.classes.Class.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getClass_OutgoingAssociations().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(packageEClass, org.unicase.model.classes.Package.class,
 				"Package", !IS_ABSTRACT, !IS_INTERFACE,
@@ -467,6 +477,8 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 				org.unicase.model.classes.Package.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getPackage_ContainedPackageElements().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(packageElementEClass, PackageElement.class,
 				"PackageElement", IS_ABSTRACT, !IS_INTERFACE,
@@ -476,6 +488,8 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 				null, 0, 1, PackageElement.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		getPackageElement_ParentPackage().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(associationEClass, Association.class, "Association",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -488,11 +502,15 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 				Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		getAssociation_Source().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getAssociation_Target(), this.getClass_(), this
 				.getClass_IncomingAssociations(), "target", null, 0, 1,
 				Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		getAssociation_Target().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 		initEAttribute(getAssociation_Type(), this.getAssociationType(),
 				"type", "", 0, 1, Association.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,

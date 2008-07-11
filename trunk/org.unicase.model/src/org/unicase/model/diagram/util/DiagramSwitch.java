@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
@@ -87,6 +88,8 @@ public class DiagramSwitch<T> {
 			if (result == null)
 				result = caseModelElement(meDiagram);
 			if (result == null)
+				result = caseIdentifiableElement(meDiagram);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -106,6 +109,21 @@ public class DiagramSwitch<T> {
 	 * @generated
 	 */
 	public T caseMEDiagram(MEDiagram object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIdentifiableElement(IdentifiableElement object) {
 		return null;
 	}
 

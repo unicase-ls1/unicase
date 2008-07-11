@@ -66,6 +66,14 @@ public interface TaskPackage extends EPackage {
 	int WORK_ITEM = 2;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM__IDENTIFIER = ModelPackage.ANNOTATION__IDENTIFIER;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -82,14 +90,6 @@ public interface TaskPackage extends EPackage {
 	 * @ordered
 	 */
 	int WORK_ITEM__DESCRIPTION = ModelPackage.ANNOTATION__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_ITEM__IDENTIFIER = ModelPackage.ANNOTATION__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
@@ -167,6 +167,14 @@ public interface TaskPackage extends EPackage {
 	int ACTION_ITEM = 0;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_ITEM__IDENTIFIER = WORK_ITEM__IDENTIFIER;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -183,14 +191,6 @@ public interface TaskPackage extends EPackage {
 	 * @ordered
 	 */
 	int ACTION_ITEM__DESCRIPTION = WORK_ITEM__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTION_ITEM__IDENTIFIER = WORK_ITEM__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
@@ -303,6 +303,14 @@ public interface TaskPackage extends EPackage {
 	int WORK_PACKAGE = 1;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -319,14 +327,6 @@ public interface TaskPackage extends EPackage {
 	 * @ordered
 	 */
 	int WORK_PACKAGE__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_PACKAGE__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
@@ -377,6 +377,178 @@ public interface TaskPackage extends EPackage {
 	 * @ordered
 	 */
 	int WORK_PACKAGE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.model.task.impl.MeetingImpl <em>Meeting</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.task.impl.MeetingImpl
+	 * @see org.unicase.model.task.impl.TaskPackageImpl#getMeeting()
+	 * @generated
+	 */
+	int MEETING = 3;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING__NAME = ModelPackage.MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>Location</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING__LOCATION = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Time</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING__TIME = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Purpose</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING__PURPOSE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Facilitator</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING__FACILITATOR = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Scribe</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING__SCRIBE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Participants</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING__PARTICIPANTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Information Exchange</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING__INFORMATION_EXCHANGE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Discussed Action Items</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING__DISCUSSED_ACTION_ITEMS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>Discussed Issues</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING__DISCUSSED_ISSUES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 8;
+
+	/**
+	 * The feature id for the '<em><b>Identified Action Items</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING__IDENTIFIED_ACTION_ITEMS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 9;
+
+	/**
+	 * The number of structural features of the '<em>Meeting</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * Returns the meta object for class '
@@ -487,6 +659,126 @@ public interface TaskPackage extends EPackage {
 	EReference getWorkItem_AssociatedChangePackages();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.model.task.Meeting <em>Meeting</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Meeting</em>'.
+	 * @see org.unicase.model.task.Meeting
+	 * @generated
+	 */
+	EClass getMeeting();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.task.Meeting#getLocation <em>Location</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Location</em>'.
+	 * @see org.unicase.model.task.Meeting#getLocation()
+	 * @see #getMeeting()
+	 * @generated
+	 */
+	EAttribute getMeeting_Location();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.task.Meeting#getTime <em>Time</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Time</em>'.
+	 * @see org.unicase.model.task.Meeting#getTime()
+	 * @see #getMeeting()
+	 * @generated
+	 */
+	EAttribute getMeeting_Time();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.task.Meeting#getPurpose <em>Purpose</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Purpose</em>'.
+	 * @see org.unicase.model.task.Meeting#getPurpose()
+	 * @see #getMeeting()
+	 * @generated
+	 */
+	EAttribute getMeeting_Purpose();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.model.task.Meeting#getFacilitator <em>Facilitator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Facilitator</em>'.
+	 * @see org.unicase.model.task.Meeting#getFacilitator()
+	 * @see #getMeeting()
+	 * @generated
+	 */
+	EReference getMeeting_Facilitator();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.model.task.Meeting#getScribe <em>Scribe</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Scribe</em>'.
+	 * @see org.unicase.model.task.Meeting#getScribe()
+	 * @see #getMeeting()
+	 * @generated
+	 */
+	EReference getMeeting_Scribe();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.task.Meeting#getParticipants <em>Participants</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Participants</em>'.
+	 * @see org.unicase.model.task.Meeting#getParticipants()
+	 * @see #getMeeting()
+	 * @generated
+	 */
+	EReference getMeeting_Participants();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.task.Meeting#getInformationExchange <em>Information Exchange</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Information Exchange</em>'.
+	 * @see org.unicase.model.task.Meeting#getInformationExchange()
+	 * @see #getMeeting()
+	 * @generated
+	 */
+	EAttribute getMeeting_InformationExchange();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.task.Meeting#getDiscussedActionItems <em>Discussed Action Items</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Discussed Action Items</em>'.
+	 * @see org.unicase.model.task.Meeting#getDiscussedActionItems()
+	 * @see #getMeeting()
+	 * @generated
+	 */
+	EReference getMeeting_DiscussedActionItems();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.task.Meeting#getDiscussedIssues <em>Discussed Issues</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Discussed Issues</em>'.
+	 * @see org.unicase.model.task.Meeting#getDiscussedIssues()
+	 * @see #getMeeting()
+	 * @generated
+	 */
+	EReference getMeeting_DiscussedIssues();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.model.task.Meeting#getIdentifiedActionItems <em>Identified Action Items</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Identified Action Items</em>'.
+	 * @see org.unicase.model.task.Meeting#getIdentifiedActionItems()
+	 * @see #getMeeting()
+	 * @generated
+	 */
+	EReference getMeeting_IdentifiedActionItems();
+
+	/**
 	 * Returns the factory that creates the instances of the model. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -590,6 +882,100 @@ public interface TaskPackage extends EPackage {
 		 */
 		EReference WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES = eINSTANCE
 				.getWorkItem_AssociatedChangePackages();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.task.impl.MeetingImpl <em>Meeting</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.task.impl.MeetingImpl
+		 * @see org.unicase.model.task.impl.TaskPackageImpl#getMeeting()
+		 * @generated
+		 */
+		EClass MEETING = eINSTANCE.getMeeting();
+
+		/**
+		 * The meta object literal for the '<em><b>Location</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MEETING__LOCATION = eINSTANCE.getMeeting_Location();
+
+		/**
+		 * The meta object literal for the '<em><b>Time</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MEETING__TIME = eINSTANCE.getMeeting_Time();
+
+		/**
+		 * The meta object literal for the '<em><b>Purpose</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MEETING__PURPOSE = eINSTANCE.getMeeting_Purpose();
+
+		/**
+		 * The meta object literal for the '<em><b>Facilitator</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MEETING__FACILITATOR = eINSTANCE.getMeeting_Facilitator();
+
+		/**
+		 * The meta object literal for the '<em><b>Scribe</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MEETING__SCRIBE = eINSTANCE.getMeeting_Scribe();
+
+		/**
+		 * The meta object literal for the '<em><b>Participants</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MEETING__PARTICIPANTS = eINSTANCE.getMeeting_Participants();
+
+		/**
+		 * The meta object literal for the '<em><b>Information Exchange</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MEETING__INFORMATION_EXCHANGE = eINSTANCE
+				.getMeeting_InformationExchange();
+
+		/**
+		 * The meta object literal for the '<em><b>Discussed Action Items</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MEETING__DISCUSSED_ACTION_ITEMS = eINSTANCE
+				.getMeeting_DiscussedActionItems();
+
+		/**
+		 * The meta object literal for the '<em><b>Discussed Issues</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MEETING__DISCUSSED_ISSUES = eINSTANCE
+				.getMeeting_DiscussedIssues();
+
+		/**
+		 * The meta object literal for the '<em><b>Identified Action Items</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MEETING__IDENTIFIED_ACTION_ITEMS = eINSTANCE
+				.getMeeting_IdentifiedActionItems();
 
 	}
 

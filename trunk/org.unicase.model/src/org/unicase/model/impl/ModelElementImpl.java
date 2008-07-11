@@ -7,6 +7,7 @@
 package org.unicase.model.impl;
 
 import java.util.Collection;
+import java.util.UUID;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -14,9 +15,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -41,7 +40,6 @@ import org.unicase.model.task.util.MEStateImpl;
  * <ul>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link org.unicase.model.impl.ModelElementImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getReaderInfos <em>Reader Infos</em>}</li>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getIncomingDocumentReferences <em>Incoming Document References</em>}</li>
@@ -51,8 +49,8 @@ import org.unicase.model.task.util.MEStateImpl;
  *
  * @generated
  */
-public abstract class ModelElementImpl extends EObjectImpl implements
-		ModelElement {
+public abstract class ModelElementImpl extends IdentifiableElementImpl
+		implements ModelElement {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -88,15 +86,6 @@ public abstract class ModelElementImpl extends EObjectImpl implements
 	 * @ordered
 	 */
 	protected String description = DESCRIPTION_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getIdentifier()
-	 * @generated
-	 * @ordered
-	 */
-	protected ModelElementId identifier;
 
 	/**
 	 * The cached value of the '{@link #getReaderInfos() <em>Reader Infos</em>}' containment reference list.
@@ -139,7 +128,7 @@ public abstract class ModelElementImpl extends EObjectImpl implements
 	 */
 	protected ModelElementImpl() {
 		super();
-		this.identifier = ModelFactory.eINSTANCE.createModelElementId();
+		this.identifier = UUID.randomUUID().toString();
 	}
 
 	// end of custom code
@@ -198,60 +187,6 @@ public abstract class ModelElementImpl extends EObjectImpl implements
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelElementId getIdentifier() {
-		return identifier;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetIdentifier(ModelElementId newIdentifier,
-			NotificationChain msgs) {
-		ModelElementId oldIdentifier = identifier;
-		identifier = newIdentifier;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET, ModelPackage.MODEL_ELEMENT__IDENTIFIER,
-					oldIdentifier, newIdentifier);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setIdentifier(ModelElementId newIdentifier) {
-		if (newIdentifier != identifier) {
-			NotificationChain msgs = null;
-			if (identifier != null)
-				msgs = ((InternalEObject) identifier).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE
-								- ModelPackage.MODEL_ELEMENT__IDENTIFIER, null,
-						msgs);
-			if (newIdentifier != null)
-				msgs = ((InternalEObject) newIdentifier).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE
-								- ModelPackage.MODEL_ELEMENT__IDENTIFIER, null,
-						msgs);
-			msgs = basicSetIdentifier(newIdentifier, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ModelPackage.MODEL_ELEMENT__IDENTIFIER, newIdentifier,
-					newIdentifier));
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<ReaderInfo> getReaderInfos() {
 		if (readerInfos == null) {
 			readerInfos = new EObjectContainmentEList<ReaderInfo>(
@@ -281,9 +216,10 @@ public abstract class ModelElementImpl extends EObjectImpl implements
 	 */
 	public EList<LeafSection> getIncomingDocumentReferences() {
 		if (incomingDocumentReferences == null) {
-			incomingDocumentReferences = new EObjectResolvingEList<LeafSection>(
+			incomingDocumentReferences = new EObjectWithInverseResolvingEList.ManyInverse<LeafSection>(
 					LeafSection.class, this,
-					ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES);
+					ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES,
+					DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS);
 		}
 		return incomingDocumentReferences;
 	}
@@ -387,6 +323,21 @@ public abstract class ModelElementImpl extends EObjectImpl implements
 
 		return meState;
 	}
+	
+	//begin of custom code
+	/**
+	 * {@inheritDoc}
+	 * @see org.unicase.model.ModelElement#getModelElementId()
+	 */
+	public ModelElementId getModelElementId() {
+		if (this.identifier==null) {
+			throw new IllegalStateException("Model element does not have an identifier");
+		}
+		ModelElementId modelElementId = ModelFactory.eINSTANCE.createModelElementId();
+		modelElementId.setId(this.identifier);
+		return modelElementId;
+	}
+	//end of custom code
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -399,6 +350,9 @@ public abstract class ModelElementImpl extends EObjectImpl implements
 		switch (featureID) {
 		case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAnnotations())
+					.basicAdd(otherEnd, msgs);
+		case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIncomingDocumentReferences())
 					.basicAdd(otherEnd, msgs);
 		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
 			if (eInternalContainer() != null)
@@ -416,14 +370,15 @@ public abstract class ModelElementImpl extends EObjectImpl implements
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ModelPackage.MODEL_ELEMENT__IDENTIFIER:
-			return basicSetIdentifier(null, msgs);
 		case ModelPackage.MODEL_ELEMENT__READER_INFOS:
 			return ((InternalEList<?>) getReaderInfos()).basicRemove(otherEnd,
 					msgs);
 		case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:
 			return ((InternalEList<?>) getAnnotations()).basicRemove(otherEnd,
 					msgs);
+		case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
+			return ((InternalEList<?>) getIncomingDocumentReferences())
+					.basicRemove(otherEnd, msgs);
 		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
 			return basicSetLeafSection(null, msgs);
 		}
@@ -457,8 +412,6 @@ public abstract class ModelElementImpl extends EObjectImpl implements
 			return getName();
 		case ModelPackage.MODEL_ELEMENT__DESCRIPTION:
 			return getDescription();
-		case ModelPackage.MODEL_ELEMENT__IDENTIFIER:
-			return getIdentifier();
 		case ModelPackage.MODEL_ELEMENT__READER_INFOS:
 			return getReaderInfos();
 		case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:
@@ -484,9 +437,6 @@ public abstract class ModelElementImpl extends EObjectImpl implements
 			return;
 		case ModelPackage.MODEL_ELEMENT__DESCRIPTION:
 			setDescription((String) newValue);
-			return;
-		case ModelPackage.MODEL_ELEMENT__IDENTIFIER:
-			setIdentifier((ModelElementId) newValue);
 			return;
 		case ModelPackage.MODEL_ELEMENT__READER_INFOS:
 			getReaderInfos().clear();
@@ -523,9 +473,6 @@ public abstract class ModelElementImpl extends EObjectImpl implements
 		case ModelPackage.MODEL_ELEMENT__DESCRIPTION:
 			setDescription(DESCRIPTION_EDEFAULT);
 			return;
-		case ModelPackage.MODEL_ELEMENT__IDENTIFIER:
-			setIdentifier((ModelElementId) null);
-			return;
 		case ModelPackage.MODEL_ELEMENT__READER_INFOS:
 			getReaderInfos().clear();
 			return;
@@ -555,8 +502,6 @@ public abstract class ModelElementImpl extends EObjectImpl implements
 		case ModelPackage.MODEL_ELEMENT__DESCRIPTION:
 			return DESCRIPTION_EDEFAULT == null ? description != null
 					: !DESCRIPTION_EDEFAULT.equals(description);
-		case ModelPackage.MODEL_ELEMENT__IDENTIFIER:
-			return identifier != null;
 		case ModelPackage.MODEL_ELEMENT__READER_INFOS:
 			return readerInfos != null && !readerInfos.isEmpty();
 		case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:

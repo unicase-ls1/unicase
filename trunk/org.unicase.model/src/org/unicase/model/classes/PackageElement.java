@@ -37,7 +37,7 @@ public interface PackageElement extends ModelElement {
 	 * @see #setParentPackage(org.unicase.model.classes.Package)
 	 * @see org.unicase.model.classes.ClassesPackage#getPackageElement_ParentPackage()
 	 * @see org.unicase.model.classes.Package#getContainedPackageElements
-	 * @model opposite="containedPackageElements" transient="false" derived="true"
+	 * @model opposite="containedPackageElements" keys="identifier" transient="false" derived="true"
 	 * @generated
 	 */
 	org.unicase.model.classes.Package getParentPackage();

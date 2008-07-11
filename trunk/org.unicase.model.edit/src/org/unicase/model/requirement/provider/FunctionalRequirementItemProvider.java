@@ -59,11 +59,11 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addReviewedPropertyDescriptor(object);
 			addStoryPointsPropertyDescriptor(object);
 			addPriorityPropertyDescriptor(object);
 			addUseCasesPropertyDescriptor(object);
 			addScenariosPropertyDescriptor(object);
+			addReviewedPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -231,9 +231,9 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(FunctionalRequirement.class)) {
-		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REVIEWED:
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__STORY_POINTS:
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__PRIORITY:
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REVIEWED:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), false, true));
 			return;

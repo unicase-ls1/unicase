@@ -11,8 +11,10 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.Annotation;
+import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.task.ActionItem;
+import org.unicase.model.task.Meeting;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
@@ -86,6 +88,16 @@ public class TaskAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseMeeting(Meeting object) {
+			return createMeetingAdapter();
+		}
+
+		@Override
+		public Adapter caseIdentifiableElement(IdentifiableElement object) {
+			return createIdentifiableElementAdapter();
+		}
+
+		@Override
 		public Adapter caseModelElement(ModelElement object) {
 			return createModelElementAdapter();
 		}
@@ -156,6 +168,34 @@ public class TaskAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createWorkItemAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.task.Meeting <em>Meeting</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.task.Meeting
+	 * @generated
+	 */
+	public Adapter createMeetingAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.IdentifiableElement <em>Identifiable Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.IdentifiableElement
+	 * @generated
+	 */
+	public Adapter createIdentifiableElementAdapter() {
 		return null;
 	}
 

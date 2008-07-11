@@ -41,7 +41,7 @@ public interface Scenario extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Steps</em>' containment reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getScenario_Steps()
-	 * @model containment="true"
+	 * @model containment="true" keys="identifier"
 	 * @generated
 	 */
 	EList<Step> getSteps();
@@ -59,7 +59,7 @@ public interface Scenario extends ModelElement {
 	 * @see #setInitiatingActorInstance(ActorInstance)
 	 * @see org.unicase.model.requirement.RequirementPackage#getScenario_InitiatingActorInstance()
 	 * @see org.unicase.model.requirement.ActorInstance#getInitiatedScenarios
-	 * @model opposite="initiatedScenarios"
+	 * @model opposite="initiatedScenarios" keys="identifier"
 	 * @generated
 	 */
 	ActorInstance getInitiatingActorInstance();
@@ -87,7 +87,7 @@ public interface Scenario extends ModelElement {
 	 * @return the value of the '<em>Participating Actor Instances</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getScenario_ParticipatingActorInstances()
 	 * @see org.unicase.model.requirement.ActorInstance#getParticipatedScenarios
-	 * @model opposite="participatedScenarios"
+	 * @model opposite="participatedScenarios" keys="identifier"
 	 * @generated
 	 */
 	EList<ActorInstance> getParticipatingActorInstances();
@@ -105,7 +105,7 @@ public interface Scenario extends ModelElement {
 	 * @return the value of the '<em>Instantiated Use Cases</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getScenario_InstantiatedUseCases()
 	 * @see org.unicase.model.requirement.UseCase#getScenarios
-	 * @model opposite="scenarios"
+	 * @model opposite="scenarios" keys="identifier"
 	 * @generated
 	 */
 	EList<UseCase> getInstantiatedUseCases();
@@ -123,7 +123,7 @@ public interface Scenario extends ModelElement {
 	 * @return the value of the '<em>Functional Requirements</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getScenario_FunctionalRequirements()
 	 * @see org.unicase.model.requirement.FunctionalRequirement#getScenarios
-	 * @model opposite="scenarios"
+	 * @model opposite="scenarios" keys="identifier"
 	 * @generated
 	 */
 	EList<FunctionalRequirement> getFunctionalRequirements();
@@ -141,7 +141,7 @@ public interface Scenario extends ModelElement {
 	 * @return the value of the '<em>Non Functional Requirements</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getScenario_NonFunctionalRequirements()
 	 * @see org.unicase.model.requirement.NonFunctionalRequirement#getRestrictedScenarios
-	 * @model opposite="restrictedScenarios"
+	 * @model opposite="restrictedScenarios" keys="identifier"
 	 * @generated
 	 */
 	EList<NonFunctionalRequirement> getNonFunctionalRequirements();

@@ -43,15 +43,6 @@ public interface OrganizationFactory extends EFactory {
 	OrgUnit createOrgUnit();
 
 	/**
-	 * Returns a new object of class '<em>Org Unit Id</em>'.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
-	 * @return a new object of class '<em>Org Unit Id</em>'.
-	 * @generated
-	 */
-	OrgUnitId createOrgUnitId();
-
-	/**
 	 * Returns a new object of class '<em>Group</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

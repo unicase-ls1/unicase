@@ -6,7 +6,9 @@
  */
 package org.unicase.model.diagram.impl;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -22,6 +24,7 @@ import org.unicase.model.component.ComponentPackage;
 import org.unicase.model.component.impl.ComponentPackageImpl;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.diagram.DiagramPackage;
+import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.impl.DocumentPackageImpl;
@@ -46,6 +49,13 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * @generated
 	 */
 	private EClass meDiagramEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum diagramTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -216,6 +226,24 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMEDiagram_Type() {
+		return (EAttribute) meDiagramEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getDiagramType() {
+		return diagramTypeEEnum;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -246,6 +274,10 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		createEReference(meDiagramEClass, ME_DIAGRAM__ELEMENTS);
 		createEReference(meDiagramEClass, ME_DIAGRAM__GMFDIAGRAM);
 		createEReference(meDiagramEClass, ME_DIAGRAM__NEW_ELEMENTS);
+		createEAttribute(meDiagramEClass, ME_DIAGRAM__TYPE);
+
+		// Create enums
+		diagramTypeEEnum = createEEnum(DIAGRAM_TYPE);
 	}
 
 	/**
@@ -292,6 +324,8 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 				MEDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		getMEDiagram_Elements().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getMEDiagram_Gmfdiagram(), theNotationPackage
 				.getDiagram(), null, "gmfdiagram", null, 0, 1, MEDiagram.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
@@ -302,6 +336,18 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 				MEDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		getMEDiagram_NewElements().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
+		initEAttribute(getMEDiagram_Type(), this.getDiagramType(), "type",
+				null, 0, 1, MEDiagram.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(diagramTypeEEnum, DiagramType.class, "DiagramType");
+		addEEnumLiteral(diagramTypeEEnum, DiagramType.CLASS_DIAGRAM);
+		addEEnumLiteral(diagramTypeEEnum, DiagramType.USECASE_DIAGRAM);
+		addEEnumLiteral(diagramTypeEEnum, DiagramType.COMPONENT_DIAGRAM);
 	}
 
 } // DiagramPackageImpl

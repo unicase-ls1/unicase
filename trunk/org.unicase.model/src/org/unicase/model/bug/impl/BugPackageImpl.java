@@ -403,6 +403,8 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 				BugReport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		getBugReport_StepsToReproduce().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 		initEAttribute(getBugReport_Status(), this.getBugStatus(), "Status",
 				null, 0, 1, BugReport.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
@@ -412,15 +414,21 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		getBugReport_AssignedTo().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getBugReport_Resolution(), this.getBugResolution(),
 				null, "resolution", null, 0, 1, BugReport.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getBugReport_Resolution().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getBugReport_InvolvedClasses(), theClassesPackage
 				.getClass_(), null, "involvedClasses", null, 0, -1,
 				BugReport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		getBugReport_InvolvedClasses().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 		initEAttribute(getBugReport_Severity(), this.getSeverity(), "severity",
 				null, 0, 1, BugReport.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
