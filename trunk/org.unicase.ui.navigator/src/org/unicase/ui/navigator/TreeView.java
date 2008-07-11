@@ -28,6 +28,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
+import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.meeditor.MEEditor;
 import org.unicase.ui.meeditor.MEEditorInput;
@@ -127,27 +128,11 @@ public class TreeView extends ViewPart {
 			return;
 		}
 		if (object instanceof ModelElement) {
+			ModelElement modelElement = (ModelElement) object;
 			if (object instanceof MEDiagram) {
-				ModelElement modelElement = (ModelElement) object;
-				URIEditorInput input = new URIEditorInput(URI
-						.createURI(modelElement.eResource().getURIFragment(
-								modelElement)));
-				try {
-					PlatformUI
-							.getWorkbench()
-							.getActiveWorkbenchWindow()
-							.getActivePage()
-							.openEditor(
-									input,
-									"org.unicase.model.classDiagram.part.ModelDiagramEditorID",
-									true);
-				} catch (PartInitException e) {
-					ErrorDialog.openError(PlatformUI.getWorkbench()
-							.getActiveWorkbenchWindow().getShell(), "Error", e
-							.getMessage(), e.getStatus());
-				}
+				openDiagram((MEDiagram) modelElement);
 			} else {
-				MEEditorInput input = new MEEditorInput((ModelElement) object);
+				MEEditorInput input = new MEEditorInput(modelElement);
 				try {
 					PlatformUI.getWorkbench().getActiveWorkbenchWindow()
 							.getActivePage().openEditor(input, MEEditor.ID,
@@ -160,5 +145,35 @@ public class TreeView extends ViewPart {
 			}
 		}
 
+	}
+
+	private void openDiagram(MEDiagram diagram) {
+		String id = null;
+		if(diagram.getType().equals(DiagramType.CLASS_DIAGRAM)){
+			id="org.unicase.model.classDiagram.part.ModelDiagramEditorID";
+		}
+		if(diagram.getType().equals(DiagramType.USECASE_DIAGRAM)){
+			id="org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorID";
+		}
+		if(id==null){
+			throw new RuntimeException("Unsupported diagram type");
+		}
+		URIEditorInput input = new URIEditorInput(URI
+				.createURI(diagram.eResource().getURIFragment(
+						diagram)));
+		try {
+			PlatformUI
+					.getWorkbench()
+					.getActiveWorkbenchWindow()
+					.getActivePage()
+					.openEditor(
+							input,
+							id,
+							true);
+		} catch (PartInitException e) {
+			ErrorDialog.openError(PlatformUI.getWorkbench()
+					.getActiveWorkbenchWindow().getShell(), "Error", e
+					.getMessage(), e.getStatus());
+		}
 	}
 }
