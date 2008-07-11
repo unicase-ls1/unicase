@@ -14,7 +14,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.ecore.xmi,
  org.unicase.workspace,
  org.eclipse.emf.transaction,
- org.eclipse.gmf.runtime.diagram.core
+ org.eclipse.gmf.runtime.diagram.core,
+ org.eclipse.core.expressions
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.emf.ecore.resource.impl
