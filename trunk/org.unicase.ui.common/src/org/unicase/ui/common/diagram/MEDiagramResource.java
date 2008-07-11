@@ -24,6 +24,7 @@ import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.workspace.WorkspaceManager;
 import org.w3c.dom.Document;
@@ -72,9 +73,18 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 
 	private void initialize() {
 		if (meDiagram.getGmfdiagram() == null) {
-			// Create gmf diagram
+			String id = null;
+			if(meDiagram.getType().equals(DiagramType.USECASE_DIAGRAM)){
+				id="UseCase";
+			}
+			if(meDiagram.getType().equals(DiagramType.CLASS_DIAGRAM)){
+				id="Model";
+			}
+			if(id==null){
+				throw new RuntimeException("Unsupported diagram type");
+			}
 			// JH: Build switch for different diagram types
-			diagram = ViewService.createDiagram(meDiagram, "UseCase",
+			diagram = ViewService.createDiagram(meDiagram, id,
 					new PreferencesHint("org.unicase.ui.componentDiagram"));
 			diagram.setElement(meDiagram);
 			TransactionalEditingDomain domain = TransactionUtil
