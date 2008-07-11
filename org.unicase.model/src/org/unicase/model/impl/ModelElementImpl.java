@@ -286,7 +286,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 				this.eContainer)) {
 			return ((ModelElement) this.eContainer()).getProject();
 		} else {
-			// FIXME MK
 			throw new IllegalStateException(
 					"ModelElement is not contained by any project");
 		}

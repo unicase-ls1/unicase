@@ -38,9 +38,9 @@ public final class RMIUtil {
 	 * @return String representation of the EObject
 	 * @throws IOException if a serialization problem occurs
 	 */
-	//FIXME: Exception
+	//OW: Exception
 	public static String eObjectToStringByResource(EObject object) throws IOException {
-		// TODO null safety
+		// OW null safety
 		Resource res = object.eResource();
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		res.save(out, null);
