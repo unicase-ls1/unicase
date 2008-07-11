@@ -708,18 +708,21 @@ public class TestProject {
 						// special case for name attribute
 						modelElement.setName(instance.eClass().getName() + ":"
 								+ random.nextInt(20000));
+						continue;
 					} else if (attribute.getName().equalsIgnoreCase(
 							"identifier")) {
 						// special case for identifier attribute
 						ModelElementId meId = ModelFactory.eINSTANCE
 								.createModelElementId();
 						modelElement.setIdentifier(meId.getId());
+						continue;
 					}
 
-				} else {
-					// create a random text
-					instance.eSet(attribute, getRandomText(instance.eClass()
-							.getName()));
+					// in any other case create a random text
+					//ZH, JH: this will cause "red stack zone access" problems when opening in editor, commented out
+//					instance.eSet(attribute, getRandomText(instance.eClass()
+//							.getName()));
+					continue;
 				}
 
 			}
