@@ -394,7 +394,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 		ConnectionManager connectionManager = this.getWorkspaceManager()
 				.getConnectionManager();
 
-		// FIXME:
+		// MK: fixme
 		// prepare serverInfo for send: copy and remove usersession
 		ServerInfo copy = (ServerInfo) EcoreUtil.copy(serverInfo);
 		copy.setLastUsersession(null);

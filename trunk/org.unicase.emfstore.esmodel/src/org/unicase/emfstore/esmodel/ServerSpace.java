@@ -121,7 +121,7 @@ public interface ServerSpace extends EObject {
 	 * @model
 	 * @generated NOT
 	 */
-	//FIXME: do we need this method?
+	//OW: do we need this method?
 	void setResource(Resource resource);
 
 } // ServerSpace
