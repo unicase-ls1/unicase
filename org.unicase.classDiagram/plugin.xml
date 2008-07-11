@@ -256,13 +256,13 @@
       </viewProvider>
    </extension>
 
-   <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
+  
+	<extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
       <?gmfgen generated="true"?>
       <editpartProvider class="org.unicase.model.classDiagram.providers.ModelEditPartProvider">
          <Priority name="Lowest"/>
       </editpartProvider>
    </extension>
-
    <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders">
       <?gmfgen generated="true"?>
       <modelingAssistantProvider class="org.unicase.model.classDiagram.providers.ModelModelingAssistantProvider">
@@ -318,23 +318,8 @@
       </metamodel>
    </extension>
 
-   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
-      <?gmfgen generated="true"?>
-      <clientContext id="ModelClientContext">
-         <enablement>
-            <test
-               property="org.eclipse.gmf.runtime.emf.core.editingDomain"
-               value="org.unicase.EditingDomain"/>
-         </enablement>
-      </clientContext> 
-      <binding context="ModelClientContext">
-         <elementType ref="org.unicase.classDiagram.MEDiagram_79"/>
-         <elementType ref="org.unicase.classDiagram.Class_1001"/>
-         <elementType ref="org.unicase.classDiagram.Association_3001"/>
-         <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
-      </binding>
-   </extension>
-	   <extension point="org.eclipse.core.expressions.propertyTesters">
+  
+	<extension point="org.eclipse.core.expressions.propertyTesters">
       <?gmfgen generated="true"?>
        <propertyTester
            id="org.unicase.classDiagram.URIEditorInputPropertyTester"
@@ -344,7 +329,7 @@
            class="org.unicase.model.classDiagram.part.ModelUriEditorInputTester">
        </propertyTester>
    </extension>
-
+	
 	   <extension point="org.eclipse.core.expressions.propertyTesters">
       <?gmfgen generated="true"?>
        <propertyTester
@@ -482,11 +467,6 @@
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="F5"/>
    </extension>
-   <extension
-         point="org.eclipse.emf.ecore.content_parser">
-      <parser
-            class="org.unicase.model.classDiagram.MEDiagramResource"
-            contentTypeIdentifier="MEDiagram">
-      </parser>
-   </extension>
+    
+  
 </plugin>
