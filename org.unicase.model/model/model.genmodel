@@ -52,7 +52,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Annotation/annotatedModelElements"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//IdentifiableElement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//IdentifiableElement/identifier"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//IdentifiableElement/identifier"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//ModelElementId"/>
     <nestedGenPackages prefix="Organization" basePackage="org.unicase.model" disposableProviderFactory="true"

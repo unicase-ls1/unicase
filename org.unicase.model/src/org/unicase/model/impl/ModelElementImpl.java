@@ -323,20 +323,23 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 		return meState;
 	}
-	
+
 	//begin of custom code
 	/**
 	 * {@inheritDoc}
 	 * @see org.unicase.model.ModelElement#getModelElementId()
 	 */
 	public ModelElementId getModelElementId() {
-		if (this.identifier==null) {
-			throw new IllegalStateException("Model element does not have an identifier");
+		if (this.identifier == null) {
+			throw new IllegalStateException(
+					"Model element does not have an identifier");
 		}
-		ModelElementId modelElementId = ModelFactory.eINSTANCE.createModelElementId();
+		ModelElementId modelElementId = ModelFactory.eINSTANCE
+				.createModelElementId();
 		modelElementId.setId(this.identifier);
 		return modelElementId;
 	}
+
 	//end of custom code
 
 	/**
