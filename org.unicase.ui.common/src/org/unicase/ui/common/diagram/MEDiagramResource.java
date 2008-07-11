@@ -30,14 +30,13 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
 
-
-
 public class MEDiagramResource extends ResourceImpl implements Resource,
 		Resource.Factory, Resource.Internal, XMLResource {
 
 	boolean initialized = false;
 	MEDiagram meDiagram;
 	Diagram diagram;
+	EList<EObject> list;
 
 	public MEDiagramResource() {
 		super();
@@ -63,20 +62,20 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	public EList<EObject> getContents() {
 		if (!initialized) {
 			initialize();
+			list = new BasicEList<EObject>();
+			list.add(meDiagram);
+			list.add(meDiagram.getGmfdiagram());
 			initialized = true;
 		}
-		// return super.getContents();
-		EList<EObject> list = new BasicEList<EObject>();
-		list.add(meDiagram);
-		list.add(meDiagram.getGmfdiagram());
 		return list;
 	}
 
 	private void initialize() {
 		if (meDiagram.getGmfdiagram() == null) {
 			// Create gmf diagram
-			//JH: Fix Preferences HINT
-			diagram = ViewService.createDiagram(meDiagram, "Model",	new PreferencesHint("org.unicase.ui.componentDiagram"));
+			// JH: Build switch for different diagram types
+			diagram = ViewService.createDiagram(meDiagram, "UseCase",
+					new PreferencesHint("org.unicase.ui.componentDiagram"));
 			diagram.setElement(meDiagram);
 			TransactionalEditingDomain domain = TransactionUtil
 					.getEditingDomain(meDiagram);
@@ -202,9 +201,8 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	public NotificationChain basicSetResourceSet(ResourceSet resourceSet,
 			NotificationChain notifications) {
 
-		
 		// JH Check what this is for. This is called and maybe causes trouble
-		 return super.basicSetResourceSet(resourceSet, notifications);
+		return super.basicSetResourceSet(resourceSet, notifications);
 
 	}
 
