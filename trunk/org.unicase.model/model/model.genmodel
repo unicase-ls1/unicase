@@ -118,7 +118,7 @@
             ecoreFeature="ecore:EReference model.ecore#//diagram/MEDiagram/elements"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//diagram/MEDiagram/gmfdiagram"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//diagram/MEDiagram/newElements"/>
+        <genFeatures property="None" createChild="false" ecoreFeature="ecore:EReference model.ecore#//diagram/MEDiagram/newElements"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//diagram/MEDiagram/type"/>
       </genClasses>
     </nestedGenPackages>
