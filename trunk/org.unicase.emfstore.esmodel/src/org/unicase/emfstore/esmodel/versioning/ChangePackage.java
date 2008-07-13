@@ -119,6 +119,6 @@ public interface ChangePackage extends EObject {
 	 * @model
 	 * @generated
 	 */
-	Project apply();
+	void apply(Project project);
 
 } // ChangePackage

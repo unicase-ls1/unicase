@@ -7,6 +7,7 @@ package org.unicase.emfstore.esmodel.versioning.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.change.ChangePackage;
@@ -619,8 +620,10 @@ public class VersioningPackageImpl extends EPackageImpl implements
 		addEOperation(changePackageEClass, this.getChangePackage(), "reverse",
 				0, 1, IS_UNIQUE, IS_ORDERED);
 
-		addEOperation(changePackageEClass, theModelPackage.getProject(),
-				"apply", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = addEOperation(changePackageEClass, null, "apply", 0, 1,
+				IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theModelPackage.getProject(), "project", 0, 1,
+				IS_UNIQUE, IS_ORDERED);
 
 		initEClass(historyInfoEClass, HistoryInfo.class, "HistoryInfo",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
