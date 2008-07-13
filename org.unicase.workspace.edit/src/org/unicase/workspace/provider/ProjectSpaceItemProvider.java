@@ -26,7 +26,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
-import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentFactory;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
 import org.unicase.model.provider.ProjectItemProvider;
 import org.unicase.workspace.ProjectSpace;
@@ -292,7 +292,7 @@ public class ProjectSpaceItemProvider extends ItemProviderAdapter implements
 
 		newChildDescriptors.add(createChildParameter(
 				WorkspacePackage.Literals.PROJECT_SPACE__BASE_VERSION,
-				ChangemanagmentFactory.eINSTANCE.createPrimaryVersionSpec()));
+				VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
 	}
 
 	/**

@@ -43,18 +43,18 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="savePassword" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProjectSpace">
-    <eOperations name="commit" eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//changemanagment/PrimaryVersionSpec"/>
+    <eOperations name="commit" eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/ChangePackage"/>
     <eOperations name="update"/>
-    <eOperations name="update">
-      <eParameters name="version" eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//changemanagment/VersionSpec"/>
+    <eOperations name="update" eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/ChangePackage">
+      <eParameters name="version" eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/VersionSpec"/>
     </eOperations>
     <eOperations name="revert"/>
     <eOperations name="save"/>
     <eOperations name="init"/>
     <eOperations name="getProjectInfo" eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//ProjectInfo"/>
     <eOperations name="isDirty" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eOperations name="resolveVersionSpec" eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//changemanagment/PrimaryVersionSpec">
-      <eParameters name="versionSpec" eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//changemanagment/VersionSpec"/>
+    <eOperations name="resolveVersionSpec" eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/PrimaryVersionSpec">
+      <eParameters name="versionSpec" eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/VersionSpec"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"
         containment="true"/>
@@ -65,12 +65,12 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="projectDescription" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="localChanges" eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//changemanagment/ChangePackage"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="localChanges" eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/ChangePackage"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="usersession" eType="#//Usersession"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastUpdated" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="baseVersion" lowerBound="1"
-        eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//changemanagment/PrimaryVersionSpec"
+        eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/PrimaryVersionSpec"
         containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

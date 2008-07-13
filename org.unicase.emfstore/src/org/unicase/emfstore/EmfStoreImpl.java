@@ -21,14 +21,14 @@ import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.esmodel.SessionId;
-import org.unicase.emfstore.esmodel.changemanagment.ChangePackage;
-import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentFactory;
-import org.unicase.emfstore.esmodel.changemanagment.HeadVersionSpec;
-import org.unicase.emfstore.esmodel.changemanagment.HistoryInfo;
-import org.unicase.emfstore.esmodel.changemanagment.LogMessage;
-import org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec;
-import org.unicase.emfstore.esmodel.changemanagment.Version;
-import org.unicase.emfstore.esmodel.changemanagment.VersionSpec;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.HeadVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
+import org.unicase.emfstore.esmodel.versioning.LogMessage;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.Version;
+import org.unicase.emfstore.esmodel.versioning.VersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidProjectIdException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
@@ -80,11 +80,11 @@ public class EmfStoreImpl implements EmfStore {
 			throw new InvalidVersionSpecException("");
 		}
 
-		PrimaryVersionSpec finalVersion = ChangemanagmentFactory.eINSTANCE
+		PrimaryVersionSpec finalVersion = VersioningFactory.eINSTANCE
 				.createPrimaryVersionSpec();
 		finalVersion.setIdentifier(baseVersionSpec.getIdentifier() + 1);
 		
-		Version version = ChangemanagmentFactory.eINSTANCE.createVersion();
+		Version version = VersioningFactory.eINSTANCE.createVersion();
 		
 		Version previousHeadVersion = versions.get(versions.size() - 1);
 		
@@ -148,7 +148,7 @@ public class EmfStoreImpl implements EmfStore {
 		List<HistoryInfo> result = new ArrayList<HistoryInfo>();
 		for (Version version : getVersions(projectId, resolveVersionSpec(
 				projectId, source), resolveVersionSpec(projectId, target))) {
-			HistoryInfo history = ChangemanagmentFactory.eINSTANCE
+			HistoryInfo history = VersioningFactory.eINSTANCE
 					.createHistoryInfo();
 			history.setLogMessage(version.getLogMessage());
 			history.setPrimerySpec(version.getPrimarySpec());
@@ -203,9 +203,9 @@ public class EmfStoreImpl implements EmfStore {
 		projectHistory.setProjectDescription(description);
 		projectHistory.setProjectId(EsmodelFactory.eINSTANCE.createProjectId());
 		// create a initial version without previous and change package
-		Version firstVersion = ChangemanagmentFactory.eINSTANCE.createVersion();
+		Version firstVersion = VersioningFactory.eINSTANCE.createVersion();
 		firstVersion.setLogMessage(logMessage);
-		PrimaryVersionSpec primary = ChangemanagmentFactory.eINSTANCE
+		PrimaryVersionSpec primary = VersioningFactory.eINSTANCE
 				.createPrimaryVersionSpec();
 		primary.setIdentifier(0);
 		firstVersion.setPrimarySpec(primary);

@@ -18,8 +18,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
-import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentFactory;
-import org.unicase.emfstore.esmodel.changemanagment.LogMessage;
+import org.unicase.emfstore.esmodel.versioning.LogMessage;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
@@ -576,7 +576,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 			throws AccessControlException, EmfStoreException {
 		ConnectionManager connectionManager = this.getWorkspaceManager()
 				.getConnectionManager();
-		LogMessage log = ChangemanagmentFactory.eINSTANCE.createLogMessage();
+		LogMessage log = VersioningFactory.eINSTANCE.createLogMessage();
 		log.setMessage("Creating project '" + name + "'");
 		log.setAuthor(this.getUsername());
 		log.setDate(new Date());

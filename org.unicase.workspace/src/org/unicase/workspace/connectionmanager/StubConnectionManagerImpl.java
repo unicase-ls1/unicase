@@ -14,14 +14,13 @@ import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
-import org.unicase.emfstore.esmodel.changemanagment.ChangePackage;
-import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentFactory;
-import org.unicase.emfstore.esmodel.changemanagment.HeadVersionSpec;
-import org.unicase.emfstore.esmodel.changemanagment.HistoryInfo;
-import org.unicase.emfstore.esmodel.changemanagment.LogMessage;
-import org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec;
-import org.unicase.emfstore.esmodel.changemanagment.VersionSpec;
-import org.unicase.emfstore.esmodel.changemanagment.impl.ChangemanagmentFactoryImpl;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.HeadVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
+import org.unicase.emfstore.esmodel.versioning.LogMessage;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.Project;
@@ -41,9 +40,9 @@ public class StubConnectionManagerImpl implements ConnectionManager {
 	 * 
 	 * @see org.unicase.emfstore.EmfStore#createVersion(org.unicase.emfstore.esmodel.SessionId,
 	 *      org.unicase.emfstore.esmodel.ProjectId,
-	 *      org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec,
-	 *      org.unicase.emfstore.esmodel.changemanagment.ChangePackage,
-	 *      org.unicase.emfstore.esmodel.changemanagment.LogMessage)
+	 *      org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec,
+	 *      org.unicase.emfstore.esmodel.versioning.ChangePackage,
+	 *      org.unicase.emfstore.esmodel.versioning.LogMessage)
 	 */
 	public PrimaryVersionSpec createVersion(SessionId sessionId,
 			ProjectId projectId, PrimaryVersionSpec baseVersionSpec,
@@ -57,8 +56,8 @@ public class StubConnectionManagerImpl implements ConnectionManager {
 	 * 
 	 * @see org.unicase.emfstore.EmfStore#getChanges(org.unicase.emfstore.esmodel.SessionId,
 	 *      org.unicase.emfstore.esmodel.ProjectId,
-	 *      org.unicase.emfstore.esmodel.changemanagment.VersionSpec,
-	 *      org.unicase.emfstore.esmodel.changemanagment.VersionSpec)
+	 *      org.unicase.emfstore.esmodel.versioning.VersionSpec,
+	 *      org.unicase.emfstore.esmodel.versioning.VersionSpec)
 	 */
 	public List<ChangePackage> getChanges(SessionId sessionId,
 			ProjectId projectId, VersionSpec source, VersionSpec target)
@@ -71,8 +70,8 @@ public class StubConnectionManagerImpl implements ConnectionManager {
 	 * 
 	 * @see org.unicase.emfstore.EmfStore#getHistoryInfo(org.unicase.emfstore.esmodel.SessionId,
 	 *      org.unicase.emfstore.esmodel.ProjectId,
-	 *      org.unicase.emfstore.esmodel.changemanagment.VersionSpec,
-	 *      org.unicase.emfstore.esmodel.changemanagment.VersionSpec)
+	 *      org.unicase.emfstore.esmodel.versioning.VersionSpec,
+	 *      org.unicase.emfstore.esmodel.versioning.VersionSpec)
 	 */
 	public List<HistoryInfo> getHistoryInfo(SessionId sessionId,
 			ProjectId projectId, VersionSpec source, VersionSpec target)
@@ -85,7 +84,7 @@ public class StubConnectionManagerImpl implements ConnectionManager {
 	 * 
 	 * @see org.unicase.emfstore.EmfStore#getProject(org.unicase.emfstore.esmodel.SessionId,
 	 *      org.unicase.emfstore.esmodel.ProjectId,
-	 *      org.unicase.emfstore.esmodel.changemanagment.VersionSpec)
+	 *      org.unicase.emfstore.esmodel.versioning.VersionSpec)
 	 */
 	public Project getProject(SessionId sessionId, ProjectId projectId,
 			VersionSpec versionSpec) throws ConnectionException {
@@ -103,7 +102,7 @@ public class StubConnectionManagerImpl implements ConnectionManager {
 
 		ProjectId projectId = EsmodelFactory.eINSTANCE.createProjectId();
 
-		HeadVersionSpec headVersionSpec = ChangemanagmentFactoryImpl.eINSTANCE
+		HeadVersionSpec headVersionSpec = VersioningFactory.eINSTANCE
 				.createHeadVersionSpec();
 
 		ProjectInfo projectInfo = EsmodelFactory.eINSTANCE.createProjectInfo();
@@ -133,11 +132,11 @@ public class StubConnectionManagerImpl implements ConnectionManager {
 	 * 
 	 * @see org.unicase.emfstore.EmfStore#resolveVersionSpec(org.unicase.emfstore.esmodel.SessionId,
 	 *      org.unicase.emfstore.esmodel.ProjectId,
-	 *      org.unicase.emfstore.esmodel.changemanagment.VersionSpec)
+	 *      org.unicase.emfstore.esmodel.versioning.VersionSpec)
 	 */
 	public PrimaryVersionSpec resolveVersionSpec(SessionId sessionId,
 			ProjectId projectId, VersionSpec versionSpec) {
-		PrimaryVersionSpec primaryVersionSpec = ChangemanagmentFactory.eINSTANCE
+		PrimaryVersionSpec primaryVersionSpec = VersioningFactory.eINSTANCE
 				.createPrimaryVersionSpec();
 		primaryVersionSpec.setIdentifier(1);
 		return primaryVersionSpec;
@@ -148,7 +147,7 @@ public class StubConnectionManagerImpl implements ConnectionManager {
 	 * 
 	 * @see org.unicase.emfstore.EmfStore#createProject(org.unicase.emfstore.esmodel.SessionId,
 	 *      java.lang.String, java.lang.String,
-	 *      org.unicase.emfstore.esmodel.changemanagment.LogMessage)
+	 *      org.unicase.emfstore.esmodel.versioning.LogMessage)
 	 */
 	public ProjectInfo createProject(SessionId sessionid, String name,
 			String description, LogMessage logMessage) throws EmfStoreException {

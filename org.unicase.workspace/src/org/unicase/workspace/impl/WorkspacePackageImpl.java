@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
-import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentPackage;
+import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
@@ -430,8 +430,8 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 				.getEPackage(EsmodelPackage.eNS_URI);
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE
 				.getEPackage(ModelPackage.eNS_URI);
-		ChangemanagmentPackage theChangemanagmentPackage = (ChangemanagmentPackage) EPackage.Registry.INSTANCE
-				.getEPackage(ChangemanagmentPackage.eNS_URI);
+		VersioningPackage theVersioningPackage = (VersioningPackage) EPackage.Registry.INSTANCE
+				.getEPackage(VersioningPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -557,11 +557,11 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 				.getEString(), "projectDescription", null, 1, 1,
 				ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProjectSpace_LocalChanges(),
-				theChangemanagmentPackage.getChangePackage(), null,
-				"localChanges", null, 0, 1, ProjectSpace.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProjectSpace_LocalChanges(), theVersioningPackage
+				.getChangePackage(), null, "localChanges", null, 0, 1,
+				ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 		initEReference(getProjectSpace_Usersession(), this.getUsersession(),
 				null, "usersession", null, 0, 1, ProjectSpace.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
@@ -571,22 +571,22 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 				"lastUpdated", null, 0, 1, ProjectSpace.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		initEReference(getProjectSpace_BaseVersion(), theChangemanagmentPackage
+		initEReference(getProjectSpace_BaseVersion(), theVersioningPackage
 				.getPrimaryVersionSpec(), null, "baseVersion", null, 1, 1,
 				ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 
-		addEOperation(projectSpaceEClass, theChangemanagmentPackage
-				.getPrimaryVersionSpec(), "commit", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(projectSpaceEClass, theVersioningPackage
+				.getChangePackage(), "commit", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		addEOperation(projectSpaceEClass, null, "update", 0, 1, IS_UNIQUE,
 				IS_ORDERED);
 
-		op = addEOperation(projectSpaceEClass, null, "update", 0, 1, IS_UNIQUE,
-				IS_ORDERED);
-		addEParameter(op, theChangemanagmentPackage.getVersionSpec(),
-				"version", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(projectSpaceEClass, theVersioningPackage
+				.getChangePackage(), "update", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theVersioningPackage.getVersionSpec(), "version", 0,
+				1, IS_UNIQUE, IS_ORDERED);
 
 		addEOperation(projectSpaceEClass, null, "revert", 0, 1, IS_UNIQUE,
 				IS_ORDERED);
@@ -603,11 +603,11 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 		addEOperation(projectSpaceEClass, ecorePackage.getEBoolean(),
 				"isDirty", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(projectSpaceEClass, theChangemanagmentPackage
+		op = addEOperation(projectSpaceEClass, theVersioningPackage
 				.getPrimaryVersionSpec(), "resolveVersionSpec", 0, 1,
 				IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theChangemanagmentPackage.getVersionSpec(),
-				"versionSpec", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theVersioningPackage.getVersionSpec(), "versionSpec",
+				0, 1, IS_UNIQUE, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

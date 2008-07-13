@@ -33,8 +33,8 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
-import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentFactory;
-import org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelFactory;
@@ -177,7 +177,7 @@ public class TestProject {
 		final ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE
 				.createProjectSpace();
 		projectSpace.setProject(project);
-		PrimaryVersionSpec primaryVersionSpec = ChangemanagmentFactory.eINSTANCE
+		PrimaryVersionSpec primaryVersionSpec = VersioningFactory.eINSTANCE
 				.createPrimaryVersionSpec();
 		primaryVersionSpec.setIdentifier(999999);
 		projectSpace.setBaseVersion(primaryVersionSpec);
