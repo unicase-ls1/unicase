@@ -17,14 +17,14 @@ import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.esmodel.SessionId;
-import org.unicase.emfstore.esmodel.changemanagment.ChangePackage;
-import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentFactory;
-import org.unicase.emfstore.esmodel.changemanagment.HistoryInfo;
-import org.unicase.emfstore.esmodel.changemanagment.LogMessage;
-import org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec;
-import org.unicase.emfstore.esmodel.changemanagment.TagVersionSpec;
-import org.unicase.emfstore.esmodel.changemanagment.Version;
-import org.unicase.emfstore.esmodel.changemanagment.VersionSpec;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
+import org.unicase.emfstore.esmodel.versioning.LogMessage;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.Version;
+import org.unicase.emfstore.esmodel.versioning.VersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.Project;
@@ -45,7 +45,7 @@ public class EmfStoreStub implements EmfStore {
 
 	/** 
 	 * {@inheritDoc}
-	 * @see org.unicase.emfstore.EmfStore#createVersion(org.unicase.emfstore.esmodel.SessionId, org.unicase.emfstore.esmodel.ProjectId, org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec, org.unicase.emfstore.esmodel.changemanagment.ChangePackage, org.unicase.emfstore.esmodel.changemanagment.LogMessage)
+	 * @see org.unicase.emfstore.EmfStore#createVersion(org.unicase.emfstore.esmodel.SessionId, org.unicase.emfstore.esmodel.ProjectId, org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec, org.unicase.emfstore.esmodel.versioning.ChangePackage, org.unicase.emfstore.esmodel.versioning.LogMessage)
 	 */
 	public PrimaryVersionSpec createVersion(SessionId sessionId,
 			ProjectId projectId, PrimaryVersionSpec baseVersionSpec,
@@ -57,7 +57,7 @@ public class EmfStoreStub implements EmfStore {
 
 	/** 
 	 * {@inheritDoc}
-	 * @see org.unicase.emfstore.EmfStore#getChanges(org.unicase.emfstore.esmodel.SessionId, org.unicase.emfstore.esmodel.ProjectId, org.unicase.emfstore.esmodel.changemanagment.VersionSpec, org.unicase.emfstore.esmodel.changemanagment.VersionSpec)
+	 * @see org.unicase.emfstore.EmfStore#getChanges(org.unicase.emfstore.esmodel.SessionId, org.unicase.emfstore.esmodel.ProjectId, org.unicase.emfstore.esmodel.versioning.VersionSpec, org.unicase.emfstore.esmodel.versioning.VersionSpec)
 	 */
 	public List<ChangePackage> getChanges(SessionId sessionId,
 			ProjectId projectId, VersionSpec source, VersionSpec target)
@@ -68,7 +68,7 @@ public class EmfStoreStub implements EmfStore {
 
 	/** 
 	 * {@inheritDoc}
-	 * @see org.unicase.emfstore.EmfStore#getHistoryInfo(org.unicase.emfstore.esmodel.SessionId, org.unicase.emfstore.esmodel.ProjectId, org.unicase.emfstore.esmodel.changemanagment.VersionSpec, org.unicase.emfstore.esmodel.changemanagment.VersionSpec)
+	 * @see org.unicase.emfstore.EmfStore#getHistoryInfo(org.unicase.emfstore.esmodel.SessionId, org.unicase.emfstore.esmodel.ProjectId, org.unicase.emfstore.esmodel.versioning.VersionSpec, org.unicase.emfstore.esmodel.versioning.VersionSpec)
 	 */
 	public List<HistoryInfo> getHistoryInfo(SessionId sessionId,
 			ProjectId projectId, VersionSpec source, VersionSpec target)
@@ -79,7 +79,7 @@ public class EmfStoreStub implements EmfStore {
 
 	/** 
 	 * {@inheritDoc}
-	 * @see org.unicase.emfstore.EmfStore#getProject(org.unicase.emfstore.esmodel.SessionId, org.unicase.emfstore.esmodel.ProjectId, org.unicase.emfstore.esmodel.changemanagment.VersionSpec)
+	 * @see org.unicase.emfstore.EmfStore#getProject(org.unicase.emfstore.esmodel.SessionId, org.unicase.emfstore.esmodel.ProjectId, org.unicase.emfstore.esmodel.versioning.VersionSpec)
 	 */
 	public Project getProject(SessionId sessionId, ProjectId projectId,
 			VersionSpec versionSpec) throws EmfStoreException {
@@ -100,7 +100,7 @@ public class EmfStoreStub implements EmfStore {
 		projectInfo.setName("TestProject");
 		projectInfo.setDescription("A test Project");
 		projectInfo.setProjectId(projectId);
-		projectInfo.setVersion(ChangemanagmentFactory.eINSTANCE
+		projectInfo.setVersion(VersioningFactory.eINSTANCE
 				.createPrimaryVersionSpec());
 
 		ret.add(projectInfo);
@@ -109,12 +109,12 @@ public class EmfStoreStub implements EmfStore {
 
 	/** 
 	 * {@inheritDoc}
-	 * @see org.unicase.emfstore.EmfStore#resolveVersionSpec(org.unicase.emfstore.esmodel.SessionId, org.unicase.emfstore.esmodel.ProjectId, org.unicase.emfstore.esmodel.changemanagment.VersionSpec)
+	 * @see org.unicase.emfstore.EmfStore#resolveVersionSpec(org.unicase.emfstore.esmodel.SessionId, org.unicase.emfstore.esmodel.ProjectId, org.unicase.emfstore.esmodel.versioning.VersionSpec)
 	 */
 	public PrimaryVersionSpec resolveVersionSpec(SessionId sessionId,
 			ProjectId projectId, VersionSpec versionSpec)
 			throws EmfStoreException {
-		PrimaryVersionSpec primaryVersionSpec = ChangemanagmentFactory.eINSTANCE
+		PrimaryVersionSpec primaryVersionSpec = VersioningFactory.eINSTANCE
 				.createPrimaryVersionSpec();
 		primaryVersionSpec.setIdentifier(1);
 		return primaryVersionSpec;
@@ -228,10 +228,10 @@ public class EmfStoreStub implements EmfStore {
 		projectHistory.setProjectDescription("This is a autogen test project");
 		projectHistory.setProjectId(esmodelFactory.createProjectId());
 		projectHistory.setProjectName("TestProject1");
-		ChangemanagmentFactory changemanagmentFactory = ChangemanagmentFactory.eINSTANCE;
+		VersioningFactory changemanagmentFactory = VersioningFactory.eINSTANCE;
 
 		// create Version
-		ChangemanagmentFactory changemanagmentFactory2 = changemanagmentFactory;
+		VersioningFactory changemanagmentFactory2 = changemanagmentFactory;
 		Version version = changemanagmentFactory2.createVersion();
 		TagVersionSpec tagVersionSpec = changemanagmentFactory2
 				.createTagVersionSpec();
@@ -254,7 +254,7 @@ public class EmfStoreStub implements EmfStore {
 
 	/** 
 	 * {@inheritDoc}
-	 * @see org.unicase.emfstore.EmfStore#createProject(org.unicase.emfstore.esmodel.SessionId, java.lang.String, java.lang.String, org.unicase.emfstore.esmodel.changemanagment.LogMessage)
+	 * @see org.unicase.emfstore.EmfStore#createProject(org.unicase.emfstore.esmodel.SessionId, java.lang.String, java.lang.String, org.unicase.emfstore.esmodel.versioning.LogMessage)
 	 */
 	public ProjectInfo createProject(SessionId sessionId, String name,
 			String description, LogMessage logMessage) throws EmfStoreException {
@@ -264,10 +264,10 @@ public class EmfStoreStub implements EmfStore {
 		projectHistory.setProjectDescription(description);
 		projectHistory.setProjectId(EsmodelFactory.eINSTANCE.createProjectId());
 
-		Version firstVersion = ChangemanagmentFactory.eINSTANCE.createVersion();
+		Version firstVersion = VersioningFactory.eINSTANCE.createVersion();
 		firstVersion.setLogMessage(logMessage);
 
-		PrimaryVersionSpec primary = ChangemanagmentFactory.eINSTANCE
+		PrimaryVersionSpec primary = VersioningFactory.eINSTANCE
 				.createPrimaryVersionSpec();
 		primary.setIdentifier(0);
 		firstVersion.setPrimarySpec(primary);

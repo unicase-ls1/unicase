@@ -7,7 +7,7 @@
 package org.unicase.emfstore.esmodel;
 
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '

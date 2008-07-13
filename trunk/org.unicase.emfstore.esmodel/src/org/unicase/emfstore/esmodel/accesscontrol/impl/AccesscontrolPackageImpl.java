@@ -21,11 +21,9 @@ import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RolesPackageImpl;
-import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentPackage;
-import org.unicase.emfstore.esmodel.changemanagment.changepackage.ChangepackagePackage;
-import org.unicase.emfstore.esmodel.changemanagment.changepackage.impl.ChangepackagePackageImpl;
-import org.unicase.emfstore.esmodel.changemanagment.impl.ChangemanagmentPackageImpl;
 import org.unicase.emfstore.esmodel.impl.EsmodelPackageImpl;
+import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
+import org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl;
 import org.unicase.model.ModelPackage;
 
 /**
@@ -99,7 +97,8 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements
 	 * those of another.
 	 * <p>Invocation of this method will not affect any packages that have
 	 * already been initialized.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -127,14 +126,10 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements
 				.getEPackage(EsmodelPackage.eNS_URI) instanceof EsmodelPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(EsmodelPackage.eNS_URI)
 				: EsmodelPackage.eINSTANCE);
-		ChangemanagmentPackageImpl theChangemanagmentPackage = (ChangemanagmentPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(ChangemanagmentPackage.eNS_URI) instanceof ChangemanagmentPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ChangemanagmentPackage.eNS_URI)
-				: ChangemanagmentPackage.eINSTANCE);
-		ChangepackagePackageImpl theChangepackagePackage = (ChangepackagePackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(ChangepackagePackage.eNS_URI) instanceof ChangepackagePackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ChangepackagePackage.eNS_URI)
-				: ChangepackagePackage.eINSTANCE);
+		VersioningPackageImpl theVersioningPackage = (VersioningPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(VersioningPackage.eNS_URI) instanceof VersioningPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(VersioningPackage.eNS_URI)
+				: VersioningPackage.eINSTANCE);
 		RolesPackageImpl theRolesPackage = (RolesPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(RolesPackage.eNS_URI) instanceof RolesPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(RolesPackage.eNS_URI)
@@ -143,15 +138,13 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements
 		// Create package meta-data objects
 		theAccesscontrolPackage.createPackageContents();
 		theEsmodelPackage.createPackageContents();
-		theChangemanagmentPackage.createPackageContents();
-		theChangepackagePackage.createPackageContents();
+		theVersioningPackage.createPackageContents();
 		theRolesPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theAccesscontrolPackage.initializePackageContents();
 		theEsmodelPackage.initializePackageContents();
-		theChangemanagmentPackage.initializePackageContents();
-		theChangepackagePackage.initializePackageContents();
+		theVersioningPackage.initializePackageContents();
 		theRolesPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed

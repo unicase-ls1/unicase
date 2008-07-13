@@ -8,7 +8,7 @@ package org.unicase.emfstore.esmodel;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.emfstore.esmodel.changemanagment.Version;
+import org.unicase.emfstore.esmodel.versioning.Version;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '
@@ -58,7 +58,7 @@ public interface ProjectHistory extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Versions</b></em>' containment reference
 	 * list. The list contents are of type
-	 * {@link org.unicase.emfstore.esmodel.changemanagment.Version}. <!--
+	 * {@link org.unicase.emfstore.esmodel.versioning.Version}. <!--
 	 * begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Versions</em>' containment reference list
