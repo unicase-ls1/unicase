@@ -113,4 +113,12 @@ public interface ChangePackage extends EObject {
 	 */
 	ChangePackage reverse();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	Project apply();
+
 } // ChangePackage

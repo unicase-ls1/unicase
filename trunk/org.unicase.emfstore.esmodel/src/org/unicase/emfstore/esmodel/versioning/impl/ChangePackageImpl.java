@@ -269,6 +269,17 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Project apply() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
 	//end of custom code
 
 	/**
