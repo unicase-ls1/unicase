@@ -619,6 +619,9 @@ public class VersioningPackageImpl extends EPackageImpl implements
 		addEOperation(changePackageEClass, this.getChangePackage(), "reverse",
 				0, 1, IS_UNIQUE, IS_ORDERED);
 
+		addEOperation(changePackageEClass, theModelPackage.getProject(),
+				"apply", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(historyInfoEClass, HistoryInfo.class, "HistoryInfo",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getHistoryInfo_PrimerySpec(), this

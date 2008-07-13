@@ -50,6 +50,7 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/ChangePackage/backwardDelta"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/ChangePackage/projectState"/>
         <genOperations ecoreOperation="esmodel.ecore#//versioning/ChangePackage/reverse"/>
+        <genOperations ecoreOperation="esmodel.ecore#//versioning/ChangePackage/apply"/>
       </genClasses>
       <genClasses ecoreClass="esmodel.ecore#//versioning/HistoryInfo">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
