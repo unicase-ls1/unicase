@@ -147,16 +147,16 @@ public class AnnotateActionItemHandler extends AbstractHandler {
 			handlerService.executeCommand(MEEDITOR_OPENMODELELEMENT_COMMAND_ID,
 					null);
 		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
+			// ZH Auto-generated catch block
 			e.printStackTrace();
 		} catch (NotDefinedException e) {
-			// TODO Auto-generated catch block
+			// ZH Auto-generated catch block
 			e.printStackTrace();
 		} catch (NotEnabledException e) {
-			// TODO Auto-generated catch block
+			// ZH Auto-generated catch block
 			e.printStackTrace();
 		} catch (NotHandledException e) {
-			// TODO Auto-generated catch block
+			// ZH Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -167,7 +167,7 @@ public class AnnotateActionItemHandler extends AbstractHandler {
 	 */
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
+		// ZH Auto-generated method stub
 		return true;
 	}
 
@@ -176,7 +176,7 @@ public class AnnotateActionItemHandler extends AbstractHandler {
 	 */
 	@Override
 	public boolean isHandled() {
-		// TODO Auto-generated method stub
+		// ZH Auto-generated method stub
 		return true;
 	}
 

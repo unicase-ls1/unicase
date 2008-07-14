@@ -8,7 +8,9 @@ package org.unicase.emfstore.esmodel.versioning;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '
- * <em><b>Primary Version Spec</b></em>'. <!-- end-user-doc -->
+ * <em><b>Primary Version Spec</b></em>'. 
+ * @extends Comparable<PrimaryVersionSpec>
+ * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
@@ -21,7 +23,8 @@ package org.unicase.emfstore.esmodel.versioning;
  * @model
  * @generated
  */
-public interface PrimaryVersionSpec extends VersionSpec {
+public interface PrimaryVersionSpec extends VersionSpec,
+		Comparable<PrimaryVersionSpec> {
 	/**
 	 * Returns the value of the '<em><b>Identifier</b></em>' attribute. <!--
 	 * begin-user-doc -->

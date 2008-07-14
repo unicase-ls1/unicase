@@ -15,9 +15,6 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.unicase.emfstore.EmfStore;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.accesscontrol.AuthenticationControl;
@@ -28,10 +25,8 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.model.Project;
 
 /**
  * Implementation of a RMIEmfStoreFacade.
@@ -120,29 +115,8 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 					.stringToEObject(projectId), (VersionSpec) RMIUtil
 					.stringToEObject(source), (VersionSpec) RMIUtil
 					.stringToEObject(target))) {
-				// FIMXE: put this somewhere else
-				// integrate project into one resource set with change package for
-				// serialization
-				ResourceSet tempResourceSet = new ResourceSetImpl();
-				// disconnect project and add to virtual resource
-				Project project = cp.getProjectState();
-				Version oldProjectContainer = (Version)project.eContainer();
-				Resource projectResource = tempResourceSet
-						.createResource(EmfStore.PROJECT_URI);
-				projectResource.getContents().add(project);
-				// disconnect change package and add to virtual resource
-				Version oldCPContainer = (Version)cp.eContainer();
-				Resource changePackageResource = tempResourceSet
-				.createResource(EmfStore.CHANGEPACKAGE_URI);
-				changePackageResource.getContents().add(cp);
-				
-				// remove backward delta information
+
 				result.add(RMIUtil.eObjectToStringByResource(cp));
-				
-				//restore containers
-				oldCPContainer.setChanges(cp);
-				oldProjectContainer.setProjectState(project);
-			
 			}
 			return result;
 		} catch (UnsupportedEncodingException e) {

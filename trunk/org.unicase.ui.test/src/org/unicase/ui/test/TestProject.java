@@ -177,6 +177,7 @@ public class TestProject {
 		final ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE
 				.createProjectSpace();
 		projectSpace.setProject(project);
+		projectSpace.init();
 		PrimaryVersionSpec primaryVersionSpec = VersioningFactory.eINSTANCE
 				.createPrimaryVersionSpec();
 		primaryVersionSpec.setIdentifier(999999);

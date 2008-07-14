@@ -98,7 +98,7 @@ public class DiagramNewElementsList implements EList<ModelElement> {
 	}
 
 	public ModelElement remove(int arg0) {
-		// TODO Auto-generated method stub
+		// JH
 		return elements.remove(arg0);
 	}
 

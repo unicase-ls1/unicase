@@ -51,8 +51,7 @@ public class EmfStoreStub implements EmfStore {
 			ProjectId projectId, PrimaryVersionSpec baseVersionSpec,
 			ChangePackage changePackage, LogMessage logMessage)
 			throws EmfStoreException {
-		// MK Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException();
 	}
 
 	/** 
@@ -62,8 +61,7 @@ public class EmfStoreStub implements EmfStore {
 	public List<ChangePackage> getChanges(SessionId sessionId,
 			ProjectId projectId, VersionSpec source, VersionSpec target)
 			throws EmfStoreException {
-		// MK Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException();
 	}
 
 	/** 
@@ -73,8 +71,7 @@ public class EmfStoreStub implements EmfStore {
 	public List<HistoryInfo> getHistoryInfo(SessionId sessionId,
 			ProjectId projectId, VersionSpec source, VersionSpec target)
 			throws EmfStoreException {
-		// MK Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException();
 	}
 
 	/** 
@@ -161,7 +158,6 @@ public class EmfStoreStub implements EmfStore {
 		actionItemLeafSection.setDescription("Lists all ais of this project.");
 		actionItemLeafSection.setParent(rootSection);
 		actionItemLeafSection.setElementClass(FunctionalRequirement.class);
-		// TODO: Create some AI«s here
 
 //		// Diagrams
 //		LeafSection diagramSection = documentFactory.createLeafSection();

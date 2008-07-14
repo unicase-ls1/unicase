@@ -1,7 +1,6 @@
 package org.unicase.ui.esbrowser.views.orgunit;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;

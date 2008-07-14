@@ -26,7 +26,7 @@ public class MEStateImpl implements MEState {
 	}
 
 	private void updateEffectiveBlockers() {
-		// TODO Auto-generated method stub
+		// JH Auto-generated method stub
 
 	}
 
@@ -41,24 +41,24 @@ public class MEStateImpl implements MEState {
 					effectiveOpeners.add(opener);
 				}
 			} catch (CircularDependencyException e) {
-				//TODO: handle Exception
+				//JH: handle Exception
 			}
 		}
 
 	}
 
 	public void addBlocker(ModelElement me) {
-		// TODO Auto-generated method stub
+		// JH Auto-generated method stub
 
 	}
 
 	public void addModifiedChild(ModelElement me) {
-		// TODO Auto-generated method stub
+		// JH Auto-generated method stub
 
 	}
 
 	public void addOpener(ModelElement me) {
-		// TODO Auto-generated method stub
+		// JH Auto-generated method stub
 
 	}
 
@@ -92,22 +92,22 @@ public class MEStateImpl implements MEState {
 	}
 
 	public boolean isRecursivlyModified() {
-		// TODO Auto-generated method stub
+		// JH Auto-generated method stub
 		return false;
 	}
 
 	public boolean removeBlocker(ModelElement me) {
-		// TODO Auto-generated method stub
+		// JH Auto-generated method stub
 		return false;
 	}
 
 	public boolean removeModifiedChild(ModelElement me) {
-		// TODO Auto-generated method stub
+		// JH Auto-generated method stub
 		return false;
 	}
 
 	public boolean removeOpener(ModelElement me) {
-		// TODO Auto-generated method stub
+		// JH Auto-generated method stub
 		return false;
 	}
 

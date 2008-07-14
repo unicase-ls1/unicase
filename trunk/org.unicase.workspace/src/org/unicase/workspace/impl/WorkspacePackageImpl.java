@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.change.ChangePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
@@ -430,6 +431,8 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 				.getEPackage(EsmodelPackage.eNS_URI);
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE
 				.getEPackage(ModelPackage.eNS_URI);
+		ChangePackage theChangePackage = (ChangePackage) EPackage.Registry.INSTANCE
+				.getEPackage(ChangePackage.eNS_URI);
 		VersioningPackage theVersioningPackage = (VersioningPackage) EPackage.Registry.INSTANCE
 				.getEPackage(VersioningPackage.eNS_URI);
 
@@ -557,8 +560,8 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 				.getEString(), "projectDescription", null, 1, 1,
 				ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProjectSpace_LocalChanges(), theVersioningPackage
-				.getChangePackage(), null, "localChanges", null, 0, 1,
+		initEReference(getProjectSpace_LocalChanges(), theChangePackage
+				.getChangeDescription(), null, "localChanges", null, 0, 1,
 				ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);

@@ -80,34 +80,27 @@ public class EmfStoreImpl implements EmfStore {
 			throw new InvalidVersionSpecException("");
 		}
 
-		PrimaryVersionSpec finalVersion = VersioningFactory.eINSTANCE
+		PrimaryVersionSpec newVersionSpec = VersioningFactory.eINSTANCE
 				.createPrimaryVersionSpec();
-		finalVersion.setIdentifier(baseVersionSpec.getIdentifier() + 1);
+		newVersionSpec.setIdentifier(baseVersionSpec.getIdentifier() + 1);
 		
 		Version version = VersioningFactory.eINSTANCE.createVersion();
 		
 		Version previousHeadVersion = versions.get(versions.size() - 1);
-		
-		Project project = changePackage.getProjectState();
-		
-		previousHeadVersion.getProjectState().getModelElements().clear();
-		
-		previousHeadVersion.setProjectState(null);
-		save();
-		
-		version.setProjectState(project);
+				
+		Project newProjectState = (Project)EcoreUtil.copy(previousHeadVersion.getProjectState());
+		changePackage.apply(newProjectState);
+		version.setProjectState(newProjectState);
 		
 		version.setLogMessage(logMessage);
-		version.setPrimarySpec(finalVersion);
+		version.setPrimarySpec(newVersionSpec);
 		version.setNextVersion(null);
-		
 		version.setPreviousVersion(previousHeadVersion);
-		previousHeadVersion.setNextVersion(version);
 		
 		versions.add(version);
 		save();
 
-		return finalVersion;
+		return newVersionSpec;
 	}
 
 	/**
@@ -122,19 +115,25 @@ public class EmfStoreImpl implements EmfStore {
 		PrimaryVersionSpec resolvedTarget = resolveVersionSpec(projectId,
 				target);
 		List<ChangePackage> result = new ArrayList<ChangePackage>();
-		if (resolvedSource.getIdentifier() > resolvedTarget.getIdentifier()) {
-			//TODO: throw exception?
-			return result;
-		}
+		
 		resolvedSource.setIdentifier(resolvedSource.getIdentifier() + 1);
 
 		for (Version version : getVersions(projectId, resolvedSource,
 				resolvedTarget)) {
 			ChangePackage changes = version.getChanges();
-			//FIXME hack add project to changepackage 
-			changes.setProjectState(version.getProjectState());
 			result.add(changes);
 		}
+		
+		//if source is after target in time
+		if (resolvedSource.compareTo(resolvedTarget)>0) {
+			//reverse list and change packages
+			List<ChangePackage> cps = result;
+			result = new ArrayList<ChangePackage>();
+			for (ChangePackage cp: cps) {
+				result.add(0, cp.reverse());
+			}
+		}
+		
 		return result;
 	}
 
@@ -258,7 +257,7 @@ public class EmfStoreImpl implements EmfStore {
 			return (PrimaryVersionSpec) EcoreUtil.copy(getProject(projectId)
 					.getLastVersion().getPrimarySpec());
 		} else {
-			// TODO: Tag- and DateVersionSpec
+			// FIXME OW MK: Tag- and DateVersionSpec
 			throw new InvalidVersionSpecException("");
 		}
 	}
@@ -272,7 +271,7 @@ public class EmfStoreImpl implements EmfStore {
 	private List<Version> getVersions(ProjectId projectId,
 			PrimaryVersionSpec source, PrimaryVersionSpec target)
 			throws EmfStoreException {
-		if (source.getIdentifier() <= target.getIdentifier()) {
+		if (source.compareTo(target)<1) {
 			EList<Version> versions = getProject(projectId).getVersions();
 			List<Version> result = new ArrayList<Version>();
 			Iterator<Version> iter = versions.listIterator(source
@@ -283,7 +282,9 @@ public class EmfStoreImpl implements EmfStore {
 			}
 			return result;
 		}
-		throw new InvalidVersionSpecException("");
+		else {
+			return getVersions(projectId, target, source);
+		}
 	}
 
 	private void save() throws EmfStoreException {
