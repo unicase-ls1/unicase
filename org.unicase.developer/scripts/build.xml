@@ -30,10 +30,13 @@
 			<equals arg1="${os.family}" arg2="windows" />
 			<then>
 				<echo message="Running on Windows OS" />
-				<echo message="Not implemented yet!" />
-				<!--<exec dir="${target}/bin" executable="cmd.exe" spawn="true">
-					<arg line="/C start rat.bat /debug ${debug_port}" />
-				</exec>-->
+				<echo message="Not implemented yet! Never tested, fix me please!" />
+				<exec dir="." executable="C:\Programme\MySQL\mysqladmin.exe" spawn="false">
+					<arg line="--user=root --password=pass -f drop model" />
+				</exec>
+				<exec dir="." executable="C:\Programme\MySQL\mysqladmin.exe" spawn="false">
+					<arg line="--user=root --password=pass -f create model" />
+				</exec>
 			</then>
 			<elseif>
 				<equals arg1="${os.name}" arg2="Mac OS X" />
