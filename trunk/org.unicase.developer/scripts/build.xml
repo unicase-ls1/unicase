@@ -9,7 +9,7 @@
 	<property name="db_pass" value="pass" />
 	<property name="db_name" value="model" />
 	<property name="unicaseWorkspace" value="${user.home}/.unicase/workspace" />
-	
+
 	<taskdef resource="net/sf/antcontrib/antlib.xml">
 		<classpath>
 			<pathelement location="./lib/ant-contrib-1.0b3.jar" />
@@ -19,6 +19,12 @@
 	<osfamily property="os.family" />
 
 	<target name="cleanModelDb" description="deletes and recreates mysql model db">
+
+		<input message="All data in model DB is going to be deleted !!! Continue (y/n)?" validargs="y,n" addproperty="do.delete" defaultvalue="y"/>
+		<condition property="do.abort">
+			<equals arg1="n" arg2="${do.delete}" />
+		</condition>
+		<fail if="do.abort">Cleaning DB aborted by user.</fail>
 
 		<if>
 			<equals arg1="${os.family}" arg2="windows" />
@@ -49,11 +55,11 @@
 		</if>
 
 	</target>
-	
+
 	<target name="cleanWorkspace" description="delete the unicase workspace">
 		<delete file="${unicaseWorkspace}" />
 	</target>
-		
+
 
 	<target name="clean" description="clean up">
 		<ant target="cleanModelDB" />
