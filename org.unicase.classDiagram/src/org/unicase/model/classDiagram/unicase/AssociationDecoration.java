@@ -13,7 +13,6 @@ import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.unicase.model.classes.Association;
 import org.unicase.model.classes.AssociationType;
 

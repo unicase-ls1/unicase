@@ -18,7 +18,6 @@ import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 import org.eclipse.ui.navigator.ICommonLabelProvider;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.requirement.Actor;
-import org.unicase.model.requirement.UseCase;
 
 /**
  * @generated
