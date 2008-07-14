@@ -1,0 +1,62 @@
+<project name="unicase developer toolkit" default="" basedir="." xmlns:artifact="urn:maven-artifact-ant">
+	<description>
+        An ant file for development support tasks
+    </description>
+
+	<!-- set global properties for this build -->
+
+	<property name="db_user" value="user" />
+	<property name="db_pass" value="pass" />
+	<property name="db_name" value="model" />
+	<property name="unicaseWorkspace" value="${user.home}/.unicase/workspace" />
+	
+	<taskdef resource="net/sf/antcontrib/antlib.xml">
+		<classpath>
+			<pathelement location="./lib/ant-contrib-1.0b3.jar" />
+		</classpath>
+	</taskdef>
+
+	<osfamily property="os.family" />
+
+	<target name="cleanModelDb" description="deletes and recreates mysql model db">
+
+		<if>
+			<equals arg1="${os.family}" arg2="windows" />
+			<then>
+				<echo message="Running on Windows OS" />
+				<echo message="Not implemented yet!" />
+				<!--<exec dir="${target}/bin" executable="cmd.exe" spawn="true">
+					<arg line="/C start rat.bat /debug ${debug_port}" />
+				</exec>-->
+			</then>
+			<elseif>
+				<equals arg1="${os.name}" arg2="Mac OS X" />
+				<then>
+					<echo message="Running on Mac OS X" />
+					<exec dir="/usr/local/mysql/bin" executable="/usr/local/mysql/bin/mysqladmin" spawn="false">
+						<arg line="--user=root --password=pass -f drop model" />
+					</exec>
+					<exec dir="/usr/local/mysql/bin" executable="/usr/local/mysql/bin/mysqladmin" spawn="false">
+						<arg line="--user=root --password=pass -f create model" />
+					</exec>
+				</then>
+			</elseif>
+
+			<else>
+				<echo message="Running on ${os.family} OS" />
+				<echo message="Not implemented yet!" />
+			</else>
+		</if>
+
+	</target>
+	
+	<target name="cleanWorkspace" description="delete the unicase workspace">
+		<delete file="${unicaseWorkspace}" />
+	</target>
+		
+
+	<target name="clean" description="clean up">
+		<ant target="cleanModelDB" />
+		<ant target="cleanWorkspace" />
+	</target>
+</project>
