@@ -38,10 +38,11 @@
 			<elseif>
 				<equals arg1="${os.name}" arg2="Mac OS X" />
 				<then>
-					<echo message="Running on Mac OS X" />
+					<echo message="Deleting database model... (Running on Mac OS X)" />
 					<exec dir="/usr/local/mysql/bin" executable="/usr/local/mysql/bin/mysqladmin" spawn="false">
 						<arg line="--user=root --password=pass -f drop model" />
 					</exec>
+					<echo message="Recreating database model..." />
 					<exec dir="/usr/local/mysql/bin" executable="/usr/local/mysql/bin/mysqladmin" spawn="false">
 						<arg line="--user=root --password=pass -f create model" />
 					</exec>
@@ -57,11 +58,12 @@
 	</target>
 
 	<target name="cleanWorkspace" description="delete the unicase workspace">
+		<echo message="Deleting workspace..." />
 		<delete file="${unicaseWorkspace}" />
 	</target>
 
 
-	<target name="clean" description="clean up">
+	<target name="cleanUnicaseData" description="clean up workspace and db">
 		<ant target="cleanModelDB" />
 		<ant target="cleanWorkspace" />
 	</target>
