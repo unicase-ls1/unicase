@@ -63,8 +63,8 @@
 	</target>
 
 
-	<target name="cleanUnicaseData" description="clean up workspace and db">
-		<ant target="cleanModelDB" />
+	<target name="cleanAllUnicaseData" description="clean up workspace and db">
+		<ant target="cleanModelDb" />
 		<ant target="cleanWorkspace" />
 	</target>
 </project>
