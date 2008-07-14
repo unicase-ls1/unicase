@@ -2,10 +2,8 @@ package org.unicase.ui.esbrowser.views.orgunit;
 
 import java.util.Arrays;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ComboBoxCellEditor;

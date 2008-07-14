@@ -18,9 +18,6 @@ import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.eclipse.emf.ecore.change.util.ChangeRecorder;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
@@ -128,7 +125,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @generated
 	 * @ordered
 	 */
-	protected ChangePackage localChanges;
+	protected ChangeDescription localChanges;
 
 	/**
 	 * The cached value of the '{@link #getUsersession() <em>Usersession</em>}' reference.
@@ -219,7 +216,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setProjectGen(Project newProject) {
+	public void setProject(Project newProject) {
 		if (newProject != project) {
 			NotificationChain msgs = null;
 			if (project != null)
@@ -241,25 +238,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 					newProject));
 	}
 
-	// begin of custom code
-	/**
-	 * <!-- begin-user-doc --> Set a new Project for the ProjectSpace and
-	 * re-init.
-	 * 
-	 * @param newProject
-	 * 
-	 *            <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
-	 */
-	public void setProject(Project newProject) {
-		setProjectGen(newProject);
-		init();
-	}
-
-	// end of custom code
-
-	/**
+		/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -360,17 +339,18 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ChangePackage getLocalChanges() {
+	public ChangeDescription getLocalChanges() {
 		return localChanges;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationChain basicSetLocalChanges(
-			ChangePackage newLocalChanges, NotificationChain msgs) {
-		ChangePackage oldLocalChanges = localChanges;
+			ChangeDescription newLocalChanges, NotificationChain msgs) {
+		ChangeDescription oldLocalChanges = localChanges;
 		localChanges = newLocalChanges;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this,
@@ -386,10 +366,11 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLocalChanges(ChangePackage newLocalChanges) {
+	public void setLocalChanges(ChangeDescription newLocalChanges) {
 		if (newLocalChanges != localChanges) {
 			NotificationChain msgs = null;
 			if (localChanges != null)
@@ -555,38 +536,41 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	public PrimaryVersionSpec commit(final LogMessage logMessage)
 			throws EmfStoreException {
 
-		// MK: save projectspace if single resource
-
 		// FIXME: GUI has to relogin.
-		getUsersession().logIn();
+		//getUsersession().logIn();
 
 		stopChangeRecording();
+		
+		//check if there are any changes
 		if (getLocalChanges() == null) {
+			startChangeRecording();
 			return getBaseVersion();
 		}
+				
+		//check if we need to update first
 		PrimaryVersionSpec resolvedVersion = resolveVersionSpec(VersionSpec.HEAD_VERSION);
-		// FIXME insert not and write equals method
 		if ((!getBaseVersion().equals(resolvedVersion))) {
+			startChangeRecording();
 			throw new BaseVersionOutdatedException(
 					"BaseVersion outdated, please update before commit.");
 		}
+				
+			
 		final ConnectionManager connectionManager = WorkspaceManager
 				.getInstance().getConnectionManager();
 
 		Project project = getProject();
-		ChangePackage changePackage = getLocalChanges();
-		// remove backward delta information
-		changePackage.setBackwardDelta(null);
-		changePackage.setProjectState(project);
-
-		setLocalChanges(null);
-
+		
+		ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
+		changePackage.init(project, localChanges);
+		
 		newBaseVersion = connectionManager.createVersion(getUsersession()
 				.getSessionId(), getProjectId(), getBaseVersion(),
 				changePackage, logMessage);
+		
 
 		// reconnect project to projectSpace
-		setProjectGen(project);
+		setProject(project);
 		setBaseVersion(newBaseVersion);
 
 		// MK: save projectspace if single resource
@@ -614,30 +598,22 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 
 		// FIXME: GUI has to relogin.
 		getUsersession().logIn();
-
-		final ConnectionManager cm = WorkspaceManager.getInstance()
+		
+		final ConnectionManager connectionManager = WorkspaceManager.getInstance()
 				.getConnectionManager();
-		PrimaryVersionSpec resolvedVersion = cm.resolveVersionSpec(
-				getUsersession().getSessionId(), getProjectId(), version);
-
-		if (getBaseVersion().getIdentifier() > resolvedVersion.getIdentifier()) {
-			return;
-		}
+		PrimaryVersionSpec resolvedVersion = resolveVersionSpec(version);
 
 		stopChangeRecording();
 
-		List<ChangePackage> changes = cm.getChanges(getUsersession()
+		List<ChangePackage> changes = connectionManager.getChanges(getUsersession()
 				.getSessionId(), getProjectId(), getBaseVersion(),
 				resolvedVersion);
-		Project project = getProject();
+		
+		//MK: insert conflict detection here
 		for (ChangePackage change : changes) {
-			// FIXME hack to set project state
-			project = change.getProjectState();
-			change.getFowardDelta().apply();
+			change.apply(getProject());
 		}
-		setProjectGen(project);
 		setBaseVersion(resolvedVersion);
-
 		startChangeRecording();
 	}
 
@@ -647,8 +623,8 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @generated NOT
 	 */
 	public void revert() {
-		// TODO: revert changes
 		stopChangeRecording();
+		getLocalChanges().apply();
 		setLocalChanges(null);
 		startChangeRecording();
 	}
@@ -659,16 +635,8 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @generated NOT
 	 */
 	public void save() {
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-			@Override
-			protected void doExecute() {
-				stopChangeRecording();
-				startChangeRecording();
-			}
-
-		});
+		stopChangeRecording();
+		startChangeRecording();
 	}
 
 	/**
@@ -678,22 +646,8 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @generated NOT
 	 */
 	private void stopChangeRecording() {
-		ChangeDescription changeDescription = this.changeRecorder
+		this.localChanges = this.changeRecorder
 				.endRecording();
-		if (changeDescription == null) {
-			return;
-		}
-		ChangeDescription backwardChangeDescription = (ChangeDescription) EcoreUtil
-				.copy(changeDescription);
-		changeDescription.applyAndReverse();
-		ChangeDescription forwardChangeDescription = (ChangeDescription) EcoreUtil
-				.copy(changeDescription);
-		changeDescription.apply();
-		ChangePackage changePackage = VersioningFactory.eINSTANCE
-				.createChangePackage();
-		changePackage.setBackwardDelta(backwardChangeDescription);
-		changePackage.setFowardDelta(forwardChangeDescription);
-		this.setLocalChanges(changePackage);
 	}
 
 	/**
@@ -708,7 +662,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 		if (getLocalChanges() == null) {
 			changeRecorder.beginRecording(Collections.singleton(project));
 		} else {
-			changeRecorder.beginRecording(localChanges.getBackwardDelta(),
+			changeRecorder.beginRecording(localChanges,
 					Collections.singleton(project));
 		}
 
@@ -721,14 +675,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @generated NOT
 	 */
 	public void init() {
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-			@Override
-			protected void doExecute() {
-				startChangeRecording();
-			}
-		});
+		startChangeRecording();
 	}
 
 	/**
@@ -846,7 +793,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 			setProjectDescription((String) newValue);
 			return;
 		case WorkspacePackage.PROJECT_SPACE__LOCAL_CHANGES:
-			setLocalChanges((ChangePackage) newValue);
+			setLocalChanges((ChangeDescription) newValue);
 			return;
 		case WorkspacePackage.PROJECT_SPACE__USERSESSION:
 			setUsersession((Usersession) newValue);
@@ -881,7 +828,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 			setProjectDescription(PROJECT_DESCRIPTION_EDEFAULT);
 			return;
 		case WorkspacePackage.PROJECT_SPACE__LOCAL_CHANGES:
-			setLocalChanges((ChangePackage) null);
+			setLocalChanges((ChangeDescription) null);
 			return;
 		case WorkspacePackage.PROJECT_SPACE__USERSESSION:
 			setUsersession((Usersession) null);

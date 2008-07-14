@@ -219,16 +219,16 @@ public interface VersioningPackage extends EPackage {
 	int CHANGE_PACKAGE = 5;
 
 	/**
-	 * The feature id for the '<em><b>Foward Delta</b></em>' containment reference.
+	 * The feature id for the '<em><b>Forward Delta</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_PACKAGE__FOWARD_DELTA = 0;
+	int CHANGE_PACKAGE__FORWARD_DELTA = 0;
 
 	/**
-	 * The feature id for the '<em><b>Backward Delta</b></em>' containment reference.
+	 * The feature id for the '<em><b>Backward Delta</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -237,22 +237,13 @@ public interface VersioningPackage extends EPackage {
 	int CHANGE_PACKAGE__BACKWARD_DELTA = 1;
 
 	/**
-	 * The feature id for the '<em><b>Project State</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHANGE_PACKAGE__PROJECT_STATE = 2;
-
-	/**
 	 * The number of structural features of the '<em>Change Package</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_PACKAGE_FEATURE_COUNT = 3;
+	int CHANGE_PACKAGE_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryInfoImpl <em>History Info</em>}' class.
@@ -519,37 +510,26 @@ public interface VersioningPackage extends EPackage {
 	EClass getChangePackage();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getFowardDelta <em>Foward Delta</em>}'.
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getForwardDelta <em>Forward Delta</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Foward Delta</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.ChangePackage#getFowardDelta()
+	 * @return the meta object for the attribute '<em>Forward Delta</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.ChangePackage#getForwardDelta()
 	 * @see #getChangePackage()
 	 * @generated
 	 */
-	EReference getChangePackage_FowardDelta();
+	EAttribute getChangePackage_ForwardDelta();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getBackwardDelta <em>Backward Delta</em>}'.
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getBackwardDelta <em>Backward Delta</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Backward Delta</em>'.
+	 * @return the meta object for the attribute '<em>Backward Delta</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.ChangePackage#getBackwardDelta()
 	 * @see #getChangePackage()
 	 * @generated
 	 */
-	EReference getChangePackage_BackwardDelta();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getProjectState <em>Project State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Project State</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.ChangePackage#getProjectState()
-	 * @see #getChangePackage()
-	 * @generated
-	 */
-	EReference getChangePackage_ProjectState();
+	EAttribute getChangePackage_BackwardDelta();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.HistoryInfo <em>History Info</em>}'.
@@ -813,31 +793,22 @@ public interface VersioningPackage extends EPackage {
 		EClass CHANGE_PACKAGE = eINSTANCE.getChangePackage();
 
 		/**
-		 * The meta object literal for the '<em><b>Foward Delta</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Forward Delta</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CHANGE_PACKAGE__FOWARD_DELTA = eINSTANCE
-				.getChangePackage_FowardDelta();
+		EAttribute CHANGE_PACKAGE__FORWARD_DELTA = eINSTANCE
+				.getChangePackage_ForwardDelta();
 
 		/**
-		 * The meta object literal for the '<em><b>Backward Delta</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Backward Delta</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CHANGE_PACKAGE__BACKWARD_DELTA = eINSTANCE
+		EAttribute CHANGE_PACKAGE__BACKWARD_DELTA = eINSTANCE
 				.getChangePackage_BackwardDelta();
-
-		/**
-		 * The meta object literal for the '<em><b>Project State</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CHANGE_PACKAGE__PROJECT_STATE = eINSTANCE
-				.getChangePackage_ProjectState();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryInfoImpl <em>History Info</em>}' class.

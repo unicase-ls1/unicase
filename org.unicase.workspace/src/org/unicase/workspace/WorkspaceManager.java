@@ -143,7 +143,7 @@ public final class WorkspaceManager {
 
 			resource = resourceSet.getResource(fileURI, true);
 			EList<EObject> directContents = resource.getContents();
-			// FIXME cast
+			// MK cast
 			workspace = (Workspace) directContents.get(0);
 		}
 		workspace.setConnectionManager(this.connectionManager);

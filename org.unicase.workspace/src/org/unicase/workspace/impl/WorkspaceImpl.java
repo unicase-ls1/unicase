@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
@@ -167,26 +166,18 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		final PrimaryVersionSpec primaryVersionSpec = projectInfo.getVersion();
 
 		// init project space
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-			@Override
-			protected void doExecute() {
-				projectSpace = WorkspaceFactory.eINSTANCE.createProjectSpace();
-				projectSpace.setProjectId(projectInfo.getProjectId());
-				projectSpace.setProjectName(projectInfo.getName());
-				projectSpace
-						.setProjectDescription(projectInfo.getDescription());
-				projectSpace.setBaseVersion(primaryVersionSpec);
-				projectSpace.setLastUpdated(new Date());
-				projectSpace.setUsersession(usersession);
-				projectSpace.setProject(project);
+		projectSpace = WorkspaceFactory.eINSTANCE.createProjectSpace();
+		projectSpace.setProjectId(projectInfo.getProjectId());
+		projectSpace.setProjectName(projectInfo.getName());
+		projectSpace.setProjectDescription(projectInfo.getDescription());
+		projectSpace.setBaseVersion(primaryVersionSpec);
+		projectSpace.setLastUpdated(new Date());
+		projectSpace.setUsersession(usersession);
+		projectSpace.setProject(project);
+		projectSpace.init();
 
-				getProjectSpaces().add(projectSpace);
-				save();
-			}
-		});
-
+		getProjectSpaces().add(projectSpace);
+		save();
 		return projectSpace;
 	}
 
@@ -340,17 +331,22 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		this.resource = resource;
 	}
 
-	/**
+	/** 
+	 * {@inheritDoc}
 	 * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
-	 * 
 	 * @generated NOT
 	 */
 	@SuppressWarnings("unchecked")
 	public Object getAdapter(Class adapter) {
-		// TODO Auto-generated method stub
+		// JH Auto-generated method stub
 		return null;
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.workspace.Workspace#init(org.eclipse.emf.transaction.TransactionalEditingDomain)
+	 * @generated NOT
+	 */
 	public void init(TransactionalEditingDomain editingDomain) {
 		this.transactionalEditingDomain = editingDomain;
 		// initialize all projectSpaces
@@ -359,6 +355,11 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		}
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.workspace.Workspace#getEditingDomain()
+	 * @generated NOT
+	 */
 	public TransactionalEditingDomain getEditingDomain() {
 		return this.transactionalEditingDomain;
 	}

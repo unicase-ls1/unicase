@@ -37,6 +37,7 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
 import org.unicase.model.ModelElement;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
+import org.unicase.workspace.WorkspaceManager;
 
 /**
  * GUI Control for the ME reference multilinks.
@@ -163,7 +164,8 @@ public class MEMultiLinkControl extends AbstractMEControl {
 			link.dispose();
 		}
 		linkControls.clear();
-		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
+		TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain();
+		//JH: TransactionUtil.getEditingDomain(modelElement);
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@SuppressWarnings("unchecked")
 			@Override

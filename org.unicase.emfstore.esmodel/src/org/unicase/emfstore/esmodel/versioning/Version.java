@@ -131,6 +131,7 @@ public interface Version extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Previous Version</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.unicase.emfstore.esmodel.versioning.Version#getNextVersion <em>Next Version</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Previous Version</em>' reference isn't clear,
@@ -140,7 +141,8 @@ public interface Version extends EObject {
 	 * @return the value of the '<em>Previous Version</em>' reference.
 	 * @see #setPreviousVersion(Version)
 	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getVersion_PreviousVersion()
-	 * @model
+	 * @see org.unicase.emfstore.esmodel.versioning.Version#getNextVersion
+	 * @model opposite="nextVersion"
 	 * @generated
 	 */
 	Version getPreviousVersion();

@@ -369,7 +369,7 @@ public class MEDiagramItemProvider extends ModelElementItemProvider implements
 
 	@Override
 	public Collection<?> getChildren(Object object) {
-		// TODO Auto-generated method stub
+		// JH Auto-generated method stub
 		return super.getChildren(object);
 	}
 

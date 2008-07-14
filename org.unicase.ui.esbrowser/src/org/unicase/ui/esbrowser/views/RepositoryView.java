@@ -40,7 +40,6 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.esbrowser.Activator;
@@ -276,21 +275,28 @@ public class RepositoryView extends ViewPart {
 				ISelection selection = viewer.getSelection();
 				Object obj = ((IStructuredSelection) selection)
 						.getFirstElement();
-				ProjectInfo element = (ProjectInfo) obj;
-				try {
-					projectServerMap.get(element).getLastUsersession()
-							.checkout(element);
-					//MK: remove and add proper notifying
-					IWorkbenchPage page = PlatformUI.getWorkbench()
-							.getActiveWorkbenchWindow().getActivePage();
-					IViewPart navigator = page
-							.findView("org.unicase.ui.navigator.viewer");
-					if (page.isPartVisible(navigator)) {
-						((TreeViewer) navigator.getSite()
-								.getSelectionProvider()).refresh();
+				final ProjectInfo element = (ProjectInfo) obj;
+				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+						.getEditingDomain("org.unicase.EditingDomain");
+				domain.getCommandStack().execute(new RecordingCommand(domain) {
+					@Override
+					protected void doExecute() {
+						try {
+							projectServerMap.get(element).getLastUsersession()
+									.checkout(element);
+						} catch (EmfStoreException e) {
+							// TODO show error dialog
+						}
 					}
-				} catch (EmfStoreException e) {
-					// TODO show error dialog
+				});
+				// JH: remove and add proper notifying
+				IWorkbenchPage page = PlatformUI.getWorkbench()
+						.getActiveWorkbenchWindow().getActivePage();
+				IViewPart navigator = page
+						.findView("org.unicase.ui.navigator.viewer");
+				if (page.isPartVisible(navigator)) {
+					((TreeViewer) navigator.getSite().getSelectionProvider())
+							.refresh();
 				}
 			}
 		};

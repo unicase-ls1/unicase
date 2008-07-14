@@ -46,11 +46,16 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/LogMessage/author"/>
       </genClasses>
       <genClasses ecoreClass="esmodel.ecore#//versioning/ChangePackage">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/ChangePackage/fowardDelta"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/ChangePackage/backwardDelta"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/ChangePackage/projectState"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/ChangePackage/forwardDelta"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/ChangePackage/backwardDelta"/>
         <genOperations ecoreOperation="esmodel.ecore#//versioning/ChangePackage/reverse"/>
-        <genOperations ecoreOperation="esmodel.ecore#//versioning/ChangePackage/apply"/>
+        <genOperations ecoreOperation="esmodel.ecore#//versioning/ChangePackage/apply">
+          <genParameters ecoreParameter="esmodel.ecore#//versioning/ChangePackage/apply/project"/>
+        </genOperations>
+        <genOperations ecoreOperation="esmodel.ecore#//versioning/ChangePackage/init">
+          <genParameters ecoreParameter="esmodel.ecore#//versioning/ChangePackage/init/project"/>
+          <genParameters ecoreParameter="esmodel.ecore#//versioning/ChangePackage/init/backwardChangeDescription"/>
+        </genOperations>
       </genClasses>
       <genClasses ecoreClass="esmodel.ecore#//versioning/HistoryInfo">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"

@@ -32,7 +32,6 @@ public class CommitWorkspaceHandler extends AbstractHandler {
 	 * 
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		// TODO Auto-generated method stub
 
 		IWorkbenchWindow window = HandlerUtil
 				.getActiveWorkbenchWindowChecked(event);

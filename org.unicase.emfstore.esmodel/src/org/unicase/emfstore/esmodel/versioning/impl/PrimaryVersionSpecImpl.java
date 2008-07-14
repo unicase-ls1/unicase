@@ -164,4 +164,14 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements
 		}
 	}
 
+	public int compareTo(PrimaryVersionSpec o) {
+		if (this.equals(o)) {
+			return 0;
+		} else if (this.getIdentifier() < o.getIdentifier()) {
+			return -1;
+		} else {
+			return 1;
+		}
+	}
+
 } // PrimaryVersionSpecImpl

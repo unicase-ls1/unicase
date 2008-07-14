@@ -6,14 +6,23 @@
  */
 package org.unicase.emfstore.esmodel.versioning.impl;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 import org.unicase.model.Project;
 
@@ -23,9 +32,8 @@ import org.unicase.model.Project;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.impl.ChangePackageImpl#getFowardDelta <em>Foward Delta</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.impl.ChangePackageImpl#getForwardDelta <em>Forward Delta</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.impl.ChangePackageImpl#getBackwardDelta <em>Backward Delta</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.impl.ChangePackageImpl#getProjectState <em>Project State</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,33 +41,44 @@ import org.unicase.model.Project;
  */
 public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	/**
-	 * The cached value of the '{@link #getFowardDelta() <em>Foward Delta</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getFowardDelta()
+	 * The default value of the '{@link #getForwardDelta() <em>Forward Delta</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getForwardDelta()
 	 * @generated
 	 * @ordered
 	 */
-	protected ChangeDescription fowardDelta;
+	protected static final String FORWARD_DELTA_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getBackwardDelta() <em>Backward Delta</em>}' containment reference.
+	 * The cached value of the '{@link #getForwardDelta() <em>Forward Delta</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getForwardDelta()
+	 * @generated
+	 * @ordered
+	 */
+	protected String forwardDelta = FORWARD_DELTA_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getBackwardDelta() <em>Backward Delta</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getBackwardDelta()
 	 * @generated
 	 * @ordered
 	 */
-	protected ChangeDescription backwardDelta;
+	protected static final String BACKWARD_DELTA_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getProjectState() <em>Project State</em>}' containment reference.
+	 * The cached value of the '{@link #getBackwardDelta() <em>Backward Delta</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getProjectState()
+	 * @see #getBackwardDelta()
 	 * @generated
 	 * @ordered
 	 */
-	protected Project projectState;
+	protected String backwardDelta = BACKWARD_DELTA_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -79,205 +98,142 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ChangeDescription getFowardDelta() {
-		return fowardDelta;
+	public String getForwardDelta() {
+		return forwardDelta;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetFowardDelta(
-			ChangeDescription newFowardDelta, NotificationChain msgs) {
-		ChangeDescription oldFowardDelta = fowardDelta;
-		fowardDelta = newFowardDelta;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET,
-					VersioningPackage.CHANGE_PACKAGE__FOWARD_DELTA,
-					oldFowardDelta, newFowardDelta);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setFowardDelta(ChangeDescription newFowardDelta) {
-		if (newFowardDelta != fowardDelta) {
-			NotificationChain msgs = null;
-			if (fowardDelta != null)
-				msgs = ((InternalEObject) fowardDelta)
-						.eInverseRemove(
-								this,
-								EOPPOSITE_FEATURE_BASE
-										- VersioningPackage.CHANGE_PACKAGE__FOWARD_DELTA,
-								null, msgs);
-			if (newFowardDelta != null)
-				msgs = ((InternalEObject) newFowardDelta)
-						.eInverseAdd(
-								this,
-								EOPPOSITE_FEATURE_BASE
-										- VersioningPackage.CHANGE_PACKAGE__FOWARD_DELTA,
-								null, msgs);
-			msgs = basicSetFowardDelta(newFowardDelta, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
+	public void setForwardDelta(String newForwardDelta) {
+		String oldForwardDelta = forwardDelta;
+		forwardDelta = newForwardDelta;
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-					VersioningPackage.CHANGE_PACKAGE__FOWARD_DELTA,
-					newFowardDelta, newFowardDelta));
+					VersioningPackage.CHANGE_PACKAGE__FORWARD_DELTA,
+					oldForwardDelta, forwardDelta));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ChangeDescription getBackwardDelta() {
+	public String getBackwardDelta() {
 		return backwardDelta;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetBackwardDelta(
-			ChangeDescription newBackwardDelta, NotificationChain msgs) {
-		ChangeDescription oldBackwardDelta = backwardDelta;
+	public void setBackwardDelta(String newBackwardDelta) {
+		String oldBackwardDelta = backwardDelta;
 		backwardDelta = newBackwardDelta;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET,
-					VersioningPackage.CHANGE_PACKAGE__BACKWARD_DELTA,
-					oldBackwardDelta, newBackwardDelta);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setBackwardDelta(ChangeDescription newBackwardDelta) {
-		if (newBackwardDelta != backwardDelta) {
-			NotificationChain msgs = null;
-			if (backwardDelta != null)
-				msgs = ((InternalEObject) backwardDelta)
-						.eInverseRemove(
-								this,
-								EOPPOSITE_FEATURE_BASE
-										- VersioningPackage.CHANGE_PACKAGE__BACKWARD_DELTA,
-								null, msgs);
-			if (newBackwardDelta != null)
-				msgs = ((InternalEObject) newBackwardDelta)
-						.eInverseAdd(
-								this,
-								EOPPOSITE_FEATURE_BASE
-										- VersioningPackage.CHANGE_PACKAGE__BACKWARD_DELTA,
-								null, msgs);
-			msgs = basicSetBackwardDelta(newBackwardDelta, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
 					VersioningPackage.CHANGE_PACKAGE__BACKWARD_DELTA,
-					newBackwardDelta, newBackwardDelta));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Project getProjectState() {
-		return projectState;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetProjectState(Project newProjectState,
-			NotificationChain msgs) {
-		Project oldProjectState = projectState;
-		projectState = newProjectState;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET,
-					VersioningPackage.CHANGE_PACKAGE__PROJECT_STATE,
-					oldProjectState, newProjectState);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setProjectState(Project newProjectState) {
-		if (newProjectState != projectState) {
-			NotificationChain msgs = null;
-			if (projectState != null)
-				msgs = ((InternalEObject) projectState)
-						.eInverseRemove(
-								this,
-								EOPPOSITE_FEATURE_BASE
-										- VersioningPackage.CHANGE_PACKAGE__PROJECT_STATE,
-								null, msgs);
-			if (newProjectState != null)
-				msgs = ((InternalEObject) newProjectState)
-						.eInverseAdd(
-								this,
-								EOPPOSITE_FEATURE_BASE
-										- VersioningPackage.CHANGE_PACKAGE__PROJECT_STATE,
-								null, msgs);
-			msgs = basicSetProjectState(newProjectState, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					VersioningPackage.CHANGE_PACKAGE__PROJECT_STATE,
-					newProjectState, newProjectState));
+					oldBackwardDelta, backwardDelta));
 	}
 
 	//begin of custom code
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public ChangePackage reverse() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		ChangePackage changePackage = VersioningFactory.eINSTANCE
+				.createChangePackage();
+		changePackage.setBackwardDelta(this.forwardDelta);
+		changePackage.setForwardDelta(this.backwardDelta);
+		return changePackage;
+	}
+
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.emfstore.esmodel.versioning.ChangePackage#apply(org.unicase.model.Project)
+	 * @generated NOT
+	 */
+	public void apply(Project project) {
+		//preserve old container
+		EObject oldContainer = project.eContainer();
+
+		//integrate project and cp into shared resource set
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Resource projectResource = resourceSet
+				.createResource(VIRTUAL_PROJECT_URI);
+		projectResource.getContents().add(project);
+		Resource changeDescriptionResource = resourceSet
+				.createResource(VIRTUAL_CHANGEDESCRIPTION_URI);
+		try {
+			changeDescriptionResource.load(new ByteArrayInputStream(
+					this.forwardDelta.getBytes("UTF-8")), null);
+		} catch (UnsupportedEncodingException e) {
+			// MK Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// MK Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		ChangeDescription fowardChangeDescription = (ChangeDescription) changeDescriptionResource
+				.getContents().get(0);
+
+		fowardChangeDescription.apply();
+
+		//reintegrate project into old container
+		oldContainer.eContents().add(project);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public void apply(Project project) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+	public void init(Project project,
+			ChangeDescription backwardChangeDescription) {
+
+		EReference containmentFeature = project.eContainmentFeature();
+		EObject oldContainer = project.eContainer();
+		
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Resource projectResource = resourceSet
+				.createResource(VIRTUAL_PROJECT_URI);
+		projectResource.getContents().add(project);
+		Resource changeDescriptionResource = resourceSet
+				.createResource(VIRTUAL_CHANGEDESCRIPTION_URI);
+		changeDescriptionResource.getContents().add(backwardChangeDescription);
+
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		try {
+			changeDescriptionResource.save(out, null);
+		} catch (IOException e) {
+			// MK Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.backwardDelta = out.toString();
+
+		backwardChangeDescription.applyAndReverse();
+
+		out.reset();
+		try {
+			changeDescriptionResource.save(out, null);
+		} catch (IOException e) {
+			// MK Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.forwardDelta = out.toString();
+
+		backwardChangeDescription.apply();
+
+		//reintegrate project into old container
+		oldContainer.eSet(containmentFeature, project);
 	}
 
 	//end of custom code
@@ -287,32 +243,12 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
-		switch (featureID) {
-		case VersioningPackage.CHANGE_PACKAGE__FOWARD_DELTA:
-			return basicSetFowardDelta(null, msgs);
-		case VersioningPackage.CHANGE_PACKAGE__BACKWARD_DELTA:
-			return basicSetBackwardDelta(null, msgs);
-		case VersioningPackage.CHANGE_PACKAGE__PROJECT_STATE:
-			return basicSetProjectState(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case VersioningPackage.CHANGE_PACKAGE__FOWARD_DELTA:
-			return getFowardDelta();
+		case VersioningPackage.CHANGE_PACKAGE__FORWARD_DELTA:
+			return getForwardDelta();
 		case VersioningPackage.CHANGE_PACKAGE__BACKWARD_DELTA:
 			return getBackwardDelta();
-		case VersioningPackage.CHANGE_PACKAGE__PROJECT_STATE:
-			return getProjectState();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -324,14 +260,11 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case VersioningPackage.CHANGE_PACKAGE__FOWARD_DELTA:
-			setFowardDelta((ChangeDescription) newValue);
+		case VersioningPackage.CHANGE_PACKAGE__FORWARD_DELTA:
+			setForwardDelta((String) newValue);
 			return;
 		case VersioningPackage.CHANGE_PACKAGE__BACKWARD_DELTA:
-			setBackwardDelta((ChangeDescription) newValue);
-			return;
-		case VersioningPackage.CHANGE_PACKAGE__PROJECT_STATE:
-			setProjectState((Project) newValue);
+			setBackwardDelta((String) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -344,14 +277,11 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case VersioningPackage.CHANGE_PACKAGE__FOWARD_DELTA:
-			setFowardDelta((ChangeDescription) null);
+		case VersioningPackage.CHANGE_PACKAGE__FORWARD_DELTA:
+			setForwardDelta(FORWARD_DELTA_EDEFAULT);
 			return;
 		case VersioningPackage.CHANGE_PACKAGE__BACKWARD_DELTA:
-			setBackwardDelta((ChangeDescription) null);
-			return;
-		case VersioningPackage.CHANGE_PACKAGE__PROJECT_STATE:
-			setProjectState((Project) null);
+			setBackwardDelta(BACKWARD_DELTA_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -364,14 +294,33 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case VersioningPackage.CHANGE_PACKAGE__FOWARD_DELTA:
-			return fowardDelta != null;
+		case VersioningPackage.CHANGE_PACKAGE__FORWARD_DELTA:
+			return FORWARD_DELTA_EDEFAULT == null ? forwardDelta != null
+					: !FORWARD_DELTA_EDEFAULT.equals(forwardDelta);
 		case VersioningPackage.CHANGE_PACKAGE__BACKWARD_DELTA:
-			return backwardDelta != null;
-		case VersioningPackage.CHANGE_PACKAGE__PROJECT_STATE:
-			return projectState != null;
+			return BACKWARD_DELTA_EDEFAULT == null ? backwardDelta != null
+					: !BACKWARD_DELTA_EDEFAULT.equals(backwardDelta);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (forwardDelta: ");
+		result.append(forwardDelta);
+		result.append(", backwardDelta: ");
+		result.append(backwardDelta);
+		result.append(')');
+		return result.toString();
 	}
 
 } // ChangePackageImpl

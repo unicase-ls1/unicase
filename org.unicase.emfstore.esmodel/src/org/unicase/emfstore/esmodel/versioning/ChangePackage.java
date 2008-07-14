@@ -6,6 +6,7 @@
  */
 package org.unicase.emfstore.esmodel.versioning;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.unicase.model.Project;
@@ -17,9 +18,8 @@ import org.unicase.model.Project;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getFowardDelta <em>Foward Delta</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getForwardDelta <em>Forward Delta</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getBackwardDelta <em>Backward Delta</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getProjectState <em>Project State</em>}</li>
  * </ul>
  * </p>
  *
@@ -28,83 +28,62 @@ import org.unicase.model.Project;
  * @generated
  */
 public interface ChangePackage extends EObject {
+
 	/**
-	 * Returns the value of the '<em><b>Foward Delta</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Forward Delta</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Foward Delta</em>' reference isn't clear,
+	 * If the meaning of the '<em>Forward Delta</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Foward Delta</em>' containment reference.
-	 * @see #setFowardDelta(ChangeDescription)
-	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getChangePackage_FowardDelta()
-	 * @model containment="true"
+	 * @return the value of the '<em>Forward Delta</em>' attribute.
+	 * @see #setForwardDelta(String)
+	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getChangePackage_ForwardDelta()
+	 * @model required="true"
 	 * @generated
 	 */
-	ChangeDescription getFowardDelta();
+	String getForwardDelta();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getFowardDelta <em>Foward Delta</em>}' containment reference.
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getForwardDelta <em>Forward Delta</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Foward Delta</em>' containment reference.
-	 * @see #getFowardDelta()
+	 * @param value the new value of the '<em>Forward Delta</em>' attribute.
+	 * @see #getForwardDelta()
 	 * @generated
 	 */
-	void setFowardDelta(ChangeDescription value);
+	void setForwardDelta(String value);
+
+	final static URI VIRTUAL_PROJECT_URI = URI.createURI("virtual.project.uri");
+	final static URI VIRTUAL_CHANGEDESCRIPTION_URI = URI
+			.createURI("virtual.changedescription.uri");
 
 	/**
-	 * Returns the value of the '<em><b>Backward Delta</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Backward Delta</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Backward Delta</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Backward Delta</em>' containment reference.
-	 * @see #setBackwardDelta(ChangeDescription)
+	 * @return the value of the '<em>Backward Delta</em>' attribute.
+	 * @see #setBackwardDelta(String)
 	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getChangePackage_BackwardDelta()
-	 * @model containment="true"
+	 * @model required="true"
 	 * @generated
 	 */
-	ChangeDescription getBackwardDelta();
+	String getBackwardDelta();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getBackwardDelta <em>Backward Delta</em>}' containment reference.
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getBackwardDelta <em>Backward Delta</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Backward Delta</em>' containment reference.
+	 * @param value the new value of the '<em>Backward Delta</em>' attribute.
 	 * @see #getBackwardDelta()
 	 * @generated
 	 */
-	void setBackwardDelta(ChangeDescription value);
-
-	/**
-	 * Returns the value of the '<em><b>Project State</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Project State</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Project State</em>' containment reference.
-	 * @see #setProjectState(Project)
-	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getChangePackage_ProjectState()
-	 * @model containment="true"
-	 * @generated
-	 */
-	Project getProjectState();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getProjectState <em>Project State</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Project State</em>' containment reference.
-	 * @see #getProjectState()
-	 * @generated
-	 */
-	void setProjectState(Project value);
+	void setBackwardDelta(String value);
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -120,5 +99,13 @@ public interface ChangePackage extends EObject {
 	 * @generated
 	 */
 	void apply(Project project);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void init(Project project, ChangeDescription backwardChangeDescription);
 
 } // ChangePackage

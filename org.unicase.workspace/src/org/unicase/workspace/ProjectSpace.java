@@ -9,9 +9,9 @@ package org.unicase.workspace;
 import java.util.Date;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.exceptions.EmfStoreException;
@@ -153,12 +153,12 @@ public interface ProjectSpace extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Local Changes</em>' containment reference.
-	 * @see #setLocalChanges(ChangePackage)
+	 * @see #setLocalChanges(ChangeDescription)
 	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_LocalChanges()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ChangePackage getLocalChanges();
+	ChangeDescription getLocalChanges();
 
 	/**
 	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getLocalChanges <em>Local Changes</em>}' containment reference.
@@ -168,7 +168,7 @@ public interface ProjectSpace extends EObject {
 	 * @see #getLocalChanges()
 	 * @generated
 	 */
-	void setLocalChanges(ChangePackage value);
+	void setLocalChanges(ChangeDescription value);
 
 	/**
 	 * Returns the value of the '<em><b>Usersession</b></em>' reference.

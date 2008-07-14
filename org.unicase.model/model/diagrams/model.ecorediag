@@ -86,7 +86,7 @@
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_MTxivzYfEd2I8oxvXHPjSQ" fontName="Lucida Grande" fontHeight="10" fillColor="13761016" lineColor="0"/>
     <element xmi:type="ecore:EClass" href="../model.ecore#//UniqueIdentifier"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_MTxiwDYfEd2I8oxvXHPjSQ" x="288" y="224"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_MTxiwDYfEd2I8oxvXHPjSQ" x="264" y="476"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_MTyJyzYfEd2I8oxvXHPjSQ" type="1001">
     <children xmi:type="notation:Node" xmi:id="_MTyJzjYfEd2I8oxvXHPjSQ" type="4001"/>
@@ -230,20 +230,6 @@
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_MTrcETYfEd2I8oxvXHPjSQ"/>
   <element xmi:type="ecore:EPackage" href="../model.ecore#/"/>
-  <edges xmi:type="notation:Edge" xmi:id="_MT3CQDYfEd2I8oxvXHPjSQ" type="3002" source="_MTvtgDYfEd2I8oxvXHPjSQ" target="_MTxisjYfEd2I8oxvXHPjSQ">
-    <children xmi:type="notation:Node" xmi:id="_MT3CRDYfEd2I8oxvXHPjSQ" type="4011">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_MT3CRTYfEd2I8oxvXHPjSQ" x="-10" y="-10"/>
-    </children>
-    <children xmi:type="notation:Node" xmi:id="_MT3CRjYfEd2I8oxvXHPjSQ" type="4012">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_MT3CRzYfEd2I8oxvXHPjSQ" x="10" y="10"/>
-    </children>
-    <styles xmi:type="notation:ConnectorStyle" xmi:id="_MT3CQTYfEd2I8oxvXHPjSQ" lineColor="0"/>
-    <styles xmi:type="notation:FontStyle" xmi:id="_MT3CQjYfEd2I8oxvXHPjSQ" fontName="Lucida Grande" fontHeight="10"/>
-    <element xmi:type="ecore:EReference" href="../model.ecore#//ModelElement/identifier"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_MT3CQzYfEd2I8oxvXHPjSQ" points="[0, 0, -58, 67]$[58, -67, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_MUhJkDYfEd2I8oxvXHPjSQ" id="(0.6666667,0.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_MUhJkTYfEd2I8oxvXHPjSQ" id="(0.5,1.0)"/>
-  </edges>
   <edges xmi:type="notation:Edge" xmi:id="_MT3CSDYfEd2I8oxvXHPjSQ" type="3002" source="_MTvtgDYfEd2I8oxvXHPjSQ" target="_MTyJyzYfEd2I8oxvXHPjSQ">
     <children xmi:type="notation:Node" xmi:id="_MT3CTDYfEd2I8oxvXHPjSQ" type="4011">
       <layoutConstraint xmi:type="notation:Location" xmi:id="_MT3CTTYfEd2I8oxvXHPjSQ" x="-10" y="-10"/>

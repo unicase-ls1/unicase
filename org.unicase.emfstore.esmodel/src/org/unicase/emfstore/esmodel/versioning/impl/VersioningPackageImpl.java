@@ -314,8 +314,8 @@ public class VersioningPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getChangePackage_FowardDelta() {
-		return (EReference) changePackageEClass.getEStructuralFeatures().get(0);
+	public EAttribute getChangePackage_ForwardDelta() {
+		return (EAttribute) changePackageEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -323,17 +323,8 @@ public class VersioningPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getChangePackage_BackwardDelta() {
-		return (EReference) changePackageEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getChangePackage_ProjectState() {
-		return (EReference) changePackageEClass.getEStructuralFeatures().get(2);
+	public EAttribute getChangePackage_BackwardDelta() {
+		return (EAttribute) changePackageEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -491,9 +482,8 @@ public class VersioningPackageImpl extends EPackageImpl implements
 		createEAttribute(logMessageEClass, LOG_MESSAGE__AUTHOR);
 
 		changePackageEClass = createEClass(CHANGE_PACKAGE);
-		createEReference(changePackageEClass, CHANGE_PACKAGE__FOWARD_DELTA);
-		createEReference(changePackageEClass, CHANGE_PACKAGE__BACKWARD_DELTA);
-		createEReference(changePackageEClass, CHANGE_PACKAGE__PROJECT_STATE);
+		createEAttribute(changePackageEClass, CHANGE_PACKAGE__FORWARD_DELTA);
+		createEAttribute(changePackageEClass, CHANGE_PACKAGE__BACKWARD_DELTA);
 
 		historyInfoEClass = createEClass(HISTORY_INFO);
 		createEReference(historyInfoEClass, HISTORY_INFO__PRIMERY_SPEC);
@@ -536,10 +526,10 @@ public class VersioningPackageImpl extends EPackageImpl implements
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ChangePackage theChangePackage = (ChangePackage) EPackage.Registry.INSTANCE
-				.getEPackage(ChangePackage.eNS_URI);
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE
 				.getEPackage(ModelPackage.eNS_URI);
+		ChangePackage theChangePackage = (ChangePackage) EPackage.Registry.INSTANCE
+				.getEPackage(ChangePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -598,24 +588,16 @@ public class VersioningPackageImpl extends EPackageImpl implements
 				org.unicase.emfstore.esmodel.versioning.ChangePackage.class,
 				"ChangePackage", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getChangePackage_FowardDelta(), theChangePackage
-				.getChangeDescription(), null, "fowardDelta", null, 0, 1,
+		initEAttribute(getChangePackage_ForwardDelta(), ecorePackage
+				.getEString(), "forwardDelta", null, 1, 1,
 				org.unicase.emfstore.esmodel.versioning.ChangePackage.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEReference(getChangePackage_BackwardDelta(), theChangePackage
-				.getChangeDescription(), null, "backwardDelta", null, 0, 1,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getChangePackage_BackwardDelta(), ecorePackage
+				.getEString(), "backwardDelta", null, 1, 1,
 				org.unicase.emfstore.esmodel.versioning.ChangePackage.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEReference(getChangePackage_ProjectState(), theModelPackage
-				.getProject(), null, "projectState", null, 0, 1,
-				org.unicase.emfstore.esmodel.versioning.ChangePackage.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		addEOperation(changePackageEClass, this.getChangePackage(), "reverse",
 				0, 1, IS_UNIQUE, IS_ORDERED);
@@ -624,6 +606,13 @@ public class VersioningPackageImpl extends EPackageImpl implements
 				IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theModelPackage.getProject(), "project", 0, 1,
 				IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(changePackageEClass, null, "init", 0, 1, IS_UNIQUE,
+				IS_ORDERED);
+		addEParameter(op, theModelPackage.getProject(), "project", 0, 1,
+				IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theChangePackage.getChangeDescription(),
+				"backwardChangeDescription", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(historyInfoEClass, HistoryInfo.class, "HistoryInfo",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -651,14 +640,16 @@ public class VersioningPackageImpl extends EPackageImpl implements
 				"tagSpecs", null, 0, -1, Version.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getVersion_NextVersion(), this.getVersion(), null,
-				"nextVersion", null, 0, 1, Version.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getVersion_PreviousVersion(), this.getVersion(), null,
-				"previousVersion", null, 0, 1, Version.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVersion_NextVersion(), this.getVersion(), this
+				.getVersion_PreviousVersion(), "nextVersion", null, 0, 1,
+				Version.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEReference(getVersion_PreviousVersion(), this.getVersion(), this
+				.getVersion_NextVersion(), "previousVersion", null, 0, 1,
+				Version.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 		initEReference(getVersion_Changes(), this.getChangePackage(), null,
 				"changes", null, 0, 1, Version.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,

@@ -21,6 +21,7 @@ import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchWizard;
 import org.unicase.ui.esbrowser.views.RepositoryView;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Workspace;
