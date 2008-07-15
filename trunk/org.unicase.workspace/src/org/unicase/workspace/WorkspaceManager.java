@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.connectionmanager.AdminConnectionManager;
 import org.unicase.workspace.connectionmanager.AdminConnectionManagerStub;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
@@ -108,7 +109,7 @@ public final class WorkspaceManager {
 		ResourceSet resourceSet = new ResourceSetImpl();
 
 		// register an editing domain on the ressource
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Factory.INSTANCE
+		final TransactionalEditingDomain domain = TransactionalEditingDomain.Factory.INSTANCE
 				.createEditingDomain(resourceSet);
 		TransactionalEditingDomain.Registry.INSTANCE.add(
 				TRANSACTIONAL_EDITINGDOMAIN_ID, domain);
@@ -148,7 +149,12 @@ public final class WorkspaceManager {
 		}
 		workspace.setConnectionManager(this.connectionManager);
 		workspace.setResource(resource);
-		workspace.init(domain);
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			protected void doExecute() {
+				workspace.init(domain);
+			}
+		});
+		
 		return workspace;
 
 	}
