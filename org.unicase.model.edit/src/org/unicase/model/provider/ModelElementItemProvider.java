@@ -139,13 +139,13 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((ModelElement) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_ModelElement_type")
-				: getString("_UI_ModelElement_type") + " " + label;
+		return label == null || label.length() == 0 ? "unnamed"+ getString("_UI_ModelElement_type")
+				: " " + label;
 	}
 
 	/**
