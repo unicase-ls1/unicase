@@ -58,7 +58,6 @@
       <genOperations ecoreOperation="workspace.ecore#//ProjectSpace/save"/>
       <genOperations ecoreOperation="workspace.ecore#//ProjectSpace/init"/>
       <genOperations ecoreOperation="workspace.ecore#//ProjectSpace/getProjectInfo"/>
-      <genOperations ecoreOperation="workspace.ecore#//ProjectSpace/isDirty"/>
       <genOperations ecoreOperation="workspace.ecore#//ProjectSpace/resolveVersionSpec">
         <genParameters ecoreParameter="workspace.ecore#//ProjectSpace/resolveVersionSpec/versionSpec"/>
       </genOperations>

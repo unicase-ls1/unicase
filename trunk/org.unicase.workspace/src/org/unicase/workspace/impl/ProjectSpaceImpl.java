@@ -238,7 +238,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 					newProject));
 	}
 
-		/**
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -538,13 +538,13 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 		//getUsersession().logIn();
 
 		stopChangeRecording();
-		
+
 		//check if there are any changes
 		if (getLocalChanges() == null) {
 			startChangeRecording();
 			return getBaseVersion();
 		}
-				
+
 		//check if we need to update first
 		PrimaryVersionSpec resolvedVersion = resolveVersionSpec(VersionSpec.HEAD_VERSION);
 		if ((!getBaseVersion().equals(resolvedVersion))) {
@@ -552,27 +552,27 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 			throw new BaseVersionOutdatedException(
 					"BaseVersion outdated, please update before commit.");
 		}
-				
-			
+
 		final ConnectionManager connectionManager = WorkspaceManager
 				.getInstance().getConnectionManager();
 
 		Project project = getProject();
-		
-		ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
+
+		ChangePackage changePackage = VersioningFactory.eINSTANCE
+				.createChangePackage();
 		changePackage.init(project, localChanges);
-		
-		PrimaryVersionSpec newBaseVersion = connectionManager.createVersion(getUsersession()
-				.getSessionId(), getProjectId(), getBaseVersion(),
-				changePackage, logMessage);
-		
+
+		PrimaryVersionSpec newBaseVersion = connectionManager.createVersion(
+				getUsersession().getSessionId(), getProjectId(),
+				getBaseVersion(), changePackage, logMessage);
+
 		//delete local changes
-		this.localChanges=null;
-		
+		this.localChanges = null;
+
 		// reconnect project to projectSpace
 		setProject(project);
 		setBaseVersion(newBaseVersion);
-		
+
 		save();
 
 		startChangeRecording();
@@ -599,17 +599,17 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 
 		// FIXME: GUI has to relogin.
 		getUsersession().logIn();
-		
-		final ConnectionManager connectionManager = WorkspaceManager.getInstance()
-				.getConnectionManager();
+
+		final ConnectionManager connectionManager = WorkspaceManager
+				.getInstance().getConnectionManager();
 		PrimaryVersionSpec resolvedVersion = resolveVersionSpec(version);
 
 		stopChangeRecording();
 
-		List<ChangePackage> changes = connectionManager.getChanges(getUsersession()
-				.getSessionId(), getProjectId(), getBaseVersion(),
-				resolvedVersion);
-		
+		List<ChangePackage> changes = connectionManager.getChanges(
+				getUsersession().getSessionId(), getProjectId(),
+				getBaseVersion(), resolvedVersion);
+
 		//MK: insert conflict detection here
 		for (ChangePackage change : changes) {
 			change.apply(getProject());
@@ -648,8 +648,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @generated NOT
 	 */
 	private void stopChangeRecording() {
-		this.localChanges = this.changeRecorder
-				.endRecording();
+		this.localChanges = this.changeRecorder.endRecording();
 	}
 
 	/**
@@ -664,8 +663,8 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 		if (getLocalChanges() == null) {
 			changeRecorder.beginRecording(Collections.singleton(project));
 		} else {
-			changeRecorder.beginRecording(localChanges,
-					Collections.singleton(project));
+			changeRecorder.beginRecording(localChanges, Collections
+					.singleton(project));
 		}
 
 	}
@@ -693,24 +692,6 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 		projectInfo.setDescription(getProjectDescription());
 		projectInfo.setVersion(getBaseVersion());
 		return projectInfo;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.workspace.ProjectSpace#isDirty()
-	 * @generated NOT
-	 */
-	public boolean isDirty() {
-		ChangeDescription changeDescription = this.changeRecorder.summarize();
-		if (changeDescription==null) {
-			return false;
-		}
-		return !(changeDescription.getObjectChanges().isEmpty()
-				&& changeDescription.getObjectsToAttach().isEmpty()
-				&& changeDescription.getObjectsToDetach().isEmpty() && changeDescription
-				.getResourceChanges().isEmpty());
-
 	}
 
 	/**

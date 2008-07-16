@@ -603,9 +603,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 		addEOperation(projectSpaceEClass, theEsmodelPackage.getProjectInfo(),
 				"getProjectInfo", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		addEOperation(projectSpaceEClass, ecorePackage.getEBoolean(),
-				"isDirty", 0, 1, IS_UNIQUE, IS_ORDERED);
-
 		op = addEOperation(projectSpaceEClass, theVersioningPackage
 				.getPrimaryVersionSpec(), "resolveVersionSpec", 0, 1,
 				IS_UNIQUE, IS_ORDERED);

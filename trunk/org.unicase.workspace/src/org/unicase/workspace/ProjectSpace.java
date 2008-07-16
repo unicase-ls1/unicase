@@ -318,14 +318,6 @@ public interface ProjectSpace extends EObject {
 	ProjectInfo getProjectInfo();
 
 	/**
-	 * <!-- begin-user-doc --> Returns if this project has pending changes. <!--
-	 * end-user-doc -->
-	 * @model kind="operation"
-	 * @generated
-	 */
-	boolean isDirty();
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * Resolve a version spec to a primary version spec.
 	 * @param versionSpec the spec to resolve
