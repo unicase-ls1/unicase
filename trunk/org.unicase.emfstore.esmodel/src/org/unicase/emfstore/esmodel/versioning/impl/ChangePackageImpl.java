@@ -188,7 +188,9 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		fowardChangeDescription.apply();
 
 		//reintegrate project into old container
-		oldContainer.eContents().add(project);
+		if (oldContainer!=null) {
+			oldContainer.eContents().add(project);
+		}
 	}
 
 	/**
