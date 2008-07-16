@@ -99,8 +99,8 @@ public class TeneoStorage implements ResourceStorage {
 		packages.addAll(getSubPackages(esmodelPackage));
 
 		// add ecore packages
-		EPackage changePackage = ChangePackage.eINSTANCE;
-		packages.add(changePackage);
+//		EPackage changePackage = ChangePackage.eINSTANCE;
+//		packages.add(changePackage);
 		EPackage ecorePackage = EcorePackage.eINSTANCE;
 		packages.add(ecorePackage);
 
