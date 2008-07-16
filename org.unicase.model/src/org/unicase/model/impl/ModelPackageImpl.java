@@ -659,35 +659,20 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		createResource(eNS_URI);
 
 		// Create annotations
-		// http://unicase.org/visibility
-		createVisibilityAnnotations();
-		// http://unicase.org/UIHints
-		createUIHintsAnnotations();
+		// teneo.jpa
+		createTeneoAnnotations();
 	}
 
 	/**
-	 * Initializes the annotations for <b>http://unicase.org/visibility</b>.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Initializes the annotations for <b>teneo.jpa</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void createVisibilityAnnotations() {
-		String source = "http://unicase.org/visibility";
-		addAnnotation(getModelElement_Name(), source, new String[] {
-				"VisibilityValue", "MANDATORY" });
+	protected void createTeneoAnnotations() {
+		String source = "teneo.jpa";
 		addAnnotation(getModelElement_Description(), source, new String[] {
-				"VisibilityValue", "VIEWWHENSET" });
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://unicase.org/UIHints</b>. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void createUIHintsAnnotations() {
-		String source = "http://unicase.org/UIHints";
-		addAnnotation(getModelElement_Description(), source, new String[] {
-				"type", "TEXT_AREA" });
+				"value", "@Type(type=\"text\")" });
 	}
 
 } // ModelPackageImpl

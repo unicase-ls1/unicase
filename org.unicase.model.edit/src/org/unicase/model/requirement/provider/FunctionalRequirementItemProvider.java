@@ -61,6 +61,8 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider
 
 			addStoryPointsPropertyDescriptor(object);
 			addPriorityPropertyDescriptor(object);
+			addRefiningRequirementsPropertyDescriptor(object);
+			addRefinedRequirementPropertyDescriptor(object);
 			addUseCasesPropertyDescriptor(object);
 			addScenariosPropertyDescriptor(object);
 			addReviewedPropertyDescriptor(object);
@@ -126,6 +128,48 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider
 				RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__PRIORITY,
 				true, false, false,
 				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Refining Requirements feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRefiningRequirementsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_FunctionalRequirement_refiningRequirements_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_FunctionalRequirement_refiningRequirements_feature",
+								"_UI_FunctionalRequirement_type"),
+						RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS,
+						true, false, false, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Refined Requirement feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRefinedRequirementPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_FunctionalRequirement_refinedRequirement_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_FunctionalRequirement_refinedRequirement_feature",
+								"_UI_FunctionalRequirement_type"),
+						RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT,
+						true, false, false, null, null, null));
 	}
 
 	/**
