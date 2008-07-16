@@ -189,8 +189,9 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		fowardChangeDescription.apply();
 
 		//reintegrate project into old container
-		//reintegrate project into old container
-		oldContainer.eSet(containmentFeature, project);
+		if (oldContainer!=null) {
+			oldContainer.eSet(containmentFeature, project);
+		}
 	}
 
 	/**
@@ -235,7 +236,9 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		backwardChangeDescription.apply();
 
 		//reintegrate project into old container
-		oldContainer.eSet(containmentFeature, project);
+		if (oldContainer!=null) {
+			oldContainer.eSet(containmentFeature, project);
+		}
 	}
 
 	//end of custom code
