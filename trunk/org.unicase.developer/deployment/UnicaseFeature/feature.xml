@@ -53,98 +53,98 @@
          id="org.unicase.emfstore"
          download-size="0"
          install-size="0"
-         version="0.0.1"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.unicase.emfstore.esmodel"
          download-size="0"
          install-size="0"
-         version="0.0.1"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.unicase.emfstore.esmodel.edit"
          download-size="0"
          install-size="0"
-         version="0.0.1"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.unicase.model"
          download-size="0"
          install-size="0"
-         version="0.0.1"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.unicase.model.edit"
          download-size="0"
          install-size="0"
-         version="0.0.2"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.common"
          download-size="0"
          install-size="0"
-         version="0.0.1"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.esbrowser"
          download-size="0"
          install-size="0"
-         version="0.0.1"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.meeditor"
          download-size="0"
          install-size="0"
-         version="0.0.1"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.navigator"
          download-size="0"
          install-size="0"
-         version="0.0.2"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.stem"
          download-size="0"
          install-size="0"
-         version="0.0.1"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.tableview"
          download-size="0"
          install-size="0"
-         version="0.0.1"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.test"
          download-size="0"
          install-size="0"
-         version="0.0.1"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.unicase.workspace"
          download-size="0"
          install-size="0"
-         version="0.0.1"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.unicase.workspace.edit"
          download-size="0"
          install-size="0"
-         version="0.0.1"
+         version="0.0.0"
          unpack="false"/>
 
 </feature>

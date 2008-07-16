@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Model Test
 Bundle-SymbolicName: org.unicase.ui.test;singleton:=true
-Bundle-Version: 0.0.1
+Bundle-Version: 0.0.1.qualfier
 Bundle-Activator: org.unicase.ui.test.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
