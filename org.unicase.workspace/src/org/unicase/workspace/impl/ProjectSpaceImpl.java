@@ -572,6 +572,8 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 		// reconnect project to projectSpace
 		setProject(project);
 		setBaseVersion(newBaseVersion);
+		
+		save();
 
 		startChangeRecording();
 		return newBaseVersion;
@@ -613,6 +615,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 			change.apply(getProject());
 		}
 		setBaseVersion(resolvedVersion);
+		save();
 		startChangeRecording();
 	}
 
