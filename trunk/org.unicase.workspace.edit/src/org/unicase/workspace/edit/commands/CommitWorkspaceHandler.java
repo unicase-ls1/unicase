@@ -17,6 +17,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.ui.common.exceptions.ExceptionDialogHandler;
 import org.unicase.workspace.ProjectSpace;
 
 /**
@@ -64,8 +65,7 @@ public class CommitWorkspaceHandler extends AbstractHandler {
 				try {
 					projectSpace.commit();
 				} catch (EmfStoreException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					ExceptionDialogHandler.showExceptionDialog(e);
 				}
 			}
 		});
