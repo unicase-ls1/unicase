@@ -23,4 +23,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.transaction,
  org.unicase.ui.common
 Bundle-ActivationPolicy: lazy
-Import-Package: org.eclipse.emf.ecore.change.provider
+Import-Package: org.eclipse.emf.ecore.change.provider,
+ org.eclipse.emf.edit.ui.provider
