@@ -531,8 +531,6 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @throws EmfStoreException
 	 * @generated NOT
 	 */
-	private PrimaryVersionSpec newBaseVersion;
-
 	public PrimaryVersionSpec commit(final LogMessage logMessage)
 			throws EmfStoreException {
 
@@ -564,7 +562,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 		ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
 		changePackage.init(project, localChanges);
 		
-		newBaseVersion = connectionManager.createVersion(getUsersession()
+		PrimaryVersionSpec newBaseVersion = connectionManager.createVersion(getUsersession()
 				.getSessionId(), getProjectId(), getBaseVersion(),
 				changePackage, logMessage);
 		
