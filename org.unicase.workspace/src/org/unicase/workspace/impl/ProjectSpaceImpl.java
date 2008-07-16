@@ -568,7 +568,9 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 				.getSessionId(), getProjectId(), getBaseVersion(),
 				changePackage, logMessage);
 		
-
+		//delete local changes
+		this.localChanges=null;
+		
 		// reconnect project to projectSpace
 		setProject(project);
 		setBaseVersion(newBaseVersion);
