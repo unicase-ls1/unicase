@@ -86,8 +86,6 @@ public class MEEditor extends SharedHeaderFormEditor {
 					}
 
 				});
-
-		commandStack.flush();
 		editorDirtyStateChanged();
 		monitor.done();
 	}
