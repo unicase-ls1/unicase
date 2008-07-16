@@ -10,17 +10,10 @@
     </eOperations>
     <eOperations name="getMEState"/>
     <eOperations name="getModelElementId" eType="#//ModelElementId"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-      <eAnnotations source="http://unicase.org/visibility">
-        <details key="VisibilityValue" value="MANDATORY"/>
-      </eAnnotations>
-    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-      <eAnnotations source="http://unicase.org/visibility">
-        <details key="VisibilityValue" value="VIEWWHENSET"/>
-      </eAnnotations>
-      <eAnnotations source="http://unicase.org/UIHints">
-        <details key="type" value="TEXT_AREA"/>
+      <eAnnotations source="teneo.jpa">
+        <details key="value" value="@Type(type=&quot;text&quot;)"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="readerInfos" upperBound="-1"
