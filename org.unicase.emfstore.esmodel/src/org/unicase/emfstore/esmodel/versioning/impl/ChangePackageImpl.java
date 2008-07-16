@@ -188,7 +188,7 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		fowardChangeDescription.apply();
 
 		//reintegrate project into old container
-		if (oldContainer!=null) {
+		if (oldContainer != null) {
 			oldContainer.eContents().add(project);
 		}
 	}
@@ -203,7 +203,7 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 		EReference containmentFeature = project.eContainmentFeature();
 		EObject oldContainer = project.eContainer();
-		
+
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource projectResource = resourceSet
 				.createResource(VIRTUAL_PROJECT_URI);

@@ -41,6 +41,7 @@ public interface ChangePackage extends EObject {
 	 * @see #setForwardDelta(String)
 	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getChangePackage_ForwardDelta()
 	 * @model required="true"
+	 *        annotation="teneo.jpa value='@Type(type=\"text\")'"
 	 * @generated
 	 */
 	String getForwardDelta();
@@ -71,6 +72,7 @@ public interface ChangePackage extends EObject {
 	 * @see #setBackwardDelta(String)
 	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getChangePackage_BackwardDelta()
 	 * @model required="true"
+	 *        annotation="teneo.jpa value='@Type(type=\"text\")'"
 	 * @generated
 	 */
 	String getBackwardDelta();

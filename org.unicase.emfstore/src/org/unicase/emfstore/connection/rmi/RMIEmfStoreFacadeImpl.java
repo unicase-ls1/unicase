@@ -116,7 +116,7 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 					.stringToEObject(source), (VersionSpec) RMIUtil
 					.stringToEObject(target))) {
 
-				result.add(RMIUtil.eObjectToStringByResource(cp));
+				result.add(RMIUtil.eObjectToString(cp));
 			}
 			return result;
 		} catch (UnsupportedEncodingException e) {
