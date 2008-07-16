@@ -92,6 +92,7 @@ public class EmfStoreImpl implements EmfStore {
 		changePackage.apply(newProjectState);
 		version.setProjectState(newProjectState);
 		
+		version.setChanges(changePackage);
 		version.setLogMessage(logMessage);
 		version.setPrimarySpec(newVersionSpec);
 		version.setNextVersion(null);

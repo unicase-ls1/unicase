@@ -18,9 +18,12 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.change.ChangePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.teneo.PersistenceOptions;
+import org.eclipse.emf.teneo.extension.ExtensionManager;
 import org.eclipse.emf.teneo.hibernate.HbDataStore;
 import org.eclipse.emf.teneo.hibernate.HbHelper;
 import org.eclipse.emf.teneo.hibernate.resource.HibernateResource;
+import org.eclipse.emf.teneo.mapping.strategy.EntityNameStrategy;
+import org.eclipse.emf.teneo.mapping.strategy.impl.QualifyingEntityNameStrategy;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.hibernate.cfg.Environment;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
@@ -54,6 +57,11 @@ public class TeneoStorage implements ResourceStorage {
 				org.hibernate.dialect.MySQLInnoDBDialect.class.getName());
 		// Lazy loading to avoid too many joins exception
 		props.setProperty(Environment.MAX_FETCH_DEPTH, "0");
+
+//		//MK: does not work with mysql, table names are too long
+//		//use fully qualified names for classes
+//		final ExtensionManager extensionManager = dataStore.getExtensionManager();
+//		extensionManager.registerExtension(EntityNameStrategy.class.getName(), QualifyingEntityNameStrategy.class.getName());
 
 		props.setProperty(PersistenceOptions.INHERITANCE_MAPPING, "JOINED");
 		//props.setProperty(PersistenceOptions.ID_FEATURE_AS_PRIMARY_KEY, "false");
