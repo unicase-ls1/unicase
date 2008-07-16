@@ -6,8 +6,11 @@
  */
 package org.unicase.ui.meeditor;
 
+import java.util.EventObject;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.CommandStack;
+import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
@@ -23,12 +26,11 @@ import org.unicase.workspace.WorkspaceManager;
 
 /**
  * GUI view for editing MEs.
+ * 
  * @author helming
- *
+ * 
  */
 public class MEEditor extends SharedHeaderFormEditor {
-
-	
 
 	/**
 	 * The Id for MEEditor. We need this to open a model element.
@@ -39,6 +41,8 @@ public class MEEditor extends SharedHeaderFormEditor {
 	private TransactionalEditingDomain editingDomain;
 	private CommandStack commandStack;
 	private MEEditorPage form;
+	private boolean checkingDirty;
+	protected boolean dirty;
 
 	/**
 	 * Default constructor.
@@ -46,15 +50,15 @@ public class MEEditor extends SharedHeaderFormEditor {
 	public MEEditor() {
 		// initializeEditingDomain();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected void addPages() {
 
-		form = new MEEditorPage(this, "1", "Standard View",
-				editingDomain, modelElement);
+		form = new MEEditorPage(this, "1", "Standard View", editingDomain,
+				modelElement);
 		try {
 			addPage(form);
 		} catch (PartInitException e) {
@@ -97,6 +101,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 	/**
 	 * Save is not allowed as the editor can only modify model elements.
+	 * 
 	 * @return false
 	 */
 	@Override
@@ -144,17 +149,27 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 		this.commandStack = editingDomain.getCommandStack();
 		// Add a listener to set the editor dirty of commands have been executed
-		// editingDomain.getCommandStack().addCommandStackListener(new
-		// CommandStackListener() {
-		// public void commandStackChanged(final EventObject event) {
-		// getContainer().getDisplay().asyncExec(new Runnable() {
-		// public void run() {
-		// dirty = true;
-		// editorDirtyStateChanged();
-		// }
-		// });
-		// }
-		// });
+		editingDomain.getCommandStack().execute(
+				new RecordingCommand(editingDomain) {
+
+					@Override
+					protected void doExecute() {
+						editingDomain.getCommandStack()
+								.addCommandStackListener(
+										new CommandStackListener() {
+
+											public void commandStackChanged(
+													EventObject event) {
+												//JH: Fix Hack
+												if (!checkingDirty) {
+													editorDirtyStateChanged();
+												}
+											}
+										});
+
+					}
+
+				});
 
 		// Create the editing domain with our adapterFactory and command stack.
 
@@ -168,15 +183,30 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 */
 	@Override
 	public boolean isDirty() {
-		return true;
+		//JH: Syncronize
+		if(checkingDirty){
+			return dirty;
+		}
+		checkingDirty=true;
+		editingDomain.getCommandStack().execute(
+				new RecordingCommand(editingDomain) {
+
+					@Override
+					protected void doExecute() {
+						dirty = WorkspaceManager.getInstance()
+								.getCurrentWorkspace().isDirty();
+					}
+				});
+		checkingDirty=false;
+		return dirty;
 	}
-	
+
 	@Override
 	public void setFocus() {
-		
+
 		super.setFocus();
 		form.setFocus();
-		
+
 	}
 
 }
