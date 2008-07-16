@@ -573,7 +573,6 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 		setProject(project);
 		setBaseVersion(newBaseVersion);
 
-		// MK: save projectspace if single resource
 		startChangeRecording();
 		return newBaseVersion;
 	}
@@ -701,6 +700,9 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 */
 	public boolean isDirty() {
 		ChangeDescription changeDescription = this.changeRecorder.summarize();
+		if (changeDescription==null) {
+			return false;
+		}
 		return !(changeDescription.getObjectChanges().isEmpty()
 				&& changeDescription.getObjectsToAttach().isEmpty()
 				&& changeDescription.getObjectsToDetach().isEmpty() && changeDescription
