@@ -26,6 +26,10 @@
            class="org.unicase.workspace.edit.commands.UpdateWorkspaceHandler"
            commandId="org.unicase.workspace.edit.updateWorkspace">
      </handler>
+     <handler
+           class="org.unicase.workspace.edit.commands.ShareWorkspaceHandler"
+           commandId="org.unicase.workspace.edit.shareWorkspace">
+     </handler>
   </extension>
   <extension
         point="org.eclipse.ui.commands">
@@ -42,6 +46,11 @@
            categoryId="org.unicase.workspace.edit.workspace"
            id="org.unicase.workspace.edit.updateWorkspace"
            name="updateWorkspace">
+     </command>
+     <command
+           categoryId="org.unicase.workspace.edit.workspace"
+           id="org.unicase.workspace.edit.shareWorkspace"
+           name="shareWorkspace">
      </command>
   </extension>
   <extension
@@ -74,8 +83,21 @@
               </iterate>
            </visibleWhen>
         </command>
+          <command
+              commandId="org.unicase.workspace.edit.shareWorkspace"
+              label="Share Workspace"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <iterate>
+                 <instanceof
+                       value="org.unicase.workspace.ProjectSpace">
+                 </instanceof>
+              </iterate>
+           </visibleWhen>
+        </command>
         <separator
-              name="org.unicase.workspace.edit.worksapceCommands"
+              name="org.unicase.workspace.edit.workspaceCommands"
               visible="true">
         </separator>
      </menuContribution>
