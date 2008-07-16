@@ -9,7 +9,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.transaction.ui,
  org.unicase.model.edit,
- org.unicase.workspace,
- org.eclipse.nebula.widgets.gantchart;bundle-version="1.0.0"
+ org.unicase.workspace
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
