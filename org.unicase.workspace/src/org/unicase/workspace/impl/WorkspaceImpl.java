@@ -205,12 +205,14 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * @generated NOT
 	 */
 	public boolean isDirty() {
-		for (ProjectSpace projectSpace : this.projectSpaces) {
-			if (projectSpace.isDirty()) {
-				return true;
-			}
-		}
-		return false;
+		return resource.isModified();
+
+		//		for (ProjectSpace projectSpace : this.projectSpaces) {
+		//			if (projectSpace.isDirty()) {
+		//				return true;
+		//			}
+		//		}
+		//		return false;
 	}
 
 	/**

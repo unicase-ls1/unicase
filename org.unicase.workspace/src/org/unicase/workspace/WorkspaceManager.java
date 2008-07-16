@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.connectionmanager.AdminConnectionManager;
 import org.unicase.workspace.connectionmanager.AdminConnectionManagerStub;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
@@ -148,6 +147,8 @@ public final class WorkspaceManager {
 			workspace = (Workspace) directContents.get(0);
 		}
 		workspace.setConnectionManager(this.connectionManager);
+		//MK: possible performance hit
+		resource.setTrackingModification(true);
 		workspace.setResource(resource);
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			protected void doExecute() {
