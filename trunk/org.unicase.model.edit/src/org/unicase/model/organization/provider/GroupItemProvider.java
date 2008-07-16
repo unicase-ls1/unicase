@@ -88,13 +88,11 @@ public class GroupItemProvider extends OrgUnitItemProvider implements
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Group) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Group_type")
-				: getString("_UI_Group_type") + " " + label;
+		return super.getText(object);
 	}
 
 	/**
