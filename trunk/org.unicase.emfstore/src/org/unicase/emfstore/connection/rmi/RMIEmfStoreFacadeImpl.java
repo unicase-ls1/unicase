@@ -27,6 +27,7 @@ import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.model.Project;
 
 /**
  * Implementation of a RMIEmfStoreFacade.
@@ -249,6 +250,21 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 					(SessionId) RMIUtil.stringToEObject(sessionId), name,
 					description, (LogMessage) RMIUtil
 							.stringToEObject(logMessage)));
+		} catch (UnsupportedEncodingException e) {
+			throw new EmfStoreException(SERIALEX,e);
+		} catch (IOException e) {
+			throw new EmfStoreException(SERIALEX,e);
+		}
+	}
+
+	public String createProject(String sessionId, String name,
+			String description, String logMessage, String project) throws EmfStoreException, RemoteException {
+		LOGGER.debug("Client call on createProject RECEIVED.");
+		try {
+			return RMIUtil.eObjectToString(emfStore.createProject(
+					(SessionId) RMIUtil.stringToEObject(sessionId), name,
+					description, (LogMessage) RMIUtil
+							.stringToEObject(logMessage), (Project) RMIUtil.stringToEObject(project)));
 		} catch (UnsupportedEncodingException e) {
 			throw new EmfStoreException(SERIALEX,e);
 		} catch (IOException e) {

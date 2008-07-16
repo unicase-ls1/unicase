@@ -284,4 +284,10 @@ public class EmfStoreStub implements EmfStore {
 		return info;
 	}
 
+	public ProjectInfo createProject(SessionId sessionId, String name,
+			String description, LogMessage logMessage, Project project)
+			throws EmfStoreException {
+		throw new UnsupportedOperationException();
+	}
+
 }

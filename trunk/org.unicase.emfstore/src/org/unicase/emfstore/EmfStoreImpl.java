@@ -195,6 +195,20 @@ public class EmfStoreImpl implements EmfStore {
 	 */
 	public ProjectInfo createProject(SessionId sessionId, String name,
 			String description, LogMessage logMessage) throws EmfStoreException {
+		ProjectHistory projectHistory = createEmptyProject(name, description,
+				logMessage);
+		return getProjectInfo(projectHistory);
+	}
+
+	/**
+	 * @param name
+	 * @param description
+	 * @param logMessage
+	 * @return
+	 * @throws EmfStoreException
+	 */
+	private ProjectHistory createEmptyProject(String name, String description,
+			LogMessage logMessage) throws EmfStoreException {
 		// TODO: authorization
 		// create initial ProjectHistory
 		ProjectHistory projectHistory = EsmodelFactory.eINSTANCE
@@ -215,7 +229,17 @@ public class EmfStoreImpl implements EmfStore {
 		// add to serverspace and save
 		getServerSpace().getProjects().add(projectHistory);
 		save();
-
+		return projectHistory;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public ProjectInfo createProject(SessionId sessionId, String name,
+			String description, LogMessage logMessage, Project project) throws EmfStoreException {
+		ProjectHistory projectHistory = createEmptyProject(name, description,
+				logMessage);
+		projectHistory.getLastVersion().setProjectState(project);	
 		return getProjectInfo(projectHistory);
 	}
 
