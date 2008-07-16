@@ -162,8 +162,9 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 */
 	public void apply(Project project) {
 		//preserve old container
+		EReference containmentFeature = project.eContainmentFeature();
 		EObject oldContainer = project.eContainer();
-
+		
 		//integrate project and cp into shared resource set
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource projectResource = resourceSet
@@ -188,9 +189,8 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		fowardChangeDescription.apply();
 
 		//reintegrate project into old container
-		if (oldContainer != null) {
-			oldContainer.eContents().add(project);
-		}
+		//reintegrate project into old container
+		oldContainer.eSet(containmentFeature, project);
 	}
 
 	/**
