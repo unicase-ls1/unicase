@@ -8,9 +8,9 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.workspace.ProjectSpace;
 
-public abstract class ProjectSpaceActionHandler extends AbstractHandler {
+public abstract class ProjectActionHandler extends AbstractHandler {
 
-	public ProjectSpaceActionHandler() {
+	public ProjectActionHandler() {
 		super();
 	}
 

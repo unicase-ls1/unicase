@@ -17,7 +17,7 @@ import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 
-public class ShareWorkspaceHandler extends ProjectSpaceActionHandler {
+public class ShareProjectHandler extends ProjectActionHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		

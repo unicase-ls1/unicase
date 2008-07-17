@@ -23,7 +23,7 @@ import org.unicase.workspace.ProjectSpace;
  *         shown in UC View context menu only for Projects
  * 
  */
-public class CommitWorkspaceHandler extends ProjectSpaceActionHandler {
+public class CommitProjectHandler extends ProjectActionHandler {
 
 	/**
 	 * . ({@inheritDoc})

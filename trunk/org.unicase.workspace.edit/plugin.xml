@@ -19,56 +19,56 @@
   <extension
         point="org.eclipse.ui.handlers">
      <handler
-           class="org.unicase.workspace.edit.commands.CommitWorkspaceHandler"
-           commandId="org.unicase.workspace.edit.commitWorkspace">
+           class="org.unicase.workspace.edit.commands.CommitProjectHandler"
+           commandId="org.unicase.workspace.edit.commitProject">
      </handler>
      <handler
-           class="org.unicase.workspace.edit.commands.UpdateWorkspaceHandler"
-           commandId="org.unicase.workspace.edit.updateWorkspace">
+           class="org.unicase.workspace.edit.commands.UpdateProjectHandler"
+           commandId="org.unicase.workspace.edit.updateProject">
      </handler>
      <handler
-           class="org.unicase.workspace.edit.commands.ShareWorkspaceHandler"
-           commandId="org.unicase.workspace.edit.shareWorkspace">
+           class="org.unicase.workspace.edit.commands.ShareProjectHandler"
+           commandId="org.unicase.workspace.edit.shareProject">
      </handler>
      <handler
-           class="org.unicase.workspace.edit.commands.ImportWorkspaceHandler"
-           commandId="org.unicase.workspace.edit.importWorkspace">
+           class="org.unicase.workspace.edit.commands.ImportProjectHandler"
+           commandId="org.unicase.workspace.edit.importProject">
      </handler>
       <handler
-           class="org.unicase.workspace.edit.commands.ExportWorkspaceHandler"
-           commandId="org.unicase.workspace.edit.exportWorkspace">
+           class="org.unicase.workspace.edit.commands.ExportProjectHandler"
+           commandId="org.unicase.workspace.edit.exportProject">
      </handler>
   </extension>
   <extension
         point="org.eclipse.ui.commands">
      <category
-           id="org.unicase.workspace.edit.workspace"
-           name="workspaceCategory">
+           id="org.unicase.workspace.edit.project"
+           name="projectCategory">
      </category>
      <command
-           categoryId="org.unicase.workspace.edit.workspace"
-           id="org.unicase.workspace.edit.commitWorkspace"
-           name="commitWorkspace">
+           categoryId="org.unicase.workspace.edit.project"
+           id="org.unicase.workspace.edit.commitProject"
+           name="commit">
      </command>
      <command
-           categoryId="org.unicase.workspace.edit.workspace"
-           id="org.unicase.workspace.edit.updateWorkspace"
-           name="updateWorkspace">
+           categoryId="org.unicase.workspace.edit.project"
+           id="org.unicase.workspace.edit.updateProject"
+           name="update">
      </command>
      <command
-           categoryId="org.unicase.workspace.edit.workspace"
-           id="org.unicase.workspace.edit.shareWorkspace"
-           name="shareWorkspace">
+           categoryId="org.unicase.workspace.edit.project"
+           id="org.unicase.workspace.edit.shareProject"
+           name="share">
      </command>
      <command
-           categoryId="org.unicase.workspace.edit.workspace"
-           id="org.unicase.workspace.edit.importWorkspace"
-           name="importWorkspace">
+           categoryId="org.unicase.workspace.edit.project"
+           id="org.unicase.workspace.edit.importProject"
+           name="import">
      </command>
      <command
-           categoryId="org.unicase.workspace.edit.workspace"
-           id="org.unicase.workspace.edit.exportWorkspace"
-           name="exportWorkspace">
+           categoryId="org.unicase.workspace.edit.project"
+           id="org.unicase.workspace.edit.exportProject"
+           name="export">
      </command>
   </extension>
   <extension
@@ -76,8 +76,9 @@
      <menuContribution
            locationURI="popup:org.unicase.ui.navigator.viewer?before=additions">
         <command
-              commandId="org.unicase.workspace.edit.commitWorkspace"
-              label="Commit Workspace"
+              commandId="org.unicase.workspace.edit.commitProject"
+              icon="icons/full/obj16/commit.gif"
+              label="Commit Project"
               style="push">
            <visibleWhen
                  checkEnabled="false">
@@ -89,8 +90,9 @@
            </visibleWhen>
         </command>
         <command
-              commandId="org.unicase.workspace.edit.updateWorkspace"
-              label="Update Workspace"
+              commandId="org.unicase.workspace.edit.updateProject"
+              icon="icons/full/obj16/update.gif"
+              label="Update Project"
               style="push">
            <visibleWhen
                  checkEnabled="false">
@@ -101,49 +103,52 @@
               </iterate>
            </visibleWhen>
         </command>
-          <command
-              commandId="org.unicase.workspace.edit.shareWorkspace"
-              label="Share Workspace"
-              style="push">
-           <visibleWhen
-                 checkEnabled="false">
-              <iterate>
-                 <instanceof
-                       value="org.unicase.workspace.ProjectSpace">
-                 </instanceof>
-              </iterate>
-           </visibleWhen>
-        </command>
-        <command
-              commandId="org.unicase.workspace.edit.exportWorkspace"
-              label="Export Workspace"
-              style="push">
-           <visibleWhen
-                 checkEnabled="false">
-              <iterate>
-                 <instanceof
-                       value="org.unicase.workspace.ProjectSpace">
-                 </instanceof>
-              </iterate>
-           </visibleWhen>
-        </command>
-        <command
-              commandId="org.unicase.workspace.edit.importWorkspace"
-              label="Import Workspace"
-              style="push">
-           <visibleWhen
-                 checkEnabled="false">
-              <iterate>
-                 <instanceof
-                       value="org.unicase.workspace.ProjectSpace">
-                 </instanceof>
-              </iterate>
-           </visibleWhen>
-        </command>
-        <separator
-              name="org.unicase.workspace.edit.workspaceCommands"
-              visible="true">
-        </separator>
+        <menu
+              icon="icons/full/obj16/createrepos.gif"
+              label="Other Repository Actions">
+           <command
+                 commandId="org.unicase.workspace.edit.shareProject"
+                 icon="icons/full/obj16/relocate.gif"
+                 label="Share  Project"
+                 style="push">
+              <visibleWhen
+                    checkEnabled="false">
+                 <iterate>
+                    <instanceof
+                          value="org.unicase.workspace.ProjectSpace">
+                    </instanceof>
+                 </iterate>
+              </visibleWhen>
+           </command>
+           <command
+                 commandId="org.unicase.workspace.edit.importProject"
+                 icon="icons/full/obj16/import.gif"
+                 label="Import Project"
+                 style="push">
+              <visibleWhen
+                    checkEnabled="false">
+                 <iterate>
+                    <instanceof
+                          value="org.unicase.workspace.ProjectSpace">
+                    </instanceof>
+                 </iterate>
+              </visibleWhen>
+           </command>
+           <command
+                 commandId="org.unicase.workspace.edit.exportProject"
+                 icon="icons/full/obj16/export.gif"
+                 label="Export Project"
+                 style="push">
+              <visibleWhen
+                    checkEnabled="false">
+                 <iterate>
+                    <instanceof
+                          value="org.unicase.workspace.ProjectSpace">
+                    </instanceof>
+                 </iterate>
+              </visibleWhen>
+           </command>
+        </menu>
      </menuContribution>
   </extension>
 
