@@ -108,21 +108,6 @@
            uri="http://unicase.org/model/classes">
      </factory>
   </extension>
-  <extension
-        point="org.eclipse.ui.decorators">
-     <decorator
-           adaptable="true"
-           class="org.unicase.model.edit.decorators.StateDecorator"
-           id="org.unicase.model.edit.decorators.StateDecorator"
-           label="State Decorator"
-           lightweight="true"
-           state="true">
-        <enablement>
-           <objectClass
-                 name="org.unicase.model.ModelElement">
-           </objectClass>
-        </enablement>
-     </decorator>
-  </extension>
+ 
 </plugin>
 
