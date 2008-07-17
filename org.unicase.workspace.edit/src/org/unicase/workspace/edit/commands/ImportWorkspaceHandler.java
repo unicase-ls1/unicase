@@ -38,7 +38,7 @@ public class ImportWorkspaceHandler extends AbstractHandler {
 				buf.append(files[i]);
 				buf.append(" ");
 			}
-			// MK: do sth. with the file
+			//MK: do sth. with the file
 			MessageDialog.openInformation(null, "Import", buf.toString());
 		}
 

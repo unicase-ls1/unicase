@@ -33,7 +33,7 @@ public class ExportWorkspaceHandler extends AbstractHandler {
 				buf.append(files[i]);
 				buf.append(" ");
 			}
-			// MK: do sth. with the file
+			//MK: do sth. with the file
 			MessageDialog.openInformation(null, "Export", buf.toString());
 		}
 		return null;
