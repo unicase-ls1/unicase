@@ -6,14 +6,11 @@
  */
 package org.unicase.workspace.edit.commands;
 
-import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.emfstore.exceptions.EmfStoreException;
@@ -26,7 +23,7 @@ import org.unicase.workspace.ProjectSpace;
  *         shown in UC View context menu only for Projects
  * 
  */
-public class CommitWorkspaceHandler extends AbstractHandler {
+public class CommitWorkspaceHandler extends ProjectSpaceActionHandler {
 
 	/**
 	 * . ({@inheritDoc})
@@ -35,33 +32,18 @@ public class CommitWorkspaceHandler extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		IWorkbenchWindow window = HandlerUtil
-				.getActiveWorkbenchWindowChecked(event);
+		.getActiveWorkbenchWindowChecked(event);
 
-		MessageDialog.openInformation(window.getShell(), null,
-				"CommitWorkspace!");
+MessageDialog.openInformation(window.getShell(), null,
+		"CommitWorkspace!");
 
-		ISelection sel = HandlerUtil.getCurrentSelection(event);
-		if (!(sel instanceof IStructuredSelection)) {
-			return null;
-		}
 
-		IStructuredSelection ssel = (IStructuredSelection) sel;
-		if (ssel.isEmpty()) {
-			return null;
-		}
-
-		Object o = ssel.getFirstElement();
-		if (!(o instanceof ProjectSpace)) {
-			return null;
-		}
-
-		final ProjectSpace projectSpace = (ProjectSpace) o;
+		final ProjectSpace projectSpace = getProjectSpace(event);
 
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			protected void doExecute() {
-				// TODO: handle exception
 				try {
 					projectSpace.commit();
 				} catch (EmfStoreException e) {

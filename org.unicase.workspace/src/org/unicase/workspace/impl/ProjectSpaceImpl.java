@@ -6,6 +6,7 @@
  */
 package org.unicase.workspace.impl;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -899,4 +900,13 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 		save();
 		this.startChangeRecording();
 	}
+	
+	/**
+	 * @param absoluteFileName
+	 * @param projectSpace
+	 */
+	public void exportProject(String absoluteFileName) throws IOException {
+		WorkspaceManager.getInstance().getCurrentWorkspace().exportProject(this, absoluteFileName);
+	}
+	
 } // ProjectContainerImpl

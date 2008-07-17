@@ -6,6 +6,8 @@
  */
 package org.unicase.workspace;
 
+import java.io.IOException;
+
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -152,4 +154,10 @@ public interface Workspace extends EObject, IAdaptable {
 	 * @generated NOT
 	 */
 	TransactionalEditingDomain getEditingDomain();
+
+	ProjectSpace importProject(String absoluteFileName)
+			throws IOException;
+
+	void exportProject(ProjectSpace projectSpace, String absoluteFileName)
+			throws IOException;
 } // Workspace
