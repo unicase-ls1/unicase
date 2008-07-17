@@ -896,6 +896,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 		this.setLastUpdated(new Date());
 		this.setProjectId(createdProject.getProjectId());
 		this.setLocalChanges(null);
+		save();
 		this.startChangeRecording();
 	}
 } // ProjectContainerImpl
