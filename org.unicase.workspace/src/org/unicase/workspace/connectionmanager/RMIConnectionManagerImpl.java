@@ -216,6 +216,24 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 			throw new ConnectionException(REMOTE, e);
 		}
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public ProjectInfo createProject(SessionId sessionid, String name,
+			String description, LogMessage logMessage, Project project) throws EmfStoreException {
+		try {
+			return (ProjectInfo) RMIUtil.stringToEObject(getFacade(sessionid)
+					.createProject(RMIUtil.eObjectToString(sessionid), name,
+							description, RMIUtil.eObjectToString(logMessage), RMIUtil.eObjectToString(project)));
+		} catch (UnsupportedEncodingException e) {
+			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
+		} catch (RemoteException e) {
+			throw new ConnectionException(REMOTE, e);
+		} catch (IOException e) {
+			throw new ConnectionException(REMOTE, e);
+		}
+	}
 
 	/**
 	 * {@inheritDoc}

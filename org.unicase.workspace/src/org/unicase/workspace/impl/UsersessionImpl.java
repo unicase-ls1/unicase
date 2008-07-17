@@ -20,6 +20,7 @@ import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
@@ -240,7 +241,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SessionId getSessionId() {
+	public SessionId getSessionIdGen() {
 		if (sessionId != null && sessionId.eIsProxy()) {
 			InternalEObject oldSessionId = (InternalEObject) sessionId;
 			sessionId = (SessionId) eResolveProxy(oldSessionId);
@@ -393,13 +394,24 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	public void logIn() throws EmfStoreException, AccessControlException {
 		ConnectionManager connectionManager = this.getWorkspaceManager()
 				.getConnectionManager();
-
-		// MK: fixme
+		//sanity checks
+		if (getUsername()==null || getPassword()==null) {
+			throw new AccessControlException("Username or Password not set!");
+		}
+		ServerInfo serverInfo = getServerInfo();
+		if (serverInfo==null) {
+			throw new IllegalStateException("No ServerInfo set!");
+		}
+		if (serverInfo.getUrl()==null) {
+			throw new ConnectionException("Invalid server url: null");
+		}
+		
 		// prepare serverInfo for send: copy and remove usersession
 		ServerInfo copy = (ServerInfo) EcoreUtil.copy(serverInfo);
 		copy.setLastUsersession(null);
 
-		this.setSessionId(connectionManager.logIn(username, password, copy));
+		SessionId newSessionId = connectionManager.logIn(username, password, copy);
+		this.setSessionId(newSessionId);
 	}
 
 	/**
@@ -583,6 +595,20 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 		return connectionManager.createProject(this.getSessionId(), name,
 				description, log);
 
+	}
+
+	public SessionId getSessionId() {
+		SessionId sessionIdGen = getSessionIdGen();
+		if (sessionIdGen==null) {
+			try {
+				logIn();
+			} catch (AccessControlException e) {
+				return null;
+			} catch (EmfStoreException e) {
+				return null;
+			}
+		}
+		return getSessionIdGen();
 	}
 
 } // UsersessionImpl

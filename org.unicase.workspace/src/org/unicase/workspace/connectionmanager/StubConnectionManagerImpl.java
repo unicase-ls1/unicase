@@ -154,4 +154,10 @@ public class StubConnectionManagerImpl implements ConnectionManager {
 		throw new UnsupportedOperationException();
 	}
 
+	public ProjectInfo createProject(SessionId sessionId, String name,
+			String description, LogMessage logMessage, Project project)
+			throws EmfStoreException {
+		throw new UnsupportedOperationException();
+	}
+
 }

@@ -329,5 +329,7 @@ public interface ProjectSpace extends EObject {
 	 */
 	PrimaryVersionSpec resolveVersionSpec(VersionSpec versionSpec)
 			throws EmfStoreException;
+	
+	void shareProject(Usersession usersession) throws EmfStoreException;
 
 } // ProjectContainer

@@ -878,4 +878,24 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 		result.append(')');
 		return result.toString();
 	}
+
+	public void shareProject(Usersession usersession) throws EmfStoreException {
+		this.stopChangeRecording();
+		this.setUsersession(usersession);
+		LogMessage logMessage = VersioningFactory.eINSTANCE
+				.createLogMessage();
+		logMessage.setAuthor(usersession.getUsername());
+		logMessage.setDate(new Date());
+		logMessage.setMessage("Initial commit");
+		ProjectInfo createdProject = WorkspaceManager.getInstance().getConnectionManager()
+		.createProject(usersession.getSessionId(),
+				this.getProjectName(),
+				this.getProjectDescription(),
+				logMessage, this.getProject());
+		this.setBaseVersion(createdProject.getVersion());
+		this.setLastUpdated(new Date());
+		this.setProjectId(createdProject.getProjectId());
+		this.setLocalChanges(null);
+		this.startChangeRecording();
+	}
 } // ProjectContainerImpl
