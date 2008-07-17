@@ -194,7 +194,7 @@ public class TestView extends ViewPart {
 		lblNumOfMEsToOpen = new Label(testParamsGroup, SWT.None); 
 		lblNumOfMEsToOpen.setText("No. of MEs to open:"); 
 		txtNumOfMEsToOpen = new Text(testParamsGroup,SWT.BORDER); 
-		txtNumOfMEsToOpen.setText("20");
+		txtNumOfMEsToOpen.setText("0");
 		GridData gridData7 = new GridData(GridData.FILL_HORIZONTAL);
 		gridData7.horizontalSpan = 2;
 		txtNumOfMEsToOpen.setLayoutData(gridData7); 
