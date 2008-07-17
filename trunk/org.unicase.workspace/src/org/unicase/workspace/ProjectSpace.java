@@ -6,6 +6,7 @@
  */
 package org.unicase.workspace;
 
+import java.io.IOException;
 import java.util.Date;
 
 import org.eclipse.emf.ecore.EObject;
@@ -331,5 +332,8 @@ public interface ProjectSpace extends EObject {
 			throws EmfStoreException;
 	
 	void shareProject(Usersession usersession) throws EmfStoreException;
+
+	void exportProject(String fileName)
+			throws IOException;
 
 } // ProjectContainer

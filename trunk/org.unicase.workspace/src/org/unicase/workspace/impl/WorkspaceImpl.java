@@ -6,16 +6,22 @@
  */
 package org.unicase.workspace.impl;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Date;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -364,5 +370,55 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 */
 	public TransactionalEditingDomain getEditingDomain() {
 		return this.transactionalEditingDomain;
+	}
+	
+	/**
+	 * @param fileName
+	 * @param absoluteFileName
+	 * @return
+	 */
+	public ProjectSpace importProject(String absoluteFileName) throws IOException {
+		ResourceSetImpl resourceSet = new ResourceSetImpl();
+		Resource resource = resourceSet.getResource(URI
+				.createFileURI(absoluteFileName), true);
+		EList<EObject> directContents = resource.getContents();
+		// sanity check
+
+		if (directContents.size() != 1
+				&& (!(directContents.get(0) instanceof Project))) {
+			throw new IOException(
+					"File is corrupt, does not contain a Project.");
+		}
+
+		Project project = (Project) directContents.get(0);
+
+		ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE
+				.createProjectSpace();
+		projectSpace.setProject(project);
+		projectSpace.setProjectName(absoluteFileName.substring(absoluteFileName.lastIndexOf(File.separatorChar)+1));
+		projectSpace.setProjectDescription("Imported from " + absoluteFileName);
+		
+		this.getProjectSpaces().add(projectSpace);
+		return projectSpace;
+	}
+	
+	/**
+	 * @param absoluteFileName
+	 * @param projectSpace
+	 */
+	public void exportProject(ProjectSpace projectSpace, String absoluteFileName) throws IOException {
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Resource resource = resourceSet.createResource(URI.createFileURI(absoluteFileName));
+		Project project = projectSpace.getProject();
+		EReference containmentFeature = project.eContainmentFeature();
+		EObject oldContainer = project.eContainer();
+		
+		resource.getContents().add(project);
+		resource.save(null);
+
+		//reintegrate project into old container
+		if (oldContainer!=null) {
+			oldContainer.eSet(containmentFeature, project);
+		}
 	}
 } // WorkspaceImpl

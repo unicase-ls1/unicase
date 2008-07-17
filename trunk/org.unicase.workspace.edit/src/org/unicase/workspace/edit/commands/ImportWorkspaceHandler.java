@@ -1,16 +1,22 @@
 package org.unicase.workspace.edit.commands;
 
 import java.io.File;
+import java.io.IOException;
 
-import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
+import org.unicase.ui.common.exceptions.ExceptionDialogHandler;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.Workspace;
+import org.unicase.workspace.WorkspaceManager;
 
-public class ImportWorkspaceHandler extends AbstractHandler {
+public class ImportWorkspaceHandler extends ProjectSpaceActionHandler {
 
 	public static final String[] FILTER_NAMES = {
 			"Unicase Project Files (*.ucp)", "All Files (*.*)" };
@@ -19,29 +25,41 @@ public class ImportWorkspaceHandler extends AbstractHandler {
 	public static final String[] FILTER_EXTS = { "*.ucp", "*.*" };
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		FileDialog dlg = new FileDialog(PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell(), SWT.OPEN);
-		dlg.setFilterNames(FILTER_NAMES);
-		dlg.setFilterExtensions(FILTER_EXTS);
-		String fn = dlg.open();
-		if (fn != null) {
-			// Append all the selected files. Since getFileNames() returns only
-			// the names, and not the path, prepend the path, normalizing
-			// if necessary
-			StringBuffer buf = new StringBuffer();
-			String[] files = dlg.getFileNames();
-			for (int i = 0, n = files.length; i < n; i++) {
-				buf.append(dlg.getFilterPath());
-				if (buf.charAt(buf.length() - 1) != File.separatorChar) {
-					buf.append(File.separatorChar);
-				}
-				buf.append(files[i]);
-				buf.append(" ");
-			}
-			//MK: do sth. with the file
-			MessageDialog.openInformation(null, "Import", buf.toString());
+		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getShell(), SWT.SAVE);
+		dialog.setFilterNames(ImportWorkspaceHandler.FILTER_NAMES);
+		dialog.setFilterExtensions(ImportWorkspaceHandler.FILTER_EXTS);
+		String fn = dialog.open();
+		if (fn == null) {
+			return null;
 		}
 
+		String fileName = dialog.getFileName();
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append(dialog.getFilterPath());
+		if (fileName.charAt(fileName.length() - 1) != File.separatorChar) {
+			stringBuilder.append(File.separatorChar);
+		}
+		stringBuilder.append(fileName);
+		final String absoluteFileName = stringBuilder.toString();
+
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain");
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			protected void doExecute() {
+				try {
+					Workspace currentWorkspace = WorkspaceManager.getInstance()
+							.getCurrentWorkspace();
+					ProjectSpace projectSpace = currentWorkspace
+							.importProject(absoluteFileName);
+				} catch (IOException e) {
+					ExceptionDialogHandler.showExceptionDialog(e);
+				}
+			}
+		});
+
+		MessageDialog.openInformation(null, "Import",
+				"Imported project from file: " + absoluteFileName);
 		return null;
 	}
 
