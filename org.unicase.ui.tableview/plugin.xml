@@ -14,6 +14,13 @@
             name="Table View"
             restorable="true">
       </view>
+      <view
+            category="org.unicase"
+            class="org.unicase.ui.taskview.TaskView"
+            id="org.unicase.ui.taskview"
+            name="Task View"
+            restorable="true">
+      </view>
    </extension>
 
 </plugin>
