@@ -32,9 +32,6 @@ import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.emfstore.esmodel.EsmodelFactory;
-import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelFactory;
@@ -178,14 +175,14 @@ public class TestProject {
 				.createProjectSpace();
 		projectSpace.setProject(project);
 		projectSpace.init();
-		PrimaryVersionSpec primaryVersionSpec = VersioningFactory.eINSTANCE
-				.createPrimaryVersionSpec();
-		primaryVersionSpec.setIdentifier(999999);
-		projectSpace.setBaseVersion(primaryVersionSpec);
-		projectSpace.setLastUpdated(new Date());
+//		PrimaryVersionSpec primaryVersionSpec = VersioningFactory.eINSTANCE
+//				.createPrimaryVersionSpec();
+		//primaryVersionSpec.setIdentifier(999999);
+		//projectSpace.setBaseVersion(primaryVersionSpec);
+		//projectSpace.setLastUpdated(new Date());
 		projectSpace.setProjectDescription("Test project description");
 		projectSpace.setProjectName("ModelTestProject");
-		projectSpace.setProjectId(EsmodelFactory.eINSTANCE.createProjectId());
+		//projectSpace.setProjectId(EsmodelFactory.eINSTANCE.createProjectId());
 
 		TransactionalEditingDomain domain = WorkspaceManager.getInstance()
 				.getCurrentWorkspace().getEditingDomain();
