@@ -161,6 +161,21 @@
         </instanceof>
      </definition>
   </extension>
-   
+    <extension
+        point="org.eclipse.ui.decorators">
+     <decorator
+           adaptable="true"
+           class="org.unicase.ui.common.decorators.StateDecorator"
+           id="org.unicase.ui.common.decorators.StateDecorator"
+           label="State Decorator"
+           lightweight="true"
+           state="true">
+        <enablement>
+           <objectClass
+                 name="org.unicase.model.ModelElement">
+           </objectClass>
+        </enablement>
+     </decorator>
+  </extension>
 
 </plugin>
