@@ -16,7 +16,7 @@ public class TaskView extends ViewPart {
 	@Override
 	public void createPartControl(Composite parent) {
 		viewer = new TableViewer(parent, SWT.V_SCROLL | SWT.H_SCROLL);
-		
+	
 
 	}
 
