@@ -1,9 +1,12 @@
 package org.unicase.ui.taskview;
 
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
+import org.unicase.model.util.ModelAdapterFactory;
 
 public class TaskView extends ViewPart {
 
@@ -16,8 +19,7 @@ public class TaskView extends ViewPart {
 	@Override
 	public void createPartControl(Composite parent) {
 		viewer = new TableViewer(parent, SWT.V_SCROLL | SWT.H_SCROLL);
-	
-
+		new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
 
 	@Override
