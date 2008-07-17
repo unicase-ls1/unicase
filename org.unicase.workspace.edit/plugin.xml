@@ -30,6 +30,14 @@
            class="org.unicase.workspace.edit.commands.ShareWorkspaceHandler"
            commandId="org.unicase.workspace.edit.shareWorkspace">
      </handler>
+     <handler
+           class="org.unicase.workspace.edit.commands.ImportWorkspaceHandler"
+           commandId="org.unicase.workspace.edit.importWorkspace">
+     </handler>
+      <handler
+           class="org.unicase.workspace.edit.commands.ExportWorkspaceHandler"
+           commandId="org.unicase.workspace.edit.exportWorkspace">
+     </handler>
   </extension>
   <extension
         point="org.eclipse.ui.commands">
@@ -51,6 +59,16 @@
            categoryId="org.unicase.workspace.edit.workspace"
            id="org.unicase.workspace.edit.shareWorkspace"
            name="shareWorkspace">
+     </command>
+     <command
+           categoryId="org.unicase.workspace.edit.workspace"
+           id="org.unicase.workspace.edit.importWorkspace"
+           name="importWorkspace">
+     </command>
+     <command
+           categoryId="org.unicase.workspace.edit.workspace"
+           id="org.unicase.workspace.edit.exportWorkspace"
+           name="exportWorkspace">
      </command>
   </extension>
   <extension
@@ -86,6 +104,32 @@
           <command
               commandId="org.unicase.workspace.edit.shareWorkspace"
               label="Share Workspace"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <iterate>
+                 <instanceof
+                       value="org.unicase.workspace.ProjectSpace">
+                 </instanceof>
+              </iterate>
+           </visibleWhen>
+        </command>
+        <command
+              commandId="org.unicase.workspace.edit.exportWorkspace"
+              label="Export Workspace"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <iterate>
+                 <instanceof
+                       value="org.unicase.workspace.ProjectSpace">
+                 </instanceof>
+              </iterate>
+           </visibleWhen>
+        </command>
+        <command
+              commandId="org.unicase.workspace.edit.importWorkspace"
+              label="Import Workspace"
               style="push">
            <visibleWhen
                  checkEnabled="false">
