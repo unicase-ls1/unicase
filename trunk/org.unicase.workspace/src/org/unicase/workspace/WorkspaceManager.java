@@ -124,7 +124,7 @@ public final class WorkspaceManager {
 			resource = resourceSet.createResource(fileURI);
 			workspace = WorkspaceFactory.eINSTANCE.createWorkspace();
 			workspace.getServerInfos()
-					.add(Configuration.getDefaultServerInfo());
+					.addAll(Configuration.getDefaultServerInfos());
 			domain.getCommandStack().execute(new RecordingCommand(domain) {
 				@Override
 				protected void doExecute() {
