@@ -14,6 +14,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.ui.common.exceptions.ExceptionDialogHandler;
 import org.unicase.workspace.ProjectSpace;
 
 /**
@@ -33,12 +34,8 @@ public class UpdateProjectHandler extends ProjectActionHandler {
 		IWorkbenchWindow window = HandlerUtil
 				.getActiveWorkbenchWindowChecked(event);
 
-		MessageDialog.openInformation(window.getShell(), null,
-				"UpdateWorkspace!");
-
 		final ProjectSpace projectSpace = (ProjectSpace) getProjectSpace(event);
 
-		// TODO: handle exception
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
@@ -47,14 +44,12 @@ public class UpdateProjectHandler extends ProjectActionHandler {
 					projectSpace.update();
 
 				} catch (EmfStoreException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					ExceptionDialogHandler.showExceptionDialog(e);;
 				}
 			}
 		});
+		MessageDialog.openInformation(window.getShell(), null,
+				"Update complete!");
 		return null;
 	}
 }

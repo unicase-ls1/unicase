@@ -34,8 +34,7 @@ public class CommitProjectHandler extends ProjectActionHandler {
 		IWorkbenchWindow window = HandlerUtil
 		.getActiveWorkbenchWindowChecked(event);
 
-MessageDialog.openInformation(window.getShell(), null,
-		"CommitWorkspace!");
+
 
 
 		final ProjectSpace projectSpace = getProjectSpace(event);
@@ -52,6 +51,9 @@ MessageDialog.openInformation(window.getShell(), null,
 			}
 		});
 
+		MessageDialog.openInformation(window.getShell(), null,
+		"Commit completed.");
+		
 		return null;
 	}
 
