@@ -2,7 +2,9 @@ package org.unicase.ui.common.exceptions;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 
@@ -46,10 +48,11 @@ public abstract class ExceptionDialogHandler {
 	public static void showExceptionDialog(String message, Exception cause) {
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
 				.getShell();
-		IStatus status = null;
-		if (cause instanceof CoreException) {
-			status = ((CoreException) cause).getStatus();
-		}
+		//JH: implement proper exception handler
+//		IStatus status = Status.OK_STATUS;
+//		if (cause instanceof CoreException) {
+//			status = ((CoreException) cause).getStatus();
+//		}
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(message);
 		if (cause != null) {
@@ -57,7 +60,7 @@ public abstract class ExceptionDialogHandler {
 			stringBuilder.append(cause.getMessage());
 		}
 		String string = stringBuilder.toString();
-		ErrorDialog.openError(shell, "Error", string, status);
+		MessageDialog.openError(null, cause.getClass().getName(), message);
 	}
 
 }
