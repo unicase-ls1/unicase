@@ -400,6 +400,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		
 		this.getProjectSpaces().add(projectSpace);
 		projectSpace.init();
+		save();
 		return projectSpace;
 	}
 	

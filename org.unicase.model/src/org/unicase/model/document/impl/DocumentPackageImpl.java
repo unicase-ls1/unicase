@@ -6,9 +6,7 @@
  */
 package org.unicase.model.document.impl;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -210,16 +208,8 @@ public class DocumentPackageImpl extends EPackageImpl implements
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLeafSection_ElementClass() {
-		return (EAttribute) leafSectionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getLeafSection_ModelElements() {
-		return (EReference) leafSectionEClass.getEStructuralFeatures().get(1);
+		return (EReference) leafSectionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -227,7 +217,7 @@ public class DocumentPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getLeafSection_ReferencedModelElements() {
-		return (EReference) leafSectionEClass.getEStructuralFeatures().get(2);
+		return (EReference) leafSectionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -291,7 +281,6 @@ public class DocumentPackageImpl extends EPackageImpl implements
 
 		// Create classes and their features
 		leafSectionEClass = createEClass(LEAF_SECTION);
-		createEAttribute(leafSectionEClass, LEAF_SECTION__ELEMENT_CLASS);
 		createEReference(leafSectionEClass, LEAF_SECTION__MODEL_ELEMENTS);
 		createEReference(leafSectionEClass,
 				LEAF_SECTION__REFERENCED_MODEL_ELEMENTS);
@@ -342,15 +331,6 @@ public class DocumentPackageImpl extends EPackageImpl implements
 		// Initialize classes and features; add operations and parameters
 		initEClass(leafSectionEClass, LeafSection.class, "LeafSection",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		EGenericType g1 = createEGenericType(ecorePackage.getEJavaClass());
-		EGenericType g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		EGenericType g3 = createEGenericType(theModelPackage.getModelElement());
-		g2.setEUpperBound(g3);
-		initEAttribute(getLeafSection_ElementClass(), g1, "elementClass", null,
-				0, 1, LeafSection.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
 		initEReference(getLeafSection_ModelElements(), theModelPackage
 				.getModelElement(), theModelPackage
 				.getModelElement_LeafSection(), "modelElements", null, 0, -1,
