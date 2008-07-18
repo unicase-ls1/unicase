@@ -7,7 +7,9 @@
 package org.unicase.workspace;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.resource.Resource;
@@ -73,12 +75,23 @@ public final class Configuration {
 	 * 
 	 * @return server info
 	 */
-	public static ServerInfo getDefaultServerInfo() {
-		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
-		serverInfo.setDisplayName("DefaultServer");
-		serverInfo.setName("EmfStoreOne");
-		serverInfo.setPort(1099);
-		serverInfo.setUrl("localhost");
-		return serverInfo;
+	public static List<ServerInfo> getDefaultServerInfos() {
+		List<ServerInfo> serverInfos = new ArrayList<ServerInfo>();
+		
+		ServerInfo serverInfo1 = WorkspaceFactory.eINSTANCE.createServerInfo();
+		serverInfo1.setDisplayName("Localhost Server");
+		serverInfo1.setName("Localhost Server");
+		serverInfo1.setPort(1099);
+		serverInfo1.setUrl("localhost");
+		serverInfos.add(serverInfo1);
+		
+		ServerInfo serverInfo2 = WorkspaceFactory.eINSTANCE.createServerInfo();
+		serverInfo2.setDisplayName("unicase Server");
+		serverInfo2.setName("unicase Server");
+		serverInfo2.setPort(1099);
+		serverInfo2.setUrl("sysiphus.in.tum.de");
+		serverInfos.add(serverInfo2);
+		
+		return serverInfos;
 	}
 }
