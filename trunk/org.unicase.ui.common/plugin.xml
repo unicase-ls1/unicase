@@ -51,7 +51,7 @@
    <extension
         point="org.eclipse.ui.menus">
      <menuContribution
-           locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.workspace.edit.workspaceCommands">
+           locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.workspace.edit.scmCommands">
       
         <command
               commandId="org.unicase.ui.common.deleteModelelement"
@@ -99,7 +99,7 @@
   <extension
         point="org.eclipse.ui.menus">
      <menuContribution
-           locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.workspace.edit.workspaceCommands">
+           locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.workspace.edit.scmCommands">
         <command
               commandId="org.unicase.ui.common.commands.annotateActionItem"
               icon="icons/AnnotateWithActionItem.gif"
