@@ -177,5 +177,14 @@
         </enablement>
      </decorator>
   </extension>
+    <extension
+          point="org.eclipse.ui.perspectives">
+       <perspective
+             class="org.unicase.ui.common.perspectives.UnicasePerspective"
+             icon="icons/unicase.png"
+             id="org.unicase.ui.common.perspectives.UnicasePerspective"
+             name="Unicase Perspective">
+       </perspective>
+    </extension>
 
 </plugin>
