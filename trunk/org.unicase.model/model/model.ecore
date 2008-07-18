@@ -184,13 +184,6 @@
   </eSubpackages>
   <eSubpackages name="document" nsURI="http://unicase.org/model/document" nsPrefix="org.unicase.model.document">
     <eClassifiers xsi:type="ecore:EClass" name="LeafSection" eSuperTypes="#//document/Section">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="elementClass">
-        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
-          <eTypeArguments>
-            <eUpperBound eClassifier="#//ModelElement"/>
-          </eTypeArguments>
-        </eGenericType>
-      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="modelElements" upperBound="-1"
           eType="#//ModelElement" containment="true" eOpposite="#//ModelElement/leafSection"
           eKeys="#//IdentifiableElement/identifier"/>

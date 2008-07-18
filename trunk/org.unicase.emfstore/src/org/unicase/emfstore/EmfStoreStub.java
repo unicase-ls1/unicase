@@ -141,7 +141,7 @@ public class EmfStoreStub implements EmfStore {
 		reqLeafSection.setName("Functional Requirements");
 		reqLeafSection
 				.setDescription("Lists all functional requirements in this project");
-		reqLeafSection.setElementClass(FunctionalRequirement.class);
+		//reqLeafSection.setElementClass(FunctionalRequirement.class);
 		reqLeafSection.setParent(rootSection);
 		FunctionalRequirement fr = requirementFactory
 				.createFunctionalRequirement();
@@ -157,7 +157,7 @@ public class EmfStoreStub implements EmfStore {
 		actionItemLeafSection.setName("Action Items");
 		actionItemLeafSection.setDescription("Lists all ais of this project.");
 		actionItemLeafSection.setParent(rootSection);
-		actionItemLeafSection.setElementClass(FunctionalRequirement.class);
+		//actionItemLeafSection.setElementClass(FunctionalRequirement.class);
 
 //		// Diagrams
 //		LeafSection diagramSection = documentFactory.createLeafSection();
@@ -194,7 +194,7 @@ public class EmfStoreStub implements EmfStore {
 		useCaseLeafSection
 				.setDescription("Lists all use cases of this project.");
 		useCaseLeafSection.setParent(ucmCompositeSection);
-		useCaseLeafSection.setElementClass(FunctionalRequirement.class);
+		//useCaseLeafSection.setElementClass(FunctionalRequirement.class);
 
 		LeafSection useCaseDiagramLeafSection = documentFactory
 				.createLeafSection();
@@ -202,13 +202,13 @@ public class EmfStoreStub implements EmfStore {
 		useCaseDiagramLeafSection
 				.setDescription("Lists all use case diagrams of this project.");
 		useCaseDiagramLeafSection.setParent(ucmCompositeSection);
-		useCaseDiagramLeafSection.setElementClass(FunctionalRequirement.class);
+		//useCaseDiagramLeafSection.setElementClass(FunctionalRequirement.class);
 
 		useCaseDiagramLeafSection.setName("Use Case Diagrams");
 		useCaseDiagramLeafSection
 				.setDescription("Lists all use case diagrams of this project.");
 		useCaseDiagramLeafSection.setParent(ucmCompositeSection);
-		useCaseDiagramLeafSection.setElementClass(FunctionalRequirement.class);
+		//useCaseDiagramLeafSection.setElementClass(FunctionalRequirement.class);
 
 		return project;
 		// end of generation

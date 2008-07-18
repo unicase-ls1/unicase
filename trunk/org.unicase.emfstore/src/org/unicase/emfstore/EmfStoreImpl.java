@@ -197,6 +197,7 @@ public class EmfStoreImpl implements EmfStore {
 			String description, LogMessage logMessage) throws EmfStoreException {
 		ProjectHistory projectHistory = createEmptyProject(name, description,
 				logMessage);
+		save();
 		return getProjectInfo(projectHistory);
 	}
 
@@ -228,7 +229,6 @@ public class EmfStoreImpl implements EmfStore {
 		projectHistory.getVersions().add(firstVersion);
 		// add to serverspace and save
 		getServerSpace().getProjects().add(projectHistory);
-		save();
 		return projectHistory;
 	}
 	
@@ -239,7 +239,8 @@ public class EmfStoreImpl implements EmfStore {
 			String description, LogMessage logMessage, Project project) throws EmfStoreException {
 		ProjectHistory projectHistory = createEmptyProject(name, description,
 				logMessage);
-		projectHistory.getLastVersion().setProjectState(project);	
+		projectHistory.getLastVersion().setProjectState(project);
+		save();
 		return getProjectInfo(projectHistory);
 	}
 

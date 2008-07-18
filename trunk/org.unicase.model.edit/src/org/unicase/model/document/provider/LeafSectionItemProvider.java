@@ -20,7 +20,6 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.bug.BugFactory;
@@ -68,29 +67,9 @@ public class LeafSectionItemProvider extends ModelElementItemProvider implements
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addElementClassPropertyDescriptor(object);
 			addReferencedModelElementsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Element Class feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void addElementClassPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_LeafSection_elementClass_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_LeafSection_elementClass_feature",
-						"_UI_LeafSection_type"),
-				DocumentPackage.Literals.LEAF_SECTION__ELEMENT_CLASS, true,
-				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-				null));
 	}
 
 	/**
@@ -178,10 +157,6 @@ public class LeafSectionItemProvider extends ModelElementItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(LeafSection.class)) {
-		case DocumentPackage.LEAF_SECTION__ELEMENT_CLASS:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
-			return;
 		case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), true, false));

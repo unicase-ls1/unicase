@@ -144,8 +144,8 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((ModelElement) object).getName();
-		return label == null || label.length() == 0 ? "unnamed"+ getString("_UI_ModelElement_type")
-				:  label;
+		return label == null || label.length() == 0 ? "unnamed"
+				+ getString("_UI_ModelElement_type") : label;
 	}
 
 	/**

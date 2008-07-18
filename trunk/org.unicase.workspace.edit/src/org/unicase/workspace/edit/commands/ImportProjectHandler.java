@@ -8,8 +8,11 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
+import org.eclipse.ui.IViewPart;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.ui.common.exceptions.ExceptionDialogHandler;
 import org.unicase.workspace.ProjectSpace;
@@ -52,6 +55,15 @@ public class ImportProjectHandler extends ProjectActionHandler {
 							.getCurrentWorkspace();
 					ProjectSpace projectSpace = currentWorkspace
 							.importProject(absoluteFileName);
+					// JH: remove and add proper notifying
+					IWorkbenchPage page = PlatformUI.getWorkbench()
+							.getActiveWorkbenchWindow().getActivePage();
+					IViewPart navigator = page
+							.findView("org.unicase.ui.navigator.viewer");
+					if (page.isPartVisible(navigator)) {
+						((TreeViewer) navigator.getSite().getSelectionProvider())
+								.refresh();
+					}
 				} catch (IOException e) {
 					ExceptionDialogHandler.showExceptionDialog(e);
 				}
