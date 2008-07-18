@@ -15,6 +15,7 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.TreeSelection;
@@ -24,8 +25,10 @@ import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Menu;
+import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.internal.decorators.DecoratorManager;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.DiagramType;
@@ -58,7 +61,8 @@ public class TreeView extends ViewPart {
 	@Override
 	public void createPartControl(Composite parent) {
 		viewer = new TreeViewer(parent);
-		viewer.setLabelProvider(new TreeLabelProvider());
+		IDecoratorManager decoratorManager = new DecoratorManager();
+		viewer.setLabelProvider(new DecoratingLabelProvider(new TreeLabelProvider(), decoratorManager.getLabelDecorator()));
 		viewer.setContentProvider(new TreeContentProvider());
 		viewer.setInput(WorkspaceManager.getInstance().getCurrentWorkspace());
 
@@ -71,6 +75,7 @@ public class TreeView extends ViewPart {
 		Menu menu = menuMgr.createContextMenu(control);
 		control.setMenu(menu);
 
+		
 		hookDoubleClickAction();
 		addDragNDropSupport();
 
