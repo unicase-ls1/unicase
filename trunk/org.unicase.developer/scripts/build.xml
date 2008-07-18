@@ -5,7 +5,7 @@
 
 	<!-- set global properties for this build -->
 
-	<property name="db_user" value="user" />
+	<property name="db_user" value="root" />
 	<property name="db_pass" value="pass" />
 	<property name="db_name" value="model" />
 	<property name="unicaseWorkspace" value="${user.home}/.unicase/workspace" />
@@ -43,11 +43,11 @@
 				<then>
 					<echo message="Deleting database model... (Running on Mac OS X)" />
 					<exec dir="/usr/local/mysql/bin" executable="/usr/local/mysql/bin/mysqladmin" spawn="false">
-						<arg line="--user=root --password=pass -f drop model" />
+						<arg line="--user=${db_user} --password=${db_pass} -f drop model" />
 					</exec>
 					<echo message="Recreating database model..." />
 					<exec dir="/usr/local/mysql/bin" executable="/usr/local/mysql/bin/mysqladmin" spawn="false">
-						<arg line="--user=root --password=pass -f create model" />
+						<arg line="--user=${db_user} --password=${db_pass} -f create model" />
 					</exec>
 				</then>
 			</elseif>
