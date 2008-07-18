@@ -35,6 +35,7 @@ import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
+import org.unicase.workspace.exceptions.NoLocalChangesException;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '
@@ -535,29 +536,23 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	public PrimaryVersionSpec commit(final LogMessage logMessage)
 			throws EmfStoreException {
 
-		// FIXME: GUI has to relogin.
-		//getUsersession().logIn();
-
 		stopChangeRecording();
 
 		//check if there are any changes
 		if (getLocalChanges() == null) {
 			startChangeRecording();
-			return getBaseVersion();
+			throw new NoLocalChangesException();
 		}
 
 		//check if we need to update first
 		PrimaryVersionSpec resolvedVersion = resolveVersionSpec(VersionSpec.HEAD_VERSION);
 		if ((!getBaseVersion().equals(resolvedVersion))) {
 			startChangeRecording();
-			throw new BaseVersionOutdatedException(
-					"BaseVersion outdated, please update before commit.");
+			throw new BaseVersionOutdatedException();
 		}
 
 		final ConnectionManager connectionManager = WorkspaceManager
 				.getInstance().getConnectionManager();
-
-		Project project = getProject();
 
 		ChangePackage changePackage = VersioningFactory.eINSTANCE
 				.createChangePackage();
@@ -567,11 +562,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 				getUsersession().getSessionId(), getProjectId(),
 				getBaseVersion(), changePackage, logMessage);
 
-		//delete local changes
 		this.localChanges = null;
-
-		// reconnect project to projectSpace
-		setProject(project);
 		setBaseVersion(newBaseVersion);
 
 		save();
@@ -597,9 +588,6 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @generated NOT
 	 */
 	public void update(final VersionSpec version) throws EmfStoreException {
-
-		// FIXME: GUI has to relogin.
-		getUsersession().logIn();
 
 		final ConnectionManager connectionManager = WorkspaceManager
 				.getInstance().getConnectionManager();

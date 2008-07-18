@@ -399,6 +399,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		projectSpace.setProjectDescription("Imported from " + absoluteFileName);
 		
 		this.getProjectSpaces().add(projectSpace);
+		projectSpace.init();
 		return projectSpace;
 	}
 	
