@@ -27,9 +27,6 @@ import org.eclipse.emf.ecore.impl.ETypedElementImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.ui.IViewPart;
-import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelElement;
@@ -46,7 +43,6 @@ import org.unicase.ui.meeditor.MEEditorInput;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceFactory;
-import org.unicase.workspace.WorkspaceManager;
 
 /**
  * 
@@ -58,14 +54,14 @@ import org.unicase.workspace.WorkspaceManager;
  *         project structure. Finally a random number of created MEs are open.
  * 
  */
-public class TestProject {
+public class TestProjectGenerator {
 
-	private int numOfEachME = 20;
-	private int projectWidth = 3;
-	private int projectDepth = 3;
-	private int maxNumOfManyRefs = 5;
-	private int maxNumOfMEsInLeafSection = 20;
-	private int numOfMEsToOpen = 20;
+	private int numOfEachME;
+	private int projectWidth;
+	private int projectDepth;
+	private int maxNumOfManyRefs;
+	private int maxNumOfMEsInLeafSection;
+
 
 	// the text attributes are created randomly from these words.
 	private static final String[] WORDS = { "hello", "cat", "mouse", "sun",
@@ -74,10 +70,15 @@ public class TestProject {
 	// maximum length of a text
 	private static final int MAX_NUM_OF_WORDS = 50;
 
+	private Project project;
+
 	private Random random;
 	// these two are just shortcuts in order to save typing
-	private EClass modelElementEClass, sectionEClass;
-	private Project project;
+	private static final EClass modelElementEClass = ModelPackage.eINSTANCE
+			.getModelElement();
+	private static final EClass sectionEClass = DocumentPackage.eINSTANCE
+			.getSection();
+
 	// maintain a list of instances of every class. This is to avoid
 	// the project.getAllModelElementsByClass() calls which take too long to
 	// return.
@@ -105,20 +106,16 @@ public class TestProject {
 	 * @param numOfMEsToOpen
 	 *            number of MEs to open
 	 */
-	public TestProject(int numOfEachME, int randomSeed, int projWidth,
-			int porjDepth, int maxNumOfManyRefs, int maxNumOfMEsInLeafSection,
-			int numOfMEsToOpen) {
+	public TestProjectGenerator(int numOfEachME, int randomSeed, int projWidth,
+			int porjDepth, int maxNumOfManyRefs, int maxNumOfMEsInLeafSection) {
 
 		this.numOfEachME = numOfEachME;
 		this.projectWidth = projWidth;
 		this.projectDepth = porjDepth;
 		this.maxNumOfManyRefs = maxNumOfManyRefs;
 		this.maxNumOfMEsInLeafSection = maxNumOfMEsInLeafSection;
-		this.numOfMEsToOpen = numOfMEsToOpen;
 
 		random = new Random(randomSeed);
-		modelElementEClass = ModelPackage.eINSTANCE.getModelElement();
-		sectionEClass = DocumentPackage.eINSTANCE.getSection();
 		initClassLists();
 
 	}
@@ -162,49 +159,24 @@ public class TestProject {
 	/**
 	 * This creates the test project and adds it to worksapce.
 	 */
-	public void createProject() {
-
-		final Workspace workspace = WorkspaceManager.getInstance()
-				.getCurrentWorkspace();
-
-		// ******************************
-		createTestProject();
-		// ******************************
-
+	public void addProjectToWorkspace(final Workspace workspace, Project project) {
 		final ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE
 				.createProjectSpace();
 		projectSpace.setProject(project);
 		projectSpace.init();
-//		PrimaryVersionSpec primaryVersionSpec = VersioningFactory.eINSTANCE
-//				.createPrimaryVersionSpec();
-		//primaryVersionSpec.setIdentifier(999999);
-		//projectSpace.setBaseVersion(primaryVersionSpec);
-		//projectSpace.setLastUpdated(new Date());
 		projectSpace.setProjectDescription("Test project description");
 		projectSpace.setProjectName("ModelTestProject");
-		//projectSpace.setProjectId(EsmodelFactory.eINSTANCE.createProjectId());
 
-		TransactionalEditingDomain domain = WorkspaceManager.getInstance()
-				.getCurrentWorkspace().getEditingDomain();
+		TransactionalEditingDomain domain = workspace.getEditingDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
 				workspace.getProjectSpaces().add(projectSpace);
 			}
 		});
-
-		IWorkbenchPage page = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getActivePage();
-		IViewPart navigator = page.findView("org.unicase.ui.navigator.viewer");
-		if (page.isPartVisible(navigator)) {
-			((TreeViewer) navigator.getSite().getSelectionProvider()).refresh();
-		}
-
-		// open some MEs
-		openSomeMEs();
 	}
 
-	private void createTestProject() {
+	public Project generateProject() {
 		// create a project
 		this.project = ModelFactory.eINSTANCE.createProject();
 		// create document structure in project
@@ -232,6 +204,7 @@ public class TestProject {
 		for (EObject ls : leafSections) {
 			distributeMEsOnLeafSection((LeafSection) ls);
 		}
+		return project;
 
 	}
 
@@ -717,9 +690,10 @@ public class TestProject {
 					}
 
 					// in any other case create a random text
-					//ZH, JH: this will cause "red stack zone access" problems when opening in editor, commented out
-//					instance.eSet(attribute, getRandomText(instance.eClass()
-//							.getName()));
+					// ZH, JH: this will cause "red stack zone access" problems
+					// when opening in editor, commented out
+					// instance.eSet(attribute, getRandomText(instance.eClass()
+					// .getName()));
 					continue;
 				}
 
@@ -788,17 +762,16 @@ public class TestProject {
 		return new Date();
 	}
 
-	private void openSomeMEs() {
+	public void openSomeModelElements(int count) {
 		List<EObject> modelElements = new ArrayList<EObject>();
 		modelElements.addAll(getAllInstancesOf(modelElementEClass));
 		int index;
-		for (int i = 0; i < numOfMEsToOpen; i++) {
+		for (int i = 0; i < count; i++) {
 			index = random.nextInt(modelElements.size());
 			EObject me = modelElements.get(index);
 			openME((ModelElement) me);
 			modelElements.remove(index);
 		}
-
 	}
 
 	private void openME(ModelElement me) {
@@ -810,6 +783,24 @@ public class TestProject {
 			e.printStackTrace();
 		}
 
+	}
+
+	/**
+	 * Return the number of Model Elements that have been generated.
+	 * 
+	 * @return total count of model elements
+	 */
+	public int getMECount() {
+		int totalCount = 0;
+		for (EClass currentClass : meInstancesByClass.keySet()) {
+			totalCount += meInstancesByClass.get(currentClass).size();
+		}
+		return totalCount;
+	}
+
+	public void generateProjectIntoWorkspace(final Workspace currentWorkspace) {
+		Project generatedProject = generateProject();
+		addProjectToWorkspace(currentWorkspace, generatedProject);
 	}
 
 }

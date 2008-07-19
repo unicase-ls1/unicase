@@ -6,6 +6,8 @@
  */
 package org.unicase.ui.test.views;
 
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.events.SelectionEvent;
@@ -19,8 +21,12 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.IViewPart;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.ui.test.TestProject;
+import org.unicase.ui.test.TestProjectGenerator;
+import org.unicase.workspace.WorkspaceManager;
 
 /**
  *
@@ -132,8 +138,22 @@ public class TestView extends ViewPart {
 		int maxNumOfMEsInLeafSection = Integer.parseInt(txtMaxNumOfMEsInLeafSection.getText()) ;
 		int numOfMEsToOpen = Integer.parseInt(txtNumOfMEsToOpen.getText()) ;
 		
-		TestProject testProject = new TestProject(numOfEachME, randomSeed, projectWidth, projectDepth, maxNumOfManyRefs, maxNumOfMEsInLeafSection, numOfMEsToOpen);		
-		testProject.createProject();
+		TestProjectGenerator testProjectGenerator = new TestProjectGenerator(numOfEachME, randomSeed, projectWidth, projectDepth, maxNumOfManyRefs, maxNumOfMEsInLeafSection);		
+		testProjectGenerator.generateProjectIntoWorkspace(WorkspaceManager.getInstance().getCurrentWorkspace());
+		
+		if (numOfMEsToOpen>0) {
+			testProjectGenerator.openSomeModelElements(numOfMEsToOpen);
+		}
+		
+		//JH: fix navigator refresh
+		IWorkbenchPage page = PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getActivePage();
+		IViewPart navigator = page.findView("org.unicase.ui.navigator.viewer");
+		if (page.isPartVisible(navigator)) {
+			((TreeViewer) navigator.getSite().getSelectionProvider()).refresh();
+		}
+		MessageDialog.openInformation(this.getSite().getShell(), "Project Generation completed",
+		"Generated " + testProjectGenerator.getMECount() + " model elements.");
 	}
 
 	private void createTestParamsGroup() {
