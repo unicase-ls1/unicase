@@ -593,14 +593,14 @@ public class RationalePackageImpl extends EPackageImpl implements
 		initEClass(assessmentEClass, Assessment.class, "Assessment",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAssessment_Proposal(), this.getProposal(), this
-				.getProposal_Assessments(), "proposal", null, 1, 1,
+				.getProposal_Assessments(), "proposal", null, 0, 1,
 				Assessment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 		getAssessment_Proposal().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getAssessment_Criterion(), this.getCriterion(), this
-				.getCriterion_Assessments(), "criterion", null, 1, 1,
+				.getCriterion_Assessments(), "criterion", null, 0, 1,
 				Assessment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);

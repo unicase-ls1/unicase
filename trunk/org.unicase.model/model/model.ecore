@@ -332,12 +332,10 @@
           eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Assessment" eSuperTypes="#//ModelElement">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="proposal" lowerBound="1"
-          eType="#//rationale/Proposal" eOpposite="#//rationale/Proposal/assessments"
-          eKeys="#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="criterion" lowerBound="1"
-          eType="#//rationale/Criterion" eOpposite="#//rationale/Criterion/assessments"
-          eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="proposal" eType="#//rationale/Proposal"
+          eOpposite="#//rationale/Proposal/assessments" eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="criterion" eType="#//rationale/Criterion"
+          eOpposite="#//rationale/Criterion/assessments" eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Comment" eSuperTypes="#//Annotation">
