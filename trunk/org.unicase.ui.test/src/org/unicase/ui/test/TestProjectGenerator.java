@@ -29,11 +29,13 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
+import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
+import org.unicase.model.UniqueIdentifier;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.LeafSection;
@@ -61,7 +63,6 @@ public class TestProjectGenerator {
 	private int projectDepth;
 	private int maxNumOfManyRefs;
 	private int maxNumOfMEsInLeafSection;
-
 
 	// the text attributes are created randomly from these words.
 	private static final String[] WORDS = { "hello", "cat", "mouse", "sun",
@@ -673,31 +674,31 @@ public class TestProjectGenerator {
 		for (EAttribute attribute : instance.eClass().getEAllAttributes()) {
 
 			if (attribute.getEType().getInstanceClass().equals(String.class)) {
-				if (instance instanceof ModelElement) {
+				if (instance instanceof ModelElement
+						&& attribute.getName().equalsIgnoreCase("name")) {
+					// special case for name attribute of model elements
 					ModelElement modelElement = (ModelElement) instance;
-					if (attribute.getName().equalsIgnoreCase("name")) {
-						// special case for name attribute
-						modelElement.setName(instance.eClass().getName() + ":"
-								+ random.nextInt(20000));
-						continue;
-					} else if (attribute.getName().equalsIgnoreCase(
-							"identifier")) {
-						// special case for identifier attribute
-						ModelElementId meId = ModelFactory.eINSTANCE
-								.createModelElementId();
-						modelElement.setIdentifier(meId.getId());
-						continue;
-					}
-
-					// in any other case create a random text
-					// ZH, JH: this will cause "red stack zone access" problems
-					// when opening in editor, commented out
-					// instance.eSet(attribute, getRandomText(instance.eClass()
-					// .getName()));
+					modelElement.setName(instance.eClass().getName() + ":"
+							+ random.nextInt(20000));
+					continue;
+				} else if (instance instanceof IdentifiableElement
+						&& attribute.getName().equalsIgnoreCase("identifier")) {
+					// special case for identifier attribute
+					IdentifiableElement identifiableElement = (IdentifiableElement) instance;
+					UniqueIdentifier meId = ModelFactory.eINSTANCE
+							.createModelElementId();
+					identifiableElement.setIdentifier(meId.getId());
 					continue;
 				}
 
+				// in any other case create a random text
+				// FIXME ZH, JH: this will cause "red stack zone access" problems
+				// when opening in editor, commented out
+				// instance.eSet(attribute, getRandomText(instance.eClass()
+				// .getName()));
+				continue;
 			}
+
 			if (attribute.getEType().getInstanceClass().equals(boolean.class)) {
 				instance.eSet(attribute, getRandomBoolan());
 				continue;
