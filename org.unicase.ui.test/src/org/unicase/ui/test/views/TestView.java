@@ -26,6 +26,7 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.ui.test.TestProjectGenerator;
+import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
@@ -139,7 +140,10 @@ public class TestView extends ViewPart {
 		int numOfMEsToOpen = Integer.parseInt(txtNumOfMEsToOpen.getText()) ;
 		
 		TestProjectGenerator testProjectGenerator = new TestProjectGenerator(numOfEachME, randomSeed, projectWidth, projectDepth, maxNumOfManyRefs, maxNumOfMEsInLeafSection);		
-		testProjectGenerator.generateProjectIntoWorkspace(WorkspaceManager.getInstance().getCurrentWorkspace());
+		Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+		testProjectGenerator.generateProjectIntoWorkspace(currentWorkspace);
+		
+		currentWorkspace.save();
 		
 		if (numOfMEsToOpen>0) {
 			testProjectGenerator.openSomeModelElements(numOfMEsToOpen);
