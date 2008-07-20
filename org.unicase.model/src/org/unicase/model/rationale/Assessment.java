@@ -39,7 +39,7 @@ public interface Assessment extends ModelElement {
 	 * @see #setProposal(Proposal)
 	 * @see org.unicase.model.rationale.RationalePackage#getAssessment_Proposal()
 	 * @see org.unicase.model.rationale.Proposal#getAssessments
-	 * @model opposite="assessments" keys="identifier" required="true" transient="false"
+	 * @model opposite="assessments" keys="identifier" transient="false"
 	 * @generated
 	 */
 	Proposal getProposal();
@@ -67,7 +67,7 @@ public interface Assessment extends ModelElement {
 	 * @see #setCriterion(Criterion)
 	 * @see org.unicase.model.rationale.RationalePackage#getAssessment_Criterion()
 	 * @see org.unicase.model.rationale.Criterion#getAssessments
-	 * @model opposite="assessments" keys="identifier" required="true"
+	 * @model opposite="assessments" keys="identifier"
 	 * @generated
 	 */
 	Criterion getCriterion();

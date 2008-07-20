@@ -176,10 +176,10 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 					newGmfdiagram));
 	}
 
-	//begin of custom code
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated NOT
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	public EList<ModelElement> getNewElements() {
 		if (newElements == null) {
@@ -187,9 +187,25 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 					ModelElement.class, this,
 					DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS);
 		}
-		//JH: cache instance
-		return new DiagramNewElementsList(getElements(), getProject());
+		return newElements;
 	}
+
+	//FIXME JH: removed because of CLassCastException on validate in Teneo
+	//	//begin of custom code
+	//	/**
+	//	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	//	 * @generated NOT
+	//	 */
+	//	public EList<ModelElement> getNewElements() {
+	//		if (newElements == null) {
+	//			newElements = new EObjectContainmentEList<ModelElement>(
+	//					ModelElement.class, this,
+	//					DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS);
+	//		}
+	//		//JH: cache instance
+	//		return new DiagramNewElementsList(getElements(), getProject());
+	//	}
+	//	//end of custom code
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -213,7 +229,6 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 					DiagramPackage.ME_DIAGRAM__TYPE, oldType, type));
 	}
 
-	//end of custom code
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
