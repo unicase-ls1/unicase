@@ -52,7 +52,7 @@ public class IdentifiableElementImpl extends EObjectImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected IdentifiableElementImpl() {
 		super();
