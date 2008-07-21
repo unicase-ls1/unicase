@@ -220,9 +220,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 */
 	public void save() {
 		try {
-			long currentTimeMillis = System.currentTimeMillis();
 			this.eResource().save(Configuration.getResourceSaveOptions());
-			System.out.println(System.currentTimeMillis() - currentTimeMillis);
 		} catch (IOException e) {
 			// MK Auto-generated catch block
 			e.printStackTrace();
