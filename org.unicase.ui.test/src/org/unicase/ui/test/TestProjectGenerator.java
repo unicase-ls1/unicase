@@ -164,7 +164,7 @@ public class TestProjectGenerator {
 		final ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE
 				.createProjectSpace();
 		projectSpace.setProject(project);
-		projectSpace.init();
+		
 		projectSpace.setProjectDescription("Test project description");
 		projectSpace.setProjectName("ModelTestProject");
 
@@ -172,7 +172,7 @@ public class TestProjectGenerator {
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-				workspace.getProjectSpaces().add(projectSpace);
+				workspace.setupProjectSpace(projectSpace);
 			}
 		});
 	}

@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.unicase.model.ModelPackage;
 
 /**
  * <!-- begin-user-doc --> The <b>Package</b> for the model. It contains
@@ -66,7 +67,7 @@ public interface WorkspacePackage extends EPackage {
 	int WORKSPACE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Project Spaces</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Project Spaces</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -251,12 +252,21 @@ public interface WorkspacePackage extends EPackage {
 	int PROJECT_SPACE = 3;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_SPACE__IDENTIFIER = ModelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER;
+
+	/**
 	 * The feature id for the '<em><b>Project</b></em>' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__PROJECT = 0;
+	int PROJECT_SPACE__PROJECT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Project Id</b></em>' containment reference.
@@ -264,7 +274,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__PROJECT_ID = 1;
+	int PROJECT_SPACE__PROJECT_ID = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Project Name</b></em>' attribute. <!--
@@ -273,7 +283,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__PROJECT_NAME = 2;
+	int PROJECT_SPACE__PROJECT_NAME = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Project Description</b></em>' attribute.
@@ -281,7 +291,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__PROJECT_DESCRIPTION = 3;
+	int PROJECT_SPACE__PROJECT_DESCRIPTION = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Local Changes</b></em>' containment reference.
@@ -289,7 +299,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__LOCAL_CHANGES = 4;
+	int PROJECT_SPACE__LOCAL_CHANGES = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Usersession</b></em>' reference.
@@ -297,7 +307,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__USERSESSION = 5;
+	int PROJECT_SPACE__USERSESSION = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Last Updated</b></em>' attribute. <!--
@@ -306,7 +316,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__LAST_UPDATED = 6;
+	int PROJECT_SPACE__LAST_UPDATED = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Base Version</b></em>' containment reference.
@@ -314,7 +324,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__BASE_VERSION = 7;
+	int PROJECT_SPACE__BASE_VERSION = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of structural features of the '<em>Project Space</em>' class.
@@ -322,7 +332,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE_FEATURE_COUNT = 8;
+	int PROJECT_SPACE_FEATURE_COUNT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * Returns the meta object for class '
@@ -336,9 +346,9 @@ public interface WorkspacePackage extends EPackage {
 	EClass getWorkspace();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.workspace.Workspace#getProjectSpaces <em>Project Spaces</em>}'.
+	 * Returns the meta object for the reference list '{@link org.unicase.workspace.Workspace#getProjectSpaces <em>Project Spaces</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Project Spaces</em>'.
+	 * @return the meta object for the reference list '<em>Project Spaces</em>'.
 	 * @see org.unicase.workspace.Workspace#getProjectSpaces()
 	 * @see #getWorkspace()
 	 * @generated
@@ -645,7 +655,7 @@ public interface WorkspacePackage extends EPackage {
 		EClass WORKSPACE = eINSTANCE.getWorkspace();
 
 		/**
-		 * The meta object literal for the '<em><b>Project Spaces</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Project Spaces</b></em>' reference list feature.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * @generated

@@ -9,13 +9,13 @@ package org.unicase.workspace;
 import java.io.IOException;
 import java.util.Date;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.model.IdentifiableElement;
 import org.unicase.model.Project;
 
 /**
@@ -40,7 +40,7 @@ import org.unicase.model.Project;
  * @model
  * @generated
  */
-public interface ProjectSpace extends EObject {
+public interface ProjectSpace extends IdentifiableElement {
 	/**
 	 * Returns the value of the '<em><b>Project</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -330,10 +330,9 @@ public interface ProjectSpace extends EObject {
 	 */
 	PrimaryVersionSpec resolveVersionSpec(VersionSpec versionSpec)
 			throws EmfStoreException;
-	
+
 	void shareProject(Usersession usersession) throws EmfStoreException;
 
-	void exportProject(String fileName)
-			throws IOException;
+	void exportProject(String fileName) throws IOException;
 
 } // ProjectContainer

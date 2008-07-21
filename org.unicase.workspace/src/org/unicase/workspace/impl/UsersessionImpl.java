@@ -230,7 +230,8 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 */
 	public void setPassword(String newPassword) {
 		setPasswordGen(newPassword);
-		if (isSavePassword()) {
+		if (isSavePassword() && getPasswordGen() != null
+				&& !getPasswordGen().equals(newPassword)) {
 			setPersistentPassword(newPassword);
 		}
 	}
@@ -288,13 +289,26 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPersistentPassword(String newPersistentPassword) {
+	public void setPersistentPasswordGen(String newPersistentPassword) {
 		String oldPersistentPassword = persistentPassword;
 		persistentPassword = newPersistentPassword;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
 					WorkspacePackage.USERSESSION__PERSISTENT_PASSWORD,
 					oldPersistentPassword, persistentPassword));
+	}
+
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.workspace.Usersession#setPersistentPassword(java.lang.String)
+	 * 
+	 * @generated NOT
+	 */
+	public void setPersistentPassword(String newPersistentPassword) {
+		if (isSavePassword()) {
+			setPassword(newPersistentPassword);
+		}
+		setPersistentPasswordGen(newPersistentPassword);
 	}
 
 	/**
@@ -365,9 +379,10 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 * @generated NOT
 	 */
 	public void setSavePassword(boolean newSavePassword) {
-		if (newSavePassword) {
+		if (getPasswordGen() != null && newSavePassword) {
 			setPersistentPassword(getPassword());
-		} else {
+		}
+		if (!newSavePassword) {
 			setPersistentPassword(null);
 		}
 		setSavePasswordGen(newSavePassword);
@@ -395,22 +410,23 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 		ConnectionManager connectionManager = this.getWorkspaceManager()
 				.getConnectionManager();
 		//sanity checks
-		if (getUsername()==null || getPassword()==null) {
+		if (getUsername() == null || getPassword() == null) {
 			throw new AccessControlException("Username or Password not set!");
 		}
 		ServerInfo serverInfo = getServerInfo();
-		if (serverInfo==null) {
+		if (serverInfo == null) {
 			throw new IllegalStateException("No ServerInfo set!");
 		}
-		if (serverInfo.getUrl()==null) {
+		if (serverInfo.getUrl() == null) {
 			throw new ConnectionException("Invalid server url: null");
 		}
-		
+
 		// prepare serverInfo for send: copy and remove usersession
 		ServerInfo copy = (ServerInfo) EcoreUtil.copy(serverInfo);
 		copy.setLastUsersession(null);
 
-		SessionId newSessionId = connectionManager.logIn(username, password, copy);
+		SessionId newSessionId = connectionManager.logIn(username, password,
+				copy);
 		this.setSessionId(newSessionId);
 	}
 
@@ -599,7 +615,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 
 	public SessionId getSessionId() {
 		SessionId sessionIdGen = getSessionIdGen();
-		if (sessionIdGen==null) {
+		if (sessionIdGen == null) {
 			try {
 				logIn();
 			} catch (AccessControlException e) {

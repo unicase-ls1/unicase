@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.model.IdentifiableElement;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
@@ -108,6 +109,8 @@ public class WorkspaceSwitch<T> {
 			ProjectSpace projectSpace = (ProjectSpace) theEObject;
 			T result = caseProjectSpace(projectSpace);
 			if (result == null)
+				result = caseIdentifiableElement(projectSpace);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -169,6 +172,21 @@ public class WorkspaceSwitch<T> {
 	 * @generated
 	 */
 	public T caseProjectSpace(ProjectSpace object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIdentifiableElement(IdentifiableElement object) {
 		return null;
 	}
 

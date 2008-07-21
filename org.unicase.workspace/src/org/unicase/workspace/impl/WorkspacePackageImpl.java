@@ -427,10 +427,10 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		EsmodelPackage theEsmodelPackage = (EsmodelPackage) EPackage.Registry.INSTANCE
-				.getEPackage(EsmodelPackage.eNS_URI);
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE
 				.getEPackage(ModelPackage.eNS_URI);
+		EsmodelPackage theEsmodelPackage = (EsmodelPackage) EPackage.Registry.INSTANCE
+				.getEPackage(EsmodelPackage.eNS_URI);
 		ChangePackage theChangePackage = (ChangePackage) EPackage.Registry.INSTANCE
 				.getEPackage(ChangePackage.eNS_URI);
 		VersioningPackage theVersioningPackage = (VersioningPackage) EPackage.Registry.INSTANCE
@@ -441,15 +441,19 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		projectSpaceEClass.getESuperTypes().add(
+				theModelPackage.getIdentifiableElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(workspaceEClass, Workspace.class, "Workspace", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWorkspace_ProjectSpaces(), this.getProjectSpace(),
 				null, "projectSpaces", null, 0, -1, Workspace.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		getWorkspace_ProjectSpaces().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getWorkspace_ServerInfos(), this.getServerInfo(), null,
 				"serverInfos", null, 0, -1, Workspace.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,

@@ -286,6 +286,7 @@ public class RepositoryView extends ViewPart {
 									.checkout(element);
 						} catch (EmfStoreException e) {
 							// TODO show error dialog
+							e.printStackTrace();
 						}
 					}
 				});

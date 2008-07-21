@@ -149,7 +149,7 @@ public final class WorkspaceManager {
 		workspace.setConnectionManager(this.connectionManager);
 		//MK: possible performance hit
 		resource.setTrackingModification(true);
-		workspace.setResource(resource);
+		workspace.setWorkspaceResourceSet(resourceSet);
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			protected void doExecute() {
 				workspace.init(domain);

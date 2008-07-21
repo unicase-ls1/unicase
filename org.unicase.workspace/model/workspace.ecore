@@ -11,7 +11,7 @@
     <eOperations name="save"/>
     <eOperations name="isDirty" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="projectSpaces" upperBound="-1"
-        eType="#//ProjectSpace" containment="true"/>
+        eType="#//ProjectSpace" eKeys="../../org.unicase.model/model/model.ecore#//IdentifiableElement/identifier"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="serverInfos" upperBound="-1"
         eType="#//ServerInfo" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="usersessions" upperBound="-1"
@@ -42,7 +42,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="serverInfo" eType="#//ServerInfo"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="savePassword" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ProjectSpace">
+  <eClassifiers xsi:type="ecore:EClass" name="ProjectSpace" eSuperTypes="../../org.unicase.model/model/model.ecore#//IdentifiableElement">
     <eOperations name="commit" eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/ChangePackage"/>
     <eOperations name="update"/>
     <eOperations name="update" eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/ChangePackage">
