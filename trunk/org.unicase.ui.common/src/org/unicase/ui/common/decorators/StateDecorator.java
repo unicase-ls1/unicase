@@ -83,7 +83,7 @@ public class StateDecorator implements ILightweightLabelDecorator {
 		try {
 			if (me.getMEState().getStatus().equals(MEState.OPEN)) {
 				url = Platform.find(Platform
-						.getBundle("org.unicase.model.edit"),
+						.getBundle("org.unicase.ui.common"),
 						new Path(openPath));
 
 			}

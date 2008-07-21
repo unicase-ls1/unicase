@@ -34,6 +34,10 @@
            class="org.unicase.ui.common.commands.DeleteModelelementHandler"
            commandId="org.unicase.ui.common.deleteModelelement">
      </handler>
+         <handler
+               class="org.unicase.ui.common.commands.NewDocumentHandler"
+               commandId="org.unicase.ui.common.newDocument">
+         </handler>
   </extension>
    <extension
         point="org.eclipse.ui.commands">
@@ -46,6 +50,11 @@
            categoryId="org.unicase.ui.common.modifyModelelement"
            id="org.unicase.ui.common.deleteModelelement"
            name="Delete Modelelement">
+     </command>
+     <command
+           categoryId="org.unicase.ui.common.modifyModelelement"
+           id="org.unicase.ui.common.newDocument"
+           name="New Document">
      </command>
   </extension>
    <extension
@@ -63,6 +72,20 @@
               <iterate>
                  <instanceof
                        value="org.unicase.model.ModelElement">
+                 </instanceof>
+              </iterate>
+           </visibleWhen>
+        </command>
+        <command
+              commandId="org.unicase.ui.common.newDocument"
+              icon="icons/Document.gif"
+              label="New Document"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <iterate>
+                 <instanceof
+                       value="org.unicase.workspace.ProjectSpace">
                  </instanceof>
               </iterate>
            </visibleWhen>
@@ -173,6 +196,19 @@
         <enablement>
            <objectClass
                  name="org.unicase.model.ModelElement">
+           </objectClass>
+        </enablement>
+     </decorator>
+     <decorator
+           adaptable="true"
+           class="org.unicase.ui.common.decorators.VersionDecorator"
+           id="org.unicase.ui.common.decorators.VersionDecorator"
+           label="Version Decorator"
+           lightweight="true"
+           state="true">
+        <enablement>
+           <objectClass
+                 name="org.unicase.workspace.ProjectSpace">
            </objectClass>
         </enablement>
      </decorator>
