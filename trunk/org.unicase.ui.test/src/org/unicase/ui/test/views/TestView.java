@@ -143,8 +143,6 @@ public class TestView extends ViewPart {
 		Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 		testProjectGenerator.generateProjectIntoWorkspace(currentWorkspace);
 		
-		currentWorkspace.save();
-		
 		if (numOfMEsToOpen>0) {
 			testProjectGenerator.openSomeModelElements(numOfMEsToOpen);
 		}

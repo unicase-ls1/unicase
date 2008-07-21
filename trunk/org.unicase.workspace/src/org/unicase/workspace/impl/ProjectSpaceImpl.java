@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.eclipse.emf.ecore.change.util.ChangeRecorder;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
@@ -30,6 +29,8 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.Project;
+import org.unicase.model.impl.IdentifiableElementImpl;
+import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
@@ -56,7 +57,8 @@ import org.unicase.workspace.exceptions.NoLocalChangesException;
  *
  * @generated
  */
-public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
+public class ProjectSpaceImpl extends IdentifiableElementImpl implements
+		ProjectSpace {
 
 	/**
 	 * @generated NOT
@@ -627,6 +629,12 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 */
 	public void save() {
 		stopChangeRecording();
+		try {
+			this.eResource().save(Configuration.getResourceSaveOptions());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		startChangeRecording();
 	}
 
@@ -665,6 +673,8 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @generated NOT
 	 */
 	public void init() {
+		//MK: possibly performance hit
+		this.eResource().setTrackingModification(true);
 		startChangeRecording();
 	}
 
@@ -871,30 +881,30 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	public void shareProject(Usersession usersession) throws EmfStoreException {
 		this.stopChangeRecording();
 		this.setUsersession(usersession);
-		LogMessage logMessage = VersioningFactory.eINSTANCE
-				.createLogMessage();
+		LogMessage logMessage = VersioningFactory.eINSTANCE.createLogMessage();
 		logMessage.setAuthor(usersession.getUsername());
 		logMessage.setDate(new Date());
 		logMessage.setMessage("Initial commit");
-		ProjectInfo createdProject = WorkspaceManager.getInstance().getConnectionManager()
-		.createProject(usersession.getSessionId(),
-				this.getProjectName(),
-				this.getProjectDescription(),
-				logMessage, this.getProject());
+		ProjectInfo createdProject = WorkspaceManager.getInstance()
+				.getConnectionManager().createProject(
+						usersession.getSessionId(), this.getProjectName(),
+						this.getProjectDescription(), logMessage,
+						this.getProject());
 		this.setBaseVersion(createdProject.getVersion());
 		this.setLastUpdated(new Date());
 		this.setProjectId(createdProject.getProjectId());
 		this.setLocalChanges(null);
-		save();
+		//save();
 		this.startChangeRecording();
 	}
-	
+
 	/**
 	 * @param absoluteFileName
 	 * @param projectSpace
 	 */
 	public void exportProject(String absoluteFileName) throws IOException {
-		WorkspaceManager.getInstance().getCurrentWorkspace().exportProject(this, absoluteFileName);
+		WorkspaceManager.getInstance().getCurrentWorkspace().exportProject(
+				this, absoluteFileName);
 	}
-	
+
 } // ProjectContainerImpl

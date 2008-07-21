@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.ProjectInfo;
@@ -53,14 +54,14 @@ import org.unicase.workspace.connectionmanager.ConnectionManager;
  * @generated
  */
 public class WorkspaceImpl extends EObjectImpl implements Workspace {
-	ProjectSpace projectSpace;
+
 	/**
 	 * @generated NOT
 	 */
-	private Resource resource;
+	private ResourceSet workspaceResourceSet;
 
 	/**
-	 * The cached value of the '{@link #getProjectSpaces() <em>Project Spaces</em>}' containment reference list.
+	 * The cached value of the '{@link #getProjectSpaces() <em>Project Spaces</em>}' reference list.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * @see #getProjectSpaces()
@@ -123,7 +124,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 */
 	public EList<ProjectSpace> getProjectSpaces() {
 		if (projectSpaces == null) {
-			projectSpaces = new EObjectContainmentEList<ProjectSpace>(
+			projectSpaces = new EObjectResolvingEList<ProjectSpace>(
 					ProjectSpace.class, this,
 					WorkspacePackage.WORKSPACE__PROJECT_SPACES);
 		}
@@ -172,7 +173,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		final PrimaryVersionSpec primaryVersionSpec = projectInfo.getVersion();
 
 		// init project space
-		projectSpace = WorkspaceFactory.eINSTANCE.createProjectSpace();
+		ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE
+				.createProjectSpace();
 		projectSpace.setProjectId(projectInfo.getProjectId());
 		projectSpace.setProjectName(projectInfo.getName());
 		projectSpace.setProjectDescription(projectInfo.getDescription());
@@ -180,11 +182,36 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		projectSpace.setLastUpdated(new Date());
 		projectSpace.setUsersession(usersession);
 		projectSpace.setProject(project);
+
+		setupProjectSpace(projectSpace);
+
+		return projectSpace;
+	}
+
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.workspace.Workspace#setupProjectSpace(org.unicase.workspace.ProjectSpace)
+	 * 
+	 * @generated NOT
+	 */
+	public void setupProjectSpace(ProjectSpace projectSpace) {
+
 		projectSpace.init();
 
+		String fileName = Configuration.getWorkspaceDirectory()
+				+ projectSpace.getIdentifier();
+		URI fileURI = URI.createFileURI(fileName);
+		Resource resource = this.workspaceResourceSet.createResource(fileURI);
+
+		resource.getContents().add(projectSpace);
+
+		//MK: possible performance hit
+		resource.setTrackingModification(true);
+
+		projectSpace.save();
+
 		getProjectSpaces().add(projectSpace);
-		save();
-		return projectSpace;
+		this.save();
 	}
 
 	/**
@@ -193,11 +220,10 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * @generated NOT
 	 */
 	public void save() {
-		for (ProjectSpace projectSpace : this.getProjectSpaces()) {
-			projectSpace.save();
-		}
 		try {
-			this.resource.save(Configuration.getResourceSaveOptions());
+			long currentTimeMillis = System.currentTimeMillis();
+			this.eResource().save(Configuration.getResourceSaveOptions());
+			System.out.println(System.currentTimeMillis() - currentTimeMillis);
 		} catch (IOException e) {
 			// MK Auto-generated catch block
 			e.printStackTrace();
@@ -211,14 +237,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * @generated NOT
 	 */
 	public boolean isDirty() {
-		return resource.isModified();
-
-		//		for (ProjectSpace projectSpace : this.projectSpaces) {
-		//			if (projectSpace.isDirty()) {
-		//				return true;
-		//			}
-		//		}
-		//		return false;
+		return this.eResource().isModified();
 	}
 
 	/**
@@ -229,9 +248,6 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case WorkspacePackage.WORKSPACE__PROJECT_SPACES:
-			return ((InternalEList<?>) getProjectSpaces()).basicRemove(
-					otherEnd, msgs);
 		case WorkspacePackage.WORKSPACE__SERVER_INFOS:
 			return ((InternalEList<?>) getServerInfos()).basicRemove(otherEnd,
 					msgs);
@@ -331,14 +347,6 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		this.connectionManager = connectionManager;
 	}
 
-	/**
-	 * @param resource
-	 * @generated NOT
-	 */
-	public void setResource(Resource resource) {
-		this.resource = resource;
-	}
-
 	/** 
 	 * {@inheritDoc}
 	 * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
@@ -371,13 +379,14 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	public TransactionalEditingDomain getEditingDomain() {
 		return this.transactionalEditingDomain;
 	}
-	
+
 	/**
 	 * @param fileName
 	 * @param absoluteFileName
 	 * @return
 	 */
-	public ProjectSpace importProject(String absoluteFileName) throws IOException {
+	public ProjectSpace importProject(String absoluteFileName)
+			throws IOException {
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
 		Resource resource = resourceSet.getResource(URI
 				.createFileURI(absoluteFileName), true);
@@ -395,32 +404,39 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE
 				.createProjectSpace();
 		projectSpace.setProject(project);
-		projectSpace.setProjectName(absoluteFileName.substring(absoluteFileName.lastIndexOf(File.separatorChar)+1));
+		projectSpace.setProjectName(absoluteFileName.substring(absoluteFileName
+				.lastIndexOf(File.separatorChar) + 1));
 		projectSpace.setProjectDescription("Imported from " + absoluteFileName);
-		
-		this.getProjectSpaces().add(projectSpace);
-		projectSpace.init();
-		save();
+
+		setupProjectSpace(projectSpace);
+
 		return projectSpace;
 	}
-	
+
 	/**
 	 * @param absoluteFileName
 	 * @param projectSpace
 	 */
-	public void exportProject(ProjectSpace projectSpace, String absoluteFileName) throws IOException {
+	public void exportProject(ProjectSpace projectSpace, String absoluteFileName)
+			throws IOException {
 		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.createResource(URI.createFileURI(absoluteFileName));
+		Resource resource = resourceSet.createResource(URI
+				.createFileURI(absoluteFileName));
 		Project project = projectSpace.getProject();
 		EReference containmentFeature = project.eContainmentFeature();
 		EObject oldContainer = project.eContainer();
-		
+
 		resource.getContents().add(project);
 		resource.save(null);
 
 		//reintegrate project into old container
-		if (oldContainer!=null) {
+		if (oldContainer != null) {
 			oldContainer.eSet(containmentFeature, project);
 		}
+	}
+
+	public void setWorkspaceResourceSet(ResourceSet resourceSet) {
+		this.workspaceResourceSet = resourceSet;
+
 	}
 } // WorkspaceImpl

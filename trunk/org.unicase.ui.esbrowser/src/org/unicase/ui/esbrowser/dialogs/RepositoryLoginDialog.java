@@ -136,19 +136,16 @@ public class RepositoryLoginDialog extends TitleAreaDialog implements SelectionL
 			session = WorkspaceFactory.eINSTANCE.createUsersession();
 			session.setUsername(username.getText());
 			session.setServerInfo(serverInfo);
+			session.setPassword(password.getText());
 		} else {
 			session = savedSessionsList.get(savedSessionsCombo.getSelectionIndex() - 1);
 		}
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-				if(savePassword.getSelection()){
-					session.setPassword(password.getText());
-				}else{
-					session.setPassword(null);
-				}
 				session.setSavePassword(savePassword.getSelection());
 				session.setServerInfo(serverInfo);
+				serverInfo.setLastUsersession(session);
 				if (username.getEnabled()) {
 					// add the newly created session
 					WorkspaceManager.getInstance().getCurrentWorkspace().getUsersessions().add(session);

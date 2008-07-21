@@ -6,6 +6,7 @@
  */
 package org.unicase.ui.meeditor;
 
+import java.io.IOException;
 import java.util.EventObject;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -22,6 +23,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
 import org.unicase.model.ModelElement;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
+import org.unicase.workspace.Configuration;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
@@ -80,8 +82,13 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 					@Override
 					protected void doExecute() {
-						WorkspaceManager.getInstance().getCurrentWorkspace()
-								.save();
+						//FIXME JH MK
+						try {
+							modelElement.eResource().save(Configuration.getResourceSaveOptions());
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 
 					}
 
@@ -191,8 +198,10 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 					@Override
 					protected void doExecute() {
-						dirty = WorkspaceManager.getInstance()
-								.getCurrentWorkspace().isDirty();
+//						dirty = WorkspaceManager.getInstance()
+//								.getCurrentWorkspace().isDirty();
+						//JH: check this
+						dirty = modelElement.eResource().isModified();
 					}
 				});
 		checkingDirty=false;
