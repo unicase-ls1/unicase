@@ -17,6 +17,9 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.unicase.model.ModelElement;
+import org.unicase.model.ModelPackage;
+import org.unicase.model.Project;
 import org.unicase.workspace.connectionmanager.AdminConnectionManager;
 import org.unicase.workspace.connectionmanager.AdminConnectionManagerStub;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
@@ -187,5 +190,19 @@ public final class WorkspaceManager {
 	 */
 	public AdminConnectionManager getAdminConnectionManager() {
 		return adminConnectionManager;
+	}
+	
+	public static ProjectSpace getProjectSpace(ModelElement modelElement) {
+		return getProjectSpace(modelElement.getProject());
+	}
+	
+	public static ProjectSpace getProjectSpace(Project project) {
+		// check if my container is a project
+		if (WorkspacePackage.eINSTANCE.getProjectSpace().isInstance(project.eContainer())) {
+			return (ProjectSpace) project.eContainer();
+		} else {
+			throw new IllegalStateException(
+					"Project is not contained by any project space");
+		}
 	}
 }
