@@ -127,7 +127,7 @@ public class EmfStoreController implements IApplication {
 		logger.debug("Creating dummy server space...");
 		ServerSpace serverSpace = EsmodelFactory.eINSTANCE.createServerSpace();
 
-		EmfStoreStub.createDummyProjectHistories(serverSpace);
+		//EmfStoreStub.createDummyProjectHistories(serverSpace);
 
 		serverSpace.setResource(resource);
 		resource.getContents().add(serverSpace);
