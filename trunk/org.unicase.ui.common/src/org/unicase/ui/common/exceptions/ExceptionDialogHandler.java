@@ -60,7 +60,7 @@ public abstract class ExceptionDialogHandler {
 			stringBuilder.append(cause.getMessage());
 		}
 		String string = stringBuilder.toString();
-		MessageDialog.openError(null, cause.getClass().getName(), message);
+		MessageDialog.openError(null, cause.getClass().getName(), string);
 	}
 
 }
