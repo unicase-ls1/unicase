@@ -179,16 +179,9 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<ModelElement> getNewElements() {
-		if (newElements == null) {
-			newElements = new EObjectContainmentEList<ModelElement>(
-					ModelElement.class, this,
-					DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS);
-		}
-		return newElements;
-	}
 
 	//FIXME JH: removed because of CLassCastException on validate in Teneo
 	//	//begin of custom code
@@ -202,11 +195,9 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	//					ModelElement.class, this,
 	//					DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS);
 	//		}
-	//		//JH: cache instance
-	//		return new DiagramNewElementsList(getElements(), getProject());
-	//	}
-	//	//end of custom code
-
+			//JH: cache instance
+			return new DiagramNewElementsList(getElements(), getProject());
+	}
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
