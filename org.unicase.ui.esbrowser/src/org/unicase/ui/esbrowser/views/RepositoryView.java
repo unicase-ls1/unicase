@@ -288,6 +288,10 @@ public class RepositoryView extends ViewPart {
 							// TODO show error dialog
 							e.printStackTrace();
 						}
+						catch (RuntimeException e) {
+							e.printStackTrace();
+							throw e;
+						}
 					}
 				});
 				// JH: remove and add proper notifying
