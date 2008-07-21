@@ -82,13 +82,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 					@Override
 					protected void doExecute() {
-						//FIXME JH MK
-						try {
-							modelElement.eResource().save(Configuration.getResourceSaveOptions());
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+						WorkspaceManager.getProjectSpace(modelElement).save();
 
 					}
 
@@ -176,11 +170,6 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 				});
 
-		// Create the editing domain with our adapterFactory and command stack.
-
-		// These provide access to the model items, their property source and
-		// label
-
 	}
 
 	/**
@@ -195,13 +184,10 @@ public class MEEditor extends SharedHeaderFormEditor {
 		checkingDirty=true;
 		editingDomain.getCommandStack().execute(
 				new RecordingCommand(editingDomain) {
-
 					@Override
 					protected void doExecute() {
-//						dirty = WorkspaceManager.getInstance()
-//								.getCurrentWorkspace().isDirty();
 						//JH: check this
-						dirty = modelElement.eResource().isModified();
+						dirty = WorkspaceManager.getProjectSpace(modelElement).isDirty();
 					}
 				});
 		checkingDirty=false;
