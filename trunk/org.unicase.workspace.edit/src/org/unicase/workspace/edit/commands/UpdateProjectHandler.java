@@ -46,6 +46,10 @@ public class UpdateProjectHandler extends ProjectActionHandler {
 				} catch (EmfStoreException e) {
 					ExceptionDialogHandler.showExceptionDialog(e);;
 				}
+				catch (RuntimeException e) {
+					ExceptionDialogHandler.showExceptionDialog(e);
+					throw e;
+				}
 			}
 		});
 		MessageDialog.openInformation(window.getShell(), null,

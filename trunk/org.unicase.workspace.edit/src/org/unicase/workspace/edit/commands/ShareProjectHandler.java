@@ -12,6 +12,7 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.ui.common.exceptions.ExceptionDialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
@@ -20,14 +21,19 @@ import org.unicase.workspace.WorkspaceManager;
 public class ShareProjectHandler extends ProjectActionHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		
+
 		final ProjectSpace projectSpace = (ProjectSpace) getProjectSpace(event);
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			protected void doExecute() {
 				// TODO: handle exception
-				createProject(projectSpace);
+				try {
+					createProject(projectSpace);
+				} catch (RuntimeException e) {
+					ExceptionDialogHandler.showExceptionDialog(e);
+					throw e;
+				}
 			}
 		});
 		return null;
@@ -57,6 +63,8 @@ public class ShareProjectHandler extends ProjectActionHandler {
 				} catch (EmfStoreException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+				} catch (Exception e) {
+					ExceptionDialogHandler.showExceptionDialog(e);
 				}
 			}
 		}

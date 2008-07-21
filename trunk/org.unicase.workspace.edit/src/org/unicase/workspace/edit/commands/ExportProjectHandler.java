@@ -44,10 +44,14 @@ public class ExportProjectHandler extends ProjectActionHandler {
 					projectSpace.exportProject(absoluteFileName);
 				} catch (IOException e) {
 					ExceptionDialogHandler.showExceptionDialog(e);
+				} catch (RuntimeException e) {
+					ExceptionDialogHandler.showExceptionDialog(e);
+					throw e;
 				}
 			}
 		});
-		MessageDialog.openInformation(null, "Export", "Exported project to file " + fileName);
+		MessageDialog.openInformation(null, "Export",
+				"Exported project to file " + fileName);
 		return null;
 	}
 

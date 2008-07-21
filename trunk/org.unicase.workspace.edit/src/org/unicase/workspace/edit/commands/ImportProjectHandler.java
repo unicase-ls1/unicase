@@ -67,6 +67,10 @@ public class ImportProjectHandler extends ProjectActionHandler {
 				} catch (IOException e) {
 					ExceptionDialogHandler.showExceptionDialog(e);
 				}
+				catch (RuntimeException e) {
+					ExceptionDialogHandler.showExceptionDialog(e);
+					throw e;
+				}
 			}
 		});
 
