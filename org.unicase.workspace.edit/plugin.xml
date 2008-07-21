@@ -149,6 +149,9 @@
               </visibleWhen>
            </command>
         </menu>
+        <separator
+              name="org.unicase.workspace.edit.scmCommands">
+        </separator>
      </menuContribution>
   </extension>
 

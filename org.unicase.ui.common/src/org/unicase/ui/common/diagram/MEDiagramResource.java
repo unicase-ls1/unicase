@@ -195,8 +195,10 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	}
 
 	public Resource createResource(URI uri) {
-		EObject object = WorkspaceManager.getInstance().getCurrentWorkspace()
-				.eResource().getEObject(uri.toString());
+		 Resource resource = WorkspaceManager.getInstance().getCurrentWorkspace()
+				.eResource();
+		ResourceSet rs = resource.getResourceSet();
+		EObject object = rs.getEObject(uri,false);
 		if (object instanceof MEDiagram) {
 			return new MEDiagramResource((MEDiagram) object);
 		} else {
