@@ -38,6 +38,10 @@
            class="org.unicase.workspace.edit.commands.ExportProjectHandler"
            commandId="org.unicase.workspace.edit.exportProject">
      </handler>
+      <handler
+            class="org.unicase.workspace.edit.commands.DeleteProjectHandler"
+            commandId="org.unicase.workspace.edit.deleteProject">
+      </handler>
   </extension>
   <extension
         point="org.eclipse.ui.commands">
@@ -69,6 +73,11 @@
            categoryId="org.unicase.workspace.edit.project"
            id="org.unicase.workspace.edit.exportProject"
            name="export">
+     </command>
+     <command
+           categoryId="org.unicase.workspace.edit.project"
+           id="org.unicase.workspace.edit.deleteProject"
+           name="deleteProject">
      </command>
   </extension>
   <extension
@@ -138,6 +147,20 @@
                  commandId="org.unicase.workspace.edit.exportProject"
                  icon="icons/full/obj16/export.gif"
                  label="Export Project"
+                 style="push">
+              <visibleWhen
+                    checkEnabled="false">
+                 <iterate>
+                    <instanceof
+                          value="org.unicase.workspace.ProjectSpace">
+                    </instanceof>
+                 </iterate>
+              </visibleWhen>
+           </command>
+           <command
+                 commandId="org.unicase.workspace.edit.command3"
+                 icon="icons/delete.gif"
+                 label="Delete Project"
                  style="push">
               <visibleWhen
                     checkEnabled="false">
