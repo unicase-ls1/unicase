@@ -12,6 +12,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.accesscontrol.AuthorizationControl;
@@ -45,7 +47,7 @@ public class EmfStoreImpl implements EmfStore {
 
 	private ServerSpace serverSpace;
 
-	//private static final Log LOGGER = LogFactory.getLog(EmfStoreImpl.class);
+	private static final Log LOGGER = LogFactory.getLog(EmfStoreImpl.class);
 
 	//private AuthorizationControl authorizationControl;
 
@@ -88,8 +90,12 @@ public class EmfStoreImpl implements EmfStore {
 		
 		Version previousHeadVersion = versions.get(versions.size() - 1);
 				
-		Project newProjectState = (Project)EcoreUtil.copy(previousHeadVersion.getProjectState());
+		//removed state copy for performance
+		//Project newProjectState = (Project)EcoreUtil.copy(previousHeadVersion.getProjectState());
+		Project newProjectState = previousHeadVersion.getProjectState();
+		
 		changePackage.apply(newProjectState);
+		
 		version.setProjectState(newProjectState);
 		
 		version.setChanges(changePackage);
@@ -315,7 +321,9 @@ public class EmfStoreImpl implements EmfStore {
 
 	private void save() throws EmfStoreException {
 		try {
+			long currentTimeMillis = System.currentTimeMillis();
 			getServerSpace().save();
+			LOGGER.error(System.currentTimeMillis()-currentTimeMillis);
 		} catch (IOException e) {
 			throw new StorageException(StorageException.NOSAVE, e);
 		} catch (NullPointerException e) {
