@@ -192,12 +192,23 @@ public final class WorkspaceManager {
 		return adminConnectionManager;
 	}
 	
+	/**
+	 * Retrieve the project space for a model element.
+	 * @param modelElement the model element
+	 * @return the project space
+	 */
 	public static ProjectSpace getProjectSpace(ModelElement modelElement) {
 		return getProjectSpace(modelElement.getProject());
 	}
 	
+	/**
+	 * Retrieve the project space for a project.
+	 * 
+	 * @param project the project
+	 * @return the project space
+	 */
 	public static ProjectSpace getProjectSpace(Project project) {
-		// check if my container is a project
+		// check if my container is a project space
 		if (WorkspacePackage.eINSTANCE.getProjectSpace().isInstance(project.eContainer())) {
 			return (ProjectSpace) project.eContainer();
 		} else {
