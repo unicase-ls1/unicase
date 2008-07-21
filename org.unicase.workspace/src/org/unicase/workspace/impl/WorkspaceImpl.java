@@ -196,18 +196,17 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 */
 	public void setupProjectSpace(ProjectSpace projectSpace) {
 
-		projectSpace.init();
-
 		String fileName = Configuration.getWorkspaceDirectory()
-				+ projectSpace.getIdentifier();
+				+ "ps-" + projectSpace.getIdentifier();
 		URI fileURI = URI.createFileURI(fileName);
 		Resource resource = this.workspaceResourceSet.createResource(fileURI);
 
 		resource.getContents().add(projectSpace);
-
+		projectSpace.init();
+		
 		//MK: possible performance hit
 		resource.setTrackingModification(true);
-
+		
 		projectSpace.save();
 
 		getProjectSpaces().add(projectSpace);
