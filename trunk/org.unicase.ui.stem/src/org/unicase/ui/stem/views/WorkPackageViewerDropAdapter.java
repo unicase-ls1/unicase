@@ -25,7 +25,7 @@ public class WorkPackageViewerDropAdapter extends
 
 	@Override
 	public void dragEnter(DropTargetEvent event) {
-		// TODO Auto-generated method stub
+		viewer.getControl().setFocus();
 		super.dragEnter(event);
 	}
 
