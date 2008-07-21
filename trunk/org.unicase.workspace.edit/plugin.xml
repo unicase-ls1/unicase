@@ -158,7 +158,7 @@
               </visibleWhen>
            </command>
            <command
-                 commandId="org.unicase.workspace.edit.command3"
+                 commandId="org.unicase.workspace.edit.deleteProject"
                  icon="icons/delete.gif"
                  label="Delete Project"
                  style="push">
