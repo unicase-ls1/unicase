@@ -533,6 +533,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		return result.toString();
 	}
 
+//FIXME MK: hasCode and equals are based on ME id, this might be dangerous since we have multiple instance of the same ME
 	/**
 	 * Returns true if the other model elements id is identical. False in any
 	 * other case.
