@@ -12,15 +12,17 @@ import java.util.List;
 import java.util.ListIterator;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 
-public class DiagramNewElementsList implements EList<ModelElement> {
+public class DiagramNewElementsList extends BasicInternalEList<ModelElement>{
 
 	private EList<ModelElement> elements;
 	private Project project;
 
 	public DiagramNewElementsList(EList<ModelElement> elements, Project project) {
+		super(ModelElement.class);
 		this.elements = elements;
 		this.project = project;
 	}
