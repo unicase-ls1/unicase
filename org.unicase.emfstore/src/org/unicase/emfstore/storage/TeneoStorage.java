@@ -54,6 +54,9 @@ public class TeneoStorage implements ResourceStorage {
 				org.hibernate.dialect.MySQLInnoDBDialect.class.getName());
 		// Lazy loading to avoid too many joins exception
 		props.setProperty(Environment.MAX_FETCH_DEPTH, "0");
+		
+		//MK: possible performance optimization, but throws exception
+		//props.setProperty(PersistenceOptions.ALWAYS_MAP_LIST_AS_BAG, "true");
 
 //		//MK: does not work with mysql, table names are too long
 //		//use fully qualified names for classes
