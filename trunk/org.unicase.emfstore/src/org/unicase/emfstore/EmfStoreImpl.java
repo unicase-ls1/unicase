@@ -173,6 +173,7 @@ public class EmfStoreImpl implements EmfStore {
 	public Project getProject(SessionId sessionId, ProjectId projectId,
 			VersionSpec versionSpec) throws EmfStoreException {
 		// TODO: authorization
+		//MK: TODO recalulate project state if not available
 		return getVersion(projectId, resolveVersionSpec(projectId, versionSpec))
 				.getProjectState();
 	}
