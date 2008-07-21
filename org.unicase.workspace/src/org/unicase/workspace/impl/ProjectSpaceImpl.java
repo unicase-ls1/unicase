@@ -584,7 +584,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		stopChangeRecording();
 
 		// check if there are any changes
-		if (getLocalChanges() == null) {
+		if (getLocalChanges() == null || isChangeDescriptionEmpty(getLocalChanges())) {
 			startChangeRecording();
 			throw new NoLocalChangesException();
 		}
@@ -618,6 +618,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 				+ (System.currentTimeMillis() - currentTimeMillis));
 
 		return newBaseVersion;
+	}
+
+	private boolean isChangeDescriptionEmpty(ChangeDescription changeDescription) {
+		return (changeDescription.getObjectChanges().isEmpty()
+				&& changeDescription.getObjectsToAttach().isEmpty() && changeDescription
+				.getObjectsToDetach().isEmpty());
 	}
 
 	/**
