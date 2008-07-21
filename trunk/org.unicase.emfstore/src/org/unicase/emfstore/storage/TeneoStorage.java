@@ -14,6 +14,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.teneo.PersistenceOptions;
@@ -104,6 +105,11 @@ public class TeneoStorage implements ResourceStorage {
 		NotationPackage gmfPackage = NotationPackage.eINSTANCE;
 		packages.add(gmfPackage);
 
+		//MK: remove validation for all packages by registering custom validator
+		for (EPackage ePackage: packages) {
+			EValidator.Registry.INSTANCE.put(ePackage, new SkipValidationValidator());
+		}
+		
 		return packages.toArray(new EPackageImpl[packages.size()]);
 	}
 

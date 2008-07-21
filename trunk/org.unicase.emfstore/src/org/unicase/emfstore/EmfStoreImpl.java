@@ -77,6 +77,8 @@ public class EmfStoreImpl implements EmfStore {
 		// authorizationControl.checkWriteAccess(sessionId, projectId,
 		// modelElements);
 		// TODO: authorization
+		long currentTimeMillis = System.currentTimeMillis();
+
 		List<Version> versions = getProject(projectId).getVersions();
 		if (versions.size() - 1 != baseVersionSpec.getIdentifier()) {
 			throw new InvalidVersionSpecException("");
@@ -90,7 +92,7 @@ public class EmfStoreImpl implements EmfStore {
 		
 		Version previousHeadVersion = versions.get(versions.size() - 1);
 				
-		//removed state copy for performance
+		//MK: removed state copy for performance
 		//Project newProjectState = (Project)EcoreUtil.copy(previousHeadVersion.getProjectState());
 		Project newProjectState = previousHeadVersion.getProjectState();
 		
@@ -106,6 +108,8 @@ public class EmfStoreImpl implements EmfStore {
 		
 		versions.add(version);
 		save();
+		
+		LOGGER.error("Total time for commit: " + (System.currentTimeMillis()-currentTimeMillis));
 
 		return newVersionSpec;
 	}
@@ -323,7 +327,8 @@ public class EmfStoreImpl implements EmfStore {
 		try {
 			long currentTimeMillis = System.currentTimeMillis();
 			getServerSpace().save();
-			LOGGER.error(System.currentTimeMillis()-currentTimeMillis);
+			LOGGER.error("Total time for saving: " + (System.currentTimeMillis()-currentTimeMillis));
+			currentTimeMillis = System.currentTimeMillis();
 		} catch (IOException e) {
 			throw new StorageException(StorageException.NOSAVE, e);
 		} catch (NullPointerException e) {
