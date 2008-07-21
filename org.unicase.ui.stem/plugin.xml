@@ -9,11 +9,19 @@
             id="org.unicase">
       </category>
       <view
-            name="Tree View"
-            icon="icons/sample.gif"
+            name="Iteration Planning"
+            icon="icons/IterationPlanning.gif"
             category="org.unicase"
-            class="org.unicase.ui.stem.views.TreeView"
-            id="org.unicase.ui.treeview.views.TreeView">
+            class="org.unicase.ui.stem.views.IterationPlanningView"
+            id="org.unicase.ui.treeview.views.IterationPlanningView">
+      </view>
+      <view
+            category="org.unicase"
+            class="org.unicase.ui.stem.views.StatusView"
+            icon="icons/StatusView.gif"
+            id="org.unicase.ui.treeview.views.StatusView"
+            name="Status View"
+            restorable="true">
       </view>
    </extension>
    <extension
@@ -23,8 +31,14 @@
          <view
                ratio="0.5"
                relative="org.eclipse.ui.views.TaskList"
-               relationship="right"
-               id="org.unicase.ui.treeview.views.TreeView">
+               relationship="stack"
+               id="org.unicase.ui.treeview.views.IterationPlanningView">
+         </view>
+         <view
+               id="org.unicase.ui.treeview.views.StatusView"
+               minimized="false"
+               relationship="stack"
+               relative="org.unicase.ui.treeview.views.IterationPlanningView">
          </view>
       </perspectiveExtension>
    </extension>

@@ -32,7 +32,7 @@ import org.unicase.workspace.WorkspaceManager;
  * <p>
  */
 
-public class TreeView extends ViewPart {
+public class IterationPlanningView extends ViewPart {
 	private TreeViewer viewer;
 	private DrillDownAdapter drillDownAdapter;
 	private Action doubleClickAction;
@@ -48,7 +48,7 @@ public class TreeView extends ViewPart {
 	/**
 	 * The constructor.
 	 */
-	public TreeView() {
+	public IterationPlanningView() {
 	}
 
 	/**
@@ -76,7 +76,7 @@ public class TreeView extends ViewPart {
 	private void hookDoubleClickAction() {
 		viewer.addDoubleClickListener(new IDoubleClickListener() {
 			public void doubleClick(DoubleClickEvent event) {
-				doubleClickAction.run();
+				//JH open element
 			}
 		});
 	}
@@ -85,7 +85,7 @@ public class TreeView extends ViewPart {
 	 * Passing the focus request to the viewer's control.
 	 */
 	public void setFocus() {
-		viewer.getControl().setFocus();
+		viewer.getTree().setFocus();
 	}
 	private void addDNDSupport() {
 		int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
@@ -102,4 +102,5 @@ public class TreeView extends ViewPart {
 						viewer));
 
 	}
+	
 }
