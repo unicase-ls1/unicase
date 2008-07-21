@@ -7,7 +7,6 @@
 package org.unicase.model.impl;
 
 import java.util.Collection;
-import java.util.UUID;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -128,7 +127,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	 */
 	protected ModelElementImpl() {
 		super();
-		this.identifier = UUID.randomUUID().toString();
 	}
 
 	// end of custom code
