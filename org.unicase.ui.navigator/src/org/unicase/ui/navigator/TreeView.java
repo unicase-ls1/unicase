@@ -8,6 +8,7 @@ package org.unicase.ui.navigator;
 
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -55,14 +56,15 @@ public class TreeView extends ViewPart {
 
 	}
 
-	/**.
-	 * {@inheritDoc}
+	/**
+	 * . {@inheritDoc}
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
 		viewer = new TreeViewer(parent);
 		IDecoratorManager decoratorManager = new DecoratorManager();
-		viewer.setLabelProvider(new DecoratingLabelProvider(new TreeLabelProvider(), decoratorManager.getLabelDecorator()));
+		viewer.setLabelProvider(new DecoratingLabelProvider(
+				new TreeLabelProvider(), decoratorManager.getLabelDecorator()));
 		viewer.setContentProvider(new TreeContentProvider());
 		viewer.setInput(WorkspaceManager.getInstance().getCurrentWorkspace());
 
@@ -75,7 +77,6 @@ public class TreeView extends ViewPart {
 		Menu menu = menuMgr.createContextMenu(control);
 		control.setMenu(menu);
 
-		
 		hookDoubleClickAction();
 		addDragNDropSupport();
 
@@ -96,16 +97,15 @@ public class TreeView extends ViewPart {
 
 	}
 
-	/**.
-	 * {@inheritDoc}
+	/**
+	 * . {@inheritDoc}
 	 */
 	@Override
 	public void setFocus() {
-		// TODO Auto-generated method stub
+		viewer.getControl().setFocus();
 
 	}
 
-	
 	private void hookDoubleClickAction() {
 
 		createDoubleClickAction();
@@ -127,7 +127,6 @@ public class TreeView extends ViewPart {
 
 	}
 
-	
 	private void openME(Object object) {
 		if (object == null) {
 			return;
@@ -154,27 +153,22 @@ public class TreeView extends ViewPart {
 
 	private void openDiagram(MEDiagram diagram) {
 		String id = null;
-		if(diagram.getType().equals(DiagramType.CLASS_DIAGRAM)){
-			id="org.unicase.model.classDiagram.part.ModelDiagramEditorID";
+		if (diagram.getType().equals(DiagramType.CLASS_DIAGRAM)) {
+			id = "org.unicase.model.classDiagram.part.ModelDiagramEditorID";
 		}
-		if(diagram.getType().equals(DiagramType.USECASE_DIAGRAM)){
-			id="org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorID";
+		if (diagram.getType().equals(DiagramType.USECASE_DIAGRAM)) {
+			id = "org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorID";
 		}
-		if(id==null){
+		if (id == null) {
 			throw new RuntimeException("Unsupported diagram type");
 		}
-		URIEditorInput input = new URIEditorInput(URI
-				.createURI(diagram.eResource().getURIFragment(
-						diagram)));
+		URI uri = EcoreUtil.getURI(diagram);
+		uri.appendFragment(diagram.eResource().getURIFragment(diagram));
+		URIEditorInput input = new URIEditorInput(uri);
+
 		try {
-			PlatformUI
-					.getWorkbench()
-					.getActiveWorkbenchWindow()
-					.getActivePage()
-					.openEditor(
-							input,
-							id,
-							true);
+			PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+					.getActivePage().openEditor(input, id, true);
 		} catch (PartInitException e) {
 			ErrorDialog.openError(PlatformUI.getWorkbench()
 					.getActiveWorkbenchWindow().getShell(), "Error", e
