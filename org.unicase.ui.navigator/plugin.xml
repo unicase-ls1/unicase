@@ -100,6 +100,14 @@
             id="org.unicase.ui.navigator.eClassType"
             type="org.eclipse.emf.ecore.EClass">
       </commandParameterType>
+      <command
+            id="org.unicase.ui.navigator.newLeafSection"
+            name="newLeafSection">
+      </command>
+      <command
+            id="org.unicase.ui.navigator.newCompositeSection"
+            name="newCompositeSection">
+      </command>
    </extension>
     <!--    -->
    <extension
@@ -118,6 +126,34 @@
                   </instanceof>
                </iterate>
             </visibleWhen> 
+         </command>
+         <command
+               commandId="org.unicase.ui.navigator.newCompositeSection"
+               icon="icons/CompositeSection.gif"
+               label="New composite section"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate>
+                  <instanceof
+                        value="org.unicase.model.document.CompositeSection">
+                  </instanceof>
+               </iterate>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.unicase.ui.navigator.newLeafSection"
+               icon="icons/LeafSection.gif"
+               label="New leaf section"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate>
+                  <instanceof
+                        value="org.unicase.model.document.CompositeSection">
+                  </instanceof>
+               </iterate>
+            </visibleWhen>
          </command>
       </menuContribution>
       <menuContribution
@@ -141,6 +177,14 @@
       <handler
             class="org.unicase.ui.navigator.commands.NewModelElementWizardHandler"
             commandId="org.unicase.ui.navigator.newMEWizard">
+      </handler>
+      <handler
+            class="org.unicase.ui.navigator.commands.NewLeafSection"
+            commandId="org.unicase.ui.navigator.newLeafSection">
+      </handler>
+      <handler
+            class="org.unicase.ui.navigator.commands.NewCompositeSection"
+            commandId="org.unicase.ui.navigator.newCompositeSection">
       </handler>
    </extension>
   

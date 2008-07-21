@@ -73,25 +73,14 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 					}
 				});
 
-				openModelElement(newMEInstance);
+				ActionHelper.openModelElement(newMEInstance);
 			}
 		}
 		return null;
 
 	}
 
-	private void openModelElement(ModelElement newMEInstance) {
-		MEEditorInput input = new MEEditorInput(newMEInstance);
-		try {
-			PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-					.getActivePage()
-					.openEditor(input, MEEditor.ID, true);
-		} catch (PartInitException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
+	
 
 	/**
 	 * Gets the leaf section right clicked on Navigator.
