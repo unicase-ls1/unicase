@@ -8,7 +8,7 @@
 	<property name="db_user" value="root" />
 	<property name="db_pass" value="pass" />
 	<property name="db_name" value="model" />
-	<property name="unicaseWorkspace" value="${user.home}/.unicase/workspace" />
+	<property name="unicaseWorkspaceDir" value="${user.home}/.unicase" />
 
 	<taskdef resource="net/sf/antcontrib/antlib.xml">
 		<classpath>
@@ -20,7 +20,7 @@
 
 	<target name="cleanModelDb" description="deletes and recreates mysql model db">
 
-		<input message="All data in model DB is going to be deleted !!! Continue (y/n)?" validargs="y,n" addproperty="do.delete" defaultvalue="y"/>
+		<input message="All data in model DB is going to be deleted !!! Continue (y/n)?" validargs="y,n" addproperty="do.delete" defaultvalue="y" />
 		<condition property="do.abort">
 			<equals arg1="n" arg2="${do.delete}" />
 		</condition>
@@ -62,7 +62,10 @@
 
 	<target name="cleanWorkspace" description="delete the unicase workspace">
 		<echo message="Deleting workspace..." />
-		<delete file="${unicaseWorkspace}" />
+		<delete file="${unicaseWorkspaceDir}/workspace" />
+		<delete>
+			<fileset dir="${unicaseWorkspaceDir}" includes="**/ps-*" />
+		</delete>
 	</target>
 
 
