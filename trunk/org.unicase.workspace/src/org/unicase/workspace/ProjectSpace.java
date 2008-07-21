@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.Date;
 
 import org.eclipse.emf.ecore.change.ChangeDescription;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
@@ -310,7 +311,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @generated
 	 */
 	void init();
-
+	
 	/**
 	 * <!-- begin-user-doc --> Retrieve the project info. <!-- end-user-doc -->
 	 * @model kind="operation"
@@ -335,4 +336,5 @@ public interface ProjectSpace extends IdentifiableElement {
 
 	void exportProject(String fileName) throws IOException;
 
+	boolean isDirty();
 } // ProjectContainer

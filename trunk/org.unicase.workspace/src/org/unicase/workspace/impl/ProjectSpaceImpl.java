@@ -538,6 +538,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	public PrimaryVersionSpec commit(final LogMessage logMessage)
 			throws EmfStoreException {
 
+		long currentTimeMillis = System.currentTimeMillis();
+		
 		stopChangeRecording();
 
 		//check if there are any changes
@@ -570,6 +572,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		save();
 
 		startChangeRecording();
+		
+		System.out.println("Total time for commit: " + (System.currentTimeMillis()-currentTimeMillis));
+
 		return newBaseVersion;
 	}
 
@@ -905,6 +910,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	public void exportProject(String absoluteFileName) throws IOException {
 		WorkspaceManager.getInstance().getCurrentWorkspace().exportProject(
 				this, absoluteFileName);
+	}
+
+	public boolean isDirty() {
+		return this.eResource().isModified();
 	}
 
 } // ProjectContainerImpl
