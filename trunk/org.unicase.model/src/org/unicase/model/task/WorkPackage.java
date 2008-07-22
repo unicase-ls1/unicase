@@ -25,17 +25,19 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface WorkPackage extends WorkItem {
 	/**
-	 * Returns the value of the '<em><b>Contained Work Items</b></em>' reference list.
+	 * Returns the value of the '<em><b>Contained Work Items</b></em>' containment reference list.
 	 * The list contents are of type {@link org.unicase.model.task.WorkItem}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.task.WorkItem#getContainingWorkpackage <em>Containing Workpackage</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Contained Work Items</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Contained Work Items</em>' reference list.
+	 * @return the value of the '<em>Contained Work Items</em>' containment reference list.
 	 * @see org.unicase.model.task.TaskPackage#getWorkPackage_ContainedWorkItems()
-	 * @model keys="identifier"
+	 * @see org.unicase.model.task.WorkItem#getContainingWorkpackage
+	 * @model opposite="containingWorkpackage" containment="true" keys="identifier"
 	 * @generated
 	 */
 	EList<WorkItem> getContainedWorkItems();

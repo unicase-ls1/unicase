@@ -9,11 +9,13 @@ package org.unicase.model.bug.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.bug.BugReport;
 import org.unicase.model.bug.BugResolution;
@@ -23,6 +25,7 @@ import org.unicase.model.change.ModelChangePackage;
 import org.unicase.model.impl.AnnotationImpl;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.requirement.Step;
+import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkPackage;
 
 /**
@@ -44,16 +47,6 @@ import org.unicase.model.task.WorkPackage;
  * @generated
  */
 public class BugReportImpl extends AnnotationImpl implements BugReport {
-	/**
-	 * The cached value of the '{@link #getContainingWorkpackage() <em>Containing Workpackage</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getContainingWorkpackage()
-	 * @generated
-	 * @ordered
-	 */
-	protected WorkPackage containingWorkpackage;
-
 	/**
 	 * The cached value of the '{@link #getAssociatedChangePackages() <em>Associated Change Packages</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -151,17 +144,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	 * @generated
 	 */
 	public WorkPackage getContainingWorkpackage() {
-		if (containingWorkpackage != null && containingWorkpackage.eIsProxy()) {
-			InternalEObject oldContainingWorkpackage = (InternalEObject) containingWorkpackage;
-			containingWorkpackage = (WorkPackage) eResolveProxy(oldContainingWorkpackage);
-			if (containingWorkpackage != oldContainingWorkpackage) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE,
-							oldContainingWorkpackage, containingWorkpackage));
-			}
-		}
-		return containingWorkpackage;
+		if (eContainerFeatureID != BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE)
+			return null;
+		return (WorkPackage) eContainer();
 	}
 
 	/**
@@ -169,8 +154,11 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public WorkPackage basicGetContainingWorkpackage() {
-		return containingWorkpackage;
+	public NotificationChain basicSetContainingWorkpackage(
+			WorkPackage newContainingWorkpackage, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newContainingWorkpackage,
+				BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE, msgs);
+		return msgs;
 	}
 
 	/**
@@ -179,12 +167,26 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	 * @generated
 	 */
 	public void setContainingWorkpackage(WorkPackage newContainingWorkpackage) {
-		WorkPackage oldContainingWorkpackage = containingWorkpackage;
-		containingWorkpackage = newContainingWorkpackage;
-		if (eNotificationRequired())
+		if (newContainingWorkpackage != eInternalContainer()
+				|| (eContainerFeatureID != BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE && newContainingWorkpackage != null)) {
+			if (EcoreUtil.isAncestor(this, newContainingWorkpackage))
+				throw new IllegalArgumentException(
+						"Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newContainingWorkpackage != null)
+				msgs = ((InternalEObject) newContainingWorkpackage)
+						.eInverseAdd(this,
+								TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
+								WorkPackage.class, msgs);
+			msgs = basicSetContainingWorkpackage(newContainingWorkpackage, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
 					BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE,
-					oldContainingWorkpackage, containingWorkpackage));
+					newContainingWorkpackage, newContainingWorkpackage));
 	}
 
 	/**
@@ -332,6 +334,55 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE:
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetContainingWorkpackage((WorkPackage) otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE:
+			return basicSetContainingWorkpackage(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
+		switch (eContainerFeatureID) {
+		case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE:
+			return eInternalContainer().eInverseRemove(this,
+					TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
+					WorkPackage.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -339,9 +390,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE:
-			if (resolve)
-				return getContainingWorkpackage();
-			return basicGetContainingWorkpackage();
+			return getContainingWorkpackage();
 		case BugPackage.BUG_REPORT__ASSOCIATED_CHANGE_PACKAGES:
 			return getAssociatedChangePackages();
 		case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE:
@@ -438,7 +487,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE:
-			return containingWorkpackage != null;
+			return getContainingWorkpackage() != null;
 		case BugPackage.BUG_REPORT__ASSOCIATED_CHANGE_PACKAGES:
 			return associatedChangePackages != null
 					&& !associatedChangePackages.isEmpty();
