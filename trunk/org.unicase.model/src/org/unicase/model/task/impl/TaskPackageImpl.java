@@ -34,6 +34,7 @@ import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.impl.RequirementPackageImpl;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.Meeting;
+import org.unicase.model.task.Milestone;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
@@ -68,6 +69,13 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * @generated
 	 */
 	private EClass meetingEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass milestoneEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -258,7 +266,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getWorkPackage_ContainedModelElements() {
+	public EReference getWorkPackage_ContainedWorkItems() {
 		return (EReference) workPackageEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -386,6 +394,15 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMilestone() {
+		return milestoneEClass;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -419,8 +436,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		createEAttribute(actionItemEClass, ACTION_ITEM__ESTIMATE);
 
 		workPackageEClass = createEClass(WORK_PACKAGE);
-		createEReference(workPackageEClass,
-				WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS);
+		createEReference(workPackageEClass, WORK_PACKAGE__CONTAINED_WORK_ITEMS);
 
 		workItemEClass = createEClass(WORK_ITEM);
 		createEReference(workItemEClass, WORK_ITEM__CONTAINING_WORKPACKAGE);
@@ -437,6 +453,8 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		createEReference(meetingEClass, MEETING__DISCUSSED_ACTION_ITEMS);
 		createEReference(meetingEClass, MEETING__DISCUSSED_ISSUES);
 		createEReference(meetingEClass, MEETING__IDENTIFIED_ACTION_ITEMS);
+
+		milestoneEClass = createEClass(MILESTONE);
 	}
 
 	/**
@@ -478,10 +496,10 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 		// Add supertypes to classes
 		actionItemEClass.getESuperTypes().add(this.getWorkItem());
-		workPackageEClass.getESuperTypes().add(
-				theModelPackage.getModelElement());
+		workPackageEClass.getESuperTypes().add(this.getWorkItem());
 		workItemEClass.getESuperTypes().add(theModelPackage.getAnnotation());
 		meetingEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		milestoneEClass.getESuperTypes().add(theModelPackage.getModelElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(actionItemEClass, ActionItem.class, "ActionItem",
@@ -508,12 +526,12 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 		initEClass(workPackageEClass, WorkPackage.class, "WorkPackage",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getWorkPackage_ContainedModelElements(), theModelPackage
-				.getModelElement(), null, "containedModelElements", null, 0,
-				-1, WorkPackage.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getWorkPackage_ContainedModelElements().getEKeys().add(
+		initEReference(getWorkPackage_ContainedWorkItems(), this.getWorkItem(),
+				null, "containedWorkItems", null, 0, -1, WorkPackage.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		getWorkPackage_ContainedWorkItems().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(workItemEClass, WorkItem.class, "WorkItem", IS_ABSTRACT,
@@ -592,6 +610,9 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 				!IS_DERIVED, IS_ORDERED);
 		getMeeting_IdentifiedActionItems().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
+
+		initEClass(milestoneEClass, Milestone.class, "Milestone", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 	}
 
 } // TaskPackageImpl

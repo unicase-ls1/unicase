@@ -142,6 +142,29 @@ public class TaskItemProviderAdapterFactory extends TaskAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.task.Milestone} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MilestoneItemProvider milestoneItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.task.Milestone}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMilestoneAdapter() {
+		if (milestoneItemProvider == null) {
+			milestoneItemProvider = new MilestoneItemProvider(this);
+		}
+
+		return milestoneItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -245,6 +268,8 @@ public class TaskItemProviderAdapterFactory extends TaskAdapterFactory
 			workPackageItemProvider.dispose();
 		if (meetingItemProvider != null)
 			meetingItemProvider.dispose();
+		if (milestoneItemProvider != null)
+			milestoneItemProvider.dispose();
 	}
 
 }

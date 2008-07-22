@@ -7,7 +7,6 @@
 package org.unicase.model.task;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.ModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '
@@ -16,7 +15,7 @@ import org.unicase.model.ModelElement;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.model.task.WorkPackage#getContainedModelElements <em>Contained Model Elements</em>}</li>
+ *   <li>{@link org.unicase.model.task.WorkPackage#getContainedWorkItems <em>Contained Work Items</em>}</li>
  * </ul>
  * </p>
  *
@@ -24,21 +23,21 @@ import org.unicase.model.ModelElement;
  * @model
  * @generated
  */
-public interface WorkPackage extends ModelElement {
+public interface WorkPackage extends WorkItem {
 	/**
-	 * Returns the value of the '<em><b>Contained Model Elements</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.ModelElement}.
+	 * Returns the value of the '<em><b>Contained Work Items</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.task.WorkItem}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Contained Model Elements</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Contained Work Items</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Contained Model Elements</em>' reference list.
-	 * @see org.unicase.model.task.TaskPackage#getWorkPackage_ContainedModelElements()
+	 * @return the value of the '<em>Contained Work Items</em>' reference list.
+	 * @see org.unicase.model.task.TaskPackage#getWorkPackage_ContainedWorkItems()
 	 * @model keys="identifier"
 	 * @generated
 	 */
-	EList<ModelElement> getContainedModelElements();
+	EList<WorkItem> getContainedWorkItems();
 
 } // WorkPackage

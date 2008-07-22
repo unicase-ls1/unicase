@@ -12,7 +12,6 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -20,20 +19,8 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.model.ModelFactory;
-import org.unicase.model.bug.BugFactory;
-import org.unicase.model.change.ChangeFactory;
-import org.unicase.model.classes.ClassesFactory;
-import org.unicase.model.component.ComponentFactory;
-import org.unicase.model.diagram.DiagramFactory;
-import org.unicase.model.document.DocumentFactory;
-import org.unicase.model.organization.OrganizationFactory;
+import org.unicase.model.provider.AnnotationItemProvider;
 import org.unicase.model.provider.ModelEditPlugin;
-import org.unicase.model.provider.ModelElementItemProvider;
-import org.unicase.model.rationale.RationaleFactory;
-import org.unicase.model.requirement.RequirementFactory;
-import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkPackage;
 
@@ -43,7 +30,7 @@ import org.unicase.model.task.WorkPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class WorkPackageItemProvider extends ModelElementItemProvider implements
+public class WorkPackageItemProvider extends AnnotationItemProvider implements
 		IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
@@ -67,57 +54,65 @@ public class WorkPackageItemProvider extends ModelElementItemProvider implements
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addContainedModelElementsPropertyDescriptor(object);
+			addContainingWorkpackagePropertyDescriptor(object);
+			addAssociatedChangePackagesPropertyDescriptor(object);
+			addContainedWorkItemsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Contained Model Elements feature.
+	 * This adds a property descriptor for the Containing Workpackage feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addContainedModelElementsPropertyDescriptor(Object object) {
+	protected void addContainingWorkpackagePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
 						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_WorkPackage_containedModelElements_feature"),
+				getString("_UI_WorkItem_containingWorkpackage_feature"),
 				getString("_UI_PropertyDescriptor_description",
-						"_UI_WorkPackage_containedModelElements_feature",
+						"_UI_WorkItem_containingWorkpackage_feature",
+						"_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__CONTAINING_WORKPACKAGE, true,
+				false, false, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Associated Change Packages feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAssociatedChangePackagesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkItem_associatedChangePackages_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_WorkItem_associatedChangePackages_feature",
+						"_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES,
+				true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Contained Work Items feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addContainedWorkItemsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkPackage_containedWorkItems_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_WorkPackage_containedWorkItems_feature",
 						"_UI_WorkPackage_type"),
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				true, false, false, null, null, null));
-	}
-
-	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(
-			Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures
-					.add(TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS);
-		}
-		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS, true,
+				false, true, null, null, null));
 	}
 
 	/**
@@ -155,13 +150,6 @@ public class WorkPackageItemProvider extends ModelElementItemProvider implements
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(WorkPackage.class)) {
-		case TaskPackage.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
-			return;
-		}
 		super.notifyChanged(notification);
 	}
 
@@ -176,146 +164,6 @@ public class WorkPackageItemProvider extends ModelElementItemProvider implements
 	protected void collectNewChildDescriptors(
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				TaskFactory.eINSTANCE.createActionItem()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				TaskFactory.eINSTANCE.createWorkPackage()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				TaskFactory.eINSTANCE.createMeeting()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				ModelFactory.eINSTANCE.createAnnotation()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				OrganizationFactory.eINSTANCE.createOrgUnit()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				OrganizationFactory.eINSTANCE.createUser()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				OrganizationFactory.eINSTANCE.createGroup()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				DiagramFactory.eINSTANCE.createMEDiagram()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				ClassesFactory.eINSTANCE.createClass()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				ClassesFactory.eINSTANCE.createPackage()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				ClassesFactory.eINSTANCE.createAssociation()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				DocumentFactory.eINSTANCE.createLeafSection()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				DocumentFactory.eINSTANCE.createCompositeSection()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				RequirementFactory.eINSTANCE.createNonFunctionalRequirement()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				RequirementFactory.eINSTANCE.createFunctionalRequirement()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				RequirementFactory.eINSTANCE.createUseCase()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				RequirementFactory.eINSTANCE.createScenario()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				RequirementFactory.eINSTANCE.createActor()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				RequirementFactory.eINSTANCE.createActorInstance()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				RequirementFactory.eINSTANCE.createStep()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				RationaleFactory.eINSTANCE.createIssue()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				RationaleFactory.eINSTANCE.createProposal()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				RationaleFactory.eINSTANCE.createSolution()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				RationaleFactory.eINSTANCE.createCriterion()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				RationaleFactory.eINSTANCE.createAssessment()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				RationaleFactory.eINSTANCE.createComment()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				ChangeFactory.eINSTANCE.createModelChangePackage()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				ChangeFactory.eINSTANCE.createMergingIssue()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				ChangeFactory.eINSTANCE.createMergingProposal()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				ChangeFactory.eINSTANCE.createMergingSolution()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				BugFactory.eINSTANCE.createBugReport()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				BugFactory.eINSTANCE.createBugResolution()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				ComponentFactory.eINSTANCE.createComponent()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				ComponentFactory.eINSTANCE.createComponentService()));
-
-		newChildDescriptors.add(createChildParameter(
-				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS,
-				ComponentFactory.eINSTANCE.createDeploymentNode()));
 	}
 
 	/**

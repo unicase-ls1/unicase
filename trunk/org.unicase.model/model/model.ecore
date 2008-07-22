@@ -94,9 +94,9 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="done" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="estimate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="WorkPackage" eSuperTypes="#//ModelElement">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="containedModelElements"
-          upperBound="-1" eType="#//ModelElement" eKeys="#//IdentifiableElement/identifier"/>
+    <eClassifiers xsi:type="ecore:EClass" name="WorkPackage" eSuperTypes="#//task/WorkItem">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="containedWorkItems" upperBound="-1"
+          eType="#//task/WorkItem" eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="WorkItem" abstract="true" interface="true"
         eSuperTypes="#//Annotation">
@@ -124,6 +124,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="identifiedActionItems"
           eType="#//task/ActionItem" eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Milestone" eSuperTypes="#//ModelElement"/>
   </eSubpackages>
   <eSubpackages name="diagram" nsURI="http://unicase.org/model/diagram" nsPrefix="org.unicase.model.diagram">
     <eClassifiers xsi:type="ecore:EClass" name="MEDiagram" eSuperTypes="#//ModelElement">
@@ -363,7 +364,7 @@
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="bug" nsURI="http://unicase.org/model/bug" nsPrefix="org.unicase.model.bug">
-    <eClassifiers xsi:type="ecore:EClass" name="BugReport" eSuperTypes="#//ModelElement">
+    <eClassifiers xsi:type="ecore:EClass" name="BugReport" eSuperTypes="#//task/WorkItem">
       <eStructuralFeatures xsi:type="ecore:EReference" name="stepsToReproduce" upperBound="-1"
           eType="#//requirement/Step" eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Status" eType="#//bug/BugStatus"/>
@@ -371,8 +372,6 @@
           eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="resolution" eType="#//bug/BugResolution"
           eKeys="#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="involvedClasses" upperBound="-1"
-          eType="#//classes/Class" eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="severity" eType="#//bug/Severity"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="BugStatus">

@@ -23,8 +23,9 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.bug.BugReport;
+import org.unicase.model.provider.AnnotationItemProvider;
 import org.unicase.model.provider.ModelEditPlugin;
-import org.unicase.model.provider.ModelElementItemProvider;
+import org.unicase.model.task.TaskPackage;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.model.bug.BugReport} object.
@@ -32,7 +33,7 @@ import org.unicase.model.provider.ModelElementItemProvider;
  * end-user-doc -->
  * @generated
  */
-public class BugReportItemProvider extends ModelElementItemProvider implements
+public class BugReportItemProvider extends AnnotationItemProvider implements
 		IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
@@ -56,14 +57,51 @@ public class BugReportItemProvider extends ModelElementItemProvider implements
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addContainingWorkpackagePropertyDescriptor(object);
+			addAssociatedChangePackagesPropertyDescriptor(object);
 			addStepsToReproducePropertyDescriptor(object);
 			addStatusPropertyDescriptor(object);
 			addAssignedToPropertyDescriptor(object);
 			addResolutionPropertyDescriptor(object);
-			addInvolvedClassesPropertyDescriptor(object);
 			addSeverityPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Containing Workpackage feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addContainingWorkpackagePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkItem_containingWorkpackage_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_WorkItem_containingWorkpackage_feature",
+						"_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__CONTAINING_WORKPACKAGE, true,
+				false, false, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Associated Change Packages feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAssociatedChangePackagesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkItem_associatedChangePackages_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_WorkItem_associatedChangePackages_feature",
+						"_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES,
+				true, false, true, null, null, null));
 	}
 
 	/**
@@ -135,24 +173,6 @@ public class BugReportItemProvider extends ModelElementItemProvider implements
 						"_UI_BugReport_type"),
 				BugPackage.Literals.BUG_REPORT__RESOLUTION, true, false, true,
 				null, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Involved Classes feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void addInvolvedClassesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_BugReport_involvedClasses_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_BugReport_involvedClasses_feature",
-						"_UI_BugReport_type"),
-				BugPackage.Literals.BUG_REPORT__INVOLVED_CLASSES, true, false,
-				true, null, null, null));
 	}
 
 	/**
