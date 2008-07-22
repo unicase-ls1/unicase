@@ -28,7 +28,8 @@ import org.unicase.model.change.ModelChangePackage;
  */
 public interface WorkItem extends Annotation {
 	/**
-	 * Returns the value of the '<em><b>Containing Workpackage</b></em>' reference.
+	 * Returns the value of the '<em><b>Containing Workpackage</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.task.WorkPackage#getContainedWorkItems <em>Contained Work Items</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Containing Workpackage</em>' container
@@ -36,10 +37,11 @@ public interface WorkItem extends Annotation {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Containing Workpackage</em>' reference.
+	 * @return the value of the '<em>Containing Workpackage</em>' container reference.
 	 * @see #setContainingWorkpackage(WorkPackage)
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_ContainingWorkpackage()
-	 * @model keys="identifier"
+	 * @see org.unicase.model.task.WorkPackage#getContainedWorkItems
+	 * @model opposite="containedWorkItems" keys="identifier" transient="false"
 	 * @generated
 	 */
 	WorkPackage getContainingWorkpackage();

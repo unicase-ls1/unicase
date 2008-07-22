@@ -9,11 +9,15 @@ package org.unicase.model.task.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.change.ModelChangePackage;
 import org.unicase.model.impl.AnnotationImpl;
 import org.unicase.model.task.TaskPackage;
@@ -36,15 +40,6 @@ import org.unicase.model.task.WorkPackage;
  */
 public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	/**
-	 * The cached value of the '{@link #getContainingWorkpackage() <em>Containing Workpackage</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getContainingWorkpackage()
-	 * @generated
-	 * @ordered
-	 */
-	protected WorkPackage containingWorkpackage;
-	/**
 	 * The cached value of the '{@link #getAssociatedChangePackages() <em>Associated Change Packages</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -54,7 +49,7 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	 */
 	protected EList<ModelChangePackage> associatedChangePackages;
 	/**
-	 * The cached value of the '{@link #getContainedWorkItems() <em>Contained Work Items</em>}' reference list.
+	 * The cached value of the '{@link #getContainedWorkItems() <em>Contained Work Items</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getContainedWorkItems()
@@ -86,17 +81,9 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	 * @generated
 	 */
 	public WorkPackage getContainingWorkpackage() {
-		if (containingWorkpackage != null && containingWorkpackage.eIsProxy()) {
-			InternalEObject oldContainingWorkpackage = (InternalEObject) containingWorkpackage;
-			containingWorkpackage = (WorkPackage) eResolveProxy(oldContainingWorkpackage);
-			if (containingWorkpackage != oldContainingWorkpackage) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE,
-							oldContainingWorkpackage, containingWorkpackage));
-			}
-		}
-		return containingWorkpackage;
+		if (eContainerFeatureID != TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE)
+			return null;
+		return (WorkPackage) eContainer();
 	}
 
 	/**
@@ -104,8 +91,11 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public WorkPackage basicGetContainingWorkpackage() {
-		return containingWorkpackage;
+	public NotificationChain basicSetContainingWorkpackage(
+			WorkPackage newContainingWorkpackage, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newContainingWorkpackage,
+				TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE, msgs);
+		return msgs;
 	}
 
 	/**
@@ -114,12 +104,26 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	 * @generated
 	 */
 	public void setContainingWorkpackage(WorkPackage newContainingWorkpackage) {
-		WorkPackage oldContainingWorkpackage = containingWorkpackage;
-		containingWorkpackage = newContainingWorkpackage;
-		if (eNotificationRequired())
+		if (newContainingWorkpackage != eInternalContainer()
+				|| (eContainerFeatureID != TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE && newContainingWorkpackage != null)) {
+			if (EcoreUtil.isAncestor(this, newContainingWorkpackage))
+				throw new IllegalArgumentException(
+						"Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newContainingWorkpackage != null)
+				msgs = ((InternalEObject) newContainingWorkpackage)
+						.eInverseAdd(this,
+								TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
+								WorkPackage.class, msgs);
+			msgs = basicSetContainingWorkpackage(newContainingWorkpackage, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
 					TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE,
-					oldContainingWorkpackage, containingWorkpackage));
+					newContainingWorkpackage, newContainingWorkpackage));
 	}
 
 	/**
@@ -143,11 +147,68 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	 */
 	public EList<WorkItem> getContainedWorkItems() {
 		if (containedWorkItems == null) {
-			containedWorkItems = new EObjectResolvingEList<WorkItem>(
+			containedWorkItems = new EObjectContainmentWithInverseEList<WorkItem>(
 					WorkItem.class, this,
-					TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS);
+					TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
+					TaskPackage.WORK_ITEM__CONTAINING_WORKPACKAGE);
 		}
 		return containedWorkItems;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE:
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetContainingWorkpackage((WorkPackage) otherEnd, msgs);
+		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getContainedWorkItems())
+					.basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE:
+			return basicSetContainingWorkpackage(null, msgs);
+		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
+			return ((InternalEList<?>) getContainedWorkItems()).basicRemove(
+					otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
+		switch (eContainerFeatureID) {
+		case TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE:
+			return eInternalContainer().eInverseRemove(this,
+					TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
+					WorkPackage.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -158,9 +219,7 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE:
-			if (resolve)
-				return getContainingWorkpackage();
-			return basicGetContainingWorkpackage();
+			return getContainingWorkpackage();
 		case TaskPackage.WORK_PACKAGE__ASSOCIATED_CHANGE_PACKAGES:
 			return getAssociatedChangePackages();
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
@@ -222,7 +281,7 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE:
-			return containingWorkpackage != null;
+			return getContainingWorkpackage() != null;
 		case TaskPackage.WORK_PACKAGE__ASSOCIATED_CHANGE_PACKAGES:
 			return associatedChangePackages != null
 					&& !associatedChangePackages.isEmpty();

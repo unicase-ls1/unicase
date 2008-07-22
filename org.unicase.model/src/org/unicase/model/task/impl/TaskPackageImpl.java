@@ -527,20 +527,21 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		initEClass(workPackageEClass, WorkPackage.class, "WorkPackage",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWorkPackage_ContainedWorkItems(), this.getWorkItem(),
-				null, "containedWorkItems", null, 0, -1, WorkPackage.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+				this.getWorkItem_ContainingWorkpackage(), "containedWorkItems",
+				null, 0, -1, WorkPackage.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getWorkPackage_ContainedWorkItems().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(workItemEClass, WorkItem.class, "WorkItem", IS_ABSTRACT,
 				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWorkItem_ContainingWorkpackage(), this
-				.getWorkPackage(), null, "containingWorkpackage", null, 0, 1,
-				WorkItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+				.getWorkPackage(), this.getWorkPackage_ContainedWorkItems(),
+				"containingWorkpackage", null, 0, 1, WorkItem.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 		getWorkItem_ContainingWorkpackage().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getWorkItem_AssociatedChangePackages(), theChangePackage

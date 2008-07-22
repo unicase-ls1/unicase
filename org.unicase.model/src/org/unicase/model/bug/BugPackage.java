@@ -136,7 +136,7 @@ public interface BugPackage extends EPackage {
 	int BUG_REPORT__ANNOTATED_MODEL_ELEMENTS = TaskPackage.WORK_ITEM__ANNOTATED_MODEL_ELEMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Containing Workpackage</b></em>' reference.
+	 * The feature id for the '<em><b>Containing Workpackage</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

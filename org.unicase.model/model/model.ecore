@@ -96,12 +96,14 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="WorkPackage" eSuperTypes="#//task/WorkItem">
       <eStructuralFeatures xsi:type="ecore:EReference" name="containedWorkItems" upperBound="-1"
-          eType="#//task/WorkItem" eKeys="#//IdentifiableElement/identifier"/>
+          eType="#//task/WorkItem" containment="true" eOpposite="#//task/WorkItem/containingWorkpackage"
+          eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="WorkItem" abstract="true" interface="true"
         eSuperTypes="#//Annotation">
       <eStructuralFeatures xsi:type="ecore:EReference" name="containingWorkpackage"
-          eType="#//task/WorkPackage" eKeys="#//IdentifiableElement/identifier"/>
+          eType="#//task/WorkPackage" eOpposite="#//task/WorkPackage/containedWorkItems"
+          eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="associatedChangePackages"
           upperBound="-1" eType="#//change/ModelChangePackage" eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
