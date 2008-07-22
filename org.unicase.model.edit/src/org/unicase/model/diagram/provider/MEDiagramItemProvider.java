@@ -249,6 +249,10 @@ public class MEDiagramItemProvider extends ModelElementItemProvider implements
 
 		newChildDescriptors.add(createChildParameter(
 				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				TaskFactory.eINSTANCE.createMilestone()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
 				ClassesFactory.eINSTANCE.createClass()));
 
 		newChildDescriptors.add(createChildParameter(

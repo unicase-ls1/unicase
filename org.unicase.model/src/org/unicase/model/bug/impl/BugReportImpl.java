@@ -19,9 +19,11 @@ import org.unicase.model.bug.BugReport;
 import org.unicase.model.bug.BugResolution;
 import org.unicase.model.bug.BugStatus;
 import org.unicase.model.bug.Severity;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.change.ModelChangePackage;
+import org.unicase.model.impl.AnnotationImpl;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.requirement.Step;
+import org.unicase.model.task.WorkPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '
@@ -29,18 +31,39 @@ import org.unicase.model.requirement.Step;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getContainingWorkpackage <em>Containing Workpackage</em>}</li>
+ *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getAssociatedChangePackages <em>Associated Change Packages</em>}</li>
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getStepsToReproduce <em>Steps To Reproduce</em>}</li>
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getStatus <em>Status</em>}</li>
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getAssignedTo <em>Assigned To</em>}</li>
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getResolution <em>Resolution</em>}</li>
- *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getInvolvedClasses <em>Involved Classes</em>}</li>
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getSeverity <em>Severity</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class BugReportImpl extends ModelElementImpl implements BugReport {
+public class BugReportImpl extends AnnotationImpl implements BugReport {
+	/**
+	 * The cached value of the '{@link #getContainingWorkpackage() <em>Containing Workpackage</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getContainingWorkpackage()
+	 * @generated
+	 * @ordered
+	 */
+	protected WorkPackage containingWorkpackage;
+
+	/**
+	 * The cached value of the '{@link #getAssociatedChangePackages() <em>Associated Change Packages</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAssociatedChangePackages()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ModelChangePackage> associatedChangePackages;
+
 	/**
 	 * The cached value of the '{@link #getStepsToReproduce() <em>Steps To Reproduce</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -88,16 +111,6 @@ public class BugReportImpl extends ModelElementImpl implements BugReport {
 	protected BugResolution resolution;
 
 	/**
-	 * The cached value of the '{@link #getInvolvedClasses() <em>Involved Classes</em>}' reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @see #getInvolvedClasses()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<org.unicase.model.classes.Class> involvedClasses;
-
-	/**
 	 * The default value of the '{@link #getSeverity() <em>Severity</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getSeverity()
@@ -130,6 +143,62 @@ public class BugReportImpl extends ModelElementImpl implements BugReport {
 	@Override
 	protected EClass eStaticClass() {
 		return BugPackage.Literals.BUG_REPORT;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WorkPackage getContainingWorkpackage() {
+		if (containingWorkpackage != null && containingWorkpackage.eIsProxy()) {
+			InternalEObject oldContainingWorkpackage = (InternalEObject) containingWorkpackage;
+			containingWorkpackage = (WorkPackage) eResolveProxy(oldContainingWorkpackage);
+			if (containingWorkpackage != oldContainingWorkpackage) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE,
+							oldContainingWorkpackage, containingWorkpackage));
+			}
+		}
+		return containingWorkpackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WorkPackage basicGetContainingWorkpackage() {
+		return containingWorkpackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setContainingWorkpackage(WorkPackage newContainingWorkpackage) {
+		WorkPackage oldContainingWorkpackage = containingWorkpackage;
+		containingWorkpackage = newContainingWorkpackage;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE,
+					oldContainingWorkpackage, containingWorkpackage));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ModelChangePackage> getAssociatedChangePackages() {
+		if (associatedChangePackages == null) {
+			associatedChangePackages = new EObjectResolvingEList<ModelChangePackage>(
+					ModelChangePackage.class, this,
+					BugPackage.BUG_REPORT__ASSOCIATED_CHANGE_PACKAGES);
+		}
+		return associatedChangePackages;
 	}
 
 	/**
@@ -246,19 +315,6 @@ public class BugReportImpl extends ModelElementImpl implements BugReport {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<org.unicase.model.classes.Class> getInvolvedClasses() {
-		if (involvedClasses == null) {
-			involvedClasses = new EObjectResolvingEList<org.unicase.model.classes.Class>(
-					org.unicase.model.classes.Class.class, this,
-					BugPackage.BUG_REPORT__INVOLVED_CLASSES);
-		}
-		return involvedClasses;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Severity getSeverity() {
 		return severity;
 	}
@@ -282,6 +338,12 @@ public class BugReportImpl extends ModelElementImpl implements BugReport {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+		case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE:
+			if (resolve)
+				return getContainingWorkpackage();
+			return basicGetContainingWorkpackage();
+		case BugPackage.BUG_REPORT__ASSOCIATED_CHANGE_PACKAGES:
+			return getAssociatedChangePackages();
 		case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE:
 			return getStepsToReproduce();
 		case BugPackage.BUG_REPORT__STATUS:
@@ -294,8 +356,6 @@ public class BugReportImpl extends ModelElementImpl implements BugReport {
 			if (resolve)
 				return getResolution();
 			return basicGetResolution();
-		case BugPackage.BUG_REPORT__INVOLVED_CLASSES:
-			return getInvolvedClasses();
 		case BugPackage.BUG_REPORT__SEVERITY:
 			return getSeverity();
 		}
@@ -310,6 +370,14 @@ public class BugReportImpl extends ModelElementImpl implements BugReport {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+		case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE:
+			setContainingWorkpackage((WorkPackage) newValue);
+			return;
+		case BugPackage.BUG_REPORT__ASSOCIATED_CHANGE_PACKAGES:
+			getAssociatedChangePackages().clear();
+			getAssociatedChangePackages().addAll(
+					(Collection<? extends ModelChangePackage>) newValue);
+			return;
 		case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE:
 			getStepsToReproduce().clear();
 			getStepsToReproduce().addAll((Collection<? extends Step>) newValue);
@@ -322,12 +390,6 @@ public class BugReportImpl extends ModelElementImpl implements BugReport {
 			return;
 		case BugPackage.BUG_REPORT__RESOLUTION:
 			setResolution((BugResolution) newValue);
-			return;
-		case BugPackage.BUG_REPORT__INVOLVED_CLASSES:
-			getInvolvedClasses().clear();
-			getInvolvedClasses()
-					.addAll(
-							(Collection<? extends org.unicase.model.classes.Class>) newValue);
 			return;
 		case BugPackage.BUG_REPORT__SEVERITY:
 			setSeverity((Severity) newValue);
@@ -343,6 +405,12 @@ public class BugReportImpl extends ModelElementImpl implements BugReport {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+		case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE:
+			setContainingWorkpackage((WorkPackage) null);
+			return;
+		case BugPackage.BUG_REPORT__ASSOCIATED_CHANGE_PACKAGES:
+			getAssociatedChangePackages().clear();
+			return;
 		case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE:
 			getStepsToReproduce().clear();
 			return;
@@ -354,9 +422,6 @@ public class BugReportImpl extends ModelElementImpl implements BugReport {
 			return;
 		case BugPackage.BUG_REPORT__RESOLUTION:
 			setResolution((BugResolution) null);
-			return;
-		case BugPackage.BUG_REPORT__INVOLVED_CLASSES:
-			getInvolvedClasses().clear();
 			return;
 		case BugPackage.BUG_REPORT__SEVERITY:
 			setSeverity(SEVERITY_EDEFAULT);
@@ -372,6 +437,11 @@ public class BugReportImpl extends ModelElementImpl implements BugReport {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+		case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE:
+			return containingWorkpackage != null;
+		case BugPackage.BUG_REPORT__ASSOCIATED_CHANGE_PACKAGES:
+			return associatedChangePackages != null
+					&& !associatedChangePackages.isEmpty();
 		case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE:
 			return stepsToReproduce != null && !stepsToReproduce.isEmpty();
 		case BugPackage.BUG_REPORT__STATUS:
@@ -380,8 +450,6 @@ public class BugReportImpl extends ModelElementImpl implements BugReport {
 			return assignedTo != null;
 		case BugPackage.BUG_REPORT__RESOLUTION:
 			return resolution != null;
-		case BugPackage.BUG_REPORT__INVOLVED_CLASSES:
-			return involvedClasses != null && !involvedClasses.isEmpty();
 		case BugPackage.BUG_REPORT__SEVERITY:
 			return severity != SEVERITY_EDEFAULT;
 		}

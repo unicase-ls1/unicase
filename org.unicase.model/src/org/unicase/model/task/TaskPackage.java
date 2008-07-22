@@ -308,7 +308,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_PACKAGE__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
+	int WORK_PACKAGE__IDENTIFIER = WORK_ITEM__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!--
@@ -317,7 +317,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_PACKAGE__NAME = ModelPackage.MODEL_ELEMENT__NAME;
+	int WORK_PACKAGE__NAME = WORK_ITEM__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute. <!--
@@ -326,7 +326,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_PACKAGE__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int WORK_PACKAGE__DESCRIPTION = WORK_ITEM__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
@@ -334,7 +334,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_PACKAGE__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
+	int WORK_PACKAGE__READER_INFOS = WORK_ITEM__READER_INFOS;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!--
@@ -343,7 +343,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_PACKAGE__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+	int WORK_PACKAGE__ANNOTATIONS = WORK_ITEM__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -351,7 +351,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_PACKAGE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int WORK_PACKAGE__INCOMING_DOCUMENT_REFERENCES = WORK_ITEM__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
@@ -359,16 +359,43 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_PACKAGE__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int WORK_PACKAGE__LEAF_SECTION = WORK_ITEM__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>Contained Model Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int WORK_PACKAGE__ANNOTATED_MODEL_ELEMENTS = WORK_ITEM__ANNOTATED_MODEL_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Containing Workpackage</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE__CONTAINING_WORKPACKAGE = WORK_ITEM__CONTAINING_WORKPACKAGE;
+
+	/**
+	 * The feature id for the '<em><b>Associated Change Packages</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE__ASSOCIATED_CHANGE_PACKAGES = WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES;
+
+	/**
+	 * The feature id for the '<em><b>Contained Work Items</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE__CONTAINED_WORK_ITEMS = WORK_ITEM_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Work Package</em>' class.
@@ -376,7 +403,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_PACKAGE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int WORK_PACKAGE_FEATURE_COUNT = WORK_ITEM_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.task.impl.MeetingImpl <em>Meeting</em>}' class.
@@ -551,6 +578,88 @@ public interface TaskPackage extends EPackage {
 	int MEETING_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
+	 * The meta object id for the '{@link org.unicase.model.task.impl.MilestoneImpl <em>Milestone</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.task.impl.MilestoneImpl
+	 * @see org.unicase.model.task.impl.TaskPackageImpl#getMilestone()
+	 * @generated
+	 */
+	int MILESTONE = 4;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__NAME = ModelPackage.MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+
+	/**
+	 * The number of structural features of the '<em>Milestone</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '
 	 * {@link org.unicase.model.task.ActionItem <em>Action Item</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -615,15 +724,15 @@ public interface TaskPackage extends EPackage {
 	EClass getWorkPackage();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.task.WorkPackage#getContainedModelElements <em>Contained Model Elements</em>}'.
+	 * Returns the meta object for the reference list '{@link org.unicase.model.task.WorkPackage#getContainedWorkItems <em>Contained Work Items</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Contained Model Elements</em>'.
-	 * @see org.unicase.model.task.WorkPackage#getContainedModelElements()
+	 * @return the meta object for the reference list '<em>Contained Work Items</em>'.
+	 * @see org.unicase.model.task.WorkPackage#getContainedWorkItems()
 	 * @see #getWorkPackage()
 	 * @generated
 	 */
-	EReference getWorkPackage_ContainedModelElements();
+	EReference getWorkPackage_ContainedWorkItems();
 
 	/**
 	 * Returns the meta object for class '
@@ -779,6 +888,16 @@ public interface TaskPackage extends EPackage {
 	EReference getMeeting_IdentifiedActionItems();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.model.task.Milestone <em>Milestone</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Milestone</em>'.
+	 * @see org.unicase.model.task.Milestone
+	 * @generated
+	 */
+	EClass getMilestone();
+
+	/**
 	 * Returns the factory that creates the instances of the model. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -850,13 +969,13 @@ public interface TaskPackage extends EPackage {
 		EClass WORK_PACKAGE = eINSTANCE.getWorkPackage();
 
 		/**
-		 * The meta object literal for the '<em><b>Contained Model Elements</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Contained Work Items</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference WORK_PACKAGE__CONTAINED_MODEL_ELEMENTS = eINSTANCE
-				.getWorkPackage_ContainedModelElements();
+		EReference WORK_PACKAGE__CONTAINED_WORK_ITEMS = eINSTANCE
+				.getWorkPackage_ContainedWorkItems();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.task.WorkItem <em>Work Item</em>}' class.
@@ -976,6 +1095,16 @@ public interface TaskPackage extends EPackage {
 		 */
 		EReference MEETING__IDENTIFIED_ACTION_ITEMS = eINSTANCE
 				.getMeeting_IdentifiedActionItems();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.task.impl.MilestoneImpl <em>Milestone</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.task.impl.MilestoneImpl
+		 * @see org.unicase.model.task.impl.TaskPackageImpl#getMilestone()
+		 * @generated
+		 */
+		EClass MILESTONE = eINSTANCE.getMilestone();
 
 	}
 

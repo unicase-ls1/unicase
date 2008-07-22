@@ -15,6 +15,7 @@ import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.Meeting;
+import org.unicase.model.task.Milestone;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
@@ -105,6 +106,10 @@ public class TaskSwitch<T> {
 			WorkPackage workPackage = (WorkPackage) theEObject;
 			T result = caseWorkPackage(workPackage);
 			if (result == null)
+				result = caseWorkItem(workPackage);
+			if (result == null)
+				result = caseAnnotation(workPackage);
+			if (result == null)
 				result = caseModelElement(workPackage);
 			if (result == null)
 				result = caseIdentifiableElement(workPackage);
@@ -132,6 +137,17 @@ public class TaskSwitch<T> {
 				result = caseModelElement(meeting);
 			if (result == null)
 				result = caseIdentifiableElement(meeting);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case TaskPackage.MILESTONE: {
+			Milestone milestone = (Milestone) theEObject;
+			T result = caseMilestone(milestone);
+			if (result == null)
+				result = caseModelElement(milestone);
+			if (result == null)
+				result = caseIdentifiableElement(milestone);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -195,6 +211,21 @@ public class TaskSwitch<T> {
 	 * @generated
 	 */
 	public T caseMeeting(Meeting object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Milestone</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Milestone</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMilestone(Milestone object) {
 		return null;
 	}
 

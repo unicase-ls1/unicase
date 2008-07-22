@@ -7,9 +7,9 @@
 package org.unicase.model.bug;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.ModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.requirement.Step;
+import org.unicase.model.task.WorkItem;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '
@@ -22,7 +22,6 @@ import org.unicase.model.requirement.Step;
  *   <li>{@link org.unicase.model.bug.BugReport#getStatus <em>Status</em>}</li>
  *   <li>{@link org.unicase.model.bug.BugReport#getAssignedTo <em>Assigned To</em>}</li>
  *   <li>{@link org.unicase.model.bug.BugReport#getResolution <em>Resolution</em>}</li>
- *   <li>{@link org.unicase.model.bug.BugReport#getInvolvedClasses <em>Involved Classes</em>}</li>
  *   <li>{@link org.unicase.model.bug.BugReport#getSeverity <em>Severity</em>}</li>
  * </ul>
  * </p>
@@ -31,7 +30,7 @@ import org.unicase.model.requirement.Step;
  * @model
  * @generated
  */
-public interface BugReport extends ModelElement {
+public interface BugReport extends WorkItem {
 	/**
 	 * Returns the value of the '<em><b>Steps To Reproduce</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.model.requirement.Step}.
@@ -132,22 +131,6 @@ public interface BugReport extends ModelElement {
 	 * @generated
 	 */
 	void setResolution(BugResolution value);
-
-	/**
-	 * Returns the value of the '<em><b>Involved Classes</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.classes.Class}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Involved Classes</em>' reference list isn't
-	 * clear, there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Involved Classes</em>' reference list.
-	 * @see org.unicase.model.bug.BugPackage#getBugReport_InvolvedClasses()
-	 * @model keys="identifier"
-	 * @generated
-	 */
-	EList<org.unicase.model.classes.Class> getInvolvedClasses();
 
 	/**
 	 * Returns the value of the '<em><b>Severity</b></em>' attribute.

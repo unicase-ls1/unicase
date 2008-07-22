@@ -257,16 +257,8 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBugReport_InvolvedClasses() {
-		return (EReference) bugReportEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getBugReport_Severity() {
-		return (EAttribute) bugReportEClass.getEStructuralFeatures().get(5);
+		return (EAttribute) bugReportEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -341,7 +333,6 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 		createEAttribute(bugReportEClass, BUG_REPORT__STATUS);
 		createEReference(bugReportEClass, BUG_REPORT__ASSIGNED_TO);
 		createEReference(bugReportEClass, BUG_REPORT__RESOLUTION);
-		createEReference(bugReportEClass, BUG_REPORT__INVOLVED_CLASSES);
 		createEAttribute(bugReportEClass, BUG_REPORT__SEVERITY);
 
 		bugResolutionEClass = createEClass(BUG_RESOLUTION);
@@ -377,21 +368,21 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE
-				.getEPackage(ModelPackage.eNS_URI);
+		TaskPackage theTaskPackage = (TaskPackage) EPackage.Registry.INSTANCE
+				.getEPackage(TaskPackage.eNS_URI);
 		RequirementPackage theRequirementPackage = (RequirementPackage) EPackage.Registry.INSTANCE
 				.getEPackage(RequirementPackage.eNS_URI);
+		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE
+				.getEPackage(ModelPackage.eNS_URI);
 		OrganizationPackage theOrganizationPackage = (OrganizationPackage) EPackage.Registry.INSTANCE
 				.getEPackage(OrganizationPackage.eNS_URI);
-		ClassesPackage theClassesPackage = (ClassesPackage) EPackage.Registry.INSTANCE
-				.getEPackage(ClassesPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		bugReportEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		bugReportEClass.getESuperTypes().add(theTaskPackage.getWorkItem());
 		bugResolutionEClass.getESuperTypes().add(
 				theModelPackage.getModelElement());
 
@@ -421,13 +412,6 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getBugReport_Resolution().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getBugReport_InvolvedClasses(), theClassesPackage
-				.getClass_(), null, "involvedClasses", null, 0, -1,
-				BugReport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		getBugReport_InvolvedClasses().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
 		initEAttribute(getBugReport_Severity(), this.getSeverity(), "severity",
 				null, 0, 1, BugReport.class, !IS_TRANSIENT, !IS_VOLATILE,

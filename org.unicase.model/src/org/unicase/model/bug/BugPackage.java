@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.task.TaskPackage;
 
 /**
  * <!-- begin-user-doc --> The <b>Package</b> for the model. It contains
@@ -72,7 +73,7 @@ public interface BugPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUG_REPORT__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
+	int BUG_REPORT__IDENTIFIER = TaskPackage.WORK_ITEM__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!--
@@ -81,7 +82,7 @@ public interface BugPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUG_REPORT__NAME = ModelPackage.MODEL_ELEMENT__NAME;
+	int BUG_REPORT__NAME = TaskPackage.WORK_ITEM__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute. <!--
@@ -90,7 +91,7 @@ public interface BugPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUG_REPORT__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int BUG_REPORT__DESCRIPTION = TaskPackage.WORK_ITEM__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
@@ -98,7 +99,7 @@ public interface BugPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUG_REPORT__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
+	int BUG_REPORT__READER_INFOS = TaskPackage.WORK_ITEM__READER_INFOS;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!--
@@ -107,7 +108,7 @@ public interface BugPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUG_REPORT__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+	int BUG_REPORT__ANNOTATIONS = TaskPackage.WORK_ITEM__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -115,7 +116,7 @@ public interface BugPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUG_REPORT__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int BUG_REPORT__INCOMING_DOCUMENT_REFERENCES = TaskPackage.WORK_ITEM__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
@@ -123,7 +124,34 @@ public interface BugPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUG_REPORT__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int BUG_REPORT__LEAF_SECTION = TaskPackage.WORK_ITEM__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUG_REPORT__ANNOTATED_MODEL_ELEMENTS = TaskPackage.WORK_ITEM__ANNOTATED_MODEL_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Containing Workpackage</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUG_REPORT__CONTAINING_WORKPACKAGE = TaskPackage.WORK_ITEM__CONTAINING_WORKPACKAGE;
+
+	/**
+	 * The feature id for the '<em><b>Associated Change Packages</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUG_REPORT__ASSOCIATED_CHANGE_PACKAGES = TaskPackage.WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES;
 
 	/**
 	 * The feature id for the '<em><b>Steps To Reproduce</b></em>' reference list.
@@ -131,7 +159,7 @@ public interface BugPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUG_REPORT__STEPS_TO_REPRODUCE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int BUG_REPORT__STEPS_TO_REPRODUCE = TaskPackage.WORK_ITEM_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Status</b></em>' attribute. <!--
@@ -140,7 +168,7 @@ public interface BugPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUG_REPORT__STATUS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int BUG_REPORT__STATUS = TaskPackage.WORK_ITEM_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Assigned To</b></em>' reference. <!--
@@ -149,7 +177,7 @@ public interface BugPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUG_REPORT__ASSIGNED_TO = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int BUG_REPORT__ASSIGNED_TO = TaskPackage.WORK_ITEM_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Resolution</b></em>' reference. <!--
@@ -158,15 +186,7 @@ public interface BugPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUG_REPORT__RESOLUTION = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Involved Classes</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUG_REPORT__INVOLVED_CLASSES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int BUG_REPORT__RESOLUTION = TaskPackage.WORK_ITEM_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Severity</b></em>' attribute. <!--
@@ -175,7 +195,7 @@ public interface BugPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUG_REPORT__SEVERITY = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
+	int BUG_REPORT__SEVERITY = TaskPackage.WORK_ITEM_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Report</em>' class. <!--
@@ -184,7 +204,7 @@ public interface BugPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUG_REPORT_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 6;
+	int BUG_REPORT_FEATURE_COUNT = TaskPackage.WORK_ITEM_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.bug.impl.BugResolutionImpl <em>Resolution</em>}' class.
@@ -357,20 +377,6 @@ public interface BugPackage extends EPackage {
 	EReference getBugReport_Resolution();
 
 	/**
-	 * Returns the meta object for the reference list '
-	 * {@link org.unicase.model.bug.BugReport#getInvolvedClasses
-	 * <em>Involved Classes</em>}'. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @return the meta object for the reference list '<em>Involved Classes</em>
-	 *         '.
-	 * @see org.unicase.model.bug.BugReport#getInvolvedClasses()
-	 * @see #getBugReport()
-	 * @generated
-	 */
-	EReference getBugReport_InvolvedClasses();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.model.bug.BugReport#getSeverity <em>Severity</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Severity</em>'.
@@ -488,14 +494,6 @@ public interface BugPackage extends EPackage {
 		 * @generated
 		 */
 		EReference BUG_REPORT__RESOLUTION = eINSTANCE.getBugReport_Resolution();
-
-		/**
-		 * The meta object literal for the '<em><b>Involved Classes</b></em>' reference list feature.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference BUG_REPORT__INVOLVED_CLASSES = eINSTANCE
-				.getBugReport_InvolvedClasses();
 
 		/**
 		 * The meta object literal for the '<em><b>Severity</b></em>' attribute feature.
