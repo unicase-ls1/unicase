@@ -14,6 +14,8 @@ public abstract class ProjectActionHandler extends AbstractHandler {
 		super();
 	}
 
+	
+	//ZH: consolidate with Action Helper
 	/**
 	 * @param event
 	 * @return
