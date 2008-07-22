@@ -3,32 +3,46 @@
 <repository name='file:/Users/helming/Documents/workspaces/unicase/UnicaseUpdateSite/ - artifacts' type='org.eclipse.equinox.p2.artifact.repository.simpleRepository' version='1.0.0'>
   <properties size='2'>
     <property name='p2.compressed' value='false'/>
-    <property name='p2.timestamp' value='1215702806722'/>
+    <property name='p2.timestamp' value='1216286617655'/>
   </properties>
   <mappings size='3'>
     <rule filter='(&amp; (classifier=osgi.bundle))' output='${repoUrl}/plugins/${id}_${version}.jar'/>
     <rule filter='(&amp; (classifier=binary))' output='${repoUrl}/binary/${id}_${version}'/>
     <rule filter='(&amp; (classifier=org.eclipse.update.feature))' output='${repoUrl}/features/${id}_${version}.jar'/>
   </mappings>
-  <artifacts size='29'>
-    <artifact classifier='osgi.bundle' id='org.unicase.ui.test' version='0.0.1'>
+  <artifacts size='128'>
+    <artifact classifier='osgi.bundle' id='org.unicase.emfstore.esmodel.edit' version='0.0.1.200807151624'>
       <properties size='3'>
-        <property name='artifact.size' value='15839'/>
-        <property name='download.size' value='15839'/>
+        <property name='artifact.size' value='78601'/>
+        <property name='download.size' value='78601'/>
         <property name='download.contentType' value='application/zip'/>
       </properties>
     </artifact>
-    <artifact classifier='osgi.bundle' id='org.unicase.ui.esbrowser' version='0.0.1'>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.tableview' version='0.0.1.200807151608'>
       <properties size='3'>
-        <property name='artifact.size' value='64995'/>
-        <property name='download.size' value='64995'/>
+        <property name='artifact.size' value='8551'/>
+        <property name='download.size' value='8551'/>
         <property name='download.contentType' value='application/zip'/>
       </properties>
     </artifact>
-    <artifact classifier='osgi.bundle' id='org.unicase.ui.navigator' version='0.0.1'>
+    <artifact classifier='osgi.bundle' id='org.unicase.model' version='0.0.1.200807151624'>
       <properties size='3'>
-        <property name='artifact.size' value='47114'/>
-        <property name='download.size' value='47114'/>
+        <property name='artifact.size' value='322994'/>
+        <property name='download.size' value='322994'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.navigator' version='0.0.2.200807161219'>
+      <properties size='3'>
+        <property name='artifact.size' value='38145'/>
+        <property name='download.size' value='38145'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.esbrowser' version='0.0.1.200807151608'>
+      <properties size='3'>
+        <property name='artifact.size' value='66065'/>
+        <property name='download.size' value='66065'/>
         <property name='download.contentType' value='application/zip'/>
       </properties>
     </artifact>
@@ -39,10 +53,271 @@
         <property name='download.contentType' value='application/zip'/>
       </properties>
     </artifact>
-    <artifact classifier='osgi.bundle' id='org.unicase.ui.common' version='0.0.1'>
+    <artifact classifier='osgi.bundle' id='org.unicase.emfstore.esmodel' version='0.0.1.200807171123'>
       <properties size='3'>
-        <property name='artifact.size' value='7092'/>
-        <property name='download.size' value='7092'/>
+        <property name='artifact.size' value='102450'/>
+        <property name='download.size' value='102450'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.model.edit' version='0.0.2.200807151624'>
+      <properties size='3'>
+        <property name='artifact.size' value='251472'/>
+        <property name='download.size' value='251472'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.tableview' version='0.0.1.200807151627'>
+      <properties size='3'>
+        <property name='artifact.size' value='8551'/>
+        <property name='download.size' value='8551'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.emfstore.esmodel' version='0.0.1'>
+      <properties size='3'>
+        <property name='artifact.size' value='132885'/>
+        <property name='download.size' value='132885'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.unicase.client' version='0.0.4'>
+      <properties size='2'>
+        <property name='artifact.size' value='1106'/>
+        <property name='download.size' value='1106'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.unicase.client' version='0.0.7'>
+      <properties size='2'>
+        <property name='artifact.size' value='1132'/>
+        <property name='download.size' value='1132'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.emfstore' version='0.0.1.200807151624'>
+      <properties size='3'>
+        <property name='artifact.size' value='3809184'/>
+        <property name='download.size' value='3809184'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.unicase.client' version='0.0.4'>
+      <properties size='2'>
+        <property name='artifact.size' value='1083'/>
+        <property name='download.size' value='1083'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.esbrowser' version='0.0.1.200807151620'>
+      <properties size='3'>
+        <property name='artifact.size' value='66066'/>
+        <property name='download.size' value='66066'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.common' version='0.0.1.200807151624'>
+      <properties size='3'>
+        <property name='artifact.size' value='7596'/>
+        <property name='download.size' value='7596'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.emfstore.esmodel' version='0.0.1.200807151627'>
+      <properties size='3'>
+        <property name='artifact.size' value='102152'/>
+        <property name='download.size' value='102152'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.meeditor' version='0.0.1.200807171123'>
+      <properties size='3'>
+        <property name='artifact.size' value='47631'/>
+        <property name='download.size' value='47631'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.navigator' version='0.0.2.200807151618'>
+      <properties size='3'>
+        <property name='artifact.size' value='38146'/>
+        <property name='download.size' value='38146'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.model' version='0.0.1'>
+      <properties size='3'>
+        <property name='artifact.size' value='304708'/>
+        <property name='download.size' value='304708'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.workspace' version='0.0.1.200807171123'>
+      <properties size='3'>
+        <property name='artifact.size' value='50713'/>
+        <property name='download.size' value='50713'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.tableview' version='0.0.1.200807161219'>
+      <properties size='3'>
+        <property name='artifact.size' value='8550'/>
+        <property name='download.size' value='8550'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.meeditor' version='0.0.1.200807161219'>
+      <properties size='3'>
+        <property name='artifact.size' value='45276'/>
+        <property name='download.size' value='45276'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.emfstore.esmodel.edit' version='0.0.1.200807151615'>
+      <properties size='3'>
+        <property name='artifact.size' value='78598'/>
+        <property name='download.size' value='78598'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.stem' version='0.0.1'>
+      <properties size='3'>
+        <property name='artifact.size' value='10768'/>
+        <property name='download.size' value='10768'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.unicase.client' version='0.0.1'>
+      <properties size='2'>
+        <property name='artifact.size' value='1130'/>
+        <property name='download.size' value='1130'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.workspace' version='0.0.1'>
+      <properties size='3'>
+        <property name='artifact.size' value='53231'/>
+        <property name='download.size' value='53231'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.meeditor' version='0.0.1.200807151615'>
+      <properties size='3'>
+        <property name='artifact.size' value='45277'/>
+        <property name='download.size' value='45277'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.model' version='0.0.1.200807161219'>
+      <properties size='3'>
+        <property name='artifact.size' value='322993'/>
+        <property name='download.size' value='322993'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.meeditor' version='0.0.1.200807151618'>
+      <properties size='3'>
+        <property name='artifact.size' value='45277'/>
+        <property name='download.size' value='45277'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.tableview' version='0.0.1'>
+      <properties size='3'>
+        <property name='artifact.size' value='8532'/>
+        <property name='download.size' value='8532'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.emfstore.esmodel.edit' version='0.0.1.200807161219'>
+      <properties size='3'>
+        <property name='artifact.size' value='78601'/>
+        <property name='download.size' value='78601'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.common' version='0.0.1.200807151608'>
+      <properties size='3'>
+        <property name='artifact.size' value='7596'/>
+        <property name='download.size' value='7596'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.workspace.edit' version='0.0.1'>
+      <properties size='3'>
+        <property name='artifact.size' value='26943'/>
+        <property name='download.size' value='26943'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.meeditor' version='0.0.1.200807151624'>
+      <properties size='3'>
+        <property name='artifact.size' value='45277'/>
+        <property name='download.size' value='45277'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.emfstore.esmodel.edit' version='0.0.1.200807151627'>
+      <properties size='3'>
+        <property name='artifact.size' value='78601'/>
+        <property name='download.size' value='78601'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.test' version='0.0.1.200807171123'>
+      <properties size='3'>
+        <property name='artifact.size' value='16552'/>
+        <property name='download.size' value='16552'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.navigator' version='0.0.2.200807171123'>
+      <properties size='3'>
+        <property name='artifact.size' value='38145'/>
+        <property name='download.size' value='38145'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.emfstore.esmodel' version='0.0.1.200807151615'>
+      <properties size='3'>
+        <property name='artifact.size' value='102152'/>
+        <property name='download.size' value='102152'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.model' version='0.0.1.200807151627'>
+      <properties size='3'>
+        <property name='artifact.size' value='322993'/>
+        <property name='download.size' value='322993'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.emfstore' version='0.0.1.200807171123'>
+      <properties size='3'>
+        <property name='artifact.size' value='3809480'/>
+        <property name='download.size' value='3809480'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.esbrowser' version='0.0.1'>
+      <properties size='3'>
+        <property name='artifact.size' value='64995'/>
+        <property name='download.size' value='64995'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.navigator' version='0.0.2.200807151615'>
+      <properties size='3'>
+        <property name='artifact.size' value='38145'/>
+        <property name='download.size' value='38145'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.unicase.client' version='0.0.5'>
+      <properties size='2'>
+        <property name='artifact.size' value='1106'/>
+        <property name='download.size' value='1106'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.navigator' version='0.0.2.200807151624'>
+      <properties size='3'>
+        <property name='artifact.size' value='38146'/>
+        <property name='download.size' value='38146'/>
         <property name='download.contentType' value='application/zip'/>
       </properties>
     </artifact>
@@ -53,11 +328,262 @@
         <property name='download.contentType' value='application/zip'/>
       </properties>
     </artifact>
-    <artifact classifier='osgi.bundle' id='org.unicase.emfstore' version='0.0.1'>
+    <artifact classifier='osgi.bundle' id='org.unicase.emfstore.esmodel' version='0.0.1.200807151618'>
       <properties size='3'>
-        <property name='artifact.size' value='3809656'/>
-        <property name='download.size' value='3809656'/>
+        <property name='artifact.size' value='102152'/>
+        <property name='download.size' value='102152'/>
         <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.emfstore.esmodel' version='0.0.1.200807151624'>
+      <properties size='3'>
+        <property name='artifact.size' value='102153'/>
+        <property name='download.size' value='102153'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.model.edit' version='0.0.2.200807161219'>
+      <properties size='3'>
+        <property name='artifact.size' value='251471'/>
+        <property name='download.size' value='251471'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.model.edit' version='0.0.2.200807151627'>
+      <properties size='3'>
+        <property name='artifact.size' value='251472'/>
+        <property name='download.size' value='251472'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.meeditor' version='0.0.1.200807151608'>
+      <properties size='3'>
+        <property name='artifact.size' value='45277'/>
+        <property name='download.size' value='45277'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.esbrowser' version='0.0.1.200807151624'>
+      <properties size='3'>
+        <property name='artifact.size' value='66066'/>
+        <property name='download.size' value='66066'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.emfstore.esmodel.edit' version='0.0.1.200807171123'>
+      <properties size='3'>
+        <property name='artifact.size' value='78601'/>
+        <property name='download.size' value='78601'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.emfstore.esmodel.edit' version='0.0.1'>
+      <properties size='3'>
+        <property name='artifact.size' value='90404'/>
+        <property name='download.size' value='90404'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.common' version='0.0.1.200807151615'>
+      <properties size='3'>
+        <property name='artifact.size' value='7595'/>
+        <property name='download.size' value='7595'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.emfstore' version='0.0.1.200807151615'>
+      <properties size='3'>
+        <property name='artifact.size' value='3809185'/>
+        <property name='download.size' value='3809185'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.workspace.edit' version='0.0.1.200807161219'>
+      <properties size='3'>
+        <property name='artifact.size' value='26941'/>
+        <property name='download.size' value='26941'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.test' version='0.0.1'>
+      <properties size='3'>
+        <property name='artifact.size' value='16316'/>
+        <property name='download.size' value='16316'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.workspace' version='0.0.1'>
+      <properties size='3'>
+        <property name='artifact.size' value='53229'/>
+        <property name='download.size' value='53229'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.esbrowser' version='0.0.1.200807151615'>
+      <properties size='3'>
+        <property name='artifact.size' value='66065'/>
+        <property name='download.size' value='66065'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.tableview' version='0.0.1.200807151615'>
+      <properties size='3'>
+        <property name='artifact.size' value='8549'/>
+        <property name='download.size' value='8549'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.tableview' version='0.0.1.200807151618'>
+      <properties size='3'>
+        <property name='artifact.size' value='8551'/>
+        <property name='download.size' value='8551'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.model.edit' version='0.0.1'>
+      <properties size='3'>
+        <property name='artifact.size' value='243681'/>
+        <property name='download.size' value='243681'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.common' version='0.0.1.200807171123'>
+      <properties size='3'>
+        <property name='artifact.size' value='16014'/>
+        <property name='download.size' value='16014'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.model' version='0.0.1.200807151608'>
+      <properties size='3'>
+        <property name='artifact.size' value='322993'/>
+        <property name='download.size' value='322993'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.emfstore.esmodel' version='0.0.1.200807151608'>
+      <properties size='3'>
+        <property name='artifact.size' value='102152'/>
+        <property name='download.size' value='102152'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.model' version='0.0.1.200807151618'>
+      <properties size='3'>
+        <property name='artifact.size' value='322993'/>
+        <property name='download.size' value='322993'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.test' version='0.0.1'>
+      <properties size='3'>
+        <property name='artifact.size' value='15839'/>
+        <property name='download.size' value='15839'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.model.edit' version='0.0.2.200807151618'>
+      <properties size='3'>
+        <property name='artifact.size' value='251472'/>
+        <property name='download.size' value='251472'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.test' version='0.0.1.200807161219'>
+      <properties size='3'>
+        <property name='artifact.size' value='16552'/>
+        <property name='download.size' value='16552'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.tableview' version='0.0.1.200807151620'>
+      <properties size='3'>
+        <property name='artifact.size' value='8550'/>
+        <property name='download.size' value='8550'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.model.edit' version='0.0.2.200807151608'>
+      <properties size='3'>
+        <property name='artifact.size' value='251471'/>
+        <property name='download.size' value='251471'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.model' version='0.0.1.200807151615'>
+      <properties size='3'>
+        <property name='artifact.size' value='322993'/>
+        <property name='download.size' value='322993'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.esbrowser' version='0.0.1.200807161219'>
+      <properties size='3'>
+        <property name='artifact.size' value='66065'/>
+        <property name='download.size' value='66065'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.model' version='0.0.1.200807171123'>
+      <properties size='3'>
+        <property name='artifact.size' value='322830'/>
+        <property name='download.size' value='322830'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.esbrowser' version='0.0.1.200807151618'>
+      <properties size='3'>
+        <property name='artifact.size' value='66065'/>
+        <property name='download.size' value='66065'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.tableview' version='0.0.1.200807171123'>
+      <properties size='3'>
+        <property name='artifact.size' value='8550'/>
+        <property name='download.size' value='8550'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.model.edit' version='0.0.2.200807171123'>
+      <properties size='3'>
+        <property name='artifact.size' value='246512'/>
+        <property name='download.size' value='246512'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.common' version='0.0.1'>
+      <properties size='3'>
+        <property name='artifact.size' value='7092'/>
+        <property name='download.size' value='7092'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.meeditor' version='0.0.1.200807151627'>
+      <properties size='3'>
+        <property name='artifact.size' value='45277'/>
+        <property name='download.size' value='45277'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.emfstore' version='0.0.1.200807161219'>
+      <properties size='3'>
+        <property name='artifact.size' value='3809184'/>
+        <property name='download.size' value='3809184'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.common' version='0.0.1.200807151620'>
+      <properties size='3'>
+        <property name='artifact.size' value='7597'/>
+        <property name='download.size' value='7597'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.unicase.client' version='0.0.6'>
+      <properties size='2'>
+        <property name='artifact.size' value='1140'/>
+        <property name='download.size' value='1140'/>
       </properties>
     </artifact>
     <artifact classifier='org.eclipse.update.feature' id='org.unicase.client' version='0.0.1'>
@@ -66,17 +592,196 @@
         <property name='download.size' value='1082'/>
       </properties>
     </artifact>
-    <artifact classifier='osgi.bundle' id='org.unicase.emfstore.esmodel' version='0.0.1'>
-      <properties size='3'>
-        <property name='artifact.size' value='132885'/>
-        <property name='download.size' value='132885'/>
-        <property name='download.contentType' value='application/zip'/>
+    <artifact classifier='org.eclipse.update.feature' id='org.unicase.client' version='0.0.4'>
+      <properties size='2'>
+        <property name='artifact.size' value='1088'/>
+        <property name='download.size' value='1088'/>
       </properties>
     </artifact>
     <artifact classifier='org.eclipse.update.feature' id='org.unicase.client' version='0.0.1'>
       <properties size='2'>
         <property name='artifact.size' value='1035'/>
         <property name='download.size' value='1035'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.workspace' version='0.0.1.200807161219'>
+      <properties size='3'>
+        <property name='artifact.size' value='50210'/>
+        <property name='download.size' value='50210'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.tableview' version='0.0.1.200807151624'>
+      <properties size='3'>
+        <property name='artifact.size' value='8551'/>
+        <property name='download.size' value='8551'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.model' version='0.0.1.200807151620'>
+      <properties size='3'>
+        <property name='artifact.size' value='322993'/>
+        <property name='download.size' value='322993'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.common' version='0.0.1.200807151627'>
+      <properties size='3'>
+        <property name='artifact.size' value='7596'/>
+        <property name='download.size' value='7596'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.model.edit' version='0.0.2.200807151620'>
+      <properties size='3'>
+        <property name='artifact.size' value='251471'/>
+        <property name='download.size' value='251471'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.emfstore.esmodel' version='0.0.1.200807161219'>
+      <properties size='3'>
+        <property name='artifact.size' value='102162'/>
+        <property name='download.size' value='102162'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.esbrowser' version='0.0.1.200807171123'>
+      <properties size='3'>
+        <property name='artifact.size' value='66065'/>
+        <property name='download.size' value='66065'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.emfstore.esmodel.edit' version='0.0.1.200807151608'>
+      <properties size='3'>
+        <property name='artifact.size' value='78601'/>
+        <property name='download.size' value='78601'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.unicase.client' version='0.0.4'>
+      <properties size='2'>
+        <property name='artifact.size' value='1084'/>
+        <property name='download.size' value='1084'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.workspace' version='0.0.1.qualfier'>
+      <properties size='3'>
+        <property name='artifact.size' value='49485'/>
+        <property name='download.size' value='49485'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.unicase.client' version='0.0.2'>
+      <properties size='2'>
+        <property name='artifact.size' value='1059'/>
+        <property name='download.size' value='1059'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.workspace.edit' version='0.0.1.200807171123'>
+      <properties size='3'>
+        <property name='artifact.size' value='28006'/>
+        <property name='download.size' value='28006'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.navigator' version='0.0.1'>
+      <properties size='3'>
+        <property name='artifact.size' value='47114'/>
+        <property name='download.size' value='47114'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.emfstore.esmodel' version='0.0.1.200807151620'>
+      <properties size='3'>
+        <property name='artifact.size' value='102153'/>
+        <property name='download.size' value='102153'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.emfstore' version='0.0.1.200807151627'>
+      <properties size='3'>
+        <property name='artifact.size' value='3809184'/>
+        <property name='download.size' value='3809184'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.navigator' version='0.0.2.200807151608'>
+      <properties size='3'>
+        <property name='artifact.size' value='38146'/>
+        <property name='download.size' value='38146'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.emfstore' version='0.0.1'>
+      <properties size='3'>
+        <property name='artifact.size' value='3809656'/>
+        <property name='download.size' value='3809656'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.stem' version='0.0.1.200807161219'>
+      <properties size='3'>
+        <property name='artifact.size' value='16499'/>
+        <property name='download.size' value='16499'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.common' version='0.0.1.200807161219'>
+      <properties size='3'>
+        <property name='artifact.size' value='7595'/>
+        <property name='download.size' value='7595'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.emfstore.esmodel.edit' version='0.0.1.200807151620'>
+      <properties size='3'>
+        <property name='artifact.size' value='78598'/>
+        <property name='download.size' value='78598'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.esbrowser' version='0.0.1.200807151627'>
+      <properties size='3'>
+        <property name='artifact.size' value='66065'/>
+        <property name='download.size' value='66065'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.emfstore' version='0.0.1.200807151618'>
+      <properties size='3'>
+        <property name='artifact.size' value='3809184'/>
+        <property name='download.size' value='3809184'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.workspace.edit' version='0.0.1.qualfier'>
+      <properties size='3'>
+        <property name='artifact.size' value='26931'/>
+        <property name='download.size' value='26931'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.model.edit' version='0.0.2.200807151615'>
+      <properties size='3'>
+        <property name='artifact.size' value='251471'/>
+        <property name='download.size' value='251471'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.navigator' version='0.0.2.200807151627'>
+      <properties size='3'>
+        <property name='artifact.size' value='38146'/>
+        <property name='download.size' value='38146'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.meeditor' version='0.0.1.200807151620'>
+      <properties size='3'>
+        <property name='artifact.size' value='45277'/>
+        <property name='download.size' value='45277'/>
+        <property name='download.contentType' value='application/zip'/>
       </properties>
     </artifact>
     <artifact classifier='org.eclipse.update.feature' id='org.unicase.client' version='0.0.1'>
@@ -119,17 +824,24 @@
         <property name='download.size' value='1064'/>
       </properties>
     </artifact>
-    <artifact classifier='osgi.bundle' id='org.unicase.model' version='0.0.1'>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.stem' version='0.0.1.200807151608'>
       <properties size='3'>
-        <property name='artifact.size' value='304708'/>
-        <property name='download.size' value='304708'/>
+        <property name='artifact.size' value='16498'/>
+        <property name='download.size' value='16498'/>
         <property name='download.contentType' value='application/zip'/>
       </properties>
     </artifact>
-    <artifact classifier='osgi.bundle' id='org.unicase.emfstore.esmodel.edit' version='0.0.1'>
+    <artifact classifier='osgi.bundle' id='org.unicase.emfstore.esmodel.edit' version='0.0.1.200807151618'>
       <properties size='3'>
-        <property name='artifact.size' value='90404'/>
-        <property name='download.size' value='90404'/>
+        <property name='artifact.size' value='78601'/>
+        <property name='download.size' value='78601'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.common' version='0.0.1.200807151618'>
+      <properties size='3'>
+        <property name='artifact.size' value='7596'/>
+        <property name='download.size' value='7596'/>
         <property name='download.contentType' value='application/zip'/>
       </properties>
     </artifact>
@@ -140,58 +852,31 @@
         <property name='download.contentType' value='application/zip'/>
       </properties>
     </artifact>
-    <artifact classifier='osgi.bundle' id='org.unicase.ui.test' version='0.0.1'>
+    <artifact classifier='osgi.bundle' id='org.unicase.emfstore' version='0.0.1.200807151620'>
       <properties size='3'>
-        <property name='artifact.size' value='16316'/>
-        <property name='download.size' value='16316'/>
+        <property name='artifact.size' value='3809185'/>
+        <property name='download.size' value='3809185'/>
         <property name='download.contentType' value='application/zip'/>
       </properties>
     </artifact>
-    <artifact classifier='osgi.bundle' id='org.unicase.ui.stem' version='0.0.1'>
+    <artifact classifier='osgi.bundle' id='org.eclipse.nebula.widgets.gantchart' version='1.0.0'>
       <properties size='3'>
-        <property name='artifact.size' value='10768'/>
-        <property name='download.size' value='10768'/>
+        <property name='artifact.size' value='167839'/>
+        <property name='download.size' value='167839'/>
         <property name='download.contentType' value='application/zip'/>
       </properties>
     </artifact>
-    <artifact classifier='osgi.bundle' id='org.unicase.workspace' version='0.0.1'>
+    <artifact classifier='osgi.bundle' id='org.unicase.emfstore' version='0.0.1.200807151608'>
       <properties size='3'>
-        <property name='artifact.size' value='53229'/>
-        <property name='download.size' value='53229'/>
+        <property name='artifact.size' value='3809184'/>
+        <property name='download.size' value='3809184'/>
         <property name='download.contentType' value='application/zip'/>
       </properties>
     </artifact>
-    <artifact classifier='org.eclipse.update.feature' id='org.unicase.client' version='0.0.1'>
-      <properties size='2'>
-        <property name='artifact.size' value='1130'/>
-        <property name='download.size' value='1130'/>
-      </properties>
-    </artifact>
-    <artifact classifier='osgi.bundle' id='org.unicase.workspace' version='0.0.1'>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.test' version='0.0.1.qualfier'>
       <properties size='3'>
-        <property name='artifact.size' value='53231'/>
-        <property name='download.size' value='53231'/>
-        <property name='download.contentType' value='application/zip'/>
-      </properties>
-    </artifact>
-    <artifact classifier='osgi.bundle' id='org.unicase.model.edit' version='0.0.1'>
-      <properties size='3'>
-        <property name='artifact.size' value='243681'/>
-        <property name='download.size' value='243681'/>
-        <property name='download.contentType' value='application/zip'/>
-      </properties>
-    </artifact>
-    <artifact classifier='osgi.bundle' id='org.unicase.ui.tableview' version='0.0.1'>
-      <properties size='3'>
-        <property name='artifact.size' value='8532'/>
-        <property name='download.size' value='8532'/>
-        <property name='download.contentType' value='application/zip'/>
-      </properties>
-    </artifact>
-    <artifact classifier='osgi.bundle' id='org.unicase.workspace.edit' version='0.0.1'>
-      <properties size='3'>
-        <property name='artifact.size' value='26943'/>
-        <property name='download.size' value='26943'/>
+        <property name='artifact.size' value='16545'/>
+        <property name='download.size' value='16545'/>
         <property name='download.contentType' value='application/zip'/>
       </properties>
     </artifact>
@@ -202,10 +887,11 @@
         <property name='download.contentType' value='application/zip'/>
       </properties>
     </artifact>
-    <artifact classifier='org.eclipse.update.feature' id='org.unicase.client' version='0.0.2'>
-      <properties size='2'>
-        <property name='artifact.size' value='1059'/>
-        <property name='download.size' value='1059'/>
+    <artifact classifier='osgi.bundle' id='org.unicase.ui.navigator' version='0.0.2.200807151620'>
+      <properties size='3'>
+        <property name='artifact.size' value='38146'/>
+        <property name='download.size' value='38146'/>
+        <property name='download.contentType' value='application/zip'/>
       </properties>
     </artifact>
   </artifacts>

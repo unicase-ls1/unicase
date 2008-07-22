@@ -2,18 +2,18 @@
 <feature
       id="org.unicase.client"
       label="Unicase Client"
-      version="0.0.3">
+      version="0.0.8">
 
-   <description url="http://www.example.com/description">
-      [Enter Feature Description here.]
+   <description url="http://www.unicase.org">
+      This feature contains the unicase client.
    </description>
 
-   <copyright url="http://www.example.com/copyright">
-      [Enter Copyright Description here.]
+   <copyright url="http://www.eclipse.org/legal/epl-v10.html">
+      Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
    </copyright>
 
-   <license url="http://www.example.com/license">
-      [Enter License Description here.]
+   <license url="http://www.eclipse.org/legal/epl-v10.html">
+      Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
    </license>
 
    <requires>
@@ -39,6 +39,7 @@
       <import plugin="org.eclipse.emf.edit.ui"/>
       <import plugin="org.eclipse.emf.transaction.ui"/>
       <import plugin="org.eclipse.ui.forms" version="3.3.100" match="greaterOrEqual"/>
+      <import plugin="org.unicase.ui.meeditor" version="0.0.1" match="greaterOrEqual"/>
       <import plugin="org.eclipse.core.databinding"/>
       <import plugin="org.eclipse.emf.databinding"/>
       <import plugin="org.eclipse.emf.databinding.edit"/>
@@ -47,6 +48,10 @@
       <import plugin="org.eclipse.nebula.widgets.cdatetime" version="0.10.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.ecore" version="2.4.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.transaction" version="1.2.0" match="greaterOrEqual"/>
+      <import plugin="org.unicase.model" version="0.0.1" match="greaterOrEqual"/>
+      <import plugin="org.unicase.workspace" version="0.0.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.nebula.widgets.gantchart" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.swt" version="3.4.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
@@ -113,13 +118,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.unicase.ui.stem"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.unicase.ui.tableview"
          download-size="0"
          install-size="0"
@@ -142,6 +140,13 @@
 
    <plugin
          id="org.unicase.workspace.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.nebula.widgets.gantchart"
          download-size="0"
          install-size="0"
          version="0.0.0"
