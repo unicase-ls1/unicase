@@ -9,6 +9,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.unicase.model.ModelElement;
+import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
 public class DeleteModelelementHandler extends AbstractHandler {
@@ -31,7 +32,9 @@ public class DeleteModelelementHandler extends AbstractHandler {
 						MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
 				int result = dialog.open();
 				if (result == 0) {
-					WorkspaceManager.getProjectSpace(me).save();
+					ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(me);
+					EcoreUtil.delete(me, true);
+					projectSpace.save();
 				}
 			}
 		});
