@@ -727,7 +727,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		} else {
 			changeRecorder.beginRecording((ChangeDescription) EcoreUtil.copy(getLocalChanges()), Collections
 					.singleton(getProject()));
-			setLocalChanges(null);
 		}
 
 	}
