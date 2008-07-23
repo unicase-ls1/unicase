@@ -8,13 +8,21 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.dnd.EditingDomainViewerDropAdapter;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.dnd.DropTargetListener;
 import org.eclipse.swt.widgets.Widget;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelElement;
+import org.unicase.model.task.ActionItem;
+import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.TaskPackage;
+import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
+import org.unicase.ui.meeditor.MEEditor;
+import org.unicase.ui.meeditor.MEEditorInput;
 
 public class WorkPackageViewerDropAdapter extends
 		EditingDomainViewerDropAdapter implements DropTargetListener {
@@ -58,7 +66,8 @@ public class WorkPackageViewerDropAdapter extends
 						protected void doExecute() {
 							for (Object object : dragSource) {
 								if (object instanceof ModelElement) {
-									addMEinWorkPackage((ModelElement) object, (WorkPackage)data);
+									addMEinWorkPackage((ModelElement) object,
+											(WorkPackage) data);
 								}
 							}
 						}
@@ -69,13 +78,28 @@ public class WorkPackageViewerDropAdapter extends
 	}
 
 	protected void addMEinWorkPackage(ModelElement me, WorkPackage workPackage) {
-		EList<WorkPackage> workPackages = me.getProject().getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkPackage(), new BasicEList<WorkPackage>());
-		for (WorkPackage wp: workPackages){
-			if(wp.getContainedModelElements().contains(me)){
-				wp.getContainedModelElements().remove(me);
+		EList<WorkPackage> workPackages = me.getProject()
+				.getAllModelElementsbyClass(
+						TaskPackage.eINSTANCE.getWorkPackage(),
+						new BasicEList<WorkPackage>());
+		if (me instanceof WorkItem) {
+			workPackage.getContainedWorkItems().add((WorkItem) me);
+		} else {
+			ActionItem ai = TaskFactory.eINSTANCE.createActionItem();
+			ai.setName("new action item");
+			ai.getAnnotatedModelElements().add(me);
+			ai.setContainingWorkpackage(workPackage);
+			MEEditorInput input = new MEEditorInput(ai);
+			try {
+				PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+						.getActivePage().openEditor(input, MEEditor.ID,
+								true);
+			} catch (PartInitException e) {
+				ErrorDialog.openError(PlatformUI.getWorkbench()
+						.getActiveWorkbenchWindow().getShell(), "Error", e
+						.getMessage(), e.getStatus());
 			}
 		}
-		workPackage.getContainedModelElements().add((ModelElement) me);
 
 	}
 
