@@ -12,19 +12,18 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
+import org.unicase.emfstore.esmodel.versioning.changeContainer.ChangeContainerFactory;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.ChangePackage} object.
@@ -56,28 +55,8 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addForwardDeltaPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Forward Delta feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addForwardDeltaPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ChangePackage_forwardDelta_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_ChangePackage_forwardDelta_feature",
-						"_UI_ChangePackage_type"),
-				VersioningPackage.Literals.CHANGE_PACKAGE__FORWARD_DELTA, true,
-				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-				null));
 	}
 
 	/**
@@ -94,7 +73,7 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures
-					.add(VersioningPackage.Literals.CHANGE_PACKAGE__BACKWARD_DELTA);
+					.add(VersioningPackage.Literals.CHANGE_PACKAGE__CHANGE_CONTAINERS);
 		}
 		return childrenFeatures;
 	}
@@ -132,9 +111,7 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ChangePackage) object).getForwardDelta();
-		return label == null || label.length() == 0 ? getString("_UI_ChangePackage_type")
-				: getString("_UI_ChangePackage_type") + " " + label;
+		return getString("_UI_ChangePackage_type");
 	}
 
 	/**
@@ -149,11 +126,7 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ChangePackage.class)) {
-		case VersioningPackage.CHANGE_PACKAGE__FORWARD_DELTA:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
-			return;
-		case VersioningPackage.CHANGE_PACKAGE__BACKWARD_DELTA:
+		case VersioningPackage.CHANGE_PACKAGE__CHANGE_CONTAINERS:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), true, false));
 			return;
@@ -174,7 +147,13 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(
-				VersioningPackage.Literals.CHANGE_PACKAGE__BACKWARD_DELTA, ""));
+				VersioningPackage.Literals.CHANGE_PACKAGE__CHANGE_CONTAINERS,
+				ChangeContainerFactory.eINSTANCE.createChangeContainer()));
+
+		newChildDescriptors.add(createChildParameter(
+				VersioningPackage.Literals.CHANGE_PACKAGE__CHANGE_CONTAINERS,
+				ChangeContainerFactory.eINSTANCE
+						.createCompositeChangeContainer()));
 	}
 
 	/**

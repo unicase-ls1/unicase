@@ -6,24 +6,21 @@
  */
 package org.unicase.emfstore.esmodel.versioning.impl;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.change.ChangeDescription;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
+import org.unicase.emfstore.esmodel.versioning.changeContainer.ChangeContainer;
+import org.unicase.emfstore.esmodel.versioning.changeContainer.ChangeContainerFactory;
 import org.unicase.model.Project;
 
 /**
@@ -32,8 +29,7 @@ import org.unicase.model.Project;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.impl.ChangePackageImpl#getForwardDelta <em>Forward Delta</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.impl.ChangePackageImpl#getBackwardDelta <em>Backward Delta</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.impl.ChangePackageImpl#getChangeContainers <em>Change Containers</em>}</li>
  * </ul>
  * </p>
  *
@@ -41,44 +37,15 @@ import org.unicase.model.Project;
  */
 public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	/**
-	 * The default value of the '{@link #getForwardDelta() <em>Forward Delta</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getForwardDelta()
+	 * The cached value of the '{@link #getChangeContainers()
+	 * <em>Change Containers</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getChangeContainers()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String FORWARD_DELTA_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getForwardDelta() <em>Forward Delta</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getForwardDelta()
-	 * @generated
-	 * @ordered
-	 */
-	protected String forwardDelta = FORWARD_DELTA_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getBackwardDelta() <em>Backward Delta</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getBackwardDelta()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String BACKWARD_DELTA_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getBackwardDelta() <em>Backward Delta</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getBackwardDelta()
-	 * @generated
-	 * @ordered
-	 */
-	protected String backwardDelta = BACKWARD_DELTA_EDEFAULT;
+	protected EList<ChangeContainer> changeContainers;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -98,150 +65,76 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getForwardDelta() {
-		return forwardDelta;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setForwardDelta(String newForwardDelta) {
-		String oldForwardDelta = forwardDelta;
-		forwardDelta = newForwardDelta;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					VersioningPackage.CHANGE_PACKAGE__FORWARD_DELTA,
-					oldForwardDelta, forwardDelta));
-	}
-
-	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getBackwardDelta() {
-		return backwardDelta;
+	public EList<ChangeContainer> getChangeContainers() {
+		if (changeContainers == null) {
+			changeContainers = new EObjectContainmentEList<ChangeContainer>(
+					ChangeContainer.class, this,
+					VersioningPackage.CHANGE_PACKAGE__CHANGE_CONTAINERS);
+		}
+		return changeContainers;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setBackwardDelta(String newBackwardDelta) {
-		String oldBackwardDelta = backwardDelta;
-		backwardDelta = newBackwardDelta;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					VersioningPackage.CHANGE_PACKAGE__BACKWARD_DELTA,
-					oldBackwardDelta, backwardDelta));
-	}
-
-	//begin of custom code
+	// begin of custom code
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public ChangePackage reverse() {
 		ChangePackage changePackage = VersioningFactory.eINSTANCE
 				.createChangePackage();
-		changePackage.setBackwardDelta(this.forwardDelta);
-		changePackage.setForwardDelta(this.backwardDelta);
+		//add reversed change containers in reversed order
+		for (ChangeContainer changeContainer : getChangeContainers()) {
+			changePackage.getChangeContainers().add(0,
+					changeContainer.reverse());
+		}
 		return changePackage;
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.emfstore.esmodel.versioning.ChangePackage#apply(org.unicase.model.Project)
 	 * @generated NOT
 	 */
 	public void apply(Project project) {
-		//preserve old container
-		EReference containmentFeature = project.eContainmentFeature();
-		EObject oldContainer = project.eContainer();
-		
-		//integrate project and cp into shared resource set
-		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource projectResource = resourceSet
-				.createResource(VIRTUAL_PROJECT_URI);
-		projectResource.getContents().add(project);
-		Resource changeDescriptionResource = resourceSet
-				.createResource(VIRTUAL_CHANGEDESCRIPTION_URI);
-		try {
-			changeDescriptionResource.load(new ByteArrayInputStream(
-					this.forwardDelta.getBytes("UTF-8")), null);
-		} catch (UnsupportedEncodingException e) {
-			// MK Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// MK Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		ChangeDescription fowardChangeDescription = (ChangeDescription) changeDescriptionResource
-				.getContents().get(0);
-
-		fowardChangeDescription.apply();
-
-		//reintegrate project into old container
-		if (oldContainer!=null) {
-			oldContainer.eSet(containmentFeature, project);
+		for (ChangeContainer changeContainer : getChangeContainers()) {
+			changeContainer.apply(project);
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public void init(Project project,
 			ChangeDescription backwardChangeDescription) {
-
-		EReference containmentFeature = project.eContainmentFeature();
-		EObject oldContainer = project.eContainer();
-
-		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource projectResource = resourceSet
-				.createResource(VIRTUAL_PROJECT_URI);
-		projectResource.getContents().add(project);
-		Resource changeDescriptionResource = resourceSet
-				.createResource(VIRTUAL_CHANGEDESCRIPTION_URI);
-		changeDescriptionResource.getContents().add(backwardChangeDescription);
-
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		try {
-			changeDescriptionResource.save(out, null);
-		} catch (IOException e) {
-			// MK Auto-generated catch block
-			e.printStackTrace();
-		}
-		this.backwardDelta = out.toString();
-
-		backwardChangeDescription.applyAndReverse();
-
-		out.reset();
-		try {
-			changeDescriptionResource.save(out, null);
-		} catch (IOException e) {
-			// MK Auto-generated catch block
-			e.printStackTrace();
-		}
-		this.forwardDelta = out.toString();
-
-		backwardChangeDescription.apply();
-
-		//reintegrate project into old container
-		if (oldContainer!=null) {
-			oldContainer.eSet(containmentFeature, project);
-		}
+		ChangeContainer changeContainer = ChangeContainerFactory.eINSTANCE
+				.createChangeContainer();
+		changeContainer.init(project, backwardChangeDescription);
+		getChangeContainers().add(changeContainer);
 	}
 
-	//end of custom code
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case VersioningPackage.CHANGE_PACKAGE__CHANGE_CONTAINERS:
+			return ((InternalEList<?>) getChangeContainers()).basicRemove(
+					otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	// end of custom code
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -250,10 +143,8 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case VersioningPackage.CHANGE_PACKAGE__FORWARD_DELTA:
-			return getForwardDelta();
-		case VersioningPackage.CHANGE_PACKAGE__BACKWARD_DELTA:
-			return getBackwardDelta();
+		case VersioningPackage.CHANGE_PACKAGE__CHANGE_CONTAINERS:
+			return getChangeContainers();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -262,14 +153,14 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case VersioningPackage.CHANGE_PACKAGE__FORWARD_DELTA:
-			setForwardDelta((String) newValue);
-			return;
-		case VersioningPackage.CHANGE_PACKAGE__BACKWARD_DELTA:
-			setBackwardDelta((String) newValue);
+		case VersioningPackage.CHANGE_PACKAGE__CHANGE_CONTAINERS:
+			getChangeContainers().clear();
+			getChangeContainers().addAll(
+					(Collection<? extends ChangeContainer>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -282,11 +173,8 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case VersioningPackage.CHANGE_PACKAGE__FORWARD_DELTA:
-			setForwardDelta(FORWARD_DELTA_EDEFAULT);
-			return;
-		case VersioningPackage.CHANGE_PACKAGE__BACKWARD_DELTA:
-			setBackwardDelta(BACKWARD_DELTA_EDEFAULT);
+		case VersioningPackage.CHANGE_PACKAGE__CHANGE_CONTAINERS:
+			getChangeContainers().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -299,33 +187,10 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case VersioningPackage.CHANGE_PACKAGE__FORWARD_DELTA:
-			return FORWARD_DELTA_EDEFAULT == null ? forwardDelta != null
-					: !FORWARD_DELTA_EDEFAULT.equals(forwardDelta);
-		case VersioningPackage.CHANGE_PACKAGE__BACKWARD_DELTA:
-			return BACKWARD_DELTA_EDEFAULT == null ? backwardDelta != null
-					: !BACKWARD_DELTA_EDEFAULT.equals(backwardDelta);
+		case VersioningPackage.CHANGE_PACKAGE__CHANGE_CONTAINERS:
+			return changeContainers != null && !changeContainers.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy())
-			return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (forwardDelta: ");
-		result.append(forwardDelta);
-		result.append(", backwardDelta: ");
-		result.append(backwardDelta);
-		result.append(')');
-		return result.toString();
 	}
 
 } // ChangePackageImpl

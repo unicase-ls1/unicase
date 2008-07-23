@@ -28,6 +28,10 @@ import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
+import org.unicase.emfstore.esmodel.versioning.changeContainer.ChangeContainerPackage;
+import org.unicase.emfstore.esmodel.versioning.changeContainer.impl.ChangeContainerPackageImpl;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl;
 import org.unicase.model.ModelPackage;
 
 /**
@@ -171,6 +175,14 @@ public class VersioningPackageImpl extends EPackageImpl implements
 				.getEPackage(EsmodelPackage.eNS_URI) instanceof EsmodelPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(EsmodelPackage.eNS_URI)
 				: EsmodelPackage.eINSTANCE);
+		OperationsPackageImpl theOperationsPackage = (OperationsPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(OperationsPackage.eNS_URI) instanceof OperationsPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(OperationsPackage.eNS_URI)
+				: OperationsPackage.eINSTANCE);
+		ChangeContainerPackageImpl theChangeContainerPackage = (ChangeContainerPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(ChangeContainerPackage.eNS_URI) instanceof ChangeContainerPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(ChangeContainerPackage.eNS_URI)
+				: ChangeContainerPackage.eINSTANCE);
 		AccesscontrolPackageImpl theAccesscontrolPackage = (AccesscontrolPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(AccesscontrolPackage.eNS_URI) instanceof AccesscontrolPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(AccesscontrolPackage.eNS_URI)
@@ -183,12 +195,16 @@ public class VersioningPackageImpl extends EPackageImpl implements
 		// Create package meta-data objects
 		theVersioningPackage.createPackageContents();
 		theEsmodelPackage.createPackageContents();
+		theOperationsPackage.createPackageContents();
+		theChangeContainerPackage.createPackageContents();
 		theAccesscontrolPackage.createPackageContents();
 		theRolesPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theVersioningPackage.initializePackageContents();
 		theEsmodelPackage.initializePackageContents();
+		theOperationsPackage.initializePackageContents();
+		theChangeContainerPackage.initializePackageContents();
 		theAccesscontrolPackage.initializePackageContents();
 		theRolesPackage.initializePackageContents();
 
@@ -314,17 +330,8 @@ public class VersioningPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getChangePackage_ForwardDelta() {
-		return (EAttribute) changePackageEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getChangePackage_BackwardDelta() {
-		return (EAttribute) changePackageEClass.getEStructuralFeatures().get(1);
+	public EReference getChangePackage_ChangeContainers() {
+		return (EReference) changePackageEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -482,8 +489,7 @@ public class VersioningPackageImpl extends EPackageImpl implements
 		createEAttribute(logMessageEClass, LOG_MESSAGE__AUTHOR);
 
 		changePackageEClass = createEClass(CHANGE_PACKAGE);
-		createEAttribute(changePackageEClass, CHANGE_PACKAGE__FORWARD_DELTA);
-		createEAttribute(changePackageEClass, CHANGE_PACKAGE__BACKWARD_DELTA);
+		createEReference(changePackageEClass, CHANGE_PACKAGE__CHANGE_CONTAINERS);
 
 		historyInfoEClass = createEClass(HISTORY_INFO);
 		createEReference(historyInfoEClass, HISTORY_INFO__PRIMERY_SPEC);
@@ -526,10 +532,18 @@ public class VersioningPackageImpl extends EPackageImpl implements
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
+		OperationsPackage theOperationsPackage = (OperationsPackage) EPackage.Registry.INSTANCE
+				.getEPackage(OperationsPackage.eNS_URI);
+		ChangeContainerPackage theChangeContainerPackage = (ChangeContainerPackage) EPackage.Registry.INSTANCE
+				.getEPackage(ChangeContainerPackage.eNS_URI);
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE
 				.getEPackage(ModelPackage.eNS_URI);
 		ChangePackage theChangePackage = (ChangePackage) EPackage.Registry.INSTANCE
 				.getEPackage(ChangePackage.eNS_URI);
+
+		// Add subpackages
+		getESubpackages().add(theOperationsPackage);
+		getESubpackages().add(theChangeContainerPackage);
 
 		// Create type parameters
 
@@ -588,16 +602,13 @@ public class VersioningPackageImpl extends EPackageImpl implements
 				org.unicase.emfstore.esmodel.versioning.ChangePackage.class,
 				"ChangePackage", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getChangePackage_ForwardDelta(), ecorePackage
-				.getEString(), "forwardDelta", null, 1, 1,
+		initEReference(getChangePackage_ChangeContainers(),
+				theChangeContainerPackage.getChangeContainer(), null,
+				"changeContainers", null, 0, -1,
 				org.unicase.emfstore.esmodel.versioning.ChangePackage.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getChangePackage_BackwardDelta(), ecorePackage
-				.getEString(), "backwardDelta", null, 1, 1,
-				org.unicase.emfstore.esmodel.versioning.ChangePackage.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
 		addEOperation(changePackageEClass, this.getChangePackage(), "reverse",
 				0, 1, IS_UNIQUE, IS_ORDERED);
@@ -662,24 +673,6 @@ public class VersioningPackageImpl extends EPackageImpl implements
 		initEClass(headVersionSpecEClass, HeadVersionSpec.class,
 				"HeadVersionSpec", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-
-		// Create annotations
-		// teneo.jpa
-		createTeneoAnnotations();
-	}
-
-	/**
-	 * Initializes the annotations for <b>teneo.jpa</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createTeneoAnnotations() {
-		String source = "teneo.jpa";
-		addAnnotation(getChangePackage_ForwardDelta(), source, new String[] {
-				"value", "@Type(type=\"text\")" });
-		addAnnotation(getChangePackage_BackwardDelta(), source, new String[] {
-				"value", "@Type(type=\"text\")" });
 	}
 
 } //VersioningPackageImpl
