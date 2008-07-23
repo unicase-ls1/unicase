@@ -145,6 +145,10 @@ public class WorkspaceItemProvider extends ItemProviderAdapter implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Workspace.class)) {
+		case WorkspacePackage.WORKSPACE__PROJECT_SPACES:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), false, true));
+			return;
 		case WorkspacePackage.WORKSPACE__SERVER_INFOS:
 		case WorkspacePackage.WORKSPACE__USERSESSIONS:
 			fireNotifyChanged(new ViewerNotification(notification, notification
