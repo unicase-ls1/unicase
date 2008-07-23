@@ -333,7 +333,7 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 				IS_ORDERED);
 		initEReference(getMEDiagram_NewElements(), theModelPackage
 				.getModelElement(), null, "newElements", null, 0, -1,
-				MEDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				MEDiagram.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 		getMEDiagram_NewElements().getEKeys().add(

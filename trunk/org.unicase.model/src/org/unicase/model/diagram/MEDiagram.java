@@ -83,7 +83,7 @@ public interface MEDiagram extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>New Elements</em>' containment reference list.
 	 * @see org.unicase.model.diagram.DiagramPackage#getMEDiagram_NewElements()
-	 * @model containment="true" keys="identifier"
+	 * @model containment="true" keys="identifier" transient="true"
 	 * @generated
 	 */
 	EList<ModelElement> getNewElements();

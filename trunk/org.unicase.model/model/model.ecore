@@ -135,7 +135,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="gmfdiagram" eType="ecore:EClass platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.ecore#//Diagram"
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="newElements" upperBound="-1"
-          eType="#//ModelElement" containment="true" eKeys="#//IdentifiableElement/identifier"/>
+          eType="#//ModelElement" transient="true" containment="true" eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//diagram/DiagramType"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="DiagramType">
