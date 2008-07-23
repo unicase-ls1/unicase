@@ -174,6 +174,8 @@ public class EmfStoreImpl implements EmfStore {
 			VersionSpec versionSpec) throws EmfStoreException {
 		// TODO: authorization
 		//MK: TODO recalulate project state if not available
+		//copy projectstate of nearest version
+		//then apply changepackages to get to state (maybe reverse)
 		return getVersion(projectId, resolveVersionSpec(projectId, versionSpec))
 				.getProjectState();
 	}
