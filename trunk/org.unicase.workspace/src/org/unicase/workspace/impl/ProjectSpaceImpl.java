@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.eclipse.emf.ecore.change.util.ChangeRecorder;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
@@ -723,7 +724,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		if (getLocalChanges() == null) {
 			changeRecorder.beginRecording(Collections.singleton(project));
 		} else {
-			changeRecorder.beginRecording(localChanges, Collections
+			changeRecorder.beginRecording((ChangeDescription) EcoreUtil.copy(localChanges), Collections
 					.singleton(project));
 		}
 
