@@ -18,9 +18,11 @@ import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.change.ChangePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 import org.eclipse.emf.teneo.PersistenceOptions;
 import org.eclipse.emf.teneo.hibernate.HbDataStore;
 import org.eclipse.emf.teneo.hibernate.HbHelper;
+import org.eclipse.emf.teneo.hibernate.mapping.property.EListPropertyHandler;
 import org.eclipse.emf.teneo.hibernate.resource.HibernateResource;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.hibernate.cfg.Environment;
@@ -64,6 +66,11 @@ public class TeneoStorage implements ResourceStorage {
 //		final ExtensionManager extensionManager = dataStore.getExtensionManager();
 //		extensionManager.registerExtension(EntityNameStrategy.class.getName(), QualifyingEntityNameStrategy.class.getName());
 
+		//adaptions for gmf to be able to save diagrams to db
+		props.setProperty(PersistenceOptions.PERSISTENCE_XML,
+		"/annotations.xml");
+		dataStore.getExtensionManager().registerExtension(EListPropertyHandler.class.getName(),GMFEListPropertyHandler.class.getName());
+		
 		props.setProperty(PersistenceOptions.INHERITANCE_MAPPING, "JOINED");
 
 		dataStore.setProperties(props);
@@ -108,6 +115,8 @@ public class TeneoStorage implements ResourceStorage {
 		// add gmf packages
 		NotationPackage gmfPackage = NotationPackage.eINSTANCE;
 		packages.add(gmfPackage);
+		XMLTypePackage xmlPackage = XMLTypePackage.eINSTANCE;
+		packages.add(xmlPackage);
 
 		//MK: remove validation for all packages by registering custom validator
 		for (EPackage ePackage: packages) {
