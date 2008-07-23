@@ -176,30 +176,30 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 					newGmfdiagram));
 	}
 
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		public EList<ModelElement> getNewElements() {
-			if (newElements == null) {
-				newElements = new EObjectContainmentEList<ModelElement>(
-						ModelElement.class, this,
-						DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS);
-			}
-			return newElements;
-		}
-//	// JH/MK still throws exception: org.eclipse.emf.common.util.BasicEList$BasicIndexOutOfBoundsException: index=0, size=0
-//	/**
-//	 * <!-- begin-user-doc -->
-//	 * <!-- end-user-doc -->
-//	 * @generated NOT
-//	 */
-//	public EList<ModelElement> getNewElements() {
-//
-//		//JH: cache instance
-//		return new DiagramNewElementsList(getElements(), getProject());
-//	}
+//		/**
+//		 * <!-- begin-user-doc -->
+//		 * <!-- end-user-doc -->
+//		 * @generated
+//		 */
+//		public EList<ModelElement> getNewElements() {
+//			if (newElements == null) {
+//				newElements = new EObjectContainmentEList<ModelElement>(
+//						ModelElement.class, this,
+//						DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS);
+//			}
+//			return newElements;
+//		}
+//	 JH/MK still throws exception: org.eclipse.emf.common.util.BasicEList$BasicIndexOutOfBoundsException: index=0, size=0
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<ModelElement> getNewElements() {
+
+		//JH: cache instance
+		return new DiagramNewElementsList(getElements(), getProject());
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
