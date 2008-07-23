@@ -55,6 +55,7 @@
           <genParameters ecoreParameter="esmodel.ecore#//versioning/ChangePackage/init/project"/>
           <genParameters ecoreParameter="esmodel.ecore#//versioning/ChangePackage/init/backwardChangeDescription"/>
         </genOperations>
+        <genOperations ecoreOperation="esmodel.ecore#//versioning/ChangePackage/getOperations"/>
       </genClasses>
       <genClasses ecoreClass="esmodel.ecore#//versioning/HistoryInfo">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"

@@ -21,6 +21,7 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 import org.unicase.emfstore.esmodel.versioning.changeContainer.ChangeContainer;
 import org.unicase.emfstore.esmodel.versioning.changeContainer.ChangeContainerFactory;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.model.Project;
 
 /**
@@ -117,6 +118,17 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 				.createChangeContainer();
 		changeContainer.init(project, backwardChangeDescription);
 		getChangeContainers().add(changeContainer);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<AbstractOperation> getOperations() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**

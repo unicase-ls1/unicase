@@ -625,6 +625,10 @@ public class VersioningPackageImpl extends EPackageImpl implements
 		addEParameter(op, theChangePackage.getChangeDescription(),
 				"backwardChangeDescription", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		addEOperation(changePackageEClass, theOperationsPackage
+				.getAbstractOperation(), "getOperations", 0, -1, IS_UNIQUE,
+				IS_ORDERED);
+
 		initEClass(historyInfoEClass, HistoryInfo.class, "HistoryInfo",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getHistoryInfo_PrimerySpec(), this
