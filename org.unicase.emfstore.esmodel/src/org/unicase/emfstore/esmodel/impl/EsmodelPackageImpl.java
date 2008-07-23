@@ -24,7 +24,11 @@ import org.unicase.emfstore.esmodel.accesscontrol.impl.AccesscontrolPackageImpl;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RolesPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
+import org.unicase.emfstore.esmodel.versioning.changeContainer.ChangeContainerPackage;
+import org.unicase.emfstore.esmodel.versioning.changeContainer.impl.ChangeContainerPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl;
 import org.unicase.model.ModelPackage;
 
 /**
@@ -131,6 +135,14 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 				.getEPackage(VersioningPackage.eNS_URI) instanceof VersioningPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(VersioningPackage.eNS_URI)
 				: VersioningPackage.eINSTANCE);
+		OperationsPackageImpl theOperationsPackage = (OperationsPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(OperationsPackage.eNS_URI) instanceof OperationsPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(OperationsPackage.eNS_URI)
+				: OperationsPackage.eINSTANCE);
+		ChangeContainerPackageImpl theChangeContainerPackage = (ChangeContainerPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(ChangeContainerPackage.eNS_URI) instanceof ChangeContainerPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(ChangeContainerPackage.eNS_URI)
+				: ChangeContainerPackage.eINSTANCE);
 		AccesscontrolPackageImpl theAccesscontrolPackage = (AccesscontrolPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(AccesscontrolPackage.eNS_URI) instanceof AccesscontrolPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(AccesscontrolPackage.eNS_URI)
@@ -143,12 +155,16 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		// Create package meta-data objects
 		theEsmodelPackage.createPackageContents();
 		theVersioningPackage.createPackageContents();
+		theOperationsPackage.createPackageContents();
+		theChangeContainerPackage.createPackageContents();
 		theAccesscontrolPackage.createPackageContents();
 		theRolesPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theEsmodelPackage.initializePackageContents();
 		theVersioningPackage.initializePackageContents();
+		theOperationsPackage.initializePackageContents();
+		theChangeContainerPackage.initializePackageContents();
 		theAccesscontrolPackage.initializePackageContents();
 		theRolesPackage.initializePackageContents();
 

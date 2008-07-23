@@ -219,22 +219,13 @@ public interface VersioningPackage extends EPackage {
 	int CHANGE_PACKAGE = 5;
 
 	/**
-	 * The feature id for the '<em><b>Forward Delta</b></em>' attribute.
+	 * The feature id for the '<em><b>Change Containers</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_PACKAGE__FORWARD_DELTA = 0;
-
-	/**
-	 * The feature id for the '<em><b>Backward Delta</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHANGE_PACKAGE__BACKWARD_DELTA = 1;
+	int CHANGE_PACKAGE__CHANGE_CONTAINERS = 0;
 
 	/**
 	 * The number of structural features of the '<em>Change Package</em>' class.
@@ -243,7 +234,7 @@ public interface VersioningPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_PACKAGE_FEATURE_COUNT = 2;
+	int CHANGE_PACKAGE_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryInfoImpl <em>History Info</em>}' class.
@@ -510,26 +501,15 @@ public interface VersioningPackage extends EPackage {
 	EClass getChangePackage();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getForwardDelta <em>Forward Delta</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getChangeContainers <em>Change Containers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Forward Delta</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.ChangePackage#getForwardDelta()
+	 * @return the meta object for the containment reference list '<em>Change Containers</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.ChangePackage#getChangeContainers()
 	 * @see #getChangePackage()
 	 * @generated
 	 */
-	EAttribute getChangePackage_ForwardDelta();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getBackwardDelta <em>Backward Delta</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Backward Delta</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.ChangePackage#getBackwardDelta()
-	 * @see #getChangePackage()
-	 * @generated
-	 */
-	EAttribute getChangePackage_BackwardDelta();
+	EReference getChangePackage_ChangeContainers();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.HistoryInfo <em>History Info</em>}'.
@@ -793,22 +773,13 @@ public interface VersioningPackage extends EPackage {
 		EClass CHANGE_PACKAGE = eINSTANCE.getChangePackage();
 
 		/**
-		 * The meta object literal for the '<em><b>Forward Delta</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Change Containers</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CHANGE_PACKAGE__FORWARD_DELTA = eINSTANCE
-				.getChangePackage_ForwardDelta();
-
-		/**
-		 * The meta object literal for the '<em><b>Backward Delta</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CHANGE_PACKAGE__BACKWARD_DELTA = eINSTANCE
-				.getChangePackage_BackwardDelta();
+		EReference CHANGE_PACKAGE__CHANGE_CONTAINERS = eINSTANCE
+				.getChangePackage_ChangeContainers();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryInfoImpl <em>History Info</em>}' class.

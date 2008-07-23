@@ -6,9 +6,10 @@
  */
 package org.unicase.emfstore.esmodel.versioning;
 
-import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.change.ChangeDescription;
+import org.unicase.emfstore.esmodel.versioning.changeContainer.ChangeContainer;
 import org.unicase.model.Project;
 
 /**
@@ -18,8 +19,7 @@ import org.unicase.model.Project;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getForwardDelta <em>Forward Delta</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getBackwardDelta <em>Backward Delta</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getChangeContainers <em>Change Containers</em>}</li>
  * </ul>
  * </p>
  *
@@ -30,62 +30,20 @@ import org.unicase.model.Project;
 public interface ChangePackage extends EObject {
 
 	/**
-	 * Returns the value of the '<em><b>Forward Delta</b></em>' attribute.
+	 * Returns the value of the '<em><b>Change Containers</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.emfstore.esmodel.versioning.changeContainer.ChangeContainer}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Forward Delta</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Change Containers</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Forward Delta</em>' attribute.
-	 * @see #setForwardDelta(String)
-	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getChangePackage_ForwardDelta()
-	 * @model required="true"
-	 *        annotation="teneo.jpa value='@Type(type=\"text\")'"
+	 * @return the value of the '<em>Change Containers</em>' containment reference list.
+	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getChangePackage_ChangeContainers()
+	 * @model containment="true"
 	 * @generated
 	 */
-	String getForwardDelta();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getForwardDelta <em>Forward Delta</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Forward Delta</em>' attribute.
-	 * @see #getForwardDelta()
-	 * @generated
-	 */
-	void setForwardDelta(String value);
-
-	final static URI VIRTUAL_PROJECT_URI = URI.createURI("virtual.project.uri");
-	final static URI VIRTUAL_CHANGEDESCRIPTION_URI = URI
-			.createURI("virtual.changedescription.uri");
-
-	/**
-	 * Returns the value of the '<em><b>Backward Delta</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Backward Delta</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Backward Delta</em>' attribute.
-	 * @see #setBackwardDelta(String)
-	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getChangePackage_BackwardDelta()
-	 * @model required="true"
-	 *        annotation="teneo.jpa value='@Type(type=\"text\")'"
-	 * @generated
-	 */
-	String getBackwardDelta();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getBackwardDelta <em>Backward Delta</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Backward Delta</em>' attribute.
-	 * @see #getBackwardDelta()
-	 * @generated
-	 */
-	void setBackwardDelta(String value);
+	EList<ChangeContainer> getChangeContainers();
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

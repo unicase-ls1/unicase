@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.change.ChangePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.teneo.PersistenceOptions;
 import org.eclipse.emf.teneo.hibernate.HbDataStore;
@@ -99,8 +100,8 @@ public class TeneoStorage implements ResourceStorage {
 		packages.addAll(getSubPackages(esmodelPackage));
 
 		// add ecore packages
-//		EPackage changePackage = ChangePackage.eINSTANCE;
-//		packages.add(changePackage);
+		EPackage changePackage = ChangePackage.eINSTANCE;
+		packages.add(changePackage);
 		EPackage ecorePackage = EcorePackage.eINSTANCE;
 		packages.add(ecorePackage);
 
