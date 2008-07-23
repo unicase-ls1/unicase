@@ -10,6 +10,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.unicase.emfstore.esmodel.versioning.changeContainer.ChangeContainer;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.model.Project;
 
 /**
@@ -67,5 +68,13 @@ public interface ChangePackage extends EObject {
 	 * @generated
 	 */
 	void init(Project project, ChangeDescription backwardChangeDescription);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	EList<AbstractOperation> getOperations();
 
 } // ChangePackage

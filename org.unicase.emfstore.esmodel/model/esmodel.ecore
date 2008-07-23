@@ -64,6 +64,7 @@
         <eParameters name="project" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"/>
         <eParameters name="backwardChangeDescription" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore.change/model/Change.ecore#//ChangeDescription"/>
       </eOperations>
+      <eOperations name="getOperations" upperBound="-1" eType="#//versioning/operations/AbstractOperation"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="changeContainers" upperBound="-1"
           eType="#//versioning/changeContainer/ChangeContainer" containment="true"/>
     </eClassifiers>
