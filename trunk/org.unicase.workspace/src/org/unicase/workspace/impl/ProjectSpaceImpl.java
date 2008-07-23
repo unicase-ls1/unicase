@@ -602,13 +602,13 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 		ChangePackage changePackage = VersioningFactory.eINSTANCE
 				.createChangePackage();
-		changePackage.init(project, localChanges);
+		changePackage.init(getProject(), getLocalChanges());
 
 		PrimaryVersionSpec newBaseVersion = connectionManager.createVersion(
 				getUsersession().getSessionId(), getProjectId(),
 				getBaseVersion(), changePackage, logMessage);
 
-		this.localChanges = null;
+		this.setLocalChanges(null);
 		setBaseVersion(newBaseVersion);
 
 		save();
@@ -723,10 +723,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 		changeRecorder = new ChangeRecorder();
 		if (getLocalChanges() == null) {
-			changeRecorder.beginRecording(Collections.singleton(project));
+			changeRecorder.beginRecording(Collections.singleton(getProject()));
 		} else {
-			changeRecorder.beginRecording((ChangeDescription) EcoreUtil.copy(localChanges), Collections
-					.singleton(project));
+			changeRecorder.beginRecording((ChangeDescription) EcoreUtil.copy(getLocalChanges()), Collections
+					.singleton(getProject()));
 		}
 
 	}
