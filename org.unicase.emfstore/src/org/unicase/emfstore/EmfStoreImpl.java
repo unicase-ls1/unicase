@@ -70,7 +70,7 @@ public class EmfStoreImpl implements EmfStore {
 	/**
 	 * {@inheritDoc}
 	 */
-	public PrimaryVersionSpec createVersion(SessionId sessionId,
+	public synchronized PrimaryVersionSpec createVersion(SessionId sessionId,
 			ProjectId projectId, PrimaryVersionSpec baseVersionSpec,
 			ChangePackage changePackage, LogMessage logMessage)
 			throws EmfStoreException {
@@ -117,7 +117,7 @@ public class EmfStoreImpl implements EmfStore {
 	/**
 	 * {@inheritDoc}
 	 */
-	public List<ChangePackage> getChanges(SessionId sessionId,
+	public synchronized List<ChangePackage> getChanges(SessionId sessionId,
 			ProjectId projectId, VersionSpec source, VersionSpec target)
 			throws EmfStoreException {
 		// TODO: authorization
@@ -151,7 +151,7 @@ public class EmfStoreImpl implements EmfStore {
 	/**
 	 * {@inheritDoc}
 	 */
-	public List<HistoryInfo> getHistoryInfo(SessionId sessionId,
+	public synchronized List<HistoryInfo> getHistoryInfo(SessionId sessionId,
 			ProjectId projectId, VersionSpec source, VersionSpec target)
 			throws EmfStoreException {
 		// TODO: authorization
@@ -170,7 +170,7 @@ public class EmfStoreImpl implements EmfStore {
 	/**
 	 * {@inheritDoc}
 	 */
-	public Project getProject(SessionId sessionId, ProjectId projectId,
+	public synchronized Project getProject(SessionId sessionId, ProjectId projectId,
 			VersionSpec versionSpec) throws EmfStoreException {
 		// TODO: authorization
 		//MK: TODO recalulate project state if not available
@@ -181,7 +181,7 @@ public class EmfStoreImpl implements EmfStore {
 	/**
 	 * {@inheritDoc}
 	 */
-	public List<ProjectInfo> getProjectList(SessionId sessionId)
+	public synchronized List<ProjectInfo> getProjectList(SessionId sessionId)
 			throws EmfStoreException {
 		// TODO: authorization
 		List<ProjectInfo> result = new ArrayList<ProjectInfo>();
@@ -194,7 +194,7 @@ public class EmfStoreImpl implements EmfStore {
 	/**
 	 * {@inheritDoc}
 	 */
-	public PrimaryVersionSpec resolveVersionSpec(SessionId sessionId,
+	public synchronized PrimaryVersionSpec resolveVersionSpec(SessionId sessionId,
 			ProjectId projectId, VersionSpec versionSpec)
 			throws EmfStoreException {
 		// TODO: authorization
@@ -204,7 +204,7 @@ public class EmfStoreImpl implements EmfStore {
 	/**
 	 * {@inheritDoc}
 	 */
-	public ProjectInfo createProject(SessionId sessionId, String name,
+	public synchronized ProjectInfo createProject(SessionId sessionId, String name,
 			String description, LogMessage logMessage) throws EmfStoreException {
 		ProjectHistory projectHistory = createEmptyProject(name, description,
 				logMessage);
@@ -246,7 +246,7 @@ public class EmfStoreImpl implements EmfStore {
 	/**
 	 * {@inheritDoc}
 	 */
-	public ProjectInfo createProject(SessionId sessionId, String name,
+	public synchronized ProjectInfo createProject(SessionId sessionId, String name,
 			String description, LogMessage logMessage, Project project) throws EmfStoreException {
 		ProjectHistory projectHistory = createEmptyProject(name, description,
 				logMessage);
