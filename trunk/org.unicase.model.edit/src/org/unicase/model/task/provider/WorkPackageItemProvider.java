@@ -1,6 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
+ * Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  *
  * $Id$
  */
@@ -20,11 +19,13 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.model.bug.BugFactory;
 import org.unicase.model.provider.AnnotationItemProvider;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.TaskPackage;
+import org.unicase.model.task.WorkPackage;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.model.task.WorkPackage} object.
@@ -36,9 +37,9 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 		IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public WorkPackageItemProvider(AdapterFactory adapterFactory) {
@@ -46,9 +47,9 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -114,7 +115,7 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 						"_UI_WorkPackage_containedWorkItems_feature",
 						"_UI_WorkPackage_type"),
 				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS, true,
-				false, true, null, null, null));
+				false, false, null, null, null));
 	}
 
 	/**
@@ -150,9 +151,9 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 	}
 
 	/**
-	 * This returns WorkPackage.gif. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * This returns WorkPackage.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -163,8 +164,8 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
@@ -175,21 +176,28 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(WorkPackage.class)) {
+		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), true, false));
+			return;
+		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -211,9 +219,9 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
