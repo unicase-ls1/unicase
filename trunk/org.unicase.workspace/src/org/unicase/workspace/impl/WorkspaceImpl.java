@@ -447,6 +447,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		Resource resource = resourceSet.createResource(URI
 				.createFileURI(absoluteFileName));
 		Project project = projectSpace.getProject();
+		
+		//preserve old containment
 		EReference containmentFeature = project.eContainmentFeature();
 		EObject oldContainer = project.eContainer();
 

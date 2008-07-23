@@ -680,6 +680,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * @generated NOT
 	 */
 	public void revert() {
+		//MK: fix this for changepackage
 		stopChangeRecording();
 		getLocalChanges().apply();
 		setLocalChanges(null);
@@ -709,7 +710,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * @generated NOT
 	 */
 	private void stopChangeRecording() {
-		this.localChanges = this.changeRecorder.endRecording();
+		this.setLocalChanges(this.changeRecorder.endRecording());
 	}
 
 	/**
@@ -964,7 +965,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		this.setLastUpdated(new Date());
 		this.setProjectId(createdProject.getProjectId());
 		this.setLocalChanges(null);
-		// save();
+		save();
 		this.startChangeRecording();
 	}
 
