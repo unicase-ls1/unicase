@@ -173,13 +173,11 @@ public class MEDiagramItemProvider extends ModelElementItemProvider implements
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((MEDiagram) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_MEDiagram_type")
-				: getString("_UI_MEDiagram_type") + " " + label;
+		return super.getText(object);
 	}
 
 	/**
@@ -198,6 +196,10 @@ public class MEDiagramItemProvider extends ModelElementItemProvider implements
 		case DiagramPackage.ME_DIAGRAM__TYPE:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), false, true));
+			return;
+		case DiagramPackage.ME_DIAGRAM__ELEMENTS:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
