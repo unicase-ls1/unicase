@@ -65,7 +65,7 @@ public class TeneoStorage implements ResourceStorage {
 //		extensionManager.registerExtension(EntityNameStrategy.class.getName(), QualifyingEntityNameStrategy.class.getName());
 
 		props.setProperty(PersistenceOptions.INHERITANCE_MAPPING, "JOINED");
-		//props.setProperty(PersistenceOptions.ID_FEATURE_AS_PRIMARY_KEY, "false");
+
 		dataStore.setProperties(props);
 
 		// set epackages
