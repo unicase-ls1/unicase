@@ -1,0 +1,24 @@
+package org.unicase.emfstore.conflictDetection;
+
+import org.eclipse.emf.ecore.change.FeatureChange;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+
+/**
+ * Very basic conflict detection strategy. Will only check if same model element is touched.
+ * @author koegel
+ *
+ */
+public class BasicConflictDetectionStrategy implements
+		ConflictDetectionStrategy {
+
+	public boolean doConflict(AbstractOperation operationA,
+			AbstractOperation operationB) {
+		return operationA.getModelElement().equals(operationB.getModelElement());
+	}
+
+	public boolean isRequired(AbstractOperation requiredOperation,
+			AbstractOperation operation) {
+		return doConflict(requiredOperation, operation);
+	}
+
+}
