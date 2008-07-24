@@ -2,13 +2,14 @@
 <org.unicase.model:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.unicase.model="http://unicase.org/model" xmlns:org.unicase.model.bug="http://unicase.org/model/bug" xmlns:org.unicase.model.document="http://unicase.org/model/document" xmlns:org.unicase.model.organization="http://unicase.org/model/organization" xmlns:org.unicase.model.rationale="http://unicase.org/model/rationale" xmlns:org.unicase.model.requirement="http://unicase.org/model/requirement" xmlns:org.unicase.model.task="http://unicase.org/model/task">
   <modelElements xsi:type="org.unicase.model.document:CompositeSection" identifier="2653d448-58cf-45c3-bea9-4cb2df61192f" name="Unicase Project Document">
     <subsections xsi:type="org.unicase.model.document:LeafSection" identifier="92be4e17-5632-495a-b9a8-6e9f0e9fb298" name="Functional Requirements">
-      <modelElements xsi:type="org.unicase.model.requirement:FunctionalRequirement" identifier="fa04e3d5-090c-4553-9a37-7bd4a7d0a9dd" name="Model">
+      <modelElements xsi:type="org.unicase.model.requirement:FunctionalRequirement" identifier="fa04e3d5-090c-4553-9a37-7bd4a7d0a9dd" name="Model" annotations="//@modelElements[identifier='2653d448-58cf-45c3-bea9-4cb2df61192f']/@subsections[identifier='54d5481e-2402-4e76-8624-1b524f9d6e9e']/@modelElements[identifier='f69b4188-04a0-484c-9099-5c452c338761']/@containedWorkItems[identifier='f8593d8a-49f1-49d2-9977-07fb3f9157fd']">
         <refiningRequirements identifier="f5d8a667-9673-4e56-8825-9b80e3bf404b" name="MEState"/>
         <refiningRequirements identifier="3d86da7d-308e-4285-bfcb-7e2eceacaceb" name="Merging Issues"/>
-        <refiningRequirements identifier="b87be628-3b7d-44a0-9af6-1ab7c8524859" name="Requirements" annotations="//@modelElements[identifier='2653d448-58cf-45c3-bea9-4cb2df61192f']/@subsections[identifier='2ae013e2-f609-42db-968a-38beed0fbe7a']/@modelElements[identifier='7de19e3a-e440-4ec3-a2ec-70609e2cb3ba']"/>
+        <refiningRequirements identifier="b87be628-3b7d-44a0-9af6-1ab7c8524859" name="Requirements" annotations="//@modelElements[identifier='2653d448-58cf-45c3-bea9-4cb2df61192f']/@subsections[identifier='2ae013e2-f609-42db-968a-38beed0fbe7a']/@modelElements[identifier='fa156ff1-1040-467a-bd0b-e5b10b6d4dcb']"/>
+        <refiningRequirements identifier="c554a64e-5f4f-4d31-83d3-4247239107e0" name="Tasks" annotations="//@modelElements[identifier='2653d448-58cf-45c3-bea9-4cb2df61192f']/@subsections[identifier='2ae013e2-f609-42db-968a-38beed0fbe7a']/@modelElements[identifier='02c32224-ded1-4a8f-b483-e9b01fb4126b']"/>
       </modelElements>
       <modelElements xsi:type="org.unicase.model.requirement:FunctionalRequirement" identifier="deb206a6-ac98-4f31-bf58-f6eff34574e0" name="Views">
-        <refiningRequirements identifier="d370f822-b44f-4285-a4e8-c5acb4ad157a" name="MEEditor" annotations="//@modelElements[identifier='2653d448-58cf-45c3-bea9-4cb2df61192f']/@subsections[identifier='2ae013e2-f609-42db-968a-38beed0fbe7a']/@modelElements[identifier='52dce03e-8fa9-435d-8264-14f35948675f']">
+        <refiningRequirements identifier="d370f822-b44f-4285-a4e8-c5acb4ad157a" name="MEEditor" annotations="//@modelElements[identifier='2653d448-58cf-45c3-bea9-4cb2df61192f']/@subsections[identifier='2ae013e2-f609-42db-968a-38beed0fbe7a']/@modelElements[identifier='52dce03e-8fa9-435d-8264-14f35948675f'] //@modelElements[identifier='2653d448-58cf-45c3-bea9-4cb2df61192f']/@subsections[identifier='2ae013e2-f609-42db-968a-38beed0fbe7a']/@modelElements[identifier='126a27d2-f710-4183-9b93-7c86d3aa73ee']">
           <refiningRequirements identifier="e8cf4d3b-7493-41b9-9faa-9e8e0e96b826" name="Enumeration Widget" annotations="//@modelElements[identifier='da15affe-9d9b-419d-a32c-1df56d133658']" reviewed="true"/>
           <refiningRequirements identifier="85862931-e826-424a-98d0-c5c8cb551771" name="Transparent Link Widget" description="If there is a link class like &quot;association&quot; the link widget should directly link to the opposite."/>
           <refiningRequirements identifier="eead6d5d-f9c0-446a-b9c9-871aab2c36f4" name="Use Case Widget"/>
@@ -20,13 +21,13 @@
         <refiningRequirements identifier="562d6513-bbfd-460a-a037-5f5866cbcfbe" name="Preferences View" annotations="//@modelElements[identifier='2653d448-58cf-45c3-bea9-4cb2df61192f']/@subsections[identifier='18bd6bd1-081f-417e-931b-79b6544e92b7']/@modelElements[identifier='6f52e4f5-3959-40fd-ab50-0f0064730cd6']"/>
         <refiningRequirements identifier="fdb7a842-ba11-4148-a982-0d30586f1461" name="SCM Views">
           <refiningRequirements identifier="a8b39431-4db7-4e3c-a70f-7d76d99e1057" name="History Viewer"/>
-          <refiningRequirements identifier="d8d2633d-c8aa-4051-a6ef-009c2c87dc91" name="Change View"/>
         </refiningRequirements>
         <refiningRequirements identifier="de7556a8-14eb-4198-8938-20fb2edaed10" name="Table view"/>
         <refiningRequirements identifier="db8ad0d7-809c-484a-bc63-4e4d458c520c" name="Status view"/>
         <refiningRequirements identifier="abd9db2a-f5ed-4f14-aaec-b4efa9fec5cb" name="Traceability view"/>
-        <refiningRequirements identifier="535c75f8-4c42-416e-b8da-1564a65cc571" name="Sprint planning view"/>
+        <refiningRequirements identifier="535c75f8-4c42-416e-b8da-1564a65cc571" name="Sprint planning view" useCases="//@modelElements[identifier='2653d448-58cf-45c3-bea9-4cb2df61192f']/@subsections[identifier='380a0ddd-76ef-4a29-8a54-b62d8e64bcaf']/@modelElements[identifier='4e3a2985-25eb-4ba1-b88d-6388bfa4893a']"/>
         <refiningRequirements identifier="28d9c0c3-0f6c-4523-a5d7-ab802588a2d1" name="EMF admin view" description="manage users, groups and projects. delete archive copy projects."/>
+        <refiningRequirements identifier="249b232c-a613-4a17-a4e8-efa7f58af1e1" name="Annotations View" description="The annotations of a model element shall be visible. Maybe in the outline view."/>
       </modelElements>
       <modelElements xsi:type="org.unicase.model.requirement:FunctionalRequirement" identifier="ec3a04ec-e404-45ab-b2ca-45058e09b4f4" name="Decorations"/>
       <modelElements xsi:type="org.unicase.model.requirement:FunctionalRequirement" identifier="b3d31ae1-5ace-4854-b8d0-56855d665f86" name="Diagrams">
@@ -35,7 +36,8 @@
         <refiningRequirements identifier="d917ba55-e4f0-481c-9542-9ac1187ddcab" name="Component Diagram"/>
       </modelElements>
       <modelElements xsi:type="org.unicase.model.requirement:FunctionalRequirement" identifier="f10193c3-bd43-444f-a26f-77549a6375ad" name="Actions">
-        <refiningRequirements identifier="d940f7d3-15f3-408b-9ed0-f8cef71d88df" name="Create Children from parent node per context menue." description="You shall be able to create contained elements per context menue, e.g. refining requirements from a refined requirement."/>
+        <refiningRequirements identifier="d940f7d3-15f3-408b-9ed0-f8cef71d88df" name="Add Children to parent node" description="You shall be able to add and create contained elements as children of a parent, e.g. refining requirements from a refined requirement." useCases="//@modelElements[identifier='2653d448-58cf-45c3-bea9-4cb2df61192f']/@subsections[identifier='380a0ddd-76ef-4a29-8a54-b62d8e64bcaf']/@modelElements[identifier='c858a0dc-59cd-4ded-8bd2-68d02387cdd1']"/>
+        <refiningRequirements identifier="ced35ef2-1288-4d1f-882d-f14c549d4e92" name="Add annotations" description="Add the following annotations to any model element: action item, issue and comment. This shall be possible in the right click context menue as well as in the title bar of the ME Editor"/>
       </modelElements>
       <modelElements xsi:type="org.unicase.model.requirement:FunctionalRequirement" identifier="0c22f304-e06f-4660-82c1-280ddf741f35" name="Collaboration">
         <refiningRequirements identifier="449cbbd7-868d-4a9f-8357-4f48da0beb29" name="Conflict detection"/>
@@ -47,7 +49,7 @@
       </modelElements>
       <modelElements xsi:type="org.unicase.model.requirement:FunctionalRequirement" identifier="aed54dd5-1dae-4701-afd0-ff0194725935" name="Export"/>
     </subsections>
-    <subsections xsi:type="org.unicase.model.document:LeafSection" identifier="2ae013e2-f609-42db-968a-38beed0fbe7a" name="No link from FR to NFR">
+    <subsections xsi:type="org.unicase.model.document:LeafSection" identifier="2ae013e2-f609-42db-968a-38beed0fbe7a" name="New Bug Reports">
       <modelElements xsi:type="org.unicase.model.bug:BugReport" identifier="e30dfa4f-748f-443c-afca-f5a8c67e0a09" name="Save diagrams doesnt`t work" description="You have to save an other model element in the project."/>
       <modelElements xsi:type="org.unicase.model.bug:BugReport" identifier="23bdcabd-e300-43b4-a38e-0a74d901e12b" name="No message on share." description="If you share a project you dont get a message."/>
       <modelElements xsi:type="org.unicase.model.bug:BugReport" identifier="192e5a29-f536-48b6-a3f1-8dc385fef4af" name="Open decrotation wrong" description="The Open Decoration shows the blocked image (red square)"/>
@@ -56,7 +58,9 @@
       <modelElements xsi:type="org.unicase.model.bug:BugReport" identifier="37f88972-cf0e-4938-bde5-6705a3a53bcf" name="meeditor does not work if name is null"/>
       <modelElements xsi:type="org.unicase.model.bug:BugReport" identifier="52dce03e-8fa9-435d-8264-14f35948675f" name="No new button in link widgets" description="You can only add existing element. Often you want to create a new, e.g. annotation." annotatedModelElements="//@modelElements[identifier='2653d448-58cf-45c3-bea9-4cb2df61192f']/@subsections[identifier='92be4e17-5632-495a-b9a8-6e9f0e9fb298']/@modelElements[identifier='deb206a6-ac98-4f31-bf58-f6eff34574e0']/@refiningRequirements[identifier='d370f822-b44f-4285-a4e8-c5acb4ad157a']"/>
       <modelElements xsi:type="org.unicase.model.bug:BugReport" identifier="c8d9ef54-7f51-4021-a3c6-53a975a3fe04" name="No multiselection in select elements dialog" annotatedModelElements="//@modelElements[identifier='2653d448-58cf-45c3-bea9-4cb2df61192f']/@subsections[identifier='92be4e17-5632-495a-b9a8-6e9f0e9fb298']/@modelElements[identifier='deb206a6-ac98-4f31-bf58-f6eff34574e0']/@refiningRequirements[identifier='d370f822-b44f-4285-a4e8-c5acb4ad157a']/@refiningRequirements[identifier='246dcfa2-a124-49c1-a8e9-5b99fb91a098']"/>
-      <modelElements xsi:type="org.unicase.model.bug:BugReport" identifier="7de19e3a-e440-4ec3-a2ec-70609e2cb3ba" name="No link from nfr to fr and back" annotatedModelElements="//@modelElements[identifier='2653d448-58cf-45c3-bea9-4cb2df61192f']/@subsections[identifier='92be4e17-5632-495a-b9a8-6e9f0e9fb298']/@modelElements[identifier='fa04e3d5-090c-4553-9a37-7bd4a7d0a9dd']/@refiningRequirements[identifier='b87be628-3b7d-44a0-9af6-1ab7c8524859']"/>
+      <modelElements xsi:type="org.unicase.model.bug:BugReport" identifier="02c32224-ded1-4a8f-b483-e9b01fb4126b" name="No activity classification for ActionItems" annotatedModelElements="//@modelElements[identifier='2653d448-58cf-45c3-bea9-4cb2df61192f']/@subsections[identifier='92be4e17-5632-495a-b9a8-6e9f0e9fb298']/@modelElements[identifier='fa04e3d5-090c-4553-9a37-7bd4a7d0a9dd']/@refiningRequirements[identifier='c554a64e-5f4f-4d31-83d3-4247239107e0']"/>
+      <modelElements xsi:type="org.unicase.model.bug:BugReport" identifier="126a27d2-f710-4183-9b93-7c86d3aa73ee" name="You cannot tab between fields in MEEditor" annotatedModelElements="//@modelElements[identifier='2653d448-58cf-45c3-bea9-4cb2df61192f']/@subsections[identifier='92be4e17-5632-495a-b9a8-6e9f0e9fb298']/@modelElements[identifier='deb206a6-ac98-4f31-bf58-f6eff34574e0']/@refiningRequirements[identifier='d370f822-b44f-4285-a4e8-c5acb4ad157a']"/>
+      <modelElements xsi:type="org.unicase.model.bug:BugReport" identifier="fa156ff1-1040-467a-bd0b-e5b10b6d4dcb" name="No Type attribute for NFRs" annotatedModelElements="//@modelElements[identifier='2653d448-58cf-45c3-bea9-4cb2df61192f']/@subsections[identifier='92be4e17-5632-495a-b9a8-6e9f0e9fb298']/@modelElements[identifier='fa04e3d5-090c-4553-9a37-7bd4a7d0a9dd']/@refiningRequirements[identifier='b87be628-3b7d-44a0-9af6-1ab7c8524859']"/>
     </subsections>
     <subsections xsi:type="org.unicase.model.document:LeafSection" identifier="61351666-b553-4fa3-a9c1-49647c705508" name="New feature requests"/>
     <subsections xsi:type="org.unicase.model.document:LeafSection" identifier="c13772a6-f989-43f1-898f-f9b8b1c03a77" name="User">
@@ -73,7 +77,9 @@
       <modelElements xsi:type="org.unicase.model.task:Milestone" identifier="77bd97a0-1e52-4138-8085-5096e1e34040" name="0.2.0"/>
     </subsections>
     <subsections xsi:type="org.unicase.model.document:LeafSection" identifier="54d5481e-2402-4e76-8624-1b524f9d6e9e" name="Sprints">
-      <modelElements xsi:type="org.unicase.model.task:WorkPackage" identifier="f69b4188-04a0-484c-9099-5c452c338761" name="Sprint 9"/>
+      <modelElements xsi:type="org.unicase.model.task:WorkPackage" identifier="f69b4188-04a0-484c-9099-5c452c338761" name="Sprint 9">
+        <containedWorkItems xsi:type="org.unicase.model.task:ActionItem" identifier="f8593d8a-49f1-49d2-9977-07fb3f9157fd" name="new action item" annotatedModelElements="//@modelElements[identifier='2653d448-58cf-45c3-bea9-4cb2df61192f']/@subsections[identifier='92be4e17-5632-495a-b9a8-6e9f0e9fb298']/@modelElements[identifier='fa04e3d5-090c-4553-9a37-7bd4a7d0a9dd']"/>
+      </modelElements>
       <modelElements xsi:type="org.unicase.model.task:WorkPackage" identifier="918e8675-e1c7-47cc-b579-a414e793a120" name="Sprint 10"/>
       <modelElements xsi:type="org.unicase.model.task:WorkPackage" identifier="d731ce16-8d6f-45a8-83c7-e42272af31a6" name="Sprint 11"/>
       <modelElements xsi:type="org.unicase.model.task:WorkPackage" identifier="4658c94e-5f1a-4971-a6b2-bc502f0b1d5d" name="Sprint 12&#xD;"/>
@@ -90,6 +96,12 @@
       <modelElements xsi:type="org.unicase.model.requirement:FunctionalRequirement" identifier="8381b939-bb6a-4b0a-8559-5da15031bdd3" name="Change Feeds"/>
       <modelElements xsi:type="org.unicase.model.requirement:FunctionalRequirement" identifier="46578b10-2e81-4829-b8ab-ac90484ef3aa" name="Run server as deamon"/>
     </subsections>
+    <subsections xsi:type="org.unicase.model.document:LeafSection" identifier="380a0ddd-76ef-4a29-8a54-b62d8e64bcaf" name="Use Cases">
+      <modelElements xsi:type="org.unicase.model.requirement:UseCase" identifier="c858a0dc-59cd-4ded-8bd2-68d02387cdd1" name="Add children to parent" functionalRequirements="//@modelElements[identifier='2653d448-58cf-45c3-bea9-4cb2df61192f']/@subsections[identifier='92be4e17-5632-495a-b9a8-6e9f0e9fb298']/@modelElements[identifier='f10193c3-bd43-444f-a26f-77549a6375ad']/@refiningRequirements[identifier='d940f7d3-15f3-408b-9ed0-f8cef71d88df']"/>
+      <modelElements xsi:type="org.unicase.model.requirement:UseCase" identifier="4e3a2985-25eb-4ba1-b88d-6388bfa4893a" name="Add items to iteration" annotations="//@modelElements[identifier='1e0d49f6-9bab-4f75-b879-25fc7c69a64c']" functionalRequirements="//@modelElements[identifier='2653d448-58cf-45c3-bea9-4cb2df61192f']/@subsections[identifier='92be4e17-5632-495a-b9a8-6e9f0e9fb298']/@modelElements[identifier='deb206a6-ac98-4f31-bf58-f6eff34574e0']/@refiningRequirements[identifier='535c75f8-4c42-416e-b8da-1564a65cc571']"/>
+    </subsections>
+    <subsections xsi:type="org.unicase.model.document:LeafSection" identifier="05c264d4-a3a1-4887-96a8-7a93b245d204" name="Non-Functional requirements"/>
   </modelElements>
   <modelElements xsi:type="org.unicase.model.task:ActionItem" identifier="da15affe-9d9b-419d-a32c-1df56d133658" name="Implement Enumeration Widget" description="" annotatedModelElements="//@modelElements[identifier='2653d448-58cf-45c3-bea9-4cb2df61192f']/@subsections[identifier='92be4e17-5632-495a-b9a8-6e9f0e9fb298']/@modelElements[identifier='deb206a6-ac98-4f31-bf58-f6eff34574e0']/@refiningRequirements[identifier='d370f822-b44f-4285-a4e8-c5acb4ad157a']/@refiningRequirements[identifier='e8cf4d3b-7493-41b9-9faa-9e8e0e96b826']" estimate="5"/>
+  <modelElements xsi:type="org.unicase.model.task:ActionItem" identifier="1e0d49f6-9bab-4f75-b879-25fc7c69a64c" name="Test add items to iteration" description="" annotatedModelElements="//@modelElements[identifier='2653d448-58cf-45c3-bea9-4cb2df61192f']/@subsections[identifier='380a0ddd-76ef-4a29-8a54-b62d8e64bcaf']/@modelElements[identifier='4e3a2985-25eb-4ba1-b88d-6388bfa4893a']" estimate="5"/>
 </org.unicase.model:Project>
