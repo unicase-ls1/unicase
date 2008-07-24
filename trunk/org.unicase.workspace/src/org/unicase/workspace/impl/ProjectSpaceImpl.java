@@ -19,6 +19,8 @@ import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.eclipse.emf.ecore.change.util.ChangeRecorder;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.unicase.emfstore.conflictDetection.BasicConflictDetectionStrategy;
+import org.unicase.emfstore.conflictDetection.ConflictDetector;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
@@ -37,6 +39,7 @@ import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
+import org.unicase.workspace.exceptions.ChangeConflictException;
 import org.unicase.workspace.exceptions.IllegalProjectSpaceStateException;
 import org.unicase.workspace.exceptions.NoChangesOnServerException;
 import org.unicase.workspace.exceptions.NoLocalChangesException;
@@ -585,7 +588,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		stopChangeRecording();
 
 		// check if there are any changes
-		if (getLocalChanges() == null || isChangeDescriptionEmpty(getLocalChanges())) {
+		if (getLocalChanges() == null
+				|| isChangeDescriptionEmpty(getLocalChanges())) {
 			startChangeRecording();
 			throw new NoLocalChangesException();
 		}
@@ -665,7 +669,19 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 				getUsersession().getSessionId(), getProjectId(),
 				getBaseVersion(), resolvedVersion);
 
-		// MK: insert conflict detection here
+		//detect conflicts
+//		for (ChangePackage change : changes) {
+//			// MK: implement conflict detection here
+//			ConflictDetector conflictDetector = new ConflictDetector(
+//					new BasicConflictDetectionStrategy());
+//			ChangePackage changePackage = VersioningFactory.eINSTANCE
+//					.createChangePackage();
+//			changePackage.init(getProject(), getLocalChanges());
+//			if (conflictDetector.doConflict(change, changePackage)) {
+//				throw new ChangeConflictException();
+//			}
+//		}
+
 		for (ChangePackage change : changes) {
 			change.apply(getProject());
 		}
@@ -680,7 +696,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * @generated NOT
 	 */
 	public void revert() {
-		//MK: fix this for changepackage
+		// MK: fix this for changepackage
 		stopChangeRecording();
 		getLocalChanges().apply();
 		setLocalChanges(null);
@@ -725,7 +741,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		if (getLocalChanges() == null) {
 			changeRecorder.beginRecording(Collections.singleton(getProject()));
 		} else {
-			changeRecorder.beginRecording((ChangeDescription) EcoreUtil.copy(getLocalChanges()), Collections
+			changeRecorder.beginRecording((ChangeDescription) EcoreUtil
+					.copy(getLocalChanges()), Collections
 					.singleton(getProject()));
 		}
 
