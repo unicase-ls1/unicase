@@ -20,7 +20,10 @@
         <refiningRequirements identifier="da3e4f99-544d-4128-a047-87c222960bfa" name="AccessControlManagement View" description="create, modify, delete&#xD;users, groups, projects&#xD;assign roles to users&#xD;assign users to groups"/>
         <refiningRequirements identifier="562d6513-bbfd-460a-a037-5f5866cbcfbe" name="Preferences View" annotations="//@modelElements[identifier='2653d448-58cf-45c3-bea9-4cb2df61192f']/@subsections[identifier='18bd6bd1-081f-417e-931b-79b6544e92b7']/@modelElements[identifier='6f52e4f5-3959-40fd-ab50-0f0064730cd6']"/>
         <refiningRequirements identifier="fdb7a842-ba11-4148-a982-0d30586f1461" name="SCM Views">
-          <refiningRequirements identifier="a8b39431-4db7-4e3c-a70f-7d76d99e1057" name="History Viewer"/>
+          <refiningRequirements identifier="a8b39431-4db7-4e3c-a70f-7d76d99e1057" name="History Browser" description="shows a table of all versions of a project. it shows the commit comment, the user that created the version and the time it was created as columns.&#xD;See old history browser in sysiphus. See query tab to define queries"/>
+          <refiningRequirements identifier="7f84d8d9-8368-4e74-b807-d006eb4aa9bf" name="MergeView" description="see usecase merge changes in sysiphus reloaded project. see attached pdf there for gui mockup.&#xD;the changes should be display as a table with the attributes of abstractOperation as defined in esmodel.versioning.operations.&#xD;There is a left and a right table that display the operations of a changepackage. for dynamic model see use case.&#xD;hihghlighting should be possible in different colors. there must be a context menu on each operation that is dynamically created depending on the respective operation.&#xD;there is an apply, reject and a merge button. double click opens the model element of the operation. The dialog shows a count of the operations in the left and the right table. the dialog can be initiallized by providing two lists of changepackages."/>
+          <refiningRequirements identifier="77834490-1e7f-4a8f-a6a0-b08a6984a7f9" name="commit update view" description="shows a list of operations of a change package in a table with the attributes of abstractoperation (esmodel.versioning.operations.&#xD;double click opens the model element of the operation. there is a commit or update and a cancel button and a count of the operations.&#xD;there is also a status column that displays whether the op was already accepted or not. See change browser in sysiphus as an example. there is also a query tab there to specify a query for changes"/>
+          <refiningRequirements identifier="e43902bc-4db5-4793-9ff7-3f6e4c62fa61" name="change browser" description="as in sysiphus system. but shows attributes of abstractOperation as defined in esmodel.versioning.operations"/>
         </refiningRequirements>
         <refiningRequirements identifier="de7556a8-14eb-4198-8938-20fb2edaed10" name="Table view"/>
         <refiningRequirements identifier="db8ad0d7-809c-484a-bc63-4e4d458c520c" name="Status view"/>
@@ -46,6 +49,7 @@
         <refiningRequirements identifier="6843faa4-5ee7-4614-b8a6-0f4f84c9d1c6" name="Change composite"/>
         <refiningRequirements identifier="2fe5addb-30b7-4211-b6be-939e2c44e980" name="Concurrency Control"/>
         <refiningRequirements identifier="47b7df8c-53d2-435d-87f2-58e1c06363e8" name="LDAP"/>
+        <refiningRequirements identifier="4d7848b6-8c5e-493f-a340-f0deaac80656" name="Encrypted Transport"/>
       </modelElements>
       <modelElements xsi:type="org.unicase.model.requirement:FunctionalRequirement" identifier="aed54dd5-1dae-4701-afd0-ff0194725935" name="Export"/>
     </subsections>
@@ -86,6 +90,10 @@
     </subsections>
     <subsections xsi:type="org.unicase.model.document:LeafSection" identifier="e8912d99-ec64-48ac-a54b-31e0bc75b146" name="New ActionItems">
       <modelElements xsi:type="org.unicase.model.task:ActionItem" identifier="2f2fb1e3-3e53-4228-aad7-0fdcf2da0f96" name="Try out and Document Release process" description="Include svn tag, feature release, etc."/>
+      <modelElements xsi:type="org.unicase.model.task:ActionItem" identifier="fb6bc2f6-f685-407f-8caa-ab202544779b" name="partition DB" description="partition db into several resources. one per project history and one administrative resource."/>
+      <modelElements xsi:type="org.unicase.model.task:ActionItem" identifier="ea1a2f1c-cd50-44e0-b8f0-6ff9bfaa2c4a" name="Login DIalog" description="Login dialog must pop up every time an accesscontrol exception is thrown"/>
+      <modelElements xsi:type="org.unicase.model.task:ActionItem" identifier="0816f7eb-4ecd-47d7-bd74-bc2484a055f6" name="implement getOperations in changepackage" assignedTo="//@modelElements[identifier='2653d448-58cf-45c3-bea9-4cb2df61192f']/@subsections[identifier='c13772a6-f989-43f1-898f-f9b8b1c03a77']/@modelElements[identifier='d398fb2d-4ad5-4085-a7ad-a074984ff678']"/>
+      <modelElements xsi:type="org.unicase.model.task:ActionItem" identifier="283c5bdb-bd29-43b9-a4be-21856dbafc6a" name="implement getProject properly" description="should work for all revisions. state must be calclated with change packages"/>
     </subsections>
     <subsections xsi:type="org.unicase.model.document:LeafSection" identifier="18bd6bd1-081f-417e-931b-79b6544e92b7" name="Issues">
       <modelElements xsi:type="org.unicase.model.rationale:Issue" identifier="6f52e4f5-3959-40fd-ab50-0f0064730cd6" name="Do we need preferences?" annotatedModelElements="//@modelElements[identifier='2653d448-58cf-45c3-bea9-4cb2df61192f']/@subsections[identifier='92be4e17-5632-495a-b9a8-6e9f0e9fb298']/@modelElements[identifier='deb206a6-ac98-4f31-bf58-f6eff34574e0']/@refiningRequirements[identifier='562d6513-bbfd-460a-a037-5f5866cbcfbe']"/>
@@ -95,6 +103,7 @@
       <modelElements xsi:type="org.unicase.model.requirement:FunctionalRequirement" identifier="0a3030d8-8712-4fa2-9ed9-9b5203286436" name="Report a Bug"/>
       <modelElements xsi:type="org.unicase.model.requirement:FunctionalRequirement" identifier="8381b939-bb6a-4b0a-8559-5da15031bdd3" name="Change Feeds"/>
       <modelElements xsi:type="org.unicase.model.requirement:FunctionalRequirement" identifier="46578b10-2e81-4829-b8ab-ac90484ef3aa" name="Run server as deamon"/>
+      <modelElements xsi:type="org.unicase.model.requirement:FunctionalRequirement" identifier="b977f9f1-0754-4c79-b8b4-6999f8244ea6" name="DBUpgrader"/>
     </subsections>
     <subsections xsi:type="org.unicase.model.document:LeafSection" identifier="380a0ddd-76ef-4a29-8a54-b62d8e64bcaf" name="Use Cases">
       <modelElements xsi:type="org.unicase.model.requirement:UseCase" identifier="c858a0dc-59cd-4ded-8bd2-68d02387cdd1" name="Add children to parent" functionalRequirements="//@modelElements[identifier='2653d448-58cf-45c3-bea9-4cb2df61192f']/@subsections[identifier='92be4e17-5632-495a-b9a8-6e9f0e9fb298']/@modelElements[identifier='f10193c3-bd43-444f-a26f-77549a6375ad']/@refiningRequirements[identifier='d940f7d3-15f3-408b-9ed0-f8cef71d88df']"/>
@@ -104,4 +113,6 @@
   </modelElements>
   <modelElements xsi:type="org.unicase.model.task:ActionItem" identifier="da15affe-9d9b-419d-a32c-1df56d133658" name="Implement Enumeration Widget" description="" annotatedModelElements="//@modelElements[identifier='2653d448-58cf-45c3-bea9-4cb2df61192f']/@subsections[identifier='92be4e17-5632-495a-b9a8-6e9f0e9fb298']/@modelElements[identifier='deb206a6-ac98-4f31-bf58-f6eff34574e0']/@refiningRequirements[identifier='d370f822-b44f-4285-a4e8-c5acb4ad157a']/@refiningRequirements[identifier='e8cf4d3b-7493-41b9-9faa-9e8e0e96b826']" estimate="5"/>
   <modelElements xsi:type="org.unicase.model.task:ActionItem" identifier="1e0d49f6-9bab-4f75-b879-25fc7c69a64c" name="Test add items to iteration" description="" annotatedModelElements="//@modelElements[identifier='2653d448-58cf-45c3-bea9-4cb2df61192f']/@subsections[identifier='380a0ddd-76ef-4a29-8a54-b62d8e64bcaf']/@modelElements[identifier='4e3a2985-25eb-4ba1-b88d-6388bfa4893a']" estimate="5"/>
+  <modelElements xsi:type="org.unicase.model.task:ActionItem" identifier="f1c9cd12-08dc-4556-9c73-1bd7fe43ecc5" name="NewActionItem" description="" estimate="5"/>
+  <modelElements xsi:type="org.unicase.model.task:ActionItem" identifier="f8b7fdd5-9f34-46fc-92fb-356f549358cf" name="Login Dialog" description="Integrate Login DIalog in GUI. It should pop up everytime a accesscontrol exception occurs." estimate="5"/>
 </org.unicase.model:Project>
