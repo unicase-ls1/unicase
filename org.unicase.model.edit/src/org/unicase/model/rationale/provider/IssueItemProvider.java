@@ -163,13 +163,11 @@ public class IssueItemProvider extends AnnotationItemProvider implements
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Issue) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Issue_type")
-				: getString("_UI_Issue_type") + " " + label;
+		return super.getText(object);
 	}
 
 	/**
