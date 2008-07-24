@@ -223,7 +223,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 //						uri.trimFragment(), false);
 				if (resource == null) {
 					resource = domain.getResourceSet().createResource(
-							uri.trimFragment(), "MEDiagram");
+							uri, "MEDiagram");
 				}
 				if (!resource.isLoaded()) {
 					try {
