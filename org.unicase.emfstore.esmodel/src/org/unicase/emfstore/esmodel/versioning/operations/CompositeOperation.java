@@ -16,8 +16,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#getAtomicOperations <em>Atomic Operations</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#getName <em>Name</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#getDescription <em>Description</em>}</li>
  * </ul>
  * </p>
  *
@@ -41,57 +39,5 @@ public interface CompositeOperation extends AbstractOperation {
 	 * @generated
 	 */
 	EList<AtomicOperation> getAtomicOperations();
-
-	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getCompositeOperation_Name()
-	 * @model
-	 * @generated
-	 */
-	String getName();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Description</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Description</em>' attribute.
-	 * @see #setDescription(String)
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getCompositeOperation_Description()
-	 * @model
-	 * @generated
-	 */
-	String getDescription();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#getDescription <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Description</em>' attribute.
-	 * @see #getDescription()
-	 * @generated
-	 */
-	void setDescription(String value);
 
 } // CompositeOperation

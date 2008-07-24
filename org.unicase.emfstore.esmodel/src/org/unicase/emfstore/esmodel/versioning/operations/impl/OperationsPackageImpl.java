@@ -206,6 +206,46 @@ public class OperationsPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getAbstractOperation_Name() {
+		return (EAttribute) abstractOperationEClass.getEStructuralFeatures()
+				.get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAbstractOperation_Description() {
+		return (EAttribute) abstractOperationEClass.getEStructuralFeatures()
+				.get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAbstractOperation_ModelElement() {
+		return (EReference) abstractOperationEClass.getEStructuralFeatures()
+				.get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAbstractOperation_Username() {
+		return (EAttribute) abstractOperationEClass.getEStructuralFeatures()
+				.get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCompositeOperation() {
 		return compositeOperationEClass;
 	}
@@ -225,26 +265,6 @@ public class OperationsPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getCompositeOperation_Name() {
-		return (EAttribute) compositeOperationEClass.getEStructuralFeatures()
-				.get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getCompositeOperation_Description() {
-		return (EAttribute) compositeOperationEClass.getEStructuralFeatures()
-				.get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getFeatureOperation() {
 		return featureOperationEClass;
 	}
@@ -254,9 +274,29 @@ public class OperationsPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFeatureOperation_FeatureChange() {
-		return (EReference) featureOperationEClass.getEStructuralFeatures()
+	public EAttribute getFeatureOperation_OldValue() {
+		return (EAttribute) featureOperationEClass.getEStructuralFeatures()
 				.get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFeatureOperation_NewValue() {
+		return (EAttribute) featureOperationEClass.getEStructuralFeatures()
+				.get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFeatureOperation_AttributeName() {
+		return (EAttribute) featureOperationEClass.getEStructuralFeatures()
+				.get(2);
 	}
 
 	/**
@@ -336,17 +376,22 @@ public class OperationsPackageImpl extends EPackageImpl implements
 
 		// Create classes and their features
 		abstractOperationEClass = createEClass(ABSTRACT_OPERATION);
+		createEAttribute(abstractOperationEClass, ABSTRACT_OPERATION__NAME);
+		createEAttribute(abstractOperationEClass,
+				ABSTRACT_OPERATION__DESCRIPTION);
+		createEReference(abstractOperationEClass,
+				ABSTRACT_OPERATION__MODEL_ELEMENT);
+		createEAttribute(abstractOperationEClass, ABSTRACT_OPERATION__USERNAME);
 
 		compositeOperationEClass = createEClass(COMPOSITE_OPERATION);
 		createEReference(compositeOperationEClass,
 				COMPOSITE_OPERATION__ATOMIC_OPERATIONS);
-		createEAttribute(compositeOperationEClass, COMPOSITE_OPERATION__NAME);
-		createEAttribute(compositeOperationEClass,
-				COMPOSITE_OPERATION__DESCRIPTION);
 
 		featureOperationEClass = createEClass(FEATURE_OPERATION);
-		createEReference(featureOperationEClass,
-				FEATURE_OPERATION__FEATURE_CHANGE);
+		createEAttribute(featureOperationEClass, FEATURE_OPERATION__OLD_VALUE);
+		createEAttribute(featureOperationEClass, FEATURE_OPERATION__NEW_VALUE);
+		createEAttribute(featureOperationEClass,
+				FEATURE_OPERATION__ATTRIBUTE_NAME);
 
 		createOperationEClass = createEClass(CREATE_OPERATION);
 		createEReference(createOperationEClass,
@@ -386,8 +431,6 @@ public class OperationsPackageImpl extends EPackageImpl implements
 		// Obtain other dependent packages
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE
 				.getEPackage(ModelPackage.eNS_URI);
-		ChangePackage theChangePackage = (ChangePackage) EPackage.Registry.INSTANCE
-				.getEPackage(ChangePackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
 				.getEPackage(EcorePackage.eNS_URI);
 
@@ -407,6 +450,24 @@ public class OperationsPackageImpl extends EPackageImpl implements
 		initEClass(abstractOperationEClass, AbstractOperation.class,
 				"AbstractOperation", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAbstractOperation_Name(), ecorePackage.getEString(),
+				"name", null, 0, 1, AbstractOperation.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractOperation_Description(), ecorePackage
+				.getEString(), "description", null, 0, 1,
+				AbstractOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEReference(getAbstractOperation_ModelElement(), theModelPackage
+				.getModelElement(), null, "modelElement", null, 0, 1,
+				AbstractOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractOperation_Username(), ecorePackage
+				.getEString(), "username", null, 0, 1, AbstractOperation.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = addEOperation(abstractOperationEClass, null, "apply",
 				0, 1, IS_UNIQUE, IS_ORDERED);
@@ -424,24 +485,23 @@ public class OperationsPackageImpl extends EPackageImpl implements
 				CompositeOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCompositeOperation_Name(), ecorePackage.getEString(),
-				"name", null, 0, 1, CompositeOperation.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCompositeOperation_Description(), ecorePackage
-				.getEString(), "description", null, 0, 1,
-				CompositeOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
 
 		initEClass(featureOperationEClass, FeatureOperation.class,
 				"FeatureOperation", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFeatureOperation_FeatureChange(), theChangePackage
-				.getFeatureChange(), null, "featureChange", null, 0, 1,
+		initEAttribute(getFeatureOperation_OldValue(), ecorePackage
+				.getEString(), "oldValue", null, 0, 1, FeatureOperation.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFeatureOperation_NewValue(), ecorePackage
+				.getEString(), "newValue", null, 0, 1, FeatureOperation.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFeatureOperation_AttributeName(), theEcorePackage
+				.getEString(), "AttributeName", null, 0, 1,
 				FeatureOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
 		initEClass(createOperationEClass, CreateOperation.class,
 				"CreateOperation", !IS_ABSTRACT, !IS_INTERFACE,

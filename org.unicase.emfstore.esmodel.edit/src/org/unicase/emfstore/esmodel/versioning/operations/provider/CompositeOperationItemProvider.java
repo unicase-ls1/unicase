@@ -17,8 +17,6 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 
@@ -54,8 +52,6 @@ public class CompositeOperationItemProvider extends
 			super.getPropertyDescriptors(object);
 
 			addAtomicOperationsPropertyDescriptor(object);
-			addNamePropertyDescriptor(object);
-			addDescriptionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -79,44 +75,6 @@ public class CompositeOperationItemProvider extends
 								"_UI_CompositeOperation_type"),
 						OperationsPackage.Literals.COMPOSITE_OPERATION__ATOMIC_OPERATIONS,
 						true, false, true, null, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_CompositeOperation_name_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_CompositeOperation_name_feature",
-						"_UI_CompositeOperation_type"),
-				OperationsPackage.Literals.COMPOSITE_OPERATION__NAME, true,
-				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-				null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Description feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_CompositeOperation_description_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_CompositeOperation_description_feature",
-						"_UI_CompositeOperation_type"),
-				OperationsPackage.Literals.COMPOSITE_OPERATION__DESCRIPTION,
-				true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				null, null));
 	}
 
 	/**
@@ -154,14 +112,6 @@ public class CompositeOperationItemProvider extends
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(CompositeOperation.class)) {
-		case OperationsPackage.COMPOSITE_OPERATION__NAME:
-		case OperationsPackage.COMPOSITE_OPERATION__DESCRIPTION:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
-			return;
-		}
 		super.notifyChanged(notification);
 	}
 

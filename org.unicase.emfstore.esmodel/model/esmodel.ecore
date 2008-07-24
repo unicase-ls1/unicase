@@ -98,15 +98,19 @@
           <eParameters name="project" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"/>
         </eOperations>
         <eOperations name="reverse" eType="#//versioning/operations/AbstractOperation"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="modelElement" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElement"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="username" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="CompositeOperation" eSuperTypes="#//versioning/operations/AbstractOperation">
         <eStructuralFeatures xsi:type="ecore:EReference" name="atomicOperations" upperBound="-1"
             eType="#//versioning/operations/AtomicOperation"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="FeatureOperation" eSuperTypes="#//versioning/operations/AtomicOperation">
-        <eStructuralFeatures xsi:type="ecore:EReference" name="featureChange" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore.change/model/Change.ecore#//FeatureChange"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="oldValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="newValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="AttributeName" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="CreateOperation" eSuperTypes="#//versioning/operations/AtomicOperation">
         <eStructuralFeatures xsi:type="ecore:EReference" name="objectToCreate" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
