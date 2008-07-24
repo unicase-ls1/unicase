@@ -7,10 +7,8 @@ package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.unicase.emfstore.esmodel.versioning.operations.AtomicOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
@@ -24,8 +22,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.CompositeOperationImpl#getAtomicOperations <em>Atomic Operations</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.CompositeOperationImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.CompositeOperationImpl#getDescription <em>Description</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,46 +38,6 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 	 * @ordered
 	 */
 	protected EList<AtomicOperation> atomicOperations;
-
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDescription()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DESCRIPTION_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDescription()
-	 * @generated
-	 * @ordered
-	 */
-	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -121,60 +77,11 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					OperationsPackage.COMPOSITE_OPERATION__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getDescription() {
-		return description;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDescription(String newDescription) {
-		String oldDescription = description;
-		description = newDescription;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					OperationsPackage.COMPOSITE_OPERATION__DESCRIPTION,
-					oldDescription, description));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case OperationsPackage.COMPOSITE_OPERATION__ATOMIC_OPERATIONS:
 			return getAtomicOperations();
-		case OperationsPackage.COMPOSITE_OPERATION__NAME:
-			return getName();
-		case OperationsPackage.COMPOSITE_OPERATION__DESCRIPTION:
-			return getDescription();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -193,12 +100,6 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 			getAtomicOperations().addAll(
 					(Collection<? extends AtomicOperation>) newValue);
 			return;
-		case OperationsPackage.COMPOSITE_OPERATION__NAME:
-			setName((String) newValue);
-			return;
-		case OperationsPackage.COMPOSITE_OPERATION__DESCRIPTION:
-			setDescription((String) newValue);
-			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -214,12 +115,6 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 		case OperationsPackage.COMPOSITE_OPERATION__ATOMIC_OPERATIONS:
 			getAtomicOperations().clear();
 			return;
-		case OperationsPackage.COMPOSITE_OPERATION__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case OperationsPackage.COMPOSITE_OPERATION__DESCRIPTION:
-			setDescription(DESCRIPTION_EDEFAULT);
-			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -234,33 +129,8 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 		switch (featureID) {
 		case OperationsPackage.COMPOSITE_OPERATION__ATOMIC_OPERATIONS:
 			return atomicOperations != null && !atomicOperations.isEmpty();
-		case OperationsPackage.COMPOSITE_OPERATION__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT
-					.equals(name);
-		case OperationsPackage.COMPOSITE_OPERATION__DESCRIPTION:
-			return DESCRIPTION_EDEFAULT == null ? description != null
-					: !DESCRIPTION_EDEFAULT.equals(description);
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy())
-			return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(", description: ");
-		result.append(description);
-		result.append(')');
-		return result.toString();
 	}
 
 } //CompositeOperationImpl

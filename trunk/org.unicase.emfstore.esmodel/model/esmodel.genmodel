@@ -78,6 +78,11 @@
       <nestedGenPackages prefix="Operations" basePackage="org.unicase.emfstore.esmodel.versioning"
           disposableProviderFactory="true" ecorePackage="esmodel.ecore#//versioning/operations">
         <genClasses ecoreClass="esmodel.ecore#//versioning/operations/AbstractOperation">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/AbstractOperation/name"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/AbstractOperation/description"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference esmodel.ecore#//versioning/operations/AbstractOperation/modelElement"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/AbstractOperation/username"/>
           <genOperations ecoreOperation="esmodel.ecore#//versioning/operations/AbstractOperation/apply">
             <genParameters ecoreParameter="esmodel.ecore#//versioning/operations/AbstractOperation/apply/project"/>
           </genOperations>
@@ -86,12 +91,11 @@
         <genClasses ecoreClass="esmodel.ecore#//versioning/operations/CompositeOperation">
           <genFeatures notify="false" createChild="false" propertySortChoices="true"
               ecoreFeature="ecore:EReference esmodel.ecore#//versioning/operations/CompositeOperation/atomicOperations"/>
-          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/CompositeOperation/name"/>
-          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/CompositeOperation/description"/>
         </genClasses>
         <genClasses ecoreClass="esmodel.ecore#//versioning/operations/FeatureOperation">
-          <genFeatures notify="false" createChild="false" propertySortChoices="true"
-              ecoreFeature="ecore:EReference esmodel.ecore#//versioning/operations/FeatureOperation/featureChange"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/FeatureOperation/oldValue"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/FeatureOperation/newValue"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/FeatureOperation/AttributeName"/>
         </genClasses>
         <genClasses ecoreClass="esmodel.ecore#//versioning/operations/CreateOperation">
           <genFeatures notify="false" createChild="false" propertySortChoices="true"

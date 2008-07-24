@@ -17,6 +17,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.unicase.emfstore.esmodel.versioning.operations.CreateOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 
 /**
@@ -92,7 +93,9 @@ public class CreateOperationItemProvider extends AtomicOperationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_CreateOperation_type");
+		String label = ((CreateOperation) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_CreateOperation_type")
+				: getString("_UI_CreateOperation_type") + " " + label;
 	}
 
 	/**

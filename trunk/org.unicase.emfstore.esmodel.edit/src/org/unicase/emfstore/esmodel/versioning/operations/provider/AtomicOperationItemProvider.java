@@ -16,6 +16,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.unicase.emfstore.esmodel.versioning.operations.AtomicOperation;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.AtomicOperation} object.
@@ -71,7 +72,9 @@ public class AtomicOperationItemProvider extends AbstractOperationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_AtomicOperation_type");
+		String label = ((AtomicOperation) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_AtomicOperation_type")
+				: getString("_UI_AtomicOperation_type") + " " + label;
 	}
 
 	/**

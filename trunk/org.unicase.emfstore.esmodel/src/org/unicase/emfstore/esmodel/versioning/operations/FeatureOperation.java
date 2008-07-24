@@ -5,7 +5,6 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations;
 
-import org.eclipse.emf.ecore.change.FeatureChange;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,7 +14,9 @@ import org.eclipse.emf.ecore.change.FeatureChange;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation#getFeatureChange <em>Feature Change</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation#getOldValue <em>Old Value</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation#getNewValue <em>New Value</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation#getAttributeName <em>Attribute Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -25,29 +26,81 @@ import org.eclipse.emf.ecore.change.FeatureChange;
  */
 public interface FeatureOperation extends AtomicOperation {
 	/**
-	 * Returns the value of the '<em><b>Feature Change</b></em>' reference.
+	 * Returns the value of the '<em><b>Old Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Feature Change</em>' reference isn't clear,
+	 * If the meaning of the '<em>Old Value</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Feature Change</em>' reference.
-	 * @see #setFeatureChange(FeatureChange)
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getFeatureOperation_FeatureChange()
+	 * @return the value of the '<em>Old Value</em>' attribute.
+	 * @see #setOldValue(String)
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getFeatureOperation_OldValue()
 	 * @model
 	 * @generated
 	 */
-	FeatureChange getFeatureChange();
+	String getOldValue();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation#getFeatureChange <em>Feature Change</em>}' reference.
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation#getOldValue <em>Old Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Feature Change</em>' reference.
-	 * @see #getFeatureChange()
+	 * @param value the new value of the '<em>Old Value</em>' attribute.
+	 * @see #getOldValue()
 	 * @generated
 	 */
-	void setFeatureChange(FeatureChange value);
+	void setOldValue(String value);
+
+	/**
+	 * Returns the value of the '<em><b>New Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>New Value</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>New Value</em>' attribute.
+	 * @see #setNewValue(String)
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getFeatureOperation_NewValue()
+	 * @model
+	 * @generated
+	 */
+	String getNewValue();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation#getNewValue <em>New Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>New Value</em>' attribute.
+	 * @see #getNewValue()
+	 * @generated
+	 */
+	void setNewValue(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Attribute Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Attribute Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Attribute Name</em>' attribute.
+	 * @see #setAttributeName(String)
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getFeatureOperation_AttributeName()
+	 * @model
+	 * @generated
+	 */
+	String getAttributeName();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation#getAttributeName <em>Attribute Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Attribute Name</em>' attribute.
+	 * @see #getAttributeName()
+	 * @generated
+	 */
+	void setAttributeName(String value);
 
 } // FeatureOperation

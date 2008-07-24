@@ -236,7 +236,7 @@ public class ChangeContainerImpl extends EObjectImpl implements ChangeContainer 
 			// MK Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.backwardDelta = out.toString();
+		this.setBackwardDelta(out.toString());
 
 		backwardChangeDescription.applyAndReverse();
 
@@ -247,7 +247,7 @@ public class ChangeContainerImpl extends EObjectImpl implements ChangeContainer 
 			// MK Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.forwardDelta = out.toString();
+		this.setForwardDelta(out.toString());
 
 		backwardChangeDescription.apply();
 

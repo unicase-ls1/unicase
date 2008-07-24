@@ -11,14 +11,19 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation} object.
@@ -50,8 +55,87 @@ public class AbstractOperationItemProvider extends ItemProviderAdapter
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addNamePropertyDescriptor(object);
+			addDescriptionPropertyDescriptor(object);
+			addModelElementPropertyDescriptor(object);
+			addUsernamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_AbstractOperation_name_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_AbstractOperation_name_feature",
+						"_UI_AbstractOperation_type"),
+				OperationsPackage.Literals.ABSTRACT_OPERATION__NAME, true,
+				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Description feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDescriptionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_AbstractOperation_description_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_AbstractOperation_description_feature",
+						"_UI_AbstractOperation_type"),
+				OperationsPackage.Literals.ABSTRACT_OPERATION__DESCRIPTION,
+				true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Model Element feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addModelElementPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_AbstractOperation_modelElement_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_AbstractOperation_modelElement_feature",
+						"_UI_AbstractOperation_type"),
+				OperationsPackage.Literals.ABSTRACT_OPERATION__MODEL_ELEMENT,
+				true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Username feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addUsernamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_AbstractOperation_username_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_AbstractOperation_username_feature",
+						"_UI_AbstractOperation_type"),
+				OperationsPackage.Literals.ABSTRACT_OPERATION__USERNAME, true,
+				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
@@ -74,7 +158,9 @@ public class AbstractOperationItemProvider extends ItemProviderAdapter
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_AbstractOperation_type");
+		String label = ((AbstractOperation) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_AbstractOperation_type")
+				: getString("_UI_AbstractOperation_type") + " " + label;
 	}
 
 	/**
@@ -87,6 +173,15 @@ public class AbstractOperationItemProvider extends ItemProviderAdapter
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(AbstractOperation.class)) {
+		case OperationsPackage.ABSTRACT_OPERATION__NAME:
+		case OperationsPackage.ABSTRACT_OPERATION__DESCRIPTION:
+		case OperationsPackage.ABSTRACT_OPERATION__USERNAME:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), false, true));
+			return;
+		}
 		super.notifyChanged(notification);
 	}
 
