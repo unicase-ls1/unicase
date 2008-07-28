@@ -6,10 +6,12 @@
  */
 package org.unicase.workspace;
 
+import java.io.IOException;
+
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.exceptions.EmfStoreException;
@@ -36,7 +38,7 @@ import org.unicase.workspace.connectionmanager.ConnectionManager;
  */
 public interface Workspace extends EObject, IAdaptable {
 	/**
-	 * Returns the value of the '<em><b>Project Spaces</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Project Spaces</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.workspace.ProjectSpace}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -44,9 +46,9 @@ public interface Workspace extends EObject, IAdaptable {
 	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Project Spaces</em>' containment reference list.
+	 * @return the value of the '<em>Project Spaces</em>' reference list.
 	 * @see org.unicase.workspace.WorkspacePackage#getWorkspace_ProjectSpaces()
-	 * @model containment="true"
+	 * @model keys="identifier"
 	 * @generated
 	 */
 	EList<ProjectSpace> getProjectSpaces();
@@ -125,14 +127,14 @@ public interface Workspace extends EObject, IAdaptable {
 	void setConnectionManager(ConnectionManager connectionManager);
 
 	/**
-	 * Set the workspace resource.
+	 * Set the workspace resource set.
 	 * 
-	 * @param resource
-	 *            the resource
+	 * @param resourceSet
+	 *            the resource set
 	 * 
 	 * @generated NOT
 	 */
-	void setResource(Resource resource);
+	void setWorkspaceResourceSet(ResourceSet resourceSet);
 
 	/**
 	 * Init the workspace and its projectspaces.
@@ -152,4 +154,16 @@ public interface Workspace extends EObject, IAdaptable {
 	 * @generated NOT
 	 */
 	TransactionalEditingDomain getEditingDomain();
+
+	ProjectSpace importProject(String absoluteFileName) throws IOException;
+
+	void exportProject(ProjectSpace projectSpace, String absoluteFileName)
+			throws IOException;
+
+	/**
+	 * Create a resource for the project space and add it to workspace.
+	 * 
+	 * @param projectSpace the project space to set up
+	 */
+	void setupProjectSpace(ProjectSpace projectSpace);
 } // Workspace

@@ -18,8 +18,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
-import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentFactory;
-import org.unicase.emfstore.esmodel.changemanagment.LogMessage;
+import org.unicase.emfstore.esmodel.versioning.LogMessage;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
@@ -229,7 +230,8 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 */
 	public void setPassword(String newPassword) {
 		setPasswordGen(newPassword);
-		if (isSavePassword()) {
+		if (isSavePassword() && getPasswordGen() != null
+				&& !getPasswordGen().equals(newPassword)) {
 			setPersistentPassword(newPassword);
 		}
 	}
@@ -240,7 +242,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SessionId getSessionId() {
+	public SessionId getSessionIdGen() {
 		if (sessionId != null && sessionId.eIsProxy()) {
 			InternalEObject oldSessionId = (InternalEObject) sessionId;
 			sessionId = (SessionId) eResolveProxy(oldSessionId);
@@ -287,13 +289,26 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPersistentPassword(String newPersistentPassword) {
+	public void setPersistentPasswordGen(String newPersistentPassword) {
 		String oldPersistentPassword = persistentPassword;
 		persistentPassword = newPersistentPassword;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
 					WorkspacePackage.USERSESSION__PERSISTENT_PASSWORD,
 					oldPersistentPassword, persistentPassword));
+	}
+
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.workspace.Usersession#setPersistentPassword(java.lang.String)
+	 * 
+	 * @generated NOT
+	 */
+	public void setPersistentPassword(String newPersistentPassword) {
+		if (isSavePassword()) {
+			setPassword(newPersistentPassword);
+		}
+		setPersistentPasswordGen(newPersistentPassword);
 	}
 
 	/**
@@ -364,9 +379,10 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 * @generated NOT
 	 */
 	public void setSavePassword(boolean newSavePassword) {
-		if (newSavePassword) {
+		if (getPasswordGen() != null && newSavePassword) {
 			setPersistentPassword(getPassword());
-		} else {
+		}
+		if (!newSavePassword) {
 			setPersistentPassword(null);
 		}
 		setSavePasswordGen(newSavePassword);
@@ -393,13 +409,25 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	public void logIn() throws EmfStoreException, AccessControlException {
 		ConnectionManager connectionManager = this.getWorkspaceManager()
 				.getConnectionManager();
+		//sanity checks
+		if (getUsername() == null || getPassword() == null) {
+			throw new AccessControlException("Username or Password not set!");
+		}
+		ServerInfo serverInfo = getServerInfo();
+		if (serverInfo == null) {
+			throw new IllegalStateException("No ServerInfo set!");
+		}
+		if (serverInfo.getUrl() == null) {
+			throw new ConnectionException("Invalid server url: null");
+		}
 
-		// FIXME:
 		// prepare serverInfo for send: copy and remove usersession
 		ServerInfo copy = (ServerInfo) EcoreUtil.copy(serverInfo);
 		copy.setLastUsersession(null);
 
-		this.setSessionId(connectionManager.logIn(username, password, copy));
+		SessionId newSessionId = connectionManager.logIn(username, password,
+				copy);
+		this.setSessionId(newSessionId);
 	}
 
 	/**
@@ -576,13 +604,27 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 			throws AccessControlException, EmfStoreException {
 		ConnectionManager connectionManager = this.getWorkspaceManager()
 				.getConnectionManager();
-		LogMessage log = ChangemanagmentFactory.eINSTANCE.createLogMessage();
+		LogMessage log = VersioningFactory.eINSTANCE.createLogMessage();
 		log.setMessage("Creating project '" + name + "'");
 		log.setAuthor(this.getUsername());
 		log.setDate(new Date());
 		return connectionManager.createProject(this.getSessionId(), name,
 				description, log);
 
+	}
+
+	public SessionId getSessionId() {
+		SessionId sessionIdGen = getSessionIdGen();
+		if (sessionIdGen == null) {
+			try {
+				logIn();
+			} catch (AccessControlException e) {
+				return null;
+			} catch (EmfStoreException e) {
+				return null;
+			}
+		}
+		return getSessionIdGen();
 	}
 
 } // UsersessionImpl

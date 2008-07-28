@@ -34,7 +34,7 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 		View viewObject = (View) getHost().getModel();
 		List result = new LinkedList();
 		for (Iterator it = org.unicase.ui.usecaseDiagram.part.ModelDiagramUpdater
-				.getMEDiagram_79SemanticChildren(viewObject).iterator(); it
+				.getMEDiagram_77SemanticChildren(viewObject).iterator(); it
 				.hasNext();) {
 			result
 					.add(((org.unicase.ui.usecaseDiagram.part.ModelNodeDescriptor) it

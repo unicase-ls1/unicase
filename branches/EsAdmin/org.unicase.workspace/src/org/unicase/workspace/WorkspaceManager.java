@@ -17,6 +17,9 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.unicase.model.ModelElement;
+import org.unicase.model.ModelPackage;
+import org.unicase.model.Project;
 import org.unicase.workspace.connectionmanager.AdminConnectionManager;
 import org.unicase.workspace.connectionmanager.AdminConnectionManagerStub;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
@@ -108,7 +111,7 @@ public final class WorkspaceManager {
 		ResourceSet resourceSet = new ResourceSetImpl();
 
 		// register an editing domain on the ressource
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Factory.INSTANCE
+		final TransactionalEditingDomain domain = TransactionalEditingDomain.Factory.INSTANCE
 				.createEditingDomain(resourceSet);
 		TransactionalEditingDomain.Registry.INSTANCE.add(
 				TRANSACTIONAL_EDITINGDOMAIN_ID, domain);
@@ -124,7 +127,7 @@ public final class WorkspaceManager {
 			resource = resourceSet.createResource(fileURI);
 			workspace = WorkspaceFactory.eINSTANCE.createWorkspace();
 			workspace.getServerInfos()
-					.add(Configuration.getDefaultServerInfo());
+					.addAll(Configuration.getDefaultServerInfos());
 			domain.getCommandStack().execute(new RecordingCommand(domain) {
 				@Override
 				protected void doExecute() {
@@ -143,12 +146,19 @@ public final class WorkspaceManager {
 
 			resource = resourceSet.getResource(fileURI, true);
 			EList<EObject> directContents = resource.getContents();
-			// FIXME cast
+			// MK cast
 			workspace = (Workspace) directContents.get(0);
 		}
 		workspace.setConnectionManager(this.connectionManager);
-		workspace.setResource(resource);
-		workspace.init(domain);
+		//MK: possible performance hit
+		resource.setTrackingModification(true);
+		workspace.setWorkspaceResourceSet(resourceSet);
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			protected void doExecute() {
+				workspace.init(domain);
+			}
+		});
+		
 		return workspace;
 
 	}
@@ -180,5 +190,30 @@ public final class WorkspaceManager {
 	 */
 	public AdminConnectionManager getAdminConnectionManager() {
 		return adminConnectionManager;
+	}
+	
+	/**
+	 * Retrieve the project space for a model element.
+	 * @param modelElement the model element
+	 * @return the project space
+	 */
+	public static ProjectSpace getProjectSpace(ModelElement modelElement) {
+		return getProjectSpace(modelElement.getProject());
+	}
+	
+	/**
+	 * Retrieve the project space for a project.
+	 * 
+	 * @param project the project
+	 * @return the project space
+	 */
+	public static ProjectSpace getProjectSpace(Project project) {
+		// check if my container is a project space
+		if (WorkspacePackage.eINSTANCE.getProjectSpace().isInstance(project.eContainer())) {
+			return (ProjectSpace) project.eContainer();
+		} else {
+			throw new IllegalStateException(
+					"Project is not contained by any project space");
+		}
 	}
 }

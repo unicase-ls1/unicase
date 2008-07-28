@@ -6,6 +6,7 @@
  */
 package org.unicase.workspace.impl;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -17,29 +18,31 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.eclipse.emf.ecore.change.util.ChangeRecorder;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.unicase.emfstore.conflictDetection.BasicConflictDetectionStrategy;
+import org.unicase.emfstore.conflictDetection.ConflictDetector;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
-import org.unicase.emfstore.esmodel.changemanagment.ChangePackage;
-import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentFactory;
-import org.unicase.emfstore.esmodel.changemanagment.LogMessage;
-import org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec;
-import org.unicase.emfstore.esmodel.changemanagment.VersionSpec;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.LogMessage;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.Project;
+import org.unicase.model.impl.IdentifiableElementImpl;
+import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
+import org.unicase.workspace.exceptions.ChangeConflictException;
+import org.unicase.workspace.exceptions.IllegalProjectSpaceStateException;
+import org.unicase.workspace.exceptions.NoChangesOnServerException;
+import org.unicase.workspace.exceptions.NoLocalChangesException;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '
@@ -47,20 +50,29 @@ import org.unicase.workspace.connectionmanager.ConnectionManager;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProject <em>Project</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectId <em>Project Id</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectName <em>Project Name</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectDescription <em>Project Description</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getLocalChanges <em>Local Changes</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getUsersession <em>Usersession</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getLastUpdated <em>Last Updated</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getBaseVersion <em>Base Version</em>}</li>
+ * <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProject <em>Project
+ * </em>}</li>
+ * <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectId <em>
+ * Project Id</em>}</li>
+ * <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectName <em>
+ * Project Name</em>}</li>
+ * <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectDescription
+ * <em>Project Description</em>}</li>
+ * <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getLocalChanges <em>
+ * Local Changes</em>}</li>
+ * <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getUsersession <em>
+ * Usersession</em>}</li>
+ * <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getLastUpdated <em>
+ * Last Updated</em>}</li>
+ * <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getBaseVersion <em>
+ * Base Version</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
-public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
+public class ProjectSpaceImpl extends IdentifiableElementImpl implements
+		ProjectSpace {
 
 	/**
 	 * @generated NOT
@@ -68,8 +80,9 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	private ChangeRecorder changeRecorder;
 
 	/**
-	 * The cached value of the '{@link #getProject() <em>Project</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getProject() <em>Project</em>}'
+	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getProject()
 	 * @generated
 	 * @ordered
@@ -77,8 +90,9 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	protected Project project;
 
 	/**
-	 * The cached value of the '{@link #getProjectId() <em>Project Id</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getProjectId() <em>Project Id</em>}'
+	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getProjectId()
 	 * @generated
 	 * @ordered
@@ -86,8 +100,9 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	protected ProjectId projectId;
 
 	/**
-	 * The default value of the '{@link #getProjectName() <em>Project Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getProjectName() <em>Project Name</em>}
+	 * ' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getProjectName()
 	 * @generated
 	 * @ordered
@@ -95,8 +110,9 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	protected static final String PROJECT_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getProjectName() <em>Project Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getProjectName() <em>Project Name</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getProjectName()
 	 * @generated
 	 * @ordered
@@ -104,9 +120,10 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	protected String projectName = PROJECT_NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getProjectDescription() <em>Project Description</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getProjectDescription()
+	 * <em>Project Description</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getProjectDescription()
 	 * @generated
 	 * @ordered
@@ -114,9 +131,10 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	protected static final String PROJECT_DESCRIPTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getProjectDescription() <em>Project Description</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getProjectDescription()
+	 * <em>Project Description</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getProjectDescription()
 	 * @generated
 	 * @ordered
@@ -124,18 +142,20 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	protected String projectDescription = PROJECT_DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getLocalChanges() <em>Local Changes</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getLocalChanges()
+	 * <em>Local Changes</em>}' containment reference. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getLocalChanges()
 	 * @generated
 	 * @ordered
 	 */
-	protected ChangePackage localChanges;
+	protected ChangeDescription localChanges;
 
 	/**
-	 * The cached value of the '{@link #getUsersession() <em>Usersession</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getUsersession() <em>Usersession</em>}'
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getUsersession()
 	 * @generated
 	 * @ordered
@@ -143,8 +163,9 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	protected Usersession usersession;
 
 	/**
-	 * The default value of the '{@link #getLastUpdated() <em>Last Updated</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getLastUpdated() <em>Last Updated</em>}
+	 * ' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getLastUpdated()
 	 * @generated
 	 * @ordered
@@ -152,8 +173,9 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	protected static final Date LAST_UPDATED_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getLastUpdated() <em>Last Updated</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getLastUpdated() <em>Last Updated</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getLastUpdated()
 	 * @generated
 	 * @ordered
@@ -161,8 +183,9 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	protected Date lastUpdated = LAST_UPDATED_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getBaseVersion() <em>Base Version</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBaseVersion() <em>Base Version</em>}'
+	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getBaseVersion()
 	 * @generated
 	 * @ordered
@@ -183,6 +206,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -192,6 +216,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Project getProject() {
@@ -200,6 +225,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetProject(Project newProject,
@@ -220,9 +246,10 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public void setProjectGen(Project newProject) {
+	public void setProject(Project newProject) {
 		if (newProject != project) {
 			NotificationChain msgs = null;
 			if (project != null)
@@ -244,26 +271,9 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 					newProject));
 	}
 
-	// begin of custom code
-	/**
-	 * <!-- begin-user-doc --> Set a new Project for the ProjectSpace and
-	 * re-init.
-	 * 
-	 * @param newProject
-	 * 
-	 *            <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
-	 */
-	public void setProject(Project newProject) {
-		setProjectGen(newProject);
-		init();
-	}
-
-	// end of custom code
-
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProjectId getProjectId() {
@@ -272,6 +282,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetProjectId(ProjectId newProjectId,
@@ -293,6 +304,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setProjectId(ProjectId newProjectId) {
@@ -319,6 +331,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getProjectName() {
@@ -327,6 +340,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setProjectName(String newProjectName) {
@@ -340,6 +354,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getProjectDescription() {
@@ -348,6 +363,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setProjectDescription(String newProjectDescription) {
@@ -361,19 +377,21 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public ChangePackage getLocalChanges() {
+	public ChangeDescription getLocalChanges() {
 		return localChanges;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetLocalChanges(
-			ChangePackage newLocalChanges, NotificationChain msgs) {
-		ChangePackage oldLocalChanges = localChanges;
+			ChangeDescription newLocalChanges, NotificationChain msgs) {
+		ChangeDescription oldLocalChanges = localChanges;
 		localChanges = newLocalChanges;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this,
@@ -390,9 +408,10 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public void setLocalChanges(ChangePackage newLocalChanges) {
+	public void setLocalChanges(ChangeDescription newLocalChanges) {
 		if (newLocalChanges != localChanges) {
 			NotificationChain msgs = null;
 			if (localChanges != null)
@@ -420,6 +439,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Usersession getUsersession() {
@@ -437,8 +457,8 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Usersession basicGetUsersession() {
@@ -447,6 +467,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setUsersession(Usersession newUsersession) {
@@ -460,6 +481,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Date getLastUpdated() {
@@ -468,6 +490,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setLastUpdated(Date newLastUpdated) {
@@ -481,6 +504,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec getBaseVersion() {
@@ -489,6 +513,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetBaseVersion(
@@ -510,6 +535,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBaseVersion(PrimaryVersionSpec newBaseVersion) {
@@ -541,8 +567,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @generated NOT
 	 */
 	public PrimaryVersionSpec commit() throws EmfStoreException {
-		LogMessage logMessage = ChangemanagmentFactory.eINSTANCE
-				.createLogMessage();
+		LogMessage logMessage = VersioningFactory.eINSTANCE.createLogMessage();
 		logMessage.setAuthor("(Not set)");
 		logMessage.setDate(new Date());
 		logMessage.setMessage("(Not set)");
@@ -555,73 +580,55 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @throws EmfStoreException
 	 * @generated NOT
 	 */
-	private PrimaryVersionSpec newBaseVersion;
-
 	public PrimaryVersionSpec commit(final LogMessage logMessage)
 			throws EmfStoreException {
 
-		// MK: save projectspace if single resource
+		long currentTimeMillis = System.currentTimeMillis();
 
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-			protected void doExecute() {
-				try {
+		stopChangeRecording();
 
-					//FIXME: GUI has to relogin.
-					getUsersession().logIn();
+		// check if there are any changes
+		if (getLocalChanges() == null
+				|| isChangeDescriptionEmpty(getLocalChanges())) {
+			startChangeRecording();
+			throw new NoLocalChangesException();
+		}
 
-					stopChangeRecording();
-					PrimaryVersionSpec resolvedVersion = resolveVersionSpec(VersionSpec.HEAD_VERSION);
-					// FIXME insert not and write equals method
-					if ((!getBaseVersion().equals(resolvedVersion))) {
-						throw new BaseVersionOutdatedException(
-								"BaseVersion outdated, please update before commit.");
-					}
-					final ConnectionManager connectionManager = WorkspaceManager
-							.getInstance().getConnectionManager();
+		// check if we need to update first
+		PrimaryVersionSpec resolvedVersion = resolveVersionSpec(VersionSpec.HEAD_VERSION);
+		if ((!getBaseVersion().equals(resolvedVersion))) {
+			startChangeRecording();
+			throw new BaseVersionOutdatedException();
+		}
 
-					// FIMXE: put this somewhere else
-					// integrate project into one resource set with change
-					// package for
-					// serialization
-					ResourceSet tempResourceSet = new ResourceSetImpl();
-					// disconnect project and add to virtual resource
-					Project project = getProject();
-					setProjectGen(null);
-					Resource projectResource = tempResourceSet
-							.createResource(ConnectionManager.PROJECT_URI);
-					projectResource.getContents().add(project);
-					// disconnect change package and add to virtual resource
-					ChangePackage changePackage = getLocalChanges();
-					// remove backward delta information
-					changePackage.setBackwardDelta(null);
+		final ConnectionManager connectionManager = WorkspaceManager
+				.getInstance().getConnectionManager();
 
-					setLocalChanges(null);
-					Resource changePackageResource = tempResourceSet
-							.createResource(ConnectionManager.CHANGEPACKAGE_URI);
-					changePackageResource.getContents().add(changePackage);
+		ChangePackage changePackage = VersioningFactory.eINSTANCE
+				.createChangePackage();
+		changePackage.init(getProject(), getLocalChanges());
 
-					newBaseVersion = connectionManager.createVersion(
-							getUsersession().getSessionId(), getProjectId(),
-							getBaseVersion(), changePackage, logMessage);
+		PrimaryVersionSpec newBaseVersion = connectionManager.createVersion(
+				getUsersession().getSessionId(), getProjectId(),
+				getBaseVersion(), changePackage, logMessage);
 
-					// FIMXE: put this somewhere else
-					// reconnect project to projectSpace
-					setProjectGen(project);
-					setBaseVersion(newBaseVersion);
-					// MK: save projectspace if single resource
-					startChangeRecording();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					throw new IllegalStateException();
-				}
+		this.setLocalChanges(null);
+		setBaseVersion(newBaseVersion);
 
-			}
-		});
+		save();
+
+		startChangeRecording();
+
+		System.out.println("Total time for commit: "
+				+ (System.currentTimeMillis() - currentTimeMillis));
 
 		return newBaseVersion;
+	}
+
+	private boolean isChangeDescriptionEmpty(ChangeDescription changeDescription) {
+		return (changeDescription.getObjectChanges().isEmpty()
+				&& changeDescription.getObjectsToAttach().isEmpty() && changeDescription
+				.getObjectsToDetach().isEmpty());
 	}
 
 	/**
@@ -637,51 +644,50 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.workspace.ProjectSpace#update(org.unicase.emfstore.esmodel.changemanagment.VersionSpec)
+	 * @see org.unicase.workspace.ProjectSpace#update(org.unicase.emfstore.esmodel.versioning.VersionSpec)
 	 * @generated NOT
 	 */
 	public void update(final VersionSpec version) throws EmfStoreException {
-		// TODO: update
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-			protected void doExecute() {
-				try {
 
-					//FIXME: GUI has to relogin.
-					getUsersession().logIn();
+		final ConnectionManager connectionManager = WorkspaceManager
+				.getInstance().getConnectionManager();
+		PrimaryVersionSpec resolvedVersion = resolveVersionSpec(version);
 
-					final ConnectionManager cm = WorkspaceManager.getInstance()
-							.getConnectionManager();
-					PrimaryVersionSpec resolvedVersion = cm.resolveVersionSpec(
-							getUsersession().getSessionId(), getProjectId(),
-							version);
+		if (resolvedVersion.compareTo(getBaseVersion()) == 0) {
+			throw new NoChangesOnServerException();
+		}
+		if (resolvedVersion.compareTo(getBaseVersion()) < 0) {
+			throw new IllegalProjectSpaceStateException(
+					"The base revision of this project space is "
+							+ getBaseVersion().getIdentifier()
+							+ ", but the server version of this project is "
+							+ resolvedVersion.getIdentifier() + "!");
+		}
+		stopChangeRecording();
 
-					if (getBaseVersion().getIdentifier() > resolvedVersion
-							.getIdentifier()) {
-						return;
-					}
+		List<ChangePackage> changes = connectionManager.getChanges(
+				getUsersession().getSessionId(), getProjectId(),
+				getBaseVersion(), resolvedVersion);
 
-					stopChangeRecording();
+		//detect conflicts
+//		for (ChangePackage change : changes) {
+//			// MK: implement conflict detection here
+//			ConflictDetector conflictDetector = new ConflictDetector(
+//					new BasicConflictDetectionStrategy());
+//			ChangePackage changePackage = VersioningFactory.eINSTANCE
+//					.createChangePackage();
+//			changePackage.init(getProject(), getLocalChanges());
+//			if (conflictDetector.doConflict(change, changePackage)) {
+//				throw new ChangeConflictException();
+//			}
+//		}
 
-					List<ChangePackage> changes = cm.getChanges(
-							getUsersession().getSessionId(), getProjectId(),
-							getBaseVersion(), resolvedVersion);
-					Project project = getProject();
-					for (ChangePackage change : changes) {
-						//FIXME hack to set project state
-						project = change.getProjectState();
-						change.getFowardDelta().apply();
-					}
-					setProjectGen(project);
-					setBaseVersion(resolvedVersion);
-
-					startChangeRecording();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		for (ChangePackage change : changes) {
+			change.apply(getProject());
+		}
+		setBaseVersion(resolvedVersion);
+		save();
+		startChangeRecording();
 	}
 
 	/**
@@ -690,8 +696,9 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @generated NOT
 	 */
 	public void revert() {
-		// TODO: revert changes
+		// MK: fix this for changepackage
 		stopChangeRecording();
+		getLocalChanges().apply();
 		setLocalChanges(null);
 		startChangeRecording();
 	}
@@ -702,16 +709,14 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @generated NOT
 	 */
 	public void save() {
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-			@Override
-			protected void doExecute() {
-				stopChangeRecording();
-				startChangeRecording();
-			}
-
-		});
+		stopChangeRecording();
+		try {
+			this.eResource().save(Configuration.getResourceSaveOptions());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		startChangeRecording();
 	}
 
 	/**
@@ -721,22 +726,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @generated NOT
 	 */
 	private void stopChangeRecording() {
-		ChangeDescription changeDescription = this.changeRecorder
-				.endRecording();
-		if (changeDescription == null) {
-			return;
-		}
-		ChangeDescription backwardChangeDescription = (ChangeDescription) EcoreUtil
-				.copy(changeDescription);
-		changeDescription.applyAndReverse();
-		ChangeDescription forwardChangeDescription = (ChangeDescription) EcoreUtil
-				.copy(changeDescription);
-		changeDescription.apply();
-		ChangePackage changePackage = ChangemanagmentFactory.eINSTANCE
-				.createChangePackage();
-		changePackage.setBackwardDelta(backwardChangeDescription);
-		changePackage.setFowardDelta(forwardChangeDescription);
-		this.setLocalChanges(changePackage);
+		this.setLocalChanges(this.changeRecorder.endRecording());
 	}
 
 	/**
@@ -749,10 +739,11 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 
 		changeRecorder = new ChangeRecorder();
 		if (getLocalChanges() == null) {
-			changeRecorder.beginRecording(Collections.singleton(project));
+			changeRecorder.beginRecording(Collections.singleton(getProject()));
 		} else {
-			changeRecorder.beginRecording(localChanges.getBackwardDelta(),
-					Collections.singleton(project));
+			changeRecorder.beginRecording((ChangeDescription) EcoreUtil
+					.copy(getLocalChanges()), Collections
+					.singleton(getProject()));
 		}
 
 	}
@@ -764,14 +755,9 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	 * @generated NOT
 	 */
 	public void init() {
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-			@Override
-			protected void doExecute() {
-				startChangeRecording();
-			}
-		});
+		// MK: possibly performance hit
+		this.eResource().setTrackingModification(true);
+		startChangeRecording();
 	}
 
 	/**
@@ -792,22 +778,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.workspace.ProjectSpace#isDirty()
-	 * @generated NOT
-	 */
-	public boolean isDirty() {
-		ChangeDescription changeDescription = this.changeRecorder.summarize();
-		return !(changeDescription.getObjectChanges().isEmpty()
-				&& changeDescription.getObjectsToAttach().isEmpty()
-				&& changeDescription.getObjectsToDetach().isEmpty() && changeDescription
-				.getResourceChanges().isEmpty());
-
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.workspace.ProjectSpace#resolveVersionSpec(org.unicase.emfstore.esmodel.changemanagment.VersionSpec)
+	 * @see org.unicase.workspace.ProjectSpace#resolveVersionSpec(org.unicase.emfstore.esmodel.versioning.VersionSpec)
 	 * @throws EmfStoreException
 	 * @generated NOT
 	 */
@@ -816,12 +787,13 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 		ConnectionManager connectionManager = WorkspaceManager.getInstance()
 				.getConnectionManager();
 		return connectionManager.resolveVersionSpec(getUsersession()
-				.getSessionId(), getProjectId(),
-				ChangemanagmentFactory.eINSTANCE.createHeadVersionSpec());
+				.getSessionId(), getProjectId(), VersioningFactory.eINSTANCE
+				.createHeadVersionSpec());
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -842,6 +814,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -871,6 +844,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -889,7 +863,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 			setProjectDescription((String) newValue);
 			return;
 		case WorkspacePackage.PROJECT_SPACE__LOCAL_CHANGES:
-			setLocalChanges((ChangePackage) newValue);
+			setLocalChanges((ChangeDescription) newValue);
 			return;
 		case WorkspacePackage.PROJECT_SPACE__USERSESSION:
 			setUsersession((Usersession) newValue);
@@ -906,6 +880,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -924,7 +899,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 			setProjectDescription(PROJECT_DESCRIPTION_EDEFAULT);
 			return;
 		case WorkspacePackage.PROJECT_SPACE__LOCAL_CHANGES:
-			setLocalChanges((ChangePackage) null);
+			setLocalChanges((ChangeDescription) null);
 			return;
 		case WorkspacePackage.PROJECT_SPACE__USERSESSION:
 			setUsersession((Usersession) null);
@@ -941,6 +916,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -971,6 +947,7 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -988,4 +965,38 @@ public class ProjectSpaceImpl extends EObjectImpl implements ProjectSpace {
 		result.append(')');
 		return result.toString();
 	}
+
+	public void shareProject(Usersession usersession) throws EmfStoreException {
+		this.stopChangeRecording();
+		this.setUsersession(usersession);
+		LogMessage logMessage = VersioningFactory.eINSTANCE.createLogMessage();
+		logMessage.setAuthor(usersession.getUsername());
+		logMessage.setDate(new Date());
+		logMessage.setMessage("Initial commit");
+		ProjectInfo createdProject = WorkspaceManager.getInstance()
+				.getConnectionManager().createProject(
+						usersession.getSessionId(), this.getProjectName(),
+						this.getProjectDescription(), logMessage,
+						this.getProject());
+		this.setBaseVersion(createdProject.getVersion());
+		this.setLastUpdated(new Date());
+		this.setProjectId(createdProject.getProjectId());
+		this.setLocalChanges(null);
+		save();
+		this.startChangeRecording();
+	}
+
+	/**
+	 * @param absoluteFileName
+	 * @param projectSpace
+	 */
+	public void exportProject(String absoluteFileName) throws IOException {
+		WorkspaceManager.getInstance().getCurrentWorkspace().exportProject(
+				this, absoluteFileName);
+	}
+
+	public boolean isDirty() {
+		return this.eResource().isModified();
+	}
+
 } // ProjectContainerImpl

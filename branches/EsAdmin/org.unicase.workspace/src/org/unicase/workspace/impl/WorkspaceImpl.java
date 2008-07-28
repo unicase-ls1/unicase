@@ -6,22 +6,30 @@
  */
 package org.unicase.workspace.impl;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Date;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.ProjectInfo;
-import org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.Project;
 import org.unicase.workspace.Configuration;
@@ -39,25 +47,29 @@ import org.unicase.workspace.connectionmanager.ConnectionManager;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getProjectSpaces <em>Project Spaces</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getServerInfos <em>Server Infos</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getUsersessions <em>Usersessions</em>}</li>
+ * <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getProjectSpaces <em>
+ * Project Spaces</em>}</li>
+ * <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getServerInfos <em>Server
+ * Infos</em>}</li>
+ * <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getUsersessions <em>
+ * Usersessions</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class WorkspaceImpl extends EObjectImpl implements Workspace {
-	ProjectSpace projectSpace;
+
 	/**
 	 * @generated NOT
 	 */
-	private Resource resource;
+	private ResourceSet workspaceResourceSet;
 
 	/**
-	 * The cached value of the '{@link #getProjectSpaces() <em>Project Spaces</em>}' containment reference list.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getProjectSpaces()
+	 * <em>Project Spaces</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getProjectSpaces()
 	 * @generated
 	 * @ordered
@@ -65,8 +77,9 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	protected EList<ProjectSpace> projectSpaces;
 
 	/**
-	 * The cached value of the '{@link #getServerInfos() <em>Server Infos</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getServerInfos() <em>Server Infos</em>}'
+	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getServerInfos()
 	 * @generated
 	 * @ordered
@@ -97,6 +110,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected WorkspaceImpl() {
@@ -105,6 +119,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -114,11 +129,12 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ProjectSpace> getProjectSpaces() {
 		if (projectSpaces == null) {
-			projectSpaces = new EObjectContainmentEList<ProjectSpace>(
+			projectSpaces = new EObjectResolvingEList<ProjectSpace>(
 					ProjectSpace.class, this,
 					WorkspacePackage.WORKSPACE__PROJECT_SPACES);
 		}
@@ -127,6 +143,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ServerInfo> getServerInfos() {
@@ -140,6 +157,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Usersession> getUsersessions() {
@@ -159,6 +177,12 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	public ProjectSpace checkout(final Usersession usersession,
 			final ProjectInfo projectInfo) throws EmfStoreException {
 
+		//MK: hack: set head version manually because esbrowser does not update revisions properly
+		ProjectInfo projectInfoCopy = (ProjectInfo) EcoreUtil.copy(projectInfo);
+		projectInfoCopy.setVersion(this.connectionManager.resolveVersionSpec(
+				usersession.getSessionId(), projectInfo.getProjectId(),
+				VersionSpec.HEAD_VERSION));
+
 		// get Project from server
 		final Project project = this.connectionManager.getProject(usersession
 				.getSessionId(), projectInfo.getProjectId(), projectInfo
@@ -167,27 +191,45 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		final PrimaryVersionSpec primaryVersionSpec = projectInfo.getVersion();
 
 		// init project space
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-			@Override
-			protected void doExecute() {
-				projectSpace = WorkspaceFactory.eINSTANCE.createProjectSpace();
-				projectSpace.setProjectId(projectInfo.getProjectId());
-				projectSpace.setProjectName(projectInfo.getName());
-				projectSpace
-						.setProjectDescription(projectInfo.getDescription());
-				projectSpace.setBaseVersion(primaryVersionSpec);
-				projectSpace.setLastUpdated(new Date());
-				projectSpace.setUsersession(usersession);
-				projectSpace.setProject(project);
+		ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE
+				.createProjectSpace();
+		projectSpace.setProjectId(projectInfo.getProjectId());
+		projectSpace.setProjectName(projectInfo.getName());
+		projectSpace.setProjectDescription(projectInfo.getDescription());
+		projectSpace.setBaseVersion(primaryVersionSpec);
+		projectSpace.setLastUpdated(new Date());
+		projectSpace.setUsersession(usersession);
+		projectSpace.setProject(project);
 
-				getProjectSpaces().add(projectSpace);
-				save();
-			}
-		});
+		setupProjectSpace(projectSpace);
 
 		return projectSpace;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.Workspace#setupProjectSpace(org.unicase.workspace.ProjectSpace)
+	 * 
+	 * @generated NOT
+	 */
+	public void setupProjectSpace(ProjectSpace projectSpace) {
+
+		String fileName = Configuration.getWorkspaceDirectory() + "ps-"
+				+ projectSpace.getIdentifier();
+		URI fileURI = URI.createFileURI(fileName);
+		Resource resource = this.workspaceResourceSet.createResource(fileURI);
+
+		resource.getContents().add(projectSpace);
+		projectSpace.init();
+
+		// MK: possible performance hit
+		resource.setTrackingModification(true);
+
+		projectSpace.save();
+
+		getProjectSpaces().add(projectSpace);
+		this.save();
 	}
 
 	/**
@@ -196,11 +238,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * @generated NOT
 	 */
 	public void save() {
-		for (ProjectSpace projectSpace : this.getProjectSpaces()) {
-			projectSpace.save();
-		}
 		try {
-			this.resource.save(Configuration.getResourceSaveOptions());
+			this.eResource().save(Configuration.getResourceSaveOptions());
 		} catch (IOException e) {
 			// MK Auto-generated catch block
 			e.printStackTrace();
@@ -214,25 +253,18 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * @generated NOT
 	 */
 	public boolean isDirty() {
-		for (ProjectSpace projectSpace : this.projectSpaces) {
-			if (projectSpace.isDirty()) {
-				return true;
-			}
-		}
-		return false;
+		return this.eResource().isModified();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case WorkspacePackage.WORKSPACE__PROJECT_SPACES:
-			return ((InternalEList<?>) getProjectSpaces()).basicRemove(
-					otherEnd, msgs);
 		case WorkspacePackage.WORKSPACE__SERVER_INFOS:
 			return ((InternalEList<?>) getServerInfos()).basicRemove(otherEnd,
 					msgs);
@@ -245,6 +277,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -262,6 +295,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -289,6 +323,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -309,6 +344,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -333,24 +369,23 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	}
 
 	/**
-	 * @param resource
-	 * @generated NOT
-	 */
-	public void setResource(Resource resource) {
-		this.resource = resource;
-	}
-
-	/**
-	 * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
+	 * {@inheritDoc}
 	 * 
+	 * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
 	 * @generated NOT
 	 */
 	@SuppressWarnings("unchecked")
 	public Object getAdapter(Class adapter) {
-		// TODO Auto-generated method stub
+		// JH Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.Workspace#init(org.eclipse.emf.transaction.TransactionalEditingDomain)
+	 * @generated NOT
+	 */
 	public void init(TransactionalEditingDomain editingDomain) {
 		this.transactionalEditingDomain = editingDomain;
 		// initialize all projectSpaces
@@ -359,7 +394,75 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.Workspace#getEditingDomain()
+	 * @generated NOT
+	 */
 	public TransactionalEditingDomain getEditingDomain() {
 		return this.transactionalEditingDomain;
+	}
+
+	/**
+	 * @param fileName
+	 * @param absoluteFileName
+	 * @return
+	 */
+	public ProjectSpace importProject(String absoluteFileName)
+			throws IOException {
+		ResourceSetImpl resourceSet = new ResourceSetImpl();
+		Resource resource = resourceSet.getResource(URI
+				.createFileURI(absoluteFileName), true);
+		EList<EObject> directContents = resource.getContents();
+		// sanity check
+
+		if (directContents.size() != 1
+				&& (!(directContents.get(0) instanceof Project))) {
+			throw new IOException(
+					"File is corrupt, does not contain a Project.");
+		}
+
+		Project project = (Project) directContents.get(0);
+
+		ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE
+				.createProjectSpace();
+		projectSpace.setProject(project);
+		projectSpace.setProjectName(absoluteFileName.substring(absoluteFileName
+				.lastIndexOf(File.separatorChar) + 1));
+		projectSpace.setProjectDescription("Imported from " + absoluteFileName);
+
+		setupProjectSpace(projectSpace);
+
+		return projectSpace;
+	}
+
+	/**
+	 * @param absoluteFileName
+	 * @param projectSpace
+	 */
+	public void exportProject(ProjectSpace projectSpace, String absoluteFileName)
+			throws IOException {
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Resource resource = resourceSet.createResource(URI
+				.createFileURI(absoluteFileName));
+		Project project = projectSpace.getProject();
+		
+		//preserve old containment
+		EReference containmentFeature = project.eContainmentFeature();
+		EObject oldContainer = project.eContainer();
+
+		resource.getContents().add(project);
+		resource.save(null);
+
+		// reintegrate project into old container
+		if (oldContainer != null) {
+			oldContainer.eSet(containmentFeature, project);
+		}
+	}
+
+	public void setWorkspaceResourceSet(ResourceSet resourceSet) {
+		this.workspaceResourceSet = resourceSet;
+
 	}
 } // WorkspaceImpl

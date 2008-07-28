@@ -21,12 +21,12 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
-import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentFactory;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.model.provider.IdentifiableElementItemProvider;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
 import org.unicase.model.provider.ProjectItemProvider;
 import org.unicase.workspace.ProjectSpace;
@@ -38,8 +38,8 @@ import org.unicase.workspace.WorkspacePackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ProjectSpaceItemProvider extends ItemProviderAdapter implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
+public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
@@ -239,8 +239,17 @@ public class ProjectSpaceItemProvider extends ItemProviderAdapter implements
 	public String getText(Object object) {
 		if (object instanceof ProjectSpace) {
 			ProjectSpace projectSpace = (ProjectSpace) object;
-			return projectSpace.getProjectName() + "@"
-					+ projectSpace.getBaseVersion().getIdentifier();
+			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.append(projectSpace.getProjectName());
+			if (projectSpace.getBaseVersion() != null) {
+				stringBuilder.append("@");
+				stringBuilder.append(projectSpace.getBaseVersion()
+						.getIdentifier());
+			} else {
+				stringBuilder.append("(Not shared)");
+			}
+			String string = stringBuilder.toString();
+			return string;
 		}
 		return getString("_UI_ProjectSpace_type");
 	}
@@ -292,7 +301,7 @@ public class ProjectSpaceItemProvider extends ItemProviderAdapter implements
 
 		newChildDescriptors.add(createChildParameter(
 				WorkspacePackage.Literals.PROJECT_SPACE__BASE_VERSION,
-				ChangemanagmentFactory.eINSTANCE.createPrimaryVersionSpec()));
+				VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
 	}
 
 	/**

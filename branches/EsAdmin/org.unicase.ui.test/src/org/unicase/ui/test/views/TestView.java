@@ -1,11 +1,13 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * </copyright>
  *
  * $Id$
  */
 package org.unicase.ui.test.views;
 
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.events.SelectionEvent;
@@ -19,8 +21,13 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.IViewPart;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.ui.test.TestProject;
+import org.unicase.ui.test.TestProjectGenerator;
+import org.unicase.workspace.Workspace;
+import org.unicase.workspace.WorkspaceManager;
 
 /**
  *
@@ -132,8 +139,23 @@ public class TestView extends ViewPart {
 		int maxNumOfMEsInLeafSection = Integer.parseInt(txtMaxNumOfMEsInLeafSection.getText()) ;
 		int numOfMEsToOpen = Integer.parseInt(txtNumOfMEsToOpen.getText()) ;
 		
-		TestProject testProject = new TestProject(numOfEachME, randomSeed, projectWidth, projectDepth, maxNumOfManyRefs, maxNumOfMEsInLeafSection, numOfMEsToOpen);		
-		testProject.createProject();
+		TestProjectGenerator testProjectGenerator = new TestProjectGenerator(numOfEachME, randomSeed, projectWidth, projectDepth, maxNumOfManyRefs, maxNumOfMEsInLeafSection);		
+		Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+		testProjectGenerator.generateProjectIntoWorkspace(currentWorkspace);
+		
+		if (numOfMEsToOpen>0) {
+			testProjectGenerator.openSomeModelElements(numOfMEsToOpen);
+		}
+		
+		//JH: fix navigator refresh
+		IWorkbenchPage page = PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getActivePage();
+		IViewPart navigator = page.findView("org.unicase.ui.navigator.viewer");
+		if (page.isPartVisible(navigator)) {
+			((TreeViewer) navigator.getSite().getSelectionProvider()).refresh();
+		}
+		MessageDialog.openInformation(this.getSite().getShell(), "Project Generation completed",
+		"Generated " + testProjectGenerator.getMECount() + " model elements.");
 	}
 
 	private void createTestParamsGroup() {
@@ -194,7 +216,7 @@ public class TestView extends ViewPart {
 		lblNumOfMEsToOpen = new Label(testParamsGroup, SWT.None); 
 		lblNumOfMEsToOpen.setText("No. of MEs to open:"); 
 		txtNumOfMEsToOpen = new Text(testParamsGroup,SWT.BORDER); 
-		txtNumOfMEsToOpen.setText("20");
+		txtNumOfMEsToOpen.setText("0");
 		GridData gridData7 = new GridData(GridData.FILL_HORIZONTAL);
 		gridData7.horizontalSpan = 2;
 		txtNumOfMEsToOpen.setLayoutData(gridData7); 

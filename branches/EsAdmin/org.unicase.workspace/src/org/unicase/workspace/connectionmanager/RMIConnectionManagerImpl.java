@@ -17,10 +17,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.unicase.emfstore.EmfStore;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.connection.rmi.RMIConnectionHandler;
 import org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade;
@@ -28,16 +24,15 @@ import org.unicase.emfstore.connection.rmi.RMIUtil;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
-import org.unicase.emfstore.esmodel.changemanagment.ChangePackage;
-import org.unicase.emfstore.esmodel.changemanagment.HistoryInfo;
-import org.unicase.emfstore.esmodel.changemanagment.LogMessage;
-import org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec;
-import org.unicase.emfstore.esmodel.changemanagment.VersionSpec;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
+import org.unicase.emfstore.esmodel.versioning.LogMessage;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.UnknownSessionException;
 import org.unicase.model.Project;
-import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
 
 /**
@@ -73,15 +68,13 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 			throws EmfStoreException {
 
 		try {
-			//TODO ugly special case for change package
-			String changePackageString = RMIUtil.eObjectToStringByResource(changePackage);
 			
 			return (PrimaryVersionSpec) RMIUtil.stringToEObject(getFacade(
 					sessionId).createVersion(
 					RMIUtil.eObjectToString(sessionId),
 					RMIUtil.eObjectToString(projectId),
 					RMIUtil.eObjectToString(baseVersionSpec),
-					changePackageString,
+					RMIUtil.eObjectToString(changePackage),
 					RMIUtil.eObjectToString(logMessage)));
 		} catch (UnsupportedEncodingException e) {
 			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
@@ -100,29 +93,15 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 			throws EmfStoreException {
 		List<ChangePackage> result = new ArrayList<ChangePackage>();
 		try {
-			ProjectSpace ps = (ProjectSpace) projectId.eContainer();
-			Project project = ps.getProject();
-			ps.setProject(null);
-			
 			for (String changePackage : getFacade(sessionId).getChanges(
 					RMIUtil.eObjectToString(sessionId),
 					RMIUtil.eObjectToString(projectId),
 					RMIUtil.eObjectToString(source),
 					RMIUtil.eObjectToString(target))) {
 				
-				System.out.println(changePackage);
-				
-				//prepare resource set for change package deserialization
-				ResourceSet tempResourceSet = new ResourceSetImpl();
-				//copy project and add to virtual resource
-				Resource projectResource = tempResourceSet.createResource(EmfStore.PROJECT_URI);
-				projectResource.getContents().add(project);
-				Resource changePackageResource = tempResourceSet.createResource(EmfStore.CHANGEPACKAGE_URI);
-				ChangePackage changePackageObject = (ChangePackage) RMIUtil.stringToEObject(changePackage, changePackageResource);
-				changePackageObject.setProjectState(project);
+				ChangePackage changePackageObject = (ChangePackage) RMIUtil.stringToEObject(changePackage);
 				result.add(changePackageObject);
 			}
-			ps.setProject(project);
 			
 		} catch (UnsupportedEncodingException e) {
 			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
@@ -229,6 +208,24 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 			return (ProjectInfo) RMIUtil.stringToEObject(getFacade(sessionid)
 					.createProject(RMIUtil.eObjectToString(sessionid), name,
 							description, RMIUtil.eObjectToString(logMessage)));
+		} catch (UnsupportedEncodingException e) {
+			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
+		} catch (RemoteException e) {
+			throw new ConnectionException(REMOTE, e);
+		} catch (IOException e) {
+			throw new ConnectionException(REMOTE, e);
+		}
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public ProjectInfo createProject(SessionId sessionid, String name,
+			String description, LogMessage logMessage, Project project) throws EmfStoreException {
+		try {
+			return (ProjectInfo) RMIUtil.stringToEObject(getFacade(sessionid)
+					.createProject(RMIUtil.eObjectToString(sessionid), name,
+							description, RMIUtil.eObjectToString(logMessage), RMIUtil.eObjectToString(project)));
 		} catch (UnsupportedEncodingException e) {
 			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
 		} catch (RemoteException e) {
