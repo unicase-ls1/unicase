@@ -153,10 +153,10 @@ public class ModelDiagramEditor extends DiagramDocumentEditor implements
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean isSaveAsAllowed() {
-		return true;
+		return false;
 	}
 
 	/**

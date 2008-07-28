@@ -220,11 +220,11 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 			URI uri = ((URIEditorInput) element).getURI();
 			Resource resource = null;
 			try {
-				resource = domain.getResourceSet().getResource(
-						uri.trimFragment(), false);
+//				resource = domain.getResourceSet().getResource(
+//						uri.trimFragment(), false);
 				if (resource == null) {
 					resource = domain.getResourceSet().createResource(
-							uri.trimFragment(), "MEDiagram");
+							uri, "MEDiagram");
 				}
 				if (!resource.isLoaded()) {
 					try {
@@ -239,13 +239,13 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 						throw e;
 					}
 				}
-				if (uri.fragment() != null) {
-					EObject rootElement = resource.getEObject(uri.fragment());
-					if (rootElement instanceof Diagram) {
-						document.setContent((Diagram) rootElement);
-						return;
-					}
-				} else {
+//				if (uri.fragment() != null) {
+//					EObject rootElement = resource.getEObject(uri.fragment());
+//					if (rootElement instanceof Diagram) {
+//						document.setContent((Diagram) rootElement);
+//						return;
+//					}
+//				} else {
 					for (Iterator it = resource.getContents().iterator(); it
 							.hasNext();) {
 						Object rootElement = it.next();
@@ -253,7 +253,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 							document.setContent((Diagram) rootElement);
 							return;
 						}
-					}
+//					}
 				}
 				throw new RuntimeException(
 						org.unicase.model.classDiagram.part.Messages.ModelDocumentProvider_NoDiagramInResourceError);
