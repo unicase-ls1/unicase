@@ -7,7 +7,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="projectId" eType="#//ProjectId"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="versions" lowerBound="1"
-        upperBound="-1" eType="#//changemanagment/Version" containment="true"/>
+        upperBound="-1" eType="#//versioning/Version" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="projectName" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="projectDescription" lowerBound="1"
@@ -19,7 +19,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="projectId" lowerBound="1"
         eType="#//ProjectId" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="version" lowerBound="1"
-        eType="#//changemanagment/PrimaryVersionSpec" containment="true"/>
+        eType="#//versioning/PrimaryVersionSpec" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SessionId" eSuperTypes="../../org.unicase.model/model/model.ecore#//UniqueIdentifier"/>
   <eClassifiers xsi:type="ecore:EClass" name="ServerSpace">
@@ -33,17 +33,16 @@
         eType="#//accesscontrol/ACUser" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProjectId" eSuperTypes="../../org.unicase.model/model/model.ecore#//UniqueIdentifier"/>
-  <eSubpackages name="changemanagment" nsURI="http://unicase.org/esmodel/changemanagment"
-      nsPrefix="org.unicase.emfstore.esmodel.changemanagment">
-    <eClassifiers xsi:type="ecore:EClass" name="TagVersionSpec" eSuperTypes="#//changemanagment/VersionSpec">
+  <eSubpackages name="versioning" nsURI="http://unicase.org/esmodel/versioning" nsPrefix="org.unicase.emfstore.esmodel.versioning">
+    <eClassifiers xsi:type="ecore:EClass" name="TagVersionSpec" eSuperTypes="#//versioning/VersionSpec">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="DateVersionSpec" eSuperTypes="#//changemanagment/VersionSpec">
+    <eClassifiers xsi:type="ecore:EClass" name="DateVersionSpec" eSuperTypes="#//versioning/VersionSpec">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="PrimaryVersionSpec" eSuperTypes="#//changemanagment/VersionSpec">
+    <eClassifiers xsi:type="ecore:EClass" name="PrimaryVersionSpec" eSuperTypes="#//versioning/VersionSpec">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
@@ -57,69 +56,104 @@
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ChangePackage">
-      <eOperations name="reverse" eType="#//changemanagment/ChangePackage"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="fowardDelta" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore.change/model/Change.ecore#//ChangeDescription"
-          containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="backwardDelta" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore.change/model/Change.ecore#//ChangeDescription"
-          containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="projectState" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"
-          transient="true"/>
+      <eOperations name="reverse" eType="#//versioning/ChangePackage"/>
+      <eOperations name="apply">
+        <eParameters name="project" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"/>
+      </eOperations>
+      <eOperations name="init">
+        <eParameters name="project" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"/>
+        <eParameters name="backwardChangeDescription" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore.change/model/Change.ecore#//ChangeDescription"/>
+      </eOperations>
+      <eOperations name="getOperations" upperBound="-1" eType="#//versioning/operations/AbstractOperation"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="changeContainers" upperBound="-1"
+          eType="#//versioning/changeContainer/ChangeContainer" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="HistoryInfo">
       <eStructuralFeatures xsi:type="ecore:EReference" name="primerySpec" lowerBound="1"
-          eType="#//changemanagment/PrimaryVersionSpec"/>
+          eType="#//versioning/PrimaryVersionSpec"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="logMessage" lowerBound="1"
-          eType="#//changemanagment/LogMessage"/>
+          eType="#//versioning/LogMessage"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Version">
       <eStructuralFeatures xsi:type="ecore:EReference" name="projectState" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="primarySpec" lowerBound="1"
-          eType="#//changemanagment/PrimaryVersionSpec" containment="true"/>
+          eType="#//versioning/PrimaryVersionSpec" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="tagSpecs" upperBound="-1"
-          eType="#//changemanagment/TagVersionSpec" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="nextVersion" eType="#//changemanagment/Version"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="previousVersion" eType="#//changemanagment/Version"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="changes" eType="#//changemanagment/ChangePackage"
+          eType="#//versioning/TagVersionSpec" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="nextVersion" eType="#//versioning/Version"
+          eOpposite="#//versioning/Version/previousVersion"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="previousVersion" eType="#//versioning/Version"
+          eOpposite="#//versioning/Version/nextVersion"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="changes" eType="#//versioning/ChangePackage"
           containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="logMessage" eType="#//changemanagment/LogMessage"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="logMessage" eType="#//versioning/LogMessage"
           containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="HeadVersionSpec" eSuperTypes="#//changemanagment/VersionSpec"/>
-    <eSubpackages name="changepackage" nsURI="http://unicase.org/esmodel/changemanagment/changepackage"
-        nsPrefix="org.unicase.emfstore.esmodel.changemanagment.changepackage">
-      <eClassifiers xsi:type="ecore:EClass" name="ChangePackage">
-        <eStructuralFeatures xsi:type="ecore:EReference" name="operations" upperBound="-1"
-            eType="#//changemanagment/changepackage/ESAbstractOperation" containment="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="HeadVersionSpec" eSuperTypes="#//versioning/VersionSpec"/>
+    <eSubpackages name="operations" nsURI="http://unicase.org/esmodel/versioning/operations"
+        nsPrefix="org.unicase.emfstore.esmodel.versioning.operations">
+      <eClassifiers xsi:type="ecore:EClass" name="AbstractOperation">
+        <eOperations name="apply">
+          <eParameters name="project" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"/>
+        </eOperations>
+        <eOperations name="reverse" eType="#//versioning/operations/AbstractOperation"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="modelElement" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElement"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="username" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="ESAbstractOperation" abstract="true"
-          interface="true"/>
-      <eClassifiers xsi:type="ecore:EClass" name="ESOperation" eSuperTypes="#//changemanagment/changepackage/ESAbstractOperation">
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="operations" lowerBound="1"
-            upperBound="-1" eType="#//changemanagment/changepackage/ESAbstractOperation"
-            containment="true"/>
+      <eClassifiers xsi:type="ecore:EClass" name="CompositeOperation" eSuperTypes="#//versioning/operations/AbstractOperation">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="atomicOperations" upperBound="-1"
+            eType="#//versioning/operations/AtomicOperation"/>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="ESEvent" abstract="true" eSuperTypes="#//changemanagment/changepackage/ESAbstractOperation">
-        <eStructuralFeatures xsi:type="ecore:EReference" name="modelElementId" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"
-            containment="true"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="featureId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="modelElementClass">
-          <eGenericType eClassifier="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
-            <eTypeArguments/>
-          </eGenericType>
+      <eClassifiers xsi:type="ecore:EClass" name="FeatureOperation" eSuperTypes="#//versioning/operations/AtomicOperation">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="oldValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="newValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="AttributeName" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="CreateOperation" eSuperTypes="#//versioning/operations/AtomicOperation">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="objectToCreate" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="DeleteOperation" eSuperTypes="#//versioning/operations/AtomicOperation">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="objectToDelete" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="AtomicOperation" eSuperTypes="#//versioning/operations/AbstractOperation"/>
+    </eSubpackages>
+    <eSubpackages name="changeContainer" nsURI="http://unicase.org/esmodel/versioning/changeContainer"
+        nsPrefix="org.unicase.emfstore.esmodel.versioning.changeContainer">
+      <eClassifiers xsi:type="ecore:EClass" name="ChangeContainer">
+        <eOperations name="reverse" eType="#//versioning/changeContainer/ChangeContainer"/>
+        <eOperations name="apply">
+          <eParameters name="project" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"/>
+        </eOperations>
+        <eOperations name="getOperations" upperBound="-1" eType="#//versioning/operations/AbstractOperation"/>
+        <eOperations name="init">
+          <eParameters name="project" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"/>
+          <eParameters name="backwardChangeDescription" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore.change/model/Change.ecore#//ChangeDescription"/>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="forwardDelta" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+          <eAnnotations source="teneo.jpa">
+            <details key="value" value="@Type(type=&quot;text&quot;)"/>
+          </eAnnotations>
+        </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="backwardDelta" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+          <eAnnotations source="teneo.jpa">
+            <details key="value" value="@Type(type=&quot;text&quot;)"/>
+          </eAnnotations>
         </eStructuralFeatures>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="ESeAttributeEvent" eSuperTypes="#//changemanagment/changepackage/ESEvent">
-        <eStructuralFeatures xsi:type="ecore:EReference" name="previousState" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EAttribute"
-            containment="true"/>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="subsequentState" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EAttribute"/>
-      </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="ESListEvent" eSuperTypes="#//changemanagment/changepackage/ESEvent"/>
-      <eClassifiers xsi:type="ecore:EClass" name="ESModifyElementEvent" eSuperTypes="#//changemanagment/changepackage/ESEvent">
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="previousState" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="subsequentState" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eClassifiers xsi:type="ecore:EClass" name="CompositeChangeContainer" eSuperTypes="#//versioning/changeContainer/ChangeContainer">
+        <eOperations name="init">
+          <eParameters name="project" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"/>
+          <eParameters name="backwardChangeDescription" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore.change/model/Change.ecore#//ChangeDescription"/>
+          <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          <eParameters name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eClassifiers>
     </eSubpackages>
   </eSubpackages>

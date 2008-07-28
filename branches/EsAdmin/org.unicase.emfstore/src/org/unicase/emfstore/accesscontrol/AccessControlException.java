@@ -6,6 +6,8 @@
  */
 package org.unicase.emfstore.accesscontrol;
 
+import org.unicase.emfstore.exceptions.EmfStoreException;
+
 /**
  * Represents a access control violation. Access to a server resource may not be
  * allowed for current user or user name or password might be wrong.
@@ -14,7 +16,7 @@ package org.unicase.emfstore.accesscontrol;
  * 
  */
 @SuppressWarnings("serial")
-public class AccessControlException extends Exception {
+public class AccessControlException extends EmfStoreException {
 
 	/**
 	 * Constructor.

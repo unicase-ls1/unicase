@@ -17,19 +17,13 @@ package org.unicase.emfstore.exceptions;
 @SuppressWarnings("serial")
 public class BaseVersionOutdatedException extends EmfStoreException {
 
-	/**
-	 * @param message the message 
-	 * @param cause underlying exception
-	 */
-	public BaseVersionOutdatedException(String message, Throwable cause) {
-		super(message, cause);
-	}
-
+	private static final String message = "BaseVersion outdated, please update before commit.";
+	
 	/**
 	 * Default constructor.
 	 * @param message the message
 	 */
-	public BaseVersionOutdatedException(String message) {
+	public BaseVersionOutdatedException() {
 		super(message);
 	}
 

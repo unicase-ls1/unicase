@@ -12,11 +12,11 @@ import org.eclipse.emf.common.util.URI;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
-import org.unicase.emfstore.esmodel.changemanagment.ChangePackage;
-import org.unicase.emfstore.esmodel.changemanagment.HistoryInfo;
-import org.unicase.emfstore.esmodel.changemanagment.LogMessage;
-import org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec;
-import org.unicase.emfstore.esmodel.changemanagment.VersionSpec;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
+import org.unicase.emfstore.esmodel.versioning.LogMessage;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.Project;
 
@@ -179,4 +179,25 @@ public interface EmfStore {
 	 */
 	ProjectInfo createProject(SessionId sessionId, String name,
 			String description, LogMessage logMessage) throws EmfStoreException;
+	
+	/**
+	 * Create a new project on the server.
+	 * 
+	 * @param sessionId
+	 *            the session id for authentication
+	 * @param name
+	 *            the name of the server
+	 * @param description
+	 *            the description
+	 * @param logMessage the logMessage
+	 * @param project the initial project state
+	 * 
+	 * @return a {@link ProjectInfo} for the new project
+	 * @throws EmfStoreException
+	 *             if any error in the EmfStore occurs
+	 * 
+	 * @generated NOT
+	 */
+	ProjectInfo createProject(SessionId sessionId, String name,
+			String description, LogMessage logMessage, Project project) throws EmfStoreException;
 }

@@ -305,16 +305,6 @@ public class ACOrgUnitImpl extends EObjectImpl implements ACOrgUnit {
 		result.append(')');
 		return result.toString();
 	}
-	
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if(obj instanceof ACOrgUnit) {
-			return getId().equals(((ACOrgUnit) obj).getId());
-		}
-		return super.equals(obj);
-	}
 
 } // ACOrgUnitImpl
+>>>>>>> .merge-right.r835

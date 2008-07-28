@@ -156,6 +156,7 @@ public class ProjectInfoItemProvider extends ItemProviderAdapter implements
 	 * --> <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	//AS: fix java doc
 	@Override
 	public String getText(Object object) {
 		ProjectInfo projectInfo = ((ProjectInfo) object);

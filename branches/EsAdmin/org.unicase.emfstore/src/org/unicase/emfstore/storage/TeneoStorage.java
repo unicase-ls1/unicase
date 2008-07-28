@@ -14,12 +14,15 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.change.ChangePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 import org.eclipse.emf.teneo.PersistenceOptions;
 import org.eclipse.emf.teneo.hibernate.HbDataStore;
 import org.eclipse.emf.teneo.hibernate.HbHelper;
+import org.eclipse.emf.teneo.hibernate.mapping.property.EListPropertyHandler;
 import org.eclipse.emf.teneo.hibernate.resource.HibernateResource;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.hibernate.cfg.Environment;
@@ -54,8 +57,22 @@ public class TeneoStorage implements ResourceStorage {
 				org.hibernate.dialect.MySQLInnoDBDialect.class.getName());
 		// Lazy loading to avoid too many joins exception
 		props.setProperty(Environment.MAX_FETCH_DEPTH, "0");
+		
+		//MK: possible performance optimization, but throws exception
+		//props.setProperty(PersistenceOptions.ALWAYS_MAP_LIST_AS_BAG, "true");
 
+//		//MK: does not work with mysql, table names are too long
+//		//use fully qualified names for classes
+//		final ExtensionManager extensionManager = dataStore.getExtensionManager();
+//		extensionManager.registerExtension(EntityNameStrategy.class.getName(), QualifyingEntityNameStrategy.class.getName());
+
+		//adaptions for gmf to be able to save diagrams to db
+		props.setProperty(PersistenceOptions.PERSISTENCE_XML,
+		"/annotations.xml");
+		dataStore.getExtensionManager().registerExtension(EListPropertyHandler.class.getName(),GMFEListPropertyHandler.class.getName());
+		
 		props.setProperty(PersistenceOptions.INHERITANCE_MAPPING, "JOINED");
+
 		dataStore.setProperties(props);
 
 		// set epackages
@@ -98,7 +115,14 @@ public class TeneoStorage implements ResourceStorage {
 		// add gmf packages
 		NotationPackage gmfPackage = NotationPackage.eINSTANCE;
 		packages.add(gmfPackage);
+		XMLTypePackage xmlPackage = XMLTypePackage.eINSTANCE;
+		packages.add(xmlPackage);
 
+		//MK: remove validation for all packages by registering custom validator
+		for (EPackage ePackage: packages) {
+			EValidator.Registry.INSTANCE.put(ePackage, new SkipValidationValidator());
+		}
+		
 		return packages.toArray(new EPackageImpl[packages.size()]);
 	}
 

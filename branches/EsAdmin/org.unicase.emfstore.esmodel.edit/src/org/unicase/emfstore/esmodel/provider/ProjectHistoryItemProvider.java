@@ -26,7 +26,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
 import org.unicase.emfstore.esmodel.ProjectHistory;
-import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentFactory;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 
 /**
  * This is the item provider adapter for a
@@ -204,7 +204,7 @@ public class ProjectHistoryItemProvider extends ItemProviderAdapter implements
 
 		newChildDescriptors.add(createChildParameter(
 				EsmodelPackage.Literals.PROJECT_HISTORY__VERSIONS,
-				ChangemanagmentFactory.eINSTANCE.createVersion()));
+				VersioningFactory.eINSTANCE.createVersion()));
 	}
 
 	/**

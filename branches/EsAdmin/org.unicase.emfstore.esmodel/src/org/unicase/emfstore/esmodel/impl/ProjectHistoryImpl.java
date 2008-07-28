@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
 import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.esmodel.ProjectId;
-import org.unicase.emfstore.esmodel.changemanagment.Version;
+import org.unicase.emfstore.esmodel.versioning.Version;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '

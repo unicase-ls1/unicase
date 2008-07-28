@@ -37,11 +37,6 @@ public class ACOrgUnitIdImpl extends UniqueIdentifierImpl implements
 	protected EClass eStaticClass() {
 		return AccesscontrolPackage.Literals.AC_ORG_UNIT_ID;
 	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		
-		return super.equals(obj);
-	}
 
 } // ACOrgUnitIdImpl
+>>>>>>> .merge-right.r835

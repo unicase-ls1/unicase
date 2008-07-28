@@ -70,12 +70,10 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean canAdministrate(ProjectId projectId) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return false;
 	}
 
 	/**
@@ -83,12 +81,10 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 * 
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.Role#canCreate(org.unicase.emfstore.esmodel.ProjectId,
 	 *      org.unicase.model.ModelElement)
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean canCreate(ProjectId projectId, ModelElement modelElement) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return false;
 	}
 
 	/**
@@ -96,12 +92,10 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 * 
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.Role#canDelete(org.unicase.emfstore.esmodel.ProjectId,
 	 *      org.unicase.model.ModelElement)
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean canDelete(ProjectId projectId, ModelElement modelElement) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return false;
 	}
 
 	/**
@@ -109,12 +103,10 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 * 
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.Role#canModify(org.unicase.emfstore.esmodel.ProjectId,
 	 *      org.unicase.model.ModelElement)
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean canModify(ProjectId projectId, ModelElement modelElement) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return false;
 	}
 
 	/**
@@ -122,12 +114,10 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 * 
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.Role#canRead(org.unicase.emfstore.esmodel.ProjectId,
 	 *      org.unicase.model.ModelElement)
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean canRead(ProjectId projectId, ModelElement modelElement) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return false;
 	}
 
 	/**

@@ -23,10 +23,12 @@ import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.impl.AccesscontrolPackageImpl;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RolesPackageImpl;
-import org.unicase.emfstore.esmodel.changemanagment.ChangemanagmentPackage;
-import org.unicase.emfstore.esmodel.changemanagment.changepackage.ChangepackagePackage;
-import org.unicase.emfstore.esmodel.changemanagment.changepackage.impl.ChangepackagePackageImpl;
-import org.unicase.emfstore.esmodel.changemanagment.impl.ChangemanagmentPackageImpl;
+import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
+import org.unicase.emfstore.esmodel.versioning.changeContainer.ChangeContainerPackage;
+import org.unicase.emfstore.esmodel.versioning.changeContainer.impl.ChangeContainerPackageImpl;
+import org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl;
 import org.unicase.model.ModelPackage;
 
 /**
@@ -129,14 +131,18 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		ModelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		ChangemanagmentPackageImpl theChangemanagmentPackage = (ChangemanagmentPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(ChangemanagmentPackage.eNS_URI) instanceof ChangemanagmentPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ChangemanagmentPackage.eNS_URI)
-				: ChangemanagmentPackage.eINSTANCE);
-		ChangepackagePackageImpl theChangepackagePackage = (ChangepackagePackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(ChangepackagePackage.eNS_URI) instanceof ChangepackagePackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ChangepackagePackage.eNS_URI)
-				: ChangepackagePackage.eINSTANCE);
+		VersioningPackageImpl theVersioningPackage = (VersioningPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(VersioningPackage.eNS_URI) instanceof VersioningPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(VersioningPackage.eNS_URI)
+				: VersioningPackage.eINSTANCE);
+		OperationsPackageImpl theOperationsPackage = (OperationsPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(OperationsPackage.eNS_URI) instanceof OperationsPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(OperationsPackage.eNS_URI)
+				: OperationsPackage.eINSTANCE);
+		ChangeContainerPackageImpl theChangeContainerPackage = (ChangeContainerPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(ChangeContainerPackage.eNS_URI) instanceof ChangeContainerPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(ChangeContainerPackage.eNS_URI)
+				: ChangeContainerPackage.eINSTANCE);
 		AccesscontrolPackageImpl theAccesscontrolPackage = (AccesscontrolPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(AccesscontrolPackage.eNS_URI) instanceof AccesscontrolPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(AccesscontrolPackage.eNS_URI)
@@ -148,15 +154,17 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 
 		// Create package meta-data objects
 		theEsmodelPackage.createPackageContents();
-		theChangemanagmentPackage.createPackageContents();
-		theChangepackagePackage.createPackageContents();
+		theVersioningPackage.createPackageContents();
+		theOperationsPackage.createPackageContents();
+		theChangeContainerPackage.createPackageContents();
 		theAccesscontrolPackage.createPackageContents();
 		theRolesPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theEsmodelPackage.initializePackageContents();
-		theChangemanagmentPackage.initializePackageContents();
-		theChangepackagePackage.initializePackageContents();
+		theVersioningPackage.initializePackageContents();
+		theOperationsPackage.initializePackageContents();
+		theChangeContainerPackage.initializePackageContents();
 		theAccesscontrolPackage.initializePackageContents();
 		theRolesPackage.initializePackageContents();
 
@@ -381,15 +389,15 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ChangemanagmentPackage theChangemanagmentPackage = (ChangemanagmentPackage) EPackage.Registry.INSTANCE
-				.getEPackage(ChangemanagmentPackage.eNS_URI);
+		VersioningPackage theVersioningPackage = (VersioningPackage) EPackage.Registry.INSTANCE
+				.getEPackage(VersioningPackage.eNS_URI);
 		AccesscontrolPackage theAccesscontrolPackage = (AccesscontrolPackage) EPackage.Registry.INSTANCE
 				.getEPackage(AccesscontrolPackage.eNS_URI);
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE
 				.getEPackage(ModelPackage.eNS_URI);
 
 		// Add subpackages
-		getESubpackages().add(theChangemanagmentPackage);
+		getESubpackages().add(theVersioningPackage);
 		getESubpackages().add(theAccesscontrolPackage);
 
 		// Create type parameters
@@ -411,7 +419,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
-		initEReference(getProjectHistory_Versions(), theChangemanagmentPackage
+		initEReference(getProjectHistory_Versions(), theVersioningPackage
 				.getVersion(), null, "versions", null, 1, -1,
 				ProjectHistory.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
@@ -440,7 +448,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 				"projectId", null, 1, 1, ProjectInfo.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProjectInfo_Version(), theChangemanagmentPackage
+		initEReference(getProjectInfo_Version(), theVersioningPackage
 				.getPrimaryVersionSpec(), null, "version", null, 1, 1,
 				ProjectInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,

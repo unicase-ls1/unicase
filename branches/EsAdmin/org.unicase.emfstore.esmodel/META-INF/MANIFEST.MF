@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: unicase EMFStore Model Plug-in
 Bundle-SymbolicName: org.unicase.emfstore.esmodel;singleton:=true
-Bundle-Version: 0.0.1
+Bundle-Version: 0.0.1.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: unicase.org
 Bundle-Localization: plugin
@@ -14,14 +14,17 @@ Export-Package: org.unicase.emfstore.esmodel,
  org.unicase.emfstore.esmodel.accesscontrol.roles.impl,
  org.unicase.emfstore.esmodel.accesscontrol.roles.util,
  org.unicase.emfstore.esmodel.accesscontrol.util,
- org.unicase.emfstore.esmodel.changemanagment,
- org.unicase.emfstore.esmodel.changemanagment.changepackage,
- org.unicase.emfstore.esmodel.changemanagment.changepackage.impl,
- org.unicase.emfstore.esmodel.changemanagment.changepackage.util,
- org.unicase.emfstore.esmodel.changemanagment.impl,
- org.unicase.emfstore.esmodel.changemanagment.util,
  org.unicase.emfstore.esmodel.impl,
- org.unicase.emfstore.esmodel.util
+ org.unicase.emfstore.esmodel.util,
+ org.unicase.emfstore.esmodel.versioning,
+ org.unicase.emfstore.esmodel.versioning.changeContainer,
+ org.unicase.emfstore.esmodel.versioning.changeContainer.impl,
+ org.unicase.emfstore.esmodel.versioning.changeContainer.util,
+ org.unicase.emfstore.esmodel.versioning.impl,
+ org.unicase.emfstore.esmodel.versioning.operations,
+ org.unicase.emfstore.esmodel.versioning.operations.impl,
+ org.unicase.emfstore.esmodel.versioning.operations.util,
+ org.unicase.emfstore.esmodel.versioning.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.unicase.model;visibility:=reexport,
