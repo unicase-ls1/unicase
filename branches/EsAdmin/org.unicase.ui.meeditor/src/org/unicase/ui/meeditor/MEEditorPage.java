@@ -34,7 +34,13 @@ import org.eclipse.ui.menus.IMenuService;
 import org.eclipse.ui.services.IEvaluationService;
 import org.unicase.model.ModelElement;
 import org.unicase.ui.meeditor.mecontrols.MEControl;
+import org.unicase.ui.meeditor.mecontrols.METextControl;
 
+/**
+ * The editor page for the {@link MEEditor}.
+ * @author helming
+ *
+ */
 public class MEEditorPage extends FormPage {
 
 	private EditingDomain editingDomain;
@@ -43,11 +49,19 @@ public class MEEditorPage extends FormPage {
 	private FormToolkit toolkit;
 	private List<MEControl> meControls = new ArrayList<MEControl>();
 	
-	static String activeModelelement = "activeModelelement";
+	private static String activeModelelement = "activeModelelement";
 	private ScrolledForm form;
 	private List<IItemPropertyDescriptor> simpleAttributes = new ArrayList<IItemPropertyDescriptor>();
 	private List<IItemPropertyDescriptor> multiReferences = new ArrayList<IItemPropertyDescriptor>();
 
+	/**
+	 * Default constructor.
+	 * @param editor the {@link MEEditor}
+	 * @param id @see {@link FormPage#id}
+	 * @param title the title
+	 * @param editingDomain the editingDomain
+	 * @param modelElement the modelElement
+	 */
 	public MEEditorPage(MEEditor editor, String id, String title,
 			EditingDomain editingDomain, ModelElement modelElement) {
 		super(editor, id, title);
@@ -56,6 +70,9 @@ public class MEEditorPage extends FormPage {
 		
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void createFormContent(IManagedForm managedForm) {
 		super.createFormContent(managedForm);
@@ -91,10 +108,7 @@ public class MEEditorPage extends FormPage {
 		IMenuService menuService = (IMenuService) PlatformUI.getWorkbench()
 				.getService(IMenuService.class);
 		ISourceProvider sourceProvider = new AbstractSourceProvider() {
-
 			public void dispose() {
-				// TODO Auto-generated method stub
-
 			}
 
 			@SuppressWarnings("unchecked")
@@ -195,4 +209,25 @@ public class MEEditorPage extends FormPage {
 		}
 		super.dispose();
 	}
+
+	/**.
+	 * {@inheritDoc}
+	 * This method is added to solve the focus bug of navigator.
+	 * Every time that a ME is opened in editor, navigator has to lose focus
+	 * so that its action contributions are set correctly for next time.
+	 *  
+	 */
+	@Override
+	public void setFocus() {
+			super.setFocus();
+			//set keyboard focus on the first Text control
+			for(MEControl meControl : this.meControls){
+				if(meControl instanceof METextControl){
+					((METextControl)meControl).setFocus();
+					break;
+				}
+			}
+	}
+
+	
 }

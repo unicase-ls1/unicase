@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.CompoundContributionItem;
 import org.eclipse.ui.menus.CommandContributionItem;
@@ -128,9 +129,13 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 	 * @return LeafSection
 	 */
 	private LeafSection getSelectedLeafSection() {
-		ISelection sel = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-				.getPartService().getActivePart().getSite()
-				.getSelectionProvider().getSelection();
+		ISelectionService selectionService = 
+			(ISelectionService)PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getPartService()
+					.getActivePart().getSite().getService(ISelectionService.class);
+	
+		
+		ISelection sel = selectionService.getSelection();
 		if (!(sel instanceof IStructuredSelection)) {
 			return null;
 		}

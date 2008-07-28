@@ -6,29 +6,31 @@
  */
 package org.unicase.ui.meeditor;
 
+import java.io.IOException;
+import java.util.EventObject;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.CommandStack;
+import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryLabelProvider;
-import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
 import org.unicase.model.ModelElement;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
-import org.unicase.ui.meeditor.mecontrols.MEControl;
+import org.unicase.workspace.Configuration;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
  * GUI view for editing MEs.
+ * 
  * @author helming
- *
+ * 
  */
 public class MEEditor extends SharedHeaderFormEditor {
 
@@ -39,11 +41,10 @@ public class MEEditor extends SharedHeaderFormEditor {
 	private ModelElement modelElement;
 	private ComposedAdapterFactory adapterFactory;
 	private TransactionalEditingDomain editingDomain;
-	private ILabelProvider labelProvider;
 	private CommandStack commandStack;
-	private ControlFactory controlFactory;
-	private boolean dirty;
 	private MEEditorPage form;
+	private boolean checkingDirty;
+	protected boolean dirty;
 
 	/**
 	 * Default constructor.
@@ -51,15 +52,15 @@ public class MEEditor extends SharedHeaderFormEditor {
 	public MEEditor() {
 		// initializeEditingDomain();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected void addPages() {
 
-		form = new MEEditorPage(this, "1", "Standard View",
-				editingDomain, modelElement);
+		form = new MEEditorPage(this, "1", "Standard View", editingDomain,
+				modelElement);
 		try {
 			addPage(form);
 		} catch (PartInitException e) {
@@ -81,17 +82,13 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 					@Override
 					protected void doExecute() {
-						WorkspaceManager.getInstance().getCurrentWorkspace()
-								.save();
+						WorkspaceManager.getProjectSpace(modelElement).save();
 
 					}
 
 				});
-
-		commandStack.flush();
 		editorDirtyStateChanged();
 		monitor.done();
-		dirty = false;
 	}
 
 	/**
@@ -103,6 +100,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 	/**
 	 * Save is not allowed as the editor can only modify model elements.
+	 * 
 	 * @return false
 	 */
 	@Override
@@ -150,24 +148,27 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 		this.commandStack = editingDomain.getCommandStack();
 		// Add a listener to set the editor dirty of commands have been executed
-		// editingDomain.getCommandStack().addCommandStackListener(new
-		// CommandStackListener() {
-		// public void commandStackChanged(final EventObject event) {
-		// getContainer().getDisplay().asyncExec(new Runnable() {
-		// public void run() {
-		// dirty = true;
-		// editorDirtyStateChanged();
-		// }
-		// });
-		// }
-		// });
+		editingDomain.getCommandStack().execute(
+				new RecordingCommand(editingDomain) {
 
-		// Create the editing domain with our adapterFactory and command stack.
+					@Override
+					protected void doExecute() {
+						editingDomain.getCommandStack()
+								.addCommandStackListener(
+										new CommandStackListener() {
 
-		// These provide access to the model items, their property source and
-		// label
-		this.labelProvider = new TransactionalAdapterFactoryLabelProvider(
-				editingDomain, adapterFactory);
+											public void commandStackChanged(
+													EventObject event) {
+												//JH: Fix Hack
+												if (!checkingDirty) {
+													editorDirtyStateChanged();
+												}
+											}
+										});
+
+					}
+
+				});
 
 	}
 
@@ -176,7 +177,29 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 */
 	@Override
 	public boolean isDirty() {
-		return true;
+		//JH: Syncronize
+		if(checkingDirty){
+			return dirty;
+		}
+		checkingDirty=true;
+		editingDomain.getCommandStack().execute(
+				new RecordingCommand(editingDomain) {
+					@Override
+					protected void doExecute() {
+						//JH: check this
+						dirty = WorkspaceManager.getProjectSpace(modelElement).isDirty();
+					}
+				});
+		checkingDirty=false;
+		return dirty;
+	}
+
+	@Override
+	public void setFocus() {
+
+		super.setFocus();
+		form.setFocus();
+
 	}
 
 }

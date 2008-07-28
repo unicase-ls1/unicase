@@ -62,5 +62,12 @@ public class METextControl extends AbstractMEControl implements MEControl {
 				null, null);
 		return text;
 	}
+	
+	/**.
+	 * This sets the keyboard focus in Text control.
+	 */
+	public void setFocus(){
+		this.text.setFocus();
+	}
 
 }

@@ -18,17 +18,19 @@ import org.unicase.workspace.WorkspaceManager;
  * @author helming
  * 
  */
-public class LabelProvider extends TransactionalAdapterFactoryLabelProvider
+public class TreeLabelProvider extends TransactionalAdapterFactoryLabelProvider
 		implements ILabelProvider {
 	
 	/**
 	 * Default constructor.
 	 */
-	public LabelProvider() {
+	public TreeLabelProvider() {
 
 		super(WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain(),
 				new ComposedAdapterFactory(
 						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		
+		
 	}
 
 }
