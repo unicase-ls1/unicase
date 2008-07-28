@@ -180,6 +180,14 @@ public class ProjectItemProvider extends ItemProviderAdapter implements
 
 		newChildDescriptors.add(createChildParameter(
 				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				TaskFactory.eINSTANCE.createMeeting()));
+
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				TaskFactory.eINSTANCE.createMilestone()));
+
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 				DiagramFactory.eINSTANCE.createMEDiagram()));
 
 		newChildDescriptors.add(createChildParameter(

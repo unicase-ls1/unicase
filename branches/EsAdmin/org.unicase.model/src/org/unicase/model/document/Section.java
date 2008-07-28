@@ -37,7 +37,7 @@ public interface Section extends ModelElement {
 	 * @see #setParent(CompositeSection)
 	 * @see org.unicase.model.document.DocumentPackage#getSection_Parent()
 	 * @see org.unicase.model.document.CompositeSection#getSubsections
-	 * @model opposite="subsections" transient="false"
+	 * @model opposite="subsections" keys="identifier" transient="false"
 	 * @generated
 	 */
 	CompositeSection getParent();

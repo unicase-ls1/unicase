@@ -10,11 +10,10 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
-import org.unicase.model.UniqueIdentifier;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
-import org.unicase.model.organization.OrgUnitId;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 
@@ -93,6 +92,8 @@ public class OrganizationSwitch<T> {
 			if (result == null)
 				result = caseModelElement(user);
 			if (result == null)
+				result = caseIdentifiableElement(user);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -102,14 +103,7 @@ public class OrganizationSwitch<T> {
 			if (result == null)
 				result = caseModelElement(orgUnit);
 			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OrganizationPackage.ORG_UNIT_ID: {
-			OrgUnitId orgUnitId = (OrgUnitId) theEObject;
-			T result = caseOrgUnitId(orgUnitId);
-			if (result == null)
-				result = caseUniqueIdentifier(orgUnitId);
+				result = caseIdentifiableElement(orgUnit);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -121,6 +115,8 @@ public class OrganizationSwitch<T> {
 				result = caseOrgUnit(group);
 			if (result == null)
 				result = caseModelElement(group);
+			if (result == null)
+				result = caseIdentifiableElement(group);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -162,20 +158,6 @@ public class OrganizationSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Org Unit Id</em>'.
-	 * <!-- begin-user-doc --> This implementation
-	 * returns null; returning a non-null result will terminate the switch. <!--
-	 * end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Org Unit Id</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseOrgUnitId(OrgUnitId object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Group</em>'.
 	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
@@ -190,6 +172,21 @@ public class OrganizationSwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIdentifiableElement(IdentifiableElement object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Element</em>'.
 	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
@@ -200,20 +197,6 @@ public class OrganizationSwitch<T> {
 	 * @generated
 	 */
 	public T caseModelElement(ModelElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Unique Identifier</em>'.
-	 * <!-- begin-user-doc --> This implementation
-	 * returns null; returning a non-null result will terminate the switch. <!--
-	 * end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Unique Identifier</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseUniqueIdentifier(UniqueIdentifier object) {
 		return null;
 	}
 

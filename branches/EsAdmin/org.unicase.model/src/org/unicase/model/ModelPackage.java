@@ -56,6 +56,34 @@ public interface ModelPackage extends EPackage {
 	ModelPackage eINSTANCE = org.unicase.model.impl.ModelPackageImpl.init();
 
 	/**
+	 * The meta object id for the '{@link org.unicase.model.impl.IdentifiableElementImpl <em>Identifiable Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.impl.IdentifiableElementImpl
+	 * @see org.unicase.model.impl.ModelPackageImpl#getIdentifiableElement()
+	 * @generated
+	 */
+	int IDENTIFIABLE_ELEMENT = 5;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IDENTIFIABLE_ELEMENT__IDENTIFIER = 0;
+
+	/**
+	 * The number of structural features of the '<em>Identifiable Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IDENTIFIABLE_ELEMENT_FEATURE_COUNT = 1;
+
+	/**
 	 * The meta object id for the '{@link org.unicase.model.impl.ModelElementImpl <em>Element</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.model.impl.ModelElementImpl
@@ -65,13 +93,21 @@ public interface ModelPackage extends EPackage {
 	int MODEL_ELEMENT = 0;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT__IDENTIFIER = IDENTIFIABLE_ELEMENT__IDENTIFIER;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__NAME = 0;
+	int MODEL_ELEMENT__NAME = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute. <!--
@@ -80,15 +116,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__DESCRIPTION = 1;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT__IDENTIFIER = 2;
+	int MODEL_ELEMENT__DESCRIPTION = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
@@ -96,7 +124,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__READER_INFOS = 3;
+	int MODEL_ELEMENT__READER_INFOS = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!--
@@ -105,7 +133,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__ANNOTATIONS = 4;
+	int MODEL_ELEMENT__ANNOTATIONS = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -113,7 +141,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES = 5;
+	int MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
@@ -121,7 +149,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__LEAF_SECTION = 6;
+	int MODEL_ELEMENT__LEAF_SECTION = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Element</em>' class. <!--
@@ -130,7 +158,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_FEATURE_COUNT = 7;
+	int MODEL_ELEMENT_FEATURE_COUNT = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.impl.ProjectImpl <em>Project</em>}' class.
@@ -166,7 +194,7 @@ public interface ModelPackage extends EPackage {
 	 * @see org.unicase.model.impl.ModelPackageImpl#getUniqueIdentifier()
 	 * @generated
 	 */
-	int UNIQUE_IDENTIFIER = 3;
+	int UNIQUE_IDENTIFIER = 2;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute. <!--
@@ -186,32 +214,6 @@ public interface ModelPackage extends EPackage {
 	int UNIQUE_IDENTIFIER_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.model.impl.ModelElementIdImpl <em>Element Id</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see org.unicase.model.impl.ModelElementIdImpl
-	 * @see org.unicase.model.impl.ModelPackageImpl#getModelElementId()
-	 * @generated
-	 */
-	int MODEL_ELEMENT_ID = 2;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT_ID__ID = UNIQUE_IDENTIFIER__ID;
-
-	/**
-	 * The number of structural features of the '<em>Element Id</em>' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT_ID_FEATURE_COUNT = UNIQUE_IDENTIFIER_FEATURE_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.unicase.model.impl.ReaderInfoImpl
 	 * <em>Reader Info</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
@@ -220,7 +222,16 @@ public interface ModelPackage extends EPackage {
 	 * @see org.unicase.model.impl.ModelPackageImpl#getReaderInfo()
 	 * @generated
 	 */
-	int READER_INFO = 4;
+	int READER_INFO = 3;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int READER_INFO__IDENTIFIER = IDENTIFIABLE_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute. <!--
@@ -229,7 +240,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int READER_INFO__DATE = 0;
+	int READER_INFO__DATE = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Reader Id</b></em>' reference. <!--
@@ -238,7 +249,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int READER_INFO__READER_ID = 1;
+	int READER_INFO__READER_ID = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Reader Info</em>' class.
@@ -246,7 +257,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int READER_INFO_FEATURE_COUNT = 2;
+	int READER_INFO_FEATURE_COUNT = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.impl.AnnotationImpl
@@ -257,7 +268,15 @@ public interface ModelPackage extends EPackage {
 	 * @see org.unicase.model.impl.ModelPackageImpl#getAnnotation()
 	 * @generated
 	 */
-	int ANNOTATION = 5;
+	int ANNOTATION = 4;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__IDENTIFIER = MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!--
@@ -276,14 +295,6 @@ public interface ModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int ANNOTATION__DESCRIPTION = MODEL_ELEMENT__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__IDENTIFIER = MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
@@ -335,6 +346,34 @@ public interface ModelPackage extends EPackage {
 	int ANNOTATION_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.unicase.model.impl.ModelElementIdImpl <em>Element Id</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.impl.ModelElementIdImpl
+	 * @see org.unicase.model.impl.ModelPackageImpl#getModelElementId()
+	 * @generated
+	 */
+	int MODEL_ELEMENT_ID = 6;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_ID__ID = UNIQUE_IDENTIFIER__ID;
+
+	/**
+	 * The number of structural features of the '<em>Element Id</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_ID_FEATURE_COUNT = UNIQUE_IDENTIFIER_FEATURE_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.model.ModelElement <em>Element</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Element</em>'.
@@ -364,16 +403,6 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getModelElement_Description();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.unicase.model.ModelElement#getIdentifier <em>Identifier</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Identifier</em>'.
-	 * @see org.unicase.model.ModelElement#getIdentifier()
-	 * @see #getModelElement()
-	 * @generated
-	 */
-	EReference getModelElement_Identifier();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.unicase.model.ModelElement#getReaderInfos <em>Reader Infos</em>}'.
@@ -434,17 +463,6 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getProject_ModelElements();
-
-	/**
-	 * Returns the meta object for class '
-	 * {@link org.unicase.model.ModelElementId <em>Element Id</em>}'. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for class '<em>Element Id</em>'.
-	 * @see org.unicase.model.ModelElementId
-	 * @generated
-	 */
-	EClass getModelElementId();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.UniqueIdentifier <em>Unique Identifier</em>}'.
@@ -519,6 +537,37 @@ public interface ModelPackage extends EPackage {
 	EReference getAnnotation_AnnotatedModelElements();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.model.IdentifiableElement <em>Identifiable Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Identifiable Element</em>'.
+	 * @see org.unicase.model.IdentifiableElement
+	 * @generated
+	 */
+	EClass getIdentifiableElement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.IdentifiableElement#getIdentifier <em>Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Identifier</em>'.
+	 * @see org.unicase.model.IdentifiableElement#getIdentifier()
+	 * @see #getIdentifiableElement()
+	 * @generated
+	 */
+	EAttribute getIdentifiableElement_Identifier();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.model.ModelElementId <em>Element Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Element Id</em>'.
+	 * @see org.unicase.model.ModelElementId
+	 * @generated
+	 */
+	EClass getModelElementId();
+
+	/**
 	 * Returns the factory that creates the instances of the model. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -563,15 +612,6 @@ public interface ModelPackage extends EPackage {
 		 */
 		EAttribute MODEL_ELEMENT__DESCRIPTION = eINSTANCE
 				.getModelElement_Description();
-
-		/**
-		 * The meta object literal for the '<em><b>Identifier</b></em>' containment reference feature.
-		 * <!-- begin-user-doc --> <!--
-		 * end-user-doc -->
-		 * @generated
-		 */
-		EReference MODEL_ELEMENT__IDENTIFIER = eINSTANCE
-				.getModelElement_Identifier();
 
 		/**
 		 * The meta object literal for the '<em><b>Reader Infos</b></em>' containment reference list feature.
@@ -624,15 +664,6 @@ public interface ModelPackage extends EPackage {
 		 */
 		EReference PROJECT__MODEL_ELEMENTS = eINSTANCE
 				.getProject_ModelElements();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.model.impl.ModelElementIdImpl <em>Element Id</em>}' class.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * @see org.unicase.model.impl.ModelElementIdImpl
-		 * @see org.unicase.model.impl.ModelPackageImpl#getModelElementId()
-		 * @generated
-		 */
-		EClass MODEL_ELEMENT_ID = eINSTANCE.getModelElementId();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.impl.UniqueIdentifierImpl <em>Unique Identifier</em>}' class.
@@ -690,6 +721,35 @@ public interface ModelPackage extends EPackage {
 		 */
 		EReference ANNOTATION__ANNOTATED_MODEL_ELEMENTS = eINSTANCE
 				.getAnnotation_AnnotatedModelElements();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.impl.IdentifiableElementImpl <em>Identifiable Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.impl.IdentifiableElementImpl
+		 * @see org.unicase.model.impl.ModelPackageImpl#getIdentifiableElement()
+		 * @generated
+		 */
+		EClass IDENTIFIABLE_ELEMENT = eINSTANCE.getIdentifiableElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Identifier</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IDENTIFIABLE_ELEMENT__IDENTIFIER = eINSTANCE
+				.getIdentifiableElement_Identifier();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.impl.ModelElementIdImpl <em>Element Id</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.impl.ModelElementIdImpl
+		 * @see org.unicase.model.impl.ModelPackageImpl#getModelElementId()
+		 * @generated
+		 */
+		EClass MODEL_ELEMENT_ID = eINSTANCE.getModelElementId();
 
 	}
 

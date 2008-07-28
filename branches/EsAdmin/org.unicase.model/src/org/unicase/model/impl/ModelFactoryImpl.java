@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.unicase.model.Annotation;
+import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
@@ -62,12 +63,14 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 		switch (eClass.getClassifierID()) {
 		case ModelPackage.PROJECT:
 			return createProject();
-		case ModelPackage.MODEL_ELEMENT_ID:
-			return createModelElementId();
 		case ModelPackage.READER_INFO:
 			return createReaderInfo();
 		case ModelPackage.ANNOTATION:
 			return createAnnotation();
+		case ModelPackage.IDENTIFIABLE_ELEMENT:
+			return createIdentifiableElement();
+		case ModelPackage.MODEL_ELEMENT_ID:
+			return createModelElementId();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName()
 					+ "' is not a valid classifier");
@@ -87,15 +90,6 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelElementId createModelElementId() {
-		ModelElementIdImpl modelElementId = new ModelElementIdImpl();
-		return modelElementId;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	public ReaderInfo createReaderInfo() {
 		ReaderInfoImpl readerInfo = new ReaderInfoImpl();
 		return readerInfo;
@@ -108,6 +102,26 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	public Annotation createAnnotation() {
 		AnnotationImpl annotation = new AnnotationImpl();
 		return annotation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IdentifiableElement createIdentifiableElement() {
+		IdentifiableElementImpl identifiableElement = new IdentifiableElementImpl();
+		return identifiableElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelElementId createModelElementId() {
+		ModelElementIdImpl modelElementId = new ModelElementIdImpl();
+		return modelElementId;
 	}
 
 	/**

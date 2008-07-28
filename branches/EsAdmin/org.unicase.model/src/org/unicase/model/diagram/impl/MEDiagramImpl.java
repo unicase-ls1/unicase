@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.DiagramPackage;
+import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.impl.ModelElementImpl;
 
@@ -32,6 +33,7 @@ import org.unicase.model.impl.ModelElementImpl;
  *   <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getElements <em>Elements</em>}</li>
  *   <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getGmfdiagram <em>Gmfdiagram</em>}</li>
  *   <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getNewElements <em>New Elements</em>}</li>
+ *   <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -69,6 +71,26 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	 * @ordered
 	 */
 	protected EList<ModelElement> newElements;
+
+	/**
+	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final DiagramType TYPE_EDEFAULT = DiagramType.CLASS_DIAGRAM;
+
+	/**
+	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected DiagramType type = TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -154,22 +176,53 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 					newGmfdiagram));
 	}
 
-	//begin of custom code
+//		/**
+//		 * <!-- begin-user-doc -->
+//		 * <!-- end-user-doc -->
+//		 * @generated
+//		 */
+//		public EList<ModelElement> getNewElements() {
+//			if (newElements == null) {
+//				newElements = new EObjectContainmentEList<ModelElement>(
+//						ModelElement.class, this,
+//						DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS);
+//			}
+//			return newElements;
+//		}
+//	 JH/MK still throws exception: org.eclipse.emf.common.util.BasicEList$BasicIndexOutOfBoundsException: index=0, size=0
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public EList<ModelElement> getNewElements() {
-		if (newElements == null) {
-			newElements = new EObjectContainmentEList<ModelElement>(
-					ModelElement.class, this,
-					DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS);
-		}
+
 		//JH: cache instance
 		return new DiagramNewElementsList(getElements(), getProject());
 	}
 
-	//end of custom code
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DiagramType getType() {
+		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setType(DiagramType newType) {
+		DiagramType oldType = type;
+		type = newType == null ? TYPE_EDEFAULT : newType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					DiagramPackage.ME_DIAGRAM__TYPE, oldType, type));
+	}
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -200,6 +253,8 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 			return getGmfdiagram();
 		case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
 			return getNewElements();
+		case DiagramPackage.ME_DIAGRAM__TYPE:
+			return getType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -224,6 +279,9 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 			getNewElements().addAll(
 					(Collection<? extends ModelElement>) newValue);
 			return;
+		case DiagramPackage.ME_DIAGRAM__TYPE:
+			setType((DiagramType) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -244,6 +302,9 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 		case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
 			getNewElements().clear();
 			return;
+		case DiagramPackage.ME_DIAGRAM__TYPE:
+			setType(TYPE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -261,8 +322,27 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 			return gmfdiagram != null;
 		case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
 			return newElements != null && !newElements.isEmpty();
+		case DiagramPackage.ME_DIAGRAM__TYPE:
+			return type != TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (type: ");
+		result.append(type);
+		result.append(')');
+		return result.toString();
 	}
 
 } // MEDiagramImpl

@@ -8,7 +8,7 @@
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
-package org.unicase.model.edit.decorators;
+package org.unicase.ui.common.decorators;
 
 import java.net.URL;
 
@@ -83,13 +83,13 @@ public class StateDecorator implements ILightweightLabelDecorator {
 		try {
 			if (me.getMEState().getStatus().equals(MEState.OPEN)) {
 				url = Platform.find(Platform
-						.getBundle("org.unicase.model.edit"),
+						.getBundle("org.unicase.ui.common"),
 						new Path(openPath));
 
 			}
 			if (me.getMEState().getStatus().equals(MEState.BLOCKED)) {
 				url = Platform.find(Platform
-						.getBundle("org.unicase.model.edit"), new Path(
+						.getBundle("org.unicase.ui.common"), new Path(
 						blockedPath));
 			}
 		} catch (CircularDependencyException e) {

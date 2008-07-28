@@ -40,7 +40,7 @@ public interface ActorInstance extends ModelElement {
 	 * @return the value of the '<em>Initiated Scenarios</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getActorInstance_InitiatedScenarios()
 	 * @see org.unicase.model.requirement.Scenario#getInitiatingActorInstance
-	 * @model opposite="initiatingActorInstance"
+	 * @model opposite="initiatingActorInstance" keys="identifier"
 	 * @generated
 	 */
 	EList<Scenario> getInitiatedScenarios();
@@ -58,7 +58,7 @@ public interface ActorInstance extends ModelElement {
 	 * @return the value of the '<em>Participated Scenarios</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getActorInstance_ParticipatedScenarios()
 	 * @see org.unicase.model.requirement.Scenario#getParticipatingActorInstances
-	 * @model opposite="participatingActorInstances"
+	 * @model opposite="participatingActorInstances" keys="identifier"
 	 * @generated
 	 */
 	EList<Scenario> getParticipatedScenarios();
@@ -76,7 +76,7 @@ public interface ActorInstance extends ModelElement {
 	 * @see #setInstantiatedActor(Actor)
 	 * @see org.unicase.model.requirement.RequirementPackage#getActorInstance_InstantiatedActor()
 	 * @see org.unicase.model.requirement.Actor#getInstances
-	 * @model opposite="instances"
+	 * @model opposite="instances" keys="identifier"
 	 * @generated
 	 */
 	Actor getInstantiatedActor();

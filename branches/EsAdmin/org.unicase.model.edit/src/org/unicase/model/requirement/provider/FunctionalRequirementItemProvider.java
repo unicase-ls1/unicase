@@ -59,11 +59,13 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addReviewedPropertyDescriptor(object);
 			addStoryPointsPropertyDescriptor(object);
 			addPriorityPropertyDescriptor(object);
+			addRefiningRequirementsPropertyDescriptor(object);
+			addRefinedRequirementPropertyDescriptor(object);
 			addUseCasesPropertyDescriptor(object);
 			addScenariosPropertyDescriptor(object);
+			addReviewedPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -126,6 +128,48 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider
 				RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__PRIORITY,
 				true, false, false,
 				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Refining Requirements feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRefiningRequirementsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_FunctionalRequirement_refiningRequirements_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_FunctionalRequirement_refiningRequirements_feature",
+								"_UI_FunctionalRequirement_type"),
+						RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS,
+						true, false, false, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Refined Requirement feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRefinedRequirementPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_FunctionalRequirement_refinedRequirement_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_FunctionalRequirement_refinedRequirement_feature",
+								"_UI_FunctionalRequirement_type"),
+						RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT,
+						true, false, false, null, null, null));
 	}
 
 	/**
@@ -210,13 +254,11 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((FunctionalRequirement) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_FunctionalRequirement_type")
-				: getString("_UI_FunctionalRequirement_type") + " " + label;
+		return super.getText(object);
 	}
 
 	/**
@@ -231,9 +273,9 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(FunctionalRequirement.class)) {
-		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REVIEWED:
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__STORY_POINTS:
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__PRIORITY:
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REVIEWED:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), false, true));
 			return;

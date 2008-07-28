@@ -408,11 +408,15 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 				-1, MergingProposal.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getMergingProposal_ConflictingProposals().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getMergingProposal_PendingChanges(), this
 				.getModelChangePackage(), null, "pendingChanges", null, 0, 1,
 				MergingProposal.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getMergingProposal_PendingChanges().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(mergingSolutionEClass, MergingSolution.class,
 				"MergingSolution", !IS_ABSTRACT, !IS_INTERFACE,
@@ -422,6 +426,8 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 				MergingSolution.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getMergingSolution_AppliedChanges().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 	}
 
 } // ChangePackageImpl

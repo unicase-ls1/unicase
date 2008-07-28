@@ -30,13 +30,13 @@ import org.unicase.model.requirement.UseCase;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#isReviewed <em>Reviewed</em>}</li>
  *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getStoryPoints <em>Story Points</em>}</li>
  *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getPriority <em>Priority</em>}</li>
  *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getRefiningRequirements <em>Refining Requirements</em>}</li>
  *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getRefinedRequirement <em>Refined Requirement</em>}</li>
  *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getUseCases <em>Use Cases</em>}</li>
  *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getScenarios <em>Scenarios</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#isReviewed <em>Reviewed</em>}</li>
  * </ul>
  * </p>
  *
@@ -44,24 +44,6 @@ import org.unicase.model.requirement.UseCase;
  */
 public class FunctionalRequirementImpl extends ModelElementImpl implements
 		FunctionalRequirement {
-
-	/**
-	 * The default value of the '{@link #isReviewed() <em>Reviewed</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #isReviewed()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean REVIEWED_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isReviewed() <em>Reviewed</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #isReviewed()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean reviewed = REVIEWED_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getStoryPoints() <em>Story Points</em>}' attribute.
@@ -127,6 +109,24 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 	 * @ordered
 	 */
 	protected EList<Scenario> scenarios;
+
+	/**
+	 * The default value of the '{@link #isReviewed() <em>Reviewed</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #isReviewed()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean REVIEWED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isReviewed() <em>Reviewed</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #isReviewed()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean reviewed = REVIEWED_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -379,8 +379,6 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REVIEWED:
-			return isReviewed() ? Boolean.TRUE : Boolean.FALSE;
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__STORY_POINTS:
 			return new Integer(getStoryPoints());
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__PRIORITY:
@@ -393,6 +391,8 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 			return getUseCases();
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__SCENARIOS:
 			return getScenarios();
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REVIEWED:
+			return isReviewed() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -405,9 +405,6 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REVIEWED:
-			setReviewed(((Boolean) newValue).booleanValue());
-			return;
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__STORY_POINTS:
 			setStoryPoints(((Integer) newValue).intValue());
 			return;
@@ -430,6 +427,9 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 			getScenarios().clear();
 			getScenarios().addAll((Collection<? extends Scenario>) newValue);
 			return;
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REVIEWED:
+			setReviewed(((Boolean) newValue).booleanValue());
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -441,9 +441,6 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REVIEWED:
-			setReviewed(REVIEWED_EDEFAULT);
-			return;
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__STORY_POINTS:
 			setStoryPoints(STORY_POINTS_EDEFAULT);
 			return;
@@ -462,6 +459,9 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__SCENARIOS:
 			getScenarios().clear();
 			return;
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REVIEWED:
+			setReviewed(REVIEWED_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -473,8 +473,6 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REVIEWED:
-			return reviewed != REVIEWED_EDEFAULT;
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__STORY_POINTS:
 			return storyPoints != STORY_POINTS_EDEFAULT;
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__PRIORITY:
@@ -488,6 +486,8 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 			return useCases != null && !useCases.isEmpty();
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__SCENARIOS:
 			return scenarios != null && !scenarios.isEmpty();
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REVIEWED:
+			return reviewed != REVIEWED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -502,12 +502,12 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (reviewed: ");
-		result.append(reviewed);
-		result.append(", storyPoints: ");
+		result.append(" (storyPoints: ");
 		result.append(storyPoints);
 		result.append(", priority: ");
 		result.append(priority);
+		result.append(", reviewed: ");
+		result.append(reviewed);
 		result.append(')');
 		return result.toString();
 	}

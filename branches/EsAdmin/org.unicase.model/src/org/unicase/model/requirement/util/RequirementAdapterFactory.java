@@ -10,6 +10,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.rationale.Criterion;
 import org.unicase.model.requirement.Actor;
@@ -108,6 +109,11 @@ public class RequirementAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseStep(Step object) {
 			return createStepAdapter();
+		}
+
+		@Override
+		public Adapter caseIdentifiableElement(IdentifiableElement object) {
+			return createIdentifiableElementAdapter();
 		}
 
 		@Override
@@ -238,6 +244,20 @@ public class RequirementAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createStepAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.IdentifiableElement <em>Identifiable Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.IdentifiableElement
+	 * @generated
+	 */
+	public Adapter createIdentifiableElementAdapter() {
 		return null;
 	}
 

@@ -2,7 +2,9 @@ package org.unicase.ui.common.exceptions;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 
@@ -13,6 +15,7 @@ import org.eclipse.ui.PlatformUI;
  * 
  */
 public abstract class ExceptionDialogHandler {
+
 	/**
 	 * This method opens a standard error dialog displaying an exception to the
 	 * user.
@@ -21,12 +24,43 @@ public abstract class ExceptionDialogHandler {
 	 *            the exception to be shown.
 	 */
 	public static void showExceptionDialog(Exception e) {
+		showExceptionDialog("Unexpected exception occured", e);
+	}
+
+	/**
+	 * This method opens a standard error dialog displaying an exception to the
+	 * user.
+	 * 
+	 * @param e
+	 *            the exception to be shown.
+	 */
+	public static void showExceptionDialog(String message) {
+		showExceptionDialog(message, null);
+	}
+
+	/**
+	 * This method opens a standard error dialog displaying an exception to the
+	 * user.
+	 * 
+	 * @param cause
+	 *            the exception to be shown.
+	 */
+	public static void showExceptionDialog(String message, Exception cause) {
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
 				.getShell();
-		IStatus status = null;
-		if (e instanceof CoreException) {
-			status = ((CoreException) e).getStatus();
+		//JH: implement proper exception handler
+//		IStatus status = Status.OK_STATUS;
+//		if (cause instanceof CoreException) {
+//			status = ((CoreException) cause).getStatus();
+//		}
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append(message);
+		if (cause != null) {
+			stringBuilder.append(": ");
+			stringBuilder.append(cause.getMessage());
 		}
-		ErrorDialog.openError(shell, "Error", e.getMessage(), status);
+		String string = stringBuilder.toString();
+		MessageDialog.openError(null, cause.getClass().getName(), string);
 	}
+
 }

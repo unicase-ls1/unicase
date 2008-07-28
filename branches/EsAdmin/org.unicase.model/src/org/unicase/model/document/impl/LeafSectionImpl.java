@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.ModelElement;
@@ -32,7 +32,6 @@ import org.unicase.model.impl.ModelElementImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.unicase.model.document.impl.LeafSectionImpl#getParent <em>Parent</em>}</li>
- *   <li>{@link org.unicase.model.document.impl.LeafSectionImpl#getElementClass <em>Element Class</em>}</li>
  *   <li>{@link org.unicase.model.document.impl.LeafSectionImpl#getModelElements <em>Model Elements</em>}</li>
  *   <li>{@link org.unicase.model.document.impl.LeafSectionImpl#getReferencedModelElements <em>Referenced Model Elements</em>}</li>
  * </ul>
@@ -41,15 +40,6 @@ import org.unicase.model.impl.ModelElementImpl;
  * @generated
  */
 public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
-	/**
-	 * The cached value of the '{@link #getElementClass() <em>Element Class</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @see #getElementClass()
-	 * @generated
-	 * @ordered
-	 */
-	protected Class<? extends ModelElement> elementClass;
 	/**
 	 * The cached value of the '{@link #getModelElements() <em>Model Elements</em>}' containment reference list.
 	 * <!-- begin-user-doc
@@ -136,27 +126,6 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Class<? extends ModelElement> getElementClass() {
-		return elementClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setElementClass(Class<? extends ModelElement> newElementClass) {
-		Class<? extends ModelElement> oldElementClass = elementClass;
-		elementClass = newElementClass;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					DocumentPackage.LEAF_SECTION__ELEMENT_CLASS,
-					oldElementClass, elementClass));
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<ModelElement> getModelElements() {
 		if (modelElements == null) {
 			modelElements = new EObjectContainmentWithInverseEList<ModelElement>(
@@ -173,9 +142,10 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	 */
 	public EList<ModelElement> getReferencedModelElements() {
 		if (referencedModelElements == null) {
-			referencedModelElements = new EObjectResolvingEList<ModelElement>(
+			referencedModelElements = new EObjectWithInverseResolvingEList.ManyInverse<ModelElement>(
 					ModelElement.class, this,
-					DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS);
+					DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS,
+					ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES);
 		}
 		return referencedModelElements;
 	}
@@ -196,6 +166,9 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 		case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getModelElements())
 					.basicAdd(otherEnd, msgs);
+		case DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getReferencedModelElements())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -213,6 +186,9 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 		case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
 			return ((InternalEList<?>) getModelElements()).basicRemove(
 					otherEnd, msgs);
+		case DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS:
+			return ((InternalEList<?>) getReferencedModelElements())
+					.basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -242,8 +218,6 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 		switch (featureID) {
 		case DocumentPackage.LEAF_SECTION__PARENT:
 			return getParent();
-		case DocumentPackage.LEAF_SECTION__ELEMENT_CLASS:
-			return getElementClass();
 		case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
 			return getModelElements();
 		case DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS:
@@ -262,9 +236,6 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 		switch (featureID) {
 		case DocumentPackage.LEAF_SECTION__PARENT:
 			setParent((CompositeSection) newValue);
-			return;
-		case DocumentPackage.LEAF_SECTION__ELEMENT_CLASS:
-			setElementClass((Class<? extends ModelElement>) newValue);
 			return;
 		case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
 			getModelElements().clear();
@@ -290,9 +261,6 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 		case DocumentPackage.LEAF_SECTION__PARENT:
 			setParent((CompositeSection) null);
 			return;
-		case DocumentPackage.LEAF_SECTION__ELEMENT_CLASS:
-			setElementClass((Class<? extends ModelElement>) null);
-			return;
 		case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
 			getModelElements().clear();
 			return;
@@ -312,8 +280,6 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 		switch (featureID) {
 		case DocumentPackage.LEAF_SECTION__PARENT:
 			return getParent() != null;
-		case DocumentPackage.LEAF_SECTION__ELEMENT_CLASS:
-			return elementClass != null;
 		case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
 			return modelElements != null && !modelElements.isEmpty();
 		case DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS:
@@ -321,22 +287,6 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 					&& !referencedModelElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy())
-			return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (elementClass: ");
-		result.append(elementClass);
-		result.append(')');
-		return result.toString();
 	}
 
 } // LeafSectionImpl

@@ -231,7 +231,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	@SuppressWarnings("unchecked")
 	public Object getAdapter(Class adapter) {
-		// TODO Auto-generated method stub
+		// JH Auto-generated method stub
 		return null;
 	}
 }

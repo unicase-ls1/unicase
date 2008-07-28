@@ -106,8 +106,6 @@
           qualifiedClassName="org.unicase.ui.usecaseDiagram.unicase.StickMan"/>
     </descriptors>
   </figures>
-  <figures
-      name="UseCaseDiagram"/>
   <nodes
       name="Class"
       figure="ClassFigure"/>

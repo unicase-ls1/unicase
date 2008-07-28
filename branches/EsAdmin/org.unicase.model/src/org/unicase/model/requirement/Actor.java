@@ -40,7 +40,7 @@ public interface Actor extends ModelElement {
 	 * @return the value of the '<em>Initiated Use Cases</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getActor_InitiatedUseCases()
 	 * @see org.unicase.model.requirement.UseCase#getInitiatingActor
-	 * @model opposite="initiatingActor"
+	 * @model opposite="initiatingActor" keys="identifier"
 	 * @generated
 	 */
 	EList<UseCase> getInitiatedUseCases();
@@ -58,7 +58,7 @@ public interface Actor extends ModelElement {
 	 * @return the value of the '<em>Participated Use Cases</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getActor_ParticipatedUseCases()
 	 * @see org.unicase.model.requirement.UseCase#getParticipatingActors
-	 * @model opposite="participatingActors"
+	 * @model opposite="participatingActors" keys="identifier"
 	 * @generated
 	 */
 	EList<UseCase> getParticipatedUseCases();
@@ -76,7 +76,7 @@ public interface Actor extends ModelElement {
 	 * @return the value of the '<em>Instances</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getActor_Instances()
 	 * @see org.unicase.model.requirement.ActorInstance#getInstantiatedActor
-	 * @model opposite="instantiatedActor" derived="true"
+	 * @model opposite="instantiatedActor" keys="identifier" derived="true"
 	 * @generated
 	 */
 	EList<ActorInstance> getInstances();

@@ -69,6 +69,14 @@ public interface ChangePackage extends EPackage {
 	int MODEL_CHANGE_PACKAGE = 0;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_CHANGE_PACKAGE__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -85,14 +93,6 @@ public interface ChangePackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_CHANGE_PACKAGE__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_CHANGE_PACKAGE__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
@@ -166,6 +166,14 @@ public interface ChangePackage extends EPackage {
 	int MERGING_ISSUE = 1;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_ISSUE__IDENTIFIER = RationalePackage.ISSUE__IDENTIFIER;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -182,14 +190,6 @@ public interface ChangePackage extends EPackage {
 	 * @ordered
 	 */
 	int MERGING_ISSUE__DESCRIPTION = RationalePackage.ISSUE__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_ISSUE__IDENTIFIER = RationalePackage.ISSUE__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
@@ -317,6 +317,14 @@ public interface ChangePackage extends EPackage {
 	int MERGING_PROPOSAL = 2;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_PROPOSAL__IDENTIFIER = RationalePackage.PROPOSAL__IDENTIFIER;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -333,14 +341,6 @@ public interface ChangePackage extends EPackage {
 	 * @ordered
 	 */
 	int MERGING_PROPOSAL__DESCRIPTION = RationalePackage.PROPOSAL__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_PROPOSAL__IDENTIFIER = RationalePackage.PROPOSAL__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
@@ -428,6 +428,14 @@ public interface ChangePackage extends EPackage {
 	int MERGING_SOLUTION = 3;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_SOLUTION__IDENTIFIER = RationalePackage.SOLUTION__IDENTIFIER;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -444,14 +452,6 @@ public interface ChangePackage extends EPackage {
 	 * @ordered
 	 */
 	int MERGING_SOLUTION__DESCRIPTION = RationalePackage.SOLUTION__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_SOLUTION__IDENTIFIER = RationalePackage.SOLUTION__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.

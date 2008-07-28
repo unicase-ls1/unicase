@@ -362,18 +362,24 @@ public class ComponentPackageImpl extends EPackageImpl implements
 				null, "packages", null, 0, -1, Component.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getComponent_Packages().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getComponent_OfferedServices(), this
 				.getComponentService(), this
 				.getComponentService_OfferingComponent(), "offeredServices",
 				null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getComponent_OfferedServices().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getComponent_ConsumedServices(), this
 				.getComponentService(), this
 				.getComponentService_ConsumingComponents(), "consumedServices",
 				null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getComponent_ConsumedServices().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(componentServiceEClass, ComponentService.class,
 				"ComponentService", !IS_ABSTRACT, !IS_INTERFACE,
@@ -384,12 +390,16 @@ public class ComponentPackageImpl extends EPackageImpl implements
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		getComponentService_OfferingComponent().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getComponentService_ConsumingComponents(), this
 				.getComponent(), this.getComponent_ConsumedServices(),
 				"consumingComponents", null, 0, -1, ComponentService.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		getComponentService_ConsumingComponents().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(deploymentNodeEClass, DeploymentNode.class,
 				"DeploymentNode", !IS_ABSTRACT, !IS_INTERFACE,
@@ -399,6 +409,8 @@ public class ComponentPackageImpl extends EPackageImpl implements
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		getDeploymentNode_Components().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 	}
 
 } // ComponentPackageImpl

@@ -11,6 +11,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.Annotation;
+import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelPackage;
@@ -89,21 +90,14 @@ public class ModelSwitch<T> {
 			ModelElement modelElement = (ModelElement) theEObject;
 			T result = caseModelElement(modelElement);
 			if (result == null)
+				result = caseIdentifiableElement(modelElement);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
 		case ModelPackage.PROJECT: {
 			Project project = (Project) theEObject;
 			T result = caseProject(project);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ModelPackage.MODEL_ELEMENT_ID: {
-			ModelElementId modelElementId = (ModelElementId) theEObject;
-			T result = caseModelElementId(modelElementId);
-			if (result == null)
-				result = caseUniqueIdentifier(modelElementId);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -119,6 +113,8 @@ public class ModelSwitch<T> {
 			ReaderInfo readerInfo = (ReaderInfo) theEObject;
 			T result = caseReaderInfo(readerInfo);
 			if (result == null)
+				result = caseIdentifiableElement(readerInfo);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -127,6 +123,24 @@ public class ModelSwitch<T> {
 			T result = caseAnnotation(annotation);
 			if (result == null)
 				result = caseModelElement(annotation);
+			if (result == null)
+				result = caseIdentifiableElement(annotation);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case ModelPackage.IDENTIFIABLE_ELEMENT: {
+			IdentifiableElement identifiableElement = (IdentifiableElement) theEObject;
+			T result = caseIdentifiableElement(identifiableElement);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case ModelPackage.MODEL_ELEMENT_ID: {
+			ModelElementId modelElementId = (ModelElementId) theEObject;
+			T result = caseModelElementId(modelElementId);
+			if (result == null)
+				result = caseUniqueIdentifier(modelElementId);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -161,20 +175,6 @@ public class ModelSwitch<T> {
 	 * @generated
 	 */
 	public T caseProject(Project object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Element Id</em>'.
-	 * <!-- begin-user-doc --> This implementation returns
-	 * null; returning a non-null result will terminate the switch. <!--
-	 * end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Element Id</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseModelElementId(ModelElementId object) {
 		return null;
 	}
 
@@ -217,6 +217,36 @@ public class ModelSwitch<T> {
 	 * @generated
 	 */
 	public T caseAnnotation(Annotation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIdentifiableElement(IdentifiableElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Element Id</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Element Id</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModelElementId(ModelElementId object) {
 		return null;
 	}
 

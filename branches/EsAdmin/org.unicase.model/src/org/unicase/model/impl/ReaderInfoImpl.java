@@ -12,7 +12,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.ReaderInfo;
 import org.unicase.model.organization.OrgUnit;
@@ -30,7 +29,8 @@ import org.unicase.model.organization.OrgUnit;
  *
  * @generated
  */
-public class ReaderInfoImpl extends EObjectImpl implements ReaderInfo {
+public class ReaderInfoImpl extends IdentifiableElementImpl implements
+		ReaderInfo {
 	/**
 	 * The default value of the '{@link #getDate() <em>Date</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
