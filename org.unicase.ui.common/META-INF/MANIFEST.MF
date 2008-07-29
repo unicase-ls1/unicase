@@ -17,9 +17,12 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gmf.runtime.diagram.core,
  org.eclipse.core.expressions,
  org.eclipse.ui.console,
- org.eclipse.jdt.ui
+ org.eclipse.jdt.ui,
+ org.eclipse.core.resources
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.emf.ecore.resource.impl
-Export-Package: org.unicase.ui.common.commands,
+Export-Package: org.unicase.ui.common;uses:="org.osgi.framework,org.eclipse.ui.plugin",
+ org.unicase.ui.common.commands;uses:="org.eclipse.core.commands,org.unicase.model",
  org.unicase.ui.common.exceptions
+Bundle-ClassPath: .
