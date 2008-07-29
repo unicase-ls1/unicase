@@ -38,22 +38,16 @@ import org.unicase.model.task.util.MEStateImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.impl.ModelElementImpl#getName <em>Name</em>}</li>
- * <li>{@link org.unicase.model.impl.ModelElementImpl#getDescription <em>
- * Description</em>}</li>
- * <li>{@link org.unicase.model.impl.ModelElementImpl#getReaderInfos <em>Reader
- * Infos</em>}</li>
- * <li>{@link org.unicase.model.impl.ModelElementImpl#getAnnotations <em>
- * Annotations</em>}</li>
- * <li>
- * {@link org.unicase.model.impl.ModelElementImpl#getIncomingDocumentReferences
- * <em>Incoming Document References</em>}</li>
- * <li>{@link org.unicase.model.impl.ModelElementImpl#getLeafSection <em>Leaf
- * Section</em>}</li>
- * <li>{@link org.unicase.model.impl.ModelElementImpl#getState <em>State</em>}</li>
+ *   <li>{@link org.unicase.model.impl.ModelElementImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.unicase.model.impl.ModelElementImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.unicase.model.impl.ModelElementImpl#getReaderInfos <em>Reader Infos</em>}</li>
+ *   <li>{@link org.unicase.model.impl.ModelElementImpl#getAnnotations <em>Annotations</em>}</li>
+ *   <li>{@link org.unicase.model.impl.ModelElementImpl#getIncomingDocumentReferences <em>Incoming Document References</em>}</li>
+ *   <li>{@link org.unicase.model.impl.ModelElementImpl#getLeafSection <em>Leaf Section</em>}</li>
+ *   <li>{@link org.unicase.model.impl.ModelElementImpl#getState <em>State</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class ModelElementImpl extends IdentifiableElementImpl
@@ -61,7 +55,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -71,7 +64,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -79,9 +71,8 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDescription() <em>Description</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -89,9 +80,8 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	protected static final String DESCRIPTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -99,9 +89,8 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getReaderInfos() <em>Reader Infos</em>}'
-	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getReaderInfos() <em>Reader Infos</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getReaderInfos()
 	 * @generated
 	 * @ordered
@@ -109,9 +98,8 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	protected EList<ReaderInfo> readerInfos;
 
 	/**
-	 * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}'
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getAnnotations()
 	 * @generated
 	 * @ordered
@@ -132,7 +120,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	/**
 	 * The default value of the '{@link #getState() <em>State</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getState()
 	 * @generated
 	 * @ordered
@@ -157,7 +144,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -167,7 +153,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -176,7 +161,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setName(String newName) {
@@ -189,7 +173,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getDescription() {
@@ -198,7 +181,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
@@ -212,7 +194,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ReaderInfo> getReaderInfos() {
@@ -226,7 +207,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Annotation> getAnnotations() {
@@ -241,7 +221,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<LeafSection> getIncomingDocumentReferences() {
@@ -256,7 +235,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public LeafSection getLeafSection() {
@@ -267,7 +245,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetLeafSection(LeafSection newLeafSection,
@@ -279,7 +256,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setLeafSection(LeafSection newLeafSection) {
@@ -340,7 +316,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void addReader(User readerName) {
@@ -392,7 +367,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -416,7 +390,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -440,7 +413,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -457,7 +429,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -483,7 +454,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -520,7 +490,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -550,7 +519,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -580,7 +548,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
