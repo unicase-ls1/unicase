@@ -57,7 +57,6 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider
 			addDescriptionPropertyDescriptor(object);
 			addAnnotationsPropertyDescriptor(object);
 			addIncomingDocumentReferencesPropertyDescriptor(object);
-			addStatePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -134,24 +133,6 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider
 								"_UI_ModelElement_type"),
 						ModelPackage.Literals.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES,
 						true, false, true, null, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the State feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addStatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ModelElement_state_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_ModelElement_state_feature",
-						"_UI_ModelElement_type"),
-				ModelPackage.Literals.MODEL_ELEMENT__STATE, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
