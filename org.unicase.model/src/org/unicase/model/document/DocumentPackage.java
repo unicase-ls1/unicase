@@ -125,6 +125,15 @@ public interface DocumentPackage extends EPackage {
 	int SECTION__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SECTION__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' container reference. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -212,6 +221,15 @@ public interface DocumentPackage extends EPackage {
 	 * @ordered
 	 */
 	int LEAF_SECTION__LEAF_SECTION = SECTION__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEAF_SECTION__STATE = SECTION__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' container reference. <!--
@@ -314,6 +332,15 @@ public interface DocumentPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPOSITE_SECTION__LEAF_SECTION = SECTION__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_SECTION__STATE = SECTION__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' container reference. <!--

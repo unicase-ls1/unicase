@@ -128,6 +128,15 @@ public interface ClassesPackage extends EPackage {
 	int PACKAGE_ELEMENT__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_ELEMENT__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+
+	/**
 	 * The feature id for the '<em><b>Parent Package</b></em>' container reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -210,6 +219,15 @@ public interface ClassesPackage extends EPackage {
 	 * @ordered
 	 */
 	int CLASS__LEAF_SECTION = PACKAGE_ELEMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__STATE = PACKAGE_ELEMENT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Parent Package</b></em>' container reference.
@@ -339,6 +357,15 @@ public interface ClassesPackage extends EPackage {
 	int PACKAGE__LEAF_SECTION = PACKAGE_ELEMENT__LEAF_SECTION;
 
 	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE__STATE = PACKAGE_ELEMENT__STATE;
+
+	/**
 	 * The feature id for the '<em><b>Parent Package</b></em>' container reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -433,6 +460,15 @@ public interface ClassesPackage extends EPackage {
 	 * @ordered
 	 */
 	int ASSOCIATION__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__STATE = ModelPackage.MODEL_ELEMENT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Directed</b></em>' attribute. <!--

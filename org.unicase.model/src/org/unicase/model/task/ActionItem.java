@@ -22,6 +22,7 @@ import org.unicase.model.organization.User;
  *   <li>{@link org.unicase.model.task.ActionItem#getDueDate <em>Due Date</em>}</li>
  *   <li>{@link org.unicase.model.task.ActionItem#isDone <em>Done</em>}</li>
  *   <li>{@link org.unicase.model.task.ActionItem#getEstimate <em>Estimate</em>}</li>
+ *   <li>{@link org.unicase.model.task.ActionItem#getActivity <em>Activity</em>}</li>
  * </ul>
  * </p>
  *
@@ -123,5 +124,34 @@ public interface ActionItem extends WorkItem {
 	 * @generated
 	 */
 	void setEstimate(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Activity</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.unicase.model.task.ActivityType}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Activity</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Activity</em>' attribute.
+	 * @see org.unicase.model.task.ActivityType
+	 * @see #setActivity(ActivityType)
+	 * @see org.unicase.model.task.TaskPackage#getActionItem_Activity()
+	 * @model
+	 * @generated
+	 */
+	ActivityType getActivity();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.task.ActionItem#getActivity <em>Activity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Activity</em>' attribute.
+	 * @see org.unicase.model.task.ActivityType
+	 * @see #getActivity()
+	 * @generated
+	 */
+	void setActivity(ActivityType value);
 
 } // ActionItem

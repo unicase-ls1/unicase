@@ -19,6 +19,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.model.bug.BugFactory;
 import org.unicase.model.provider.AnnotationItemProvider;
@@ -59,7 +60,11 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 
 			addContainingWorkpackagePropertyDescriptor(object);
 			addAssociatedChangePackagesPropertyDescriptor(object);
+			addPredecessorsPropertyDescriptor(object);
+			addSuccessorsPropertyDescriptor(object);
 			addContainedWorkItemsPropertyDescriptor(object);
+			addStartDatePropertyDescriptor(object);
+			addEndDatePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -101,6 +106,43 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 	}
 
 	/**
+	 * This adds a property descriptor for the Predecessors feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPredecessorsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkItem_predecessors_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_WorkItem_predecessors_feature",
+						"_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__PREDECESSORS, true, false,
+				true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Successors feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSuccessorsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(), getResourceLocator(),
+						getString("_UI_WorkItem_successors_feature"),
+						getString("_UI_PropertyDescriptor_description",
+								"_UI_WorkItem_successors_feature",
+								"_UI_WorkItem_type"),
+						TaskPackage.Literals.WORK_ITEM__SUCCESSORS, true,
+						false, true, null, null, null));
+	}
+
+	/**
 	 * This adds a property descriptor for the Contained Work Items feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -116,6 +158,42 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 						"_UI_WorkPackage_type"),
 				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS, true,
 				false, false, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Start Date feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addStartDatePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkPackage_startDate_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_WorkPackage_startDate_feature",
+						"_UI_WorkPackage_type"),
+				TaskPackage.Literals.WORK_PACKAGE__START_DATE, true, false,
+				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the End Date feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addEndDatePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkPackage_endDate_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_WorkPackage_endDate_feature",
+						"_UI_WorkPackage_type"),
+				TaskPackage.Literals.WORK_PACKAGE__END_DATE, true, false,
+				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -185,6 +263,11 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(WorkPackage.class)) {
+		case TaskPackage.WORK_PACKAGE__START_DATE:
+		case TaskPackage.WORK_PACKAGE__END_DATE:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), false, true));
+			return;
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), true, false));

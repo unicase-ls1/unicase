@@ -135,6 +135,15 @@ public interface OrganizationPackage extends EPackage {
 	int ORG_UNIT__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORG_UNIT__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+
+	/**
 	 * The feature id for the '<em><b>Ac Org Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -219,6 +228,15 @@ public interface OrganizationPackage extends EPackage {
 	 * @ordered
 	 */
 	int USER__LEAF_SECTION = ORG_UNIT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__STATE = ORG_UNIT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Ac Org Id</b></em>' attribute.
@@ -323,6 +341,15 @@ public interface OrganizationPackage extends EPackage {
 	 * @ordered
 	 */
 	int GROUP__LEAF_SECTION = ORG_UNIT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP__STATE = ORG_UNIT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Ac Org Id</b></em>' attribute.

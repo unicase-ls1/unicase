@@ -128,6 +128,15 @@ public interface ChangePackage extends EPackage {
 	int MODEL_CHANGE_PACKAGE__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_CHANGE_PACKAGE__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+
+	/**
 	 * The feature id for the '<em><b>Source Version</b></em>' attribute. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -223,6 +232,15 @@ public interface ChangePackage extends EPackage {
 	 * @ordered
 	 */
 	int MERGING_ISSUE__LEAF_SECTION = RationalePackage.ISSUE__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_ISSUE__STATE = RationalePackage.ISSUE__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list.
@@ -376,6 +394,15 @@ public interface ChangePackage extends EPackage {
 	int MERGING_PROPOSAL__LEAF_SECTION = RationalePackage.PROPOSAL__LEAF_SECTION;
 
 	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_PROPOSAL__STATE = RationalePackage.PROPOSAL__STATE;
+
+	/**
 	 * The feature id for the '<em><b>Assessments</b></em>' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -485,6 +512,15 @@ public interface ChangePackage extends EPackage {
 	 * @ordered
 	 */
 	int MERGING_SOLUTION__LEAF_SECTION = RationalePackage.SOLUTION__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_SOLUTION__STATE = RationalePackage.SOLUTION__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Underlying Proposals</b></em>' reference list.

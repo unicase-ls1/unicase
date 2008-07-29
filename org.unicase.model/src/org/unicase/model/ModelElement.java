@@ -25,6 +25,7 @@ import org.unicase.model.task.util.MEState;
  *   <li>{@link org.unicase.model.ModelElement#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getIncomingDocumentReferences <em>Incoming Document References</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getLeafSection <em>Leaf Section</em>}</li>
+ *   <li>{@link org.unicase.model.ModelElement#getState <em>State</em>}</li>
  * </ul>
  * </p>
  *
@@ -168,6 +169,22 @@ public interface ModelElement extends IdentifiableElement {
 	 * @generated
 	 */
 	void setLeafSection(LeafSection value);
+
+	/**
+	 * Returns the value of the '<em><b>State</b></em>' attribute.
+	 * The default value is <code>""</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>State</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>State</em>' attribute.
+	 * @see org.unicase.model.ModelPackage#getModelElement_State()
+	 * @model default="" transient="true" changeable="false" volatile="true" derived="true"
+	 * @generated
+	 */
+	String getState();
 
 	/**
 	 * <!-- begin-user-doc -->

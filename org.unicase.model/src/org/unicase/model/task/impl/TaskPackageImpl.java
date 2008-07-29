@@ -8,8 +8,10 @@ package org.unicase.model.task.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.model.ModelPackage;
@@ -33,6 +35,7 @@ import org.unicase.model.rationale.impl.RationalePackageImpl;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.impl.RequirementPackageImpl;
 import org.unicase.model.task.ActionItem;
+import org.unicase.model.task.ActivityType;
 import org.unicase.model.task.Meeting;
 import org.unicase.model.task.Milestone;
 import org.unicase.model.task.TaskFactory;
@@ -76,6 +79,13 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * @generated
 	 */
 	private EClass milestoneEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum activityTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -254,6 +264,15 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getActionItem_Activity() {
+		return (EAttribute) actionItemEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -268,6 +287,24 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 */
 	public EReference getWorkPackage_ContainedWorkItems() {
 		return (EReference) workPackageEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getWorkPackage_StartDate() {
+		return (EAttribute) workPackageEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getWorkPackage_EndDate() {
+		return (EAttribute) workPackageEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -292,6 +329,24 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 */
 	public EReference getWorkItem_AssociatedChangePackages() {
 		return (EReference) workItemEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getWorkItem_Predecessors() {
+		return (EReference) workItemEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getWorkItem_Successors() {
+		return (EReference) workItemEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -403,6 +458,15 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getActivityType() {
+		return activityTypeEEnum;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -434,13 +498,18 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		createEAttribute(actionItemEClass, ACTION_ITEM__DUE_DATE);
 		createEAttribute(actionItemEClass, ACTION_ITEM__DONE);
 		createEAttribute(actionItemEClass, ACTION_ITEM__ESTIMATE);
+		createEAttribute(actionItemEClass, ACTION_ITEM__ACTIVITY);
 
 		workPackageEClass = createEClass(WORK_PACKAGE);
 		createEReference(workPackageEClass, WORK_PACKAGE__CONTAINED_WORK_ITEMS);
+		createEAttribute(workPackageEClass, WORK_PACKAGE__START_DATE);
+		createEAttribute(workPackageEClass, WORK_PACKAGE__END_DATE);
 
 		workItemEClass = createEClass(WORK_ITEM);
 		createEReference(workItemEClass, WORK_ITEM__CONTAINING_WORKPACKAGE);
 		createEReference(workItemEClass, WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES);
+		createEReference(workItemEClass, WORK_ITEM__PREDECESSORS);
+		createEReference(workItemEClass, WORK_ITEM__SUCCESSORS);
 
 		meetingEClass = createEClass(MEETING);
 		createEAttribute(meetingEClass, MEETING__LOCATION);
@@ -455,6 +524,9 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		createEReference(meetingEClass, MEETING__IDENTIFIED_ACTION_ITEMS);
 
 		milestoneEClass = createEClass(MILESTONE);
+
+		// Create enums
+		activityTypeEEnum = createEEnum(ACTIVITY_TYPE);
 	}
 
 	/**
@@ -485,6 +557,8 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 				.getEPackage(OrganizationPackage.eNS_URI);
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE
 				.getEPackage(ModelPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
+				.getEPackage(EcorePackage.eNS_URI);
 		ChangePackage theChangePackage = (ChangePackage) EPackage.Registry.INSTANCE
 				.getEPackage(ChangePackage.eNS_URI);
 		RationalePackage theRationalePackage = (RationalePackage) EPackage.Registry.INSTANCE
@@ -523,6 +597,10 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 				"estimate", null, 0, 1, ActionItem.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getActionItem_Activity(), this.getActivityType(),
+				"activity", null, 0, 1, ActionItem.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(workPackageEClass, WorkPackage.class, "WorkPackage",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -533,6 +611,14 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getWorkPackage_ContainedWorkItems().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
+		initEAttribute(getWorkPackage_StartDate(), theEcorePackage.getEDate(),
+				"startDate", null, 0, 1, WorkPackage.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getWorkPackage_EndDate(), theEcorePackage.getEDate(),
+				"endDate", null, 0, 1, WorkPackage.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(workItemEClass, WorkItem.class, "WorkItem", IS_ABSTRACT,
 				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -550,6 +636,20 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getWorkItem_AssociatedChangePackages().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getWorkItem_Predecessors(), this.getWorkItem(), this
+				.getWorkItem_Successors(), "predecessors", null, 0, 1,
+				WorkItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		getWorkItem_Predecessors().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getWorkItem_Successors(), this.getWorkItem(), this
+				.getWorkItem_Predecessors(), "successors", null, 0, 1,
+				WorkItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		getWorkItem_Successors().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(meetingEClass, Meeting.class, "Meeting", !IS_ABSTRACT,
@@ -614,6 +714,15 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 		initEClass(milestoneEClass, Milestone.class, "Milestone", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		// Initialize enums and add enum literals
+		initEEnum(activityTypeEEnum, ActivityType.class, "ActivityType");
+		addEEnumLiteral(activityTypeEEnum, ActivityType.MANAGEMENT);
+		addEEnumLiteral(activityTypeEEnum, ActivityType.ANALYSIS);
+		addEEnumLiteral(activityTypeEEnum, ActivityType.SYSTEM_DESIGN);
+		addEEnumLiteral(activityTypeEEnum, ActivityType.OBJECT_DESIGN);
+		addEEnumLiteral(activityTypeEEnum, ActivityType.IMPLEMENTATION);
+		addEEnumLiteral(activityTypeEEnum, ActivityType.TESTING);
 	}
 
 } // TaskPackageImpl

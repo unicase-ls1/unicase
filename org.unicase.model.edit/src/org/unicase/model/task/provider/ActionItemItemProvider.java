@@ -58,10 +58,13 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 
 			addContainingWorkpackagePropertyDescriptor(object);
 			addAssociatedChangePackagesPropertyDescriptor(object);
+			addPredecessorsPropertyDescriptor(object);
+			addSuccessorsPropertyDescriptor(object);
 			addAssignedToPropertyDescriptor(object);
 			addDueDatePropertyDescriptor(object);
 			addDonePropertyDescriptor(object);
 			addEstimatePropertyDescriptor(object);
+			addActivityPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -99,6 +102,43 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 						"_UI_WorkItem_type"),
 				TaskPackage.Literals.WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES,
 				true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Predecessors feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPredecessorsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkItem_predecessors_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_WorkItem_predecessors_feature",
+						"_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__PREDECESSORS, true, false,
+				true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Successors feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSuccessorsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(), getResourceLocator(),
+						getString("_UI_WorkItem_successors_feature"),
+						getString("_UI_PropertyDescriptor_description",
+								"_UI_WorkItem_successors_feature",
+								"_UI_WorkItem_type"),
+						TaskPackage.Literals.WORK_ITEM__SUCCESSORS, true,
+						false, true, null, null, null));
 	}
 
 	/**
@@ -175,6 +215,24 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 	}
 
 	/**
+	 * This adds a property descriptor for the Activity feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addActivityPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_ActionItem_activity_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_ActionItem_activity_feature",
+						"_UI_ActionItem_type"),
+				TaskPackage.Literals.ACTION_ITEM__ACTIVITY, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
 	 * This returns ActionItem.gif. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
@@ -212,6 +270,7 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 		case TaskPackage.ACTION_ITEM__DUE_DATE:
 		case TaskPackage.ACTION_ITEM__DONE:
 		case TaskPackage.ACTION_ITEM__ESTIMATE:
+		case TaskPackage.ACTION_ITEM__ACTIVITY:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), false, true));
 			return;

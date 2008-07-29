@@ -26,6 +26,7 @@ import org.unicase.model.impl.AnnotationImpl;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.requirement.Step;
 import org.unicase.model.task.TaskPackage;
+import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 
 /**
@@ -36,6 +37,8 @@ import org.unicase.model.task.WorkPackage;
  * <ul>
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getContainingWorkpackage <em>Containing Workpackage</em>}</li>
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getAssociatedChangePackages <em>Associated Change Packages</em>}</li>
+ *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getPredecessors <em>Predecessors</em>}</li>
+ *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getSuccessors <em>Successors</em>}</li>
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getStepsToReproduce <em>Steps To Reproduce</em>}</li>
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getStatus <em>Status</em>}</li>
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getAssignedTo <em>Assigned To</em>}</li>
@@ -56,6 +59,26 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	 * @ordered
 	 */
 	protected EList<ModelChangePackage> associatedChangePackages;
+
+	/**
+	 * The cached value of the '{@link #getPredecessors() <em>Predecessors</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPredecessors()
+	 * @generated
+	 * @ordered
+	 */
+	protected WorkItem predecessors;
+
+	/**
+	 * The cached value of the '{@link #getSuccessors() <em>Successors</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSuccessors()
+	 * @generated
+	 * @ordered
+	 */
+	protected WorkItem successors;
 
 	/**
 	 * The cached value of the '{@link #getStepsToReproduce() <em>Steps To Reproduce</em>}' reference list.
@@ -204,6 +227,155 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WorkItem getPredecessors() {
+		if (predecessors != null && predecessors.eIsProxy()) {
+			InternalEObject oldPredecessors = (InternalEObject) predecessors;
+			predecessors = (WorkItem) eResolveProxy(oldPredecessors);
+			if (predecessors != oldPredecessors) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							BugPackage.BUG_REPORT__PREDECESSORS,
+							oldPredecessors, predecessors));
+			}
+		}
+		return predecessors;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WorkItem basicGetPredecessors() {
+		return predecessors;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetPredecessors(WorkItem newPredecessors,
+			NotificationChain msgs) {
+		WorkItem oldPredecessors = predecessors;
+		predecessors = newPredecessors;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET, BugPackage.BUG_REPORT__PREDECESSORS,
+					oldPredecessors, newPredecessors);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPredecessors(WorkItem newPredecessors) {
+		if (newPredecessors != predecessors) {
+			NotificationChain msgs = null;
+			if (predecessors != null)
+				msgs = ((InternalEObject) predecessors)
+						.eInverseRemove(this,
+								TaskPackage.WORK_ITEM__SUCCESSORS,
+								WorkItem.class, msgs);
+			if (newPredecessors != null)
+				msgs = ((InternalEObject) newPredecessors)
+						.eInverseAdd(this, TaskPackage.WORK_ITEM__SUCCESSORS,
+								WorkItem.class, msgs);
+			msgs = basicSetPredecessors(newPredecessors, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					BugPackage.BUG_REPORT__PREDECESSORS, newPredecessors,
+					newPredecessors));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WorkItem getSuccessors() {
+		if (successors != null && successors.eIsProxy()) {
+			InternalEObject oldSuccessors = (InternalEObject) successors;
+			successors = (WorkItem) eResolveProxy(oldSuccessors);
+			if (successors != oldSuccessors) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							BugPackage.BUG_REPORT__SUCCESSORS, oldSuccessors,
+							successors));
+			}
+		}
+		return successors;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WorkItem basicGetSuccessors() {
+		return successors;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetSuccessors(WorkItem newSuccessors,
+			NotificationChain msgs) {
+		WorkItem oldSuccessors = successors;
+		successors = newSuccessors;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET, BugPackage.BUG_REPORT__SUCCESSORS,
+					oldSuccessors, newSuccessors);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSuccessors(WorkItem newSuccessors) {
+		if (newSuccessors != successors) {
+			NotificationChain msgs = null;
+			if (successors != null)
+				msgs = ((InternalEObject) successors).eInverseRemove(this,
+						TaskPackage.WORK_ITEM__PREDECESSORS, WorkItem.class,
+						msgs);
+			if (newSuccessors != null)
+				msgs = ((InternalEObject) newSuccessors).eInverseAdd(this,
+						TaskPackage.WORK_ITEM__PREDECESSORS, WorkItem.class,
+						msgs);
+			msgs = basicSetSuccessors(newSuccessors, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					BugPackage.BUG_REPORT__SUCCESSORS, newSuccessors,
+					newSuccessors));
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -346,6 +518,19 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetContainingWorkpackage((WorkPackage) otherEnd, msgs);
+		case BugPackage.BUG_REPORT__PREDECESSORS:
+			if (predecessors != null)
+				msgs = ((InternalEObject) predecessors)
+						.eInverseRemove(this,
+								TaskPackage.WORK_ITEM__SUCCESSORS,
+								WorkItem.class, msgs);
+			return basicSetPredecessors((WorkItem) otherEnd, msgs);
+		case BugPackage.BUG_REPORT__SUCCESSORS:
+			if (successors != null)
+				msgs = ((InternalEObject) successors).eInverseRemove(this,
+						TaskPackage.WORK_ITEM__PREDECESSORS, WorkItem.class,
+						msgs);
+			return basicSetSuccessors((WorkItem) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -361,6 +546,10 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 		switch (featureID) {
 		case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE:
 			return basicSetContainingWorkpackage(null, msgs);
+		case BugPackage.BUG_REPORT__PREDECESSORS:
+			return basicSetPredecessors(null, msgs);
+		case BugPackage.BUG_REPORT__SUCCESSORS:
+			return basicSetSuccessors(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -393,6 +582,14 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			return getContainingWorkpackage();
 		case BugPackage.BUG_REPORT__ASSOCIATED_CHANGE_PACKAGES:
 			return getAssociatedChangePackages();
+		case BugPackage.BUG_REPORT__PREDECESSORS:
+			if (resolve)
+				return getPredecessors();
+			return basicGetPredecessors();
+		case BugPackage.BUG_REPORT__SUCCESSORS:
+			if (resolve)
+				return getSuccessors();
+			return basicGetSuccessors();
 		case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE:
 			return getStepsToReproduce();
 		case BugPackage.BUG_REPORT__STATUS:
@@ -427,6 +624,12 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			getAssociatedChangePackages().addAll(
 					(Collection<? extends ModelChangePackage>) newValue);
 			return;
+		case BugPackage.BUG_REPORT__PREDECESSORS:
+			setPredecessors((WorkItem) newValue);
+			return;
+		case BugPackage.BUG_REPORT__SUCCESSORS:
+			setSuccessors((WorkItem) newValue);
+			return;
 		case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE:
 			getStepsToReproduce().clear();
 			getStepsToReproduce().addAll((Collection<? extends Step>) newValue);
@@ -460,6 +663,12 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 		case BugPackage.BUG_REPORT__ASSOCIATED_CHANGE_PACKAGES:
 			getAssociatedChangePackages().clear();
 			return;
+		case BugPackage.BUG_REPORT__PREDECESSORS:
+			setPredecessors((WorkItem) null);
+			return;
+		case BugPackage.BUG_REPORT__SUCCESSORS:
+			setSuccessors((WorkItem) null);
+			return;
 		case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE:
 			getStepsToReproduce().clear();
 			return;
@@ -491,6 +700,10 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 		case BugPackage.BUG_REPORT__ASSOCIATED_CHANGE_PACKAGES:
 			return associatedChangePackages != null
 					&& !associatedChangePackages.isEmpty();
+		case BugPackage.BUG_REPORT__PREDECESSORS:
+			return predecessors != null;
+		case BugPackage.BUG_REPORT__SUCCESSORS:
+			return successors != null;
 		case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE:
 			return stepsToReproduce != null && !stepsToReproduce.isEmpty();
 		case BugPackage.BUG_REPORT__STATUS:

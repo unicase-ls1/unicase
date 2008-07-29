@@ -25,6 +25,9 @@
         eKeys="#//IdentifiableElement/identifier"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="leafSection" eType="#//document/LeafSection"
         eOpposite="#//document/LeafSection/modelElements" eKeys="#//IdentifiableElement/identifier"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
+        changeable="false" volatile="true" transient="true" defaultValueLiteral=""
+        derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Project">
     <eOperations name="addModelElement">
@@ -93,11 +96,14 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="dueDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="done" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="estimate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="activity" eType="#//task/ActivityType"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="WorkPackage" eSuperTypes="#//task/WorkItem">
       <eStructuralFeatures xsi:type="ecore:EReference" name="containedWorkItems" upperBound="-1"
           eType="#//task/WorkItem" containment="true" eOpposite="#//task/WorkItem/containingWorkpackage"
           eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="startDate" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDate"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="endDate" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDate"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="WorkItem" abstract="true" interface="true"
         eSuperTypes="#//Annotation">
@@ -106,6 +112,10 @@
           eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="associatedChangePackages"
           upperBound="-1" eType="#//change/ModelChangePackage" eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="predecessors" eType="#//task/WorkItem"
+          eOpposite="#//task/WorkItem/successors" eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="successors" eType="#//task/WorkItem"
+          eOpposite="#//task/WorkItem/predecessors" eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Meeting" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -127,6 +137,14 @@
           eType="#//task/ActionItem" eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Milestone" eSuperTypes="#//ModelElement"/>
+    <eClassifiers xsi:type="ecore:EEnum" name="ActivityType">
+      <eLiterals name="MANAGEMENT" literal="Management"/>
+      <eLiterals name="ANALYSIS" value="1" literal="Analysis"/>
+      <eLiterals name="SYSTEM_DESIGN" value="2" literal="System Design"/>
+      <eLiterals name="OBJECT_DESIGN" value="3" literal="Object Design"/>
+      <eLiterals name="IMPLEMENTATION" value="4" literal="Implementation"/>
+      <eLiterals name="TESTING" value="5" literal="Testing"/>
+    </eClassifiers>
   </eSubpackages>
   <eSubpackages name="diagram" nsURI="http://unicase.org/model/diagram" nsPrefix="org.unicase.model.diagram">
     <eClassifiers xsi:type="ecore:EClass" name="MEDiagram" eSuperTypes="#//ModelElement">

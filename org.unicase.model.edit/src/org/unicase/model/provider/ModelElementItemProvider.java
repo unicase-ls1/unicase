@@ -57,6 +57,7 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider
 			addDescriptionPropertyDescriptor(object);
 			addAnnotationsPropertyDescriptor(object);
 			addIncomingDocumentReferencesPropertyDescriptor(object);
+			addStatePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -136,6 +137,24 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the State feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addStatePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_ModelElement_state_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_ModelElement_state_feature",
+						"_UI_ModelElement_type"),
+				ModelPackage.Literals.MODEL_ELEMENT__STATE, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
@@ -163,6 +182,7 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider
 		case ModelPackage.MODEL_ELEMENT__NAME:
 		case ModelPackage.MODEL_ELEMENT__DESCRIPTION:
 		case ModelPackage.MODEL_ELEMENT__READER_INFOS:
+		case ModelPackage.MODEL_ELEMENT__STATE:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), false, true));
 			return;

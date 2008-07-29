@@ -127,6 +127,15 @@ public interface DiagramPackage extends EPackage {
 	int ME_DIAGRAM__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ME_DIAGRAM__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+
+	/**
 	 * The feature id for the '<em><b>Elements</b></em>' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
