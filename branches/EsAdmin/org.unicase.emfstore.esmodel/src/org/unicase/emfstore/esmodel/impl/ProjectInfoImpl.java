@@ -411,4 +411,4 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 	}
 
 } // ProjectInfoImpl
->>>>>>> .merge-right.r835
+

@@ -307,4 +307,4 @@ public class ACOrgUnitImpl extends EObjectImpl implements ACOrgUnit {
 	}
 
 } // ACOrgUnitImpl
->>>>>>> .merge-right.r835
+
