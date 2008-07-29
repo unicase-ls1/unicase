@@ -43,6 +43,7 @@ import org.unicase.model.task.util.MEStateImpl;
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getIncomingDocumentReferences <em>Incoming Document References</em>}</li>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getLeafSection <em>Leaf Section</em>}</li>
+ *   <li>{@link org.unicase.model.impl.ModelElementImpl#getState <em>State</em>}</li>
  * </ul>
  * </p>
  *
@@ -114,6 +115,16 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	 * @ordered
 	 */
 	protected EList<LeafSection> incomingDocumentReferences;
+
+	/**
+	 * The default value of the '{@link #getState() <em>State</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getState()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String STATE_EDEFAULT = "";
 
 	private boolean calculatingState;
 
@@ -270,6 +281,17 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getState() {
+		// TODO: implement this method to return the 'State' attribute
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -420,6 +442,8 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 			return getIncomingDocumentReferences();
 		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
 			return getLeafSection();
+		case ModelPackage.MODEL_ELEMENT__STATE:
+			return getState();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -511,6 +535,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 					&& !incomingDocumentReferences.isEmpty();
 		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
 			return getLeafSection() != null;
+		case ModelPackage.MODEL_ELEMENT__STATE:
+			return STATE_EDEFAULT == null ? getState() != null
+					: !STATE_EDEFAULT.equals(getState());
 		}
 		return super.eIsSet(featureID);
 	}

@@ -3,7 +3,14 @@ package org.unicase.model.task.util;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.model.ModelElement;
+import org.unicase.model.ModelPackage;
+import org.unicase.model.bug.BugReport;
+import org.unicase.model.bug.BugStatus;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.ActionItem;
 
@@ -23,6 +30,17 @@ public class MEStateImpl implements MEState {
 		updateEffectiveOpeners();
 		// Initially fill blocker
 		updateEffectiveBlockers();
+		modelElement.eAdapters().add(new AdapterImpl() {
+
+			@Override
+			public void notifyChanged(Notification msg) {
+				if (!(msg.getFeatureID(ModelElement.class) == ModelPackage.MODEL_ELEMENT__STATE)) {
+					recursivlyUpdateStatus(getStatus());
+				}
+				super.notifyChanged(msg);
+			}
+
+		});
 	}
 
 	private void updateEffectiveBlockers() {
@@ -41,7 +59,7 @@ public class MEStateImpl implements MEState {
 					effectiveOpeners.add(opener);
 				}
 			} catch (CircularDependencyException e) {
-				//JH: handle Exception
+				// JH: handle Exception
 			}
 		}
 
@@ -49,7 +67,9 @@ public class MEStateImpl implements MEState {
 
 	public void addBlocker(ModelElement me) {
 		// JH Auto-generated method stub
-
+		if (effectiveBlocker.size() == 1) {
+			recursivlyUpdateStatus(getStatus());
+		}
 	}
 
 	public void addModifiedChild(ModelElement me) {
@@ -58,8 +78,10 @@ public class MEStateImpl implements MEState {
 	}
 
 	public void addOpener(ModelElement me) {
-		// JH Auto-generated method stub
-
+		effectiveOpeners.add(me);
+		if (effectiveOpeners.size() == 1) {
+			recursivlyUpdateStatus(getStatus());
+		}
 	}
 
 	public String getStatus() {
@@ -67,17 +89,27 @@ public class MEStateImpl implements MEState {
 		if (effectiveBlocker.size() > 0) {
 			return BLOCKED;
 		}
-		// If the me is an Annotation, the isclosed Attribute is effective
+		// If the me is an ActionItem, the isDone Attribute is effective
 		if (modelElement instanceof ActionItem) {
 			ActionItem actionItem = (ActionItem) modelElement;
 			if (!actionItem.isDone()) {
 				return OPEN;
 			}
 		}
-		//If the me is a FunctionalRequirement the reviewed attribute is effective.
-		if(modelElement instanceof FunctionalRequirement){
-			FunctionalRequirement fr = (FunctionalRequirement)modelElement;
-			if(!fr.isReviewed()){
+
+		// If the me is an ActionItem, the isDone Attribute is effective
+		if (modelElement instanceof BugReport) {
+			BugReport bugReport = (BugReport) modelElement;
+			if (!bugReport.getStatus().equals(BugStatus.CLOSED)) {
+				return OPEN;
+			}
+		}
+
+		// If the me is a FunctionalRequirement the reviewed attribute is
+		// effective.
+		if (modelElement instanceof FunctionalRequirement) {
+			FunctionalRequirement fr = (FunctionalRequirement) modelElement;
+			if (!fr.isReviewed()) {
 				return OPEN;
 			}
 		}
@@ -107,8 +139,41 @@ public class MEStateImpl implements MEState {
 	}
 
 	public boolean removeOpener(ModelElement me) {
-		// JH Auto-generated method stub
-		return false;
+		boolean ret = effectiveOpeners.remove(me);
+		if (effectiveOpeners.size() == 0) {
+			recursivlyUpdateStatus(getStatus());
+		}
+		return ret;
 	}
 
+	private void recursivlyUpdateStatus(String status) {
+		modelElement.eNotify(new ENotificationImpl(
+				(InternalEObject) modelElement, Notification.SET,
+				ModelPackage.MODEL_ELEMENT__STATE, OPEN, OPEN));
+		ArrayList<ModelElement> opened = TaxonomyAccess.getInstance()
+				.getOpeningLinkTaxonomy().getOpened(modelElement);
+		// ArrayList<ModelElement> blocked = TaxonomyAccess.getInstance()
+		// .getBlockingLinkTaxonomy().getBlocked(modelElement);
+		try {
+			if (status.equals(OPEN) | status.equals(BLOCKED)) {
+				for (ModelElement open : opened) {
+					open.getMEState().addOpener(modelElement);
+				}
+				// for (ModelElement modelElement : blocked) {
+				// modelElement.getMEState().addBlocker(modelElement);
+				// }
+			}
+			if (status.equals(CLOSED)) {
+				for (ModelElement open : opened) {
+					open.getMEState().removeOpener(modelElement);
+				}
+				// for (ModelElement modelElement : blocked) {
+				// modelElement.getMEState().removeBlocker(modelElement);
+				// }
+			}
+		} catch (CircularDependencyException e) {
+			e.printStackTrace();
+		}
+
+	}
 }

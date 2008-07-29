@@ -289,6 +289,15 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getModelElement_State() {
+		return (EAttribute) modelElementEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -424,6 +433,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		createEReference(modelElementEClass,
 				MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES);
 		createEReference(modelElementEClass, MODEL_ELEMENT__LEAF_SECTION);
+		createEAttribute(modelElementEClass, MODEL_ELEMENT__STATE);
 
 		projectEClass = createEClass(PROJECT);
 		createEReference(projectEClass, PROJECT__MODEL_ELEMENTS);
@@ -556,6 +566,10 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 				!IS_DERIVED, IS_ORDERED);
 		getModelElement_LeafSection().getEKeys().add(
 				this.getIdentifiableElement_Identifier());
+		initEAttribute(getModelElement_State(), theEcorePackage.getEString(),
+				"state", "", 0, 1, ModelElement.class, IS_TRANSIENT,
+				IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				IS_DERIVED, IS_ORDERED);
 
 		addEOperation(modelElementEClass, this.getProject(), "getProject", 0,
 				1, IS_UNIQUE, IS_ORDERED);
