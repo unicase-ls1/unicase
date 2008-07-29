@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.unicase.ui.common.decorators;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.eclipse.core.runtime.Path;
@@ -82,15 +83,14 @@ public class StateDecorator implements ILightweightLabelDecorator {
 		}
 		try {
 			if (me.getMEState().getStatus().equals(MEState.OPEN)) {
-				url = Platform.find(Platform
-						.getBundle("org.unicase.ui.common"),
-						new Path(openPath));
+				url = Platform.find(
+						Platform.getBundle("org.unicase.ui.common"), new Path(openPath)); //NON-NLS-1
 
 			}
 			if (me.getMEState().getStatus().equals(MEState.BLOCKED)) {
-				url = Platform.find(Platform
-						.getBundle("org.unicase.ui.common"), new Path(
-						blockedPath));
+				url = Platform.find(
+						Platform.getBundle("org.unicase.ui.common"), new Path(
+								blockedPath));
 			}
 		} catch (CircularDependencyException e) {
 			// JH : add questionmark image
@@ -98,7 +98,7 @@ public class StateDecorator implements ILightweightLabelDecorator {
 			return;
 		}
 
-		if (url == null){
+		if (url == null) {
 			return;
 		}
 
