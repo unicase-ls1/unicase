@@ -5,7 +5,7 @@
  * $Id$
  */
 
-package org.unicase.ui.navigator;
+package org.unicase.ui.common.dnd;
 
 import java.util.Collection;
 
@@ -15,7 +15,6 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.dnd.DropTargetEvent;
-import org.eclipse.swt.dnd.DropTargetListener;
 import org.eclipse.swt.widgets.Widget;
 import org.unicase.model.ModelElement;
 import org.unicase.model.document.CompositeSection;
@@ -27,15 +26,15 @@ import org.unicase.model.document.Section;
  * @author Hodaie
  *
  */
-public class TreeViewerDropAdapter extends EditingDomainViewerDropAdapter
-		implements DropTargetListener {
+public class UCDropAdapter extends
+				EditingDomainViewerDropAdapter 	{
 
 	/**.
 	 * Constructor
 	 * @param domain EditingDomain
 	 * @param viewer Viewer
 	 */
-	public TreeViewerDropAdapter(EditingDomain domain, Viewer viewer) {
+	public UCDropAdapter(EditingDomain domain, Viewer viewer) {
 		super(domain, viewer);
 	
 	}
@@ -78,10 +77,16 @@ public class TreeViewerDropAdapter extends EditingDomainViewerDropAdapter
 	 */
 	@Override
 	public void drop(DropTargetEvent event) {
+	
+		//Object obj = event.data;
+		//event.data return a TreeSelection containing
+		//the MEs which are draged. (DragSource)
+			
 		Widget item = event.item;
 		final Object target = item.getData();
 		final Collection<?> dragSource = getDragSource(event);
 		if (target instanceof LeafSection) {
+			
 			domain.getCommandStack().execute(
 					new RecordingCommand((TransactionalEditingDomain) domain) {
 						protected void doExecute() {
@@ -122,6 +127,8 @@ public class TreeViewerDropAdapter extends EditingDomainViewerDropAdapter
 			return;
 		}
 		leafSection.getModelElements().add(me);
+		
+		//domain.getCommandStack().undo();
 		this.viewer.refresh();
 		
 	}
