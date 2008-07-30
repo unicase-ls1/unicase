@@ -19,7 +19,7 @@ public interface AdminConnectionManager extends AdminEmfStore {
 
 	/**
 	 * Added the methods from AdminEmfStore and removed extension of the
-	 * interface until AdminUsersession and RMI is implemented in order to use
+	 * interface until AdminUsersessionImpl and RMI is implemented in order to use
 	 * the stub.
 	 * 
 	 */

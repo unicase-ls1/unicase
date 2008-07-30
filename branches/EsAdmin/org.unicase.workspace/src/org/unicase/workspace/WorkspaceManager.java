@@ -18,11 +18,10 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.ModelElement;
-import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.workspace.connectionmanager.AdminConnectionManager;
-import org.unicase.workspace.connectionmanager.AdminConnectionManagerStub;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
+import org.unicase.workspace.connectionmanager.RMIAdminConnectionManagerImpl;
 import org.unicase.workspace.connectionmanager.RMIConnectionManagerImpl;
 
 /**
@@ -96,7 +95,7 @@ public final class WorkspaceManager {
 	 */
 	private AdminConnectionManager initAdminConnectionManager() {
 		
-		return new AdminConnectionManagerStub();
+		return new RMIAdminConnectionManagerImpl();
 	}
 
 	/**
