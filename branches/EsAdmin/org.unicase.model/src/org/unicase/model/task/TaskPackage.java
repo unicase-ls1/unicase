@@ -8,6 +8,7 @@ package org.unicase.model.task;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.unicase.model.ModelPackage;
@@ -125,6 +126,15 @@ public interface TaskPackage extends EPackage {
 	int WORK_ITEM__LEAF_SECTION = ModelPackage.ANNOTATION__LEAF_SECTION;
 
 	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM__STATE = ModelPackage.ANNOTATION__STATE;
+
+	/**
 	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -149,13 +159,31 @@ public interface TaskPackage extends EPackage {
 	int WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES = ModelPackage.ANNOTATION_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Predecessors</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM__PREDECESSORS = ModelPackage.ANNOTATION_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Successors</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM__SUCCESSORS = ModelPackage.ANNOTATION_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Work Item</em>' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_ITEM_FEATURE_COUNT = ModelPackage.ANNOTATION_FEATURE_COUNT + 2;
+	int WORK_ITEM_FEATURE_COUNT = ModelPackage.ANNOTATION_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.task.impl.ActionItemImpl <em>Action Item</em>}' class.
@@ -226,6 +254,15 @@ public interface TaskPackage extends EPackage {
 	int ACTION_ITEM__LEAF_SECTION = WORK_ITEM__LEAF_SECTION;
 
 	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_ITEM__STATE = WORK_ITEM__STATE;
+
+	/**
 	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -248,6 +285,24 @@ public interface TaskPackage extends EPackage {
 	 * @ordered
 	 */
 	int ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES = WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES;
+
+	/**
+	 * The feature id for the '<em><b>Predecessors</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_ITEM__PREDECESSORS = WORK_ITEM__PREDECESSORS;
+
+	/**
+	 * The feature id for the '<em><b>Successors</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_ITEM__SUCCESSORS = WORK_ITEM__SUCCESSORS;
 
 	/**
 	 * The feature id for the '<em><b>Assigned To</b></em>' reference list. <!--
@@ -286,12 +341,21 @@ public interface TaskPackage extends EPackage {
 	int ACTION_ITEM__ESTIMATE = WORK_ITEM_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Activity</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_ITEM__ACTIVITY = WORK_ITEM_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Action Item</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM_FEATURE_COUNT = WORK_ITEM_FEATURE_COUNT + 4;
+	int ACTION_ITEM_FEATURE_COUNT = WORK_ITEM_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.task.impl.WorkPackageImpl <em>Work Package</em>}' class.
@@ -362,6 +426,15 @@ public interface TaskPackage extends EPackage {
 	int WORK_PACKAGE__LEAF_SECTION = WORK_ITEM__LEAF_SECTION;
 
 	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE__STATE = WORK_ITEM__STATE;
+
+	/**
 	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -389,6 +462,24 @@ public interface TaskPackage extends EPackage {
 	int WORK_PACKAGE__ASSOCIATED_CHANGE_PACKAGES = WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES;
 
 	/**
+	 * The feature id for the '<em><b>Predecessors</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE__PREDECESSORS = WORK_ITEM__PREDECESSORS;
+
+	/**
+	 * The feature id for the '<em><b>Successors</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE__SUCCESSORS = WORK_ITEM__SUCCESSORS;
+
+	/**
 	 * The feature id for the '<em><b>Contained Work Items</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -398,12 +489,30 @@ public interface TaskPackage extends EPackage {
 	int WORK_PACKAGE__CONTAINED_WORK_ITEMS = WORK_ITEM_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Start Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE__START_DATE = WORK_ITEM_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>End Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE__END_DATE = WORK_ITEM_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Work Package</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_PACKAGE_FEATURE_COUNT = WORK_ITEM_FEATURE_COUNT + 1;
+	int WORK_PACKAGE_FEATURE_COUNT = WORK_ITEM_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.task.impl.MeetingImpl <em>Meeting</em>}' class.
@@ -477,6 +586,15 @@ public interface TaskPackage extends EPackage {
 	 * @ordered
 	 */
 	int MEETING__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING__STATE = ModelPackage.MODEL_ELEMENT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Location</b></em>' attribute.
@@ -651,6 +769,15 @@ public interface TaskPackage extends EPackage {
 	int MILESTONE__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+
+	/**
 	 * The number of structural features of the '<em>Milestone</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -658,6 +785,16 @@ public interface TaskPackage extends EPackage {
 	 * @ordered
 	 */
 	int MILESTONE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.model.task.ActivityType <em>Activity Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.task.ActivityType
+	 * @see org.unicase.model.task.impl.TaskPackageImpl#getActivityType()
+	 * @generated
+	 */
+	int ACTIVITY_TYPE = 5;
 
 	/**
 	 * Returns the meta object for class '
@@ -713,6 +850,17 @@ public interface TaskPackage extends EPackage {
 	EAttribute getActionItem_Estimate();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.task.ActionItem#getActivity <em>Activity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Activity</em>'.
+	 * @see org.unicase.model.task.ActionItem#getActivity()
+	 * @see #getActionItem()
+	 * @generated
+	 */
+	EAttribute getActionItem_Activity();
+
+	/**
 	 * Returns the meta object for class '
 	 * {@link org.unicase.model.task.WorkPackage <em>Work Package</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -733,6 +881,28 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getWorkPackage_ContainedWorkItems();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.task.WorkPackage#getStartDate <em>Start Date</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Start Date</em>'.
+	 * @see org.unicase.model.task.WorkPackage#getStartDate()
+	 * @see #getWorkPackage()
+	 * @generated
+	 */
+	EAttribute getWorkPackage_StartDate();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.task.WorkPackage#getEndDate <em>End Date</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>End Date</em>'.
+	 * @see org.unicase.model.task.WorkPackage#getEndDate()
+	 * @see #getWorkPackage()
+	 * @generated
+	 */
+	EAttribute getWorkPackage_EndDate();
 
 	/**
 	 * Returns the meta object for class '
@@ -766,6 +936,28 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getWorkItem_AssociatedChangePackages();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.model.task.WorkItem#getPredecessors <em>Predecessors</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Predecessors</em>'.
+	 * @see org.unicase.model.task.WorkItem#getPredecessors()
+	 * @see #getWorkItem()
+	 * @generated
+	 */
+	EReference getWorkItem_Predecessors();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.model.task.WorkItem#getSuccessors <em>Successors</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Successors</em>'.
+	 * @see org.unicase.model.task.WorkItem#getSuccessors()
+	 * @see #getWorkItem()
+	 * @generated
+	 */
+	EReference getWorkItem_Successors();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.task.Meeting <em>Meeting</em>}'.
@@ -898,6 +1090,16 @@ public interface TaskPackage extends EPackage {
 	EClass getMilestone();
 
 	/**
+	 * Returns the meta object for enum '{@link org.unicase.model.task.ActivityType <em>Activity Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Activity Type</em>'.
+	 * @see org.unicase.model.task.ActivityType
+	 * @generated
+	 */
+	EEnum getActivityType();
+
+	/**
 	 * Returns the factory that creates the instances of the model. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -959,6 +1161,14 @@ public interface TaskPackage extends EPackage {
 		EAttribute ACTION_ITEM__ESTIMATE = eINSTANCE.getActionItem_Estimate();
 
 		/**
+		 * The meta object literal for the '<em><b>Activity</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ACTION_ITEM__ACTIVITY = eINSTANCE.getActionItem_Activity();
+
+		/**
 		 * The meta object literal for the '{@link org.unicase.model.task.impl.WorkPackageImpl <em>Work Package</em>}' class.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
@@ -976,6 +1186,23 @@ public interface TaskPackage extends EPackage {
 		 */
 		EReference WORK_PACKAGE__CONTAINED_WORK_ITEMS = eINSTANCE
 				.getWorkPackage_ContainedWorkItems();
+
+		/**
+		 * The meta object literal for the '<em><b>Start Date</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute WORK_PACKAGE__START_DATE = eINSTANCE
+				.getWorkPackage_StartDate();
+
+		/**
+		 * The meta object literal for the '<em><b>End Date</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute WORK_PACKAGE__END_DATE = eINSTANCE.getWorkPackage_EndDate();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.task.WorkItem <em>Work Item</em>}' class.
@@ -1001,6 +1228,23 @@ public interface TaskPackage extends EPackage {
 		 */
 		EReference WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES = eINSTANCE
 				.getWorkItem_AssociatedChangePackages();
+
+		/**
+		 * The meta object literal for the '<em><b>Predecessors</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference WORK_ITEM__PREDECESSORS = eINSTANCE
+				.getWorkItem_Predecessors();
+
+		/**
+		 * The meta object literal for the '<em><b>Successors</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference WORK_ITEM__SUCCESSORS = eINSTANCE.getWorkItem_Successors();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.task.impl.MeetingImpl <em>Meeting</em>}' class.
@@ -1105,6 +1349,16 @@ public interface TaskPackage extends EPackage {
 		 * @generated
 		 */
 		EClass MILESTONE = eINSTANCE.getMilestone();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.task.ActivityType <em>Activity Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.task.ActivityType
+		 * @see org.unicase.model.task.impl.TaskPackageImpl#getActivityType()
+		 * @generated
+		 */
+		EEnum ACTIVITY_TYPE = eINSTANCE.getActivityType();
 
 	}
 

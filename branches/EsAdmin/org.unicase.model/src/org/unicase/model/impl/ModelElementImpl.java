@@ -29,6 +29,7 @@ import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.util.CircularDependencyException;
+import org.unicase.model.task.util.MEState;
 import org.unicase.model.task.util.MEStateImpl;
 
 /**
@@ -43,6 +44,7 @@ import org.unicase.model.task.util.MEStateImpl;
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getIncomingDocumentReferences <em>Incoming Document References</em>}</li>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getLeafSection <em>Leaf Section</em>}</li>
+ *   <li>{@link org.unicase.model.impl.ModelElementImpl#getState <em>State</em>}</li>
  * </ul>
  * </p>
  *
@@ -114,6 +116,15 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	 * @ordered
 	 */
 	protected EList<LeafSection> incomingDocumentReferences;
+
+	/**
+	 * The default value of the '{@link #getState() <em>State</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #getState()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String STATE_EDEFAULT = "";
 
 	private boolean calculatingState;
 
@@ -274,6 +285,20 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	 * 
 	 * @generated NOT
 	 */
+	public String getState() {
+		try {
+			return getMEState().getStatus();
+		} catch (CircularDependencyException e) {
+			e.printStackTrace();
+			return MEState.CLOSED;
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
 	public Project getProject() {
 		// check if my container is a project
 		if (ModelPackage.eINSTANCE.getProject().isInstance(this.eContainer)) {
@@ -300,9 +325,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @throws CircularDependencyException 
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @throws CircularDependencyException
 	 * @generated NOT
 	 */
 	public org.unicase.model.task.util.MEState getMEState()
@@ -321,9 +346,10 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		return meState;
 	}
 
-	//begin of custom code
+	// begin of custom code
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.model.ModelElement#getModelElementId()
 	 */
 	public ModelElementId getModelElementId() {
@@ -337,7 +363,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		return modelElementId;
 	}
 
-	//end of custom code
+	// end of custom code
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -420,6 +446,8 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 			return getIncomingDocumentReferences();
 		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
 			return getLeafSection();
+		case ModelPackage.MODEL_ELEMENT__STATE:
+			return getState();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -511,6 +539,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 					&& !incomingDocumentReferences.isEmpty();
 		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
 			return getLeafSection() != null;
+		case ModelPackage.MODEL_ELEMENT__STATE:
+			return STATE_EDEFAULT == null ? getState() != null
+					: !STATE_EDEFAULT.equals(getState());
 		}
 		return super.eIsSet(featureID);
 	}
@@ -533,7 +564,8 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		return result.toString();
 	}
 
-	//FIXME MK: hasCode and equals are based on ME id, this might be dangerous since we have multiple instance of the same ME
+	// FIXME MK: hasCode and equals are based on ME id, this might be dangerous
+	// since we have multiple instance of the same ME
 	/**
 	 * Returns true if the other model elements id is identical. False in any
 	 * other case.

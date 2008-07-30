@@ -163,6 +163,7 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider
 		case ModelPackage.MODEL_ELEMENT__NAME:
 		case ModelPackage.MODEL_ELEMENT__DESCRIPTION:
 		case ModelPackage.MODEL_ELEMENT__READER_INFOS:
+		case ModelPackage.MODEL_ELEMENT__STATE:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), false, true));
 			return;

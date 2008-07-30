@@ -127,6 +127,15 @@ public interface BugPackage extends EPackage {
 	int BUG_REPORT__LEAF_SECTION = TaskPackage.WORK_ITEM__LEAF_SECTION;
 
 	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUG_REPORT__STATE = TaskPackage.WORK_ITEM__STATE;
+
+	/**
 	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -152,6 +161,24 @@ public interface BugPackage extends EPackage {
 	 * @ordered
 	 */
 	int BUG_REPORT__ASSOCIATED_CHANGE_PACKAGES = TaskPackage.WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES;
+
+	/**
+	 * The feature id for the '<em><b>Predecessors</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUG_REPORT__PREDECESSORS = TaskPackage.WORK_ITEM__PREDECESSORS;
+
+	/**
+	 * The feature id for the '<em><b>Successors</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUG_REPORT__SUCCESSORS = TaskPackage.WORK_ITEM__SUCCESSORS;
 
 	/**
 	 * The feature id for the '<em><b>Steps To Reproduce</b></em>' reference list.
@@ -273,6 +300,15 @@ public interface BugPackage extends EPackage {
 	 * @ordered
 	 */
 	int BUG_RESOLUTION__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUG_RESOLUTION__STATE = ModelPackage.MODEL_ELEMENT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Resoultion Type</b></em>' attribute. <!--

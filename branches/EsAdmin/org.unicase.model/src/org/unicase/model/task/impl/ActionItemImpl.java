@@ -21,7 +21,9 @@ import org.unicase.model.change.ModelChangePackage;
 import org.unicase.model.impl.AnnotationImpl;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.ActionItem;
+import org.unicase.model.task.ActivityType;
 import org.unicase.model.task.TaskPackage;
+import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 
 /**
@@ -32,10 +34,13 @@ import org.unicase.model.task.WorkPackage;
  * <ul>
  *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getContainingWorkpackage <em>Containing Workpackage</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getAssociatedChangePackages <em>Associated Change Packages</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getPredecessors <em>Predecessors</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getSuccessors <em>Successors</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getAssignedTo <em>Assigned To</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getDueDate <em>Due Date</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#isDone <em>Done</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getEstimate <em>Estimate</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getActivity <em>Activity</em>}</li>
  * </ul>
  * </p>
  *
@@ -51,6 +56,26 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	 * @ordered
 	 */
 	protected EList<ModelChangePackage> associatedChangePackages;
+
+	/**
+	 * The cached value of the '{@link #getPredecessors() <em>Predecessors</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPredecessors()
+	 * @generated
+	 * @ordered
+	 */
+	protected WorkItem predecessors;
+
+	/**
+	 * The cached value of the '{@link #getSuccessors() <em>Successors</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSuccessors()
+	 * @generated
+	 * @ordered
+	 */
+	protected WorkItem successors;
 
 	/**
 	 * The cached value of the '{@link #getAssignedTo() <em>Assigned To</em>}' reference list.
@@ -115,6 +140,26 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	 * @ordered
 	 */
 	protected int estimate = ESTIMATE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getActivity() <em>Activity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getActivity()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final ActivityType ACTIVITY_EDEFAULT = ActivityType.MANAGEMENT;
+
+	/**
+	 * The cached value of the '{@link #getActivity() <em>Activity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getActivity()
+	 * @generated
+	 * @ordered
+	 */
+	protected ActivityType activity = ACTIVITY_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -196,6 +241,155 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WorkItem getPredecessors() {
+		if (predecessors != null && predecessors.eIsProxy()) {
+			InternalEObject oldPredecessors = (InternalEObject) predecessors;
+			predecessors = (WorkItem) eResolveProxy(oldPredecessors);
+			if (predecessors != oldPredecessors) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							TaskPackage.ACTION_ITEM__PREDECESSORS,
+							oldPredecessors, predecessors));
+			}
+		}
+		return predecessors;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WorkItem basicGetPredecessors() {
+		return predecessors;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetPredecessors(WorkItem newPredecessors,
+			NotificationChain msgs) {
+		WorkItem oldPredecessors = predecessors;
+		predecessors = newPredecessors;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET, TaskPackage.ACTION_ITEM__PREDECESSORS,
+					oldPredecessors, newPredecessors);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPredecessors(WorkItem newPredecessors) {
+		if (newPredecessors != predecessors) {
+			NotificationChain msgs = null;
+			if (predecessors != null)
+				msgs = ((InternalEObject) predecessors)
+						.eInverseRemove(this,
+								TaskPackage.WORK_ITEM__SUCCESSORS,
+								WorkItem.class, msgs);
+			if (newPredecessors != null)
+				msgs = ((InternalEObject) newPredecessors)
+						.eInverseAdd(this, TaskPackage.WORK_ITEM__SUCCESSORS,
+								WorkItem.class, msgs);
+			msgs = basicSetPredecessors(newPredecessors, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					TaskPackage.ACTION_ITEM__PREDECESSORS, newPredecessors,
+					newPredecessors));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WorkItem getSuccessors() {
+		if (successors != null && successors.eIsProxy()) {
+			InternalEObject oldSuccessors = (InternalEObject) successors;
+			successors = (WorkItem) eResolveProxy(oldSuccessors);
+			if (successors != oldSuccessors) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							TaskPackage.ACTION_ITEM__SUCCESSORS, oldSuccessors,
+							successors));
+			}
+		}
+		return successors;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WorkItem basicGetSuccessors() {
+		return successors;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetSuccessors(WorkItem newSuccessors,
+			NotificationChain msgs) {
+		WorkItem oldSuccessors = successors;
+		successors = newSuccessors;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET, TaskPackage.ACTION_ITEM__SUCCESSORS,
+					oldSuccessors, newSuccessors);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSuccessors(WorkItem newSuccessors) {
+		if (newSuccessors != successors) {
+			NotificationChain msgs = null;
+			if (successors != null)
+				msgs = ((InternalEObject) successors).eInverseRemove(this,
+						TaskPackage.WORK_ITEM__PREDECESSORS, WorkItem.class,
+						msgs);
+			if (newSuccessors != null)
+				msgs = ((InternalEObject) newSuccessors).eInverseAdd(this,
+						TaskPackage.WORK_ITEM__PREDECESSORS, WorkItem.class,
+						msgs);
+			msgs = basicSetSuccessors(newSuccessors, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					TaskPackage.ACTION_ITEM__SUCCESSORS, newSuccessors,
+					newSuccessors));
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -272,6 +466,28 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ActivityType getActivity() {
+		return activity;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setActivity(ActivityType newActivity) {
+		ActivityType oldActivity = activity;
+		activity = newActivity == null ? ACTIVITY_EDEFAULT : newActivity;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					TaskPackage.ACTION_ITEM__ACTIVITY, oldActivity, activity));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
@@ -280,6 +496,19 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetContainingWorkpackage((WorkPackage) otherEnd, msgs);
+		case TaskPackage.ACTION_ITEM__PREDECESSORS:
+			if (predecessors != null)
+				msgs = ((InternalEObject) predecessors)
+						.eInverseRemove(this,
+								TaskPackage.WORK_ITEM__SUCCESSORS,
+								WorkItem.class, msgs);
+			return basicSetPredecessors((WorkItem) otherEnd, msgs);
+		case TaskPackage.ACTION_ITEM__SUCCESSORS:
+			if (successors != null)
+				msgs = ((InternalEObject) successors).eInverseRemove(this,
+						TaskPackage.WORK_ITEM__PREDECESSORS, WorkItem.class,
+						msgs);
+			return basicSetSuccessors((WorkItem) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -295,6 +524,10 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 		switch (featureID) {
 		case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
 			return basicSetContainingWorkpackage(null, msgs);
+		case TaskPackage.ACTION_ITEM__PREDECESSORS:
+			return basicSetPredecessors(null, msgs);
+		case TaskPackage.ACTION_ITEM__SUCCESSORS:
+			return basicSetSuccessors(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -327,6 +560,14 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 			return getContainingWorkpackage();
 		case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES:
 			return getAssociatedChangePackages();
+		case TaskPackage.ACTION_ITEM__PREDECESSORS:
+			if (resolve)
+				return getPredecessors();
+			return basicGetPredecessors();
+		case TaskPackage.ACTION_ITEM__SUCCESSORS:
+			if (resolve)
+				return getSuccessors();
+			return basicGetSuccessors();
 		case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
 			return getAssignedTo();
 		case TaskPackage.ACTION_ITEM__DUE_DATE:
@@ -335,6 +576,8 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 			return isDone() ? Boolean.TRUE : Boolean.FALSE;
 		case TaskPackage.ACTION_ITEM__ESTIMATE:
 			return new Integer(getEstimate());
+		case TaskPackage.ACTION_ITEM__ACTIVITY:
+			return getActivity();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -355,6 +598,12 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 			getAssociatedChangePackages().addAll(
 					(Collection<? extends ModelChangePackage>) newValue);
 			return;
+		case TaskPackage.ACTION_ITEM__PREDECESSORS:
+			setPredecessors((WorkItem) newValue);
+			return;
+		case TaskPackage.ACTION_ITEM__SUCCESSORS:
+			setSuccessors((WorkItem) newValue);
+			return;
 		case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
 			getAssignedTo().clear();
 			getAssignedTo().addAll((Collection<? extends User>) newValue);
@@ -367,6 +616,9 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 			return;
 		case TaskPackage.ACTION_ITEM__ESTIMATE:
 			setEstimate(((Integer) newValue).intValue());
+			return;
+		case TaskPackage.ACTION_ITEM__ACTIVITY:
+			setActivity((ActivityType) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -385,6 +637,12 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 		case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES:
 			getAssociatedChangePackages().clear();
 			return;
+		case TaskPackage.ACTION_ITEM__PREDECESSORS:
+			setPredecessors((WorkItem) null);
+			return;
+		case TaskPackage.ACTION_ITEM__SUCCESSORS:
+			setSuccessors((WorkItem) null);
+			return;
 		case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
 			getAssignedTo().clear();
 			return;
@@ -396,6 +654,9 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 			return;
 		case TaskPackage.ACTION_ITEM__ESTIMATE:
 			setEstimate(ESTIMATE_EDEFAULT);
+			return;
+		case TaskPackage.ACTION_ITEM__ACTIVITY:
+			setActivity(ACTIVITY_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -413,6 +674,10 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 		case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES:
 			return associatedChangePackages != null
 					&& !associatedChangePackages.isEmpty();
+		case TaskPackage.ACTION_ITEM__PREDECESSORS:
+			return predecessors != null;
+		case TaskPackage.ACTION_ITEM__SUCCESSORS:
+			return successors != null;
 		case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
 			return assignedTo != null && !assignedTo.isEmpty();
 		case TaskPackage.ACTION_ITEM__DUE_DATE:
@@ -422,6 +687,8 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 			return done != DONE_EDEFAULT;
 		case TaskPackage.ACTION_ITEM__ESTIMATE:
 			return estimate != ESTIMATE_EDEFAULT;
+		case TaskPackage.ACTION_ITEM__ACTIVITY:
+			return activity != ACTIVITY_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -442,6 +709,8 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 		result.append(done);
 		result.append(", estimate: ");
 		result.append(estimate);
+		result.append(", activity: ");
+		result.append(activity);
 		result.append(')');
 		return result.toString();
 	}

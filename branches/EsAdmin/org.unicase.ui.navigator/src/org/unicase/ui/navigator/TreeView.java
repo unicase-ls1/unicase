@@ -29,13 +29,17 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.internal.decorators.DecoratorManager;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
+import org.unicase.ui.common.dnd.UCDropAdapter;
 import org.unicase.ui.meeditor.MEEditor;
 import org.unicase.ui.meeditor.MEEditorInput;
+import org.unicase.ui.navigator.commands.RedoAction;
+import org.unicase.ui.navigator.commands.UndoAction;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
@@ -47,7 +51,7 @@ import org.unicase.workspace.WorkspaceManager;
 public class TreeView extends ViewPart {
 
 	private TreeViewer viewer;
-	private Action doubleClickAction;
+	private Action doubleClickAction, undoAction, redoAction;
 
 	/**
 	 * . Constructor
@@ -77,9 +81,23 @@ public class TreeView extends ViewPart {
 		Menu menu = menuMgr.createContextMenu(control);
 		control.setMenu(menu);
 
+		makeActions();
 		hookDoubleClickAction();
 		addDragNDropSupport();
 
+		// add global action handlers
+		getViewSite().getActionBars().setGlobalActionHandler(
+				ActionFactory.UNDO.getId(), undoAction);
+		getViewSite().getActionBars().setGlobalActionHandler(
+				ActionFactory.REDO.getId(), redoAction);
+
+	}
+
+	private void makeActions() {
+		undoAction = new UndoAction(); 
+		undoAction.setEnabled(false);
+		redoAction = new RedoAction(); 
+		redoAction.setEnabled(false);
 	}
 
 	private void addDragNDropSupport() {
@@ -89,8 +107,8 @@ public class TreeView extends ViewPart {
 		viewer.addDragSupport(dndOperations, transfers, new ViewerDragAdapter(
 				viewer));
 
-		viewer.addDropSupport(dndOperations, transfers,
-				new TreeViewerDropAdapter(
+		viewer
+				.addDropSupport(dndOperations, transfers, new UCDropAdapter(
 						TransactionalEditingDomain.Registry.INSTANCE
 								.getEditingDomain("org.unicase.EditingDomain"),
 						viewer));
