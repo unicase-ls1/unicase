@@ -25,7 +25,7 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 
-public class AdminConnectionManagerStub {// implements AdminConnectionManager {
+public class AdminConnectionManagerStub {
 
 	private static EList<ProjectInfo> projectInfos = new BasicEList<ProjectInfo>();
 	private static EList<ACGroup> groups = new BasicEList<ACGroup>();
