@@ -8,13 +8,14 @@ package org.unicase.workspace.connectionmanager;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.unicase.emfstore.AdminEmfStore;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 
-public interface AdminConnectionManager {
+public interface AdminConnectionManager extends AdminEmfStore {
 
 	/**
 	 * Added the methods from AdminEmfStore and removed extension of the
@@ -22,7 +23,7 @@ public interface AdminConnectionManager {
 	 * the stub.
 	 * 
 	 */
-
+/*
 	EList<ProjectInfo> getProjectInfos();
 
 	EList<ACGroup> getGroups();
@@ -46,4 +47,6 @@ public interface AdminConnectionManager {
 	Role getRole(ProjectInfo project, ACOrgUnit orgUnit);
 
 	void changeRole(ProjectInfo projectInfo, ACOrgUnit orgUnit, EClass role);
+
+	*/
 }
