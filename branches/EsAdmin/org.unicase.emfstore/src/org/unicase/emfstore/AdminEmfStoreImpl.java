@@ -7,6 +7,7 @@
 package org.unicase.emfstore;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
@@ -25,6 +26,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.ReaderRole;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesFactory;
+import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 
 /**
@@ -159,11 +161,31 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		throw new EmfStoreException("Couldn't find given OrgUnit.");
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void changeRole(SessionId sessionId, ProjectId projectId,
-			 ACOrgUnitId orgUnitId, EClass role) {
-		// TODO Auto-generated method stub
-
+			 ACOrgUnitId orgUnitId, EClass roleClass) throws EmfStoreException {
+		ACOrgUnit orgUnit = getOrgUnit(orgUnitId);
+		// delete old role first
+		Role role = getRole(projectId, orgUnit);
+		if(role!=null) {
+			role.getProjects().remove(projectId);			
+		}
+		// add project to role if existant
+		for(Role role1 : orgUnit.getRoles()) {
+			if (role1.getClass().equals(roleClass)) {
+				role1.getProjects().add(projectId);
+				return;
+			}
+		}
+		// create role if not existant
+		Role newRole = (Role)RolesPackage.eINSTANCE.getEFactoryInstance().create(roleClass);
+		newRole.getProjects().add(projectId);
+		orgUnit.getRoles().add(newRole);
 	}
+
+	
 
 	/**
 	 * {@inheritDoc}
@@ -235,6 +257,15 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 			}
 		}
 		throw new EmfStoreException("Given OrgUnit doesn't exist.");
+	}
+	
+	private Role getRole(ProjectId projectId, ACOrgUnit orgUnit) {
+		for(Role role : orgUnit.getRoles()) {
+			if(role.getProjects().contains(projectId)) {
+				return role;
+			}
+		}
+		return null;
 	}
 
 }
