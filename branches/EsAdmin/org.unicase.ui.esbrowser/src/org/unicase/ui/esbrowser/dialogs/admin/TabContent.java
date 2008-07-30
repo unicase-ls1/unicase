@@ -1,4 +1,4 @@
-package org.unicase.ui.esbrowser.views.orgunit;
+package org.unicase.ui.esbrowser.dialogs.admin;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -29,6 +29,7 @@ import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.WorkspaceManager;
 
 public class TabContent {
@@ -63,7 +64,7 @@ public class TabContent {
 		this.frm = frm;
 
 	}
-	
+
 	public void viewStarted() {
 		if (frm.getCurrentInput() == null) {
 			frm.setInput((EObject) list.getElementAt(0));
@@ -83,81 +84,95 @@ public class TabContent {
 				frm.setInput(getSelectedItem(event));
 			}
 		});
-		
+
 		addDragNDropSupport();
 
 	}
 
 	private void addDragNDropSupport() {
 		int ops = DND.DROP_COPY;
-		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer.getTransfer() };
+		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer
+				.getTransfer() };
 
 		DragSourceListener dragListener = new DragSourceListener() {
-			public void dragFinished(DragSourceEvent event) {	
+			public void dragFinished(DragSourceEvent event) {
 				PropertiesForm.dragNDropObject = null;
 			}
-			public void dragStart(DragSourceEvent event) {	
-				PropertiesForm.dragSource = getName();	
+
+			public void dragStart(DragSourceEvent event) {
+				PropertiesForm.dragSource = getName();
 			}
 
 			public void dragSetData(DragSourceEvent event) {
 				EObject eObject = getSelectedItem(null);
-				if(eObject != null){
-					if(eObject instanceof ACOrgUnit){
-						ACOrgUnit orgUnit = (ACOrgUnit)eObject;
+				if (eObject != null) {
+					if (eObject instanceof ACOrgUnit) {
+						ACOrgUnit orgUnit = (ACOrgUnit) eObject;
 						PropertiesForm.dragNDropObject = orgUnit;
 					}
 				}
 			}
 		};
 		list.addDragSupport(ops, transfers, dragListener);
-		
+
 		ops = DND.DROP_MOVE;
 		DropTargetListener dropListener = new DropTargetListener() {
-			
+
 			public void dragEnter(DropTargetEvent event) {
 			}
-			
+
 			public void drop(DropTargetEvent event) {
-				if(PropertiesForm.dragNDropObject instanceof ACOrgUnit){
+				if (PropertiesForm.dragNDropObject instanceof ACOrgUnit) {
 					ACOrgUnit orgUnit = (ACOrgUnit) PropertiesForm.dragNDropObject;
 					doDrop(orgUnit);
 					PropertiesForm.dragNDropObject = null;
 				}
 			}
 
-			public void dragLeave(DropTargetEvent event) {	}
-			public void dragOperationChanged(DropTargetEvent event) {	}
-			public void dragOver(DropTargetEvent event) {	}
-			public void dropAccept(DropTargetEvent event) { 	}
-	
+			public void dragLeave(DropTargetEvent event) {
+			}
+
+			public void dragOperationChanged(DropTargetEvent event) {
+			}
+
+			public void dragOver(DropTargetEvent event) {
+			}
+
+			public void dropAccept(DropTargetEvent event) {
+			}
+
 		};
 		list.addDropSupport(ops, transfers, dropListener);
-		
+
 	}
 
-	
 	protected void doDrop(ACOrgUnit orgUnit) {
 		EObject currentInput = frm.getCurrentInput();
 		if (currentInput == null)
 			return;
+		try {
+			if (currentInput instanceof ProjectInfo) {
+				ProjectInfo projectInfo = (ProjectInfo) currentInput;
 
-		if (currentInput instanceof ProjectInfo) {
-			ProjectInfo projectInfo = (ProjectInfo) currentInput;
-			WorkspaceManager.getInstance().getAdminConnectionManager()
-					.removeParticipant(projectInfo, orgUnit);
-		} else if (currentInput instanceof ACGroup) {
-			ACGroup group = (ACGroup) currentInput;
-			if (group.getMembers().contains(orgUnit)) {
-				int index = group.getMembers().indexOf(orgUnit);
-				group.getMembers().remove(index);
+				OrgUnitManagementGUI.getInstance().getAdminBroker()
+						.removeParticipant(projectInfo.getProjectId(),
+								orgUnit.getId());
+
+			} else if (currentInput instanceof ACGroup) {
+				ACGroup group = (ACGroup) currentInput;
+				if (group.getMembers().contains(orgUnit)) {
+					int index = group.getMembers().indexOf(orgUnit);
+					group.getMembers().remove(index);
+				}
+			} else if (currentInput instanceof ACUser) {
+				ACUser user = (ACUser) currentInput;
+				OrgUnitManagementGUI.getInstance().getAdminBroker()
+						.removeGroup(user.getId(), ((ACGroup) orgUnit).getId());
 			}
-		} else if (currentInput instanceof ACUser) {
-			ACUser user = (ACUser) currentInput;
-			WorkspaceManager.getInstance().getAdminConnectionManager()
-					.removeGroup(user, (ACGroup) orgUnit);
+		} catch (EmfStoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
 	}
 
 	public String getName() {
@@ -167,17 +182,17 @@ public class TabContent {
 	private EObject getSelectedItem(DoubleClickEvent event) {
 		EObject result = null;
 		ISelection sel;
-		if(event != null){
+		if (event != null) {
 			sel = event.getSelection();
-		}else{
+		} else {
 			sel = list.getSelection();
 		}
-		
+
 		IStructuredSelection ssel = null;
-		if(sel != null){
+		if (sel != null) {
 			ssel = (IStructuredSelection) sel;
 		}
-		
+
 		if (ssel != null) {
 			Object obj = ssel.getFirstElement();
 			if (obj instanceof ProjectInfo) {
@@ -218,32 +233,37 @@ public class TabContent {
 
 			Object[] result = new Object[0];
 			String tabName = (String) object;
-			
-			if (tabName.equals("Projects")) {
-				// return a list of Projects in project space
-				EList<ProjectInfo> projectInfos = new BasicEList<ProjectInfo>();
-				projectInfos.addAll(WorkspaceManager.getInstance()
-						.getAdminConnectionManager().getProjectInfos());
-				result = projectInfos
-						.toArray(new ProjectInfo[projectInfos.size()]);
+			try {
+				if (tabName.equals("Projects")) {
+					// return a list of Projects in project space
+					EList<ProjectInfo> projectInfos = new BasicEList<ProjectInfo>();
 
-			} else if (tabName.equals("Groups")) {
-				// return a list of Groups in project space
-				EList<ACGroup> groups = new BasicEList<ACGroup>();
-				groups.addAll(WorkspaceManager.getInstance()
-						.getAdminConnectionManager().getGroups());
-				result =  groups.toArray(new ACGroup[groups.size()]);
-			} else if (tabName.equals("Users")) {
-				// return a list of Users in project space
-				EList<ACUser> users = new BasicEList<ACUser>();
-				users.addAll(WorkspaceManager.getInstance()
-						.getAdminConnectionManager().getUsers());
-				result =  users.toArray(new ACUser[users.size()]);
+					projectInfos.addAll(OrgUnitManagementGUI.getInstance()
+							.getAdminBroker().getProjectInfos());
+
+					result = projectInfos.toArray(new ProjectInfo[projectInfos
+							.size()]);
+
+				} else if (tabName.equals("Groups")) {
+					// return a list of Groups in project space
+					EList<ACGroup> groups = new BasicEList<ACGroup>();
+					groups.addAll(OrgUnitManagementGUI.getInstance()
+							.getAdminBroker().getGroups());
+					result = groups.toArray(new ACGroup[groups.size()]);
+				} else if (tabName.equals("Users")) {
+					// return a list of Users in project space
+					EList<ACUser> users = new BasicEList<ACUser>();
+					users.addAll(OrgUnitManagementGUI.getInstance()
+							.getAdminBroker().getUsers());
+					result = users.toArray(new ACUser[users.size()]);
+				}
+			} catch (EmfStoreException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			
 			return result;
 		}
 
-	}//ListContentProvider
+	}// ListContentProvider
 
 }

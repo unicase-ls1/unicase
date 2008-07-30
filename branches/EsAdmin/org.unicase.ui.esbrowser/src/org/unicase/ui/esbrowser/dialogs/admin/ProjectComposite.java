@@ -1,4 +1,4 @@
-package org.unicase.ui.esbrowser.views.orgunit;
+package org.unicase.ui.esbrowser.dialogs.admin;
 
 import java.util.Collection;
 
@@ -19,6 +19,7 @@ import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.WorkspaceManager;
 
 public class ProjectComposite extends FormContents {
@@ -33,7 +34,7 @@ public class ProjectComposite extends FormContents {
 
 	private Label lblVersion;
 	private Text txtVersion;
-	
+
 	private ProjectInfo projectInfo;
 
 	public ProjectComposite(Composite parent, int style) {
@@ -42,8 +43,14 @@ public class ProjectComposite extends FormContents {
 	}
 
 	protected void removeOrgUnit(ACOrgUnit orgUnit) {
-		WorkspaceManager.getInstance().getAdminConnectionManager()
-				.removeParticipant(projectInfo, orgUnit);
+		try {
+			OrgUnitManagementGUI.getInstance().getAdminBroker()
+					.removeParticipant(projectInfo.getProjectId(),
+							orgUnit.getId());
+		} catch (EmfStoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		tableViewer.refresh();
 	}
 
@@ -53,15 +60,24 @@ public class ProjectComposite extends FormContents {
 		// (get list of all AcOrgUnits, remove those who take part in this
 		// Project)
 		// 2. add the selected participant to the project
-		if (participant != null) {
-			WorkspaceManager.getInstance().getAdminConnectionManager()
-					.addParticipant(projectInfo, participant);
-		} else {
-			EList<ACOrgUnit> participants = getParticipants();
-			for (ACOrgUnit orgUnit : participants) {
-				WorkspaceManager.getInstance().getAdminConnectionManager()
-						.addParticipant(projectInfo, orgUnit);
+		try {
+			if (participant != null) {
+				OrgUnitManagementGUI.getInstance().getAdminBroker()
+						.addParticipant(projectInfo.getProjectId(),
+								participant.getId());
+			} else {
+				EList<ACOrgUnit> participants = getParticipants();
+				for (ACOrgUnit orgUnit : participants) {
+
+					OrgUnitManagementGUI.getInstance().getAdminBroker()
+							.addParticipant(projectInfo.getProjectId(),
+									orgUnit.getId());
+
+				}
 			}
+		} catch (EmfStoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		tableViewer.refresh();
 	}
@@ -74,21 +90,26 @@ public class ProjectComposite extends FormContents {
 		// 2. return the selected participant
 
 		Collection<ACOrgUnit> allOrgUnits = new BasicEList<ACOrgUnit>();
-		allOrgUnits.addAll(WorkspaceManager.getInstance()
-				.getAdminConnectionManager().getOrgUnits());
-		allOrgUnits.removeAll(WorkspaceManager.getInstance()
-				.getAdminConnectionManager().getParticipants(projectInfo));
-
-		Object[] result = showDialog(allOrgUnits, "Select a participant");
-
 		EList<ACOrgUnit> participants = new BasicEList<ACOrgUnit>();
 
-		for (int i = 0; i < result.length; i++) {
-			if (result[i] instanceof ACOrgUnit) {
-				participants.add((ACOrgUnit) result[i]);
-			}
-		}
+		try {
+			allOrgUnits.addAll(OrgUnitManagementGUI.getInstance()
+					.getAdminBroker().getOrgUnits());
+			allOrgUnits.removeAll(OrgUnitManagementGUI.getInstance()
+					.getAdminBroker().getParticipants(
+							projectInfo.getProjectId()));
 
+			Object[] result = showDialog(allOrgUnits, "Select a participant");
+
+			for (int i = 0; i < result.length; i++) {
+				if (result[i] instanceof ACOrgUnit) {
+					participants.add((ACOrgUnit) result[i]);
+				}
+			}
+		} catch (EmfStoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return participants;
 
 	}
@@ -97,7 +118,7 @@ public class ProjectComposite extends FormContents {
 
 		super.createTableGroup();
 		grpTable.setText("Participants");
-			
+
 	}
 
 	protected void createTable(Composite parent) {
@@ -121,7 +142,7 @@ public class ProjectComposite extends FormContents {
 		super.createTableViewer();
 
 		TableViewerColumn roleColumnViewer = new TableViewerColumn(tableViewer,
-														SWT.NONE);
+				SWT.NONE);
 		roleColumnViewer.getColumn().setText("Role");
 		roleColumnViewer.getColumn().setWidth(120);
 		roleColumnViewer.setLabelProvider(new ColumnLabelProvider() {
@@ -164,25 +185,30 @@ public class ProjectComposite extends FormContents {
 	}
 
 	public void changeRole(ACOrgUnit orgUnit, int role) {
-		switch (role) {
-		case READER_ROLE:
-			WorkspaceManager.getInstance().getAdminConnectionManager()
-					.changeRole(projectInfo, orgUnit,
-							RolesPackage.eINSTANCE.getReaderRole());
-			break;
+		try {
+			switch (role) {
+			case READER_ROLE:
+				OrgUnitManagementGUI.getInstance().getAdminBroker().changeRole(
+						projectInfo.getProjectId(), orgUnit.getId(),
+						RolesPackage.eINSTANCE.getReaderRole());
 
-		case WRITER_ROLE:
-			WorkspaceManager.getInstance().getAdminConnectionManager()
-					.changeRole(projectInfo, orgUnit,
-							RolesPackage.eINSTANCE.getWriterRole());
-			break;
+				break;
 
-		case PROJECT_ADMIN_ROLE:
-			WorkspaceManager.getInstance().getAdminConnectionManager()
-					.changeRole(projectInfo, orgUnit,
-							RolesPackage.eINSTANCE.getProjectAdminRole());
+			case WRITER_ROLE:
+				OrgUnitManagementGUI.getInstance().getAdminBroker().changeRole(
+						projectInfo.getProjectId(), orgUnit.getId(),
+						RolesPackage.eINSTANCE.getWriterRole());
+				break;
+
+			case PROJECT_ADMIN_ROLE:
+				OrgUnitManagementGUI.getInstance().getAdminBroker().changeRole(
+						projectInfo.getProjectId(), orgUnit.getId(),
+						RolesPackage.eINSTANCE.getProjectAdminRole());
+			}
+		} catch (EmfStoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
 		tableViewer.refresh();
 	}
 
@@ -213,18 +239,24 @@ public class ProjectComposite extends FormContents {
 
 	public int getCurrentRoleIndex(ACOrgUnit orgUnit) {
 		int result = 0;
-		Role role = WorkspaceManager.getInstance().getAdminConnectionManager()
-				.getRole(projectInfo, orgUnit);
-		if (role.eClass().equals(RolesPackage.eINSTANCE.getReaderRole())) {
-			result = READER_ROLE;
-		} else if (role.eClass().equals(RolesPackage.eINSTANCE.getWriterRole())) {
-			result = WRITER_ROLE;
+		Role role;
+		try {
+			role = OrgUnitManagementGUI.getInstance().getAdminBroker().getRole(
+					projectInfo.getProjectId(), orgUnit.getId());
+			if (role.eClass().equals(RolesPackage.eINSTANCE.getReaderRole())) {
+				result = READER_ROLE;
+			} else if (role.eClass().equals(
+					RolesPackage.eINSTANCE.getWriterRole())) {
+				result = WRITER_ROLE;
 
-		} else if (role.eClass().equals(
-				RolesPackage.eINSTANCE.getProjectAdminRole())) {
-			result = PROJECT_ADMIN_ROLE;
+			} else if (role.eClass().equals(
+					RolesPackage.eINSTANCE.getProjectAdminRole())) {
+				result = PROJECT_ADMIN_ROLE;
+			}
+		} catch (EmfStoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
 		return result;
 	}
 

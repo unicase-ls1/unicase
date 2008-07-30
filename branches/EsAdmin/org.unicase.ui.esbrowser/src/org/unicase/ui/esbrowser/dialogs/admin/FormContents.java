@@ -1,6 +1,7 @@
-package org.unicase.ui.esbrowser.views.orgunit;
+package org.unicase.ui.esbrowser.dialogs.admin;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -40,6 +41,7 @@ import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.WorkspaceManager;
 
 public abstract class FormContents extends Composite {
@@ -200,9 +202,9 @@ public abstract class FormContents extends Composite {
 				.getTransfer() };
 		DropTargetListener dropListener = new DropTargetListener() {
 			public void dragEnter(DropTargetEvent event) {
-				if(PropertiesForm.dragSource.equals("Projects")){
+				if (PropertiesForm.dragSource.equals("Projects")) {
 					event.detail = DND.DROP_NONE;
-				}else if(PropertiesForm.dragSource.equals("Users")){
+				} else if (PropertiesForm.dragSource.equals("Users")) {
 					DropTarget dropTarget = (DropTarget) event.getSource();
 					Control targetControl = dropTarget.getControl();
 					Composite targetParent = targetControl.getParent();
@@ -212,10 +214,10 @@ public abstract class FormContents extends Composite {
 					}
 					if (target.equals("Groups")) {
 						event.detail = DND.DROP_NONE;
-					}else{
+					} else {
 						event.detail = DND.DROP_COPY;
 					}
-					
+
 				} else {
 					event.detail = DND.DROP_COPY;
 				}
@@ -311,24 +313,33 @@ public abstract class FormContents extends Composite {
 
 		public Object[] getElements(Object inputElement) {
 			Object[] result = new Object[0];
-			if (inputElement instanceof ACUser) {
-				EList<ACGroup> groups = WorkspaceManager.getInstance()
-						.getAdminConnectionManager().getGroups(
-								(ACUser) inputElement);
-				result = groups.toArray(new ACOrgUnit[groups.size()]);
+			try {
+				if (inputElement instanceof ACUser) {
+					List<ACGroup> groups;
 
-			} else if (inputElement instanceof ACGroup) {
-				EList<ACOrgUnit> members = ((ACGroup) inputElement)
-						.getMembers();
-				result = members.toArray(new ACOrgUnit[members.size()]);
+					groups = OrgUnitManagementGUI.getInstance()
+							.getAdminBroker().getGroups(
+									((ACUser) inputElement).getId());
+					result = groups.toArray(new ACOrgUnit[groups.size()]);
 
-			} else if (inputElement instanceof ProjectInfo) {
-				EList<ACOrgUnit> participants = WorkspaceManager.getInstance()
-						.getAdminConnectionManager().getParticipants(
-								(ProjectInfo) inputElement);
-				result = participants
-						.toArray(new ACOrgUnit[participants.size()]);
+				} else if (inputElement instanceof ACGroup) {
+					EList<ACOrgUnit> members = ((ACGroup) inputElement)
+							.getMembers();
+					result = members.toArray(new ACOrgUnit[members.size()]);
 
+				} else if (inputElement instanceof ProjectInfo) {
+					List<ACOrgUnit> participants = OrgUnitManagementGUI
+							.getInstance()
+							.getAdminBroker()
+							.getParticipants(
+									((ProjectInfo) inputElement).getProjectId());
+					result = participants.toArray(new ACOrgUnit[participants
+							.size()]);
+
+				}
+			} catch (EmfStoreException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			return result;
 		}

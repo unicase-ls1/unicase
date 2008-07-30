@@ -1,4 +1,4 @@
-package org.unicase.ui.esbrowser.views.orgunit;
+package org.unicase.ui.esbrowser.dialogs.admin;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.SWT;
