@@ -12,7 +12,11 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 
-public interface AdminUsersession extends Usersession {
+/**
+ * @author Hodaie
+ * @author Wesendonk
+ */
+public interface AdminBroker {
 	
 	List<ProjectInfo> getProjectInfos() throws EmfStoreException;
 	List<ACGroup> getGroups() throws EmfStoreException;

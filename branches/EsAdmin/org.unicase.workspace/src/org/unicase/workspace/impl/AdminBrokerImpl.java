@@ -13,14 +13,25 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
+import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.workspace.AdminUsersession;
+import org.unicase.workspace.AdminBroker;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.WorkspaceManager;
 
-public class AdminUsersessionImpl extends UsersessionImpl implements
-		AdminUsersession {
+/**
+ * 
+ * @author Wesendonk
+ */
+public class AdminBrokerImpl implements AdminBroker {
+
+	private SessionId sessionId;
+
+	public AdminBrokerImpl(ServerInfo serverInfo, SessionId sessionId) throws ConnectionException {
+		this.sessionId = sessionId;
+		WorkspaceManager.getInstance().getAdminConnectionManager().initConnection(serverInfo, sessionId);
+	}
 
 	public void addGroup(ACUser user, ACOrgUnitId group)
 			throws EmfStoreException {
@@ -104,6 +115,10 @@ public class AdminUsersessionImpl extends UsersessionImpl implements
 		WorkspaceManager.getInstance().getAdminConnectionManager()
 				.removeParticipant(getSessionId(), projectId, participant);
 
+	}
+
+	private SessionId getSessionId() {
+		return sessionId;
 	}
 
 }
