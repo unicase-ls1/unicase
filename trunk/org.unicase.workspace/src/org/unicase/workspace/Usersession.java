@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
+import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 
 /**
@@ -260,5 +261,14 @@ public interface Usersession extends EObject {
 	 */
 	ProjectInfo createProject(String name, String description)
 			throws AccessControlException, EmfStoreException;
+	
+	/**
+	 * Returns a {@link AdminBroker} related to the user session.
+	 * 
+	 * @return {@link AdminBroker}
+	 * @generated NOT
+	 */
+	AdminBroker getAdminBroker() throws ConnectionException;
+	
 	// end of custom code
 } // Usersession

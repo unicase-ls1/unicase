@@ -2,6 +2,7 @@ package org.unicase.ui.esbrowser.views.orgunit;
 
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
+import org.unicase.ui.esbrowser.dialogs.admin.OrgUnitManagementGUI;
 
 public class OrgUnitManagementView extends ViewPart {
 
@@ -13,7 +14,8 @@ public class OrgUnitManagementView extends ViewPart {
 
 	@Override
 	public void createPartControl(Composite parent) {
-		instance = new OrgUnitManagementGUI(parent);
+		
+		//instance = new OrgUnitManagementGUI(parent);
 
 	}
 

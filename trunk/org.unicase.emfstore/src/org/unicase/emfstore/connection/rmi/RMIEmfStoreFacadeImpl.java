@@ -33,6 +33,7 @@ import org.unicase.model.Project;
  * Implementation of a RMIEmfStoreFacade.
  * 
  * @author koegel
+ * @author Wesendonk
  * 
  */
 public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
@@ -107,7 +108,6 @@ public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
 	public List<String> getChanges(String sessionId, String projectId,
 			String source, String target) throws RemoteException,
 			EmfStoreException {
-
 		LOGGER.debug("Client call on getChanges RECEIVED.");
 		try {
 			List<String> result = new ArrayList<String>();

@@ -41,11 +41,14 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.emfstore.esmodel.ProjectInfo;
+import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.esbrowser.Activator;
 import org.unicase.ui.esbrowser.dialogs.RepositoryCreateProjectDialog;
 import org.unicase.ui.esbrowser.dialogs.RepositoryLoginDialog;
 import org.unicase.ui.esbrowser.dialogs.RepositoryWizard;
+import org.unicase.ui.esbrowser.dialogs.admin.ManageOrgUnitsDialog;
+import org.unicase.workspace.AdminBroker;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
@@ -66,6 +69,7 @@ public class RepositoryView extends ViewPart {
 	private Action serverAddProject;
 	private Action serverChangeSession;
 	private Action serverProperties;
+	private Action manageOrgUnits;
 	private Usersession session;
 	private HashMap<ProjectInfo, ServerInfo> projectServerMap = new HashMap<ProjectInfo, ServerInfo>();
 
@@ -233,6 +237,8 @@ public class RepositoryView extends ViewPart {
 				manager.add(serverAddProject);
 				serverChangeSession.setText("Change user...");
 				manager.add(serverChangeSession);
+				manager.add(manageOrgUnits);
+
 			} else if (session != null && !session.isLoggedIn()) {
 				serverLogin.setText("Login as " + session.getUsername());
 				manager.add(serverLogin);
@@ -287,8 +293,7 @@ public class RepositoryView extends ViewPart {
 						} catch (EmfStoreException e) {
 							// TODO show error dialog
 							e.printStackTrace();
-						}
-						catch (RuntimeException e) {
+						} catch (RuntimeException e) {
 							e.printStackTrace();
 							throw e;
 						}
@@ -402,6 +407,25 @@ public class RepositoryView extends ViewPart {
 		addRepository.setToolTipText("Click to add new repository");
 		addRepository.setImageDescriptor(Activator
 				.getImageDescriptor("icons/serverAdd.png"));
+
+		manageOrgUnits = new Action() {
+			public void run() {
+				ManageOrgUnitsDialog dialog;
+				try {
+					AdminBroker adminBroker = session.getAdminBroker();
+					dialog = new ManageOrgUnitsDialog(PlatformUI.getWorkbench()
+							.getDisplay().getActiveShell(), adminBroker);
+
+					dialog.create();
+					dialog.open();
+				} catch (ConnectionException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		};
+		manageOrgUnits.setText("Manage OrgUnits...");
+
 	}
 
 	private void hookDoubleClickAction() {

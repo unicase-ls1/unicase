@@ -1,3 +1,4 @@
+
 /**
  * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * </copyright>
@@ -8,6 +9,9 @@ package org.unicase.workspace.connectionmanager;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.unicase.emfstore.esmodel.EsmodelFactory;
+import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
@@ -16,31 +20,25 @@ import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.ReaderRole;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesFactory;
+import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 
-public class AdminConnectionManagerStub implements AdminConnectionManager {
+public class AdminConnectionManagerStub {
 
-	private EList<ProjectInfo> projectInfos;
-	private static EList<ACGroup> groups = new BasicEList<ACGroup>();;
-	private static EList<ACUser> users = new BasicEList<ACUser>();;
-	private EList<ACOrgUnit> orgUnits = new BasicEList<ACOrgUnit>();;
+	private static EList<ProjectInfo> projectInfos = new BasicEList<ProjectInfo>();
+	private static EList<ACGroup> groups = new BasicEList<ACGroup>();
+	private static EList<ACUser> users = new BasicEList<ACUser>();
+	private static EList<ACOrgUnit> orgUnits = new BasicEList<ACOrgUnit>();
+	
 	
 	public AdminConnectionManagerStub(){
-		createDummyProject();
+	
 	}
 	
 	public EList<ProjectInfo> getProjectInfos() {
-		EList<ProjectInfo> result = new BasicEList<ProjectInfo>();
-		Workspace workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
-		for(ProjectSpace projectSpace : workspace.getProjectSpaces()){
-			
-			result.add(projectSpace.getProjectInfo());
-		}
-		
-		this.projectInfos = result;
-		return result;
+		return projectInfos;
 			
 	}
 
@@ -50,10 +48,7 @@ public class AdminConnectionManagerStub implements AdminConnectionManager {
 	}
 
 	public EList<ACOrgUnit> getOrgUnits() {
-		EList<ACOrgUnit> result = new BasicEList<ACOrgUnit>();
-		result.addAll(groups);
-		result.addAll(users);
-		return result;
+		return orgUnits;
 	}
 
 	public EList<ACUser> getUsers() {
@@ -73,11 +68,14 @@ public class AdminConnectionManagerStub implements AdminConnectionManager {
 	}
 
 	public EList<ACOrgUnit> getParticipants(ProjectInfo project) {
+		ProjectId projectId = project.getProjectId();
 		EList<ACOrgUnit> participants = new BasicEList<ACOrgUnit>();
 		for(ACOrgUnit orgUnit : getOrgUnits()){
 			for(Role role : orgUnit.getRoles()){
-				if (role.getProjects().contains(project)){
-					participants.add(orgUnit);
+				for (ProjectId pId : role.getProjects()){
+					if(pId.equals(projectId)){
+						participants.add(orgUnit);
+					}
 				}
 			}
 		}
@@ -86,45 +84,129 @@ public class AdminConnectionManagerStub implements AdminConnectionManager {
 	}
 
 	public void addParticipant(ProjectInfo project, ACOrgUnit participant) {
-		ReaderRole readerRole = RolesFactory.eINSTANCE.createReaderRole();
-	    if(participant.getRoles() == null){
-	    	
-	    }
-		if(participant.getRoles().contains(readerRole)){
-			participant.getRoles().get(participant.getRoles().indexOf(readerRole)).getProjects().add(project.getProjectId());
+		ProjectId projectId = project.getProjectId();
+		
+		if(hasRole(participant, RolesPackage.eINSTANCE.getReaderRole())){
+			getRole(participant, RolesPackage.eINSTANCE.getReaderRole()).getProjects().add(projectId);
 			
 		}else {
-			readerRole.getProjects().add(project.getProjectId());
+			ReaderRole readerRole = RolesFactory.eINSTANCE.createReaderRole();
+			readerRole.getProjects().add(projectId);
 			participant.getRoles().add(readerRole);
 		}
 		
 	}
 
-	public void removeParticipant(ProjectInfo project, ACOrgUnit participant) {
+	private Role getRole(ACOrgUnit participant, EClass roleEClass) {
+		Role result = null;
 		for(Role role : participant.getRoles()){
-			if (role.getProjects().contains(project)){
-				role.getProjects().remove(project);
+			if (role.eClass().equals(roleEClass)){
+				result = role;
+				break;
+			}
+		}
+		
+		return result;
+	}
+
+	private boolean hasRole(ACOrgUnit orgUnit, EClass roleEClass) {
+		
+		for(Role role : orgUnit.getRoles()){
+			if(role.eClass().equals(roleEClass)){
+				return true;
+			}
+		}
+		return false;
+		
+	}
+
+	public void removeParticipant(ProjectInfo project, ACOrgUnit participant) {
+		ProjectId projectId = project.getProjectId();
+		for(Role role : participant.getRoles()){
+			if (role.getProjects().contains(projectId)){
+				role.getProjects().remove(projectId);
 			}
 		}
 		
 	}
 	
-	private static void createDummyProject(){
+	public static void createDummyProject(){
 		
-		for (int i = 0; i < 4; i++){
-			ACGroup group = AccesscontrolFactory.eINSTANCE.createACGroup();
-			group.setName("Group " + i);
-			group.setDescription("This is group " + i);
-			groups.add(group);
-		}
-				
-		for (int i = 0; i < 4; i++){
-			ACUser user = AccesscontrolFactory.eINSTANCE.createACUser();
-			user.setName("User " + i);
-			user.setDescription("This is user " + i);
-			users.add(user);
+		if (projectInfos.size() == 0 ){
+			Workspace workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+			for(ProjectSpace projectSpace : workspace.getProjectSpaces()){
+				projectInfos.add(projectSpace.getProjectInfo());
+			}
 		}
 		
+		if(groups.size() == 0){
+			for (int i = 0; i < 4; i++){
+				ACGroup group = AccesscontrolFactory.eINSTANCE.createACGroup();
+				group.setName("Group " + i);
+				group.setDescription("This is group " + i);
+				groups.add(group);
+			}
+			orgUnits.addAll(groups);
+		}
+		
+		
+		if(users.size() == 0){
+			for (int i = 0; i < 4; i++){
+				ACUser user = AccesscontrolFactory.eINSTANCE.createACUser();
+				user.setName("User " + i);
+				user.setDescription("This is user " + i);
+				users.add(user);
+			}
+			
+			orgUnits.addAll(users);
+		}
+			
+	}
+
+	
+	public Role getRole(ProjectInfo project, ACOrgUnit orgUnit) {
+		Role result = null;
+		ProjectId projectId = project.getProjectId();
+		for(Role role : orgUnit.getRoles()){
+			if(role.getProjects().contains(projectId)){
+				result = role;
+				break;
+			}
+		}
+		return result;
+	}
+
+	
+	
+	public void changeRole(ProjectInfo projectInfo, ACOrgUnit orgUnit, EClass roleEClass) {
+		//first remove the project from previous role
+		Role oldRole = getRole(projectInfo, orgUnit);
+		int index = oldRole.getProjects().indexOf(projectInfo.getProjectId());
+		oldRole.getProjects().remove(index);
+		
+		//if orgUnit already has the required role, then just add project to this existing role
+		if(hasRole(orgUnit, roleEClass)){
+			Role newRole = getRole(orgUnit, roleEClass);
+			newRole.getProjects().add(projectInfo.getProjectId());
+			
+		}else {
+			//create the required role and add the project to it
+			Role newRole = (Role)RolesPackage.eINSTANCE.getEFactoryInstance().create(roleEClass);
+			newRole.getProjects().add(projectInfo.getProjectId());
+			orgUnit.getRoles().add(newRole);
+		}
+			
+	}
+
+	public void addGroup(ACUser user, ACGroup group) {
+		group.getMembers().add(user);
+	}
+
+	public void removeGroup(ACUser user, ACGroup group) {
+		int index = group.getMembers().indexOf(user);
+		if (index != -1){
+			group.getMembers().remove(index);
+		}
 	}
 		
 			
