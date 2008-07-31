@@ -24,18 +24,13 @@ public class WorkpackageContentProvider extends
 	}
 
 	@Override
-	public Object[] getChildren(Object object) {
-		// TODO Auto-generated method stub
-		return super.getChildren(object);
-	}
-
-	@Override
 	public Object[] getElements(Object object) {
 		if (object instanceof Project){
 			return ((Project) object).getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkPackage(), new BasicEList<WorkPackage>()).toArray();
 		}
 		return super.getElements(object);
 	}
+	
 	
 
 }

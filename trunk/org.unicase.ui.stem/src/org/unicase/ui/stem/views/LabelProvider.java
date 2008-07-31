@@ -12,7 +12,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.unicase.workspace.WorkspaceManager;
 
 public class LabelProvider extends TransactionalAdapterFactoryLabelProvider
-		implements ILabelProvider {
+		implements ILabelProvider{
 
 	public LabelProvider() {
 
