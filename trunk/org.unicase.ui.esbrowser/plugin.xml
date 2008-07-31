@@ -16,13 +16,6 @@
             class="org.unicase.ui.esbrowser.views.RepositoryView"
             id="org.unicase.ui.repository.views.RepositoryView">
       </view>
-      <view
-            category="org.unicase"
-            class="org.unicase.ui.esbrowser.views.orgunit.OrgUnitManagementView"
-            id="org.unicase.ui.esbrowser.OrgUnitManagementView"
-            name="User-Group Management"
-            restorable="true">
-      </view>
    </extension>
    <extension
          point="org.eclipse.ui.perspectiveExtensions">

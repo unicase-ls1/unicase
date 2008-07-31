@@ -81,12 +81,13 @@ public class UCDropAdapter extends
 		//Object obj = event.data;
 		//event.data return a TreeSelection containing
 		//the MEs which are draged. (DragSource)
-			
+		
 		Widget item = event.item;
 		final Object target = item.getData();
 		final Collection<?> dragSource = getDragSource(event);
 		if (target instanceof LeafSection) {
 			
+		
 			domain.getCommandStack().execute(
 					new RecordingCommand((TransactionalEditingDomain) domain) {
 						protected void doExecute() {
@@ -99,6 +100,17 @@ public class UCDropAdapter extends
 					});
 
 		}else if(target instanceof CompositeSection){
+			domain.getCommandStack().execute(
+					new RecordingCommand((TransactionalEditingDomain) domain) {
+						protected void doExecute() {
+							for (Object object : dragSource) {
+								if (object instanceof Section) {
+									addSectionToCompositeSection((Section) object, (CompositeSection)target);
+								}
+							}
+						}
+					});
+		}else { //target is a ME but not a Section
 			domain.getCommandStack().execute(
 					new RecordingCommand((TransactionalEditingDomain) domain) {
 						protected void doExecute() {

@@ -252,6 +252,7 @@ public class RepositoryView extends ViewPart {
 		} else if (obj instanceof ProjectInfo) {
 			manager.add(projectCheckout);
 		}
+		
 	}
 
 	private void fillLocalToolBar(IToolBarManager manager) {
