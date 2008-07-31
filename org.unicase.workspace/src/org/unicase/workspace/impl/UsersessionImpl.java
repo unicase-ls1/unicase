@@ -22,6 +22,7 @@ import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.workspace.AdminBroker;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
@@ -625,6 +626,14 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 			}
 		}
 		return getSessionIdGen();
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * @generated NOT
+	 */
+	public AdminBroker getAdminBroker() throws ConnectionException {
+		return new AdminBrokerImpl(getServerInfo(),getSessionId());
 	}
 
 } // UsersessionImpl

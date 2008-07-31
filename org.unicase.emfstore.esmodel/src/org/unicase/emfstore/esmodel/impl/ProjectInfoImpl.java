@@ -411,3 +411,4 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 	}
 
 } // ProjectInfoImpl
+

@@ -27,7 +27,7 @@ public class OpenModelElementHandler extends AbstractHandler {
 	/**
 	 * . ({@inheritDoc})
 	 * 
-	 * ZH: We added this package and command to meeditor plug-in, we needed to
+	 * We added this package and command to meeditor plug-in, we needed to
 	 * open a model element from model.edit plug-in and to avoid circular
 	 * references we had to execute this command indirectly using
 	 * IHandlerServise.excuteCommand
@@ -38,10 +38,10 @@ public class OpenModelElementHandler extends AbstractHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		// ZH: We get the required model element Through activeModelelemet
+		// We get the required model element Through activeModelelemet
 		// variable.
-		// ZH: This variable is already set, in the method which calls execute
-		// ZH: this command.
+		// This variable is already set, in the method which calls execute
+		// this command.
 		Object o = HandlerUtil.getVariableChecked(event, "activeModelelement");
 		ModelElement me = (ModelElement) o;
 

@@ -1,0 +1,73 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kšgel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
+package org.unicase.emfstore.connection.rmi;
+
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.Registry;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.unicase.emfstore.AdminEmfStore;
+import org.unicase.emfstore.accesscontrol.AuthenticationControl;
+import org.unicase.emfstore.exceptions.FatalEmfStoreException;
+
+/**
+ * ConnectionHandler for the AdminEmfStore interface using rmi.
+ * 
+ * @author Wesendonk
+ *
+ */
+public class RMIAdminConnectionHandler {
+
+	/**
+	 * String constant for the RMI Binding name.
+	 */
+	public static final String RMI_NAME = "RMIAdminEmfStoreFacade";
+
+	private RMIAdminEmfStoreFacade stub;
+
+	private static Log logger = LogFactory.getLog(RMIAdminConnectionHandler.class);
+
+	/**
+	 * Default constructor.
+	 */
+	public RMIAdminConnectionHandler() {
+	}
+
+	public void init(AdminEmfStore adminEmfStore, AuthenticationControl accessControl)
+			throws FatalEmfStoreException {
+		try {
+			stub = new RMIAdminEmfStoreFacadeImpl(adminEmfStore, accessControl);
+			Registry registry = RMIRegistryManager.getInstance().getRegistry();
+			registry.rebind(RMI_NAME, stub);
+		} catch (RemoteException e) {
+			String message = "RMI initialisation failed!";
+			logger.fatal(message, e);
+			throw new FatalEmfStoreException(message, e);
+		}
+		logger.debug("RMIAdminConnectionHandler is running.");
+	}
+
+	public void stop(boolean force) {
+		if (force) {
+			return;
+		}
+		try {
+			Registry registry = RMIRegistryManager.getInstance().getRegistry();
+			try {
+				registry.unbind(RMI_NAME);
+			} catch (NotBoundException e1) {
+				logger.warn("Unbinding AdminEmfStore failed!", e1);
+			}
+		} catch (RemoteException e2) {
+			logger.warn("Locate registry failed!", e2);
+			return;
+		}
+
+	}
+}

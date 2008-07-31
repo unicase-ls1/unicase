@@ -484,6 +484,7 @@ public class TestProjectGenerator {
 			result = true;
 		}
 		return result;
+		
 	}
 
 	// returns a random number for number of references

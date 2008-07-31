@@ -1,54 +1,44 @@
-package org.unicase.ui.esbrowser.views.orgunit;
-
-import java.util.ArrayList;
-import java.util.List;
+package org.unicase.ui.esbrowser.dialogs.admin;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Group;
 import org.eclipse.ui.forms.widgets.Form;
-import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
-import org.unicase.workspace.WorkspaceManager;
 
 
 
 public class PropertiesForm extends Form {
 	
-	private Group grpAttributes, grpList;
 	private EObject input;
-	private List<IItemPropertyDescriptor> simpleAttributes = new ArrayList<IItemPropertyDescriptor>();;
-	private FormToolkit toolkit;
-	private TransactionalEditingDomain editingDomain;
+	private Composite body;
 	private StackLayout stackLayout;
 	private ProjectComposite projectComposite;
 	private GroupComposite groupComposite;
 	private UserComposite userComposite;
 	
 	public static EObject dragNDropObject;
+	public static String dragSource = "";
 	
 
 	public PropertiesForm(Composite parent, int style) {
 		super(parent,  style);
-		this.toolkit = new FormToolkit(parent.getDisplay());
-		this.editingDomain = WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain();
+		
+		body = this.getBody();
 		stackLayout = new StackLayout();
-		this.getBody().setLayout(stackLayout);
+		body.setLayout(stackLayout);
 		initComposites();
 		
 		
 	}
 
 	private void initComposites() {
-		projectComposite = new ProjectComposite(this.getBody(), SWT.NONE);
-		groupComposite = new GroupComposite(this.getBody(), SWT.NONE);
-		userComposite = new UserComposite(this.getBody(), SWT.NONE);
+		projectComposite = new ProjectComposite(body, SWT.NONE);
+		groupComposite = new GroupComposite(body, SWT.NONE);
+		userComposite = new UserComposite(body, SWT.NONE);
 	
 		stackLayout.topControl = projectComposite;
 			
@@ -75,10 +65,15 @@ public class PropertiesForm extends Form {
 			stackLayout.topControl = userComposite;
 			userComposite.updateControls(user);
 		}
-		this.getBody().layout();
+		body.layout();
 		this.setText(title);
 		this.input = input;
 
+	}
+	
+		
+	public EObject getCurrentInput(){
+		return input;
 	}
 
 		

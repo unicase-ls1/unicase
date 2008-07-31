@@ -1,0 +1,38 @@
+package org.unicase.workspace;
+
+import java.util.List;
+
+import org.eclipse.emf.ecore.EClass;
+import org.unicase.emfstore.esmodel.ProjectId;
+import org.unicase.emfstore.esmodel.ProjectInfo;
+import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
+import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
+import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
+import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
+import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
+import org.unicase.emfstore.exceptions.EmfStoreException;
+
+/**
+ * @author Hodaie
+ * @author Wesendonk
+ */
+public interface AdminBroker {
+	
+	List<ProjectInfo> getProjectInfos() throws EmfStoreException;
+	List<ACGroup> getGroups() throws EmfStoreException;
+	List<ACUser> getUsers() throws EmfStoreException;
+	List<ACOrgUnit> getOrgUnits() throws EmfStoreException;
+	
+	List<ACGroup> getGroups(ACOrgUnitId user) throws EmfStoreException;
+	void addGroup(ACUser user, ACOrgUnitId group) throws EmfStoreException;
+	void removeGroup(ACOrgUnitId user, ACOrgUnitId group) throws EmfStoreException;
+	
+	List<ACOrgUnit> getParticipants(ProjectId projectId) throws EmfStoreException;
+	
+	void addParticipant(ProjectId projectId, ACOrgUnitId participant) throws EmfStoreException;
+	void removeParticipant(ProjectId projectId, ACOrgUnitId participant) throws EmfStoreException;
+	
+	Role getRole(ProjectId projectId, ACOrgUnitId orgUnit) throws EmfStoreException;
+	void changeRole(ProjectId projectId, ACOrgUnitId orgUnit, EClass role) throws EmfStoreException;
+
+}

@@ -90,7 +90,7 @@ public class AnnotateActionItemHandler extends AbstractHandler {
 	}
 
 	private void openActionItem(ActionItem ai) {
-		// ZH: this method open the ai using and the editor
+		// this method opens the ai using and the editor
 		// in org.unicase.ui.meeditor plug-in.
 		// We had to do this indirectly using a command in
 		// meeditor plug-in, because we could not reference this
@@ -107,16 +107,16 @@ public class AnnotateActionItemHandler extends AbstractHandler {
 			handlerService.executeCommand(MEEDITOR_OPENMODELELEMENT_COMMAND_ID,
 					null);
 		} catch (ExecutionException e) {
-			// ZH Auto-generated catch block
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NotDefinedException e) {
-			// ZH Auto-generated catch block
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NotEnabledException e) {
-			// ZH Auto-generated catch block
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NotHandledException e) {
-			// ZH Auto-generated catch block
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

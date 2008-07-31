@@ -28,6 +28,7 @@ import org.eclipse.equinox.app.IApplicationContext;
 import org.unicase.emfstore.accesscontrol.AccessControlImpl;
 import org.unicase.emfstore.accesscontrol.AuthenticationControl;
 import org.unicase.emfstore.connection.ConnectionHandler;
+import org.unicase.emfstore.connection.rmi.RMIAdminConnectionHandler;
 import org.unicase.emfstore.connection.rmi.RMIConnectionHandler;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ServerSpace;
@@ -45,8 +46,10 @@ import org.unicase.emfstore.storage.ResourceStorage;
 public class EmfStoreController implements IApplication {
 
 	private EmfStore emfStore;
+	private AdminEmfStore adminEmfStore;
 	private AccessControlImpl accessControl;
 	private Set<ConnectionHandler> connectionHandlers;
+	private RMIAdminConnectionHandler adminConnectionHandler;
 	private Properties properties;
 	private static Log logger;
 	private ServerSpace serverSpace;
@@ -76,6 +79,10 @@ public class EmfStoreController implements IApplication {
 		accessControl = initAccessControl(serverSpace, properties);
 		emfStore = new EmfStoreImpl(serverSpace, accessControl, properties);
 		//emfStore = new EmfStoreStub();
+		adminEmfStore = new AdminEmfStoreImpl(serverSpace, accessControl, properties);
+		//FIXME: combine connectionHandler and adminConnectionHandler
+		adminConnectionHandler = new RMIAdminConnectionHandler();
+		adminConnectionHandler.init(adminEmfStore, accessControl);
 		connectionHandlers = initConnectionHandlers(emfStore, accessControl);
 		logger.info("Initialitation COMPLETE.");
 
