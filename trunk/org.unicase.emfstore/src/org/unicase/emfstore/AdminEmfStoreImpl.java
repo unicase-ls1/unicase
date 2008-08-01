@@ -23,6 +23,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
+import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.ReaderRole;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesFactory;
@@ -223,6 +224,50 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		return result;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public void createGroup(SessionId sessionId, String name) {
+		ACGroup acGroup = AccesscontrolFactory.eINSTANCE.createACGroup();
+		acGroup.setName(name);
+		getServerSpace().getGroups().add(acGroup);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public void createUser(SessionId sessionId, String name) {
+		ACUser acUser = AccesscontrolFactory.eINSTANCE.createACUser();
+		acUser.setName(name);
+		getServerSpace().getUsers().add(acUser);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public void deleteGroup(SessionId sessionId, ACOrgUnitId group) {
+		for(Iterator<ACGroup> iter = getServerSpace().getGroups().iterator(); iter.hasNext();) {
+			ACGroup next = iter.next();
+			if(next.getId().equals(group)) {
+				iter.remove();
+				return;
+			}
+		}
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public void deleteUser(SessionId sessionId, ACOrgUnitId user) {
+		for(Iterator<ACUser> iter = getServerSpace().getUsers().iterator(); iter.hasNext();) {
+			ACUser next = iter.next();
+			if(next.getId().equals(user)) {
+				iter.remove();
+				return;
+			}
+		}
+	}
+
 	private ServerSpace getServerSpace() {
 		return serverSpace;
 	}
@@ -268,29 +313,6 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		return null;
 	}
 
-	@Override
-	public void createGroup(SessionId sessionId, String name) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void createUser(SessionId sessionId, String name) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deleteGroup(SessionId sessionId, ACOrgUnitId group) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deleteUser(SessionId sessionId, ACOrgUnitId user) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	
 }
