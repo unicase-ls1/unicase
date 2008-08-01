@@ -269,27 +269,28 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	}
 
 	@Override
-	public void addGroup(SessionId sessionId, String name) {
+	public void createGroup(SessionId sessionId, String name) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void addUser(SessionId sessionId, String name) {
+	public void createUser(SessionId sessionId, String name) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void removeGroup(SessionId sessionId, ACOrgUnitId group) {
+	public void deleteGroup(SessionId sessionId, ACOrgUnitId group) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void removeUser(SessionId sessionId, ACOrgUnitId user) {
+	public void deleteUser(SessionId sessionId, ACOrgUnitId user) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	
 }
