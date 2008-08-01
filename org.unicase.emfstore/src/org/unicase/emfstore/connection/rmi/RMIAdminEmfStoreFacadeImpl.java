@@ -279,4 +279,65 @@ public class RMIAdminEmfStoreFacadeImpl extends UnicastRemoteObject implements
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public void createGroup(String sessionId, String name)
+			throws RemoteException, EmfStoreException {
+		try {
+			adminEmfStore.createGroup((SessionId) RMIUtil
+					.stringToEObject(sessionId), name);
+		} catch (UnsupportedEncodingException e) {
+			throw new EmfStoreException(SERIALEX, e);
+		} catch (IOException e) {
+			throw new EmfStoreException(SERIALEX, e);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void createUser(String sessionId, String name)
+			throws RemoteException, EmfStoreException {
+		try {
+			adminEmfStore.createUser((SessionId) RMIUtil
+					.stringToEObject(sessionId), name);
+		} catch (UnsupportedEncodingException e) {
+			throw new EmfStoreException(SERIALEX, e);
+		} catch (IOException e) {
+			throw new EmfStoreException(SERIALEX, e);
+		}
+		
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void deleteGroup(String sessionId, String id)
+			throws RemoteException, EmfStoreException {
+		try {
+			adminEmfStore.deleteGroup((SessionId) RMIUtil
+					.stringToEObject(sessionId), (ACOrgUnitId) RMIUtil.stringToEObject(id));
+		} catch (UnsupportedEncodingException e) {
+			throw new EmfStoreException(SERIALEX, e);
+		} catch (IOException e) {
+			throw new EmfStoreException(SERIALEX, e);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void deleteUser(String sessionId, String id) throws RemoteException,
+			EmfStoreException {
+		try {
+			adminEmfStore.deleteUser((SessionId) RMIUtil
+					.stringToEObject(sessionId), (ACOrgUnitId) RMIUtil.stringToEObject(id));
+		} catch (UnsupportedEncodingException e) {
+			throw new EmfStoreException(SERIALEX, e);
+		} catch (IOException e) {
+			throw new EmfStoreException(SERIALEX, e);
+		}
+	}
+
 }

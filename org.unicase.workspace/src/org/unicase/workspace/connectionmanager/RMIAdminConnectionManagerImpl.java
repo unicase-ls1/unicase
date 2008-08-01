@@ -246,6 +246,46 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		}
 	}
 
+	public void createGroup(SessionId sessionId, String name) throws EmfStoreException {
+		try {
+			getFacade(sessionId).createGroup(RMIUtil.eObjectToString(sessionId), name);
+		} catch (RemoteException e) {
+			throw new ConnectionException(REMOTE, e);
+		} catch (IOException e) {
+			throw new ConnectionException(REMOTE, e);
+		}
+	}
+	
+	public void createUser(SessionId sessionId, String name) throws EmfStoreException {
+		try {
+			getFacade(sessionId).createUser(RMIUtil.eObjectToString(sessionId), name);
+		} catch (RemoteException e) {
+			throw new ConnectionException(REMOTE, e);
+		} catch (IOException e) {
+			throw new ConnectionException(REMOTE, e);
+		}		
+	}
+	
+	public void deleteGroup(SessionId sessionId, ACOrgUnitId group) throws EmfStoreException {
+		try {
+			getFacade(sessionId).deleteUser(RMIUtil.eObjectToString(sessionId), RMIUtil.eObjectToString(group));
+		} catch (RemoteException e) {
+			throw new ConnectionException(REMOTE, e);
+		} catch (IOException e) {
+			throw new ConnectionException(REMOTE, e);
+		}
+	}
+	
+	public void deleteUser(SessionId sessionId, ACOrgUnitId user) throws EmfStoreException {
+		try {
+			getFacade(sessionId).deleteUser(RMIUtil.eObjectToString(sessionId), RMIUtil.eObjectToString(user));
+		} catch (RemoteException e) {
+			throw new ConnectionException(REMOTE, e);
+		} catch (IOException e) {
+			throw new ConnectionException(REMOTE, e);
+		}
+	}
+	
 	private RMIAdminEmfStoreFacade getFacade(SessionId sessionId)
 			throws EmfStoreException {
 		RMIAdminEmfStoreFacade facade = adminFacadeMap.get(sessionId);
@@ -272,4 +312,5 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		}
 		adminFacadeMap.put(id, facade);
 	}
+
 }

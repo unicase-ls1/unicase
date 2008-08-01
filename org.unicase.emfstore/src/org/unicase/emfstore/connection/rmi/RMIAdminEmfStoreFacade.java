@@ -37,4 +37,10 @@ public interface RMIAdminEmfStoreFacade extends Remote {
 	String getRole(String sessionId, String projectId, String orgUnitId) throws RemoteException, EmfStoreException;
 //	void changeRole(SessionId sessionId, ProjectInfo projectInfo, ACOrgUnit orgUnit, EClass role);
 	void changeRole(String sessionId, String projectId, String orgUnitId, String eClass) throws RemoteException, EmfStoreException;
+	
+	void createGroup(String sessionId, String name) throws RemoteException, EmfStoreException;
+	void deleteGroup(String sessionId, String id) throws RemoteException, EmfStoreException;
+	
+	void createUser(String sessionId, String name) throws RemoteException, EmfStoreException;
+	void deleteUser(String sessionId, String id) throws RemoteException, EmfStoreException;
 }
