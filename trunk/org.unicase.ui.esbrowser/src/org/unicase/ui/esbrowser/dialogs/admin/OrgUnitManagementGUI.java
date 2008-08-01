@@ -8,6 +8,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.AdminBroker;
 
 //
@@ -19,40 +20,58 @@ public class OrgUnitManagementGUI {
 	private PropertiesForm frm;
 	private AdminBroker adminBroker;
 
-	private static OrgUnitManagementGUI instance;
+	// private static OrgUnitManagementGUI instance;
+	//
+	// public static synchronized OrgUnitManagementGUI createInstance(
+	// Composite parent) {
+	// if (instance == null) {
+	// instance = new OrgUnitManagementGUI(parent);
+	// }
+	// return instance;
+	// }
+	//
+	// public static OrgUnitManagementGUI getInstance() {
+	// if (instance != null) {
+	// return instance;
+	// } else {
+	// return null;
+	// }
+	// }
 
-	public static synchronized OrgUnitManagementGUI createInstance(
-			Composite parent) {
-		if (instance == null) {
-			instance = new OrgUnitManagementGUI(parent);
-		}
-		return instance;
-	}
+	public OrgUnitManagementGUI(Composite parent, AdminBroker adminBroker) {
 
-	public static OrgUnitManagementGUI getInstance() {
-		if (instance != null) {
-			return instance;
-		} else {
-			return null;
-		}
-	}
-
-	private OrgUnitManagementGUI(Composite parent) {
-		createSash(parent);
-//		parent
-//				.setBackground(parent.getDisplay().getSystemColor(
-//						SWT.COLOR_BLUE));
-
-	}
-
-	public void setAdminBroker(AdminBroker adminBroker) {
 		this.adminBroker = adminBroker;
-		initTabFolder();
+		createDummyOrgUnits();
+		createSash(parent);
 	}
 
-	public AdminBroker getAdminBroker() {
-		return adminBroker;
+	private void createDummyOrgUnits() {
+		try {
+			if (adminBroker.getGroups() == null
+					|| adminBroker.getGroups().size() == 0) {
+				adminBroker.createGroup("Group1");
+				adminBroker.createGroup("Group1");
+				adminBroker.createUser("User1");
+				adminBroker.createUser("User2");
+
+				// adminBroker.removeGroup(group.getId);
+				// adminBroker.removeUser(user.getId);
+			}
+		} catch (EmfStoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
+
+	// public void setAdminBroker(AdminBroker adminBroker) {
+	// this.adminBroker = adminBroker;
+	// initTabFolder();
+	// }
+
+	// public AdminBroker getAdminBroker() {
+	// return adminBroker;
+	// }
 
 	private void createSash(Composite parent) {
 		SashForm sash = new SashForm(parent, SWT.HORIZONTAL);
@@ -65,7 +84,7 @@ public class OrgUnitManagementGUI {
 		// form, then tabs.)
 		createTabFolder(sash);
 		createPropertiesForm(sash);
-	
+		initTabFolder();
 
 		sash.setWeights(sashWeights());
 	}
@@ -81,7 +100,7 @@ public class OrgUnitManagementGUI {
 
 		FormToolkit toolkit = new FormToolkit(sash.getDisplay());
 
-		frm = new PropertiesForm(sash, SWT.NONE);
+		frm = new PropertiesForm(sash, SWT.NONE, adminBroker);
 		frm.setText("Properties");
 		frm.setFont(JFaceResources.getHeaderFont());
 
@@ -92,19 +111,19 @@ public class OrgUnitManagementGUI {
 	private void initTabFolder() {
 
 		TabItem projectsTab = new TabItem(tabFolder, SWT.NONE);
-		TabContent projectsTabContents = new TabContent("Projects");
+		TabContent projectsTabContents = new TabContent("Projects", adminBroker);
 		projectsTabContents.setPropertiesForm(frm);
 		projectsTab.setControl(projectsTabContents.createContents(tabFolder));
 		projectsTab.setText(projectsTabContents.getName());
 
 		TabItem groupsTab = new TabItem(tabFolder, SWT.NONE);
-		TabContent groupsTabContents = new TabContent("Groups");
+		TabContent groupsTabContents = new TabContent("Groups", adminBroker);
 		groupsTabContents.setPropertiesForm(frm);
 		groupsTab.setControl(groupsTabContents.createContents(tabFolder));
 		groupsTab.setText(groupsTabContents.getName());
 
 		TabItem usersTab = new TabItem(tabFolder, SWT.NONE);
-		TabContent usersTabContents = new TabContent("Users");
+		TabContent usersTabContents = new TabContent("Users", adminBroker);
 		usersTabContents.setPropertiesForm(frm);
 		usersTab.setControl(usersTabContents.createContents(tabFolder));
 		usersTab.setText(usersTabContents.getName());
@@ -122,8 +141,8 @@ public class OrgUnitManagementGUI {
 	}
 
 	public void dispose() {
-		tabFolder = null;
-		frm = null;
+		// tabFolder = null;
+		// frm = null;
 
 	}
 

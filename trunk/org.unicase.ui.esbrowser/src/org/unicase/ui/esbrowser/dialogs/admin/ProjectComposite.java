@@ -20,7 +20,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.AdminBroker;
 
 public class ProjectComposite extends FormContents {
 
@@ -37,14 +37,14 @@ public class ProjectComposite extends FormContents {
 
 	private ProjectInfo projectInfo;
 
-	public ProjectComposite(Composite parent, int style) {
-		super(parent, style);
+	public ProjectComposite(Composite parent, int style, AdminBroker adminBroker) {
+		super(parent, style, adminBroker);
 		createControls();
 	}
 
 	protected void removeOrgUnit(ACOrgUnit orgUnit) {
 		try {
-			OrgUnitManagementGUI.getInstance().getAdminBroker()
+			adminBroker
 					.removeParticipant(projectInfo.getProjectId(),
 							orgUnit.getId());
 		} catch (EmfStoreException e) {
@@ -62,14 +62,14 @@ public class ProjectComposite extends FormContents {
 		// 2. add the selected participant to the project
 		try {
 			if (participant != null) {
-				OrgUnitManagementGUI.getInstance().getAdminBroker()
+				adminBroker
 						.addParticipant(projectInfo.getProjectId(),
 								participant.getId());
 			} else {
 				EList<ACOrgUnit> participants = getParticipants();
 				for (ACOrgUnit orgUnit : participants) {
 
-					OrgUnitManagementGUI.getInstance().getAdminBroker()
+					adminBroker
 							.addParticipant(projectInfo.getProjectId(),
 									orgUnit.getId());
 
@@ -93,10 +93,8 @@ public class ProjectComposite extends FormContents {
 		EList<ACOrgUnit> participants = new BasicEList<ACOrgUnit>();
 
 		try {
-			allOrgUnits.addAll(OrgUnitManagementGUI.getInstance()
-					.getAdminBroker().getOrgUnits());
-			allOrgUnits.removeAll(OrgUnitManagementGUI.getInstance()
-					.getAdminBroker().getParticipants(
+			allOrgUnits.addAll(adminBroker.getOrgUnits());
+			allOrgUnits.removeAll(adminBroker.getParticipants(
 							projectInfo.getProjectId()));
 
 			Object[] result = showDialog(allOrgUnits, "Select a participant");
@@ -188,20 +186,20 @@ public class ProjectComposite extends FormContents {
 		try {
 			switch (role) {
 			case READER_ROLE:
-				OrgUnitManagementGUI.getInstance().getAdminBroker().changeRole(
+				adminBroker.changeRole(
 						projectInfo.getProjectId(), orgUnit.getId(),
 						RolesPackage.eINSTANCE.getReaderRole());
 
 				break;
 
 			case WRITER_ROLE:
-				OrgUnitManagementGUI.getInstance().getAdminBroker().changeRole(
+				adminBroker.changeRole(
 						projectInfo.getProjectId(), orgUnit.getId(),
 						RolesPackage.eINSTANCE.getWriterRole());
 				break;
 
 			case PROJECT_ADMIN_ROLE:
-				OrgUnitManagementGUI.getInstance().getAdminBroker().changeRole(
+				adminBroker.changeRole(
 						projectInfo.getProjectId(), orgUnit.getId(),
 						RolesPackage.eINSTANCE.getProjectAdminRole());
 			}
@@ -241,7 +239,7 @@ public class ProjectComposite extends FormContents {
 		int result = 0;
 		Role role;
 		try {
-			role = OrgUnitManagementGUI.getInstance().getAdminBroker().getRole(
+			role = adminBroker.getRole(
 					projectInfo.getProjectId(), orgUnit.getId());
 			if (role.eClass().equals(RolesPackage.eINSTANCE.getReaderRole())) {
 				result = READER_ROLE;

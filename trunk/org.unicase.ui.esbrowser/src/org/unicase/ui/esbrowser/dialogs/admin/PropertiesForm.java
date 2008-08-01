@@ -8,6 +8,7 @@ import org.eclipse.ui.forms.widgets.Form;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
+import org.unicase.workspace.AdminBroker;
 
 
 
@@ -19,26 +20,28 @@ public class PropertiesForm extends Form {
 	private ProjectComposite projectComposite;
 	private GroupComposite groupComposite;
 	private UserComposite userComposite;
+	private AdminBroker adminBroker;
 	
 	public static EObject dragNDropObject;
 	public static String dragSource = "";
 	
 
-	public PropertiesForm(Composite parent, int style) {
+	public PropertiesForm(Composite parent, int style, AdminBroker adminBroker) {
 		super(parent,  style);
 		
 		body = this.getBody();
 		stackLayout = new StackLayout();
 		body.setLayout(stackLayout);
+		this.adminBroker= adminBroker;
 		initComposites();
 		
 		
 	}
 
 	private void initComposites() {
-		projectComposite = new ProjectComposite(body, SWT.NONE);
-		groupComposite = new GroupComposite(body, SWT.NONE);
-		userComposite = new UserComposite(body, SWT.NONE);
+		projectComposite = new ProjectComposite(body, SWT.NONE, adminBroker);
+		groupComposite = new GroupComposite(body, SWT.NONE, adminBroker);
+		userComposite = new UserComposite(body, SWT.NONE, adminBroker);
 	
 		stackLayout.topControl = projectComposite;
 			

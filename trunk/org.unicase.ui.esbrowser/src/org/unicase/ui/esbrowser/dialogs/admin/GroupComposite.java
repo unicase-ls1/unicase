@@ -8,14 +8,15 @@ import org.eclipse.swt.widgets.Composite;
 import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.workspace.AdminBroker;
 import org.unicase.workspace.WorkspaceManager;
 
 public class GroupComposite extends FormContents {
 
 	private ACGroup group;
 
-	public GroupComposite(Composite parent, int style) {
-		super(parent, style);
+	public GroupComposite(Composite parent, int style, AdminBroker adminBroker) {
+		super(parent, style, adminBroker);
 		createControls();
 	}
 
@@ -54,8 +55,7 @@ public class GroupComposite extends FormContents {
 		Collection<ACOrgUnit> allOrgUnits = new BasicEList<ACOrgUnit>();
 		EList<ACOrgUnit> members = new BasicEList<ACOrgUnit>();
 		try {
-			allOrgUnits.addAll(OrgUnitManagementGUI.getInstance()
-					.getAdminBroker().getOrgUnits());
+			allOrgUnits.addAll(adminBroker.getOrgUnits());
 			allOrgUnits.removeAll(group.getMembers());
 			if (allOrgUnits.contains(group)) {
 				allOrgUnits.remove(group);

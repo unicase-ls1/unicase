@@ -5,6 +5,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
+import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
@@ -23,9 +24,14 @@ public interface AdminBroker {
 	List<ACUser> getUsers() throws EmfStoreException;
 	List<ACOrgUnit> getOrgUnits() throws EmfStoreException;
 	
+	void createGroup(String name) throws EmfStoreException;
+	void deleteGroup(ACOrgUnitId group) throws EmfStoreException;
 	List<ACGroup> getGroups(ACOrgUnitId user) throws EmfStoreException;
 	void addGroup(ACUser user, ACOrgUnitId group) throws EmfStoreException;
 	void removeGroup(ACOrgUnitId user, ACOrgUnitId group) throws EmfStoreException;
+	
+	void createUser(String name) throws EmfStoreException;
+	void deleteUser(ACOrgUnitId user) throws EmfStoreException;
 	
 	List<ACOrgUnit> getParticipants(ProjectId projectId) throws EmfStoreException;
 	

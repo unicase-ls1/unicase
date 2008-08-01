@@ -31,8 +31,10 @@ public class UndoAction extends Action implements CommandStackListener {
 
 	@Override
 	public void run() {
-		TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(
-		"org.unicase.EditingDomain").getCommandStack().undo();
+		if(commandStack.canUndo()){
+			commandStack.undo();
+		}
+		
 
 	}
 

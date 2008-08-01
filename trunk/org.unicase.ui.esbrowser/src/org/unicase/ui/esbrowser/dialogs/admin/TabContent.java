@@ -30,6 +30,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.workspace.AdminBroker;
 import org.unicase.workspace.WorkspaceManager;
 
 public class TabContent {
@@ -37,12 +38,13 @@ public class TabContent {
 	private ListViewer list;
 	private Composite tabContents;
 	private String tabName;
+	private AdminBroker adminBroker;
 
 	private PropertiesForm frm;
 
-	public TabContent(String tabName) {
+	public TabContent(String tabName, AdminBroker adminBroker) {
 		this.tabName = tabName;
-
+		this.adminBroker = adminBroker;
 	}
 
 	public Composite createContents(TabFolder tabFolder) {
@@ -154,7 +156,7 @@ public class TabContent {
 			if (currentInput instanceof ProjectInfo) {
 				ProjectInfo projectInfo = (ProjectInfo) currentInput;
 
-				OrgUnitManagementGUI.getInstance().getAdminBroker()
+				adminBroker
 						.removeParticipant(projectInfo.getProjectId(),
 								orgUnit.getId());
 
@@ -166,7 +168,7 @@ public class TabContent {
 				}
 			} else if (currentInput instanceof ACUser) {
 				ACUser user = (ACUser) currentInput;
-				OrgUnitManagementGUI.getInstance().getAdminBroker()
+				adminBroker
 						.removeGroup(user.getId(), ((ACGroup) orgUnit).getId());
 			}
 		} catch (EmfStoreException e) {
@@ -238,8 +240,7 @@ public class TabContent {
 					// return a list of Projects in project space
 					EList<ProjectInfo> projectInfos = new BasicEList<ProjectInfo>();
 
-					projectInfos.addAll(OrgUnitManagementGUI.getInstance()
-							.getAdminBroker().getProjectInfos());
+					projectInfos.addAll(adminBroker.getProjectInfos());
 
 					result = projectInfos.toArray(new ProjectInfo[projectInfos
 							.size()]);
@@ -247,14 +248,12 @@ public class TabContent {
 				} else if (tabName.equals("Groups")) {
 					// return a list of Groups in project space
 					EList<ACGroup> groups = new BasicEList<ACGroup>();
-					groups.addAll(OrgUnitManagementGUI.getInstance()
-							.getAdminBroker().getGroups());
+					groups.addAll(adminBroker.getGroups());
 					result = groups.toArray(new ACGroup[groups.size()]);
 				} else if (tabName.equals("Users")) {
 					// return a list of Users in project space
 					EList<ACUser> users = new BasicEList<ACUser>();
-					users.addAll(OrgUnitManagementGUI.getInstance()
-							.getAdminBroker().getUsers());
+					users.addAll(adminBroker.getUsers());
 					result = users.toArray(new ACUser[users.size()]);
 				}
 			} catch (EmfStoreException e) {
