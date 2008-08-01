@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryLabelProvider;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
@@ -42,10 +43,13 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.workspace.AdminBroker;
 import org.unicase.workspace.WorkspaceManager;
 
 public abstract class FormContents extends Composite {
 
+	protected AdminBroker adminBroker;
+	
 	protected Group grpTable;
 	protected Group grpAttributes;
 
@@ -57,9 +61,9 @@ public abstract class FormContents extends Composite {
 	protected Table table;
 	protected TableViewer tableViewer;
 
-	public FormContents(Composite parent, int style) {
+	public FormContents(Composite parent, int style, AdminBroker adminBroker) {
 		super(parent, style);
-
+		this.adminBroker = adminBroker;
 	}
 
 	protected void createControls() {
@@ -194,6 +198,25 @@ public abstract class FormContents extends Composite {
 			}
 		});
 
+		Button btn = new Button(parent, SWT.PUSH | SWT.CENTER);
+		btn.setText("add test users and groups");
+		gridData = new GridData(SWT.END);
+		gridData.widthHint = 80;
+		btn.setLayoutData(gridData);
+
+		btn.addSelectionListener(new SelectionAdapter() {
+
+			// Remove the selection and refresh the view
+			public void widgetSelected(SelectionEvent e) {
+//				ACOrgUnit ou = (ACOrgUnit) ((IStructuredSelection) tableViewer
+//						.getSelection()).getFirstElement();
+//				if (ou != null) {
+//					removeOrgUnit(ou);
+//				}
+				MessageDialog.openInformation(getShell(), "", "create test user/groups");
+			}
+		});
+		
 	}
 
 	protected void addDragNDropSupport() {
@@ -317,8 +340,7 @@ public abstract class FormContents extends Composite {
 				if (inputElement instanceof ACUser) {
 					List<ACGroup> groups;
 
-					groups = OrgUnitManagementGUI.getInstance()
-							.getAdminBroker().getGroups(
+					groups = adminBroker.getGroups(
 									((ACUser) inputElement).getId());
 					result = groups.toArray(new ACOrgUnit[groups.size()]);
 
@@ -328,9 +350,7 @@ public abstract class FormContents extends Composite {
 					result = members.toArray(new ACOrgUnit[members.size()]);
 
 				} else if (inputElement instanceof ProjectInfo) {
-					List<ACOrgUnit> participants = OrgUnitManagementGUI
-							.getInstance()
-							.getAdminBroker()
+					List<ACOrgUnit> participants = adminBroker
 							.getParticipants(
 									((ProjectInfo) inputElement).getProjectId());
 					result = participants.toArray(new ACOrgUnit[participants

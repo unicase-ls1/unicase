@@ -9,20 +9,21 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.workspace.AdminBroker;
 import org.unicase.workspace.WorkspaceManager;
 
 public class UserComposite extends FormContents {
 
 	private ACUser user;
 
-	public UserComposite(Composite parent, int style) {
-		super(parent, style);
+	public UserComposite(Composite parent, int style, AdminBroker adminBroker) {
+		super(parent, style, adminBroker);
 		createControls();
 	}
 
 	protected void removeOrgUnit(ACOrgUnit group) {
 		try {
-			OrgUnitManagementGUI.getInstance().getAdminBroker().removeGroup(
+			adminBroker.removeGroup(
 					user.getId(), ((ACGroup) group).getId());
 		} catch (EmfStoreException e) {
 			// TODO Auto-generated catch block
@@ -39,14 +40,14 @@ public class UserComposite extends FormContents {
 		// 2. add the selected participant to the project
 		try {
 			if (group != null) {
-				OrgUnitManagementGUI.getInstance().getAdminBroker().addGroup(
+				adminBroker.addGroup(
 						user, ((ACGroup) group).getId());
 
 			} else {
 				EList<ACGroup> groups = getGroups();
 				for (ACGroup newGroup : groups) {
 
-					OrgUnitManagementGUI.getInstance().getAdminBroker()
+					adminBroker
 							.addGroup(user, newGroup.getId());
 
 				}
@@ -71,11 +72,9 @@ public class UserComposite extends FormContents {
 		EList<ACGroup> groups = new BasicEList<ACGroup>();
 
 		try {
-			allGroups.addAll(OrgUnitManagementGUI.getInstance()
-					.getAdminBroker().getGroups());
+			allGroups.addAll(adminBroker.getGroups());
 
-			allGroups.removeAll(OrgUnitManagementGUI.getInstance()
-					.getAdminBroker().getGroups(user.getId()));
+			allGroups.removeAll(adminBroker.getGroups(user.getId()));
 
 			Object[] result = showDialog(allGroups, "Select a group");
 

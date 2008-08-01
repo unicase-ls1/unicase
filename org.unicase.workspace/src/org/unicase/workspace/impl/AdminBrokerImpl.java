@@ -3,8 +3,6 @@ package org.unicase.workspace.impl;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
@@ -16,7 +14,6 @@ import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.AdminBroker;
-import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -119,6 +116,34 @@ public class AdminBrokerImpl implements AdminBroker {
 
 	private SessionId getSessionId() {
 		return sessionId;
+	}
+
+	@Override
+	public void createGroup(String name) throws EmfStoreException {
+		WorkspaceManager.getInstance().getAdminConnectionManager()
+			.createGroup(getSessionId(), name);
+		
+	}
+
+	@Override
+	public void createUser(String name) throws EmfStoreException {
+		WorkspaceManager.getInstance().getAdminConnectionManager()
+		.createUser(getSessionId(), name);
+		
+	}
+
+	@Override
+	public void deleteGroup(ACOrgUnitId group) throws EmfStoreException {
+		WorkspaceManager.getInstance().getAdminConnectionManager()
+			.deleteGroup(getSessionId(), group);
+		
+	}
+
+	@Override
+	public void deleteUser(ACOrgUnitId user) throws EmfStoreException {
+		WorkspaceManager.getInstance().getAdminConnectionManager()
+			.deleteUser(getSessionId(), user);
+		
 	}
 
 }

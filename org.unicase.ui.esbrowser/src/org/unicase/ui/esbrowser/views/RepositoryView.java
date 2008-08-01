@@ -285,6 +285,7 @@ public class RepositoryView extends ViewPart {
 				final ProjectInfo element = (ProjectInfo) obj;
 				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 						.getEditingDomain("org.unicase.EditingDomain");
+				
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					@Override
 					protected void doExecute() {
@@ -413,11 +414,17 @@ public class RepositoryView extends ViewPart {
 			public void run() {
 				ManageOrgUnitsDialog dialog;
 				try {
+					ISelection selection = viewer.getSelection();
+					Object obj = ((IStructuredSelection) selection)
+							.getFirstElement();
+					ServerInfo serverInfo = ((ServerInfo) obj);
+					session = serverInfo.getLastUsersession();
 					AdminBroker adminBroker = session.getAdminBroker();
 					dialog = new ManageOrgUnitsDialog(PlatformUI.getWorkbench()
 							.getDisplay().getActiveShell(), adminBroker);
 
 					dialog.create();
+					
 					dialog.open();
 				} catch (ConnectionException e) {
 					// TODO Auto-generated catch block
