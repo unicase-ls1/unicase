@@ -36,6 +36,7 @@ import org.unicase.model.ModelPackage;
  * Implementation of a {@link ResourceStorage} backed by a TeneoDBResource.
  * 
  * @author koegel
+ * @author wesendonk
  * 
  */
 public class TeneoStorage implements ResourceStorage {
@@ -98,16 +99,6 @@ public class TeneoStorage implements ResourceStorage {
 
 		// logger.debug("Using hibernate mapping: " +
 		// dataStore.getMappingXML());
-
-		try {
-			File file = new File(
-					"C:/Dokumente und Einstellungen/Otto/Desktop/test.test");
-			FileWriter out = new FileWriter(file);
-			out.write(dataStore.getMappingXML());
-			out.close();
-
-		} catch (IOException e) {
-		}
 
 		String uriStr = "hibernate://?" + HibernateResource.DS_NAME_PARAM + "="
 				+ hbStoreName;
