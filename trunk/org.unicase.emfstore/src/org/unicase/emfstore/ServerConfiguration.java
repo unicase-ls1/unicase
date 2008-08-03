@@ -58,7 +58,7 @@ public final class ServerConfiguration {
 	 */
 	public static String getServerHome() {
 		StringBuffer sb = new StringBuffer(getUserHome());
-		sb.append(".unison");
+		sb.append(".unicase");
 		sb.append(File.separatorChar);
 		sb.append("emfstore");
 		sb.append(File.separatorChar);

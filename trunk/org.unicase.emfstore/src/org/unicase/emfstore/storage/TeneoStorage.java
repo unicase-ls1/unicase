@@ -6,6 +6,9 @@
  */
 package org.unicase.emfstore.storage;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -31,13 +34,15 @@ import org.unicase.model.ModelPackage;
 
 /**
  * Implementation of a {@link ResourceStorage} backed by a TeneoDBResource.
+ * 
  * @author koegel
- *
+ * 
  */
 public class TeneoStorage implements ResourceStorage {
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.emfstore.storage.ResourceStorage#init(java.util.Properties)
 	 */
 	public URI init(Properties properties) {
@@ -51,29 +56,38 @@ public class TeneoStorage implements ResourceStorage {
 		final Properties props = new Properties();
 		props.setProperty(Environment.DRIVER, "com.mysql.jdbc.Driver");
 		props.setProperty(Environment.USER, "root");
-		props.setProperty(Environment.PASS, "pass");
+		props.setProperty(Environment.PASS, "");
 		props.setProperty(Environment.URL, "jdbc:mysql://localhost/" + "model");
 		props.setProperty(Environment.DIALECT,
 				org.hibernate.dialect.MySQLInnoDBDialect.class.getName());
 		// Lazy loading to avoid too many joins exception
 		props.setProperty(Environment.MAX_FETCH_DEPTH, "0");
-		
-		//MK: possible performance optimization, but throws exception
-		//props.setProperty(PersistenceOptions.ALWAYS_MAP_LIST_AS_BAG, "true");
 
-//		//MK: does not work with mysql, table names are too long
-//		//use fully qualified names for classes
-//		final ExtensionManager extensionManager = dataStore.getExtensionManager();
-//		extensionManager.registerExtension(EntityNameStrategy.class.getName(), QualifyingEntityNameStrategy.class.getName());
+		// MK: possible performance optimization, but throws exception
+		// props.setProperty(PersistenceOptions.ALWAYS_MAP_LIST_AS_BAG, "true");
 
-		//adaptions for gmf to be able to save diagrams to db
+		// //MK: does not work with mysql, table names are too long
+		// //use fully qualified names for classes
+		// final ExtensionManager extensionManager =
+		// dataStore.getExtensionManager();
+		//extensionManager.registerExtension(EntityNameStrategy.class.getName(),
+		// QualifyingEntityNameStrategy.class.getName());
+
+		// adaptions for gmf to be able to save diagrams to db
 		props.setProperty(PersistenceOptions.PERSISTENCE_XML,
-		"/annotations.xml");
-		dataStore.getExtensionManager().registerExtension(EListPropertyHandler.class.getName(),GMFEListPropertyHandler.class.getName());
-		
+				"/annotations.xml");
+		dataStore.getExtensionManager().registerExtension(
+				EListPropertyHandler.class.getName(),
+				GMFEListPropertyHandler.class.getName());
+
 		props.setProperty(PersistenceOptions.INHERITANCE_MAPPING, "JOINED");
+
+		// props.setProperty( PersistenceOptions.SET_CASCADE_ALL_ON_CONTAINMENT,
+		// "false");
 		
-//		props.setProperty( PersistenceOptions.SET_CASCADE_ALL_ON_CONTAINMENT, "false");
+		// Fix for containment bug
+		props.setProperty(PersistenceOptions.CASCADE_POLICY_ON_CONTAINMENT,
+				"REMOVE,REFRESH,PERSIST,MERGE");
 
 		dataStore.setProperties(props);
 
@@ -85,6 +99,16 @@ public class TeneoStorage implements ResourceStorage {
 		// logger.debug("Using hibernate mapping: " +
 		// dataStore.getMappingXML());
 
+		try {
+			File file = new File(
+					"C:/Dokumente und Einstellungen/Otto/Desktop/test.test");
+			FileWriter out = new FileWriter(file);
+			out.write(dataStore.getMappingXML());
+			out.close();
+
+		} catch (IOException e) {
+		}
+
 		String uriStr = "hibernate://?" + HibernateResource.DS_NAME_PARAM + "="
 				+ hbStoreName;
 		return URI.createURI(uriStr);
@@ -92,6 +116,7 @@ public class TeneoStorage implements ResourceStorage {
 
 	/**
 	 * Retrieve all unicase EPackages.
+	 * 
 	 * @return a list of EPackages
 	 */
 	private EPackage[] getUnicaseModelPackages() {
@@ -120,18 +145,21 @@ public class TeneoStorage implements ResourceStorage {
 		XMLTypePackage xmlPackage = XMLTypePackage.eINSTANCE;
 		packages.add(xmlPackage);
 
-		//MK: remove validation for all packages by registering custom validator
-		for (EPackage ePackage: packages) {
-			EValidator.Registry.INSTANCE.put(ePackage, new SkipValidationValidator());
+		// MK: remove validation for all packages by registering custom
+		// validator
+		for (EPackage ePackage : packages) {
+			EValidator.Registry.INSTANCE.put(ePackage,
+					new SkipValidationValidator());
 		}
-		
+
 		return packages.toArray(new EPackageImpl[packages.size()]);
 	}
 
 	/**
 	 * Get all subpackages recursivly.
 	 * 
-	 * @param package1 parent package
+	 * @param package1
+	 *            parent package
 	 * @return a set of sibling packages
 	 * 
 	 * @generated NOT
