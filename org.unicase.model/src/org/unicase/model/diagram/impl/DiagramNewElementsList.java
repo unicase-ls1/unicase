@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 
-public class DiagramNewElementsList extends BasicInternalEList<ModelElement>{
+public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 
 	private EList<ModelElement> elements;
 	private Project project;
@@ -36,23 +36,24 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement>{
 	}
 
 	public boolean add(ModelElement arg0) {
-		project.getModelElements().add(arg0);
-		return elements.add(arg0);
+		boolean add = project.getModelElements().add(arg0);
+		return add;
+		// return elements.add(arg0);
 	}
 
 	public void add(int arg0, ModelElement arg1) {
 		project.getModelElements().add(arg0, arg1);
-		elements.add(arg0, arg1);
+		// elements.add(arg0, arg1);
 	}
 
 	public boolean addAll(Collection<? extends ModelElement> arg0) {
-		project.getModelElements().addAll(arg0);
-		return elements.addAll(arg0);
+		return project.getModelElements().addAll(arg0);
+		// return elements.addAll(arg0);
 	}
 
 	public boolean addAll(int arg0, Collection<? extends ModelElement> arg1) {
-		project.getModelElements().addAll(arg0, arg1);
-		return elements.addAll(arg0, arg1);
+		return project.getModelElements().addAll(arg0, arg1);
+		// return elements.addAll(arg0, arg1);
 	}
 
 	public void clear() {

@@ -26,9 +26,6 @@ public class ModelDomainModelElementTester extends PropertyTester {
 		if (eClass == ModelPackage.eINSTANCE.getProject()) {
 			return true;
 		}
-		if (eClass == ModelPackage.eINSTANCE.getModelElementId()) {
-			return true;
-		}
 		if (eClass == ModelPackage.eINSTANCE.getUniqueIdentifier()) {
 			return true;
 		}
@@ -36,6 +33,12 @@ public class ModelDomainModelElementTester extends PropertyTester {
 			return true;
 		}
 		if (eClass == ModelPackage.eINSTANCE.getAnnotation()) {
+			return true;
+		}
+		if (eClass == ModelPackage.eINSTANCE.getIdentifiableElement()) {
+			return true;
+		}
+		if (eClass == ModelPackage.eINSTANCE.getModelElementId()) {
 			return true;
 		}
 		return false;
