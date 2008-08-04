@@ -268,7 +268,7 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 	
 	public void deleteGroup(SessionId sessionId, ACOrgUnitId group) throws EmfStoreException {
 		try {
-			getFacade(sessionId).deleteUser(RMIUtil.eObjectToString(sessionId), RMIUtil.eObjectToString(group));
+			getFacade(sessionId).deleteGroup(RMIUtil.eObjectToString(sessionId), RMIUtil.eObjectToString(group));
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
 		} catch (IOException e) {

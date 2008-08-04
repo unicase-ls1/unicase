@@ -229,6 +229,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	 */
 	public void createGroup(SessionId sessionId, String name) {
 		ACGroup acGroup = AccesscontrolFactory.eINSTANCE.createACGroup();
+		//acGroup.setId(AccesscontrolFactory.eINSTANCE.createACOrgUnitId());
 		acGroup.setName(name);
 		getServerSpace().getGroups().add(acGroup);
 	}
@@ -238,6 +239,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	 */
 	public void createUser(SessionId sessionId, String name) {
 		ACUser acUser = AccesscontrolFactory.eINSTANCE.createACUser();
+		//acUser.setId(AccesscontrolFactory.eINSTANCE.createACOrgUnitId());
 		acUser.setName(name);
 		getServerSpace().getUsers().add(acUser);
 	}
