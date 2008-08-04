@@ -99,7 +99,7 @@ public class UserComposite extends FormContents {
 		this.user = user;
 
 		txtName.setText(user.getName());
-		txtDescription.setText(user.getDescription());
+		txtDescription.setText((user.getDescription()== null)? "" : user.getDescription());
 		tableViewer.setInput(user);
 
 	}

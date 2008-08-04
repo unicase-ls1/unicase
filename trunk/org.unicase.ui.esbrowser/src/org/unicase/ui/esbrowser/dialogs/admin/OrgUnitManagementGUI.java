@@ -8,6 +8,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
+import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.AdminBroker;
 
@@ -20,26 +22,11 @@ public class OrgUnitManagementGUI {
 	private PropertiesForm frm;
 	private AdminBroker adminBroker;
 
-	// private static OrgUnitManagementGUI instance;
-	//
-	// public static synchronized OrgUnitManagementGUI createInstance(
-	// Composite parent) {
-	// if (instance == null) {
-	// instance = new OrgUnitManagementGUI(parent);
-	// }
-	// return instance;
-	// }
-	//
-	// public static OrgUnitManagementGUI getInstance() {
-	// if (instance != null) {
-	// return instance;
-	// } else {
-	// return null;
-	// }
-	// }
 
 	public OrgUnitManagementGUI(Composite parent, AdminBroker adminBroker) {
 
+		//parent.setBackground(parent.getShell().getDisplay().getSystemColor(SWT.COLOR_BLUE));
+		
 		this.adminBroker = adminBroker;
 		createDummyOrgUnits();
 		createSash(parent);
@@ -47,12 +34,18 @@ public class OrgUnitManagementGUI {
 
 	private void createDummyOrgUnits() {
 		try {
+//			for(ACGroup group : adminBroker.getGroups()){
+//				adminBroker.deleteGroup(group.getId());
+//			}
+//			for(ACUser user : adminBroker.getUsers()){
+//				adminBroker.deleteGroup(user.getId());
+//			}
 			if (adminBroker.getGroups() == null
 					|| adminBroker.getGroups().size() == 0) {
 				adminBroker.createGroup("Group1");
-				adminBroker.createGroup("Group1");
+//				adminBroker.createGroup("Group1");
 				adminBroker.createUser("User1");
-				adminBroker.createUser("User2");
+//				adminBroker.createUser("User2");
 
 				// adminBroker.removeGroup(group.getId);
 				// adminBroker.removeUser(user.getId);
@@ -75,6 +68,7 @@ public class OrgUnitManagementGUI {
 
 	private void createSash(Composite parent) {
 		SashForm sash = new SashForm(parent, SWT.HORIZONTAL);
+		sash.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		// first create the tab folder, then the form, and then set the TabItems
 		// in tab folder.

@@ -84,7 +84,7 @@ public class GroupComposite extends FormContents {
 		this.group = group;
 
 		txtName.setText(group.getName());
-		txtDescription.setText(group.getDescription());
+		txtDescription.setText((group.getDescription()==null) ? "" : group.getDescription() );
 		tableViewer.setInput(group);
 	}
 

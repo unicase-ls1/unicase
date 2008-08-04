@@ -14,20 +14,28 @@ public class ManageOrgUnitsDialog extends Dialog {
 	public ManageOrgUnitsDialog(Shell parentShell, AdminBroker adminBroker) {
 		
 		super(parentShell);
-		//this.setShellStyle(SWT.Close | SWT.TITLE | SWT.BORDER | SWT.APPLICATION_MODAL | SWT.Resize | SWT.MAX);
+		
+		this.setShellStyle(this.getShellStyle() | SWT.RESIZE );
+		boolean aa = ((getShellStyle() & SWT.RESIZE) == SWT.RESIZE);
 		this.adminBroker = adminBroker;
 		
 	}
 	
 	
 	@Override
-	protected Control createContents(Composite parent) {
-		
-//		OrgUnitManagementGUI.createInstance(parent);
-//		OrgUnitManagementGUI.getInstance().setAdminBroker(adminBroker);
-		new OrgUnitManagementGUI(parent, adminBroker);
-		return parent;
+	protected Control createDialogArea(Composite parent) {
+		Composite composite = (Composite) super.createDialogArea(parent);
+		new OrgUnitManagementGUI(composite, adminBroker);
+		return composite;
 	}
+
+
+//	@Override
+//	protected Control createContents(Composite parent) {
+//		Composite composite = (Composite) super.createContents(parent);
+//		new OrgUnitManagementGUI(composite, adminBroker);
+//		return parent;
+//	}
 
 
 

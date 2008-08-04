@@ -198,24 +198,24 @@ public abstract class FormContents extends Composite {
 			}
 		});
 
-		Button btn = new Button(parent, SWT.PUSH | SWT.CENTER);
-		btn.setText("add test users and groups");
-		gridData = new GridData(SWT.END);
-		gridData.widthHint = 80;
-		btn.setLayoutData(gridData);
-
-		btn.addSelectionListener(new SelectionAdapter() {
-
-			// Remove the selection and refresh the view
-			public void widgetSelected(SelectionEvent e) {
-//				ACOrgUnit ou = (ACOrgUnit) ((IStructuredSelection) tableViewer
-//						.getSelection()).getFirstElement();
-//				if (ou != null) {
-//					removeOrgUnit(ou);
-//				}
-				MessageDialog.openInformation(getShell(), "", "create test user/groups");
-			}
-		});
+//		Button btn = new Button(parent, SWT.PUSH | SWT.CENTER);
+//		btn.setText("add test users and groups");
+//		gridData = new GridData(SWT.END);
+//		gridData.widthHint = 80;
+//		btn.setLayoutData(gridData);
+//
+//		btn.addSelectionListener(new SelectionAdapter() {
+//
+//			// Remove the selection and refresh the view
+//			public void widgetSelected(SelectionEvent e) {
+////				ACOrgUnit ou = (ACOrgUnit) ((IStructuredSelection) tableViewer
+////						.getSelection()).getFirstElement();
+////				if (ou != null) {
+////					removeOrgUnit(ou);
+////				}
+//				MessageDialog.openInformation(getShell(), "", "create test user/groups");
+//			}
+//		});
 		
 	}
 
