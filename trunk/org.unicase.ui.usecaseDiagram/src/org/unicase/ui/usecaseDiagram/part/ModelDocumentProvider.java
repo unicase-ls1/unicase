@@ -134,7 +134,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 	 */
 	private long computeModificationStamp(ResourceSetInfo info) {
 		int result = 0;
-		for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info
+		for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
 				.getLoadedResourcesIterator(); it.hasNext();) {
 			Resource nextResource = (Resource) it.next();
 			IFile file = WorkspaceSynchronizer.getFile(nextResource);
@@ -219,11 +219,11 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 			URI uri = ((URIEditorInput) element).getURI();
 			Resource resource = null;
 			try {
-//				resource = domain.getResourceSet().getResource(
-//						uri.trimFragment(), false);
+				//				resource = domain.getResourceSet().getResource(
+				//						uri.trimFragment(), false);
 				if (resource == null) {
-					resource = domain.getResourceSet().createResource(
-							uri, "MEDiagram");
+					resource = domain.getResourceSet().createResource(uri,
+							"MEDiagram");
 				}
 				if (!resource.isLoaded()) {
 					try {
@@ -238,22 +238,22 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 						throw e;
 					}
 				}
-//				if (uri.fragment() != null) {
-//					EObject rootElement = resource.getEObject(uri.fragment());
-//					if (rootElement instanceof Diagram) {
-//						document.setContent((Diagram) rootElement);
-//						return;
-//					}
-//				} else {
-					for (Iterator it = resource.getContents().iterator(); it
-							.hasNext();) {
-						Object rootElement = it.next();
-						if (rootElement instanceof Diagram) {
-							document.setContent((Diagram) rootElement);
-							return;
-						}
+				//				if (uri.fragment() != null) {
+				//					EObject rootElement = resource.getEObject(uri.fragment());
+				//					if (rootElement instanceof Diagram) {
+				//						document.setContent((Diagram) rootElement);
+				//						return;
+				//					}
+				//				} else {
+				for (Iterator it = resource.getContents().iterator(); it
+						.hasNext();) {
+					Object rootElement = it.next();
+					if (rootElement instanceof Diagram) {
+						document.setContent((Diagram) rootElement);
+						return;
 					}
-//				}
+				}
+				//				}
 				throw new RuntimeException(
 						org.unicase.ui.usecaseDiagram.part.Messages.ModelDocumentProvider_NoDiagramInResourceError);
 			} catch (Exception e) {
@@ -342,19 +342,8 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 			throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/* <org.eclipse.core.resources.IFile> */files2Validate = new ArrayList/*
-																						 * <org
-																						 * .
-																						 * eclipse
-																						 * .
-																						 * core
-																						 * .
-																						 * resources
-																						 * .
-																						 * IFile
-																						 * >
-																						 */();
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info
+			Collection/*<org.eclipse.core.resources.IFile>*/files2Validate = new ArrayList/*<org.eclipse.core.resources.IFile>*/();
+			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
 					.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
@@ -385,10 +374,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 							.logError(
 									org.unicase.ui.usecaseDiagram.part.Messages.ModelDocumentProvider_isModifiable,
 									ex);
-					// Error message to log was initially taken from
-					// org.eclipse.
-					// gmf.runtime.diagram.ui.resources.editor.ide.internal
-					// .l10n.EditorMessages.StorageDocumentProvider_isModifiable
+					// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
 				}
 			}
 			return info.isReadOnly();
@@ -417,10 +403,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 							.logError(
 									org.unicase.ui.usecaseDiagram.part.Messages.ModelDocumentProvider_isModifiable,
 									ex);
-					// Error message to log was initially taken from
-					// org.eclipse.
-					// gmf.runtime.diagram.ui.resources.editor.ide.internal
-					// .l10n.EditorMessages.StorageDocumentProvider_isModifiable
+					// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
 				}
 			}
 			return info.isModifiable();
@@ -434,7 +417,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 	protected void updateCache(Object element) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info
+			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
 					.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
@@ -478,21 +461,8 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 	protected ISchedulingRule getResetRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */rules = new ArrayList/*
-																							 * <org
-																							 * .
-																							 * eclipse
-																							 * .
-																							 * core
-																							 * .
-																							 * runtime
-																							 * .
-																							 * jobs
-																							 * .
-																							 * ISchedulingRule
-																							 * >
-																							 */();
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info
+			Collection/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/rules = new ArrayList/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/();
+			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
 					.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
@@ -513,21 +483,8 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 	protected ISchedulingRule getSaveRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */rules = new ArrayList/*
-																							 * <org
-																							 * .
-																							 * eclipse
-																							 * .
-																							 * core
-																							 * .
-																							 * runtime
-																							 * .
-																							 * jobs
-																							 * .
-																							 * ISchedulingRule
-																							 * >
-																							 */();
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info
+			Collection/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/rules = new ArrayList/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/();
+			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
 					.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
@@ -547,21 +504,8 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 	protected ISchedulingRule getSynchronizeRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */rules = new ArrayList/*
-																							 * <org
-																							 * .
-																							 * eclipse
-																							 * .
-																							 * core
-																							 * .
-																							 * runtime
-																							 * .
-																							 * jobs
-																							 * .
-																							 * ISchedulingRule
-																							 * >
-																							 */();
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info
+			Collection/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/rules = new ArrayList/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/();
+			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
 					.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
@@ -582,21 +526,8 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 	protected ISchedulingRule getValidateStateRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */files = new ArrayList/*
-																							 * <org
-																							 * .
-																							 * eclipse
-																							 * .
-																							 * core
-																							 * .
-																							 * runtime
-																							 * .
-																							 * jobs
-																							 * .
-																							 * ISchedulingRule
-																							 * >
-																							 */();
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info
+			Collection/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/files = new ArrayList/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/();
+			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
 					.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
@@ -642,7 +573,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 			throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info
+			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
 					.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				handleElementChanged(info, nextResource, monitor);
@@ -674,8 +605,8 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 				monitor
 						.beginTask(
 								org.unicase.ui.usecaseDiagram.part.Messages.ModelDocumentProvider_SaveDiagramTask,
-								info.getResourceSet().getResources().size() + 1); // "Saving diagram"
-				for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info
+								info.getResourceSet().getResources().size() + 1); //"Saving diagram"
+				for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
 						.getLoadedResourcesIterator(); it.hasNext();) {
 					Resource nextResource = (Resource) it.next();
 					monitor
@@ -800,11 +731,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 						.logError(
 								org.unicase.ui.usecaseDiagram.part.Messages.ModelDocumentProvider_handleElementContentChanged,
 								ex);
-				// Error message to log was initially taken from
-				// org.eclipse.gmf.
-				// runtime.diagram.ui.resources.editor.ide.internal
-				// .l10n.EditorMessages
-				// .FileDocumentProvider_handleElementContentChanged
+				// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.FileDocumentProvider_handleElementContentChanged
 			}
 		}
 		changedResource.unload();
@@ -959,8 +886,8 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 		/**
 		 * @generated
 		 */
-		public Iterator/* <org.eclipse.emf.ecore.resource.Resource> */getLoadedResourcesIterator() {
-			return new ArrayList/* <org.eclipse.emf.ecore.resource.Resource> */(
+		public Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/getLoadedResourcesIterator() {
+			return new ArrayList/*<org.eclipse.emf.ecore.resource.Resource>*/(
 					getResourceSet().getResources()).iterator();
 		}
 
@@ -977,7 +904,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 		public void dispose() {
 			stopResourceListening();
 			getResourceSet().eAdapters().remove(myResourceSetListener);
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = getLoadedResourcesIterator(); it
+			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = getLoadedResourcesIterator(); it
 					.hasNext();) {
 				Resource resource = (Resource) it.next();
 				resource.unload();
@@ -1182,7 +1109,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 					Resource resource = (Resource) notification.getNotifier();
 					if (resource.isLoaded()) {
 						boolean modified = false;
-						for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = myInfo
+						for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = myInfo
 								.getLoadedResourcesIterator(); it.hasNext()
 								&& !modified;) {
 							Resource nextResource = (Resource) it.next();
