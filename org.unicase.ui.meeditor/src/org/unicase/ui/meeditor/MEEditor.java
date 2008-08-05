@@ -174,7 +174,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 */
 	@Override
 	public boolean isDirty() {
-		return false;
+		return true;
 		//JH: Syncronize
 //		if(checkingDirty){
 //			return dirty;
