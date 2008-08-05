@@ -9,9 +9,12 @@ package org.unicase.ui.navigator;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.ui.dnd.EditingDomainViewerDropAdapter;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.workspace.ui.actions.RedoActionWrapper;
+import org.eclipse.emf.workspace.ui.actions.UndoActionWrapper;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
@@ -90,7 +93,7 @@ public class TreeView extends ViewPart {
 				ActionFactory.UNDO.getId(), undoAction);
 		getViewSite().getActionBars().setGlobalActionHandler(
 				ActionFactory.REDO.getId(), redoAction);
-
+	
 	}
 
 	private void makeActions() {
@@ -108,10 +111,10 @@ public class TreeView extends ViewPart {
 				viewer));
 
 		viewer
-				.addDropSupport(dndOperations, transfers, new UCDropAdapter(
-						TransactionalEditingDomain.Registry.INSTANCE
-								.getEditingDomain("org.unicase.EditingDomain"),
-						viewer));
+		.addDropSupport(dndOperations, transfers, new UCDropAdapter(
+				TransactionalEditingDomain.Registry.INSTANCE
+						.getEditingDomain("org.unicase.EditingDomain"),
+				viewer));
 
 	}
 
