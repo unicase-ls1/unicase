@@ -55,7 +55,8 @@ public class MEEditorInput implements IEditorInput {
 	 * {@inheritDoc}
 	 */
 	public String getName() {
-		return modelElement.getName();
+		String name = modelElement.getName();
+		return (name==null?"":name);
 	}
 
 	/**

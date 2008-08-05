@@ -54,7 +54,7 @@ public class METextControl extends AbstractMEControl implements MEControl {
 	 * @return A Text Control. {@inheritDoc}
 	 */
 	public Control createControl(Composite parent, int style) {
-		text = toolkit.createText(parent, new String(), style);
+		text = toolkit.createText(parent, new String(), style | SWT.SINGLE);
 		IObservableValue model = EMFEditObservables.observeValue(editingDomain,
 				modelElement, attribute);
 		EMFDataBindingContext dbc = new EMFDataBindingContext();
