@@ -16,6 +16,8 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.common.exceptions.ExceptionDialogHandler;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.Workspace;
+import org.unicase.workspace.WorkspaceManager;
 
 /**
  * 
@@ -32,10 +34,7 @@ public class CommitProjectHandler extends ProjectActionHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		IWorkbenchWindow window = HandlerUtil
-		.getActiveWorkbenchWindowChecked(event);
-
-
-
+				.getActiveWorkbenchWindowChecked(event);
 
 		final ProjectSpace projectSpace = getProjectSpace(event);
 
@@ -44,11 +43,19 @@ public class CommitProjectHandler extends ProjectActionHandler {
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			protected void doExecute() {
 				try {
+
+					// FIXME: for debugging select first usersession,
+					// usersession re-login has to be implemented after eclipse
+					// restart.
+					Workspace currentWorkspace = WorkspaceManager.getInstance()
+							.getCurrentWorkspace();
+					projectSpace.setUsersession(currentWorkspace
+							.getUsersessions().get(0));
+
 					projectSpace.commit();
 				} catch (EmfStoreException e) {
 					ExceptionDialogHandler.showExceptionDialog(e);
-				}
-				catch (RuntimeException e) {
+				} catch (RuntimeException e) {
 					ExceptionDialogHandler.showExceptionDialog(e);
 					throw e;
 				}
@@ -56,8 +63,8 @@ public class CommitProjectHandler extends ProjectActionHandler {
 		});
 
 		MessageDialog.openInformation(window.getShell(), null,
-		"Commit completed.");
-		
+				"Commit completed.");
+
 		return null;
 	}
 

@@ -115,7 +115,7 @@ public class EmfStoreController implements IApplication {
 		ResourceStorage storage = initStorage(properties);
 		URI resourceUri = storage.init(properties);
 		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.createResource(resourceUri);
+		Resource resource = resourceSet.getResource(resourceUri,true);
 		try {
 			resource.load(Collections.EMPTY_MAP);
 		} catch (IOException e) {
