@@ -305,13 +305,22 @@ public interface TaskPackage extends EPackage {
 	int ACTION_ITEM__SUCCESSORS = WORK_ITEM__SUCCESSORS;
 
 	/**
+	 * The feature id for the '<em><b>Checked</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_ITEM__CHECKED = WORK_ITEM_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Assigned To</b></em>' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM__ASSIGNED_TO = WORK_ITEM_FEATURE_COUNT + 0;
+	int ACTION_ITEM__ASSIGNED_TO = WORK_ITEM_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Due Date</b></em>' attribute. <!--
@@ -320,7 +329,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM__DUE_DATE = WORK_ITEM_FEATURE_COUNT + 1;
+	int ACTION_ITEM__DUE_DATE = WORK_ITEM_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Done</b></em>' attribute. <!--
@@ -329,7 +338,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM__DONE = WORK_ITEM_FEATURE_COUNT + 2;
+	int ACTION_ITEM__DONE = WORK_ITEM_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Estimate</b></em>' attribute. <!--
@@ -338,7 +347,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM__ESTIMATE = WORK_ITEM_FEATURE_COUNT + 3;
+	int ACTION_ITEM__ESTIMATE = WORK_ITEM_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Activity</b></em>' attribute.
@@ -347,7 +356,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM__ACTIVITY = WORK_ITEM_FEATURE_COUNT + 4;
+	int ACTION_ITEM__ACTIVITY = WORK_ITEM_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Action Item</em>' class.
@@ -355,7 +364,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM_FEATURE_COUNT = WORK_ITEM_FEATURE_COUNT + 5;
+	int ACTION_ITEM_FEATURE_COUNT = WORK_ITEM_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.task.impl.WorkPackageImpl <em>Work Package</em>}' class.
@@ -787,6 +796,34 @@ public interface TaskPackage extends EPackage {
 	int MILESTONE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.unicase.model.task.Checkable <em>Checkable</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.task.Checkable
+	 * @see org.unicase.model.task.impl.TaskPackageImpl#getCheckable()
+	 * @generated
+	 */
+	int CHECKABLE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Checked</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKABLE__CHECKED = 0;
+
+	/**
+	 * The number of structural features of the '<em>Checkable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKABLE_FEATURE_COUNT = 1;
+
+	/**
 	 * The meta object id for the '{@link org.unicase.model.task.ActivityType <em>Activity Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -794,7 +831,7 @@ public interface TaskPackage extends EPackage {
 	 * @see org.unicase.model.task.impl.TaskPackageImpl#getActivityType()
 	 * @generated
 	 */
-	int ACTIVITY_TYPE = 5;
+	int ACTIVITY_TYPE = 6;
 
 	/**
 	 * Returns the meta object for class '
@@ -1090,6 +1127,27 @@ public interface TaskPackage extends EPackage {
 	EClass getMilestone();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.model.task.Checkable <em>Checkable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Checkable</em>'.
+	 * @see org.unicase.model.task.Checkable
+	 * @generated
+	 */
+	EClass getCheckable();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.task.Checkable#isChecked <em>Checked</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Checked</em>'.
+	 * @see org.unicase.model.task.Checkable#isChecked()
+	 * @see #getCheckable()
+	 * @generated
+	 */
+	EAttribute getCheckable_Checked();
+
+	/**
 	 * Returns the meta object for enum '{@link org.unicase.model.task.ActivityType <em>Activity Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1349,6 +1407,24 @@ public interface TaskPackage extends EPackage {
 		 * @generated
 		 */
 		EClass MILESTONE = eINSTANCE.getMilestone();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.task.Checkable <em>Checkable</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.task.Checkable
+		 * @see org.unicase.model.task.impl.TaskPackageImpl#getCheckable()
+		 * @generated
+		 */
+		EClass CHECKABLE = eINSTANCE.getCheckable();
+
+		/**
+		 * The meta object literal for the '<em><b>Checked</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CHECKABLE__CHECKED = eINSTANCE.getCheckable_Checked();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.task.ActivityType <em>Activity Type</em>}' enum.

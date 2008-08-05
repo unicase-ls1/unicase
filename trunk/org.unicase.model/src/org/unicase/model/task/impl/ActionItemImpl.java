@@ -22,6 +22,7 @@ import org.unicase.model.impl.AnnotationImpl;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.ActivityType;
+import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
@@ -36,6 +37,7 @@ import org.unicase.model.task.WorkPackage;
  *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getAssociatedChangePackages <em>Associated Change Packages</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getPredecessors <em>Predecessors</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getSuccessors <em>Successors</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#isChecked <em>Checked</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getAssignedTo <em>Assigned To</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getDueDate <em>Due Date</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#isDone <em>Done</em>}</li>
@@ -76,6 +78,16 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	 * @ordered
 	 */
 	protected WorkItem successors;
+
+	/**
+	 * The default value of the '{@link #isChecked() <em>Checked</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isChecked()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean CHECKED_EDEFAULT = false;
 
 	/**
 	 * The cached value of the '{@link #getAssignedTo() <em>Assigned To</em>}' reference list.
@@ -390,6 +402,28 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isChecked() {
+		// TODO: implement this method to return the 'Checked' attribute
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setChecked(boolean newChecked) {
+		// TODO: implement this method to set the 'Checked' attribute
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -568,6 +602,8 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 			if (resolve)
 				return getSuccessors();
 			return basicGetSuccessors();
+		case TaskPackage.ACTION_ITEM__CHECKED:
+			return isChecked() ? Boolean.TRUE : Boolean.FALSE;
 		case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
 			return getAssignedTo();
 		case TaskPackage.ACTION_ITEM__DUE_DATE:
@@ -603,6 +639,9 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 			return;
 		case TaskPackage.ACTION_ITEM__SUCCESSORS:
 			setSuccessors((WorkItem) newValue);
+			return;
+		case TaskPackage.ACTION_ITEM__CHECKED:
+			setChecked(((Boolean) newValue).booleanValue());
 			return;
 		case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
 			getAssignedTo().clear();
@@ -643,6 +682,9 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 		case TaskPackage.ACTION_ITEM__SUCCESSORS:
 			setSuccessors((WorkItem) null);
 			return;
+		case TaskPackage.ACTION_ITEM__CHECKED:
+			setChecked(CHECKED_EDEFAULT);
+			return;
 		case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
 			getAssignedTo().clear();
 			return;
@@ -678,6 +720,8 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 			return predecessors != null;
 		case TaskPackage.ACTION_ITEM__SUCCESSORS:
 			return successors != null;
+		case TaskPackage.ACTION_ITEM__CHECKED:
+			return isChecked() != CHECKED_EDEFAULT;
 		case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
 			return assignedTo != null && !assignedTo.isEmpty();
 		case TaskPackage.ACTION_ITEM__DUE_DATE:
@@ -691,6 +735,42 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 			return activity != ACTIVITY_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == Checkable.class) {
+			switch (derivedFeatureID) {
+			case TaskPackage.ACTION_ITEM__CHECKED:
+				return TaskPackage.CHECKABLE__CHECKED;
+			default:
+				return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == Checkable.class) {
+			switch (baseFeatureID) {
+			case TaskPackage.CHECKABLE__CHECKED:
+				return TaskPackage.ACTION_ITEM__CHECKED;
+			default:
+				return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**
