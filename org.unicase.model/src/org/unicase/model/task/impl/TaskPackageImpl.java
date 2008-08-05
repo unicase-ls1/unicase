@@ -36,6 +36,7 @@ import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.impl.RequirementPackageImpl;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.ActivityType;
+import org.unicase.model.task.Checkable;
 import org.unicase.model.task.Meeting;
 import org.unicase.model.task.Milestone;
 import org.unicase.model.task.TaskFactory;
@@ -79,6 +80,13 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * @generated
 	 */
 	private EClass milestoneEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass checkableEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -462,6 +470,24 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getCheckable() {
+		return checkableEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCheckable_Checked() {
+		return (EAttribute) checkableEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getActivityType() {
 		return activityTypeEEnum;
 	}
@@ -525,6 +551,9 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 		milestoneEClass = createEClass(MILESTONE);
 
+		checkableEClass = createEClass(CHECKABLE);
+		createEAttribute(checkableEClass, CHECKABLE__CHECKED);
+
 		// Create enums
 		activityTypeEEnum = createEEnum(ACTIVITY_TYPE);
 	}
@@ -570,6 +599,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 		// Add supertypes to classes
 		actionItemEClass.getESuperTypes().add(this.getWorkItem());
+		actionItemEClass.getESuperTypes().add(this.getCheckable());
 		workPackageEClass.getESuperTypes().add(this.getWorkItem());
 		workItemEClass.getESuperTypes().add(theModelPackage.getAnnotation());
 		meetingEClass.getESuperTypes().add(theModelPackage.getModelElement());
@@ -714,6 +744,13 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 		initEClass(milestoneEClass, Milestone.class, "Milestone", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(checkableEClass, Checkable.class, "Checkable", IS_ABSTRACT,
+				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getCheckable_Checked(), theEcorePackage.getEBoolean(),
+				"checked", null, 0, 1, Checkable.class, IS_TRANSIENT,
+				IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(activityTypeEEnum, ActivityType.class, "ActivityType");

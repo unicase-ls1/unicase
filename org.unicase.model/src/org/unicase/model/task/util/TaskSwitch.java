@@ -14,6 +14,7 @@ import org.unicase.model.Annotation;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.task.ActionItem;
+import org.unicase.model.task.Checkable;
 import org.unicase.model.task.Meeting;
 import org.unicase.model.task.Milestone;
 import org.unicase.model.task.TaskPackage;
@@ -93,6 +94,8 @@ public class TaskSwitch<T> {
 			if (result == null)
 				result = caseWorkItem(actionItem);
 			if (result == null)
+				result = caseCheckable(actionItem);
+			if (result == null)
 				result = caseAnnotation(actionItem);
 			if (result == null)
 				result = caseModelElement(actionItem);
@@ -148,6 +151,13 @@ public class TaskSwitch<T> {
 				result = caseModelElement(milestone);
 			if (result == null)
 				result = caseIdentifiableElement(milestone);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case TaskPackage.CHECKABLE: {
+			Checkable checkable = (Checkable) theEObject;
+			T result = caseCheckable(checkable);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -226,6 +236,21 @@ public class TaskSwitch<T> {
 	 * @generated
 	 */
 	public T caseMilestone(Milestone object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Checkable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Checkable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCheckable(Checkable object) {
 		return null;
 	}
 

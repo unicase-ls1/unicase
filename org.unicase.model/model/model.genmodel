@@ -122,6 +122,9 @@
             ecoreFeature="ecore:EReference model.ecore#//task/Meeting/identifiedActionItems"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//task/Milestone"/>
+      <genClasses image="false" ecoreClass="model.ecore#//task/Checkable">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//task/Checkable/checked"/>
+      </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Diagram" basePackage="org.unicase.model" disposableProviderFactory="true"
         ecorePackage="model.ecore#//diagram">

@@ -90,7 +90,7 @@
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="task" nsURI="http://unicase.org/model/task" nsPrefix="org.unicase.model.task">
-    <eClassifiers xsi:type="ecore:EClass" name="ActionItem" eSuperTypes="#//task/WorkItem">
+    <eClassifiers xsi:type="ecore:EClass" name="ActionItem" eSuperTypes="#//task/WorkItem #//task/Checkable">
       <eStructuralFeatures xsi:type="ecore:EReference" name="assignedTo" upperBound="-1"
           eType="#//organization/User" eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="dueDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
@@ -144,6 +144,10 @@
       <eLiterals name="OBJECT_DESIGN" value="3" literal="Object Design"/>
       <eLiterals name="IMPLEMENTATION" value="4" literal="Implementation"/>
       <eLiterals name="TESTING" value="5" literal="Testing"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Checkable" abstract="true" interface="true">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="checked" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
+          volatile="true" transient="true" derived="true"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="diagram" nsURI="http://unicase.org/model/diagram" nsPrefix="org.unicase.model.diagram">

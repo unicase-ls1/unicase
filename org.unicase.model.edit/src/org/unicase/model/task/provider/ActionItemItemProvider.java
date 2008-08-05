@@ -60,6 +60,7 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 			addAssociatedChangePackagesPropertyDescriptor(object);
 			addPredecessorsPropertyDescriptor(object);
 			addSuccessorsPropertyDescriptor(object);
+			addCheckedPropertyDescriptor(object);
 			addAssignedToPropertyDescriptor(object);
 			addDueDatePropertyDescriptor(object);
 			addDonePropertyDescriptor(object);
@@ -139,6 +140,23 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 								"_UI_WorkItem_type"),
 						TaskPackage.Literals.WORK_ITEM__SUCCESSORS, true,
 						false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Checked feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCheckedPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Checkable_checked_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Checkable_checked_feature", "_UI_Checkable_type"),
+				TaskPackage.Literals.CHECKABLE__CHECKED, true, false, false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -267,6 +285,7 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ActionItem.class)) {
+		case TaskPackage.ACTION_ITEM__CHECKED:
 		case TaskPackage.ACTION_ITEM__DUE_DATE:
 		case TaskPackage.ACTION_ITEM__DONE:
 		case TaskPackage.ACTION_ITEM__ESTIMATE:
