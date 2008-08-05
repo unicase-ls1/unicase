@@ -6,7 +6,6 @@
  */
 package org.unicase.ui.meeditor;
 
-import java.io.IOException;
 import java.util.EventObject;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -23,7 +22,6 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
 import org.unicase.model.ModelElement;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
-import org.unicase.workspace.Configuration;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
@@ -44,7 +42,6 @@ public class MEEditor extends SharedHeaderFormEditor {
 	private CommandStack commandStack;
 	private MEEditorPage form;
 	private boolean checkingDirty;
-	protected boolean dirty;
 
 	/**
 	 * Default constructor.
@@ -177,21 +174,22 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 */
 	@Override
 	public boolean isDirty() {
+		return false;
 		//JH: Syncronize
-		if(checkingDirty){
-			return dirty;
-		}
-		checkingDirty=true;
-		editingDomain.getCommandStack().execute(
-				new RecordingCommand(editingDomain) {
-					@Override
-					protected void doExecute() {
-						//JH: check this
-						dirty = WorkspaceManager.getProjectSpace(modelElement).isDirty();
-					}
-				});
-		checkingDirty=false;
-		return dirty;
+//		if(checkingDirty){
+//			return dirty;
+//		}
+//		checkingDirty=true;
+//		editingDomain.getCommandStack().execute(
+//				new RecordingCommand(editingDomain) {
+//					@Override
+//					protected void doExecute() {
+//						//JH: check this
+//						dirty = WorkspaceManager.getProjectSpace(modelElement).isDirty();
+//					}
+//				});
+//		checkingDirty=false;
+//		return dirty;
 	}
 
 	@Override
