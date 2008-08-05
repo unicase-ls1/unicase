@@ -9,12 +9,11 @@ package org.unicase.ui.navigator;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.edit.ui.dnd.EditingDomainViewerDropAdapter;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.workspace.ui.actions.RedoActionWrapper;
-import org.eclipse.emf.workspace.ui.actions.UndoActionWrapper;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
@@ -22,6 +21,9 @@ import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.dnd.DND;
@@ -43,6 +45,7 @@ import org.unicase.ui.meeditor.MEEditor;
 import org.unicase.ui.meeditor.MEEditorInput;
 import org.unicase.ui.navigator.commands.RedoAction;
 import org.unicase.ui.navigator.commands.UndoAction;
+import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
@@ -87,19 +90,55 @@ public class TreeView extends ViewPart {
 		makeActions();
 		hookDoubleClickAction();
 		addDragNDropSupport();
+		addSelectionListener();
 
 		// add global action handlers
 		getViewSite().getActionBars().setGlobalActionHandler(
 				ActionFactory.UNDO.getId(), undoAction);
 		getViewSite().getActionBars().setGlobalActionHandler(
 				ActionFactory.REDO.getId(), redoAction);
-	
+
+	}
+
+	private void addSelectionListener() {
+		viewer.addSelectionChangedListener(new ISelectionChangedListener() {
+
+			public void selectionChanged(SelectionChangedEvent event) {
+				if (event.getSelection() instanceof IStructuredSelection) {
+					IStructuredSelection selection = (IStructuredSelection) event
+							.getSelection();
+					Object obj = selection.getFirstElement();
+					if (obj instanceof ModelElement) {
+						ModelElement me = (ModelElement) obj;
+						final ProjectSpace projectSpace = WorkspaceManager
+								.getProjectSpace(me);
+						TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+								.getEditingDomain("org.unicase.EditingDomain");
+						domain.getCommandStack().execute(
+								new RecordingCommand(domain) {
+
+									protected void doExecute() {
+										WorkspaceManager.getInstance()
+												.getCurrentWorkspace()
+												.setActiveProjectSpace(
+														projectSpace);
+
+									}
+
+								});
+
+					}
+				}
+			}
+
+		});
+
 	}
 
 	private void makeActions() {
-		undoAction = new UndoAction(); 
+		undoAction = new UndoAction();
 		undoAction.setEnabled(false);
-		redoAction = new RedoAction(); 
+		redoAction = new RedoAction();
 		redoAction.setEnabled(false);
 	}
 
@@ -111,10 +150,10 @@ public class TreeView extends ViewPart {
 				viewer));
 
 		viewer
-		.addDropSupport(dndOperations, transfers, new UCDropAdapter(
-				TransactionalEditingDomain.Registry.INSTANCE
-						.getEditingDomain("org.unicase.EditingDomain"),
-				viewer));
+				.addDropSupport(dndOperations, transfers, new UCDropAdapter(
+						TransactionalEditingDomain.Registry.INSTANCE
+								.getEditingDomain("org.unicase.EditingDomain"),
+						viewer));
 
 	}
 
