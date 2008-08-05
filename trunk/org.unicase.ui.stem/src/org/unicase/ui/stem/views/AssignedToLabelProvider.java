@@ -39,7 +39,7 @@ public class AssignedToLabelProvider extends ColumnLabelProvider {
 	public String getText(Object element) {
 		EObject assignedTo = getAssignedTo(element);
 		if (assignedTo==null){
-			return null;
+			return "N/A";
 		}
 		return adapterFactoryLabelProvider.getText(assignedTo);
 	}

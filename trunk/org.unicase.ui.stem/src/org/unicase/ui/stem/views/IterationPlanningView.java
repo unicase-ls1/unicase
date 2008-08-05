@@ -8,9 +8,11 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.action.Action;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
+import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.TreeViewerColumn;
 import org.eclipse.swt.SWT;
@@ -19,11 +21,16 @@ import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.IDecoratorManager;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.internal.decorators.DecoratorManager;
 import org.eclipse.ui.part.DrillDownAdapter;
 import org.eclipse.ui.part.ViewPart;
+import org.unicase.model.ModelElement;
+import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.dnd.UCDropAdapter;
+import org.unicase.ui.meeditor.MEEditor;
+import org.unicase.ui.meeditor.MEEditorInput;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
@@ -67,7 +74,7 @@ public class IterationPlanningView extends ViewPart {
 	 * it.
 	 */
 	public void createPartControl(Composite parent) {
-		viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
+		viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL |SWT.FULL_SELECTION);
 		drillDownAdapter = new DrillDownAdapter(viewer);
 		viewer.setContentProvider(new WorkpackageContentProvider());
 		IDecoratorManager decoratorManager = new DecoratorManager();
@@ -99,8 +106,10 @@ public class IterationPlanningView extends ViewPart {
 		viewer.setInput(workspace.getProjectSpaces().get(0).getProject());
 		Tree tree = viewer.getTree();
 		tree.setHeaderVisible(true);
+		
 		TreeViewerColumn column = new TreeViewerColumn(viewer, SWT.NONE);
-		// column.getColumn().setText("Column0");
+		column.getColumn().setText("Column0");
+		column.getColumn().setWidth(200);
 		column.setLabelProvider(new EMFColumnLabelProvider());
 
 		TreeViewerColumn column1 = new TreeViewerColumn(viewer, SWT.NONE);
@@ -108,6 +117,7 @@ public class IterationPlanningView extends ViewPart {
 		column1.getColumn().setWidth(200);
 		column1.setLabelProvider(new TaskObjectLabelProvider());
 		column1.setEditingSupport(new TaskObjectEditingSupport(viewer));
+		
 		TreeViewerColumn column2 = new TreeViewerColumn(viewer, SWT.NONE);
 		column2.getColumn().setText("Assigned to");
 		column2.getColumn().setWidth(200);
@@ -126,9 +136,38 @@ public class IterationPlanningView extends ViewPart {
 	private void hookDoubleClickAction() {
 		viewer.addDoubleClickListener(new IDoubleClickListener() {
 			public void doubleClick(DoubleClickEvent event) {
-				// JH open element
+				TreeSelection selection = (TreeSelection) viewer.getSelection();
+				Object object = selection.getFirstElement();
+				openME(object);
 			}
+
 		});
+	}
+	
+	
+	private void openME(Object object) {
+		if (object == null) {
+			return;
+		}
+		if (object instanceof ModelElement) {
+			ModelElement modelElement = (ModelElement) object;
+			if (object instanceof MEDiagram) {
+//				openDiagram((MEDiagram) modelElement);
+			} else {
+				MEEditorInput input = new MEEditorInput(modelElement);
+				try {
+					PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+							.getActivePage().openEditor(input, MEEditor.ID,
+									true);
+				} catch (PartInitException e) {
+					ErrorDialog.openError(PlatformUI.getWorkbench()
+							.getActiveWorkbenchWindow().getShell(), "Error", e
+							.getMessage(), e.getStatus());
+				}
+			}
+		}
+
+		
 	}
 
 	/**
