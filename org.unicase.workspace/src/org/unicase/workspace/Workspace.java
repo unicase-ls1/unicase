@@ -29,6 +29,7 @@ import org.unicase.workspace.connectionmanager.ConnectionManager;
  *   <li>{@link org.unicase.workspace.Workspace#getProjectSpaces <em>Project Spaces</em>}</li>
  *   <li>{@link org.unicase.workspace.Workspace#getServerInfos <em>Server Infos</em>}</li>
  *   <li>{@link org.unicase.workspace.Workspace#getUsersessions <em>Usersessions</em>}</li>
+ *   <li>{@link org.unicase.workspace.Workspace#getActiveProjectSpace <em>Active Project Space</em>}</li>
  * </ul>
  * </p>
  *
@@ -84,6 +85,32 @@ public interface Workspace extends EObject, IAdaptable {
 	 * @generated
 	 */
 	EList<Usersession> getUsersessions();
+
+	/**
+	 * Returns the value of the '<em><b>Active Project Space</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Active Project Space</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Active Project Space</em>' reference.
+	 * @see #setActiveProjectSpace(ProjectSpace)
+	 * @see org.unicase.workspace.WorkspacePackage#getWorkspace_ActiveProjectSpace()
+	 * @model keys="identifier" transient="true"
+	 * @generated
+	 */
+	ProjectSpace getActiveProjectSpace();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.workspace.Workspace#getActiveProjectSpace <em>Active Project Space</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Active Project Space</em>' reference.
+	 * @see #getActiveProjectSpace()
+	 * @generated
+	 */
+	void setActiveProjectSpace(ProjectSpace value);
 
 	/**
 	 * Checkout a project to the workspace.

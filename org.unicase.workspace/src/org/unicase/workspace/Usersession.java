@@ -261,7 +261,7 @@ public interface Usersession extends EObject {
 	 */
 	ProjectInfo createProject(String name, String description)
 			throws AccessControlException, EmfStoreException;
-	
+
 	/**
 	 * Returns a {@link AdminBroker} related to the user session.
 	 * 
@@ -269,6 +269,6 @@ public interface Usersession extends EObject {
 	 * @generated NOT
 	 */
 	AdminBroker getAdminBroker() throws ConnectionException;
-	
+
 	// end of custom code
 } // Usersession

@@ -91,13 +91,22 @@ public interface WorkspacePackage extends EPackage {
 	int WORKSPACE__USERSESSIONS = 2;
 
 	/**
+	 * The feature id for the '<em><b>Active Project Space</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKSPACE__ACTIVE_PROJECT_SPACE = 3;
+
+	/**
 	 * The number of structural features of the '<em>Workspace</em>' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int WORKSPACE_FEATURE_COUNT = 3;
+	int WORKSPACE_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.workspace.impl.ServerInfoImpl <em>Server Info</em>}' class.
@@ -374,6 +383,17 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getWorkspace_Usersessions();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.workspace.Workspace#getActiveProjectSpace <em>Active Project Space</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Active Project Space</em>'.
+	 * @see org.unicase.workspace.Workspace#getActiveProjectSpace()
+	 * @see #getWorkspace()
+	 * @generated
+	 */
+	EReference getWorkspace_ActiveProjectSpace();
 
 	/**
 	 * Returns the meta object for class '
@@ -680,6 +700,15 @@ public interface WorkspacePackage extends EPackage {
 		 */
 		EReference WORKSPACE__USERSESSIONS = eINSTANCE
 				.getWorkspace_Usersessions();
+
+		/**
+		 * The meta object literal for the '<em><b>Active Project Space</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference WORKSPACE__ACTIVE_PROJECT_SPACE = eINSTANCE
+				.getWorkspace_ActiveProjectSpace();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.workspace.impl.ServerInfoImpl <em>Server Info</em>}' class.

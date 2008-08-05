@@ -9,14 +9,10 @@ import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
-import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.connection.rmi.RMIAdminConnectionHandler;
 import org.unicase.emfstore.connection.rmi.RMIAdminEmfStoreFacade;
-import org.unicase.emfstore.connection.rmi.RMIConnectionHandler;
-import org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade;
 import org.unicase.emfstore.connection.rmi.RMIUtil;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;

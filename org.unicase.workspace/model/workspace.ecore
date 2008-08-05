@@ -16,6 +16,8 @@
         eType="#//ServerInfo" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="usersessions" upperBound="-1"
         eType="#//Usersession" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activeProjectSpace" eType="#//ProjectSpace"
+        transient="true" eKeys="../../org.unicase.model/model/model.ecore#//IdentifiableElement/identifier"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ServerInfo">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Date;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -18,6 +19,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -47,15 +49,13 @@ import org.unicase.workspace.connectionmanager.ConnectionManager;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getProjectSpaces <em>
- * Project Spaces</em>}</li>
- * <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getServerInfos <em>Server
- * Infos</em>}</li>
- * <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getUsersessions <em>
- * Usersessions</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getProjectSpaces <em>Project Spaces</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getServerInfos <em>Server Infos</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getUsersessions <em>Usersessions</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getActiveProjectSpace <em>Active Project Space</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class WorkspaceImpl extends EObjectImpl implements Workspace {
@@ -66,10 +66,9 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	private ResourceSet workspaceResourceSet;
 
 	/**
-	 * The cached value of the '{@link #getProjectSpaces()
-	 * <em>Project Spaces</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getProjectSpaces() <em>Project Spaces</em>}' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getProjectSpaces()
 	 * @generated
 	 * @ordered
@@ -77,9 +76,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	protected EList<ProjectSpace> projectSpaces;
 
 	/**
-	 * The cached value of the '{@link #getServerInfos() <em>Server Infos</em>}'
-	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getServerInfos() <em>Server Infos</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getServerInfos()
 	 * @generated
 	 * @ordered
@@ -97,6 +95,16 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 */
 	protected EList<Usersession> usersessions;
 
+	/**
+	 * The cached value of the '{@link #getActiveProjectSpace() <em>Active Project Space</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getActiveProjectSpace()
+	 * @generated
+	 * @ordered
+	 */
+	protected ProjectSpace activeProjectSpace;
+
 	// begin of custom code
 	/**
 	 * The current connection manager used to connect to the server(s).
@@ -110,7 +118,6 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected WorkspaceImpl() {
@@ -119,7 +126,6 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -129,7 +135,6 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ProjectSpace> getProjectSpaces() {
@@ -143,7 +148,6 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ServerInfo> getServerInfos() {
@@ -157,7 +161,6 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Usersession> getUsersessions() {
@@ -167,6 +170,48 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 					WorkspacePackage.WORKSPACE__USERSESSIONS);
 		}
 		return usersessions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ProjectSpace getActiveProjectSpace() {
+		if (activeProjectSpace != null && activeProjectSpace.eIsProxy()) {
+			InternalEObject oldActiveProjectSpace = (InternalEObject) activeProjectSpace;
+			activeProjectSpace = (ProjectSpace) eResolveProxy(oldActiveProjectSpace);
+			if (activeProjectSpace != oldActiveProjectSpace) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE,
+							oldActiveProjectSpace, activeProjectSpace));
+			}
+		}
+		return activeProjectSpace;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ProjectSpace basicGetActiveProjectSpace() {
+		return activeProjectSpace;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setActiveProjectSpace(ProjectSpace newActiveProjectSpace) {
+		ProjectSpace oldActiveProjectSpace = activeProjectSpace;
+		activeProjectSpace = newActiveProjectSpace;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE,
+					oldActiveProjectSpace, activeProjectSpace));
 	}
 
 	/**
@@ -258,7 +303,6 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -277,7 +321,6 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -289,13 +332,16 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 			return getServerInfos();
 		case WorkspacePackage.WORKSPACE__USERSESSIONS:
 			return getUsersessions();
+		case WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE:
+			if (resolve)
+				return getActiveProjectSpace();
+			return basicGetActiveProjectSpace();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -317,13 +363,15 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 			getUsersessions().addAll(
 					(Collection<? extends Usersession>) newValue);
 			return;
+		case WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE:
+			setActiveProjectSpace((ProjectSpace) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -338,13 +386,15 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		case WorkspacePackage.WORKSPACE__USERSESSIONS:
 			getUsersessions().clear();
 			return;
+		case WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE:
+			setActiveProjectSpace((ProjectSpace) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -356,6 +406,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 			return serverInfos != null && !serverInfos.isEmpty();
 		case WorkspacePackage.WORKSPACE__USERSESSIONS:
 			return usersessions != null && !usersessions.isEmpty();
+		case WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE:
+			return activeProjectSpace != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -447,7 +499,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		Resource resource = resourceSet.createResource(URI
 				.createFileURI(absoluteFileName));
 		Project project = projectSpace.getProject();
-		
+
 		//preserve old containment
 		EReference containmentFeature = project.eContainmentFeature();
 		EObject oldContainer = project.eContainer();

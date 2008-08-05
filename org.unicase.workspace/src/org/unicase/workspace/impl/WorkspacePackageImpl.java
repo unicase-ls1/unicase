@@ -161,6 +161,15 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getWorkspace_ActiveProjectSpace() {
+		return (EReference) workspaceEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -375,6 +384,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 		createEReference(workspaceEClass, WORKSPACE__PROJECT_SPACES);
 		createEReference(workspaceEClass, WORKSPACE__SERVER_INFOS);
 		createEReference(workspaceEClass, WORKSPACE__USERSESSIONS);
+		createEReference(workspaceEClass, WORKSPACE__ACTIVE_PROJECT_SPACE);
 
 		serverInfoEClass = createEClass(SERVER_INFO);
 		createEAttribute(serverInfoEClass, SERVER_INFO__NAME);
@@ -463,6 +473,13 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		initEReference(getWorkspace_ActiveProjectSpace(), this
+				.getProjectSpace(), null, "activeProjectSpace", null, 0, 1,
+				Workspace.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		getWorkspace_ActiveProjectSpace().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 
 		EOperation op = addEOperation(workspaceEClass, this.getProjectSpace(),
 				"checkout", 0, 1, IS_UNIQUE, IS_ORDERED);
