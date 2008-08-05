@@ -1,8 +1,12 @@
 package org.unicase.ui.stem.views;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -12,13 +16,8 @@ import org.eclipse.jface.viewers.TreeViewerColumn;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.Transfer;
-import org.eclipse.swt.events.TreeEvent;
-import org.eclipse.swt.events.TreeListener;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Tree;
-import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.internal.decorators.DecoratorManager;
@@ -26,6 +25,7 @@ import org.eclipse.ui.part.DrillDownAdapter;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.WorkspacePackage;
 
 /**
  * This sample class demonstrates how to plug-in a new workbench view. The view
@@ -72,8 +72,29 @@ public class IterationPlanningView extends ViewPart {
 		IDecoratorManager decoratorManager = new DecoratorManager();
 		viewer.setLabelProvider(new DecoratingLabelProvider(
 				new LabelProvider(), decoratorManager.getLabelDecorator()));
-		Workspace workspace = WorkspaceManager.getInstance()
+		final Workspace workspace = WorkspaceManager.getInstance()
 				.getCurrentWorkspace();
+
+		workspace.eAdapters().add(new AdapterImpl() {
+
+			@Override
+			public void notifyChanged(Notification msg) {
+				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
+					System.out.println();
+				}
+				super.notifyChanged(msg);
+			}
+
+		});
+		TransactionalEditingDomain domain = TransactionUtil
+				.getEditingDomain(workspace);
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			protected void doExecute() {
+				workspace.setActiveProjectSpace(workspace.getProjectSpaces()
+						.get(0));
+			}
+		});
+
 		viewer.setInput(workspace.getProjectSpaces().get(0).getProject());
 		Tree tree = viewer.getTree();
 		tree.setHeaderVisible(true);
@@ -91,7 +112,7 @@ public class IterationPlanningView extends ViewPart {
 		column2.getColumn().setWidth(200);
 		column2.setLabelProvider(new AssignedToLabelProvider());
 		column2.setEditingSupport(new AssignedToEditingSupport(viewer));
-		
+
 		// Create the help context id for the viewer's control
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(viewer.getControl(),
 				"org.unicase.ui.treeview.viewer");
