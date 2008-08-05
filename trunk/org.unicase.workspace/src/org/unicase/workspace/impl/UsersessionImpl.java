@@ -627,13 +627,13 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 		}
 		return getSessionIdGen();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * @generated NOT
 	 */
 	public AdminBroker getAdminBroker() throws ConnectionException {
-		return new AdminBrokerImpl(getServerInfo(),getSessionId());
+		return new AdminBrokerImpl(getServerInfo(), getSessionId());
 	}
 
 } // UsersessionImpl

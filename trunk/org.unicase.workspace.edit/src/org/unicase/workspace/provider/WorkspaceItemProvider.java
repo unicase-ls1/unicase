@@ -57,6 +57,7 @@ public class WorkspaceItemProvider extends ItemProviderAdapter implements
 			super.getPropertyDescriptors(object);
 
 			addProjectSpacesPropertyDescriptor(object);
+			addActiveProjectSpacePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -77,6 +78,24 @@ public class WorkspaceItemProvider extends ItemProviderAdapter implements
 						"_UI_Workspace_type"),
 				WorkspacePackage.Literals.WORKSPACE__PROJECT_SPACES, true,
 				false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Active Project Space feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addActiveProjectSpacePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Workspace_activeProjectSpace_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Workspace_activeProjectSpace_feature",
+						"_UI_Workspace_type"),
+				WorkspacePackage.Literals.WORKSPACE__ACTIVE_PROJECT_SPACE,
+				true, false, true, null, null, null));
 	}
 
 	/**

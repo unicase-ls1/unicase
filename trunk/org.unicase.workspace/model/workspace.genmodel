@@ -13,6 +13,7 @@
           ecoreFeature="ecore:EReference workspace.ecore#//Workspace/projectSpaces"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workspace.ecore#//Workspace/serverInfos"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workspace.ecore#//Workspace/usersessions"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workspace.ecore#//Workspace/activeProjectSpace"/>
       <genOperations ecoreOperation="workspace.ecore#//Workspace/checkout">
         <genParameters ecoreParameter="workspace.ecore#//Workspace/checkout/usersession"/>
         <genParameters ecoreParameter="workspace.ecore#//Workspace/checkout/projectInfo"/>
