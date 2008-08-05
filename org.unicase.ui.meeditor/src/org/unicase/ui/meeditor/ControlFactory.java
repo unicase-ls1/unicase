@@ -9,6 +9,7 @@ package org.unicase.ui.meeditor;
 import java.util.Date;
 
 import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -18,6 +19,7 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.unicase.ui.meeditor.mecontrols.MEBoolControl;
 import org.unicase.ui.meeditor.mecontrols.MEControl;
 import org.unicase.ui.meeditor.mecontrols.MEDateControl;
+import org.unicase.ui.meeditor.mecontrols.MEEnumControl;
 import org.unicase.ui.meeditor.mecontrols.MEIntControl;
 import org.unicase.ui.meeditor.mecontrols.METextAreaControl;
 import org.unicase.ui.meeditor.mecontrols.METextControl;
@@ -46,8 +48,7 @@ public class ControlFactory {
 	 * @param toolkit
 	 *            the gui toolkit
 	 */
-	public ControlFactory(EditingDomain editingDomain, EObject modelElement,
-			FormToolkit toolkit) {
+	public ControlFactory(EditingDomain editingDomain, EObject modelElement, FormToolkit toolkit) {
 		this.editingDomain = editingDomain;
 		this.modelElement = modelElement;
 		this.toolkit = toolkit;
@@ -61,16 +62,14 @@ public class ControlFactory {
 	 *            the descriptor
 	 * @return the {@link MEControl}
 	 */
-	public MEControl createControl(
-			IItemPropertyDescriptor itemPropertyDescriptor) {
+	public MEControl createControl(IItemPropertyDescriptor itemPropertyDescriptor) {
 
-		EStructuralFeature feature = (EStructuralFeature) itemPropertyDescriptor
-				.getFeature(modelElement);
+		EStructuralFeature feature = (EStructuralFeature) itemPropertyDescriptor.getFeature(modelElement);
 		if (feature instanceof EAttribute) {
 
 			if (itemPropertyDescriptor.isMultiLine(modelElement)) {
-				//AS: deactivated until the RichText is implemented.
-				//return createMETextAreaControl((EAttribute) feature);
+				// AS: deactivated until the RichText is implemented.
+				// return createMETextAreaControl((EAttribute) feature);
 			}
 			if (feature.getEType().getInstanceClass().equals(boolean.class)) {
 				return createMEBoolControl((EAttribute) feature);
@@ -81,13 +80,15 @@ public class ControlFactory {
 			if (feature.getEType().getInstanceClass().equals(Date.class)) {
 				return createMEDateControl((EAttribute) feature);
 			}
+			if (feature.getEType() instanceof EEnum) {
+				return createMEEnumControl((EAttribute) feature);
+			}
 			return createMETextControl((EAttribute) feature);
 		}
 		if (feature instanceof EReference && feature.getUpperBound() != 1) {
 			EReference reference = (EReference) feature;
 			if (reference.isMany()) {
-				return createMELinkControl((EReference) feature,
-						itemPropertyDescriptor);
+				return createMELinkControl((EReference) feature, itemPropertyDescriptor);
 			}
 		}
 
@@ -102,13 +103,11 @@ public class ControlFactory {
 	}
 
 	private MEControl createMESingleLinkControl(EReference reference) {
-		return new MESingleLinkControl(editingDomain, modelElement, toolkit,
-				reference);
+		return new MESingleLinkControl(editingDomain, modelElement, toolkit, reference);
 	}
 
 	private MEControl createMEDateControl(EAttribute attribute) {
-		return new MEDateControl(attribute, toolkit, modelElement,
-				editingDomain);
+		return new MEDateControl(attribute, toolkit, modelElement, editingDomain);
 	}
 
 	private MEControl createMEIntControl(EAttribute attribute) {
@@ -116,26 +115,25 @@ public class ControlFactory {
 	}
 
 	private MEControl createMEBoolControl(EAttribute attribute) {
-		return new MEBoolControl(attribute, toolkit, modelElement,
-				editingDomain);
+		return new MEBoolControl(attribute, toolkit, modelElement, editingDomain);
 
 	}
 
 	@SuppressWarnings("unused")
 	private MEControl createMETextAreaControl(EAttribute attribute) {
-		return new METextAreaControl(attribute, toolkit, modelElement,
-				editingDomain);
+		return new METextAreaControl(attribute, toolkit, modelElement, editingDomain);
 	}
 
 	private MEControl createMETextControl(EAttribute attribute) {
-		return new METextControl(attribute, toolkit, modelElement,
-				editingDomain);
+		return new METextControl(attribute, toolkit, modelElement, editingDomain);
 	}
 
-	private MEControl createMELinkControl(EReference reference,
-			IItemPropertyDescriptor itemPropertyDescriptor) {
-		return new MEMultiLinkControl(modelElement, reference, toolkit,
-				editingDomain, itemPropertyDescriptor);
+	private MEControl createMELinkControl(EReference reference, IItemPropertyDescriptor itemPropertyDescriptor) {
+		return new MEMultiLinkControl(modelElement, reference, toolkit, editingDomain, itemPropertyDescriptor);
+	}
+
+	private MEControl createMEEnumControl(EAttribute attribute) {
+		return new MEEnumControl(attribute, toolkit, modelElement, editingDomain);
 	}
 
 }
