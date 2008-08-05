@@ -133,6 +133,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 							for (EObject ref : list) {
 								allElements.remove(ref);
 							}
+							dlg.setMultipleSelection(true);
 							dlg.setElements(allElements.toArray());
 							dlg.setTitle("Select Elements");
 							dlg.setBlockOnOpen(true);
