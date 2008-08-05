@@ -48,7 +48,7 @@ public class TaskObjectLabelProvider extends ColumnLabelProvider {
 			//JH Take only the first?
 			
 		}
-		return null;
+		return "N/A";
 	}
 	
 

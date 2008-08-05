@@ -24,6 +24,8 @@ import org.eclipse.swt.dnd.DropTargetEvent;
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.document.Section;
+import org.unicase.model.organization.User;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.TaskPackage;
@@ -47,19 +49,8 @@ public class UCDropAdapter extends EditingDomainViewerDropAdapter {
 		final ModelElement target = (ModelElement) event.item.getData();
 		final Collection<ModelElement> dragSource = (Collection<ModelElement>) getDragSource(event);
 		EObject dropee = (EObject) dragSource.toArray()[0];
-		EClass annotation = ModelPackage.eINSTANCE.getAnnotation();
-		if (annotation.isSuperTypeOf(dropee.eClass())) {
-			Annotation[] arr = dragSource.toArray(new Annotation[dragSource
-					.size()]);
-			final List<Annotation> newAnnotations = Arrays.asList(arr);
-			domain.getCommandStack().execute(
-					new RecordingCommand((TransactionalEditingDomain) domain) {
-						protected void doExecute() {
-							((ModelElement) event.item.getData())
-									.getAnnotations().addAll(newAnnotations);
-						}
-					});
-		} else if (target instanceof WorkPackage) {
+		
+		if(target instanceof WorkPackage && !(dropee instanceof Annotation)) {
 			// create an ActionItem for each droppe
 			// add the AI to target
 			domain.getCommandStack().execute(
@@ -77,7 +68,7 @@ public class UCDropAdapter extends EditingDomainViewerDropAdapter {
 						}
 					});
 
-		} else if (target.eContainer() instanceof WorkPackage) {
+		} else if (target.eContainer() instanceof WorkPackage && !(dropee instanceof Annotation)) {
 			// create an ActionItem for each droppe
 			// add the AI to target.eContainer
 			domain.getCommandStack().execute(
@@ -95,7 +86,18 @@ public class UCDropAdapter extends EditingDomainViewerDropAdapter {
 						}
 					});
 
-		} else {
+		}else if ((dropee instanceof Annotation) && !(target instanceof Section || target instanceof WorkPackage || target.eContainer() instanceof WorkPackage)) {
+			Annotation[] arr = dragSource.toArray(new Annotation[dragSource
+					.size()]);
+			final List<Annotation> newAnnotations = Arrays.asList(arr);
+			domain.getCommandStack().execute(
+					new RecordingCommand((TransactionalEditingDomain) domain) {
+						protected void doExecute() {
+							((ModelElement) event.item.getData())
+									.getAnnotations().addAll(newAnnotations);
+						}
+					});
+		}   else {
 			super.drop(event);
 		}
 		// viewer.refresh();
@@ -113,6 +115,12 @@ public class UCDropAdapter extends EditingDomainViewerDropAdapter {
 	protected void helper(DropTargetEvent event) {
 
 		super.helper(event);
+		if (event.item == null || event.item.getClass() == null) {
+			return;
+		}
+		if(!(event.item.getData() instanceof ModelElement)){
+			return;
+		}
 		ModelElement target = (ModelElement) event.item.getData();
 		if (getDragSource(event).contains(target)) {
 			event.detail = DND.DROP_NONE;
@@ -122,6 +130,9 @@ public class UCDropAdapter extends EditingDomainViewerDropAdapter {
 		EClass annotation = ModelPackage.eINSTANCE.getAnnotation();
 		if (annotation.isSuperTypeOf(eObject.eClass())) {
 			event.detail = event.detail | DND.DROP_COPY;
+		}
+		if(eObject instanceof User){
+			
 		}
 
 		if (target instanceof WorkPackage
