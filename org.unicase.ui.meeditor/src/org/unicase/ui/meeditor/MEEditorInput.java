@@ -48,7 +48,6 @@ public class MEEditorInput implements IEditorInput {
 						new ComposedAdapterFactory(
 								ComposedAdapterFactory.Descriptor.Registry.INSTANCE))
 						.getImage(modelElement));
-
 		return descriptor;
 	}
 
@@ -109,11 +108,10 @@ public class MEEditorInput implements IEditorInput {
 	public boolean equals(Object obj) {
 		if (obj instanceof MEEditorInput) {
 			MEEditorInput other = (MEEditorInput) obj;
-			boolean ret = (modelElement==other);
+			boolean ret = modelElement.equals(other.modelElement);
 			return ret;
-		} else {
-			return super.equals(obj);
 		}
+		return false;
 	}
 
 }
