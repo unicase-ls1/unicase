@@ -6,6 +6,7 @@
  */
 package org.unicase.emfstore;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -232,6 +233,11 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		//acGroup.setId(AccesscontrolFactory.eINSTANCE.createACOrgUnitId());
 		acGroup.setName(name);
 		getServerSpace().getGroups().add(acGroup);
+		try {
+			getServerSpace().save();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -242,6 +248,11 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		//acUser.setId(AccesscontrolFactory.eINSTANCE.createACOrgUnitId());
 		acUser.setName(name);
 		getServerSpace().getUsers().add(acUser);
+		try {
+			getServerSpace().save();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**

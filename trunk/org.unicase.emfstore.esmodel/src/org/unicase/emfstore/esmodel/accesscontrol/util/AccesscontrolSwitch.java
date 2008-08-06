@@ -10,6 +10,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.emfstore.esmodel.accesscontrol.*;
+import org.unicase.model.IdentifiableElement;
 import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
@@ -90,12 +92,16 @@ public class AccesscontrolSwitch<T> {
 			if (result == null)
 				result = caseACOrgUnit(acUser);
 			if (result == null)
+				result = caseIdentifiableElement(acUser);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
 		case AccesscontrolPackage.AC_ORG_UNIT: {
 			ACOrgUnit acOrgUnit = (ACOrgUnit) theEObject;
 			T result = caseACOrgUnit(acOrgUnit);
+			if (result == null)
+				result = caseIdentifiableElement(acOrgUnit);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -105,6 +111,8 @@ public class AccesscontrolSwitch<T> {
 			T result = caseACGroup(acGroup);
 			if (result == null)
 				result = caseACOrgUnit(acGroup);
+			if (result == null)
+				result = caseIdentifiableElement(acGroup);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -176,6 +184,21 @@ public class AccesscontrolSwitch<T> {
 	 * @generated
 	 */
 	public T caseACOrgUnitId(ACOrgUnitId object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIdentifiableElement(IdentifiableElement object) {
 		return null;
 	}
 

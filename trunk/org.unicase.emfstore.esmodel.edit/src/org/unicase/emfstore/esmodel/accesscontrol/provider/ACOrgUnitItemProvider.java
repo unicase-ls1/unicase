@@ -25,6 +25,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
 import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
+import org.unicase.model.provider.IdentifiableElementItemProvider;
 
 /**
  * This is the item provider adapter for a
@@ -33,8 +34,8 @@ import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
  * 
  * @generated
  */
-public class ACOrgUnitItemProvider extends ItemProviderAdapter implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
+public class ACOrgUnitItemProvider extends IdentifiableElementItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
@@ -59,7 +60,6 @@ public class ACOrgUnitItemProvider extends ItemProviderAdapter implements
 
 			addNamePropertyDescriptor(object);
 			addRolesPropertyDescriptor(object);
-			addIdPropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -96,23 +96,6 @@ public class ACOrgUnitItemProvider extends ItemProviderAdapter implements
 						"_UI_PropertyDescriptor_description",
 						"_UI_ACOrgUnit_roles_feature", "_UI_ACOrgUnit_type"),
 				AccesscontrolPackage.Literals.AC_ORG_UNIT__ROLES, true, false,
-				true, null, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Id feature.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ACOrgUnit_id_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_ACOrgUnit_id_feature", "_UI_ACOrgUnit_type"),
-				AccesscontrolPackage.Literals.AC_ORG_UNIT__ID, true, false,
 				true, null, null, null));
 	}
 

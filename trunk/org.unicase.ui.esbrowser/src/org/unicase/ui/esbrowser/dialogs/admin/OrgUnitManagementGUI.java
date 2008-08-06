@@ -28,7 +28,7 @@ public class OrgUnitManagementGUI {
 		//parent.setBackground(parent.getShell().getDisplay().getSystemColor(SWT.COLOR_BLUE));
 		
 		this.adminBroker = adminBroker;
-//		createDummyOrgUnits();
+		createDummyOrgUnits();
 		createSash(parent);
 	}
 
