@@ -324,9 +324,9 @@ public interface AccesscontrolPackage extends EPackage {
 	EAttribute getACOrgUnit_Name();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit#getRoles <em>Roles</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit#getRoles <em>Roles</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Roles</em>'.
+	 * @return the meta object for the containment reference list '<em>Roles</em>'.
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit#getRoles()
 	 * @see #getACOrgUnit()
 	 * @generated
@@ -437,7 +437,7 @@ public interface AccesscontrolPackage extends EPackage {
 		EAttribute AC_ORG_UNIT__NAME = eINSTANCE.getACOrgUnit_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Roles</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Roles</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */

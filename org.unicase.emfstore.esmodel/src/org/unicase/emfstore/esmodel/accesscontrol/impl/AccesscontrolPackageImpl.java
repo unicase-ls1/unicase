@@ -355,7 +355,7 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements
 				IS_ORDERED);
 		initEReference(getACOrgUnit_Roles(), theRolesPackage.getRole(), null,
 				"roles", null, 0, -1, ACOrgUnit.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getACOrgUnit_Description(), ecorePackage.getEString(),
 				"description", null, 0, 1, ACOrgUnit.class, !IS_TRANSIENT,
