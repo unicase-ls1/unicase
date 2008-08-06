@@ -9,10 +9,13 @@ package org.unicase.emfstore.esmodel.accesscontrol.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
@@ -54,7 +57,7 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getRoles() <em>Roles</em>}' reference list.
+	 * The cached value of the '{@link #getRoles() <em>Roles</em>}' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getRoles()
 	 * @generated
@@ -123,7 +126,7 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 	 */
 	public EList<Role> getRoles() {
 		if (roles == null) {
-			roles = new EObjectResolvingEList<Role>(Role.class, this,
+			roles = new EObjectContainmentEList<Role>(Role.class, this,
 					AccesscontrolPackage.AC_ORG_UNIT__ROLES);
 		}
 		return roles;
@@ -138,9 +141,25 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 			throw new IllegalStateException(
 					"ACOrgunit does not have an identifier");
 		}
-		ACOrgUnitId orgUnitId = AccesscontrolFactory.eINSTANCE.createACOrgUnitId();
+		ACOrgUnitId orgUnitId = AccesscontrolFactory.eINSTANCE
+				.createACOrgUnitId();
 		orgUnitId.setId(this.identifier);
 		return orgUnitId;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case AccesscontrolPackage.AC_ORG_UNIT__ROLES:
+			return ((InternalEList<?>) getRoles()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
