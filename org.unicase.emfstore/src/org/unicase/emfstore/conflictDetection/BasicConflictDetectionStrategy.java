@@ -1,6 +1,5 @@
 package org.unicase.emfstore.conflictDetection;
 
-import org.eclipse.emf.ecore.change.FeatureChange;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 
 /**

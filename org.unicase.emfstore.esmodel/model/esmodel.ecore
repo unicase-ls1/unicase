@@ -173,7 +173,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ACGroup" eSuperTypes="#//accesscontrol/ACOrgUnit">
       <eStructuralFeatures xsi:type="ecore:EReference" name="members" upperBound="-1"
-          eType="#//accesscontrol/ACOrgUnit"/>
+          eType="#//accesscontrol/ACOrgUnit" eKeys="../../org.unicase.model/model/model.ecore#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ACOrgUnitId" eSuperTypes="../../org.unicase.model/model/model.ecore#//UniqueIdentifier"/>
     <eSubpackages name="roles" nsURI="http://unicase.org/esmodel/accesscontrol/roles"
@@ -199,7 +199,7 @@
           <eParameters name="modelElement" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElement"/>
         </eOperations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="projects" upperBound="-1"
-            eType="#//ProjectId"/>
+            eType="#//ProjectId" eKeys="../../org.unicase.model/model/model.ecore#//UniqueIdentifier/id"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ReaderRole" eSuperTypes="#//accesscontrol/roles/Role"/>
       <eClassifiers xsi:type="ecore:EClass" name="WriterRole" eSuperTypes="#//accesscontrol/roles/Role"/>

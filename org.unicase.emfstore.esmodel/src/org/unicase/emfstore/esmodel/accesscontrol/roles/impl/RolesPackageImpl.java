@@ -307,6 +307,8 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 				null, "projects", null, 0, -1, Role.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getRole_Projects().getEKeys().add(
+				theModelPackage.getUniqueIdentifier_Id());
 
 		EOperation op = addEOperation(roleEClass, ecorePackage.getEBoolean(),
 				"canAdministrate", 0, 1, IS_UNIQUE, IS_ORDERED);

@@ -38,7 +38,7 @@ public interface Role extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Projects</em>' reference list.
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage#getRole_Projects()
-	 * @model
+	 * @model keys="id"
 	 * @generated
 	 */
 	EList<ProjectId> getProjects();
