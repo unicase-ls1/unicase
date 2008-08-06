@@ -7,22 +7,17 @@
 package org.unicase.emfstore.esmodel.accesscontrol.impl;
 
 import java.util.Collection;
-import java.util.UUID;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
-import org.unicase.model.ModelElementId;
-import org.unicase.model.ModelFactory;
 import org.unicase.model.impl.IdentifiableElementImpl;
 
 /**
