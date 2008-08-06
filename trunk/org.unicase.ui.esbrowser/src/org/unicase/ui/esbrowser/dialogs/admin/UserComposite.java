@@ -38,7 +38,9 @@ public class UserComposite extends FormContents {
 		// (get list of all AcOrgUnits, remove those who take part in this
 		// Project)
 		// 2. add the selected participant to the project
-		try {
+		//try {
+			//FIXME: i changed the interface, please adapt the method usage
+			/**
 			if (group != null) {
 				adminBroker.addGroup(
 						user, ((ACGroup) group).getId());
@@ -51,11 +53,11 @@ public class UserComposite extends FormContents {
 							.addGroup(user, newGroup.getId());
 
 				}
-			}
+			} 
 		} catch (EmfStoreException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		} */
 		tableViewer.refresh();
 	}
 

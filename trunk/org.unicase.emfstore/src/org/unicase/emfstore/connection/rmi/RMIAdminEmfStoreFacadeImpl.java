@@ -54,23 +54,6 @@ public class RMIAdminEmfStoreFacadeImpl extends UnicastRemoteObject implements
 	/**
 	 * {@inheritDoc}
 	 */
-	public void addGroup(String sessionId, String user, String group)
-			throws RemoteException, EmfStoreException {
-		try {
-			adminEmfStore.addGroup((SessionId) RMIUtil
-					.stringToEObject(sessionId), (ACUser) RMIUtil
-					.stringToEObject(user), (ACOrgUnitId) RMIUtil
-					.stringToEObject(group));
-		} catch (UnsupportedEncodingException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		} catch (IOException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
 	public void addParticipant(String sessionId, String projectId,
 			String participant) throws RemoteException, EmfStoreException {
 		try {
@@ -88,9 +71,8 @@ public class RMIAdminEmfStoreFacadeImpl extends UnicastRemoteObject implements
 	/**
 	 * {@inheritDoc}
 	 */
-	public void changeRole(String sessionId, String projectId,
-			String orgUnit, String eClass) throws RemoteException,
-			EmfStoreException {
+	public void changeRole(String sessionId, String projectId, String orgUnit,
+			String eClass) throws RemoteException, EmfStoreException {
 		try {
 			adminEmfStore.changeRole((SessionId) RMIUtil
 					.stringToEObject(sessionId), (ProjectId) RMIUtil
@@ -300,7 +282,7 @@ public class RMIAdminEmfStoreFacadeImpl extends UnicastRemoteObject implements
 		} catch (IOException e) {
 			throw new EmfStoreException(SERIALEX, e);
 		}
-		
+
 	}
 
 	/**
@@ -310,7 +292,8 @@ public class RMIAdminEmfStoreFacadeImpl extends UnicastRemoteObject implements
 			throws RemoteException, EmfStoreException {
 		try {
 			adminEmfStore.deleteGroup((SessionId) RMIUtil
-					.stringToEObject(sessionId), (ACOrgUnitId) RMIUtil.stringToEObject(id));
+					.stringToEObject(sessionId), (ACOrgUnitId) RMIUtil
+					.stringToEObject(id));
 		} catch (UnsupportedEncodingException e) {
 			throw new EmfStoreException(SERIALEX, e);
 		} catch (IOException e) {
@@ -325,7 +308,8 @@ public class RMIAdminEmfStoreFacadeImpl extends UnicastRemoteObject implements
 			EmfStoreException {
 		try {
 			adminEmfStore.deleteUser((SessionId) RMIUtil
-					.stringToEObject(sessionId), (ACOrgUnitId) RMIUtil.stringToEObject(id));
+					.stringToEObject(sessionId), (ACOrgUnitId) RMIUtil
+					.stringToEObject(id));
 		} catch (UnsupportedEncodingException e) {
 			throw new EmfStoreException(SERIALEX, e);
 		} catch (IOException e) {
@@ -333,4 +317,53 @@ public class RMIAdminEmfStoreFacadeImpl extends UnicastRemoteObject implements
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public void addMember(String sessionId, String group, String member)
+			throws RemoteException, EmfStoreException {
+		try {
+			adminEmfStore.addMember((SessionId) RMIUtil
+					.stringToEObject(sessionId), (ACOrgUnitId) RMIUtil
+					.stringToEObject(group), (ACOrgUnitId) RMIUtil
+					.stringToEObject(member));
+		} catch (UnsupportedEncodingException e) {
+			throw new EmfStoreException(SERIALEX, e);
+		} catch (IOException e) {
+			throw new EmfStoreException(SERIALEX, e);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void removeMember(String sessionId, String group, String member)
+			throws RemoteException, EmfStoreException {
+		try {
+			adminEmfStore.removeMember((SessionId) RMIUtil
+					.stringToEObject(sessionId), (ACOrgUnitId) RMIUtil
+					.stringToEObject(group), (ACOrgUnitId) RMIUtil
+					.stringToEObject(member));
+		} catch (UnsupportedEncodingException e) {
+			throw new EmfStoreException(SERIALEX, e);
+		} catch (IOException e) {
+			throw new EmfStoreException(SERIALEX, e);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void changeOrgUnit(String sessionId, String orgUnitId, String name,
+			String description) throws RemoteException, EmfStoreException {
+		try {
+			adminEmfStore.changeOrgUnit((SessionId) RMIUtil
+					.stringToEObject(sessionId), (ACOrgUnitId) RMIUtil
+					.stringToEObject(orgUnitId), name, description);
+		} catch (UnsupportedEncodingException e) {
+			throw new EmfStoreException(SERIALEX, e);
+		} catch (IOException e) {
+			throw new EmfStoreException(SERIALEX, e);
+		}
+	}
 }

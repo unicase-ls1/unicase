@@ -45,20 +45,6 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		adminFacadeMap = new HashMap<SessionId, RMIAdminEmfStoreFacade>();
 	}
 
-	public void addGroup(SessionId sessionId, ACUser user, ACOrgUnitId group)
-			throws EmfStoreException {
-		try {
-			getFacade(sessionId).addGroup(
-					RMIUtil.eObjectToString(sessionId),
-					RMIUtil.eObjectToString(user),
-					RMIUtil.eObjectToString(group));
-		} catch (RemoteException e) {
-			throw new ConnectionException(REMOTE, e);
-		} catch (IOException e) {
-			throw new ConnectionException(REMOTE, e);
-		}
-	}
-
 	public void addParticipant(SessionId sessionId, ProjectId projectId,
 			ACOrgUnitId participant) throws EmfStoreException {
 		try {
@@ -76,8 +62,7 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 	public void changeRole(SessionId sessionId, ProjectId projectId,
 			ACOrgUnitId orgUnit, EClass role) throws EmfStoreException {
 		try {
-			getFacade(sessionId).changeRole(
-					RMIUtil.eObjectToString(sessionId),
+			getFacade(sessionId).changeRole(RMIUtil.eObjectToString(sessionId),
 					RMIUtil.eObjectToString(projectId),
 					RMIUtil.eObjectToString(orgUnit),
 					RMIUtil.eObjectToString(role));
@@ -242,46 +227,55 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		}
 	}
 
-	public void createGroup(SessionId sessionId, String name) throws EmfStoreException {
+	public void createGroup(SessionId sessionId, String name)
+			throws EmfStoreException {
 		try {
-			getFacade(sessionId).createGroup(RMIUtil.eObjectToString(sessionId), name);
+			getFacade(sessionId).createGroup(
+					RMIUtil.eObjectToString(sessionId), name);
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
 		} catch (IOException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
 	}
-	
-	public void createUser(SessionId sessionId, String name) throws EmfStoreException {
+
+	public void createUser(SessionId sessionId, String name)
+			throws EmfStoreException {
 		try {
-			getFacade(sessionId).createUser(RMIUtil.eObjectToString(sessionId), name);
-		} catch (RemoteException e) {
-			throw new ConnectionException(REMOTE, e);
-		} catch (IOException e) {
-			throw new ConnectionException(REMOTE, e);
-		}		
-	}
-	
-	public void deleteGroup(SessionId sessionId, ACOrgUnitId group) throws EmfStoreException {
-		try {
-			getFacade(sessionId).deleteGroup(RMIUtil.eObjectToString(sessionId), RMIUtil.eObjectToString(group));
+			getFacade(sessionId).createUser(RMIUtil.eObjectToString(sessionId),
+					name);
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
 		} catch (IOException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
 	}
-	
-	public void deleteUser(SessionId sessionId, ACOrgUnitId user) throws EmfStoreException {
+
+	public void deleteGroup(SessionId sessionId, ACOrgUnitId group)
+			throws EmfStoreException {
 		try {
-			getFacade(sessionId).deleteUser(RMIUtil.eObjectToString(sessionId), RMIUtil.eObjectToString(user));
+			getFacade(sessionId).deleteGroup(
+					RMIUtil.eObjectToString(sessionId),
+					RMIUtil.eObjectToString(group));
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
 		} catch (IOException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
 	}
-	
+
+	public void deleteUser(SessionId sessionId, ACOrgUnitId user)
+			throws EmfStoreException {
+		try {
+			getFacade(sessionId).deleteUser(RMIUtil.eObjectToString(sessionId),
+					RMIUtil.eObjectToString(user));
+		} catch (RemoteException e) {
+			throw new ConnectionException(REMOTE, e);
+		} catch (IOException e) {
+			throw new ConnectionException(REMOTE, e);
+		}
+	}
+
 	private RMIAdminEmfStoreFacade getFacade(SessionId sessionId)
 			throws EmfStoreException {
 		RMIAdminEmfStoreFacade facade = adminFacadeMap.get(sessionId);
@@ -309,4 +303,43 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		adminFacadeMap.put(id, facade);
 	}
 
+	public void addMember(SessionId sessionId, ACOrgUnitId group,
+			ACOrgUnitId member) throws EmfStoreException {
+		try {
+			getFacade(sessionId).addMember(RMIUtil.eObjectToString(sessionId),
+					RMIUtil.eObjectToString(group),
+					RMIUtil.eObjectToString(member));
+		} catch (RemoteException e) {
+			throw new ConnectionException(REMOTE, e);
+		} catch (IOException e) {
+			throw new ConnectionException(REMOTE, e);
+		}
+	}
+
+	public void removeMember(SessionId sessionId, ACOrgUnitId group,
+			ACOrgUnitId member) throws EmfStoreException {
+		try {
+			getFacade(sessionId).removeMember(
+					RMIUtil.eObjectToString(sessionId),
+					RMIUtil.eObjectToString(group),
+					RMIUtil.eObjectToString(member));
+		} catch (RemoteException e) {
+			throw new ConnectionException(REMOTE, e);
+		} catch (IOException e) {
+			throw new ConnectionException(REMOTE, e);
+		}
+	}
+
+	public void changeOrgUnit(SessionId sessionId, ACOrgUnitId orgUnitId,
+			String name, String description) throws EmfStoreException {
+		try {
+			getFacade(sessionId).changeOrgUnit(
+					RMIUtil.eObjectToString(sessionId),
+					RMIUtil.eObjectToString(orgUnitId), name, description);
+		} catch (RemoteException e) {
+			throw new ConnectionException(REMOTE, e);
+		} catch (IOException e) {
+			throw new ConnectionException(REMOTE, e);
+		}
+	}
 }
