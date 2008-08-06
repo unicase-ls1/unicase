@@ -26,11 +26,15 @@ public interface AdminBroker {
 	void createGroup(String name) throws EmfStoreException;
 	void deleteGroup(ACOrgUnitId group) throws EmfStoreException;
 	List<ACGroup> getGroups(ACOrgUnitId user) throws EmfStoreException;
-	void addGroup(ACUser user, ACOrgUnitId group) throws EmfStoreException;
 	void removeGroup(ACOrgUnitId user, ACOrgUnitId group) throws EmfStoreException;
 	
 	void createUser(String name) throws EmfStoreException;
 	void deleteUser(ACOrgUnitId user) throws EmfStoreException;
+	
+	void addMember(ACOrgUnitId group, ACOrgUnitId member) throws EmfStoreException;
+	void removeMember(ACOrgUnitId group, ACOrgUnitId member) throws EmfStoreException;
+	
+	void changeOrgUnit(ACOrgUnitId orgUnitId, String name, String description) throws EmfStoreException;
 	
 	List<ACOrgUnit> getParticipants(ProjectId projectId) throws EmfStoreException;
 	

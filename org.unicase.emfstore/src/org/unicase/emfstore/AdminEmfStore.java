@@ -33,11 +33,15 @@ public interface AdminEmfStore {
 	void createGroup(SessionId sessionId, String name) throws EmfStoreException;
 	void deleteGroup(SessionId sessionId, ACOrgUnitId group) throws EmfStoreException;
 	List<ACGroup> getGroups(SessionId sessionId, ACOrgUnitId user) throws EmfStoreException;
-	void addGroup(SessionId sessionId, ACUser user, ACOrgUnitId group) throws EmfStoreException;
 	void removeGroup(SessionId sessionId, ACOrgUnitId user, ACOrgUnitId group) throws EmfStoreException;
+
+	void addMember(SessionId sessionId, ACOrgUnitId group, ACOrgUnitId member) throws EmfStoreException;
+	void removeMember(SessionId sessionId, ACOrgUnitId group, ACOrgUnitId member) throws EmfStoreException;
 
 	void createUser(SessionId sessionId, String name) throws EmfStoreException;
 	void deleteUser(SessionId sessionId, ACOrgUnitId user) throws EmfStoreException;
+	
+	void changeOrgUnit(SessionId sessionId, ACOrgUnitId orgUnitId, String name, String description) throws EmfStoreException;
 	
 	List<ACOrgUnit> getParticipants(SessionId sessionId, ProjectId projectId) throws EmfStoreException;
 	

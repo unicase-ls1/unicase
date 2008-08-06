@@ -25,17 +25,11 @@ public class AdminBrokerImpl implements AdminBroker {
 
 	private SessionId sessionId;
 
-	public AdminBrokerImpl(ServerInfo serverInfo, SessionId sessionId) throws ConnectionException {
+	public AdminBrokerImpl(ServerInfo serverInfo, SessionId sessionId)
+			throws ConnectionException {
 		this.sessionId = sessionId;
-		WorkspaceManager.getInstance().getAdminConnectionManager().initConnection(serverInfo, sessionId);
-	}
-
-	public void addGroup(ACUser user, ACOrgUnitId group)
-			throws EmfStoreException {
-
-		WorkspaceManager.getInstance().getAdminConnectionManager().addGroup(
-				getSessionId(), user, group);
-
+		WorkspaceManager.getInstance().getAdminConnectionManager()
+				.initConnection(serverInfo, sessionId);
 	}
 
 	public void addParticipant(ProjectId projectId, ACOrgUnitId participant)
@@ -119,27 +113,45 @@ public class AdminBrokerImpl implements AdminBroker {
 	}
 
 	public void createGroup(String name) throws EmfStoreException {
-		WorkspaceManager.getInstance().getAdminConnectionManager()
-			.createGroup(getSessionId(), name);
-		
+		WorkspaceManager.getInstance().getAdminConnectionManager().createGroup(
+				getSessionId(), name);
+
 	}
 
 	public void createUser(String name) throws EmfStoreException {
-		WorkspaceManager.getInstance().getAdminConnectionManager()
-		.createUser(getSessionId(), name);
-		
+		WorkspaceManager.getInstance().getAdminConnectionManager().createUser(
+				getSessionId(), name);
+
 	}
 
 	public void deleteGroup(ACOrgUnitId group) throws EmfStoreException {
-		WorkspaceManager.getInstance().getAdminConnectionManager()
-			.deleteGroup(getSessionId(), group);
-		
+		WorkspaceManager.getInstance().getAdminConnectionManager().deleteGroup(
+				getSessionId(), group);
+
 	}
 
 	public void deleteUser(ACOrgUnitId user) throws EmfStoreException {
-		WorkspaceManager.getInstance().getAdminConnectionManager()
-			.deleteUser(getSessionId(), user);
-		
+		WorkspaceManager.getInstance().getAdminConnectionManager().deleteUser(
+				getSessionId(), user);
+
 	}
 
+	public void addMember(ACOrgUnitId group, ACOrgUnitId member)
+			throws EmfStoreException {
+		WorkspaceManager.getInstance().getAdminConnectionManager().addMember(
+				getSessionId(), group, member);
+
+	}
+
+	public void removeMember(ACOrgUnitId group, ACOrgUnitId member)
+			throws EmfStoreException {
+		WorkspaceManager.getInstance().getAdminConnectionManager()
+				.removeMember(getSessionId(), group, member);
+	}
+
+	public void changeOrgUnit(ACOrgUnitId orgUnitId, String name,
+			String description) throws EmfStoreException {
+		WorkspaceManager.getInstance().getAdminConnectionManager()
+				.changeOrgUnit(getSessionId(), orgUnitId, name, description);
+	}
 }

@@ -22,8 +22,6 @@ public interface RMIAdminEmfStoreFacade extends Remote {
 	List<String> getOrgUnits(String sessionId) throws RemoteException, EmfStoreException;
 //	EList<ACGroup> getGroups(SessionId sessionId, ACUser user);
 	List<String> getGroups(String sessionId, String user) throws RemoteException, EmfStoreException;
-//	void addGroup(SessionId sessionId, ACUser user, ACGroup group);
-	void addGroup(String sessionId, String user, String group) throws RemoteException, EmfStoreException;
 //	void removeGroup(SessionId sessionId, ACUser user, ACGroup group);
 	void removeGroup(String sessionId, String user, String group) throws RemoteException, EmfStoreException;
 //	EList<ACOrgUnit> getParticipants(SessionId sessionId, ProjectInfo project);
@@ -42,4 +40,9 @@ public interface RMIAdminEmfStoreFacade extends Remote {
 	
 	void createUser(String sessionId, String name) throws RemoteException, EmfStoreException;
 	void deleteUser(String sessionId, String id) throws RemoteException, EmfStoreException;
+	
+	void addMember(String sessionId, String group, String member) throws RemoteException, EmfStoreException;
+	void removeMember(String sessionId, String group, String member) throws RemoteException, EmfStoreException;
+	
+	void changeOrgUnit(String sessionId, String orgUnitId, String name, String description) throws RemoteException, EmfStoreException;
 }

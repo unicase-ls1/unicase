@@ -87,15 +87,6 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void addGroup(SessionId sessionId, ACUser user, ACOrgUnitId orgUnitId)
-			throws EmfStoreException {
-		getGroup(orgUnitId).getMembers().add(user);
-		save();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
 	public void removeGroup(SessionId sessionId, ACOrgUnitId user,
 			ACOrgUnitId group) throws EmfStoreException {
 		getGroup(group).getMembers().remove(user);
@@ -301,6 +292,24 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		}
 	}
 
+	public void addMember(SessionId sessionId, ACOrgUnitId group,
+			ACOrgUnitId member) throws EmfStoreException {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void removeMember(SessionId sessionId, ACOrgUnitId group,
+			ACOrgUnitId member) throws EmfStoreException {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void changeOrgUnit(SessionId sessionId, ACOrgUnitId orgUnitId,
+			String name, String description) throws EmfStoreException {
+		// TODO Auto-generated method stub
+		
+	}
+
 	private ServerSpace getServerSpace() {
 		return serverSpace;
 	}
@@ -356,4 +365,5 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 			throw new StorageException(StorageException.NOSAVE, e);
 		}
 	}
+
 }
