@@ -9,6 +9,7 @@ package org.unicase.emfstore.esmodel.accesscontrol;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
+import org.unicase.model.IdentifiableElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '
@@ -19,7 +20,6 @@ import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
  * <ul>
  *   <li>{@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit#getName <em>Name</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit#getRoles <em>Roles</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit#getId <em>Id</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit#getDescription <em>Description</em>}</li>
  * </ul>
  * </p>
@@ -28,7 +28,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
  * @model
  * @generated
  */
-public interface ACOrgUnit extends EObject {
+public interface ACOrgUnit extends IdentifiableElement {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute. <!--
 	 * begin-user-doc -->
@@ -89,15 +89,6 @@ public interface ACOrgUnit extends EObject {
 	 * @generated
 	 */
 	ACOrgUnitId getId();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit#getId <em>Id</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Id</em>' reference.
-	 * @see #getId()
-	 * @generated
-	 */
-	void setId(ACOrgUnitId value);
 
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' attribute. <!--

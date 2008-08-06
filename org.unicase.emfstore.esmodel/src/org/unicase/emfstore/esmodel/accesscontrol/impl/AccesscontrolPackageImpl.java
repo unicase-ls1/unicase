@@ -221,16 +221,8 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getACOrgUnit_Id() {
-		return (EReference) acOrgUnitEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getACOrgUnit_Description() {
-		return (EAttribute) acOrgUnitEClass.getEStructuralFeatures().get(3);
+		return (EAttribute) acOrgUnitEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -291,7 +283,6 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements
 		acOrgUnitEClass = createEClass(AC_ORG_UNIT);
 		createEAttribute(acOrgUnitEClass, AC_ORG_UNIT__NAME);
 		createEReference(acOrgUnitEClass, AC_ORG_UNIT__ROLES);
-		createEReference(acOrgUnitEClass, AC_ORG_UNIT__ID);
 		createEAttribute(acOrgUnitEClass, AC_ORG_UNIT__DESCRIPTION);
 
 		acGroupEClass = createEClass(AC_GROUP);
@@ -338,6 +329,8 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements
 
 		// Add supertypes to classes
 		acUserEClass.getESuperTypes().add(this.getACOrgUnit());
+		acOrgUnitEClass.getESuperTypes().add(
+				theModelPackage.getIdentifiableElement());
 		acGroupEClass.getESuperTypes().add(this.getACOrgUnit());
 		acOrgUnitIdEClass.getESuperTypes().add(
 				theModelPackage.getUniqueIdentifier());
@@ -364,14 +357,13 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements
 				"roles", null, 0, -1, ACOrgUnit.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getACOrgUnit_Id(), this.getACOrgUnitId(), null, "id",
-				null, 0, 1, ACOrgUnit.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getACOrgUnit_Description(), ecorePackage.getEString(),
 				"description", null, 0, 1, ACOrgUnit.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+
+		addEOperation(acOrgUnitEClass, this.getACOrgUnitId(), "getId", 0, 1,
+				IS_UNIQUE, IS_ORDERED);
 
 		initEClass(acGroupEClass, ACGroup.class, "ACGroup", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

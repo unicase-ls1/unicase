@@ -79,13 +79,22 @@ public interface AccesscontrolPackage extends EPackage {
 	int AC_ORG_UNIT = 1;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AC_ORG_UNIT__IDENTIFIER = ModelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int AC_ORG_UNIT__NAME = 0;
+	int AC_ORG_UNIT__NAME = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Roles</b></em>' reference list. <!--
@@ -94,16 +103,7 @@ public interface AccesscontrolPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AC_ORG_UNIT__ROLES = 1;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int AC_ORG_UNIT__ID = 2;
+	int AC_ORG_UNIT__ROLES = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute. <!--
@@ -112,7 +112,7 @@ public interface AccesscontrolPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AC_ORG_UNIT__DESCRIPTION = 3;
+	int AC_ORG_UNIT__DESCRIPTION = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>AC Org Unit</em>' class.
@@ -120,7 +120,16 @@ public interface AccesscontrolPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AC_ORG_UNIT_FEATURE_COUNT = 4;
+	int AC_ORG_UNIT_FEATURE_COUNT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AC_USER__IDENTIFIER = AC_ORG_UNIT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!--
@@ -139,15 +148,6 @@ public interface AccesscontrolPackage extends EPackage {
 	 * @ordered
 	 */
 	int AC_USER__ROLES = AC_ORG_UNIT__ROLES;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int AC_USER__ID = AC_ORG_UNIT__ID;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute. <!--
@@ -195,6 +195,15 @@ public interface AccesscontrolPackage extends EPackage {
 	int AC_GROUP = 2;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AC_GROUP__IDENTIFIER = AC_ORG_UNIT__IDENTIFIER;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -211,15 +220,6 @@ public interface AccesscontrolPackage extends EPackage {
 	 * @ordered
 	 */
 	int AC_GROUP__ROLES = AC_ORG_UNIT__ROLES;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int AC_GROUP__ID = AC_ORG_UNIT__ID;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute. <!--
@@ -334,16 +334,6 @@ public interface AccesscontrolPackage extends EPackage {
 	EReference getACOrgUnit_Roles();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit#getId <em>Id</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Id</em>'.
-	 * @see org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit#getId()
-	 * @see #getACOrgUnit()
-	 * @generated
-	 */
-	EReference getACOrgUnit_Id();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit#getDescription <em>Description</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Description</em>'.
@@ -452,13 +442,6 @@ public interface AccesscontrolPackage extends EPackage {
 		 * @generated
 		 */
 		EReference AC_ORG_UNIT__ROLES = eINSTANCE.getACOrgUnit_Roles();
-
-		/**
-		 * The meta object literal for the '<em><b>Id</b></em>' reference feature.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference AC_ORG_UNIT__ID = eINSTANCE.getACOrgUnit_Id();
 
 		/**
 		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.

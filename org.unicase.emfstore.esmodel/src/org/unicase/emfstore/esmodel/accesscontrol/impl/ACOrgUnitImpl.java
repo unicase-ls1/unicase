@@ -7,6 +7,7 @@
 package org.unicase.emfstore.esmodel.accesscontrol.impl;
 
 import java.util.Collection;
+import java.util.UUID;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
@@ -17,8 +18,12 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
+import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
+import org.unicase.model.ModelElementId;
+import org.unicase.model.ModelFactory;
+import org.unicase.model.impl.IdentifiableElementImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '
@@ -28,14 +33,13 @@ import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
  * <ul>
  *   <li>{@link org.unicase.emfstore.esmodel.accesscontrol.impl.ACOrgUnitImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.accesscontrol.impl.ACOrgUnitImpl#getRoles <em>Roles</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.accesscontrol.impl.ACOrgUnitImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.accesscontrol.impl.ACOrgUnitImpl#getDescription <em>Description</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ACOrgUnitImpl extends EObjectImpl implements ACOrgUnit {
+public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -62,16 +66,6 @@ public class ACOrgUnitImpl extends EObjectImpl implements ACOrgUnit {
 	 * @ordered
 	 */
 	protected EList<Role> roles;
-
-	/**
-	 * The cached value of the '{@link #getId() <em>Id</em>}' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see #getId()
-	 * @generated
-	 * @ordered
-	 */
-	protected ACOrgUnitId id;
 
 	/**
 	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
@@ -142,39 +136,16 @@ public class ACOrgUnitImpl extends EObjectImpl implements ACOrgUnit {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public ACOrgUnitId getId() {
-		if (id != null && id.eIsProxy()) {
-			InternalEObject oldId = (InternalEObject) id;
-			id = (ACOrgUnitId) eResolveProxy(oldId);
-			if (id != oldId) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							AccesscontrolPackage.AC_ORG_UNIT__ID, oldId, id));
-			}
+		if (this.identifier == null) {
+			throw new IllegalStateException(
+					"ACOrgunit does not have an identifier");
 		}
-		return id;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ACOrgUnitId basicGetId() {
-		return id;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setId(ACOrgUnitId newId) {
-		ACOrgUnitId oldId = id;
-		id = newId;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					AccesscontrolPackage.AC_ORG_UNIT__ID, oldId, id));
+		ACOrgUnitId orgUnitId = AccesscontrolFactory.eINSTANCE.createACOrgUnitId();
+		orgUnitId.setId(this.identifier);
+		return orgUnitId;
 	}
 
 	/**
@@ -209,10 +180,6 @@ public class ACOrgUnitImpl extends EObjectImpl implements ACOrgUnit {
 			return getName();
 		case AccesscontrolPackage.AC_ORG_UNIT__ROLES:
 			return getRoles();
-		case AccesscontrolPackage.AC_ORG_UNIT__ID:
-			if (resolve)
-				return getId();
-			return basicGetId();
 		case AccesscontrolPackage.AC_ORG_UNIT__DESCRIPTION:
 			return getDescription();
 		}
@@ -234,9 +201,6 @@ public class ACOrgUnitImpl extends EObjectImpl implements ACOrgUnit {
 			getRoles().clear();
 			getRoles().addAll((Collection<? extends Role>) newValue);
 			return;
-		case AccesscontrolPackage.AC_ORG_UNIT__ID:
-			setId((ACOrgUnitId) newValue);
-			return;
 		case AccesscontrolPackage.AC_ORG_UNIT__DESCRIPTION:
 			setDescription((String) newValue);
 			return;
@@ -257,9 +221,6 @@ public class ACOrgUnitImpl extends EObjectImpl implements ACOrgUnit {
 		case AccesscontrolPackage.AC_ORG_UNIT__ROLES:
 			getRoles().clear();
 			return;
-		case AccesscontrolPackage.AC_ORG_UNIT__ID:
-			setId((ACOrgUnitId) null);
-			return;
 		case AccesscontrolPackage.AC_ORG_UNIT__DESCRIPTION:
 			setDescription(DESCRIPTION_EDEFAULT);
 			return;
@@ -279,8 +240,6 @@ public class ACOrgUnitImpl extends EObjectImpl implements ACOrgUnit {
 					.equals(name);
 		case AccesscontrolPackage.AC_ORG_UNIT__ROLES:
 			return roles != null && !roles.isEmpty();
-		case AccesscontrolPackage.AC_ORG_UNIT__ID:
-			return id != null;
 		case AccesscontrolPackage.AC_ORG_UNIT__DESCRIPTION:
 			return DESCRIPTION_EDEFAULT == null ? description != null
 					: !DESCRIPTION_EDEFAULT.equals(description);
