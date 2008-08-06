@@ -19,6 +19,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
  * @author Florian Schneider
  * 
  */
+@Deprecated
 public class CollectionAdapterFactory extends AdapterFactoryImpl {
 
 	private CollectionItemProvider collectionItemProvider;
