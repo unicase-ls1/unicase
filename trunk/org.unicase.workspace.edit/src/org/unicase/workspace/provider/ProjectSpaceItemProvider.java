@@ -241,13 +241,13 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 			ProjectSpace projectSpace = (ProjectSpace) object;
 			StringBuilder stringBuilder = new StringBuilder();
 			stringBuilder.append(projectSpace.getProjectName());
-			if (projectSpace.getBaseVersion() != null) {
-				stringBuilder.append("@");
-				stringBuilder.append(projectSpace.getBaseVersion()
-						.getIdentifier());
-			} else {
-				stringBuilder.append("(Not shared)");
-			}
+//			if (projectSpace.getBaseVersion() != null) {
+//				stringBuilder.append("@");
+//				stringBuilder.append(projectSpace.getBaseVersion()
+//						.getIdentifier());
+//			} else {
+//				stringBuilder.append("(Not shared)");
+//			}
 			String string = stringBuilder.toString();
 			return string;
 		}
