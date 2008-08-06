@@ -8,13 +8,12 @@ package org.unicase.ui.taskview;
 
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.model.task.ActionItem;
-import org.unicase.model.task.TaskFactory;
+import org.unicase.model.task.TaskPackage;
 
 /**
- * A specialized TableView to display FooBars.
+ * A specialized TableView to display Action Items.
  * 
- * @author schneidf
+ * @author Florian Schneider
  * 
  */
 public class TaskView extends ViewPart {
@@ -23,13 +22,16 @@ public class TaskView extends ViewPart {
 
 	@Override
 	public void createPartControl(Composite parent) {
-		viewer = new METableViewer<ActionItem>(TaskFactory.eINSTANCE
-				.createActionItem(), parent);
+		FilteredItemProviderAdapterFactory adapterFactory = new FilteredItemProviderAdapterFactory();
+		adapterFactory.setFilteredItemProvider(new EClassFilterItemProvider(
+				adapterFactory, TaskPackage.eINSTANCE.getActionItem()));
+		viewer = new METableViewer(parent, adapterFactory,
+				TaskPackage.eINSTANCE.getActionItem());
 	}
 
 	@Override
 	public void setFocus() {
-		viewer.updateInput();
+
 	}
 
 }

@@ -6,6 +6,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
+@Deprecated
 public class CollectionItemProvider extends ItemProviderAdapter implements
 		IStructuredItemContentProvider {
 

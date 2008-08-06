@@ -2,8 +2,10 @@ package org.unicase.ui.taskview;
 
 import java.util.List;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -13,24 +15,70 @@ import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.ViewerSorter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
-import org.unicase.model.ModelElement;
+import org.unicase.model.Project;
 import org.unicase.ui.tableview.viewer.TableViewColumnLabelProvider;
-import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.WorkspacePackage;
 
-public class METableViewer<T extends ModelElement> extends TableViewer {
+public class METableViewer extends TableViewer {
 
-	private T templateObject;
+	private Project currentProject;
+	private AdapterFactory adapterFactory;
+	private EClass itemMetaClass;
 
-	public METableViewer(T template, Composite parent) {
+	/**
+	 * Constructor that directly sets the input of the table view.
+	 * 
+	 * @param parent
+	 *            the parent control
+	 * @param adapterFactory
+	 *            the adapterFactory to use
+	 * @param input
+	 *            the new content for the table
+	 * @param itemMetaClass
+	 *            the EClass of the items that shall be displayed in the table
+	 */
+	public METableViewer(Composite parent, AdapterFactory adapterFactory,
+			Object input, EClass itemMetaClass) {
+		this(parent, adapterFactory, itemMetaClass);
+		this.setInput(input);
+	}
+
+	/**
+	 * Standard constructor.
+	 * 
+	 * @param parent
+	 *            the parent control
+	 * @param adapterFactory
+	 *            the adapterFactory to use
+	 * @param itemMetaClass
+	 *            the EClass of the items that shall be displayed in the table
+	 */
+	public METableViewer(Composite parent, AdapterFactory adapterFactory,
+			EClass itemMetaClass) {
 		super(parent);
+		this.adapterFactory = adapterFactory;
+		this.itemMetaClass = itemMetaClass;
 
-		this.templateObject = template;
+		Workspace workspace = WorkspaceManager.getInstance()
+				.getCurrentWorkspace();
 
-		// TableColumn[] columns = this.getTable().getColumns();
+		workspace.eAdapters().add(new AdapterImpl() {
+			@Override
+			public void notifyChanged(Notification msg) {
+				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
+					currentProject = WorkspaceManager.getInstance()
+							.getCurrentWorkspace().getActiveProjectSpace()
+							.getProject();
+					setInput(currentProject);
+				}
+				super.notifyChanged(msg);
+			}
+		});
+
 		AdapterFactoryContentProvider contentProvider = new AdapterFactoryContentProvider(
-				new CollectionAdapterFactory());
+				this.adapterFactory);
 
 		this.setContentProvider(contentProvider);
 		this.setSorter(new ViewerSorter());
@@ -38,32 +86,12 @@ public class METableViewer<T extends ModelElement> extends TableViewer {
 		this.createColumns();
 		this.getTable().setLinesVisible(true);
 		this.getTable().setHeaderVisible(true);
-
-		EList<T> inputList = getAllMEs();
-		this.setInput(inputList);
-	}
-
-	private EList<T> getAllMEs() {
-		Workspace ws = WorkspaceManager.getInstance().getCurrentWorkspace();
-
-		EList<ProjectSpace> psl = ws.getProjectSpaces();
-
-		EList<T> inputList = new BasicEList<T>();
-
-		for (ProjectSpace p : psl) {
-			inputList.addAll(p.getProject().getAllModelElementsbyClass(
-					templateObject.eClass(), new BasicEList<T>()));
-
-		}
-		return inputList;
-	}
-
-	@Deprecated
-	public void updateInput() {
-		this.setInput(getAllMEs());
 	}
 
 	private void createColumns() {
+
+		Object templateObject = itemMetaClass.getEPackage()
+				.getEFactoryInstance().create(itemMetaClass);
 
 		AdapterFactoryItemDelegator adapterFactoryItemDelegator = new AdapterFactoryItemDelegator(
 				new ComposedAdapterFactory(
