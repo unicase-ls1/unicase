@@ -25,7 +25,6 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
-import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.ReaderRole;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesFactory;
@@ -136,7 +135,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		}
 		// check whether reader role exists
 		for(Role role: orgUnit.getRoles()) {
-			if(role.equals(RolesPackage.eINSTANCE.getReaderRole())) {
+			if(role.eClass().equals(RolesPackage.eINSTANCE.getReaderRole())) {
 				role.getProjects().add(projectId);
 				save();
 				return;

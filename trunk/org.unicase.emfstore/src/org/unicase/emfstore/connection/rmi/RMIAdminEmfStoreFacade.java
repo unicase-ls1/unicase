@@ -4,7 +4,6 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
-import org.eclipse.emf.common.util.EList;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 
 /**
