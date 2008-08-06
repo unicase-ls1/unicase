@@ -56,12 +56,21 @@ public class ACGroupImpl extends ACOrgUnitImpl implements ACGroup {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<ACOrgUnit> getMembers() {
 		if (members == null) {
+			//see comment in RoleImpl.getProjects()
 			members = new EObjectResolvingEList<ACOrgUnit>(ACOrgUnit.class,
-					this, AccesscontrolPackage.AC_GROUP__MEMBERS);
+					this, AccesscontrolPackage.AC_GROUP__MEMBERS){
+
+						@Override
+						protected boolean useEquals() {
+							// TODO Auto-generated method stub
+							return true;
+						}
+				
+			};
 		}
 		return members;
 	}

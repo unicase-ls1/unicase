@@ -58,12 +58,22 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<ProjectId> getProjects() {
 		if (projects == null) {
+			//the contains() method of EObjectEList uses reference equality , 
+			//because its useEquals() return false.
+			//we need to compare using equals method. 
 			projects = new EObjectResolvingEList<ProjectId>(ProjectId.class,
-					this, RolesPackage.ROLE__PROJECTS);
+					this, RolesPackage.ROLE__PROJECTS){
+
+						@Override
+						protected boolean useEquals() {
+							return true;
+						}
+				
+			};
 		}
 		return projects;
 	}
