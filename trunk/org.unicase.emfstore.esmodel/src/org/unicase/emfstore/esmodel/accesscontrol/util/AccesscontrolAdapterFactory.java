@@ -10,13 +10,12 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.emfstore.esmodel.accesscontrol.*;
-import org.unicase.model.IdentifiableElement;
 import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
+import org.unicase.model.IdentifiableElement;
 import org.unicase.model.UniqueIdentifier;
 
 /**

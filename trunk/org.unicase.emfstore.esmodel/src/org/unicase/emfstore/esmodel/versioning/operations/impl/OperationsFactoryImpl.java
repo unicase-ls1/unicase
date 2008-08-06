@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.unicase.emfstore.esmodel.versioning.operations.*;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AtomicOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
