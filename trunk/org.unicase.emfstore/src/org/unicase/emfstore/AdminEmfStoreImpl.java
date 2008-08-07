@@ -71,16 +71,18 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	 */
 	public List<ACGroup> getGroups(SessionId sessionId, ACOrgUnitId orgUnitId) {
 		List<ACGroup> result = new ArrayList<ACGroup>();
-		for (ACGroup group : getServerSpace().getGroups()) {
-			// FIXME: does contains work after deserialization? maybe adapt
-			// equals method
-			for (ACOrgUnit orgUnit : group.getMembers()) {
-				if (orgUnit.getId().equals(orgUnitId)
-						&& orgUnit instanceof ACGroup) {
-					result.add((ACGroup) group);
+		try {
+			ACOrgUnit orgUnit = getOrgUnit(orgUnitId);
+			for (ACGroup group : getServerSpace().getGroups()) {
+				if (group.getMembers().contains(orgUnit)){
+						result.add((ACGroup) group);
 				}
 			}
+		} catch (EmfStoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+			
 		return result;
 	}
 
@@ -365,5 +367,4 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 			throw new StorageException(StorageException.NOSAVE, e);
 		}
 	}
-
 }

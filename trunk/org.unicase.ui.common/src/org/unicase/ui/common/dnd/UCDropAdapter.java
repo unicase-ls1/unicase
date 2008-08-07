@@ -115,6 +115,10 @@ public class UCDropAdapter extends EditingDomainViewerDropAdapter {
 	protected void helper(DropTargetEvent event) {
 
 		super.helper(event);
+		if (getDragSource(event) == null) {
+	      return;
+	    }
+		
 		if (event.item == null || event.item.getClass() == null) {
 			return;
 		}
