@@ -96,9 +96,7 @@ public class CriterionItemProvider extends ModelElementItemProvider implements
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Criterion) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Criterion_type")
-				: getString("_UI_Criterion_type") + " " + label;
+		return super.getText(object);
 	}
 
 	/**
