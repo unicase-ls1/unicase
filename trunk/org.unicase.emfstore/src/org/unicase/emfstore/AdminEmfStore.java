@@ -35,6 +35,7 @@ public interface AdminEmfStore {
 	List<ACGroup> getGroups(SessionId sessionId, ACOrgUnitId user) throws EmfStoreException;
 	void removeGroup(SessionId sessionId, ACOrgUnitId user, ACOrgUnitId group) throws EmfStoreException;
 
+	List<ACOrgUnit> getMembers(SessionId sessionId, ACOrgUnitId groupId) throws EmfStoreException;
 	void addMember(SessionId sessionId, ACOrgUnitId group, ACOrgUnitId member) throws EmfStoreException;
 	void removeMember(SessionId sessionId, ACOrgUnitId group, ACOrgUnitId member) throws EmfStoreException;
 

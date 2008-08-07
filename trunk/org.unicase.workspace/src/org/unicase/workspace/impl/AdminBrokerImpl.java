@@ -73,6 +73,12 @@ public class AdminBrokerImpl implements AdminBroker {
 				.getParticipants(getSessionId(), projectId);
 	}
 
+	public List<ACOrgUnit> getMembers(ACOrgUnitId groupId)
+			throws EmfStoreException {
+		return WorkspaceManager.getInstance().getAdminConnectionManager()
+				.getMembers(getSessionId(), groupId);
+	}
+
 	public List<ProjectInfo> getProjectInfos() throws EmfStoreException {
 
 		return WorkspaceManager.getInstance().getAdminConnectionManager()
@@ -154,4 +160,5 @@ public class AdminBrokerImpl implements AdminBroker {
 		WorkspaceManager.getInstance().getAdminConnectionManager()
 				.changeOrgUnit(getSessionId(), orgUnitId, name, description);
 	}
+
 }

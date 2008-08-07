@@ -162,9 +162,12 @@ public class TabContent {
 
 			} else if (currentInput instanceof ACGroup) {
 				ACGroup group = (ACGroup) currentInput;
-				if (group.getMembers().contains(orgUnit)) {
-					int index = group.getMembers().indexOf(orgUnit);
-					group.getMembers().remove(index);
+				try {
+					adminBroker.removeMember(group.getId(), orgUnit.getId());
+					
+				} catch (EmfStoreException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			} else if (currentInput instanceof ACUser) {
 				ACUser user = (ACUser) currentInput;

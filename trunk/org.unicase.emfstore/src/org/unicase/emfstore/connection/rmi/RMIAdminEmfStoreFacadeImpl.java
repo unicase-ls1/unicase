@@ -167,6 +167,27 @@ public class RMIAdminEmfStoreFacadeImpl extends UnicastRemoteObject implements
 	/**
 	 * {@inheritDoc}
 	 */
+	public List<String> getMembers(String sessionId, String groupId)
+			throws RemoteException, EmfStoreException {
+
+		try {
+			List<String> result = new ArrayList<String>();
+			for (ACOrgUnit orgUnit : adminEmfStore.getMembers(
+					(SessionId) RMIUtil.stringToEObject(sessionId),
+					(ACOrgUnitId) RMIUtil.stringToEObject(groupId))) {
+				result.add(RMIUtil.eObjectToString(orgUnit));
+			}
+			return result;
+		} catch (UnsupportedEncodingException e) {
+			throw new EmfStoreException(SERIALEX, e);
+		} catch (IOException e) {
+			throw new EmfStoreException(SERIALEX, e);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
 	public List<String> getProjectInfos(String sessionId)
 			throws RemoteException, EmfStoreException {
 		try {
@@ -366,4 +387,5 @@ public class RMIAdminEmfStoreFacadeImpl extends UnicastRemoteObject implements
 			throw new EmfStoreException(SERIALEX, e);
 		}
 	}
+
 }

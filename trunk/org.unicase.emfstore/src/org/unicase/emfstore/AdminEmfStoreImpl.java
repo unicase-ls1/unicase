@@ -90,8 +90,8 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	 * {@inheritDoc}
 	 */
 	public void removeGroup(SessionId sessionId, ACOrgUnitId user,
-			ACOrgUnitId group) throws EmfStoreException {
-		getGroup(group).getMembers().remove(user);
+		ACOrgUnitId group) throws EmfStoreException {
+		getGroup(group).getMembers().remove(getOrgUnit(user));
 		save();
 	}
 
@@ -295,14 +295,25 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	}
 
 	public void addMember(SessionId sessionId, ACOrgUnitId group,
-			ACOrgUnitId member) throws EmfStoreException {
-		// TODO Auto-generated method stub
+		ACOrgUnitId member) throws EmfStoreException {
+		
+		ACGroup acGroup = getGroup(group);
+		ACOrgUnit acMember = getOrgUnit(member);
+		acGroup.getMembers().add(acMember);
+		save();
 		
 	}
 	
 	public void removeMember(SessionId sessionId, ACOrgUnitId group,
 			ACOrgUnitId member) throws EmfStoreException {
-		// TODO Auto-generated method stub
+		
+		ACGroup acGroup = getGroup(group);
+		ACOrgUnit acMember = getOrgUnit(member);
+		if(acGroup.getMembers().contains(acMember)){
+			acGroup.getMembers().remove(acMember);
+			save();
+		}
+		
 		
 	}
 	
@@ -366,5 +377,12 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		} catch (NullPointerException e) {
 			throw new StorageException(StorageException.NOSAVE, e);
 		}
+	}
+
+	public List<ACOrgUnit> getMembers(SessionId sessionId, ACOrgUnitId groupId)
+			throws EmfStoreException {
+		
+		return getGroup(groupId).getMembers();
+		
 	}
 }
