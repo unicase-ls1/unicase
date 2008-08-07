@@ -1,6 +1,8 @@
 package org.unicase.ui.esbrowser.dialogs.admin;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -10,7 +12,6 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.AdminBroker;
-import org.unicase.workspace.WorkspaceManager;
 
 public class UserComposite extends FormContents {
 
@@ -39,29 +40,29 @@ public class UserComposite extends FormContents {
 		// Project)
 		// 2. add the selected participant to the project
 		//try {
-			//FIXME: i changed the interface, please adapt the method usage
-			/**
+		
+		try{
 			if (group != null) {
-				adminBroker.addGroup(
-						user, ((ACGroup) group).getId());
-
+				adminBroker.addMember(((ACGroup) group).getId(),user.getId());
+				
 			} else {
-				EList<ACGroup> groups = getGroups();
+				List<ACGroup> groups = getGroups();
 				for (ACGroup newGroup : groups) {
 
 					adminBroker
-							.addGroup(user, newGroup.getId());
-
+							.addMember( newGroup.getId(), user.getId());
+					
+										
 				}
 			} 
 		} catch (EmfStoreException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} */
+		} 
 		tableViewer.refresh();
 	}
 
-	private EList<ACGroup> getGroups() {
+	private List<ACGroup> getGroups() {
 		// 1. show a list of all AcOrgUnits that do not participate in this
 		// project
 		// (get list of all AcOrgUnits, remove those who take part in this
@@ -71,12 +72,18 @@ public class UserComposite extends FormContents {
 
 		// JH: fill only with right elements
 		Collection<ACOrgUnit> allGroups = new BasicEList<ACOrgUnit>();
-		EList<ACGroup> groups = new BasicEList<ACGroup>();
+		List<ACGroup> groups = new ArrayList<ACGroup>();
 
 		try {
 			allGroups.addAll(adminBroker.getGroups());
-
-			allGroups.removeAll(adminBroker.getGroups(user.getId()));
+			List<ACGroup> groupsToRemove = new ArrayList<ACGroup>();
+			groupsToRemove.addAll(adminBroker.getGroups(user.getId()));
+			//its really funnyyyyyyy!!!!!!!! :((
+			//you should implement all typical list operations yourself.
+			//because contains(), remove(), indexof(), .... all require a test of 
+			//equality and here we have a problem.
+			
+			allGroups.removeAll(groupsToRemove);
 
 			Object[] result = showDialog(allGroups, "Select a group");
 

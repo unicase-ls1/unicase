@@ -148,6 +148,25 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		}
 	}
 
+	public List<ACOrgUnit> getMembers(SessionId sessionId, ACOrgUnitId groupId)
+			throws EmfStoreException {
+		try {
+			List<ACOrgUnit> result = new ArrayList<ACOrgUnit>();
+			for (String str : getFacade(sessionId).getMembers(
+					RMIUtil.eObjectToString(sessionId),
+					RMIUtil.eObjectToString(groupId))) {
+				result.add((ACOrgUnit) RMIUtil.stringToEObject(str));
+			}
+			return result;
+		} catch (UnsupportedEncodingException e) {
+			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
+		} catch (RemoteException e) {
+			throw new ConnectionException(REMOTE, e);
+		} catch (IOException e) {
+			throw new ConnectionException(REMOTE, e);
+		}
+	}
+
 	public List<ProjectInfo> getProjectInfos(SessionId sessionId)
 			throws EmfStoreException {
 		try {
@@ -342,4 +361,5 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 			throw new ConnectionException(REMOTE, e);
 		}
 	}
+
 }

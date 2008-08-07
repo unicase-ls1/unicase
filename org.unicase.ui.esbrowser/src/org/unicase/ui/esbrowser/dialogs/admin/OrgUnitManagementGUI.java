@@ -43,9 +43,11 @@ public class OrgUnitManagementGUI {
 			if (adminBroker.getGroups() == null
 					|| adminBroker.getGroups().size() == 0) {
 				adminBroker.createGroup("Group1");
-//				adminBroker.createGroup("Group1");
+				adminBroker.createGroup("Group2");
+				adminBroker.createGroup("Group3");
 				adminBroker.createUser("User1");
-//				adminBroker.createUser("User2");
+				adminBroker.createUser("User2");
+				adminBroker.createUser("User3");
 
 				// adminBroker.removeGroup(group.getId);
 				// adminBroker.removeUser(user.getId);

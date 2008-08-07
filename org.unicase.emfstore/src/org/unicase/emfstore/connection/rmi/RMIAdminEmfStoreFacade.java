@@ -4,6 +4,10 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
+import org.unicase.emfstore.esmodel.ProjectId;
+import org.unicase.emfstore.esmodel.SessionId;
+import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
+import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 
 /**
@@ -41,6 +45,7 @@ public interface RMIAdminEmfStoreFacade extends Remote {
 	void createUser(String sessionId, String name) throws RemoteException, EmfStoreException;
 	void deleteUser(String sessionId, String id) throws RemoteException, EmfStoreException;
 	
+	List<String> getMembers(String sessionId, String groupId) throws RemoteException, EmfStoreException;
 	void addMember(String sessionId, String group, String member) throws RemoteException, EmfStoreException;
 	void removeMember(String sessionId, String group, String member) throws RemoteException, EmfStoreException;
 	

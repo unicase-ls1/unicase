@@ -49,7 +49,7 @@ import org.unicase.workspace.WorkspaceManager;
 public abstract class FormContents extends Composite {
 
 	protected AdminBroker adminBroker;
-	
+
 	protected Group grpTable;
 	protected Group grpAttributes;
 
@@ -198,25 +198,26 @@ public abstract class FormContents extends Composite {
 			}
 		});
 
-//		Button btn = new Button(parent, SWT.PUSH | SWT.CENTER);
-//		btn.setText("add test users and groups");
-//		gridData = new GridData(SWT.END);
-//		gridData.widthHint = 80;
-//		btn.setLayoutData(gridData);
-//
-//		btn.addSelectionListener(new SelectionAdapter() {
-//
-//			// Remove the selection and refresh the view
-//			public void widgetSelected(SelectionEvent e) {
-////				ACOrgUnit ou = (ACOrgUnit) ((IStructuredSelection) tableViewer
-////						.getSelection()).getFirstElement();
-////				if (ou != null) {
-////					removeOrgUnit(ou);
-////				}
-//				MessageDialog.openInformation(getShell(), "", "create test user/groups");
-//			}
-//		});
-		
+		// Button btn = new Button(parent, SWT.PUSH | SWT.CENTER);
+		// btn.setText("add test users and groups");
+		// gridData = new GridData(SWT.END);
+		// gridData.widthHint = 80;
+		// btn.setLayoutData(gridData);
+		//
+		// btn.addSelectionListener(new SelectionAdapter() {
+		//
+		// // Remove the selection and refresh the view
+		// public void widgetSelected(SelectionEvent e) {
+		// // ACOrgUnit ou = (ACOrgUnit) ((IStructuredSelection) tableViewer
+		// // .getSelection()).getFirstElement();
+		// // if (ou != null) {
+		// // removeOrgUnit(ou);
+		// // }
+		// MessageDialog.openInformation(getShell(), "",
+		// "create test user/groups");
+		// }
+		// });
+
 	}
 
 	protected void addDragNDropSupport() {
@@ -340,19 +341,19 @@ public abstract class FormContents extends Composite {
 				if (inputElement instanceof ACUser) {
 					List<ACGroup> groups;
 
-					groups = adminBroker.getGroups(
-									((ACUser) inputElement).getId());
+					groups = adminBroker.getGroups(((ACUser) inputElement)
+							.getId());
 					result = groups.toArray(new ACOrgUnit[groups.size()]);
 
 				} else if (inputElement instanceof ACGroup) {
-					EList<ACOrgUnit> members = ((ACGroup) inputElement)
-							.getMembers();
+					List<ACOrgUnit> members = adminBroker
+							.getMembers(((ACGroup) inputElement).getId());
 					result = members.toArray(new ACOrgUnit[members.size()]);
 
 				} else if (inputElement instanceof ProjectInfo) {
 					List<ACOrgUnit> participants = adminBroker
-							.getParticipants(
-									((ProjectInfo) inputElement).getProjectId());
+							.getParticipants(((ProjectInfo) inputElement)
+									.getProjectId());
 					result = participants.toArray(new ACOrgUnit[participants
 							.size()]);
 

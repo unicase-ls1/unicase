@@ -21,8 +21,14 @@ public class GroupComposite extends FormContents {
 	}
 
 	protected void removeOrgUnit(ACOrgUnit orgUnit) {
-		int index = group.getMembers().indexOf(orgUnit);
-		group.getMembers().remove(index);
+	
+		try {
+			adminBroker.removeMember(group.getId(),orgUnit.getId());
+		
+		} catch (EmfStoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		tableViewer.refresh();
 	}
 
@@ -34,20 +40,32 @@ public class GroupComposite extends FormContents {
 		// 2. add the selected participant to the project
 		if (orgUnit != null) {
 			if (!orgUnit.equals(group)) {
-				group.getMembers().add(orgUnit);
+				try {
+					adminBroker.addMember(group.getId(), orgUnit.getId());
+					
+				} catch (EmfStoreException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 
 		} else {
-			EList<ACOrgUnit> members = getMembers();
+			EList<ACOrgUnit> members = getNewMembers();
 			for (ACOrgUnit ou : members) {
-				group.getMembers().add(ou);
+				try {
+					adminBroker.addMember(group.getId(), ou.getId());
+					
+				} catch (EmfStoreException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 		tableViewer.refresh();
 
 	}
 
-	private EList<ACOrgUnit> getMembers() {
+	private EList<ACOrgUnit> getNewMembers() {
 		// 1. show a list of all AcOrgUnits that are not member of this group
 		// (get list of all AcOrgUnits, remove those who take part in this
 		// 2. return the selected ACOrgunits
@@ -56,7 +74,8 @@ public class GroupComposite extends FormContents {
 		EList<ACOrgUnit> members = new BasicEList<ACOrgUnit>();
 		try {
 			allOrgUnits.addAll(adminBroker.getOrgUnits());
-			allOrgUnits.removeAll(group.getMembers());
+			allOrgUnits.removeAll(adminBroker
+								.getMembers(group.getId()));
 			if (allOrgUnits.contains(group)) {
 				allOrgUnits.remove(group);
 			}
