@@ -4,15 +4,15 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider;
-import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryLabelProvider;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
-import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ListViewer;
+import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DragSourceEvent;
@@ -34,7 +34,6 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.AdminBroker;
-import org.unicase.workspace.WorkspaceManager;
 
 public class TabContent {
 
@@ -42,12 +41,14 @@ public class TabContent {
 	private Composite tabContents;
 	private String tabName;
 	private AdminBroker adminBroker;
+	private OrgUnitManagementGUI orgUnitMgmtGUI;
 
 	private PropertiesForm frm;
 
-	public TabContent(String tabName, AdminBroker adminBroker) {
+	public TabContent(String tabName, AdminBroker adminBroker, OrgUnitManagementGUI orgUnitManagementGUI) {
 		this.tabName = tabName;
 		this.adminBroker = adminBroker;
+		this.orgUnitMgmtGUI = orgUnitManagementGUI;
 	}
 
 	public Composite createContents(TabFolder tabFolder) {
@@ -98,22 +99,28 @@ public class TabContent {
 
 			// Remove the selection and refresh the view
 			public void widgetSelected(SelectionEvent e) {
-				int selectedIndex = list.getList().getSelectionIndex();
+//				int selectedIndex = list.getList().getSelectionIndex();
 				ACOrgUnit ou = (ACOrgUnit) ((IStructuredSelection) list
 						.getSelection()).getFirstElement();
 				if (ou != null) {
 					deleteOrgUnit(ou);
 				}
-				if (selectedIndex != 0){
-					list.getList().setSelection(selectedIndex -1);
-				}else if(list.getList().getItemCount() == 0){
+				if(frm.getCurrentInput() instanceof ACOrgUnit 
+						&& ((ACOrgUnit)frm.getCurrentInput()).equals(ou)){
 					frm.setInput(null);
 					return;
-				}else{
-					list.getList().setSelection(0);
 				}
-				frm.setInput((EObject)((IStructuredSelection) list
-						.getSelection()).getFirstElement());
+				orgUnitMgmtGUI.getFormTableViewer().refresh();
+//				if (selectedIndex != 0){
+//					list.getList().setSelection(selectedIndex -1);
+//				}else if(list.getList().getItemCount() == 0){
+//					frm.setInput(null);
+//					return;
+//				}else{
+//					list.getList().setSelection(0);
+//				}
+//				frm.setInput((EObject)((IStructuredSelection) list
+//						.getSelection()).getFirstElement());
 			}
 		});
 		
@@ -173,7 +180,7 @@ public class TabContent {
 
 		list.setLabelProvider(new ListLabelProvider());
 		list.setContentProvider(new ListContentProvider());
-		list.setInput(tabName);
+		list.setInput(new Object());
 
 		list.addDoubleClickListener(new IDoubleClickListener() {
 			public void doubleClick(DoubleClickEvent event) {
@@ -276,6 +283,10 @@ public class TabContent {
 	public String getName() {
 		return tabName;
 	}
+	
+	public ListViewer getListViewer(){
+		return this.list;
+	}
 
 	private EObject getSelectedItem(DoubleClickEvent event) {
 		EObject result = null;
@@ -305,24 +316,22 @@ public class TabContent {
 	}
 
 	private class ListLabelProvider extends
-			TransactionalAdapterFactoryLabelProvider implements ILabelProvider {
+			AdapterFactoryLabelProvider  {
 
 		public ListLabelProvider() {
 
-			super(WorkspaceManager.getInstance().getCurrentWorkspace()
-					.getEditingDomain(), new ComposedAdapterFactory(
+			super( new ComposedAdapterFactory(
 					ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		}
 
 	}// ListLabelProvider
 
 	private class ListContentProvider extends
-			TransactionalAdapterFactoryContentProvider {
+			AdapterFactoryContentProvider {
 
 		public ListContentProvider() {
 
-			super(WorkspaceManager.getInstance().getCurrentWorkspace()
-					.getEditingDomain(), new ComposedAdapterFactory(
+			super( new ComposedAdapterFactory(
 					ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		}
 
@@ -330,7 +339,7 @@ public class TabContent {
 		public Object[] getElements(Object object) {
 
 			Object[] result = new Object[0];
-			String tabName = (String) object;
+//			String tabName = (String) object;
 			try {
 				if (tabName.equals("Projects")) {
 					// return a list of Projects in project space

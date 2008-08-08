@@ -36,9 +36,11 @@ public class ProjectComposite extends FormContents {
 	private Text txtVersion;
 
 	private ProjectInfo projectInfo;
+	private OrgUnitManagementGUI orgUnitMgmtGUI;
 
-	public ProjectComposite(Composite parent, int style, AdminBroker adminBroker) {
+	public ProjectComposite(Composite parent, int style, AdminBroker adminBroker, OrgUnitManagementGUI orgUnitMgmtGUI) {
 		super(parent, style, adminBroker);
+		this.orgUnitMgmtGUI = orgUnitMgmtGUI;
 		createControls();
 	}
 
@@ -237,6 +239,7 @@ public class ProjectComposite extends FormContents {
 		txtVersion.setText(String.valueOf(projectInfo.getVersion()
 				.getIdentifier()));
 		tableViewer.setInput(projectInfo);
+		orgUnitMgmtGUI.setFormTableViewer(tableViewer);
 
 	}
 

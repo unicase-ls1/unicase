@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.forms.widgets.Form;
 import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
@@ -22,9 +23,11 @@ import org.unicase.workspace.WorkspaceManager;
 public class GroupComposite extends FormContents {
 
 	private ACGroup group;
+	private OrgUnitManagementGUI orgUnitMgmtGUI;
 
-	public GroupComposite(Composite parent, int style, AdminBroker adminBroker) {
+	public GroupComposite(Composite parent, int style, AdminBroker adminBroker, OrgUnitManagementGUI orgUnitMgmtGUI) {
 		super(parent, style, adminBroker);
+		this.orgUnitMgmtGUI = orgUnitMgmtGUI;
 		createControls();
 	}
 
@@ -120,6 +123,7 @@ public class GroupComposite extends FormContents {
 			txtName.setText(group.getName());
 			txtDescription.setText((group.getDescription()==null) ? "" : group.getDescription() );
 			tableViewer.setInput(group);
+			orgUnitMgmtGUI.setFormTableViewer(tableViewer);
 			
 //			IObservableValue model = EMFEditObservables.observeValue(editingDomain,
 //					group, AccesscontrolPackage.eINSTANCE.getACOrgUnit_Name());
@@ -148,6 +152,8 @@ public class GroupComposite extends FormContents {
 				  && group.getDescription().equals(txtDescription.getText()) )){
 				try {
 					adminBroker.changeOrgUnit(group.getId(), txtName.getText(), txtDescription.getText());
+					((Form)(this.getParent().getParent())).setText("Group: " + txtName.getText());
+					orgUnitMgmtGUI.getActiveTabContent().getListViewer().refresh();
 				} catch (EmfStoreException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
