@@ -45,6 +45,9 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		adminFacadeMap = new HashMap<SessionId, RMIAdminEmfStoreFacade>();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void addParticipant(SessionId sessionId, ProjectId projectId,
 			ACOrgUnitId participant) throws EmfStoreException {
 		try {
@@ -59,6 +62,9 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void changeRole(SessionId sessionId, ProjectId projectId,
 			ACOrgUnitId orgUnit, EClass role) throws EmfStoreException {
 		try {
@@ -74,6 +80,9 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public List<ACGroup> getGroups(SessionId sessionId)
 			throws EmfStoreException {
 		try {
@@ -92,6 +101,9 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public List<ACGroup> getGroups(SessionId sessionId, ACOrgUnitId user)
 			throws EmfStoreException {
 		try {
@@ -111,6 +123,9 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public List<ACOrgUnit> getOrgUnits(SessionId sessionId)
 			throws EmfStoreException {
 		try {
@@ -129,6 +144,9 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public List<ACOrgUnit> getParticipants(SessionId sessionId,
 			ProjectId projectId) throws EmfStoreException {
 		try {
@@ -148,6 +166,9 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public List<ACOrgUnit> getMembers(SessionId sessionId, ACOrgUnitId groupId)
 			throws EmfStoreException {
 		try {
@@ -167,6 +188,9 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public List<ProjectInfo> getProjectInfos(SessionId sessionId)
 			throws EmfStoreException {
 		try {
@@ -185,6 +209,9 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Role getRole(SessionId sessionId, ProjectId projectId,
 			ACOrgUnitId orgUnit) throws EmfStoreException {
 		try {
@@ -201,6 +228,9 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public List<ACUser> getUsers(SessionId sessionId) throws EmfStoreException {
 		try {
 			List<ACUser> result = new ArrayList<ACUser>();
@@ -218,6 +248,9 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void removeGroup(SessionId sessionId, ACOrgUnitId user,
 			ACOrgUnitId group) throws EmfStoreException {
 		try {
@@ -232,6 +265,9 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void removeParticipant(SessionId sessionId, ProjectId projectId,
 			ACOrgUnitId participant) throws EmfStoreException {
 		try {
@@ -246,6 +282,9 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void createGroup(SessionId sessionId, String name)
 			throws EmfStoreException {
 		try {
@@ -258,6 +297,9 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void createUser(SessionId sessionId, String name)
 			throws EmfStoreException {
 		try {
@@ -270,6 +312,9 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void deleteGroup(SessionId sessionId, ACOrgUnitId group)
 			throws EmfStoreException {
 		try {
@@ -283,6 +328,9 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void deleteUser(SessionId sessionId, ACOrgUnitId user)
 			throws EmfStoreException {
 		try {
@@ -305,6 +353,9 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		return facade;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void initConnection(ServerInfo serverInfo, SessionId id)
 			throws ConnectionException {
 		Registry registry;
@@ -322,6 +373,9 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		adminFacadeMap.put(id, facade);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void addMember(SessionId sessionId, ACOrgUnitId group,
 			ACOrgUnitId member) throws EmfStoreException {
 		try {
@@ -335,6 +389,9 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void removeMember(SessionId sessionId, ACOrgUnitId group,
 			ACOrgUnitId member) throws EmfStoreException {
 		try {
@@ -349,6 +406,9 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void changeOrgUnit(SessionId sessionId, ACOrgUnitId orgUnitId,
 			String name, String description) throws EmfStoreException {
 		try {
@@ -362,4 +422,19 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public ACOrgUnit getOrgUnit(SessionId sessionId, ACOrgUnitId orgUnitId)
+			throws EmfStoreException {
+		try {
+			return (ACOrgUnit) RMIUtil.stringToEObject(getFacade(sessionId)
+					.getOrgUnit(RMIUtil.eObjectToString(sessionId),
+							RMIUtil.eObjectToString(orgUnitId)));
+		} catch (RemoteException e) {
+			throw new ConnectionException(REMOTE, e);
+		} catch (IOException e) {
+			throw new ConnectionException(REMOTE, e);
+		}
+	}
 }

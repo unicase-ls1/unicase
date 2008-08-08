@@ -50,4 +50,5 @@ public interface RMIAdminEmfStoreFacade extends Remote {
 	void removeMember(String sessionId, String group, String member) throws RemoteException, EmfStoreException;
 	
 	void changeOrgUnit(String sessionId, String orgUnitId, String name, String description) throws RemoteException, EmfStoreException;
+	String getOrgUnit(String sessionId, String orgUnitId) throws RemoteException, EmfStoreException;
 }

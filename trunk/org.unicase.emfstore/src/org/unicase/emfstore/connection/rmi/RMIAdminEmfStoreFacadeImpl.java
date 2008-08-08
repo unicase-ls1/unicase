@@ -388,4 +388,20 @@ public class RMIAdminEmfStoreFacadeImpl extends UnicastRemoteObject implements
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getOrgUnit(String sessionId, String orgUnitId)
+			throws RemoteException, EmfStoreException {
+		try {
+			return RMIUtil.eObjectToString(adminEmfStore.getOrgUnit(
+					(SessionId) RMIUtil.stringToEObject(sessionId),
+					(ACOrgUnitId) RMIUtil.stringToEObject(orgUnitId)));
+		} catch (UnsupportedEncodingException e) {
+			throw new EmfStoreException(SERIALEX, e);
+		} catch (IOException e) {
+			throw new EmfStoreException(SERIALEX, e);
+		}
+	}
+
 }
