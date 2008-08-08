@@ -9,6 +9,7 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.window.Window;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.emfstore.exceptions.EmfStoreException;
@@ -17,14 +18,14 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.edit.dialogs.LoginDialog;
 
 public class ShareProjectHandler extends ProjectActionHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		final ProjectSpace projectSpace = (ProjectSpace) getProjectSpace(event);
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			protected void doExecute() {
 				// TODO: handle exception
@@ -43,14 +44,10 @@ public class ShareProjectHandler extends ProjectActionHandler {
 	 * @param projectSpace
 	 */
 	private void createProject(ProjectSpace projectSpace) {
-		ElementListSelectionDialog dlg = new ElementListSelectionDialog(
-				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
-				new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-						ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
-		Workspace currentWorkspace = WorkspaceManager.getInstance()
-				.getCurrentWorkspace();
-		Collection<Usersession> allSessions = currentWorkspace
-				.getUsersessions();
+		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		ElementListSelectionDialog dlg = new ElementListSelectionDialog(shell, new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
+		Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+		Collection<Usersession> allSessions = currentWorkspace.getUsersessions();
 		dlg.setElements(allSessions.toArray());
 		dlg.setTitle("Select Usersession");
 		dlg.setBlockOnOpen(true);
@@ -58,13 +55,21 @@ public class ShareProjectHandler extends ProjectActionHandler {
 			Object result = dlg.getFirstResult();
 			if (result instanceof Usersession) {
 				Usersession usersession = (Usersession) result;
-				try {
-					projectSpace.shareProject(usersession);
-				} catch (EmfStoreException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (Exception e) {
-					ExceptionDialogHandler.showExceptionDialog(e);
+				LoginDialog login;
+				// initially setting the status as successful in case the user
+				// is already logged in
+				int loginStatus = LoginDialog.SUCCESSFUL;
+				if (!usersession.isLoggedIn()) {
+					login = new LoginDialog(shell, usersession);
+					login.open();
+					loginStatus = login.getStatus();
+				}
+				if (loginStatus == LoginDialog.SUCCESSFUL) {
+					try {
+						projectSpace.shareProject(usersession);
+					} catch (EmfStoreException e) {
+						ExceptionDialogHandler.showExceptionDialog(e);
+					}
 				}
 			}
 		}

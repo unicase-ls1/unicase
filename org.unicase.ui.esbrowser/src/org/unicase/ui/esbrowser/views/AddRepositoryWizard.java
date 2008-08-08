@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.ui.esbrowser.dialogs;
+package org.unicase.ui.esbrowser.views;
 
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -22,7 +22,6 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
-import org.unicase.ui.esbrowser.views.RepositoryView;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceFactory;
@@ -34,7 +33,7 @@ import org.unicase.workspace.WorkspaceManager;
  * @author shterev
  * 
  */
-public class RepositoryWizard extends Wizard implements INewWizard {
+public class AddRepositoryWizard extends Wizard implements INewWizard {
 
 	private ServerInfo serverInfo;
 
@@ -44,7 +43,7 @@ public class RepositoryWizard extends Wizard implements INewWizard {
 
 	private IWorkbench workbench;
 
-	private RepositoryView view;
+	private ESBrowserView view;
 	private boolean edit;
 
 	/**
@@ -53,7 +52,7 @@ public class RepositoryWizard extends Wizard implements INewWizard {
 	 * @param view
 	 *            callback to the repository view
 	 */
-	public RepositoryWizard(RepositoryView view) {
+	public AddRepositoryWizard(ESBrowserView view) {
 		super();
 		this.view = view;
 	}
@@ -117,8 +116,8 @@ public class RepositoryWizard extends Wizard implements INewWizard {
 					// save serverInfo to workspace
 					Workspace workspace = WorkspaceManager.getInstance()
 					.getCurrentWorkspace();
-					if(!RepositoryWizard.this.edit){
-						workspace.getServerInfos().add(RepositoryWizard.this.serverInfo);
+					if(!AddRepositoryWizard.this.edit){
+						workspace.getServerInfos().add(AddRepositoryWizard.this.serverInfo);
 					}
 					workspace.save();
 				}
@@ -175,7 +174,7 @@ class RepositoryMainPage extends WizardPage {
 	 * {@inheritDoc}
 	 */
 	public void createControl(Composite parent) {
-		RepositoryWizard wizard = (RepositoryWizard) getWizard();
+		AddRepositoryWizard wizard = (AddRepositoryWizard) getWizard();
 		ServerInfo serverInfo = wizard.getServerInfo();
 
 		GridData gd;
@@ -244,7 +243,7 @@ class RepositoryMainPage extends WizardPage {
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-				RepositoryWizard wizard = (RepositoryWizard) getWizard();
+				AddRepositoryWizard wizard = (AddRepositoryWizard) getWizard();
 				ServerInfo serverInfo = wizard.getServerInfo();
 				serverInfo.setDisplayName(displayName.getText());
 				serverInfo.setName(name.getText());

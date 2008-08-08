@@ -11,11 +11,15 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.common.exceptions.ExceptionDialogHandler;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.Usersession;
+import org.unicase.workspace.edit.dialogs.LoginDialog;
 
 /**
  * 
@@ -31,29 +35,37 @@ public class UpdateProjectHandler extends ProjectActionHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		IWorkbenchWindow window = HandlerUtil
-				.getActiveWorkbenchWindowChecked(event);
+		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
 
 		final ProjectSpace projectSpace = (ProjectSpace) getProjectSpace(event);
 
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			protected void doExecute() {
-				try {
-					projectSpace.update();
+				Usersession usersession = projectSpace.getUsersession();
+				Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+				LoginDialog login;
+				// initially setting the status as successful in case the user
+				// is already logged in
+				int loginStatus = LoginDialog.SUCCESSFUL;
+				if (usersession == null) {
+					// TODO: 
+				} else if (!usersession.isLoggedIn()) {
+					login = new LoginDialog(shell, usersession);
+					login.open();
+					loginStatus = login.getStatus();
+				}
+				if (loginStatus == LoginDialog.SUCCESSFUL) {
+					try {
+						projectSpace.update();
+					} catch (EmfStoreException e) {
+						ExceptionDialogHandler.showExceptionDialog(e);
+					}
+				}
 
-				} catch (EmfStoreException e) {
-					ExceptionDialogHandler.showExceptionDialog(e);;
-				}
-				catch (RuntimeException e) {
-					ExceptionDialogHandler.showExceptionDialog(e);
-					throw e;
-				}
 			}
 		});
-		MessageDialog.openInformation(window.getShell(), null,
-				"Update complete!");
+		MessageDialog.openInformation(window.getShell(), null, "Update complete!");
 		return null;
 	}
 }

@@ -11,13 +11,15 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.common.exceptions.ExceptionDialogHandler;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.Usersession;
+import org.unicase.workspace.edit.dialogs.LoginDialog;
 
 /**
  * 
@@ -33,37 +35,37 @@ public class CommitProjectHandler extends ProjectActionHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		IWorkbenchWindow window = HandlerUtil
-				.getActiveWorkbenchWindowChecked(event);
+		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
 
 		final ProjectSpace projectSpace = getProjectSpace(event);
 
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			protected void doExecute() {
-				try {
-
-					// FIXME: for debugging select first usersession,
-					// usersession re-login has to be implemented after eclipse
-					// restart.
-					Workspace currentWorkspace = WorkspaceManager.getInstance()
-							.getCurrentWorkspace();
-					projectSpace.setUsersession(currentWorkspace
-							.getUsersessions().get(0));
-
-					projectSpace.commit();
-				} catch (EmfStoreException e) {
-					ExceptionDialogHandler.showExceptionDialog(e);
-				} catch (RuntimeException e) {
-					ExceptionDialogHandler.showExceptionDialog(e);
-					throw e;
+				Usersession usersession = projectSpace.getUsersession();
+				Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+				LoginDialog login;
+				// initially setting the status as successful in case the user
+				// is already logged in
+				int loginStatus = LoginDialog.SUCCESSFUL;
+				if (usersession == null) {
+					// TODO: 
+				} else if (!usersession.isLoggedIn()) {
+					login = new LoginDialog(shell, usersession);
+					login.open();
+					loginStatus = login.getStatus();
+				}
+				if (loginStatus == LoginDialog.SUCCESSFUL) {
+					try {
+						projectSpace.commit();
+					} catch (EmfStoreException e) {
+						ExceptionDialogHandler.showExceptionDialog(e);
+					}
 				}
 			}
 		});
 
-		MessageDialog.openInformation(window.getShell(), null,
-				"Commit completed.");
+		MessageDialog.openInformation(window.getShell(), null, "Commit completed.");
 
 		return null;
 	}

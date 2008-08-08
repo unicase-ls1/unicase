@@ -43,16 +43,16 @@ import org.eclipse.ui.part.ViewPart;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.ui.common.exceptions.ExceptionDialogHandler;
 import org.unicase.ui.esbrowser.Activator;
-import org.unicase.ui.esbrowser.dialogs.RepositoryCreateProjectDialog;
-import org.unicase.ui.esbrowser.dialogs.RepositoryLoginDialog;
-import org.unicase.ui.esbrowser.dialogs.RepositoryWizard;
 import org.unicase.ui.esbrowser.dialogs.admin.ManageOrgUnitsDialog;
 import org.unicase.workspace.AdminBroker;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
+import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.edit.dialogs.LoginDialog;
 import org.unicase.workspace.provider.WorkspaceItemProviderAdapterFactory;
 
 /**
@@ -61,7 +61,7 @@ import org.unicase.workspace.provider.WorkspaceItemProviderAdapterFactory;
  * @author shterev
  * 
  */
-public class RepositoryView extends ViewPart {
+public class ESBrowserView extends ViewPart {
 	private TreeViewer viewer;
 	private Action projectCheckout;
 	private Action addRepository;
@@ -72,6 +72,7 @@ public class RepositoryView extends ViewPart {
 	private Action manageOrgUnits;
 	private Usersession session;
 	private HashMap<ProjectInfo, ServerInfo> projectServerMap = new HashMap<ProjectInfo, ServerInfo>();
+	public ServerInfo serverInfo;
 
 	/**
 	 * Content provider for the tree view.
@@ -96,35 +97,29 @@ public class RepositoryView extends ViewPart {
 			if (object instanceof Workspace) {
 				return ((Workspace) object).getServerInfos().toArray();
 			} else if (object instanceof ServerInfo) {
-				final ServerInfo serverInfo = (ServerInfo) object;
-				session = serverInfo.getLastUsersession();
-				if (session == null || session.getPassword() == null) {
-					RepositoryLoginDialog dialog = new RepositoryLoginDialog(
-							PlatformUI.getWorkbench().getDisplay()
-									.getActiveShell(), session, serverInfo);
-					dialog.open();
-					session = dialog.getUsersession();
-				}
-				if (session == null) {
-					return new Object[0];
-				}
-
-				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-						.getEditingDomain("org.unicase.EditingDomain");
+				serverInfo = (ServerInfo) object;
+				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					@Override
 					protected void doExecute() {
-						try {
-							session.logIn();
-							serverInfo.getProjectInfos().clear();
-							serverInfo.getProjectInfos().addAll(
-									session.getRemoteProjectList());
+						session = serverInfo.getLastUsersession();
+						LoginDialog dialog;
+						if (session == null) {
+							session = WorkspaceFactory.eINSTANCE.createUsersession();
+							session.setServerInfo(serverInfo);
 							serverInfo.setLastUsersession(session);
-							Workspace currentWorkspace = WorkspaceManager
-									.getInstance().getCurrentWorkspace();
-							currentWorkspace.getUsersessions().add(session);
-							currentWorkspace.save();
-							// viewer.refresh();
+							dialog = new LoginDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(), session, true);
+							dialog.open();
+						} else if (!session.isLoggedIn()){
+							dialog = new LoginDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(), session);
+							dialog.open();
+						}
+
+						try {
+							serverInfo.getProjectInfos().clear();
+							serverInfo.getProjectInfos().addAll(session.getRemoteProjectList());
+							WorkspaceManager.getInstance().getCurrentWorkspace().save();
+							viewer.refresh();
 						} catch (EmfStoreException e) {
 							// TODO no server connection
 							e.printStackTrace();
@@ -138,8 +133,7 @@ public class RepositoryView extends ViewPart {
 				}
 				return pis.toArray();
 			}
-			throw new IllegalStateException(
-					"Received parent node of unkown type: " + object.getClass());
+			throw new IllegalStateException("Received parent node of unkown type: " + object.getClass());
 		}
 
 		/**
@@ -159,8 +153,7 @@ public class RepositoryView extends ViewPart {
 		@Override
 		public Object[] getElements(Object object) {
 			if (object.equals(getViewSite())) {
-				return getChildren(WorkspaceManager.getInstance()
-						.getCurrentWorkspace());
+				return getChildren(WorkspaceManager.getInstance().getCurrentWorkspace());
 			}
 			return new Object[0];
 		}
@@ -170,17 +163,16 @@ public class RepositoryView extends ViewPart {
 	/**
 	 * The constructor.
 	 */
-	public RepositoryView() {
-		WorkspaceManager.getInstance().getCurrentWorkspace().eAdapters().add(
-				new AdapterImpl() {
-					@Override
-					public void notifyChanged(Notification msg) {
-						if (msg.getNewValue() instanceof ServerInfo) {
-							viewer.refresh();
-						}
-						super.notifyChanged(msg);
-					}
-				});
+	public ESBrowserView() {
+		WorkspaceManager.getInstance().getCurrentWorkspace().eAdapters().add(new AdapterImpl() {
+			@Override
+			public void notifyChanged(Notification msg) {
+				if (msg.getNewValue() instanceof ServerInfo) {
+					viewer.refresh();
+				}
+				super.notifyChanged(msg);
+			}
+		});
 	}
 
 	/**
@@ -190,20 +182,13 @@ public class RepositoryView extends ViewPart {
 	public void createPartControl(Composite parent) {
 		viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
 		viewer.setContentProvider(new WorkspaceRootContentProvider());
-		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
-				new ComposedAdapterFactory(
-						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		viewer.setLabelProvider(new DecoratingLabelProvider(
-				adapterFactoryLabelProvider,
-				((DecoratingLabelProvider) WorkbenchLabelProvider
-						.getDecoratingWorkbenchLabelProvider())
-						.getLabelDecorator()));
+		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		viewer.setLabelProvider(new DecoratingLabelProvider(adapterFactoryLabelProvider, ((DecoratingLabelProvider) WorkbenchLabelProvider.getDecoratingWorkbenchLabelProvider()).getLabelDecorator()));
 
 		viewer.setSorter(new ViewerSorter());
 		viewer.setInput(getViewSite());
 
-		PlatformUI.getWorkbench().getHelpSystem().setHelp(viewer.getControl(),
-				"org.unicase.repositoryview.viewer");
+		PlatformUI.getWorkbench().getHelpSystem().setHelp(viewer.getControl(), "org.unicase.repositoryview.viewer");
 		makeActions();
 		hookContextMenu();
 		hookDoubleClickAction();
@@ -215,7 +200,7 @@ public class RepositoryView extends ViewPart {
 		menuMgr.setRemoveAllWhenShown(true);
 		menuMgr.addMenuListener(new IMenuListener() {
 			public void menuAboutToShow(IMenuManager manager) {
-				RepositoryView.this.fillContextMenu(manager);
+				ESBrowserView.this.fillContextMenu(manager);
 			}
 		});
 		Menu menu = menuMgr.createContextMenu(viewer.getControl());
@@ -252,7 +237,7 @@ public class RepositoryView extends ViewPart {
 		} else if (obj instanceof ProjectInfo) {
 			manager.add(projectCheckout);
 		}
-		
+
 	}
 
 	private void fillLocalToolBar(IToolBarManager manager) {
@@ -264,167 +249,128 @@ public class RepositoryView extends ViewPart {
 			@Override
 			public void run() {
 				ISelection selection = viewer.getSelection();
-				Object obj = ((IStructuredSelection) selection)
-						.getFirstElement();
+				Object obj = ((IStructuredSelection) selection).getFirstElement();
 				viewer.collapseToLevel(obj, -1);
 				viewer.expandToLevel(obj, -1);
 			}
 		};
 		serverLogin.setText("Login...");
-		serverLogin
-				.setToolTipText("Click to login with the last used username");
-		serverLogin.setImageDescriptor(Activator
-				.getImageDescriptor("icons/serverLogin.png"));
+		serverLogin.setToolTipText("Click to login with the last used username");
+		serverLogin.setImageDescriptor(Activator.getImageDescriptor("icons/serverLogin.png"));
 
 		projectCheckout = new Action() {
 			@Override
 			public void run() {
 				ISelection selection = viewer.getSelection();
-				Object obj = ((IStructuredSelection) selection)
-						.getFirstElement();
+				Object obj = ((IStructuredSelection) selection).getFirstElement();
 				final ProjectInfo element = (ProjectInfo) obj;
-				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-						.getEditingDomain("org.unicase.EditingDomain");
-				
+				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					@Override
 					protected void doExecute() {
 						try {
-							projectServerMap.get(element).getLastUsersession()
-									.checkout(element);
+							projectServerMap.get(element).getLastUsersession().checkout(element);
 						} catch (EmfStoreException e) {
-							// TODO show error dialog
-							e.printStackTrace();
+							ExceptionDialogHandler.showExceptionDialog(e);
 						} catch (RuntimeException e) {
-							e.printStackTrace();
-							throw e;
+							ExceptionDialogHandler.showExceptionDialog(e);
 						}
 					}
 				});
 				// JH: remove and add proper notifying
-				IWorkbenchPage page = PlatformUI.getWorkbench()
-						.getActiveWorkbenchWindow().getActivePage();
-				IViewPart navigator = page
-						.findView("org.unicase.ui.navigator.viewer");
+				IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+				IViewPart navigator = page.findView("org.unicase.ui.navigator.viewer");
 				if (page.isPartVisible(navigator)) {
-					((TreeViewer) navigator.getSite().getSelectionProvider())
-							.refresh();
+					((TreeViewer) navigator.getSite().getSelectionProvider()).refresh();
 				}
 			}
 		};
 		projectCheckout.setText("Checkout");
 		projectCheckout.setToolTipText("Click to checkout this project");
-		projectCheckout.setImageDescriptor(PlatformUI.getWorkbench()
-				.getSharedImages().getImageDescriptor(
-						ISharedImages.IMG_TOOL_FORWARD));
+		projectCheckout.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(ISharedImages.IMG_TOOL_FORWARD));
 
 		serverChangeSession = new Action() {
 			@Override
 			public void run() {
 				ISelection selection = viewer.getSelection();
-				Object obj = ((IStructuredSelection) selection)
-						.getFirstElement();
+				Object obj = ((IStructuredSelection) selection).getFirstElement();
 				final ServerInfo element = (ServerInfo) obj;
-				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-						.getEditingDomain("org.unicase.EditingDomain");
+				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					@Override
 					protected void doExecute() {
 						element.setLastUsersession(null);
-						WorkspaceManager.getInstance().getCurrentWorkspace()
-								.save();
+						WorkspaceManager.getInstance().getCurrentWorkspace().save();
 					}
 				});
 				viewer.refresh(obj);
 			}
 		};
-		serverChangeSession
-				.setToolTipText("Click to login with a different username");
-		serverChangeSession.setImageDescriptor(Activator
-				.getImageDescriptor("icons/serverLoginAs.png"));
+		serverChangeSession.setToolTipText("Click to login with a different username");
+		serverChangeSession.setImageDescriptor(Activator.getImageDescriptor("icons/serverLoginAs.png"));
 
 		serverAddProject = new Action() {
 			@Override
 			public void run() {
 				ISelection selection = viewer.getSelection();
-				Object obj = ((IStructuredSelection) selection)
-						.getFirstElement();
+				Object obj = ((IStructuredSelection) selection).getFirstElement();
 				ServerInfo serverInfo = ((ServerInfo) obj);
 				if (serverInfo.getLastUsersession().isLoggedIn()) {
-					RepositoryCreateProjectDialog dialog = new RepositoryCreateProjectDialog(
-							PlatformUI.getWorkbench().getDisplay()
-									.getActiveShell(), serverInfo
-									.getLastUsersession());
+					CreateProjectDialog dialog = new CreateProjectDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(), serverInfo.getLastUsersession());
 					dialog.open();
 					viewer.refresh(obj);
 				}
 			}
 		};
 		serverAddProject.setText("Create new project");
-		serverAddProject
-				.setToolTipText("Click to create new project on the server");
-		serverAddProject.setImageDescriptor(Activator
-				.getImageDescriptor("icons/projectAdd.png"));
+		serverAddProject.setToolTipText("Click to create new project on the server");
+		serverAddProject.setImageDescriptor(Activator.getImageDescriptor("icons/projectAdd.png"));
 
 		serverProperties = new Action() {
 			@Override
 			public void run() {
 				ISelection selection = viewer.getSelection();
-				Object obj = ((IStructuredSelection) selection)
-						.getFirstElement();
+				Object obj = ((IStructuredSelection) selection).getFirstElement();
 				ServerInfo serverInfo = ((ServerInfo) obj);
-				RepositoryWizard wizard = new RepositoryWizard(
-						RepositoryView.this);
-				wizard.init(getSite().getWorkbenchWindow().getWorkbench(),
-						(IStructuredSelection) getSite().getWorkbenchWindow()
-								.getSelectionService().getSelection(),
-						serverInfo);
-				WizardDialog dialog = new WizardDialog(getSite()
-						.getWorkbenchWindow().getShell(), wizard);
+				AddRepositoryWizard wizard = new AddRepositoryWizard(ESBrowserView.this);
+				wizard.init(getSite().getWorkbenchWindow().getWorkbench(), (IStructuredSelection) getSite().getWorkbenchWindow().getSelectionService().getSelection(), serverInfo);
+				WizardDialog dialog = new WizardDialog(getSite().getWorkbenchWindow().getShell(), wizard);
 				dialog.create();
 				dialog.open();
 			}
 		};
 		serverProperties.setText("Server properties");
-		serverProperties
-				.setToolTipText("Click to modify the server properties");
-		serverProperties.setImageDescriptor(Activator
-				.getImageDescriptor("icons/serverEdit.png"));
+		serverProperties.setToolTipText("Click to modify the server properties");
+		serverProperties.setImageDescriptor(Activator.getImageDescriptor("icons/serverEdit.png"));
 
 		addRepository = new Action() {
 			@Override
 			public void run() {
-				RepositoryWizard wizard = new RepositoryWizard(
-						RepositoryView.this);
-				wizard.init(getSite().getWorkbenchWindow().getWorkbench(),
-						(IStructuredSelection) getSite().getWorkbenchWindow()
-								.getSelectionService().getSelection());
-				WizardDialog dialog = new WizardDialog(getSite()
-						.getWorkbenchWindow().getShell(), wizard);
+				AddRepositoryWizard wizard = new AddRepositoryWizard(ESBrowserView.this);
+				wizard.init(getSite().getWorkbenchWindow().getWorkbench(), (IStructuredSelection) getSite().getWorkbenchWindow().getSelectionService().getSelection());
+				WizardDialog dialog = new WizardDialog(getSite().getWorkbenchWindow().getShell(), wizard);
 				dialog.create();
 				dialog.open();
 			}
 		};
 		addRepository.setText("New repository...");
 		addRepository.setToolTipText("Click to add new repository");
-		addRepository.setImageDescriptor(Activator
-				.getImageDescriptor("icons/serverAdd.png"));
+		addRepository.setImageDescriptor(Activator.getImageDescriptor("icons/serverAdd.png"));
 
 		manageOrgUnits = new Action() {
 			public void run() {
 				ManageOrgUnitsDialog dialog;
 				try {
 					ISelection selection = viewer.getSelection();
-					Object obj = ((IStructuredSelection) selection)
-							.getFirstElement();
+					Object obj = ((IStructuredSelection) selection).getFirstElement();
 					ServerInfo serverInfo = ((ServerInfo) obj);
 					session = serverInfo.getLastUsersession();
 					AdminBroker adminBroker = session.getAdminBroker();
-					dialog = new ManageOrgUnitsDialog(PlatformUI.getWorkbench()
-							.getDisplay().getActiveShell(), adminBroker);
+					dialog = new ManageOrgUnitsDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(), adminBroker);
 
 					dialog.create();
-					
+
 					dialog.open();
 				} catch (ConnectionException e) {
 					// TODO Auto-generated catch block
