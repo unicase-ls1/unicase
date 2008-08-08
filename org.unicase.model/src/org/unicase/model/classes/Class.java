@@ -21,6 +21,8 @@ import org.unicase.model.requirement.UseCase;
  *   <li>{@link org.unicase.model.classes.Class#getSubClasses <em>Sub Classes</em>}</li>
  *   <li>{@link org.unicase.model.classes.Class#getIncomingAssociations <em>Incoming Associations</em>}</li>
  *   <li>{@link org.unicase.model.classes.Class#getOutgoingAssociations <em>Outgoing Associations</em>}</li>
+ *   <li>{@link org.unicase.model.classes.Class#getAttributes <em>Attributes</em>}</li>
+ *   <li>{@link org.unicase.model.classes.Class#getMethods <em>Methods</em>}</li>
  * </ul>
  * </p>
  *
@@ -129,4 +131,40 @@ public interface Class extends PackageElement {
 	 * @generated
 	 */
 	EList<Association> getOutgoingAssociations();
+
+	/**
+	 * Returns the value of the '<em><b>Attributes</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.model.classes.Attribute}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.classes.Attribute#getDefiningClass <em>Defining Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Attributes</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Attributes</em>' containment reference list.
+	 * @see org.unicase.model.classes.ClassesPackage#getClass_Attributes()
+	 * @see org.unicase.model.classes.Attribute#getDefiningClass
+	 * @model opposite="definingClass" containment="true"
+	 * @generated
+	 */
+	EList<Attribute> getAttributes();
+
+	/**
+	 * Returns the value of the '<em><b>Methods</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.model.classes.Method}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.classes.Method#getDefiningClass <em>Defining Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Methods</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Methods</em>' containment reference list.
+	 * @see org.unicase.model.classes.ClassesPackage#getClass_Methods()
+	 * @see org.unicase.model.classes.Method#getDefiningClass
+	 * @model opposite="definingClass" containment="true"
+	 * @generated
+	 */
+	EList<Method> getMethods();
 } // Class

@@ -21,5 +21,12 @@
     <tools
         xsi:type="gmftool:CreationTool"
         title="Directed Association"/>
+    <tools
+        xsi:type="gmftool:CreationTool"
+        title="Attribute"
+        description=""/>
+    <tools
+        xsi:type="gmftool:CreationTool"
+        title="Method"/>
   </palette>
 </gmftool:ToolRegistry>

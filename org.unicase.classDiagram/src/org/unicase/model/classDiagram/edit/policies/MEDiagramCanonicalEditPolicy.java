@@ -43,7 +43,7 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 		View viewObject = (View) getHost().getModel();
 		List result = new LinkedList();
 		for (Iterator it = org.unicase.model.classDiagram.part.ModelDiagramUpdater
-				.getMEDiagram_79SemanticChildren(viewObject).iterator(); it
+				.getMEDiagram_88SemanticChildren(viewObject).iterator(); it
 				.hasNext();) {
 			result
 					.add(((org.unicase.model.classDiagram.part.ModelNodeDescriptor) it
@@ -67,10 +67,9 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 				.getVisualID(view);
 		switch (visualID) {
 		case org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart.VISUAL_ID:
-			return !semanticChildren.contains(view.getElement())
-					|| visualID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-							.getNodeVisualID((View) getHost().getModel(), view
-									.getElement());
+			if (!semanticChildren.contains(view.getElement())) {
+				return true;
+			}
 		}
 		return false;
 	}
@@ -209,7 +208,7 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result
 						.addAll(org.unicase.model.classDiagram.part.ModelDiagramUpdater
-								.getMEDiagram_79ContainedLinks(view));
+								.getMEDiagram_88ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$

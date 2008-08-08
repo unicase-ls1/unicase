@@ -121,7 +121,9 @@ public class NonFunctionalRequirementItemProvider extends CriterionItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return super.getText(object);
+		String label = ((NonFunctionalRequirement) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_NonFunctionalRequirement_type")
+				: getString("_UI_NonFunctionalRequirement_type") + " " + label;
 	}
 
 	/**

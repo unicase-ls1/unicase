@@ -4,6 +4,7 @@ import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -14,7 +15,8 @@ import org.unicase.model.classes.Association;
 /**
  * @generated
  */
-public class AssociationEditPart extends ConnectionNodeEditPart {
+public class AssociationEditPart extends ConnectionNodeEditPart implements
+		ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -42,8 +44,8 @@ public class AssociationEditPart extends ConnectionNodeEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof org.unicase.model.classDiagram.edit.parts.LabelEditPart) {
-			((org.unicase.model.classDiagram.edit.parts.LabelEditPart) childEditPart)
+		if (childEditPart instanceof org.unicase.model.classDiagram.edit.parts.AssociationNameEditPart) {
+			((org.unicase.model.classDiagram.edit.parts.AssociationNameEditPart) childEditPart)
 					.setLabel(getPrimaryShape()
 							.getFigureAssociationFigure_name());
 			return true;

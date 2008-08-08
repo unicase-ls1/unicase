@@ -120,6 +120,18 @@ public class ModelVisualIDRegistry {
 			}
 		}
 		switch (containerVisualID) {
+		case org.unicase.model.classDiagram.edit.parts.ClassClassNode_attributesEditPart.VISUAL_ID:
+			if (ClassesPackage.eINSTANCE.getAttribute().isSuperTypeOf(
+					domainElement.eClass())) {
+				return org.unicase.model.classDiagram.edit.parts.AttributeEditPart.VISUAL_ID;
+			}
+			break;
+		case org.unicase.model.classDiagram.edit.parts.ClassClassNode_methodsEditPart.VISUAL_ID:
+			if (ClassesPackage.eINSTANCE.getMethod().isSuperTypeOf(
+					domainElement.eClass())) {
+				return org.unicase.model.classDiagram.edit.parts.MethodEditPart.VISUAL_ID;
+			}
+			break;
 		case org.unicase.model.classDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
 			if (ClassesPackage.eINSTANCE.getClass_().isSuperTypeOf(
 					domainElement.eClass())) {
@@ -157,6 +169,22 @@ public class ModelVisualIDRegistry {
 			if (org.unicase.model.classDiagram.edit.parts.WrappingLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (org.unicase.model.classDiagram.edit.parts.ClassClassNode_attributesEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (org.unicase.model.classDiagram.edit.parts.ClassClassNode_methodsEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case org.unicase.model.classDiagram.edit.parts.ClassClassNode_attributesEditPart.VISUAL_ID:
+			if (org.unicase.model.classDiagram.edit.parts.AttributeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case org.unicase.model.classDiagram.edit.parts.ClassClassNode_methodsEditPart.VISUAL_ID:
+			if (org.unicase.model.classDiagram.edit.parts.MethodEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case org.unicase.model.classDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
 			if (org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart.VISUAL_ID == nodeVisualID) {
@@ -164,7 +192,7 @@ public class ModelVisualIDRegistry {
 			}
 			break;
 		case org.unicase.model.classDiagram.edit.parts.AssociationEditPart.VISUAL_ID:
-			if (org.unicase.model.classDiagram.edit.parts.LabelEditPart.VISUAL_ID == nodeVisualID) {
+			if (org.unicase.model.classDiagram.edit.parts.AssociationNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

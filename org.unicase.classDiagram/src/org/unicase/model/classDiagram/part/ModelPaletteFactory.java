@@ -38,6 +38,8 @@ public class ModelPaletteFactory {
 		paletteContainer.add(createAggregation3CreationTool());
 		paletteContainer.add(createComposition4CreationTool());
 		paletteContainer.add(createDirectedAssociation5CreationTool());
+		paletteContainer.add(createAttribute6CreationTool());
+		paletteContainer.add(createMethod7CreationTool());
 		return paletteContainer;
 	}
 
@@ -106,6 +108,41 @@ public class ModelPaletteFactory {
 				org.unicase.model.classDiagram.part.Messages.DirectedAssociation5CreationTool_title,
 				null, null, null) {
 		};
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createAttribute6CreationTool() {
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		types
+				.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Attribute_2001);
+		NodeToolEntry entry = new NodeToolEntry(
+				org.unicase.model.classDiagram.part.Messages.Attribute6CreationTool_title,
+				org.unicase.model.classDiagram.part.Messages.Attribute6CreationTool_desc,
+				types);
+		entry
+				.setSmallIcon(org.unicase.model.classDiagram.providers.ModelElementTypes
+						.getImageDescriptor(org.unicase.model.classDiagram.providers.ModelElementTypes.Attribute_2001));
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createMethod7CreationTool() {
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		types
+				.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Method_2002);
+		NodeToolEntry entry = new NodeToolEntry(
+				org.unicase.model.classDiagram.part.Messages.Method7CreationTool_title,
+				null, types);
+		entry
+				.setSmallIcon(org.unicase.model.classDiagram.providers.ModelElementTypes
+						.getImageDescriptor(org.unicase.model.classDiagram.providers.ModelElementTypes.Method_2002));
+		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
 

@@ -1,5 +1,8 @@
 package org.unicase.model.classDiagram.edit.policies;
 
+import java.util.Iterator;
+
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
@@ -7,6 +10,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 
 /**
@@ -21,6 +25,7 @@ public class MEDiagram2ItemSemanticEditPolicy
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		CompoundCommand cc = getDestroyEdgesCommand();
+		addDestroyChildNodesCommand(cc);
 		addDestroyShortcutsCommand(cc);
 		View view = (View) getHost().getModel();
 		if (view.getEAnnotation("Shortcut") != null) { //$NON-NLS-1$
@@ -28,6 +33,47 @@ public class MEDiagram2ItemSemanticEditPolicy
 		}
 		cc.add(getGEFWrapper(new DestroyElementCommand(req)));
 		return cc.unwrap();
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void addDestroyChildNodesCommand(CompoundCommand cmd) {
+		View view = (View) getHost().getModel();
+		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
+		if (annotation != null) {
+			return;
+		}
+		for (Iterator it = view.getChildren().iterator(); it.hasNext();) {
+			Node node = (Node) it.next();
+			switch (org.unicase.model.classDiagram.part.ModelVisualIDRegistry
+					.getVisualID(node)) {
+			case org.unicase.model.classDiagram.edit.parts.ClassClassNode_attributesEditPart.VISUAL_ID:
+				for (Iterator cit = node.getChildren().iterator(); cit
+						.hasNext();) {
+					Node cnode = (Node) cit.next();
+					switch (org.unicase.model.classDiagram.part.ModelVisualIDRegistry
+							.getVisualID(cnode)) {
+					case org.unicase.model.classDiagram.edit.parts.AttributeEditPart.VISUAL_ID:
+						cmd.add(getDestroyElementCommand(cnode));
+						break;
+					}
+				}
+				break;
+			case org.unicase.model.classDiagram.edit.parts.ClassClassNode_methodsEditPart.VISUAL_ID:
+				for (Iterator cit = node.getChildren().iterator(); cit
+						.hasNext();) {
+					Node cnode = (Node) cit.next();
+					switch (org.unicase.model.classDiagram.part.ModelVisualIDRegistry
+							.getVisualID(cnode)) {
+					case org.unicase.model.classDiagram.edit.parts.MethodEditPart.VISUAL_ID:
+						cmd.add(getDestroyElementCommand(cnode));
+						break;
+					}
+				}
+				break;
+			}
+		}
 	}
 
 	/**

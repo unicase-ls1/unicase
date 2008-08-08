@@ -47,11 +47,22 @@ public class ModelElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static final IElementType MEDiagram_79 = getElementType("org.unicase.classDiagram.MEDiagram_79"); //$NON-NLS-1$
+	public static final IElementType MEDiagram_88 = getElementType("org.unicase.classDiagram.MEDiagram_88"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	public static final IElementType Class_1001 = getElementType("org.unicase.classDiagram.Class_1001"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Attribute_2001 = getElementType("org.unicase.classDiagram.Attribute_2001"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Method_2002 = getElementType("org.unicase.classDiagram.Method_2002"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -169,9 +180,14 @@ public class ModelElementTypes extends ElementInitializers {
 		if (elements == null) {
 			elements = new IdentityHashMap();
 
-			elements.put(MEDiagram_79, DiagramPackage.eINSTANCE.getMEDiagram());
+			elements.put(MEDiagram_88, DiagramPackage.eINSTANCE.getMEDiagram());
 
 			elements.put(Class_1001, ClassesPackage.eINSTANCE.getClass_());
+
+			elements.put(Attribute_2001, ClassesPackage.eINSTANCE
+					.getAttribute());
+
+			elements.put(Method_2002, ClassesPackage.eINSTANCE.getMethod());
 
 			elements.put(Association_3001, ClassesPackage.eINSTANCE
 					.getAssociation());
@@ -192,8 +208,10 @@ public class ModelElementTypes extends ElementInitializers {
 	public static boolean isKnownElementType(IElementType elementType) {
 		if (KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet();
-			KNOWN_ELEMENT_TYPES.add(MEDiagram_79);
+			KNOWN_ELEMENT_TYPES.add(MEDiagram_88);
 			KNOWN_ELEMENT_TYPES.add(Class_1001);
+			KNOWN_ELEMENT_TYPES.add(Attribute_2001);
+			KNOWN_ELEMENT_TYPES.add(Method_2002);
 			KNOWN_ELEMENT_TYPES.add(Association_3001);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);

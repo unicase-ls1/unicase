@@ -14,10 +14,13 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.classes.Association;
+import org.unicase.model.classes.Attribute;
 import org.unicase.model.classes.ClassesPackage;
+import org.unicase.model.classes.Method;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.UseCase;
 
@@ -32,6 +35,8 @@ import org.unicase.model.requirement.UseCase;
  *   <li>{@link org.unicase.model.classes.impl.ClassImpl#getSubClasses <em>Sub Classes</em>}</li>
  *   <li>{@link org.unicase.model.classes.impl.ClassImpl#getIncomingAssociations <em>Incoming Associations</em>}</li>
  *   <li>{@link org.unicase.model.classes.impl.ClassImpl#getOutgoingAssociations <em>Outgoing Associations</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.ClassImpl#getAttributes <em>Attributes</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.ClassImpl#getMethods <em>Methods</em>}</li>
  * </ul>
  * </p>
  *
@@ -83,6 +88,26 @@ public class ClassImpl extends PackageElementImpl implements
 	 * @ordered
 	 */
 	protected EList<Association> outgoingAssociations;
+
+	/**
+	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAttributes()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Attribute> attributes;
+
+	/**
+	 * The cached value of the '{@link #getMethods() <em>Methods</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMethods()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Method> methods;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -229,6 +254,34 @@ public class ClassImpl extends PackageElementImpl implements
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Attribute> getAttributes() {
+		if (attributes == null) {
+			attributes = new EObjectContainmentWithInverseEList<Attribute>(
+					Attribute.class, this, ClassesPackage.CLASS__ATTRIBUTES,
+					ClassesPackage.ATTRIBUTE__DEFINING_CLASS);
+		}
+		return attributes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Method> getMethods() {
+		if (methods == null) {
+			methods = new EObjectContainmentWithInverseEList<Method>(
+					Method.class, this, ClassesPackage.CLASS__METHODS,
+					ClassesPackage.METHOD__DEFINING_CLASS);
+		}
+		return methods;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -256,6 +309,12 @@ public class ClassImpl extends PackageElementImpl implements
 		case ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getOutgoingAssociations())
 					.basicAdd(otherEnd, msgs);
+		case ClassesPackage.CLASS__ATTRIBUTES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAttributes())
+					.basicAdd(otherEnd, msgs);
+		case ClassesPackage.CLASS__METHODS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getMethods())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -282,6 +341,12 @@ public class ClassImpl extends PackageElementImpl implements
 		case ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS:
 			return ((InternalEList<?>) getOutgoingAssociations()).basicRemove(
 					otherEnd, msgs);
+		case ClassesPackage.CLASS__ATTRIBUTES:
+			return ((InternalEList<?>) getAttributes()).basicRemove(otherEnd,
+					msgs);
+		case ClassesPackage.CLASS__METHODS:
+			return ((InternalEList<?>) getMethods())
+					.basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -305,6 +370,10 @@ public class ClassImpl extends PackageElementImpl implements
 			return getIncomingAssociations();
 		case ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS:
 			return getOutgoingAssociations();
+		case ClassesPackage.CLASS__ATTRIBUTES:
+			return getAttributes();
+		case ClassesPackage.CLASS__METHODS:
+			return getMethods();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -341,6 +410,14 @@ public class ClassImpl extends PackageElementImpl implements
 			getOutgoingAssociations().addAll(
 					(Collection<? extends Association>) newValue);
 			return;
+		case ClassesPackage.CLASS__ATTRIBUTES:
+			getAttributes().clear();
+			getAttributes().addAll((Collection<? extends Attribute>) newValue);
+			return;
+		case ClassesPackage.CLASS__METHODS:
+			getMethods().clear();
+			getMethods().addAll((Collection<? extends Method>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -367,6 +444,12 @@ public class ClassImpl extends PackageElementImpl implements
 		case ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS:
 			getOutgoingAssociations().clear();
 			return;
+		case ClassesPackage.CLASS__ATTRIBUTES:
+			getAttributes().clear();
+			return;
+		case ClassesPackage.CLASS__METHODS:
+			getMethods().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -391,6 +474,10 @@ public class ClassImpl extends PackageElementImpl implements
 		case ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS:
 			return outgoingAssociations != null
 					&& !outgoingAssociations.isEmpty();
+		case ClassesPackage.CLASS__ATTRIBUTES:
+			return attributes != null && !attributes.isEmpty();
+		case ClassesPackage.CLASS__METHODS:
+			return methods != null && !methods.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

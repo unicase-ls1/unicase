@@ -409,8 +409,7 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	public boolean isChecked() {
 		// TODO: implement this method to return the 'Checked' attribute
 		// Ensure that you remove @generated or mark it @generated NOT
-		// throw new UnsupportedOperationException();
-		return isDone();
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -421,7 +420,7 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	public void setChecked(boolean newChecked) {
 		// TODO: implement this method to set the 'Checked' attribute
 		// Ensure that you remove @generated or mark it @generated NOT
-		// throw new UnsupportedOperationException();
+		throw new UnsupportedOperationException();
 	}
 
 	/**

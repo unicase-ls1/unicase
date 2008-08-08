@@ -17,7 +17,7 @@ public class MEDiagramEditPart extends DiagramEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 79;
+	public static final int VISUAL_ID = 88;
 
 	/**
 	 * @generated

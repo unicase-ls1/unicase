@@ -12,10 +12,16 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.model.classes.ArgumentDirectionType;
 import org.unicase.model.classes.Association;
 import org.unicase.model.classes.AssociationType;
+import org.unicase.model.classes.Attribute;
 import org.unicase.model.classes.ClassesFactory;
 import org.unicase.model.classes.ClassesPackage;
+import org.unicase.model.classes.Method;
+import org.unicase.model.classes.MethodArgument;
+import org.unicase.model.classes.ScopeType;
+import org.unicase.model.classes.VisibilityType;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
@@ -65,6 +71,12 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 			return createPackage();
 		case ClassesPackage.ASSOCIATION:
 			return createAssociation();
+		case ClassesPackage.ATTRIBUTE:
+			return createAttribute();
+		case ClassesPackage.METHOD:
+			return createMethod();
+		case ClassesPackage.METHOD_ARGUMENT:
+			return createMethodArgument();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName()
 					+ "' is not a valid classifier");
@@ -80,6 +92,13 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 		switch (eDataType.getClassifierID()) {
 		case ClassesPackage.ASSOCIATION_TYPE:
 			return createAssociationTypeFromString(eDataType, initialValue);
+		case ClassesPackage.VISIBILITY_TYPE:
+			return createVisibilityTypeFromString(eDataType, initialValue);
+		case ClassesPackage.SCOPE_TYPE:
+			return createScopeTypeFromString(eDataType, initialValue);
+		case ClassesPackage.ARGUMENT_DIRECTION_TYPE:
+			return createArgumentDirectionTypeFromString(eDataType,
+					initialValue);
 		default:
 			throw new IllegalArgumentException("The datatype '"
 					+ eDataType.getName() + "' is not a valid classifier");
@@ -95,6 +114,13 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 		switch (eDataType.getClassifierID()) {
 		case ClassesPackage.ASSOCIATION_TYPE:
 			return convertAssociationTypeToString(eDataType, instanceValue);
+		case ClassesPackage.VISIBILITY_TYPE:
+			return convertVisibilityTypeToString(eDataType, instanceValue);
+		case ClassesPackage.SCOPE_TYPE:
+			return convertScopeTypeToString(eDataType, instanceValue);
+		case ClassesPackage.ARGUMENT_DIRECTION_TYPE:
+			return convertArgumentDirectionTypeToString(eDataType,
+					instanceValue);
 		default:
 			throw new IllegalArgumentException("The datatype '"
 					+ eDataType.getName() + "' is not a valid classifier");
@@ -129,6 +155,36 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Attribute createAttribute() {
+		AttributeImpl attribute = new AttributeImpl();
+		return attribute;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Method createMethod() {
+		MethodImpl method = new MethodImpl();
+		return method;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MethodArgument createMethodArgument() {
+		MethodArgumentImpl methodArgument = new MethodArgumentImpl();
+		return methodArgument;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -147,6 +203,81 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 	 * @generated
 	 */
 	public String convertAssociationTypeToString(EDataType eDataType,
+			Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public VisibilityType createVisibilityTypeFromString(EDataType eDataType,
+			String initialValue) {
+		VisibilityType result = VisibilityType.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue
+					+ "' is not a valid enumerator of '" + eDataType.getName()
+					+ "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertVisibilityTypeToString(EDataType eDataType,
+			Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ScopeType createScopeTypeFromString(EDataType eDataType,
+			String initialValue) {
+		ScopeType result = ScopeType.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue
+					+ "' is not a valid enumerator of '" + eDataType.getName()
+					+ "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertScopeTypeToString(EDataType eDataType,
+			Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ArgumentDirectionType createArgumentDirectionTypeFromString(
+			EDataType eDataType, String initialValue) {
+		ArgumentDirectionType result = ArgumentDirectionType.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue
+					+ "' is not a valid enumerator of '" + eDataType.getName()
+					+ "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertArgumentDirectionTypeToString(EDataType eDataType,
 			Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}

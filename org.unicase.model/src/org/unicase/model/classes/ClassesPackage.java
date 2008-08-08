@@ -280,13 +280,31 @@ public interface ClassesPackage extends EPackage {
 	int CLASS__OUTGOING_ASSOCIATIONS = PACKAGE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__ATTRIBUTES = PACKAGE_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Methods</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__METHODS = PACKAGE_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
 	 * The number of structural features of the '<em>Class</em>' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 5;
+	int CLASS_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.classes.impl.PackageImpl <em>Package</em>}' class.
@@ -515,6 +533,441 @@ public interface ClassesPackage extends EPackage {
 	int ASSOCIATION_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
+	 * The meta object id for the '{@link org.unicase.model.classes.impl.AttributeImpl <em>Attribute</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.classes.impl.AttributeImpl
+	 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getAttribute()
+	 * @generated
+	 */
+	int ATTRIBUTE = 4;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__NAME = ModelPackage.MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Defining Class</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__DEFINING_CLASS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__VISIBILITY = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Scope</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__SCOPE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Signature</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__SIGNATURE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__TYPE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of structural features of the '<em>Attribute</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.model.classes.impl.MethodImpl <em>Method</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.classes.impl.MethodImpl
+	 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getMethod()
+	 * @generated
+	 */
+	int METHOD = 5;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__NAME = ModelPackage.MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__VISIBILITY = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Scope</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__SCOPE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Defining Class</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__DEFINING_CLASS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Return Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__RETURN_TYPE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Signature</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__SIGNATURE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__ARGUMENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Properties</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__PROPERTIES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__LABEL = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
+	 * The number of structural features of the '<em>Method</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 8;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.model.classes.impl.MethodArgumentImpl <em>Method Argument</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.classes.impl.MethodArgumentImpl
+	 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getMethodArgument()
+	 * @generated
+	 */
+	int METHOD_ARGUMENT = 6;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD_ARGUMENT__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD_ARGUMENT__NAME = ModelPackage.MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD_ARGUMENT__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD_ARGUMENT__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD_ARGUMENT__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD_ARGUMENT__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD_ARGUMENT__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD_ARGUMENT__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD_ARGUMENT__TYPE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Direction</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD_ARGUMENT__DIRECTION = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Default Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD_ARGUMENT__DEFAULT_VALUE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Signature</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD_ARGUMENT__SIGNATURE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD_ARGUMENT__LABEL = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of structural features of the '<em>Method Argument</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD_ARGUMENT_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
 	 * The meta object id for the '{@link org.unicase.model.classes.AssociationType <em>Association Type</em>}' enum.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -522,7 +975,37 @@ public interface ClassesPackage extends EPackage {
 	 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getAssociationType()
 	 * @generated
 	 */
-	int ASSOCIATION_TYPE = 4;
+	int ASSOCIATION_TYPE = 7;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.model.classes.VisibilityType <em>Visibility Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.classes.VisibilityType
+	 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getVisibilityType()
+	 * @generated
+	 */
+	int VISIBILITY_TYPE = 8;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.model.classes.ScopeType <em>Scope Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.classes.ScopeType
+	 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getScopeType()
+	 * @generated
+	 */
+	int SCOPE_TYPE = 9;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.model.classes.ArgumentDirectionType <em>Argument Direction Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.classes.ArgumentDirectionType
+	 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getArgumentDirectionType()
+	 * @generated
+	 */
+	int ARGUMENT_DIRECTION_TYPE = 10;
 
 	/**
 	 * Returns the meta object for class '
@@ -587,6 +1070,28 @@ public interface ClassesPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getClass_OutgoingAssociations();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.unicase.model.classes.Class#getAttributes <em>Attributes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Attributes</em>'.
+	 * @see org.unicase.model.classes.Class#getAttributes()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EReference getClass_Attributes();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.unicase.model.classes.Class#getMethods <em>Methods</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Methods</em>'.
+	 * @see org.unicase.model.classes.Class#getMethods()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EReference getClass_Methods();
 
 	/**
 	 * Returns the meta object for class '
@@ -681,6 +1186,234 @@ public interface ClassesPackage extends EPackage {
 	EAttribute getAssociation_Type();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.model.classes.Attribute <em>Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Attribute</em>'.
+	 * @see org.unicase.model.classes.Attribute
+	 * @generated
+	 */
+	EClass getAttribute();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.unicase.model.classes.Attribute#getDefiningClass <em>Defining Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Defining Class</em>'.
+	 * @see org.unicase.model.classes.Attribute#getDefiningClass()
+	 * @see #getAttribute()
+	 * @generated
+	 */
+	EReference getAttribute_DefiningClass();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.classes.Attribute#getVisibility <em>Visibility</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Visibility</em>'.
+	 * @see org.unicase.model.classes.Attribute#getVisibility()
+	 * @see #getAttribute()
+	 * @generated
+	 */
+	EAttribute getAttribute_Visibility();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.classes.Attribute#getScope <em>Scope</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Scope</em>'.
+	 * @see org.unicase.model.classes.Attribute#getScope()
+	 * @see #getAttribute()
+	 * @generated
+	 */
+	EAttribute getAttribute_Scope();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.classes.Attribute#getSignature <em>Signature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Signature</em>'.
+	 * @see org.unicase.model.classes.Attribute#getSignature()
+	 * @see #getAttribute()
+	 * @generated
+	 */
+	EAttribute getAttribute_Signature();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.classes.Attribute#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see org.unicase.model.classes.Attribute#getType()
+	 * @see #getAttribute()
+	 * @generated
+	 */
+	EAttribute getAttribute_Type();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.model.classes.Method <em>Method</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Method</em>'.
+	 * @see org.unicase.model.classes.Method
+	 * @generated
+	 */
+	EClass getMethod();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.classes.Method#getVisibility <em>Visibility</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Visibility</em>'.
+	 * @see org.unicase.model.classes.Method#getVisibility()
+	 * @see #getMethod()
+	 * @generated
+	 */
+	EAttribute getMethod_Visibility();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.classes.Method#getScope <em>Scope</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Scope</em>'.
+	 * @see org.unicase.model.classes.Method#getScope()
+	 * @see #getMethod()
+	 * @generated
+	 */
+	EAttribute getMethod_Scope();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.unicase.model.classes.Method#getDefiningClass <em>Defining Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Defining Class</em>'.
+	 * @see org.unicase.model.classes.Method#getDefiningClass()
+	 * @see #getMethod()
+	 * @generated
+	 */
+	EReference getMethod_DefiningClass();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.classes.Method#getReturnType <em>Return Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Return Type</em>'.
+	 * @see org.unicase.model.classes.Method#getReturnType()
+	 * @see #getMethod()
+	 * @generated
+	 */
+	EAttribute getMethod_ReturnType();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.classes.Method#getSignature <em>Signature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Signature</em>'.
+	 * @see org.unicase.model.classes.Method#getSignature()
+	 * @see #getMethod()
+	 * @generated
+	 */
+	EAttribute getMethod_Signature();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.unicase.model.classes.Method#getArguments <em>Arguments</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Arguments</em>'.
+	 * @see org.unicase.model.classes.Method#getArguments()
+	 * @see #getMethod()
+	 * @generated
+	 */
+	EReference getMethod_Arguments();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.classes.Method#getProperties <em>Properties</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Properties</em>'.
+	 * @see org.unicase.model.classes.Method#getProperties()
+	 * @see #getMethod()
+	 * @generated
+	 */
+	EAttribute getMethod_Properties();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.classes.Method#getLabel <em>Label</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Label</em>'.
+	 * @see org.unicase.model.classes.Method#getLabel()
+	 * @see #getMethod()
+	 * @generated
+	 */
+	EAttribute getMethod_Label();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.model.classes.MethodArgument <em>Method Argument</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Method Argument</em>'.
+	 * @see org.unicase.model.classes.MethodArgument
+	 * @generated
+	 */
+	EClass getMethodArgument();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.classes.MethodArgument#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see org.unicase.model.classes.MethodArgument#getType()
+	 * @see #getMethodArgument()
+	 * @generated
+	 */
+	EAttribute getMethodArgument_Type();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.classes.MethodArgument#getDirection <em>Direction</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Direction</em>'.
+	 * @see org.unicase.model.classes.MethodArgument#getDirection()
+	 * @see #getMethodArgument()
+	 * @generated
+	 */
+	EAttribute getMethodArgument_Direction();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.classes.MethodArgument#getDefaultValue <em>Default Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Default Value</em>'.
+	 * @see org.unicase.model.classes.MethodArgument#getDefaultValue()
+	 * @see #getMethodArgument()
+	 * @generated
+	 */
+	EAttribute getMethodArgument_DefaultValue();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.classes.MethodArgument#getSignature <em>Signature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Signature</em>'.
+	 * @see org.unicase.model.classes.MethodArgument#getSignature()
+	 * @see #getMethodArgument()
+	 * @generated
+	 */
+	EAttribute getMethodArgument_Signature();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.classes.MethodArgument#getLabel <em>Label</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Label</em>'.
+	 * @see org.unicase.model.classes.MethodArgument#getLabel()
+	 * @see #getMethodArgument()
+	 * @generated
+	 */
+	EAttribute getMethodArgument_Label();
+
+	/**
 	 * Returns the meta object for enum '
 	 * {@link org.unicase.model.classes.AssociationType
 	 * <em>Association Type</em>}'. <!-- begin-user-doc --> <!-- end-user-doc
@@ -691,6 +1424,36 @@ public interface ClassesPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getAssociationType();
+
+	/**
+	 * Returns the meta object for enum '{@link org.unicase.model.classes.VisibilityType <em>Visibility Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Visibility Type</em>'.
+	 * @see org.unicase.model.classes.VisibilityType
+	 * @generated
+	 */
+	EEnum getVisibilityType();
+
+	/**
+	 * Returns the meta object for enum '{@link org.unicase.model.classes.ScopeType <em>Scope Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Scope Type</em>'.
+	 * @see org.unicase.model.classes.ScopeType
+	 * @generated
+	 */
+	EEnum getScopeType();
+
+	/**
+	 * Returns the meta object for enum '{@link org.unicase.model.classes.ArgumentDirectionType <em>Argument Direction Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Argument Direction Type</em>'.
+	 * @see org.unicase.model.classes.ArgumentDirectionType
+	 * @generated
+	 */
+	EEnum getArgumentDirectionType();
 
 	/**
 	 * Returns the factory that creates the instances of the model. <!--
@@ -762,6 +1525,20 @@ public interface ClassesPackage extends EPackage {
 		EReference CLASS__OUTGOING_ASSOCIATIONS = eINSTANCE
 				.getClass_OutgoingAssociations();
 		/**
+		 * The meta object literal for the '<em><b>Attributes</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS__ATTRIBUTES = eINSTANCE.getClass_Attributes();
+		/**
+		 * The meta object literal for the '<em><b>Methods</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS__METHODS = eINSTANCE.getClass_Methods();
+		/**
 		 * The meta object literal for the '{@link org.unicase.model.classes.impl.PackageImpl <em>Package</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.model.classes.impl.PackageImpl
@@ -827,6 +1604,163 @@ public interface ClassesPackage extends EPackage {
 		 */
 		EAttribute ASSOCIATION__TYPE = eINSTANCE.getAssociation_Type();
 		/**
+		 * The meta object literal for the '{@link org.unicase.model.classes.impl.AttributeImpl <em>Attribute</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.classes.impl.AttributeImpl
+		 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getAttribute()
+		 * @generated
+		 */
+		EClass ATTRIBUTE = eINSTANCE.getAttribute();
+		/**
+		 * The meta object literal for the '<em><b>Defining Class</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ATTRIBUTE__DEFINING_CLASS = eINSTANCE
+				.getAttribute_DefiningClass();
+		/**
+		 * The meta object literal for the '<em><b>Visibility</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ATTRIBUTE__VISIBILITY = eINSTANCE.getAttribute_Visibility();
+		/**
+		 * The meta object literal for the '<em><b>Scope</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ATTRIBUTE__SCOPE = eINSTANCE.getAttribute_Scope();
+		/**
+		 * The meta object literal for the '<em><b>Signature</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ATTRIBUTE__SIGNATURE = eINSTANCE.getAttribute_Signature();
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ATTRIBUTE__TYPE = eINSTANCE.getAttribute_Type();
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.classes.impl.MethodImpl <em>Method</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.classes.impl.MethodImpl
+		 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getMethod()
+		 * @generated
+		 */
+		EClass METHOD = eINSTANCE.getMethod();
+		/**
+		 * The meta object literal for the '<em><b>Visibility</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute METHOD__VISIBILITY = eINSTANCE.getMethod_Visibility();
+		/**
+		 * The meta object literal for the '<em><b>Scope</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute METHOD__SCOPE = eINSTANCE.getMethod_Scope();
+		/**
+		 * The meta object literal for the '<em><b>Defining Class</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference METHOD__DEFINING_CLASS = eINSTANCE.getMethod_DefiningClass();
+		/**
+		 * The meta object literal for the '<em><b>Return Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute METHOD__RETURN_TYPE = eINSTANCE.getMethod_ReturnType();
+		/**
+		 * The meta object literal for the '<em><b>Signature</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute METHOD__SIGNATURE = eINSTANCE.getMethod_Signature();
+		/**
+		 * The meta object literal for the '<em><b>Arguments</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference METHOD__ARGUMENTS = eINSTANCE.getMethod_Arguments();
+		/**
+		 * The meta object literal for the '<em><b>Properties</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute METHOD__PROPERTIES = eINSTANCE.getMethod_Properties();
+		/**
+		 * The meta object literal for the '<em><b>Label</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute METHOD__LABEL = eINSTANCE.getMethod_Label();
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.classes.impl.MethodArgumentImpl <em>Method Argument</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.classes.impl.MethodArgumentImpl
+		 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getMethodArgument()
+		 * @generated
+		 */
+		EClass METHOD_ARGUMENT = eINSTANCE.getMethodArgument();
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute METHOD_ARGUMENT__TYPE = eINSTANCE.getMethodArgument_Type();
+		/**
+		 * The meta object literal for the '<em><b>Direction</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute METHOD_ARGUMENT__DIRECTION = eINSTANCE
+				.getMethodArgument_Direction();
+		/**
+		 * The meta object literal for the '<em><b>Default Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute METHOD_ARGUMENT__DEFAULT_VALUE = eINSTANCE
+				.getMethodArgument_DefaultValue();
+		/**
+		 * The meta object literal for the '<em><b>Signature</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute METHOD_ARGUMENT__SIGNATURE = eINSTANCE
+				.getMethodArgument_Signature();
+		/**
+		 * The meta object literal for the '<em><b>Label</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute METHOD_ARGUMENT__LABEL = eINSTANCE.getMethodArgument_Label();
+		/**
 		 * The meta object literal for the '{@link org.unicase.model.classes.AssociationType <em>Association Type</em>}' enum.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
@@ -835,6 +1769,33 @@ public interface ClassesPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum ASSOCIATION_TYPE = eINSTANCE.getAssociationType();
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.classes.VisibilityType <em>Visibility Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.classes.VisibilityType
+		 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getVisibilityType()
+		 * @generated
+		 */
+		EEnum VISIBILITY_TYPE = eINSTANCE.getVisibilityType();
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.classes.ScopeType <em>Scope Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.classes.ScopeType
+		 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getScopeType()
+		 * @generated
+		 */
+		EEnum SCOPE_TYPE = eINSTANCE.getScopeType();
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.classes.ArgumentDirectionType <em>Argument Direction Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.classes.ArgumentDirectionType
+		 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getArgumentDirectionType()
+		 * @generated
+		 */
+		EEnum ARGUMENT_DIRECTION_TYPE = eINSTANCE.getArgumentDirectionType();
 
 	}
 

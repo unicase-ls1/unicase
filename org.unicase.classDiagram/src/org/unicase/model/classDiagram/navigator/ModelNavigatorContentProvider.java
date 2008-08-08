@@ -214,7 +214,7 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 		case org.unicase.model.classDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID: {
 			Collection result = new ArrayList();
 			org.unicase.model.classDiagram.navigator.ModelNavigatorGroup links = new org.unicase.model.classDiagram.navigator.ModelNavigatorGroup(
-					org.unicase.model.classDiagram.part.Messages.NavigatorGroupName_MEDiagram_79_links,
+					org.unicase.model.classDiagram.part.Messages.NavigatorGroupName_MEDiagram_88_links,
 					"icons/linksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection connectedViews = getChildrenByType(
 					Collections.singleton(view),
@@ -241,7 +241,23 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 			org.unicase.model.classDiagram.navigator.ModelNavigatorGroup outgoinglinks = new org.unicase.model.classDiagram.navigator.ModelNavigatorGroup(
 					org.unicase.model.classDiagram.part.Messages.NavigatorGroupName_Class_1001_outgoinglinks,
 					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection connectedViews = getIncomingLinksByType(
+			Collection connectedViews = getChildrenByType(
+					Collections.singleton(view),
+					org.unicase.model.classDiagram.edit.parts.ClassClassNode_attributesEditPart.VISUAL_ID);
+			connectedViews = getChildrenByType(
+					connectedViews,
+					org.unicase.model.classDiagram.edit.parts.AttributeEditPart.VISUAL_ID);
+			result.addAll(createNavigatorItems(connectedViews, parentElement,
+					false));
+			connectedViews = getChildrenByType(
+					Collections.singleton(view),
+					org.unicase.model.classDiagram.edit.parts.ClassClassNode_methodsEditPart.VISUAL_ID);
+			connectedViews = getChildrenByType(
+					connectedViews,
+					org.unicase.model.classDiagram.edit.parts.MethodEditPart.VISUAL_ID);
+			result.addAll(createNavigatorItems(connectedViews, parentElement,
+					false));
+			connectedViews = getIncomingLinksByType(
 					Collections.singleton(view),
 					org.unicase.model.classDiagram.edit.parts.AssociationEditPart.VISUAL_ID);
 			incominglinks.addChildren(createNavigatorItems(connectedViews,

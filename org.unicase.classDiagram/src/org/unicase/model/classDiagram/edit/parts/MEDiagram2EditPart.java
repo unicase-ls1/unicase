@@ -8,14 +8,20 @@ import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.Request;
+import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
+import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ConstrainedToolbarLayoutEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
@@ -54,6 +60,36 @@ public class MEDiagram2EditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
+				new CreationEditPolicy() {
+					public Command getCommand(Request request) {
+						if (understandsRequest(request)) {
+							if (request instanceof CreateViewAndElementRequest) {
+								CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request)
+										.getViewAndElementDescriptor()
+										.getCreateElementRequestAdapter();
+								IElementType type = (IElementType) adapter
+										.getAdapter(IElementType.class);
+								if (type == org.unicase.model.classDiagram.providers.ModelElementTypes.Attribute_2001) {
+									EditPart compartmentEditPart = getChildBySemanticHint(org.unicase.model.classDiagram.part.ModelVisualIDRegistry
+											.getType(org.unicase.model.classDiagram.edit.parts.ClassClassNode_attributesEditPart.VISUAL_ID));
+									return compartmentEditPart == null ? null
+											: compartmentEditPart
+													.getCommand(request);
+								}
+								if (type == org.unicase.model.classDiagram.providers.ModelElementTypes.Method_2002) {
+									EditPart compartmentEditPart = getChildBySemanticHint(org.unicase.model.classDiagram.part.ModelVisualIDRegistry
+											.getType(org.unicase.model.classDiagram.edit.parts.ClassClassNode_methodsEditPart.VISUAL_ID));
+									return compartmentEditPart == null ? null
+											: compartmentEditPart
+													.getCommand(request);
+								}
+							}
+							return super.getCommand(request);
+						}
+						return null;
+					}
+				});
 		super.createDefaultEditPolicies();
 		installEditPolicy(
 				EditPolicyRoles.SEMANTIC_ROLE,
@@ -106,6 +142,22 @@ public class MEDiagram2EditPart extends ShapeNodeEditPart {
 					.setLabel(getPrimaryShape().getFigureClassFigure_name());
 			return true;
 		}
+		if (childEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassClassNode_attributesEditPart) {
+			IFigure pane = getPrimaryShape().getFigureClassFigure_attributes();
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			pane
+					.add(((org.unicase.model.classDiagram.edit.parts.ClassClassNode_attributesEditPart) childEditPart)
+							.getFigure());
+			return true;
+		}
+		if (childEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassClassNode_methodsEditPart) {
+			IFigure pane = getPrimaryShape().getFigureClassFigure_methods();
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			pane
+					.add(((org.unicase.model.classDiagram.edit.parts.ClassClassNode_methodsEditPart) childEditPart)
+							.getFigure());
+			return true;
+		}
 		return false;
 	}
 
@@ -114,6 +166,22 @@ public class MEDiagram2EditPart extends ShapeNodeEditPart {
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 
+		if (childEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassClassNode_attributesEditPart) {
+			IFigure pane = getPrimaryShape().getFigureClassFigure_attributes();
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			pane
+					.remove(((org.unicase.model.classDiagram.edit.parts.ClassClassNode_attributesEditPart) childEditPart)
+							.getFigure());
+			return true;
+		}
+		if (childEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassClassNode_methodsEditPart) {
+			IFigure pane = getPrimaryShape().getFigureClassFigure_methods();
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			pane
+					.remove(((org.unicase.model.classDiagram.edit.parts.ClassClassNode_methodsEditPart) childEditPart)
+							.getFigure());
+			return true;
+		}
 		return false;
 	}
 
@@ -142,6 +210,12 @@ public class MEDiagram2EditPart extends ShapeNodeEditPart {
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 
+		if (editPart instanceof org.unicase.model.classDiagram.edit.parts.ClassClassNode_attributesEditPart) {
+			return getPrimaryShape().getFigureClassFigure_attributes();
+		}
+		if (editPart instanceof org.unicase.model.classDiagram.edit.parts.ClassClassNode_methodsEditPart) {
+			return getPrimaryShape().getFigureClassFigure_methods();
+		}
 		return super.getContentPaneFor(editPart);
 	}
 
@@ -219,6 +293,16 @@ public class MEDiagram2EditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
+		private RectangleFigure fFigureClassFigure_attributes;
+
+		/**
+		 * @generated
+		 */
+		private RectangleFigure fFigureClassFigure_methods;
+
+		/**
+		 * @generated
+		 */
 		public ClassFigure() {
 
 			ToolbarLayout layoutThis = new ToolbarLayout();
@@ -275,6 +359,16 @@ public class MEDiagram2EditPart extends ShapeNodeEditPart {
 
 			classFigure_NameContainer1.add(fFigureClassFigure_name);
 
+			fFigureClassFigure_attributes = new RectangleFigure();
+
+			this.add(fFigureClassFigure_attributes);
+			fFigureClassFigure_attributes.setLayoutManager(new StackLayout());
+
+			fFigureClassFigure_methods = new RectangleFigure();
+
+			this.add(fFigureClassFigure_methods);
+			fFigureClassFigure_methods.setLayoutManager(new StackLayout());
+
 		}
 
 		/**
@@ -301,6 +395,20 @@ public class MEDiagram2EditPart extends ShapeNodeEditPart {
 		 */
 		public WrappingLabel getFigureClassFigure_name() {
 			return fFigureClassFigure_name;
+		}
+
+		/**
+		 * @generated
+		 */
+		public RectangleFigure getFigureClassFigure_attributes() {
+			return fFigureClassFigure_attributes;
+		}
+
+		/**
+		 * @generated
+		 */
+		public RectangleFigure getFigureClassFigure_methods() {
+			return fFigureClassFigure_methods;
 		}
 
 	}

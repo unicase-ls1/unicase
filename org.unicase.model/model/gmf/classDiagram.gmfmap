@@ -26,6 +26,60 @@
           href="model.gmftool#//@palette/@tools.0"/>
       <diagramNode
           href="model.gmfgraph#Class"/>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.0">
+        <containmentFeature
+            href="../model.ecore#//classes/Class/attributes"/>
+        <ownedChild>
+          <domainMetaElement
+              href="../model.ecore#//classes/Attribute"/>
+          <labelMappings
+              xsi:type="gmfmap:FeatureLabelMapping"
+              editPattern="">
+            <diagramLabel
+                href="model.gmfgraph#ClassAttribute_name"/>
+            <features
+                href="../model.ecore#//classes/Attribute/signature"/>
+          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="model.gmftool#//@palette/@tools.5"/>
+          <diagramNode
+              href="model.gmfgraph#ClassAttribute_name"/>
+        </ownedChild>
+      </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.1">
+        <containmentFeature
+            href="../model.ecore#//classes/Class/methods"/>
+        <ownedChild>
+          <domainMetaElement
+              href="../model.ecore#//classes/Method"/>
+          <labelMappings
+              xsi:type="gmfmap:FeatureLabelMapping"
+              editPattern="">
+            <diagramLabel
+                href="model.gmfgraph#ClassMethod_name"/>
+            <features
+                href="../model.ecore#//classes/Method/label"/>
+          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="model.gmftool#//@palette/@tools.6"/>
+          <diagramNode
+              href="model.gmfgraph#ClassMethod_name"/>
+        </ownedChild>
+      </children>
+      <compartments
+          children="//@nodes.0/@ownedChild/@children.0">
+        <compartment
+            href="model.gmfgraph#ClassNode_attributes"/>
+      </compartments>
+      <compartments
+          children="//@nodes.0/@ownedChild/@children.1">
+        <compartment
+            href="model.gmfgraph#ClassNode_methods"/>
+      </compartments>
     </ownedChild>
   </nodes>
   <links

@@ -82,6 +82,8 @@ public class ModelViewProvider extends AbstractViewProvider {
 				}
 				switch (visualID) {
 				case org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart.VISUAL_ID:
+				case org.unicase.model.classDiagram.edit.parts.AttributeEditPart.VISUAL_ID:
+				case org.unicase.model.classDiagram.edit.parts.MethodEditPart.VISUAL_ID:
 					if (domainElement == null
 							|| visualID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
 									.getNodeVisualID(containerView,
@@ -90,13 +92,15 @@ public class ModelViewProvider extends AbstractViewProvider {
 					}
 					break;
 				case org.unicase.model.classDiagram.edit.parts.WrappingLabelEditPart.VISUAL_ID:
+				case org.unicase.model.classDiagram.edit.parts.ClassClassNode_attributesEditPart.VISUAL_ID:
+				case org.unicase.model.classDiagram.edit.parts.ClassClassNode_methodsEditPart.VISUAL_ID:
 					if (org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart.VISUAL_ID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
 							.getVisualID(containerView)
 							|| containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
-				case org.unicase.model.classDiagram.edit.parts.LabelEditPart.VISUAL_ID:
+				case org.unicase.model.classDiagram.edit.parts.AssociationNameEditPart.VISUAL_ID:
 					if (org.unicase.model.classDiagram.edit.parts.AssociationEditPart.VISUAL_ID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
 							.getVisualID(containerView)
 							|| containerView.getElement() != domainElement) {
@@ -125,8 +129,16 @@ public class ModelViewProvider extends AbstractViewProvider {
 			return org.unicase.model.classDiagram.view.factories.MEDiagram2ViewFactory.class;
 		case org.unicase.model.classDiagram.edit.parts.WrappingLabelEditPart.VISUAL_ID:
 			return org.unicase.model.classDiagram.view.factories.WrappingLabelViewFactory.class;
-		case org.unicase.model.classDiagram.edit.parts.LabelEditPart.VISUAL_ID:
-			return org.unicase.model.classDiagram.view.factories.LabelViewFactory.class;
+		case org.unicase.model.classDiagram.edit.parts.AttributeEditPart.VISUAL_ID:
+			return org.unicase.model.classDiagram.view.factories.AttributeViewFactory.class;
+		case org.unicase.model.classDiagram.edit.parts.MethodEditPart.VISUAL_ID:
+			return org.unicase.model.classDiagram.view.factories.MethodViewFactory.class;
+		case org.unicase.model.classDiagram.edit.parts.ClassClassNode_attributesEditPart.VISUAL_ID:
+			return org.unicase.model.classDiagram.view.factories.ClassClassNode_attributesViewFactory.class;
+		case org.unicase.model.classDiagram.edit.parts.ClassClassNode_methodsEditPart.VISUAL_ID:
+			return org.unicase.model.classDiagram.view.factories.ClassClassNode_methodsViewFactory.class;
+		case org.unicase.model.classDiagram.edit.parts.AssociationNameEditPart.VISUAL_ID:
+			return org.unicase.model.classDiagram.view.factories.AssociationNameViewFactory.class;
 		}
 		return null;
 	}

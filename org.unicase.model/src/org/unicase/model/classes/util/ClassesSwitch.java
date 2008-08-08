@@ -13,7 +13,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.classes.Association;
+import org.unicase.model.classes.Attribute;
 import org.unicase.model.classes.ClassesPackage;
+import org.unicase.model.classes.Method;
+import org.unicase.model.classes.MethodArgument;
 import org.unicase.model.classes.PackageElement;
 
 /**
@@ -131,6 +134,39 @@ public class ClassesSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case ClassesPackage.ATTRIBUTE: {
+			Attribute attribute = (Attribute) theEObject;
+			T result = caseAttribute(attribute);
+			if (result == null)
+				result = caseModelElement(attribute);
+			if (result == null)
+				result = caseIdentifiableElement(attribute);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case ClassesPackage.METHOD: {
+			Method method = (Method) theEObject;
+			T result = caseMethod(method);
+			if (result == null)
+				result = caseModelElement(method);
+			if (result == null)
+				result = caseIdentifiableElement(method);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case ClassesPackage.METHOD_ARGUMENT: {
+			MethodArgument methodArgument = (MethodArgument) theEObject;
+			T result = caseMethodArgument(methodArgument);
+			if (result == null)
+				result = caseModelElement(methodArgument);
+			if (result == null)
+				result = caseIdentifiableElement(methodArgument);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -189,6 +225,51 @@ public class ClassesSwitch<T> {
 	 * @generated
 	 */
 	public T caseAssociation(Association object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Attribute</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAttribute(Attribute object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Method</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Method</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMethod(Method object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Method Argument</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Method Argument</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMethodArgument(MethodArgument object) {
 		return null;
 	}
 

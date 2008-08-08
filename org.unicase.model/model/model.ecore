@@ -181,6 +181,10 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingAssociations"
           upperBound="-1" eType="#//classes/Association" eOpposite="#//classes/Association/source"
           eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
+          eType="#//classes/Attribute" containment="true" eOpposite="#//classes/Attribute/definingClass"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="methods" upperBound="-1"
+          eType="#//classes/Method" containment="true" eOpposite="#//classes/Method/definingClass"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Package" eSuperTypes="#//classes/PackageElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="containedPackageElements"
@@ -205,6 +209,58 @@
       <eLiterals name="AGGREGATION" value="1" literal="AGGREGATION"/>
       <eLiterals name="COMPOSITION" value="2" literal="COMPOSITION"/>
       <eLiterals name="DEPENDENCY" value="3" literal="DEPENDENCY"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Attribute" eSuperTypes="#//ModelElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="definingClass" eType="#//classes/Class"
+          eOpposite="#//classes/Class/attributes"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" eType="#//classes/VisibilityType"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="scope" eType="#//classes/ScopeType"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="signature" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
+          transient="true" defaultValueLiteral="" derived="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="VisibilityType">
+      <eLiterals name="UNDEFINED" literal=""/>
+      <eLiterals name="PACKAGE" value="1" literal="$"/>
+      <eLiterals name="PRIVATE" value="2" literal="-"/>
+      <eLiterals name="GLOBAL" value="3" literal="+"/>
+      <eLiterals name="PROTECTED" value="4" literal="~"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="ScopeType">
+      <eLiterals name="UNDEFINED" literal=""/>
+      <eLiterals name="INSTANCE" value="1"/>
+      <eLiterals name="CLASS" value="2"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Method" eSuperTypes="#//ModelElement">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" eType="#//classes/VisibilityType"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="scope" eType="#//classes/ScopeType"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="definingClass" eType="#//classes/Class"
+          eOpposite="#//classes/Class/methods"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="returnType" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="signature" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
+          changeable="false" volatile="true" transient="true" defaultValueLiteral=""
+          derived="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" upperBound="-1"
+          eType="#//classes/MethodArgument" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="properties" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
+          derived="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="MethodArgument" eSuperTypes="#//ModelElement">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="direction" eType="#//classes/ArgumentDirectionType"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="signature" unique="false"
+          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
+          volatile="true" derived="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
+          derived="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="ArgumentDirectionType">
+      <eLiterals name="UNDEFINED" literal=""/>
+      <eLiterals name="IN" value="1" literal="in"/>
+      <eLiterals name="OUT" value="2" literal="out"/>
+      <eLiterals name="INOUT" value="3" literal="inout"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="document" nsURI="http://unicase.org/model/document" nsPrefix="org.unicase.model.document">
