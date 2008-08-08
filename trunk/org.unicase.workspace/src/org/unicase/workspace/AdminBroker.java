@@ -33,6 +33,7 @@ public interface AdminBroker {
 	void deleteUser(ACOrgUnitId user) throws EmfStoreException;
 	
 	List<ACOrgUnit> getMembers(ACOrgUnitId groupId) throws EmfStoreException;
+	ACOrgUnit getOrgUnit(ACOrgUnitId orgUnitId) throws EmfStoreException;
 	void addMember(ACOrgUnitId group, ACOrgUnitId member) throws EmfStoreException;
 	void removeMember(ACOrgUnitId group, ACOrgUnitId member) throws EmfStoreException;
 	

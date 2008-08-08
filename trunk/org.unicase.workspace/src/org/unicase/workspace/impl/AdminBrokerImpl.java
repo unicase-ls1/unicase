@@ -161,4 +161,9 @@ public class AdminBrokerImpl implements AdminBroker {
 				.changeOrgUnit(getSessionId(), orgUnitId, name, description);
 	}
 
+	public ACOrgUnit getOrgUnit(ACOrgUnitId orgUnitId) throws EmfStoreException {
+		return WorkspaceManager.getInstance().getAdminConnectionManager()
+							.getOrgUnit(sessionId, orgUnitId);
+	}		
+
 }
