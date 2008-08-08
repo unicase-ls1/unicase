@@ -38,12 +38,8 @@ import org.unicase.model.impl.IdentifiableElementImpl;
  * @generated
  */
 public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit {
-	@Override
-	public boolean equals(Object obj) {
-		
-		return this.getId().equals(((ACOrgUnit)obj).getId());
-	}
-
+	
+	
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -152,6 +148,17 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 		orgUnitId.setId(this.identifier);
 		return orgUnitId;
 	}
+	
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated NOT
+	 */	
+	@Override
+	public boolean equals(Object obj) {
+		
+		return this.getId().equals(((ACOrgUnit)obj).getId());
+	}
+
 
 	/**
 	 * <!-- begin-user-doc -->

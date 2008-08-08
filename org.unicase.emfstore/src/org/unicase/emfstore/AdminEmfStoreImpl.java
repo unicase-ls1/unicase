@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Properties;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.accesscontrol.AuthorizationControl;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectHistory;
@@ -273,7 +274,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 				.hasNext();) {
 			ACGroup next = iter.next();
 			if (next.getId().equals(group)) {
-				iter.remove();
+				EcoreUtil.delete(next);
 				save();
 				return;
 			}
@@ -289,10 +290,11 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 				.hasNext();) {
 			ACUser next = iter.next();
 			if (next.getId().equals(user)) {
-				iter.remove();
+				EcoreUtil.delete(next);
 				save();
 				return;
 			}
+			
 		}
 	}
 
