@@ -68,6 +68,9 @@ public class PropertiesForm extends Form {
 			stackLayout.topControl = userComposite;
 			userComposite.updateControls(user);
 		}
+		if(input == null){
+			((FormContents)stackLayout.topControl).updateControls(null);
+		}
 		body.layout();
 		this.setText(title);
 		this.input = input;

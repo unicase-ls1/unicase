@@ -2,11 +2,19 @@ package org.unicase.ui.esbrowser.dialogs.admin;
 
 import java.util.Collection;
 
+import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.databinding.EMFDataBindingContext;
+import org.eclipse.emf.databinding.edit.EMFEditObservables;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.databinding.swt.SWTObservables;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
+import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
+import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.AdminBroker;
 import org.unicase.workspace.WorkspaceManager;
@@ -99,12 +107,53 @@ public class GroupComposite extends FormContents {
 		grpTable.setText("Members");
 	}
 
-	public void updateControls(ACGroup group) {
-		this.group = group;
+	@Override
+	public void updateControls(EObject input) {
+		
+		super.updateControls(input);		
+		if(input != null && input instanceof ACGroup){
+			
+			this.group = (ACGroup) input;
 
-		txtName.setText(group.getName());
-		txtDescription.setText((group.getDescription()==null) ? "" : group.getDescription() );
-		tableViewer.setInput(group);
+			
+			
+			txtName.setText(group.getName());
+			txtDescription.setText((group.getDescription()==null) ? "" : group.getDescription() );
+			tableViewer.setInput(group);
+			
+//			IObservableValue model = EMFEditObservables.observeValue(editingDomain,
+//					group, AccesscontrolPackage.eINSTANCE.getACOrgUnit_Name());
+//			EMFDataBindingContext dbc = new EMFDataBindingContext();
+//			dbc.bindValue(SWTObservables.observeText(txtName, SWT.FocusOut), model,
+//					null, null);
+//			
+//			model = EMFEditObservables.observeValue(editingDomain,
+//					group, AccesscontrolPackage.eINSTANCE.getACOrgUnit_Description());
+//			dbc = new EMFDataBindingContext();
+//			dbc.bindValue(SWTObservables.observeText(txtDescription, SWT.FocusOut), model,
+//					null, null);
+		}
+		
+	}
+	
+	@Override
+	protected  void saveOrgUnitAttributes() {
+		if(txtName == null || txtDescription == null ){
+			return;
+		}
+		if(group == null) {
+			return;
+		}
+		if (!(group.getName().equals(txtName.getText())
+				  && group.getDescription().equals(txtDescription.getText()) )){
+				try {
+					adminBroker.changeOrgUnit(group.getId(), txtName.getText(), txtDescription.getText());
+				} catch (EmfStoreException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		
 	}
 
 } // GroupComposite

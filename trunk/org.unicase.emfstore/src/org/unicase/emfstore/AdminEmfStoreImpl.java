@@ -246,6 +246,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		ACGroup acGroup = AccesscontrolFactory.eINSTANCE.createACGroup();
 		// acGroup.setId(AccesscontrolFactory.eINSTANCE.createACOrgUnitId());
 		acGroup.setName(name);
+		acGroup.setDescription(" ");
 		getServerSpace().getGroups().add(acGroup);
 		save();
 	}
@@ -258,6 +259,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		ACUser acUser = AccesscontrolFactory.eINSTANCE.createACUser();
 		// acUser.setId(AccesscontrolFactory.eINSTANCE.createACOrgUnitId());
 		acUser.setName(name);
+		acUser.setDescription(" ");
 		getServerSpace().getUsers().add(acUser);
 		save();
 	}
@@ -319,7 +321,10 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	
 	public void changeOrgUnit(SessionId sessionId, ACOrgUnitId orgUnitId,
 			String name, String description) throws EmfStoreException {
-		// TODO Auto-generated method stub
+		ACOrgUnit ou = getOrgUnit(orgUnitId);
+		ou.setName(name);
+		ou.setDescription(description);
+		save();
 		
 	}
 
