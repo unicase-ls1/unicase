@@ -83,10 +83,16 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 				.getVisualID(view)) {
 		case org.unicase.model.classDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Diagram?http://unicase.org/model/diagram?MEDiagram", org.unicase.model.classDiagram.providers.ModelElementTypes.MEDiagram_79); //$NON-NLS-1$
+					"Navigator?Diagram?http://unicase.org/model/diagram?MEDiagram", org.unicase.model.classDiagram.providers.ModelElementTypes.MEDiagram_88); //$NON-NLS-1$
 		case org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http://unicase.org/model/classes?Class", org.unicase.model.classDiagram.providers.ModelElementTypes.Class_1001); //$NON-NLS-1$
+		case org.unicase.model.classDiagram.edit.parts.AttributeEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Node?http://unicase.org/model/classes?Attribute", org.unicase.model.classDiagram.providers.ModelElementTypes.Attribute_2001); //$NON-NLS-1$
+		case org.unicase.model.classDiagram.edit.parts.MethodEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Node?http://unicase.org/model/classes?Method", org.unicase.model.classDiagram.providers.ModelElementTypes.Method_2002); //$NON-NLS-1$
 		case org.unicase.model.classDiagram.edit.parts.AssociationEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http://unicase.org/model/classes?Association", org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3001); //$NON-NLS-1$
@@ -147,9 +153,13 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 		switch (org.unicase.model.classDiagram.part.ModelVisualIDRegistry
 				.getVisualID(view)) {
 		case org.unicase.model.classDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
-			return getMEDiagram_79Text(view);
+			return getMEDiagram_88Text(view);
 		case org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart.VISUAL_ID:
 			return getClass_1001Text(view);
+		case org.unicase.model.classDiagram.edit.parts.AttributeEditPart.VISUAL_ID:
+			return getAttribute_2001Text(view);
+		case org.unicase.model.classDiagram.edit.parts.MethodEditPart.VISUAL_ID:
+			return getMethod_2002Text(view);
 		case org.unicase.model.classDiagram.edit.parts.AssociationEditPart.VISUAL_ID:
 			return getAssociation_3001Text(view);
 		}
@@ -159,14 +169,14 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 	/**
 	 * @generated
 	 */
-	private String getMEDiagram_79Text(View view) {
+	private String getMEDiagram_88Text(View view) {
 		MEDiagram domainModelElement = (MEDiagram) view.getElement();
 		if (domainModelElement != null) {
 			return domainModelElement.getName();
 		} else {
 			org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin
 					.getInstance().logError(
-							"No domain element for view with visualID = " + 79); //$NON-NLS-1$
+							"No domain element for view with visualID = " + 88); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -197,12 +207,56 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 	/**
 	 * @generated
 	 */
+	private String getAttribute_2001Text(View view) {
+		IAdaptable hintAdapter = new org.unicase.model.classDiagram.providers.ModelParserProvider.HintAdapter(
+				org.unicase.model.classDiagram.providers.ModelElementTypes.Attribute_2001,
+				(view.getElement() != null ? view.getElement() : view),
+				org.unicase.model.classDiagram.part.ModelVisualIDRegistry
+						.getType(org.unicase.model.classDiagram.edit.parts.AttributeEditPart.VISUAL_ID));
+		IParser parser = ParserService.getInstance().getParser(hintAdapter);
+
+		if (parser != null) {
+			return parser.getPrintString(hintAdapter, ParserOptions.NONE
+					.intValue());
+		} else {
+			org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin
+					.getInstance().logError(
+							"Parser was not found for label " + 2001); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getMethod_2002Text(View view) {
+		IAdaptable hintAdapter = new org.unicase.model.classDiagram.providers.ModelParserProvider.HintAdapter(
+				org.unicase.model.classDiagram.providers.ModelElementTypes.Method_2002,
+				(view.getElement() != null ? view.getElement() : view),
+				org.unicase.model.classDiagram.part.ModelVisualIDRegistry
+						.getType(org.unicase.model.classDiagram.edit.parts.MethodEditPart.VISUAL_ID));
+		IParser parser = ParserService.getInstance().getParser(hintAdapter);
+
+		if (parser != null) {
+			return parser.getPrintString(hintAdapter, ParserOptions.NONE
+					.intValue());
+		} else {
+			org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin
+					.getInstance().logError(
+							"Parser was not found for label " + 2002); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	private String getAssociation_3001Text(View view) {
 		IAdaptable hintAdapter = new org.unicase.model.classDiagram.providers.ModelParserProvider.HintAdapter(
 				org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3001,
 				(view.getElement() != null ? view.getElement() : view),
 				org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-						.getType(org.unicase.model.classDiagram.edit.parts.LabelEditPart.VISUAL_ID));
+						.getType(org.unicase.model.classDiagram.edit.parts.AssociationNameEditPart.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
 		if (parser != null) {

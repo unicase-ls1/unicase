@@ -55,10 +55,28 @@
             </children>
           </children>
         </children>
+        <children
+            xsi:type="gmfgraph:Rectangle"
+            name="ClassFigure_Attributes">
+          <layout
+              xsi:type="gmfgraph:StackLayout"/>
+        </children>
+        <children
+            xsi:type="gmfgraph:Rectangle"
+            name="ClassFigure_Methods">
+          <layout
+              xsi:type="gmfgraph:StackLayout"/>
+        </children>
       </actualFigure>
       <accessors
           accessor="getFigureClassFigure_name"
           figure="//@figures.0/@descriptors.0/@actualFigure/@children.0/@children.0/@children.0"/>
+      <accessors
+          accessor="getFigureClassFigure_attributes"
+          figure="//@figures.0/@descriptors.0/@actualFigure/@children.1"/>
+      <accessors
+          accessor="getFigureClassFigure_methods"
+          figure="//@figures.0/@descriptors.0/@actualFigure/@children.2"/>
     </descriptors>
     <descriptors
         name="AssociationFigure">
@@ -105,6 +123,18 @@
           name="ActorFigure"
           qualifiedClassName="org.unicase.ui.usecaseDiagram.unicase.StickMan"/>
     </descriptors>
+    <descriptors
+        name="ClassAttributeFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="ClassAttributeNameFigure"/>
+    </descriptors>
+    <descriptors
+        name="ClassMethodFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="ClassMethodNameFigure"/>
+    </descriptors>
   </figures>
   <nodes
       name="Class"
@@ -125,6 +155,14 @@
   <connections
       name="Association"
       figure="AssociationFigure"/>
+  <compartments
+      name="ClassNode_attributes"
+      figure="ClassFigure"
+      accessor="//@figures.0/@descriptors.0/@accessors.1"/>
+  <compartments
+      name="ClassNode_methods"
+      figure="ClassFigure"
+      accessor="//@figures.0/@descriptors.0/@accessors.2"/>
   <labels
       name="ClassNode_name"
       figure="ClassFigure"
@@ -140,4 +178,15 @@
       name="UseCaseNode_name"
       figure="UseCaseFigure"
       accessor="//@figures.0/@descriptors.2/@accessors.0"/>
+  <labels
+      name="ClassNode_decoration"
+      figure="ClassFigure"/>
+  <labels
+      name="ClassAttribute_name"
+      figure="ClassAttributeFigure"
+      elementIcon="false"/>
+  <labels
+      name="ClassMethod_name"
+      figure="ClassMethodFigure"
+      elementIcon="false"/>
 </gmfgraph:Canvas>

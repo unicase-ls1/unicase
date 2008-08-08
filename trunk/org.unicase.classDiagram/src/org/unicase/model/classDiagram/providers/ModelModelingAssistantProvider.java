@@ -32,6 +32,14 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart) host
 				.getAdapter(IGraphicalEditPart.class);
+		if (editPart instanceof org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart) {
+			List types = new ArrayList();
+			types
+					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Attribute_2001);
+			types
+					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Method_2002);
+			return types;
+		}
 		if (editPart instanceof org.unicase.model.classDiagram.edit.parts.MEDiagramEditPart) {
 			List types = new ArrayList();
 			types

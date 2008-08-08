@@ -12,6 +12,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.classes.ClassesPackage;
 
 /**
  * @generated
@@ -40,6 +41,58 @@ public class ModelParserProvider extends AbstractProvider implements
 	protected IParser createClassName_4001Parser() {
 		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE
 				.getModelElement_Name(), };
+		org.unicase.model.classDiagram.parsers.MessageFormatParser parser = new org.unicase.model.classDiagram.parsers.MessageFormatParser(
+				features);
+		return parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser attribute_2001Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getAttribute_2001Parser() {
+		if (attribute_2001Parser == null) {
+			attribute_2001Parser = createAttribute_2001Parser();
+		}
+		return attribute_2001Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IParser createAttribute_2001Parser() {
+		EAttribute[] features = new EAttribute[] { ClassesPackage.eINSTANCE
+				.getAttribute_Signature(), };
+		org.unicase.model.classDiagram.parsers.MessageFormatParser parser = new org.unicase.model.classDiagram.parsers.MessageFormatParser(
+				features);
+		return parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser method_2002Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMethod_2002Parser() {
+		if (method_2002Parser == null) {
+			method_2002Parser = createMethod_2002Parser();
+		}
+		return method_2002Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IParser createMethod_2002Parser() {
+		EAttribute[] features = new EAttribute[] { ClassesPackage.eINSTANCE
+				.getMethod_Label(), };
 		org.unicase.model.classDiagram.parsers.MessageFormatParser parser = new org.unicase.model.classDiagram.parsers.MessageFormatParser(
 				features);
 		return parser;
@@ -78,7 +131,11 @@ public class ModelParserProvider extends AbstractProvider implements
 		switch (visualID) {
 		case org.unicase.model.classDiagram.edit.parts.WrappingLabelEditPart.VISUAL_ID:
 			return getClassName_4001Parser();
-		case org.unicase.model.classDiagram.edit.parts.LabelEditPart.VISUAL_ID:
+		case org.unicase.model.classDiagram.edit.parts.AttributeEditPart.VISUAL_ID:
+			return getAttribute_2001Parser();
+		case org.unicase.model.classDiagram.edit.parts.MethodEditPart.VISUAL_ID:
+			return getMethod_2002Parser();
+		case org.unicase.model.classDiagram.edit.parts.AssociationNameEditPart.VISUAL_ID:
 			return getAssociationName_4002Parser();
 		}
 		return null;

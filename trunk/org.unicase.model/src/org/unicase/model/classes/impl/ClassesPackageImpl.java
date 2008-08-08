@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.model.ModelPackage;
@@ -18,11 +19,17 @@ import org.unicase.model.bug.BugPackage;
 import org.unicase.model.bug.impl.BugPackageImpl;
 import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.impl.ChangePackageImpl;
+import org.unicase.model.classes.ArgumentDirectionType;
 import org.unicase.model.classes.Association;
 import org.unicase.model.classes.AssociationType;
+import org.unicase.model.classes.Attribute;
 import org.unicase.model.classes.ClassesFactory;
 import org.unicase.model.classes.ClassesPackage;
+import org.unicase.model.classes.Method;
+import org.unicase.model.classes.MethodArgument;
 import org.unicase.model.classes.PackageElement;
+import org.unicase.model.classes.ScopeType;
+import org.unicase.model.classes.VisibilityType;
 import org.unicase.model.component.ComponentPackage;
 import org.unicase.model.component.impl.ComponentPackageImpl;
 import org.unicase.model.diagram.DiagramPackage;
@@ -67,10 +74,52 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 	 */
 	private EClass associationEClass = null;
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass attributeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass methodEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass methodArgumentEClass = null;
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EEnum associationTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum visibilityTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum scopeTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum argumentDirectionTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -257,6 +306,24 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getClass_Attributes() {
+		return (EReference) classEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getClass_Methods() {
+		return (EReference) classEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -330,11 +397,232 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getAttribute() {
+		return attributeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAttribute_DefiningClass() {
+		return (EReference) attributeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAttribute_Visibility() {
+		return (EAttribute) attributeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAttribute_Scope() {
+		return (EAttribute) attributeEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAttribute_Signature() {
+		return (EAttribute) attributeEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAttribute_Type() {
+		return (EAttribute) attributeEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMethod() {
+		return methodEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMethod_Visibility() {
+		return (EAttribute) methodEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMethod_Scope() {
+		return (EAttribute) methodEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMethod_DefiningClass() {
+		return (EReference) methodEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMethod_ReturnType() {
+		return (EAttribute) methodEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMethod_Signature() {
+		return (EAttribute) methodEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMethod_Arguments() {
+		return (EReference) methodEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMethod_Properties() {
+		return (EAttribute) methodEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMethod_Label() {
+		return (EAttribute) methodEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMethodArgument() {
+		return methodArgumentEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMethodArgument_Type() {
+		return (EAttribute) methodArgumentEClass.getEStructuralFeatures()
+				.get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMethodArgument_Direction() {
+		return (EAttribute) methodArgumentEClass.getEStructuralFeatures()
+				.get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMethodArgument_DefaultValue() {
+		return (EAttribute) methodArgumentEClass.getEStructuralFeatures()
+				.get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMethodArgument_Signature() {
+		return (EAttribute) methodArgumentEClass.getEStructuralFeatures()
+				.get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMethodArgument_Label() {
+		return (EAttribute) methodArgumentEClass.getEStructuralFeatures()
+				.get(4);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EEnum getAssociationType() {
 		return associationTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getVisibilityType() {
+		return visibilityTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getScopeType() {
+		return scopeTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getArgumentDirectionType() {
+		return argumentDirectionTypeEEnum;
 	}
 
 	/**
@@ -370,6 +658,8 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		createEReference(classEClass, CLASS__SUB_CLASSES);
 		createEReference(classEClass, CLASS__INCOMING_ASSOCIATIONS);
 		createEReference(classEClass, CLASS__OUTGOING_ASSOCIATIONS);
+		createEReference(classEClass, CLASS__ATTRIBUTES);
+		createEReference(classEClass, CLASS__METHODS);
 
 		packageEClass = createEClass(PACKAGE);
 		createEReference(packageEClass, PACKAGE__CONTAINED_PACKAGE_ELEMENTS);
@@ -383,8 +673,35 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		createEReference(associationEClass, ASSOCIATION__TARGET);
 		createEAttribute(associationEClass, ASSOCIATION__TYPE);
 
+		attributeEClass = createEClass(ATTRIBUTE);
+		createEReference(attributeEClass, ATTRIBUTE__DEFINING_CLASS);
+		createEAttribute(attributeEClass, ATTRIBUTE__VISIBILITY);
+		createEAttribute(attributeEClass, ATTRIBUTE__SCOPE);
+		createEAttribute(attributeEClass, ATTRIBUTE__SIGNATURE);
+		createEAttribute(attributeEClass, ATTRIBUTE__TYPE);
+
+		methodEClass = createEClass(METHOD);
+		createEAttribute(methodEClass, METHOD__VISIBILITY);
+		createEAttribute(methodEClass, METHOD__SCOPE);
+		createEReference(methodEClass, METHOD__DEFINING_CLASS);
+		createEAttribute(methodEClass, METHOD__RETURN_TYPE);
+		createEAttribute(methodEClass, METHOD__SIGNATURE);
+		createEReference(methodEClass, METHOD__ARGUMENTS);
+		createEAttribute(methodEClass, METHOD__PROPERTIES);
+		createEAttribute(methodEClass, METHOD__LABEL);
+
+		methodArgumentEClass = createEClass(METHOD_ARGUMENT);
+		createEAttribute(methodArgumentEClass, METHOD_ARGUMENT__TYPE);
+		createEAttribute(methodArgumentEClass, METHOD_ARGUMENT__DIRECTION);
+		createEAttribute(methodArgumentEClass, METHOD_ARGUMENT__DEFAULT_VALUE);
+		createEAttribute(methodArgumentEClass, METHOD_ARGUMENT__SIGNATURE);
+		createEAttribute(methodArgumentEClass, METHOD_ARGUMENT__LABEL);
+
 		// Create enums
 		associationTypeEEnum = createEEnum(ASSOCIATION_TYPE);
+		visibilityTypeEEnum = createEEnum(VISIBILITY_TYPE);
+		scopeTypeEEnum = createEEnum(SCOPE_TYPE);
+		argumentDirectionTypeEEnum = createEEnum(ARGUMENT_DIRECTION_TYPE);
 	}
 
 	/**
@@ -415,6 +732,8 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 				.getEPackage(RequirementPackage.eNS_URI);
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE
 				.getEPackage(ModelPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
+				.getEPackage(EcorePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -426,6 +745,10 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		packageElementEClass.getESuperTypes().add(
 				theModelPackage.getModelElement());
 		associationEClass.getESuperTypes().add(
+				theModelPackage.getModelElement());
+		attributeEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		methodEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		methodArgumentEClass.getESuperTypes().add(
 				theModelPackage.getModelElement());
 
 		// Initialize classes and features; add operations and parameters
@@ -467,6 +790,16 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getClass_OutgoingAssociations().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getClass_Attributes(), this.getAttribute(), this
+				.getAttribute_DefiningClass(), "attributes", null, 0, -1,
+				org.unicase.model.classes.Class.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClass_Methods(), this.getMethod(), this
+				.getMethod_DefiningClass(), "methods", null, 0, -1,
+				org.unicase.model.classes.Class.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(packageEClass, org.unicase.model.classes.Package.class,
 				"Package", !IS_ABSTRACT, !IS_INTERFACE,
@@ -516,6 +849,91 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 
+		initEClass(attributeEClass, Attribute.class, "Attribute", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAttribute_DefiningClass(), this.getClass_(), this
+				.getClass_Attributes(), "definingClass", null, 0, 1,
+				Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAttribute_Visibility(), this.getVisibilityType(),
+				"visibility", null, 0, 1, Attribute.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAttribute_Scope(), this.getScopeType(), "scope",
+				null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getAttribute_Signature(), theEcorePackage.getEString(),
+				"signature", null, 0, 1, Attribute.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAttribute_Type(), theEcorePackage.getEString(),
+				"type", "", 0, 1, Attribute.class, IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED,
+				IS_ORDERED);
+
+		initEClass(methodEClass, Method.class, "Method", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getMethod_Visibility(), this.getVisibilityType(),
+				"visibility", null, 0, 1, Method.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMethod_Scope(), this.getScopeType(), "scope", null,
+				0, 1, Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMethod_DefiningClass(), this.getClass_(), this
+				.getClass_Methods(), "definingClass", null, 0, 1, Method.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getMethod_ReturnType(), theEcorePackage.getEString(),
+				"returnType", null, 0, 1, Method.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMethod_Signature(), theEcorePackage.getEString(),
+				"signature", "", 0, 1, Method.class, IS_TRANSIENT, IS_VOLATILE,
+				!IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED,
+				IS_ORDERED);
+		initEReference(getMethod_Arguments(), this.getMethodArgument(), null,
+				"arguments", null, 0, -1, Method.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMethod_Properties(), theEcorePackage.getEString(),
+				"properties", null, 0, 1, Method.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMethod_Label(), theEcorePackage.getEString(),
+				"label", null, 0, 1, Method.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED,
+				IS_ORDERED);
+
+		initEClass(methodArgumentEClass, MethodArgument.class,
+				"MethodArgument", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getMethodArgument_Type(), theEcorePackage.getEString(),
+				"type", null, 0, 1, MethodArgument.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMethodArgument_Direction(), this
+				.getArgumentDirectionType(), "direction", null, 0, 1,
+				MethodArgument.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getMethodArgument_DefaultValue(), theEcorePackage
+				.getEString(), "defaultValue", null, 0, 1,
+				MethodArgument.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getMethodArgument_Signature(), theEcorePackage
+				.getEString(), "signature", null, 0, 1, MethodArgument.class,
+				!IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, !IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMethodArgument_Label(), theEcorePackage.getEString(),
+				"label", null, 0, 1, MethodArgument.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				IS_DERIVED, IS_ORDERED);
+
 		// Initialize enums and add enum literals
 		initEEnum(associationTypeEEnum, AssociationType.class,
 				"AssociationType");
@@ -523,6 +941,26 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		addEEnumLiteral(associationTypeEEnum, AssociationType.AGGREGATION);
 		addEEnumLiteral(associationTypeEEnum, AssociationType.COMPOSITION);
 		addEEnumLiteral(associationTypeEEnum, AssociationType.DEPENDENCY);
+
+		initEEnum(visibilityTypeEEnum, VisibilityType.class, "VisibilityType");
+		addEEnumLiteral(visibilityTypeEEnum, VisibilityType.UNDEFINED);
+		addEEnumLiteral(visibilityTypeEEnum, VisibilityType.PACKAGE);
+		addEEnumLiteral(visibilityTypeEEnum, VisibilityType.PRIVATE);
+		addEEnumLiteral(visibilityTypeEEnum, VisibilityType.GLOBAL);
+		addEEnumLiteral(visibilityTypeEEnum, VisibilityType.PROTECTED);
+
+		initEEnum(scopeTypeEEnum, ScopeType.class, "ScopeType");
+		addEEnumLiteral(scopeTypeEEnum, ScopeType.UNDEFINED);
+		addEEnumLiteral(scopeTypeEEnum, ScopeType.INSTANCE);
+		addEEnumLiteral(scopeTypeEEnum, ScopeType.CLASS);
+
+		initEEnum(argumentDirectionTypeEEnum, ArgumentDirectionType.class,
+				"ArgumentDirectionType");
+		addEEnumLiteral(argumentDirectionTypeEEnum,
+				ArgumentDirectionType.UNDEFINED);
+		addEEnumLiteral(argumentDirectionTypeEEnum, ArgumentDirectionType.IN);
+		addEEnumLiteral(argumentDirectionTypeEEnum, ArgumentDirectionType.OUT);
+		addEEnumLiteral(argumentDirectionTypeEEnum, ArgumentDirectionType.INOUT);
 	}
 
 } // ClassesPackageImpl

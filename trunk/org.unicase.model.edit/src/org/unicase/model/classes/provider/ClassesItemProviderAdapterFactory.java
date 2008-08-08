@@ -143,6 +143,75 @@ public class ClassesItemProviderAdapterFactory extends ClassesAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.classes.Attribute} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AttributeItemProvider attributeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.classes.Attribute}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAttributeAdapter() {
+		if (attributeItemProvider == null) {
+			attributeItemProvider = new AttributeItemProvider(this);
+		}
+
+		return attributeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.classes.Method} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MethodItemProvider methodItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.classes.Method}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMethodAdapter() {
+		if (methodItemProvider == null) {
+			methodItemProvider = new MethodItemProvider(this);
+		}
+
+		return methodItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.classes.MethodArgument} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MethodArgumentItemProvider methodArgumentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.classes.MethodArgument}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMethodArgumentAdapter() {
+		if (methodArgumentItemProvider == null) {
+			methodArgumentItemProvider = new MethodArgumentItemProvider(this);
+		}
+
+		return methodArgumentItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -246,6 +315,12 @@ public class ClassesItemProviderAdapterFactory extends ClassesAdapterFactory
 			packageItemProvider.dispose();
 		if (associationItemProvider != null)
 			associationItemProvider.dispose();
+		if (attributeItemProvider != null)
+			attributeItemProvider.dispose();
+		if (methodItemProvider != null)
+			methodItemProvider.dispose();
+		if (methodArgumentItemProvider != null)
+			methodArgumentItemProvider.dispose();
 	}
 
 }

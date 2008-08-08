@@ -235,6 +235,18 @@ public class LeafSectionItemProvider extends ModelElementItemProvider implements
 
 		newChildDescriptors.add(createChildParameter(
 				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				ClassesFactory.eINSTANCE.createAttribute()));
+
+		newChildDescriptors.add(createChildParameter(
+				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				ClassesFactory.eINSTANCE.createMethod()));
+
+		newChildDescriptors.add(createChildParameter(
+				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				ClassesFactory.eINSTANCE.createMethodArgument()));
+
+		newChildDescriptors.add(createChildParameter(
+				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				RequirementFactory.eINSTANCE.createNonFunctionalRequirement()));
 
 		newChildDescriptors.add(createChildParameter(

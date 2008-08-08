@@ -150,6 +150,24 @@
         <genEnumLiterals ecoreEnumLiteral="model.ecore#//classes/AssociationType/COMPOSITION"/>
         <genEnumLiterals ecoreEnumLiteral="model.ecore#//classes/AssociationType/DEPENDENCY"/>
       </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="model.ecore#//classes/VisibilityType">
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//classes/VisibilityType/UNDEFINED"/>
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//classes/VisibilityType/PACKAGE"/>
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//classes/VisibilityType/PRIVATE"/>
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//classes/VisibilityType/GLOBAL"/>
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//classes/VisibilityType/PROTECTED"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="model.ecore#//classes/ScopeType">
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//classes/ScopeType/UNDEFINED"/>
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//classes/ScopeType/INSTANCE"/>
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//classes/ScopeType/CLASS"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="model.ecore#//classes/ArgumentDirectionType">
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//classes/ArgumentDirectionType/UNDEFINED"/>
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//classes/ArgumentDirectionType/IN"/>
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//classes/ArgumentDirectionType/OUT"/>
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//classes/ArgumentDirectionType/INOUT"/>
+      </genEnums>
       <genClasses ecoreClass="model.ecore#//classes/Class">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//classes/Class/participatedUseCases"/>
@@ -161,6 +179,8 @@
             ecoreFeature="ecore:EReference model.ecore#//classes/Class/incomingAssociations"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//classes/Class/outgoingAssociations"/>
+        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//classes/Class/attributes"/>
+        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//classes/Class/methods"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//classes/Package">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//classes/Package/containedPackageElements"/>
@@ -175,6 +195,30 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//classes/Association/target"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Association/type"/>
+      </genClasses>
+      <genClasses ecoreClass="model.ecore#//classes/Attribute">
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//classes/Attribute/definingClass"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Attribute/visibility"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Attribute/scope"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Attribute/signature"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Attribute/type"/>
+      </genClasses>
+      <genClasses ecoreClass="model.ecore#//classes/Method">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Method/visibility"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Method/scope"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//classes/Method/definingClass"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Method/returnType"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Method/signature"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//classes/Method/arguments"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Method/properties"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Method/label"/>
+      </genClasses>
+      <genClasses ecoreClass="model.ecore#//classes/MethodArgument">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/MethodArgument/type"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/MethodArgument/direction"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/MethodArgument/defaultValue"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/MethodArgument/signature"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/MethodArgument/label"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Document" basePackage="org.unicase.model" disposableProviderFactory="true"

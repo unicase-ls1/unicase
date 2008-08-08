@@ -273,12 +273,37 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String Attribute6CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Attribute6CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Method7CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ClassClassNode_attributesEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ClassClassNode_methodsEditPart_title;
+
+	/**
+	 * @generated
+	 */
 	public static String CommandName_OpenDiagram;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_MEDiagram_79_links;
+	public static String NavigatorGroupName_MEDiagram_88_links;
 
 	/**
 	 * @generated

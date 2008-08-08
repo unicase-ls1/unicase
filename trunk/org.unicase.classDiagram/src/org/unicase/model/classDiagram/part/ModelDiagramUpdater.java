@@ -13,8 +13,10 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.ModelElement;
 import org.unicase.model.classes.Association;
+import org.unicase.model.classes.Attribute;
 import org.unicase.model.classes.Class;
 import org.unicase.model.classes.ClassesPackage;
+import org.unicase.model.classes.Method;
 import org.unicase.model.diagram.MEDiagram;
 
 /**
@@ -28,8 +30,12 @@ public class ModelDiagramUpdater {
 	public static List getSemanticChildren(View view) {
 		switch (org.unicase.model.classDiagram.part.ModelVisualIDRegistry
 				.getVisualID(view)) {
+		case org.unicase.model.classDiagram.edit.parts.ClassClassNode_attributesEditPart.VISUAL_ID:
+			return getClassClassNode_attributes_5001SemanticChildren(view);
+		case org.unicase.model.classDiagram.edit.parts.ClassClassNode_methodsEditPart.VISUAL_ID:
+			return getClassClassNode_methods_5002SemanticChildren(view);
 		case org.unicase.model.classDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
-			return getMEDiagram_79SemanticChildren(view);
+			return getMEDiagram_88SemanticChildren(view);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -37,7 +43,63 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getMEDiagram_79SemanticChildren(View view) {
+	public static List getClassClassNode_attributes_5001SemanticChildren(
+			View view) {
+		if (false == view.eContainer() instanceof View) {
+			return Collections.EMPTY_LIST;
+		}
+		View containerView = (View) view.eContainer();
+		if (!containerView.isSetElement()) {
+			return Collections.EMPTY_LIST;
+		}
+		Class modelElement = (Class) containerView.getElement();
+		List result = new LinkedList();
+		for (Iterator it = modelElement.getAttributes().iterator(); it
+				.hasNext();) {
+			Attribute childElement = (Attribute) it.next();
+			int visualID = org.unicase.model.classDiagram.part.ModelVisualIDRegistry
+					.getNodeVisualID(view, childElement);
+			if (visualID == org.unicase.model.classDiagram.edit.parts.AttributeEditPart.VISUAL_ID) {
+				result
+						.add(new org.unicase.model.classDiagram.part.ModelNodeDescriptor(
+								childElement, visualID));
+				continue;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getClassClassNode_methods_5002SemanticChildren(View view) {
+		if (false == view.eContainer() instanceof View) {
+			return Collections.EMPTY_LIST;
+		}
+		View containerView = (View) view.eContainer();
+		if (!containerView.isSetElement()) {
+			return Collections.EMPTY_LIST;
+		}
+		Class modelElement = (Class) containerView.getElement();
+		List result = new LinkedList();
+		for (Iterator it = modelElement.getMethods().iterator(); it.hasNext();) {
+			Method childElement = (Method) it.next();
+			int visualID = org.unicase.model.classDiagram.part.ModelVisualIDRegistry
+					.getNodeVisualID(view, childElement);
+			if (visualID == org.unicase.model.classDiagram.edit.parts.MethodEditPart.VISUAL_ID) {
+				result
+						.add(new org.unicase.model.classDiagram.part.ModelNodeDescriptor(
+								childElement, visualID));
+				continue;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getMEDiagram_88SemanticChildren(View view) {
 		if (!view.isSetElement()) {
 			return Collections.EMPTY_LIST;
 		}
@@ -64,9 +126,13 @@ public class ModelDiagramUpdater {
 		switch (org.unicase.model.classDiagram.part.ModelVisualIDRegistry
 				.getVisualID(view)) {
 		case org.unicase.model.classDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
-			return getMEDiagram_79ContainedLinks(view);
+			return getMEDiagram_88ContainedLinks(view);
 		case org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart.VISUAL_ID:
 			return getClass_1001ContainedLinks(view);
+		case org.unicase.model.classDiagram.edit.parts.AttributeEditPart.VISUAL_ID:
+			return getAttribute_2001ContainedLinks(view);
+		case org.unicase.model.classDiagram.edit.parts.MethodEditPart.VISUAL_ID:
+			return getMethod_2002ContainedLinks(view);
 		case org.unicase.model.classDiagram.edit.parts.AssociationEditPart.VISUAL_ID:
 			return getAssociation_3001ContainedLinks(view);
 		}
@@ -81,6 +147,10 @@ public class ModelDiagramUpdater {
 				.getVisualID(view)) {
 		case org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart.VISUAL_ID:
 			return getClass_1001IncomingLinks(view);
+		case org.unicase.model.classDiagram.edit.parts.AttributeEditPart.VISUAL_ID:
+			return getAttribute_2001IncomingLinks(view);
+		case org.unicase.model.classDiagram.edit.parts.MethodEditPart.VISUAL_ID:
+			return getMethod_2002IncomingLinks(view);
 		case org.unicase.model.classDiagram.edit.parts.AssociationEditPart.VISUAL_ID:
 			return getAssociation_3001IncomingLinks(view);
 		}
@@ -95,6 +165,10 @@ public class ModelDiagramUpdater {
 				.getVisualID(view)) {
 		case org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart.VISUAL_ID:
 			return getClass_1001OutgoingLinks(view);
+		case org.unicase.model.classDiagram.edit.parts.AttributeEditPart.VISUAL_ID:
+			return getAttribute_2001OutgoingLinks(view);
+		case org.unicase.model.classDiagram.edit.parts.MethodEditPart.VISUAL_ID:
+			return getMethod_2002OutgoingLinks(view);
 		case org.unicase.model.classDiagram.edit.parts.AssociationEditPart.VISUAL_ID:
 			return getAssociation_3001OutgoingLinks(view);
 		}
@@ -104,7 +178,7 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getMEDiagram_79ContainedLinks(View view) {
+	public static List getMEDiagram_88ContainedLinks(View view) {
 		MEDiagram modelElement = (MEDiagram) view.getElement();
 		List result = new LinkedList();
 		result
@@ -116,6 +190,20 @@ public class ModelDiagramUpdater {
 	 * @generated
 	 */
 	public static List getClass_1001ContainedLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getAttribute_2001ContainedLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getMethod_2002ContainedLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
 
@@ -142,6 +230,20 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List getAttribute_2001IncomingLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getMethod_2002IncomingLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List getAssociation_3001IncomingLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
@@ -155,6 +257,20 @@ public class ModelDiagramUpdater {
 		result
 				.addAll(getOutgoingTypeModelFacetLinks_Association_3001(modelElement));
 		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getAttribute_2001OutgoingLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getMethod_2002OutgoingLinks(View view) {
+		return Collections.EMPTY_LIST;
 	}
 
 	/**

@@ -13,7 +13,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.classes.Association;
+import org.unicase.model.classes.Attribute;
 import org.unicase.model.classes.ClassesPackage;
+import org.unicase.model.classes.Method;
+import org.unicase.model.classes.MethodArgument;
 import org.unicase.model.classes.PackageElement;
 
 /**
@@ -87,6 +90,21 @@ public class ClassesAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseAssociation(Association object) {
 			return createAssociationAdapter();
+		}
+
+		@Override
+		public Adapter caseAttribute(Attribute object) {
+			return createAttributeAdapter();
+		}
+
+		@Override
+		public Adapter caseMethod(Method object) {
+			return createMethodAdapter();
+		}
+
+		@Override
+		public Adapter caseMethodArgument(MethodArgument object) {
+			return createMethodArgumentAdapter();
 		}
 
 		@Override
@@ -173,6 +191,48 @@ public class ClassesAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAssociationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.classes.Attribute <em>Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.classes.Attribute
+	 * @generated
+	 */
+	public Adapter createAttributeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.classes.Method <em>Method</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.classes.Method
+	 * @generated
+	 */
+	public Adapter createMethodAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.classes.MethodArgument <em>Method Argument</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.classes.MethodArgument
+	 * @generated
+	 */
+	public Adapter createMethodArgumentAdapter() {
 		return null;
 	}
 
