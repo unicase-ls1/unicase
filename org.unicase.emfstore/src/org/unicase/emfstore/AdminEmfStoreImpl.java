@@ -386,10 +386,20 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public List<ACOrgUnit> getMembers(SessionId sessionId, ACOrgUnitId groupId)
 			throws EmfStoreException {
-		
 		return getGroup(groupId).getMembers();
-		
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public ACOrgUnit getOrgUnit(SessionId sessionId, ACOrgUnitId orgUnitId)
+	
+			throws EmfStoreException {
+		return getOrgUnit(orgUnitId);
 	}
 }
