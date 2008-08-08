@@ -29,13 +29,17 @@ import org.unicase.model.impl.ModelElementImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getElements <em>Elements</em>}</li>
- *   <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getGmfdiagram <em>Gmfdiagram</em>}</li>
- *   <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getNewElements <em>New Elements</em>}</li>
- *   <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getType <em>Type</em>}</li>
+ * <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getElements <em>
+ * Elements</em>}</li>
+ * <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getGmfdiagram <em>
+ * Gmfdiagram</em>}</li>
+ * <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getNewElements <em>
+ * New Elements</em>}</li>
+ * <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getType <em>Type
+ * </em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
@@ -45,8 +49,9 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	private static final long serialVersionUID = -1316169257375326716L;
 
 	/**
-	 * The cached value of the '{@link #getElements() <em>Elements</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getElements() <em>Elements</em>}'
+	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getElements()
 	 * @generated
 	 * @ordered
@@ -54,8 +59,9 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	protected EList<ModelElement> elements;
 
 	/**
-	 * The cached value of the '{@link #getGmfdiagram() <em>Gmfdiagram</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getGmfdiagram() <em>Gmfdiagram</em>}'
+	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getGmfdiagram()
 	 * @generated
 	 * @ordered
@@ -63,8 +69,9 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	protected Diagram gmfdiagram;
 
 	/**
-	 * The cached value of the '{@link #getNewElements() <em>New Elements</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getNewElements() <em>New Elements</em>}'
+	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getNewElements()
 	 * @generated
 	 * @ordered
@@ -73,8 +80,8 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getType()
 	 * @generated
 	 * @ordered
@@ -83,8 +90,8 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getType()
 	 * @generated
 	 * @ordered
@@ -93,6 +100,7 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected MEDiagramImpl() {
@@ -101,6 +109,7 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -110,6 +119,7 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ModelElement> getElements() {
@@ -123,6 +133,7 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Diagram getGmfdiagram() {
@@ -131,6 +142,7 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetGmfdiagram(Diagram newGmfdiagram,
@@ -151,6 +163,7 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setGmfdiagram(Diagram newGmfdiagram) {
@@ -175,34 +188,44 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 					newGmfdiagram));
 	}
 
-	//		/**
-	//		 * <!-- begin-user-doc -->
-	//		 * <!-- end-user-doc -->
-	//		 * @generated
-	//		 */
-	//		public EList<ModelElement> getNewElements() {
-	//			if (newElements == null) {
-	//				newElements = new EObjectContainmentEList<ModelElement>(
-	//						ModelElement.class, this,
-	//						DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS);
-	//			}
-	//			return newElements;
-	//		}
-	//	 JH/MK still throws exception: org.eclipse.emf.common.util.BasicEList$BasicIndexOutOfBoundsException: index=0, size=0
+	// /**
+	// * <!-- begin-user-doc -->
+	// * <!-- end-user-doc -->
+	// * @generated
+	// */
+	// public EList<ModelElement> getNewElements() {
+	// if (newElements == null) {
+	// newElements = new EObjectContainmentEList<ModelElement>(
+	// ModelElement.class, this,
+	// DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS);
+	// }
+	// return newElements;
+	// }
+	// JH/MK still throws exception:
+	// org.eclipse.emf.common.util.BasicEList$BasicIndexOutOfBoundsException:
+	// index=0, size=0
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public EList<ModelElement> getNewElements() {
 
-		//JH: cache instance
+		// FIXME: this line is needed in order to avoid exception when
+		// initializing Teneo. Otherwise getProjects() throws an exception
+		// because eContainer is null. Returning null in this case shouldn't be
+		// a problem because getNewElements() is transient anyway.
+		if (eContainer == null) {
+			return null;
+		}
+
+		// JH: cache instance
 		return new DiagramNewElementsList(getElements(), getProject());
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DiagramType getType() {
@@ -210,8 +233,8 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setType(DiagramType newType) {
@@ -224,6 +247,7 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -241,6 +265,7 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -260,6 +285,7 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -287,6 +313,7 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -310,6 +337,7 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -328,8 +356,8 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
