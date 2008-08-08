@@ -106,7 +106,7 @@ public abstract class FormContents extends Composite {
 			}
 
 			public void focusLost(FocusEvent e) {
-				//saveOrgUnitAttributes();
+				saveOrgUnitAttributes();
 
 			}
 

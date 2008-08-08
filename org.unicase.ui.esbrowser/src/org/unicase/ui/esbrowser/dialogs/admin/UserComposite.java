@@ -4,27 +4,24 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.databinding.EMFDataBindingContext;
-import org.eclipse.emf.databinding.edit.EMFEditObservables;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jface.databinding.swt.SWTObservables;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.forms.widgets.Form;
 import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
-import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.AdminBroker;
 
 public class UserComposite extends FormContents {
 
 	private ACUser user;
+	private OrgUnitManagementGUI orgUnitMgmtGUI;
 
-	public UserComposite(Composite parent, int style, AdminBroker adminBroker) {
+	public UserComposite(Composite parent, int style, AdminBroker adminBroker, OrgUnitManagementGUI orgUnitMgmtGUI) {
 		super(parent, style, adminBroker);
+		this.orgUnitMgmtGUI = orgUnitMgmtGUI;
 		createControls();
 	}
 
@@ -120,7 +117,7 @@ public class UserComposite extends FormContents {
 			txtName.setText(user.getName());
 			txtDescription.setText((user.getDescription()== null)? "" : user.getDescription());
 			tableViewer.setInput(user);
-			
+			orgUnitMgmtGUI.setFormTableViewer(tableViewer);
 			
 //			IObservableValue model = EMFEditObservables.observeValue(editingDomain,
 //					user, AccesscontrolPackage.eINSTANCE.getACOrgUnit_Name());
@@ -152,6 +149,9 @@ public class UserComposite extends FormContents {
 			  && user.getDescription().equals(txtDescription.getText()) )){
 			try {
 				adminBroker.changeOrgUnit(user.getId(), txtName.getText(), txtDescription.getText());
+				((Form)(this.getParent().getParent())).setText("User: " + txtName.getText());
+				orgUnitMgmtGUI.getActiveTabContent().getListViewer().refresh();
+			
 			} catch (EmfStoreException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

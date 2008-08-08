@@ -8,6 +8,7 @@ import org.eclipse.ui.forms.widgets.Form;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.AdminBroker;
 
 
@@ -21,27 +22,29 @@ public class PropertiesForm extends Form {
 	private GroupComposite groupComposite;
 	private UserComposite userComposite;
 	private AdminBroker adminBroker;
+	private OrgUnitManagementGUI orgUnitMgmtGUI;
 	
 	public static EObject dragNDropObject;
 	public static String dragSource = "";
 	
 
-	public PropertiesForm(Composite parent, int style, AdminBroker adminBroker) {
+	public PropertiesForm(Composite parent, int style, AdminBroker adminBroker, OrgUnitManagementGUI orgUnitManagementGUI) {
 		super(parent,  style);
 		
 		body = this.getBody();
 		stackLayout = new StackLayout();
 		body.setLayout(stackLayout);
 		this.adminBroker= adminBroker;
+		this.orgUnitMgmtGUI = orgUnitManagementGUI;
 		initComposites();
 		
 		
 	}
 
 	private void initComposites() {
-		projectComposite = new ProjectComposite(body, SWT.NONE, adminBroker);
-		groupComposite = new GroupComposite(body, SWT.NONE, adminBroker);
-		userComposite = new UserComposite(body, SWT.NONE, adminBroker);
+		projectComposite = new ProjectComposite(body, SWT.NONE, adminBroker, orgUnitMgmtGUI);
+		groupComposite = new GroupComposite(body, SWT.NONE, adminBroker, orgUnitMgmtGUI);
+		userComposite = new UserComposite(body, SWT.NONE, adminBroker, orgUnitMgmtGUI);
 	
 		stackLayout.topControl = projectComposite;
 			
@@ -57,16 +60,28 @@ public class PropertiesForm extends Form {
 			
 			
 		}else if(input instanceof ACGroup){
-			ACGroup group = (ACGroup)input;
-			title = "Group: " + group.getName();
-			stackLayout.topControl = groupComposite;
-			groupComposite.updateControls(group);
+			ACGroup group;
+			try {
+				group = (ACGroup)adminBroker.getOrgUnit(((ACGroup)input).getId());
+				title = "Group: " + group.getName();
+				stackLayout.topControl = groupComposite;
+				groupComposite.updateControls(group);
+			} catch (EmfStoreException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		}else if (input instanceof ACUser){
-			ACUser user = (ACUser) input;
-			title = "User: " + user.getName();
-			stackLayout.topControl = userComposite;
-			userComposite.updateControls(user);
+			ACUser user;
+			try {
+				user = (ACUser)adminBroker.getOrgUnit(((ACUser) input).getId());
+				title = "User: " + user.getName();
+				stackLayout.topControl = userComposite;
+				userComposite.updateControls(user);
+			} catch (EmfStoreException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		if(input == null){
 			((FormContents)stackLayout.topControl).updateControls(null);

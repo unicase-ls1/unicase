@@ -1,8 +1,12 @@
 package org.unicase.ui.esbrowser.dialogs.admin;
 
 import org.eclipse.jface.resource.JFaceResources;
+import org.eclipse.jface.viewers.StructuredViewer;
+import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.TabFolder;
@@ -21,6 +25,11 @@ public class OrgUnitManagementGUI {
 	private TabFolder tabFolder;
 	private PropertiesForm frm;
 	private AdminBroker adminBroker;
+	private TabContent activeTabContent;
+	private TabContent projectsTabContents;
+	private TabContent groupsTabContents;
+	private TabContent usersTabContents;
+	private TableViewer formTableViewer; 
 
 
 	public OrgUnitManagementGUI(Composite parent, AdminBroker adminBroker) {
@@ -89,6 +98,30 @@ public class OrgUnitManagementGUI {
 
 		tabFolder = new TabFolder(sash, SWT.NONE);
 		tabFolder.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		
+		tabFolder.addSelectionListener(new SelectionListener(){
+
+			public void widgetDefaultSelected(SelectionEvent e) {
+				widgetSelected(e);
+			}
+
+			public void widgetSelected(SelectionEvent e) {
+				switch (tabFolder.getSelectionIndex()){
+				case 0 :
+					activeTabContent=projectsTabContents;
+					break;
+				case 1: 
+					activeTabContent = groupsTabContents;
+					break;
+				case 2: 
+					activeTabContent = usersTabContents;
+					break;
+					
+				}
+				
+			}
+			
+		});
 
 	}
 
@@ -96,7 +129,7 @@ public class OrgUnitManagementGUI {
 
 		FormToolkit toolkit = new FormToolkit(sash.getDisplay());
 
-		frm = new PropertiesForm(sash, SWT.NONE, adminBroker);
+		frm = new PropertiesForm(sash, SWT.NONE, adminBroker, this);
 		frm.setText("Properties");
 		frm.setFont(JFaceResources.getHeaderFont());
 
@@ -107,19 +140,19 @@ public class OrgUnitManagementGUI {
 	private void initTabFolder() {
 
 		TabItem projectsTab = new TabItem(tabFolder, SWT.NONE);
-		TabContent projectsTabContents = new TabContent("Projects", adminBroker);
+		projectsTabContents = new TabContent("Projects", adminBroker, this);
 		projectsTabContents.setPropertiesForm(frm);
 		projectsTab.setControl(projectsTabContents.createContents(tabFolder));
 		projectsTab.setText(projectsTabContents.getName());
 
 		TabItem groupsTab = new TabItem(tabFolder, SWT.NONE);
-		TabContent groupsTabContents = new TabContent("Groups", adminBroker);
+		groupsTabContents = new TabContent("Groups", adminBroker, this);
 		groupsTabContents.setPropertiesForm(frm);
 		groupsTab.setControl(groupsTabContents.createContents(tabFolder));
 		groupsTab.setText(groupsTabContents.getName());
 
 		TabItem usersTab = new TabItem(tabFolder, SWT.NONE);
-		TabContent usersTabContents = new TabContent("Users", adminBroker);
+		usersTabContents = new TabContent("Users", adminBroker, this);
 		usersTabContents.setPropertiesForm(frm);
 		usersTab.setControl(usersTabContents.createContents(tabFolder));
 		usersTab.setText(usersTabContents.getName());
@@ -141,5 +174,23 @@ public class OrgUnitManagementGUI {
 		// frm = null;
 
 	}
+	
+	
+	public TabContent getActiveTabContent(){
+		return this.activeTabContent;
+		
+	}
+
+	public TableViewer getFormTableViewer() {
+		// TODO Auto-generated method stub
+		return this.formTableViewer;
+	}
+
+	public void setFormTableViewer(TableViewer tableViewer) {
+		this.formTableViewer = tableViewer;
+		
+	}
+	
+	
 
 }
