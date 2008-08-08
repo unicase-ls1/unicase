@@ -16,12 +16,20 @@ public class ManageOrgUnitsDialog extends Dialog {
 		super(parentShell);
 		
 		this.setShellStyle(this.getShellStyle() | SWT.RESIZE );
-		boolean aa = ((getShellStyle() & SWT.RESIZE) == SWT.RESIZE);
 		this.adminBroker = adminBroker;
+	
 		
 	}
 	
 	
+	@Override
+	public int open() {
+		this.getButton(OK).setVisible(false);
+		this.getButton(CANCEL).setText("Close");
+		return super.open();
+	}
+
+
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		Composite composite = (Composite) super.createDialogArea(parent);

@@ -4,12 +4,18 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.databinding.EMFDataBindingContext;
+import org.eclipse.emf.databinding.edit.EMFEditObservables;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.databinding.swt.SWTObservables;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
+import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.AdminBroker;
 
@@ -104,13 +110,53 @@ public class UserComposite extends FormContents {
 		grpTable.setText("Groups");
 	}
 
-	public void updateControls(ACUser user) {
-		this.user = user;
+	@Override
+	public void updateControls(EObject input) {
+		super.updateControls(input);		
+		if(input != null && input instanceof ACUser){
+		
+			this.user =(ACUser) input;
 
-		txtName.setText(user.getName());
-		txtDescription.setText((user.getDescription()== null)? "" : user.getDescription());
-		tableViewer.setInput(user);
+			txtName.setText(user.getName());
+			txtDescription.setText((user.getDescription()== null)? "" : user.getDescription());
+			tableViewer.setInput(user);
+			
+			
+//			IObservableValue model = EMFEditObservables.observeValue(editingDomain,
+//					user, AccesscontrolPackage.eINSTANCE.getACOrgUnit_Name());
+//			EMFDataBindingContext dbc = new EMFDataBindingContext();
+//			dbc.bindValue(SWTObservables.observeText(txtName, SWT.FocusOut), model,
+//					null, null);
+//			
+//			model = EMFEditObservables.observeValue(editingDomain,
+//					user, AccesscontrolPackage.eINSTANCE.getACOrgUnit_Description());
+//			dbc = new EMFDataBindingContext();
+//			dbc.bindValue(SWTObservables.observeText(txtDescription, SWT.FocusOut), model,
+//					null, null);
+			
+			
+		}
+		
 
+	}
+	
+	@Override
+	protected  void saveOrgUnitAttributes() {
+		if(txtName == null || txtDescription == null ){
+			return;
+		}
+		if(user == null) {
+			return;
+		}
+		if (!(user.getName().equals(txtName.getText())
+			  && user.getDescription().equals(txtDescription.getText()) )){
+			try {
+				adminBroker.changeOrgUnit(user.getId(), txtName.getText(), txtDescription.getText());
+			} catch (EmfStoreException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 }

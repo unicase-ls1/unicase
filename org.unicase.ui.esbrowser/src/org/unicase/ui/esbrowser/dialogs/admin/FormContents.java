@@ -3,12 +3,16 @@ package org.unicase.ui.esbrowser.dialogs.admin;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.emf.common.command.BasicCommandStack;
+import org.eclipse.emf.databinding.EMFDataBindingContext;
+import org.eclipse.emf.databinding.edit.EMFEditObservables;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryLabelProvider;
-import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
@@ -24,6 +28,8 @@ import org.eclipse.swt.dnd.DropTarget;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.dnd.DropTargetListener;
 import org.eclipse.swt.dnd.Transfer;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
@@ -42,14 +48,16 @@ import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
+import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.model.util.ModelAdapterFactory;
 import org.unicase.workspace.AdminBroker;
 import org.unicase.workspace.WorkspaceManager;
 
 public abstract class FormContents extends Composite {
 
 	protected AdminBroker adminBroker;
-
+	
 	protected Group grpTable;
 	protected Group grpAttributes;
 
@@ -61,9 +69,13 @@ public abstract class FormContents extends Composite {
 	protected Table table;
 	protected TableViewer tableViewer;
 
+	//protected AdapterFactoryEditingDomain editingDomain;
+
 	public FormContents(Composite parent, int style, AdminBroker adminBroker) {
 		super(parent, style);
 		this.adminBroker = adminBroker;
+//		editingDomain = new AdapterFactoryEditingDomain(
+//				new ModelAdapterFactory(), new BasicCommandStack());
 	}
 
 	protected void createControls() {
@@ -86,15 +98,41 @@ public abstract class FormContents extends Composite {
 		lblName = new Label(grpAttributes, SWT.NONE);
 		lblName.setText("Name: ");
 		txtName = new Text(grpAttributes, SWT.BORDER);
+		
 		txtName.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		txtName.addFocusListener(new FocusListener() {
+
+			public void focusGained(FocusEvent e) {
+			}
+
+			public void focusLost(FocusEvent e) {
+				//saveOrgUnitAttributes();
+
+			}
+
+		});
 		// txtName.setEnabled(false);
 
 		lblDescription = new Label(grpAttributes, SWT.NONE);
 		lblDescription.setText("Description: ");
 		txtDescription = new Text(grpAttributes, SWT.BORDER);
 		txtDescription.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		txtDescription.addFocusListener(new FocusListener() {
+
+			public void focusGained(FocusEvent e) {
+			}
+
+			public void focusLost(FocusEvent e) {
+				saveOrgUnitAttributes();
+
+			}
+
+		});
 		// txtDescription.setEnabled(false);
 
+	}
+
+	protected void saveOrgUnitAttributes() {
 	}
 
 	protected void createTableGroup() {
@@ -295,10 +333,19 @@ public abstract class FormContents extends Composite {
 		tableViewer.addDragSupport(ops, transfers, dragListener);
 	}
 
-	protected void addOrgUnit(ACOrgUnit orgUnit) {
-	}
+	protected abstract void addOrgUnit(ACOrgUnit orgUnit);
 
-	protected void removeOrgUnit(ACOrgUnit orgUnit) {
+	protected abstract void removeOrgUnit(ACOrgUnit orgUnit);
+
+	public void updateControls(EObject input) {
+		if (input == null) {
+			this.grpAttributes.setVisible(false);
+			this.grpTable.setVisible(false);
+		} else if (!grpAttributes.isVisible()) {
+			this.grpAttributes.setVisible(true);
+			this.grpTable.setVisible(true);
+		}
+
 	}
 
 	protected Object[] showDialog(Collection<ACOrgUnit> content, String title) {

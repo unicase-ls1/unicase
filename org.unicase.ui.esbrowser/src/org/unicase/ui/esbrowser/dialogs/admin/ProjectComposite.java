@@ -225,6 +225,11 @@ public class ProjectComposite extends FormContents {
 	}
 
 	public void updateControls(ProjectInfo projectInfo) {
+		if(!grpAttributes.isVisible()){
+			grpAttributes.setVisible(true);
+			grpTable.setVisible(true);
+		}
+		
 		this.projectInfo = projectInfo;
 
 		txtName.setText(projectInfo.getName());

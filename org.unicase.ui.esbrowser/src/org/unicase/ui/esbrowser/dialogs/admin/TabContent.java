@@ -20,8 +20,11 @@ import org.eclipse.swt.dnd.DragSourceListener;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.dnd.DropTargetListener;
 import org.eclipse.swt.dnd.Transfer;
-import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.TabFolder;
@@ -54,12 +57,99 @@ public class TabContent {
 
 		tabContents = new Composite(tabFolder, SWT.NONE);
 		tabContents.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		tabContents.setLayout(new FillLayout());
+
+		tabContents.setLayout(new GridLayout(2, false));
 
 		initList(tabContents);
 
+		if (!tabName.equals("Projects")) {
+			createButtons(tabContents);
+		}
+
 		return tabContents;
 
+	}
+
+	private void createButtons(Composite tabContents) {
+		Button btnNew = new Button(tabContents, SWT.PUSH );
+		if (this.tabName.equals("Users")) {
+			btnNew.setText("New User");
+		} else {
+			btnNew.setText("New Group");
+		}
+
+		btnNew.addSelectionListener(new SelectionAdapter() {
+			// create a new OrgUnit
+			public void widgetSelected(SelectionEvent e) {
+				newOrgUnit();
+			}
+
+		});
+
+		// Create and configure the "Delete" button
+		Button btnDelete = new Button(tabContents, SWT.PUSH);
+		if (this.tabName.equals("Users")) {
+			btnDelete.setText("Delete User");// User");
+		} else {
+			btnDelete.setText("Delete Group");
+		}
+
+		btnDelete.addSelectionListener(new SelectionAdapter() {
+
+			// Remove the selection and refresh the view
+			public void widgetSelected(SelectionEvent e) {
+				int selectedIndex = list.getList().getSelectionIndex();
+				ACOrgUnit ou = (ACOrgUnit) ((IStructuredSelection) list
+						.getSelection()).getFirstElement();
+				if (ou != null) {
+					deleteOrgUnit(ou);
+				}
+				if (selectedIndex != 0){
+					list.getList().setSelection(selectedIndex -1);
+				}else if(list.getList().getItemCount() == 0){
+					frm.setInput(null);
+					return;
+				}else{
+					list.getList().setSelection(0);
+				}
+				frm.setInput((EObject)((IStructuredSelection) list
+						.getSelection()).getFirstElement());
+			}
+		});
+		
+
+	}
+
+	protected void deleteOrgUnit(ACOrgUnit ou) {
+		try {
+			if (ou instanceof ACGroup) {
+
+				adminBroker.deleteGroup(((ACGroup) ou).getId());
+
+			} else {
+				adminBroker.deleteUser(((ACUser) ou).getId());
+			}
+		} catch (EmfStoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		list.refresh();
+	}
+
+	protected void newOrgUnit() {
+		try {
+			if (tabName.equals("Users")) {
+
+				adminBroker.createUser("New User");
+				
+			} else {
+				adminBroker.createGroup("New Group");
+			}
+		} catch (EmfStoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		list.refresh();
 	}
 
 	public void setPropertiesForm(PropertiesForm frm) {
@@ -77,6 +167,10 @@ public class TabContent {
 	private void initList(Composite tabPage) {
 
 		list = new ListViewer(tabPage, SWT.V_SCROLL | SWT.BORDER);
+		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true); 
+		gridData.horizontalSpan = 2;
+		list.getList().setLayoutData(gridData);
+
 		list.setLabelProvider(new ListLabelProvider());
 		list.setContentProvider(new ListContentProvider());
 		list.setInput(tabName);
@@ -156,23 +250,22 @@ public class TabContent {
 			if (currentInput instanceof ProjectInfo) {
 				ProjectInfo projectInfo = (ProjectInfo) currentInput;
 
-				adminBroker
-						.removeParticipant(projectInfo.getProjectId(),
-								orgUnit.getId());
+				adminBroker.removeParticipant(projectInfo.getProjectId(),
+						orgUnit.getId());
 
 			} else if (currentInput instanceof ACGroup) {
 				ACGroup group = (ACGroup) currentInput;
 				try {
 					adminBroker.removeMember(group.getId(), orgUnit.getId());
-					
+
 				} catch (EmfStoreException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			} else if (currentInput instanceof ACUser) {
 				ACUser user = (ACUser) currentInput;
-				adminBroker
-						.removeGroup(user.getId(), ((ACGroup) orgUnit).getId());
+				adminBroker.removeGroup(user.getId(), ((ACGroup) orgUnit)
+						.getId());
 			}
 		} catch (EmfStoreException e) {
 			// TODO Auto-generated catch block
