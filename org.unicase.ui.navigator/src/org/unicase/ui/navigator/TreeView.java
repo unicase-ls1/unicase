@@ -108,12 +108,21 @@ public class TreeView extends ViewPart {
 					IStructuredSelection selection = (IStructuredSelection) event
 							.getSelection();
 					Object obj = selection.getFirstElement();
+					
+					final ProjectSpace projectSpace;
 					if (obj instanceof ModelElement) {
 						ModelElement me = (ModelElement) obj;
-						final ProjectSpace projectSpace = WorkspaceManager
+						projectSpace = WorkspaceManager
 								.getProjectSpace(me);
-						TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-								.getEditingDomain("org.unicase.EditingDomain");
+					}else if(obj instanceof ProjectSpace){
+						 projectSpace = (ProjectSpace)obj;
+					}else{
+						projectSpace = null;
+					}
+					
+					TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+					.getEditingDomain("org.unicase.EditingDomain");
+					if(projectSpace != null){
 						domain.getCommandStack().execute(
 								new RecordingCommand(domain) {
 
@@ -128,6 +137,7 @@ public class TreeView extends ViewPart {
 								});
 
 					}
+					
 				}
 			}
 
