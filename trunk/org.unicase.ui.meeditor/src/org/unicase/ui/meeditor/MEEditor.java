@@ -6,11 +6,11 @@
  */
 package org.unicase.ui.meeditor;
 
-import java.util.EventObject;
-
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.command.CommandStack;
-import org.eclipse.emf.common.command.CommandStackListener;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
@@ -39,17 +39,17 @@ public class MEEditor extends SharedHeaderFormEditor {
 	private ModelElement modelElement;
 	private ComposedAdapterFactory adapterFactory;
 	private TransactionalEditingDomain editingDomain;
-	private CommandStack commandStack;
 	private MEEditorPage form;
-	private boolean checkingDirty;
+	private boolean dirty;
 
 	/**
 	 * Default constructor.
 	 */
 	public MEEditor() {
-		// initializeEditingDomain();
-	}
 
+	}
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -84,6 +84,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 					}
 
 				});
+		dirty = false;
 		editorDirtyStateChanged();
 		monitor.done();
 	}
@@ -119,8 +120,20 @@ public class MEEditor extends SharedHeaderFormEditor {
 			setTitleImage(input.getImageDescriptor().createImage());
 
 			modelElement = meInput.getModelElement();
-			// AS: confirm that the method should be placed here.
 			initializeEditingDomain();
+			Adapter eAdapter = new AdapterImpl() {
+				@Override
+				public void notifyChanged(Notification msg) {
+					dirty = true;
+					editorDirtyStateChanged();
+					if (msg.getFeature() instanceof EAttribute && ((EAttribute)msg.getFeature()).getName().equals("name")) {
+						setPartName(msg.getNewStringValue());
+					}
+					
+				}
+				
+			};
+			this.modelElement.eAdapters().add(eAdapter);
 		} else {
 			throw new PartInitException(
 					"MEEditor is only appliable for MEEditorInputs");
@@ -143,29 +156,29 @@ public class MEEditor extends SharedHeaderFormEditor {
 		this.editingDomain = TransactionalEditingDomain.Factory.INSTANCE
 				.getEditingDomain(modelElement.eResource().getResourceSet());
 
-		this.commandStack = editingDomain.getCommandStack();
-		// Add a listener to set the editor dirty of commands have been executed
-		editingDomain.getCommandStack().execute(
-				new RecordingCommand(editingDomain) {
-
-					@Override
-					protected void doExecute() {
-						editingDomain.getCommandStack()
-								.addCommandStackListener(
-										new CommandStackListener() {
-
-											public void commandStackChanged(
-													EventObject event) {
-												//JH: Fix Hack
-												if (!checkingDirty) {
-													editorDirtyStateChanged();
-												}
-											}
-										});
-
-					}
-
-				});
+//		this.commandStack = editingDomain.getCommandStack();
+//		// Add a listener to set the editor dirty of commands have been executed
+//		editingDomain.getCommandStack().execute(
+//				new RecordingCommand(editingDomain) {
+//
+//					@Override
+//					protected void doExecute() {
+//						editingDomain.getCommandStack()
+//								.addCommandStackListener(
+//										new CommandStackListener() {
+//
+//											public void commandStackChanged(
+//													EventObject event) {
+//												//JH: Fix Hack
+//												if (!checkingDirty) {
+//													editorDirtyStateChanged();
+//												}
+//											}
+//										});
+//
+//					}
+//
+//				});
 
 	}
 
@@ -175,7 +188,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	@Override
 	public boolean isDirty() {
 //		TODO: fix
-		return true;
+		return dirty;
 		//JH: Syncronize
 //		if(checkingDirty){
 //			return dirty;
@@ -192,7 +205,10 @@ public class MEEditor extends SharedHeaderFormEditor {
 //		checkingDirty=false;
 //		return dirty;
 	}
-
+	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void setFocus() {
 
