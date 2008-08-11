@@ -103,26 +103,26 @@ public class ESBrowserView extends ViewPart {
 					@Override
 					protected void doExecute() {
 						session = serverInfo.getLastUsersession();
-						LoginDialog dialog;
+						LoginDialog dialog = new LoginDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(), session);
 						if (session == null) {
 							session = WorkspaceFactory.eINSTANCE.createUsersession();
 							session.setServerInfo(serverInfo);
 							serverInfo.setLastUsersession(session);
-							dialog = new LoginDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(), session, true);
+							dialog.setNewSession(true);
 							dialog.open();
 						} else if (!session.isLoggedIn()){
-							dialog = new LoginDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(), session);
 							dialog.open();
 						}
-
-						try {
-							serverInfo.getProjectInfos().clear();
-							serverInfo.getProjectInfos().addAll(session.getRemoteProjectList());
-							WorkspaceManager.getInstance().getCurrentWorkspace().save();
-							viewer.refresh();
-						} catch (EmfStoreException e) {
-							// TODO no server connection
-							e.printStackTrace();
+						if(session.isLoggedIn() || dialog.getStatus()==LoginDialog.SUCCESSFUL){
+							try {
+								serverInfo.getProjectInfos().clear();
+								serverInfo.getProjectInfos().addAll(session.getRemoteProjectList());
+								WorkspaceManager.getInstance().getCurrentWorkspace().save();
+								viewer.refresh();
+							} catch (EmfStoreException e) {
+								// TODO no server connection
+								e.printStackTrace();
+							}
 						}
 					}
 				});
