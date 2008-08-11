@@ -123,7 +123,7 @@
       </genClasses>
       <genClasses ecoreClass="model.ecore#//task/Milestone"/>
       <genClasses image="false" ecoreClass="model.ecore#//task/Checkable">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//task/Checkable/checked"/>
+        <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//task/Checkable/checked"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Diagram" basePackage="org.unicase.model" disposableProviderFactory="true"
