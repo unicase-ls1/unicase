@@ -6,6 +6,8 @@
  */
 package org.unicase.emfstore.accesscontrol;
 
+import javax.naming.NamingException;
+
 import org.unicase.emfstore.exceptions.EmfStoreException;
 
 /**
@@ -31,6 +33,16 @@ public class AccessControlException extends EmfStoreException {
 	 */
 	public AccessControlException() {
 		super("Access denied!");
+	}
+
+	/**
+	 * Constructor.
+	 * 
+	 * @param string message
+	 * @param e cause
+	 */
+	public AccessControlException(String string, NamingException e) {
+		super(string, e);
 	}
 
 }

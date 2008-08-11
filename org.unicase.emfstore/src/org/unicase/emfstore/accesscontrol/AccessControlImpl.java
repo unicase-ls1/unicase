@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.unicase.emfstore.accesscontrol.authentication.LDAPVerifier;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ServerSpace;
@@ -31,6 +32,7 @@ public class AccessControlImpl implements AuthenticationControl,
 
 	private Map<SessionId, ACUser> sessionUserMap;
 	private ServerSpace serverSpace;
+	private AuthenticationControl authenticationControl;
 
 	/**
 	 * Default constructor.
@@ -41,8 +43,9 @@ public class AccessControlImpl implements AuthenticationControl,
 	public AccessControlImpl(ServerSpace serverSpace) {
 		this.sessionUserMap = new HashMap<SessionId, ACUser>();
 		this.serverSpace = serverSpace;
+		authenticationControl = new LDAPVerifier();
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 * 

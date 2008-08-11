@@ -35,6 +35,7 @@ import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.emfstore.storage.ResourceStorage;
+import org.unicase.emfstore.test.TestDriver;
 
 /**
  * The {@link EmfStoreController} is controlling startup and shutdown of the
@@ -101,7 +102,11 @@ public class EmfStoreController implements IApplication {
 		// create RMI connection handler
 		RMIConnectionHandler rmiConnectionHandler = new RMIConnectionHandler();
 		connectionHandlers.add(rmiConnectionHandler);
-
+		
+		//TestDriver test = new TestDriver();
+		//connectionHandlers.add(test);
+		
+		
 		// init all handlers
 		for (ConnectionHandler handler : connectionHandlers) {
 			handler.init(emfStore, accessControl);
