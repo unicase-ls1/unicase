@@ -401,28 +401,29 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 					newSuccessors));
 	}
 
+	//begin of custom code
 	/**
 	 * <!-- begin-user-doc -->
+	 * @return the Done state of the ActionItem.
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean isChecked() {
-		// TODO: implement this method to return the 'Checked' attribute
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return isDone();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Sets the Done state of the ActionItem.
+	 * @param newChecked the new state
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setChecked(boolean newChecked) {
-		// TODO: implement this method to set the 'Checked' attribute
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		setDone(newChecked);
 	}
-
+	//end of custom code
+	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
