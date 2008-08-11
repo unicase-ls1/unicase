@@ -8,6 +8,7 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
@@ -67,6 +68,7 @@ public class ShareProjectHandler extends ProjectActionHandler {
 				if (loginStatus == LoginDialog.SUCCESSFUL) {
 					try {
 						projectSpace.shareProject(usersession);
+						MessageDialog.openInformation(shell, null, "Your project was successfully shared!");
 					} catch (EmfStoreException e) {
 						ExceptionDialogHandler.showExceptionDialog(e);
 					}

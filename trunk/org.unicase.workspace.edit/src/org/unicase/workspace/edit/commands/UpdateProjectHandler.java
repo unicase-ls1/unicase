@@ -35,7 +35,7 @@ public class UpdateProjectHandler extends ProjectActionHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
+		final IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
 
 		final ProjectSpace projectSpace = (ProjectSpace) getProjectSpace(event);
 
@@ -58,6 +58,7 @@ public class UpdateProjectHandler extends ProjectActionHandler {
 				if (loginStatus == LoginDialog.SUCCESSFUL) {
 					try {
 						projectSpace.update();
+						MessageDialog.openInformation(window.getShell(), null, "Update complete!");
 					} catch (EmfStoreException e) {
 						ExceptionDialogHandler.showExceptionDialog(e);
 					}
@@ -65,7 +66,6 @@ public class UpdateProjectHandler extends ProjectActionHandler {
 
 			}
 		});
-		MessageDialog.openInformation(window.getShell(), null, "Update complete!");
 		return null;
 	}
 }

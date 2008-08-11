@@ -35,7 +35,7 @@ public class CommitProjectHandler extends ProjectActionHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
+		final IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
 
 		final ProjectSpace projectSpace = getProjectSpace(event);
 
@@ -58,15 +58,13 @@ public class CommitProjectHandler extends ProjectActionHandler {
 				if (loginStatus == LoginDialog.SUCCESSFUL) {
 					try {
 						projectSpace.commit();
+						MessageDialog.openInformation(window.getShell(), null, "Commit completed.");
 					} catch (EmfStoreException e) {
 						ExceptionDialogHandler.showExceptionDialog(e);
 					}
 				}
 			}
 		});
-
-		MessageDialog.openInformation(window.getShell(), null, "Commit completed.");
-
 		return null;
 	}
 
