@@ -66,7 +66,7 @@ public class ModelParserProvider extends AbstractProvider implements
 	 */
 	protected IParser createAttribute_2001Parser() {
 		EAttribute[] features = new EAttribute[] { ClassesPackage.eINSTANCE
-				.getAttribute_Signature(), };
+				.getAttribute_Label(), };
 		org.unicase.model.classDiagram.parsers.MessageFormatParser parser = new org.unicase.model.classDiagram.parsers.MessageFormatParser(
 				features);
 		return parser;

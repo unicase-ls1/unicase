@@ -20,6 +20,9 @@ import org.unicase.model.ModelElement;
  *   <li>{@link org.unicase.model.classes.Attribute#getScope <em>Scope</em>}</li>
  *   <li>{@link org.unicase.model.classes.Attribute#getSignature <em>Signature</em>}</li>
  *   <li>{@link org.unicase.model.classes.Attribute#getType <em>Type</em>}</li>
+ *   <li>{@link org.unicase.model.classes.Attribute#getDefaultValue <em>Default Value</em>}</li>
+ *   <li>{@link org.unicase.model.classes.Attribute#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.unicase.model.classes.Attribute#getLabel <em>Label</em>}</li>
  * </ul>
  * </p>
  *
@@ -123,22 +126,11 @@ public interface Attribute extends ModelElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Signature</em>' attribute.
-	 * @see #setSignature(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getAttribute_Signature()
-	 * @model
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
 	String getSignature();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.model.classes.Attribute#getSignature <em>Signature</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Signature</em>' attribute.
-	 * @see #getSignature()
-	 * @generated
-	 */
-	void setSignature(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' attribute.
@@ -152,7 +144,7 @@ public interface Attribute extends ModelElement {
 	 * @return the value of the '<em>Type</em>' attribute.
 	 * @see #setType(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getAttribute_Type()
-	 * @model default="" transient="true" derived="true"
+	 * @model default=""
 	 * @generated
 	 */
 	String getType();
@@ -166,5 +158,83 @@ public interface Attribute extends ModelElement {
 	 * @generated
 	 */
 	void setType(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Default Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Default Value</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Default Value</em>' attribute.
+	 * @see #setDefaultValue(String)
+	 * @see org.unicase.model.classes.ClassesPackage#getAttribute_DefaultValue()
+	 * @model
+	 * @generated
+	 */
+	String getDefaultValue();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.classes.Attribute#getDefaultValue <em>Default Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Default Value</em>' attribute.
+	 * @see #getDefaultValue()
+	 * @generated
+	 */
+	void setDefaultValue(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Properties</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Properties</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Properties</em>' attribute.
+	 * @see #setProperties(String)
+	 * @see org.unicase.model.classes.ClassesPackage#getAttribute_Properties()
+	 * @model
+	 * @generated
+	 */
+	String getProperties();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.classes.Attribute#getProperties <em>Properties</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Properties</em>' attribute.
+	 * @see #getProperties()
+	 * @generated
+	 */
+	void setProperties(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Label</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Label</em>' attribute.
+	 * @see #setLabel(String)
+	 * @see org.unicase.model.classes.ClassesPackage#getAttribute_Label()
+	 * @model
+	 * @generated
+	 */
+	String getLabel();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.classes.Attribute#getLabel <em>Label</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Label</em>' attribute.
+	 * @see #getLabel()
+	 * @generated
+	 */
+	void setLabel(String value);
 
 } // Attribute

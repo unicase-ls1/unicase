@@ -215,23 +215,39 @@ public class MethodArgumentImpl extends ModelElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public String getSignature() {
-		// TODO: implement this method to return the 'Signature' attribute
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
+		String signature = "";
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSignature(String newSignature) {
-		// TODO: implement this method to set the 'Signature' attribute
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		if (this.getDirection() != ArgumentDirectionType.UNDEFINED) {
+			signature += this.getDirection().getLiteral();
+		}
+
+		if (this.getName() != null) {
+			if (signature.length() > 0) {
+				signature += " ";
+			}
+			signature += this.getName();
+		}
+
+		if (this.getType() != null) {
+			if (signature.length() > 0) {
+				signature += " ";
+			}
+			signature += ": ";
+			signature += this.getType();
+		}
+
+		if (this.getDefaultValue() != null) {
+			if (signature.length() > 0) {
+				signature += " ";
+			}
+			signature += "= ";
+			signature += this.getDefaultValue();
+		}
+
+		return signature;
 	}
 
 	/**
@@ -243,28 +259,7 @@ public class MethodArgumentImpl extends ModelElementImpl implements
 		if (label != null) {
 			return label;
 		} else {
-			String label = "";
-
-			if (this.getDirection() != ArgumentDirectionType.UNDEFINED) {
-				label += this.getDirection().getLiteral();
-				label += " ";
-			}
-
-			if (this.getName() != null) {
-				label += this.getName();
-			}
-
-			if (this.getType() != null) {
-				label += ": ";
-				label += this.getType();
-			}
-
-			if (this.getDefaultValue() != null) {
-				label += "= ";
-				label += this.getDefaultValue();
-			}
-
-			return label;
+			return this.getSignature();
 		}
 	}
 
@@ -280,39 +275,35 @@ public class MethodArgumentImpl extends ModelElementImpl implements
 		String validSignatureRegExp;
 
 		validSignatureRegExp = "";
-		validSignatureRegExp += "\\s*(?:in|out|inout)?\\s*";
-		validSignatureRegExp += "\\w*\\s*";
-		validSignatureRegExp += "(?::\\s*\\w*)?\\s*";
-		validSignatureRegExp += "(?:=\\s*\\w*)?\\s*";
+		validSignatureRegExp += "\\s*(in|out|inout)?\\s*"; //group1 -> direction
+		validSignatureRegExp += "(\\w+)\\s*"; //group2 -> name
+		validSignatureRegExp += "(?::\\s*(\\w+))?\\s*"; //group3 -> type
+		validSignatureRegExp += "(?:=\\s*(\\w+))?\\s*"; //group4 -> defaultValue
 
-		if (newLabel.matches(validSignatureRegExp)) {
-			Pattern p = Pattern.compile("\\b(?:in|out|inout)\\b");
-			Matcher m = p.matcher(newLabel);
-			boolean b = m.find();
+		Pattern p = Pattern.compile(validSignatureRegExp);
+		Matcher m = p.matcher(newLabel);
+		boolean b = m.matches();
 
-			if (b) {
-				String directionLiteral = m.group();
+		if (b) {
+			String directionLiteral = m.group(1);
+			if (directionLiteral != null && directionLiteral.length() > 0) {
 				this.setDirection(ArgumentDirectionType.get(directionLiteral));
-				newLabel = newLabel.replaceFirst("\\b(?:in|out|inout)\\b", "");
+			} else {
+				this.setDirection(ArgumentDirectionType.UNDEFINED);
 			}
 
-			p = Pattern.compile("(?<!:(\\s{0,5}))\\w+");
-			m = p.matcher(newLabel);
-			b = m.find();
-
-			if (b) {
-				String nameString = m.group();
+			String nameString = m.group(2);
+			if (nameString != null && nameString.length() > 0) {
 				this.setName(nameString);
+			} else {
+				this.setName("Unnamed");
 			}
 
-			p = Pattern.compile("(?<=:(\\s{0,5}))\\w+");
-			m = p.matcher(newLabel);
-			b = m.find();
+			String typeString = m.group(3);
+			this.setType(typeString);
 
-			if (b) {
-				String typeString = m.group();
-				this.setType(typeString);
-			}
+			String defaultValueString = m.group(4);
+			this.setDefaultValue(defaultValueString);
 
 			label = null;
 		}
@@ -361,9 +352,6 @@ public class MethodArgumentImpl extends ModelElementImpl implements
 		case ClassesPackage.METHOD_ARGUMENT__DEFAULT_VALUE:
 			setDefaultValue((String) newValue);
 			return;
-		case ClassesPackage.METHOD_ARGUMENT__SIGNATURE:
-			setSignature((String) newValue);
-			return;
 		case ClassesPackage.METHOD_ARGUMENT__LABEL:
 			setLabel((String) newValue);
 			return;
@@ -387,9 +375,6 @@ public class MethodArgumentImpl extends ModelElementImpl implements
 			return;
 		case ClassesPackage.METHOD_ARGUMENT__DEFAULT_VALUE:
 			setDefaultValue(DEFAULT_VALUE_EDEFAULT);
-			return;
-		case ClassesPackage.METHOD_ARGUMENT__SIGNATURE:
-			setSignature(SIGNATURE_EDEFAULT);
 			return;
 		case ClassesPackage.METHOD_ARGUMENT__LABEL:
 			setLabel(LABEL_EDEFAULT);

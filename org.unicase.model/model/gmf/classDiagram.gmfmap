@@ -39,7 +39,7 @@
             <diagramLabel
                 href="model.gmfgraph#ClassAttribute_name"/>
             <features
-                href="../model.ecore#//classes/Attribute/signature"/>
+                href="../model.ecore#//classes/Attribute/label"/>
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"

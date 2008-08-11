@@ -660,13 +660,40 @@ public interface ClassesPackage extends EPackage {
 	int ATTRIBUTE__TYPE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Default Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__DEFAULT_VALUE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Properties</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__PROPERTIES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__LABEL = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
 	 * The number of structural features of the '<em>Attribute</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
+	int ATTRIBUTE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.classes.impl.MethodImpl <em>Method</em>}' class.
@@ -1251,6 +1278,39 @@ public interface ClassesPackage extends EPackage {
 	EAttribute getAttribute_Type();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.classes.Attribute#getDefaultValue <em>Default Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Default Value</em>'.
+	 * @see org.unicase.model.classes.Attribute#getDefaultValue()
+	 * @see #getAttribute()
+	 * @generated
+	 */
+	EAttribute getAttribute_DefaultValue();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.classes.Attribute#getProperties <em>Properties</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Properties</em>'.
+	 * @see org.unicase.model.classes.Attribute#getProperties()
+	 * @see #getAttribute()
+	 * @generated
+	 */
+	EAttribute getAttribute_Properties();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.classes.Attribute#getLabel <em>Label</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Label</em>'.
+	 * @see org.unicase.model.classes.Attribute#getLabel()
+	 * @see #getAttribute()
+	 * @generated
+	 */
+	EAttribute getAttribute_Label();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.model.classes.Method <em>Method</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1648,6 +1708,28 @@ public interface ClassesPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ATTRIBUTE__TYPE = eINSTANCE.getAttribute_Type();
+		/**
+		 * The meta object literal for the '<em><b>Default Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ATTRIBUTE__DEFAULT_VALUE = eINSTANCE
+				.getAttribute_DefaultValue();
+		/**
+		 * The meta object literal for the '<em><b>Properties</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ATTRIBUTE__PROPERTIES = eINSTANCE.getAttribute_Properties();
+		/**
+		 * The meta object literal for the '<em><b>Label</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ATTRIBUTE__LABEL = eINSTANCE.getAttribute_Label();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.classes.impl.MethodImpl <em>Method</em>}' class.
 		 * <!-- begin-user-doc -->

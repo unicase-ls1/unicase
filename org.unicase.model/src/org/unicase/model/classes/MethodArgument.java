@@ -118,22 +118,11 @@ public interface MethodArgument extends ModelElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Signature</em>' attribute.
-	 * @see #setSignature(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getMethodArgument_Signature()
-	 * @model unique="false" volatile="true" derived="true"
+	 * @model unique="false" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
 	String getSignature();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.model.classes.MethodArgument#getSignature <em>Signature</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Signature</em>' attribute.
-	 * @see #getSignature()
-	 * @generated
-	 */
-	void setSignature(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Label</b></em>' attribute.
@@ -146,7 +135,7 @@ public interface MethodArgument extends ModelElement {
 	 * @return the value of the '<em>Label</em>' attribute.
 	 * @see #setLabel(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getMethodArgument_Label()
-	 * @model derived="true"
+	 * @model
 	 * @generated
 	 */
 	String getLabel();

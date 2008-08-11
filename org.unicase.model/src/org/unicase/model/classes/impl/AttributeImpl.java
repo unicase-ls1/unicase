@@ -5,6 +5,9 @@
  */
 package org.unicase.model.classes.impl;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
@@ -29,6 +32,9 @@ import org.unicase.model.impl.ModelElementImpl;
  *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#getScope <em>Scope</em>}</li>
  *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#getSignature <em>Signature</em>}</li>
  *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#getDefaultValue <em>Default Value</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#getLabel <em>Label</em>}</li>
  * </ul>
  * </p>
  *
@@ -84,15 +90,6 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 	protected static final String SIGNATURE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getSignature() <em>Signature</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSignature()
-	 * @generated
-	 * @ordered
-	 */
-	protected String signature = SIGNATURE_EDEFAULT;
-	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -110,6 +107,62 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 	 * @ordered
 	 */
 	protected String type = TYPE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDefaultValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DEFAULT_VALUE_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDefaultValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected String defaultValue = DEFAULT_VALUE_EDEFAULT;
+	/**
+	 * The default value of the '{@link #getProperties() <em>Properties</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProperties()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String PROPERTIES_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProperties()
+	 * @generated
+	 * @ordered
+	 */
+	protected String properties = PROPERTIES_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLabel()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String LABEL_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLabel()
+	 * @generated
+	 * @ordered
+	 */
+	protected String label = LABEL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -234,30 +287,47 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 	 * @generated NOT
 	 */
 	public String getSignature() {
-		String constructedSignature;
+		String signature;
 
-		if (signature != null) {
-			return signature;
-		}
-
-		constructedSignature = "";
+		signature = "";
 
 		if (visibility != VisibilityType.UNDEFINED) {
-			constructedSignature += visibility.getLiteral();
-			constructedSignature += " ";
+			signature += visibility.getLiteral();
 		}
 
-		if (name != null) {
-			constructedSignature += name;
-			constructedSignature += " ";
+		if (name != null && name.length() > 0) {
+			if (signature.length() > 0) {
+				signature += " ";
+			}
+			signature += name;
 		}
 
-		if (type != null) {
-			constructedSignature += ": ";
-			constructedSignature += type;
+		if (type != null && type.length() > 0) {
+			if (signature.length() > 0) {
+				signature += " ";
+			}
+			signature += ": ";
+			signature += type;
 		}
 
-		return constructedSignature;
+		if (defaultValue != null && defaultValue.length() > 0) {
+			if (signature.length() > 0) {
+				signature += " ";
+			}
+			signature += "= ";
+			signature += defaultValue;
+		}
+
+		if (properties != null && properties.length() > 0) {
+			if (signature.length() > 0) {
+				signature += " ";
+			}
+			signature += "{";
+			signature += properties;
+			signature += "}";
+		}
+
+		return signature;
 	}
 
 	/**
@@ -265,39 +335,59 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public void setSignature(String newSignature) {
-		String oldSignature = signature;
-		signature = newSignature;
+	public void setLabel(String newLabel) {
+		String oldLabel = label;
+		if (!newLabel.equals(oldLabel)) {
+			label = newLabel;
 
-		String visibilityLiteral;
-		String validSignatureRegExp;
+			String validSignatureRegExp;
 
-		validSignatureRegExp = "";
-		validSignatureRegExp += "(?:\\+|\\#|-|~)?\\s*";
-		validSignatureRegExp += "\\w*\\s*";
-		validSignatureRegExp += "(?::\\s*\\w*)?\\s*";
-		validSignatureRegExp += "(?:=\\s*\\w*)?\\s*";
-		validSignatureRegExp += "(?:\\{.*\\})?\\s*";
+			validSignatureRegExp = "";
+			validSignatureRegExp += "(\\+|\\$|-|~)?\\s*"; //group1 -> visibility
+			validSignatureRegExp += "(\\w+)\\s*"; //group2 -> name
+			validSignatureRegExp += "(?::\\s*(\\w+))?\\s*"; //group3 -> type
+			validSignatureRegExp += "(?:=\\s*(\\w+))?\\s*"; //group4 -> defaultValue
+			validSignatureRegExp += "(?:\\{(.*)\\})?\\s*"; //group5 -> annotations
 
-		if (newSignature.matches(validSignatureRegExp)) {
-			if (newSignature.matches("(\\+|\\$|-|~)\\s.*")) {
-				visibilityLiteral = newSignature.substring(0, 1);
-				visibility = VisibilityType.get(visibilityLiteral);
+			Pattern p = Pattern.compile(validSignatureRegExp);
+			Matcher m = p.matcher(newLabel);
+			boolean b = m.matches();
 
-				newSignature = newSignature
-						.replaceFirst("(\\+|\\$|-|~)\\s", "");
+			if (b) {
+				String literalString = m.group(1);
+				if (literalString != null) {
+					this.setVisibility(VisibilityType.get(literalString));
+				} else {
+					this.setVisibility(VisibilityType.UNDEFINED);
+				}
+
+				String nameString = m.group(2);
+				if (nameString != null) {
+					this.setName(nameString);
+				} else {
+					this.setName("Unnamed");
+				}
+
+				String returnTypeString = m.group(3);
+				this.setType(returnTypeString);
+
+				String defaultValueString = m.group(4);
+
+				this.setDefaultValue(defaultValueString);
+
+				String propertyString = m.group(5);
+
+				this.setProperties(propertyString);
+
+				label = null;
 			}
 
-			newSignature = newSignature.trim();
-			name = newSignature;
-
-			signature = null;
+			if (eNotificationRequired()) {
+				eNotify(new ENotificationImpl(this, Notification.SET,
+						ClassesPackage.ATTRIBUTE__SIGNATURE, oldLabel,
+						getSignature()));
+			}
 		}
-
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ClassesPackage.ATTRIBUTE__SIGNATURE, oldSignature,
-					getSignature()));
 	}
 
 	/**
@@ -320,6 +410,65 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
 					ClassesPackage.ATTRIBUTE__TYPE, oldType, type));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getDefaultValue() {
+		return defaultValue;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDefaultValue(String newDefaultValue) {
+		String oldDefaultValue = defaultValue;
+		defaultValue = newDefaultValue;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ClassesPackage.ATTRIBUTE__DEFAULT_VALUE, oldDefaultValue,
+					defaultValue));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getProperties() {
+		return properties;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProperties(String newProperties) {
+		String oldProperties = properties;
+		properties = newProperties;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ClassesPackage.ATTRIBUTE__PROPERTIES, oldProperties,
+					properties));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String getLabel() {
+		if (label != null) {
+			return label;
+		} else {
+			return this.getSignature();
+		}
 	}
 
 	/**
@@ -390,6 +539,12 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 			return getSignature();
 		case ClassesPackage.ATTRIBUTE__TYPE:
 			return getType();
+		case ClassesPackage.ATTRIBUTE__DEFAULT_VALUE:
+			return getDefaultValue();
+		case ClassesPackage.ATTRIBUTE__PROPERTIES:
+			return getProperties();
+		case ClassesPackage.ATTRIBUTE__LABEL:
+			return getLabel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -411,11 +566,17 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 		case ClassesPackage.ATTRIBUTE__SCOPE:
 			setScope((ScopeType) newValue);
 			return;
-		case ClassesPackage.ATTRIBUTE__SIGNATURE:
-			setSignature((String) newValue);
-			return;
 		case ClassesPackage.ATTRIBUTE__TYPE:
 			setType((String) newValue);
+			return;
+		case ClassesPackage.ATTRIBUTE__DEFAULT_VALUE:
+			setDefaultValue((String) newValue);
+			return;
+		case ClassesPackage.ATTRIBUTE__PROPERTIES:
+			setProperties((String) newValue);
+			return;
+		case ClassesPackage.ATTRIBUTE__LABEL:
+			setLabel((String) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -438,11 +599,17 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 		case ClassesPackage.ATTRIBUTE__SCOPE:
 			setScope(SCOPE_EDEFAULT);
 			return;
-		case ClassesPackage.ATTRIBUTE__SIGNATURE:
-			setSignature(SIGNATURE_EDEFAULT);
-			return;
 		case ClassesPackage.ATTRIBUTE__TYPE:
 			setType(TYPE_EDEFAULT);
+			return;
+		case ClassesPackage.ATTRIBUTE__DEFAULT_VALUE:
+			setDefaultValue(DEFAULT_VALUE_EDEFAULT);
+			return;
+		case ClassesPackage.ATTRIBUTE__PROPERTIES:
+			setProperties(PROPERTIES_EDEFAULT);
+			return;
+		case ClassesPackage.ATTRIBUTE__LABEL:
+			setLabel(LABEL_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -463,11 +630,20 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 		case ClassesPackage.ATTRIBUTE__SCOPE:
 			return scope != SCOPE_EDEFAULT;
 		case ClassesPackage.ATTRIBUTE__SIGNATURE:
-			return SIGNATURE_EDEFAULT == null ? signature != null
-					: !SIGNATURE_EDEFAULT.equals(signature);
+			return SIGNATURE_EDEFAULT == null ? getSignature() != null
+					: !SIGNATURE_EDEFAULT.equals(getSignature());
 		case ClassesPackage.ATTRIBUTE__TYPE:
 			return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT
 					.equals(type);
+		case ClassesPackage.ATTRIBUTE__DEFAULT_VALUE:
+			return DEFAULT_VALUE_EDEFAULT == null ? defaultValue != null
+					: !DEFAULT_VALUE_EDEFAULT.equals(defaultValue);
+		case ClassesPackage.ATTRIBUTE__PROPERTIES:
+			return PROPERTIES_EDEFAULT == null ? properties != null
+					: !PROPERTIES_EDEFAULT.equals(properties);
+		case ClassesPackage.ATTRIBUTE__LABEL:
+			return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT
+					.equals(label);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -487,10 +663,14 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 		result.append(visibility);
 		result.append(", scope: ");
 		result.append(scope);
-		result.append(", signature: ");
-		result.append(signature);
 		result.append(", type: ");
 		result.append(type);
+		result.append(", defaultValue: ");
+		result.append(defaultValue);
+		result.append(", properties: ");
+		result.append(properties);
+		result.append(", label: ");
+		result.append(label);
 		result.append(')');
 		return result.toString();
 	}
