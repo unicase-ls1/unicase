@@ -27,11 +27,15 @@ import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.unicase.emfstore.accesscontrol.AccessControlImpl;
 import org.unicase.emfstore.accesscontrol.AuthenticationControl;
+import org.unicase.emfstore.accesscontrol.authentication.AbstractAuthenticationControl;
 import org.unicase.emfstore.connection.ConnectionHandler;
 import org.unicase.emfstore.connection.rmi.RMIAdminConnectionHandler;
 import org.unicase.emfstore.connection.rmi.RMIConnectionHandler;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ServerSpace;
+import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
+import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
+import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesFactory;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.emfstore.storage.ResourceStorage;
@@ -57,11 +61,13 @@ public class EmfStoreController implements IApplication {
 
 	private static EmfStoreController instance;
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.equinox.app.IApplication#start(org.eclipse.equinox.app.IApplicationContext)
 	 */
-	public Object start(IApplicationContext context) throws FatalEmfStoreException {
+	public Object start(IApplicationContext context)
+			throws FatalEmfStoreException {
 
 		if (instance != null) {
 			throw new FatalEmfStoreException(
@@ -79,9 +85,10 @@ public class EmfStoreController implements IApplication {
 		this.serverSpace = initServerSpace();
 		accessControl = initAccessControl(serverSpace, properties);
 		emfStore = new EmfStoreImpl(serverSpace, accessControl, properties);
-		//emfStore = new EmfStoreStub();
-		adminEmfStore = new AdminEmfStoreImpl(serverSpace, accessControl, properties);
-		//FIXME: combine connectionHandler and adminConnectionHandler
+		// emfStore = new EmfStoreStub();
+		adminEmfStore = new AdminEmfStoreImpl(serverSpace, accessControl,
+				properties);
+		// FIXME: combine connectionHandler and adminConnectionHandler
 		adminConnectionHandler = new RMIAdminConnectionHandler();
 		adminConnectionHandler.init(adminEmfStore, accessControl);
 		connectionHandlers = initConnectionHandlers(emfStore, accessControl);
@@ -102,11 +109,10 @@ public class EmfStoreController implements IApplication {
 		// create RMI connection handler
 		RMIConnectionHandler rmiConnectionHandler = new RMIConnectionHandler();
 		connectionHandlers.add(rmiConnectionHandler);
-		
-		//TestDriver test = new TestDriver();
-		//connectionHandlers.add(test);
-		
-		
+
+		// TestDriver test = new TestDriver();
+		// connectionHandlers.add(test);
+
 		// init all handlers
 		for (ConnectionHandler handler : connectionHandlers) {
 			handler.init(emfStore, accessControl);
@@ -115,12 +121,11 @@ public class EmfStoreController implements IApplication {
 		return connectionHandlers;
 	}
 
-	private ServerSpace initServerSpace() throws FatalEmfStoreException
-			 {
+	private ServerSpace initServerSpace() throws FatalEmfStoreException {
 		ResourceStorage storage = initStorage(properties);
 		URI resourceUri = storage.init(properties);
 		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.getResource(resourceUri,true);
+		Resource resource = resourceSet.getResource(resourceUri, true);
 		try {
 			resource.load(Collections.EMPTY_MAP);
 		} catch (IOException e) {
@@ -139,7 +144,7 @@ public class EmfStoreController implements IApplication {
 		logger.debug("Creating dummy server space...");
 		ServerSpace serverSpace = EsmodelFactory.eINSTANCE.createServerSpace();
 
-		//EmfStoreStub.createDummyProjectHistories(serverSpace);
+		// EmfStoreStub.createDummyProjectHistories(serverSpace);
 
 		serverSpace.setResource(resource);
 		resource.getContents().add(serverSpace);
@@ -153,6 +158,7 @@ public class EmfStoreController implements IApplication {
 
 	/**
 	 * Return the singleton instance of EmfStoreControler.
+	 * 
 	 * @return the instance
 	 */
 	public static EmfStoreController getInstance() {
@@ -160,7 +166,7 @@ public class EmfStoreController implements IApplication {
 	}
 
 	private void initLogging(Properties properties) {
-		//FIXME: fix logging config
+		// FIXME: fix logging config
 		// ConsoleAppender console = new ConsoleAppender(new SimpleLayout());
 		// try {
 		// FileAppender fileLog = new FileAppender(new SimpleLayout(),
@@ -215,7 +221,29 @@ public class EmfStoreController implements IApplication {
 
 	private AccessControlImpl initAccessControl(ServerSpace serverSpace,
 			Properties properties) {
-		return new AccessControlImpl(serverSpace);
+		setSuperUser(serverSpace);
+		return new AccessControlImpl(serverSpace, properties);
+	}
+
+	private void setSuperUser(ServerSpace serverSpace) {
+		for (ACUser user : serverSpace.getUsers()) {
+			if (user.getName().equals(AbstractAuthenticationControl.SUPER_USER)) {
+				return;
+			}
+		}
+		ACUser superUser = AccesscontrolFactory.eINSTANCE.createACUser();
+		superUser.setName(AbstractAuthenticationControl.SUPER_USER);
+		superUser.setFirstName("super");
+		superUser.setLastName("user");
+		superUser.getRoles().add(RolesFactory.eINSTANCE.createServerAdmin());
+		serverSpace.getUsers().add(superUser);
+		try {
+			serverSpace.save();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		logger.info("added superuser "+AbstractAuthenticationControl.SUPER_USER);
 	}
 
 	private Properties initProperties() {
@@ -232,8 +260,9 @@ public class EmfStoreController implements IApplication {
 		return properties;
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.equinox.app.IApplication#stop()
 	 */
 	public void stop() {
@@ -248,7 +277,8 @@ public class EmfStoreController implements IApplication {
 	/**
 	 * Shutdown EmfStore due to an fatal exception.
 	 * 
-	 * @param exception the fatal exception that triggered the shutdown
+	 * @param exception
+	 *            the fatal exception that triggered the shutdown
 	 * 
 	 * @generated NOT
 	 */

@@ -40,11 +40,13 @@ import org.unicase.emfstore.exceptions.StorageException;
 public class AdminEmfStoreImpl implements AdminEmfStore {
 
 	private ServerSpace serverSpace;
+	private AuthorizationControl authorizationControl;
 
 	/**
 	 * Default constructor.
 	 * 
 	 * @param serverSpace
+	 * 
 	 *            the serverspace
 	 * @param authorizationControl
 	 *            the authoriazationcontrol
@@ -54,6 +56,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	public AdminEmfStoreImpl(ServerSpace serverSpace,
 			AuthorizationControl authorizationControl, Properties properties) {
 		this.serverSpace = serverSpace;
+		this.authorizationControl = authorizationControl;
 	}
 
 	/**

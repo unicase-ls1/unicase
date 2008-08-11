@@ -7,6 +7,8 @@
 package org.unicase.emfstore.accesscontrol.authentication;
 
 
+import java.util.Properties;
+
 import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.accesscontrol.AuthenticationControl;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
@@ -20,10 +22,14 @@ import org.unicase.emfstore.esmodel.SessionId;
 public abstract class AbstractAuthenticationControl implements
 		AuthenticationControl {
 
-	private static final String SUPER_USER = "super";
+	public static final String SUPER_USER = "super";
 	
-	private static final String SUPER_USER_PW = "super";
+	public static final String SUPER_USER_PW = "super";
 	
+	public AbstractAuthenticationControl(Properties properties) {
+	
+	}
+
 	public SessionId logIn(String username, String password)
 			throws AccessControlException {
 		if((username.equals(SUPER_USER) && password.equals(SUPER_USER_PW)) || verifyPassword(username, password)) {

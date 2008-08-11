@@ -39,8 +39,10 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 
 	/**
 	 * Default constructor.
+	 * @param properties 
 	 */
-	public LDAPVerifier() {
+	public LDAPVerifier(Properties properties) {
+		super(properties);
 		logger = LogFactory.getLog(LDAPVerifier.class);
 	}
 
