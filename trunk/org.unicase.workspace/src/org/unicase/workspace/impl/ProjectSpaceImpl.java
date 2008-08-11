@@ -7,6 +7,7 @@
 package org.unicase.workspace.impl;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -592,7 +593,13 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		}
 
 		// check if we need to update first
-		PrimaryVersionSpec resolvedVersion = resolveVersionSpec(VersionSpec.HEAD_VERSION);
+		PrimaryVersionSpec resolvedVersion;
+		try {
+			resolvedVersion = resolveVersionSpec(VersionSpec.HEAD_VERSION);
+		} catch (EmfStoreException e) {
+			startChangeRecording();
+			throw e;
+		}
 		if ((!getBaseVersion().equals(resolvedVersion))) {
 			startChangeRecording();
 			throw new BaseVersionOutdatedException();
@@ -604,10 +611,16 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		ChangePackage changePackage = VersioningFactory.eINSTANCE
 				.createChangePackage();
 		changePackage.init(getProject(), getLocalChanges());
-
-		PrimaryVersionSpec newBaseVersion = connectionManager.createVersion(
-				getUsersession().getSessionId(), getProjectId(),
-				getBaseVersion(), changePackage, logMessage);
+		
+		PrimaryVersionSpec newBaseVersion;
+		try {
+			newBaseVersion = connectionManager.createVersion(getUsersession()
+					.getSessionId(), getProjectId(), getBaseVersion(),
+					changePackage, logMessage);
+		} catch (EmfStoreException e) {
+			startChangeRecording();
+			throw e;
+		}
 
 		this.setLocalChanges(null);
 		setBaseVersion(newBaseVersion);
@@ -661,10 +674,15 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 							+ resolvedVersion.getIdentifier() + "!");
 		}
 		stopChangeRecording();
-
-		List<ChangePackage> changes = connectionManager.getChanges(
-				getUsersession().getSessionId(), getProjectId(),
-				getBaseVersion(), resolvedVersion);
+		List<ChangePackage> changes = new ArrayList<ChangePackage>();
+		try {
+			changes = connectionManager.getChanges(getUsersession()
+					.getSessionId(), getProjectId(), getBaseVersion(),
+					resolvedVersion);
+		} catch (EmfStoreException e) {
+			startChangeRecording();
+			throw e;
+		}
 
 		// detect conflicts
 		// for (ChangePackage change : changes) {
@@ -683,8 +701,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			change.apply(getProject());
 		}
 		setBaseVersion(resolvedVersion);
-		
-		//FIXME: record has to be started, because save() calls endrecording and
+
+		// FIXME: record has to be started, because save() calls endrecording
+		// and
 		// whithout a running recording endrecording sets localchanges to null
 		// there must be a nicer solution
 		startChangeRecording();
