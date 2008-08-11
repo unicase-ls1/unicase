@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.accesscontrol.AuthorizationControl;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectHistory;
@@ -62,7 +63,8 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	/**
 	 * {@inheritDoc}
 	 */
-	public List<ACGroup> getGroups(SessionId sessionId) {
+	public List<ACGroup> getGroups(SessionId sessionId) throws AccessControlException {
+		authorizationControl.checkServerAdminAccess(sessionId);
 		List<ACGroup> result = new ArrayList<ACGroup>();
 		for (ACGroup group : getServerSpace().getGroups()) {
 			result.add(group);
@@ -73,7 +75,8 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	/**
 	 * {@inheritDoc}
 	 */
-	public List<ACGroup> getGroups(SessionId sessionId, ACOrgUnitId orgUnitId) {
+	public List<ACGroup> getGroups(SessionId sessionId, ACOrgUnitId orgUnitId) throws AccessControlException {
+		authorizationControl.checkServerAdminAccess(sessionId);
 		List<ACGroup> result = new ArrayList<ACGroup>();
 		try {
 			ACOrgUnit orgUnit = getOrgUnit(orgUnitId);
@@ -95,6 +98,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	 */
 	public void removeGroup(SessionId sessionId, ACOrgUnitId user,
 		ACOrgUnitId group) throws EmfStoreException {
+		authorizationControl.checkServerAdminAccess(sessionId);
 		getGroup(group).getMembers().remove(getOrgUnit(user));
 		save();
 	}
@@ -103,7 +107,8 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	 * {@inheritDoc}
 	 */
 	public List<ACOrgUnit> getParticipants(SessionId sessionId,
-			ProjectId projectId) {
+			ProjectId projectId) throws AccessControlException {
+		authorizationControl.checkServerAdminAccess(sessionId);
 		List<ACOrgUnit> result = new ArrayList<ACOrgUnit>();
 		for (ACOrgUnit orgUnit : getServerSpace().getUsers()) {
 			for (Role role : orgUnit.getRoles()) {
@@ -127,6 +132,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	 */
 	public void addParticipant(SessionId sessionId, ProjectId projectId,
 			ACOrgUnitId participant) throws EmfStoreException {
+		authorizationControl.checkServerAdminAccess(sessionId);
 		ACOrgUnit orgUnit = getOrgUnit(participant);
 		for (Role role : orgUnit.getRoles()) {
 			if (role.getProjects().contains(projectId)) {
@@ -153,6 +159,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	 */
 	public void removeParticipant(SessionId sessionId, ProjectId projectId,
 			ACOrgUnitId participant) throws EmfStoreException {
+		authorizationControl.checkServerAdminAccess(sessionId);
 		ACOrgUnit orgUnit = getOrgUnit(participant);
 		for (Role role : orgUnit.getRoles()) {
 			if (role.getProjects().contains(projectId)) {
@@ -168,6 +175,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	 */
 	public Role getRole(SessionId sessionId, ProjectId projectId,
 			ACOrgUnitId orgUnitId) throws EmfStoreException {
+		authorizationControl.checkServerAdminAccess(sessionId);
 		ACOrgUnit oUnit = getOrgUnit(orgUnitId);
 		for (Role role : oUnit.getRoles()) {
 			if (role.getProjects().contains(projectId)) {
@@ -182,6 +190,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	 */
 	public void changeRole(SessionId sessionId, ProjectId projectId,
 			ACOrgUnitId orgUnitId, EClass roleClass) throws EmfStoreException {
+		authorizationControl.checkServerAdminAccess(sessionId);
 		ACOrgUnit orgUnit = getOrgUnit(orgUnitId);
 		// delete old role first
 		Role role = getRole(projectId, orgUnit);
@@ -209,7 +218,8 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	/**
 	 * {@inheritDoc}
 	 */
-	public List<ACUser> getUsers(SessionId sessionId) {
+	public List<ACUser> getUsers(SessionId sessionId) throws AccessControlException {
+		authorizationControl.checkServerAdminAccess(sessionId);
 		List<ACUser> result = new ArrayList<ACUser>();
 		for (ACUser user : getServerSpace().getUsers()) {
 			result.add(user);
@@ -220,7 +230,8 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	/**
 	 * {@inheritDoc}
 	 */
-	public List<ACOrgUnit> getOrgUnits(SessionId sessionId) {
+	public List<ACOrgUnit> getOrgUnits(SessionId sessionId) throws AccessControlException {
+		authorizationControl.checkServerAdminAccess(sessionId);
 		List<ACOrgUnit> result = new ArrayList<ACOrgUnit>();
 		for (ACOrgUnit user : getServerSpace().getUsers()) {
 			result.add(user);
@@ -234,7 +245,8 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	/**
 	 * {@inheritDoc}
 	 */
-	public List<ProjectInfo> getProjectInfos(SessionId sessionId) {
+	public List<ProjectInfo> getProjectInfos(SessionId sessionId) throws AccessControlException {
+		authorizationControl.checkServerAdminAccess(sessionId);
 		List<ProjectInfo> result = new ArrayList<ProjectInfo>();
 		for (ProjectHistory ph : getServerSpace().getProjects()) {
 			result.add(getProjectInfo(ph));
@@ -247,6 +259,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	 */
 	public void createGroup(SessionId sessionId, String name)
 			throws EmfStoreException {
+		authorizationControl.checkServerAdminAccess(sessionId);
 		ACGroup acGroup = AccesscontrolFactory.eINSTANCE.createACGroup();
 		// acGroup.setId(AccesscontrolFactory.eINSTANCE.createACOrgUnitId());
 		acGroup.setName(name);
@@ -260,6 +273,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	 */
 	public void createUser(SessionId sessionId, String name)
 			throws EmfStoreException {
+		authorizationControl.checkServerAdminAccess(sessionId);
 		ACUser acUser = AccesscontrolFactory.eINSTANCE.createACUser();
 		// acUser.setId(AccesscontrolFactory.eINSTANCE.createACOrgUnitId());
 		acUser.setName(name);
@@ -273,6 +287,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	 */
 	public void deleteGroup(SessionId sessionId, ACOrgUnitId group)
 			throws EmfStoreException {
+		authorizationControl.checkServerAdminAccess(sessionId);
 		for (Iterator<ACGroup> iter = getServerSpace().getGroups().iterator(); iter
 				.hasNext();) {
 			ACGroup next = iter.next();
@@ -289,6 +304,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	 */
 	public void deleteUser(SessionId sessionId, ACOrgUnitId user)
 			throws EmfStoreException {
+		authorizationControl.checkServerAdminAccess(sessionId);
 		for (Iterator<ACUser> iter = getServerSpace().getUsers().iterator(); iter
 				.hasNext();) {
 			ACUser next = iter.next();
@@ -301,9 +317,12 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void addMember(SessionId sessionId, ACOrgUnitId group,
 		ACOrgUnitId member) throws EmfStoreException {
-		
+		authorizationControl.checkServerAdminAccess(sessionId);
 		ACGroup acGroup = getGroup(group);
 		ACOrgUnit acMember = getOrgUnit(member);
 		acGroup.getMembers().add(acMember);
@@ -311,9 +330,12 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public void removeMember(SessionId sessionId, ACOrgUnitId group,
 			ACOrgUnitId member) throws EmfStoreException {
-		
+		authorizationControl.checkServerAdminAccess(sessionId);
 		ACGroup acGroup = getGroup(group);
 		ACOrgUnit acMember = getOrgUnit(member);
 		if(acGroup.getMembers().contains(acMember)){
@@ -324,13 +346,35 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public void changeOrgUnit(SessionId sessionId, ACOrgUnitId orgUnitId,
 			String name, String description) throws EmfStoreException {
+		authorizationControl.checkServerAdminAccess(sessionId);
 		ACOrgUnit ou = getOrgUnit(orgUnitId);
 		ou.setName(name);
 		ou.setDescription(description);
 		save();
 		
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public List<ACOrgUnit> getMembers(SessionId sessionId, ACOrgUnitId groupId)
+			throws EmfStoreException {
+		authorizationControl.checkServerAdminAccess(sessionId);
+		return getGroup(groupId).getMembers();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public ACOrgUnit getOrgUnit(SessionId sessionId, ACOrgUnitId orgUnitId)
+			throws EmfStoreException {
+		authorizationControl.checkServerAdminAccess(sessionId);
+		return getOrgUnit(orgUnitId);
 	}
 
 	private ServerSpace getServerSpace() {
@@ -387,22 +431,5 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		} catch (NullPointerException e) {
 			throw new StorageException(StorageException.NOSAVE, e);
 		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public List<ACOrgUnit> getMembers(SessionId sessionId, ACOrgUnitId groupId)
-			throws EmfStoreException {
-		return getGroup(groupId).getMembers();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public ACOrgUnit getOrgUnit(SessionId sessionId, ACOrgUnitId orgUnitId)
-	
-			throws EmfStoreException {
-		return getOrgUnit(orgUnitId);
 	}
 }
