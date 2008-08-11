@@ -157,7 +157,7 @@ public class MESingleLinkControl extends AbstractMEControl {
 					labelWidget = toolkit.createLabel(linkArea, "(Not Set)");
 					labelWidget.setForeground(parent.getShell().getDisplay().getSystemColor(SWT.COLOR_GRAY));
 				}
-				linkArea.layout(true);
+				composite.layout(true);
 
 			}
 		});
