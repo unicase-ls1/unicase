@@ -5,6 +5,11 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.TreeSelection;
+import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.swt.widgets.TreeItem;
+import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
@@ -45,6 +50,11 @@ public class DeleteProjectHandler extends ProjectActionHandler {
 				}
 			}
 		});
+		
+		//ZH: a workaround fix for update problem in navigator
+		//basically in should have been updated.
+		((TreeViewer)HandlerUtil.getActivePart(event).getSite().getSelectionProvider()).refresh();
+	
 		return null;
 	}
 
