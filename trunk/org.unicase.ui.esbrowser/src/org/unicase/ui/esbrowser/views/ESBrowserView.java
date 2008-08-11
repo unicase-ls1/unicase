@@ -108,6 +108,7 @@ public class ESBrowserView extends ViewPart {
 							session = WorkspaceFactory.eINSTANCE.createUsersession();
 							session.setServerInfo(serverInfo);
 							serverInfo.setLastUsersession(session);
+							dialog = new LoginDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(), session);
 							dialog.setNewSession(true);
 							dialog.open();
 						} else if (!session.isLoggedIn()){
