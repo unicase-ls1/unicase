@@ -8,7 +8,13 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.ui.IEditorReference;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelElement;
+import org.unicase.ui.meeditor.MEEditorInput;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -17,9 +23,27 @@ public class DeleteModelelementHandler extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		ModelElement me = ActionHelper.getModelElement(event);
 		if (me != null) {
-			deleteModelElement(me);
+			if(closeEditor(me)){
+				deleteModelElement(me);
+			}
+			
 		}
 		return null;
+	}
+
+	private boolean closeEditor(ModelElement me) {
+		boolean result = true; 
+		MEEditorInput input = new MEEditorInput(me);
+		IEditorReference[] editorRefs = PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getActivePage().findEditors(input,
+						null, IWorkbenchPage.MATCH_INPUT);
+		if (editorRefs.length > 0) {
+			result = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+					.getActivePage().closeEditors(editorRefs, true);
+
+		}
+
+		return result;
 	}
 
 	private void deleteModelElement(final ModelElement me) {
@@ -32,7 +56,8 @@ public class DeleteModelelementHandler extends AbstractHandler {
 						MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
 				int result = dialog.open();
 				if (result == 0) {
-					ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(me);
+					ProjectSpace projectSpace = WorkspaceManager
+							.getProjectSpace(me);
 					EcoreUtil.delete(me, true);
 					projectSpace.save();
 				}
