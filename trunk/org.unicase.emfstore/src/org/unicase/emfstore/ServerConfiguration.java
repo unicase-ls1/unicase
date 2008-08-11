@@ -7,6 +7,10 @@
 package org.unicase.emfstore;
 
 import java.io.File;
+import java.net.URL;
+
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.Path;
 
 /**
  * Represents the current server configuration.
@@ -36,6 +40,10 @@ public final class ServerConfiguration {
 	 * @return the dir path string
 	 */
 	public static String getConfDirectory() {
+//		URL url = 
+//			FileLocator.find(Activator.getDefault().getBundle(),
+//				new Path("../conf/"), null);
+//		return url.get;
 		StringBuffer sb = new StringBuffer(getServerHome());
 		sb.append(".");
 		sb.append(File.separatorChar);

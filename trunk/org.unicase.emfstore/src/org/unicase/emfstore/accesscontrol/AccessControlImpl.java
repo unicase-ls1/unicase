@@ -9,6 +9,7 @@ package org.unicase.emfstore.accesscontrol;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 
 import org.unicase.emfstore.accesscontrol.authentication.LDAPVerifier;
@@ -30,7 +31,7 @@ import org.unicase.model.ModelElement;
 public class AccessControlImpl implements AuthenticationControl,
 		AuthorizationControl {
 
-	private Map<SessionId, ACUser> sessionUserMap;
+	private Map<SessionId, ACUserContainer> sessionUserMap;
 	private ServerSpace serverSpace;
 	private AuthenticationControl authenticationControl;
 
@@ -39,11 +40,12 @@ public class AccessControlImpl implements AuthenticationControl,
 	 * 
 	 * @param serverSpace
 	 *            the server space to work on
+	 * @param properties 
 	 */
-	public AccessControlImpl(ServerSpace serverSpace) {
-		this.sessionUserMap = new HashMap<SessionId, ACUser>();
+	public AccessControlImpl(ServerSpace serverSpace, Properties properties) {
+		this.sessionUserMap = new HashMap<SessionId, ACUserContainer>();
 		this.serverSpace = serverSpace;
-		authenticationControl = new LDAPVerifier();
+		authenticationControl = new LDAPVerifier(properties);
 	}
 	
 	/**
@@ -54,11 +56,9 @@ public class AccessControlImpl implements AuthenticationControl,
 	 */
 	public SessionId logIn(String username, String password)
 			throws AccessControlException {
-
-		SessionId sessionId = EsmodelFactory.eINSTANCE.createSessionId();
-		//ACUser user = resolveUser(username);
-		// // FIXME:checkpassword here
-		// sessionUserMap.put(sessionId, user);
+		ACUser user = resolveUser(username);
+		SessionId sessionId = authenticationControl.logIn(user.getName(), password);
+		sessionUserMap.put(sessionId, new ACUserContainer(user));
 		return sessionId;
 	}
 
@@ -99,12 +99,15 @@ public class AccessControlImpl implements AuthenticationControl,
 	public void checkWriteAccess(SessionId sessionId, ProjectId projectId,
 			Set<ModelElement> modelElements) throws AccessControlException {
 		checkSession(sessionId);
-		ACUser user = sessionUserMap.get(sessionId);
+		ACUser user = sessionUserMap.get(sessionId).getUser();
 		List<Role> roles = user.getRoles();
-		for (ModelElement modelElement : modelElements) {
-			if (!canWrite(roles, projectId, modelElement)) {
-				throw new AccessControlException();
-			}
+		//FIXME
+		if (!canWrite(roles, projectId, null)) {
+			throw new AccessControlException();
+//		for (ModelElement modelElement : modelElements) {
+//			if (!canWrite(roles, projectId, modelElement)) {
+//				throw new AccessControlException();
+//			}
 		}
 	}
 
@@ -157,12 +160,15 @@ public class AccessControlImpl implements AuthenticationControl,
 	public void checkReadAccess(SessionId sessionId, ProjectId projectId,
 			Set<ModelElement> modelElements) throws AccessControlException {
 		checkSession(sessionId);
-		ACUser user = sessionUserMap.get(sessionId);
+		ACUser user = sessionUserMap.get(sessionId).getUser();
 		List<Role> roles = user.getRoles();
-		for (ModelElement modelElement : modelElements) {
-			if (!canRead(roles, projectId, modelElement)) {
-				throw new AccessControlException();
-			}
+		//FIXME
+		if (!canRead(roles, projectId, null)) {
+			throw new AccessControlException();
+//		for (ModelElement modelElement : modelElements) {
+//			if (!canRead(roles, projectId, modelElement)) {
+//				throw new AccessControlException();
+//			}
 		}
 	}
 
@@ -173,7 +179,7 @@ public class AccessControlImpl implements AuthenticationControl,
 	public void checkProjectAdminAccess(SessionId sessionId, ProjectId projectId)
 			throws AccessControlException {
 		checkSession(sessionId);
-		ACUser user = sessionUserMap.get(sessionId);
+		ACUser user = sessionUserMap.get(sessionId).getUser();
 		List<Role> roles = user.getRoles();
 		for (Role role : roles) {
 			if (role.canAdministrate(projectId)) {
@@ -190,7 +196,7 @@ public class AccessControlImpl implements AuthenticationControl,
 	public void checkServerAdminAccess(SessionId sessionId)
 			throws AccessControlException {
 		checkSession(sessionId);
-		ACUser user = sessionUserMap.get(sessionId);
+		ACUser user = sessionUserMap.get(sessionId).getUser();
 		List<Role> roles = user.getRoles();
 		for (Role role : roles) {
 			if (role instanceof ServerAdmin) {
@@ -200,5 +206,29 @@ public class AccessControlImpl implements AuthenticationControl,
 		throw new AccessControlException();
 
 	}
+	
+	private class ACUserContainer {
+		private ACUser acUser;
+		private long lastActive;
+		
+		public ACUserContainer(ACUser acUser) {
+			this.acUser = acUser;
+			active();
+		}
 
+		public ACUser getUser() {
+			//TODO: timed-out session id
+			active();
+			return getRawUser();
+		}
+		
+		public ACUser getRawUser() {
+			return acUser;
+		}
+		
+		private void active() {
+			lastActive = System.currentTimeMillis();
+		}
+		
+	}
 }
