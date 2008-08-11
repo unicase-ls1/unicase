@@ -61,6 +61,7 @@ public class MethodItemProvider extends ModelElementItemProvider implements
 			addScopePropertyDescriptor(object);
 			addReturnTypePropertyDescriptor(object);
 			addSignaturePropertyDescriptor(object);
+			addArgumentsPropertyDescriptor(object);
 			addPropertiesPropertyDescriptor(object);
 			addLabelPropertyDescriptor(object);
 		}
@@ -133,6 +134,23 @@ public class MethodItemProvider extends ModelElementItemProvider implements
 						"_UI_Method_signature_feature", "_UI_Method_type"),
 				ClassesPackage.Literals.METHOD__SIGNATURE, true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Arguments feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addArgumentsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Method_arguments_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Method_arguments_feature", "_UI_Method_type"),
+				ClassesPackage.Literals.METHOD__ARGUMENTS, true, false, false,
+				null, null, null));
 	}
 
 	/**
@@ -216,13 +234,13 @@ public class MethodItemProvider extends ModelElementItemProvider implements
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Method) object).getName();
+		String label = ((Method) object).getLabel();
 		return label == null || label.length() == 0 ? getString("_UI_Method_type")
-				: getString("_UI_Method_type") + " " + label;
+				: label;
 	}
 
 	/**

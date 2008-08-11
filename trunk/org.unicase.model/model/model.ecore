@@ -215,9 +215,13 @@
           eOpposite="#//classes/Class/attributes"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" eType="#//classes/VisibilityType"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="scope" eType="#//classes/ScopeType"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="signature" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="signature" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
+          changeable="false" volatile="true" transient="true" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
-          transient="true" defaultValueLiteral="" derived="true"/>
+          defaultValueLiteral=""/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="properties" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="VisibilityType">
       <eLiterals name="UNDEFINED" literal=""/>
@@ -243,8 +247,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" upperBound="-1"
           eType="#//classes/MethodArgument" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="properties" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
-          derived="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MethodArgument" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
@@ -252,9 +255,8 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="signature" unique="false"
           eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
-          volatile="true" derived="true"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
-          derived="true"/>
+          changeable="false" volatile="true" derived="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="ArgumentDirectionType">
       <eLiterals name="UNDEFINED" literal=""/>

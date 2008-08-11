@@ -455,6 +455,33 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getAttribute_DefaultValue() {
+		return (EAttribute) attributeEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAttribute_Properties() {
+		return (EAttribute) attributeEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAttribute_Label() {
+		return (EAttribute) attributeEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getMethod() {
 		return methodEClass;
 	}
@@ -679,6 +706,9 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		createEAttribute(attributeEClass, ATTRIBUTE__SCOPE);
 		createEAttribute(attributeEClass, ATTRIBUTE__SIGNATURE);
 		createEAttribute(attributeEClass, ATTRIBUTE__TYPE);
+		createEAttribute(attributeEClass, ATTRIBUTE__DEFAULT_VALUE);
+		createEAttribute(attributeEClass, ATTRIBUTE__PROPERTIES);
+		createEAttribute(attributeEClass, ATTRIBUTE__LABEL);
 
 		methodEClass = createEClass(METHOD);
 		createEAttribute(methodEClass, METHOD__VISIBILITY);
@@ -865,13 +895,25 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 		initEAttribute(getAttribute_Signature(), theEcorePackage.getEString(),
-				"signature", null, 0, 1, Attribute.class, !IS_TRANSIENT,
+				"signature", null, 0, 1, Attribute.class, IS_TRANSIENT,
+				IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAttribute_Type(), theEcorePackage.getEString(),
+				"type", "", 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getAttribute_DefaultValue(), theEcorePackage
+				.getEString(), "defaultValue", null, 0, 1, Attribute.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAttribute_Properties(), theEcorePackage.getEString(),
+				"properties", null, 0, 1, Attribute.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAttribute_Type(), theEcorePackage.getEString(),
-				"type", "", 0, 1, Attribute.class, IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED,
-				IS_ORDERED);
+		initEAttribute(getAttribute_Label(), theEcorePackage.getEString(),
+				"label", null, 0, 1, Attribute.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(methodEClass, Method.class, "Method", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -905,7 +947,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 				!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMethod_Label(), theEcorePackage.getEString(),
 				"label", null, 0, 1, Method.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 
 		initEClass(methodArgumentEClass, MethodArgument.class,
@@ -927,12 +969,12 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 				IS_ORDERED);
 		initEAttribute(getMethodArgument_Signature(), theEcorePackage
 				.getEString(), "signature", null, 0, 1, MethodArgument.class,
-				!IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE,
 				!IS_ID, !IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMethodArgument_Label(), theEcorePackage.getEString(),
 				"label", null, 0, 1, MethodArgument.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				IS_DERIVED, IS_ORDERED);
+				!IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(associationTypeEEnum, AssociationType.class,

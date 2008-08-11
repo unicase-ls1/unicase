@@ -202,6 +202,9 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Attribute/scope"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Attribute/signature"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Attribute/type"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Attribute/defaultValue"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Attribute/properties"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Attribute/label"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//classes/Method">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Method/visibility"/>
@@ -209,7 +212,7 @@
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//classes/Method/definingClass"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Method/returnType"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Method/signature"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//classes/Method/arguments"/>
+        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//classes/Method/arguments"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Method/properties"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Method/label"/>
       </genClasses>

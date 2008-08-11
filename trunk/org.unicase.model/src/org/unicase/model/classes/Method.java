@@ -213,7 +213,7 @@ public interface Method extends ModelElement {
 	 * @return the value of the '<em>Label</em>' attribute.
 	 * @see #setLabel(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getMethod_Label()
-	 * @model derived="true"
+	 * @model
 	 * @generated
 	 */
 	String getLabel();

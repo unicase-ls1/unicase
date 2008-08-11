@@ -46,9 +46,9 @@ import org.unicase.model.impl.ModelElementImpl;
  * </ul>
  * </p>
  *
- * @generated NOT
+ * @generated
  */
-public class MethodImpl extends ModelElementImpl implements Method, Adapter {
+public class MethodImpl extends ModelElementImpl implements Method {
 	/**
 	 * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -172,37 +172,10 @@ public class MethodImpl extends ModelElementImpl implements Method, Adapter {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	protected MethodImpl() {
 		super();
-		this.eAdapters().add((Adapter) this);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-
-	public void notifyChanged(Notification notification) {
-		Method method = (Method) notification.getNotifier();
-		if (method.equals(this)) {
-			int featureId = notification.getFeatureID(Method.class);
-
-			if (featureId == ClassesPackage.METHOD__RETURN_TYPE
-					|| featureId == ClassesPackage.METHOD__NAME
-					|| featureId == ClassesPackage.METHOD__VISIBILITY) {
-
-				String oldLabel = getLabel();
-
-				if (eNotificationRequired()) {
-					eNotify(new ENotificationImpl(this, Notification.SET,
-							ClassesPackage.METHOD__LABEL, oldLabel, oldLabel));
-				}
-
-			}
-		}
 	}
 
 	/**
@@ -660,57 +633,35 @@ public class MethodImpl extends ModelElementImpl implements Method, Adapter {
 			String signatureRegExp;
 
 			signatureRegExp = "";
-			signatureRegExp += "(?:\\+|\\-|\\~|\\#)?\\s*"; //visibility 
-			signatureRegExp += "\\w+\\s*"; //name
-			signatureRegExp += "(?:\\("; //opening parenthesis 
-			signatureRegExp += "(?:.*\\,)*(?:.*)"; //arguments separated by commas				
-			signatureRegExp += "\\))?\\s*"; //matching closing parenthesis 
-			signatureRegExp += "(:\\s*\\w+)?\\s*"; //returnType 					
-			signatureRegExp += "(\\{.*\\})?\\s*"; //properties
+			signatureRegExp += "(\\+|\\-|\\~|\\#)?\\s*"; //group1 -> visibility 
+			signatureRegExp += "(\\w+)\\s*"; //group2 -> name
+			signatureRegExp += "(?:\\(("; //opening parenthesis 
+			signatureRegExp += "(?:.*\\,)*(?:.*)"; //group3 -> arguments separated by commas				
+			signatureRegExp += ")\\))?\\s*"; //matching closing parenthesis 
+			signatureRegExp += "(?::\\s*(\\w+))?\\s*"; //group4 -> returnType 					
+			signatureRegExp += "(?:\\{(.*)\\})?\\s*"; //group5 -> properties
 
-			if (newLabel.matches(signatureRegExp)) {
-				//Get the visibility
-				String visibilityRegExp;
-				visibilityRegExp = "(?:\\+|\\-|\\~|\\#)?";
+			Pattern p = Pattern.compile(signatureRegExp);
+			Matcher m = p.matcher(newLabel);
+			boolean b = m.matches();
 
-				Pattern p = Pattern.compile(visibilityRegExp);
-				Matcher m = p.matcher(newLabel);
-				boolean b = m.find();
-
-				if (b) {
-					String literalString = m.group();
+			if (b) {
+				String literalString = m.group(1);
+				if (literalString != null && literalString.length() > 0) {
 					this.setVisibility(VisibilityType.get(literalString));
+				} else {
+					this.setVisibility(VisibilityType.UNDEFINED);
 				}
 
-				//Get the method name
-				String methodRegExp;
-				methodRegExp = "\\w+";
-
-				p = Pattern.compile(methodRegExp);
-				m = p.matcher(newLabel);
-				b = m.find();
-
-				if (b) {
-					String nameString = m.group();
+				String nameString = m.group(2);
+				if (nameString != null && nameString.length() > 0) {
 					this.setName(nameString);
+				} else {
+					this.setName("Unnamed");
 				}
 
-				//Get the arguments
-				String argumentRegExp;
-
-				argumentRegExp = "\\("; //opening parenthesis 
-				argumentRegExp += "(?:.*\\,)*(?:.*)"; //arguments separated by commas				
-				argumentRegExp += "\\)"; //matching closing parenthesis
-				argumentRegExp += "(?!\\w*\\})";
-
-				p = Pattern.compile(argumentRegExp);
-				m = p.matcher(newLabel);
-				b = m.find();
-
-				if (b) {
-					String argumentString = m.group();
-					argumentString = argumentString.replaceAll("\\(", "");
-					argumentString = argumentString.replaceAll("\\)", "");
+				String argumentString = m.group(3);
+				if (argumentString != null && argumentString.length() > 0) {
 
 					String argumentStrings[] = argumentString.split(",");
 
@@ -724,37 +675,11 @@ public class MethodImpl extends ModelElementImpl implements Method, Adapter {
 					}
 				}
 
-				//Get the return type
-				String returnTypeRegExp;
-				returnTypeRegExp = "(?<=\\:\\s{0,5})";
-				//Ah, I love Java RegExp!
-				//We are using alternating width! lookbehinds to make sure the returnType
-				//is depicted after a colon
+				String returnTypeString = m.group(4);
+				this.setReturnType(returnTypeString);
 
-				returnTypeRegExp += "(\\w+)";
-				returnTypeRegExp += "(?![^\\{]*\\))"; //returnType 	
-
-				p = Pattern.compile(returnTypeRegExp);
-				m = p.matcher(newLabel);
-				b = m.find();
-
-				if (b) {
-					String returnTypeString = m.group();
-					this.setReturnType(returnTypeString);
-				}
-
-				//Get the properties
-				String propertyRegExp;
-				propertyRegExp = "(?<=\\{)(.+)(?=\\})";
-
-				p = Pattern.compile(propertyRegExp);
-				m = p.matcher(newLabel);
-				b = m.find();
-
-				if (b) {
-					String propertyString = m.group();
-					this.setProperties(propertyString);
-				}
+				String propertyString = m.group(5);
+				this.setProperties(propertyString);
 
 				label = null;
 			}
@@ -763,21 +688,6 @@ public class MethodImpl extends ModelElementImpl implements Method, Adapter {
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
 					ClassesPackage.METHOD__SIGNATURE, oldLabel, getLabel()));
-	}
-
-	public Notifier getTarget() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public boolean isAdapterForType(Object type) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public void setTarget(Notifier newTarget) {
-		// TODO Auto-generated method stub
-
 	}
 
 } //MethodImpl

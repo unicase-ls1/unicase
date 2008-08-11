@@ -22,6 +22,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.model.classes.Attribute;
 import org.unicase.model.classes.ClassesPackage;
+import org.unicase.model.classes.MethodArgument;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.ModelElementItemProvider;
 
@@ -59,6 +60,9 @@ public class AttributeItemProvider extends ModelElementItemProvider implements
 			addScopePropertyDescriptor(object);
 			addSignaturePropertyDescriptor(object);
 			addTypePropertyDescriptor(object);
+			addDefaultValuePropertyDescriptor(object);
+			addPropertiesPropertyDescriptor(object);
+			addLabelPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -136,6 +140,59 @@ public class AttributeItemProvider extends ModelElementItemProvider implements
 	}
 
 	/**
+	 * This adds a property descriptor for the Default Value feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDefaultValuePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Attribute_defaultValue_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Attribute_defaultValue_feature",
+						"_UI_Attribute_type"),
+				ClassesPackage.Literals.ATTRIBUTE__DEFAULT_VALUE, true, false,
+				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Properties feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPropertiesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Attribute_properties_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Attribute_properties_feature",
+						"_UI_Attribute_type"),
+				ClassesPackage.Literals.ATTRIBUTE__PROPERTIES, true, false,
+				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Label feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addLabelPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Attribute_label_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Attribute_label_feature", "_UI_Attribute_type"),
+				ClassesPackage.Literals.ATTRIBUTE__LABEL, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
 	 * This returns Attribute.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -155,7 +212,9 @@ public class AttributeItemProvider extends ModelElementItemProvider implements
 	 */
 	@Override
 	public String getText(Object object) {
-		return super.getText(object);
+		String label = ((Attribute) object).getSignature();
+		return label == null || label.length() == 0 ? getString("_UI_Attribute_type")
+				: label;
 	}
 
 	/**
@@ -174,6 +233,9 @@ public class AttributeItemProvider extends ModelElementItemProvider implements
 		case ClassesPackage.ATTRIBUTE__SCOPE:
 		case ClassesPackage.ATTRIBUTE__SIGNATURE:
 		case ClassesPackage.ATTRIBUTE__TYPE:
+		case ClassesPackage.ATTRIBUTE__DEFAULT_VALUE:
+		case ClassesPackage.ATTRIBUTE__PROPERTIES:
+		case ClassesPackage.ATTRIBUTE__LABEL:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), false, true));
 			return;

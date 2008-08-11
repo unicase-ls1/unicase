@@ -173,13 +173,13 @@ public class MethodArgumentItemProvider extends ModelElementItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((MethodArgument) object).getName();
+		String label = ((MethodArgument) object).getLabel();
 		return label == null || label.length() == 0 ? getString("_UI_MethodArgument_type")
-				: getString("_UI_MethodArgument_type") + " " + label;
+				: label;
 	}
 
 	/**
