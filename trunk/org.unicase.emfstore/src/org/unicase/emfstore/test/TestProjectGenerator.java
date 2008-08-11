@@ -37,7 +37,6 @@ import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.document.Section;
 
-
 /**
  * 
  * @author Hodaie This class creates a test random model. The test takes
@@ -645,7 +644,7 @@ public class TestProjectGenerator {
 	private void initializeSimpleAttributes(EObject instance) {
 
 		for (EAttribute attribute : instance.eClass().getEAllAttributes()) {
-
+			try {
 			if (attribute.getEType().getInstanceClass().equals(String.class)) {
 				if (instance instanceof ModelElement
 						&& attribute.getName().equalsIgnoreCase("name")) {
@@ -693,6 +692,9 @@ public class TestProjectGenerator {
 				continue;
 			}
 
+			} catch (UnsupportedOperationException e) {
+				// do nothing, continue
+			}
 		}
 	}
 

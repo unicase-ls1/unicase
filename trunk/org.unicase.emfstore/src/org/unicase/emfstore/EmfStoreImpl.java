@@ -326,7 +326,7 @@ public class EmfStoreImpl implements EmfStore {
 		}
 	}
 
-	private void save() throws EmfStoreException {
+	public void save() throws EmfStoreException {
 		try {
 			long currentTimeMillis = System.currentTimeMillis();
 			getServerSpace().save();

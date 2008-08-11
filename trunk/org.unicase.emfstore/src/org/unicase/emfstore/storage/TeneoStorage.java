@@ -54,7 +54,7 @@ public class TeneoStorage implements ResourceStorage {
 		final Properties props = new Properties();
 		props.setProperty(Environment.DRIVER, "com.mysql.jdbc.Driver");
 		props.setProperty(Environment.USER, "root");
-		props.setProperty(Environment.PASS, "");
+		props.setProperty(Environment.PASS, "pass");
 		props.setProperty(Environment.URL, "jdbc:mysql://localhost/" + "model");
 		props.setProperty(Environment.DIALECT,
 				org.hibernate.dialect.MySQLInnoDBDialect.class.getName());
