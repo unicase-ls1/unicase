@@ -213,4 +213,8 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 	public int getStatus(){
 		return status;
 	}
+	
+	public void setNewSession(boolean newSession){
+		this.newSession = newSession;
+	}
 }
