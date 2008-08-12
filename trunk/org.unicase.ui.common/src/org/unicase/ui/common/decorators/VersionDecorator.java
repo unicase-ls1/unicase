@@ -44,6 +44,7 @@ public class VersionDecorator extends AdapterImpl implements ILightweightLabelDe
 			String string = stringBuilder.toString();
 			decoration.addSuffix(string);
 		}
+		//ZH Check this
 		if(this.element==null){
 			this.element=(ProjectSpace) element;
 			this.element.eAdapters().add(this);
@@ -69,8 +70,7 @@ public class VersionDecorator extends AdapterImpl implements ILightweightLabelDe
 	 * {@inheritDoc}
 	 */
 	public boolean isLabelProperty(Object element, String property) {
-		// TODO Auto-generated method stub
-		return false;
+			return false;
 	}
 
 	/**.

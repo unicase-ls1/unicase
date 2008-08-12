@@ -29,35 +29,39 @@ import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.WorkPackage;
 
-/**.
- *  Drop adaptor for viewers. 
- *   
+/**
+ * . Drop adaptor for viewers.
+ * 
  * @author Hodaie
  * 
  */
 public class UCDropAdapter extends EditingDomainViewerDropAdapter {
 
-	/**.
+	/**
+	 * .
 	 * 
 	 * Constructor
-	 * @param domain the EdtingDomain
-	 * @param viewer the Viewer
+	 * 
+	 * @param domain
+	 *            the EdtingDomain
+	 * @param viewer
+	 *            the Viewer
 	 */
 	public UCDropAdapter(EditingDomain domain, Viewer viewer) {
 		super(domain, viewer);
 	}
 
-	/**.
-	 * {@inheritDoc}
+	/**
+	 * . {@inheritDoc}
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void drop(final DropTargetEvent event) {
 		final ModelElement target = (ModelElement) event.item.getData();
+		@SuppressWarnings("unchecked")
 		final Collection<ModelElement> dragSource = (Collection<ModelElement>) getDragSource(event);
 		EObject dropee = (EObject) dragSource.toArray()[0];
-		
-		if(target instanceof WorkPackage && !(dropee instanceof Annotation)) {
+
+		if (target instanceof WorkPackage && !(dropee instanceof Annotation)) {
 			// create an ActionItem for each droppe
 			// add the AI to target
 			domain.getCommandStack().execute(
@@ -75,7 +79,8 @@ public class UCDropAdapter extends EditingDomainViewerDropAdapter {
 						}
 					});
 
-		} else if (target.eContainer() instanceof WorkPackage && !(dropee instanceof Annotation)) {
+		} else if (target.eContainer() instanceof WorkPackage
+				&& !(dropee instanceof Annotation)) {
 			// create an ActionItem for each droppe
 			// add the AI to target.eContainer
 			domain.getCommandStack().execute(
@@ -93,7 +98,9 @@ public class UCDropAdapter extends EditingDomainViewerDropAdapter {
 						}
 					});
 
-		}else if ((dropee instanceof Annotation) && !(target instanceof Section || target instanceof WorkPackage || target.eContainer() instanceof WorkPackage)) {
+		} else if ((dropee instanceof Annotation)
+				&& !(target instanceof Section || target instanceof WorkPackage || target
+						.eContainer() instanceof WorkPackage)) {
 			Annotation[] arr = dragSource.toArray(new Annotation[dragSource
 					.size()]);
 			final List<Annotation> newAnnotations = Arrays.asList(arr);
@@ -104,11 +111,9 @@ public class UCDropAdapter extends EditingDomainViewerDropAdapter {
 									.getAnnotations().addAll(newAnnotations);
 						}
 					});
-		}   else {
+		} else {
 			super.drop(event);
 		}
-		// viewer.refresh();
-
 	}
 
 	/**
@@ -118,20 +123,21 @@ public class UCDropAdapter extends EditingDomainViewerDropAdapter {
 	 * {@link DragAndDropCommand}, and updates the event's detail (operation)
 	 * and feedback (drag under effect), appropriately.
 	 * 
-	 * @param event the DropTargetEvent 
+	 * @param event
+	 *            the DropTargetEvent
 	 */
 	@Override
 	protected void helper(DropTargetEvent event) {
 
 		super.helper(event);
 		if (getDragSource(event) == null) {
-	      return;
-	    }
-		
+			return;
+		}
+
 		if (event.item == null || event.item.getClass() == null) {
 			return;
 		}
-		if(!(event.item.getData() instanceof ModelElement)){
+		if (!(event.item.getData() instanceof ModelElement)) {
 			return;
 		}
 		ModelElement target = (ModelElement) event.item.getData();
@@ -144,8 +150,8 @@ public class UCDropAdapter extends EditingDomainViewerDropAdapter {
 		if (annotation.isSuperTypeOf(eObject.eClass())) {
 			event.detail = event.detail | DND.DROP_COPY;
 		}
-		if(eObject instanceof User){
-			
+		if (eObject instanceof User) {
+
 		}
 
 		if (target instanceof WorkPackage

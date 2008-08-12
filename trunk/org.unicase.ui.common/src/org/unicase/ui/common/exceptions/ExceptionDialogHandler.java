@@ -9,7 +9,7 @@ package org.unicase.ui.common.exceptions;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
-
+//ZH Implement a proper ExceptionDialog
 /**
  * This abstract calls is to show exceptions to the user in a unified way.
  * 
@@ -54,11 +54,6 @@ public final class ExceptionDialogHandler {
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
 				.getShell();
 		
-		//JH: implement proper exception handler
-//		IStatus status = Status.OK_STATUS;
-//		if (cause instanceof CoreException) {
-//			status = ((CoreException) cause).getStatus();
-//		}
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(message);
 		if (cause != null) {
