@@ -38,6 +38,6 @@ public abstract class AbstractAuthenticationControl implements
 		throw new AccessControlException();
 	}
 	
-	abstract boolean verifyPassword(String username, String password) throws AccessControlException;
+	abstract public boolean verifyPassword(String username, String password) throws AccessControlException;
 
 }

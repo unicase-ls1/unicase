@@ -50,6 +50,7 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 	 * {@inheritDoc}
 	 */
 	@Override
+	public
 	boolean verifyPassword(String username, String password)
 			throws AccessControlException {
 		Properties props = new Properties();
@@ -59,6 +60,7 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 		props.put("java.naming.ldap.version", "3");
 		props.put(Context.INITIAL_CONTEXT_FACTORY, DEFAULT_CTX);
 		props.put(Context.PROVIDER_URL, ldapURL);
+		//props.put(Context.SECURITY_PROTOCOL, "ssl");
 		try {
 			dirContext = new InitialDirContext(props);
 		} catch (NamingException e) {
@@ -73,6 +75,7 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 			results = dirContext.search(ldapBase, "(& (" + searchDN + "="
 					+ username + ") (objectclass=*))", constraints);
 		} catch (Exception e) {
+			e.printStackTrace();
 			logger.info("Search failed, base = " + ldapBase);
 			return false;
 		}
@@ -101,6 +104,7 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 		// TODO: use ssl? password hash?
 		// Authenticated bind
 		props = new Properties();
+		//props.put(Context.SECURITY_PROTOCOL, "ssl");
 		props.put(Context.SECURITY_AUTHENTICATION, "simple");
 		props.put(Context.SECURITY_PRINCIPAL, resolvedName + ", " + ldapBase);
 		props.put(Context.SECURITY_CREDENTIALS, password);
@@ -110,6 +114,7 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 		try {
 			dirContext = new InitialDirContext(props);
 		} catch (NamingException e) {
+			e.printStackTrace();
 			logger.info("Login failed.");
 			return false;
 		}
