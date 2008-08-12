@@ -114,7 +114,6 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 		try {
 			dirContext = new InitialDirContext(props);
 		} catch (NamingException e) {
-			e.printStackTrace();
 			logger.info("Login failed.");
 			return false;
 		}

@@ -6,6 +6,7 @@
  */
 package org.unicase.emfstore.accesscontrol;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +18,9 @@ import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.esmodel.SessionId;
+import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
+import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
+import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.ServerAdmin;
@@ -101,6 +105,7 @@ public class AccessControlImpl implements AuthenticationControl,
 		checkSession(sessionId);
 		ACUser user = sessionUserMap.get(sessionId).getUser();
 		List<Role> roles = user.getRoles();
+		roles.addAll(getRolesFromGroups(user));
 		//FIXME
 		if (!canWrite(roles, projectId, null)) {
 			throw new AccessControlException();
@@ -153,6 +158,24 @@ public class AccessControlImpl implements AuthenticationControl,
 		return false;
 	}
 
+	private List<Role> getRolesFromGroups(ACOrgUnit orgUnit) {
+		ArrayList<Role> roles = new ArrayList<Role>();
+		for(ACGroup group : getGroups(orgUnit)) {
+			roles.addAll(group.getRoles());
+		}
+		return roles;
+	}
+	
+	private List<ACGroup> getGroups(ACOrgUnit orgUnit) {
+		ArrayList<ACGroup> groups = new ArrayList<ACGroup>();
+		for(ACGroup group : serverSpace.getGroups()) {
+			if(group.getMembers().contains(orgUnit)) {
+				groups.add(group);
+			}
+		}
+		return groups;
+	}
+	
 	/** 
 	 * {@inheritDoc}
 	 * @see org.unicase.emfstore.accesscontrol.AuthorizationControl#checkReadAccess(org.unicase.emfstore.esmodel.SessionId, org.unicase.emfstore.esmodel.ProjectId, java.util.Set)
@@ -162,6 +185,7 @@ public class AccessControlImpl implements AuthenticationControl,
 		checkSession(sessionId);
 		ACUser user = sessionUserMap.get(sessionId).getUser();
 		List<Role> roles = user.getRoles();
+		roles.addAll(getRolesFromGroups(user));
 		//FIXME
 		if (!canRead(roles, projectId, null)) {
 			throw new AccessControlException();

@@ -29,7 +29,7 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
  * 
  * @author Wesendonk
  */
-public class RMIAdminEmfStoreFacadeImpl extends UnicastRemoteObject implements
+public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements
 		RMIAdminEmfStoreFacade {
 
 	private AdminEmfStore adminEmfStore;

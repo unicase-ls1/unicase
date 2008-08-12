@@ -36,7 +36,7 @@ import org.unicase.model.Project;
  * @author Wesendonk
  * 
  */
-public class RMIEmfStoreFacadeImpl extends UnicastRemoteObject implements
+public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements
 		RMIEmfStoreFacade {
 
 	private static final long serialVersionUID = -3245554287505036114L;
