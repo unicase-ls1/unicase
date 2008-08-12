@@ -15,9 +15,30 @@
         title="Actor"/>
     <tools
         xsi:type="gmftool:CreationTool"
-        title="initiate"/>
+        title="initiate">
+      <smallIcon
+          xsi:type="gmftool:DefaultImage"/>
+      <largeIcon
+          xsi:type="gmftool:DefaultImage"/>
+    </tools>
     <tools
         xsi:type="gmftool:CreationTool"
-        title="participate"/>
+        title="participate">
+      <smallIcon
+          xsi:type="gmftool:DefaultImage"/>
+      <largeIcon
+          xsi:type="gmftool:DefaultImage"/>
+    </tools>
+    <tools
+        xsi:type="gmftool:CreationTool"
+        title="include">
+      <smallIcon
+          xsi:type="gmftool:DefaultImage"/>
+      <largeIcon
+          xsi:type="gmftool:DefaultImage"/>
+    </tools>
+    <tools
+        xsi:type="gmftool:CreationTool"
+        title="extend"/>
   </palette>
 </gmftool:ToolRegistry>
