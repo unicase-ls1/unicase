@@ -3,6 +3,15 @@ package org.unicase.ui.taskview;
 import org.eclipse.emf.common.notify.Adapter;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
 
+/**
+ * An adapter Factory that uses an item provider implementation that allows
+ * filtering. If a special subclass of FilteredItemProvider shall be used,
+ * invoke {@link #setFilteredItemProvider(FilteredItemProvider)}. Otherwise, no
+ * filtering is done.
+ * 
+ * @author Florian Schneider
+ * @see {@link FilteredItemProvider}
+ */
 public class FilteredItemProviderAdapterFactory extends
 		ModelItemProviderAdapterFactory {
 

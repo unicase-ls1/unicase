@@ -16,7 +16,7 @@ import org.unicase.model.provider.IdentifiableElementItemProvider;
 /**
  * 
  * A provider that only returns values for objects that match certain criteria
- * specified in its {@link #isPermitted(Object)} method.
+ * specified in its {@link #permitsObject(Object)} method.
  * 
  * @author Florian Schneider
  * 
@@ -41,7 +41,7 @@ public class FilteredItemProvider extends IdentifiableElementItemProvider {
 	/**
 	 * Modified getChildren method that test every child object whether it shall
 	 * be included in the returned collection or not. The test is performed by
-	 * {@link #isPermitted(Object)}.
+	 * {@link #permitsObject(Object)}.
 	 * 
 	 * @param object
 	 *            the object whose children shall be determined
@@ -60,7 +60,7 @@ public class FilteredItemProvider extends IdentifiableElementItemProvider {
 		ArrayList<Object> filteredChildren = new ArrayList<Object>();
 
 		for (Object currentObject : allChildren) {
-			if (isPermitted(currentObject)) {
+			if (permitsObject(currentObject)) {
 				filteredChildren.add(currentObject);
 			}
 		}
@@ -75,7 +75,7 @@ public class FilteredItemProvider extends IdentifiableElementItemProvider {
 	 *            the object in question
 	 * @return true if the object is valid, false otherwise.
 	 */
-	protected boolean isPermitted(Object objectToTest) {
+	protected boolean permitsObject(Object objectToTest) {
 		return true;
 	}
 }
