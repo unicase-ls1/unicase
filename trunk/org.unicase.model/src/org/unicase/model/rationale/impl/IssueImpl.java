@@ -26,6 +26,9 @@ import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.Proposal;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.rationale.Solution;
+import org.unicase.model.task.Assignable;
+import org.unicase.model.task.Checkable;
+import org.unicase.model.task.TaskPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '
@@ -33,22 +36,44 @@ import org.unicase.model.rationale.Solution;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getProposals <em>Proposals</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getSolution <em>Solution</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getCriteria <em>Criteria</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getRefiningIssues <em>Refining Issues</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getRefinedIssue <em>Refined Issue</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getFacilitator <em>Facilitator</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getParticipants <em>Participants</em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.IssueImpl#isChecked <em>Checked
+ * </em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getAssignee <em>
+ * Assignee</em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getProposals <em>
+ * Proposals</em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getSolution <em>
+ * Solution</em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getCriteria <em>
+ * Criteria</em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getRefiningIssues <em>
+ * Refining Issues</em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getRefinedIssue <em>
+ * Refined Issue</em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getFacilitator <em>
+ * Facilitator</em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getParticipants <em>
+ * Participants</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class IssueImpl extends AnnotationImpl implements Issue {
 	/**
-	 * The cached value of the '{@link #getProposals() <em>Proposals</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #isChecked() <em>Checked</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #isChecked()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean CHECKED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #getProposals() <em>Proposals</em>}'
+	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getProposals()
 	 * @generated
 	 * @ordered
@@ -56,8 +81,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	protected EList<Proposal> proposals;
 
 	/**
-	 * The cached value of the '{@link #getSolution() <em>Solution</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSolution() <em>Solution</em>}'
+	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSolution()
 	 * @generated
 	 * @ordered
@@ -65,8 +91,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	protected Solution solution;
 
 	/**
-	 * The cached value of the '{@link #getCriteria() <em>Criteria</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getCriteria() <em>Criteria</em>}'
+	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getCriteria()
 	 * @generated
 	 * @ordered
@@ -85,8 +112,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	protected EList<Issue> refiningIssues;
 
 	/**
-	 * The cached value of the '{@link #getFacilitator() <em>Facilitator</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getFacilitator() <em>Facilitator</em>}'
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getFacilitator()
 	 * @generated
 	 * @ordered
@@ -94,8 +122,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	protected User facilitator;
 
 	/**
-	 * The cached value of the '{@link #getParticipants() <em>Participants</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getParticipants() <em>Participants</em>}
+	 * ' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getParticipants()
 	 * @generated
 	 * @ordered
@@ -104,6 +133,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected IssueImpl() {
@@ -112,6 +142,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -120,7 +151,76 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	}
 
 	/**
+	 * <!-- begin-user-doc --> Checks if the value returned by
+	 * {@link #getSolution()} is not null.
+	 * 
+	 * @return whether a solution exists or not
+	 * @author Florian Schneider <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	public boolean isChecked() {
+		return (getSolution() != null);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->This method does nothing because there is no
+	 * information in the fact alone that the issue is solved.
+	 * 
+	 * @param newChecked
+	 *            says the issue is solved but we ignore it
+	 * @author Florian Schneider <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	public void setChecked(boolean newChecked) {
+		// do nothing
+	}
+
+	/**
+	 * <!-- begin-user-doc --> Delegates to {@link #basicGetAssignee()} and then
+	 * performs proxy resolution. <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public OrgUnit getAssignee() {
+		OrgUnit assignee = basicGetAssignee();
+		return assignee != null && assignee.eIsProxy() ? (OrgUnit) eResolveProxy((InternalEObject) assignee)
+				: assignee;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> Delegates to {@link #basicGetFacilitator()}.
+	 * 
+	 * @return the organizational unit returned by
+	 *         {@link #basicGetFacilitator()}
+	 * @author Florian Schneider <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	public OrgUnit basicGetAssignee() {
+		return basicGetFacilitator();
+	}
+
+	/**
+	 * <!-- begin-user-doc --> Delegates to {@link #setFacilitator(User)}, if
+	 * the parameter newAssignee is an instance of {@link User}.
+	 * 
+	 * @param newAssignee
+	 *            only has an effect if it is an instance of {@link User} <!--
+	 *            end-user-doc -->
+	 * @author Florian Schneider
+	 * @generated NOT
+	 */
+	public void setAssignee(OrgUnit newAssignee) {
+		if (newAssignee instanceof User) {
+			setFacilitator((User) newAssignee);
+		}
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Proposal> getProposals() {
@@ -134,6 +234,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Solution getSolution() {
@@ -142,6 +243,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetSolution(Solution newSolution,
@@ -162,6 +264,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSolution(Solution newSolution) {
@@ -183,6 +286,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Criterion> getCriteria() {
@@ -195,6 +299,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Issue> getRefiningIssues() {
@@ -208,6 +313,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Issue getRefinedIssue() {
@@ -218,6 +324,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetRefinedIssue(Issue newRefinedIssue,
@@ -229,6 +336,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setRefinedIssue(Issue newRefinedIssue) {
@@ -255,6 +363,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public User getFacilitator() {
@@ -273,6 +382,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public User basicGetFacilitator() {
@@ -281,6 +391,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setFacilitator(User newFacilitator) {
@@ -294,6 +405,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<OrgUnit> getParticipants() {
@@ -306,6 +418,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -335,6 +448,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -357,6 +471,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -372,11 +487,18 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+		case RationalePackage.ISSUE__CHECKED:
+			return isChecked() ? Boolean.TRUE : Boolean.FALSE;
+		case RationalePackage.ISSUE__ASSIGNEE:
+			if (resolve)
+				return getAssignee();
+			return basicGetAssignee();
 		case RationalePackage.ISSUE__PROPOSALS:
 			return getProposals();
 		case RationalePackage.ISSUE__SOLUTION:
@@ -399,12 +521,19 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+		case RationalePackage.ISSUE__CHECKED:
+			setChecked(((Boolean) newValue).booleanValue());
+			return;
+		case RationalePackage.ISSUE__ASSIGNEE:
+			setAssignee((OrgUnit) newValue);
+			return;
 		case RationalePackage.ISSUE__PROPOSALS:
 			getProposals().clear();
 			getProposals().addAll((Collection<? extends Proposal>) newValue);
@@ -436,11 +565,18 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+		case RationalePackage.ISSUE__CHECKED:
+			setChecked(CHECKED_EDEFAULT);
+			return;
+		case RationalePackage.ISSUE__ASSIGNEE:
+			setAssignee((OrgUnit) null);
+			return;
 		case RationalePackage.ISSUE__PROPOSALS:
 			getProposals().clear();
 			return;
@@ -468,11 +604,16 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+		case RationalePackage.ISSUE__CHECKED:
+			return isChecked() != CHECKED_EDEFAULT;
+		case RationalePackage.ISSUE__ASSIGNEE:
+			return basicGetAssignee() != null;
 		case RationalePackage.ISSUE__PROPOSALS:
 			return proposals != null && !proposals.isEmpty();
 		case RationalePackage.ISSUE__SOLUTION:
@@ -489,6 +630,58 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			return participants != null && !participants.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == Checkable.class) {
+			switch (derivedFeatureID) {
+			case RationalePackage.ISSUE__CHECKED:
+				return TaskPackage.CHECKABLE__CHECKED;
+			default:
+				return -1;
+			}
+		}
+		if (baseClass == Assignable.class) {
+			switch (derivedFeatureID) {
+			case RationalePackage.ISSUE__ASSIGNEE:
+				return TaskPackage.ASSIGNABLE__ASSIGNEE;
+			default:
+				return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == Checkable.class) {
+			switch (baseFeatureID) {
+			case TaskPackage.CHECKABLE__CHECKED:
+				return RationalePackage.ISSUE__CHECKED;
+			default:
+				return -1;
+			}
+		}
+		if (baseClass == Assignable.class) {
+			switch (baseFeatureID) {
+			case TaskPackage.ASSIGNABLE__ASSIGNEE:
+				return RationalePackage.ISSUE__ASSIGNEE;
+			default:
+				return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 } // IssueImpl

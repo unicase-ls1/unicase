@@ -22,7 +22,6 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.model.classes.Attribute;
 import org.unicase.model.classes.ClassesPackage;
-import org.unicase.model.classes.MethodArgument;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.ModelElementItemProvider;
 

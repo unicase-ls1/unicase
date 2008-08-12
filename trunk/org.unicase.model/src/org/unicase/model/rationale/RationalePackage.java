@@ -143,12 +143,30 @@ public interface RationalePackage extends EPackage {
 	int ISSUE__ANNOTATED_MODEL_ELEMENTS = ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Checked</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISSUE__CHECKED = ModelPackage.ANNOTATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Assignee</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISSUE__ASSIGNEE = ModelPackage.ANNOTATION_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Proposals</b></em>' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__PROPOSALS = ModelPackage.ANNOTATION_FEATURE_COUNT + 0;
+	int ISSUE__PROPOSALS = ModelPackage.ANNOTATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Solution</b></em>' containment reference.
@@ -156,7 +174,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__SOLUTION = ModelPackage.ANNOTATION_FEATURE_COUNT + 1;
+	int ISSUE__SOLUTION = ModelPackage.ANNOTATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Criteria</b></em>' reference list. <!--
@@ -165,7 +183,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__CRITERIA = ModelPackage.ANNOTATION_FEATURE_COUNT + 2;
+	int ISSUE__CRITERIA = ModelPackage.ANNOTATION_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Refining Issues</b></em>' containment reference list.
@@ -173,7 +191,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__REFINING_ISSUES = ModelPackage.ANNOTATION_FEATURE_COUNT + 3;
+	int ISSUE__REFINING_ISSUES = ModelPackage.ANNOTATION_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Refined Issue</b></em>' container reference.
@@ -181,7 +199,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__REFINED_ISSUE = ModelPackage.ANNOTATION_FEATURE_COUNT + 4;
+	int ISSUE__REFINED_ISSUE = ModelPackage.ANNOTATION_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Facilitator</b></em>' reference. <!--
@@ -190,7 +208,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__FACILITATOR = ModelPackage.ANNOTATION_FEATURE_COUNT + 5;
+	int ISSUE__FACILITATOR = ModelPackage.ANNOTATION_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Participants</b></em>' reference list.
@@ -198,7 +216,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__PARTICIPANTS = ModelPackage.ANNOTATION_FEATURE_COUNT + 6;
+	int ISSUE__PARTICIPANTS = ModelPackage.ANNOTATION_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of structural features of the '<em>Issue</em>' class. <!--
@@ -207,7 +225,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE_FEATURE_COUNT = ModelPackage.ANNOTATION_FEATURE_COUNT + 7;
+	int ISSUE_FEATURE_COUNT = ModelPackage.ANNOTATION_FEATURE_COUNT + 9;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.rationale.impl.ProposalImpl <em>Proposal</em>}' class.

@@ -9,6 +9,7 @@ package org.unicase.model.bug;
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.requirement.Step;
+import org.unicase.model.task.Assignable;
 import org.unicase.model.task.WorkItem;
 
 /**
@@ -30,7 +31,7 @@ import org.unicase.model.task.WorkItem;
  * @model
  * @generated
  */
-public interface BugReport extends WorkItem {
+public interface BugReport extends WorkItem, Assignable {
 	/**
 	 * Returns the value of the '<em><b>Steps To Reproduce</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.model.requirement.Step}.

@@ -478,6 +478,8 @@ public class RationalePackageImpl extends EPackageImpl implements
 		// Obtain other dependent packages
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE
 				.getEPackage(ModelPackage.eNS_URI);
+		TaskPackage theTaskPackage = (TaskPackage) EPackage.Registry.INSTANCE
+				.getEPackage(TaskPackage.eNS_URI);
 		OrganizationPackage theOrganizationPackage = (OrganizationPackage) EPackage.Registry.INSTANCE
 				.getEPackage(OrganizationPackage.eNS_URI);
 
@@ -487,6 +489,8 @@ public class RationalePackageImpl extends EPackageImpl implements
 
 		// Add supertypes to classes
 		issueEClass.getESuperTypes().add(theModelPackage.getAnnotation());
+		issueEClass.getESuperTypes().add(theTaskPackage.getCheckable());
+		issueEClass.getESuperTypes().add(theTaskPackage.getAssignable());
 		proposalEClass.getESuperTypes().add(theModelPackage.getModelElement());
 		solutionEClass.getESuperTypes().add(theModelPackage.getModelElement());
 		criterionEClass.getESuperTypes().add(theModelPackage.getModelElement());

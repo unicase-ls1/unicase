@@ -60,6 +60,7 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 			addAssociatedChangePackagesPropertyDescriptor(object);
 			addPredecessorsPropertyDescriptor(object);
 			addSuccessorsPropertyDescriptor(object);
+			addAssigneePropertyDescriptor(object);
 			addAssignedToPropertyDescriptor(object);
 			addDueDatePropertyDescriptor(object);
 			addDonePropertyDescriptor(object);
@@ -139,6 +140,24 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 								"_UI_WorkItem_type"),
 						TaskPackage.Literals.WORK_ITEM__SUCCESSORS, true,
 						false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Assignee feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAssigneePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Assignable_assignee_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Assignable_assignee_feature",
+						"_UI_Assignable_type"),
+				TaskPackage.Literals.ASSIGNABLE__ASSIGNEE, true, false, true,
+				null, null, null));
 	}
 
 	/**

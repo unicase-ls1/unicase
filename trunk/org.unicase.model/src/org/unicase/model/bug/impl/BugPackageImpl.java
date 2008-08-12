@@ -383,6 +383,7 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 
 		// Add supertypes to classes
 		bugReportEClass.getESuperTypes().add(theTaskPackage.getWorkItem());
+		bugReportEClass.getESuperTypes().add(theTaskPackage.getAssignable());
 		bugResolutionEClass.getESuperTypes().add(
 				theModelPackage.getModelElement());
 

@@ -36,6 +36,7 @@ import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.impl.RequirementPackageImpl;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.ActivityType;
+import org.unicase.model.task.Assignable;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.Meeting;
 import org.unicase.model.task.Milestone;
@@ -87,6 +88,13 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * @generated
 	 */
 	private EClass checkableEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass assignableEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -488,6 +496,24 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getAssignable() {
+		return assignableEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAssignable_Assignee() {
+		return (EReference) assignableEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getActivityType() {
 		return activityTypeEEnum;
 	}
@@ -554,6 +580,9 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		checkableEClass = createEClass(CHECKABLE);
 		createEAttribute(checkableEClass, CHECKABLE__CHECKED);
 
+		assignableEClass = createEClass(ASSIGNABLE);
+		createEReference(assignableEClass, ASSIGNABLE__ASSIGNEE);
+
 		// Create enums
 		activityTypeEEnum = createEEnum(ACTIVITY_TYPE);
 	}
@@ -600,6 +629,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		// Add supertypes to classes
 		actionItemEClass.getESuperTypes().add(this.getWorkItem());
 		actionItemEClass.getESuperTypes().add(this.getCheckable());
+		actionItemEClass.getESuperTypes().add(this.getAssignable());
 		workPackageEClass.getESuperTypes().add(this.getWorkItem());
 		workItemEClass.getESuperTypes().add(theModelPackage.getAnnotation());
 		meetingEClass.getESuperTypes().add(theModelPackage.getModelElement());
@@ -751,6 +781,16 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 				"checked", null, 0, 1, Checkable.class, IS_TRANSIENT,
 				IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				IS_DERIVED, IS_ORDERED);
+
+		initEClass(assignableEClass, Assignable.class, "Assignable",
+				IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAssignable_Assignee(), theOrganizationPackage
+				.getOrgUnit(), null, "assignee", null, 0, 1, Assignable.class,
+				IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED,
+				IS_ORDERED);
+		getAssignable_Assignee().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 
 		// Initialize enums and add enum literals
 		initEEnum(activityTypeEEnum, ActivityType.class, "ActivityType");

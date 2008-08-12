@@ -25,6 +25,7 @@ import org.unicase.model.change.ModelChangePackage;
 import org.unicase.model.impl.AnnotationImpl;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.requirement.Step;
+import org.unicase.model.task.Assignable;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
@@ -35,25 +36,38 @@ import org.unicase.model.task.WorkPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getContainingWorkpackage <em>Containing Workpackage</em>}</li>
- *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getAssociatedChangePackages <em>Associated Change Packages</em>}</li>
- *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getPredecessors <em>Predecessors</em>}</li>
- *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getSuccessors <em>Successors</em>}</li>
- *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getStepsToReproduce <em>Steps To Reproduce</em>}</li>
- *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getStatus <em>Status</em>}</li>
- *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getAssignedTo <em>Assigned To</em>}</li>
- *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getResolution <em>Resolution</em>}</li>
- *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getSeverity <em>Severity</em>}</li>
+ * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getContainingWorkpackage
+ * <em>Containing Workpackage</em>}</li>
+ * <li>
+ * {@link org.unicase.model.bug.impl.BugReportImpl#getAssociatedChangePackages
+ * <em>Associated Change Packages</em>}</li>
+ * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getPredecessors <em>
+ * Predecessors</em>}</li>
+ * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getSuccessors <em>
+ * Successors</em>}</li>
+ * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getAssignee <em>Assignee
+ * </em>}</li>
+ * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getStepsToReproduce <em>
+ * Steps To Reproduce</em>}</li>
+ * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getStatus <em>Status
+ * </em>}</li>
+ * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getAssignedTo <em>
+ * Assigned To</em>}</li>
+ * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getResolution <em>
+ * Resolution</em>}</li>
+ * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getSeverity <em>Severity
+ * </em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class BugReportImpl extends AnnotationImpl implements BugReport {
 	/**
-	 * The cached value of the '{@link #getAssociatedChangePackages() <em>Associated Change Packages</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAssociatedChangePackages()
+	 * <em>Associated Change Packages</em>}' reference list. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getAssociatedChangePackages()
 	 * @generated
 	 * @ordered
@@ -61,9 +75,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected EList<ModelChangePackage> associatedChangePackages;
 
 	/**
-	 * The cached value of the '{@link #getPredecessors() <em>Predecessors</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getPredecessors() <em>Predecessors</em>}
+	 * ' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getPredecessors()
 	 * @generated
 	 * @ordered
@@ -71,9 +85,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected WorkItem predecessors;
 
 	/**
-	 * The cached value of the '{@link #getSuccessors() <em>Successors</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSuccessors() <em>Successors</em>}'
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSuccessors()
 	 * @generated
 	 * @ordered
@@ -81,9 +95,10 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected WorkItem successors;
 
 	/**
-	 * The cached value of the '{@link #getStepsToReproduce() <em>Steps To Reproduce</em>}' reference list.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getStepsToReproduce()
+	 * <em>Steps To Reproduce</em>}' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getStepsToReproduce()
 	 * @generated
 	 * @ordered
@@ -91,8 +106,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected EList<Step> stepsToReproduce;
 
 	/**
-	 * The default value of the '{@link #getStatus() <em>Status</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getStatus() <em>Status</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getStatus()
 	 * @generated
 	 * @ordered
@@ -102,6 +118,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	/**
 	 * The cached value of the '{@link #getStatus() <em>Status</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getStatus()
 	 * @generated
 	 * @ordered
@@ -109,8 +126,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected BugStatus status = STATUS_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getAssignedTo() <em>Assigned To</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAssignedTo() <em>Assigned To</em>}'
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getAssignedTo()
 	 * @generated
 	 * @ordered
@@ -118,8 +136,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected OrgUnit assignedTo;
 
 	/**
-	 * The cached value of the '{@link #getResolution() <em>Resolution</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getResolution() <em>Resolution</em>}'
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getResolution()
 	 * @generated
 	 * @ordered
@@ -127,8 +146,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected BugResolution resolution;
 
 	/**
-	 * The default value of the '{@link #getSeverity() <em>Severity</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getSeverity() <em>Severity</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSeverity()
 	 * @generated
 	 * @ordered
@@ -136,8 +156,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected static final Severity SEVERITY_EDEFAULT = Severity.FEATURE;
 
 	/**
-	 * The cached value of the '{@link #getSeverity() <em>Severity</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSeverity() <em>Severity</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSeverity()
 	 * @generated
 	 * @ordered
@@ -146,6 +167,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected BugReportImpl() {
@@ -154,6 +176,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -162,8 +185,8 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public WorkPackage getContainingWorkpackage() {
@@ -173,8 +196,8 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetContainingWorkpackage(
@@ -185,8 +208,8 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setContainingWorkpackage(WorkPackage newContainingWorkpackage) {
@@ -213,8 +236,8 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ModelChangePackage> getAssociatedChangePackages() {
@@ -227,8 +250,8 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public WorkItem getPredecessors() {
@@ -246,8 +269,8 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public WorkItem basicGetPredecessors() {
@@ -255,8 +278,8 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetPredecessors(WorkItem newPredecessors,
@@ -276,8 +299,8 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setPredecessors(WorkItem newPredecessors) {
@@ -302,8 +325,8 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public WorkItem getSuccessors() {
@@ -321,8 +344,8 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public WorkItem basicGetSuccessors() {
@@ -330,8 +353,8 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetSuccessors(WorkItem newSuccessors,
@@ -351,8 +374,8 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSuccessors(WorkItem newSuccessors) {
@@ -377,6 +400,45 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public OrgUnit getAssignee() {
+		OrgUnit assignee = basicGetAssignee();
+		return assignee != null && assignee.eIsProxy() ? (OrgUnit) eResolveProxy((InternalEObject) assignee)
+				: assignee;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> Delegates to {@link #basicGetAssignedTo()}.
+	 * 
+	 * @return the {@link OrgUnit} returned by {@link #basicGetAssignedTo()}
+	 * @author Florian Schneider
+	 * 
+	 *         <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	public OrgUnit basicGetAssignee() {
+		return basicGetAssignedTo();
+	}
+
+	/**
+	 * <!-- begin-user-doc --> Delegates to {@link #setAssignedTo(OrgUnit)}.
+	 * 
+	 * @param newAssignee
+	 *            the new organizational unit that shall be assigned to resolve
+	 *            this bug. <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	public void setAssignee(OrgUnit newAssignee) {
+		setAssignedTo(newAssignee);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Step> getStepsToReproduce() {
@@ -389,6 +451,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public BugStatus getStatus() {
@@ -397,6 +460,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setStatus(BugStatus newStatus) {
@@ -409,6 +473,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public OrgUnit getAssignedTo() {
@@ -427,6 +492,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public OrgUnit basicGetAssignedTo() {
@@ -435,6 +501,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setAssignedTo(OrgUnit newAssignedTo) {
@@ -448,6 +515,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public BugResolution getResolution() {
@@ -466,6 +534,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public BugResolution basicGetResolution() {
@@ -474,6 +543,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setResolution(BugResolution newResolution) {
@@ -487,6 +557,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Severity getSeverity() {
@@ -495,6 +566,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSeverity(Severity newSeverity) {
@@ -506,8 +578,8 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -536,8 +608,8 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -555,8 +627,8 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -573,6 +645,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -590,6 +663,10 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			if (resolve)
 				return getSuccessors();
 			return basicGetSuccessors();
+		case BugPackage.BUG_REPORT__ASSIGNEE:
+			if (resolve)
+				return getAssignee();
+			return basicGetAssignee();
 		case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE:
 			return getStepsToReproduce();
 		case BugPackage.BUG_REPORT__STATUS:
@@ -610,6 +687,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -629,6 +707,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			return;
 		case BugPackage.BUG_REPORT__SUCCESSORS:
 			setSuccessors((WorkItem) newValue);
+			return;
+		case BugPackage.BUG_REPORT__ASSIGNEE:
+			setAssignee((OrgUnit) newValue);
 			return;
 		case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE:
 			getStepsToReproduce().clear();
@@ -652,6 +733,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -668,6 +750,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			return;
 		case BugPackage.BUG_REPORT__SUCCESSORS:
 			setSuccessors((WorkItem) null);
+			return;
+		case BugPackage.BUG_REPORT__ASSIGNEE:
+			setAssignee((OrgUnit) null);
 			return;
 		case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE:
 			getStepsToReproduce().clear();
@@ -690,6 +775,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -704,6 +790,8 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			return predecessors != null;
 		case BugPackage.BUG_REPORT__SUCCESSORS:
 			return successors != null;
+		case BugPackage.BUG_REPORT__ASSIGNEE:
+			return basicGetAssignee() != null;
 		case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE:
 			return stepsToReproduce != null && !stepsToReproduce.isEmpty();
 		case BugPackage.BUG_REPORT__STATUS:
@@ -720,6 +808,43 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == Assignable.class) {
+			switch (derivedFeatureID) {
+			case BugPackage.BUG_REPORT__ASSIGNEE:
+				return TaskPackage.ASSIGNABLE__ASSIGNEE;
+			default:
+				return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == Assignable.class) {
+			switch (baseFeatureID) {
+			case TaskPackage.ASSIGNABLE__ASSIGNEE:
+				return BugPackage.BUG_REPORT__ASSIGNEE;
+			default:
+				return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

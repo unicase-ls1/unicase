@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.Annotation;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
-import org.unicase.model.rationale.*;
 import org.unicase.model.rationale.Assessment;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.Criterion;
@@ -21,6 +20,8 @@ import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.Proposal;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.rationale.Solution;
+import org.unicase.model.task.Assignable;
+import org.unicase.model.task.Checkable;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance
@@ -94,6 +95,10 @@ public class RationaleSwitch<T> {
 			T result = caseIssue(issue);
 			if (result == null)
 				result = caseAnnotation(issue);
+			if (result == null)
+				result = caseCheckable(issue);
+			if (result == null)
+				result = caseAssignable(issue);
 			if (result == null)
 				result = caseModelElement(issue);
 			if (result == null)
@@ -274,6 +279,36 @@ public class RationaleSwitch<T> {
 	 * @generated
 	 */
 	public T caseAnnotation(Annotation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Checkable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Checkable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCheckable(Checkable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Assignable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Assignable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAssignable(Assignable object) {
 		return null;
 	}
 

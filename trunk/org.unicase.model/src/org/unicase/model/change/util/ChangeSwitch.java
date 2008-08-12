@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.Annotation;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
-import org.unicase.model.change.*;
 import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.MergingIssue;
 import org.unicase.model.change.MergingProposal;
@@ -22,6 +21,8 @@ import org.unicase.model.change.ModelChangePackage;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.Proposal;
 import org.unicase.model.rationale.Solution;
+import org.unicase.model.task.Assignable;
+import org.unicase.model.task.Checkable;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance
@@ -108,6 +109,10 @@ public class ChangeSwitch<T> {
 				result = caseIssue(mergingIssue);
 			if (result == null)
 				result = caseAnnotation(mergingIssue);
+			if (result == null)
+				result = caseCheckable(mergingIssue);
+			if (result == null)
+				result = caseAssignable(mergingIssue);
 			if (result == null)
 				result = caseModelElement(mergingIssue);
 			if (result == null)
@@ -243,6 +248,36 @@ public class ChangeSwitch<T> {
 	 * @generated
 	 */
 	public T caseAnnotation(Annotation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Checkable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Checkable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCheckable(Checkable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Assignable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Assignable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAssignable(Assignable object) {
 		return null;
 	}
 

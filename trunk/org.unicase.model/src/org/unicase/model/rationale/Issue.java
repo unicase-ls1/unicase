@@ -10,6 +10,8 @@ import org.eclipse.emf.common.util.EList;
 import org.unicase.model.Annotation;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
+import org.unicase.model.task.Assignable;
+import org.unicase.model.task.Checkable;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '
@@ -32,7 +34,7 @@ import org.unicase.model.organization.User;
  * @model
  * @generated
  */
-public interface Issue extends Annotation {
+public interface Issue extends Annotation, Checkable, Assignable {
 	/**
 	 * Returns the value of the '<em><b>Proposals</b></em>' containment reference list.
 	 * The list contents are of type {@link org.unicase.model.rationale.Proposal}.
