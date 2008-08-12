@@ -56,7 +56,7 @@ public class ModelTreePage extends WizardPage implements Listener {
 		gl.numColumns = 4;
 		composite.setLayout(gl);
 
-		// TODO: treeViewer must be initialized with a SWT Tree to prevent multi
+		//ZH: treeViewer must be initialized with a SWT Tree to prevent multi
 		// selection.
 		treeViewer = new TreeViewer(composite);
 		treeViewer.getControl().setLayoutData(new GridData(GridData.FILL_BOTH));
