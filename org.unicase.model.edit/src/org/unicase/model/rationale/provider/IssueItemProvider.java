@@ -27,6 +27,7 @@ import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.rationale.RationalePackage;
+import org.unicase.model.task.TaskPackage;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.model.rationale.Issue} object.
@@ -58,11 +59,30 @@ public class IssueItemProvider extends AnnotationItemProvider implements
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addAssigneePropertyDescriptor(object);
 			addCriteriaPropertyDescriptor(object);
 			addFacilitatorPropertyDescriptor(object);
 			addParticipantsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Assignee feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAssigneePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Assignable_assignee_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Assignable_assignee_feature",
+						"_UI_Assignable_type"),
+				TaskPackage.Literals.ASSIGNABLE__ASSIGNEE, true, false, true,
+				null, null, null));
 	}
 
 	/**
@@ -182,6 +202,10 @@ public class IssueItemProvider extends AnnotationItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Issue.class)) {
+		case RationalePackage.ISSUE__CHECKED:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), false, true));
+			return;
 		case RationalePackage.ISSUE__PROPOSALS:
 		case RationalePackage.ISSUE__SOLUTION:
 		case RationalePackage.ISSUE__REFINING_ISSUES:

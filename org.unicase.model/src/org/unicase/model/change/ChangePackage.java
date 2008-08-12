@@ -251,6 +251,24 @@ public interface ChangePackage extends EPackage {
 	int MERGING_ISSUE__ANNOTATED_MODEL_ELEMENTS = RationalePackage.ISSUE__ANNOTATED_MODEL_ELEMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Checked</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_ISSUE__CHECKED = RationalePackage.ISSUE__CHECKED;
+
+	/**
+	 * The feature id for the '<em><b>Assignee</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_ISSUE__ASSIGNEE = RationalePackage.ISSUE__ASSIGNEE;
+
+	/**
 	 * The feature id for the '<em><b>Proposals</b></em>' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated

@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.Annotation;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
-import org.unicase.model.change.*;
 import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.MergingIssue;
 import org.unicase.model.change.MergingProposal;
@@ -22,6 +21,8 @@ import org.unicase.model.change.ModelChangePackage;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.Proposal;
 import org.unicase.model.rationale.Solution;
+import org.unicase.model.task.Assignable;
+import org.unicase.model.task.Checkable;
 
 /**
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides
@@ -109,6 +110,16 @@ public class ChangeAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseAnnotation(Annotation object) {
 			return createAnnotationAdapter();
+		}
+
+		@Override
+		public Adapter caseCheckable(Checkable object) {
+			return createCheckableAdapter();
+		}
+
+		@Override
+		public Adapter caseAssignable(Assignable object) {
+			return createAssignableAdapter();
 		}
 
 		@Override
@@ -241,6 +252,34 @@ public class ChangeAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAnnotationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.task.Checkable <em>Checkable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.task.Checkable
+	 * @generated
+	 */
+	public Adapter createCheckableAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.task.Assignable <em>Assignable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.task.Assignable
+	 * @generated
+	 */
+	public Adapter createAssignableAdapter() {
 		return null;
 	}
 

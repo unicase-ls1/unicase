@@ -125,6 +125,10 @@
       <genClasses image="false" ecoreClass="model.ecore#//task/Checkable">
         <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//task/Checkable/checked"/>
       </genClasses>
+      <genClasses image="false" ecoreClass="model.ecore#//task/Assignable">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//task/Assignable/assignee"/>
+      </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Diagram" basePackage="org.unicase.model" disposableProviderFactory="true"
         ecorePackage="model.ecore#//diagram">
