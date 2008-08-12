@@ -14,6 +14,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.ModelElement;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
+import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
@@ -33,7 +34,7 @@ public class NewCompositeSectionHandler extends AbstractHandler  {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		
 		
-		ModelElement me = ActionHelper.getSelection(event);
+		ModelElement me = ActionHelper.getModelElement(event);
 		if (me == null) {
 			return null;
 		}

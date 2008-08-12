@@ -1,28 +1,41 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.ui.common.commands;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ui.IEditorReference;
-import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelElement;
 import org.unicase.ui.meeditor.MEEditorInput;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
+/**.
+ * This is the Handler to delete a ModelElement
+ * @author Helming
+ *
+ */
 public class DeleteModelelementHandler extends AbstractHandler {
 
+	/**.
+	 * {@inheritDoc}
+	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		ModelElement me = ActionHelper.getModelElement(event);
 		if (me != null) {
+			//check if this model element is already opened in an editor
+			//and if yes, prompt to close editor.
 			if(closeEditor(me)){
 				deleteModelElement(me);
 			}
@@ -31,8 +44,13 @@ public class DeleteModelelementHandler extends AbstractHandler {
 		return null;
 	}
 
+	
+	
 	private boolean closeEditor(ModelElement me) {
+
 		boolean result = true; 
+
+		//find editors with this ME as input
 		MEEditorInput input = new MEEditorInput(me);
 		IEditorReference[] editorRefs = PlatformUI.getWorkbench()
 				.getActiveWorkbenchWindow().getActivePage().findEditors(input,
@@ -46,6 +64,7 @@ public class DeleteModelelementHandler extends AbstractHandler {
 		return result;
 	}
 
+	
 	private void deleteModelElement(final ModelElement me) {
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
