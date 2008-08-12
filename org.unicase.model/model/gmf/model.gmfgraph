@@ -97,26 +97,6 @@
           figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
-        name="UseCaseFigure">
-      <actualFigure
-          xsi:type="gmfgraph:Ellipse"
-          name="UseCaseFigure">
-        <layout
-            xsi:type="gmfgraph:FlowLayout"/>
-        <children
-            xsi:type="gmfgraph:Label"
-            name="UseCaseFigure_name">
-          <layoutData
-              xsi:type="gmfgraph:BorderLayoutData"
-              alignment="BEGINNING"
-              vertical="true"/>
-        </children>
-      </actualFigure>
-      <accessors
-          accessor="getFigureUseCaseFigure_name"
-          figure="//@figures.0/@descriptors.2/@actualFigure/@children.0"/>
-    </descriptors>
-    <descriptors
         name="ActorFigure">
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
@@ -135,13 +115,89 @@
           xsi:type="gmfgraph:Label"
           name="ClassMethodNameFigure"/>
     </descriptors>
+    <descriptors
+        name="UseCaseFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Ellipse"
+          name="UseCaseFigure">
+        <layout
+            xsi:type="gmfgraph:CustomLayout"
+            qualifiedClassName="org.unicase.ui.usecaseDiagram.unicase.CenterLayout"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="UseCaseFigure_name"
+            text="">
+          <preferredSize
+              dx="20"
+              dy="14"/>
+        </children>
+      </actualFigure>
+      <accessors
+          accessor="getUseCaseFigure_name"
+          figure="//@figures.0/@descriptors.5/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors
+        name="InitiateFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="InitiateFigure"/>
+    </descriptors>
+    <descriptors
+        name="ParticipateFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="ParticipateFigure"/>
+    </descriptors>
+    <descriptors
+        name="InitiateLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="InitiateLabel"
+          text="&lt;&lt;initiate>>"/>
+    </descriptors>
+    <descriptors
+        name="ParticipateLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="ParticipateLabel"
+          text="&lt;&lt;participate>>"/>
+    </descriptors>
+    <descriptors
+        name="DashedLineOpenArrow">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="DashedLineOpenArrow"
+          lineKind="LINE_DASH"
+          targetDecoration="//@figures.0/@descriptors.10/@actualFigure/@children.0">
+        <children
+            xsi:type="gmfgraph:PolylineDecoration"
+            name="OpenArrow"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors
+        name="IncludeLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="IncludeLabel"
+          text="&lt;&lt;include>>"/>
+    </descriptors>
+    <descriptors
+        name="ExtendLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="ExtendLabel"
+          text="&lt;&lt;extend>>"/>
+    </descriptors>
+    <descriptors
+        name="Actor_external_name">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="Actor_external_name"/>
+    </descriptors>
   </figures>
   <nodes
       name="Class"
       figure="ClassFigure"/>
-  <nodes
-      name="UseCase"
-      figure="UseCaseFigure"/>
   <nodes
       name="Actor"
       figure="ActorFigure">
@@ -152,9 +208,45 @@
           dy="50"/>
     </facets>
   </nodes>
+  <nodes
+      name="UseCase">
+    <figure
+        href="Copy%20of%20model.gmfgraph#UseCaseFigure"/>
+    <facets
+        xsi:type="gmfgraph:DefaultSizeFacet">
+      <defaultSize
+          dx="140"
+          dy="60"/>
+    </facets>
+  </nodes>
   <connections
       name="Association"
       figure="AssociationFigure"/>
+  <connections
+      name="Association">
+    <figure
+        href="Copy%20of%20model.gmfgraph#AssociationFigure"/>
+  </connections>
+  <connections
+      name="Participate">
+    <figure
+        href="Copy%20of%20model.gmfgraph#ParticipateFigure"/>
+  </connections>
+  <connections
+      name="Initiate">
+    <figure
+        href="Copy%20of%20model.gmfgraph#InitiateFigure"/>
+  </connections>
+  <connections
+      name="Include">
+    <figure
+        href="Copy%20of%20model.gmfgraph#DashedLineOpenArrow"/>
+  </connections>
+  <connections
+      name="Extend">
+    <figure
+        href="Copy%20of%20model.gmfgraph#DashedLineOpenArrow"/>
+  </connections>
   <compartments
       name="ClassNode_attributes"
       figure="ClassFigure"
@@ -172,13 +264,6 @@
       figure="AssociationFigure"
       accessor="//@figures.0/@descriptors.1/@accessors.0"/>
   <labels
-      name="ActorNode_name"
-      figure="ActorFigure"/>
-  <labels
-      name="UseCaseNode_name"
-      figure="UseCaseFigure"
-      accessor="//@figures.0/@descriptors.2/@accessors.0"/>
-  <labels
       name="ClassNode_decoration"
       figure="ClassFigure"/>
   <labels
@@ -189,4 +274,66 @@
       name="ClassMethod_name"
       figure="ClassMethodFigure"
       elementIcon="false"/>
+  <labels
+      name="UseCaseNode_name"
+      elementIcon="false">
+    <figure
+        href="Copy%20of%20model.gmfgraph#UseCaseFigure"/>
+    <accessor
+        href="Copy%20of%20model.gmfgraph#//@figures.0/@descriptors.3/@accessors.0"/>
+  </labels>
+  <labels
+      name="InitiateLabel"
+      elementIcon="false">
+    <figure
+        href="Copy%20of%20model.gmfgraph#InitiateLabelFigure"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
+  <labels
+      name="ParticipateLabel"
+      elementIcon="false">
+    <figure
+        href="Copy%20of%20model.gmfgraph#ParticipateLabelFigure"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
+  <labels
+      name="IncludeLabel"
+      elementIcon="false">
+    <figure
+        href="Copy%20of%20model.gmfgraph#IncludeLabelFigure"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
+  <labels
+      name="ExtendLabel"
+      elementIcon="false">
+    <figure
+        href="Copy%20of%20model.gmfgraph#ExtendLabelFigure"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
+  <labels
+      name="ActorNode_name"
+      elementIcon="false">
+    <figure
+        href="Copy%20of%20model.gmfgraph#Actor_external_name"/>
+  </labels>
 </gmfgraph:Canvas>
