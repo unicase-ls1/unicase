@@ -462,12 +462,29 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> Simply calling {@link #getAssignedTo()} did not
+	 * work as the collection was empty. So I used
+	 * {@link #eGet(org.eclipse.emf.ecore.EStructuralFeature)}.
+	 * 
+	 * @return the first element of the assignedTo List
+	 * @author Florian Schneider <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
 	public OrgUnit basicGetAssignee() {
-		return getAssignedTo().get(0);
+		Object value = eGet(TaskPackage.Literals.ACTION_ITEM__ASSIGNED_TO);
+		if ((value != null) && (value instanceof EList)) {
+			EList<OrgUnit> list = (EList<OrgUnit>) value;
+			if (!list.isEmpty()) {
+				return list.get(0);
+			} else {
+				return null;
+			}
+
+		} else {
+			return null;
+		}
+
 	}
 
 	/**
@@ -477,9 +494,13 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	 */
 	public void setAssignee(OrgUnit newAssignee) {
 		if (newAssignee instanceof User) {
-
-			assignedTo.add(0, (User) newAssignee);
-
+			EList<User> oldUsers = getAssignedTo();
+			getAssignedTo().add(0, (User) newAssignee);
+			if (eNotificationRequired()) {
+				eNotify(new ENotificationImpl(this, Notification.ADD,
+						TaskPackage.ACTION_ITEM__ASSIGNED_TO, oldUsers,
+						getAssignedTo()));
+			}
 		}
 	}
 

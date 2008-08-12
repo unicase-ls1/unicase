@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
@@ -25,6 +26,15 @@ public class METableViewer extends TableViewer {
 
 	private Project currentProject;
 	private AdapterFactory adapterFactory;
+
+	public void setAdapterFactory(AdapterFactory adapterFactory) {
+		this.adapterFactory = adapterFactory;
+		AdapterFactoryContentProvider contentProvider = new AdapterFactoryContentProvider(
+				this.adapterFactory);
+		this.setContentProvider(contentProvider);
+		setInput(currentProject);
+	}
+
 	private EClass itemMetaClass;
 
 	/**
@@ -77,15 +87,29 @@ public class METableViewer extends TableViewer {
 			}
 		});
 
-		AdapterFactoryContentProvider contentProvider = new AdapterFactoryContentProvider(
-				this.adapterFactory);
-
-		this.setContentProvider(contentProvider);
+		this.setAdapterFactory(adapterFactory);
 		this.setSorter(new ViewerSorter());
 
 		this.createColumns();
 		this.getTable().setLinesVisible(true);
 		this.getTable().setHeaderVisible(true);
+	}
+
+	/**
+	 * All props to the guy who coded the {@link AdapterFactoryItemDelegator}
+	 * class.
+	 * 
+	 * @param object
+	 * @return the list of property descriptors for the given object
+	 * @see AdapterFactoryItemDelegator#getPropertyDescriptors(Object)
+	 */
+	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+		//
+		IItemPropertySource itemPropertySource = (IItemPropertySource) adapterFactory
+				.adapt(object, IItemPropertySource.class);
+
+		return itemPropertySource != null ? itemPropertySource
+				.getPropertyDescriptors(object) : null;
 	}
 
 	private void createColumns() {
@@ -96,6 +120,7 @@ public class METableViewer extends TableViewer {
 		AdapterFactoryItemDelegator adapterFactoryItemDelegator = new AdapterFactoryItemDelegator(
 				new ComposedAdapterFactory(
 						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+
 		List<IItemPropertyDescriptor> descriptors = adapterFactoryItemDelegator
 				.getPropertyDescriptors(templateObject);
 
@@ -112,9 +137,9 @@ public class METableViewer extends TableViewer {
 				currentColumn
 						.setLabelProvider(new TableViewColumnLabelProvider(
 								currentDescriptor));
-				// currentColumn.setEditingSupport(EditingSupport
 			}
 		}
 
 	}
+
 }
