@@ -1,13 +1,9 @@
-/*******************************************************************************
- * Copyright (c) 2006 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
  *
- * Contributors:
- *     IBM Corporation - initial API and implementation
- *******************************************************************************/
+ * $Id$
+ */
 package org.unicase.ui.common.decorators;
 
 import java.net.URL;
@@ -23,11 +19,11 @@ import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
 
 /**
- * An example showing how to control when an element is decorated. This example
- * decorates only elements that are instances of IResource and whose attribute
- * is 'Read-only'.
  * 
- * @see ILightweightLabelDecorator
+ * This is the StateLabelDecorator for elements shown in viewers
+ * 
+ * @author Helming
+ * 
  */
 public class StateDecorator implements ILightweightLabelDecorator {
 	/**
@@ -35,16 +31,16 @@ public class StateDecorator implements ILightweightLabelDecorator {
 	 * wizard.
 	 */
 	public static final String TOP_RIGHT = "TOP_RIGHT";
-
 	public static final String TOP_LEFT = "TOP_LEFT";
-
 	public static final String BOTTOM_RIGHT = "BOTTOM_RIGHT";
-
 	public static final String BOTTOM_LEFT = "BOTTOM_LEFT";
-
 	public static final String UNDERLAY = "UNDERLAY";
 
-	/** The integer value representing the placement options */
+	/** 
+	 * The integer value representing the placement options 
+	 *
+	 * 
+	 */
 	private int quadrant;
 
 	/** The icon image location in the project folder */

@@ -93,7 +93,7 @@ public class AddAnnotationHandler extends AbstractHandler {
 	}
 
 	
-	/**
+	/**.
 	 * This attaches the Annotation to ModelElement
 	 * @param me
 	 * @param annotation

@@ -23,8 +23,7 @@ Require-Bundle: org.eclipse.ui,
  org.unicase.ui.meeditor
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Import-Package: org.eclipse.emf.ecore.resource.impl,
- org.unicase.ui.meeditor
+Import-Package: org.eclipse.emf.ecore.resource.impl
 Export-Package: org.unicase.ui.common;uses:="org.osgi.framework,org.eclipse.ui.plugin",
  org.unicase.ui.common.commands;uses:="org.eclipse.core.commands,org.unicase.model",
  org.unicase.ui.common.dnd,

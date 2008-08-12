@@ -18,6 +18,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.model.ModelElement;
 import org.unicase.model.document.LeafSection;
+import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.workspace.WorkspaceManager;
 
 /**

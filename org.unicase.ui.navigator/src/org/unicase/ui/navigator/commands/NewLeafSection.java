@@ -9,12 +9,13 @@ package org.unicase.ui.navigator.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.unicase.model.ModelElement;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.LeafSection;
+import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.workspace.WorkspaceManager;
 
 
@@ -35,16 +36,16 @@ public class NewLeafSection extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		
-		ModelElement me = ActionHelper.getSelection(event);
-		if (me == null) {
+		EObject eObject = ActionHelper.getModelElement(event);
+		if (eObject == null) {
 			return null;
 		}
 		
-		if (!(me instanceof CompositeSection)) {
+		if (!(eObject instanceof CompositeSection)) {
 			return null;
 		}
 		
-		final CompositeSection compositeSection = (CompositeSection) me;
+		final CompositeSection compositeSection = (CompositeSection) eObject;
 
 		final LeafSection createLeafSection = DocumentFactory.eINSTANCE
 				.createLeafSection();
