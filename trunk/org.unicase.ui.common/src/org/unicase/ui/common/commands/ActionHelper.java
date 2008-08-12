@@ -1,3 +1,10 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
+
 package org.unicase.ui.common.commands;
 
 import org.eclipse.core.commands.ExecutionEvent;
@@ -6,11 +13,26 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.model.ModelElement;
 
-public class ActionHelper {
+/**
+ * 
+ * @author Hodaie
+ * This class contains some utility method for commands and handlers.
+ */
+public final class ActionHelper {
+	
 	private static final String MEEDITOR_ID = "org.unicase.ui.meeditor";
 	private static final String NAVIGATOR_ID = "org.unicase.ui.navigator.viewer";
 	private static final String MEEDITOR_EVALUATIONSERVICE_VARIABLE = "activeModelelement";
 	
+	private ActionHelper(){
+		
+	}
+	
+	/**
+	 * This extracts active model element. From MEEditor or from Navigator
+	 * @param event the ExecutionEvent given by caller handler
+	 * @return active model element
+	 */
 	public static ModelElement getModelElement(ExecutionEvent event) {
 		
 		ModelElement me = null;
@@ -23,11 +45,14 @@ public class ActionHelper {
 		// for this two locations.
 		String partId = HandlerUtil.getActivePartId(event);
 		if (partId.equals(MEEDITOR_ID)) {
+			//extract model element from evaluation service variable that 
+			//MEEditor has already set. (in MEEditorPage)
 			Object o = HandlerUtil.getVariable(event,
 					MEEDITOR_EVALUATIONSERVICE_VARIABLE);
 			me = (ModelElement) o;
 
 		} else if (partId.equals(NAVIGATOR_ID)) {
+			//extract model element from current selection in navigator
 			ISelection sel = HandlerUtil.getCurrentSelection(event);
 			if (!(sel instanceof IStructuredSelection)) {
 				return null;

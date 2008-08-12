@@ -1,28 +1,34 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
+
 package org.unicase.ui.common.commands;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.NotEnabledException;
-import org.eclipse.core.commands.NotHandledException;
-import org.eclipse.core.commands.common.NotDefinedException;
-import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.ui.handlers.HandlerUtil;
-import org.eclipse.ui.handlers.IHandlerService;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 import org.unicase.model.rationale.RationaleFactory;
-import org.unicase.model.rationale.util.RationaleAdapterFactory;
-import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
+import org.unicase.ui.meeditor.MEEditorInput;
 
+/**.
+ * This is a generic handler to add different types of Annotations to a ModelElement
+ * @author Hodaie
+ *
+ */
 public class AddAnnotationHandler extends AbstractHandler {
 
-	private static final String MEEDITOR_OPENMODELELEMENT_COMMAND_ID = "org.unicase.ui.meeditor.openModelElement";
-	private static final String MEEDITOR_EVALUATIONSERVICE_VARIABLE = "activeModelelement";
+
 	private static final String ADD_ACTIONITEM_COMMAND_ID = "org.unicase.ui.common.commands.annotateActionItem";
 	private static final String ADD_ISSUE_COMMAND_ID = "org.unicase.ui.common.commands.annotateIssue";
 	private static final String ADD_COMMENT_COMMAND_ID = "org.unicase.ui.common.commands.annotateComment";
@@ -30,15 +36,15 @@ public class AddAnnotationHandler extends AbstractHandler {
 	private ExecutionEvent event;
 
 	/**
-	 * . {@inheritDoc} This method does whatever
+	 * . {@inheritDoc} 
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		this.event = event;
 
-		// 1. extract the model element, to which the action item will be
+		// 1. extract the model element, to which the Annotation will be
 		// attached
-		// see #getModelElement()
+		// see ActionHelper.getModelElement()
 		ModelElement me = ActionHelper.getModelElement(event);
 		// 2. extract command and create the appropriate annotation object
 		Annotation annotation = createAnnotation(me.getProject());
@@ -50,6 +56,12 @@ public class AddAnnotationHandler extends AbstractHandler {
 		return null;
 	}
 
+	/**.
+	 * This creates the appropriate Annotation based on selected menu command
+	 * and adds it to Project
+	 * @param project
+	 * @return
+	 */
 	private Annotation createAnnotation(final Project project) {
 		final Annotation result;
 		if (event.getCommand().getId().equals(ADD_ACTIONITEM_COMMAND_ID)) {
@@ -80,6 +92,12 @@ public class AddAnnotationHandler extends AbstractHandler {
 		return result;
 	}
 
+	
+	/**
+	 * This attaches the Annotation to ModelElement
+	 * @param me
+	 * @param annotation
+	 */
 	private void attachAnnotation(final ModelElement me,
 			final Annotation annotation) {
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
@@ -92,55 +110,22 @@ public class AddAnnotationHandler extends AbstractHandler {
 
 	}
 
+	/**.
+	 * This opens Annotation for further editing
+	 * @param annotation
+	 */
 	private void openAnnotation(Annotation annotation) {
-		// this method opens the ai using and the editor
-		// in org.unicase.ui.meeditor plug-in.
-		// We had to do this indirectly using a command in
-		// meeditor plug-in, because we could not reference this
-		// this plug-in in model.edit plug-in (circular reference)
-
-		IHandlerService handlerService = (IHandlerService) HandlerUtil
-				.getActivePart(this.event).getSite().getService(
-						IHandlerService.class);
-
-		IEvaluationContext context = handlerService.getCurrentState();
-		context.addVariable(MEEDITOR_EVALUATIONSERVICE_VARIABLE, annotation);
-
+		MEEditorInput input = new MEEditorInput(annotation);
 		try {
-			handlerService.executeCommand(MEEDITOR_OPENMODELELEMENT_COMMAND_ID,
-					null);
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NotDefinedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NotEnabledException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NotHandledException e) {
+			PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+					.getActivePage().openEditor(input,
+							"org.unicase.ui.meeditor", true);
+		} catch (PartInitException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 
-	/**
-	 * . ({@inheritDoc} )
-	 */
-	@Override
-	public boolean isEnabled() {
-		// ZH Auto-generated method stub
-		return true;
-	}
-
-	/**
-	 * . ({@inheritDoc} )
-	 */
-	@Override
-	public boolean isHandled() {
-		// ZH Auto-generated method stub
-		return true;
-	}
+	
 
 }
