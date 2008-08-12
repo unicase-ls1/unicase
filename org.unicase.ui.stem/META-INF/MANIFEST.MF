@@ -11,6 +11,7 @@ Require-Bundle: org.eclipse.ui,
  org.unicase.model.edit,
  org.unicase.workspace,
  org.unicase.ui.meeditor,
- org.unicase.ui.common;bundle-version="0.0.1"
+ org.unicase.ui.common;bundle-version="0.0.1",
+ org.unicase.ui.tableview
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
