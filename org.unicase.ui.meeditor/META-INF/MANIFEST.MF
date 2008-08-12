@@ -21,7 +21,7 @@ Require-Bundle: org.eclipse.ui,
  org.unicase.workspace,
  org.eclipse.emf.transaction,
  org.eclipse.emf.transaction.ui,
- org.eclipse.nebula.widgets.cdatetime;bundle-version="0.10.0"
+ org.eclipse.nebula.widgets.cdatetime
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.unicase.ui.meeditor
