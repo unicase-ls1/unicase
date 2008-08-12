@@ -23,6 +23,8 @@ import org.unicase.model.ModelElement;
  *   <li>{@link org.unicase.model.requirement.UseCase#getFunctionalRequirements <em>Functional Requirements</em>}</li>
  *   <li>{@link org.unicase.model.requirement.UseCase#getNonFunctionalRequirements <em>Non Functional Requirements</em>}</li>
  *   <li>{@link org.unicase.model.requirement.UseCase#getIdentifiedClasses <em>Identified Classes</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.UseCase#getIncludedUseCases <em>Included Use Cases</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.UseCase#getExtendedUseCases <em>Extended Use Cases</em>}</li>
  * </ul>
  * </p>
  *
@@ -146,6 +148,38 @@ public interface UseCase extends ModelElement {
 	 * @generated
 	 */
 	EList<org.unicase.model.classes.Class> getIdentifiedClasses();
+
+	/**
+	 * Returns the value of the '<em><b>Included Use Cases</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.requirement.UseCase}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Included Use Cases</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Included Use Cases</em>' reference list.
+	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_IncludedUseCases()
+	 * @model keys="identifier"
+	 * @generated
+	 */
+	EList<UseCase> getIncludedUseCases();
+
+	/**
+	 * Returns the value of the '<em><b>Extended Use Cases</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.requirement.UseCase}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Extended Use Cases</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Extended Use Cases</em>' reference list.
+	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_ExtendedUseCases()
+	 * @model keys="identifier"
+	 * @generated
+	 */
+	EList<UseCase> getExtendedUseCases();
 
 	/**
 	 * Returns the value of the '<em><b>Participating Actors</b></em>' reference list.

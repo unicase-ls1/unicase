@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.classes.ClassesPackage;
@@ -40,6 +41,8 @@ import org.unicase.model.requirement.UseCase;
  *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getFunctionalRequirements <em>Functional Requirements</em>}</li>
  *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getNonFunctionalRequirements <em>Non Functional Requirements</em>}</li>
  *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getIdentifiedClasses <em>Identified Classes</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getIncludedUseCases <em>Included Use Cases</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getExtendedUseCases <em>Extended Use Cases</em>}</li>
  * </ul>
  * </p>
  *
@@ -114,6 +117,26 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	 * @ordered
 	 */
 	protected EList<org.unicase.model.classes.Class> identifiedClasses;
+
+	/**
+	 * The cached value of the '{@link #getIncludedUseCases() <em>Included Use Cases</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIncludedUseCases()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<UseCase> includedUseCases;
+
+	/**
+	 * The cached value of the '{@link #getExtendedUseCases() <em>Extended Use Cases</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExtendedUseCases()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<UseCase> extendedUseCases;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -273,6 +296,34 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<UseCase> getIncludedUseCases() {
+		if (includedUseCases == null) {
+			includedUseCases = new EObjectResolvingEList<UseCase>(
+					UseCase.class, this,
+					RequirementPackage.USE_CASE__INCLUDED_USE_CASES);
+		}
+		return includedUseCases;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<UseCase> getExtendedUseCases() {
+		if (extendedUseCases == null) {
+			extendedUseCases = new EObjectResolvingEList<UseCase>(
+					UseCase.class, this,
+					RequirementPackage.USE_CASE__EXTENDED_USE_CASES);
+		}
+		return extendedUseCases;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -374,6 +425,10 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 			return getNonFunctionalRequirements();
 		case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES:
 			return getIdentifiedClasses();
+		case RequirementPackage.USE_CASE__INCLUDED_USE_CASES:
+			return getIncludedUseCases();
+		case RequirementPackage.USE_CASE__EXTENDED_USE_CASES:
+			return getExtendedUseCases();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -418,6 +473,16 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 					.addAll(
 							(Collection<? extends org.unicase.model.classes.Class>) newValue);
 			return;
+		case RequirementPackage.USE_CASE__INCLUDED_USE_CASES:
+			getIncludedUseCases().clear();
+			getIncludedUseCases().addAll(
+					(Collection<? extends UseCase>) newValue);
+			return;
+		case RequirementPackage.USE_CASE__EXTENDED_USE_CASES:
+			getExtendedUseCases().clear();
+			getExtendedUseCases().addAll(
+					(Collection<? extends UseCase>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -450,6 +515,12 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 		case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES:
 			getIdentifiedClasses().clear();
 			return;
+		case RequirementPackage.USE_CASE__INCLUDED_USE_CASES:
+			getIncludedUseCases().clear();
+			return;
+		case RequirementPackage.USE_CASE__EXTENDED_USE_CASES:
+			getExtendedUseCases().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -478,6 +549,10 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 					&& !nonFunctionalRequirements.isEmpty();
 		case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES:
 			return identifiedClasses != null && !identifiedClasses.isEmpty();
+		case RequirementPackage.USE_CASE__INCLUDED_USE_CASES:
+			return includedUseCases != null && !includedUseCases.isEmpty();
+		case RequirementPackage.USE_CASE__EXTENDED_USE_CASES:
+			return extendedUseCases != null && !extendedUseCases.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

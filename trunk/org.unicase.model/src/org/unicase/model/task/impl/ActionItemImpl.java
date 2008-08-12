@@ -422,8 +422,9 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	public void setChecked(boolean newChecked) {
 		setDone(newChecked);
 	}
+
 	//end of custom code
-	
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated

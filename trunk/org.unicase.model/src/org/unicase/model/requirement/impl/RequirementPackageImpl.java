@@ -381,6 +381,24 @@ public class RequirementPackageImpl extends EPackageImpl implements
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getUseCase_IncludedUseCases() {
+		return (EReference) useCaseEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getUseCase_ExtendedUseCases() {
+		return (EReference) useCaseEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -581,6 +599,8 @@ public class RequirementPackageImpl extends EPackageImpl implements
 		createEReference(useCaseEClass, USE_CASE__FUNCTIONAL_REQUIREMENTS);
 		createEReference(useCaseEClass, USE_CASE__NON_FUNCTIONAL_REQUIREMENTS);
 		createEReference(useCaseEClass, USE_CASE__IDENTIFIED_CLASSES);
+		createEReference(useCaseEClass, USE_CASE__INCLUDED_USE_CASES);
+		createEReference(useCaseEClass, USE_CASE__EXTENDED_USE_CASES);
 
 		scenarioEClass = createEClass(SCENARIO);
 		createEReference(scenarioEClass, SCENARIO__STEPS);
@@ -781,6 +801,18 @@ public class RequirementPackageImpl extends EPackageImpl implements
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getUseCase_IdentifiedClasses().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getUseCase_IncludedUseCases(), this.getUseCase(), null,
+				"includedUseCases", null, 0, -1, UseCase.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getUseCase_IncludedUseCases().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getUseCase_ExtendedUseCases(), this.getUseCase(), null,
+				"extendedUseCases", null, 0, -1, UseCase.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getUseCase_ExtendedUseCases().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(scenarioEClass, Scenario.class, "Scenario", !IS_ABSTRACT,
