@@ -37,35 +37,7 @@ public class OrgUnitManagementGUI {
 		//parent.setBackground(parent.getShell().getDisplay().getSystemColor(SWT.COLOR_BLUE));
 		
 		this.adminBroker = adminBroker;
-//		createDummyOrgUnits();
 		createSash(parent);
-	}
-
-	private void createDummyOrgUnits() {
-		try {
-//			for(ACGroup group : adminBroker.getGroups()){
-//				adminBroker.deleteGroup(group.getId());
-//			}
-//			for(ACUser user : adminBroker.getUsers()){
-//				adminBroker.deleteGroup(user.getId());
-//			}
-			if (adminBroker.getGroups() == null
-					|| adminBroker.getGroups().size() == 0) {
-				adminBroker.createGroup("Group1");
-				adminBroker.createGroup("Group2");
-				adminBroker.createGroup("Group3");
-				adminBroker.createUser("User1");
-				adminBroker.createUser("User2");
-				adminBroker.createUser("User3");
-
-				// adminBroker.removeGroup(group.getId);
-				// adminBroker.removeUser(user.getId);
-			}
-		} catch (EmfStoreException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 	}
 
 	// public void setAdminBroker(AdminBroker adminBroker) {
