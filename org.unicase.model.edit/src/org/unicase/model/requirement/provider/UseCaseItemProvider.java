@@ -63,6 +63,8 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements
 			addFunctionalRequirementsPropertyDescriptor(object);
 			addNonFunctionalRequirementsPropertyDescriptor(object);
 			addIdentifiedClassesPropertyDescriptor(object);
+			addIncludedUseCasesPropertyDescriptor(object);
+			addExtendedUseCasesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -154,6 +156,42 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements
 						"_UI_UseCase_identifiedClasses_feature",
 						"_UI_UseCase_type"),
 				RequirementPackage.Literals.USE_CASE__IDENTIFIED_CLASSES, true,
+				false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Included Use Cases feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIncludedUseCasesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_UseCase_includedUseCases_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_UseCase_includedUseCases_feature",
+						"_UI_UseCase_type"),
+				RequirementPackage.Literals.USE_CASE__INCLUDED_USE_CASES, true,
+				false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Extended Use Cases feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addExtendedUseCasesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_UseCase_extendedUseCases_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_UseCase_extendedUseCases_feature",
+						"_UI_UseCase_type"),
+				RequirementPackage.Literals.USE_CASE__EXTENDED_USE_CASES, true,
 				false, true, null, null, null));
 	}
 
