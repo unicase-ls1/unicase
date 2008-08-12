@@ -16,6 +16,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.model.ModelElement;
+import org.unicase.ui.common.exceptions.ExceptionDialogHandler;
 import org.unicase.ui.meeditor.MEEditor;
 import org.unicase.ui.meeditor.MEEditorInput;
 
@@ -27,7 +28,7 @@ import org.unicase.ui.meeditor.MEEditorInput;
 public final class ActionHelper {
 
 	private static final String MEEDITOR_ID = "org.unicase.ui.meeditor";
-	// private static final String NAVIGATOR_ID = "org.unicase.ui.navigator.viewer";
+	
 	
 
 	private ActionHelper() {
@@ -49,8 +50,6 @@ public final class ActionHelper {
 		// the command is run (UC Navigator context menu or MEEeditor)
 		// This decision is should be made to extract the model element
 		// for attaching action item accordingly.
-		// I think a better way was to have two different handlers for
-		// for this two locations.
 		String partId = HandlerUtil.getActivePartId(event);
 		if (partId.equals(MEEDITOR_ID)) {
 			//extract model element from editor input
@@ -90,8 +89,7 @@ public final class ActionHelper {
 			PlatformUI.getWorkbench().getActiveWorkbenchWindow()
 					.getActivePage().openEditor(input, MEEditor.ID, true);
 		} catch (PartInitException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			ExceptionDialogHandler.showExceptionDialog(e);
 		}
 
 	}

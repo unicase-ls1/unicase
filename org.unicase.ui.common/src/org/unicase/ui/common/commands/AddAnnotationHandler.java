@@ -19,6 +19,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.task.TaskFactory;
+import org.unicase.ui.common.exceptions.ExceptionDialogHandler;
 import org.unicase.ui.meeditor.MEEditorInput;
 
 /**.
@@ -121,8 +122,7 @@ public class AddAnnotationHandler extends AbstractHandler {
 					.getActivePage().openEditor(input,
 							"org.unicase.ui.meeditor", true);
 		} catch (PartInitException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			ExceptionDialogHandler.showExceptionDialog(e);
 		}
 	}
 
