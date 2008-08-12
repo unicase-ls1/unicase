@@ -54,7 +54,7 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 	private EList<Usersession> savedSessionsList;
 	private Button savePassword;
 	private boolean newSession;
-	private int status;
+	private int status = FAILED;
 
 	/**
 	 * Default constructor.
@@ -158,15 +158,17 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 		WorkspaceManager.getInstance().getCurrentWorkspace().save();
 		try {
 			session.logIn();
+			this.status = SUCCESSFUL;
+			close();
 		} catch (AccessControlException e) {
 			ExceptionDialogHandler.showExceptionDialog(e);
+			password.selectAll();
 			this.status = FAILED;
 		} catch (EmfStoreException e) {
 			ExceptionDialogHandler.showExceptionDialog(e);
+			password.selectAll();
 			this.status = FAILED;
 		}
-		this.status = SUCCESSFUL;
-		close();
 	}
 
 	/**

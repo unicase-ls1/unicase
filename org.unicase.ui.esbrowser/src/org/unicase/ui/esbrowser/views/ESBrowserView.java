@@ -121,8 +121,7 @@ public class ESBrowserView extends ViewPart {
 								WorkspaceManager.getInstance().getCurrentWorkspace().save();
 								viewer.refresh();
 							} catch (EmfStoreException e) {
-								// TODO no server connection
-								e.printStackTrace();
+								ExceptionDialogHandler.showExceptionDialog(e);
 							}
 						}
 					}
