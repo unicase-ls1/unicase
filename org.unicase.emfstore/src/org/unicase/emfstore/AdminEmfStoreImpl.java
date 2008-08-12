@@ -197,9 +197,9 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		if (role != null) {
 			role.getProjects().remove(projectId);
 		}
-		// add project to role if existant
+		// add project to role if it exists
 		for (Role role1 : orgUnit.getRoles()) {
-			if (role1.eClass().equals(roleClass)) {
+			if (role1.eClass().getName().equals(roleClass.getName())) {
 				role1.getProjects().add(projectId);
 				save();
 				return;
