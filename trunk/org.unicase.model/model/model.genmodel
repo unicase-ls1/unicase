@@ -271,6 +271,10 @@
             ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/nonFunctionalRequirements"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/identifiedClasses"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/includedUseCases"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/extendedUseCases"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//requirement/Scenario">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//requirement/Scenario/steps"/>
