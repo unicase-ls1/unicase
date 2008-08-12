@@ -13,6 +13,14 @@
     <ownedChild>
       <domainMetaElement
           href="../../model.ecore#//requirement/Actor"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          editPattern="">
+        <diagramLabel
+            href="../model.gmfgraph#ActorNode_name"/>
+        <features
+            href="../../model.ecore#//ModelElement/name"/>
+      </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
           href="useCaseDiagram.gmftool#//@palette/@tools.1"/>
@@ -43,6 +51,26 @@
     </ownedChild>
   </nodes>
   <links>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="../model.gmfgraph#ParticipateLabel"/>
+    </labelMappings>
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="useCaseDiagram.gmftool#//@palette/@tools.3"/>
+    <diagramLink
+        href="../model.gmfgraph#Participate"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="../../model.ecore#//requirement/Actor/participatedUseCases"/>
+  </links>
+  <links>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="../model.gmfgraph#InitiateLabel"/>
+    </labelMappings>
     <tool
         xsi:type="gmftool:CreationTool"
         href="useCaseDiagram.gmftool#//@palette/@tools.2"/>
@@ -50,7 +78,45 @@
         href="../model.gmfgraph#Initiate"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="../../model.ecore#//requirement/ActorInstance/instantiatedActor"/>
+        href="../../model.ecore#//requirement/Actor/initiatedUseCases"/>
+  </links>
+  <links>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="../model.gmfgraph#IncludeLabel"/>
+    </labelMappings>
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="useCaseDiagram.gmftool#//@palette/@tools.4"/>
+    <diagramLink
+        href="../model.gmfgraph#Include"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="../../model.ecore#//requirement/UseCase/includedUseCases"/>
+    <creationConstraints>
+      <sourceEnd
+          body="self &lt;> oppositeEnd"/>
+    </creationConstraints>
+  </links>
+  <links>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="../model.gmfgraph#ExtendLabel"/>
+    </labelMappings>
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="useCaseDiagram.gmftool#//@palette/@tools.5"/>
+    <diagramLink
+        href="../model.gmfgraph#Extend"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="../../model.ecore#//requirement/UseCase/extendedUseCases"/>
+    <creationConstraints>
+      <sourceEnd
+          body="self &lt;> oppositeEnd"/>
+    </creationConstraints>
   </links>
   <diagram>
     <diagramCanvas
