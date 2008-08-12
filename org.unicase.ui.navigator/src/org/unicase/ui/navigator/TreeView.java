@@ -105,12 +105,12 @@ public class TreeView extends ViewPart {
 		viewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
 			public void selectionChanged(SelectionChangedEvent event) {
-				setActioveProjectSpace(event);
+				setActiveProjectSpace(event);
 			}
 		});
 	}
 
-	private void setActioveProjectSpace(SelectionChangedEvent event) {
+	private void setActiveProjectSpace(SelectionChangedEvent event) {
 
 		if (event.getSelection() instanceof IStructuredSelection) {
 			IStructuredSelection selection = (IStructuredSelection) event
