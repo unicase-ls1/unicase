@@ -1,5 +1,9 @@
 package org.unicase.ui.stem.views;
 
+import java.net.URL;
+
+import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
@@ -8,34 +12,29 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.dialogs.ErrorDialog;
-import org.eclipse.jface.viewers.ColumnLabelProvider;
-import org.eclipse.jface.viewers.ColumnViewer;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.TreeViewerColumn;
-import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.Transfer;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Tree;
+import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.internal.decorators.DecoratorManager;
 import org.eclipse.ui.part.DrillDownAdapter;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.common.dnd.UCDropAdapter;
 import org.unicase.ui.meeditor.MEEditor;
 import org.unicase.ui.meeditor.MEEditorInput;
@@ -62,7 +61,10 @@ public class IterationPlanningView extends ViewPart {
 	private TreeViewer viewer;
 	private DrillDownAdapter drillDownAdapter;
 	private Action doubleClickAction;
-	private AssignedToLabelProvider assignedToLabelProvider;
+	private Action groupByUser;
+	private Action groupFlat;
+	private Action groupByAnnotated;
+	private WorkpackageContentProvider workpackageContentProvider;
 
 	/*
 	 * The content provider class is responsible for providing objects to the
@@ -83,9 +85,14 @@ public class IterationPlanningView extends ViewPart {
 	 * it.
 	 */
 	public void createPartControl(Composite parent) {
-		viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL |SWT.FULL_SELECTION);
+		IActionBars bars = getViewSite().getActionBars();
+		fillLocalToolBar(bars.getToolBarManager());
+
+		viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL
+				| SWT.FULL_SELECTION);
 		drillDownAdapter = new DrillDownAdapter(viewer);
-		viewer.setContentProvider(new WorkpackageContentProvider());
+		workpackageContentProvider = new WorkpackageContentProvider();
+		viewer.setContentProvider(workpackageContentProvider);
 		IDecoratorManager decoratorManager = new DecoratorManager();
 		viewer.setLabelProvider(new DecoratingLabelProvider(
 				new LabelProvider(), decoratorManager.getLabelDecorator()));
@@ -115,9 +122,8 @@ public class IterationPlanningView extends ViewPart {
 		viewer.setInput(workspace.getProjectSpaces().get(0).getProject());
 		Tree tree = viewer.getTree();
 		tree.setHeaderVisible(true);
-		
+
 		TreeViewerColumn column = new TreeViewerColumn(viewer, SWT.NONE);
-		column.getColumn().setText("Column0");
 		column.getColumn().setWidth(200);
 		column.setLabelProvider(new EMFColumnLabelProvider());
 
@@ -126,16 +132,12 @@ public class IterationPlanningView extends ViewPart {
 		column1.getColumn().setWidth(200);
 		column1.setLabelProvider(new TaskObjectLabelProvider());
 		column1.setEditingSupport(new TaskObjectEditingSupport(viewer));
-		
+
 		TreeViewerColumn column2 = new TreeViewerColumn(viewer, SWT.NONE);
 		column2.getColumn().setText("Assigned to");
 		column2.getColumn().setWidth(200);
-		assignedToLabelProvider = new AssignedToLabelProvider();
-		column2.setLabelProvider(assignedToLabelProvider);
+		column2.setLabelProvider(new AssignedToLabelProvider());
 		column2.setEditingSupport(new AssignedToEditingSupport(viewer));
-	
-		ColumnViewerSorter cSorter = new ColumnViewerSorter(viewer, column2, assignedToLabelProvider);
-			
 
 		// Create the help context id for the viewer's control
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(viewer.getControl(),
@@ -143,6 +145,63 @@ public class IterationPlanningView extends ViewPart {
 
 		hookDoubleClickAction();
 		addDNDSupport();
+
+	}
+
+	private void fillLocalToolBar(IToolBarManager toolBarManager) {
+		buildActions();
+		toolBarManager.add(groupFlat);
+		toolBarManager.add(groupByAnnotated);
+		toolBarManager.add(groupByUser);
+
+	}
+
+	private void buildActions() {
+		groupByUser = new Action() {
+			@Override
+			public void run() {
+				workpackageContentProvider.setGroupBy(WorkpackageContentProvider.USER_GROUP);
+				viewer.refresh();
+			}
+		};
+		groupByUser.setText("Group by user");
+		groupByUser.setToolTipText("Group by user");
+
+		URL url = Platform.find(Platform.getBundle("org.unicase.ui.stem"),
+				new Path("icons/User.gif"));
+		ImageDescriptor imageDescriptor = ImageDescriptor.createFromURL(url);
+		groupByUser.setImageDescriptor(imageDescriptor);
+
+		groupFlat = new Action() {
+			@Override
+			public void run() {
+				workpackageContentProvider.setGroupBy(WorkpackageContentProvider.FLAT_GROUP);
+				viewer.refresh();
+			}
+		};
+		groupFlat.setText("Show flat list");
+		groupFlat.setToolTipText("Show flat list");
+
+		url = Platform.find(Platform.getBundle("org.unicase.ui.stem"),
+				new Path("icons/flatLayout.gif"));
+		imageDescriptor = ImageDescriptor.createFromURL(url);
+		groupFlat.setImageDescriptor(imageDescriptor);
+
+		groupByAnnotated = new Action() {
+			@Override
+			public void run() {
+				workpackageContentProvider.setGroupBy(WorkpackageContentProvider.ANNOTATED_GROUP);
+				viewer.refresh();
+			}
+		};
+
+		groupByAnnotated.setText("Group by user");
+		groupByAnnotated.setToolTipText("Click to add new repository");
+
+		url = Platform.find(Platform.getBundle("org.unicase.ui.stem"),
+				new Path("icons/hierarchicalLayout.gif"));
+		imageDescriptor = ImageDescriptor.createFromURL(url);
+		groupByAnnotated.setImageDescriptor(imageDescriptor);
 
 	}
 
@@ -156,8 +215,7 @@ public class IterationPlanningView extends ViewPart {
 
 		});
 	}
-	
-	
+
 	private void openME(Object object) {
 		if (object == null) {
 			return;
@@ -165,7 +223,7 @@ public class IterationPlanningView extends ViewPart {
 		if (object instanceof ModelElement) {
 			ModelElement modelElement = (ModelElement) object;
 			if (object instanceof MEDiagram) {
-//				openDiagram((MEDiagram) modelElement);
+				// openDiagram((MEDiagram) modelElement);
 			} else {
 				MEEditorInput input = new MEEditorInput(modelElement);
 				try {
@@ -180,7 +238,6 @@ public class IterationPlanningView extends ViewPart {
 			}
 		}
 
-		
 	}
 
 	/**
@@ -197,98 +254,12 @@ public class IterationPlanningView extends ViewPart {
 
 		viewer.addDragSupport(dndOperations, transfers, new ViewerDragAdapter(
 				viewer));
-		viewer.addDropSupport(dndOperations, transfers,
-				new UCDropAdapter(
+		viewer
+				.addDropSupport(dndOperations, transfers, new UCDropAdapter(
 						TransactionalEditingDomain.Registry.INSTANCE
 								.getEditingDomain("org.unicase.EditingDomain"),
 						viewer));
 
 	}
 
-	
-	
-	private static  class ColumnViewerSorter extends ViewerComparator {
-	
-		public static final int ASC = 1;
-		public static final int DESC = -1;
-		
-		private int direction = 1;
-		
-		private TreeViewerColumn column;
-		private ColumnLabelProvider columnLabelProvider;
-		
-		private ColumnViewer viewer;
-		
-		public ColumnViewerSorter(ColumnViewer viewer, TreeViewerColumn column,  ColumnLabelProvider columnLabelProvider) {
-			this.columnLabelProvider = columnLabelProvider;
-			this.column = column;
-			this.viewer = viewer;
-			this.column.getColumn().addSelectionListener(new SelectionAdapter() {
-
-				public void widgetSelected(SelectionEvent e) {
-					if( ColumnViewerSorter.this.viewer.getComparator() != null ) {
-						if( ColumnViewerSorter.this.viewer.getComparator() == ColumnViewerSorter.this ) {
-							if( direction == ASC ) {
-								setSorter(ColumnViewerSorter.this, DESC);
-							}else{
-								setSorter(ColumnViewerSorter.this, ASC);
-							}
-						} else {
-							setSorter(ColumnViewerSorter.this, ASC);
-						}
-					} else {
-						setSorter(ColumnViewerSorter.this, ASC);
-					}
-				}
-			});
-		}
-		
-		public void setSorter(ColumnViewerSorter sorter, int direction) {
-				column.getColumn().getParent().setSortColumn(column.getColumn());
-				sorter.direction = direction;
-				
-				if( direction == ASC ) {
-					column.getColumn().getParent().setSortDirection(SWT.DOWN);
-				} else {
-					column.getColumn().getParent().setSortDirection(SWT.UP);
-				}
-				
-				if( viewer.getComparator() == sorter ) {
-					viewer.refresh();
-				} else {
-					viewer.setComparator(sorter);
-				}
-	
-		}
-
-		public int compare(Viewer viewer, Object e1, Object e2) {
-			    	
-		    String name1 = columnLabelProvider.getText(e1);
-			String name2 = columnLabelProvider.getText(e2);
-
-			if (name1 == null) {
-				name1 = "";
-			}
-			if (name2 == null) {
-				name2 = "";
-			}
-
-			// use the comparator to compare the strings
-			if(direction == ASC){
-				return getComparator().compare(name1, name2);
-			}else{
-				return getComparator().compare(name2, name1);
-			}
-		
-		}
-		
-		
-		@Override
-		public int category(Object element) {
-			if(element instanceof Annotation) return 1;
-			if(element instanceof WorkPackage) return 2;
-			return 3;
-		}
-		
-	}
 }

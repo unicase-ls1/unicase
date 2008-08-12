@@ -16,6 +16,7 @@
             id="org.unicase.ui.treeview.views.IterationPlanningView">
       </view>
       <view
+            allowMultiple="false"
             category="org.unicase"
             class="org.unicase.ui.stem.views.StatusView"
             icon="icons/StatusView.gif"
