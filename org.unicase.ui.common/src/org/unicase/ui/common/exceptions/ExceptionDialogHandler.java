@@ -1,9 +1,11 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.ui.common.exceptions;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
@@ -11,17 +13,21 @@ import org.eclipse.ui.PlatformUI;
 /**
  * This abstract calls is to show exceptions to the user in a unified way.
  * 
- * @author helming
+ * @author Helming
  * 
  */
-public abstract class ExceptionDialogHandler {
+public final class ExceptionDialogHandler {
 
+	
+	private ExceptionDialogHandler(){
+		
+	}
+	
 	/**
 	 * This method opens a standard error dialog displaying an exception to the
 	 * user.
 	 * 
-	 * @param e
-	 *            the exception to be shown.
+	 * @param e  the exception to be shown.
 	 */
 	public static void showExceptionDialog(Exception e) {
 		showExceptionDialog("Unexpected exception occured", e);
@@ -31,8 +37,7 @@ public abstract class ExceptionDialogHandler {
 	 * This method opens a standard error dialog displaying an exception to the
 	 * user.
 	 * 
-	 * @param e
-	 *            the exception to be shown.
+	 * @param  message the message to be shown.
 	 */
 	public static void showExceptionDialog(String message) {
 		showExceptionDialog(message, null);
@@ -42,12 +47,13 @@ public abstract class ExceptionDialogHandler {
 	 * This method opens a standard error dialog displaying an exception to the
 	 * user.
 	 * 
-	 * @param cause
-	 *            the exception to be shown.
+	 * @param cause the exception to be shown.
+	 * @param message the message to be shown.
 	 */
 	public static void showExceptionDialog(String message, Exception cause) {
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
 				.getShell();
+		
 		//JH: implement proper exception handler
 //		IStatus status = Status.OK_STATUS;
 //		if (cause instanceof CoreException) {
@@ -60,7 +66,7 @@ public abstract class ExceptionDialogHandler {
 			stringBuilder.append(cause.getMessage());
 		}
 		String string = stringBuilder.toString();
-		MessageDialog.openError(null, cause.getClass().getName(), string);
+		MessageDialog.openError(shell, cause.getClass().getName(), string);
 	}
 
 }

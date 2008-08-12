@@ -8,6 +8,7 @@ package org.unicase.ui.common.decorators;
 
 import java.net.URL;
 
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -18,9 +19,9 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
 
-/**
+/**.
  * 
- * This is the StateLabelDecorator for elements shown in viewers
+ * The decorator to show state of an element (blocked or open) shown in viewers
  * 
  * @author Helming
  * 
@@ -31,37 +32,56 @@ public class StateDecorator implements ILightweightLabelDecorator {
 	 * wizard.
 	 */
 	public static final String TOP_RIGHT = "TOP_RIGHT";
+	/**
+	 * String constants for the various icon placement options from the template
+	 * wizard.
+	 */
 	public static final String TOP_LEFT = "TOP_LEFT";
+	/**
+	 * String constants for the various icon placement options from the template
+	 * wizard.
+	 */
 	public static final String BOTTOM_RIGHT = "BOTTOM_RIGHT";
+	/**
+	 * String constants for the various icon placement options from the template
+	 * wizard.
+	 */
 	public static final String BOTTOM_LEFT = "BOTTOM_LEFT";
+	/**
+	 * String constants for the various icon placement options from the template
+	 * wizard.
+	 */
 	public static final String UNDERLAY = "UNDERLAY";
 
-	/** 
+	/**.
 	 * The integer value representing the placement options 
-	 *
-	 * 
 	 */
 	private int quadrant;
 
-	/** The icon image location in the project folder */
+	/**. 
+	 * The icon image location in the project folder 
+	 */
 	private String openPath = "icons/open.gif"; // NON-NLS-1
 
-	/** The icon image location in the project folder */
+	/** .
+	 * The icon image location in the project folder 
+	 */
 	private String blockedPath = "icons/blocked.gif"; // NON-NLS-1
 
-	/**
+	/**.
 	 * The image description used in
 	 * <code>addOverlay(ImageDescriptor, int)</code>
 	 */
 	private ImageDescriptor descriptor;
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/**.
+	 * {@inheritDoc}
 	 * @see
 	 * org.eclipse.jface.viewers.ILightweightLabelDecorator#decorate(java.lang
 	 * .Object, org.eclipse.jface.viewers.IDecoration)
-	 */
+	 * @param element element
+	 * @param decoration decoration
+	 */	
 	public void decorate(Object element, IDecoration decoration) {
 		/**
 		 * Checks that the element is an IResource with the 'Read-only'
@@ -78,15 +98,15 @@ public class StateDecorator implements ILightweightLabelDecorator {
 		}
 		try {
 			if (me.getMEState().getStatus().equals(MEState.OPEN)) {
-				url = Platform.find(Platform
+				url = FileLocator.find(Platform
 						.getBundle("org.unicase.ui.common"),
-						new Path(openPath));
+						new Path(openPath), null);
 
 			}
 			if (me.getMEState().getStatus().equals(MEState.BLOCKED)) {
-				url = Platform.find(Platform
+				url =FileLocator.find(Platform
 						.getBundle("org.unicase.ui.common"), new Path(
-						blockedPath));
+						blockedPath), null);
 			}
 		} catch (CircularDependencyException e) {
 			// JH : add questionmark image
@@ -103,9 +123,8 @@ public class StateDecorator implements ILightweightLabelDecorator {
 		decoration.addOverlay(descriptor, quadrant);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/**.
+	 * {@inheritDoc}
 	 * @see
 	 * org.eclipse.jface.viewers.IBaseLabelProvider#addListener(org.eclipse.
 	 * jface.viewers.ILabelProviderListener)
@@ -113,17 +132,15 @@ public class StateDecorator implements ILightweightLabelDecorator {
 	public void addListener(ILabelProviderListener listener) {
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#dispose()
+	/**.
+	 * {@inheritDoc}
+	 *  @see org.eclipse.jface.viewers.IBaseLabelProvider#dispose()
 	 */
 	public void dispose() {
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/**.
+	 * {@inheritDoc}
 	 * @see
 	 * org.eclipse.jface.viewers.IBaseLabelProvider#isLabelProperty(java.lang
 	 * .Object, java.lang.String)
@@ -132,9 +149,8 @@ public class StateDecorator implements ILightweightLabelDecorator {
 		return false;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/**.
+	 * {@inheritDoc}
 	 * @see
 	 * org.eclipse.jface.viewers.IBaseLabelProvider#removeListener(org.eclipse
 	 * .jface.viewers.ILabelProviderListener)
