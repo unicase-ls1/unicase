@@ -246,7 +246,7 @@
            </objectClass>
         </enablement>
      </decorator>
-     <decorator
+    <!-- <decorator
            adaptable="true"
            class="org.unicase.ui.common.decorators.ReadOnly"
            id="org.unicase.ui.common.decorators.ReadOnly"
@@ -268,7 +268,7 @@
               </or>
            </and>
         </enablement>
-     </decorator>
+     </decorator> -->
   </extension>
     <extension
           point="org.eclipse.ui.perspectives">
