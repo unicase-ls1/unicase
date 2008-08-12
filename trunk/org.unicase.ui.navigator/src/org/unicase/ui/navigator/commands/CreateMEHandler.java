@@ -15,13 +15,9 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.model.ModelElement;
 import org.unicase.model.document.LeafSection;
-import org.unicase.ui.meeditor.MEEditor;
-import org.unicase.ui.meeditor.MEEditorInput;
 import org.unicase.workspace.WorkspaceManager;
 
 /**

@@ -184,7 +184,7 @@
             commandId="org.unicase.ui.navigator.newLeafSection">
       </handler>
       <handler
-            class="org.unicase.ui.navigator.commands.NewCompositeSection"
+            class="org.unicase.ui.navigator.commands.NewCompositeSectionHandler"
             commandId="org.unicase.ui.navigator.newCompositeSection">
       </handler>
    </extension>

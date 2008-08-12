@@ -1,40 +1,51 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.ui.navigator.commands;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.IHandler;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.ui.handlers.HandlerUtil;
+import org.unicase.model.ModelElement;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.workspace.WorkspaceManager;
 
-public class NewCompositeSection extends AbstractHandler implements IHandler {
+/**
+ * 
+ * @author Helming
+ * This is the handler to create a new CompositeSection
+ *
+ */
 
+public class NewCompositeSectionHandler extends AbstractHandler  {
+
+	private static final String NEW_COMPOSITESECTION_NAME = "new composite section";
+	
+	/**.
+	 * {@inheritDoc}}
+	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		//JH: put this in helper
-		ISelection sel = HandlerUtil.getCurrentSelection(event);
-		if (!(sel instanceof IStructuredSelection)) {
+		
+		
+		ModelElement me = ActionHelper.getSelection(event);
+		if (me == null) {
 			return null;
 		}
-		IStructuredSelection ssel = (IStructuredSelection) sel;
-		if (ssel.isEmpty()) {
+		
+		if (!(me instanceof CompositeSection)) {
 			return null;
 		}
-
-		Object o = ssel.getFirstElement();
-		if (!(o instanceof CompositeSection)) {
-			return null;
-		}
-		final CompositeSection compositeSection = (CompositeSection) o;
+		final CompositeSection compositeSection = (CompositeSection) me;
 
 		final CompositeSection createCompositeSection = DocumentFactory.eINSTANCE
 				.createCompositeSection();
-		createCompositeSection.setName("new composite section");
+		createCompositeSection.setName(NEW_COMPOSITESECTION_NAME);
 
 		TransactionalEditingDomain domain = WorkspaceManager.getInstance()
 				.getCurrentWorkspace().getEditingDomain();

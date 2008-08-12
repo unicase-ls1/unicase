@@ -9,7 +9,6 @@ package org.unicase.ui.navigator;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -35,7 +34,6 @@ import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionFactory;
-import org.eclipse.ui.internal.decorators.DecoratorManager;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.DiagramType;
@@ -72,14 +70,17 @@ public class TreeView extends ViewPart {
 	@Override
 	public void createPartControl(Composite parent) {
 		viewer = new TreeViewer(parent);
-		IDecoratorManager decoratorManager = new DecoratorManager();
+		IDecoratorManager decoratorManager = PlatformUI.getWorkbench()
+				.getDecoratorManager();
 		viewer.setLabelProvider(new DecoratingLabelProvider(
 				new TreeLabelProvider(), decoratorManager.getLabelDecorator()));
 		viewer.setContentProvider(new TreeContentProvider());
 		viewer.setInput(WorkspaceManager.getInstance().getCurrentWorkspace());
 
+		//this is for workaround for update problem in navigator
 		getSite().setSelectionProvider(viewer);
 
+		//set context menu
 		MenuManager menuMgr = new MenuManager();
 		menuMgr.add(new Separator("additions"));
 		getSite().registerContextMenu(menuMgr, viewer);
@@ -92,7 +93,7 @@ public class TreeView extends ViewPart {
 		addDragNDropSupport();
 		addSelectionListener();
 
-		// add global action handlers
+		// add global action handlers for undo/redo
 		getViewSite().getActionBars().setGlobalActionHandler(
 				ActionFactory.UNDO.getId(), undoAction);
 		getViewSite().getActionBars().setGlobalActionHandler(
@@ -104,45 +105,42 @@ public class TreeView extends ViewPart {
 		viewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
 			public void selectionChanged(SelectionChangedEvent event) {
-				if (event.getSelection() instanceof IStructuredSelection) {
-					IStructuredSelection selection = (IStructuredSelection) event
-							.getSelection();
-					Object obj = selection.getFirstElement();
-					
-					final ProjectSpace projectSpace;
-					if (obj instanceof ModelElement) {
-						ModelElement me = (ModelElement) obj;
-						projectSpace = WorkspaceManager
-								.getProjectSpace(me);
-					}else if(obj instanceof ProjectSpace){
-						 projectSpace = (ProjectSpace)obj;
-					}else{
-						projectSpace = null;
-					}
-					
-					TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-					.getEditingDomain("org.unicase.EditingDomain");
-					if(projectSpace != null){
-						domain.getCommandStack().execute(
-								new RecordingCommand(domain) {
+				setActioveProjectSpace(event);
+			}
+		});
+	}
 
-									protected void doExecute() {
-										WorkspaceManager.getInstance()
-												.getCurrentWorkspace()
-												.setActiveProjectSpace(
-														projectSpace);
+	private void setActioveProjectSpace(SelectionChangedEvent event) {
 
-									}
+		if (event.getSelection() instanceof IStructuredSelection) {
+			IStructuredSelection selection = (IStructuredSelection) event
+					.getSelection();
+			Object obj = selection.getFirstElement();
 
-								});
-
-					}
-					
-				}
+			final ProjectSpace projectSpace;
+			if (obj instanceof ModelElement) {
+				ModelElement me = (ModelElement) obj;
+				projectSpace = WorkspaceManager.getProjectSpace(me);
+			} else if (obj instanceof ProjectSpace) {
+				projectSpace = (ProjectSpace) obj;
+			} else {
+				projectSpace = null;
 			}
 
-		});
+			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+					.getEditingDomain("org.unicase.EditingDomain");
+			if (projectSpace != null) {
+				domain.getCommandStack().execute(new RecordingCommand(domain) {
 
+					protected void doExecute() {
+						WorkspaceManager.getInstance().getCurrentWorkspace()
+								.setActiveProjectSpace(projectSpace);
+
+					}
+
+				});
+			}
+		}
 	}
 
 	private void makeActions() {
