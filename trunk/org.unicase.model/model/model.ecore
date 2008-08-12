@@ -330,6 +330,10 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="identifiedClasses" upperBound="-1"
           eType="#//classes/Class" eOpposite="#//classes/Class/participatedUseCases"
           eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="includedUseCases" upperBound="-1"
+          eType="#//requirement/UseCase" eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="extendedUseCases" upperBound="-1"
+          eType="#//requirement/UseCase" eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Scenario" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="steps" upperBound="-1"
