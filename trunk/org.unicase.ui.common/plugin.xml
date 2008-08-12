@@ -246,29 +246,6 @@
            </objectClass>
         </enablement>
      </decorator>
-    <!-- <decorator
-           adaptable="true"
-           class="org.unicase.ui.common.decorators.ReadOnly"
-           id="org.unicase.ui.common.decorators.ReadOnly"
-           label="Read-only Decorator"
-           lightweight="true"
-           state="true">
-        <enablement>
-           <and>
-              <objectClass
-                    name="org.eclipse.core.resources.IResource">
-              </objectClass>
-              <or>
-                 <objectClass
-                       name="org.eclipse.core.resources.IFolder">
-                 </objectClass>
-                 <objectClass
-                       name="org.eclipse.core.resources.IFile">
-                 </objectClass>
-              </or>
-           </and>
-        </enablement>
-     </decorator> -->
   </extension>
     <extension
           point="org.eclipse.ui.perspectives">
