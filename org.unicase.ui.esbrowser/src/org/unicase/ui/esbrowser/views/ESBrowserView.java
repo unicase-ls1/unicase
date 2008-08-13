@@ -96,7 +96,7 @@ public class ESBrowserView extends ViewPart {
 			if (object instanceof Workspace) {
 				return ((Workspace) object).getServerInfos().toArray();
 			} else if (object instanceof ServerInfo) {
-//				final boolean noChildren = false;
+				final boolean[] noChildren = {false};
 				serverInfo = (ServerInfo) object;
 				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
@@ -109,7 +109,7 @@ public class ESBrowserView extends ViewPart {
 							LoginDialog dialog = new LoginDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(), session, serverInfo);
 							dialog.open();
 							if(dialog.getReturnCode()==LoginDialog.CANCELED){
-//								noChildren = true;
+								noChildren[0] = true;
 							}
 							session = dialog.getSession();
 						}
@@ -125,8 +125,9 @@ public class ESBrowserView extends ViewPart {
 						}
 					}
 				});
-//				if(noChildren)
-					
+				if(noChildren[0]){
+					return new Object[0];
+				}
 				
 				EList<ProjectInfo> pis = serverInfo.getProjectInfos();
 				for (ProjectInfo pi : pis) {
