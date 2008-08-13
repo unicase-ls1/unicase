@@ -149,6 +149,9 @@ public final class ActionHelper {
 		if (diagram.getType().equals(DiagramType.USECASE_DIAGRAM)) {
 			id = "org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorID";
 		}
+		if (diagram.getType().equals(DiagramType.COMPONENT_DIAGRAM)) {
+			id = "org.unicase.ui.componentDiagram.part.ModelDiagramEditorID";
+		}
 		if (id == null) {
 			throw new RuntimeException("Unsupported diagram type");
 		}
