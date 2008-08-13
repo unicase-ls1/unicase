@@ -12,15 +12,11 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.task.TaskFactory;
-import org.unicase.ui.common.exceptions.ExceptionDialogHandler;
-import org.unicase.ui.meeditor.MEEditorInput;
 
 /**.
  * This is a generic handler to add different types of Annotations to a ModelElement
@@ -116,14 +112,9 @@ public class AddAnnotationHandler extends AbstractHandler {
 	 * @param annotation
 	 */
 	private void openAnnotation(Annotation annotation) {
-		MEEditorInput input = new MEEditorInput(annotation);
-		try {
-			PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-					.getActivePage().openEditor(input,
-							"org.unicase.ui.meeditor", true);
-		} catch (PartInitException e) {
-			ExceptionDialogHandler.showExceptionDialog(e);
-		}
+		
+		ActionHelper.openModelElement(annotation);
+		
 	}
 
 	

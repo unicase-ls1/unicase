@@ -6,9 +6,6 @@
  */
 package org.unicase.ui.navigator;
 
-import org.eclipse.emf.common.ui.URIEditorInput;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -16,7 +13,6 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
-import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -31,16 +27,13 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IDecoratorManager;
-import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
-import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
+import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.ui.common.dnd.UCDropAdapter;
-import org.unicase.ui.meeditor.MEEditor;
-import org.unicase.ui.meeditor.MEEditorInput;
 import org.unicase.ui.navigator.commands.RedoAction;
 import org.unicase.ui.navigator.commands.UndoAction;
 import org.unicase.workspace.ProjectSpace;
@@ -199,48 +192,12 @@ public class TreeView extends ViewPart {
 		if (object == null) {
 			return;
 		}
-		if (object instanceof ModelElement) {
-			ModelElement modelElement = (ModelElement) object;
-			if (object instanceof MEDiagram) {
-				openDiagram((MEDiagram) modelElement);
-			} else {
-				MEEditorInput input = new MEEditorInput(modelElement);
-				try {
-					PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-							.getActivePage().openEditor(input, MEEditor.ID,
-									true);
-				} catch (PartInitException e) {
-					ErrorDialog.openError(PlatformUI.getWorkbench()
-							.getActiveWorkbenchWindow().getShell(), "Error", e
-							.getMessage(), e.getStatus());
-				}
-			}
+		if (object instanceof MEDiagram) {
+			ActionHelper.openMEDiagram((MEDiagram) object);
+		}else{
+			ActionHelper.openModelElement((ModelElement)object);
 		}
-
+			
 	}
 
-	private void openDiagram(MEDiagram diagram) {
-		String id = null;
-		if (diagram.getType().equals(DiagramType.CLASS_DIAGRAM)) {
-			id = "org.unicase.model.classDiagram.part.ModelDiagramEditorID";
-		}
-		if (diagram.getType().equals(DiagramType.USECASE_DIAGRAM)) {
-			id = "org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorID";
-		}
-		if (id == null) {
-			throw new RuntimeException("Unsupported diagram type");
-		}
-		URI uri = EcoreUtil.getURI(diagram);
-		uri.appendFragment(diagram.eResource().getURIFragment(diagram));
-		URIEditorInput input = new URIEditorInput(uri);
-
-		try {
-			PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-					.getActivePage().openEditor(input, id, true);
-		} catch (PartInitException e) {
-			ErrorDialog.openError(PlatformUI.getWorkbench()
-					.getActiveWorkbenchWindow().getShell(), "Error", e
-					.getMessage(), e.getStatus());
-		}
-	}
 }
