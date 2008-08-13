@@ -67,6 +67,11 @@
 			<fileset dir="${unicaseWorkspaceDir}" includes="**/ps-*" />
 		</delete>
 	</target>
+	
+	<target name="cleanServer" description="delete the unicase serverspace">
+			<echo message="Deleting serverspace..." />
+			<delete file="${unicaseWorkspaceDir}/emfstore/storage" />
+		</target>
 
 
 	<target name="cleanAllUnicaseData" description="clean up workspace and db">
