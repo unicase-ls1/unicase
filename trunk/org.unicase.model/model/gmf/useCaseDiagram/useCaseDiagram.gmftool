@@ -15,7 +15,8 @@
         title="Actor"/>
     <tools
         xsi:type="gmftool:CreationTool"
-        title="initiate">
+        title="Initiate"
+        description="">
       <smallIcon
           xsi:type="gmftool:DefaultImage"/>
       <largeIcon
@@ -23,7 +24,7 @@
     </tools>
     <tools
         xsi:type="gmftool:CreationTool"
-        title="participate">
+        title="Participate">
       <smallIcon
           xsi:type="gmftool:DefaultImage"/>
       <largeIcon
@@ -31,14 +32,19 @@
     </tools>
     <tools
         xsi:type="gmftool:CreationTool"
-        title="include">
+        title="Include">
       <smallIcon
-          xsi:type="gmftool:DefaultImage"/>
-      <largeIcon
-          xsi:type="gmftool:DefaultImage"/>
+          xsi:type="gmftool:BundleImage"
+          path="/icons/full/obj16/Include.gif"
+          bundle="org.unicase.model.edit"/>
     </tools>
     <tools
         xsi:type="gmftool:CreationTool"
-        title="extend"/>
+        title="Extend">
+      <smallIcon
+          xsi:type="gmftool:BundleImage"
+          path="/icons/full/obj16/Extend.gif"
+          bundle="org.unicase.model.edit"/>
+    </tools>
   </palette>
 </gmftool:ToolRegistry>
