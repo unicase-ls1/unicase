@@ -31,7 +31,6 @@ import org.unicase.emfstore.esmodel.accesscontrol.roles.ReaderRole;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesFactory;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
-import org.unicase.emfstore.esmodel.accesscontrol.roles.impl.ServerAdminImpl;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.StorageException;
 
@@ -196,6 +195,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	public void addParticipant(SessionId sessionId, ProjectId projectId,
 			ACOrgUnitId participant) throws EmfStoreException {
 		authorizationControl.checkServerAdminAccess(sessionId);
+		projectId = getProjectId(projectId);
 		ACOrgUnit orgUnit = getOrgUnit(participant);
 		for (Role role : orgUnit.getRoles()) {
 			if (role.getProjects().contains(projectId)) {
@@ -204,15 +204,15 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		}
 		// check whether reader role exists
 		for (Role role : orgUnit.getRoles()) {
-			if (role.eClass().equals(RolesPackage.eINSTANCE.getReaderRole())) {
-				role.getProjects().add(getProjectId(projectId));
+			if (isReader(role)) {
+				role.getProjects().add(projectId);
 				save();
 				return;
 			}
 		}
 		// else create new reader role
 		ReaderRole reader = RolesFactory.eINSTANCE.createReaderRole();
-		reader.getProjects().add(getProjectId(projectId));
+		reader.getProjects().add(projectId);
 		orgUnit.getRoles().add(reader);
 		save();
 	}
@@ -232,10 +232,11 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	public void removeParticipant(SessionId sessionId, ProjectId projectId,
 			ACOrgUnitId participant) throws EmfStoreException {
 		authorizationControl.checkServerAdminAccess(sessionId);
+		projectId = getProjectId(projectId);
 		ACOrgUnit orgUnit = getOrgUnit(participant);
 		for (Role role : orgUnit.getRoles()) {
 			if (role.getProjects().contains(projectId)) {
-				role.getProjects().remove(getProjectId(projectId));
+				role.getProjects().remove(projectId);
 				save();
 				return;
 			}
@@ -248,6 +249,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	public Role getRole(SessionId sessionId, ProjectId projectId,
 			ACOrgUnitId orgUnitId) throws EmfStoreException {
 		authorizationControl.checkServerAdminAccess(sessionId);
+		projectId = getProjectId(projectId);
 		ACOrgUnit oUnit = getOrgUnit(orgUnitId);
 		for (Role role : oUnit.getRoles()) {
 			if (role.getProjects().contains(projectId)) {
@@ -263,6 +265,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	public void changeRole(SessionId sessionId, ProjectId projectId,
 			ACOrgUnitId orgUnitId, EClass roleClass) throws EmfStoreException {
 		authorizationControl.checkServerAdminAccess(sessionId);
+		projectId = getProjectId(projectId);
 		ACOrgUnit orgUnit = getOrgUnit(orgUnitId);
 		// delete old role first
 		Role role = getRole(projectId, orgUnit);
@@ -272,7 +275,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		// add project to role if it exists
 		for (Role role1 : orgUnit.getRoles()) {
 			if (role1.eClass().getName().equals(roleClass.getName())) {
-				role1.getProjects().add(getProjectId(projectId));
+				role1.getProjects().add(projectId);
 				save();
 				return;
 			}
@@ -395,7 +398,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		ProjectInfo info = EsmodelFactory.eINSTANCE.createProjectInfo();
 		info.setName(project.getProjectName());
 		info.setDescription(project.getProjectDescription());
-		info.setProjectId(project.getProjectId());
+		info.setProjectId((ProjectId) EcoreUtil.copy(project.getProjectId()));
 		info.setVersion(project.getLastVersion().getPrimarySpec());
 		return info;
 	}
