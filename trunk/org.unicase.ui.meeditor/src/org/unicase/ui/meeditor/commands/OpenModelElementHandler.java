@@ -24,6 +24,8 @@ import org.unicase.ui.meeditor.MEEditorInput;
  */
 public class OpenModelElementHandler extends AbstractHandler {
 
+	private static final String ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE = "meToOpen";
+	
 	/**
 	 * . ({@inheritDoc})
 	 * 
@@ -40,9 +42,9 @@ public class OpenModelElementHandler extends AbstractHandler {
 
 		// We get the required model element Through activeModelelemet
 		// variable.
-		// This variable is already set, in the method which calls execute
+		// This variable is already set, in the method which calls to execute
 		// this command.
-		Object o = HandlerUtil.getVariableChecked(event, "activeModelelement");
+		Object o = HandlerUtil.getVariableChecked(event, ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE);
 		ModelElement me = (ModelElement) o;
 
 		if (o != null) {
