@@ -188,5 +188,18 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 		}
 		return super.eIsSet(featureID);
 	}
+	
+
+	/**
+	 * Checks whether the role is connected to a project.
+	 * 
+	 * @param projectId the project
+	 * @return true or false
+	 * @generated NOT
+	 */
+	protected boolean isMyProject(ProjectId projectId) {
+		return getProjects().contains(projectId);
+	}
+
 
 } // RoleImpl

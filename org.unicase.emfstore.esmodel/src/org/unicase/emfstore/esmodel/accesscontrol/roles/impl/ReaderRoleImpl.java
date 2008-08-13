@@ -43,7 +43,7 @@ public class ReaderRoleImpl extends RoleImpl implements ReaderRole {
 
 	@Override
 	public boolean canRead(ProjectId projectId, ModelElement modelElement) {
-		return true;
+		return isMyProject(projectId);
 	}
 
 	/**

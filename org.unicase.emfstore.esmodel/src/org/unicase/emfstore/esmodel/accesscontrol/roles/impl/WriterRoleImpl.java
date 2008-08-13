@@ -28,22 +28,22 @@ public class WriterRoleImpl extends RoleImpl implements WriterRole {
 
 	@Override
 	public boolean canCreate(ProjectId projectId, ModelElement modelElement) {
-		return true;
+		return isMyProject(projectId);
 	}
 
 	@Override
 	public boolean canDelete(ProjectId projectId, ModelElement modelElement) {
-		return true;
+		return isMyProject(projectId);
 	}
 
 	@Override
 	public boolean canModify(ProjectId projectId, ModelElement modelElement) {
-		return true;
+		return isMyProject(projectId);
 	}
 
 	@Override
 	public boolean canRead(ProjectId projectId, ModelElement modelElement) {
-		return true;
+		return isMyProject(projectId);
 	}
 
 	/**
