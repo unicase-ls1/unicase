@@ -235,6 +235,7 @@ public class EmfStoreController implements IApplication {
 		superUser.setName(AbstractAuthenticationControl.SUPER_USER);
 		superUser.setFirstName("super");
 		superUser.setLastName("user");
+		superUser.setDescription("default server admin");
 		superUser.getRoles().add(RolesFactory.eINSTANCE.createServerAdmin());
 		serverSpace.getUsers().add(superUser);
 		try {

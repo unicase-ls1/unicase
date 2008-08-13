@@ -271,6 +271,15 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		Role role = getRole(projectId, orgUnit);
 		if (role != null) {
 			role.getProjects().remove(projectId);
+			if(role.getProjects().size()==0) {
+				orgUnit.getRoles().remove(role);
+			}
+		}
+		// if server admin
+		if(roleClass.getName().equals(RolesPackage.Literals.SERVER_ADMIN.getName())) {
+			orgUnit.getRoles().add(RolesFactory.eINSTANCE.createServerAdmin());
+			save();
+			return;
 		}
 		// add project to role if it exists
 		for (Role role1 : orgUnit.getRoles()) {
@@ -280,7 +289,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 				return;
 			}
 		}
-		// create role if not existant
+		// create role if does not exists
 		Role newRole = (Role) RolesPackage.eINSTANCE.getEFactoryInstance()
 				.create(
 						(EClass) RolesPackage.eINSTANCE

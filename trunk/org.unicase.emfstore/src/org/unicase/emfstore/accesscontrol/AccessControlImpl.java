@@ -104,7 +104,8 @@ public class AccessControlImpl implements AuthenticationControl,
 			Set<ModelElement> modelElements) throws AccessControlException {
 		checkSession(sessionId);
 		ACUser user = sessionUserMap.get(sessionId).getUser();
-		List<Role> roles = user.getRoles();
+		List<Role> roles = new ArrayList<Role>(); 
+		roles.addAll(user.getRoles());
 		roles.addAll(getRolesFromGroups(user));
 		//FIXME
 		if (!canWrite(roles, projectId, null)) {
@@ -171,6 +172,7 @@ public class AccessControlImpl implements AuthenticationControl,
 		for(ACGroup group : serverSpace.getGroups()) {
 			if(group.getMembers().contains(orgUnit)) {
 				groups.add(group);
+				groups.addAll(getGroups(group));
 			}
 		}
 		return groups;
@@ -184,7 +186,8 @@ public class AccessControlImpl implements AuthenticationControl,
 			Set<ModelElement> modelElements) throws AccessControlException {
 		checkSession(sessionId);
 		ACUser user = sessionUserMap.get(sessionId).getUser();
-		List<Role> roles = user.getRoles();
+		List<Role> roles = new ArrayList<Role>(); 
+		roles.addAll(user.getRoles());
 		roles.addAll(getRolesFromGroups(user));
 		//FIXME
 		if (!canRead(roles, projectId, null)) {
