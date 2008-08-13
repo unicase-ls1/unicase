@@ -13,9 +13,6 @@ import org.eclipse.core.commands.IHandler;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.model.ModelElement;
 import org.unicase.model.document.LeafSection;
 import org.unicase.ui.common.commands.ActionHelper;
@@ -60,7 +57,7 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 					.getEFactoryInstance().create(newMEType);
 			newMEInstance.setName("new " + newMEType.getName());
 			// add this newly created model element to LeafSection
-			final LeafSection leafSection = getLeafSection(event);
+			final LeafSection leafSection = (LeafSection)ActionHelper.getSelectedModelElement();
 			if (leafSection != null) {
 				TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain();
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
@@ -74,34 +71,6 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 			}
 		}
 		return null;
-
-	}
-
-	
-
-	/**
-	 * Gets the leaf section right clicked on Navigator.
-	 * 
-	 * @param event
-	 * @return LeafSection;
-	 */
-	private LeafSection getLeafSection(ExecutionEvent event) {
-		ISelection sel = HandlerUtil.getCurrentSelection(event);
-		if (!(sel instanceof IStructuredSelection)) {
-			return null;
-		}
-
-		IStructuredSelection ssel = (IStructuredSelection) sel;
-		if (ssel.isEmpty()) {
-			return null;
-		}
-
-		Object o = ssel.getFirstElement();
-		if (!(o instanceof LeafSection)) {
-			return null;
-		}
-
-		return (LeafSection) o;
 
 	}
 

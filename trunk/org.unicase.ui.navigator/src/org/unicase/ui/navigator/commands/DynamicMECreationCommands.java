@@ -15,15 +15,13 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.action.IContributionItem;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.CompoundContributionItem;
 import org.eclipse.ui.menus.CommandContributionItem;
 import org.eclipse.ui.menus.CommandContributionItemParameter;
 import org.unicase.model.ModelElement;
 import org.unicase.model.document.LeafSection;
+import org.unicase.ui.common.commands.ActionHelper;
 
 /**
  * 
@@ -48,7 +46,7 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 		// get the leaf section right clicked on in navigator.
 		// For each ME type contained in this leaf section is a
 		// creation command added to context menu.
-		LeafSection leafSection = getSelectedLeafSection();
+		LeafSection leafSection = (LeafSection)ActionHelper.getSelectedModelElement();
 		if (leafSection == null) {
 			return new IContributionItem[0];
 		}
@@ -123,37 +121,7 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 
 	}
 
-	/**
-	 * Get the leaf section right clicked on in navigator.
-	 * 
-	 * @return LeafSection
-	 */
-	private LeafSection getSelectedLeafSection() {
-		ISelectionService selectionService = 
-			(ISelectionService)PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getPartService()
-					.getActivePart().getSite().getService(ISelectionService.class);
 	
-		
-		ISelection sel = selectionService.getSelection();
-		if (!(sel instanceof IStructuredSelection)) {
-			return null;
-		}
-
-		IStructuredSelection ssel = (IStructuredSelection) sel;
-		if (ssel.isEmpty()) {
-			return null;
-		}
-
-		Object o = ssel.getFirstElement();
-		if (!(o instanceof LeafSection)) {
-			return null;
-		}
-
-		return (LeafSection) o;
-
-	}
-
 	/**
 	 * 
 	 * @author Hodaie This class is a helper to sort the list of contained
