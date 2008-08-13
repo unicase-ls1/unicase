@@ -969,7 +969,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 				IS_ORDERED);
 		initEAttribute(getMethodArgument_Signature(), theEcorePackage
 				.getEString(), "signature", null, 0, 1, MethodArgument.class,
-				!IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE,
+				IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE,
 				!IS_ID, !IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMethodArgument_Label(), theEcorePackage.getEString(),
 				"label", null, 0, 1, MethodArgument.class, !IS_TRANSIENT,

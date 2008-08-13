@@ -36,34 +36,24 @@ import org.unicase.model.task.TaskPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.rationale.impl.IssueImpl#isChecked <em>Checked
- * </em>}</li>
- * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getAssignee <em>
- * Assignee</em>}</li>
- * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getProposals <em>
- * Proposals</em>}</li>
- * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getSolution <em>
- * Solution</em>}</li>
- * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getCriteria <em>
- * Criteria</em>}</li>
- * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getRefiningIssues <em>
- * Refining Issues</em>}</li>
- * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getRefinedIssue <em>
- * Refined Issue</em>}</li>
- * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getFacilitator <em>
- * Facilitator</em>}</li>
- * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getParticipants <em>
- * Participants</em>}</li>
+ *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#isChecked <em>Checked</em>}</li>
+ *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getAssignee <em>Assignee</em>}</li>
+ *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getProposals <em>Proposals</em>}</li>
+ *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getSolution <em>Solution</em>}</li>
+ *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getCriteria <em>Criteria</em>}</li>
+ *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getRefiningIssues <em>Refining Issues</em>}</li>
+ *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getRefinedIssue <em>Refined Issue</em>}</li>
+ *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getFacilitator <em>Facilitator</em>}</li>
+ *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getParticipants <em>Participants</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class IssueImpl extends AnnotationImpl implements Issue {
 	/**
-	 * The default value of the '{@link #isChecked() <em>Checked</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #isChecked() <em>Checked</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isChecked()
 	 * @generated
 	 * @ordered
@@ -71,9 +61,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	protected static final boolean CHECKED_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #getProposals() <em>Proposals</em>}'
-	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getProposals() <em>Proposals</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getProposals()
 	 * @generated
 	 * @ordered
@@ -81,9 +70,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	protected EList<Proposal> proposals;
 
 	/**
-	 * The cached value of the '{@link #getSolution() <em>Solution</em>}'
-	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getSolution() <em>Solution</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getSolution()
 	 * @generated
 	 * @ordered
@@ -91,9 +79,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	protected Solution solution;
 
 	/**
-	 * The cached value of the '{@link #getCriteria() <em>Criteria</em>}'
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getCriteria() <em>Criteria</em>}' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getCriteria()
 	 * @generated
 	 * @ordered
@@ -112,9 +99,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	protected EList<Issue> refiningIssues;
 
 	/**
-	 * The cached value of the '{@link #getFacilitator() <em>Facilitator</em>}'
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getFacilitator() <em>Facilitator</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getFacilitator()
 	 * @generated
 	 * @ordered
@@ -122,9 +108,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	protected User facilitator;
 
 	/**
-	 * The cached value of the '{@link #getParticipants() <em>Participants</em>}
-	 * ' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getParticipants() <em>Participants</em>}' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getParticipants()
 	 * @generated
 	 * @ordered
@@ -133,7 +118,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected IssueImpl() {
@@ -142,7 +126,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -180,7 +163,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	/**
 	 * <!-- begin-user-doc --> Delegates to {@link #basicGetAssignee()} and then
 	 * performs proxy resolution. <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public OrgUnit getAssignee() {
@@ -220,7 +202,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Proposal> getProposals() {
@@ -234,7 +215,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Solution getSolution() {
@@ -243,7 +223,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetSolution(Solution newSolution,
@@ -264,7 +243,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSolution(Solution newSolution) {
@@ -286,7 +264,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Criterion> getCriteria() {
@@ -299,7 +276,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Issue> getRefiningIssues() {
@@ -313,7 +289,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Issue getRefinedIssue() {
@@ -324,7 +299,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetRefinedIssue(Issue newRefinedIssue,
@@ -336,7 +310,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setRefinedIssue(Issue newRefinedIssue) {
@@ -363,7 +336,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public User getFacilitator() {
@@ -382,7 +354,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public User basicGetFacilitator() {
@@ -391,7 +362,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setFacilitator(User newFacilitator) {
@@ -405,7 +375,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<OrgUnit> getParticipants() {
@@ -418,7 +387,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -448,7 +416,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -471,7 +438,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -487,7 +453,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -521,7 +486,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -565,7 +529,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -604,7 +567,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -634,7 +596,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -660,7 +621,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

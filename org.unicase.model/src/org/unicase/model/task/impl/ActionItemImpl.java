@@ -35,40 +35,27 @@ import org.unicase.model.task.WorkPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.unicase.model.task.impl.ActionItemImpl#getContainingWorkpackage
- * <em>Containing Workpackage</em>}</li>
- * <li>
- * {@link org.unicase.model.task.impl.ActionItemImpl#getAssociatedChangePackages
- * <em>Associated Change Packages</em>}</li>
- * <li>{@link org.unicase.model.task.impl.ActionItemImpl#getPredecessors <em>
- * Predecessors</em>}</li>
- * <li>{@link org.unicase.model.task.impl.ActionItemImpl#getSuccessors <em>
- * Successors</em>}</li>
- * <li>{@link org.unicase.model.task.impl.ActionItemImpl#isChecked <em>Checked
- * </em>}</li>
- * <li>{@link org.unicase.model.task.impl.ActionItemImpl#getAssignee <em>
- * Assignee</em>}</li>
- * <li>{@link org.unicase.model.task.impl.ActionItemImpl#getAssignedTo <em>
- * Assigned To</em>}</li>
- * <li>{@link org.unicase.model.task.impl.ActionItemImpl#getDueDate <em>Due Date
- * </em>}</li>
- * <li>{@link org.unicase.model.task.impl.ActionItemImpl#isDone <em>Done</em>}</li>
- * <li>{@link org.unicase.model.task.impl.ActionItemImpl#getEstimate <em>
- * Estimate</em>}</li>
- * <li>{@link org.unicase.model.task.impl.ActionItemImpl#getActivity <em>
- * Activity</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getContainingWorkpackage <em>Containing Workpackage</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getAssociatedChangePackages <em>Associated Change Packages</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getPredecessors <em>Predecessors</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getSuccessors <em>Successors</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#isChecked <em>Checked</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getAssignee <em>Assignee</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getAssignedTo <em>Assigned To</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getDueDate <em>Due Date</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#isDone <em>Done</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getEstimate <em>Estimate</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getActivity <em>Activity</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	/**
-	 * The cached value of the '{@link #getAssociatedChangePackages()
-	 * <em>Associated Change Packages</em>}' reference list. <!-- begin-user-doc
+	 * The cached value of the '{@link #getAssociatedChangePackages() <em>Associated Change Packages</em>}' reference list.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getAssociatedChangePackages()
 	 * @generated
 	 * @ordered
@@ -76,9 +63,8 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	protected EList<ModelChangePackage> associatedChangePackages;
 
 	/**
-	 * The cached value of the '{@link #getPredecessors() <em>Predecessors</em>}
-	 * ' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getPredecessors() <em>Predecessors</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getPredecessors()
 	 * @generated
 	 * @ordered
@@ -86,9 +72,8 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	protected WorkItem predecessors;
 
 	/**
-	 * The cached value of the '{@link #getSuccessors() <em>Successors</em>}'
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getSuccessors() <em>Successors</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getSuccessors()
 	 * @generated
 	 * @ordered
@@ -96,9 +81,8 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	protected WorkItem successors;
 
 	/**
-	 * The default value of the '{@link #isChecked() <em>Checked</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #isChecked() <em>Checked</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isChecked()
 	 * @generated
 	 * @ordered
@@ -106,9 +90,8 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	protected static final boolean CHECKED_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #getAssignedTo() <em>Assigned To</em>}'
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getAssignedTo() <em>Assigned To</em>}' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getAssignedTo()
 	 * @generated
 	 * @ordered
@@ -116,9 +99,8 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	protected EList<User> assignedTo;
 
 	/**
-	 * The default value of the '{@link #getDueDate() <em>Due Date</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getDueDate() <em>Due Date</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getDueDate()
 	 * @generated
 	 * @ordered
@@ -126,9 +108,8 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	protected static final Date DUE_DATE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDueDate() <em>Due Date</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getDueDate() <em>Due Date</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getDueDate()
 	 * @generated
 	 * @ordered
@@ -138,7 +119,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	/**
 	 * The default value of the '{@link #isDone() <em>Done</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #isDone()
 	 * @generated
 	 * @ordered
@@ -156,9 +136,8 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	protected boolean done = DONE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getEstimate() <em>Estimate</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getEstimate() <em>Estimate</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getEstimate()
 	 * @generated
 	 * @ordered
@@ -166,9 +145,8 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	protected static final int ESTIMATE_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getEstimate() <em>Estimate</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getEstimate() <em>Estimate</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getEstimate()
 	 * @generated
 	 * @ordered
@@ -176,9 +154,8 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	protected int estimate = ESTIMATE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getActivity() <em>Activity</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getActivity() <em>Activity</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getActivity()
 	 * @generated
 	 * @ordered
@@ -186,9 +163,8 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	protected static final ActivityType ACTIVITY_EDEFAULT = ActivityType.MANAGEMENT;
 
 	/**
-	 * The cached value of the '{@link #getActivity() <em>Activity</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getActivity() <em>Activity</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getActivity()
 	 * @generated
 	 * @ordered
@@ -197,7 +173,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ActionItemImpl() {
@@ -206,7 +181,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -216,7 +190,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public WorkPackage getContainingWorkpackage() {
@@ -227,7 +200,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetContainingWorkpackage(
@@ -239,7 +211,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setContainingWorkpackage(WorkPackage newContainingWorkpackage) {
@@ -267,7 +238,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ModelChangePackage> getAssociatedChangePackages() {
@@ -281,7 +251,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public WorkItem getPredecessors() {
@@ -300,7 +269,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public WorkItem basicGetPredecessors() {
@@ -309,7 +277,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetPredecessors(WorkItem newPredecessors,
@@ -330,7 +297,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setPredecessors(WorkItem newPredecessors) {
@@ -356,7 +322,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public WorkItem getSuccessors() {
@@ -375,7 +340,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public WorkItem basicGetSuccessors() {
@@ -384,7 +348,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetSuccessors(WorkItem newSuccessors,
@@ -405,7 +368,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSuccessors(WorkItem newSuccessors) {
@@ -452,7 +414,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public OrgUnit getAssignee() {
@@ -508,7 +469,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<User> getAssignedTo() {
@@ -521,7 +481,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Date getDueDate() {
@@ -530,7 +489,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDueDate(Date newDueDate) {
@@ -543,7 +501,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isDone() {
@@ -552,7 +509,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDone(boolean newDone) {
@@ -565,7 +521,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getEstimate() {
@@ -574,7 +529,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setEstimate(int newEstimate) {
@@ -587,7 +541,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ActivityType getActivity() {
@@ -596,7 +549,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setActivity(ActivityType newActivity) {
@@ -609,7 +561,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -639,7 +590,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -658,7 +608,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -675,7 +624,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -715,7 +663,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -764,7 +711,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -809,7 +755,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -845,7 +790,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -871,7 +815,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -897,7 +840,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
