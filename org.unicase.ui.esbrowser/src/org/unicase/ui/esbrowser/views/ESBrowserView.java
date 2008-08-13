@@ -50,7 +50,6 @@ import org.unicase.workspace.AdminBroker;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.edit.dialogs.LoginDialog;
 import org.unicase.workspace.provider.WorkspaceItemProviderAdapterFactory;
@@ -97,24 +96,24 @@ public class ESBrowserView extends ViewPart {
 			if (object instanceof Workspace) {
 				return ((Workspace) object).getServerInfos().toArray();
 			} else if (object instanceof ServerInfo) {
+//				final boolean noChildren = false;
 				serverInfo = (ServerInfo) object;
 				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					@Override
 					protected void doExecute() {
 						session = serverInfo.getLastUsersession();
-						LoginDialog dialog = new LoginDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(), session);
-						if (session == null) {
-							session = WorkspaceFactory.eINSTANCE.createUsersession();
-							session.setServerInfo(serverInfo);
-							serverInfo.setLastUsersession(session);
-							dialog = new LoginDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(), session);
-							dialog.setNewSession(true);
+
+						// if no usersession has been set yet or if the current one is not logged in
+						if (session==null || !session.isLoggedIn()) {
+							LoginDialog dialog = new LoginDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(), session, serverInfo);
 							dialog.open();
-						} else if (!session.isLoggedIn()){
-							dialog.open();
+							if(dialog.getReturnCode()==LoginDialog.CANCELED){
+//								noChildren = true;
+							}
+							session = dialog.getSession();
 						}
-						if(session.isLoggedIn() || dialog.getStatus()==LoginDialog.SUCCESSFUL){
+						if (session!=null && session.isLoggedIn()) {
 							try {
 								serverInfo.getProjectInfos().clear();
 								serverInfo.getProjectInfos().addAll(session.getRemoteProjectList());
@@ -126,7 +125,9 @@ public class ESBrowserView extends ViewPart {
 						}
 					}
 				});
-
+//				if(noChildren)
+					
+				
 				EList<ProjectInfo> pis = serverInfo.getProjectInfos();
 				for (ProjectInfo pi : pis) {
 					projectServerMap.put(pi, serverInfo);
@@ -220,7 +221,7 @@ public class ESBrowserView extends ViewPart {
 			Usersession session = ((ServerInfo) obj).getLastUsersession();
 			if (session != null && session.isLoggedIn()) {
 				manager.add(serverAddProject);
-				serverChangeSession.setText("Change user...");
+				serverChangeSession.setText("Log out");
 				manager.add(serverChangeSession);
 				manager.add(manageOrgUnits);
 
@@ -300,6 +301,8 @@ public class ESBrowserView extends ViewPart {
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					@Override
 					protected void doExecute() {
+						//FIXME AS: replace with logout() 
+						element.getLastUsersession().setSessionId(null);
 						element.setLastUsersession(null);
 						WorkspaceManager.getInstance().getCurrentWorkspace().save();
 					}
@@ -368,9 +371,7 @@ public class ESBrowserView extends ViewPart {
 					session = serverInfo.getLastUsersession();
 					AdminBroker adminBroker = session.getAdminBroker();
 					dialog = new ManageOrgUnitsDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(), adminBroker);
-
 					dialog.create();
-
 					dialog.open();
 				} catch (ConnectionException e) {
 					// TODO Auto-generated catch block

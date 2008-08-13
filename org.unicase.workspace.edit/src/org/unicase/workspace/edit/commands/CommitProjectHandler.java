@@ -51,9 +51,8 @@ public class CommitProjectHandler extends ProjectActionHandler {
 				if (usersession == null) {
 					// TODO: 
 				} else if (!usersession.isLoggedIn()) {
-					login = new LoginDialog(shell, usersession);
-					login.open();
-					loginStatus = login.getStatus();
+					login = new LoginDialog(shell, usersession, usersession.getServerInfo());
+					loginStatus = login.open();
 				}
 				if (loginStatus == LoginDialog.SUCCESSFUL) {
 					try {

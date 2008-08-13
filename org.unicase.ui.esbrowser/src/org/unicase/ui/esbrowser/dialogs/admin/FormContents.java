@@ -3,16 +3,10 @@ package org.unicase.ui.esbrowser.dialogs.admin;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.core.databinding.observable.value.IObservableValue;
-import org.eclipse.emf.common.command.BasicCommandStack;
-import org.eclipse.emf.databinding.EMFDataBindingContext;
-import org.eclipse.emf.databinding.edit.EMFEditObservables;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryLabelProvider;
-import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
@@ -48,9 +42,7 @@ import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
-import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.model.util.ModelAdapterFactory;
 import org.unicase.workspace.AdminBroker;
 import org.unicase.workspace.WorkspaceManager;
 
