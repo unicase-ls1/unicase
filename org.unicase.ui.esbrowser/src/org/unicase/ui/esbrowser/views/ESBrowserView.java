@@ -98,6 +98,7 @@ public class ESBrowserView extends ViewPart {
 			} else if (object instanceof ServerInfo) {
 				final boolean[] noChildren = {false};
 				serverInfo = (ServerInfo) object;
+				//AS: refactor command to own class with return type
 				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					@Override
@@ -280,7 +281,7 @@ public class ESBrowserView extends ViewPart {
 						}
 					}
 				});
-				// JH: remove and add proper notifying
+				//ZH: remove and add proper notifying
 				IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 				IViewPart navigator = page.findView("org.unicase.ui.navigator.viewer");
 				if (page.isPartVisible(navigator)) {
@@ -302,7 +303,7 @@ public class ESBrowserView extends ViewPart {
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					@Override
 					protected void doExecute() {
-						//FIXME AS: replace with logout() 
+						//AS: replace with logout() 
 						element.getLastUsersession().setSessionId(null);
 						element.setLastUsersession(null);
 						WorkspaceManager.getInstance().getCurrentWorkspace().save();
@@ -375,8 +376,7 @@ public class ESBrowserView extends ViewPart {
 					dialog.create();
 					dialog.open();
 				} catch (ConnectionException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					ExceptionDialogHandler.showExceptionDialog(e);
 				}
 			}
 		};
