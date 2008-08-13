@@ -252,7 +252,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		projectId = getProjectId(projectId);
 		ACOrgUnit oUnit = getOrgUnit(orgUnitId);
 		for (Role role : oUnit.getRoles()) {
-			if (role.getProjects().contains(projectId)) {
+			if (isServerAdmin(role) || role.getProjects().contains(projectId)) {
 				return role;
 			}
 		}
@@ -429,7 +429,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 
 	private Role getRole(ProjectId projectId, ACOrgUnit orgUnit) {
 		for (Role role : orgUnit.getRoles()) {
-			if (role.getProjects().contains(projectId)) {
+			if (isServerAdmin(role) || role.getProjects().contains(projectId)) {
 				return role;
 			}
 		}
