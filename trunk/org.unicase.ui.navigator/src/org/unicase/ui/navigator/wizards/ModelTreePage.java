@@ -7,6 +7,8 @@
 package org.unicase.ui.navigator.wizards;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
@@ -17,6 +19,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Tree;
 
 /**
  * 
@@ -56,15 +59,25 @@ public class ModelTreePage extends WizardPage implements Listener {
 		gl.numColumns = 4;
 		composite.setLayout(gl);
 
-		//ZH: treeViewer must be initialized with a SWT Tree to prevent multi
-		// selection.
-		treeViewer = new TreeViewer(composite);
+		Tree tree = new Tree(composite, SWT.SINGLE);
+		treeViewer = new TreeViewer(tree);
 		treeViewer.getControl().setLayoutData(new GridData(GridData.FILL_BOTH));
 		treeViewer.setContentProvider(new ModelTreeContentProvider());
 		treeViewer.setLabelProvider(new ModelTreeLabelProvider());
 		//give an empty object, otherwise it does not initialize
 		treeViewer.setInput(new Object());
 		treeViewer.getTree().addListener(SWT.Selection, this);
+		treeViewer.addDoubleClickListener(new IDoubleClickListener(){
+
+			public void doubleClick(DoubleClickEvent event) {
+				if(getWizard().canFinish()){
+					getWizard().performFinish();
+					getWizard().getContainer().getShell().close();
+				}
+				
+			}
+			
+		});
 
 		setControl(composite);
 

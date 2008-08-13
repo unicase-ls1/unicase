@@ -95,32 +95,43 @@ public final class ActionHelper {
 	 *            ModelElement to open
 	 */
 	public static void openModelElement(ModelElement me) {
-
-		//this method opens a model element indirectly using IEvaluationContext variable
-		//the variable is here set to ME which must be opened, 
-		//and this ME is then read in MEEditor form this variable
-		//after setting the Variable, the open command in MEEditor is invoked using 
-		//HandlerService
-		IHandlerService handlerService = (IHandlerService)PlatformUI.getWorkbench().getService(
-						IHandlerService.class);
-
-		IEvaluationContext context = handlerService.getCurrentState();
-		context.addVariable(ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE, me);
-		
-		try {
-			handlerService.executeCommand(MEEDITOR_OPENMODELELEMENT_COMMAND_ID,
-					null);
-			
-		} catch (ExecutionException e) {
-			ExceptionDialogHandler.showExceptionDialog(e);
-		} catch (NotDefinedException e) {
-			ExceptionDialogHandler.showExceptionDialog(e);
-		} catch (NotEnabledException e) {
-			ExceptionDialogHandler.showExceptionDialog(e);
-		} catch (NotHandledException e) {
-			ExceptionDialogHandler.showExceptionDialog(e);
+		if(!(me instanceof ModelElement)){
+			return;
 		}
+		
+		if(me instanceof MEDiagram){
+			openMEDiagram((MEDiagram)me);
+		}else {
+			//this method opens a model element indirectly using IEvaluationContext variable
+			//the variable is here set to ME which must be opened, 
+			//and this ME is then read in MEEditor form this variable
+			//after setting the Variable, the open command in MEEditor is invoked using 
+			//HandlerService
+			IHandlerService handlerService = (IHandlerService)PlatformUI.getWorkbench().getService(
+							IHandlerService.class);
 
+			IEvaluationContext context = handlerService.getCurrentState();
+			context.addVariable(ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE, me);
+			
+			try {
+				handlerService.executeCommand(MEEDITOR_OPENMODELELEMENT_COMMAND_ID,
+						null);
+				
+			} catch (ExecutionException e) {
+				ExceptionDialogHandler.showExceptionDialog(e);
+			} catch (NotDefinedException e) {
+				ExceptionDialogHandler.showExceptionDialog(e);
+			} catch (NotEnabledException e) {
+				ExceptionDialogHandler.showExceptionDialog(e);
+			} catch (NotHandledException e) {
+				ExceptionDialogHandler.showExceptionDialog(e);
+			}
+
+		}
+		
+		
+		
+		
 	}
 	
 	
@@ -130,7 +141,7 @@ public final class ActionHelper {
 	 * @param diagram
 	 *            MEDiagram to open
 	 */
-	public static void openMEDiagram(MEDiagram diagram){
+	private static void openMEDiagram(MEDiagram diagram){
 		String id = null;
 		if (diagram.getType().equals(DiagramType.CLASS_DIAGRAM)) {
 			id = "org.unicase.model.classDiagram.part.ModelDiagramEditorID";

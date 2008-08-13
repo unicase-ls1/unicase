@@ -14,12 +14,9 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
-import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelElement;
 import org.unicase.model.document.LeafSection;
-import org.unicase.ui.meeditor.MEEditor;
-import org.unicase.ui.meeditor.MEEditorInput;
+import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
@@ -88,24 +85,14 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 
 			}
 			// 3.open the newly created ME
-			openNewME(newMEInstance);
+			ActionHelper.openModelElement(newMEInstance);
+			
 		}
 
 		return true;
 	}
 
-	private void openNewME(ModelElement me) {
-		MEEditorInput input = new MEEditorInput(me);
-		try {
-			PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-					.getActivePage().openEditor(input, MEEditor.ID, true);
-		} catch (PartInitException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
+	
 	/**
 	 * . ({@inheritDoc})
 	 * 
