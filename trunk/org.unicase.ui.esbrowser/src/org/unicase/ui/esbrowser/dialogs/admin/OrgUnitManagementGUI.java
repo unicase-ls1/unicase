@@ -1,7 +1,6 @@
 package org.unicase.ui.esbrowser.dialogs.admin;
 
 import org.eclipse.jface.resource.JFaceResources;
-import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
@@ -12,9 +11,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.ui.forms.widgets.FormToolkit;
-import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
-import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
-import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.AdminBroker;
 
 //

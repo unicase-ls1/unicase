@@ -24,8 +24,9 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.ui.common.exceptions.ExceptionDialogHandler;
+import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
+import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
@@ -46,15 +47,15 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 	/**
 	 * indicates that the login has been canceled.
 	 */
-	public static final int CANCELED = 3; 
+	public static final int CANCELED = 3;
 	private Text username;
 	private Text password;
 	private Usersession session;
 	private Combo savedSessionsCombo;
 	private EList<Usersession> savedSessionsList;
 	private Button savePassword;
-	private boolean newSession;
-	private int status = FAILED;
+	private Composite contents;
+	private ServerInfo server;
 
 	/**
 	 * Default constructor.
@@ -63,32 +64,21 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 	 *            the parent shell
 	 * @param session
 	 *            the target usersession
+	 * @param server
+	 *            the target server
 	 */
-	public LoginDialog(Shell parentShell, Usersession session) {
+	public LoginDialog(Shell parentShell, Usersession session, ServerInfo server) {
 		super(parentShell);
 		this.session = session;
-	}
-
-	/**
-	 * Second constructor with parameter for new sessions.
-	 * 
-	 * @param parentShell
-	 *            the parent shell
-	 * @param session
-	 *            the target usersession
-	 * @param newSession
-	 *            if the gui for new sessions should be displayed
-	 */
-	public LoginDialog(Shell parentShell, Usersession session, boolean newSession) {
-		this(parentShell, session);
-		this.newSession = newSession;
+		this.server = server;
+		setBlockOnOpen(true);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	protected Control createDialogArea(Composite parent) {
-		Composite contents = new Composite(parent, SWT.NONE);
+		contents = new Composite(parent, SWT.NONE);
 		contents.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		setTitle("Log in");
@@ -101,7 +91,9 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 		savedSessionsCombo.add("<new session>");
 		savedSessionsList = WorkspaceManager.getInstance().getCurrentWorkspace().getUsersessions();
 		for (int i = 0; i < savedSessionsList.size(); i++) {
-			savedSessionsCombo.add(savedSessionsList.get(i).getUsername());
+			if(savedSessionsList.get(i).getServerInfo().equals(server)){
+				savedSessionsCombo.add(savedSessionsList.get(i).getUsername());
+			}
 		}
 		savedSessionsCombo.addSelectionListener(this);
 
@@ -120,19 +112,15 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 		savePasswordLabel.setText("Save password");
 		savePassword = new Button(contents, SWT.CHECK);
 
-		if (newSession) {
-			// select entry for a new session
+		// select entry for a new session
+		if (session == null) {
 			savedSessionsCombo.select(0);
 			username.setEnabled(true);
-			password.setEnabled(true);
-			savePassword.setEnabled(true);
-		} else {
-			// load the data from the last session if provided
+		}
+		// load the data from the last session
+		else {
 			savedSessionsCombo.select(1 + savedSessionsList.indexOf(session));
-			username.setText(session.getUsername());
-			username.setEnabled(false);
-			password.setEnabled(true);
-			savePassword.setEnabled(true);
+			loadData(session);
 		}
 
 		Point defaultMargins = LayoutConstants.getMargins();
@@ -145,29 +133,32 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 	 * {@inheritDoc}
 	 */
 	public void okPressed() {
-		if (!newSession) {
-			session = savedSessionsList.get(savedSessionsCombo.getSelectionIndex() - 1);
+		if (session==null) {
+			session = WorkspaceFactory.eINSTANCE.createUsersession();
+			session.setServerInfo(server);
 		}
 		session.setUsername(username.getText());
 		session.setPassword(password.getText());
 		session.setSavePassword(savePassword.getSelection());
-		if (newSession) {
-			// add the newly created session
-			WorkspaceManager.getInstance().getCurrentWorkspace().getUsersessions().add(session);
-		}
-		WorkspaceManager.getInstance().getCurrentWorkspace().save();
+		setReturnCode(FAILED);
 		try {
 			session.logIn();
-			this.status = SUCCESSFUL;
+			server.setLastUsersession(session);
+			if(username.getEnabled()){
+				// add the newly created session
+				WorkspaceManager.getInstance().getCurrentWorkspace().getUsersessions().add(session);
+			}
+			WorkspaceManager.getInstance().getCurrentWorkspace().save();
+			setReturnCode(SUCCESSFUL);
 			close();
 		} catch (AccessControlException e) {
-			ExceptionDialogHandler.showExceptionDialog(e);
+			setErrorMessage(e.getMessage());
 			password.selectAll();
-			this.status = FAILED;
+			setReturnCode(FAILED);
 		} catch (EmfStoreException e) {
-			ExceptionDialogHandler.showExceptionDialog(e);
+			setErrorMessage(e.getMessage());
 			password.selectAll();
-			this.status = FAILED;
+			setReturnCode(FAILED);
 		}
 	}
 
@@ -175,8 +166,8 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 	 * {@inheritDoc}
 	 */
 	public void cancelPressed() {
-		session = null;
-		this.status = CANCELED;
+		// session = null;
+		setReturnCode(CANCELED);
 		close();
 	}
 
@@ -191,32 +182,52 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 	 * {@inheritDoc}
 	 */
 	public void widgetSelected(SelectionEvent e) {
-		password.setEnabled(true);
-		savePassword.setEnabled(true);
 		if (savedSessionsCombo.getSelectionIndex() == 0) {
 			username.setEnabled(true);
 			username.setText("");
 			password.setText("");
+			savePassword.setSelection(false);
 		} else {
 			Usersession loadSession = savedSessionsList.get(savedSessionsCombo.getSelectionIndex() - 1);
-			username.setEnabled(false);
-			username.setText(loadSession.getUsername());
-			password.setText(loadSession.isSavePassword() ? loadSession.getPersistentPassword() + "" : "");
-			savePassword.setSelection(loadSession.isSavePassword());
+			loadData(loadSession);
 		}
 
 	}
 
-	/**
-	 * Returns the status of the login.
-	 * Possible return values are SUCCESSFUL, FAILED, CANCELED
-	 * @return the integer value of the status
-	 */
-	public int getStatus(){
-		return status;
+	private void loadData(Usersession session) {
+		username.setEnabled(false);
+
+		username.setText(session.getUsername());
+		if (session.getPassword() != null) {
+			password.setText(session.getPassword());
+		}
+		savePassword.setSelection(session.isSavePassword());
 	}
 	
-	public void setNewSession(boolean newSession){
-		this.newSession = newSession;
+	/**
+	 * @return the new usersession.
+	 */
+	public Usersession getSession(){
+		return session;
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int open(){
+		if(session!=null && session.getUsername()!=null && session.getPassword()!=null){
+				try {
+					session.logIn();
+					close();
+					return SUCCESSFUL;
+				} catch (AccessControlException e) {
+					setErrorMessage(e.getMessage());
+				} catch (EmfStoreException e) {
+					setErrorMessage(e.getMessage());
+				}
+		}
+		return super.open();
+	}
+
 }

@@ -61,9 +61,8 @@ public class ShareProjectHandler extends ProjectActionHandler {
 				// is already logged in
 				int loginStatus = LoginDialog.SUCCESSFUL;
 				if (!usersession.isLoggedIn()) {
-					login = new LoginDialog(shell, usersession);
-					login.open();
-					loginStatus = login.getStatus();
+					login = new LoginDialog(shell, usersession, usersession.getServerInfo());
+					loginStatus = login.open();
 				}
 				if (loginStatus == LoginDialog.SUCCESSFUL) {
 					try {
