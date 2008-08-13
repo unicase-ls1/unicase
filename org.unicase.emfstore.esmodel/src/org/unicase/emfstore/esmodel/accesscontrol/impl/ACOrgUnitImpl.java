@@ -155,8 +155,11 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 	 */	
 	@Override
 	public boolean equals(Object obj) {
-		
-		return this.getId().equals(((ACOrgUnit)obj).getId());
+		if(obj instanceof ACOrgUnit) {
+			return this.getId().equals(((ACOrgUnit)obj).getId());			
+		} else {
+			return super.equals(obj);
+		}
 	}
 
 
