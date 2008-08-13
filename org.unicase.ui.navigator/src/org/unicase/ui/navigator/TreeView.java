@@ -19,7 +19,6 @@ import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
-import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.Transfer;
@@ -31,7 +30,6 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
-import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.ui.common.dnd.UCDropAdapter;
 import org.unicase.ui.navigator.commands.RedoAction;
@@ -70,10 +68,10 @@ public class TreeView extends ViewPart {
 		viewer.setContentProvider(new TreeContentProvider());
 		viewer.setInput(WorkspaceManager.getInstance().getCurrentWorkspace());
 
-		//this is for workaround for update problem in navigator
+		// this is for workaround for update problem in navigator
 		getSite().setSelectionProvider(viewer);
 
-		//set context menu
+		// set context menu
 		MenuManager menuMgr = new MenuManager();
 		menuMgr.add(new Separator("additions"));
 		getSite().registerContextMenu(menuMgr, viewer);
@@ -180,24 +178,10 @@ public class TreeView extends ViewPart {
 	private void createDoubleClickAction() {
 		doubleClickAction = new Action() {
 			public void run() {
-				TreeSelection selection = (TreeSelection) viewer.getSelection();
-				Object object = selection.getFirstElement();
-				openME(object);
+				ActionHelper.openModelElement(ActionHelper.getSelectedModelElement());
 			}
 		};
 
-	}
-
-	private void openME(Object object) {
-		if (object == null) {
-			return;
-		}
-		if (object instanceof MEDiagram) {
-			ActionHelper.openMEDiagram((MEDiagram) object);
-		}else{
-			ActionHelper.openModelElement((ModelElement)object);
-		}
-			
 	}
 
 }
