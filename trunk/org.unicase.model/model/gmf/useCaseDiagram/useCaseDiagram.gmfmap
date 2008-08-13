@@ -79,6 +79,10 @@
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="../../model.ecore#//requirement/Actor/initiatedUseCases"/>
+    <creationConstraints>
+      <targetEnd
+          body="self->initiatingActor=null"/>
+    </creationConstraints>
   </links>
   <links>
     <labelMappings
@@ -95,7 +99,7 @@
         xsi:type="ecore:EReference"
         href="../../model.ecore#//requirement/UseCase/includedUseCases"/>
     <creationConstraints>
-      <sourceEnd
+      <targetEnd
           body="self &lt;> oppositeEnd"/>
     </creationConstraints>
   </links>
