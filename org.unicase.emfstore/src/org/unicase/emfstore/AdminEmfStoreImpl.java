@@ -75,21 +75,15 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	/**
 	 * {@inheritDoc}
 	 */
-	public List<ACGroup> getGroups(SessionId sessionId, ACOrgUnitId orgUnitId) throws AccessControlException {
+	public List<ACGroup> getGroups(SessionId sessionId, ACOrgUnitId orgUnitId) throws EmfStoreException {
 		authorizationControl.checkServerAdminAccess(sessionId);
 		List<ACGroup> result = new ArrayList<ACGroup>();
-		try {
 			ACOrgUnit orgUnit = getOrgUnit(orgUnitId);
 			for (ACGroup group : getServerSpace().getGroups()) {
 				if (group.getMembers().contains(orgUnit)){
-						result.add((ACGroup) group);
+						result.add(group);
 				}
 			}
-		} catch (EmfStoreException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-			
 		return result;
 	}
 
