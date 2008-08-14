@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.ui.stem.views;
+package org.unicase.ui.stem.views.iterationplanningview;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryLabelProvider;

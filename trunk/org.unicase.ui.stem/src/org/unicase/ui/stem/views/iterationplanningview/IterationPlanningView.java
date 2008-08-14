@@ -1,4 +1,4 @@
-package org.unicase.ui.stem.views;
+package org.unicase.ui.stem.views.iterationplanningview;
 
 import java.net.URL;
 
@@ -110,16 +110,16 @@ public class IterationPlanningView extends ViewPart {
 			}
 
 		});
-		TransactionalEditingDomain domain = TransactionUtil
-				.getEditingDomain(workspace);
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-			protected void doExecute() {
-				workspace.setActiveProjectSpace(workspace.getProjectSpaces()
-						.get(0));
-			}
-		});
+//		TransactionalEditingDomain domain = TransactionUtil
+//				.getEditingDomain(workspace);
+//		domain.getCommandStack().execute(new RecordingCommand(domain) {
+//			protected void doExecute() {
+//				workspace.setActiveProjectSpace(workspace.getProjectSpaces()
+//						.get(0));
+//			}
+//		});
 
-		viewer.setInput(workspace.getProjectSpaces().get(0).getProject());
+		viewer.setInput(workspace.getActiveProjectSpace().getProject());
 		Tree tree = viewer.getTree();
 		tree.setHeaderVisible(true);
 

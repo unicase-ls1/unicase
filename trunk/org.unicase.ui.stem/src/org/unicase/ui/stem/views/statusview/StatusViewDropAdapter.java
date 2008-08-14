@@ -1,4 +1,4 @@
-package org.unicase.ui.stem.views;
+package org.unicase.ui.stem.views.statusview;
 
 import java.awt.dnd.DropTargetDragEvent;
 import java.awt.dnd.DropTargetDropEvent;
