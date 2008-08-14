@@ -12,24 +12,16 @@
     <ownedChild>
       <domainMetaElement
           href="../../model.ecore#//component/Component"/>
-      <labelMappings
-          xsi:type="gmfmap:FeatureLabelMapping"
-          editorPattern="">
-        <diagramLabel
-            href="componentDiagram.gmfgraph#ComponentNode_name"/>
-        <features
-            href="../../model.ecore#//ModelElement/name"/>
-      </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
           href="componentDiagram.gmftool#//@palette/@tools.0"/>
       <diagramNode
-          href="componentDiagram.gmfgraph#ComponentNode"/>
+          href="../model.gmfgraph#ComponentNode"/>
     </ownedChild>
   </nodes>
   <diagram>
     <diagramCanvas
-        href="componentDiagram.gmfgraph#ComponentDiagram"/>
+        href="../model.gmfgraph#MEDiagram"/>
     <domainModel
         href="../../model.ecore#//diagram"/>
     <domainMetaElement
