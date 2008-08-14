@@ -30,7 +30,6 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.exceptions.ExceptionDialogHandler;
-import org.unicase.ui.meeditor.MEEditorInput;
 
 /**
  * 
@@ -68,10 +67,10 @@ public final class ActionHelper {
 			IEditorInput editorInput = PlatformUI.getWorkbench()
 					.getActiveWorkbenchWindow().getActivePage()
 					.getActiveEditor().getEditorInput();
-			MEEditorInput meeditorInput;
-			if (editorInput instanceof MEEditorInput) {
-				meeditorInput = (MEEditorInput) editorInput;
-				me = meeditorInput.getModelElement();
+			Object obj = editorInput.getAdapter(ModelElement.class);
+			
+			if (obj instanceof ModelElement) {
+				me = (ModelElement) obj;
 			}
 
 		} else {

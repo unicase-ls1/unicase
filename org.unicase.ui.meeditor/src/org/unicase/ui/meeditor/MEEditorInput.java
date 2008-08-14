@@ -76,15 +76,6 @@ public class MEEditorInput implements IEditorInput {
 	}
 
 	/**
-	 * {@inheritDoc}
-	 */
-	@SuppressWarnings("unchecked")
-	public Object getAdapter(Class adapter) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
 	 * Getter for the modelElement.
 	 * @return the modelElement
 	 */
@@ -113,6 +104,18 @@ public class MEEditorInput implements IEditorInput {
 			return ret;
 		}
 		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@SuppressWarnings("unchecked")
+	public Object getAdapter(Class clazz) {
+		
+		if(clazz.equals(ModelElement.class)){
+			return getModelElement();
+		}
+		return null;
 	}
 
 }

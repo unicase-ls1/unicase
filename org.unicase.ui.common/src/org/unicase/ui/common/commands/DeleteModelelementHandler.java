@@ -6,6 +6,9 @@
  */
 package org.unicase.ui.common.commands;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -14,10 +17,10 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ui.IEditorReference;
-import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelElement;
-import org.unicase.ui.meeditor.MEEditorInput;
+import org.unicase.ui.common.exceptions.ExceptionDialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -28,6 +31,9 @@ import org.unicase.workspace.WorkspaceManager;
  */
 public class DeleteModelelementHandler extends AbstractHandler {
 
+	
+	
+	
 	/**.
 	 * {@inheritDoc}
 	 */
@@ -50,14 +56,27 @@ public class DeleteModelelementHandler extends AbstractHandler {
 
 		boolean result = true; 
 
-		//find editors with this ME as input
-		MEEditorInput input = new MEEditorInput(me);
-		IEditorReference[] editorRefs = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getActivePage().findEditors(input,
-						null, IWorkbenchPage.MATCH_INPUT);
-		if (editorRefs.length > 0) {
+		//we could find editors with this ME as input
+		//but we don't want to have a dependency on meeditor plug-in
+		//Therefore we have no access to MEEditorInput class
+		IEditorReference[] openEditors = PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getActivePage().getEditorReferences();
+		
+		List<IEditorReference> toCloseEditors = new ArrayList<IEditorReference>();
+		for(int i = 0; i < openEditors.length; i++){
+			try {
+				if (openEditors[i].getEditorInput().getAdapter(ModelElement.class).equals(me)){
+					toCloseEditors.add(openEditors[i]);
+				}
+			} catch (PartInitException e) {
+				ExceptionDialogHandler.showExceptionDialog(e);
+				result = false;
+			}
+		}
+			
+		if (toCloseEditors.size() > 0) {
 			result = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-					.getActivePage().closeEditors(editorRefs, true);
+					.getActivePage().closeEditors(toCloseEditors.toArray(new IEditorReference[toCloseEditors.size()]), true);
 
 		}
 
