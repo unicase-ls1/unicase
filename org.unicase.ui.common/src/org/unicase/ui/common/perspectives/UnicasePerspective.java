@@ -8,7 +8,9 @@ package org.unicase.ui.common.perspectives;
 
 import org.eclipse.ui.IFolderLayout;
 import org.eclipse.ui.IPageLayout;
+import org.eclipse.ui.IPerspectiveDescriptor;
 import org.eclipse.ui.IPerspectiveFactory;
+import org.eclipse.ui.IPerspectiveRegistry;
 import org.eclipse.ui.console.IConsoleConstants;
 
 
@@ -40,18 +42,6 @@ public class UnicasePerspective implements IPerspectiveFactory {
 	private void addViews() {
 		// Creates the overall folder layout. 
 		// Note that each new Folder uses a percentage of the remaining EditorArea.
-		
-		IFolderLayout bottom =
-			factory.createFolder(
-				"bottomRight", //NON-NLS-1
-				IPageLayout.BOTTOM,
-				0.75f,
-				factory.getEditorArea());
-		bottom.addView("org.unicase.ui.repository.views.RepositoryView");
-		bottom.addView("org.unicase.ui.treeview.views.IterationPlanningView"); //NON-NLS-1
-		
-		bottom.addPlaceholder(IConsoleConstants.ID_CONSOLE_VIEW);
-
 		IFolderLayout topLeft =
 			factory.createFolder(
 				"topLeft", //NON-NLS-1
@@ -61,6 +51,23 @@ public class UnicasePerspective implements IPerspectiveFactory {
 		
 		topLeft.addView("org.unicase.ui.navigator.viewer"); //NON-NLS-1
 		topLeft.addView(IPageLayout.ID_RES_NAV);
+		
+		
+		IFolderLayout bottom =
+			factory.createFolder(
+				"bottomRight", //NON-NLS-1
+				IPageLayout.BOTTOM,
+				0.7f,
+				factory.getEditorArea());
+		
+		bottom.addView("org.eclipse.pde.runtime.LogView"); //NON-NLS-1
+		bottom.addView("org.unicase.ui.repository.views.RepositoryView");
+		bottom.addView("org.unicase.ui.treeview.views.IterationPlanningView"); //NON-NLS-1
+
+		
+		bottom.addPlaceholder(IConsoleConstants.ID_CONSOLE_VIEW);
+
+		
 	}
 
 	

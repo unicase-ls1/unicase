@@ -325,9 +325,6 @@
                id="org.unicase.ui.repository.views.RepositoryView">
          </viewShortcut>
          <viewShortcut
-               id="org.unicase.ui.tableview.tableview">
-         </viewShortcut>
-         <viewShortcut
                id="org.unicase.ui.taskview">
          </viewShortcut>
          <viewShortcut
