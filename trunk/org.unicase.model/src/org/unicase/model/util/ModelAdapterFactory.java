@@ -76,37 +76,30 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 		public Adapter caseModelElement(ModelElement object) {
 			return createModelElementAdapter();
 		}
-
 		@Override
 		public Adapter caseProject(Project object) {
 			return createProjectAdapter();
 		}
-
 		@Override
 		public Adapter caseUniqueIdentifier(UniqueIdentifier object) {
 			return createUniqueIdentifierAdapter();
 		}
-
 		@Override
 		public Adapter caseReaderInfo(ReaderInfo object) {
 			return createReaderInfoAdapter();
 		}
-
 		@Override
 		public Adapter caseAnnotation(Annotation object) {
 			return createAnnotationAdapter();
 		}
-
 		@Override
 		public Adapter caseIdentifiableElement(IdentifiableElement object) {
 			return createIdentifiableElementAdapter();
 		}
-
 		@Override
 		public Adapter caseModelElementId(ModelElementId object) {
 			return createModelElementIdAdapter();
 		}
-
 		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();

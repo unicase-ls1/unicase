@@ -127,8 +127,8 @@ public enum ArgumentDirectionType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ArgumentDirectionType[] VALUES_ARRAY = new ArgumentDirectionType[] {
-			UNDEFINED, IN, OUT, INOUT, };
+	private static final ArgumentDirectionType[] VALUES_ARRAY = new ArgumentDirectionType[]{
+			UNDEFINED, IN, OUT, INOUT,};
 
 	/**
 	 * A public read-only list of all the '<em><b>Argument Direction Type</b></em>' enumerators.
@@ -179,14 +179,14 @@ public enum ArgumentDirectionType implements Enumerator {
 	 */
 	public static ArgumentDirectionType get(int value) {
 		switch (value) {
-		case UNDEFINED_VALUE:
-			return UNDEFINED;
-		case IN_VALUE:
-			return IN;
-		case OUT_VALUE:
-			return OUT;
-		case INOUT_VALUE:
-			return INOUT;
+			case UNDEFINED_VALUE :
+				return UNDEFINED;
+			case IN_VALUE :
+				return IN;
+			case OUT_VALUE :
+				return OUT;
+			case INOUT_VALUE :
+				return INOUT;
 		}
 		return null;
 	}

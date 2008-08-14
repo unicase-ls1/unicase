@@ -74,27 +74,22 @@ public class ComponentAdapterFactory extends AdapterFactoryImpl {
 		public Adapter caseComponent(Component object) {
 			return createComponentAdapter();
 		}
-
 		@Override
 		public Adapter caseComponentService(ComponentService object) {
 			return createComponentServiceAdapter();
 		}
-
 		@Override
 		public Adapter caseDeploymentNode(DeploymentNode object) {
 			return createDeploymentNodeAdapter();
 		}
-
 		@Override
 		public Adapter caseIdentifiableElement(IdentifiableElement object) {
 			return createIdentifiableElementAdapter();
 		}
-
 		@Override
 		public Adapter caseModelElement(ModelElement object) {
 			return createModelElementAdapter();
 		}
-
 		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();

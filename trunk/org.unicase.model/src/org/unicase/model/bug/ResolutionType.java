@@ -103,8 +103,8 @@ public enum ResolutionType implements Enumerator {
 	 * 
 	 * @generated
 	 */
-	private static final ResolutionType[] VALUES_ARRAY = new ResolutionType[] {
-			FIXED, CANNOT_REPRODUCE, WONT_FIX, };
+	private static final ResolutionType[] VALUES_ARRAY = new ResolutionType[]{
+			FIXED, CANNOT_REPRODUCE, WONT_FIX,};
 
 	/**
 	 * A public read-only list of all the '<em><b>Resolution Type</b></em>' enumerators.
@@ -151,12 +151,12 @@ public enum ResolutionType implements Enumerator {
 	 */
 	public static ResolutionType get(int value) {
 		switch (value) {
-		case FIXED_VALUE:
-			return FIXED;
-		case CANNOT_REPRODUCE_VALUE:
-			return CANNOT_REPRODUCE;
-		case WONT_FIX_VALUE:
-			return WONT_FIX;
+			case FIXED_VALUE :
+				return FIXED;
+			case CANNOT_REPRODUCE_VALUE :
+				return CANNOT_REPRODUCE;
+			case WONT_FIX_VALUE :
+				return WONT_FIX;
 		}
 		return null;
 	}

@@ -129,10 +129,10 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case RationalePackage.SOLUTION__ISSUE:
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			return basicSetIssue((Issue) otherEnd, msgs);
+			case RationalePackage.SOLUTION__ISSUE :
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetIssue((Issue) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -145,8 +145,8 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case RationalePackage.SOLUTION__ISSUE:
-			return basicSetIssue(null, msgs);
+			case RationalePackage.SOLUTION__ISSUE :
+				return basicSetIssue(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -159,9 +159,9 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 	public NotificationChain eBasicRemoveFromContainerFeature(
 			NotificationChain msgs) {
 		switch (eContainerFeatureID) {
-		case RationalePackage.SOLUTION__ISSUE:
-			return eInternalContainer().eInverseRemove(this,
-					RationalePackage.ISSUE__SOLUTION, Issue.class, msgs);
+			case RationalePackage.SOLUTION__ISSUE :
+				return eInternalContainer().eInverseRemove(this,
+						RationalePackage.ISSUE__SOLUTION, Issue.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -173,10 +173,10 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case RationalePackage.SOLUTION__UNDERLYING_PROPOSALS:
-			return getUnderlyingProposals();
-		case RationalePackage.SOLUTION__ISSUE:
-			return getIssue();
+			case RationalePackage.SOLUTION__UNDERLYING_PROPOSALS :
+				return getUnderlyingProposals();
+			case RationalePackage.SOLUTION__ISSUE :
+				return getIssue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -189,14 +189,14 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case RationalePackage.SOLUTION__UNDERLYING_PROPOSALS:
-			getUnderlyingProposals().clear();
-			getUnderlyingProposals().addAll(
-					(Collection<? extends Proposal>) newValue);
-			return;
-		case RationalePackage.SOLUTION__ISSUE:
-			setIssue((Issue) newValue);
-			return;
+			case RationalePackage.SOLUTION__UNDERLYING_PROPOSALS :
+				getUnderlyingProposals().clear();
+				getUnderlyingProposals().addAll(
+						(Collection<? extends Proposal>) newValue);
+				return;
+			case RationalePackage.SOLUTION__ISSUE :
+				setIssue((Issue) newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -208,12 +208,12 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case RationalePackage.SOLUTION__UNDERLYING_PROPOSALS:
-			getUnderlyingProposals().clear();
-			return;
-		case RationalePackage.SOLUTION__ISSUE:
-			setIssue((Issue) null);
-			return;
+			case RationalePackage.SOLUTION__UNDERLYING_PROPOSALS :
+				getUnderlyingProposals().clear();
+				return;
+			case RationalePackage.SOLUTION__ISSUE :
+				setIssue((Issue) null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -225,11 +225,11 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case RationalePackage.SOLUTION__UNDERLYING_PROPOSALS:
-			return underlyingProposals != null
-					&& !underlyingProposals.isEmpty();
-		case RationalePackage.SOLUTION__ISSUE:
-			return getIssue() != null;
+			case RationalePackage.SOLUTION__UNDERLYING_PROPOSALS :
+				return underlyingProposals != null
+						&& !underlyingProposals.isEmpty();
+			case RationalePackage.SOLUTION__ISSUE :
+				return getIssue() != null;
 		}
 		return super.eIsSet(featureID);
 	}

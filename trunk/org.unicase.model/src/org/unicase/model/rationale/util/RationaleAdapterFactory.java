@@ -80,57 +80,46 @@ public class RationaleAdapterFactory extends AdapterFactoryImpl {
 		public Adapter caseIssue(Issue object) {
 			return createIssueAdapter();
 		}
-
 		@Override
 		public Adapter caseProposal(Proposal object) {
 			return createProposalAdapter();
 		}
-
 		@Override
 		public Adapter caseSolution(Solution object) {
 			return createSolutionAdapter();
 		}
-
 		@Override
 		public Adapter caseCriterion(Criterion object) {
 			return createCriterionAdapter();
 		}
-
 		@Override
 		public Adapter caseAssessment(Assessment object) {
 			return createAssessmentAdapter();
 		}
-
 		@Override
 		public Adapter caseComment(Comment object) {
 			return createCommentAdapter();
 		}
-
 		@Override
 		public Adapter caseIdentifiableElement(IdentifiableElement object) {
 			return createIdentifiableElementAdapter();
 		}
-
 		@Override
 		public Adapter caseModelElement(ModelElement object) {
 			return createModelElementAdapter();
 		}
-
 		@Override
 		public Adapter caseAnnotation(Annotation object) {
 			return createAnnotationAdapter();
 		}
-
 		@Override
 		public Adapter caseCheckable(Checkable object) {
 			return createCheckableAdapter();
 		}
-
 		@Override
 		public Adapter caseAssignable(Assignable object) {
 			return createAssignableAdapter();
 		}
-
 		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();

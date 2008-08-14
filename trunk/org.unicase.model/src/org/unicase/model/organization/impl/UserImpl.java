@@ -91,8 +91,8 @@ public class UserImpl extends OrgUnitImpl implements User {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case OrganizationPackage.USER__EMAIL:
-			return getEmail();
+			case OrganizationPackage.USER__EMAIL :
+				return getEmail();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -105,9 +105,9 @@ public class UserImpl extends OrgUnitImpl implements User {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case OrganizationPackage.USER__EMAIL:
-			setEmail((String) newValue);
-			return;
+			case OrganizationPackage.USER__EMAIL :
+				setEmail((String) newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -120,9 +120,9 @@ public class UserImpl extends OrgUnitImpl implements User {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case OrganizationPackage.USER__EMAIL:
-			setEmail(EMAIL_EDEFAULT);
-			return;
+			case OrganizationPackage.USER__EMAIL :
+				setEmail(EMAIL_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -135,9 +135,9 @@ public class UserImpl extends OrgUnitImpl implements User {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case OrganizationPackage.USER__EMAIL:
-			return EMAIL_EDEFAULT == null ? email != null : !EMAIL_EDEFAULT
-					.equals(email);
+			case OrganizationPackage.USER__EMAIL :
+				return EMAIL_EDEFAULT == null ? email != null : !EMAIL_EDEFAULT
+						.equals(email);
 		}
 		return super.eIsSet(featureID);
 	}

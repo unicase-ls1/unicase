@@ -152,8 +152,8 @@ public enum Severity implements Enumerator {
 	 * 
 	 * @generated
 	 */
-	private static final Severity[] VALUES_ARRAY = new Severity[] { FEATURE,
-			TRIVIAL, MINOR, MAJOR, BLOCKER, };
+	private static final Severity[] VALUES_ARRAY = new Severity[]{FEATURE,
+			TRIVIAL, MINOR, MAJOR, BLOCKER,};
 
 	/**
 	 * A public read-only list of all the '<em><b>Severity</b></em>' enumerators.
@@ -200,16 +200,16 @@ public enum Severity implements Enumerator {
 	 */
 	public static Severity get(int value) {
 		switch (value) {
-		case FEATURE_VALUE:
-			return FEATURE;
-		case TRIVIAL_VALUE:
-			return TRIVIAL;
-		case MINOR_VALUE:
-			return MINOR;
-		case MAJOR_VALUE:
-			return MAJOR;
-		case BLOCKER_VALUE:
-			return BLOCKER;
+			case FEATURE_VALUE :
+				return FEATURE;
+			case TRIVIAL_VALUE :
+				return TRIVIAL;
+			case MINOR_VALUE :
+				return MINOR;
+			case MAJOR_VALUE :
+				return MAJOR;
+			case BLOCKER_VALUE :
+				return BLOCKER;
 		}
 		return null;
 	}

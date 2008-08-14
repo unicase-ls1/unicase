@@ -133,12 +133,12 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ComponentPackage.COMPONENT__OFFERED_SERVICES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getOfferedServices())
-					.basicAdd(otherEnd, msgs);
-		case ComponentPackage.COMPONENT__CONSUMED_SERVICES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getConsumedServices())
-					.basicAdd(otherEnd, msgs);
+			case ComponentPackage.COMPONENT__OFFERED_SERVICES :
+				return ((InternalEList<InternalEObject>) (InternalEList<?>) getOfferedServices())
+						.basicAdd(otherEnd, msgs);
+			case ComponentPackage.COMPONENT__CONSUMED_SERVICES :
+				return ((InternalEList<InternalEObject>) (InternalEList<?>) getConsumedServices())
+						.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -151,12 +151,12 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ComponentPackage.COMPONENT__OFFERED_SERVICES:
-			return ((InternalEList<?>) getOfferedServices()).basicRemove(
-					otherEnd, msgs);
-		case ComponentPackage.COMPONENT__CONSUMED_SERVICES:
-			return ((InternalEList<?>) getConsumedServices()).basicRemove(
-					otherEnd, msgs);
+			case ComponentPackage.COMPONENT__OFFERED_SERVICES :
+				return ((InternalEList<?>) getOfferedServices()).basicRemove(
+						otherEnd, msgs);
+			case ComponentPackage.COMPONENT__CONSUMED_SERVICES :
+				return ((InternalEList<?>) getConsumedServices()).basicRemove(
+						otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -168,12 +168,12 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case ComponentPackage.COMPONENT__PACKAGES:
-			return getPackages();
-		case ComponentPackage.COMPONENT__OFFERED_SERVICES:
-			return getOfferedServices();
-		case ComponentPackage.COMPONENT__CONSUMED_SERVICES:
-			return getConsumedServices();
+			case ComponentPackage.COMPONENT__PACKAGES :
+				return getPackages();
+			case ComponentPackage.COMPONENT__OFFERED_SERVICES :
+				return getOfferedServices();
+			case ComponentPackage.COMPONENT__CONSUMED_SERVICES :
+				return getConsumedServices();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -186,22 +186,22 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case ComponentPackage.COMPONENT__PACKAGES:
-			getPackages().clear();
-			getPackages()
-					.addAll(
-							(Collection<? extends org.unicase.model.classes.Package>) newValue);
-			return;
-		case ComponentPackage.COMPONENT__OFFERED_SERVICES:
-			getOfferedServices().clear();
-			getOfferedServices().addAll(
-					(Collection<? extends ComponentService>) newValue);
-			return;
-		case ComponentPackage.COMPONENT__CONSUMED_SERVICES:
-			getConsumedServices().clear();
-			getConsumedServices().addAll(
-					(Collection<? extends ComponentService>) newValue);
-			return;
+			case ComponentPackage.COMPONENT__PACKAGES :
+				getPackages().clear();
+				getPackages()
+						.addAll(
+								(Collection<? extends org.unicase.model.classes.Package>) newValue);
+				return;
+			case ComponentPackage.COMPONENT__OFFERED_SERVICES :
+				getOfferedServices().clear();
+				getOfferedServices().addAll(
+						(Collection<? extends ComponentService>) newValue);
+				return;
+			case ComponentPackage.COMPONENT__CONSUMED_SERVICES :
+				getConsumedServices().clear();
+				getConsumedServices().addAll(
+						(Collection<? extends ComponentService>) newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -213,15 +213,15 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case ComponentPackage.COMPONENT__PACKAGES:
-			getPackages().clear();
-			return;
-		case ComponentPackage.COMPONENT__OFFERED_SERVICES:
-			getOfferedServices().clear();
-			return;
-		case ComponentPackage.COMPONENT__CONSUMED_SERVICES:
-			getConsumedServices().clear();
-			return;
+			case ComponentPackage.COMPONENT__PACKAGES :
+				getPackages().clear();
+				return;
+			case ComponentPackage.COMPONENT__OFFERED_SERVICES :
+				getOfferedServices().clear();
+				return;
+			case ComponentPackage.COMPONENT__CONSUMED_SERVICES :
+				getConsumedServices().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -233,12 +233,12 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case ComponentPackage.COMPONENT__PACKAGES:
-			return packages != null && !packages.isEmpty();
-		case ComponentPackage.COMPONENT__OFFERED_SERVICES:
-			return offeredServices != null && !offeredServices.isEmpty();
-		case ComponentPackage.COMPONENT__CONSUMED_SERVICES:
-			return consumedServices != null && !consumedServices.isEmpty();
+			case ComponentPackage.COMPONENT__PACKAGES :
+				return packages != null && !packages.isEmpty();
+			case ComponentPackage.COMPONENT__OFFERED_SERVICES :
+				return offeredServices != null && !offeredServices.isEmpty();
+			case ComponentPackage.COMPONENT__CONSUMED_SERVICES :
+				return consumedServices != null && !consumedServices.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

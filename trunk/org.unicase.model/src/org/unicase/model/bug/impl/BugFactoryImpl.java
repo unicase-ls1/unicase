@@ -62,13 +62,13 @@ public class BugFactoryImpl extends EFactoryImpl implements BugFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case BugPackage.BUG_REPORT:
-			return createBugReport();
-		case BugPackage.BUG_RESOLUTION:
-			return createBugResolution();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
+			case BugPackage.BUG_REPORT :
+				return createBugReport();
+			case BugPackage.BUG_RESOLUTION :
+				return createBugResolution();
+			default :
+				throw new IllegalArgumentException("The class '"
+						+ eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -79,15 +79,15 @@ public class BugFactoryImpl extends EFactoryImpl implements BugFactory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-		case BugPackage.BUG_STATUS:
-			return createBugStatusFromString(eDataType, initialValue);
-		case BugPackage.SEVERITY:
-			return createSeverityFromString(eDataType, initialValue);
-		case BugPackage.RESOLUTION_TYPE:
-			return createResolutionTypeFromString(eDataType, initialValue);
-		default:
-			throw new IllegalArgumentException("The datatype '"
-					+ eDataType.getName() + "' is not a valid classifier");
+			case BugPackage.BUG_STATUS :
+				return createBugStatusFromString(eDataType, initialValue);
+			case BugPackage.SEVERITY :
+				return createSeverityFromString(eDataType, initialValue);
+			case BugPackage.RESOLUTION_TYPE :
+				return createResolutionTypeFromString(eDataType, initialValue);
+			default :
+				throw new IllegalArgumentException("The datatype '"
+						+ eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -98,15 +98,15 @@ public class BugFactoryImpl extends EFactoryImpl implements BugFactory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-		case BugPackage.BUG_STATUS:
-			return convertBugStatusToString(eDataType, instanceValue);
-		case BugPackage.SEVERITY:
-			return convertSeverityToString(eDataType, instanceValue);
-		case BugPackage.RESOLUTION_TYPE:
-			return convertResolutionTypeToString(eDataType, instanceValue);
-		default:
-			throw new IllegalArgumentException("The datatype '"
-					+ eDataType.getName() + "' is not a valid classifier");
+			case BugPackage.BUG_STATUS :
+				return convertBugStatusToString(eDataType, instanceValue);
+			case BugPackage.SEVERITY :
+				return convertSeverityToString(eDataType, instanceValue);
+			case BugPackage.RESOLUTION_TYPE :
+				return convertResolutionTypeToString(eDataType, instanceValue);
+			default :
+				throw new IllegalArgumentException("The datatype '"
+						+ eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 

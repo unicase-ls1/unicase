@@ -74,27 +74,22 @@ public class OrganizationAdapterFactory extends AdapterFactoryImpl {
 		public Adapter caseUser(User object) {
 			return createUserAdapter();
 		}
-
 		@Override
 		public Adapter caseOrgUnit(OrgUnit object) {
 			return createOrgUnitAdapter();
 		}
-
 		@Override
 		public Adapter caseGroup(Group object) {
 			return createGroupAdapter();
 		}
-
 		@Override
 		public Adapter caseIdentifiableElement(IdentifiableElement object) {
 			return createIdentifiableElementAdapter();
 		}
-
 		@Override
 		public Adapter caseModelElement(ModelElement object) {
 			return createModelElementAdapter();
 		}
-
 		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();

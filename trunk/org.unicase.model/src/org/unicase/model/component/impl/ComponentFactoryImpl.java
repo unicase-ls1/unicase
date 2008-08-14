@@ -22,8 +22,9 @@ import org.unicase.model.component.DeploymentNode;
  * end-user-doc -->
  * @generated
  */
-public class ComponentFactoryImpl extends EFactoryImpl implements
-		ComponentFactory {
+public class ComponentFactoryImpl extends EFactoryImpl
+		implements
+			ComponentFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc --> <!--
@@ -60,15 +61,15 @@ public class ComponentFactoryImpl extends EFactoryImpl implements
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case ComponentPackage.COMPONENT:
-			return createComponent();
-		case ComponentPackage.COMPONENT_SERVICE:
-			return createComponentService();
-		case ComponentPackage.DEPLOYMENT_NODE:
-			return createDeploymentNode();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
+			case ComponentPackage.COMPONENT :
+				return createComponent();
+			case ComponentPackage.COMPONENT_SERVICE :
+				return createComponentService();
+			case ComponentPackage.DEPLOYMENT_NODE :
+				return createDeploymentNode();
+			default :
+				throw new IllegalArgumentException("The class '"
+						+ eClass.getName() + "' is not a valid classifier");
 		}
 	}
 

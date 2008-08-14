@@ -80,52 +80,42 @@ public class RequirementAdapterFactory extends AdapterFactoryImpl {
 				NonFunctionalRequirement object) {
 			return createNonFunctionalRequirementAdapter();
 		}
-
 		@Override
 		public Adapter caseFunctionalRequirement(FunctionalRequirement object) {
 			return createFunctionalRequirementAdapter();
 		}
-
 		@Override
 		public Adapter caseUseCase(UseCase object) {
 			return createUseCaseAdapter();
 		}
-
 		@Override
 		public Adapter caseScenario(Scenario object) {
 			return createScenarioAdapter();
 		}
-
 		@Override
 		public Adapter caseActor(Actor object) {
 			return createActorAdapter();
 		}
-
 		@Override
 		public Adapter caseActorInstance(ActorInstance object) {
 			return createActorInstanceAdapter();
 		}
-
 		@Override
 		public Adapter caseStep(Step object) {
 			return createStepAdapter();
 		}
-
 		@Override
 		public Adapter caseIdentifiableElement(IdentifiableElement object) {
 			return createIdentifiableElementAdapter();
 		}
-
 		@Override
 		public Adapter caseModelElement(ModelElement object) {
 			return createModelElementAdapter();
 		}
-
 		@Override
 		public Adapter caseCriterion(Criterion object) {
 			return createCriterionAdapter();
 		}
-
 		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();

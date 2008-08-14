@@ -30,9 +30,13 @@ import org.unicase.model.requirement.RequirementPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ActorItemProvider extends ModelElementItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class ActorItemProvider extends ModelElementItemProvider
+		implements
+			IEditingDomainItemProvider,
+			IStructuredItemContentProvider,
+			ITreeItemContentProvider,
+			IItemLabelProvider,
+			IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -134,7 +138,8 @@ public class ActorItemProvider extends ModelElementItemProvider implements
 	@Override
 	public String getText(Object object) {
 		String label = ((Actor) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Actor_type")
+		return label == null || label.length() == 0
+				? getString("_UI_Actor_type")
 				: getString("_UI_Actor_type") + " " + label;
 	}
 

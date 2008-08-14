@@ -81,62 +81,50 @@ public class ChangeAdapterFactory extends AdapterFactoryImpl {
 		public Adapter caseModelChangePackage(ModelChangePackage object) {
 			return createModelChangePackageAdapter();
 		}
-
 		@Override
 		public Adapter caseMergingIssue(MergingIssue object) {
 			return createMergingIssueAdapter();
 		}
-
 		@Override
 		public Adapter caseMergingProposal(MergingProposal object) {
 			return createMergingProposalAdapter();
 		}
-
 		@Override
 		public Adapter caseMergingSolution(MergingSolution object) {
 			return createMergingSolutionAdapter();
 		}
-
 		@Override
 		public Adapter caseIdentifiableElement(IdentifiableElement object) {
 			return createIdentifiableElementAdapter();
 		}
-
 		@Override
 		public Adapter caseModelElement(ModelElement object) {
 			return createModelElementAdapter();
 		}
-
 		@Override
 		public Adapter caseAnnotation(Annotation object) {
 			return createAnnotationAdapter();
 		}
-
 		@Override
 		public Adapter caseCheckable(Checkable object) {
 			return createCheckableAdapter();
 		}
-
 		@Override
 		public Adapter caseAssignable(Assignable object) {
 			return createAssignableAdapter();
 		}
-
 		@Override
 		public Adapter caseIssue(Issue object) {
 			return createIssueAdapter();
 		}
-
 		@Override
 		public Adapter caseProposal(Proposal object) {
 			return createProposalAdapter();
 		}
-
 		@Override
 		public Adapter caseSolution(Solution object) {
 			return createSolutionAdapter();
 		}
-
 		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();

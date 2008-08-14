@@ -236,11 +236,11 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM:
-			return basicSetGmfdiagram(null, msgs);
-		case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
-			return ((InternalEList<?>) getNewElements()).basicRemove(otherEnd,
-					msgs);
+			case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM :
+				return basicSetGmfdiagram(null, msgs);
+			case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS :
+				return ((InternalEList<?>) getNewElements()).basicRemove(
+						otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -252,14 +252,14 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case DiagramPackage.ME_DIAGRAM__ELEMENTS:
-			return getElements();
-		case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM:
-			return getGmfdiagram();
-		case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
-			return getNewElements();
-		case DiagramPackage.ME_DIAGRAM__TYPE:
-			return getType();
+			case DiagramPackage.ME_DIAGRAM__ELEMENTS :
+				return getElements();
+			case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM :
+				return getGmfdiagram();
+			case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS :
+				return getNewElements();
+			case DiagramPackage.ME_DIAGRAM__TYPE :
+				return getType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -272,21 +272,22 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case DiagramPackage.ME_DIAGRAM__ELEMENTS:
-			getElements().clear();
-			getElements().addAll((Collection<? extends ModelElement>) newValue);
-			return;
-		case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM:
-			setGmfdiagram((Diagram) newValue);
-			return;
-		case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
-			getNewElements().clear();
-			getNewElements().addAll(
-					(Collection<? extends ModelElement>) newValue);
-			return;
-		case DiagramPackage.ME_DIAGRAM__TYPE:
-			setType((DiagramType) newValue);
-			return;
+			case DiagramPackage.ME_DIAGRAM__ELEMENTS :
+				getElements().clear();
+				getElements().addAll(
+						(Collection<? extends ModelElement>) newValue);
+				return;
+			case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM :
+				setGmfdiagram((Diagram) newValue);
+				return;
+			case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS :
+				getNewElements().clear();
+				getNewElements().addAll(
+						(Collection<? extends ModelElement>) newValue);
+				return;
+			case DiagramPackage.ME_DIAGRAM__TYPE :
+				setType((DiagramType) newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -298,18 +299,18 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case DiagramPackage.ME_DIAGRAM__ELEMENTS:
-			getElements().clear();
-			return;
-		case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM:
-			setGmfdiagram((Diagram) null);
-			return;
-		case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
-			getNewElements().clear();
-			return;
-		case DiagramPackage.ME_DIAGRAM__TYPE:
-			setType(TYPE_EDEFAULT);
-			return;
+			case DiagramPackage.ME_DIAGRAM__ELEMENTS :
+				getElements().clear();
+				return;
+			case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM :
+				setGmfdiagram((Diagram) null);
+				return;
+			case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS :
+				getNewElements().clear();
+				return;
+			case DiagramPackage.ME_DIAGRAM__TYPE :
+				setType(TYPE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -321,14 +322,14 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case DiagramPackage.ME_DIAGRAM__ELEMENTS:
-			return elements != null && !elements.isEmpty();
-		case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM:
-			return gmfdiagram != null;
-		case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
-			return newElements != null && !newElements.isEmpty();
-		case DiagramPackage.ME_DIAGRAM__TYPE:
-			return type != TYPE_EDEFAULT;
+			case DiagramPackage.ME_DIAGRAM__ELEMENTS :
+				return elements != null && !elements.isEmpty();
+			case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM :
+				return gmfdiagram != null;
+			case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS :
+				return newElements != null && !newElements.isEmpty();
+			case DiagramPackage.ME_DIAGRAM__TYPE :
+				return type != TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

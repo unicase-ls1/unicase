@@ -26,8 +26,12 @@ import org.unicase.model.ModelElementId;
  * @generated
  */
 public class ModelElementIdItemProvider extends UniqueIdentifierItemProvider
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+		implements
+			IEditingDomainItemProvider,
+			IStructuredItemContentProvider,
+			ITreeItemContentProvider,
+			IItemLabelProvider,
+			IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -74,7 +78,8 @@ public class ModelElementIdItemProvider extends UniqueIdentifierItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((ModelElementId) object).getId();
-		return label == null || label.length() == 0 ? getString("_UI_ModelElementId_type")
+		return label == null || label.length() == 0
+				? getString("_UI_ModelElementId_type")
 				: getString("_UI_ModelElementId_type") + " " + label;
 	}
 

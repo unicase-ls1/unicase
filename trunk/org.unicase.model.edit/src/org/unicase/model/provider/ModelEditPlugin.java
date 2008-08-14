@@ -38,7 +38,7 @@ public final class ModelEditPlugin extends EMFPlugin {
 	 * @generated NOT
 	 */
 	public ModelEditPlugin() {
-		super(new ResourceLocator[] {});
+		super(new ResourceLocator[]{});
 	}
 
 	/**

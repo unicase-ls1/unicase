@@ -182,12 +182,12 @@ public class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case OrganizationPackage.ORG_UNIT__GROUP_MEMBERSHIPS:
-			if (groupMemberships != null)
-				msgs = ((InternalEObject) groupMemberships).eInverseRemove(
-						this, OrganizationPackage.GROUP__ORG_UNITS,
-						Group.class, msgs);
-			return basicSetGroupMemberships((Group) otherEnd, msgs);
+			case OrganizationPackage.ORG_UNIT__GROUP_MEMBERSHIPS :
+				if (groupMemberships != null)
+					msgs = ((InternalEObject) groupMemberships).eInverseRemove(
+							this, OrganizationPackage.GROUP__ORG_UNITS,
+							Group.class, msgs);
+				return basicSetGroupMemberships((Group) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -200,8 +200,8 @@ public class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case OrganizationPackage.ORG_UNIT__GROUP_MEMBERSHIPS:
-			return basicSetGroupMemberships(null, msgs);
+			case OrganizationPackage.ORG_UNIT__GROUP_MEMBERSHIPS :
+				return basicSetGroupMemberships(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -213,12 +213,12 @@ public class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case OrganizationPackage.ORG_UNIT__AC_ORG_ID:
-			return getAcOrgId();
-		case OrganizationPackage.ORG_UNIT__GROUP_MEMBERSHIPS:
-			if (resolve)
-				return getGroupMemberships();
-			return basicGetGroupMemberships();
+			case OrganizationPackage.ORG_UNIT__AC_ORG_ID :
+				return getAcOrgId();
+			case OrganizationPackage.ORG_UNIT__GROUP_MEMBERSHIPS :
+				if (resolve)
+					return getGroupMemberships();
+				return basicGetGroupMemberships();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -230,12 +230,12 @@ public class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case OrganizationPackage.ORG_UNIT__AC_ORG_ID:
-			setAcOrgId((String) newValue);
-			return;
-		case OrganizationPackage.ORG_UNIT__GROUP_MEMBERSHIPS:
-			setGroupMemberships((Group) newValue);
-			return;
+			case OrganizationPackage.ORG_UNIT__AC_ORG_ID :
+				setAcOrgId((String) newValue);
+				return;
+			case OrganizationPackage.ORG_UNIT__GROUP_MEMBERSHIPS :
+				setGroupMemberships((Group) newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -247,12 +247,12 @@ public class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case OrganizationPackage.ORG_UNIT__AC_ORG_ID:
-			setAcOrgId(AC_ORG_ID_EDEFAULT);
-			return;
-		case OrganizationPackage.ORG_UNIT__GROUP_MEMBERSHIPS:
-			setGroupMemberships((Group) null);
-			return;
+			case OrganizationPackage.ORG_UNIT__AC_ORG_ID :
+				setAcOrgId(AC_ORG_ID_EDEFAULT);
+				return;
+			case OrganizationPackage.ORG_UNIT__GROUP_MEMBERSHIPS :
+				setGroupMemberships((Group) null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -264,11 +264,12 @@ public class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case OrganizationPackage.ORG_UNIT__AC_ORG_ID:
-			return AC_ORG_ID_EDEFAULT == null ? acOrgId != null
-					: !AC_ORG_ID_EDEFAULT.equals(acOrgId);
-		case OrganizationPackage.ORG_UNIT__GROUP_MEMBERSHIPS:
-			return groupMemberships != null;
+			case OrganizationPackage.ORG_UNIT__AC_ORG_ID :
+				return AC_ORG_ID_EDEFAULT == null
+						? acOrgId != null
+						: !AC_ORG_ID_EDEFAULT.equals(acOrgId);
+			case OrganizationPackage.ORG_UNIT__GROUP_MEMBERSHIPS :
+				return groupMemberships != null;
 		}
 		return super.eIsSet(featureID);
 	}

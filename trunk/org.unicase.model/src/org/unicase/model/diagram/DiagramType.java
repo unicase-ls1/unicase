@@ -102,8 +102,8 @@ public enum DiagramType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final DiagramType[] VALUES_ARRAY = new DiagramType[] {
-			CLASS_DIAGRAM, USECASE_DIAGRAM, COMPONENT_DIAGRAM, };
+	private static final DiagramType[] VALUES_ARRAY = new DiagramType[]{
+			CLASS_DIAGRAM, USECASE_DIAGRAM, COMPONENT_DIAGRAM,};
 
 	/**
 	 * A public read-only list of all the '<em><b>Type</b></em>' enumerators.
@@ -154,12 +154,12 @@ public enum DiagramType implements Enumerator {
 	 */
 	public static DiagramType get(int value) {
 		switch (value) {
-		case CLASS_DIAGRAM_VALUE:
-			return CLASS_DIAGRAM;
-		case USECASE_DIAGRAM_VALUE:
-			return USECASE_DIAGRAM;
-		case COMPONENT_DIAGRAM_VALUE:
-			return COMPONENT_DIAGRAM;
+			case CLASS_DIAGRAM_VALUE :
+				return CLASS_DIAGRAM;
+			case USECASE_DIAGRAM_VALUE :
+				return USECASE_DIAGRAM;
+			case COMPONENT_DIAGRAM_VALUE :
+				return COMPONENT_DIAGRAM;
 		}
 		return null;
 	}

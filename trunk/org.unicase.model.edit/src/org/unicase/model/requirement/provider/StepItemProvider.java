@@ -32,9 +32,13 @@ import org.unicase.model.requirement.Step;
  * <!-- end-user-doc -->
  * @generated
  */
-public class StepItemProvider extends ModelElementItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class StepItemProvider extends ModelElementItemProvider
+		implements
+			IEditingDomainItemProvider,
+			IStructuredItemContentProvider,
+			ITreeItemContentProvider,
+			IItemLabelProvider,
+			IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -98,7 +102,8 @@ public class StepItemProvider extends ModelElementItemProvider implements
 	@Override
 	public String getText(Object object) {
 		String label = ((Step) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Step_type")
+		return label == null || label.length() == 0
+				? getString("_UI_Step_type")
 				: getString("_UI_Step_type") + " " + label;
 	}
 
@@ -114,10 +119,10 @@ public class StepItemProvider extends ModelElementItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Step.class)) {
-		case RequirementPackage.STEP__USER_STEP:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
-			return;
+			case RequirementPackage.STEP__USER_STEP :
+				fireNotifyChanged(new ViewerNotification(notification,
+						notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

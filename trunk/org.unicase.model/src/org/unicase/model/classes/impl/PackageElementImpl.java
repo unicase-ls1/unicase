@@ -28,8 +28,9 @@ import org.unicase.model.impl.ModelElementImpl;
  *
  * @generated
  */
-public abstract class PackageElementImpl extends ModelElementImpl implements
-		PackageElement {
+public abstract class PackageElementImpl extends ModelElementImpl
+		implements
+			PackageElement {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -104,11 +105,11 @@ public abstract class PackageElementImpl extends ModelElementImpl implements
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE:
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			return basicSetParentPackage(
-					(org.unicase.model.classes.Package) otherEnd, msgs);
+			case ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE :
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetParentPackage(
+						(org.unicase.model.classes.Package) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -121,8 +122,8 @@ public abstract class PackageElementImpl extends ModelElementImpl implements
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE:
-			return basicSetParentPackage(null, msgs);
+			case ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE :
+				return basicSetParentPackage(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -135,10 +136,10 @@ public abstract class PackageElementImpl extends ModelElementImpl implements
 	public NotificationChain eBasicRemoveFromContainerFeature(
 			NotificationChain msgs) {
 		switch (eContainerFeatureID) {
-		case ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE:
-			return eInternalContainer().eInverseRemove(this,
-					ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS,
-					org.unicase.model.classes.Package.class, msgs);
+			case ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE :
+				return eInternalContainer().eInverseRemove(this,
+						ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS,
+						org.unicase.model.classes.Package.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -150,8 +151,8 @@ public abstract class PackageElementImpl extends ModelElementImpl implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE:
-			return getParentPackage();
+			case ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE :
+				return getParentPackage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -163,9 +164,9 @@ public abstract class PackageElementImpl extends ModelElementImpl implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE:
-			setParentPackage((org.unicase.model.classes.Package) newValue);
-			return;
+			case ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE :
+				setParentPackage((org.unicase.model.classes.Package) newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -177,9 +178,9 @@ public abstract class PackageElementImpl extends ModelElementImpl implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE:
-			setParentPackage((org.unicase.model.classes.Package) null);
-			return;
+			case ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE :
+				setParentPackage((org.unicase.model.classes.Package) null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -191,8 +192,8 @@ public abstract class PackageElementImpl extends ModelElementImpl implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE:
-			return getParentPackage() != null;
+			case ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE :
+				return getParentPackage() != null;
 		}
 		return super.eIsSet(featureID);
 	}

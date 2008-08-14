@@ -59,11 +59,11 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case DiagramPackage.ME_DIAGRAM:
-			return createMEDiagram();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
+			case DiagramPackage.ME_DIAGRAM :
+				return createMEDiagram();
+			default :
+				throw new IllegalArgumentException("The class '"
+						+ eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -75,11 +75,11 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-		case DiagramPackage.DIAGRAM_TYPE:
-			return createDiagramTypeFromString(eDataType, initialValue);
-		default:
-			throw new IllegalArgumentException("The datatype '"
-					+ eDataType.getName() + "' is not a valid classifier");
+			case DiagramPackage.DIAGRAM_TYPE :
+				return createDiagramTypeFromString(eDataType, initialValue);
+			default :
+				throw new IllegalArgumentException("The datatype '"
+						+ eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -91,11 +91,11 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-		case DiagramPackage.DIAGRAM_TYPE:
-			return convertDiagramTypeToString(eDataType, instanceValue);
-		default:
-			throw new IllegalArgumentException("The datatype '"
-					+ eDataType.getName() + "' is not a valid classifier");
+			case DiagramPackage.DIAGRAM_TYPE :
+				return convertDiagramTypeToString(eDataType, instanceValue);
+			default :
+				throw new IllegalArgumentException("The datatype '"
+						+ eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
