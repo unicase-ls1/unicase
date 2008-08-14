@@ -6,6 +6,14 @@ import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.Assignable;
 
+/**
+ * In addition to the EClass attribute of its superclass
+ * {@link EClassFilterItemProvider}, this class uses a specific instance of
+ * {@link User} to determine which items to provide or not to provide.
+ * 
+ * @author Florian Schneider
+ * 
+ */
 public class UserAndEClassFilterItemProvider extends EClassFilterItemProvider {
 
 	private User owner;
