@@ -33,9 +33,13 @@ import org.unicase.model.requirement.Scenario;
  * --> <!-- end-user-doc -->
  * @generated
  */
-public class ScenarioItemProvider extends ModelElementItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class ScenarioItemProvider extends ModelElementItemProvider
+		implements
+			IEditingDomainItemProvider,
+			IStructuredItemContentProvider,
+			ITreeItemContentProvider,
+			IItemLabelProvider,
+			IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -209,7 +213,8 @@ public class ScenarioItemProvider extends ModelElementItemProvider implements
 	@Override
 	public String getText(Object object) {
 		String label = ((Scenario) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Scenario_type")
+		return label == null || label.length() == 0
+				? getString("_UI_Scenario_type")
 				: getString("_UI_Scenario_type") + " " + label;
 	}
 
@@ -225,10 +230,10 @@ public class ScenarioItemProvider extends ModelElementItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Scenario.class)) {
-		case RequirementPackage.SCENARIO__STEPS:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
-			return;
+			case RequirementPackage.SCENARIO__STEPS :
+				fireNotifyChanged(new ViewerNotification(notification,
+						notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

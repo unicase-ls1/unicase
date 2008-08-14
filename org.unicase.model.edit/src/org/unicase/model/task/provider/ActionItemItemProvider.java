@@ -32,9 +32,13 @@ import org.unicase.model.task.TaskPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ActionItemItemProvider extends AnnotationItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class ActionItemItemProvider extends AnnotationItemProvider
+		implements
+			IEditingDomainItemProvider,
+			IStructuredItemContentProvider,
+			ITreeItemContentProvider,
+			IItemLabelProvider,
+			IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -286,14 +290,14 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ActionItem.class)) {
-		case TaskPackage.ACTION_ITEM__CHECKED:
-		case TaskPackage.ACTION_ITEM__DUE_DATE:
-		case TaskPackage.ACTION_ITEM__DONE:
-		case TaskPackage.ACTION_ITEM__ESTIMATE:
-		case TaskPackage.ACTION_ITEM__ACTIVITY:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
-			return;
+			case TaskPackage.ACTION_ITEM__CHECKED :
+			case TaskPackage.ACTION_ITEM__DUE_DATE :
+			case TaskPackage.ACTION_ITEM__DONE :
+			case TaskPackage.ACTION_ITEM__ESTIMATE :
+			case TaskPackage.ACTION_ITEM__ACTIVITY :
+				fireNotifyChanged(new ViewerNotification(notification,
+						notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

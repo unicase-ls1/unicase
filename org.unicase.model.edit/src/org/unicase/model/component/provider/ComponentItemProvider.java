@@ -33,9 +33,13 @@ import org.unicase.model.provider.ModelElementItemProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ComponentItemProvider extends ModelElementItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class ComponentItemProvider extends ModelElementItemProvider
+		implements
+			IEditingDomainItemProvider,
+			IStructuredItemContentProvider,
+			ITreeItemContentProvider,
+			IItemLabelProvider,
+			IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -150,7 +154,8 @@ public class ComponentItemProvider extends ModelElementItemProvider implements
 	@Override
 	public String getText(Object object) {
 		String label = ((Component) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Component_type")
+		return label == null || label.length() == 0
+				? getString("_UI_Component_type")
 				: getString("_UI_Component_type") + " " + label;
 	}
 
@@ -166,10 +171,10 @@ public class ComponentItemProvider extends ModelElementItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Component.class)) {
-		case ComponentPackage.COMPONENT__OFFERED_SERVICES:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
-			return;
+			case ComponentPackage.COMPONENT__OFFERED_SERVICES :
+				fireNotifyChanged(new ViewerNotification(notification,
+						notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

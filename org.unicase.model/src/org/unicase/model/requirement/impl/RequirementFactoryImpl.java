@@ -26,8 +26,9 @@ import org.unicase.model.requirement.UseCase;
  * end-user-doc -->
  * @generated
  */
-public class RequirementFactoryImpl extends EFactoryImpl implements
-		RequirementFactory {
+public class RequirementFactoryImpl extends EFactoryImpl
+		implements
+			RequirementFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc --> <!--
@@ -64,23 +65,23 @@ public class RequirementFactoryImpl extends EFactoryImpl implements
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT:
-			return createNonFunctionalRequirement();
-		case RequirementPackage.FUNCTIONAL_REQUIREMENT:
-			return createFunctionalRequirement();
-		case RequirementPackage.USE_CASE:
-			return createUseCase();
-		case RequirementPackage.SCENARIO:
-			return createScenario();
-		case RequirementPackage.ACTOR:
-			return createActor();
-		case RequirementPackage.ACTOR_INSTANCE:
-			return createActorInstance();
-		case RequirementPackage.STEP:
-			return createStep();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
+			case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT :
+				return createNonFunctionalRequirement();
+			case RequirementPackage.FUNCTIONAL_REQUIREMENT :
+				return createFunctionalRequirement();
+			case RequirementPackage.USE_CASE :
+				return createUseCase();
+			case RequirementPackage.SCENARIO :
+				return createScenario();
+			case RequirementPackage.ACTOR :
+				return createActor();
+			case RequirementPackage.ACTOR_INSTANCE :
+				return createActorInstance();
+			case RequirementPackage.STEP :
+				return createStep();
+			default :
+				throw new IllegalArgumentException("The class '"
+						+ eClass.getName() + "' is not a valid classifier");
 		}
 	}
 

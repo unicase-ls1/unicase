@@ -34,9 +34,13 @@ import org.unicase.model.requirement.util.RequirementAdapterFactory;
  * end-user-doc -->
  * @generated
  */
-public class RequirementItemProviderAdapterFactory extends
-		RequirementAdapterFactory implements ComposeableAdapterFactory,
-		IChangeNotifier, IDisposable {
+public class RequirementItemProviderAdapterFactory
+		extends
+			RequirementAdapterFactory
+		implements
+			ComposeableAdapterFactory,
+			IChangeNotifier,
+			IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

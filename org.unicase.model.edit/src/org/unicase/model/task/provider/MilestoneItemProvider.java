@@ -26,9 +26,13 @@ import org.unicase.model.provider.ModelElementItemProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MilestoneItemProvider extends ModelElementItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class MilestoneItemProvider extends ModelElementItemProvider
+		implements
+			IEditingDomainItemProvider,
+			IStructuredItemContentProvider,
+			ITreeItemContentProvider,
+			IItemLabelProvider,
+			IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

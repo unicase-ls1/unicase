@@ -148,8 +148,8 @@ public enum VisibilityType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final VisibilityType[] VALUES_ARRAY = new VisibilityType[] {
-			UNDEFINED, PACKAGE, PRIVATE, GLOBAL, PROTECTED, };
+	private static final VisibilityType[] VALUES_ARRAY = new VisibilityType[]{
+			UNDEFINED, PACKAGE, PRIVATE, GLOBAL, PROTECTED,};
 
 	/**
 	 * A public read-only list of all the '<em><b>Visibility Type</b></em>' enumerators.
@@ -200,16 +200,16 @@ public enum VisibilityType implements Enumerator {
 	 */
 	public static VisibilityType get(int value) {
 		switch (value) {
-		case UNDEFINED_VALUE:
-			return UNDEFINED;
-		case PACKAGE_VALUE:
-			return PACKAGE;
-		case PRIVATE_VALUE:
-			return PRIVATE;
-		case GLOBAL_VALUE:
-			return GLOBAL;
-		case PROTECTED_VALUE:
-			return PROTECTED;
+			case UNDEFINED_VALUE :
+				return UNDEFINED;
+			case PACKAGE_VALUE :
+				return PACKAGE;
+			case PRIVATE_VALUE :
+				return PRIVATE;
+			case GLOBAL_VALUE :
+				return GLOBAL;
+			case PROTECTED_VALUE :
+				return PROTECTED;
 		}
 		return null;
 	}

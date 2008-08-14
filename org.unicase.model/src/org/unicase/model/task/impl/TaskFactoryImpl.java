@@ -62,17 +62,17 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case TaskPackage.ACTION_ITEM:
-			return createActionItem();
-		case TaskPackage.WORK_PACKAGE:
-			return createWorkPackage();
-		case TaskPackage.MEETING:
-			return createMeeting();
-		case TaskPackage.MILESTONE:
-			return createMilestone();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
+			case TaskPackage.ACTION_ITEM :
+				return createActionItem();
+			case TaskPackage.WORK_PACKAGE :
+				return createWorkPackage();
+			case TaskPackage.MEETING :
+				return createMeeting();
+			case TaskPackage.MILESTONE :
+				return createMilestone();
+			default :
+				throw new IllegalArgumentException("The class '"
+						+ eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -84,11 +84,11 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-		case TaskPackage.ACTIVITY_TYPE:
-			return createActivityTypeFromString(eDataType, initialValue);
-		default:
-			throw new IllegalArgumentException("The datatype '"
-					+ eDataType.getName() + "' is not a valid classifier");
+			case TaskPackage.ACTIVITY_TYPE :
+				return createActivityTypeFromString(eDataType, initialValue);
+			default :
+				throw new IllegalArgumentException("The datatype '"
+						+ eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -100,11 +100,11 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-		case TaskPackage.ACTIVITY_TYPE:
-			return convertActivityTypeToString(eDataType, instanceValue);
-		default:
-			throw new IllegalArgumentException("The datatype '"
-					+ eDataType.getName() + "' is not a valid classifier");
+			case TaskPackage.ACTIVITY_TYPE :
+				return convertActivityTypeToString(eDataType, instanceValue);
+			default :
+				throw new IllegalArgumentException("The datatype '"
+						+ eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 

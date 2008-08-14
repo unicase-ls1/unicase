@@ -42,8 +42,9 @@ import org.unicase.model.task.impl.TaskPackageImpl;
  * end-user-doc -->
  * @generated
  */
-public class DocumentPackageImpl extends EPackageImpl implements
-		DocumentPackage {
+public class DocumentPackageImpl extends EPackageImpl
+		implements
+			DocumentPackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -113,8 +114,8 @@ public class DocumentPackageImpl extends EPackageImpl implements
 
 		// Obtain or create and register package
 		DocumentPackageImpl theDocumentPackage = (DocumentPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(eNS_URI)
+				.getEPackage(eNS_URI) instanceof DocumentPackageImpl
+				? EPackage.Registry.INSTANCE.getEPackage(eNS_URI)
 				: new DocumentPackageImpl());
 
 		isInited = true;
@@ -124,44 +125,50 @@ public class DocumentPackageImpl extends EPackageImpl implements
 
 		// Obtain or create and register interdependencies
 		ModelPackageImpl theModelPackage = (ModelPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ModelPackage.eNS_URI)
+				.getEPackage(ModelPackage.eNS_URI) instanceof ModelPackageImpl
+				? EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI)
 				: ModelPackage.eINSTANCE);
 		OrganizationPackageImpl theOrganizationPackage = (OrganizationPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(OrganizationPackage.eNS_URI)
+				.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl
+				? EPackage.Registry.INSTANCE
+						.getEPackage(OrganizationPackage.eNS_URI)
 				: OrganizationPackage.eINSTANCE);
 		TaskPackageImpl theTaskPackage = (TaskPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(TaskPackage.eNS_URI)
+				.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl
+				? EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI)
 				: TaskPackage.eINSTANCE);
 		DiagramPackageImpl theDiagramPackage = (DiagramPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(DiagramPackage.eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(DiagramPackage.eNS_URI)
+				.getEPackage(DiagramPackage.eNS_URI) instanceof DiagramPackageImpl
+				? EPackage.Registry.INSTANCE
+						.getEPackage(DiagramPackage.eNS_URI)
 				: DiagramPackage.eINSTANCE);
 		ClassesPackageImpl theClassesPackage = (ClassesPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(ClassesPackage.eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ClassesPackage.eNS_URI)
+				.getEPackage(ClassesPackage.eNS_URI) instanceof ClassesPackageImpl
+				? EPackage.Registry.INSTANCE
+						.getEPackage(ClassesPackage.eNS_URI)
 				: ClassesPackage.eINSTANCE);
 		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(RequirementPackage.eNS_URI)
+				.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl
+				? EPackage.Registry.INSTANCE
+						.getEPackage(RequirementPackage.eNS_URI)
 				: RequirementPackage.eINSTANCE);
 		RationalePackageImpl theRationalePackage = (RationalePackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(RationalePackage.eNS_URI) instanceof RationalePackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(RationalePackage.eNS_URI)
+				.getEPackage(RationalePackage.eNS_URI) instanceof RationalePackageImpl
+				? EPackage.Registry.INSTANCE
+						.getEPackage(RationalePackage.eNS_URI)
 				: RationalePackage.eINSTANCE);
 		ChangePackageImpl theChangePackage = (ChangePackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ChangePackage.eNS_URI)
+				.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl
+				? EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI)
 				: ChangePackage.eINSTANCE);
 		BugPackageImpl theBugPackage = (BugPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(BugPackage.eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(BugPackage.eNS_URI)
+				.getEPackage(BugPackage.eNS_URI) instanceof BugPackageImpl
+				? EPackage.Registry.INSTANCE.getEPackage(BugPackage.eNS_URI)
 				: BugPackage.eINSTANCE);
 		ComponentPackageImpl theComponentPackage = (ComponentPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(ComponentPackage.eNS_URI) instanceof ComponentPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ComponentPackage.eNS_URI)
+				.getEPackage(ComponentPackage.eNS_URI) instanceof ComponentPackageImpl
+				? EPackage.Registry.INSTANCE
+						.getEPackage(ComponentPackage.eNS_URI)
 				: ComponentPackage.eINSTANCE);
 
 		// Create package meta-data objects

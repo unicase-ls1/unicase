@@ -30,9 +30,13 @@ import org.unicase.model.rationale.provider.SolutionItemProvider;
  * --> <!-- end-user-doc -->
  * @generated
  */
-public class MergingSolutionItemProvider extends SolutionItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class MergingSolutionItemProvider extends SolutionItemProvider
+		implements
+			IEditingDomainItemProvider,
+			IStructuredItemContentProvider,
+			ITreeItemContentProvider,
+			IItemLabelProvider,
+			IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -98,7 +102,8 @@ public class MergingSolutionItemProvider extends SolutionItemProvider implements
 	@Override
 	public String getText(Object object) {
 		String label = ((MergingSolution) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_MergingSolution_type")
+		return label == null || label.length() == 0
+				? getString("_UI_MergingSolution_type")
 				: getString("_UI_MergingSolution_type") + " " + label;
 	}
 

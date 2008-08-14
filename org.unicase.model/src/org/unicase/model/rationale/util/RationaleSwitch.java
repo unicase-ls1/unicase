@@ -90,82 +90,82 @@ public class RationaleSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-		case RationalePackage.ISSUE: {
-			Issue issue = (Issue) theEObject;
-			T result = caseIssue(issue);
-			if (result == null)
-				result = caseAnnotation(issue);
-			if (result == null)
-				result = caseCheckable(issue);
-			if (result == null)
-				result = caseAssignable(issue);
-			if (result == null)
-				result = caseModelElement(issue);
-			if (result == null)
-				result = caseIdentifiableElement(issue);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case RationalePackage.PROPOSAL: {
-			Proposal proposal = (Proposal) theEObject;
-			T result = caseProposal(proposal);
-			if (result == null)
-				result = caseModelElement(proposal);
-			if (result == null)
-				result = caseIdentifiableElement(proposal);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case RationalePackage.SOLUTION: {
-			Solution solution = (Solution) theEObject;
-			T result = caseSolution(solution);
-			if (result == null)
-				result = caseModelElement(solution);
-			if (result == null)
-				result = caseIdentifiableElement(solution);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case RationalePackage.CRITERION: {
-			Criterion criterion = (Criterion) theEObject;
-			T result = caseCriterion(criterion);
-			if (result == null)
-				result = caseModelElement(criterion);
-			if (result == null)
-				result = caseIdentifiableElement(criterion);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case RationalePackage.ASSESSMENT: {
-			Assessment assessment = (Assessment) theEObject;
-			T result = caseAssessment(assessment);
-			if (result == null)
-				result = caseModelElement(assessment);
-			if (result == null)
-				result = caseIdentifiableElement(assessment);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case RationalePackage.COMMENT: {
-			Comment comment = (Comment) theEObject;
-			T result = caseComment(comment);
-			if (result == null)
-				result = caseAnnotation(comment);
-			if (result == null)
-				result = caseModelElement(comment);
-			if (result == null)
-				result = caseIdentifiableElement(comment);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		default:
-			return defaultCase(theEObject);
+			case RationalePackage.ISSUE : {
+				Issue issue = (Issue) theEObject;
+				T result = caseIssue(issue);
+				if (result == null)
+					result = caseAnnotation(issue);
+				if (result == null)
+					result = caseCheckable(issue);
+				if (result == null)
+					result = caseAssignable(issue);
+				if (result == null)
+					result = caseModelElement(issue);
+				if (result == null)
+					result = caseIdentifiableElement(issue);
+				if (result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+			case RationalePackage.PROPOSAL : {
+				Proposal proposal = (Proposal) theEObject;
+				T result = caseProposal(proposal);
+				if (result == null)
+					result = caseModelElement(proposal);
+				if (result == null)
+					result = caseIdentifiableElement(proposal);
+				if (result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+			case RationalePackage.SOLUTION : {
+				Solution solution = (Solution) theEObject;
+				T result = caseSolution(solution);
+				if (result == null)
+					result = caseModelElement(solution);
+				if (result == null)
+					result = caseIdentifiableElement(solution);
+				if (result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+			case RationalePackage.CRITERION : {
+				Criterion criterion = (Criterion) theEObject;
+				T result = caseCriterion(criterion);
+				if (result == null)
+					result = caseModelElement(criterion);
+				if (result == null)
+					result = caseIdentifiableElement(criterion);
+				if (result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+			case RationalePackage.ASSESSMENT : {
+				Assessment assessment = (Assessment) theEObject;
+				T result = caseAssessment(assessment);
+				if (result == null)
+					result = caseModelElement(assessment);
+				if (result == null)
+					result = caseIdentifiableElement(assessment);
+				if (result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+			case RationalePackage.COMMENT : {
+				Comment comment = (Comment) theEObject;
+				T result = caseComment(comment);
+				if (result == null)
+					result = caseAnnotation(comment);
+				if (result == null)
+					result = caseModelElement(comment);
+				if (result == null)
+					result = caseIdentifiableElement(comment);
+				if (result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+			default :
+				return defaultCase(theEObject);
 		}
 	}
 

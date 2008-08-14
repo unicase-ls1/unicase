@@ -152,8 +152,8 @@ public enum BugStatus implements Enumerator {
 	 * 
 	 * @generated
 	 */
-	private static final BugStatus[] VALUES_ARRAY = new BugStatus[] { NEW,
-			CONFIRMED, ASSIGNED, RESOLVED, CLOSED, };
+	private static final BugStatus[] VALUES_ARRAY = new BugStatus[]{NEW,
+			CONFIRMED, ASSIGNED, RESOLVED, CLOSED,};
 
 	/**
 	 * A public read-only list of all the '<em><b>Status</b></em>' enumerators.
@@ -200,16 +200,16 @@ public enum BugStatus implements Enumerator {
 	 */
 	public static BugStatus get(int value) {
 		switch (value) {
-		case NEW_VALUE:
-			return NEW;
-		case CONFIRMED_VALUE:
-			return CONFIRMED;
-		case ASSIGNED_VALUE:
-			return ASSIGNED;
-		case RESOLVED_VALUE:
-			return RESOLVED;
-		case CLOSED_VALUE:
-			return CLOSED;
+			case NEW_VALUE :
+				return NEW;
+			case CONFIRMED_VALUE :
+				return CONFIRMED;
+			case ASSIGNED_VALUE :
+				return ASSIGNED;
+			case RESOLVED_VALUE :
+				return RESOLVED;
+			case CLOSED_VALUE :
+				return CLOSED;
 		}
 		return null;
 	}

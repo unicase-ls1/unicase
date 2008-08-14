@@ -26,8 +26,9 @@ import org.unicase.model.impl.ModelElementImpl;
  *
  * @generated
  */
-public class BugResolutionImpl extends ModelElementImpl implements
-		BugResolution {
+public class BugResolutionImpl extends ModelElementImpl
+		implements
+			BugResolution {
 	/**
 	 * The default value of the '{@link #getResoultionType() <em>Resoultion Type</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
@@ -79,7 +80,8 @@ public class BugResolutionImpl extends ModelElementImpl implements
 	 */
 	public void setResoultionType(ResolutionType newResoultionType) {
 		ResolutionType oldResoultionType = resoultionType;
-		resoultionType = newResoultionType == null ? RESOULTION_TYPE_EDEFAULT
+		resoultionType = newResoultionType == null
+				? RESOULTION_TYPE_EDEFAULT
 				: newResoultionType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
@@ -94,8 +96,8 @@ public class BugResolutionImpl extends ModelElementImpl implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case BugPackage.BUG_RESOLUTION__RESOULTION_TYPE:
-			return getResoultionType();
+			case BugPackage.BUG_RESOLUTION__RESOULTION_TYPE :
+				return getResoultionType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -107,9 +109,9 @@ public class BugResolutionImpl extends ModelElementImpl implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case BugPackage.BUG_RESOLUTION__RESOULTION_TYPE:
-			setResoultionType((ResolutionType) newValue);
-			return;
+			case BugPackage.BUG_RESOLUTION__RESOULTION_TYPE :
+				setResoultionType((ResolutionType) newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -121,9 +123,9 @@ public class BugResolutionImpl extends ModelElementImpl implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case BugPackage.BUG_RESOLUTION__RESOULTION_TYPE:
-			setResoultionType(RESOULTION_TYPE_EDEFAULT);
-			return;
+			case BugPackage.BUG_RESOLUTION__RESOULTION_TYPE :
+				setResoultionType(RESOULTION_TYPE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -135,8 +137,8 @@ public class BugResolutionImpl extends ModelElementImpl implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case BugPackage.BUG_RESOLUTION__RESOULTION_TYPE:
-			return resoultionType != RESOULTION_TYPE_EDEFAULT;
+			case BugPackage.BUG_RESOLUTION__RESOULTION_TYPE :
+				return resoultionType != RESOULTION_TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

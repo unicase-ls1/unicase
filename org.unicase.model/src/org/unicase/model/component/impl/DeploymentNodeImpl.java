@@ -28,8 +28,9 @@ import org.unicase.model.impl.ModelElementImpl;
  *
  * @generated
  */
-public class DeploymentNodeImpl extends ModelElementImpl implements
-		DeploymentNode {
+public class DeploymentNodeImpl extends ModelElementImpl
+		implements
+			DeploymentNode {
 	/**
 	 * The cached value of the '{@link #getComponents() <em>Components</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -75,8 +76,8 @@ public class DeploymentNodeImpl extends ModelElementImpl implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case ComponentPackage.DEPLOYMENT_NODE__COMPONENTS:
-			return getComponents();
+			case ComponentPackage.DEPLOYMENT_NODE__COMPONENTS :
+				return getComponents();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -89,10 +90,11 @@ public class DeploymentNodeImpl extends ModelElementImpl implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case ComponentPackage.DEPLOYMENT_NODE__COMPONENTS:
-			getComponents().clear();
-			getComponents().addAll((Collection<? extends Component>) newValue);
-			return;
+			case ComponentPackage.DEPLOYMENT_NODE__COMPONENTS :
+				getComponents().clear();
+				getComponents().addAll(
+						(Collection<? extends Component>) newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -104,9 +106,9 @@ public class DeploymentNodeImpl extends ModelElementImpl implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case ComponentPackage.DEPLOYMENT_NODE__COMPONENTS:
-			getComponents().clear();
-			return;
+			case ComponentPackage.DEPLOYMENT_NODE__COMPONENTS :
+				getComponents().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -118,8 +120,8 @@ public class DeploymentNodeImpl extends ModelElementImpl implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case ComponentPackage.DEPLOYMENT_NODE__COMPONENTS:
-			return components != null && !components.isEmpty();
+			case ComponentPackage.DEPLOYMENT_NODE__COMPONENTS :
+				return components != null && !components.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

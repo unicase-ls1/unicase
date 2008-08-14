@@ -76,37 +76,30 @@ public class BugAdapterFactory extends AdapterFactoryImpl {
 		public Adapter caseBugReport(BugReport object) {
 			return createBugReportAdapter();
 		}
-
 		@Override
 		public Adapter caseBugResolution(BugResolution object) {
 			return createBugResolutionAdapter();
 		}
-
 		@Override
 		public Adapter caseIdentifiableElement(IdentifiableElement object) {
 			return createIdentifiableElementAdapter();
 		}
-
 		@Override
 		public Adapter caseModelElement(ModelElement object) {
 			return createModelElementAdapter();
 		}
-
 		@Override
 		public Adapter caseAnnotation(Annotation object) {
 			return createAnnotationAdapter();
 		}
-
 		@Override
 		public Adapter caseWorkItem(WorkItem object) {
 			return createWorkItemAdapter();
 		}
-
 		@Override
 		public Adapter caseAssignable(Assignable object) {
 			return createAssignableAdapter();
 		}
-
 		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();

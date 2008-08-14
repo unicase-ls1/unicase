@@ -84,45 +84,45 @@ public class OrganizationSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-		case OrganizationPackage.USER: {
-			User user = (User) theEObject;
-			T result = caseUser(user);
-			if (result == null)
-				result = caseOrgUnit(user);
-			if (result == null)
-				result = caseModelElement(user);
-			if (result == null)
-				result = caseIdentifiableElement(user);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OrganizationPackage.ORG_UNIT: {
-			OrgUnit orgUnit = (OrgUnit) theEObject;
-			T result = caseOrgUnit(orgUnit);
-			if (result == null)
-				result = caseModelElement(orgUnit);
-			if (result == null)
-				result = caseIdentifiableElement(orgUnit);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OrganizationPackage.GROUP: {
-			Group group = (Group) theEObject;
-			T result = caseGroup(group);
-			if (result == null)
-				result = caseOrgUnit(group);
-			if (result == null)
-				result = caseModelElement(group);
-			if (result == null)
-				result = caseIdentifiableElement(group);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		default:
-			return defaultCase(theEObject);
+			case OrganizationPackage.USER : {
+				User user = (User) theEObject;
+				T result = caseUser(user);
+				if (result == null)
+					result = caseOrgUnit(user);
+				if (result == null)
+					result = caseModelElement(user);
+				if (result == null)
+					result = caseIdentifiableElement(user);
+				if (result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+			case OrganizationPackage.ORG_UNIT : {
+				OrgUnit orgUnit = (OrgUnit) theEObject;
+				T result = caseOrgUnit(orgUnit);
+				if (result == null)
+					result = caseModelElement(orgUnit);
+				if (result == null)
+					result = caseIdentifiableElement(orgUnit);
+				if (result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+			case OrganizationPackage.GROUP : {
+				Group group = (Group) theEObject;
+				T result = caseGroup(group);
+				if (result == null)
+					result = caseOrgUnit(group);
+				if (result == null)
+					result = caseModelElement(group);
+				if (result == null)
+					result = caseIdentifiableElement(group);
+				if (result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+			default :
+				return defaultCase(theEObject);
 		}
 	}
 

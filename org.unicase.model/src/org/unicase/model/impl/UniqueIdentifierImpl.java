@@ -27,8 +27,9 @@ import org.unicase.model.UniqueIdentifier;
  *
  * @generated
  */
-public abstract class UniqueIdentifierImpl extends EObjectImpl implements
-		UniqueIdentifier {
+public abstract class UniqueIdentifierImpl extends EObjectImpl
+		implements
+			UniqueIdentifier {
 
 	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute. <!--
@@ -99,8 +100,8 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case ModelPackage.UNIQUE_IDENTIFIER__ID:
-			return getId();
+			case ModelPackage.UNIQUE_IDENTIFIER__ID :
+				return getId();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -112,9 +113,9 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case ModelPackage.UNIQUE_IDENTIFIER__ID:
-			setId((String) newValue);
-			return;
+			case ModelPackage.UNIQUE_IDENTIFIER__ID :
+				setId((String) newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -126,9 +127,9 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case ModelPackage.UNIQUE_IDENTIFIER__ID:
-			setId(ID_EDEFAULT);
-			return;
+			case ModelPackage.UNIQUE_IDENTIFIER__ID :
+				setId(ID_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -140,8 +141,9 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case ModelPackage.UNIQUE_IDENTIFIER__ID:
-			return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+			case ModelPackage.UNIQUE_IDENTIFIER__ID :
+				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT
+						.equals(id);
 		}
 		return super.eIsSet(featureID);
 	}

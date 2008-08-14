@@ -222,16 +222,16 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case RationalePackage.ASSESSMENT__PROPOSAL:
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			return basicSetProposal((Proposal) otherEnd, msgs);
-		case RationalePackage.ASSESSMENT__CRITERION:
-			if (criterion != null)
-				msgs = ((InternalEObject) criterion).eInverseRemove(this,
-						RationalePackage.CRITERION__ASSESSMENTS,
-						Criterion.class, msgs);
-			return basicSetCriterion((Criterion) otherEnd, msgs);
+			case RationalePackage.ASSESSMENT__PROPOSAL :
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetProposal((Proposal) otherEnd, msgs);
+			case RationalePackage.ASSESSMENT__CRITERION :
+				if (criterion != null)
+					msgs = ((InternalEObject) criterion).eInverseRemove(this,
+							RationalePackage.CRITERION__ASSESSMENTS,
+							Criterion.class, msgs);
+				return basicSetCriterion((Criterion) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -244,10 +244,10 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case RationalePackage.ASSESSMENT__PROPOSAL:
-			return basicSetProposal(null, msgs);
-		case RationalePackage.ASSESSMENT__CRITERION:
-			return basicSetCriterion(null, msgs);
+			case RationalePackage.ASSESSMENT__PROPOSAL :
+				return basicSetProposal(null, msgs);
+			case RationalePackage.ASSESSMENT__CRITERION :
+				return basicSetCriterion(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -260,10 +260,10 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 	public NotificationChain eBasicRemoveFromContainerFeature(
 			NotificationChain msgs) {
 		switch (eContainerFeatureID) {
-		case RationalePackage.ASSESSMENT__PROPOSAL:
-			return eInternalContainer().eInverseRemove(this,
-					RationalePackage.PROPOSAL__ASSESSMENTS, Proposal.class,
-					msgs);
+			case RationalePackage.ASSESSMENT__PROPOSAL :
+				return eInternalContainer().eInverseRemove(this,
+						RationalePackage.PROPOSAL__ASSESSMENTS, Proposal.class,
+						msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -275,14 +275,14 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case RationalePackage.ASSESSMENT__PROPOSAL:
-			return getProposal();
-		case RationalePackage.ASSESSMENT__CRITERION:
-			if (resolve)
-				return getCriterion();
-			return basicGetCriterion();
-		case RationalePackage.ASSESSMENT__VALUE:
-			return new Integer(getValue());
+			case RationalePackage.ASSESSMENT__PROPOSAL :
+				return getProposal();
+			case RationalePackage.ASSESSMENT__CRITERION :
+				if (resolve)
+					return getCriterion();
+				return basicGetCriterion();
+			case RationalePackage.ASSESSMENT__VALUE :
+				return new Integer(getValue());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -294,15 +294,15 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case RationalePackage.ASSESSMENT__PROPOSAL:
-			setProposal((Proposal) newValue);
-			return;
-		case RationalePackage.ASSESSMENT__CRITERION:
-			setCriterion((Criterion) newValue);
-			return;
-		case RationalePackage.ASSESSMENT__VALUE:
-			setValue(((Integer) newValue).intValue());
-			return;
+			case RationalePackage.ASSESSMENT__PROPOSAL :
+				setProposal((Proposal) newValue);
+				return;
+			case RationalePackage.ASSESSMENT__CRITERION :
+				setCriterion((Criterion) newValue);
+				return;
+			case RationalePackage.ASSESSMENT__VALUE :
+				setValue(((Integer) newValue).intValue());
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -314,15 +314,15 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case RationalePackage.ASSESSMENT__PROPOSAL:
-			setProposal((Proposal) null);
-			return;
-		case RationalePackage.ASSESSMENT__CRITERION:
-			setCriterion((Criterion) null);
-			return;
-		case RationalePackage.ASSESSMENT__VALUE:
-			setValue(VALUE_EDEFAULT);
-			return;
+			case RationalePackage.ASSESSMENT__PROPOSAL :
+				setProposal((Proposal) null);
+				return;
+			case RationalePackage.ASSESSMENT__CRITERION :
+				setCriterion((Criterion) null);
+				return;
+			case RationalePackage.ASSESSMENT__VALUE :
+				setValue(VALUE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -334,12 +334,12 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case RationalePackage.ASSESSMENT__PROPOSAL:
-			return getProposal() != null;
-		case RationalePackage.ASSESSMENT__CRITERION:
-			return criterion != null;
-		case RationalePackage.ASSESSMENT__VALUE:
-			return value != VALUE_EDEFAULT;
+			case RationalePackage.ASSESSMENT__PROPOSAL :
+				return getProposal() != null;
+			case RationalePackage.ASSESSMENT__CRITERION :
+				return criterion != null;
+			case RationalePackage.ASSESSMENT__VALUE :
+				return value != VALUE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

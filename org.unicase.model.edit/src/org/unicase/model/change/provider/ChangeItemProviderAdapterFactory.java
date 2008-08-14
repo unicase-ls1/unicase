@@ -35,7 +35,10 @@ import org.unicase.model.change.util.ChangeAdapterFactory;
  * @generated
  */
 public class ChangeItemProviderAdapterFactory extends ChangeAdapterFactory
-		implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+		implements
+			ComposeableAdapterFactory,
+			IChangeNotifier,
+			IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

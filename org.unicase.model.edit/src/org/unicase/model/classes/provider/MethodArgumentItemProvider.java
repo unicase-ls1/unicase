@@ -32,8 +32,12 @@ import org.unicase.model.provider.ModelElementItemProvider;
  * @generated
  */
 public class MethodArgumentItemProvider extends ModelElementItemProvider
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+		implements
+			IEditingDomainItemProvider,
+			IStructuredItemContentProvider,
+			ITreeItemContentProvider,
+			IItemLabelProvider,
+			IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -178,7 +182,8 @@ public class MethodArgumentItemProvider extends ModelElementItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((MethodArgument) object).getLabel();
-		return label == null || label.length() == 0 ? getString("_UI_MethodArgument_type")
+		return label == null || label.length() == 0
+				? getString("_UI_MethodArgument_type")
 				: label;
 	}
 
@@ -194,14 +199,14 @@ public class MethodArgumentItemProvider extends ModelElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(MethodArgument.class)) {
-		case ClassesPackage.METHOD_ARGUMENT__TYPE:
-		case ClassesPackage.METHOD_ARGUMENT__DIRECTION:
-		case ClassesPackage.METHOD_ARGUMENT__DEFAULT_VALUE:
-		case ClassesPackage.METHOD_ARGUMENT__SIGNATURE:
-		case ClassesPackage.METHOD_ARGUMENT__LABEL:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
-			return;
+			case ClassesPackage.METHOD_ARGUMENT__TYPE :
+			case ClassesPackage.METHOD_ARGUMENT__DIRECTION :
+			case ClassesPackage.METHOD_ARGUMENT__DEFAULT_VALUE :
+			case ClassesPackage.METHOD_ARGUMENT__SIGNATURE :
+			case ClassesPackage.METHOD_ARGUMENT__LABEL :
+				fireNotifyChanged(new ViewerNotification(notification,
+						notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

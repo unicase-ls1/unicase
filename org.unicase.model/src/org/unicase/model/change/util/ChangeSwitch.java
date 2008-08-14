@@ -91,64 +91,64 @@ public class ChangeSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-		case ChangePackage.MODEL_CHANGE_PACKAGE: {
-			ModelChangePackage modelChangePackage = (ModelChangePackage) theEObject;
-			T result = caseModelChangePackage(modelChangePackage);
-			if (result == null)
-				result = caseModelElement(modelChangePackage);
-			if (result == null)
-				result = caseIdentifiableElement(modelChangePackage);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ChangePackage.MERGING_ISSUE: {
-			MergingIssue mergingIssue = (MergingIssue) theEObject;
-			T result = caseMergingIssue(mergingIssue);
-			if (result == null)
-				result = caseIssue(mergingIssue);
-			if (result == null)
-				result = caseAnnotation(mergingIssue);
-			if (result == null)
-				result = caseCheckable(mergingIssue);
-			if (result == null)
-				result = caseAssignable(mergingIssue);
-			if (result == null)
-				result = caseModelElement(mergingIssue);
-			if (result == null)
-				result = caseIdentifiableElement(mergingIssue);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ChangePackage.MERGING_PROPOSAL: {
-			MergingProposal mergingProposal = (MergingProposal) theEObject;
-			T result = caseMergingProposal(mergingProposal);
-			if (result == null)
-				result = caseProposal(mergingProposal);
-			if (result == null)
-				result = caseModelElement(mergingProposal);
-			if (result == null)
-				result = caseIdentifiableElement(mergingProposal);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ChangePackage.MERGING_SOLUTION: {
-			MergingSolution mergingSolution = (MergingSolution) theEObject;
-			T result = caseMergingSolution(mergingSolution);
-			if (result == null)
-				result = caseSolution(mergingSolution);
-			if (result == null)
-				result = caseModelElement(mergingSolution);
-			if (result == null)
-				result = caseIdentifiableElement(mergingSolution);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		default:
-			return defaultCase(theEObject);
+			case ChangePackage.MODEL_CHANGE_PACKAGE : {
+				ModelChangePackage modelChangePackage = (ModelChangePackage) theEObject;
+				T result = caseModelChangePackage(modelChangePackage);
+				if (result == null)
+					result = caseModelElement(modelChangePackage);
+				if (result == null)
+					result = caseIdentifiableElement(modelChangePackage);
+				if (result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+			case ChangePackage.MERGING_ISSUE : {
+				MergingIssue mergingIssue = (MergingIssue) theEObject;
+				T result = caseMergingIssue(mergingIssue);
+				if (result == null)
+					result = caseIssue(mergingIssue);
+				if (result == null)
+					result = caseAnnotation(mergingIssue);
+				if (result == null)
+					result = caseCheckable(mergingIssue);
+				if (result == null)
+					result = caseAssignable(mergingIssue);
+				if (result == null)
+					result = caseModelElement(mergingIssue);
+				if (result == null)
+					result = caseIdentifiableElement(mergingIssue);
+				if (result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+			case ChangePackage.MERGING_PROPOSAL : {
+				MergingProposal mergingProposal = (MergingProposal) theEObject;
+				T result = caseMergingProposal(mergingProposal);
+				if (result == null)
+					result = caseProposal(mergingProposal);
+				if (result == null)
+					result = caseModelElement(mergingProposal);
+				if (result == null)
+					result = caseIdentifiableElement(mergingProposal);
+				if (result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+			case ChangePackage.MERGING_SOLUTION : {
+				MergingSolution mergingSolution = (MergingSolution) theEObject;
+				T result = caseMergingSolution(mergingSolution);
+				if (result == null)
+					result = caseSolution(mergingSolution);
+				if (result == null)
+					result = caseModelElement(mergingSolution);
+				if (result == null)
+					result = caseIdentifiableElement(mergingSolution);
+				if (result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+			default :
+				return defaultCase(theEObject);
 		}
 	}
 

@@ -202,7 +202,8 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	 */
 	public void setVisibility(VisibilityType newVisibility) {
 		VisibilityType oldVisibility = visibility;
-		visibility = newVisibility == null ? VISIBILITY_EDEFAULT
+		visibility = newVisibility == null
+				? VISIBILITY_EDEFAULT
 				: newVisibility;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
@@ -384,11 +385,11 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ClassesPackage.METHOD__DEFINING_CLASS:
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			return basicSetDefiningClass(
-					(org.unicase.model.classes.Class) otherEnd, msgs);
+			case ClassesPackage.METHOD__DEFINING_CLASS :
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetDefiningClass(
+						(org.unicase.model.classes.Class) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -402,11 +403,11 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ClassesPackage.METHOD__DEFINING_CLASS:
-			return basicSetDefiningClass(null, msgs);
-		case ClassesPackage.METHOD__ARGUMENTS:
-			return ((InternalEList<?>) getArguments()).basicRemove(otherEnd,
-					msgs);
+			case ClassesPackage.METHOD__DEFINING_CLASS :
+				return basicSetDefiningClass(null, msgs);
+			case ClassesPackage.METHOD__ARGUMENTS :
+				return ((InternalEList<?>) getArguments()).basicRemove(
+						otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -420,10 +421,10 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	public NotificationChain eBasicRemoveFromContainerFeature(
 			NotificationChain msgs) {
 		switch (eContainerFeatureID) {
-		case ClassesPackage.METHOD__DEFINING_CLASS:
-			return eInternalContainer().eInverseRemove(this,
-					ClassesPackage.CLASS__METHODS,
-					org.unicase.model.classes.Class.class, msgs);
+			case ClassesPackage.METHOD__DEFINING_CLASS :
+				return eInternalContainer().eInverseRemove(this,
+						ClassesPackage.CLASS__METHODS,
+						org.unicase.model.classes.Class.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -436,22 +437,22 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case ClassesPackage.METHOD__VISIBILITY:
-			return getVisibility();
-		case ClassesPackage.METHOD__SCOPE:
-			return getScope();
-		case ClassesPackage.METHOD__DEFINING_CLASS:
-			return getDefiningClass();
-		case ClassesPackage.METHOD__RETURN_TYPE:
-			return getReturnType();
-		case ClassesPackage.METHOD__SIGNATURE:
-			return getSignature();
-		case ClassesPackage.METHOD__ARGUMENTS:
-			return getArguments();
-		case ClassesPackage.METHOD__PROPERTIES:
-			return getProperties();
-		case ClassesPackage.METHOD__LABEL:
-			return getLabel();
+			case ClassesPackage.METHOD__VISIBILITY :
+				return getVisibility();
+			case ClassesPackage.METHOD__SCOPE :
+				return getScope();
+			case ClassesPackage.METHOD__DEFINING_CLASS :
+				return getDefiningClass();
+			case ClassesPackage.METHOD__RETURN_TYPE :
+				return getReturnType();
+			case ClassesPackage.METHOD__SIGNATURE :
+				return getSignature();
+			case ClassesPackage.METHOD__ARGUMENTS :
+				return getArguments();
+			case ClassesPackage.METHOD__PROPERTIES :
+				return getProperties();
+			case ClassesPackage.METHOD__LABEL :
+				return getLabel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -465,29 +466,29 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case ClassesPackage.METHOD__VISIBILITY:
-			setVisibility((VisibilityType) newValue);
-			return;
-		case ClassesPackage.METHOD__SCOPE:
-			setScope((ScopeType) newValue);
-			return;
-		case ClassesPackage.METHOD__DEFINING_CLASS:
-			setDefiningClass((org.unicase.model.classes.Class) newValue);
-			return;
-		case ClassesPackage.METHOD__RETURN_TYPE:
-			setReturnType((String) newValue);
-			return;
-		case ClassesPackage.METHOD__ARGUMENTS:
-			getArguments().clear();
-			getArguments().addAll(
-					(Collection<? extends MethodArgument>) newValue);
-			return;
-		case ClassesPackage.METHOD__PROPERTIES:
-			setProperties((String) newValue);
-			return;
-		case ClassesPackage.METHOD__LABEL:
-			setLabel((String) newValue);
-			return;
+			case ClassesPackage.METHOD__VISIBILITY :
+				setVisibility((VisibilityType) newValue);
+				return;
+			case ClassesPackage.METHOD__SCOPE :
+				setScope((ScopeType) newValue);
+				return;
+			case ClassesPackage.METHOD__DEFINING_CLASS :
+				setDefiningClass((org.unicase.model.classes.Class) newValue);
+				return;
+			case ClassesPackage.METHOD__RETURN_TYPE :
+				setReturnType((String) newValue);
+				return;
+			case ClassesPackage.METHOD__ARGUMENTS :
+				getArguments().clear();
+				getArguments().addAll(
+						(Collection<? extends MethodArgument>) newValue);
+				return;
+			case ClassesPackage.METHOD__PROPERTIES :
+				setProperties((String) newValue);
+				return;
+			case ClassesPackage.METHOD__LABEL :
+				setLabel((String) newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -500,27 +501,27 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case ClassesPackage.METHOD__VISIBILITY:
-			setVisibility(VISIBILITY_EDEFAULT);
-			return;
-		case ClassesPackage.METHOD__SCOPE:
-			setScope(SCOPE_EDEFAULT);
-			return;
-		case ClassesPackage.METHOD__DEFINING_CLASS:
-			setDefiningClass((org.unicase.model.classes.Class) null);
-			return;
-		case ClassesPackage.METHOD__RETURN_TYPE:
-			setReturnType(RETURN_TYPE_EDEFAULT);
-			return;
-		case ClassesPackage.METHOD__ARGUMENTS:
-			getArguments().clear();
-			return;
-		case ClassesPackage.METHOD__PROPERTIES:
-			setProperties(PROPERTIES_EDEFAULT);
-			return;
-		case ClassesPackage.METHOD__LABEL:
-			setLabel(LABEL_EDEFAULT);
-			return;
+			case ClassesPackage.METHOD__VISIBILITY :
+				setVisibility(VISIBILITY_EDEFAULT);
+				return;
+			case ClassesPackage.METHOD__SCOPE :
+				setScope(SCOPE_EDEFAULT);
+				return;
+			case ClassesPackage.METHOD__DEFINING_CLASS :
+				setDefiningClass((org.unicase.model.classes.Class) null);
+				return;
+			case ClassesPackage.METHOD__RETURN_TYPE :
+				setReturnType(RETURN_TYPE_EDEFAULT);
+				return;
+			case ClassesPackage.METHOD__ARGUMENTS :
+				getArguments().clear();
+				return;
+			case ClassesPackage.METHOD__PROPERTIES :
+				setProperties(PROPERTIES_EDEFAULT);
+				return;
+			case ClassesPackage.METHOD__LABEL :
+				setLabel(LABEL_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -533,26 +534,29 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case ClassesPackage.METHOD__VISIBILITY:
-			return visibility != VISIBILITY_EDEFAULT;
-		case ClassesPackage.METHOD__SCOPE:
-			return scope != SCOPE_EDEFAULT;
-		case ClassesPackage.METHOD__DEFINING_CLASS:
-			return getDefiningClass() != null;
-		case ClassesPackage.METHOD__RETURN_TYPE:
-			return RETURN_TYPE_EDEFAULT == null ? returnType != null
-					: !RETURN_TYPE_EDEFAULT.equals(returnType);
-		case ClassesPackage.METHOD__SIGNATURE:
-			return SIGNATURE_EDEFAULT == null ? getSignature() != null
-					: !SIGNATURE_EDEFAULT.equals(getSignature());
-		case ClassesPackage.METHOD__ARGUMENTS:
-			return arguments != null && !arguments.isEmpty();
-		case ClassesPackage.METHOD__PROPERTIES:
-			return PROPERTIES_EDEFAULT == null ? properties != null
-					: !PROPERTIES_EDEFAULT.equals(properties);
-		case ClassesPackage.METHOD__LABEL:
-			return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT
-					.equals(label);
+			case ClassesPackage.METHOD__VISIBILITY :
+				return visibility != VISIBILITY_EDEFAULT;
+			case ClassesPackage.METHOD__SCOPE :
+				return scope != SCOPE_EDEFAULT;
+			case ClassesPackage.METHOD__DEFINING_CLASS :
+				return getDefiningClass() != null;
+			case ClassesPackage.METHOD__RETURN_TYPE :
+				return RETURN_TYPE_EDEFAULT == null
+						? returnType != null
+						: !RETURN_TYPE_EDEFAULT.equals(returnType);
+			case ClassesPackage.METHOD__SIGNATURE :
+				return SIGNATURE_EDEFAULT == null
+						? getSignature() != null
+						: !SIGNATURE_EDEFAULT.equals(getSignature());
+			case ClassesPackage.METHOD__ARGUMENTS :
+				return arguments != null && !arguments.isEmpty();
+			case ClassesPackage.METHOD__PROPERTIES :
+				return PROPERTIES_EDEFAULT == null
+						? properties != null
+						: !PROPERTIES_EDEFAULT.equals(properties);
+			case ClassesPackage.METHOD__LABEL :
+				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT
+						.equals(label);
 		}
 		return super.eIsSet(featureID);
 	}

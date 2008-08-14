@@ -74,27 +74,22 @@ public class DocumentAdapterFactory extends AdapterFactoryImpl {
 		public Adapter caseLeafSection(LeafSection object) {
 			return createLeafSectionAdapter();
 		}
-
 		@Override
 		public Adapter caseCompositeSection(CompositeSection object) {
 			return createCompositeSectionAdapter();
 		}
-
 		@Override
 		public Adapter caseSection(Section object) {
 			return createSectionAdapter();
 		}
-
 		@Override
 		public Adapter caseIdentifiableElement(IdentifiableElement object) {
 			return createIdentifiableElementAdapter();
 		}
-
 		@Override
 		public Adapter caseModelElement(ModelElement object) {
 			return createModelElementAdapter();
 		}
-
 		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();

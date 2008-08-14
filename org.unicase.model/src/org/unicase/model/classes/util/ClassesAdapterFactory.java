@@ -76,47 +76,38 @@ public class ClassesAdapterFactory extends AdapterFactoryImpl {
 		public Adapter caseClass(org.unicase.model.classes.Class object) {
 			return createClassAdapter();
 		}
-
 		@Override
 		public Adapter casePackage(org.unicase.model.classes.Package object) {
 			return createPackageAdapter();
 		}
-
 		@Override
 		public Adapter casePackageElement(PackageElement object) {
 			return createPackageElementAdapter();
 		}
-
 		@Override
 		public Adapter caseAssociation(Association object) {
 			return createAssociationAdapter();
 		}
-
 		@Override
 		public Adapter caseAttribute(Attribute object) {
 			return createAttributeAdapter();
 		}
-
 		@Override
 		public Adapter caseMethod(Method object) {
 			return createMethodAdapter();
 		}
-
 		@Override
 		public Adapter caseMethodArgument(MethodArgument object) {
 			return createMethodArgumentAdapter();
 		}
-
 		@Override
 		public Adapter caseIdentifiableElement(IdentifiableElement object) {
 			return createIdentifiableElementAdapter();
 		}
-
 		@Override
 		public Adapter caseModelElement(ModelElement object) {
 			return createModelElementAdapter();
 		}
-
 		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();

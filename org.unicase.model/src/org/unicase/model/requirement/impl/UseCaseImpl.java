@@ -346,27 +346,28 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case RequirementPackage.USE_CASE__INITIATING_ACTOR:
-			if (initiatingActor != null)
-				msgs = ((InternalEObject) initiatingActor).eInverseRemove(this,
-						RequirementPackage.ACTOR__INITIATED_USE_CASES,
-						Actor.class, msgs);
-			return basicSetInitiatingActor((Actor) otherEnd, msgs);
-		case RequirementPackage.USE_CASE__PARTICIPATING_ACTORS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipatingActors())
-					.basicAdd(otherEnd, msgs);
-		case RequirementPackage.USE_CASE__SCENARIOS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getScenarios())
-					.basicAdd(otherEnd, msgs);
-		case RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getFunctionalRequirements())
-					.basicAdd(otherEnd, msgs);
-		case RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getNonFunctionalRequirements())
-					.basicAdd(otherEnd, msgs);
-		case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIdentifiedClasses())
-					.basicAdd(otherEnd, msgs);
+			case RequirementPackage.USE_CASE__INITIATING_ACTOR :
+				if (initiatingActor != null)
+					msgs = ((InternalEObject) initiatingActor).eInverseRemove(
+							this,
+							RequirementPackage.ACTOR__INITIATED_USE_CASES,
+							Actor.class, msgs);
+				return basicSetInitiatingActor((Actor) otherEnd, msgs);
+			case RequirementPackage.USE_CASE__PARTICIPATING_ACTORS :
+				return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipatingActors())
+						.basicAdd(otherEnd, msgs);
+			case RequirementPackage.USE_CASE__SCENARIOS :
+				return ((InternalEList<InternalEObject>) (InternalEList<?>) getScenarios())
+						.basicAdd(otherEnd, msgs);
+			case RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS :
+				return ((InternalEList<InternalEObject>) (InternalEList<?>) getFunctionalRequirements())
+						.basicAdd(otherEnd, msgs);
+			case RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS :
+				return ((InternalEList<InternalEObject>) (InternalEList<?>) getNonFunctionalRequirements())
+						.basicAdd(otherEnd, msgs);
+			case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES :
+				return ((InternalEList<InternalEObject>) (InternalEList<?>) getIdentifiedClasses())
+						.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -379,25 +380,26 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case RequirementPackage.USE_CASE__STEPS:
-			return ((InternalEList<?>) getSteps()).basicRemove(otherEnd, msgs);
-		case RequirementPackage.USE_CASE__INITIATING_ACTOR:
-			return basicSetInitiatingActor(null, msgs);
-		case RequirementPackage.USE_CASE__PARTICIPATING_ACTORS:
-			return ((InternalEList<?>) getParticipatingActors()).basicRemove(
-					otherEnd, msgs);
-		case RequirementPackage.USE_CASE__SCENARIOS:
-			return ((InternalEList<?>) getScenarios()).basicRemove(otherEnd,
-					msgs);
-		case RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS:
-			return ((InternalEList<?>) getFunctionalRequirements())
-					.basicRemove(otherEnd, msgs);
-		case RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS:
-			return ((InternalEList<?>) getNonFunctionalRequirements())
-					.basicRemove(otherEnd, msgs);
-		case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES:
-			return ((InternalEList<?>) getIdentifiedClasses()).basicRemove(
-					otherEnd, msgs);
+			case RequirementPackage.USE_CASE__STEPS :
+				return ((InternalEList<?>) getSteps()).basicRemove(otherEnd,
+						msgs);
+			case RequirementPackage.USE_CASE__INITIATING_ACTOR :
+				return basicSetInitiatingActor(null, msgs);
+			case RequirementPackage.USE_CASE__PARTICIPATING_ACTORS :
+				return ((InternalEList<?>) getParticipatingActors())
+						.basicRemove(otherEnd, msgs);
+			case RequirementPackage.USE_CASE__SCENARIOS :
+				return ((InternalEList<?>) getScenarios()).basicRemove(
+						otherEnd, msgs);
+			case RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS :
+				return ((InternalEList<?>) getFunctionalRequirements())
+						.basicRemove(otherEnd, msgs);
+			case RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS :
+				return ((InternalEList<?>) getNonFunctionalRequirements())
+						.basicRemove(otherEnd, msgs);
+			case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES :
+				return ((InternalEList<?>) getIdentifiedClasses()).basicRemove(
+						otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -409,26 +411,26 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case RequirementPackage.USE_CASE__STEPS:
-			return getSteps();
-		case RequirementPackage.USE_CASE__INITIATING_ACTOR:
-			if (resolve)
-				return getInitiatingActor();
-			return basicGetInitiatingActor();
-		case RequirementPackage.USE_CASE__PARTICIPATING_ACTORS:
-			return getParticipatingActors();
-		case RequirementPackage.USE_CASE__SCENARIOS:
-			return getScenarios();
-		case RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS:
-			return getFunctionalRequirements();
-		case RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS:
-			return getNonFunctionalRequirements();
-		case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES:
-			return getIdentifiedClasses();
-		case RequirementPackage.USE_CASE__INCLUDED_USE_CASES:
-			return getIncludedUseCases();
-		case RequirementPackage.USE_CASE__EXTENDED_USE_CASES:
-			return getExtendedUseCases();
+			case RequirementPackage.USE_CASE__STEPS :
+				return getSteps();
+			case RequirementPackage.USE_CASE__INITIATING_ACTOR :
+				if (resolve)
+					return getInitiatingActor();
+				return basicGetInitiatingActor();
+			case RequirementPackage.USE_CASE__PARTICIPATING_ACTORS :
+				return getParticipatingActors();
+			case RequirementPackage.USE_CASE__SCENARIOS :
+				return getScenarios();
+			case RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS :
+				return getFunctionalRequirements();
+			case RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS :
+				return getNonFunctionalRequirements();
+			case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES :
+				return getIdentifiedClasses();
+			case RequirementPackage.USE_CASE__INCLUDED_USE_CASES :
+				return getIncludedUseCases();
+			case RequirementPackage.USE_CASE__EXTENDED_USE_CASES :
+				return getExtendedUseCases();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -441,48 +443,50 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case RequirementPackage.USE_CASE__STEPS:
-			getSteps().clear();
-			getSteps().addAll((Collection<? extends Step>) newValue);
-			return;
-		case RequirementPackage.USE_CASE__INITIATING_ACTOR:
-			setInitiatingActor((Actor) newValue);
-			return;
-		case RequirementPackage.USE_CASE__PARTICIPATING_ACTORS:
-			getParticipatingActors().clear();
-			getParticipatingActors().addAll(
-					(Collection<? extends Actor>) newValue);
-			return;
-		case RequirementPackage.USE_CASE__SCENARIOS:
-			getScenarios().clear();
-			getScenarios().addAll((Collection<? extends Scenario>) newValue);
-			return;
-		case RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS:
-			getFunctionalRequirements().clear();
-			getFunctionalRequirements().addAll(
-					(Collection<? extends FunctionalRequirement>) newValue);
-			return;
-		case RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS:
-			getNonFunctionalRequirements().clear();
-			getNonFunctionalRequirements().addAll(
-					(Collection<? extends NonFunctionalRequirement>) newValue);
-			return;
-		case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES:
-			getIdentifiedClasses().clear();
-			getIdentifiedClasses()
-					.addAll(
-							(Collection<? extends org.unicase.model.classes.Class>) newValue);
-			return;
-		case RequirementPackage.USE_CASE__INCLUDED_USE_CASES:
-			getIncludedUseCases().clear();
-			getIncludedUseCases().addAll(
-					(Collection<? extends UseCase>) newValue);
-			return;
-		case RequirementPackage.USE_CASE__EXTENDED_USE_CASES:
-			getExtendedUseCases().clear();
-			getExtendedUseCases().addAll(
-					(Collection<? extends UseCase>) newValue);
-			return;
+			case RequirementPackage.USE_CASE__STEPS :
+				getSteps().clear();
+				getSteps().addAll((Collection<? extends Step>) newValue);
+				return;
+			case RequirementPackage.USE_CASE__INITIATING_ACTOR :
+				setInitiatingActor((Actor) newValue);
+				return;
+			case RequirementPackage.USE_CASE__PARTICIPATING_ACTORS :
+				getParticipatingActors().clear();
+				getParticipatingActors().addAll(
+						(Collection<? extends Actor>) newValue);
+				return;
+			case RequirementPackage.USE_CASE__SCENARIOS :
+				getScenarios().clear();
+				getScenarios()
+						.addAll((Collection<? extends Scenario>) newValue);
+				return;
+			case RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS :
+				getFunctionalRequirements().clear();
+				getFunctionalRequirements().addAll(
+						(Collection<? extends FunctionalRequirement>) newValue);
+				return;
+			case RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS :
+				getNonFunctionalRequirements().clear();
+				getNonFunctionalRequirements()
+						.addAll(
+								(Collection<? extends NonFunctionalRequirement>) newValue);
+				return;
+			case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES :
+				getIdentifiedClasses().clear();
+				getIdentifiedClasses()
+						.addAll(
+								(Collection<? extends org.unicase.model.classes.Class>) newValue);
+				return;
+			case RequirementPackage.USE_CASE__INCLUDED_USE_CASES :
+				getIncludedUseCases().clear();
+				getIncludedUseCases().addAll(
+						(Collection<? extends UseCase>) newValue);
+				return;
+			case RequirementPackage.USE_CASE__EXTENDED_USE_CASES :
+				getExtendedUseCases().clear();
+				getExtendedUseCases().addAll(
+						(Collection<? extends UseCase>) newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -494,33 +498,33 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case RequirementPackage.USE_CASE__STEPS:
-			getSteps().clear();
-			return;
-		case RequirementPackage.USE_CASE__INITIATING_ACTOR:
-			setInitiatingActor((Actor) null);
-			return;
-		case RequirementPackage.USE_CASE__PARTICIPATING_ACTORS:
-			getParticipatingActors().clear();
-			return;
-		case RequirementPackage.USE_CASE__SCENARIOS:
-			getScenarios().clear();
-			return;
-		case RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS:
-			getFunctionalRequirements().clear();
-			return;
-		case RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS:
-			getNonFunctionalRequirements().clear();
-			return;
-		case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES:
-			getIdentifiedClasses().clear();
-			return;
-		case RequirementPackage.USE_CASE__INCLUDED_USE_CASES:
-			getIncludedUseCases().clear();
-			return;
-		case RequirementPackage.USE_CASE__EXTENDED_USE_CASES:
-			getExtendedUseCases().clear();
-			return;
+			case RequirementPackage.USE_CASE__STEPS :
+				getSteps().clear();
+				return;
+			case RequirementPackage.USE_CASE__INITIATING_ACTOR :
+				setInitiatingActor((Actor) null);
+				return;
+			case RequirementPackage.USE_CASE__PARTICIPATING_ACTORS :
+				getParticipatingActors().clear();
+				return;
+			case RequirementPackage.USE_CASE__SCENARIOS :
+				getScenarios().clear();
+				return;
+			case RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS :
+				getFunctionalRequirements().clear();
+				return;
+			case RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS :
+				getNonFunctionalRequirements().clear();
+				return;
+			case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES :
+				getIdentifiedClasses().clear();
+				return;
+			case RequirementPackage.USE_CASE__INCLUDED_USE_CASES :
+				getIncludedUseCases().clear();
+				return;
+			case RequirementPackage.USE_CASE__EXTENDED_USE_CASES :
+				getExtendedUseCases().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -532,27 +536,28 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case RequirementPackage.USE_CASE__STEPS:
-			return steps != null && !steps.isEmpty();
-		case RequirementPackage.USE_CASE__INITIATING_ACTOR:
-			return initiatingActor != null;
-		case RequirementPackage.USE_CASE__PARTICIPATING_ACTORS:
-			return participatingActors != null
-					&& !participatingActors.isEmpty();
-		case RequirementPackage.USE_CASE__SCENARIOS:
-			return scenarios != null && !scenarios.isEmpty();
-		case RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS:
-			return functionalRequirements != null
-					&& !functionalRequirements.isEmpty();
-		case RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS:
-			return nonFunctionalRequirements != null
-					&& !nonFunctionalRequirements.isEmpty();
-		case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES:
-			return identifiedClasses != null && !identifiedClasses.isEmpty();
-		case RequirementPackage.USE_CASE__INCLUDED_USE_CASES:
-			return includedUseCases != null && !includedUseCases.isEmpty();
-		case RequirementPackage.USE_CASE__EXTENDED_USE_CASES:
-			return extendedUseCases != null && !extendedUseCases.isEmpty();
+			case RequirementPackage.USE_CASE__STEPS :
+				return steps != null && !steps.isEmpty();
+			case RequirementPackage.USE_CASE__INITIATING_ACTOR :
+				return initiatingActor != null;
+			case RequirementPackage.USE_CASE__PARTICIPATING_ACTORS :
+				return participatingActors != null
+						&& !participatingActors.isEmpty();
+			case RequirementPackage.USE_CASE__SCENARIOS :
+				return scenarios != null && !scenarios.isEmpty();
+			case RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS :
+				return functionalRequirements != null
+						&& !functionalRequirements.isEmpty();
+			case RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS :
+				return nonFunctionalRequirements != null
+						&& !nonFunctionalRequirements.isEmpty();
+			case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES :
+				return identifiedClasses != null
+						&& !identifiedClasses.isEmpty();
+			case RequirementPackage.USE_CASE__INCLUDED_USE_CASES :
+				return includedUseCases != null && !includedUseCases.isEmpty();
+			case RequirementPackage.USE_CASE__EXTENDED_USE_CASES :
+				return extendedUseCases != null && !extendedUseCases.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

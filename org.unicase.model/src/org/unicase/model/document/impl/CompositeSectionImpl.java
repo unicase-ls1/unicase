@@ -35,8 +35,9 @@ import org.unicase.model.impl.ModelElementImpl;
  *
  * @generated
  */
-public class CompositeSectionImpl extends ModelElementImpl implements
-		CompositeSection {
+public class CompositeSectionImpl extends ModelElementImpl
+		implements
+			CompositeSection {
 
 	/**
 	 * The cached value of the '{@link #getSubsections() <em>Subsections</em>}' containment reference list.
@@ -134,13 +135,13 @@ public class CompositeSectionImpl extends ModelElementImpl implements
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case DocumentPackage.COMPOSITE_SECTION__PARENT:
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			return basicSetParent((CompositeSection) otherEnd, msgs);
-		case DocumentPackage.COMPOSITE_SECTION__SUBSECTIONS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSubsections())
-					.basicAdd(otherEnd, msgs);
+			case DocumentPackage.COMPOSITE_SECTION__PARENT :
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetParent((CompositeSection) otherEnd, msgs);
+			case DocumentPackage.COMPOSITE_SECTION__SUBSECTIONS :
+				return ((InternalEList<InternalEObject>) (InternalEList<?>) getSubsections())
+						.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -153,11 +154,11 @@ public class CompositeSectionImpl extends ModelElementImpl implements
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case DocumentPackage.COMPOSITE_SECTION__PARENT:
-			return basicSetParent(null, msgs);
-		case DocumentPackage.COMPOSITE_SECTION__SUBSECTIONS:
-			return ((InternalEList<?>) getSubsections()).basicRemove(otherEnd,
-					msgs);
+			case DocumentPackage.COMPOSITE_SECTION__PARENT :
+				return basicSetParent(null, msgs);
+			case DocumentPackage.COMPOSITE_SECTION__SUBSECTIONS :
+				return ((InternalEList<?>) getSubsections()).basicRemove(
+						otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -170,10 +171,10 @@ public class CompositeSectionImpl extends ModelElementImpl implements
 	public NotificationChain eBasicRemoveFromContainerFeature(
 			NotificationChain msgs) {
 		switch (eContainerFeatureID) {
-		case DocumentPackage.COMPOSITE_SECTION__PARENT:
-			return eInternalContainer().eInverseRemove(this,
-					DocumentPackage.COMPOSITE_SECTION__SUBSECTIONS,
-					CompositeSection.class, msgs);
+			case DocumentPackage.COMPOSITE_SECTION__PARENT :
+				return eInternalContainer().eInverseRemove(this,
+						DocumentPackage.COMPOSITE_SECTION__SUBSECTIONS,
+						CompositeSection.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -185,10 +186,10 @@ public class CompositeSectionImpl extends ModelElementImpl implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case DocumentPackage.COMPOSITE_SECTION__PARENT:
-			return getParent();
-		case DocumentPackage.COMPOSITE_SECTION__SUBSECTIONS:
-			return getSubsections();
+			case DocumentPackage.COMPOSITE_SECTION__PARENT :
+				return getParent();
+			case DocumentPackage.COMPOSITE_SECTION__SUBSECTIONS :
+				return getSubsections();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -201,13 +202,14 @@ public class CompositeSectionImpl extends ModelElementImpl implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case DocumentPackage.COMPOSITE_SECTION__PARENT:
-			setParent((CompositeSection) newValue);
-			return;
-		case DocumentPackage.COMPOSITE_SECTION__SUBSECTIONS:
-			getSubsections().clear();
-			getSubsections().addAll((Collection<? extends Section>) newValue);
-			return;
+			case DocumentPackage.COMPOSITE_SECTION__PARENT :
+				setParent((CompositeSection) newValue);
+				return;
+			case DocumentPackage.COMPOSITE_SECTION__SUBSECTIONS :
+				getSubsections().clear();
+				getSubsections().addAll(
+						(Collection<? extends Section>) newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -219,12 +221,12 @@ public class CompositeSectionImpl extends ModelElementImpl implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case DocumentPackage.COMPOSITE_SECTION__PARENT:
-			setParent((CompositeSection) null);
-			return;
-		case DocumentPackage.COMPOSITE_SECTION__SUBSECTIONS:
-			getSubsections().clear();
-			return;
+			case DocumentPackage.COMPOSITE_SECTION__PARENT :
+				setParent((CompositeSection) null);
+				return;
+			case DocumentPackage.COMPOSITE_SECTION__SUBSECTIONS :
+				getSubsections().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -236,10 +238,10 @@ public class CompositeSectionImpl extends ModelElementImpl implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case DocumentPackage.COMPOSITE_SECTION__PARENT:
-			return getParent() != null;
-		case DocumentPackage.COMPOSITE_SECTION__SUBSECTIONS:
-			return subsections != null && !subsections.isEmpty();
+			case DocumentPackage.COMPOSITE_SECTION__PARENT :
+				return getParent() != null;
+			case DocumentPackage.COMPOSITE_SECTION__SUBSECTIONS :
+				return subsections != null && !subsections.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

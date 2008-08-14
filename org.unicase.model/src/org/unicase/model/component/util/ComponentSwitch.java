@@ -84,41 +84,41 @@ public class ComponentSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-		case ComponentPackage.COMPONENT: {
-			Component component = (Component) theEObject;
-			T result = caseComponent(component);
-			if (result == null)
-				result = caseModelElement(component);
-			if (result == null)
-				result = caseIdentifiableElement(component);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ComponentPackage.COMPONENT_SERVICE: {
-			ComponentService componentService = (ComponentService) theEObject;
-			T result = caseComponentService(componentService);
-			if (result == null)
-				result = caseModelElement(componentService);
-			if (result == null)
-				result = caseIdentifiableElement(componentService);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ComponentPackage.DEPLOYMENT_NODE: {
-			DeploymentNode deploymentNode = (DeploymentNode) theEObject;
-			T result = caseDeploymentNode(deploymentNode);
-			if (result == null)
-				result = caseModelElement(deploymentNode);
-			if (result == null)
-				result = caseIdentifiableElement(deploymentNode);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		default:
-			return defaultCase(theEObject);
+			case ComponentPackage.COMPONENT : {
+				Component component = (Component) theEObject;
+				T result = caseComponent(component);
+				if (result == null)
+					result = caseModelElement(component);
+				if (result == null)
+					result = caseIdentifiableElement(component);
+				if (result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+			case ComponentPackage.COMPONENT_SERVICE : {
+				ComponentService componentService = (ComponentService) theEObject;
+				T result = caseComponentService(componentService);
+				if (result == null)
+					result = caseModelElement(componentService);
+				if (result == null)
+					result = caseIdentifiableElement(componentService);
+				if (result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+			case ComponentPackage.DEPLOYMENT_NODE : {
+				DeploymentNode deploymentNode = (DeploymentNode) theEObject;
+				T result = caseDeploymentNode(deploymentNode);
+				if (result == null)
+					result = caseModelElement(deploymentNode);
+				if (result == null)
+					result = caseIdentifiableElement(deploymentNode);
+				if (result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+			default :
+				return defaultCase(theEObject);
 		}
 	}
 

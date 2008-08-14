@@ -33,9 +33,13 @@ import org.unicase.model.requirement.UseCase;
  * <!-- end-user-doc -->
  * @generated
  */
-public class UseCaseItemProvider extends ModelElementItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class UseCaseItemProvider extends ModelElementItemProvider
+		implements
+			IEditingDomainItemProvider,
+			IStructuredItemContentProvider,
+			ITreeItemContentProvider,
+			IItemLabelProvider,
+			IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -275,10 +279,10 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(UseCase.class)) {
-		case RequirementPackage.USE_CASE__STEPS:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
-			return;
+			case RequirementPackage.USE_CASE__STEPS :
+				fireNotifyChanged(new ViewerNotification(notification,
+						notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

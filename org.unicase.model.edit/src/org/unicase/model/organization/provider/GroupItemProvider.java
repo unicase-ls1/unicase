@@ -26,9 +26,13 @@ import org.unicase.model.organization.OrganizationPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class GroupItemProvider extends OrgUnitItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class GroupItemProvider extends OrgUnitItemProvider
+		implements
+			IEditingDomainItemProvider,
+			IStructuredItemContentProvider,
+			ITreeItemContentProvider,
+			IItemLabelProvider,
+			IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->

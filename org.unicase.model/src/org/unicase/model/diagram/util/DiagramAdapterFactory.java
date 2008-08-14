@@ -72,17 +72,14 @@ public class DiagramAdapterFactory extends AdapterFactoryImpl {
 		public Adapter caseMEDiagram(MEDiagram object) {
 			return createMEDiagramAdapter();
 		}
-
 		@Override
 		public Adapter caseIdentifiableElement(IdentifiableElement object) {
 			return createIdentifiableElementAdapter();
 		}
-
 		@Override
 		public Adapter caseModelElement(ModelElement object) {
 			return createModelElementAdapter();
 		}
-
 		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();

@@ -79,52 +79,42 @@ public class TaskAdapterFactory extends AdapterFactoryImpl {
 		public Adapter caseActionItem(ActionItem object) {
 			return createActionItemAdapter();
 		}
-
 		@Override
 		public Adapter caseWorkPackage(WorkPackage object) {
 			return createWorkPackageAdapter();
 		}
-
 		@Override
 		public Adapter caseWorkItem(WorkItem object) {
 			return createWorkItemAdapter();
 		}
-
 		@Override
 		public Adapter caseMeeting(Meeting object) {
 			return createMeetingAdapter();
 		}
-
 		@Override
 		public Adapter caseMilestone(Milestone object) {
 			return createMilestoneAdapter();
 		}
-
 		@Override
 		public Adapter caseCheckable(Checkable object) {
 			return createCheckableAdapter();
 		}
-
 		@Override
 		public Adapter caseAssignable(Assignable object) {
 			return createAssignableAdapter();
 		}
-
 		@Override
 		public Adapter caseIdentifiableElement(IdentifiableElement object) {
 			return createIdentifiableElementAdapter();
 		}
-
 		@Override
 		public Adapter caseModelElement(ModelElement object) {
 			return createModelElementAdapter();
 		}
-
 		@Override
 		public Adapter caseAnnotation(Annotation object) {
 			return createAnnotationAdapter();
 		}
-
 		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();

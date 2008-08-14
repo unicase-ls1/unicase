@@ -31,9 +31,13 @@ import org.unicase.model.task.TaskPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MeetingItemProvider extends ModelElementItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class MeetingItemProvider extends ModelElementItemProvider
+		implements
+			IEditingDomainItemProvider,
+			IStructuredItemContentProvider,
+			ITreeItemContentProvider,
+			IItemLabelProvider,
+			IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -267,7 +271,8 @@ public class MeetingItemProvider extends ModelElementItemProvider implements
 	@Override
 	public String getText(Object object) {
 		String label = ((Meeting) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Meeting_type")
+		return label == null || label.length() == 0
+				? getString("_UI_Meeting_type")
 				: getString("_UI_Meeting_type") + " " + label;
 	}
 
@@ -283,13 +288,13 @@ public class MeetingItemProvider extends ModelElementItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Meeting.class)) {
-		case TaskPackage.MEETING__LOCATION:
-		case TaskPackage.MEETING__TIME:
-		case TaskPackage.MEETING__PURPOSE:
-		case TaskPackage.MEETING__INFORMATION_EXCHANGE:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
-			return;
+			case TaskPackage.MEETING__LOCATION :
+			case TaskPackage.MEETING__TIME :
+			case TaskPackage.MEETING__PURPOSE :
+			case TaskPackage.MEETING__INFORMATION_EXCHANGE :
+				fireNotifyChanged(new ViewerNotification(notification,
+						notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

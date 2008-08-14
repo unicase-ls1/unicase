@@ -34,8 +34,12 @@ import org.unicase.model.provider.ModelElementItemProvider;
  * @generated
  */
 public class ModelChangePackageItemProvider extends ModelElementItemProvider
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+		implements
+			IEditingDomainItemProvider,
+			IStructuredItemContentProvider,
+			ITreeItemContentProvider,
+			IItemLabelProvider,
+			IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -122,7 +126,8 @@ public class ModelChangePackageItemProvider extends ModelElementItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((ModelChangePackage) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_ModelChangePackage_type")
+		return label == null || label.length() == 0
+				? getString("_UI_ModelChangePackage_type")
 				: getString("_UI_ModelChangePackage_type") + " " + label;
 	}
 
@@ -138,11 +143,11 @@ public class ModelChangePackageItemProvider extends ModelElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ModelChangePackage.class)) {
-		case ChangePackage.MODEL_CHANGE_PACKAGE__SOURCE_VERSION:
-		case ChangePackage.MODEL_CHANGE_PACKAGE__TARGET_VERSION:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
-			return;
+			case ChangePackage.MODEL_CHANGE_PACKAGE__SOURCE_VERSION :
+			case ChangePackage.MODEL_CHANGE_PACKAGE__TARGET_VERSION :
+				fireNotifyChanged(new ViewerNotification(notification,
+						notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

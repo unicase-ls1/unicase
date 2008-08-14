@@ -29,9 +29,13 @@ import org.unicase.model.organization.User;
  * <!-- end-user-doc -->
  * @generated
  */
-public class UserItemProvider extends OrgUnitItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class UserItemProvider extends OrgUnitItemProvider
+		implements
+			IEditingDomainItemProvider,
+			IStructuredItemContentProvider,
+			ITreeItemContentProvider,
+			IItemLabelProvider,
+			IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -109,10 +113,10 @@ public class UserItemProvider extends OrgUnitItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(User.class)) {
-		case OrganizationPackage.USER__EMAIL:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
-			return;
+			case OrganizationPackage.USER__EMAIL :
+				fireNotifyChanged(new ViewerNotification(notification,
+						notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

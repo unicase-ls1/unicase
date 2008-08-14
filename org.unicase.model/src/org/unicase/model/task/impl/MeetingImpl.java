@@ -465,32 +465,32 @@ public class MeetingImpl extends ModelElementImpl implements Meeting {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case TaskPackage.MEETING__LOCATION:
-			return getLocation();
-		case TaskPackage.MEETING__TIME:
-			return getTime();
-		case TaskPackage.MEETING__PURPOSE:
-			return getPurpose();
-		case TaskPackage.MEETING__FACILITATOR:
-			if (resolve)
-				return getFacilitator();
-			return basicGetFacilitator();
-		case TaskPackage.MEETING__SCRIBE:
-			if (resolve)
-				return getScribe();
-			return basicGetScribe();
-		case TaskPackage.MEETING__PARTICIPANTS:
-			return getParticipants();
-		case TaskPackage.MEETING__INFORMATION_EXCHANGE:
-			return getInformationExchange();
-		case TaskPackage.MEETING__DISCUSSED_ACTION_ITEMS:
-			return getDiscussedActionItems();
-		case TaskPackage.MEETING__DISCUSSED_ISSUES:
-			return getDiscussedIssues();
-		case TaskPackage.MEETING__IDENTIFIED_ACTION_ITEMS:
-			if (resolve)
-				return getIdentifiedActionItems();
-			return basicGetIdentifiedActionItems();
+			case TaskPackage.MEETING__LOCATION :
+				return getLocation();
+			case TaskPackage.MEETING__TIME :
+				return getTime();
+			case TaskPackage.MEETING__PURPOSE :
+				return getPurpose();
+			case TaskPackage.MEETING__FACILITATOR :
+				if (resolve)
+					return getFacilitator();
+				return basicGetFacilitator();
+			case TaskPackage.MEETING__SCRIBE :
+				if (resolve)
+					return getScribe();
+				return basicGetScribe();
+			case TaskPackage.MEETING__PARTICIPANTS :
+				return getParticipants();
+			case TaskPackage.MEETING__INFORMATION_EXCHANGE :
+				return getInformationExchange();
+			case TaskPackage.MEETING__DISCUSSED_ACTION_ITEMS :
+				return getDiscussedActionItems();
+			case TaskPackage.MEETING__DISCUSSED_ISSUES :
+				return getDiscussedIssues();
+			case TaskPackage.MEETING__IDENTIFIED_ACTION_ITEMS :
+				if (resolve)
+					return getIdentifiedActionItems();
+				return basicGetIdentifiedActionItems();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -504,40 +504,42 @@ public class MeetingImpl extends ModelElementImpl implements Meeting {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case TaskPackage.MEETING__LOCATION:
-			setLocation((String) newValue);
-			return;
-		case TaskPackage.MEETING__TIME:
-			setTime((Date) newValue);
-			return;
-		case TaskPackage.MEETING__PURPOSE:
-			setPurpose((String) newValue);
-			return;
-		case TaskPackage.MEETING__FACILITATOR:
-			setFacilitator((User) newValue);
-			return;
-		case TaskPackage.MEETING__SCRIBE:
-			setScribe((User) newValue);
-			return;
-		case TaskPackage.MEETING__PARTICIPANTS:
-			getParticipants().clear();
-			getParticipants().addAll((Collection<? extends OrgUnit>) newValue);
-			return;
-		case TaskPackage.MEETING__INFORMATION_EXCHANGE:
-			setInformationExchange((String) newValue);
-			return;
-		case TaskPackage.MEETING__DISCUSSED_ACTION_ITEMS:
-			getDiscussedActionItems().clear();
-			getDiscussedActionItems().addAll(
-					(Collection<? extends ActionItem>) newValue);
-			return;
-		case TaskPackage.MEETING__DISCUSSED_ISSUES:
-			getDiscussedIssues().clear();
-			getDiscussedIssues().addAll((Collection<? extends Issue>) newValue);
-			return;
-		case TaskPackage.MEETING__IDENTIFIED_ACTION_ITEMS:
-			setIdentifiedActionItems((ActionItem) newValue);
-			return;
+			case TaskPackage.MEETING__LOCATION :
+				setLocation((String) newValue);
+				return;
+			case TaskPackage.MEETING__TIME :
+				setTime((Date) newValue);
+				return;
+			case TaskPackage.MEETING__PURPOSE :
+				setPurpose((String) newValue);
+				return;
+			case TaskPackage.MEETING__FACILITATOR :
+				setFacilitator((User) newValue);
+				return;
+			case TaskPackage.MEETING__SCRIBE :
+				setScribe((User) newValue);
+				return;
+			case TaskPackage.MEETING__PARTICIPANTS :
+				getParticipants().clear();
+				getParticipants().addAll(
+						(Collection<? extends OrgUnit>) newValue);
+				return;
+			case TaskPackage.MEETING__INFORMATION_EXCHANGE :
+				setInformationExchange((String) newValue);
+				return;
+			case TaskPackage.MEETING__DISCUSSED_ACTION_ITEMS :
+				getDiscussedActionItems().clear();
+				getDiscussedActionItems().addAll(
+						(Collection<? extends ActionItem>) newValue);
+				return;
+			case TaskPackage.MEETING__DISCUSSED_ISSUES :
+				getDiscussedIssues().clear();
+				getDiscussedIssues().addAll(
+						(Collection<? extends Issue>) newValue);
+				return;
+			case TaskPackage.MEETING__IDENTIFIED_ACTION_ITEMS :
+				setIdentifiedActionItems((ActionItem) newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -550,36 +552,36 @@ public class MeetingImpl extends ModelElementImpl implements Meeting {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case TaskPackage.MEETING__LOCATION:
-			setLocation(LOCATION_EDEFAULT);
-			return;
-		case TaskPackage.MEETING__TIME:
-			setTime(TIME_EDEFAULT);
-			return;
-		case TaskPackage.MEETING__PURPOSE:
-			setPurpose(PURPOSE_EDEFAULT);
-			return;
-		case TaskPackage.MEETING__FACILITATOR:
-			setFacilitator((User) null);
-			return;
-		case TaskPackage.MEETING__SCRIBE:
-			setScribe((User) null);
-			return;
-		case TaskPackage.MEETING__PARTICIPANTS:
-			getParticipants().clear();
-			return;
-		case TaskPackage.MEETING__INFORMATION_EXCHANGE:
-			setInformationExchange(INFORMATION_EXCHANGE_EDEFAULT);
-			return;
-		case TaskPackage.MEETING__DISCUSSED_ACTION_ITEMS:
-			getDiscussedActionItems().clear();
-			return;
-		case TaskPackage.MEETING__DISCUSSED_ISSUES:
-			getDiscussedIssues().clear();
-			return;
-		case TaskPackage.MEETING__IDENTIFIED_ACTION_ITEMS:
-			setIdentifiedActionItems((ActionItem) null);
-			return;
+			case TaskPackage.MEETING__LOCATION :
+				setLocation(LOCATION_EDEFAULT);
+				return;
+			case TaskPackage.MEETING__TIME :
+				setTime(TIME_EDEFAULT);
+				return;
+			case TaskPackage.MEETING__PURPOSE :
+				setPurpose(PURPOSE_EDEFAULT);
+				return;
+			case TaskPackage.MEETING__FACILITATOR :
+				setFacilitator((User) null);
+				return;
+			case TaskPackage.MEETING__SCRIBE :
+				setScribe((User) null);
+				return;
+			case TaskPackage.MEETING__PARTICIPANTS :
+				getParticipants().clear();
+				return;
+			case TaskPackage.MEETING__INFORMATION_EXCHANGE :
+				setInformationExchange(INFORMATION_EXCHANGE_EDEFAULT);
+				return;
+			case TaskPackage.MEETING__DISCUSSED_ACTION_ITEMS :
+				getDiscussedActionItems().clear();
+				return;
+			case TaskPackage.MEETING__DISCUSSED_ISSUES :
+				getDiscussedIssues().clear();
+				return;
+			case TaskPackage.MEETING__IDENTIFIED_ACTION_ITEMS :
+				setIdentifiedActionItems((ActionItem) null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -592,32 +594,35 @@ public class MeetingImpl extends ModelElementImpl implements Meeting {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case TaskPackage.MEETING__LOCATION:
-			return LOCATION_EDEFAULT == null ? location != null
-					: !LOCATION_EDEFAULT.equals(location);
-		case TaskPackage.MEETING__TIME:
-			return TIME_EDEFAULT == null ? time != null : !TIME_EDEFAULT
-					.equals(time);
-		case TaskPackage.MEETING__PURPOSE:
-			return PURPOSE_EDEFAULT == null ? purpose != null
-					: !PURPOSE_EDEFAULT.equals(purpose);
-		case TaskPackage.MEETING__FACILITATOR:
-			return facilitator != null;
-		case TaskPackage.MEETING__SCRIBE:
-			return scribe != null;
-		case TaskPackage.MEETING__PARTICIPANTS:
-			return participants != null && !participants.isEmpty();
-		case TaskPackage.MEETING__INFORMATION_EXCHANGE:
-			return INFORMATION_EXCHANGE_EDEFAULT == null ? informationExchange != null
-					: !INFORMATION_EXCHANGE_EDEFAULT
-							.equals(informationExchange);
-		case TaskPackage.MEETING__DISCUSSED_ACTION_ITEMS:
-			return discussedActionItems != null
-					&& !discussedActionItems.isEmpty();
-		case TaskPackage.MEETING__DISCUSSED_ISSUES:
-			return discussedIssues != null && !discussedIssues.isEmpty();
-		case TaskPackage.MEETING__IDENTIFIED_ACTION_ITEMS:
-			return identifiedActionItems != null;
+			case TaskPackage.MEETING__LOCATION :
+				return LOCATION_EDEFAULT == null
+						? location != null
+						: !LOCATION_EDEFAULT.equals(location);
+			case TaskPackage.MEETING__TIME :
+				return TIME_EDEFAULT == null ? time != null : !TIME_EDEFAULT
+						.equals(time);
+			case TaskPackage.MEETING__PURPOSE :
+				return PURPOSE_EDEFAULT == null
+						? purpose != null
+						: !PURPOSE_EDEFAULT.equals(purpose);
+			case TaskPackage.MEETING__FACILITATOR :
+				return facilitator != null;
+			case TaskPackage.MEETING__SCRIBE :
+				return scribe != null;
+			case TaskPackage.MEETING__PARTICIPANTS :
+				return participants != null && !participants.isEmpty();
+			case TaskPackage.MEETING__INFORMATION_EXCHANGE :
+				return INFORMATION_EXCHANGE_EDEFAULT == null
+						? informationExchange != null
+						: !INFORMATION_EXCHANGE_EDEFAULT
+								.equals(informationExchange);
+			case TaskPackage.MEETING__DISCUSSED_ACTION_ITEMS :
+				return discussedActionItems != null
+						&& !discussedActionItems.isEmpty();
+			case TaskPackage.MEETING__DISCUSSED_ISSUES :
+				return discussedIssues != null && !discussedIssues.isEmpty();
+			case TaskPackage.MEETING__IDENTIFIED_ACTION_ITEMS :
+				return identifiedActionItems != null;
 		}
 		return super.eIsSet(featureID);
 	}

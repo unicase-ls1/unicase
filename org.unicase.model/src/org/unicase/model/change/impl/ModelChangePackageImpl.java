@@ -26,8 +26,9 @@ import org.unicase.model.impl.ModelElementImpl;
  *
  * @generated
  */
-public class ModelChangePackageImpl extends ModelElementImpl implements
-		ModelChangePackage {
+public class ModelChangePackageImpl extends ModelElementImpl
+		implements
+			ModelChangePackage {
 	/**
 	 * The default value of the '{@link #getSourceVersion() <em>Source Version</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
@@ -134,10 +135,10 @@ public class ModelChangePackageImpl extends ModelElementImpl implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case ChangePackage.MODEL_CHANGE_PACKAGE__SOURCE_VERSION:
-			return new Integer(getSourceVersion());
-		case ChangePackage.MODEL_CHANGE_PACKAGE__TARGET_VERSION:
-			return new Integer(getTargetVersion());
+			case ChangePackage.MODEL_CHANGE_PACKAGE__SOURCE_VERSION :
+				return new Integer(getSourceVersion());
+			case ChangePackage.MODEL_CHANGE_PACKAGE__TARGET_VERSION :
+				return new Integer(getTargetVersion());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -149,12 +150,12 @@ public class ModelChangePackageImpl extends ModelElementImpl implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case ChangePackage.MODEL_CHANGE_PACKAGE__SOURCE_VERSION:
-			setSourceVersion(((Integer) newValue).intValue());
-			return;
-		case ChangePackage.MODEL_CHANGE_PACKAGE__TARGET_VERSION:
-			setTargetVersion(((Integer) newValue).intValue());
-			return;
+			case ChangePackage.MODEL_CHANGE_PACKAGE__SOURCE_VERSION :
+				setSourceVersion(((Integer) newValue).intValue());
+				return;
+			case ChangePackage.MODEL_CHANGE_PACKAGE__TARGET_VERSION :
+				setTargetVersion(((Integer) newValue).intValue());
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -166,12 +167,12 @@ public class ModelChangePackageImpl extends ModelElementImpl implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case ChangePackage.MODEL_CHANGE_PACKAGE__SOURCE_VERSION:
-			setSourceVersion(SOURCE_VERSION_EDEFAULT);
-			return;
-		case ChangePackage.MODEL_CHANGE_PACKAGE__TARGET_VERSION:
-			setTargetVersion(TARGET_VERSION_EDEFAULT);
-			return;
+			case ChangePackage.MODEL_CHANGE_PACKAGE__SOURCE_VERSION :
+				setSourceVersion(SOURCE_VERSION_EDEFAULT);
+				return;
+			case ChangePackage.MODEL_CHANGE_PACKAGE__TARGET_VERSION :
+				setTargetVersion(TARGET_VERSION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -183,10 +184,10 @@ public class ModelChangePackageImpl extends ModelElementImpl implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case ChangePackage.MODEL_CHANGE_PACKAGE__SOURCE_VERSION:
-			return sourceVersion != SOURCE_VERSION_EDEFAULT;
-		case ChangePackage.MODEL_CHANGE_PACKAGE__TARGET_VERSION:
-			return targetVersion != TARGET_VERSION_EDEFAULT;
+			case ChangePackage.MODEL_CHANGE_PACKAGE__SOURCE_VERSION :
+				return sourceVersion != SOURCE_VERSION_EDEFAULT;
+			case ChangePackage.MODEL_CHANGE_PACKAGE__TARGET_VERSION :
+				return targetVersion != TARGET_VERSION_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
