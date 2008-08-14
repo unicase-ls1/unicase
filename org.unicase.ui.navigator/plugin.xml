@@ -16,68 +16,12 @@
             restorable="true">
       </view>
    </extension>
-     <extension
-           point="org.eclipse.ui.perspectiveExtensions">
-        <perspectiveExtension
-              targetID="*">
-           <viewShortcut
-                 id="org.unicase.ui.navigator.viewer">
-           </viewShortcut>
-        </perspectiveExtension>
-     </extension>
-   <extension
-         point="org.eclipse.ui.perspectiveExtensions">
-      <perspectiveExtension
-            targetID="org.eclipse.jdt.ui.JavaPerspective">
-         <view
-               id="org.unicase.ui.navigator.viewer"
-               ratio="0.5"
-               relationship="stack"
-               relative="org.eclipse.ui.navigator.ProjectExplorer"
-               standalone="false">
-         </view>
-      </perspectiveExtension>
-   </extension>
    <extension
          point="org.eclipse.help.contexts">
       <contexts
             file="contexts.xml">
       </contexts>
    </extension>
-   <!--
-   <extension
-         point="org.eclipse.ui.navigator.navigatorContent">
-      <navigatorContent
-            contentProvider="org.unicase.ui.navigator.TreeContentProvider"
-            id="org.unicase.ui.navigator.navigatorContent"
-            labelProvider="org.unicase.ui.navigator.LabelProvider"
-            name="Unicase Content">
-         <triggerPoints>
-            <instanceof
-                  value="org.eclipse.emf.ecore.EObject">
-            </instanceof>
-         </triggerPoints>
-         <possibleChildren>
-            <instanceof
-                  value="org.eclipse.emf.ecore.EObject">
-            </instanceof>
-         </possibleChildren>
-      </navigatorContent>
-   </extension>
-   <extension
-         point="org.eclipse.ui.navigator.viewer">
-      <viewer
-            viewerId="org.unicase.ui.navigator.viewer">
-      </viewer>
-      <viewerContentBinding
-            viewerId="org.unicase.ui.navigator.viewer">
-         <includes>
-            <contentExtension
-                  pattern="org.unicase.ui.navigator.navigatorContent">
-            </contentExtension></includes>
-      </viewerContentBinding>
-   </extension>  -->
-   
    <extension
          point="org.eclipse.ui.commands">
       <command
