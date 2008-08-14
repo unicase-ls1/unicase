@@ -529,7 +529,14 @@ public class AttributeEditPart extends CompartmentEditPart implements
 	}
 
 	/**
-	 * @generated
+	 * This method handles notifications posted for model changes.
+	 * There are some issues with the features passed to this method,
+	 * as they never equal the edit parts feature. 
+	 * Though, the label does not get updated after model changes.  
+	 *  
+	 * @author schroech  
+	 * @generated NOT
+	 * @param event The notification to be handled
 	 */
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
@@ -567,6 +574,7 @@ public class AttributeEditPart extends CompartmentEditPart implements
 					refreshLabel();
 				}
 			}
+			refreshLabel();
 		}
 		super.handleNotificationEvent(event);
 	}
