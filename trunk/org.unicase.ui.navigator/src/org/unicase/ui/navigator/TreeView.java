@@ -118,6 +118,13 @@ public class TreeView extends ViewPart {
 				projectSpace = null;
 			}
 
+			if (WorkspaceManager.getInstance().getCurrentWorkspace()
+					.getActiveProjectSpace() != null) {
+				if (WorkspaceManager.getInstance().getCurrentWorkspace()
+						.getActiveProjectSpace().equals(projectSpace)) {
+					return;
+				}
+			}
 			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 					.getEditingDomain("org.unicase.EditingDomain");
 			if (projectSpace != null) {
@@ -178,7 +185,8 @@ public class TreeView extends ViewPart {
 	private void createDoubleClickAction() {
 		doubleClickAction = new Action() {
 			public void run() {
-				ActionHelper.openModelElement(ActionHelper.getSelectedModelElement());
+				ActionHelper.openModelElement(ActionHelper
+						.getSelectedModelElement());
 			}
 		};
 
