@@ -26,24 +26,6 @@
       </view>
    </extension>
    <extension
-         point="org.eclipse.ui.perspectiveExtensions">
-      <perspectiveExtension
-            targetID="org.eclipse.jdt.ui.JavaPerspective">
-         <view
-               ratio="0.5"
-               relative="org.eclipse.ui.views.ProblemView"
-               relationship="stack"
-               id="org.unicase.ui.treeview.views.IterationPlanningView">
-         </view>
-         <view
-               id="org.unicase.ui.treeview.views.StatusView"
-               minimized="false"
-               relationship="stack"
-               relative="org.eclipse.ui.views.ProblemView">
-         </view>
-      </perspectiveExtension>
-   </extension>
-   <extension
          point="org.eclipse.help.contexts">
       <contexts
             file="contexts.xml">
