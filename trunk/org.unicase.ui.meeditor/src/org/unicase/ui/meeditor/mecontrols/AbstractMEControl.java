@@ -21,15 +21,57 @@ public abstract class AbstractMEControl implements MEControl {
 	/**
 	 * gui toolkit used for rendering.
 	 */
-	protected FormToolkit toolkit;
+	private FormToolkit toolkit;
 	/**
 	 * the modelElement.
 	 */
-	protected EObject modelElement;
+	private EObject modelElement;
 	/**
 	 * the editingDomain.
 	 */
-	protected EditingDomain editingDomain;
+	private EditingDomain editingDomain;
+
+	/**
+	 * @return the toolkit
+	 */
+	public FormToolkit getToolkit() {
+		return toolkit;
+	}
+
+	/**
+	 * @param toolkit the toolkit to set
+	 */
+	public void setToolkit(FormToolkit toolkit) {
+		this.toolkit = toolkit;
+	}
+
+	/**
+	 * @return the modelElement
+	 */
+	public EObject getModelElement() {
+		return modelElement;
+	}
+
+	/**
+	 * @param modelElement the modelElement to set
+	 */
+	public void setModelElement(EObject modelElement) {
+		this.modelElement = modelElement;
+	}
+
+	/**
+	 * @return the editingDomain
+	 */
+	public EditingDomain getEditingDomain() {
+		return editingDomain;
+	}
+
+	/**
+	 * @param editingDomain the editingDomain to set
+	 */
+	public void setEditingDomain(EditingDomain editingDomain) {
+		this.editingDomain = editingDomain;
+	}
 
 	/**
 	 * Default constructor.

@@ -67,7 +67,7 @@ public class MEDateControl extends AbstractMEControl implements MEControl, Selec
 	 * {@inheritDoc}
 	 */
 	public Control createControl(Composite parent, int style) {
-		Composite composite = toolkit.createComposite(parent);
+		Composite composite = getToolkit().createComposite(parent);
 		composite.setLayout(new GridLayout(2, false));
 
 		widget = new CDateTime(composite, CDT.BORDER | CDT.DROP_DOWN | CDT.COMPACT);
@@ -90,21 +90,21 @@ public class MEDateControl extends AbstractMEControl implements MEControl, Selec
 	 * {@inheritDoc}
 	 */
 	public void widgetDefaultSelected(SelectionEvent e) {
-		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
+		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-				modelElement.eSet(attribute, widget.getSelection());
+				getModelElement().eSet(attribute, widget.getSelection());
 			}
 		});
 	}
 
 	private void update() {
-		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
+		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-				Date newDate = (Date) modelElement.eGet(attribute);
+				Date newDate = (Date) getModelElement().eGet(attribute);
 				if (newDate != null) {
 					widget.setSelection(newDate);
 				}

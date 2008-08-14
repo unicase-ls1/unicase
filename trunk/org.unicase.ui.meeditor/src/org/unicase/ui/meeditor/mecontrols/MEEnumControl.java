@@ -58,7 +58,7 @@ public class MEEnumControl extends AbstractMEControl implements MEControl {
 	 */
 	public Control createControl(Composite parent, int style) {
 		combo = new Combo(parent, style | SWT.DROP_DOWN | SWT.READ_ONLY);
-		IObservableValue model = EMFEditObservables.observeValue(editingDomain, modelElement, attribute);
+		IObservableValue model = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(), attribute);
 		EList<EEnumLiteral> list = ((EEnum)attribute.getEType()).getELiterals();
 		for (EEnumLiteral literal : list){
 			combo.add(literal.getLiteral());

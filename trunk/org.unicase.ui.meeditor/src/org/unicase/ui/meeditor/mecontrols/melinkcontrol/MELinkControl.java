@@ -60,21 +60,21 @@ public class MELinkControl extends AbstractMEControl {
 	 * {@inheritDoc}
 	 */
 	public Control createControl(Composite parent, int style) {
-		linkComposite = toolkit.createComposite(parent, style);
+		linkComposite = getToolkit().createComposite(parent, style);
 		linkComposite.setLayout(new GridLayout(3, false));
 		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(
 				new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		Image image = labelProvider.getImage(modelElement);
-		ImageHyperlink imageHyperlink = toolkit.createImageHyperlink(linkComposite, style);
+		Image image = labelProvider.getImage(getModelElement());
+		ImageHyperlink imageHyperlink = getToolkit().createImageHyperlink(linkComposite, style);
 		imageHyperlink.setImage(image);
-		Hyperlink hyperlink = toolkit.createHyperlink(linkComposite, labelProvider.getText(modelElement), style);
-		IHyperlinkListener listener = new MEHyperLinkAdapter((ModelElement) modelElement);
+		Hyperlink hyperlink = getToolkit().createHyperlink(linkComposite, labelProvider.getText(getModelElement()), style);
+		IHyperlinkListener listener = new MEHyperLinkAdapter((ModelElement) getModelElement());
 		hyperlink.addHyperlinkListener(listener);
 		imageHyperlink.addHyperlinkListener(listener);
-		ImageHyperlink deleteLink = toolkit.createImageHyperlink(linkComposite, style);
+		ImageHyperlink deleteLink = getToolkit().createImageHyperlink(linkComposite, style);
 		deleteLink.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_DELETE));
 
-		deleteLink.addHyperlinkListener(new MEHyperLinkDeleteAdapter(contextModelElement, reference, modelElement));
+		deleteLink.addHyperlinkListener(new MEHyperLinkDeleteAdapter(contextModelElement, reference, getModelElement()));
 		return linkComposite;
 	}
 

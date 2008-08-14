@@ -20,6 +20,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Tree;
+import org.unicase.ui.common.MEClassLabelProvider;
 
 /**
  * 
@@ -63,7 +64,7 @@ public class ModelTreePage extends WizardPage implements Listener {
 		treeViewer = new TreeViewer(tree);
 		treeViewer.getControl().setLayoutData(new GridData(GridData.FILL_BOTH));
 		treeViewer.setContentProvider(new ModelTreeContentProvider());
-		treeViewer.setLabelProvider(new ModelTreeLabelProvider());
+		treeViewer.setLabelProvider(new MEClassLabelProvider());
 		//give an empty object, otherwise it does not initialize
 		treeViewer.setInput(new Object());
 		treeViewer.getTree().addListener(SWT.Selection, this);
