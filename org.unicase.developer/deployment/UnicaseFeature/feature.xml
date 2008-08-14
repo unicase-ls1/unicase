@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.client"
       label="Unicase Client"
-      version="0.0.11">
+      version="0.0.14">
 
    <description url="http://www.unicase.org">
       This feature contains the unicase client.
@@ -143,98 +143,105 @@ This Agreement is governed by the laws of the State of New York and the intellec
          id="org.unicase.emfstore"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="0.0.1.qualifier"
          unpack="false"/>
 
    <plugin
          id="org.unicase.emfstore.esmodel"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="0.0.1.qualifier"
          unpack="false"/>
 
    <plugin
          id="org.unicase.emfstore.esmodel.edit"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="0.0.1.qualifier"
          unpack="false"/>
 
    <plugin
          id="org.unicase.model"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="0.0.1.qualifier"
          unpack="false"/>
 
    <plugin
          id="org.unicase.model.edit"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="0.0.2.qualifier"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.common"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="0.1.0.qualifier"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.esbrowser"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="0.0.1.qualifier"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.meeditor"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="0.0.1.qualifier"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.navigator"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="0.1.0.qualifier"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.tableview"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="0.0.1.qualifier"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.test"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="0.0.1.qualifier"
          unpack="false"/>
 
    <plugin
          id="org.unicase.workspace"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="0.0.1.qualifier"
          unpack="false"/>
 
    <plugin
          id="org.unicase.workspace.edit"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="0.0.1.qualifier"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.nebula.widgets.gantchart"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="0.0.14"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.ui.stem"
+         download-size="0"
+         install-size="0"
+         version="0.0.1.qualifier"
          unpack="false"/>
 
 </feature>
