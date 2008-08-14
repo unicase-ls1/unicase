@@ -120,13 +120,13 @@
       <actualFigure
           xsi:type="gmfgraph:Ellipse"
           name="UseCaseFigure">
+        <layout
+            xsi:type="gmfgraph:CustomLayout"
+            qualifiedClassName="org.unicase.ui.usecaseDiagram.unicase.CenterLayout"/>
         <children
             xsi:type="gmfgraph:Label"
             name="UseCaseFigure_name"
-            text="">
-          <layout
-              xsi:type="gmfgraph:FlowLayout"/>
-        </children>
+            text=""/>
       </actualFigure>
       <accessors
           accessor="getUseCaseFigure_name"
@@ -260,6 +260,7 @@
   <labels
       name="UseCaseNode_name"
       figure="UseCaseFigure"
+      elementIcon="false"
       accessor="//@figures.0/@descriptors.5/@accessors.0"/>
   <labels
       name="InitiateLabel"
@@ -278,5 +279,6 @@
       figure="ExtendLabelFigure"
       elementIcon="false"/>
   <labels
-      name="ActorNode_name"/>
+      name="ActorNode_name"
+      elementIcon="false"/>
 </gmfgraph:Canvas>
