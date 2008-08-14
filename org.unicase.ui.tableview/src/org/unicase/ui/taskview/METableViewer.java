@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.ui.taskview;
 
 import java.util.List;
@@ -22,11 +28,27 @@ import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
 
+/**
+ * A {@link TableViewer} subclass to display model elements.
+ * 
+ * @author Florian Schneider
+ * 
+ */
 public class METableViewer extends TableViewer {
 
 	private Project currentProject;
 	private AdapterFactory adapterFactory;
 
+	/**
+	 * Updates the {@code adapterFactory} attribute of this class. Calls
+	 * {@link #setInput(Object)} to reflect the changed set of items that shall
+	 * be displayed.
+	 * 
+	 * @param adapterFactory
+	 *            the new adapter factory that is used to create the
+	 *            AdapterFactoryContentProvider that bridges jFace to EMF
+	 *            provider calls.
+	 */
 	public void setAdapterFactory(AdapterFactory adapterFactory) {
 		this.adapterFactory = adapterFactory;
 		AdapterFactoryContentProvider contentProvider = new AdapterFactoryContentProvider(
@@ -125,6 +147,7 @@ public class METableViewer extends TableViewer {
 				.getPropertyDescriptors(templateObject);
 
 		for (IItemPropertyDescriptor currentDescriptor : descriptors) {
+
 			if (!currentDescriptor.isMany(templateObject)) {
 				TableViewerColumn currentColumn = new TableViewerColumn(this,
 						SWT.CENTER);
@@ -141,5 +164,4 @@ public class METableViewer extends TableViewer {
 		}
 
 	}
-
 }

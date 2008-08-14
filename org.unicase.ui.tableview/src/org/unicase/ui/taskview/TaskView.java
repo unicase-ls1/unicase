@@ -9,11 +9,15 @@ package org.unicase.ui.taskview;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.jface.action.Action;
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.TaskPackage;
+import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.ui.tableview.Activator;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
@@ -29,29 +33,63 @@ public class TaskView extends ViewPart {
 
 	private METableViewer viewer;
 	private final EClass itemMetaClass = TaskPackage.eINSTANCE.getActionItem();
-	private boolean restrictedToCurrentUser = false;
+	private boolean restrictedToCurrentUser;
 	private FilteredItemProviderAdapterFactory adapterFactory;
+	private Action doubleClickAction;
 
+	/**
+	 * 
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.ui.part.WorkbenchPart#createPartControl(org.eclipse.swt.widgets.Composite)
+	 */
 	@Override
 	public void createPartControl(Composite parent) {
 		adapterFactory = new FilteredItemProviderAdapterFactory();
 		adapterFactory.setFilteredItemProvider(new EClassFilterItemProvider(
 				adapterFactory, itemMetaClass));
 		viewer = new METableViewer(parent, adapterFactory, itemMetaClass);
-
+		getSite().setSelectionProvider(viewer);
+		hookDoubleClickAction();
 		getViewSite().getActionBars().getToolBarManager().add(
 				new RestrictTableContentToCurrentUserAction(this));
 	}
 
+	private void hookDoubleClickAction() {
+
+		createDoubleClickAction();
+		viewer.addDoubleClickListener(new IDoubleClickListener() {
+			public void doubleClick(DoubleClickEvent event) {
+				doubleClickAction.run();
+			}
+		});
+	}
+
+	private void createDoubleClickAction() {
+		doubleClickAction = new Action() {
+			public void run() {
+				ActionHelper.openModelElement(ActionHelper
+						.getSelectedModelElement());
+			}
+		};
+
+	}
+
+	/**
+	 * 
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.ui.part.WorkbenchPart#setFocus()
+	 */
 	@Override
 	public void setFocus() {
-
+		viewer.refresh();
 	}
 
 	/**
 	 * Restricts the items in the task view to those owned by the current user.
 	 * 
-	 * @author schneidf
+	 * @author Florian Schneider
 	 */
 	private class RestrictTableContentToCurrentUserAction extends
 			org.eclipse.jface.action.Action {
@@ -70,52 +108,61 @@ public class TaskView extends ViewPart {
 
 		@Override
 		public void run() {
-			// FS how can I get the appropriate user from the current user
-			// session?
 			super.run();
-
 			part.setRestrictedToCurrentUser(isChecked());
-			System.out.println(isChecked() ? "checked" : "unchecked");
-
-			if (isChecked()) {
-				Workspace workspace = WorkspaceManager.getInstance()
-						.getCurrentWorkspace();
-				Usersession currentUserSession = workspace
-						.getActiveProjectSpace().getUsersession();
-
-				EList<User> projectUsers = workspace.getActiveProjectSpace()
-						.getProject().getAllModelElementsbyClass(
-								OrganizationPackage.eINSTANCE.getUser(),
-								new BasicEList<User>());
-				// FS tell the user if the project has no users
-				for (User currentUser : projectUsers) {
-					if (currentUser.getName().equals(
-							currentUserSession.getUsername())) {
-						adapterFactory
-								.setFilteredItemProvider(new UserAndEClassFilterItemProvider(
-										adapterFactory, itemMetaClass,
-										currentUser));
-						viewer.setAdapterFactory(adapterFactory);
-						// first come first serve
-						break;
-					}
-				}
-			} else {
-				adapterFactory
-						.setFilteredItemProvider(new EClassFilterItemProvider(
-								adapterFactory, TaskPackage.eINSTANCE
-										.getActionItem()));
-				viewer.setAdapterFactory(adapterFactory);
-			}
-
 		}
 	}
 
-	public void setRestrictedToCurrentUser(boolean checked) {
-		this.restrictedToCurrentUser = checked;
+	/**
+	 * Triggers a viewer update according to the current user session. As a
+	 * result, only action items that are assigned to the user that corresponds
+	 * to the current user session are displayed.
+	 * 
+	 * @param restricted
+	 *            determines if this view shall be restricted to a specific user
+	 *            instance or not
+	 */
+	public void setRestrictedToCurrentUser(boolean restricted) {
+		this.restrictedToCurrentUser = restricted;
 
+		if (restrictedToCurrentUser) {
+			Workspace workspace = WorkspaceManager.getInstance()
+					.getCurrentWorkspace();
+			Usersession currentUserSession = workspace.getActiveProjectSpace()
+					.getUsersession();
+
+			EList<User> projectUsers = workspace.getActiveProjectSpace()
+					.getProject().getAllModelElementsbyClass(
+							OrganizationPackage.eINSTANCE.getUser(),
+							new BasicEList<User>());
+			// FS tell the user if the project has no users
+			for (User currentUser : projectUsers) {
+				// FS how can I get the appropriate user from the current user
+				// session?
+				if (currentUser.getName().equals(
+						currentUserSession.getUsername())) {
+					adapterFactory
+							.setFilteredItemProvider(new UserAndEClassFilterItemProvider(
+									adapterFactory, itemMetaClass, currentUser));
+					viewer.setAdapterFactory(adapterFactory);
+					// first come first serve
+					break;
+				}
+			}
+		} else {
+			adapterFactory
+					.setFilteredItemProvider(new EClassFilterItemProvider(
+							adapterFactory, TaskPackage.eINSTANCE
+									.getActionItem()));
+			viewer.setAdapterFactory(adapterFactory);
+		}
 	}
 
+	/**
+	 * 
+	 * @return if the view is currently restricted to the current user session
+	 *         or not
+	 */
 	public boolean isRestrictedToCurrentUser() {
 		return restrictedToCurrentUser;
 	}
