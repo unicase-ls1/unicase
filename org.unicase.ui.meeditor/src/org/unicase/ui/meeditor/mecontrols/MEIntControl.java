@@ -54,7 +54,7 @@ public class MEIntControl extends AbstractMEControl implements MEControl {
 	public Control createControl(Composite parent, int style) {
 		spinner = new Spinner(parent, style);
 
-		IObservableValue model = EMFEditObservables.observeValue(editingDomain, modelElement, attribute);
+		IObservableValue model = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(), attribute);
 		EMFDataBindingContext dbc = new EMFDataBindingContext();
 		dbc.bindValue(SWTObservables.observeSelection(spinner), model, null, null);
 

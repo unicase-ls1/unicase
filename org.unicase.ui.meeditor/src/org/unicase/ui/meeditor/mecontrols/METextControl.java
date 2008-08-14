@@ -18,6 +18,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.eclipse.ui.forms.widgets.TableWrapData;
 
 /**
  * Standard widgets to edit a single line text attribute.
@@ -54,12 +55,14 @@ public class METextControl extends AbstractMEControl implements MEControl {
 	 * @return A Text Control. {@inheritDoc}
 	 */
 	public Control createControl(Composite parent, int style) {
-		text = toolkit.createText(parent, new String(), style | SWT.SINGLE);
-		IObservableValue model = EMFEditObservables.observeValue(editingDomain,
-				modelElement, attribute);
+		text = getToolkit().createText(parent, new String(), style | SWT.SINGLE);
+		IObservableValue model = EMFEditObservables.observeValue(getEditingDomain(),
+				getModelElement(), attribute);
 		EMFDataBindingContext dbc = new EMFDataBindingContext();
 		dbc.bindValue(SWTObservables.observeText(text, SWT.FocusOut), model,
 				null, null);
+		TableWrapData layoutData = new TableWrapData(TableWrapData.FILL_GRAB);
+		text.setLayoutData(layoutData);
 		return text;
 	}
 	

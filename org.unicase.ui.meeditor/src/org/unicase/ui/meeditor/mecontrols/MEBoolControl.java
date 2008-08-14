@@ -54,8 +54,8 @@ public class MEBoolControl extends AbstractMEControl implements MEControl {
 	 * @return Control
 	 */
 	public Control createControl(Composite parent, int style) {
-		check = toolkit.createButton(parent, "", SWT.CHECK);
-		IObservableValue model = EMFEditObservables.observeValue(editingDomain, modelElement, attribute);
+		check = getToolkit().createButton(parent, "", SWT.CHECK);
+		IObservableValue model = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(), attribute);
 		EMFDataBindingContext dbc = new EMFDataBindingContext();
 		dbc.bindValue(SWTObservables.observeSelection(check), model, null, null);
 		return check;

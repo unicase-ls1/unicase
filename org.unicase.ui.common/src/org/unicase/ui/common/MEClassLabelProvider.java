@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.ui.navigator.wizards;
+package org.unicase.ui.common;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -19,14 +19,13 @@ import org.unicase.model.ModelPackage;
  * @author Hodaie LabelProvider for TreeViewer that is shown on ModelTreePage
  * 
  */
-public class ModelTreeLabelProvider extends AdapterFactoryLabelProvider {
+public class MEClassLabelProvider extends AdapterFactoryLabelProvider {
 
 	/**
 	 * . Constructor
 	 */
-	public ModelTreeLabelProvider() {
-		super(new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+	public MEClassLabelProvider() {
+		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
 	}
 
@@ -41,8 +40,7 @@ public class ModelTreeLabelProvider extends AdapterFactoryLabelProvider {
 		// it inherits ModelElement then return its name.
 		if (object instanceof EClass) {
 			EClass eclass = (EClass) object;
-			if (eclass.getEAllSuperTypes().contains(
-					ModelPackage.eINSTANCE.getModelElement())) {
+			if (eclass.getEAllSuperTypes().contains(ModelPackage.eINSTANCE.getModelElement())) {
 				// TODO: show getDisplayName()
 				text = eclass.getName();
 			}
@@ -63,8 +61,7 @@ public class ModelTreeLabelProvider extends AdapterFactoryLabelProvider {
 		if (object instanceof EClass) {
 			EClass eClass = (EClass) object;
 			EPackage ePackage = eClass.getEPackage();
-			ModelElement newMEInstance = (ModelElement) ePackage
-					.getEFactoryInstance().create(eClass);
+			ModelElement newMEInstance = (ModelElement) ePackage.getEFactoryInstance().create(eClass);
 			return super.getImage(newMEInstance);
 		}
 		return super.getImage(object);

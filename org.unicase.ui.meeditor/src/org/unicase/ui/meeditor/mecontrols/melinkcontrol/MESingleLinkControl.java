@@ -90,19 +90,19 @@ public class MESingleLinkControl extends AbstractMEControl {
 	 * {@inheritDoc}
 	 */
 	public Control createControl(final Composite parent, int style) {
-		composite = toolkit.createComposite(parent, style);
+		composite = getToolkit().createComposite(parent, style);
 		composite.setLayout(new GridLayout(2, false));
 		this.parent = parent;
 		this.style = style;
-		linkArea = toolkit.createComposite(composite);
+		linkArea = getToolkit().createComposite(composite);
 		linkArea.setLayout(new FillLayout());
 		updateLink();
-		Button button = toolkit.createButton(composite, "Select", SWT.PUSH);
+		Button button = getToolkit().createButton(composite, "Select", SWT.PUSH);
 		button.addSelectionListener(new SelectionAdapter() {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
+				TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 					@Override
@@ -111,9 +111,9 @@ public class MESingleLinkControl extends AbstractMEControl {
 						ElementListSelectionDialog dlg = new ElementListSelectionDialog(parent.getShell(), new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 								ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
 						// JH: fill only with right elements
-						Collection<ModelElement> allElements = ((ModelElement) modelElement).getProject().getAllModelElementsbyClass(clazz, new BasicEList<ModelElement>());
-						allElements.remove(modelElement);
-						Object object = modelElement.eGet(eReference);
+						Collection<ModelElement> allElements = ((ModelElement) getModelElement()).getProject().getAllModelElementsbyClass(clazz, new BasicEList<ModelElement>());
+						allElements.remove(getModelElement());
+						Object object = getModelElement().eGet(eReference);
 						if (object instanceof EObject) {
 							allElements.remove(object);
 						}
@@ -124,7 +124,7 @@ public class MESingleLinkControl extends AbstractMEControl {
 							Object result = dlg.getFirstResult();
 							if (result instanceof EObject) {
 								EObject eObject = (EObject) result;
-								modelElement.eSet(eReference, eObject);
+								getModelElement().eSet(eReference, eObject);
 							}
 						}
 					}
@@ -143,18 +143,18 @@ public class MESingleLinkControl extends AbstractMEControl {
 		if (labelWidget != null) {
 			labelWidget.dispose();
 		}
-		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
+		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
 			protected void doExecute() {
-				EObject opposite = (EObject) modelElement.eGet(eReference);
-				ModelElement me = (ModelElement) modelElement;
+				EObject opposite = (EObject) getModelElement().eGet(eReference);
+				ModelElement me = (ModelElement) getModelElement();
 				if (opposite != null) {
-					meControl = new MELinkControl(editingDomain, opposite, toolkit, me, eReference);
+					meControl = new MELinkControl(getEditingDomain(), opposite, getToolkit(), me, eReference);
 					meControl.createControl(linkArea, style);
 				} else {
-					labelWidget = toolkit.createLabel(linkArea, "(Not Set)");
+					labelWidget = getToolkit().createLabel(linkArea, "(Not Set)");
 					labelWidget.setForeground(parent.getShell().getDisplay().getSystemColor(SWT.COLOR_GRAY));
 				}
 				composite.layout(true);
@@ -168,6 +168,6 @@ public class MESingleLinkControl extends AbstractMEControl {
 	 */
 	@Override
 	public void dispose() {
-		modelElement.eAdapters().remove(eAdapter);
+		getModelElement().eAdapters().remove(eAdapter);
 	}
 }
