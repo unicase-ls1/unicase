@@ -36,6 +36,9 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 * The Id for MEEditor. We need this to open a model element.
 	 */
 	public static final String ID = "org.unicase.ui.meeditor";
+	
+	
+
 	private ModelElement modelElement;
 	private ComposedAdapterFactory adapterFactory;
 	private TransactionalEditingDomain editingDomain;
@@ -216,5 +219,8 @@ public class MEEditor extends SharedHeaderFormEditor {
 		form.setFocus();
 
 	}
+	
+	
+
 
 }
