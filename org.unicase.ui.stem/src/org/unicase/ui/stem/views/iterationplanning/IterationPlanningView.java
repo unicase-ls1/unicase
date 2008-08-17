@@ -1,4 +1,4 @@
-package org.unicase.ui.stem.views.iterationplanningview;
+package org.unicase.ui.stem.views.iterationplanning;
 
 import java.net.URL;
 
