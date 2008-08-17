@@ -15,7 +15,7 @@ import org.eclipse.swt.widgets.Label;
 
 public class HistoryComposite extends Composite {
 
-	TableViewer tableViewer;
+	private TableViewer tableViewer;
 	
 	public HistoryComposite(Composite parent, int style) {
 		super(parent, style);
