@@ -24,6 +24,20 @@
             name="Status View"
             restorable="true">
       </view>
+      <view
+            category="org.unicase"
+            class="org.unicase.ui.stem.views.historybrowserview.HistoryBrowserView"
+            id="org.unicase.ui.stem.HistoryBrowserView"
+            name="History Browser"
+            restorable="true">
+      </view>
+      <view
+            category="org.unicase"
+            class="org.unicase.ui.stem.views.changebrowserview.ChangeBrowserView"
+            id="org.unicase.ui.stem.ChangeBrowserView"
+            name="Change Browser"
+            restorable="true">
+      </view>
    </extension>
    <extension
          point="org.eclipse.help.contexts">

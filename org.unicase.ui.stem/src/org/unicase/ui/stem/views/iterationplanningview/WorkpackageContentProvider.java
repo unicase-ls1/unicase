@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.ui.stem.views.iterationplanning;
+package org.unicase.ui.stem.views.iterationplanningview;
 
 import java.util.HashSet;
 import java.util.List;

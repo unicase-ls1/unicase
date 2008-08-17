@@ -1,4 +1,4 @@
-package org.unicase.ui.stem.views.iterationplanning;
+package org.unicase.ui.stem.views.iterationplanningview;
 
 import java.util.Collection;
 
