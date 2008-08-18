@@ -86,12 +86,12 @@ public class UseCaseStepsControl extends AbstractMEControl{
 	public Control createControl(final Composite parent, final int style) {
 		this.parentComposite = parent;
 		this.parentStyle = style;
-		section = toolkit.createSection(parent, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
-		section.setText(descriptor.getDisplayName(modelElement));		
-		mainComposite = toolkit.createComposite(section);
+		section = getToolkit().createSection(parent, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
+		section.setText(descriptor.getDisplayName(getModelElement()));		
+		mainComposite = getToolkit().createComposite(section);
 		mainComposite.setLayout( new GridLayout(1,true));
 		mainComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		stepArea = toolkit.createComposite(mainComposite);
+		stepArea = getToolkit().createComposite(mainComposite);
 		stepArea.setLayout( new GridLayout(2, true));
 		GridData stepAreaGridData = new GridData(GridData.FILL_HORIZONTAL);		
 		stepArea.setLayoutData(stepAreaGridData);
@@ -106,7 +106,7 @@ public class UseCaseStepsControl extends AbstractMEControl{
 	
 	private void rebuildStepList() {
 		stepArea.dispose();
-		stepArea = toolkit.createComposite(mainComposite);
+		stepArea = getToolkit().createComposite(mainComposite);
 		stepArea.setLayout( new GridLayout(2, true));
 		GridData stepAreaGridData = new GridData(GridData.FILL_HORIZONTAL);		
 		stepArea.setLayoutData(stepAreaGridData);
@@ -121,7 +121,7 @@ public class UseCaseStepsControl extends AbstractMEControl{
 			@SuppressWarnings("unchecked")
 			@Override
 			protected void doExecute() {
-				Object objectList = modelElement.eGet(eReference);
+				Object objectList = getModelElement().eGet(eReference);
 				if (objectList instanceof EList) {
 					EList<EObject> eList = (EList<EObject>) objectList;
 					int currentPosition = 0;
@@ -136,15 +136,15 @@ public class UseCaseStepsControl extends AbstractMEControl{
 							
 							GridData gdUserStep = new GridData(GridData.FILL_HORIZONTAL);
 							gdUserStep.verticalIndent = 0;							
-							SingleUseCaseStepControl stepControl = new SingleUseCaseStepControl(editingDomain, me, toolkit, modelElement, eReference);
+							SingleUseCaseStepControl stepControl = new SingleUseCaseStepControl(getEditingDomain(), me, getToolkit(), getModelElement(), eReference);
 							
 							if(me.isUserStep()){	
 								Control c = stepControl.createControl(stepArea, parentStyle);								
 								c.setLayoutData(gdUserStep);
-								Control empty2 = toolkit.createComposite(stepArea, parentStyle);						
+								Control empty2 = getToolkit().createComposite(stepArea, parentStyle);						
 								empty2.setLayoutData(gdEmtpy);								
 							} else {
-								Control empty2 = toolkit.createComposite(stepArea, parentStyle);						
+								Control empty2 = getToolkit().createComposite(stepArea, parentStyle);						
 								empty2.setLayoutData(gdEmtpy);
 								Control c = stepControl.createControl(stepArea, parentStyle);								
 								c.setLayoutData(gdUserStep);
@@ -172,11 +172,11 @@ public class UseCaseStepsControl extends AbstractMEControl{
 	 */
 	@Override
 	public void dispose(){
-		modelElement.eAdapters().remove(eAdapter);
+		getModelElement().eAdapters().remove(eAdapter);
 	}
 	
 	private Composite createAddStepButtons(final int position, Composite parent){
-		Composite buttonControl = toolkit.createComposite(parent);
+		Composite buttonControl = getToolkit().createComposite(parent);
 		buttonControl.setLayout(new GridLayout(2,false));
 		buttonControl.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		
@@ -185,12 +185,12 @@ public class UseCaseStepsControl extends AbstractMEControl{
 		gdActorLink.horizontalAlignment = GridData.HORIZONTAL_ALIGN_CENTER;
 		gdActorLink.horizontalSpan = 1;
 		
-		Hyperlink addActorStepLink = toolkit.createHyperlink(buttonControl, "Insert Actor Step", GridData.HORIZONTAL_ALIGN_BEGINNING);
+		Hyperlink addActorStepLink = getToolkit().createHyperlink(buttonControl, "Insert Actor Step", GridData.HORIZONTAL_ALIGN_BEGINNING);
 		addActorStepLink.addHyperlinkListener(new IHyperlinkListener() {
 
 			@Override
 			public void linkActivated(HyperlinkEvent e) {
-				TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
+				TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					@SuppressWarnings("unchecked")
 					@Override
@@ -199,7 +199,7 @@ public class UseCaseStepsControl extends AbstractMEControl{
 						Step p = rFactory.createStep();
 						p.setName("New Actor Step");
 						p.setUserStep(true);
-						UseCase uc = (UseCase) modelElement;
+						UseCase uc = (UseCase) getModelElement();
 						EList<Step> allSteps = uc.getUseCaseSteps();
 						
 						if(position == -1) {
@@ -235,13 +235,13 @@ public class UseCaseStepsControl extends AbstractMEControl{
 		gdSystemLink.horizontalAlignment = GridData.HORIZONTAL_ALIGN_CENTER;
 		gdSystemLink.horizontalSpan = 1;
 		
-		Hyperlink addSystemStepLink = toolkit.createHyperlink(buttonControl, "Insert System Step", GridData.HORIZONTAL_ALIGN_END);
+		Hyperlink addSystemStepLink = getToolkit().createHyperlink(buttonControl, "Insert System Step", GridData.HORIZONTAL_ALIGN_END);
 		addSystemStepLink.addHyperlinkListener(new IHyperlinkListener() {
 
 			@Override
 			public void linkActivated(HyperlinkEvent e) {
 
-				TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
+				TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					@SuppressWarnings("unchecked")
 					@Override
@@ -250,7 +250,7 @@ public class UseCaseStepsControl extends AbstractMEControl{
 						Step p = rFactory.createStep();
 						p.setName("New System Step");
 						p.setUserStep(false);
-						UseCase uc = (UseCase) modelElement;						
+						UseCase uc = (UseCase) getModelElement();						
 						EList<Step> allSteps = uc.getUseCaseSteps();
 						if(position == -1) {
 							allSteps.add(p);
