@@ -43,6 +43,7 @@ import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 import org.unicase.model.requirement.RequirementFactory;
+import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.Step;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.model.requirement.impl.RequirementFactoryImpl;
@@ -65,9 +66,9 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 	
 	private int parentStyle;
 	
+	private Composite parentComposite;
 	
 	private AdapterFactoryItemDelegator adapterFactoryItemDelegator;
-	
 	
 	private EObject contextModelElement;
 	
@@ -79,11 +80,14 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 	private Composite includeComposite;
 	private Composite textComposite;
 	
+	private MEControl textControlName;
+	private MEControl textControlDescription;
+	
 	private Hyperlink includeHyperLink;
 	private Label includeTextLabel;
 	private Button includeSelectButton;
 	
-	private MELinkControl meControl;
+	private MESingleLinkControl includeLinkControl;
 	
 	public SingleUseCaseStepControl(EditingDomain editingDomain, EObject modelElement, FormToolkit toolkit, EObject contextModelElement, final EReference reference) {
 		super(editingDomain, modelElement, toolkit);
@@ -93,8 +97,10 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 		eAdapter = new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
-				if (msg.getFeature() != null && msg.getFeature().equals(reference)) {
-					buildStep();
+				if (msg.getFeature() != null 
+						&& (msg.getFeatureID(Step.class) == RequirementPackage.STEP__INCLUDED_USE_CASE 
+						|| msg.getFeatureID(Step.class) == RequirementPackage.STEP__INCLUDED_SYSTEM_FUNCTION)) {
+					buildIncludeSection();
 				}
 				super.notifyChanged(msg);
 			}
@@ -110,6 +116,7 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 
 	public Control createControl(Composite parent, int style) {
 		parentStyle = style;
+		parentComposite = parent;
 		
 		if(currentStep.isUserStep()){
 			backGroundColor = parent.getDisplay().getSystemColor(SWT.COLOR_INFO_BACKGROUND);
@@ -127,16 +134,19 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 		buttonComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		buttonComposite.setBackground(backGroundColor);
 		
+		buildButtons();
+		
 		textComposite = getToolkit().createComposite(mainComposite);
 		textComposite.setLayout(new GridLayout(1,true));	
 		textComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		textComposite.setBackground(backGroundColor);
 		
 		includeComposite = getToolkit().createComposite(mainComposite);
-		includeComposite.setLayout(new GridLayout(3,false));
+		includeComposite.setLayout(new GridLayout(2,false));
 		includeComposite.setBackground(backGroundColor);		
 
 		buildStep();	
+		parentComposite.layout();
 		
 		return mainComposite;
 	}
@@ -146,11 +156,11 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 			c.dispose();
 		}
 		allDisplayElements.clear();
-		
-		buildButtons();
 		buildTextFields();		
-		
 		buildIncludeSection();
+		if(parentComposite != null) {
+			parentComposite.layout();
+		}
 	}
 	
 	/**
@@ -218,19 +228,28 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 	}
 	
 	private void buildTextFields(){
+		if(textControlName != null) {
+			textControlName.dispose();
+		}
+		
+		if(textControlDescription != null) {
+			textControlDescription.dispose();
+		}
 		
 		ControlFactory cFactory = new ControlFactory(getEditingDomain(), currentStep, getToolkit());
 		IItemPropertyDescriptor pDescriptorName = adapterFactoryItemDelegator.getPropertyDescriptor(currentStep, "name");
-		MEControl textControlName = cFactory.createControl(pDescriptorName);
+		textControlName = cFactory.createControl(pDescriptorName);
 		Control c = textControlName.createControl(textComposite, parentStyle);
 		c.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		allDisplayElements.add(c);
 		
 		IItemPropertyDescriptor pDescriptorDescription = adapterFactoryItemDelegator.getPropertyDescriptor(currentStep, "description");				
-		MEControl textControlDescription = cFactory.createControl(pDescriptorDescription);				
+		textControlDescription = cFactory.createControl(pDescriptorDescription);				
 		c = textControlDescription.createControl(textComposite, parentStyle);
 		c.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		allDisplayElements.add(c);
+		
+		textComposite.layout();
 		
 		
 	}
@@ -241,6 +260,13 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 	 * @return
 	 */
 	private void buildIncludeSection() {
+		if(includeTextLabel != null) {
+			includeTextLabel.dispose();
+		}
+		
+		if(includeLinkControl != null) {
+			includeLinkControl.dispose();
+		}
 		
 		
 		if(includeHyperLink != null) {
@@ -251,9 +277,9 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 			includeSelectButton.dispose();
 		}
 		
-		if(includeTextLabel != null) {
-			includeTextLabel.dispose();
-		}
+		
+		
+		
 		
 		final IItemPropertyDescriptor pDescriptorIncluded;
 		final EReference ref;
@@ -262,15 +288,19 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 			pDescriptorIncluded = adapterFactoryItemDelegator.getPropertyDescriptor(currentStep, "includedUseCase");
 			includeTextLabel = getToolkit().createLabel(includeComposite, "Include Use Case: ");
 			includeTextLabel.setBackground(backGroundColor);
-			
+						
 		} else {
 			//TODO getting the right descriptor is currently hard coded. Maybe should be changed.
 			pDescriptorIncluded = adapterFactoryItemDelegator.getPropertyDescriptor(currentStep, "includedSystemFunction");
 			includeTextLabel = getToolkit().createLabel(includeComposite, "Include System Function: ");
 			includeTextLabel.setBackground(backGroundColor);
 		}
-		ref = (EReference) pDescriptorIncluded.getFeature(currentStep);
 		
+		ref = (EReference) pDescriptorIncluded.getFeature(currentStep);
+		MESingleLinkControl includeUCLinkControl = new MESingleLinkControl(getEditingDomain(), currentStep, getToolkit(), ref);
+		includeUCLinkControl.createControl(includeComposite, parentStyle);
+		
+		/*
 		includeSelectButton = getToolkit().createButton(includeComposite, "Select", SWT.PUSH);
 		includeSelectButton.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -312,11 +342,10 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 			includeHyperLink.addHyperlinkListener(listener);			
 			includeHyperLink.setBackground(backGroundColor);
 		} 			
+		*/
 		
+		includeComposite.layout();
 		
-		includeComposite.setVisible(false);
-		includeComposite.setVisible(true);
-		includeComposite.pack();
 	}
 	
 	private void createNewStep(final int position, final boolean isActorStep){
@@ -327,11 +356,12 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 				RequirementFactory rFactory = RequirementFactoryImpl.init();
 				
 				Step p = rFactory.createStep();
+				UseCase uc = (UseCase) contextModelElement;
+				Project project = uc.getProject();
+				project.addModelElement(p);
 				p.setName("New Actor Step");
 				p.setUserStep(isActorStep);
-				UseCase uc = (UseCase) contextModelElement;
 				EList<Step> allSteps = uc.getUseCaseSteps();
-				
 				if(position == -1) {
 					//Add step at the end of the line
 					allSteps.add(p);
@@ -339,8 +369,6 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 					//Add step the selected position
 					allSteps.add(position, p);
 				}				
-				Project project = uc.getProject();
-				project.addModelElement(p);
 			}
 			
 		});
