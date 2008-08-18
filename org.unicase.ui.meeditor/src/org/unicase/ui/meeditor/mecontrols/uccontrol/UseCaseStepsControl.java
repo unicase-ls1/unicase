@@ -105,6 +105,11 @@ public class UseCaseStepsControl extends AbstractMEControl{
 	
 	private void rebuildStepList() {
 		stepArea.dispose();
+		for(SingleUseCaseStepControl step : stepControls){
+			step.dispose();
+		}
+		
+		
 		stepArea = getToolkit().createComposite(mainComposite);
 		stepArea.setLayout( new GridLayout(2, true));
 		GridData stepAreaGridData = new GridData(GridData.FILL_HORIZONTAL);		
@@ -115,11 +120,11 @@ public class UseCaseStepsControl extends AbstractMEControl{
 		}
 		stepControls.clear();
 		
-		TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain();
+		/*TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@SuppressWarnings("unchecked")
 			@Override
-			protected void doExecute() {
+			protected void doExecute() {*/
 				Object objectList = getModelElement().eGet(eReference);
 				if (objectList instanceof EList) {
 					EList<EObject> eList = (EList<EObject>) objectList;
@@ -153,8 +158,8 @@ public class UseCaseStepsControl extends AbstractMEControl{
 						currentPosition++;
 					}
 				}
-			}
-		});
+	/*		}
+		});*/
 		
 		GridData gdButtonPanel = new GridData(GridData.FILL_HORIZONTAL);
 		gdButtonPanel.verticalIndent = 0;
@@ -171,6 +176,10 @@ public class UseCaseStepsControl extends AbstractMEControl{
 	 */
 	@Override
 	public void dispose(){
+		for(SingleUseCaseStepControl step : stepControls){
+			step.dispose();
+		}
+		stepControls.clear();
 		getModelElement().eAdapters().remove(eAdapter);
 	}
 	
