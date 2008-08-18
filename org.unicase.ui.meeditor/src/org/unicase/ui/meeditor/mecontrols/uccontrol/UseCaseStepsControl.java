@@ -82,7 +82,6 @@ public class UseCaseStepsControl extends AbstractMEControl{
 		modelElement.eAdapters().add(eAdapter);
 	}
 
-	@Override
 	public Control createControl(final Composite parent, final int style) {
 		this.parentComposite = parent;
 		this.parentStyle = style;
@@ -188,7 +187,6 @@ public class UseCaseStepsControl extends AbstractMEControl{
 		Hyperlink addActorStepLink = getToolkit().createHyperlink(buttonControl, "Insert Actor Step", GridData.HORIZONTAL_ALIGN_BEGINNING);
 		addActorStepLink.addHyperlinkListener(new IHyperlinkListener() {
 
-			@Override
 			public void linkActivated(HyperlinkEvent e) {
 				TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
@@ -215,13 +213,11 @@ public class UseCaseStepsControl extends AbstractMEControl{
 				
 			}
 
-			@Override
 			public void linkEntered(HyperlinkEvent e) {
 				// TODO Auto-generated method stub
 				
 			}
 
-			@Override
 			public void linkExited(HyperlinkEvent e) {
 				// TODO Auto-generated method stub
 				
@@ -238,7 +234,6 @@ public class UseCaseStepsControl extends AbstractMEControl{
 		Hyperlink addSystemStepLink = getToolkit().createHyperlink(buttonControl, "Insert System Step", GridData.HORIZONTAL_ALIGN_END);
 		addSystemStepLink.addHyperlinkListener(new IHyperlinkListener() {
 
-			@Override
 			public void linkActivated(HyperlinkEvent e) {
 
 				TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
@@ -262,13 +257,11 @@ public class UseCaseStepsControl extends AbstractMEControl{
 				});
 			}
 				
-			@Override
 			public void linkEntered(HyperlinkEvent e) {
 				// TODO Auto-generated method stub
 				
 			}
 
-			@Override
 			public void linkExited(HyperlinkEvent e) {
 				// TODO Auto-generated method stub
 				

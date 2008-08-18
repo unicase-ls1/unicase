@@ -108,7 +108,6 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 		
 	}
 
-	@Override
 	public Control createControl(Composite parent, int style) {
 		parentStyle = style;
 		
@@ -173,15 +172,12 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 		Hyperlink addActorStepLink = getToolkit().createHyperlink(buttonComposite, "Insert Actor Step", parentStyle);
 		addActorStepLink.setBackground(backGroundColor);
 		addActorStepLink.addHyperlinkListener(new IHyperlinkListener() {
-			@Override
 			public void linkActivated(HyperlinkEvent e) {
 				createNewStep(position, true);
 			}
 
-			@Override
 			public void linkEntered(HyperlinkEvent e) {}
 
-			@Override
 			public void linkExited(HyperlinkEvent e) {}
 			
 		});
@@ -197,15 +193,12 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 		addSystemStepLink.setBackground(backGroundColor);		
 		addSystemStepLink.addHyperlinkListener(new IHyperlinkListener() {
 
-			@Override
 			public void linkActivated(HyperlinkEvent e) {
 				createNewStep(position, false);
 			}
 				
-			@Override
 			public void linkEntered(HyperlinkEvent e) {}
 
-			@Override
 			public void linkExited(HyperlinkEvent e) {}
 		
 		
