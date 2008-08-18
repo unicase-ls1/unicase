@@ -118,22 +118,22 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 			backGroundColor = parent.getDisplay().getSystemColor(SWT.COLOR_GRAY);
 		}
 		
-		mainComposite = toolkit.createComposite(parent);
+		mainComposite = getToolkit().createComposite(parent);
 		mainComposite.setLayout(new GridLayout(1,true));
 		mainComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		mainComposite.setBackground(backGroundColor);	
 		
-		buttonComposite = toolkit.createComposite(mainComposite);
+		buttonComposite = getToolkit().createComposite(mainComposite);
 		buttonComposite.setLayout(new GridLayout(3,true));	
 		buttonComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		buttonComposite.setBackground(backGroundColor);
 		
-		textComposite = toolkit.createComposite(mainComposite);
+		textComposite = getToolkit().createComposite(mainComposite);
 		textComposite.setLayout(new GridLayout(1,true));	
 		textComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		textComposite.setBackground(backGroundColor);
 		
-		includeComposite = toolkit.createComposite(mainComposite);
+		includeComposite = getToolkit().createComposite(mainComposite);
 		includeComposite.setLayout(new GridLayout(3,false));
 		includeComposite.setBackground(backGroundColor);		
 
@@ -170,7 +170,7 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 		gdActorLink.horizontalAlignment = GridData.HORIZONTAL_ALIGN_BEGINNING;
 		gdActorLink.horizontalSpan = 1;
 		
-		Hyperlink addActorStepLink = toolkit.createHyperlink(buttonComposite, "Insert Actor Step", parentStyle);
+		Hyperlink addActorStepLink = getToolkit().createHyperlink(buttonComposite, "Insert Actor Step", parentStyle);
 		addActorStepLink.setBackground(backGroundColor);
 		addActorStepLink.addHyperlinkListener(new IHyperlinkListener() {
 			@Override
@@ -193,7 +193,7 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 		gdSystemLink.grabExcessHorizontalSpace = true;
 		gdSystemLink.horizontalSpan = 1;
 		
-		Hyperlink addSystemStepLink = toolkit.createHyperlink(buttonComposite, "Insert System Step", parentStyle);
+		Hyperlink addSystemStepLink = getToolkit().createHyperlink(buttonComposite, "Insert System Step", parentStyle);
 		addSystemStepLink.setBackground(backGroundColor);		
 		addSystemStepLink.addHyperlinkListener(new IHyperlinkListener() {
 
@@ -217,7 +217,7 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 		gdDeleteLink.grabExcessHorizontalSpace = true;
 		gdDeleteLink.horizontalSpan = 1;
 		
-		ImageHyperlink deleteLink = toolkit.createImageHyperlink(buttonComposite, parentStyle);
+		ImageHyperlink deleteLink = getToolkit().createImageHyperlink(buttonComposite, parentStyle);
 		deleteLink.setBackground(backGroundColor);
 		deleteLink.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_DELETE));
 		deleteLink.addHyperlinkListener(new MEHyperLinkDeleteAdapter(contextModelElement, reference, currentStep));
@@ -226,7 +226,7 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 	
 	private void buildTextFields(){
 		
-		ControlFactory cFactory = new ControlFactory(editingDomain, currentStep, toolkit);
+		ControlFactory cFactory = new ControlFactory(getEditingDomain(), currentStep, getToolkit());
 		IItemPropertyDescriptor pDescriptorName = adapterFactoryItemDelegator.getPropertyDescriptor(currentStep, "name");
 		MEControl textControlName = cFactory.createControl(pDescriptorName);
 		Control c = textControlName.createControl(textComposite, parentStyle);
@@ -267,18 +267,18 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 		if( currentStep.isUserStep()) {
 			//TODO getting the right descriptor is currently hard coded. Maybe should be changed.
 			pDescriptorIncluded = adapterFactoryItemDelegator.getPropertyDescriptor(currentStep, "includedUseCase");
-			includeTextLabel = toolkit.createLabel(includeComposite, "Include Use Case: ");
+			includeTextLabel = getToolkit().createLabel(includeComposite, "Include Use Case: ");
 			includeTextLabel.setBackground(backGroundColor);
 			
 		} else {
 			//TODO getting the right descriptor is currently hard coded. Maybe should be changed.
 			pDescriptorIncluded = adapterFactoryItemDelegator.getPropertyDescriptor(currentStep, "includedSystemFunction");
-			includeTextLabel = toolkit.createLabel(includeComposite, "Include System Function: ");
+			includeTextLabel = getToolkit().createLabel(includeComposite, "Include System Function: ");
 			includeTextLabel.setBackground(backGroundColor);
 		}
 		ref = (EReference) pDescriptorIncluded.getFeature(currentStep);
 		
-		includeSelectButton = toolkit.createButton(includeComposite, "Select", SWT.PUSH);
+		includeSelectButton = getToolkit().createButton(includeComposite, "Select", SWT.PUSH);
 		includeSelectButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -310,11 +310,11 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 			}
 		});
 		
-		EObject opposite = (EObject) modelElement.eGet(ref);
+		EObject opposite = (EObject) getModelElement().eGet(ref);
 		if(opposite != null){
 			ILabelProvider labelProvider = new AdapterFactoryLabelProvider(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-			includeHyperLink = toolkit.createHyperlink(includeComposite, labelProvider.getText(opposite), parentStyle);
+			includeHyperLink = getToolkit().createHyperlink(includeComposite, labelProvider.getText(opposite), parentStyle);
 			IHyperlinkListener listener = new MEHyperLinkAdapter((ModelElement) opposite);
 			includeHyperLink.addHyperlinkListener(listener);			
 			includeHyperLink.setBackground(backGroundColor);
@@ -359,7 +359,7 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 			c.dispose();
 		}
 		allDisplayElements.clear();
-		modelElement.eAdapters().remove(eAdapter);
+		getModelElement().eAdapters().remove(eAdapter);
 		super.dispose();
 	}
 	
