@@ -123,10 +123,15 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<AbstractOperation> getOperations() {
 		// TODO: implement this method
+		// it is perhaps a helper method to directly get all operations contained 
+		// in a change package. 
+		// without this method, one should go through all ChangeConatainers of a
+		// ChangePackage and gather all operations contained in each of them. 
+		
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
