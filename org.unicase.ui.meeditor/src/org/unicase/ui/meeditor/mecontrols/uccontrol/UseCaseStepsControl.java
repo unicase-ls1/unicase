@@ -199,6 +199,7 @@ public class UseCaseStepsControl extends AbstractMEControl{
 						p.setUserStep(true);
 						UseCase uc = (UseCase) getModelElement();
 						EList<Step> allSteps = uc.getUseCaseSteps();
+						uc.getProject().addModelElement(p);
 						
 						if(position == -1) {
 							//Add step at the end of the line
@@ -207,7 +208,7 @@ public class UseCaseStepsControl extends AbstractMEControl{
 							//Add step the selected position
 							allSteps.add(position, p);
 						}
-						uc.getProject().addModelElement(p);
+						
 					}
 				});
 				
@@ -243,16 +244,18 @@ public class UseCaseStepsControl extends AbstractMEControl{
 					protected void doExecute() {
 						RequirementFactory rFactory = RequirementFactoryImpl.init();
 						Step p = rFactory.createStep();
+						UseCase uc = (UseCase) getModelElement();			
+						uc.getProject().addModelElement(p);
 						p.setName("New System Step");
 						p.setUserStep(false);
-						UseCase uc = (UseCase) getModelElement();						
+									
 						EList<Step> allSteps = uc.getUseCaseSteps();
 						if(position == -1) {
 							allSteps.add(p);
 						} else {
 							allSteps.add(position, p);
 						}
-						uc.getProject().addModelElement(p);
+						
 					}
 				});
 			}
