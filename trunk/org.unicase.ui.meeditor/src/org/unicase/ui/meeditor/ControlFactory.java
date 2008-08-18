@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.unicase.model.requirement.Step;
 import org.unicase.ui.meeditor.mecontrols.MEBoolControl;
 import org.unicase.ui.meeditor.mecontrols.MEControl;
 import org.unicase.ui.meeditor.mecontrols.MEDateControl;
@@ -25,6 +26,7 @@ import org.unicase.ui.meeditor.mecontrols.METextAreaControl;
 import org.unicase.ui.meeditor.mecontrols.METextControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEMultiLinkControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MESingleLinkControl;
+import org.unicase.ui.meeditor.mecontrols.uccontrol.UseCaseStepsControl;
 
 /**
  * Factory for generating {@link MEControl}'s according to a
@@ -84,21 +86,35 @@ public class ControlFactory {
 			}
 			return createMETextControl((EAttribute) feature);
 		}
-		if (feature instanceof EReference && feature.getUpperBound() != 1) {
+		
+		//Changed by Lars Borner
+		if(feature instanceof EReference){
 			EReference reference = (EReference) feature;
-			if (reference.isMany()) {
-				return createMELinkControl((EReference) feature, itemPropertyDescriptor);
+			//Create Widgets for Use Case Steps			
+			if (feature.getEType().getInstanceClass().equals(Step.class) ) {				
+				return createMEUseCaseStepsControl(reference, itemPropertyDescriptor);	
 			}
-		}
-
-		if (feature instanceof EReference && feature.getUpperBound() == 1) {
-			EReference reference = (EReference) feature;
-			return createMESingleLinkControl(reference);
-
+			
+			if (feature.getUpperBound() != 1) {
+				if (reference.isMany()) {
+					return createMELinkControl((EReference) feature, itemPropertyDescriptor);
+				}
+			}
+	
+			if (feature.getUpperBound() == 1) {
+				return createMESingleLinkControl(reference);
+	
+			}
+			
 		}
 
 		return null;
 		// TODO: Add other types
+	}
+
+	//Create Control for Use Case Steps
+	private MEControl createMEUseCaseStepsControl(EReference reference, IItemPropertyDescriptor itemPropertyDescriptor) {
+		return new UseCaseStepsControl(modelElement, reference, toolkit, editingDomain, itemPropertyDescriptor);
 	}
 
 	private MEControl createMESingleLinkControl(EReference reference) {
