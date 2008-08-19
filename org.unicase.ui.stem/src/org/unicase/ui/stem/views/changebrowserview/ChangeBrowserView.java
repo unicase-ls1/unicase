@@ -3,7 +3,6 @@ package org.unicase.ui.stem.views.changebrowserview;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.ui.part.ViewPart;
 import org.unicase.ui.stem.views.SCMView;
 
 public class ChangeBrowserView extends SCMView {
@@ -27,7 +26,7 @@ public class ChangeBrowserView extends SCMView {
 
 	@Override
 	protected void refreshClicked() {
-		
+		lblCriteria.setText(queryComposite.getQuery().getDescription());
 		
 	}
 
