@@ -167,8 +167,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 */
 	public OrgUnit getAssignee() {
 		OrgUnit assignee = basicGetAssignee();
-		return assignee != null && assignee.eIsProxy()
-				? (OrgUnit) eResolveProxy((InternalEObject) assignee)
+		return assignee != null && assignee.eIsProxy() ? (OrgUnit) eResolveProxy((InternalEObject) assignee)
 				: assignee;
 	}
 
@@ -395,23 +394,22 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RationalePackage.ISSUE__PROPOSALS :
-				return ((InternalEList<InternalEObject>) (InternalEList<?>) getProposals())
-						.basicAdd(otherEnd, msgs);
-			case RationalePackage.ISSUE__SOLUTION :
-				if (solution != null)
-					msgs = ((InternalEObject) solution).eInverseRemove(this,
-							EOPPOSITE_FEATURE_BASE
-									- RationalePackage.ISSUE__SOLUTION, null,
-							msgs);
-				return basicSetSolution((Solution) otherEnd, msgs);
-			case RationalePackage.ISSUE__REFINING_ISSUES :
-				return ((InternalEList<InternalEObject>) (InternalEList<?>) getRefiningIssues())
-						.basicAdd(otherEnd, msgs);
-			case RationalePackage.ISSUE__REFINED_ISSUE :
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetRefinedIssue((Issue) otherEnd, msgs);
+		case RationalePackage.ISSUE__PROPOSALS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getProposals())
+					.basicAdd(otherEnd, msgs);
+		case RationalePackage.ISSUE__SOLUTION:
+			if (solution != null)
+				msgs = ((InternalEObject) solution).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+								- RationalePackage.ISSUE__SOLUTION, null, msgs);
+			return basicSetSolution((Solution) otherEnd, msgs);
+		case RationalePackage.ISSUE__REFINING_ISSUES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getRefiningIssues())
+					.basicAdd(otherEnd, msgs);
+		case RationalePackage.ISSUE__REFINED_ISSUE:
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetRefinedIssue((Issue) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -424,16 +422,16 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RationalePackage.ISSUE__PROPOSALS :
-				return ((InternalEList<?>) getProposals()).basicRemove(
-						otherEnd, msgs);
-			case RationalePackage.ISSUE__SOLUTION :
-				return basicSetSolution(null, msgs);
-			case RationalePackage.ISSUE__REFINING_ISSUES :
-				return ((InternalEList<?>) getRefiningIssues()).basicRemove(
-						otherEnd, msgs);
-			case RationalePackage.ISSUE__REFINED_ISSUE :
-				return basicSetRefinedIssue(null, msgs);
+		case RationalePackage.ISSUE__PROPOSALS:
+			return ((InternalEList<?>) getProposals()).basicRemove(otherEnd,
+					msgs);
+		case RationalePackage.ISSUE__SOLUTION:
+			return basicSetSolution(null, msgs);
+		case RationalePackage.ISSUE__REFINING_ISSUES:
+			return ((InternalEList<?>) getRefiningIssues()).basicRemove(
+					otherEnd, msgs);
+		case RationalePackage.ISSUE__REFINED_ISSUE:
+			return basicSetRefinedIssue(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -446,10 +444,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	public NotificationChain eBasicRemoveFromContainerFeature(
 			NotificationChain msgs) {
 		switch (eContainerFeatureID) {
-			case RationalePackage.ISSUE__REFINED_ISSUE :
-				return eInternalContainer().eInverseRemove(this,
-						RationalePackage.ISSUE__REFINING_ISSUES, Issue.class,
-						msgs);
+		case RationalePackage.ISSUE__REFINED_ISSUE:
+			return eInternalContainer().eInverseRemove(this,
+					RationalePackage.ISSUE__REFINING_ISSUES, Issue.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -461,28 +458,28 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RationalePackage.ISSUE__CHECKED :
-				return isChecked() ? Boolean.TRUE : Boolean.FALSE;
-			case RationalePackage.ISSUE__ASSIGNEE :
-				if (resolve)
-					return getAssignee();
-				return basicGetAssignee();
-			case RationalePackage.ISSUE__PROPOSALS :
-				return getProposals();
-			case RationalePackage.ISSUE__SOLUTION :
-				return getSolution();
-			case RationalePackage.ISSUE__CRITERIA :
-				return getCriteria();
-			case RationalePackage.ISSUE__REFINING_ISSUES :
-				return getRefiningIssues();
-			case RationalePackage.ISSUE__REFINED_ISSUE :
-				return getRefinedIssue();
-			case RationalePackage.ISSUE__FACILITATOR :
-				if (resolve)
-					return getFacilitator();
-				return basicGetFacilitator();
-			case RationalePackage.ISSUE__PARTICIPANTS :
-				return getParticipants();
+		case RationalePackage.ISSUE__CHECKED:
+			return isChecked() ? Boolean.TRUE : Boolean.FALSE;
+		case RationalePackage.ISSUE__ASSIGNEE:
+			if (resolve)
+				return getAssignee();
+			return basicGetAssignee();
+		case RationalePackage.ISSUE__PROPOSALS:
+			return getProposals();
+		case RationalePackage.ISSUE__SOLUTION:
+			return getSolution();
+		case RationalePackage.ISSUE__CRITERIA:
+			return getCriteria();
+		case RationalePackage.ISSUE__REFINING_ISSUES:
+			return getRefiningIssues();
+		case RationalePackage.ISSUE__REFINED_ISSUE:
+			return getRefinedIssue();
+		case RationalePackage.ISSUE__FACILITATOR:
+			if (resolve)
+				return getFacilitator();
+			return basicGetFacilitator();
+		case RationalePackage.ISSUE__PARTICIPANTS:
+			return getParticipants();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -495,41 +492,37 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RationalePackage.ISSUE__CHECKED :
-				setChecked(((Boolean) newValue).booleanValue());
-				return;
-			case RationalePackage.ISSUE__ASSIGNEE :
-				setAssignee((OrgUnit) newValue);
-				return;
-			case RationalePackage.ISSUE__PROPOSALS :
-				getProposals().clear();
-				getProposals()
-						.addAll((Collection<? extends Proposal>) newValue);
-				return;
-			case RationalePackage.ISSUE__SOLUTION :
-				setSolution((Solution) newValue);
-				return;
-			case RationalePackage.ISSUE__CRITERIA :
-				getCriteria().clear();
-				getCriteria()
-						.addAll((Collection<? extends Criterion>) newValue);
-				return;
-			case RationalePackage.ISSUE__REFINING_ISSUES :
-				getRefiningIssues().clear();
-				getRefiningIssues().addAll(
-						(Collection<? extends Issue>) newValue);
-				return;
-			case RationalePackage.ISSUE__REFINED_ISSUE :
-				setRefinedIssue((Issue) newValue);
-				return;
-			case RationalePackage.ISSUE__FACILITATOR :
-				setFacilitator((User) newValue);
-				return;
-			case RationalePackage.ISSUE__PARTICIPANTS :
-				getParticipants().clear();
-				getParticipants().addAll(
-						(Collection<? extends OrgUnit>) newValue);
-				return;
+		case RationalePackage.ISSUE__CHECKED:
+			setChecked(((Boolean) newValue).booleanValue());
+			return;
+		case RationalePackage.ISSUE__ASSIGNEE:
+			setAssignee((OrgUnit) newValue);
+			return;
+		case RationalePackage.ISSUE__PROPOSALS:
+			getProposals().clear();
+			getProposals().addAll((Collection<? extends Proposal>) newValue);
+			return;
+		case RationalePackage.ISSUE__SOLUTION:
+			setSolution((Solution) newValue);
+			return;
+		case RationalePackage.ISSUE__CRITERIA:
+			getCriteria().clear();
+			getCriteria().addAll((Collection<? extends Criterion>) newValue);
+			return;
+		case RationalePackage.ISSUE__REFINING_ISSUES:
+			getRefiningIssues().clear();
+			getRefiningIssues().addAll((Collection<? extends Issue>) newValue);
+			return;
+		case RationalePackage.ISSUE__REFINED_ISSUE:
+			setRefinedIssue((Issue) newValue);
+			return;
+		case RationalePackage.ISSUE__FACILITATOR:
+			setFacilitator((User) newValue);
+			return;
+		case RationalePackage.ISSUE__PARTICIPANTS:
+			getParticipants().clear();
+			getParticipants().addAll((Collection<? extends OrgUnit>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -541,33 +534,33 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RationalePackage.ISSUE__CHECKED :
-				setChecked(CHECKED_EDEFAULT);
-				return;
-			case RationalePackage.ISSUE__ASSIGNEE :
-				setAssignee((OrgUnit) null);
-				return;
-			case RationalePackage.ISSUE__PROPOSALS :
-				getProposals().clear();
-				return;
-			case RationalePackage.ISSUE__SOLUTION :
-				setSolution((Solution) null);
-				return;
-			case RationalePackage.ISSUE__CRITERIA :
-				getCriteria().clear();
-				return;
-			case RationalePackage.ISSUE__REFINING_ISSUES :
-				getRefiningIssues().clear();
-				return;
-			case RationalePackage.ISSUE__REFINED_ISSUE :
-				setRefinedIssue((Issue) null);
-				return;
-			case RationalePackage.ISSUE__FACILITATOR :
-				setFacilitator((User) null);
-				return;
-			case RationalePackage.ISSUE__PARTICIPANTS :
-				getParticipants().clear();
-				return;
+		case RationalePackage.ISSUE__CHECKED:
+			setChecked(CHECKED_EDEFAULT);
+			return;
+		case RationalePackage.ISSUE__ASSIGNEE:
+			setAssignee((OrgUnit) null);
+			return;
+		case RationalePackage.ISSUE__PROPOSALS:
+			getProposals().clear();
+			return;
+		case RationalePackage.ISSUE__SOLUTION:
+			setSolution((Solution) null);
+			return;
+		case RationalePackage.ISSUE__CRITERIA:
+			getCriteria().clear();
+			return;
+		case RationalePackage.ISSUE__REFINING_ISSUES:
+			getRefiningIssues().clear();
+			return;
+		case RationalePackage.ISSUE__REFINED_ISSUE:
+			setRefinedIssue((Issue) null);
+			return;
+		case RationalePackage.ISSUE__FACILITATOR:
+			setFacilitator((User) null);
+			return;
+		case RationalePackage.ISSUE__PARTICIPANTS:
+			getParticipants().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -579,24 +572,24 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RationalePackage.ISSUE__CHECKED :
-				return isChecked() != CHECKED_EDEFAULT;
-			case RationalePackage.ISSUE__ASSIGNEE :
-				return basicGetAssignee() != null;
-			case RationalePackage.ISSUE__PROPOSALS :
-				return proposals != null && !proposals.isEmpty();
-			case RationalePackage.ISSUE__SOLUTION :
-				return solution != null;
-			case RationalePackage.ISSUE__CRITERIA :
-				return criteria != null && !criteria.isEmpty();
-			case RationalePackage.ISSUE__REFINING_ISSUES :
-				return refiningIssues != null && !refiningIssues.isEmpty();
-			case RationalePackage.ISSUE__REFINED_ISSUE :
-				return getRefinedIssue() != null;
-			case RationalePackage.ISSUE__FACILITATOR :
-				return facilitator != null;
-			case RationalePackage.ISSUE__PARTICIPANTS :
-				return participants != null && !participants.isEmpty();
+		case RationalePackage.ISSUE__CHECKED:
+			return isChecked() != CHECKED_EDEFAULT;
+		case RationalePackage.ISSUE__ASSIGNEE:
+			return basicGetAssignee() != null;
+		case RationalePackage.ISSUE__PROPOSALS:
+			return proposals != null && !proposals.isEmpty();
+		case RationalePackage.ISSUE__SOLUTION:
+			return solution != null;
+		case RationalePackage.ISSUE__CRITERIA:
+			return criteria != null && !criteria.isEmpty();
+		case RationalePackage.ISSUE__REFINING_ISSUES:
+			return refiningIssues != null && !refiningIssues.isEmpty();
+		case RationalePackage.ISSUE__REFINED_ISSUE:
+			return getRefinedIssue() != null;
+		case RationalePackage.ISSUE__FACILITATOR:
+			return facilitator != null;
+		case RationalePackage.ISSUE__PARTICIPANTS:
+			return participants != null && !participants.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -609,18 +602,18 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == Checkable.class) {
 			switch (derivedFeatureID) {
-				case RationalePackage.ISSUE__CHECKED :
-					return TaskPackage.CHECKABLE__CHECKED;
-				default :
-					return -1;
+			case RationalePackage.ISSUE__CHECKED:
+				return TaskPackage.CHECKABLE__CHECKED;
+			default:
+				return -1;
 			}
 		}
 		if (baseClass == Assignable.class) {
 			switch (derivedFeatureID) {
-				case RationalePackage.ISSUE__ASSIGNEE :
-					return TaskPackage.ASSIGNABLE__ASSIGNEE;
-				default :
-					return -1;
+			case RationalePackage.ISSUE__ASSIGNEE:
+				return TaskPackage.ASSIGNABLE__ASSIGNEE;
+			default:
+				return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -634,18 +627,18 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == Checkable.class) {
 			switch (baseFeatureID) {
-				case TaskPackage.CHECKABLE__CHECKED :
-					return RationalePackage.ISSUE__CHECKED;
-				default :
-					return -1;
+			case TaskPackage.CHECKABLE__CHECKED:
+				return RationalePackage.ISSUE__CHECKED;
+			default:
+				return -1;
 			}
 		}
 		if (baseClass == Assignable.class) {
 			switch (baseFeatureID) {
-				case TaskPackage.ASSIGNABLE__ASSIGNEE :
-					return RationalePackage.ISSUE__ASSIGNEE;
-				default :
-					return -1;
+			case TaskPackage.ASSIGNABLE__ASSIGNEE:
+				return RationalePackage.ISSUE__ASSIGNEE;
+			default:
+				return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);

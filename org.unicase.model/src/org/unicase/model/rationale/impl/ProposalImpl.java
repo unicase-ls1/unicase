@@ -131,13 +131,13 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RationalePackage.PROPOSAL__ASSESSMENTS :
-				return ((InternalEList<InternalEObject>) (InternalEList<?>) getAssessments())
-						.basicAdd(otherEnd, msgs);
-			case RationalePackage.PROPOSAL__ISSUE :
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetIssue((Issue) otherEnd, msgs);
+		case RationalePackage.PROPOSAL__ASSESSMENTS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAssessments())
+					.basicAdd(otherEnd, msgs);
+		case RationalePackage.PROPOSAL__ISSUE:
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetIssue((Issue) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -150,11 +150,11 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RationalePackage.PROPOSAL__ASSESSMENTS :
-				return ((InternalEList<?>) getAssessments()).basicRemove(
-						otherEnd, msgs);
-			case RationalePackage.PROPOSAL__ISSUE :
-				return basicSetIssue(null, msgs);
+		case RationalePackage.PROPOSAL__ASSESSMENTS:
+			return ((InternalEList<?>) getAssessments()).basicRemove(otherEnd,
+					msgs);
+		case RationalePackage.PROPOSAL__ISSUE:
+			return basicSetIssue(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -167,9 +167,9 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 	public NotificationChain eBasicRemoveFromContainerFeature(
 			NotificationChain msgs) {
 		switch (eContainerFeatureID) {
-			case RationalePackage.PROPOSAL__ISSUE :
-				return eInternalContainer().eInverseRemove(this,
-						RationalePackage.ISSUE__PROPOSALS, Issue.class, msgs);
+		case RationalePackage.PROPOSAL__ISSUE:
+			return eInternalContainer().eInverseRemove(this,
+					RationalePackage.ISSUE__PROPOSALS, Issue.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -181,10 +181,10 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RationalePackage.PROPOSAL__ASSESSMENTS :
-				return getAssessments();
-			case RationalePackage.PROPOSAL__ISSUE :
-				return getIssue();
+		case RationalePackage.PROPOSAL__ASSESSMENTS:
+			return getAssessments();
+		case RationalePackage.PROPOSAL__ISSUE:
+			return getIssue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -197,14 +197,14 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RationalePackage.PROPOSAL__ASSESSMENTS :
-				getAssessments().clear();
-				getAssessments().addAll(
-						(Collection<? extends Assessment>) newValue);
-				return;
-			case RationalePackage.PROPOSAL__ISSUE :
-				setIssue((Issue) newValue);
-				return;
+		case RationalePackage.PROPOSAL__ASSESSMENTS:
+			getAssessments().clear();
+			getAssessments()
+					.addAll((Collection<? extends Assessment>) newValue);
+			return;
+		case RationalePackage.PROPOSAL__ISSUE:
+			setIssue((Issue) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -216,12 +216,12 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RationalePackage.PROPOSAL__ASSESSMENTS :
-				getAssessments().clear();
-				return;
-			case RationalePackage.PROPOSAL__ISSUE :
-				setIssue((Issue) null);
-				return;
+		case RationalePackage.PROPOSAL__ASSESSMENTS:
+			getAssessments().clear();
+			return;
+		case RationalePackage.PROPOSAL__ISSUE:
+			setIssue((Issue) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -233,10 +233,10 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RationalePackage.PROPOSAL__ASSESSMENTS :
-				return assessments != null && !assessments.isEmpty();
-			case RationalePackage.PROPOSAL__ISSUE :
-				return getIssue() != null;
+		case RationalePackage.PROPOSAL__ASSESSMENTS:
+			return assessments != null && !assessments.isEmpty();
+		case RationalePackage.PROPOSAL__ISSUE:
+			return getIssue() != null;
 		}
 		return super.eIsSet(featureID);
 	}

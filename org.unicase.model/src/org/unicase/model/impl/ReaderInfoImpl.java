@@ -29,9 +29,8 @@ import org.unicase.model.organization.OrgUnit;
  *
  * @generated
  */
-public class ReaderInfoImpl extends IdentifiableElementImpl
-		implements
-			ReaderInfo {
+public class ReaderInfoImpl extends IdentifiableElementImpl implements
+		ReaderInfo {
 	/**
 	 * The default value of the '{@link #getDate() <em>Date</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -141,12 +140,12 @@ public class ReaderInfoImpl extends IdentifiableElementImpl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ModelPackage.READER_INFO__DATE :
-				return getDate();
-			case ModelPackage.READER_INFO__READER_ID :
-				if (resolve)
-					return getReaderId();
-				return basicGetReaderId();
+		case ModelPackage.READER_INFO__DATE:
+			return getDate();
+		case ModelPackage.READER_INFO__READER_ID:
+			if (resolve)
+				return getReaderId();
+			return basicGetReaderId();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -158,12 +157,12 @@ public class ReaderInfoImpl extends IdentifiableElementImpl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ModelPackage.READER_INFO__DATE :
-				setDate((Date) newValue);
-				return;
-			case ModelPackage.READER_INFO__READER_ID :
-				setReaderId((OrgUnit) newValue);
-				return;
+		case ModelPackage.READER_INFO__DATE:
+			setDate((Date) newValue);
+			return;
+		case ModelPackage.READER_INFO__READER_ID:
+			setReaderId((OrgUnit) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -175,12 +174,12 @@ public class ReaderInfoImpl extends IdentifiableElementImpl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ModelPackage.READER_INFO__DATE :
-				setDate(DATE_EDEFAULT);
-				return;
-			case ModelPackage.READER_INFO__READER_ID :
-				setReaderId((OrgUnit) null);
-				return;
+		case ModelPackage.READER_INFO__DATE:
+			setDate(DATE_EDEFAULT);
+			return;
+		case ModelPackage.READER_INFO__READER_ID:
+			setReaderId((OrgUnit) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -192,11 +191,11 @@ public class ReaderInfoImpl extends IdentifiableElementImpl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ModelPackage.READER_INFO__DATE :
-				return DATE_EDEFAULT == null ? date != null : !DATE_EDEFAULT
-						.equals(date);
-			case ModelPackage.READER_INFO__READER_ID :
-				return readerId != null;
+		case ModelPackage.READER_INFO__DATE:
+			return DATE_EDEFAULT == null ? date != null : !DATE_EDEFAULT
+					.equals(date);
+		case ModelPackage.READER_INFO__READER_ID:
+			return readerId != null;
 		}
 		return super.eIsSet(featureID);
 	}

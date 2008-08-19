@@ -34,13 +34,9 @@ import org.unicase.model.task.WorkPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class WorkPackageItemProvider extends AnnotationItemProvider
-		implements
-			IEditingDomainItemProvider,
-			IStructuredItemContentProvider,
-			ITreeItemContentProvider,
-			IItemLabelProvider,
-			IItemPropertySource {
+public class WorkPackageItemProvider extends AnnotationItemProvider implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -267,15 +263,15 @@ public class WorkPackageItemProvider extends AnnotationItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(WorkPackage.class)) {
-			case TaskPackage.WORK_PACKAGE__START_DATE :
-			case TaskPackage.WORK_PACKAGE__END_DATE :
-				fireNotifyChanged(new ViewerNotification(notification,
-						notification.getNotifier(), false, true));
-				return;
-			case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS :
-				fireNotifyChanged(new ViewerNotification(notification,
-						notification.getNotifier(), true, false));
-				return;
+		case TaskPackage.WORK_PACKAGE__START_DATE:
+		case TaskPackage.WORK_PACKAGE__END_DATE:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), false, true));
+			return;
+		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

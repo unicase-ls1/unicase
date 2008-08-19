@@ -32,12 +32,8 @@ import org.unicase.model.provider.ModelElementItemProvider;
  * @generated
  */
 public class DeploymentNodeItemProvider extends ModelElementItemProvider
-		implements
-			IEditingDomainItemProvider,
-			IStructuredItemContentProvider,
-			ITreeItemContentProvider,
-			IItemLabelProvider,
-			IItemPropertySource {
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -103,8 +99,7 @@ public class DeploymentNodeItemProvider extends ModelElementItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((DeploymentNode) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_DeploymentNode_type")
+		return label == null || label.length() == 0 ? getString("_UI_DeploymentNode_type")
 				: getString("_UI_DeploymentNode_type") + " " + label;
 	}
 

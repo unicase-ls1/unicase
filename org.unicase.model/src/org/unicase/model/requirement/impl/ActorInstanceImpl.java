@@ -36,9 +36,8 @@ import org.unicase.model.requirement.Scenario;
  *
  * @generated
  */
-public class ActorInstanceImpl extends ModelElementImpl
-		implements
-			ActorInstance {
+public class ActorInstanceImpl extends ModelElementImpl implements
+		ActorInstance {
 	/**
 	 * The cached value of the '{@link #getInitiatedScenarios() <em>Initiated Scenarios</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -196,19 +195,18 @@ public class ActorInstanceImpl extends ModelElementImpl
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RequirementPackage.ACTOR_INSTANCE__INITIATED_SCENARIOS :
-				return ((InternalEList<InternalEObject>) (InternalEList<?>) getInitiatedScenarios())
-						.basicAdd(otherEnd, msgs);
-			case RequirementPackage.ACTOR_INSTANCE__PARTICIPATED_SCENARIOS :
-				return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipatedScenarios())
-						.basicAdd(otherEnd, msgs);
-			case RequirementPackage.ACTOR_INSTANCE__INSTANTIATED_ACTOR :
-				if (instantiatedActor != null)
-					msgs = ((InternalEObject) instantiatedActor)
-							.eInverseRemove(this,
-									RequirementPackage.ACTOR__INSTANCES,
-									Actor.class, msgs);
-				return basicSetInstantiatedActor((Actor) otherEnd, msgs);
+		case RequirementPackage.ACTOR_INSTANCE__INITIATED_SCENARIOS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getInitiatedScenarios())
+					.basicAdd(otherEnd, msgs);
+		case RequirementPackage.ACTOR_INSTANCE__PARTICIPATED_SCENARIOS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipatedScenarios())
+					.basicAdd(otherEnd, msgs);
+		case RequirementPackage.ACTOR_INSTANCE__INSTANTIATED_ACTOR:
+			if (instantiatedActor != null)
+				msgs = ((InternalEObject) instantiatedActor).eInverseRemove(
+						this, RequirementPackage.ACTOR__INSTANCES, Actor.class,
+						msgs);
+			return basicSetInstantiatedActor((Actor) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -221,14 +219,14 @@ public class ActorInstanceImpl extends ModelElementImpl
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RequirementPackage.ACTOR_INSTANCE__INITIATED_SCENARIOS :
-				return ((InternalEList<?>) getInitiatedScenarios())
-						.basicRemove(otherEnd, msgs);
-			case RequirementPackage.ACTOR_INSTANCE__PARTICIPATED_SCENARIOS :
-				return ((InternalEList<?>) getParticipatedScenarios())
-						.basicRemove(otherEnd, msgs);
-			case RequirementPackage.ACTOR_INSTANCE__INSTANTIATED_ACTOR :
-				return basicSetInstantiatedActor(null, msgs);
+		case RequirementPackage.ACTOR_INSTANCE__INITIATED_SCENARIOS:
+			return ((InternalEList<?>) getInitiatedScenarios()).basicRemove(
+					otherEnd, msgs);
+		case RequirementPackage.ACTOR_INSTANCE__PARTICIPATED_SCENARIOS:
+			return ((InternalEList<?>) getParticipatedScenarios()).basicRemove(
+					otherEnd, msgs);
+		case RequirementPackage.ACTOR_INSTANCE__INSTANTIATED_ACTOR:
+			return basicSetInstantiatedActor(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -240,14 +238,14 @@ public class ActorInstanceImpl extends ModelElementImpl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RequirementPackage.ACTOR_INSTANCE__INITIATED_SCENARIOS :
-				return getInitiatedScenarios();
-			case RequirementPackage.ACTOR_INSTANCE__PARTICIPATED_SCENARIOS :
-				return getParticipatedScenarios();
-			case RequirementPackage.ACTOR_INSTANCE__INSTANTIATED_ACTOR :
-				if (resolve)
-					return getInstantiatedActor();
-				return basicGetInstantiatedActor();
+		case RequirementPackage.ACTOR_INSTANCE__INITIATED_SCENARIOS:
+			return getInitiatedScenarios();
+		case RequirementPackage.ACTOR_INSTANCE__PARTICIPATED_SCENARIOS:
+			return getParticipatedScenarios();
+		case RequirementPackage.ACTOR_INSTANCE__INSTANTIATED_ACTOR:
+			if (resolve)
+				return getInstantiatedActor();
+			return basicGetInstantiatedActor();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -260,19 +258,19 @@ public class ActorInstanceImpl extends ModelElementImpl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RequirementPackage.ACTOR_INSTANCE__INITIATED_SCENARIOS :
-				getInitiatedScenarios().clear();
-				getInitiatedScenarios().addAll(
-						(Collection<? extends Scenario>) newValue);
-				return;
-			case RequirementPackage.ACTOR_INSTANCE__PARTICIPATED_SCENARIOS :
-				getParticipatedScenarios().clear();
-				getParticipatedScenarios().addAll(
-						(Collection<? extends Scenario>) newValue);
-				return;
-			case RequirementPackage.ACTOR_INSTANCE__INSTANTIATED_ACTOR :
-				setInstantiatedActor((Actor) newValue);
-				return;
+		case RequirementPackage.ACTOR_INSTANCE__INITIATED_SCENARIOS:
+			getInitiatedScenarios().clear();
+			getInitiatedScenarios().addAll(
+					(Collection<? extends Scenario>) newValue);
+			return;
+		case RequirementPackage.ACTOR_INSTANCE__PARTICIPATED_SCENARIOS:
+			getParticipatedScenarios().clear();
+			getParticipatedScenarios().addAll(
+					(Collection<? extends Scenario>) newValue);
+			return;
+		case RequirementPackage.ACTOR_INSTANCE__INSTANTIATED_ACTOR:
+			setInstantiatedActor((Actor) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -284,15 +282,15 @@ public class ActorInstanceImpl extends ModelElementImpl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RequirementPackage.ACTOR_INSTANCE__INITIATED_SCENARIOS :
-				getInitiatedScenarios().clear();
-				return;
-			case RequirementPackage.ACTOR_INSTANCE__PARTICIPATED_SCENARIOS :
-				getParticipatedScenarios().clear();
-				return;
-			case RequirementPackage.ACTOR_INSTANCE__INSTANTIATED_ACTOR :
-				setInstantiatedActor((Actor) null);
-				return;
+		case RequirementPackage.ACTOR_INSTANCE__INITIATED_SCENARIOS:
+			getInitiatedScenarios().clear();
+			return;
+		case RequirementPackage.ACTOR_INSTANCE__PARTICIPATED_SCENARIOS:
+			getParticipatedScenarios().clear();
+			return;
+		case RequirementPackage.ACTOR_INSTANCE__INSTANTIATED_ACTOR:
+			setInstantiatedActor((Actor) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -304,14 +302,13 @@ public class ActorInstanceImpl extends ModelElementImpl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RequirementPackage.ACTOR_INSTANCE__INITIATED_SCENARIOS :
-				return initiatedScenarios != null
-						&& !initiatedScenarios.isEmpty();
-			case RequirementPackage.ACTOR_INSTANCE__PARTICIPATED_SCENARIOS :
-				return participatedScenarios != null
-						&& !participatedScenarios.isEmpty();
-			case RequirementPackage.ACTOR_INSTANCE__INSTANTIATED_ACTOR :
-				return instantiatedActor != null;
+		case RequirementPackage.ACTOR_INSTANCE__INITIATED_SCENARIOS:
+			return initiatedScenarios != null && !initiatedScenarios.isEmpty();
+		case RequirementPackage.ACTOR_INSTANCE__PARTICIPATED_SCENARIOS:
+			return participatedScenarios != null
+					&& !participatedScenarios.isEmpty();
+		case RequirementPackage.ACTOR_INSTANCE__INSTANTIATED_ACTOR:
+			return instantiatedActor != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -35,13 +35,9 @@ import org.unicase.model.task.TaskPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class IssueItemProvider extends AnnotationItemProvider
-		implements
-			IEditingDomainItemProvider,
-			IStructuredItemContentProvider,
-			ITreeItemContentProvider,
-			IItemLabelProvider,
-			IItemPropertySource {
+public class IssueItemProvider extends AnnotationItemProvider implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -206,16 +202,16 @@ public class IssueItemProvider extends AnnotationItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Issue.class)) {
-			case RationalePackage.ISSUE__CHECKED :
-				fireNotifyChanged(new ViewerNotification(notification,
-						notification.getNotifier(), false, true));
-				return;
-			case RationalePackage.ISSUE__PROPOSALS :
-			case RationalePackage.ISSUE__SOLUTION :
-			case RationalePackage.ISSUE__REFINING_ISSUES :
-				fireNotifyChanged(new ViewerNotification(notification,
-						notification.getNotifier(), true, false));
-				return;
+		case RationalePackage.ISSUE__CHECKED:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), false, true));
+			return;
+		case RationalePackage.ISSUE__PROPOSALS:
+		case RationalePackage.ISSUE__SOLUTION:
+		case RationalePackage.ISSUE__REFINING_ISSUES:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.rationale.Criterion;
+import org.unicase.model.requirement.*;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.ActorInstance;
 import org.unicase.model.requirement.FunctionalRequirement;
@@ -20,7 +21,9 @@ import org.unicase.model.requirement.NonFunctionalRequirement;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.Scenario;
 import org.unicase.model.requirement.Step;
+import org.unicase.model.requirement.SystemFunction;
 import org.unicase.model.requirement.UseCase;
+import org.unicase.model.requirement.UserTask;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance
@@ -89,87 +92,109 @@ public class RequirementSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT : {
-				NonFunctionalRequirement nonFunctionalRequirement = (NonFunctionalRequirement) theEObject;
-				T result = caseNonFunctionalRequirement(nonFunctionalRequirement);
-				if (result == null)
-					result = caseCriterion(nonFunctionalRequirement);
-				if (result == null)
-					result = caseModelElement(nonFunctionalRequirement);
-				if (result == null)
-					result = caseIdentifiableElement(nonFunctionalRequirement);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case RequirementPackage.FUNCTIONAL_REQUIREMENT : {
-				FunctionalRequirement functionalRequirement = (FunctionalRequirement) theEObject;
-				T result = caseFunctionalRequirement(functionalRequirement);
-				if (result == null)
-					result = caseModelElement(functionalRequirement);
-				if (result == null)
-					result = caseIdentifiableElement(functionalRequirement);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case RequirementPackage.USE_CASE : {
-				UseCase useCase = (UseCase) theEObject;
-				T result = caseUseCase(useCase);
-				if (result == null)
-					result = caseModelElement(useCase);
-				if (result == null)
-					result = caseIdentifiableElement(useCase);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case RequirementPackage.SCENARIO : {
-				Scenario scenario = (Scenario) theEObject;
-				T result = caseScenario(scenario);
-				if (result == null)
-					result = caseModelElement(scenario);
-				if (result == null)
-					result = caseIdentifiableElement(scenario);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case RequirementPackage.ACTOR : {
-				Actor actor = (Actor) theEObject;
-				T result = caseActor(actor);
-				if (result == null)
-					result = caseModelElement(actor);
-				if (result == null)
-					result = caseIdentifiableElement(actor);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case RequirementPackage.ACTOR_INSTANCE : {
-				ActorInstance actorInstance = (ActorInstance) theEObject;
-				T result = caseActorInstance(actorInstance);
-				if (result == null)
-					result = caseModelElement(actorInstance);
-				if (result == null)
-					result = caseIdentifiableElement(actorInstance);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case RequirementPackage.STEP : {
-				Step step = (Step) theEObject;
-				T result = caseStep(step);
-				if (result == null)
-					result = caseModelElement(step);
-				if (result == null)
-					result = caseIdentifiableElement(step);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			default :
-				return defaultCase(theEObject);
+		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT: {
+			NonFunctionalRequirement nonFunctionalRequirement = (NonFunctionalRequirement) theEObject;
+			T result = caseNonFunctionalRequirement(nonFunctionalRequirement);
+			if (result == null)
+				result = caseCriterion(nonFunctionalRequirement);
+			if (result == null)
+				result = caseModelElement(nonFunctionalRequirement);
+			if (result == null)
+				result = caseIdentifiableElement(nonFunctionalRequirement);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT: {
+			FunctionalRequirement functionalRequirement = (FunctionalRequirement) theEObject;
+			T result = caseFunctionalRequirement(functionalRequirement);
+			if (result == null)
+				result = caseModelElement(functionalRequirement);
+			if (result == null)
+				result = caseIdentifiableElement(functionalRequirement);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case RequirementPackage.USE_CASE: {
+			UseCase useCase = (UseCase) theEObject;
+			T result = caseUseCase(useCase);
+			if (result == null)
+				result = caseModelElement(useCase);
+			if (result == null)
+				result = caseIdentifiableElement(useCase);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case RequirementPackage.SCENARIO: {
+			Scenario scenario = (Scenario) theEObject;
+			T result = caseScenario(scenario);
+			if (result == null)
+				result = caseModelElement(scenario);
+			if (result == null)
+				result = caseIdentifiableElement(scenario);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case RequirementPackage.ACTOR: {
+			Actor actor = (Actor) theEObject;
+			T result = caseActor(actor);
+			if (result == null)
+				result = caseModelElement(actor);
+			if (result == null)
+				result = caseIdentifiableElement(actor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case RequirementPackage.ACTOR_INSTANCE: {
+			ActorInstance actorInstance = (ActorInstance) theEObject;
+			T result = caseActorInstance(actorInstance);
+			if (result == null)
+				result = caseModelElement(actorInstance);
+			if (result == null)
+				result = caseIdentifiableElement(actorInstance);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case RequirementPackage.STEP: {
+			Step step = (Step) theEObject;
+			T result = caseStep(step);
+			if (result == null)
+				result = caseModelElement(step);
+			if (result == null)
+				result = caseIdentifiableElement(step);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case RequirementPackage.SYSTEM_FUNCTION: {
+			SystemFunction systemFunction = (SystemFunction) theEObject;
+			T result = caseSystemFunction(systemFunction);
+			if (result == null)
+				result = caseModelElement(systemFunction);
+			if (result == null)
+				result = caseIdentifiableElement(systemFunction);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case RequirementPackage.USER_TASK: {
+			UserTask userTask = (UserTask) theEObject;
+			T result = caseUserTask(userTask);
+			if (result == null)
+				result = caseModelElement(userTask);
+			if (result == null)
+				result = caseIdentifiableElement(userTask);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 
@@ -271,6 +296,36 @@ public class RequirementSwitch<T> {
 	 * @generated
 	 */
 	public T caseStep(Step object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>System Function</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>System Function</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSystemFunction(SystemFunction object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>User Task</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>User Task</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUserTask(UserTask object) {
 		return null;
 	}
 

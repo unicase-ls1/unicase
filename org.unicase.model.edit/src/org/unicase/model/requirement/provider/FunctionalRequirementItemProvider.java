@@ -36,12 +36,8 @@ import org.unicase.model.requirement.RequirementPackage;
  * @generated
  */
 public class FunctionalRequirementItemProvider extends ModelElementItemProvider
-		implements
-			IEditingDomainItemProvider,
-			IStructuredItemContentProvider,
-			ITreeItemContentProvider,
-			IItemLabelProvider,
-			IItemPropertySource {
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -277,16 +273,16 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(FunctionalRequirement.class)) {
-			case RequirementPackage.FUNCTIONAL_REQUIREMENT__STORY_POINTS :
-			case RequirementPackage.FUNCTIONAL_REQUIREMENT__PRIORITY :
-			case RequirementPackage.FUNCTIONAL_REQUIREMENT__REVIEWED :
-				fireNotifyChanged(new ViewerNotification(notification,
-						notification.getNotifier(), false, true));
-				return;
-			case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS :
-				fireNotifyChanged(new ViewerNotification(notification,
-						notification.getNotifier(), true, false));
-				return;
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT__STORY_POINTS:
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT__PRIORITY:
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REVIEWED:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), false, true));
+			return;
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

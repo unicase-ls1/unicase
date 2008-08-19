@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.Annotation;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
+import org.unicase.model.bug.*;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.bug.BugReport;
 import org.unicase.model.bug.BugResolution;
@@ -86,36 +87,36 @@ public class BugSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case BugPackage.BUG_REPORT : {
-				BugReport bugReport = (BugReport) theEObject;
-				T result = caseBugReport(bugReport);
-				if (result == null)
-					result = caseWorkItem(bugReport);
-				if (result == null)
-					result = caseAssignable(bugReport);
-				if (result == null)
-					result = caseAnnotation(bugReport);
-				if (result == null)
-					result = caseModelElement(bugReport);
-				if (result == null)
-					result = caseIdentifiableElement(bugReport);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case BugPackage.BUG_RESOLUTION : {
-				BugResolution bugResolution = (BugResolution) theEObject;
-				T result = caseBugResolution(bugResolution);
-				if (result == null)
-					result = caseModelElement(bugResolution);
-				if (result == null)
-					result = caseIdentifiableElement(bugResolution);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			default :
-				return defaultCase(theEObject);
+		case BugPackage.BUG_REPORT: {
+			BugReport bugReport = (BugReport) theEObject;
+			T result = caseBugReport(bugReport);
+			if (result == null)
+				result = caseWorkItem(bugReport);
+			if (result == null)
+				result = caseAssignable(bugReport);
+			if (result == null)
+				result = caseAnnotation(bugReport);
+			if (result == null)
+				result = caseModelElement(bugReport);
+			if (result == null)
+				result = caseIdentifiableElement(bugReport);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case BugPackage.BUG_RESOLUTION: {
+			BugResolution bugResolution = (BugResolution) theEObject;
+			T result = caseBugResolution(bugResolution);
+			if (result == null)
+				result = caseModelElement(bugResolution);
+			if (result == null)
+				result = caseIdentifiableElement(bugResolution);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 

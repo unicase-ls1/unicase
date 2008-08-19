@@ -51,8 +51,7 @@ import org.unicase.model.task.util.MEStateImpl;
  * @generated
  */
 public abstract class ModelElementImpl extends IdentifiableElementImpl
-		implements
-			ModelElement {
+		implements ModelElement {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -375,16 +374,16 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ModelPackage.MODEL_ELEMENT__ANNOTATIONS :
-				return ((InternalEList<InternalEObject>) (InternalEList<?>) getAnnotations())
-						.basicAdd(otherEnd, msgs);
-			case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES :
-				return ((InternalEList<InternalEObject>) (InternalEList<?>) getIncomingDocumentReferences())
-						.basicAdd(otherEnd, msgs);
-			case ModelPackage.MODEL_ELEMENT__LEAF_SECTION :
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetLeafSection((LeafSection) otherEnd, msgs);
+		case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAnnotations())
+					.basicAdd(otherEnd, msgs);
+		case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIncomingDocumentReferences())
+					.basicAdd(otherEnd, msgs);
+		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetLeafSection((LeafSection) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -397,17 +396,17 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ModelPackage.MODEL_ELEMENT__READER_INFOS :
-				return ((InternalEList<?>) getReaderInfos()).basicRemove(
-						otherEnd, msgs);
-			case ModelPackage.MODEL_ELEMENT__ANNOTATIONS :
-				return ((InternalEList<?>) getAnnotations()).basicRemove(
-						otherEnd, msgs);
-			case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES :
-				return ((InternalEList<?>) getIncomingDocumentReferences())
-						.basicRemove(otherEnd, msgs);
-			case ModelPackage.MODEL_ELEMENT__LEAF_SECTION :
-				return basicSetLeafSection(null, msgs);
+		case ModelPackage.MODEL_ELEMENT__READER_INFOS:
+			return ((InternalEList<?>) getReaderInfos()).basicRemove(otherEnd,
+					msgs);
+		case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:
+			return ((InternalEList<?>) getAnnotations()).basicRemove(otherEnd,
+					msgs);
+		case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
+			return ((InternalEList<?>) getIncomingDocumentReferences())
+					.basicRemove(otherEnd, msgs);
+		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
+			return basicSetLeafSection(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -420,10 +419,10 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	public NotificationChain eBasicRemoveFromContainerFeature(
 			NotificationChain msgs) {
 		switch (eContainerFeatureID) {
-			case ModelPackage.MODEL_ELEMENT__LEAF_SECTION :
-				return eInternalContainer().eInverseRemove(this,
-						DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS,
-						LeafSection.class, msgs);
+		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
+			return eInternalContainer().eInverseRemove(this,
+					DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS,
+					LeafSection.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -435,20 +434,20 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ModelPackage.MODEL_ELEMENT__NAME :
-				return getName();
-			case ModelPackage.MODEL_ELEMENT__DESCRIPTION :
-				return getDescription();
-			case ModelPackage.MODEL_ELEMENT__READER_INFOS :
-				return getReaderInfos();
-			case ModelPackage.MODEL_ELEMENT__ANNOTATIONS :
-				return getAnnotations();
-			case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES :
-				return getIncomingDocumentReferences();
-			case ModelPackage.MODEL_ELEMENT__LEAF_SECTION :
-				return getLeafSection();
-			case ModelPackage.MODEL_ELEMENT__STATE :
-				return getState();
+		case ModelPackage.MODEL_ELEMENT__NAME:
+			return getName();
+		case ModelPackage.MODEL_ELEMENT__DESCRIPTION:
+			return getDescription();
+		case ModelPackage.MODEL_ELEMENT__READER_INFOS:
+			return getReaderInfos();
+		case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:
+			return getAnnotations();
+		case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
+			return getIncomingDocumentReferences();
+		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
+			return getLeafSection();
+		case ModelPackage.MODEL_ELEMENT__STATE:
+			return getState();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -461,30 +460,30 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ModelPackage.MODEL_ELEMENT__NAME :
-				setName((String) newValue);
-				return;
-			case ModelPackage.MODEL_ELEMENT__DESCRIPTION :
-				setDescription((String) newValue);
-				return;
-			case ModelPackage.MODEL_ELEMENT__READER_INFOS :
-				getReaderInfos().clear();
-				getReaderInfos().addAll(
-						(Collection<? extends ReaderInfo>) newValue);
-				return;
-			case ModelPackage.MODEL_ELEMENT__ANNOTATIONS :
-				getAnnotations().clear();
-				getAnnotations().addAll(
-						(Collection<? extends Annotation>) newValue);
-				return;
-			case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES :
-				getIncomingDocumentReferences().clear();
-				getIncomingDocumentReferences().addAll(
-						(Collection<? extends LeafSection>) newValue);
-				return;
-			case ModelPackage.MODEL_ELEMENT__LEAF_SECTION :
-				setLeafSection((LeafSection) newValue);
-				return;
+		case ModelPackage.MODEL_ELEMENT__NAME:
+			setName((String) newValue);
+			return;
+		case ModelPackage.MODEL_ELEMENT__DESCRIPTION:
+			setDescription((String) newValue);
+			return;
+		case ModelPackage.MODEL_ELEMENT__READER_INFOS:
+			getReaderInfos().clear();
+			getReaderInfos()
+					.addAll((Collection<? extends ReaderInfo>) newValue);
+			return;
+		case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:
+			getAnnotations().clear();
+			getAnnotations()
+					.addAll((Collection<? extends Annotation>) newValue);
+			return;
+		case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
+			getIncomingDocumentReferences().clear();
+			getIncomingDocumentReferences().addAll(
+					(Collection<? extends LeafSection>) newValue);
+			return;
+		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
+			setLeafSection((LeafSection) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -496,24 +495,24 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ModelPackage.MODEL_ELEMENT__NAME :
-				setName(NAME_EDEFAULT);
-				return;
-			case ModelPackage.MODEL_ELEMENT__DESCRIPTION :
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case ModelPackage.MODEL_ELEMENT__READER_INFOS :
-				getReaderInfos().clear();
-				return;
-			case ModelPackage.MODEL_ELEMENT__ANNOTATIONS :
-				getAnnotations().clear();
-				return;
-			case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES :
-				getIncomingDocumentReferences().clear();
-				return;
-			case ModelPackage.MODEL_ELEMENT__LEAF_SECTION :
-				setLeafSection((LeafSection) null);
-				return;
+		case ModelPackage.MODEL_ELEMENT__NAME:
+			setName(NAME_EDEFAULT);
+			return;
+		case ModelPackage.MODEL_ELEMENT__DESCRIPTION:
+			setDescription(DESCRIPTION_EDEFAULT);
+			return;
+		case ModelPackage.MODEL_ELEMENT__READER_INFOS:
+			getReaderInfos().clear();
+			return;
+		case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:
+			getAnnotations().clear();
+			return;
+		case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
+			getIncomingDocumentReferences().clear();
+			return;
+		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
+			setLeafSection((LeafSection) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -525,26 +524,24 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ModelPackage.MODEL_ELEMENT__NAME :
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT
-						.equals(name);
-			case ModelPackage.MODEL_ELEMENT__DESCRIPTION :
-				return DESCRIPTION_EDEFAULT == null
-						? description != null
-						: !DESCRIPTION_EDEFAULT.equals(description);
-			case ModelPackage.MODEL_ELEMENT__READER_INFOS :
-				return readerInfos != null && !readerInfos.isEmpty();
-			case ModelPackage.MODEL_ELEMENT__ANNOTATIONS :
-				return annotations != null && !annotations.isEmpty();
-			case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES :
-				return incomingDocumentReferences != null
-						&& !incomingDocumentReferences.isEmpty();
-			case ModelPackage.MODEL_ELEMENT__LEAF_SECTION :
-				return getLeafSection() != null;
-			case ModelPackage.MODEL_ELEMENT__STATE :
-				return STATE_EDEFAULT == null
-						? getState() != null
-						: !STATE_EDEFAULT.equals(getState());
+		case ModelPackage.MODEL_ELEMENT__NAME:
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT
+					.equals(name);
+		case ModelPackage.MODEL_ELEMENT__DESCRIPTION:
+			return DESCRIPTION_EDEFAULT == null ? description != null
+					: !DESCRIPTION_EDEFAULT.equals(description);
+		case ModelPackage.MODEL_ELEMENT__READER_INFOS:
+			return readerInfos != null && !readerInfos.isEmpty();
+		case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:
+			return annotations != null && !annotations.isEmpty();
+		case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
+			return incomingDocumentReferences != null
+					&& !incomingDocumentReferences.isEmpty();
+		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
+			return getLeafSection() != null;
+		case ModelPackage.MODEL_ELEMENT__STATE:
+			return STATE_EDEFAULT == null ? getState() != null
+					: !STATE_EDEFAULT.equals(getState());
 		}
 		return super.eIsSet(featureID);
 	}

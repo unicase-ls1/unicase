@@ -33,13 +33,9 @@ import org.unicase.model.task.TaskPackage;
  * end-user-doc -->
  * @generated
  */
-public class BugReportItemProvider extends AnnotationItemProvider
-		implements
-			IEditingDomainItemProvider,
-			IStructuredItemContentProvider,
-			ITreeItemContentProvider,
-			IItemLabelProvider,
-			IItemPropertySource {
+public class BugReportItemProvider extends AnnotationItemProvider implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -291,11 +287,11 @@ public class BugReportItemProvider extends AnnotationItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(BugReport.class)) {
-			case BugPackage.BUG_REPORT__STATUS :
-			case BugPackage.BUG_REPORT__SEVERITY :
-				fireNotifyChanged(new ViewerNotification(notification,
-						notification.getNotifier(), false, true));
-				return;
+		case BugPackage.BUG_REPORT__STATUS:
+		case BugPackage.BUG_REPORT__SEVERITY:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

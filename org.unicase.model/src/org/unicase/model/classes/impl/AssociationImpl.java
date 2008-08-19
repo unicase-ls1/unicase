@@ -289,20 +289,20 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ClassesPackage.ASSOCIATION__SOURCE :
-				if (source != null)
-					msgs = ((InternalEObject) source).eInverseRemove(this,
-							ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS,
-							org.unicase.model.classes.Class.class, msgs);
-				return basicSetSource(
-						(org.unicase.model.classes.Class) otherEnd, msgs);
-			case ClassesPackage.ASSOCIATION__TARGET :
-				if (target != null)
-					msgs = ((InternalEObject) target).eInverseRemove(this,
-							ClassesPackage.CLASS__INCOMING_ASSOCIATIONS,
-							org.unicase.model.classes.Class.class, msgs);
-				return basicSetTarget(
-						(org.unicase.model.classes.Class) otherEnd, msgs);
+		case ClassesPackage.ASSOCIATION__SOURCE:
+			if (source != null)
+				msgs = ((InternalEObject) source).eInverseRemove(this,
+						ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS,
+						org.unicase.model.classes.Class.class, msgs);
+			return basicSetSource((org.unicase.model.classes.Class) otherEnd,
+					msgs);
+		case ClassesPackage.ASSOCIATION__TARGET:
+			if (target != null)
+				msgs = ((InternalEObject) target).eInverseRemove(this,
+						ClassesPackage.CLASS__INCOMING_ASSOCIATIONS,
+						org.unicase.model.classes.Class.class, msgs);
+			return basicSetTarget((org.unicase.model.classes.Class) otherEnd,
+					msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -315,10 +315,10 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ClassesPackage.ASSOCIATION__SOURCE :
-				return basicSetSource(null, msgs);
-			case ClassesPackage.ASSOCIATION__TARGET :
-				return basicSetTarget(null, msgs);
+		case ClassesPackage.ASSOCIATION__SOURCE:
+			return basicSetSource(null, msgs);
+		case ClassesPackage.ASSOCIATION__TARGET:
+			return basicSetTarget(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -330,18 +330,18 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ClassesPackage.ASSOCIATION__DIRECTED :
-				return isDirected() ? Boolean.TRUE : Boolean.FALSE;
-			case ClassesPackage.ASSOCIATION__SOURCE :
-				if (resolve)
-					return getSource();
-				return basicGetSource();
-			case ClassesPackage.ASSOCIATION__TARGET :
-				if (resolve)
-					return getTarget();
-				return basicGetTarget();
-			case ClassesPackage.ASSOCIATION__TYPE :
-				return getType();
+		case ClassesPackage.ASSOCIATION__DIRECTED:
+			return isDirected() ? Boolean.TRUE : Boolean.FALSE;
+		case ClassesPackage.ASSOCIATION__SOURCE:
+			if (resolve)
+				return getSource();
+			return basicGetSource();
+		case ClassesPackage.ASSOCIATION__TARGET:
+			if (resolve)
+				return getTarget();
+			return basicGetTarget();
+		case ClassesPackage.ASSOCIATION__TYPE:
+			return getType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -353,18 +353,18 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ClassesPackage.ASSOCIATION__DIRECTED :
-				setDirected(((Boolean) newValue).booleanValue());
-				return;
-			case ClassesPackage.ASSOCIATION__SOURCE :
-				setSource((org.unicase.model.classes.Class) newValue);
-				return;
-			case ClassesPackage.ASSOCIATION__TARGET :
-				setTarget((org.unicase.model.classes.Class) newValue);
-				return;
-			case ClassesPackage.ASSOCIATION__TYPE :
-				setType((AssociationType) newValue);
-				return;
+		case ClassesPackage.ASSOCIATION__DIRECTED:
+			setDirected(((Boolean) newValue).booleanValue());
+			return;
+		case ClassesPackage.ASSOCIATION__SOURCE:
+			setSource((org.unicase.model.classes.Class) newValue);
+			return;
+		case ClassesPackage.ASSOCIATION__TARGET:
+			setTarget((org.unicase.model.classes.Class) newValue);
+			return;
+		case ClassesPackage.ASSOCIATION__TYPE:
+			setType((AssociationType) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -376,18 +376,18 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ClassesPackage.ASSOCIATION__DIRECTED :
-				setDirected(DIRECTED_EDEFAULT);
-				return;
-			case ClassesPackage.ASSOCIATION__SOURCE :
-				setSource((org.unicase.model.classes.Class) null);
-				return;
-			case ClassesPackage.ASSOCIATION__TARGET :
-				setTarget((org.unicase.model.classes.Class) null);
-				return;
-			case ClassesPackage.ASSOCIATION__TYPE :
-				setType(TYPE_EDEFAULT);
-				return;
+		case ClassesPackage.ASSOCIATION__DIRECTED:
+			setDirected(DIRECTED_EDEFAULT);
+			return;
+		case ClassesPackage.ASSOCIATION__SOURCE:
+			setSource((org.unicase.model.classes.Class) null);
+			return;
+		case ClassesPackage.ASSOCIATION__TARGET:
+			setTarget((org.unicase.model.classes.Class) null);
+			return;
+		case ClassesPackage.ASSOCIATION__TYPE:
+			setType(TYPE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -399,14 +399,14 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ClassesPackage.ASSOCIATION__DIRECTED :
-				return directed != DIRECTED_EDEFAULT;
-			case ClassesPackage.ASSOCIATION__SOURCE :
-				return source != null;
-			case ClassesPackage.ASSOCIATION__TARGET :
-				return target != null;
-			case ClassesPackage.ASSOCIATION__TYPE :
-				return type != TYPE_EDEFAULT;
+		case ClassesPackage.ASSOCIATION__DIRECTED:
+			return directed != DIRECTED_EDEFAULT;
+		case ClassesPackage.ASSOCIATION__SOURCE:
+			return source != null;
+		case ClassesPackage.ASSOCIATION__TARGET:
+			return target != null;
+		case ClassesPackage.ASSOCIATION__TYPE:
+			return type != TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

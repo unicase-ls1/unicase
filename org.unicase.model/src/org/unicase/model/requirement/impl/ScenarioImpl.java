@@ -276,27 +276,27 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE :
-				if (initiatingActorInstance != null)
-					msgs = ((InternalEObject) initiatingActorInstance)
-							.eInverseRemove(
-									this,
-									RequirementPackage.ACTOR_INSTANCE__INITIATED_SCENARIOS,
-									ActorInstance.class, msgs);
-				return basicSetInitiatingActorInstance(
-						(ActorInstance) otherEnd, msgs);
-			case RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES :
-				return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipatingActorInstances())
-						.basicAdd(otherEnd, msgs);
-			case RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES :
-				return ((InternalEList<InternalEObject>) (InternalEList<?>) getInstantiatedUseCases())
-						.basicAdd(otherEnd, msgs);
-			case RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS :
-				return ((InternalEList<InternalEObject>) (InternalEList<?>) getFunctionalRequirements())
-						.basicAdd(otherEnd, msgs);
-			case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS :
-				return ((InternalEList<InternalEObject>) (InternalEList<?>) getNonFunctionalRequirements())
-						.basicAdd(otherEnd, msgs);
+		case RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE:
+			if (initiatingActorInstance != null)
+				msgs = ((InternalEObject) initiatingActorInstance)
+						.eInverseRemove(
+								this,
+								RequirementPackage.ACTOR_INSTANCE__INITIATED_SCENARIOS,
+								ActorInstance.class, msgs);
+			return basicSetInitiatingActorInstance((ActorInstance) otherEnd,
+					msgs);
+		case RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipatingActorInstances())
+					.basicAdd(otherEnd, msgs);
+		case RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getInstantiatedUseCases())
+					.basicAdd(otherEnd, msgs);
+		case RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getFunctionalRequirements())
+					.basicAdd(otherEnd, msgs);
+		case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getNonFunctionalRequirements())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -309,23 +309,22 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RequirementPackage.SCENARIO__STEPS :
-				return ((InternalEList<?>) getSteps()).basicRemove(otherEnd,
-						msgs);
-			case RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE :
-				return basicSetInitiatingActorInstance(null, msgs);
-			case RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES :
-				return ((InternalEList<?>) getParticipatingActorInstances())
-						.basicRemove(otherEnd, msgs);
-			case RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES :
-				return ((InternalEList<?>) getInstantiatedUseCases())
-						.basicRemove(otherEnd, msgs);
-			case RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS :
-				return ((InternalEList<?>) getFunctionalRequirements())
-						.basicRemove(otherEnd, msgs);
-			case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS :
-				return ((InternalEList<?>) getNonFunctionalRequirements())
-						.basicRemove(otherEnd, msgs);
+		case RequirementPackage.SCENARIO__STEPS:
+			return ((InternalEList<?>) getSteps()).basicRemove(otherEnd, msgs);
+		case RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE:
+			return basicSetInitiatingActorInstance(null, msgs);
+		case RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES:
+			return ((InternalEList<?>) getParticipatingActorInstances())
+					.basicRemove(otherEnd, msgs);
+		case RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES:
+			return ((InternalEList<?>) getInstantiatedUseCases()).basicRemove(
+					otherEnd, msgs);
+		case RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS:
+			return ((InternalEList<?>) getFunctionalRequirements())
+					.basicRemove(otherEnd, msgs);
+		case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS:
+			return ((InternalEList<?>) getNonFunctionalRequirements())
+					.basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -337,20 +336,20 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RequirementPackage.SCENARIO__STEPS :
-				return getSteps();
-			case RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE :
-				if (resolve)
-					return getInitiatingActorInstance();
-				return basicGetInitiatingActorInstance();
-			case RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES :
-				return getParticipatingActorInstances();
-			case RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES :
-				return getInstantiatedUseCases();
-			case RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS :
-				return getFunctionalRequirements();
-			case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS :
-				return getNonFunctionalRequirements();
+		case RequirementPackage.SCENARIO__STEPS:
+			return getSteps();
+		case RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE:
+			if (resolve)
+				return getInitiatingActorInstance();
+			return basicGetInitiatingActorInstance();
+		case RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES:
+			return getParticipatingActorInstances();
+		case RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES:
+			return getInstantiatedUseCases();
+		case RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS:
+			return getFunctionalRequirements();
+		case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS:
+			return getNonFunctionalRequirements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -363,34 +362,33 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RequirementPackage.SCENARIO__STEPS :
-				getSteps().clear();
-				getSteps().addAll((Collection<? extends Step>) newValue);
-				return;
-			case RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE :
-				setInitiatingActorInstance((ActorInstance) newValue);
-				return;
-			case RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES :
-				getParticipatingActorInstances().clear();
-				getParticipatingActorInstances().addAll(
-						(Collection<? extends ActorInstance>) newValue);
-				return;
-			case RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES :
-				getInstantiatedUseCases().clear();
-				getInstantiatedUseCases().addAll(
-						(Collection<? extends UseCase>) newValue);
-				return;
-			case RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS :
-				getFunctionalRequirements().clear();
-				getFunctionalRequirements().addAll(
-						(Collection<? extends FunctionalRequirement>) newValue);
-				return;
-			case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS :
-				getNonFunctionalRequirements().clear();
-				getNonFunctionalRequirements()
-						.addAll(
-								(Collection<? extends NonFunctionalRequirement>) newValue);
-				return;
+		case RequirementPackage.SCENARIO__STEPS:
+			getSteps().clear();
+			getSteps().addAll((Collection<? extends Step>) newValue);
+			return;
+		case RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE:
+			setInitiatingActorInstance((ActorInstance) newValue);
+			return;
+		case RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES:
+			getParticipatingActorInstances().clear();
+			getParticipatingActorInstances().addAll(
+					(Collection<? extends ActorInstance>) newValue);
+			return;
+		case RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES:
+			getInstantiatedUseCases().clear();
+			getInstantiatedUseCases().addAll(
+					(Collection<? extends UseCase>) newValue);
+			return;
+		case RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS:
+			getFunctionalRequirements().clear();
+			getFunctionalRequirements().addAll(
+					(Collection<? extends FunctionalRequirement>) newValue);
+			return;
+		case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS:
+			getNonFunctionalRequirements().clear();
+			getNonFunctionalRequirements().addAll(
+					(Collection<? extends NonFunctionalRequirement>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -402,24 +400,24 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RequirementPackage.SCENARIO__STEPS :
-				getSteps().clear();
-				return;
-			case RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE :
-				setInitiatingActorInstance((ActorInstance) null);
-				return;
-			case RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES :
-				getParticipatingActorInstances().clear();
-				return;
-			case RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES :
-				getInstantiatedUseCases().clear();
-				return;
-			case RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS :
-				getFunctionalRequirements().clear();
-				return;
-			case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS :
-				getNonFunctionalRequirements().clear();
-				return;
+		case RequirementPackage.SCENARIO__STEPS:
+			getSteps().clear();
+			return;
+		case RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE:
+			setInitiatingActorInstance((ActorInstance) null);
+			return;
+		case RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES:
+			getParticipatingActorInstances().clear();
+			return;
+		case RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES:
+			getInstantiatedUseCases().clear();
+			return;
+		case RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS:
+			getFunctionalRequirements().clear();
+			return;
+		case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS:
+			getNonFunctionalRequirements().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -431,22 +429,22 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RequirementPackage.SCENARIO__STEPS :
-				return steps != null && !steps.isEmpty();
-			case RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE :
-				return initiatingActorInstance != null;
-			case RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES :
-				return participatingActorInstances != null
-						&& !participatingActorInstances.isEmpty();
-			case RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES :
-				return instantiatedUseCases != null
-						&& !instantiatedUseCases.isEmpty();
-			case RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS :
-				return functionalRequirements != null
-						&& !functionalRequirements.isEmpty();
-			case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS :
-				return nonFunctionalRequirements != null
-						&& !nonFunctionalRequirements.isEmpty();
+		case RequirementPackage.SCENARIO__STEPS:
+			return steps != null && !steps.isEmpty();
+		case RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE:
+			return initiatingActorInstance != null;
+		case RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES:
+			return participatingActorInstances != null
+					&& !participatingActorInstances.isEmpty();
+		case RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES:
+			return instantiatedUseCases != null
+					&& !instantiatedUseCases.isEmpty();
+		case RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS:
+			return functionalRequirements != null
+					&& !functionalRequirements.isEmpty();
+		case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS:
+			return nonFunctionalRequirements != null
+					&& !nonFunctionalRequirements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

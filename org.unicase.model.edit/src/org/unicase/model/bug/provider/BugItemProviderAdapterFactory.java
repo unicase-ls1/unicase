@@ -34,11 +34,8 @@ import org.unicase.model.bug.util.BugAdapterFactory;
  * end-user-doc -->
  * @generated
  */
-public class BugItemProviderAdapterFactory extends BugAdapterFactory
-		implements
-			ComposeableAdapterFactory,
-			IChangeNotifier,
-			IDisposable {
+public class BugItemProviderAdapterFactory extends BugAdapterFactory implements
+		ComposeableAdapterFactory, IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

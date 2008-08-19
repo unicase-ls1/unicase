@@ -33,12 +33,8 @@ import org.unicase.model.provider.ModelElementItemProvider;
  * @generated
  */
 public class BugResolutionItemProvider extends ModelElementItemProvider
-		implements
-			IEditingDomainItemProvider,
-			IStructuredItemContentProvider,
-			ITreeItemContentProvider,
-			IItemLabelProvider,
-			IItemPropertySource {
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -105,8 +101,7 @@ public class BugResolutionItemProvider extends ModelElementItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((BugResolution) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_BugResolution_type")
+		return label == null || label.length() == 0 ? getString("_UI_BugResolution_type")
 				: getString("_UI_BugResolution_type") + " " + label;
 	}
 
@@ -122,10 +117,10 @@ public class BugResolutionItemProvider extends ModelElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(BugResolution.class)) {
-			case BugPackage.BUG_RESOLUTION__RESOULTION_TYPE :
-				fireNotifyChanged(new ViewerNotification(notification,
-						notification.getNotifier(), false, true));
-				return;
+		case BugPackage.BUG_RESOLUTION__RESOULTION_TYPE:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

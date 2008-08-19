@@ -138,12 +138,12 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case OrganizationPackage.GROUP__ORG_UNITS :
-				if (orgUnits != null)
-					msgs = ((InternalEObject) orgUnits).eInverseRemove(this,
-							OrganizationPackage.ORG_UNIT__GROUP_MEMBERSHIPS,
-							OrgUnit.class, msgs);
-				return basicSetOrgUnits((OrgUnit) otherEnd, msgs);
+		case OrganizationPackage.GROUP__ORG_UNITS:
+			if (orgUnits != null)
+				msgs = ((InternalEObject) orgUnits).eInverseRemove(this,
+						OrganizationPackage.ORG_UNIT__GROUP_MEMBERSHIPS,
+						OrgUnit.class, msgs);
+			return basicSetOrgUnits((OrgUnit) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -157,8 +157,8 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case OrganizationPackage.GROUP__ORG_UNITS :
-				return basicSetOrgUnits(null, msgs);
+		case OrganizationPackage.GROUP__ORG_UNITS:
+			return basicSetOrgUnits(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -171,10 +171,10 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OrganizationPackage.GROUP__ORG_UNITS :
-				if (resolve)
-					return getOrgUnits();
-				return basicGetOrgUnits();
+		case OrganizationPackage.GROUP__ORG_UNITS:
+			if (resolve)
+				return getOrgUnits();
+			return basicGetOrgUnits();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -187,9 +187,9 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OrganizationPackage.GROUP__ORG_UNITS :
-				setOrgUnits((OrgUnit) newValue);
-				return;
+		case OrganizationPackage.GROUP__ORG_UNITS:
+			setOrgUnits((OrgUnit) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -202,9 +202,9 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OrganizationPackage.GROUP__ORG_UNITS :
-				setOrgUnits((OrgUnit) null);
-				return;
+		case OrganizationPackage.GROUP__ORG_UNITS:
+			setOrgUnits((OrgUnit) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -217,8 +217,8 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OrganizationPackage.GROUP__ORG_UNITS :
-				return orgUnits != null;
+		case OrganizationPackage.GROUP__ORG_UNITS:
+			return orgUnits != null;
 		}
 		return super.eIsSet(featureID);
 	}

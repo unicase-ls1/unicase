@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.model.document.*;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.DocumentPackage;
@@ -21,9 +22,8 @@ import org.unicase.model.document.LeafSection;
  * end-user-doc -->
  * @generated
  */
-public class DocumentFactoryImpl extends EFactoryImpl
-		implements
-			DocumentFactory {
+public class DocumentFactoryImpl extends EFactoryImpl implements
+		DocumentFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc --> <!--
@@ -60,13 +60,13 @@ public class DocumentFactoryImpl extends EFactoryImpl
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case DocumentPackage.LEAF_SECTION :
-				return createLeafSection();
-			case DocumentPackage.COMPOSITE_SECTION :
-				return createCompositeSection();
-			default :
-				throw new IllegalArgumentException("The class '"
-						+ eClass.getName() + "' is not a valid classifier");
+		case DocumentPackage.LEAF_SECTION:
+			return createLeafSection();
+		case DocumentPackage.COMPOSITE_SECTION:
+			return createCompositeSection();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 

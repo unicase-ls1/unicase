@@ -35,10 +35,7 @@ import org.unicase.model.util.ModelAdapterFactory;
  * @generated
  */
 public class ModelItemProviderAdapterFactory extends ModelAdapterFactory
-		implements
-			ComposeableAdapterFactory,
-			IChangeNotifier,
-			IDisposable {
+		implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -121,6 +118,29 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory
 		}
 
 		return readerInfoItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.Annotation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AnnotationItemProvider annotationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.Annotation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAnnotationAdapter() {
+		if (annotationItemProvider == null) {
+			annotationItemProvider = new AnnotationItemProvider(this);
+		}
+
+		return annotationItemProvider;
 	}
 
 	/**
@@ -272,6 +292,8 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory
 			projectItemProvider.dispose();
 		if (readerInfoItemProvider != null)
 			readerInfoItemProvider.dispose();
+		if (annotationItemProvider != null)
+			annotationItemProvider.dispose();
 		if (identifiableElementItemProvider != null)
 			identifiableElementItemProvider.dispose();
 		if (modelElementIdItemProvider != null)

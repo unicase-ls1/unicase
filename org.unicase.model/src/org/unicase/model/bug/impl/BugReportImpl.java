@@ -369,8 +369,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	 */
 	public OrgUnit getAssignee() {
 		OrgUnit assignee = basicGetAssignee();
-		return assignee != null && assignee.eIsProxy()
-				? (OrgUnit) eResolveProxy((InternalEObject) assignee)
+		return assignee != null && assignee.eIsProxy() ? (OrgUnit) eResolveProxy((InternalEObject) assignee)
 				: assignee;
 	}
 
@@ -539,23 +538,23 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE :
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetContainingWorkpackage((WorkPackage) otherEnd,
+		case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE:
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetContainingWorkpackage((WorkPackage) otherEnd, msgs);
+		case BugPackage.BUG_REPORT__PREDECESSORS:
+			if (predecessors != null)
+				msgs = ((InternalEObject) predecessors)
+						.eInverseRemove(this,
+								TaskPackage.WORK_ITEM__SUCCESSORS,
+								WorkItem.class, msgs);
+			return basicSetPredecessors((WorkItem) otherEnd, msgs);
+		case BugPackage.BUG_REPORT__SUCCESSORS:
+			if (successors != null)
+				msgs = ((InternalEObject) successors).eInverseRemove(this,
+						TaskPackage.WORK_ITEM__PREDECESSORS, WorkItem.class,
 						msgs);
-			case BugPackage.BUG_REPORT__PREDECESSORS :
-				if (predecessors != null)
-					msgs = ((InternalEObject) predecessors).eInverseRemove(
-							this, TaskPackage.WORK_ITEM__SUCCESSORS,
-							WorkItem.class, msgs);
-				return basicSetPredecessors((WorkItem) otherEnd, msgs);
-			case BugPackage.BUG_REPORT__SUCCESSORS :
-				if (successors != null)
-					msgs = ((InternalEObject) successors).eInverseRemove(this,
-							TaskPackage.WORK_ITEM__PREDECESSORS,
-							WorkItem.class, msgs);
-				return basicSetSuccessors((WorkItem) otherEnd, msgs);
+			return basicSetSuccessors((WorkItem) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -568,12 +567,12 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE :
-				return basicSetContainingWorkpackage(null, msgs);
-			case BugPackage.BUG_REPORT__PREDECESSORS :
-				return basicSetPredecessors(null, msgs);
-			case BugPackage.BUG_REPORT__SUCCESSORS :
-				return basicSetSuccessors(null, msgs);
+		case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE:
+			return basicSetContainingWorkpackage(null, msgs);
+		case BugPackage.BUG_REPORT__PREDECESSORS:
+			return basicSetPredecessors(null, msgs);
+		case BugPackage.BUG_REPORT__SUCCESSORS:
+			return basicSetSuccessors(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -586,10 +585,10 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	public NotificationChain eBasicRemoveFromContainerFeature(
 			NotificationChain msgs) {
 		switch (eContainerFeatureID) {
-			case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE :
-				return eInternalContainer().eInverseRemove(this,
-						TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
-						WorkPackage.class, msgs);
+		case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE:
+			return eInternalContainer().eInverseRemove(this,
+					TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
+					WorkPackage.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -601,36 +600,36 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE :
-				return getContainingWorkpackage();
-			case BugPackage.BUG_REPORT__ASSOCIATED_CHANGE_PACKAGES :
-				return getAssociatedChangePackages();
-			case BugPackage.BUG_REPORT__PREDECESSORS :
-				if (resolve)
-					return getPredecessors();
-				return basicGetPredecessors();
-			case BugPackage.BUG_REPORT__SUCCESSORS :
-				if (resolve)
-					return getSuccessors();
-				return basicGetSuccessors();
-			case BugPackage.BUG_REPORT__ASSIGNEE :
-				if (resolve)
-					return getAssignee();
-				return basicGetAssignee();
-			case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE :
-				return getStepsToReproduce();
-			case BugPackage.BUG_REPORT__STATUS :
-				return getStatus();
-			case BugPackage.BUG_REPORT__ASSIGNED_TO :
-				if (resolve)
-					return getAssignedTo();
-				return basicGetAssignedTo();
-			case BugPackage.BUG_REPORT__RESOLUTION :
-				if (resolve)
-					return getResolution();
-				return basicGetResolution();
-			case BugPackage.BUG_REPORT__SEVERITY :
-				return getSeverity();
+		case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE:
+			return getContainingWorkpackage();
+		case BugPackage.BUG_REPORT__ASSOCIATED_CHANGE_PACKAGES:
+			return getAssociatedChangePackages();
+		case BugPackage.BUG_REPORT__PREDECESSORS:
+			if (resolve)
+				return getPredecessors();
+			return basicGetPredecessors();
+		case BugPackage.BUG_REPORT__SUCCESSORS:
+			if (resolve)
+				return getSuccessors();
+			return basicGetSuccessors();
+		case BugPackage.BUG_REPORT__ASSIGNEE:
+			if (resolve)
+				return getAssignee();
+			return basicGetAssignee();
+		case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE:
+			return getStepsToReproduce();
+		case BugPackage.BUG_REPORT__STATUS:
+			return getStatus();
+		case BugPackage.BUG_REPORT__ASSIGNED_TO:
+			if (resolve)
+				return getAssignedTo();
+			return basicGetAssignedTo();
+		case BugPackage.BUG_REPORT__RESOLUTION:
+			if (resolve)
+				return getResolution();
+			return basicGetResolution();
+		case BugPackage.BUG_REPORT__SEVERITY:
+			return getSeverity();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -643,40 +642,39 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE :
-				setContainingWorkpackage((WorkPackage) newValue);
-				return;
-			case BugPackage.BUG_REPORT__ASSOCIATED_CHANGE_PACKAGES :
-				getAssociatedChangePackages().clear();
-				getAssociatedChangePackages().addAll(
-						(Collection<? extends ModelChangePackage>) newValue);
-				return;
-			case BugPackage.BUG_REPORT__PREDECESSORS :
-				setPredecessors((WorkItem) newValue);
-				return;
-			case BugPackage.BUG_REPORT__SUCCESSORS :
-				setSuccessors((WorkItem) newValue);
-				return;
-			case BugPackage.BUG_REPORT__ASSIGNEE :
-				setAssignee((OrgUnit) newValue);
-				return;
-			case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE :
-				getStepsToReproduce().clear();
-				getStepsToReproduce().addAll(
-						(Collection<? extends Step>) newValue);
-				return;
-			case BugPackage.BUG_REPORT__STATUS :
-				setStatus((BugStatus) newValue);
-				return;
-			case BugPackage.BUG_REPORT__ASSIGNED_TO :
-				setAssignedTo((OrgUnit) newValue);
-				return;
-			case BugPackage.BUG_REPORT__RESOLUTION :
-				setResolution((BugResolution) newValue);
-				return;
-			case BugPackage.BUG_REPORT__SEVERITY :
-				setSeverity((Severity) newValue);
-				return;
+		case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE:
+			setContainingWorkpackage((WorkPackage) newValue);
+			return;
+		case BugPackage.BUG_REPORT__ASSOCIATED_CHANGE_PACKAGES:
+			getAssociatedChangePackages().clear();
+			getAssociatedChangePackages().addAll(
+					(Collection<? extends ModelChangePackage>) newValue);
+			return;
+		case BugPackage.BUG_REPORT__PREDECESSORS:
+			setPredecessors((WorkItem) newValue);
+			return;
+		case BugPackage.BUG_REPORT__SUCCESSORS:
+			setSuccessors((WorkItem) newValue);
+			return;
+		case BugPackage.BUG_REPORT__ASSIGNEE:
+			setAssignee((OrgUnit) newValue);
+			return;
+		case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE:
+			getStepsToReproduce().clear();
+			getStepsToReproduce().addAll((Collection<? extends Step>) newValue);
+			return;
+		case BugPackage.BUG_REPORT__STATUS:
+			setStatus((BugStatus) newValue);
+			return;
+		case BugPackage.BUG_REPORT__ASSIGNED_TO:
+			setAssignedTo((OrgUnit) newValue);
+			return;
+		case BugPackage.BUG_REPORT__RESOLUTION:
+			setResolution((BugResolution) newValue);
+			return;
+		case BugPackage.BUG_REPORT__SEVERITY:
+			setSeverity((Severity) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -688,36 +686,36 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE :
-				setContainingWorkpackage((WorkPackage) null);
-				return;
-			case BugPackage.BUG_REPORT__ASSOCIATED_CHANGE_PACKAGES :
-				getAssociatedChangePackages().clear();
-				return;
-			case BugPackage.BUG_REPORT__PREDECESSORS :
-				setPredecessors((WorkItem) null);
-				return;
-			case BugPackage.BUG_REPORT__SUCCESSORS :
-				setSuccessors((WorkItem) null);
-				return;
-			case BugPackage.BUG_REPORT__ASSIGNEE :
-				setAssignee((OrgUnit) null);
-				return;
-			case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE :
-				getStepsToReproduce().clear();
-				return;
-			case BugPackage.BUG_REPORT__STATUS :
-				setStatus(STATUS_EDEFAULT);
-				return;
-			case BugPackage.BUG_REPORT__ASSIGNED_TO :
-				setAssignedTo((OrgUnit) null);
-				return;
-			case BugPackage.BUG_REPORT__RESOLUTION :
-				setResolution((BugResolution) null);
-				return;
-			case BugPackage.BUG_REPORT__SEVERITY :
-				setSeverity(SEVERITY_EDEFAULT);
-				return;
+		case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE:
+			setContainingWorkpackage((WorkPackage) null);
+			return;
+		case BugPackage.BUG_REPORT__ASSOCIATED_CHANGE_PACKAGES:
+			getAssociatedChangePackages().clear();
+			return;
+		case BugPackage.BUG_REPORT__PREDECESSORS:
+			setPredecessors((WorkItem) null);
+			return;
+		case BugPackage.BUG_REPORT__SUCCESSORS:
+			setSuccessors((WorkItem) null);
+			return;
+		case BugPackage.BUG_REPORT__ASSIGNEE:
+			setAssignee((OrgUnit) null);
+			return;
+		case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE:
+			getStepsToReproduce().clear();
+			return;
+		case BugPackage.BUG_REPORT__STATUS:
+			setStatus(STATUS_EDEFAULT);
+			return;
+		case BugPackage.BUG_REPORT__ASSIGNED_TO:
+			setAssignedTo((OrgUnit) null);
+			return;
+		case BugPackage.BUG_REPORT__RESOLUTION:
+			setResolution((BugResolution) null);
+			return;
+		case BugPackage.BUG_REPORT__SEVERITY:
+			setSeverity(SEVERITY_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -729,27 +727,27 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE :
-				return getContainingWorkpackage() != null;
-			case BugPackage.BUG_REPORT__ASSOCIATED_CHANGE_PACKAGES :
-				return associatedChangePackages != null
-						&& !associatedChangePackages.isEmpty();
-			case BugPackage.BUG_REPORT__PREDECESSORS :
-				return predecessors != null;
-			case BugPackage.BUG_REPORT__SUCCESSORS :
-				return successors != null;
-			case BugPackage.BUG_REPORT__ASSIGNEE :
-				return basicGetAssignee() != null;
-			case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE :
-				return stepsToReproduce != null && !stepsToReproduce.isEmpty();
-			case BugPackage.BUG_REPORT__STATUS :
-				return status != STATUS_EDEFAULT;
-			case BugPackage.BUG_REPORT__ASSIGNED_TO :
-				return assignedTo != null;
-			case BugPackage.BUG_REPORT__RESOLUTION :
-				return resolution != null;
-			case BugPackage.BUG_REPORT__SEVERITY :
-				return severity != SEVERITY_EDEFAULT;
+		case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE:
+			return getContainingWorkpackage() != null;
+		case BugPackage.BUG_REPORT__ASSOCIATED_CHANGE_PACKAGES:
+			return associatedChangePackages != null
+					&& !associatedChangePackages.isEmpty();
+		case BugPackage.BUG_REPORT__PREDECESSORS:
+			return predecessors != null;
+		case BugPackage.BUG_REPORT__SUCCESSORS:
+			return successors != null;
+		case BugPackage.BUG_REPORT__ASSIGNEE:
+			return basicGetAssignee() != null;
+		case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE:
+			return stepsToReproduce != null && !stepsToReproduce.isEmpty();
+		case BugPackage.BUG_REPORT__STATUS:
+			return status != STATUS_EDEFAULT;
+		case BugPackage.BUG_REPORT__ASSIGNED_TO:
+			return assignedTo != null;
+		case BugPackage.BUG_REPORT__RESOLUTION:
+			return resolution != null;
+		case BugPackage.BUG_REPORT__SEVERITY:
+			return severity != SEVERITY_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -762,10 +760,10 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == Assignable.class) {
 			switch (derivedFeatureID) {
-				case BugPackage.BUG_REPORT__ASSIGNEE :
-					return TaskPackage.ASSIGNABLE__ASSIGNEE;
-				default :
-					return -1;
+			case BugPackage.BUG_REPORT__ASSIGNEE:
+				return TaskPackage.ASSIGNABLE__ASSIGNEE;
+			default:
+				return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -779,10 +777,10 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == Assignable.class) {
 			switch (baseFeatureID) {
-				case TaskPackage.ASSIGNABLE__ASSIGNEE :
-					return BugPackage.BUG_REPORT__ASSIGNEE;
-				default :
-					return -1;
+			case TaskPackage.ASSIGNABLE__ASSIGNEE:
+				return BugPackage.BUG_REPORT__ASSIGNEE;
+			default:
+				return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);

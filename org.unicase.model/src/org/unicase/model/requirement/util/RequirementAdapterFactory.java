@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.rationale.Criterion;
+import org.unicase.model.requirement.*;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.ActorInstance;
 import org.unicase.model.requirement.FunctionalRequirement;
@@ -20,7 +21,9 @@ import org.unicase.model.requirement.NonFunctionalRequirement;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.Scenario;
 import org.unicase.model.requirement.Step;
+import org.unicase.model.requirement.SystemFunction;
 import org.unicase.model.requirement.UseCase;
+import org.unicase.model.requirement.UserTask;
 
 /**
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides
@@ -80,42 +83,62 @@ public class RequirementAdapterFactory extends AdapterFactoryImpl {
 				NonFunctionalRequirement object) {
 			return createNonFunctionalRequirementAdapter();
 		}
+
 		@Override
 		public Adapter caseFunctionalRequirement(FunctionalRequirement object) {
 			return createFunctionalRequirementAdapter();
 		}
+
 		@Override
 		public Adapter caseUseCase(UseCase object) {
 			return createUseCaseAdapter();
 		}
+
 		@Override
 		public Adapter caseScenario(Scenario object) {
 			return createScenarioAdapter();
 		}
+
 		@Override
 		public Adapter caseActor(Actor object) {
 			return createActorAdapter();
 		}
+
 		@Override
 		public Adapter caseActorInstance(ActorInstance object) {
 			return createActorInstanceAdapter();
 		}
+
 		@Override
 		public Adapter caseStep(Step object) {
 			return createStepAdapter();
 		}
+
+		@Override
+		public Adapter caseSystemFunction(SystemFunction object) {
+			return createSystemFunctionAdapter();
+		}
+
+		@Override
+		public Adapter caseUserTask(UserTask object) {
+			return createUserTaskAdapter();
+		}
+
 		@Override
 		public Adapter caseIdentifiableElement(IdentifiableElement object) {
 			return createIdentifiableElementAdapter();
 		}
+
 		@Override
 		public Adapter caseModelElement(ModelElement object) {
 			return createModelElementAdapter();
 		}
+
 		@Override
 		public Adapter caseCriterion(Criterion object) {
 			return createCriterionAdapter();
 		}
+
 		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
@@ -234,6 +257,34 @@ public class RequirementAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createStepAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.requirement.SystemFunction <em>System Function</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.requirement.SystemFunction
+	 * @generated
+	 */
+	public Adapter createSystemFunctionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.requirement.UserTask <em>User Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.requirement.UserTask
+	 * @generated
+	 */
+	public Adapter createUserTaskAdapter() {
 		return null;
 	}
 

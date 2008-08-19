@@ -32,13 +32,9 @@ import org.unicase.model.rationale.RationalePackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ProposalItemProvider extends ModelElementItemProvider
-		implements
-			IEditingDomainItemProvider,
-			IStructuredItemContentProvider,
-			ITreeItemContentProvider,
-			IItemLabelProvider,
-			IItemPropertySource {
+public class ProposalItemProvider extends ModelElementItemProvider implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -114,8 +110,7 @@ public class ProposalItemProvider extends ModelElementItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((Proposal) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_Proposal_type")
+		return label == null || label.length() == 0 ? getString("_UI_Proposal_type")
 				: getString("_UI_Proposal_type") + " " + label;
 	}
 
@@ -131,10 +126,10 @@ public class ProposalItemProvider extends ModelElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Proposal.class)) {
-			case RationalePackage.PROPOSAL__ASSESSMENTS :
-				fireNotifyChanged(new ViewerNotification(notification,
-						notification.getNotifier(), true, false));
-				return;
+		case RationalePackage.PROPOSAL__ASSESSMENTS:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

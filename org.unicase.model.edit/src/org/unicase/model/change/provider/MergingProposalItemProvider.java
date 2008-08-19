@@ -30,13 +30,9 @@ import org.unicase.model.rationale.provider.ProposalItemProvider;
  * --> <!-- end-user-doc -->
  * @generated
  */
-public class MergingProposalItemProvider extends ProposalItemProvider
-		implements
-			IEditingDomainItemProvider,
-			IStructuredItemContentProvider,
-			ITreeItemContentProvider,
-			IItemLabelProvider,
-			IItemPropertySource {
+public class MergingProposalItemProvider extends ProposalItemProvider implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -120,8 +116,7 @@ public class MergingProposalItemProvider extends ProposalItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((MergingProposal) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_MergingProposal_type")
+		return label == null || label.length() == 0 ? getString("_UI_MergingProposal_type")
 				: getString("_UI_MergingProposal_type") + " " + label;
 	}
 

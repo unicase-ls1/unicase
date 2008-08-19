@@ -395,21 +395,13 @@ public interface RequirementPackage extends EPackage {
 	int USE_CASE__STATE = ModelPackage.MODEL_ELEMENT__STATE;
 
 	/**
-	 * The feature id for the '<em><b>Steps</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USE_CASE__STEPS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Initiating Actor</b></em>' reference. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__INITIATING_ACTOR = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int USE_CASE__INITIATING_ACTOR = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Participating Actors</b></em>' reference list.
@@ -417,7 +409,61 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__PARTICIPATING_ACTORS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int USE_CASE__PARTICIPATING_ACTORS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Realized User Task</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USE_CASE__REALIZED_USER_TASK = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Precondition</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USE_CASE__PRECONDITION = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Use Case Steps</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USE_CASE__USE_CASE_STEPS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Postcondition</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USE_CASE__POSTCONDITION = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Rules</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USE_CASE__RULES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Exception</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USE_CASE__EXCEPTION = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Scenarios</b></em>' reference list. <!--
@@ -426,7 +472,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__SCENARIOS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int USE_CASE__SCENARIOS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Functional Requirements</b></em>' reference list.
@@ -434,7 +480,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__FUNCTIONAL_REQUIREMENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int USE_CASE__FUNCTIONAL_REQUIREMENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Non Functional Requirements</b></em>' reference list.
@@ -442,7 +488,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__NON_FUNCTIONAL_REQUIREMENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
+	int USE_CASE__NON_FUNCTIONAL_REQUIREMENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Identified Classes</b></em>' reference list.
@@ -450,7 +496,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__IDENTIFIED_CLASSES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 6;
+	int USE_CASE__IDENTIFIED_CLASSES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Included Use Cases</b></em>' reference list.
@@ -459,7 +505,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__INCLUDED_USE_CASES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 7;
+	int USE_CASE__INCLUDED_USE_CASES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Extended Use Cases</b></em>' reference list.
@@ -468,7 +514,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__EXTENDED_USE_CASES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 8;
+	int USE_CASE__EXTENDED_USE_CASES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 13;
 
 	/**
 	 * The number of structural features of the '<em>Use Case</em>' class. <!--
@@ -477,7 +523,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 9;
+	int USE_CASE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 14;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.requirement.impl.ScenarioImpl <em>Scenario</em>}' class.
@@ -691,12 +737,30 @@ public interface RequirementPackage extends EPackage {
 	int ACTOR__STATE = ModelPackage.MODEL_ELEMENT__STATE;
 
 	/**
+	 * The feature id for the '<em><b>Initiated User Task</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTOR__INITIATED_USER_TASK = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Participated User Tasks</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTOR__PARTICIPATED_USER_TASKS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Initiated Use Cases</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR__INITIATED_USE_CASES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int ACTOR__INITIATED_USE_CASES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Participated Use Cases</b></em>' reference list.
@@ -704,7 +768,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR__PARTICIPATED_USE_CASES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int ACTOR__PARTICIPATED_USE_CASES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Instances</b></em>' reference list. <!--
@@ -713,7 +777,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR__INSTANCES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int ACTOR__INSTANCES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Actor</em>' class. <!--
@@ -722,7 +786,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int ACTOR_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.requirement.impl.ActorInstanceImpl <em>Actor Instance</em>}' class.
@@ -921,13 +985,267 @@ public interface RequirementPackage extends EPackage {
 	int STEP__USER_STEP = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Included Use Case</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP__INCLUDED_USE_CASE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Included System Function</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP__INCLUDED_SYSTEM_FUNCTION = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Step</em>' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int STEP_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int STEP_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.model.requirement.impl.SystemFunctionImpl <em>System Function</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.requirement.impl.SystemFunctionImpl
+	 * @see org.unicase.model.requirement.impl.RequirementPackageImpl#getSystemFunction()
+	 * @generated
+	 */
+	int SYSTEM_FUNCTION = 7;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_FUNCTION__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_FUNCTION__NAME = ModelPackage.MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_FUNCTION__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_FUNCTION__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_FUNCTION__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_FUNCTION__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_FUNCTION__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_FUNCTION__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Input</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_FUNCTION__INPUT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Output</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_FUNCTION__OUTPUT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Exception</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_FUNCTION__EXCEPTION = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>System Function</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_FUNCTION_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.model.requirement.impl.UserTaskImpl <em>User Task</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.requirement.impl.UserTaskImpl
+	 * @see org.unicase.model.requirement.impl.RequirementPackageImpl#getUserTask()
+	 * @generated
+	 */
+	int USER_TASK = 8;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_TASK__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_TASK__NAME = ModelPackage.MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_TASK__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_TASK__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_TASK__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_TASK__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_TASK__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_TASK__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Initiating Actor</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_TASK__INITIATING_ACTOR = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Participating Actor</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_TASK__PARTICIPATING_ACTOR = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Realizing Use Cases</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_TASK__REALIZING_USE_CASES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>User Task</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_TASK_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.requirement.NonFunctionalRequirement <em>Non Functional Requirement</em>}'.
@@ -1058,16 +1376,6 @@ public interface RequirementPackage extends EPackage {
 	EClass getUseCase();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.model.requirement.UseCase#getSteps <em>Steps</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Steps</em>'.
-	 * @see org.unicase.model.requirement.UseCase#getSteps()
-	 * @see #getUseCase()
-	 * @generated
-	 */
-	EReference getUseCase_Steps();
-
-	/**
 	 * Returns the meta object for the reference '
 	 * {@link org.unicase.model.requirement.UseCase#getInitiatingActor
 	 * <em>Initiating Actor</em>}'. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1160,6 +1468,72 @@ public interface RequirementPackage extends EPackage {
 	EReference getUseCase_ParticipatingActors();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.unicase.model.requirement.UseCase#getRealizedUserTask <em>Realized User Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Realized User Task</em>'.
+	 * @see org.unicase.model.requirement.UseCase#getRealizedUserTask()
+	 * @see #getUseCase()
+	 * @generated
+	 */
+	EReference getUseCase_RealizedUserTask();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.requirement.UseCase#getPrecondition <em>Precondition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Precondition</em>'.
+	 * @see org.unicase.model.requirement.UseCase#getPrecondition()
+	 * @see #getUseCase()
+	 * @generated
+	 */
+	EAttribute getUseCase_Precondition();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.requirement.UseCase#getUseCaseSteps <em>Use Case Steps</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Use Case Steps</em>'.
+	 * @see org.unicase.model.requirement.UseCase#getUseCaseSteps()
+	 * @see #getUseCase()
+	 * @generated
+	 */
+	EReference getUseCase_UseCaseSteps();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.requirement.UseCase#getPostcondition <em>Postcondition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Postcondition</em>'.
+	 * @see org.unicase.model.requirement.UseCase#getPostcondition()
+	 * @see #getUseCase()
+	 * @generated
+	 */
+	EAttribute getUseCase_Postcondition();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.requirement.UseCase#getRules <em>Rules</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Rules</em>'.
+	 * @see org.unicase.model.requirement.UseCase#getRules()
+	 * @see #getUseCase()
+	 * @generated
+	 */
+	EAttribute getUseCase_Rules();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.requirement.UseCase#getException <em>Exception</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Exception</em>'.
+	 * @see org.unicase.model.requirement.UseCase#getException()
+	 * @see #getUseCase()
+	 * @generated
+	 */
+	EAttribute getUseCase_Exception();
+
+	/**
 	 * Returns the meta object for class '
 	 * {@link org.unicase.model.requirement.Scenario <em>Scenario</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -1245,6 +1619,28 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getActor();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.model.requirement.Actor#getInitiatedUserTask <em>Initiated User Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Initiated User Task</em>'.
+	 * @see org.unicase.model.requirement.Actor#getInitiatedUserTask()
+	 * @see #getActor()
+	 * @generated
+	 */
+	EReference getActor_InitiatedUserTask();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.requirement.Actor#getParticipatedUserTasks <em>Participated User Tasks</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Participated User Tasks</em>'.
+	 * @see org.unicase.model.requirement.Actor#getParticipatedUserTasks()
+	 * @see #getActor()
+	 * @generated
+	 */
+	EReference getActor_ParticipatedUserTasks();
 
 	/**
 	 * Returns the meta object for the reference list '
@@ -1348,6 +1744,114 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getStep_UserStep();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.model.requirement.Step#getIncludedUseCase <em>Included Use Case</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Included Use Case</em>'.
+	 * @see org.unicase.model.requirement.Step#getIncludedUseCase()
+	 * @see #getStep()
+	 * @generated
+	 */
+	EReference getStep_IncludedUseCase();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.model.requirement.Step#getIncludedSystemFunction <em>Included System Function</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Included System Function</em>'.
+	 * @see org.unicase.model.requirement.Step#getIncludedSystemFunction()
+	 * @see #getStep()
+	 * @generated
+	 */
+	EReference getStep_IncludedSystemFunction();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.model.requirement.SystemFunction <em>System Function</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>System Function</em>'.
+	 * @see org.unicase.model.requirement.SystemFunction
+	 * @generated
+	 */
+	EClass getSystemFunction();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.requirement.SystemFunction#getInput <em>Input</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Input</em>'.
+	 * @see org.unicase.model.requirement.SystemFunction#getInput()
+	 * @see #getSystemFunction()
+	 * @generated
+	 */
+	EAttribute getSystemFunction_Input();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.requirement.SystemFunction#getOutput <em>Output</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Output</em>'.
+	 * @see org.unicase.model.requirement.SystemFunction#getOutput()
+	 * @see #getSystemFunction()
+	 * @generated
+	 */
+	EAttribute getSystemFunction_Output();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.requirement.SystemFunction#getException <em>Exception</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Exception</em>'.
+	 * @see org.unicase.model.requirement.SystemFunction#getException()
+	 * @see #getSystemFunction()
+	 * @generated
+	 */
+	EAttribute getSystemFunction_Exception();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.model.requirement.UserTask <em>User Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>User Task</em>'.
+	 * @see org.unicase.model.requirement.UserTask
+	 * @generated
+	 */
+	EClass getUserTask();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.model.requirement.UserTask#getInitiatingActor <em>Initiating Actor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Initiating Actor</em>'.
+	 * @see org.unicase.model.requirement.UserTask#getInitiatingActor()
+	 * @see #getUserTask()
+	 * @generated
+	 */
+	EReference getUserTask_InitiatingActor();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.requirement.UserTask#getParticipatingActor <em>Participating Actor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Participating Actor</em>'.
+	 * @see org.unicase.model.requirement.UserTask#getParticipatingActor()
+	 * @see #getUserTask()
+	 * @generated
+	 */
+	EReference getUserTask_ParticipatingActor();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.requirement.UserTask#getRealizingUseCases <em>Realizing Use Cases</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Realizing Use Cases</em>'.
+	 * @see org.unicase.model.requirement.UserTask#getRealizingUseCases()
+	 * @see #getUserTask()
+	 * @generated
+	 */
+	EReference getUserTask_RealizingUseCases();
 
 	/**
 	 * Returns the factory that creates the instances of the model. <!--
@@ -1470,12 +1974,6 @@ public interface RequirementPackage extends EPackage {
 		 */
 		EClass USE_CASE = eINSTANCE.getUseCase();
 		/**
-		 * The meta object literal for the '<em><b>Steps</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference USE_CASE__STEPS = eINSTANCE.getUseCase_Steps();
-		/**
 		 * The meta object literal for the '<em><b>Initiating Actor</b></em>' reference feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
@@ -1536,6 +2034,51 @@ public interface RequirementPackage extends EPackage {
 		 */
 		EReference USE_CASE__PARTICIPATING_ACTORS = eINSTANCE
 				.getUseCase_ParticipatingActors();
+		/**
+		 * The meta object literal for the '<em><b>Realized User Task</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USE_CASE__REALIZED_USER_TASK = eINSTANCE
+				.getUseCase_RealizedUserTask();
+		/**
+		 * The meta object literal for the '<em><b>Precondition</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USE_CASE__PRECONDITION = eINSTANCE.getUseCase_Precondition();
+		/**
+		 * The meta object literal for the '<em><b>Use Case Steps</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USE_CASE__USE_CASE_STEPS = eINSTANCE
+				.getUseCase_UseCaseSteps();
+		/**
+		 * The meta object literal for the '<em><b>Postcondition</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USE_CASE__POSTCONDITION = eINSTANCE
+				.getUseCase_Postcondition();
+		/**
+		 * The meta object literal for the '<em><b>Rules</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USE_CASE__RULES = eINSTANCE.getUseCase_Rules();
+		/**
+		 * The meta object literal for the '<em><b>Exception</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USE_CASE__EXCEPTION = eINSTANCE.getUseCase_Exception();
 		/**
 		 * The meta object literal for the '
 		 * {@link org.unicase.model.requirement.impl.ScenarioImpl
@@ -1602,6 +2145,22 @@ public interface RequirementPackage extends EPackage {
 		 * @generated
 		 */
 		EClass ACTOR = eINSTANCE.getActor();
+		/**
+		 * The meta object literal for the '<em><b>Initiated User Task</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ACTOR__INITIATED_USER_TASK = eINSTANCE
+				.getActor_InitiatedUserTask();
+		/**
+		 * The meta object literal for the '<em><b>Participated User Tasks</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ACTOR__PARTICIPATED_USER_TASKS = eINSTANCE
+				.getActor_ParticipatedUserTasks();
 		/**
 		 * The meta object literal for the '<em><b>Initiated Use Cases</b></em>' reference list feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1670,6 +2229,87 @@ public interface RequirementPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute STEP__USER_STEP = eINSTANCE.getStep_UserStep();
+		/**
+		 * The meta object literal for the '<em><b>Included Use Case</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STEP__INCLUDED_USE_CASE = eINSTANCE
+				.getStep_IncludedUseCase();
+		/**
+		 * The meta object literal for the '<em><b>Included System Function</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STEP__INCLUDED_SYSTEM_FUNCTION = eINSTANCE
+				.getStep_IncludedSystemFunction();
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.requirement.impl.SystemFunctionImpl <em>System Function</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.requirement.impl.SystemFunctionImpl
+		 * @see org.unicase.model.requirement.impl.RequirementPackageImpl#getSystemFunction()
+		 * @generated
+		 */
+		EClass SYSTEM_FUNCTION = eINSTANCE.getSystemFunction();
+		/**
+		 * The meta object literal for the '<em><b>Input</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SYSTEM_FUNCTION__INPUT = eINSTANCE.getSystemFunction_Input();
+		/**
+		 * The meta object literal for the '<em><b>Output</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SYSTEM_FUNCTION__OUTPUT = eINSTANCE
+				.getSystemFunction_Output();
+		/**
+		 * The meta object literal for the '<em><b>Exception</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SYSTEM_FUNCTION__EXCEPTION = eINSTANCE
+				.getSystemFunction_Exception();
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.requirement.impl.UserTaskImpl <em>User Task</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.requirement.impl.UserTaskImpl
+		 * @see org.unicase.model.requirement.impl.RequirementPackageImpl#getUserTask()
+		 * @generated
+		 */
+		EClass USER_TASK = eINSTANCE.getUserTask();
+		/**
+		 * The meta object literal for the '<em><b>Initiating Actor</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USER_TASK__INITIATING_ACTOR = eINSTANCE
+				.getUserTask_InitiatingActor();
+		/**
+		 * The meta object literal for the '<em><b>Participating Actor</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USER_TASK__PARTICIPATING_ACTOR = eINSTANCE
+				.getUserTask_ParticipatingActor();
+		/**
+		 * The meta object literal for the '<em><b>Realizing Use Cases</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USER_TASK__REALIZING_USE_CASES = eINSTANCE
+				.getUserTask_RealizingUseCases();
 
 	}
 

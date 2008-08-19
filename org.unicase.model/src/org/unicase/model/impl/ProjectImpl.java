@@ -165,9 +165,9 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ModelPackage.PROJECT__MODEL_ELEMENTS :
-				return ((InternalEList<?>) getModelElements()).basicRemove(
-						otherEnd, msgs);
+		case ModelPackage.PROJECT__MODEL_ELEMENTS:
+			return ((InternalEList<?>) getModelElements()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -179,8 +179,8 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ModelPackage.PROJECT__MODEL_ELEMENTS :
-				return getModelElements();
+		case ModelPackage.PROJECT__MODEL_ELEMENTS:
+			return getModelElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -193,11 +193,11 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ModelPackage.PROJECT__MODEL_ELEMENTS :
-				getModelElements().clear();
-				getModelElements().addAll(
-						(Collection<? extends ModelElement>) newValue);
-				return;
+		case ModelPackage.PROJECT__MODEL_ELEMENTS:
+			getModelElements().clear();
+			getModelElements().addAll(
+					(Collection<? extends ModelElement>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -209,9 +209,9 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ModelPackage.PROJECT__MODEL_ELEMENTS :
-				getModelElements().clear();
-				return;
+		case ModelPackage.PROJECT__MODEL_ELEMENTS:
+			getModelElements().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -223,8 +223,8 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ModelPackage.PROJECT__MODEL_ELEMENTS :
-				return modelElements != null && !modelElements.isEmpty();
+		case ModelPackage.PROJECT__MODEL_ELEMENTS:
+			return modelElements != null && !modelElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

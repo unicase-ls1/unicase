@@ -251,8 +251,7 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 	 */
 	public void setVisibility(VisibilityType newVisibility) {
 		VisibilityType oldVisibility = visibility;
-		visibility = newVisibility == null
-				? VISIBILITY_EDEFAULT
+		visibility = newVisibility == null ? VISIBILITY_EDEFAULT
 				: newVisibility;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
@@ -481,11 +480,11 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ClassesPackage.ATTRIBUTE__DEFINING_CLASS :
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetDefiningClass(
-						(org.unicase.model.classes.Class) otherEnd, msgs);
+		case ClassesPackage.ATTRIBUTE__DEFINING_CLASS:
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetDefiningClass(
+					(org.unicase.model.classes.Class) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -499,8 +498,8 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ClassesPackage.ATTRIBUTE__DEFINING_CLASS :
-				return basicSetDefiningClass(null, msgs);
+		case ClassesPackage.ATTRIBUTE__DEFINING_CLASS:
+			return basicSetDefiningClass(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -514,10 +513,10 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 	public NotificationChain eBasicRemoveFromContainerFeature(
 			NotificationChain msgs) {
 		switch (eContainerFeatureID) {
-			case ClassesPackage.ATTRIBUTE__DEFINING_CLASS :
-				return eInternalContainer().eInverseRemove(this,
-						ClassesPackage.CLASS__ATTRIBUTES,
-						org.unicase.model.classes.Class.class, msgs);
+		case ClassesPackage.ATTRIBUTE__DEFINING_CLASS:
+			return eInternalContainer().eInverseRemove(this,
+					ClassesPackage.CLASS__ATTRIBUTES,
+					org.unicase.model.classes.Class.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -530,22 +529,22 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ClassesPackage.ATTRIBUTE__DEFINING_CLASS :
-				return getDefiningClass();
-			case ClassesPackage.ATTRIBUTE__VISIBILITY :
-				return getVisibility();
-			case ClassesPackage.ATTRIBUTE__SCOPE :
-				return getScope();
-			case ClassesPackage.ATTRIBUTE__SIGNATURE :
-				return getSignature();
-			case ClassesPackage.ATTRIBUTE__TYPE :
-				return getType();
-			case ClassesPackage.ATTRIBUTE__DEFAULT_VALUE :
-				return getDefaultValue();
-			case ClassesPackage.ATTRIBUTE__PROPERTIES :
-				return getProperties();
-			case ClassesPackage.ATTRIBUTE__LABEL :
-				return getLabel();
+		case ClassesPackage.ATTRIBUTE__DEFINING_CLASS:
+			return getDefiningClass();
+		case ClassesPackage.ATTRIBUTE__VISIBILITY:
+			return getVisibility();
+		case ClassesPackage.ATTRIBUTE__SCOPE:
+			return getScope();
+		case ClassesPackage.ATTRIBUTE__SIGNATURE:
+			return getSignature();
+		case ClassesPackage.ATTRIBUTE__TYPE:
+			return getType();
+		case ClassesPackage.ATTRIBUTE__DEFAULT_VALUE:
+			return getDefaultValue();
+		case ClassesPackage.ATTRIBUTE__PROPERTIES:
+			return getProperties();
+		case ClassesPackage.ATTRIBUTE__LABEL:
+			return getLabel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -558,27 +557,27 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ClassesPackage.ATTRIBUTE__DEFINING_CLASS :
-				setDefiningClass((org.unicase.model.classes.Class) newValue);
-				return;
-			case ClassesPackage.ATTRIBUTE__VISIBILITY :
-				setVisibility((VisibilityType) newValue);
-				return;
-			case ClassesPackage.ATTRIBUTE__SCOPE :
-				setScope((ScopeType) newValue);
-				return;
-			case ClassesPackage.ATTRIBUTE__TYPE :
-				setType((String) newValue);
-				return;
-			case ClassesPackage.ATTRIBUTE__DEFAULT_VALUE :
-				setDefaultValue((String) newValue);
-				return;
-			case ClassesPackage.ATTRIBUTE__PROPERTIES :
-				setProperties((String) newValue);
-				return;
-			case ClassesPackage.ATTRIBUTE__LABEL :
-				setLabel((String) newValue);
-				return;
+		case ClassesPackage.ATTRIBUTE__DEFINING_CLASS:
+			setDefiningClass((org.unicase.model.classes.Class) newValue);
+			return;
+		case ClassesPackage.ATTRIBUTE__VISIBILITY:
+			setVisibility((VisibilityType) newValue);
+			return;
+		case ClassesPackage.ATTRIBUTE__SCOPE:
+			setScope((ScopeType) newValue);
+			return;
+		case ClassesPackage.ATTRIBUTE__TYPE:
+			setType((String) newValue);
+			return;
+		case ClassesPackage.ATTRIBUTE__DEFAULT_VALUE:
+			setDefaultValue((String) newValue);
+			return;
+		case ClassesPackage.ATTRIBUTE__PROPERTIES:
+			setProperties((String) newValue);
+			return;
+		case ClassesPackage.ATTRIBUTE__LABEL:
+			setLabel((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -591,27 +590,27 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ClassesPackage.ATTRIBUTE__DEFINING_CLASS :
-				setDefiningClass((org.unicase.model.classes.Class) null);
-				return;
-			case ClassesPackage.ATTRIBUTE__VISIBILITY :
-				setVisibility(VISIBILITY_EDEFAULT);
-				return;
-			case ClassesPackage.ATTRIBUTE__SCOPE :
-				setScope(SCOPE_EDEFAULT);
-				return;
-			case ClassesPackage.ATTRIBUTE__TYPE :
-				setType(TYPE_EDEFAULT);
-				return;
-			case ClassesPackage.ATTRIBUTE__DEFAULT_VALUE :
-				setDefaultValue(DEFAULT_VALUE_EDEFAULT);
-				return;
-			case ClassesPackage.ATTRIBUTE__PROPERTIES :
-				setProperties(PROPERTIES_EDEFAULT);
-				return;
-			case ClassesPackage.ATTRIBUTE__LABEL :
-				setLabel(LABEL_EDEFAULT);
-				return;
+		case ClassesPackage.ATTRIBUTE__DEFINING_CLASS:
+			setDefiningClass((org.unicase.model.classes.Class) null);
+			return;
+		case ClassesPackage.ATTRIBUTE__VISIBILITY:
+			setVisibility(VISIBILITY_EDEFAULT);
+			return;
+		case ClassesPackage.ATTRIBUTE__SCOPE:
+			setScope(SCOPE_EDEFAULT);
+			return;
+		case ClassesPackage.ATTRIBUTE__TYPE:
+			setType(TYPE_EDEFAULT);
+			return;
+		case ClassesPackage.ATTRIBUTE__DEFAULT_VALUE:
+			setDefaultValue(DEFAULT_VALUE_EDEFAULT);
+			return;
+		case ClassesPackage.ATTRIBUTE__PROPERTIES:
+			setProperties(PROPERTIES_EDEFAULT);
+			return;
+		case ClassesPackage.ATTRIBUTE__LABEL:
+			setLabel(LABEL_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -624,30 +623,27 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ClassesPackage.ATTRIBUTE__DEFINING_CLASS :
-				return getDefiningClass() != null;
-			case ClassesPackage.ATTRIBUTE__VISIBILITY :
-				return visibility != VISIBILITY_EDEFAULT;
-			case ClassesPackage.ATTRIBUTE__SCOPE :
-				return scope != SCOPE_EDEFAULT;
-			case ClassesPackage.ATTRIBUTE__SIGNATURE :
-				return SIGNATURE_EDEFAULT == null
-						? getSignature() != null
-						: !SIGNATURE_EDEFAULT.equals(getSignature());
-			case ClassesPackage.ATTRIBUTE__TYPE :
-				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT
-						.equals(type);
-			case ClassesPackage.ATTRIBUTE__DEFAULT_VALUE :
-				return DEFAULT_VALUE_EDEFAULT == null
-						? defaultValue != null
-						: !DEFAULT_VALUE_EDEFAULT.equals(defaultValue);
-			case ClassesPackage.ATTRIBUTE__PROPERTIES :
-				return PROPERTIES_EDEFAULT == null
-						? properties != null
-						: !PROPERTIES_EDEFAULT.equals(properties);
-			case ClassesPackage.ATTRIBUTE__LABEL :
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT
-						.equals(label);
+		case ClassesPackage.ATTRIBUTE__DEFINING_CLASS:
+			return getDefiningClass() != null;
+		case ClassesPackage.ATTRIBUTE__VISIBILITY:
+			return visibility != VISIBILITY_EDEFAULT;
+		case ClassesPackage.ATTRIBUTE__SCOPE:
+			return scope != SCOPE_EDEFAULT;
+		case ClassesPackage.ATTRIBUTE__SIGNATURE:
+			return SIGNATURE_EDEFAULT == null ? getSignature() != null
+					: !SIGNATURE_EDEFAULT.equals(getSignature());
+		case ClassesPackage.ATTRIBUTE__TYPE:
+			return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT
+					.equals(type);
+		case ClassesPackage.ATTRIBUTE__DEFAULT_VALUE:
+			return DEFAULT_VALUE_EDEFAULT == null ? defaultValue != null
+					: !DEFAULT_VALUE_EDEFAULT.equals(defaultValue);
+		case ClassesPackage.ATTRIBUTE__PROPERTIES:
+			return PROPERTIES_EDEFAULT == null ? properties != null
+					: !PROPERTIES_EDEFAULT.equals(properties);
+		case ClassesPackage.ATTRIBUTE__LABEL:
+			return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT
+					.equals(label);
 		}
 		return super.eIsSet(featureID);
 	}

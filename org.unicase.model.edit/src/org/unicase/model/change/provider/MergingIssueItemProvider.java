@@ -32,13 +32,9 @@ import org.unicase.model.rationale.provider.IssueItemProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MergingIssueItemProvider extends IssueItemProvider
-		implements
-			IEditingDomainItemProvider,
-			IStructuredItemContentProvider,
-			ITreeItemContentProvider,
-			IItemLabelProvider,
-			IItemPropertySource {
+public class MergingIssueItemProvider extends IssueItemProvider implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -105,8 +101,7 @@ public class MergingIssueItemProvider extends IssueItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((MergingIssue) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_MergingIssue_type")
+		return label == null || label.length() == 0 ? getString("_UI_MergingIssue_type")
 				: getString("_UI_MergingIssue_type") + " " + label;
 	}
 
@@ -122,10 +117,10 @@ public class MergingIssueItemProvider extends IssueItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(MergingIssue.class)) {
-			case ChangePackage.MERGING_ISSUE__RESOLVING_REVISION :
-				fireNotifyChanged(new ViewerNotification(notification,
-						notification.getNotifier(), false, true));
-				return;
+		case ChangePackage.MERGING_ISSUE__RESOLVING_REVISION:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

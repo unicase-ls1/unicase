@@ -177,9 +177,9 @@ public enum ActivityType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ActivityType[] VALUES_ARRAY = new ActivityType[]{
+	private static final ActivityType[] VALUES_ARRAY = new ActivityType[] {
 			MANAGEMENT, ANALYSIS, SYSTEM_DESIGN, OBJECT_DESIGN, IMPLEMENTATION,
-			TESTING,};
+			TESTING, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Activity Type</b></em>' enumerators.
@@ -230,18 +230,18 @@ public enum ActivityType implements Enumerator {
 	 */
 	public static ActivityType get(int value) {
 		switch (value) {
-			case MANAGEMENT_VALUE :
-				return MANAGEMENT;
-			case ANALYSIS_VALUE :
-				return ANALYSIS;
-			case SYSTEM_DESIGN_VALUE :
-				return SYSTEM_DESIGN;
-			case OBJECT_DESIGN_VALUE :
-				return OBJECT_DESIGN;
-			case IMPLEMENTATION_VALUE :
-				return IMPLEMENTATION;
-			case TESTING_VALUE :
-				return TESTING;
+		case MANAGEMENT_VALUE:
+			return MANAGEMENT;
+		case ANALYSIS_VALUE:
+			return ANALYSIS;
+		case SYSTEM_DESIGN_VALUE:
+			return SYSTEM_DESIGN;
+		case OBJECT_DESIGN_VALUE:
+			return OBJECT_DESIGN;
+		case IMPLEMENTATION_VALUE:
+			return IMPLEMENTATION;
+		case TESTING_VALUE:
+			return TESTING;
 		}
 		return null;
 	}

@@ -11,6 +11,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.model.*;
+import org.unicase.model.Annotation;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelFactory;
@@ -60,17 +62,19 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case ModelPackage.PROJECT :
-				return createProject();
-			case ModelPackage.READER_INFO :
-				return createReaderInfo();
-			case ModelPackage.IDENTIFIABLE_ELEMENT :
-				return createIdentifiableElement();
-			case ModelPackage.MODEL_ELEMENT_ID :
-				return createModelElementId();
-			default :
-				throw new IllegalArgumentException("The class '"
-						+ eClass.getName() + "' is not a valid classifier");
+		case ModelPackage.PROJECT:
+			return createProject();
+		case ModelPackage.READER_INFO:
+			return createReaderInfo();
+		case ModelPackage.ANNOTATION:
+			return createAnnotation();
+		case ModelPackage.IDENTIFIABLE_ELEMENT:
+			return createIdentifiableElement();
+		case ModelPackage.MODEL_ELEMENT_ID:
+			return createModelElementId();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
@@ -90,6 +94,16 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	public ReaderInfo createReaderInfo() {
 		ReaderInfoImpl readerInfo = new ReaderInfoImpl();
 		return readerInfo;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Annotation createAnnotation() {
+		AnnotationImpl annotation = new AnnotationImpl();
+		return annotation;
 	}
 
 	/**

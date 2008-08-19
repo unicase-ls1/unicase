@@ -29,13 +29,9 @@ import org.unicase.model.classes.ClassesPackage;
  * end-user-doc -->
  * @generated
  */
-public class ClassItemProvider extends PackageElementItemProvider
-		implements
-			IEditingDomainItemProvider,
-			IStructuredItemContentProvider,
-			ITreeItemContentProvider,
-			IItemLabelProvider,
-			IItemPropertySource {
+public class ClassItemProvider extends PackageElementItemProvider implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -254,11 +250,11 @@ public class ClassItemProvider extends PackageElementItemProvider
 
 		switch (notification
 				.getFeatureID(org.unicase.model.classes.Class.class)) {
-			case ClassesPackage.CLASS__ATTRIBUTES :
-			case ClassesPackage.CLASS__METHODS :
-				fireNotifyChanged(new ViewerNotification(notification,
-						notification.getNotifier(), true, false));
-				return;
+		case ClassesPackage.CLASS__ATTRIBUTES:
+		case ClassesPackage.CLASS__METHODS:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

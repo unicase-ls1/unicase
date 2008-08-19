@@ -16,6 +16,8 @@ import org.unicase.model.ModelElement;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.unicase.model.requirement.Actor#getInitiatedUserTask <em>Initiated User Task</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.Actor#getParticipatedUserTasks <em>Participated User Tasks</em>}</li>
  *   <li>{@link org.unicase.model.requirement.Actor#getInitiatedUseCases <em>Initiated Use Cases</em>}</li>
  *   <li>{@link org.unicase.model.requirement.Actor#getParticipatedUseCases <em>Participated Use Cases</em>}</li>
  *   <li>{@link org.unicase.model.requirement.Actor#getInstances <em>Instances</em>}</li>
@@ -27,6 +29,52 @@ import org.unicase.model.ModelElement;
  * @generated
  */
 public interface Actor extends ModelElement {
+	/**
+	 * Returns the value of the '<em><b>Initiated User Task</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.UserTask#getInitiatingActor <em>Initiating Actor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Initiated User Task</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Initiated User Task</em>' reference.
+	 * @see #setInitiatedUserTask(UserTask)
+	 * @see org.unicase.model.requirement.RequirementPackage#getActor_InitiatedUserTask()
+	 * @see org.unicase.model.requirement.UserTask#getInitiatingActor
+	 * @model opposite="initiatingActor" keys="identifier"
+	 * @generated
+	 */
+	UserTask getInitiatedUserTask();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.requirement.Actor#getInitiatedUserTask <em>Initiated User Task</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Initiated User Task</em>' reference.
+	 * @see #getInitiatedUserTask()
+	 * @generated
+	 */
+	void setInitiatedUserTask(UserTask value);
+
+	/**
+	 * Returns the value of the '<em><b>Participated User Tasks</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.requirement.UserTask}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.UserTask#getParticipatingActor <em>Participating Actor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Participated User Tasks</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Participated User Tasks</em>' reference list.
+	 * @see org.unicase.model.requirement.RequirementPackage#getActor_ParticipatedUserTasks()
+	 * @see org.unicase.model.requirement.UserTask#getParticipatingActor
+	 * @model opposite="participatingActor" keys="identifier"
+	 * @generated
+	 */
+	EList<UserTask> getParticipatedUserTasks();
+
 	/**
 	 * Returns the value of the '<em><b>Initiated Use Cases</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.model.requirement.UseCase}.
