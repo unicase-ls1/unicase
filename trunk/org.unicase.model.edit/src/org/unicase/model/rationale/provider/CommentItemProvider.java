@@ -30,13 +30,9 @@ import org.unicase.model.rationale.RationalePackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class CommentItemProvider extends AnnotationItemProvider
-		implements
-			IEditingDomainItemProvider,
-			IStructuredItemContentProvider,
-			ITreeItemContentProvider,
-			IItemLabelProvider,
-			IItemPropertySource {
+public class CommentItemProvider extends AnnotationItemProvider implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -100,8 +96,7 @@ public class CommentItemProvider extends AnnotationItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((Comment) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_Comment_type")
+		return label == null || label.length() == 0 ? getString("_UI_Comment_type")
 				: getString("_UI_Comment_type") + " " + label;
 	}
 

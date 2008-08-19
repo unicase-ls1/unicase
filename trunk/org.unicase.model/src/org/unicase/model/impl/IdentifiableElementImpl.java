@@ -27,9 +27,8 @@ import org.unicase.model.ModelPackage;
  *
  * @generated
  */
-public class IdentifiableElementImpl extends EObjectImpl
-		implements
-			IdentifiableElement {
+public class IdentifiableElementImpl extends EObjectImpl implements
+		IdentifiableElement {
 	/**
 	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -101,8 +100,8 @@ public class IdentifiableElementImpl extends EObjectImpl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ModelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER :
-				return getIdentifier();
+		case ModelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER:
+			return getIdentifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -115,9 +114,9 @@ public class IdentifiableElementImpl extends EObjectImpl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ModelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER :
-				setIdentifier((String) newValue);
-				return;
+		case ModelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER:
+			setIdentifier((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -130,9 +129,9 @@ public class IdentifiableElementImpl extends EObjectImpl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ModelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER :
-				setIdentifier(IDENTIFIER_EDEFAULT);
-				return;
+		case ModelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER:
+			setIdentifier(IDENTIFIER_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -145,10 +144,9 @@ public class IdentifiableElementImpl extends EObjectImpl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ModelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER :
-				return IDENTIFIER_EDEFAULT == null
-						? identifier != null
-						: !IDENTIFIER_EDEFAULT.equals(identifier);
+		case ModelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER:
+			return IDENTIFIER_EDEFAULT == null ? identifier != null
+					: !IDENTIFIER_EDEFAULT.equals(identifier);
 		}
 		return super.eIsSet(featureID);
 	}

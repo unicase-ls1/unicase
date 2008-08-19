@@ -12,6 +12,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
+import org.unicase.model.component.*;
 import org.unicase.model.component.Component;
 import org.unicase.model.component.ComponentPackage;
 import org.unicase.model.component.ComponentService;
@@ -74,22 +75,27 @@ public class ComponentAdapterFactory extends AdapterFactoryImpl {
 		public Adapter caseComponent(Component object) {
 			return createComponentAdapter();
 		}
+
 		@Override
 		public Adapter caseComponentService(ComponentService object) {
 			return createComponentServiceAdapter();
 		}
+
 		@Override
 		public Adapter caseDeploymentNode(DeploymentNode object) {
 			return createDeploymentNodeAdapter();
 		}
+
 		@Override
 		public Adapter caseIdentifiableElement(IdentifiableElement object) {
 			return createIdentifiableElementAdapter();
 		}
+
 		@Override
 		public Adapter caseModelElement(ModelElement object) {
 			return createModelElementAdapter();
 		}
+
 		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();

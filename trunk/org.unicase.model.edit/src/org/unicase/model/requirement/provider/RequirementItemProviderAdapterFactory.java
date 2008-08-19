@@ -34,13 +34,9 @@ import org.unicase.model.requirement.util.RequirementAdapterFactory;
  * end-user-doc -->
  * @generated
  */
-public class RequirementItemProviderAdapterFactory
-		extends
-			RequirementAdapterFactory
-		implements
-			ComposeableAdapterFactory,
-			IChangeNotifier,
-			IDisposable {
+public class RequirementItemProviderAdapterFactory extends
+		RequirementAdapterFactory implements ComposeableAdapterFactory,
+		IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -245,6 +241,52 @@ public class RequirementItemProviderAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.requirement.SystemFunction} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SystemFunctionItemProvider systemFunctionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.requirement.SystemFunction}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSystemFunctionAdapter() {
+		if (systemFunctionItemProvider == null) {
+			systemFunctionItemProvider = new SystemFunctionItemProvider(this);
+		}
+
+		return systemFunctionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.requirement.UserTask} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected UserTaskItemProvider userTaskItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.requirement.UserTask}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createUserTaskAdapter() {
+		if (userTaskItemProvider == null) {
+			userTaskItemProvider = new UserTaskItemProvider(this);
+		}
+
+		return userTaskItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -356,6 +398,10 @@ public class RequirementItemProviderAdapterFactory
 			actorInstanceItemProvider.dispose();
 		if (stepItemProvider != null)
 			stepItemProvider.dispose();
+		if (systemFunctionItemProvider != null)
+			systemFunctionItemProvider.dispose();
+		if (userTaskItemProvider != null)
+			userTaskItemProvider.dispose();
 	}
 
 }

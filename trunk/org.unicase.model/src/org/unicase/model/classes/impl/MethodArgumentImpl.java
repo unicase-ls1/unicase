@@ -33,9 +33,8 @@ import org.unicase.model.impl.ModelElementImpl;
  *
  * @generated
  */
-public class MethodArgumentImpl extends ModelElementImpl
-		implements
-			MethodArgument {
+public class MethodArgumentImpl extends ModelElementImpl implements
+		MethodArgument {
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -322,16 +321,16 @@ public class MethodArgumentImpl extends ModelElementImpl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ClassesPackage.METHOD_ARGUMENT__TYPE :
-				return getType();
-			case ClassesPackage.METHOD_ARGUMENT__DIRECTION :
-				return getDirection();
-			case ClassesPackage.METHOD_ARGUMENT__DEFAULT_VALUE :
-				return getDefaultValue();
-			case ClassesPackage.METHOD_ARGUMENT__SIGNATURE :
-				return getSignature();
-			case ClassesPackage.METHOD_ARGUMENT__LABEL :
-				return getLabel();
+		case ClassesPackage.METHOD_ARGUMENT__TYPE:
+			return getType();
+		case ClassesPackage.METHOD_ARGUMENT__DIRECTION:
+			return getDirection();
+		case ClassesPackage.METHOD_ARGUMENT__DEFAULT_VALUE:
+			return getDefaultValue();
+		case ClassesPackage.METHOD_ARGUMENT__SIGNATURE:
+			return getSignature();
+		case ClassesPackage.METHOD_ARGUMENT__LABEL:
+			return getLabel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -344,18 +343,18 @@ public class MethodArgumentImpl extends ModelElementImpl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ClassesPackage.METHOD_ARGUMENT__TYPE :
-				setType((String) newValue);
-				return;
-			case ClassesPackage.METHOD_ARGUMENT__DIRECTION :
-				setDirection((ArgumentDirectionType) newValue);
-				return;
-			case ClassesPackage.METHOD_ARGUMENT__DEFAULT_VALUE :
-				setDefaultValue((String) newValue);
-				return;
-			case ClassesPackage.METHOD_ARGUMENT__LABEL :
-				setLabel((String) newValue);
-				return;
+		case ClassesPackage.METHOD_ARGUMENT__TYPE:
+			setType((String) newValue);
+			return;
+		case ClassesPackage.METHOD_ARGUMENT__DIRECTION:
+			setDirection((ArgumentDirectionType) newValue);
+			return;
+		case ClassesPackage.METHOD_ARGUMENT__DEFAULT_VALUE:
+			setDefaultValue((String) newValue);
+			return;
+		case ClassesPackage.METHOD_ARGUMENT__LABEL:
+			setLabel((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -368,18 +367,18 @@ public class MethodArgumentImpl extends ModelElementImpl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ClassesPackage.METHOD_ARGUMENT__TYPE :
-				setType(TYPE_EDEFAULT);
-				return;
-			case ClassesPackage.METHOD_ARGUMENT__DIRECTION :
-				setDirection(DIRECTION_EDEFAULT);
-				return;
-			case ClassesPackage.METHOD_ARGUMENT__DEFAULT_VALUE :
-				setDefaultValue(DEFAULT_VALUE_EDEFAULT);
-				return;
-			case ClassesPackage.METHOD_ARGUMENT__LABEL :
-				setLabel(LABEL_EDEFAULT);
-				return;
+		case ClassesPackage.METHOD_ARGUMENT__TYPE:
+			setType(TYPE_EDEFAULT);
+			return;
+		case ClassesPackage.METHOD_ARGUMENT__DIRECTION:
+			setDirection(DIRECTION_EDEFAULT);
+			return;
+		case ClassesPackage.METHOD_ARGUMENT__DEFAULT_VALUE:
+			setDefaultValue(DEFAULT_VALUE_EDEFAULT);
+			return;
+		case ClassesPackage.METHOD_ARGUMENT__LABEL:
+			setLabel(LABEL_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -392,22 +391,20 @@ public class MethodArgumentImpl extends ModelElementImpl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ClassesPackage.METHOD_ARGUMENT__TYPE :
-				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT
-						.equals(type);
-			case ClassesPackage.METHOD_ARGUMENT__DIRECTION :
-				return direction != DIRECTION_EDEFAULT;
-			case ClassesPackage.METHOD_ARGUMENT__DEFAULT_VALUE :
-				return DEFAULT_VALUE_EDEFAULT == null
-						? defaultValue != null
-						: !DEFAULT_VALUE_EDEFAULT.equals(defaultValue);
-			case ClassesPackage.METHOD_ARGUMENT__SIGNATURE :
-				return SIGNATURE_EDEFAULT == null
-						? getSignature() != null
-						: !SIGNATURE_EDEFAULT.equals(getSignature());
-			case ClassesPackage.METHOD_ARGUMENT__LABEL :
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT
-						.equals(label);
+		case ClassesPackage.METHOD_ARGUMENT__TYPE:
+			return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT
+					.equals(type);
+		case ClassesPackage.METHOD_ARGUMENT__DIRECTION:
+			return direction != DIRECTION_EDEFAULT;
+		case ClassesPackage.METHOD_ARGUMENT__DEFAULT_VALUE:
+			return DEFAULT_VALUE_EDEFAULT == null ? defaultValue != null
+					: !DEFAULT_VALUE_EDEFAULT.equals(defaultValue);
+		case ClassesPackage.METHOD_ARGUMENT__SIGNATURE:
+			return SIGNATURE_EDEFAULT == null ? getSignature() != null
+					: !SIGNATURE_EDEFAULT.equals(getSignature());
+		case ClassesPackage.METHOD_ARGUMENT__LABEL:
+			return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT
+					.equals(label);
 		}
 		return super.eIsSet(featureID);
 	}

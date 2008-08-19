@@ -29,12 +29,8 @@ import org.unicase.model.ModelPackage;
  * @generated
  */
 public class IdentifiableElementItemProvider extends ItemProviderAdapter
-		implements
-			IEditingDomainItemProvider,
-			IStructuredItemContentProvider,
-			ITreeItemContentProvider,
-			IItemLabelProvider,
-			IItemPropertySource {
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -81,8 +77,7 @@ public class IdentifiableElementItemProvider extends ItemProviderAdapter
 	@Override
 	public String getText(Object object) {
 		String label = ((IdentifiableElement) object).getIdentifier();
-		return label == null || label.length() == 0
-				? getString("_UI_IdentifiableElement_type")
+		return label == null || label.length() == 0 ? getString("_UI_IdentifiableElement_type")
 				: getString("_UI_IdentifiableElement_type") + " " + label;
 	}
 
@@ -98,10 +93,10 @@ public class IdentifiableElementItemProvider extends ItemProviderAdapter
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(IdentifiableElement.class)) {
-			case ModelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER :
-				fireNotifyChanged(new ViewerNotification(notification,
-						notification.getNotifier(), false, true));
-				return;
+		case ModelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

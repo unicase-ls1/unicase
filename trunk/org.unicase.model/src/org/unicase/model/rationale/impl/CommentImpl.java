@@ -73,8 +73,8 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RationalePackage.COMMENT__REPLIES :
-				return getReplies();
+		case RationalePackage.COMMENT__REPLIES:
+			return getReplies();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -87,10 +87,10 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RationalePackage.COMMENT__REPLIES :
-				getReplies().clear();
-				getReplies().addAll((Collection<? extends Comment>) newValue);
-				return;
+		case RationalePackage.COMMENT__REPLIES:
+			getReplies().clear();
+			getReplies().addAll((Collection<? extends Comment>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -102,9 +102,9 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RationalePackage.COMMENT__REPLIES :
-				getReplies().clear();
-				return;
+		case RationalePackage.COMMENT__REPLIES:
+			getReplies().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -116,8 +116,8 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RationalePackage.COMMENT__REPLIES :
-				return replies != null && !replies.isEmpty();
+		case RationalePackage.COMMENT__REPLIES:
+			return replies != null && !replies.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.Annotation;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
+import org.unicase.model.task.*;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.Assignable;
 import org.unicase.model.task.Checkable;
@@ -89,91 +90,91 @@ public class TaskSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case TaskPackage.ACTION_ITEM : {
-				ActionItem actionItem = (ActionItem) theEObject;
-				T result = caseActionItem(actionItem);
-				if (result == null)
-					result = caseWorkItem(actionItem);
-				if (result == null)
-					result = caseCheckable(actionItem);
-				if (result == null)
-					result = caseAssignable(actionItem);
-				if (result == null)
-					result = caseAnnotation(actionItem);
-				if (result == null)
-					result = caseModelElement(actionItem);
-				if (result == null)
-					result = caseIdentifiableElement(actionItem);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case TaskPackage.WORK_PACKAGE : {
-				WorkPackage workPackage = (WorkPackage) theEObject;
-				T result = caseWorkPackage(workPackage);
-				if (result == null)
-					result = caseWorkItem(workPackage);
-				if (result == null)
-					result = caseAnnotation(workPackage);
-				if (result == null)
-					result = caseModelElement(workPackage);
-				if (result == null)
-					result = caseIdentifiableElement(workPackage);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case TaskPackage.WORK_ITEM : {
-				WorkItem workItem = (WorkItem) theEObject;
-				T result = caseWorkItem(workItem);
-				if (result == null)
-					result = caseAnnotation(workItem);
-				if (result == null)
-					result = caseModelElement(workItem);
-				if (result == null)
-					result = caseIdentifiableElement(workItem);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case TaskPackage.MEETING : {
-				Meeting meeting = (Meeting) theEObject;
-				T result = caseMeeting(meeting);
-				if (result == null)
-					result = caseModelElement(meeting);
-				if (result == null)
-					result = caseIdentifiableElement(meeting);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case TaskPackage.MILESTONE : {
-				Milestone milestone = (Milestone) theEObject;
-				T result = caseMilestone(milestone);
-				if (result == null)
-					result = caseModelElement(milestone);
-				if (result == null)
-					result = caseIdentifiableElement(milestone);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case TaskPackage.CHECKABLE : {
-				Checkable checkable = (Checkable) theEObject;
-				T result = caseCheckable(checkable);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case TaskPackage.ASSIGNABLE : {
-				Assignable assignable = (Assignable) theEObject;
-				T result = caseAssignable(assignable);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			default :
-				return defaultCase(theEObject);
+		case TaskPackage.ACTION_ITEM: {
+			ActionItem actionItem = (ActionItem) theEObject;
+			T result = caseActionItem(actionItem);
+			if (result == null)
+				result = caseWorkItem(actionItem);
+			if (result == null)
+				result = caseCheckable(actionItem);
+			if (result == null)
+				result = caseAssignable(actionItem);
+			if (result == null)
+				result = caseAnnotation(actionItem);
+			if (result == null)
+				result = caseModelElement(actionItem);
+			if (result == null)
+				result = caseIdentifiableElement(actionItem);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case TaskPackage.WORK_PACKAGE: {
+			WorkPackage workPackage = (WorkPackage) theEObject;
+			T result = caseWorkPackage(workPackage);
+			if (result == null)
+				result = caseWorkItem(workPackage);
+			if (result == null)
+				result = caseAnnotation(workPackage);
+			if (result == null)
+				result = caseModelElement(workPackage);
+			if (result == null)
+				result = caseIdentifiableElement(workPackage);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case TaskPackage.WORK_ITEM: {
+			WorkItem workItem = (WorkItem) theEObject;
+			T result = caseWorkItem(workItem);
+			if (result == null)
+				result = caseAnnotation(workItem);
+			if (result == null)
+				result = caseModelElement(workItem);
+			if (result == null)
+				result = caseIdentifiableElement(workItem);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case TaskPackage.MEETING: {
+			Meeting meeting = (Meeting) theEObject;
+			T result = caseMeeting(meeting);
+			if (result == null)
+				result = caseModelElement(meeting);
+			if (result == null)
+				result = caseIdentifiableElement(meeting);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case TaskPackage.MILESTONE: {
+			Milestone milestone = (Milestone) theEObject;
+			T result = caseMilestone(milestone);
+			if (result == null)
+				result = caseModelElement(milestone);
+			if (result == null)
+				result = caseIdentifiableElement(milestone);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case TaskPackage.CHECKABLE: {
+			Checkable checkable = (Checkable) theEObject;
+			T result = caseCheckable(checkable);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case TaskPackage.ASSIGNABLE: {
+			Assignable assignable = (Assignable) theEObject;
+			T result = caseAssignable(assignable);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 

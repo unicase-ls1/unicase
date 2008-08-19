@@ -127,8 +127,8 @@ public enum AssociationType implements Enumerator {
 	 * 
 	 * @generated
 	 */
-	private static final AssociationType[] VALUES_ARRAY = new AssociationType[]{
-			ASSOCIATION, AGGREGATION, COMPOSITION, DEPENDENCY,};
+	private static final AssociationType[] VALUES_ARRAY = new AssociationType[] {
+			ASSOCIATION, AGGREGATION, COMPOSITION, DEPENDENCY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Association Type</b></em>' enumerators.
@@ -175,14 +175,14 @@ public enum AssociationType implements Enumerator {
 	 */
 	public static AssociationType get(int value) {
 		switch (value) {
-			case ASSOCIATION_VALUE :
-				return ASSOCIATION;
-			case AGGREGATION_VALUE :
-				return AGGREGATION;
-			case COMPOSITION_VALUE :
-				return COMPOSITION;
-			case DEPENDENCY_VALUE :
-				return DEPENDENCY;
+		case ASSOCIATION_VALUE:
+			return ASSOCIATION;
+		case AGGREGATION_VALUE:
+			return AGGREGATION;
+		case COMPOSITION_VALUE:
+			return COMPOSITION;
+		case DEPENDENCY_VALUE:
+			return DEPENDENCY;
 		}
 		return null;
 	}

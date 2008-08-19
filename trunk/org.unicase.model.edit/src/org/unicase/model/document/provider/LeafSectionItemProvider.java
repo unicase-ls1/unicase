@@ -21,6 +21,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.unicase.model.ModelFactory;
 import org.unicase.model.bug.BugFactory;
 import org.unicase.model.change.ChangeFactory;
 import org.unicase.model.classes.ClassesFactory;
@@ -42,13 +43,9 @@ import org.unicase.model.task.TaskFactory;
  * --> <!-- end-user-doc -->
  * @generated
  */
-public class LeafSectionItemProvider extends ModelElementItemProvider
-		implements
-			IEditingDomainItemProvider,
-			IStructuredItemContentProvider,
-			ITreeItemContentProvider,
-			IItemLabelProvider,
-			IItemPropertySource {
+public class LeafSectionItemProvider extends ModelElementItemProvider implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -160,10 +157,10 @@ public class LeafSectionItemProvider extends ModelElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(LeafSection.class)) {
-			case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS :
-				fireNotifyChanged(new ViewerNotification(notification,
-						notification.getNotifier(), true, false));
-				return;
+		case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -187,6 +184,10 @@ public class LeafSectionItemProvider extends ModelElementItemProvider
 		newChildDescriptors.add(createChildParameter(
 				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				DocumentFactory.eINSTANCE.createCompositeSection()));
+
+		newChildDescriptors.add(createChildParameter(
+				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				ModelFactory.eINSTANCE.createAnnotation()));
 
 		newChildDescriptors.add(createChildParameter(
 				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
@@ -271,6 +272,14 @@ public class LeafSectionItemProvider extends ModelElementItemProvider
 		newChildDescriptors.add(createChildParameter(
 				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				RequirementFactory.eINSTANCE.createStep()));
+
+		newChildDescriptors.add(createChildParameter(
+				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				RequirementFactory.eINSTANCE.createSystemFunction()));
+
+		newChildDescriptors.add(createChildParameter(
+				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				RequirementFactory.eINSTANCE.createUserTask()));
 
 		newChildDescriptors.add(createChildParameter(
 				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,

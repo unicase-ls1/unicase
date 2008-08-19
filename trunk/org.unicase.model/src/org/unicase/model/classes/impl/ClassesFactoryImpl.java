@@ -65,21 +65,21 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case ClassesPackage.CLASS :
-				return createClass();
-			case ClassesPackage.PACKAGE :
-				return createPackage();
-			case ClassesPackage.ASSOCIATION :
-				return createAssociation();
-			case ClassesPackage.ATTRIBUTE :
-				return createAttribute();
-			case ClassesPackage.METHOD :
-				return createMethod();
-			case ClassesPackage.METHOD_ARGUMENT :
-				return createMethodArgument();
-			default :
-				throw new IllegalArgumentException("The class '"
-						+ eClass.getName() + "' is not a valid classifier");
+		case ClassesPackage.CLASS:
+			return createClass();
+		case ClassesPackage.PACKAGE:
+			return createPackage();
+		case ClassesPackage.ASSOCIATION:
+			return createAssociation();
+		case ClassesPackage.ATTRIBUTE:
+			return createAttribute();
+		case ClassesPackage.METHOD:
+			return createMethod();
+		case ClassesPackage.METHOD_ARGUMENT:
+			return createMethodArgument();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
@@ -90,18 +90,18 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case ClassesPackage.ASSOCIATION_TYPE :
-				return createAssociationTypeFromString(eDataType, initialValue);
-			case ClassesPackage.VISIBILITY_TYPE :
-				return createVisibilityTypeFromString(eDataType, initialValue);
-			case ClassesPackage.SCOPE_TYPE :
-				return createScopeTypeFromString(eDataType, initialValue);
-			case ClassesPackage.ARGUMENT_DIRECTION_TYPE :
-				return createArgumentDirectionTypeFromString(eDataType,
-						initialValue);
-			default :
-				throw new IllegalArgumentException("The datatype '"
-						+ eDataType.getName() + "' is not a valid classifier");
+		case ClassesPackage.ASSOCIATION_TYPE:
+			return createAssociationTypeFromString(eDataType, initialValue);
+		case ClassesPackage.VISIBILITY_TYPE:
+			return createVisibilityTypeFromString(eDataType, initialValue);
+		case ClassesPackage.SCOPE_TYPE:
+			return createScopeTypeFromString(eDataType, initialValue);
+		case ClassesPackage.ARGUMENT_DIRECTION_TYPE:
+			return createArgumentDirectionTypeFromString(eDataType,
+					initialValue);
+		default:
+			throw new IllegalArgumentException("The datatype '"
+					+ eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -112,18 +112,18 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case ClassesPackage.ASSOCIATION_TYPE :
-				return convertAssociationTypeToString(eDataType, instanceValue);
-			case ClassesPackage.VISIBILITY_TYPE :
-				return convertVisibilityTypeToString(eDataType, instanceValue);
-			case ClassesPackage.SCOPE_TYPE :
-				return convertScopeTypeToString(eDataType, instanceValue);
-			case ClassesPackage.ARGUMENT_DIRECTION_TYPE :
-				return convertArgumentDirectionTypeToString(eDataType,
-						instanceValue);
-			default :
-				throw new IllegalArgumentException("The datatype '"
-						+ eDataType.getName() + "' is not a valid classifier");
+		case ClassesPackage.ASSOCIATION_TYPE:
+			return convertAssociationTypeToString(eDataType, instanceValue);
+		case ClassesPackage.VISIBILITY_TYPE:
+			return convertVisibilityTypeToString(eDataType, instanceValue);
+		case ClassesPackage.SCOPE_TYPE:
+			return convertScopeTypeToString(eDataType, instanceValue);
+		case ClassesPackage.ARGUMENT_DIRECTION_TYPE:
+			return convertArgumentDirectionTypeToString(eDataType,
+					instanceValue);
+		default:
+			throw new IllegalArgumentException("The datatype '"
+					+ eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 

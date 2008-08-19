@@ -34,12 +34,8 @@ import org.unicase.model.provider.ModelElementItemProvider;
  * @generated
  */
 public class CompositeSectionItemProvider extends ModelElementItemProvider
-		implements
-			IEditingDomainItemProvider,
-			IStructuredItemContentProvider,
-			ITreeItemContentProvider,
-			IItemLabelProvider,
-			IItemPropertySource {
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -130,10 +126,10 @@ public class CompositeSectionItemProvider extends ModelElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(CompositeSection.class)) {
-			case DocumentPackage.COMPOSITE_SECTION__SUBSECTIONS :
-				fireNotifyChanged(new ViewerNotification(notification,
-						notification.getNotifier(), true, false));
-				return;
+		case DocumentPackage.COMPOSITE_SECTION__SUBSECTIONS:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

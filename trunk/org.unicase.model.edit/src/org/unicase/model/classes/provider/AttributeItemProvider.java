@@ -31,13 +31,9 @@ import org.unicase.model.provider.ModelElementItemProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class AttributeItemProvider extends ModelElementItemProvider
-		implements
-			IEditingDomainItemProvider,
-			IStructuredItemContentProvider,
-			ITreeItemContentProvider,
-			IItemLabelProvider,
-			IItemPropertySource {
+public class AttributeItemProvider extends ModelElementItemProvider implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -216,8 +212,7 @@ public class AttributeItemProvider extends ModelElementItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((Attribute) object).getSignature();
-		return label == null || label.length() == 0
-				? getString("_UI_Attribute_type")
+		return label == null || label.length() == 0 ? getString("_UI_Attribute_type")
 				: label;
 	}
 
@@ -233,16 +228,16 @@ public class AttributeItemProvider extends ModelElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Attribute.class)) {
-			case ClassesPackage.ATTRIBUTE__VISIBILITY :
-			case ClassesPackage.ATTRIBUTE__SCOPE :
-			case ClassesPackage.ATTRIBUTE__SIGNATURE :
-			case ClassesPackage.ATTRIBUTE__TYPE :
-			case ClassesPackage.ATTRIBUTE__DEFAULT_VALUE :
-			case ClassesPackage.ATTRIBUTE__PROPERTIES :
-			case ClassesPackage.ATTRIBUTE__LABEL :
-				fireNotifyChanged(new ViewerNotification(notification,
-						notification.getNotifier(), false, true));
-				return;
+		case ClassesPackage.ATTRIBUTE__VISIBILITY:
+		case ClassesPackage.ATTRIBUTE__SCOPE:
+		case ClassesPackage.ATTRIBUTE__SIGNATURE:
+		case ClassesPackage.ATTRIBUTE__TYPE:
+		case ClassesPackage.ATTRIBUTE__DEFAULT_VALUE:
+		case ClassesPackage.ATTRIBUTE__PROPERTIES:
+		case ClassesPackage.ATTRIBUTE__LABEL:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

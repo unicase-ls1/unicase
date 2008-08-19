@@ -35,10 +35,7 @@ import org.unicase.model.document.util.DocumentAdapterFactory;
  * @generated
  */
 public class DocumentItemProviderAdapterFactory extends DocumentAdapterFactory
-		implements
-			ComposeableAdapterFactory,
-			IChangeNotifier,
-			IDisposable {
+		implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

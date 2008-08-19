@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.model.*;
 import org.unicase.model.Annotation;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
@@ -86,67 +87,67 @@ public class ModelSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case ModelPackage.MODEL_ELEMENT : {
-				ModelElement modelElement = (ModelElement) theEObject;
-				T result = caseModelElement(modelElement);
-				if (result == null)
-					result = caseIdentifiableElement(modelElement);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case ModelPackage.PROJECT : {
-				Project project = (Project) theEObject;
-				T result = caseProject(project);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case ModelPackage.UNIQUE_IDENTIFIER : {
-				UniqueIdentifier uniqueIdentifier = (UniqueIdentifier) theEObject;
-				T result = caseUniqueIdentifier(uniqueIdentifier);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case ModelPackage.READER_INFO : {
-				ReaderInfo readerInfo = (ReaderInfo) theEObject;
-				T result = caseReaderInfo(readerInfo);
-				if (result == null)
-					result = caseIdentifiableElement(readerInfo);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case ModelPackage.ANNOTATION : {
-				Annotation annotation = (Annotation) theEObject;
-				T result = caseAnnotation(annotation);
-				if (result == null)
-					result = caseModelElement(annotation);
-				if (result == null)
-					result = caseIdentifiableElement(annotation);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case ModelPackage.IDENTIFIABLE_ELEMENT : {
-				IdentifiableElement identifiableElement = (IdentifiableElement) theEObject;
-				T result = caseIdentifiableElement(identifiableElement);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case ModelPackage.MODEL_ELEMENT_ID : {
-				ModelElementId modelElementId = (ModelElementId) theEObject;
-				T result = caseModelElementId(modelElementId);
-				if (result == null)
-					result = caseUniqueIdentifier(modelElementId);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			default :
-				return defaultCase(theEObject);
+		case ModelPackage.MODEL_ELEMENT: {
+			ModelElement modelElement = (ModelElement) theEObject;
+			T result = caseModelElement(modelElement);
+			if (result == null)
+				result = caseIdentifiableElement(modelElement);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case ModelPackage.PROJECT: {
+			Project project = (Project) theEObject;
+			T result = caseProject(project);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case ModelPackage.UNIQUE_IDENTIFIER: {
+			UniqueIdentifier uniqueIdentifier = (UniqueIdentifier) theEObject;
+			T result = caseUniqueIdentifier(uniqueIdentifier);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case ModelPackage.READER_INFO: {
+			ReaderInfo readerInfo = (ReaderInfo) theEObject;
+			T result = caseReaderInfo(readerInfo);
+			if (result == null)
+				result = caseIdentifiableElement(readerInfo);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case ModelPackage.ANNOTATION: {
+			Annotation annotation = (Annotation) theEObject;
+			T result = caseAnnotation(annotation);
+			if (result == null)
+				result = caseModelElement(annotation);
+			if (result == null)
+				result = caseIdentifiableElement(annotation);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case ModelPackage.IDENTIFIABLE_ELEMENT: {
+			IdentifiableElement identifiableElement = (IdentifiableElement) theEObject;
+			T result = caseIdentifiableElement(identifiableElement);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case ModelPackage.MODEL_ELEMENT_ID: {
+			ModelElementId modelElementId = (ModelElementId) theEObject;
+			T result = caseModelElementId(modelElementId);
+			if (result == null)
+				result = caseUniqueIdentifier(modelElementId);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 

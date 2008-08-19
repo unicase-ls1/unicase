@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.model.requirement.*;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.ActorInstance;
 import org.unicase.model.requirement.FunctionalRequirement;
@@ -19,16 +20,17 @@ import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.Scenario;
 import org.unicase.model.requirement.Step;
+import org.unicase.model.requirement.SystemFunction;
 import org.unicase.model.requirement.UseCase;
+import org.unicase.model.requirement.UserTask;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
  * end-user-doc -->
  * @generated
  */
-public class RequirementFactoryImpl extends EFactoryImpl
-		implements
-			RequirementFactory {
+public class RequirementFactoryImpl extends EFactoryImpl implements
+		RequirementFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc --> <!--
@@ -65,23 +67,27 @@ public class RequirementFactoryImpl extends EFactoryImpl
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT :
-				return createNonFunctionalRequirement();
-			case RequirementPackage.FUNCTIONAL_REQUIREMENT :
-				return createFunctionalRequirement();
-			case RequirementPackage.USE_CASE :
-				return createUseCase();
-			case RequirementPackage.SCENARIO :
-				return createScenario();
-			case RequirementPackage.ACTOR :
-				return createActor();
-			case RequirementPackage.ACTOR_INSTANCE :
-				return createActorInstance();
-			case RequirementPackage.STEP :
-				return createStep();
-			default :
-				throw new IllegalArgumentException("The class '"
-						+ eClass.getName() + "' is not a valid classifier");
+		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT:
+			return createNonFunctionalRequirement();
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT:
+			return createFunctionalRequirement();
+		case RequirementPackage.USE_CASE:
+			return createUseCase();
+		case RequirementPackage.SCENARIO:
+			return createScenario();
+		case RequirementPackage.ACTOR:
+			return createActor();
+		case RequirementPackage.ACTOR_INSTANCE:
+			return createActorInstance();
+		case RequirementPackage.STEP:
+			return createStep();
+		case RequirementPackage.SYSTEM_FUNCTION:
+			return createSystemFunction();
+		case RequirementPackage.USER_TASK:
+			return createUserTask();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
@@ -146,6 +152,26 @@ public class RequirementFactoryImpl extends EFactoryImpl
 	public Step createStep() {
 		StepImpl step = new StepImpl();
 		return step;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SystemFunction createSystemFunction() {
+		SystemFunctionImpl systemFunction = new SystemFunctionImpl();
+		return systemFunction;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UserTask createUserTask() {
+		UserTaskImpl userTask = new UserTaskImpl();
+		return userTask;
 	}
 
 	/**

@@ -30,13 +30,9 @@ import org.unicase.model.rationale.Solution;
  * <!-- end-user-doc -->
  * @generated
  */
-public class SolutionItemProvider extends ModelElementItemProvider
-		implements
-			IEditingDomainItemProvider,
-			IStructuredItemContentProvider,
-			ITreeItemContentProvider,
-			IItemLabelProvider,
-			IItemPropertySource {
+public class SolutionItemProvider extends ModelElementItemProvider implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -100,8 +96,7 @@ public class SolutionItemProvider extends ModelElementItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((Solution) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_Solution_type")
+		return label == null || label.length() == 0 ? getString("_UI_Solution_type")
 				: getString("_UI_Solution_type") + " " + label;
 	}
 

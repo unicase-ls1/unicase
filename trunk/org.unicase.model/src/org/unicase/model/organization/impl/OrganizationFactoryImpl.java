@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.model.organization.*;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationFactory;
@@ -22,9 +23,8 @@ import org.unicase.model.organization.User;
  * end-user-doc -->
  * @generated
  */
-public class OrganizationFactoryImpl extends EFactoryImpl
-		implements
-			OrganizationFactory {
+public class OrganizationFactoryImpl extends EFactoryImpl implements
+		OrganizationFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc --> <!--
@@ -61,15 +61,15 @@ public class OrganizationFactoryImpl extends EFactoryImpl
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case OrganizationPackage.USER :
-				return createUser();
-			case OrganizationPackage.ORG_UNIT :
-				return createOrgUnit();
-			case OrganizationPackage.GROUP :
-				return createGroup();
-			default :
-				throw new IllegalArgumentException("The class '"
-						+ eClass.getName() + "' is not a valid classifier");
+		case OrganizationPackage.USER:
+			return createUser();
+		case OrganizationPackage.ORG_UNIT:
+			return createOrgUnit();
+		case OrganizationPackage.GROUP:
+			return createGroup();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 

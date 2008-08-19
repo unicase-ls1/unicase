@@ -34,13 +34,9 @@ import org.unicase.model.rationale.util.RationaleAdapterFactory;
  * end-user-doc -->
  * @generated
  */
-public class RationaleItemProviderAdapterFactory
-		extends
-			RationaleAdapterFactory
-		implements
-			ComposeableAdapterFactory,
-			IChangeNotifier,
-			IDisposable {
+public class RationaleItemProviderAdapterFactory extends
+		RationaleAdapterFactory implements ComposeableAdapterFactory,
+		IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

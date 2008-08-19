@@ -12,6 +12,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
+import org.unicase.model.document.*;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.LeafSection;
@@ -74,22 +75,27 @@ public class DocumentAdapterFactory extends AdapterFactoryImpl {
 		public Adapter caseLeafSection(LeafSection object) {
 			return createLeafSectionAdapter();
 		}
+
 		@Override
 		public Adapter caseCompositeSection(CompositeSection object) {
 			return createCompositeSectionAdapter();
 		}
+
 		@Override
 		public Adapter caseSection(Section object) {
 			return createSectionAdapter();
 		}
+
 		@Override
 		public Adapter caseIdentifiableElement(IdentifiableElement object) {
 			return createIdentifiableElementAdapter();
 		}
+
 		@Override
 		public Adapter caseModelElement(ModelElement object) {
 			return createModelElementAdapter();
 		}
+
 		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();

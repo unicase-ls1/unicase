@@ -32,9 +32,8 @@ import org.unicase.model.rationale.impl.ProposalImpl;
  *
  * @generated
  */
-public class MergingProposalImpl extends ProposalImpl
-		implements
-			MergingProposal {
+public class MergingProposalImpl extends ProposalImpl implements
+		MergingProposal {
 	/**
 	 * The cached value of the '{@link #getConflictingProposals() <em>Conflicting Proposals</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -131,12 +130,12 @@ public class MergingProposalImpl extends ProposalImpl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ChangePackage.MERGING_PROPOSAL__CONFLICTING_PROPOSALS :
-				return getConflictingProposals();
-			case ChangePackage.MERGING_PROPOSAL__PENDING_CHANGES :
-				if (resolve)
-					return getPendingChanges();
-				return basicGetPendingChanges();
+		case ChangePackage.MERGING_PROPOSAL__CONFLICTING_PROPOSALS:
+			return getConflictingProposals();
+		case ChangePackage.MERGING_PROPOSAL__PENDING_CHANGES:
+			if (resolve)
+				return getPendingChanges();
+			return basicGetPendingChanges();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -149,14 +148,14 @@ public class MergingProposalImpl extends ProposalImpl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ChangePackage.MERGING_PROPOSAL__CONFLICTING_PROPOSALS :
-				getConflictingProposals().clear();
-				getConflictingProposals().addAll(
-						(Collection<? extends MergingProposal>) newValue);
-				return;
-			case ChangePackage.MERGING_PROPOSAL__PENDING_CHANGES :
-				setPendingChanges((ModelChangePackage) newValue);
-				return;
+		case ChangePackage.MERGING_PROPOSAL__CONFLICTING_PROPOSALS:
+			getConflictingProposals().clear();
+			getConflictingProposals().addAll(
+					(Collection<? extends MergingProposal>) newValue);
+			return;
+		case ChangePackage.MERGING_PROPOSAL__PENDING_CHANGES:
+			setPendingChanges((ModelChangePackage) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -168,12 +167,12 @@ public class MergingProposalImpl extends ProposalImpl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ChangePackage.MERGING_PROPOSAL__CONFLICTING_PROPOSALS :
-				getConflictingProposals().clear();
-				return;
-			case ChangePackage.MERGING_PROPOSAL__PENDING_CHANGES :
-				setPendingChanges((ModelChangePackage) null);
-				return;
+		case ChangePackage.MERGING_PROPOSAL__CONFLICTING_PROPOSALS:
+			getConflictingProposals().clear();
+			return;
+		case ChangePackage.MERGING_PROPOSAL__PENDING_CHANGES:
+			setPendingChanges((ModelChangePackage) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -185,11 +184,11 @@ public class MergingProposalImpl extends ProposalImpl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ChangePackage.MERGING_PROPOSAL__CONFLICTING_PROPOSALS :
-				return conflictingProposals != null
-						&& !conflictingProposals.isEmpty();
-			case ChangePackage.MERGING_PROPOSAL__PENDING_CHANGES :
-				return pendingChanges != null;
+		case ChangePackage.MERGING_PROPOSAL__CONFLICTING_PROPOSALS:
+			return conflictingProposals != null
+					&& !conflictingProposals.isEmpty();
+		case ChangePackage.MERGING_PROPOSAL__PENDING_CHANGES:
+			return pendingChanges != null;
 		}
 		return super.eIsSet(featureID);
 	}

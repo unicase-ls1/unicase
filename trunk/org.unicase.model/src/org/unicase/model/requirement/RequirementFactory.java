@@ -88,6 +88,24 @@ public interface RequirementFactory extends EFactory {
 	Step createStep();
 
 	/**
+	 * Returns a new object of class '<em>System Function</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>System Function</em>'.
+	 * @generated
+	 */
+	SystemFunction createSystemFunction();
+
+	/**
+	 * Returns a new object of class '<em>User Task</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>User Task</em>'.
+	 * @generated
+	 */
+	UserTask createUserTask();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -28,13 +28,9 @@ import org.unicase.model.classes.ClassesPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class PackageItemProvider extends PackageElementItemProvider
-		implements
-			IEditingDomainItemProvider,
-			IStructuredItemContentProvider,
-			ITreeItemContentProvider,
-			IItemLabelProvider,
-			IItemPropertySource {
+public class PackageItemProvider extends PackageElementItemProvider implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -110,8 +106,7 @@ public class PackageItemProvider extends PackageElementItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((org.unicase.model.classes.Package) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_Package_type")
+		return label == null || label.length() == 0 ? getString("_UI_Package_type")
 				: getString("_UI_Package_type") + " " + label;
 	}
 
@@ -128,10 +123,10 @@ public class PackageItemProvider extends PackageElementItemProvider
 
 		switch (notification
 				.getFeatureID(org.unicase.model.classes.Package.class)) {
-			case ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS :
-				fireNotifyChanged(new ViewerNotification(notification,
-						notification.getNotifier(), true, false));
-				return;
+		case ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

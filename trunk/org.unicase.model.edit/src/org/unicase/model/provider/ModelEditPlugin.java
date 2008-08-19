@@ -8,6 +8,8 @@ package org.unicase.model.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
+import org.eclipse.gmf.runtime.notation.NotationEditPlugin;
 
 /**
  * This is the central singleton for the Model edit plugin.
@@ -38,7 +40,7 @@ public final class ModelEditPlugin extends EMFPlugin {
 	 * @generated NOT
 	 */
 	public ModelEditPlugin() {
-		super(new ResourceLocator[]{});
+		super(new ResourceLocator[] {});
 	}
 
 	/**

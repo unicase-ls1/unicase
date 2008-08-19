@@ -30,12 +30,8 @@ import org.unicase.model.ModelPackage;
  * @generated
  */
 public class ModelElementItemProvider extends IdentifiableElementItemProvider
-		implements
-			IEditingDomainItemProvider,
-			IStructuredItemContentProvider,
-			ITreeItemContentProvider,
-			IItemLabelProvider,
-			IItemPropertySource {
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -164,13 +160,13 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ModelElement.class)) {
-			case ModelPackage.MODEL_ELEMENT__NAME :
-			case ModelPackage.MODEL_ELEMENT__DESCRIPTION :
-			case ModelPackage.MODEL_ELEMENT__READER_INFOS :
-			case ModelPackage.MODEL_ELEMENT__STATE :
-				fireNotifyChanged(new ViewerNotification(notification,
-						notification.getNotifier(), false, true));
-				return;
+		case ModelPackage.MODEL_ELEMENT__NAME:
+		case ModelPackage.MODEL_ELEMENT__DESCRIPTION:
+		case ModelPackage.MODEL_ELEMENT__READER_INFOS:
+		case ModelPackage.MODEL_ELEMENT__STATE:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

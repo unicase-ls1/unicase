@@ -29,12 +29,8 @@ import org.unicase.model.ReaderInfo;
  * @generated
  */
 public class ReaderInfoItemProvider extends IdentifiableElementItemProvider
-		implements
-			IEditingDomainItemProvider,
-			IStructuredItemContentProvider,
-			ITreeItemContentProvider,
-			IItemLabelProvider,
-			IItemPropertySource {
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -118,8 +114,7 @@ public class ReaderInfoItemProvider extends IdentifiableElementItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((ReaderInfo) object).getIdentifier();
-		return label == null || label.length() == 0
-				? getString("_UI_ReaderInfo_type")
+		return label == null || label.length() == 0 ? getString("_UI_ReaderInfo_type")
 				: getString("_UI_ReaderInfo_type") + " " + label;
 	}
 
@@ -135,10 +130,10 @@ public class ReaderInfoItemProvider extends IdentifiableElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ReaderInfo.class)) {
-			case ModelPackage.READER_INFO__DATE :
-				fireNotifyChanged(new ViewerNotification(notification,
-						notification.getNotifier(), false, true));
-				return;
+		case ModelPackage.READER_INFO__DATE:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

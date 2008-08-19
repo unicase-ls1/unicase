@@ -32,12 +32,8 @@ import org.unicase.model.provider.ModelElementItemProvider;
  * @generated
  */
 public class ComponentServiceItemProvider extends ModelElementItemProvider
-		implements
-			IEditingDomainItemProvider,
-			IStructuredItemContentProvider,
-			ITreeItemContentProvider,
-			IItemLabelProvider,
-			IItemPropertySource {
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -105,8 +101,7 @@ public class ComponentServiceItemProvider extends ModelElementItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((ComponentService) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_ComponentService_type")
+		return label == null || label.length() == 0 ? getString("_UI_ComponentService_type")
 				: getString("_UI_ComponentService_type") + " " + label;
 	}
 

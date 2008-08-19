@@ -16,6 +16,8 @@ import org.unicase.model.ModelElement;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.unicase.model.requirement.Step#isUserStep <em>User Step</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.Step#getIncludedUseCase <em>Included Use Case</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.Step#getIncludedSystemFunction <em>Included System Function</em>}</li>
  * </ul>
  * </p>
  *
@@ -49,5 +51,57 @@ public interface Step extends ModelElement {
 	 * @generated
 	 */
 	void setUserStep(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Included Use Case</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Included Use Case</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Included Use Case</em>' reference.
+	 * @see #setIncludedUseCase(UseCase)
+	 * @see org.unicase.model.requirement.RequirementPackage#getStep_IncludedUseCase()
+	 * @model keys="identifier"
+	 * @generated
+	 */
+	UseCase getIncludedUseCase();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.requirement.Step#getIncludedUseCase <em>Included Use Case</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Included Use Case</em>' reference.
+	 * @see #getIncludedUseCase()
+	 * @generated
+	 */
+	void setIncludedUseCase(UseCase value);
+
+	/**
+	 * Returns the value of the '<em><b>Included System Function</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Included System Function</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Included System Function</em>' reference.
+	 * @see #setIncludedSystemFunction(SystemFunction)
+	 * @see org.unicase.model.requirement.RequirementPackage#getStep_IncludedSystemFunction()
+	 * @model keys="identifier"
+	 * @generated
+	 */
+	SystemFunction getIncludedSystemFunction();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.requirement.Step#getIncludedSystemFunction <em>Included System Function</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Included System Function</em>' reference.
+	 * @see #getIncludedSystemFunction()
+	 * @generated
+	 */
+	void setIncludedSystemFunction(SystemFunction value);
 
 } // Step

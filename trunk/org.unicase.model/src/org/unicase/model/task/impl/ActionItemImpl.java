@@ -418,8 +418,7 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	 */
 	public OrgUnit getAssignee() {
 		OrgUnit assignee = basicGetAssignee();
-		return assignee != null && assignee.eIsProxy()
-				? (OrgUnit) eResolveProxy((InternalEObject) assignee)
+		return assignee != null && assignee.eIsProxy() ? (OrgUnit) eResolveProxy((InternalEObject) assignee)
 				: assignee;
 	}
 
@@ -568,23 +567,23 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE :
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetContainingWorkpackage((WorkPackage) otherEnd,
+		case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetContainingWorkpackage((WorkPackage) otherEnd, msgs);
+		case TaskPackage.ACTION_ITEM__PREDECESSORS:
+			if (predecessors != null)
+				msgs = ((InternalEObject) predecessors)
+						.eInverseRemove(this,
+								TaskPackage.WORK_ITEM__SUCCESSORS,
+								WorkItem.class, msgs);
+			return basicSetPredecessors((WorkItem) otherEnd, msgs);
+		case TaskPackage.ACTION_ITEM__SUCCESSORS:
+			if (successors != null)
+				msgs = ((InternalEObject) successors).eInverseRemove(this,
+						TaskPackage.WORK_ITEM__PREDECESSORS, WorkItem.class,
 						msgs);
-			case TaskPackage.ACTION_ITEM__PREDECESSORS :
-				if (predecessors != null)
-					msgs = ((InternalEObject) predecessors).eInverseRemove(
-							this, TaskPackage.WORK_ITEM__SUCCESSORS,
-							WorkItem.class, msgs);
-				return basicSetPredecessors((WorkItem) otherEnd, msgs);
-			case TaskPackage.ACTION_ITEM__SUCCESSORS :
-				if (successors != null)
-					msgs = ((InternalEObject) successors).eInverseRemove(this,
-							TaskPackage.WORK_ITEM__PREDECESSORS,
-							WorkItem.class, msgs);
-				return basicSetSuccessors((WorkItem) otherEnd, msgs);
+			return basicSetSuccessors((WorkItem) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -597,12 +596,12 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE :
-				return basicSetContainingWorkpackage(null, msgs);
-			case TaskPackage.ACTION_ITEM__PREDECESSORS :
-				return basicSetPredecessors(null, msgs);
-			case TaskPackage.ACTION_ITEM__SUCCESSORS :
-				return basicSetSuccessors(null, msgs);
+		case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
+			return basicSetContainingWorkpackage(null, msgs);
+		case TaskPackage.ACTION_ITEM__PREDECESSORS:
+			return basicSetPredecessors(null, msgs);
+		case TaskPackage.ACTION_ITEM__SUCCESSORS:
+			return basicSetSuccessors(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -615,10 +614,10 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	public NotificationChain eBasicRemoveFromContainerFeature(
 			NotificationChain msgs) {
 		switch (eContainerFeatureID) {
-			case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE :
-				return eInternalContainer().eInverseRemove(this,
-						TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
-						WorkPackage.class, msgs);
+		case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
+			return eInternalContainer().eInverseRemove(this,
+					TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
+					WorkPackage.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -630,34 +629,34 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE :
-				return getContainingWorkpackage();
-			case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES :
-				return getAssociatedChangePackages();
-			case TaskPackage.ACTION_ITEM__PREDECESSORS :
-				if (resolve)
-					return getPredecessors();
-				return basicGetPredecessors();
-			case TaskPackage.ACTION_ITEM__SUCCESSORS :
-				if (resolve)
-					return getSuccessors();
-				return basicGetSuccessors();
-			case TaskPackage.ACTION_ITEM__CHECKED :
-				return isChecked() ? Boolean.TRUE : Boolean.FALSE;
-			case TaskPackage.ACTION_ITEM__ASSIGNEE :
-				if (resolve)
-					return getAssignee();
-				return basicGetAssignee();
-			case TaskPackage.ACTION_ITEM__ASSIGNED_TO :
-				return getAssignedTo();
-			case TaskPackage.ACTION_ITEM__DUE_DATE :
-				return getDueDate();
-			case TaskPackage.ACTION_ITEM__DONE :
-				return isDone() ? Boolean.TRUE : Boolean.FALSE;
-			case TaskPackage.ACTION_ITEM__ESTIMATE :
-				return new Integer(getEstimate());
-			case TaskPackage.ACTION_ITEM__ACTIVITY :
-				return getActivity();
+		case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
+			return getContainingWorkpackage();
+		case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES:
+			return getAssociatedChangePackages();
+		case TaskPackage.ACTION_ITEM__PREDECESSORS:
+			if (resolve)
+				return getPredecessors();
+			return basicGetPredecessors();
+		case TaskPackage.ACTION_ITEM__SUCCESSORS:
+			if (resolve)
+				return getSuccessors();
+			return basicGetSuccessors();
+		case TaskPackage.ACTION_ITEM__CHECKED:
+			return isChecked() ? Boolean.TRUE : Boolean.FALSE;
+		case TaskPackage.ACTION_ITEM__ASSIGNEE:
+			if (resolve)
+				return getAssignee();
+			return basicGetAssignee();
+		case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
+			return getAssignedTo();
+		case TaskPackage.ACTION_ITEM__DUE_DATE:
+			return getDueDate();
+		case TaskPackage.ACTION_ITEM__DONE:
+			return isDone() ? Boolean.TRUE : Boolean.FALSE;
+		case TaskPackage.ACTION_ITEM__ESTIMATE:
+			return new Integer(getEstimate());
+		case TaskPackage.ACTION_ITEM__ACTIVITY:
+			return getActivity();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -670,42 +669,42 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE :
-				setContainingWorkpackage((WorkPackage) newValue);
-				return;
-			case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES :
-				getAssociatedChangePackages().clear();
-				getAssociatedChangePackages().addAll(
-						(Collection<? extends ModelChangePackage>) newValue);
-				return;
-			case TaskPackage.ACTION_ITEM__PREDECESSORS :
-				setPredecessors((WorkItem) newValue);
-				return;
-			case TaskPackage.ACTION_ITEM__SUCCESSORS :
-				setSuccessors((WorkItem) newValue);
-				return;
-			case TaskPackage.ACTION_ITEM__CHECKED :
-				setChecked(((Boolean) newValue).booleanValue());
-				return;
-			case TaskPackage.ACTION_ITEM__ASSIGNEE :
-				setAssignee((OrgUnit) newValue);
-				return;
-			case TaskPackage.ACTION_ITEM__ASSIGNED_TO :
-				getAssignedTo().clear();
-				getAssignedTo().addAll((Collection<? extends User>) newValue);
-				return;
-			case TaskPackage.ACTION_ITEM__DUE_DATE :
-				setDueDate((Date) newValue);
-				return;
-			case TaskPackage.ACTION_ITEM__DONE :
-				setDone(((Boolean) newValue).booleanValue());
-				return;
-			case TaskPackage.ACTION_ITEM__ESTIMATE :
-				setEstimate(((Integer) newValue).intValue());
-				return;
-			case TaskPackage.ACTION_ITEM__ACTIVITY :
-				setActivity((ActivityType) newValue);
-				return;
+		case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
+			setContainingWorkpackage((WorkPackage) newValue);
+			return;
+		case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES:
+			getAssociatedChangePackages().clear();
+			getAssociatedChangePackages().addAll(
+					(Collection<? extends ModelChangePackage>) newValue);
+			return;
+		case TaskPackage.ACTION_ITEM__PREDECESSORS:
+			setPredecessors((WorkItem) newValue);
+			return;
+		case TaskPackage.ACTION_ITEM__SUCCESSORS:
+			setSuccessors((WorkItem) newValue);
+			return;
+		case TaskPackage.ACTION_ITEM__CHECKED:
+			setChecked(((Boolean) newValue).booleanValue());
+			return;
+		case TaskPackage.ACTION_ITEM__ASSIGNEE:
+			setAssignee((OrgUnit) newValue);
+			return;
+		case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
+			getAssignedTo().clear();
+			getAssignedTo().addAll((Collection<? extends User>) newValue);
+			return;
+		case TaskPackage.ACTION_ITEM__DUE_DATE:
+			setDueDate((Date) newValue);
+			return;
+		case TaskPackage.ACTION_ITEM__DONE:
+			setDone(((Boolean) newValue).booleanValue());
+			return;
+		case TaskPackage.ACTION_ITEM__ESTIMATE:
+			setEstimate(((Integer) newValue).intValue());
+			return;
+		case TaskPackage.ACTION_ITEM__ACTIVITY:
+			setActivity((ActivityType) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -717,39 +716,39 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE :
-				setContainingWorkpackage((WorkPackage) null);
-				return;
-			case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES :
-				getAssociatedChangePackages().clear();
-				return;
-			case TaskPackage.ACTION_ITEM__PREDECESSORS :
-				setPredecessors((WorkItem) null);
-				return;
-			case TaskPackage.ACTION_ITEM__SUCCESSORS :
-				setSuccessors((WorkItem) null);
-				return;
-			case TaskPackage.ACTION_ITEM__CHECKED :
-				setChecked(CHECKED_EDEFAULT);
-				return;
-			case TaskPackage.ACTION_ITEM__ASSIGNEE :
-				setAssignee((OrgUnit) null);
-				return;
-			case TaskPackage.ACTION_ITEM__ASSIGNED_TO :
-				getAssignedTo().clear();
-				return;
-			case TaskPackage.ACTION_ITEM__DUE_DATE :
-				setDueDate(DUE_DATE_EDEFAULT);
-				return;
-			case TaskPackage.ACTION_ITEM__DONE :
-				setDone(DONE_EDEFAULT);
-				return;
-			case TaskPackage.ACTION_ITEM__ESTIMATE :
-				setEstimate(ESTIMATE_EDEFAULT);
-				return;
-			case TaskPackage.ACTION_ITEM__ACTIVITY :
-				setActivity(ACTIVITY_EDEFAULT);
-				return;
+		case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
+			setContainingWorkpackage((WorkPackage) null);
+			return;
+		case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES:
+			getAssociatedChangePackages().clear();
+			return;
+		case TaskPackage.ACTION_ITEM__PREDECESSORS:
+			setPredecessors((WorkItem) null);
+			return;
+		case TaskPackage.ACTION_ITEM__SUCCESSORS:
+			setSuccessors((WorkItem) null);
+			return;
+		case TaskPackage.ACTION_ITEM__CHECKED:
+			setChecked(CHECKED_EDEFAULT);
+			return;
+		case TaskPackage.ACTION_ITEM__ASSIGNEE:
+			setAssignee((OrgUnit) null);
+			return;
+		case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
+			getAssignedTo().clear();
+			return;
+		case TaskPackage.ACTION_ITEM__DUE_DATE:
+			setDueDate(DUE_DATE_EDEFAULT);
+			return;
+		case TaskPackage.ACTION_ITEM__DONE:
+			setDone(DONE_EDEFAULT);
+			return;
+		case TaskPackage.ACTION_ITEM__ESTIMATE:
+			setEstimate(ESTIMATE_EDEFAULT);
+			return;
+		case TaskPackage.ACTION_ITEM__ACTIVITY:
+			setActivity(ACTIVITY_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -761,31 +760,30 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE :
-				return getContainingWorkpackage() != null;
-			case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES :
-				return associatedChangePackages != null
-						&& !associatedChangePackages.isEmpty();
-			case TaskPackage.ACTION_ITEM__PREDECESSORS :
-				return predecessors != null;
-			case TaskPackage.ACTION_ITEM__SUCCESSORS :
-				return successors != null;
-			case TaskPackage.ACTION_ITEM__CHECKED :
-				return isChecked() != CHECKED_EDEFAULT;
-			case TaskPackage.ACTION_ITEM__ASSIGNEE :
-				return basicGetAssignee() != null;
-			case TaskPackage.ACTION_ITEM__ASSIGNED_TO :
-				return assignedTo != null && !assignedTo.isEmpty();
-			case TaskPackage.ACTION_ITEM__DUE_DATE :
-				return DUE_DATE_EDEFAULT == null
-						? dueDate != null
-						: !DUE_DATE_EDEFAULT.equals(dueDate);
-			case TaskPackage.ACTION_ITEM__DONE :
-				return done != DONE_EDEFAULT;
-			case TaskPackage.ACTION_ITEM__ESTIMATE :
-				return estimate != ESTIMATE_EDEFAULT;
-			case TaskPackage.ACTION_ITEM__ACTIVITY :
-				return activity != ACTIVITY_EDEFAULT;
+		case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
+			return getContainingWorkpackage() != null;
+		case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES:
+			return associatedChangePackages != null
+					&& !associatedChangePackages.isEmpty();
+		case TaskPackage.ACTION_ITEM__PREDECESSORS:
+			return predecessors != null;
+		case TaskPackage.ACTION_ITEM__SUCCESSORS:
+			return successors != null;
+		case TaskPackage.ACTION_ITEM__CHECKED:
+			return isChecked() != CHECKED_EDEFAULT;
+		case TaskPackage.ACTION_ITEM__ASSIGNEE:
+			return basicGetAssignee() != null;
+		case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
+			return assignedTo != null && !assignedTo.isEmpty();
+		case TaskPackage.ACTION_ITEM__DUE_DATE:
+			return DUE_DATE_EDEFAULT == null ? dueDate != null
+					: !DUE_DATE_EDEFAULT.equals(dueDate);
+		case TaskPackage.ACTION_ITEM__DONE:
+			return done != DONE_EDEFAULT;
+		case TaskPackage.ACTION_ITEM__ESTIMATE:
+			return estimate != ESTIMATE_EDEFAULT;
+		case TaskPackage.ACTION_ITEM__ACTIVITY:
+			return activity != ACTIVITY_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -798,18 +796,18 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == Checkable.class) {
 			switch (derivedFeatureID) {
-				case TaskPackage.ACTION_ITEM__CHECKED :
-					return TaskPackage.CHECKABLE__CHECKED;
-				default :
-					return -1;
+			case TaskPackage.ACTION_ITEM__CHECKED:
+				return TaskPackage.CHECKABLE__CHECKED;
+			default:
+				return -1;
 			}
 		}
 		if (baseClass == Assignable.class) {
 			switch (derivedFeatureID) {
-				case TaskPackage.ACTION_ITEM__ASSIGNEE :
-					return TaskPackage.ASSIGNABLE__ASSIGNEE;
-				default :
-					return -1;
+			case TaskPackage.ACTION_ITEM__ASSIGNEE:
+				return TaskPackage.ASSIGNABLE__ASSIGNEE;
+			default:
+				return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -823,18 +821,18 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == Checkable.class) {
 			switch (baseFeatureID) {
-				case TaskPackage.CHECKABLE__CHECKED :
-					return TaskPackage.ACTION_ITEM__CHECKED;
-				default :
-					return -1;
+			case TaskPackage.CHECKABLE__CHECKED:
+				return TaskPackage.ACTION_ITEM__CHECKED;
+			default:
+				return -1;
 			}
 		}
 		if (baseClass == Assignable.class) {
 			switch (baseFeatureID) {
-				case TaskPackage.ASSIGNABLE__ASSIGNEE :
-					return TaskPackage.ACTION_ITEM__ASSIGNEE;
-				default :
-					return -1;
+			case TaskPackage.ASSIGNABLE__ASSIGNEE:
+				return TaskPackage.ACTION_ITEM__ASSIGNEE;
+			default:
+				return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);

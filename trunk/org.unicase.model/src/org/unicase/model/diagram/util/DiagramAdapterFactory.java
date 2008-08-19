@@ -12,6 +12,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
+import org.unicase.model.diagram.*;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
 
@@ -72,14 +73,17 @@ public class DiagramAdapterFactory extends AdapterFactoryImpl {
 		public Adapter caseMEDiagram(MEDiagram object) {
 			return createMEDiagramAdapter();
 		}
+
 		@Override
 		public Adapter caseIdentifiableElement(IdentifiableElement object) {
 			return createIdentifiableElementAdapter();
 		}
+
 		@Override
 		public Adapter caseModelElement(ModelElement object) {
 			return createModelElementAdapter();
 		}
+
 		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();

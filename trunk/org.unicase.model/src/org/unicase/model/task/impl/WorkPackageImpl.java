@@ -419,26 +419,26 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE :
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetContainingWorkpackage((WorkPackage) otherEnd,
+		case TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE:
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetContainingWorkpackage((WorkPackage) otherEnd, msgs);
+		case TaskPackage.WORK_PACKAGE__PREDECESSORS:
+			if (predecessors != null)
+				msgs = ((InternalEObject) predecessors)
+						.eInverseRemove(this,
+								TaskPackage.WORK_ITEM__SUCCESSORS,
+								WorkItem.class, msgs);
+			return basicSetPredecessors((WorkItem) otherEnd, msgs);
+		case TaskPackage.WORK_PACKAGE__SUCCESSORS:
+			if (successors != null)
+				msgs = ((InternalEObject) successors).eInverseRemove(this,
+						TaskPackage.WORK_ITEM__PREDECESSORS, WorkItem.class,
 						msgs);
-			case TaskPackage.WORK_PACKAGE__PREDECESSORS :
-				if (predecessors != null)
-					msgs = ((InternalEObject) predecessors).eInverseRemove(
-							this, TaskPackage.WORK_ITEM__SUCCESSORS,
-							WorkItem.class, msgs);
-				return basicSetPredecessors((WorkItem) otherEnd, msgs);
-			case TaskPackage.WORK_PACKAGE__SUCCESSORS :
-				if (successors != null)
-					msgs = ((InternalEObject) successors).eInverseRemove(this,
-							TaskPackage.WORK_ITEM__PREDECESSORS,
-							WorkItem.class, msgs);
-				return basicSetSuccessors((WorkItem) otherEnd, msgs);
-			case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS :
-				return ((InternalEList<InternalEObject>) (InternalEList<?>) getContainedWorkItems())
-						.basicAdd(otherEnd, msgs);
+			return basicSetSuccessors((WorkItem) otherEnd, msgs);
+		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getContainedWorkItems())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -452,15 +452,15 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE :
-				return basicSetContainingWorkpackage(null, msgs);
-			case TaskPackage.WORK_PACKAGE__PREDECESSORS :
-				return basicSetPredecessors(null, msgs);
-			case TaskPackage.WORK_PACKAGE__SUCCESSORS :
-				return basicSetSuccessors(null, msgs);
-			case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS :
-				return ((InternalEList<?>) getContainedWorkItems())
-						.basicRemove(otherEnd, msgs);
+		case TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE:
+			return basicSetContainingWorkpackage(null, msgs);
+		case TaskPackage.WORK_PACKAGE__PREDECESSORS:
+			return basicSetPredecessors(null, msgs);
+		case TaskPackage.WORK_PACKAGE__SUCCESSORS:
+			return basicSetSuccessors(null, msgs);
+		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
+			return ((InternalEList<?>) getContainedWorkItems()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -474,10 +474,10 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	public NotificationChain eBasicRemoveFromContainerFeature(
 			NotificationChain msgs) {
 		switch (eContainerFeatureID) {
-			case TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE :
-				return eInternalContainer().eInverseRemove(this,
-						TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
-						WorkPackage.class, msgs);
+		case TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE:
+			return eInternalContainer().eInverseRemove(this,
+					TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
+					WorkPackage.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -489,24 +489,24 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE :
-				return getContainingWorkpackage();
-			case TaskPackage.WORK_PACKAGE__ASSOCIATED_CHANGE_PACKAGES :
-				return getAssociatedChangePackages();
-			case TaskPackage.WORK_PACKAGE__PREDECESSORS :
-				if (resolve)
-					return getPredecessors();
-				return basicGetPredecessors();
-			case TaskPackage.WORK_PACKAGE__SUCCESSORS :
-				if (resolve)
-					return getSuccessors();
-				return basicGetSuccessors();
-			case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS :
-				return getContainedWorkItems();
-			case TaskPackage.WORK_PACKAGE__START_DATE :
-				return getStartDate();
-			case TaskPackage.WORK_PACKAGE__END_DATE :
-				return getEndDate();
+		case TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE:
+			return getContainingWorkpackage();
+		case TaskPackage.WORK_PACKAGE__ASSOCIATED_CHANGE_PACKAGES:
+			return getAssociatedChangePackages();
+		case TaskPackage.WORK_PACKAGE__PREDECESSORS:
+			if (resolve)
+				return getPredecessors();
+			return basicGetPredecessors();
+		case TaskPackage.WORK_PACKAGE__SUCCESSORS:
+			if (resolve)
+				return getSuccessors();
+			return basicGetSuccessors();
+		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
+			return getContainedWorkItems();
+		case TaskPackage.WORK_PACKAGE__START_DATE:
+			return getStartDate();
+		case TaskPackage.WORK_PACKAGE__END_DATE:
+			return getEndDate();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -519,31 +519,31 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE :
-				setContainingWorkpackage((WorkPackage) newValue);
-				return;
-			case TaskPackage.WORK_PACKAGE__ASSOCIATED_CHANGE_PACKAGES :
-				getAssociatedChangePackages().clear();
-				getAssociatedChangePackages().addAll(
-						(Collection<? extends ModelChangePackage>) newValue);
-				return;
-			case TaskPackage.WORK_PACKAGE__PREDECESSORS :
-				setPredecessors((WorkItem) newValue);
-				return;
-			case TaskPackage.WORK_PACKAGE__SUCCESSORS :
-				setSuccessors((WorkItem) newValue);
-				return;
-			case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS :
-				getContainedWorkItems().clear();
-				getContainedWorkItems().addAll(
-						(Collection<? extends WorkItem>) newValue);
-				return;
-			case TaskPackage.WORK_PACKAGE__START_DATE :
-				setStartDate((Date) newValue);
-				return;
-			case TaskPackage.WORK_PACKAGE__END_DATE :
-				setEndDate((Date) newValue);
-				return;
+		case TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE:
+			setContainingWorkpackage((WorkPackage) newValue);
+			return;
+		case TaskPackage.WORK_PACKAGE__ASSOCIATED_CHANGE_PACKAGES:
+			getAssociatedChangePackages().clear();
+			getAssociatedChangePackages().addAll(
+					(Collection<? extends ModelChangePackage>) newValue);
+			return;
+		case TaskPackage.WORK_PACKAGE__PREDECESSORS:
+			setPredecessors((WorkItem) newValue);
+			return;
+		case TaskPackage.WORK_PACKAGE__SUCCESSORS:
+			setSuccessors((WorkItem) newValue);
+			return;
+		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
+			getContainedWorkItems().clear();
+			getContainedWorkItems().addAll(
+					(Collection<? extends WorkItem>) newValue);
+			return;
+		case TaskPackage.WORK_PACKAGE__START_DATE:
+			setStartDate((Date) newValue);
+			return;
+		case TaskPackage.WORK_PACKAGE__END_DATE:
+			setEndDate((Date) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -555,27 +555,27 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE :
-				setContainingWorkpackage((WorkPackage) null);
-				return;
-			case TaskPackage.WORK_PACKAGE__ASSOCIATED_CHANGE_PACKAGES :
-				getAssociatedChangePackages().clear();
-				return;
-			case TaskPackage.WORK_PACKAGE__PREDECESSORS :
-				setPredecessors((WorkItem) null);
-				return;
-			case TaskPackage.WORK_PACKAGE__SUCCESSORS :
-				setSuccessors((WorkItem) null);
-				return;
-			case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS :
-				getContainedWorkItems().clear();
-				return;
-			case TaskPackage.WORK_PACKAGE__START_DATE :
-				setStartDate(START_DATE_EDEFAULT);
-				return;
-			case TaskPackage.WORK_PACKAGE__END_DATE :
-				setEndDate(END_DATE_EDEFAULT);
-				return;
+		case TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE:
+			setContainingWorkpackage((WorkPackage) null);
+			return;
+		case TaskPackage.WORK_PACKAGE__ASSOCIATED_CHANGE_PACKAGES:
+			getAssociatedChangePackages().clear();
+			return;
+		case TaskPackage.WORK_PACKAGE__PREDECESSORS:
+			setPredecessors((WorkItem) null);
+			return;
+		case TaskPackage.WORK_PACKAGE__SUCCESSORS:
+			setSuccessors((WorkItem) null);
+			return;
+		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
+			getContainedWorkItems().clear();
+			return;
+		case TaskPackage.WORK_PACKAGE__START_DATE:
+			setStartDate(START_DATE_EDEFAULT);
+			return;
+		case TaskPackage.WORK_PACKAGE__END_DATE:
+			setEndDate(END_DATE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -587,26 +587,23 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE :
-				return getContainingWorkpackage() != null;
-			case TaskPackage.WORK_PACKAGE__ASSOCIATED_CHANGE_PACKAGES :
-				return associatedChangePackages != null
-						&& !associatedChangePackages.isEmpty();
-			case TaskPackage.WORK_PACKAGE__PREDECESSORS :
-				return predecessors != null;
-			case TaskPackage.WORK_PACKAGE__SUCCESSORS :
-				return successors != null;
-			case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS :
-				return containedWorkItems != null
-						&& !containedWorkItems.isEmpty();
-			case TaskPackage.WORK_PACKAGE__START_DATE :
-				return START_DATE_EDEFAULT == null
-						? startDate != null
-						: !START_DATE_EDEFAULT.equals(startDate);
-			case TaskPackage.WORK_PACKAGE__END_DATE :
-				return END_DATE_EDEFAULT == null
-						? endDate != null
-						: !END_DATE_EDEFAULT.equals(endDate);
+		case TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE:
+			return getContainingWorkpackage() != null;
+		case TaskPackage.WORK_PACKAGE__ASSOCIATED_CHANGE_PACKAGES:
+			return associatedChangePackages != null
+					&& !associatedChangePackages.isEmpty();
+		case TaskPackage.WORK_PACKAGE__PREDECESSORS:
+			return predecessors != null;
+		case TaskPackage.WORK_PACKAGE__SUCCESSORS:
+			return successors != null;
+		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
+			return containedWorkItems != null && !containedWorkItems.isEmpty();
+		case TaskPackage.WORK_PACKAGE__START_DATE:
+			return START_DATE_EDEFAULT == null ? startDate != null
+					: !START_DATE_EDEFAULT.equals(startDate);
+		case TaskPackage.WORK_PACKAGE__END_DATE:
+			return END_DATE_EDEFAULT == null ? endDate != null
+					: !END_DATE_EDEFAULT.equals(endDate);
 		}
 		return super.eIsSet(featureID);
 	}

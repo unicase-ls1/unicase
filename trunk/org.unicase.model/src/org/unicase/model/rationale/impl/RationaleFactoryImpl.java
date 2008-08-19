@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.model.rationale.*;
 import org.unicase.model.rationale.Assessment;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.Criterion;
@@ -25,9 +26,8 @@ import org.unicase.model.rationale.Solution;
  * end-user-doc -->
  * @generated
  */
-public class RationaleFactoryImpl extends EFactoryImpl
-		implements
-			RationaleFactory {
+public class RationaleFactoryImpl extends EFactoryImpl implements
+		RationaleFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc --> <!--
@@ -64,21 +64,21 @@ public class RationaleFactoryImpl extends EFactoryImpl
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case RationalePackage.ISSUE :
-				return createIssue();
-			case RationalePackage.PROPOSAL :
-				return createProposal();
-			case RationalePackage.SOLUTION :
-				return createSolution();
-			case RationalePackage.CRITERION :
-				return createCriterion();
-			case RationalePackage.ASSESSMENT :
-				return createAssessment();
-			case RationalePackage.COMMENT :
-				return createComment();
-			default :
-				throw new IllegalArgumentException("The class '"
-						+ eClass.getName() + "' is not a valid classifier");
+		case RationalePackage.ISSUE:
+			return createIssue();
+		case RationalePackage.PROPOSAL:
+			return createProposal();
+		case RationalePackage.SOLUTION:
+			return createSolution();
+		case RationalePackage.CRITERION:
+			return createCriterion();
+		case RationalePackage.ASSESSMENT:
+			return createAssessment();
+		case RationalePackage.COMMENT:
+			return createComment();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
