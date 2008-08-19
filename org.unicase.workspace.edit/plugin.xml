@@ -91,7 +91,8 @@
               style="push">
            <visibleWhen
                  checkEnabled="false">
-              <iterate>
+              <iterate
+                    ifEmpty="false">
                  <instanceof
                        value="org.unicase.workspace.ProjectSpace">
                  </instanceof>
@@ -105,7 +106,8 @@
               style="push">
            <visibleWhen
                  checkEnabled="false">
-              <iterate>
+              <iterate
+                    ifEmpty="false">
                  <instanceof
                        value="org.unicase.workspace.ProjectSpace">
                  </instanceof>
@@ -122,7 +124,8 @@
                  style="push">
               <visibleWhen
                     checkEnabled="false">
-                 <iterate>
+                 <iterate
+                       ifEmpty="false">
                     <instanceof
                           value="org.unicase.workspace.ProjectSpace">
                     </instanceof>
@@ -150,7 +153,8 @@
                  style="push">
               <visibleWhen
                     checkEnabled="false">
-                 <iterate>
+                 <iterate
+                       ifEmpty="false">
                     <instanceof
                           value="org.unicase.workspace.ProjectSpace">
                     </instanceof>
@@ -164,7 +168,8 @@
                  style="push">
               <visibleWhen
                     checkEnabled="false">
-                 <iterate>
+                 <iterate
+                       ifEmpty="false">
                     <instanceof
                           value="org.unicase.workspace.ProjectSpace">
                     </instanceof>
