@@ -29,7 +29,7 @@ public class ImportProjectHandler extends ProjectActionHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell(), SWT.SAVE);
+				.getActiveWorkbenchWindow().getShell(), SWT.OPEN);
 		dialog.setFilterNames(ImportProjectHandler.FILTER_NAMES);
 		dialog.setFilterExtensions(ImportProjectHandler.FILTER_EXTS);
 		String fn = dialog.open();
