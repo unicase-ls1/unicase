@@ -5,9 +5,12 @@ import org.eclipse.swt.widgets.Shell;
 
 public class CommitDialog extends Dialog {
 
-	protected CommitDialog(Shell parentShell) {
+	public CommitDialog(Shell parentShell) {
 		super(parentShell);
 		
 	}
+
+	
+	
 
 }

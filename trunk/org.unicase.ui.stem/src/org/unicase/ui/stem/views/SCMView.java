@@ -12,13 +12,14 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.ui.stem.views.historybrowserview.HistoryComposite;
 
 public abstract class SCMView extends ViewPart {
 
 	protected TabItem browserTab;
 	protected TabFolder tabFolder;
 	protected Label lblCriteria;
+	
+	protected QueryComosite queryComposite;
 
 	@Override
 	public void createPartControl(Composite parent) {
@@ -50,20 +51,22 @@ public abstract class SCMView extends ViewPart {
 		});
 		
 		lblCriteria = new Label(toolBar, SWT.NONE );
-		lblCriteria.setLayoutData(new GridData());
+		lblCriteria.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, true));
 		lblCriteria.setText("press refresh to be refreshed! :)");
 		
 		tabFolder = new TabFolder(parent, SWT.TOP);
 		tabFolder.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		
+		//tabItem browserTab
 		browserTab = new TabItem(tabFolder, SWT.NONE);
 		browserTab.setControl(setBrowserTabControl());
 				
 		//tabItem queryTab
 		TabItem queryTab = new TabItem(tabFolder, SWT.NONE);
 		queryTab.setText("Query");
-		queryTab.setControl(new QueryComosite(tabFolder, SWT.NONE));
-		
+		this.queryComposite = new QueryComosite(tabFolder, SWT.NONE);
+		queryTab.setControl(queryComposite);
+						
 		tabFolder.setSelection(1);
 
 	}
