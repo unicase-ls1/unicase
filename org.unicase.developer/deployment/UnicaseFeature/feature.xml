@@ -2,7 +2,8 @@
 <feature
       id="org.unicase.client"
       label="Unicase Client"
-      version="0.1.0">
+      version="0.1.1"
+      provider-name="TU Muenchen">
 
    <description url="http://www.unicase.org">
       This feature contains the unicase client.
@@ -101,6 +102,10 @@ Everyone is permitted to copy and distribute copies of this Agreement, but in or
 This Agreement is governed by the laws of the State of New York and the intellectual property laws of the United States of America. No party to this Agreement will bring a legal action under this Agreement more than one year after the cause of action arose. Each party waives its rights to a jury trial in any resulting litigation.
    </license>
 
+   <url>
+      <update label="Unicase update site" url="http://wwwbruegge.in.tum.de/static/unicase/"/>
+   </url>
+
    <requires>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.emf.teneo"/>
@@ -178,14 +183,14 @@ This Agreement is governed by the laws of the State of New York and the intellec
          id="org.unicase.ui.common"
          download-size="0"
          install-size="0"
-         version="0.1.0"
+         version="0.1.0.qualifier"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.esbrowser"
          download-size="0"
          install-size="0"
-         version="0.1.0"
+         version="0.1.0.qualifier"
          unpack="false"/>
 
    <plugin
@@ -199,7 +204,7 @@ This Agreement is governed by the laws of the State of New York and the intellec
          id="org.unicase.ui.navigator"
          download-size="0"
          install-size="0"
-         version="0.1.0"
+         version="0.1.0.qualifier"
          unpack="false"/>
 
    <plugin
@@ -231,17 +236,17 @@ This Agreement is governed by the laws of the State of New York and the intellec
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.nebula.widgets.gantchart"
-         download-size="0"
-         install-size="0"
-         version="0.0.14"
-         unpack="false"/>
-
-   <plugin
          id="org.unicase.ui.stem"
          download-size="0"
          install-size="0"
          version="0.0.1.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.nebula.widgets.cdatetime"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
          unpack="false"/>
 
 </feature>
