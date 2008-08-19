@@ -65,7 +65,8 @@
                style="push">
           <visibleWhen
                   checkEnabled="false">
-               <iterate>
+               <iterate
+                     ifEmpty="false">
                   <instanceof
                         value="org.unicase.model.document.LeafSection">
                   </instanceof>
@@ -79,7 +80,8 @@
                style="push">
             <visibleWhen
                   checkEnabled="false">
-               <iterate>
+               <iterate
+                     ifEmpty="false">
                   <instanceof
                         value="org.unicase.model.document.CompositeSection">
                   </instanceof>
@@ -93,7 +95,8 @@
                style="push">
             <visibleWhen
                   checkEnabled="false">
-               <iterate>
+               <iterate
+                     ifEmpty="false">
                   <instanceof
                         value="org.unicase.model.document.CompositeSection">
                   </instanceof>
@@ -108,7 +111,8 @@
                id="org.unicase.ui.navigator.dynamicMECreationCommands">
         <visibleWhen
                   checkEnabled="false">
-               <iterate>
+               <iterate
+                     ifEmpty="false">
                   <instanceof
                         value="org.unicase.model.document.LeafSection">
                   </instanceof>

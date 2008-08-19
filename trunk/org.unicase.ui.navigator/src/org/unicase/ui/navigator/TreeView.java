@@ -169,7 +169,14 @@ public class TreeView extends ViewPart {
 	@Override
 	public void setFocus() {
 		viewer.getControl().setFocus();
-
+//		if (viewer.getTree().getItems().length > 0){
+//			if(viewer.getTree().getSelectionCount() == 0){
+//				viewer.getTree().select(viewer.getTree().getItem(0));
+//			}
+//		
+//		}
+		
+				
 	}
 
 	private void hookDoubleClickAction() {

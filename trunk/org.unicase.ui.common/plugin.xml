@@ -49,7 +49,8 @@
               style="push">
                 <visibleWhen
                  checkEnabled="false">
-              <iterate>
+              <iterate
+                    ifEmpty="false">
                  <instanceof
                        value="org.unicase.model.ModelElement">
                  </instanceof>
@@ -63,7 +64,8 @@
               style="push">
            <visibleWhen
                  checkEnabled="false">
-              <iterate>
+              <iterate
+                    ifEmpty="false">
                  <instanceof
                        value="org.unicase.workspace.ProjectSpace">
                  </instanceof>
@@ -110,7 +112,8 @@
               label="Add Annotations">
            <visibleWhen
                  checkEnabled="false">
-              <iterate>
+              <iterate
+                    ifEmpty="false">
                  <reference
                        definitionId="org.unicase.ui.common.commands.modelElement">
                  </reference>
