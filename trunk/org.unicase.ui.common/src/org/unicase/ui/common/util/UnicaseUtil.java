@@ -8,10 +8,17 @@
 package org.unicase.ui.common.util;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.jface.window.Window;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.dialogs.ElementListSelectionDialog;
+import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.model.ModelPackage;
 
 /**
@@ -58,6 +65,28 @@ public final class UnicaseUtil {
 	 */
 	public static ArrayList<EClass> getSubclasses(EClass clazz) {
 		return UnicaseUtil.getSubclasses(clazz, ModelPackage.eINSTANCE);
+	}
+	
+	
+	public static Object[] showMESelectionDialog(Shell shell,
+								Collection<?> initialContent,
+								String title,
+								boolean multiSelection){
+		
+		ElementListSelectionDialog dlg = new ElementListSelectionDialog(shell
+				.getShell(), new AdapterFactoryLabelProvider(
+							new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
+
+		dlg.setElements(initialContent.toArray(new Object[initialContent.size()]));
+		dlg.setTitle(title);
+		dlg.setBlockOnOpen(true);
+		dlg.setMultipleSelection(multiSelection);
+		Object[] result = new Object[0];
+		if (dlg.open() == Window.OK) {
+			result = dlg.getResult();
+		}
+		return result;
 	}
 
 }
