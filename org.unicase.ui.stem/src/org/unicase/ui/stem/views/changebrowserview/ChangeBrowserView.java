@@ -3,9 +3,9 @@ package org.unicase.ui.stem.views.changebrowserview;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.unicase.ui.stem.views.SCMView;
+import org.unicase.ui.stem.views.AbstractSCMView;
 
-public class ChangeBrowserView extends SCMView {
+public class ChangeBrowserView extends AbstractSCMView {
 
 	public ChangeBrowserView() {
 		

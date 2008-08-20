@@ -13,7 +13,7 @@ import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.ui.part.ViewPart;
 
-public abstract class SCMView extends ViewPart {
+public abstract class AbstractSCMView extends ViewPart {
 
 	protected TabItem browserTab;
 	protected TabFolder tabFolder;
