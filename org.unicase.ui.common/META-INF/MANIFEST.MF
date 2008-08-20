@@ -27,6 +27,7 @@ Export-Package: org.unicase.ui.common;uses:="org.osgi.framework,org.eclipse.ui.p
  org.unicase.ui.common.commands;uses:="org.eclipse.core.commands,org.unicase.model",
  org.unicase.ui.common.decorators,
  org.unicase.ui.common.diagram,
+ org.unicase.ui.common.dialogs,
  org.unicase.ui.common.dnd,
  org.unicase.ui.common.exceptions,
  org.unicase.ui.common.perspectives,
