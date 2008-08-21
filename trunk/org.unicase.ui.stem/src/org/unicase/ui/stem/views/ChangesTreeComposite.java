@@ -9,9 +9,11 @@ import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.TreeViewerColumn;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Tree;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AtomicOperation;
@@ -22,12 +24,15 @@ public class ChangesTreeComposite extends Composite {
 
 	private TreeViewer treeViewer;
 	private int numOfChanges;
+	private boolean showColumns;
 
 
-	public ChangesTreeComposite(Composite parent, int style) {
+	public ChangesTreeComposite(Composite parent, int style, boolean showColumns) {
 		super(parent, style);
 		this.setLayout(new GridLayout());
+		this.showColumns = showColumns;
 		createTreeViewer();
+		
 		
 	}
 	
@@ -37,10 +42,6 @@ public class ChangesTreeComposite extends Composite {
 		treeViewer.getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		treeViewer.setContentProvider(new ChangesTreeContentProvider());
-		
-		Tree tree = treeViewer.getTree();
-		tree.setHeaderVisible(true);
-		tree.setLinesVisible(true);
 		
 		TreeViewerColumn tclmName = new TreeViewerColumn(treeViewer, SWT.NONE);
 		tclmName.getColumn().setWidth(200);
@@ -54,6 +55,24 @@ public class ChangesTreeComposite extends Composite {
 				
 			}			
 		});
+		
+		if (showColumns){
+			createOtherColumns();
+		}
+		
+		
+		treeViewer.setInput(getOperations());
+//		this.numOfChanges = operations.size();
+		
+	}
+
+
+	private void createOtherColumns() {
+		Tree tree = treeViewer.getTree();
+		tree.setHeaderVisible(true);
+		tree.setLinesVisible(true);
+		
+		
 		
 		TreeViewerColumn tclmDescription = new TreeViewerColumn(treeViewer, SWT.NONE);
 		tclmDescription.getColumn().setText("Description");
@@ -87,12 +106,25 @@ public class ChangesTreeComposite extends Composite {
 		final Random rnd = new Random();
 		tclmStatus.setLabelProvider(new ColumnLabelProvider(){
 
+			private boolean accepted;
+			
+			@Override
+			public Color getForeground(Object element) {
+				if(accepted){
+					return Display.getCurrent().getSystemColor(SWT.COLOR_GREEN);
+				}else {
+					return Display.getCurrent().getSystemColor(SWT.COLOR_RED);
+				}
+			}
+
 			@Override
 			public String getText(Object element) {
 				AbstractOperation operation = (AbstractOperation)element;
 				if(isAccepted(operation)){
+					accepted = true;
 					return "Accepted";
 				}else{
+					accepted = false;
 					return "Rejected";
 				}
 				
@@ -102,10 +134,6 @@ public class ChangesTreeComposite extends Composite {
 				return rnd.nextBoolean();
 			}			
 		});
-		
-		treeViewer.setInput(getOperations());
-//		this.numOfChanges = operations.size();
-		
 	}
 
 
@@ -116,6 +144,8 @@ public class ChangesTreeComposite extends Composite {
 		
 	}
 
+	
+	
 
 	private List<AbstractOperation> createDummyOperations() {
 		List<AbstractOperation> ops = new ArrayList<AbstractOperation>();

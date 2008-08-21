@@ -7,6 +7,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.unicase.ui.stem.views.AbstractSCMView;
 import org.unicase.ui.stem.views.dialogs.CommitDialog;
+import org.unicase.ui.stem.views.dialogs.UpdateDialog;
 
 public class HistoryBrowserView extends AbstractSCMView {
 
@@ -32,10 +33,14 @@ public class HistoryBrowserView extends AbstractSCMView {
 	@Override
 	protected void refreshClicked() {
 //		lblCriteria.setText(queryComposite.getQuery().getDescription());
-		CommitDialog commitDialog = new CommitDialog(parent.getShell());
-		commitDialog.create();
-		commitDialog.open();
+
+//		CommitDialog commitDialog = new CommitDialog(parent.getShell());
+//		commitDialog.create();
+//		commitDialog.open();
 		
+		UpdateDialog updateDialog = new UpdateDialog(parent.getShell());
+		updateDialog.create();
+		updateDialog.open();
 	}
 
 	@Override
