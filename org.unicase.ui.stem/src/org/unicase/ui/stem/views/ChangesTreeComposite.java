@@ -21,6 +21,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 public class ChangesTreeComposite extends Composite {
 
 	private TreeViewer treeViewer;
+	private int numOfChanges;
 
 
 	public ChangesTreeComposite(Composite parent, int style) {
@@ -103,6 +104,7 @@ public class ChangesTreeComposite extends Composite {
 		});
 		
 		treeViewer.setInput(getOperations());
+//		this.numOfChanges = operations.size();
 		
 	}
 
@@ -165,8 +167,15 @@ public class ChangesTreeComposite extends Composite {
 //		compOp2.getAtomicOperations().add((AtomicOperation)compOp1);
 		ops.add((AbstractOperation)compOp2);
 		
+		this.numOfChanges = ops.size();
 		return ops;
 		
+	}
+
+
+	public int getNumOfChanges() {
+		
+		return this.numOfChanges;
 	}
 	
 	

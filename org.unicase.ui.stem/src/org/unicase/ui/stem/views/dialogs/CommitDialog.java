@@ -1,6 +1,5 @@
 package org.unicase.ui.stem.views.dialogs;
 
-import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -18,6 +17,7 @@ public class CommitDialog extends TitleAreaDialog {
 
 		super(parentShell);
 		this.setShellStyle(this.getShellStyle() | SWT.RESIZE );
+		
 
 	}
 
@@ -27,17 +27,9 @@ public class CommitDialog extends TitleAreaDialog {
 		Composite contents = new Composite(parent, SWT.NONE);
 		contents.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		contents.setLayout(new GridLayout(2, false));
-
-		Label lblUncommitedChanges = new Label(contents, SWT.NONE);
-		lblUncommitedChanges.setLayoutData(new GridData(SWT.BEGINNING,
-				SWT.CENTER, true, false));
-		lblUncommitedChanges.setText("Uncommited Changes");
-
-		Label lblNumOfChanges = new Label(contents, SWT.NONE);
-		lblNumOfChanges.setLayoutData(new GridData(SWT.END, SWT.CENTER, false,
-				false));
-		lblNumOfChanges.setText("Total number of changes:");
-
+		
+		
+	
 		ChangesTreeComposite changesTree = new ChangesTreeComposite(contents,
 				SWT.NONE);
 		changesTree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
@@ -51,10 +43,21 @@ public class CommitDialog extends TitleAreaDialog {
 		txtLogMsg.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1));
 		txtLogMsg.setText("");
 		
+		setTitle("Commit");
+		setMessage("Number of changes: " + changesTree.getNumOfChanges());
+		
 		return contents;
 
 	}
 	
+	@Override
+	protected void configureShell(Shell newShell) {
+		
+		super.configureShell(newShell);
+		newShell.setText("Commit");
+	}
+
+
 	@Override
 	protected void okPressed() {
 		// TODO Auto-generated method stub
@@ -69,3 +72,17 @@ public class CommitDialog extends TitleAreaDialog {
 	}
 	
 }
+
+
+
+
+
+//Label lblUncommitedChanges = new Label(contents, SWT.NONE);
+//lblUncommitedChanges.setLayoutData(new GridData(SWT.BEGINNING,
+//		SWT.CENTER, true, false));
+//lblUncommitedChanges.setText("Uncommited Changes");
+//
+//Label lblNumOfChanges = new Label(contents, SWT.NONE);
+//lblNumOfChanges.setLayoutData(new GridData(SWT.END, SWT.CENTER, false,
+//		false));
+//lblNumOfChanges.setText("Total number of changes:");
