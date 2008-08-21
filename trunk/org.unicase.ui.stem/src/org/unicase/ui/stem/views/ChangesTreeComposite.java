@@ -15,6 +15,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Tree;
+import org.eclipse.swt.widgets.TreeColumn;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AtomicOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
@@ -62,6 +63,12 @@ public class ChangesTreeComposite extends Composite {
 		
 		
 		treeViewer.setInput(getOperations());
+		if(showColumns){
+			for (TreeColumn column : treeViewer.getTree().getColumns()) {
+				column.pack();
+			}
+		}
+	
 //		this.numOfChanges = operations.size();
 		
 	}
