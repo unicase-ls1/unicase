@@ -31,19 +31,19 @@ public class CommitDialog extends TitleAreaDialog {
 		
 	
 		ChangesTreeComposite changesTree = new ChangesTreeComposite(contents,
-				SWT.NONE);
+				SWT.BORDER, true);
 		changesTree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 
 		Label lblLogMsg = new Label(contents, SWT.NONE);
-		lblLogMsg.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, true,
-				true, 2, 1));
+		lblLogMsg.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false,
+				false, 2, 1));
 		lblLogMsg.setText("Log message:");
 		
 		Text txtLogMsg = new Text(contents, SWT.MULTI | SWT.LEAD | SWT.BORDER);
-		txtLogMsg.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1));
+		txtLogMsg.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 		txtLogMsg.setText("");
 		
-		setTitle("Commit");
+		setTitle("Uncommited changes");
 		setMessage("Number of changes: " + changesTree.getNumOfChanges());
 		
 		return contents;
