@@ -16,6 +16,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AtomicOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
@@ -26,6 +27,8 @@ public class ChangesTreeComposite extends Composite {
 	private TreeViewer treeViewer;
 	private int numOfChanges;
 	private boolean showColumns;
+	
+	private ChangePackage changePackage;
 
 
 	public ChangesTreeComposite(Composite parent, int style, boolean showColumns) {
@@ -213,6 +216,20 @@ public class ChangesTreeComposite extends Composite {
 	public int getNumOfChanges() {
 		
 		return this.numOfChanges;
+	}
+
+
+	public void setChangePackage(ChangePackage changePackage) {
+		this.changePackage = changePackage;
+		if(changePackage != null){
+			treeViewer.setInput(changePackage.getOperations());
+		}
+		
+	}
+
+
+	public ChangePackage getChangePackage() {
+		return changePackage;
 	}
 	
 	
