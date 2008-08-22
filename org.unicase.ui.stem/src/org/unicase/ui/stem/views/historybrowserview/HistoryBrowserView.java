@@ -6,9 +6,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.unicase.ui.stem.views.AbstractSCMView;
-import org.unicase.ui.stem.views.dialogs.CommitDialog;
 import org.unicase.ui.stem.views.dialogs.MergeDialog;
-import org.unicase.ui.stem.views.dialogs.UpdateDialog;
 
 public class HistoryBrowserView extends AbstractSCMView {
 
@@ -43,9 +41,10 @@ public class HistoryBrowserView extends AbstractSCMView {
 //		updateDialog.create();
 //		updateDialog.open();
 		
-		MergeDialog mergeDialog = new MergeDialog(parent.getShell());
-		mergeDialog.create();
-		mergeDialog.open();
+//		MergeDialog mergeDialog = new MergeDialog(parent.getShell());
+//		mergeDialog.create();
+//		mergeDialog.open();
+		
 	}
 
 	@Override

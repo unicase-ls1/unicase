@@ -5,23 +5,17 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.jface.viewers.IStructuredContentProvider;
+import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.nebula.widgets.cdatetime.CDT;
 import org.eclipse.nebula.widgets.cdatetime.CDateTime;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -33,8 +27,10 @@ import org.eclipse.swt.widgets.Text;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
-import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
+import org.unicase.model.organization.OrganizationFactory;
+import org.unicase.model.organization.OrganizationPackage;
+import org.unicase.model.organization.User;
 import org.unicase.ui.common.MEClassLabelProvider;
 import org.unicase.ui.common.dialogs.METypeSelectionDialog;
 import org.unicase.ui.common.util.UnicaseUtil;
@@ -58,7 +54,7 @@ public class QueryComosite extends Composite {
 	private Button chkIncludeAnnotations;
 
 	private List<ModelElement> modelElementsList = new ArrayList<ModelElement>();
-	private List<ACUser> usersList = new ArrayList<ACUser>();
+	private List<User> usersList = new ArrayList<User>();
 	private List<EClass> modelElementTypesList = new ArrayList<EClass>();
 
 	private Query query;
@@ -71,8 +67,6 @@ public class QueryComosite extends Composite {
 	public QueryComosite(Composite parent, int style) {
 		super(parent, style);
 		this.setLayout(new GridLayout());
-		// this.project = WorkspaceManager.getInstance().getCurrentWorkspace()
-		// .getActiveProjectSpace().getProject();
 		createExpandItems();
 	}
 
@@ -135,22 +129,9 @@ public class QueryComosite extends Composite {
 		tableViewer.getTable().setLayoutData(
 				new GridData(SWT.FILL, SWT.FILL, true, true, 5, 1));
 
-		if(type == ListCompositeType.ELEMENTTYPES_LIST){
-			MyLabelProvider lp = new MyLabelProvider();
-			tableViewer.setLabelProvider(lp);
-		}else{
-			tableViewer.setLabelProvider(new AdapterFactoryLabelProvider(
-				new ComposedAdapterFactory(
-						ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
-		}
+		tableViewer.setLabelProvider(new MEClassLabelProvider());
+		tableViewer.setContentProvider(new ArrayContentProvider());
 		
-//		listViewer.setContentProvider(new AdapterFactoryContentProvider(
-//				new ComposedAdapterFactory(
-//						ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
-		
-		tableViewer.setContentProvider(new MyContentProvider());
-
-
 		switch (type) {
 		case ELEMENTS_LIST:
 			tableViewer.setInput(modelElementsList);
@@ -170,7 +151,12 @@ public class QueryComosite extends Composite {
 				}
 
 				public void widgetSelected(SelectionEvent e) {
-					ACUser[] users = (ACUser[]) showMESelectionDialog(type);
+					
+					Object[] result =  showMESelectionDialog(type);
+					User[] users = new User[result.length];
+					for(int i = 0; i < users.length; i++ ){
+						users[i] = (User) result[i];
+					}
 					if (users.length != 0) {
 						usersList.addAll(Arrays.asList(users));
 						tableViewer.refresh(true, true);
@@ -272,19 +258,28 @@ public class QueryComosite extends Composite {
 	}
 
 	private Object[] showMESelectionDialog(ListCompositeType type) {
+		this.project = WorkspaceManager.getInstance().getCurrentWorkspace()
+		 .getActiveProjectSpace().getProject();
 		Object[] result = new Object[0];
 		if (type == ListCompositeType.USERS_LIST) {
-			// 1. get all users
+			// 1. get all ACUsers
 			// 2. remove those which are currently in usersList
 			// 3. show user selection dialog
-			// i need a session id to get all user from server.
+			// TODO: i need a session id to get all user from server.
 			// or the users/groups must somehow be cached local.
+			// currently is just a list of User instances shown, not ACUser!!
+			// and accordingly the usersList is also of type User !!
+			// and Query.users list is also of type User!!
+			List<User> users = new ArrayList<User>();
+			users.addAll(project.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser() , new BasicEList<User>()));
+			users.removeAll(usersList);
+
+			result = UnicaseUtil.showMESelectionDialog(getShell(),
+					users, "select user", true);
 
 		} else if (type == ListCompositeType.ELEMENTS_LIST) {
 
 			List<ModelElement> modelElements = new ArrayList<ModelElement>();
-			project = WorkspaceManager.getInstance().getCurrentWorkspace()
-			 	.getActiveProjectSpace().getProject();
 			modelElements.addAll(project.getAllModelElements());
 			modelElements.removeAll(modelElementsList);
 
@@ -324,6 +319,7 @@ public class QueryComosite extends Composite {
 
 		rbtnNumOfDays = new Button(composite, SWT.RADIO);
 		rbtnNumOfDays.setText("Number of days:");
+		@SuppressWarnings("unused")
 		Label filler = new Label(composite, SWT.NONE);
 		txtNumOfDays = new Text(composite, SWT.BORDER);
 		GridData gridData1 = new GridData(SWT.LEFT, SWT.CENTER, true, true, 4,
@@ -419,81 +415,6 @@ public class QueryComosite extends Composite {
 		return result;
 	}
 
-	
-	private class MyContentProvider implements IStructuredContentProvider {
-		
-		 public Object[] getElements(Object inputElement) {
-			 List list = (List) inputElement;
-			 return list.toArray(new Object[list.size()]);
-			 
-		}
 
-		public void dispose() {
-			// TODO Auto-generated method stub
-
-		}
-
-		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-
-		}
-
-	}
-	
-	private class MyLabelProvider extends AdapterFactoryLabelProvider {
-		public MyLabelProvider() {
-			super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-
-		}
-
-		@Override
-		public Image getColumnImage(Object object, int columnIndex) {
-			if (object instanceof EClass) {
-				EClass eClass = (EClass) object;
-				EPackage ePackage = eClass.getEPackage();
-				ModelElement newMEInstance = (ModelElement) ePackage.getEFactoryInstance().create(eClass);
-				return super.getImage(newMEInstance);
-			}
-			return super.getImage(object);
-		}
-
-		@Override
-		public String getColumnText(Object object, int columnIndex) {
-			String text = "";
-			// if argument is instance of EClass and
-			// it inherits ModelElement then return its name.
-			if (object instanceof EClass) {
-				EClass eclass = (EClass) object;
-				if (eclass.getEAllSuperTypes().contains(ModelPackage.eINSTANCE.getModelElement())) {
-					// TODO: show getDisplayName()
-					text = eclass.getName();
-				}
-
-			} else {
-				// argument is an EPackage
-				text = super.getText(object);
-			}
-
-			return text;
-		}
-	}
-	
 }
-
-// private class MyContentProvider implements IStructuredContentProvider {
-//
-// public Object[] getElements(Object inputElement) {
-//
-// }
-//
-// public void dispose() {
-// // TODO Auto-generated method stub
-//		
-// }
-//
-// public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-//	
-//		
-// }
-//	
-// }
 

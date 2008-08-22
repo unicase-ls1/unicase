@@ -39,6 +39,7 @@ import org.eclipse.ui.part.DrillDownAdapter;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
+import org.unicase.model.Project;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.common.dnd.UCDropAdapter;
@@ -72,6 +73,7 @@ public class IterationPlanningView extends ViewPart {
 	private Action groupByAnnotated;
 	private WorkpackageContentProvider workpackageContentProvider;
 	private AssignedToLabelProvider assignedToLabelProvider;
+	private Project project;
 
 	/*
 	 * The content provider class is responsible for providing objects to the
@@ -111,6 +113,10 @@ public class IterationPlanningView extends ViewPart {
 			@Override
 			public void notifyChanged(Notification msg) {
 				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
+					if(workspace.getActiveProjectSpace() != null){
+						project = workspace.getActiveProjectSpace().getProject();
+					}
+					viewer.setInput(project);
 					System.out.println();
 				}
 				super.notifyChanged(msg);
@@ -126,7 +132,12 @@ public class IterationPlanningView extends ViewPart {
 //			}
 //		});
 
-		viewer.setInput(workspace.getActiveProjectSpace().getProject());
+		if(workspace.getActiveProjectSpace() != null){
+			viewer.setInput(workspace.getActiveProjectSpace().getProject());
+		}else{
+			viewer.setInput(null);
+		}
+		
 		Tree tree = viewer.getTree();
 		tree.setHeaderVisible(true);
 

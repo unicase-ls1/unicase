@@ -67,5 +67,24 @@ public class MEClassLabelProvider extends AdapterFactoryLabelProvider {
 		return super.getImage(object);
 
 	}
+	
+	@Override
+	public Image getColumnImage(Object object, int columnIndex) {
+		if (columnIndex == 0 ) {
+			return getImage(object);
+		}else{
+			return super.getImage(object);
+		}
+	
+	}
+
+	@Override
+	public String getColumnText(Object object, int columnIndex) {
+		if (columnIndex == 0 ) {
+			return getText(object);
+		}else{
+			return super.getText(object);
+		}
+	}
 
 }

@@ -67,7 +67,7 @@ public abstract class AbstractSCMView extends ViewPart {
 		this.queryComposite = new QueryComosite(tabFolder, SWT.NONE);
 		queryTab.setControl(queryComposite);
 						
-		tabFolder.setSelection(1);
+//		tabFolder.setSelection(1);
 
 	}
 

@@ -3,10 +3,14 @@ package org.unicase.ui.stem.views.changebrowserview;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.ui.stem.views.AbstractSCMView;
 
 public class ChangeBrowserView extends AbstractSCMView {
 
+	private ChangePackage changePackage;
+	private ChangesComposite changesComposite;
+	
 	public ChangeBrowserView() {
 		
 	}
@@ -33,8 +37,19 @@ public class ChangeBrowserView extends AbstractSCMView {
 	@Override
 	protected Control setBrowserTabControl() {
 		
-		return new ChangesComposite(tabFolder, SWT.NONE);
-		
+		 
+		changesComposite = new ChangesComposite(tabFolder, SWT.NONE);
+		changesComposite.setInput(this.changePackage);
+		return changesComposite;
+	}
+	
+	public void setInput(ChangePackage input){
+		this.changePackage = input;
+		changesComposite.setInput(input);
+	}
+	
+	public ChangePackage getInput(){
+		return this.changePackage;
 	}
 
 }

@@ -89,56 +89,61 @@ public class TreeView extends ViewPart {
 				ActionFactory.UNDO.getId(), undoAction);
 		getViewSite().getActionBars().setGlobalActionHandler(
 				ActionFactory.REDO.getId(), redoAction);
+		
+		if (viewer.getTree().getItems().length > 0){
+			setActiveProjectSpace(viewer.getTree().getItems()[0].getData());
 
+		}
+		
 	}
 
 	private void addSelectionListener() {
 		viewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
 			public void selectionChanged(SelectionChangedEvent event) {
-				setActiveProjectSpace(event);
+				if (event.getSelection() instanceof IStructuredSelection) {
+					IStructuredSelection selection = (IStructuredSelection) event
+							.getSelection();
+					Object obj = selection.getFirstElement();
+					setActiveProjectSpace(obj);
+				}
 			}
 		});
 	}
 
-	private void setActiveProjectSpace(SelectionChangedEvent event) {
+	private void setActiveProjectSpace(Object obj) {
 
-		if (event.getSelection() instanceof IStructuredSelection) {
-			IStructuredSelection selection = (IStructuredSelection) event
-					.getSelection();
-			Object obj = selection.getFirstElement();
+		final ProjectSpace projectSpace;
+		if (obj instanceof ModelElement) {
+			ModelElement me = (ModelElement) obj;
+			projectSpace = WorkspaceManager.getProjectSpace(me);
+		} else if (obj instanceof ProjectSpace) {
+			projectSpace = (ProjectSpace) obj;
+		} else {
+			projectSpace = null;
+		}
 
-			final ProjectSpace projectSpace;
-			if (obj instanceof ModelElement) {
-				ModelElement me = (ModelElement) obj;
-				projectSpace = WorkspaceManager.getProjectSpace(me);
-			} else if (obj instanceof ProjectSpace) {
-				projectSpace = (ProjectSpace) obj;
-			} else {
-				projectSpace = null;
-			}
-
+		if (WorkspaceManager.getInstance().getCurrentWorkspace()
+				.getActiveProjectSpace() != null) {
 			if (WorkspaceManager.getInstance().getCurrentWorkspace()
-					.getActiveProjectSpace() != null) {
-				if (WorkspaceManager.getInstance().getCurrentWorkspace()
-						.getActiveProjectSpace().equals(projectSpace)) {
-					return;
-				}
-			}
-			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-					.getEditingDomain("org.unicase.EditingDomain");
-			if (projectSpace != null) {
-				domain.getCommandStack().execute(new RecordingCommand(domain) {
-
-					protected void doExecute() {
-						WorkspaceManager.getInstance().getCurrentWorkspace()
-								.setActiveProjectSpace(projectSpace);
-
-					}
-
-				});
+					.getActiveProjectSpace().equals(projectSpace)) {
+				return;
 			}
 		}
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain");
+		if (projectSpace != null) {
+			domain.getCommandStack().execute(new RecordingCommand(domain) {
+
+				protected void doExecute() {
+					WorkspaceManager.getInstance().getCurrentWorkspace()
+							.setActiveProjectSpace(projectSpace);
+
+				}
+
+			});
+		}
+
 	}
 
 	private void makeActions() {
@@ -169,14 +174,13 @@ public class TreeView extends ViewPart {
 	@Override
 	public void setFocus() {
 		viewer.getControl().setFocus();
-//		if (viewer.getTree().getItems().length > 0){
-//			if(viewer.getTree().getSelectionCount() == 0){
-//				viewer.getTree().select(viewer.getTree().getItem(0));
-//			}
-//		
-//		}
-		
-				
+		// if (viewer.getTree().getItems().length > 0){
+		// if(viewer.getTree().getSelectionCount() == 0){
+		// viewer.getTree().select(viewer.getTree().getItem(0));
+		// }
+		//		
+		// }
+
 	}
 
 	private void hookDoubleClickAction() {

@@ -7,6 +7,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.model.ModelElement;
+import org.unicase.model.organization.User;
 
 public class Query {
 	
@@ -23,7 +24,7 @@ public class Query {
 	private Date endDate = null;
 	
 	private List<ModelElement> modelElements = null;
-	private List<ACUser> users = null;
+	private List<User> users = null;
 	private List<EClass> modelElementTypes = null;
 	
 	
@@ -92,12 +93,12 @@ public class Query {
 	}
 	
 	
-	public void setUsers(List<ACUser> users) {
+	public void setUsers(List<User> users) {
 		this.users = users;
 	}
 	
 	
-	public List<ACUser> getUsers() {
+	public List<User> getUsers() {
 		return users;
 	}
 	
