@@ -44,10 +44,9 @@ public class StatusView extends ViewPart { // implements IShowInTarget
 	private Text txtDescription;
 	private Composite topComposite;
 
-	// private FlatTabComposite flatTabComposite = new FlatTabComposite();
-	// private HierarchyTabComposite hierarchyTabComposite = new
-	// HierarchyTabComposite();
-	// private UserTabComposite userTabComposite = new UserTabComposite();
+	 private FlatTabComposite flatTabComposite;
+	 private HierarchyTabComposite hierarchyTabComposite;
+	 private UserTabComposite userTabComposite;
 
 	public StatusView() {
 		this.input = null;
@@ -123,6 +122,9 @@ public class StatusView extends ViewPart { // implements IShowInTarget
 	}
 
 	private void refreshView() {
+		if(input == null){
+			return;
+		}
 		lblImage.setImage(labelProvider.getImage(input));
 		lblName.setText(input.getName());
 		String description = input.getDescription() == null ? "" : input.getDescription();
@@ -138,7 +140,7 @@ public class StatusView extends ViewPart { // implements IShowInTarget
 		pb.setToolTipText(Integer.toString(progress) + "% done");
 		
 		
-		// flatTabComposite.setInput(input);
+		 flatTabComposite.setInput(input);
 		// hierarchyTabComposite.setInput(input);
 		// userTabComposite.setInput(input);
 
@@ -173,7 +175,8 @@ public class StatusView extends ViewPart { // implements IShowInTarget
 		TabItem flatTab = new TabItem(tabFolder, SWT.None);
 		flatTab.setText("Flat view");
 		flatTab.setImage(imageDescriptor.createImage());
-		// flatTab.setControl(flatTabComposite);
+		flatTabComposite = new FlatTabComposite(tabFolder, SWT.NONE);
+		flatTab.setControl(flatTabComposite);
 
 		url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"),
 				new Path("icons/hierarchicalLayout.gif"), null);
@@ -181,7 +184,8 @@ public class StatusView extends ViewPart { // implements IShowInTarget
 		TabItem hierarchyTab = new TabItem(tabFolder, SWT.None);
 		hierarchyTab.setText("Hierachical view");
 		hierarchyTab.setImage(imageDescriptor.createImage());
-		// hierarchyTab.setControl(hierarchyTabComposite);
+		hierarchyTabComposite = new HierarchyTabComposite(tabFolder, SWT.NONE);
+		hierarchyTab.setControl(hierarchyTabComposite);
 
 		url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"),
 				new Path("icons/User.gif"), null);
@@ -189,7 +193,8 @@ public class StatusView extends ViewPart { // implements IShowInTarget
 		TabItem userTab = new TabItem(tabFolder, SWT.None);
 		userTab.setText("Users");
 		userTab.setImage(imageDescriptor.createImage());
-		// userTab.setControl(userTabComposite);
+		userTabComposite = new UserTabComposite(tabFolder, SWT.NONE);
+		userTab.setControl(userTabComposite);
 
 	}
 
