@@ -2,6 +2,7 @@ package org.unicase.model.task.util;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
@@ -49,8 +50,8 @@ public class MEStateImpl implements MEState {
 	}
 
 	private void updateEffectiveOpeners() {
-		ArrayList<ModelElement> openers = TaxonomyAccess.getInstance()
-				.getOpeningLinkTaxonomy().getOpeneners(modelElement);
+		Set<ModelElement> openers = TaxonomyAccess.getInstance()
+				.getOpeningLinkTaxonomy().getOpeners(modelElement);
 
 		for (ModelElement opener : openers) {
 			try {

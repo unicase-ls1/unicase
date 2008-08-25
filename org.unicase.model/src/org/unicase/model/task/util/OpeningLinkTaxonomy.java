@@ -1,7 +1,9 @@
 package org.unicase.model.task.util;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -20,8 +22,8 @@ public class OpeningLinkTaxonomy {
 	 *            the Modelelement
 	 * @return a list of modelelements, the openers
 	 */
-	public ArrayList<ModelElement> getOpeneners(ModelElement me) {
-		ArrayList<ModelElement> openers = new ArrayList<ModelElement>();
+	public Set<ModelElement> getOpeners(ModelElement me) {
+		Set<ModelElement> openers = new HashSet<ModelElement>();
 		EList<EObject> contents = me.eContents();
 		for(EObject eObject:contents){
 			if(eObject instanceof ModelElement){
@@ -40,7 +42,7 @@ public class OpeningLinkTaxonomy {
 	}
 
 	private void getWorkPackageOpeners(WorkPackage wp,
-			ArrayList<ModelElement> openers) {
+			Set<ModelElement> openers) {
 		openers.addAll(wp.getContainedWorkItems());
 	}
 
@@ -57,9 +59,9 @@ public class OpeningLinkTaxonomy {
 		return opened;
 	}
 	
-	public List<ModelElement> getLeafOpeners(ModelElement modelElement){
-		ArrayList<ModelElement> leafOpeners = new ArrayList<ModelElement>();
-		ArrayList<ModelElement> openeners = getOpeneners(modelElement);
+	public Set<ModelElement> getLeafOpeners(ModelElement modelElement){
+		Set<ModelElement> leafOpeners = new HashSet<ModelElement>();
+		Set<ModelElement> openeners = getOpeners(modelElement);
 		for(ModelElement opener: openeners){
 			if (opener instanceof Checkable){
 				leafOpeners.add(opener);

@@ -345,6 +345,21 @@
          <viewShortcut
                id="org.unicase.ui.stem.ChangeBrowserView">
          </viewShortcut>
+         <view
+               id="org.unicase.ui.treeview.views.IterationPlanningView"
+               ratio="0.5"
+               relationship="stack"
+               relative="org.eclipse.ui.views.ProblemView">
+         </view>
+         <view
+               id="org.unicase.ui.treeview.views.StatusView"
+               minimized="false"
+               relationship="stack"
+               relative="org.eclipse.ui.views.ProblemView">
+         </view>
+        <!-- <showInPart
+               id="org.unicase.ui.treeview.views.StatusView">
+         </showInPart> -->
        <!--  <view
                id="org.unicase.ui.navigator.viewer"
                ratio="0.5"

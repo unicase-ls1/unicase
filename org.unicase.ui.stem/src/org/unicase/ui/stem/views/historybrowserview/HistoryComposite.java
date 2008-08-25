@@ -134,20 +134,6 @@ public class HistoryComposite extends Composite {
 		tableViewer.getControl().setMenu(mgr.createContextMenu(tableViewer.getControl()));
 		
 		
-		
-//		mgr.setRemoveAllWhenShown(true);
-//		mgr.addMenuListener(new IMenuListener(){
-//
-//			public void menuAboutToShow(IMenuManager manager) {
-//				IStructuredSelection selection = (IStructuredSelection)tableViewer.getSelection();
-//				if(!selection.isEmpty()){
-//					mgr.add(actionSetSource);
-//				}
-//				
-//			}
-//			
-//		});
-		
 	}
 
 

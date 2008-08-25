@@ -26,6 +26,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IDecoratorManager;
+import org.eclipse.ui.IPartListener;
+import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.part.ViewPart;
@@ -43,10 +45,11 @@ import org.unicase.workspace.WorkspaceManager;
  * @author helming
  * 
  */
-public class TreeView extends ViewPart {
+public class TreeView extends ViewPart  { //implements IShowInSource
 
 	private TreeViewer viewer;
 	private Action doubleClickAction, undoAction, redoAction;
+	private MenuManager menuMgr;
 
 	/**
 	 * . Constructor
@@ -71,8 +74,7 @@ public class TreeView extends ViewPart {
 		// this is for workaround for update problem in navigator
 		getSite().setSelectionProvider(viewer);
 
-		// set context menu
-		MenuManager menuMgr = new MenuManager();
+		menuMgr = new MenuManager();
 		menuMgr.add(new Separator("additions"));
 		getSite().registerContextMenu(menuMgr, viewer);
 		Control control = viewer.getControl();
@@ -94,6 +96,40 @@ public class TreeView extends ViewPart {
 			setActiveProjectSpace(viewer.getTree().getItems()[0].getData());
 
 		}
+		
+		this.getSite().getPage().addPartListener(new IPartListener(){
+
+			public void partActivated(IWorkbenchPart part) {
+				
+				menuMgr.update(true);
+				if (part.getTitle().equals("Unicase Navigator")){
+//					PlatformUI.getWorkbench().getDisplay().beep();
+				}
+				
+				
+			}
+
+			public void partBroughtToTop(IWorkbenchPart part) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			public void partClosed(IWorkbenchPart part) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			public void partDeactivated(IWorkbenchPart part) {
+				menuMgr.update(true);
+				
+			}
+
+			public void partOpened(IWorkbenchPart part) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 		
 	}
 
@@ -180,6 +216,8 @@ public class TreeView extends ViewPart {
 		// }
 		//		
 		// }
+		
+		menuMgr.update();
 
 	}
 
@@ -202,5 +240,18 @@ public class TreeView extends ViewPart {
 		};
 
 	}
+
+//	public ShowInContext getShowInContext() {
+//		IStructuredSelection sel = (IStructuredSelection)viewer.getSelection();
+//		ModelElement me = null;
+//		if(!sel.isEmpty()){
+//			Object obj = sel.getFirstElement(); 
+//			if(obj instanceof ModelElement){
+//				me = (ModelElement) obj;
+//			}
+//			
+//		}
+//		return new ShowInContext(me, viewer.getSelection());
+//	}
 
 }
