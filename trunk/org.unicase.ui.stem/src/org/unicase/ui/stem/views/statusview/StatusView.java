@@ -17,8 +17,6 @@ import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.dnd.DropTargetListener;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -43,11 +41,18 @@ public class StatusView extends ViewPart { // implements IShowInTarget
 	private MEClassLabelProvider labelProvider;
 	private Label lblImage;
 	private Label lblName;
+	private Text txtDescription;
+	private Composite topComposite;
 
 	// private FlatTabComposite flatTabComposite = new FlatTabComposite();
 	// private HierarchyTabComposite hierarchyTabComposite = new
 	// HierarchyTabComposite();
 	// private UserTabComposite userTabComposite = new UserTabComposite();
+
+	public StatusView() {
+		this.input = null;
+		this.labelProvider = new MEClassLabelProvider();
+	}
 
 	@Override
 	public void createPartControl(Composite parent) {
@@ -60,40 +65,102 @@ public class StatusView extends ViewPart { // implements IShowInTarget
 	}
 
 	private void createTopComposite(SashForm sash) {
-		Composite topComposite = new Composite(sash, SWT.BORDER);
-		topComposite.setLayout(new GridLayout(2, false));
+		topComposite = new Composite(sash, SWT.BORDER);
+		topComposite.setLayout(new GridLayout(3, false));
 		topComposite
 				.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 
 		lblImage = new Label(topComposite, SWT.NONE);
-		lblImage.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false,
-				false));
-		lblImage.setSize(new Point(200, 200));
-		lblImage.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_RED));
+		
+		GridData gridData = new GridData(SWT.BEGINNING, SWT.TOP, false,
+				false);
+		gridData.heightHint = 25;
+		gridData.widthHint = 25;
+		lblImage.setLayoutData(gridData);
 		lblImage.setText("");
-		lblImage.setImage(getImage());
-		
-		lblName = new Label(topComposite, SWT.NONE);
-		lblName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-		lblName.setText(input == null ? "" : input.getName());
-		lblName.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_RED));
-		lblName.setFont(new Font(Display.getDefault(),"Tahoma", 24, SWT.BOLD));
-		
+		lblImage.setImage(labelProvider.getImage(input));
 
+		lblName = new Label(topComposite, SWT.NONE);
+		lblName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
+		lblName.setText("Drag a model element here");
+		lblName.setFont(new Font(Display.getDefault(), "Tahoma", 8, SWT.BOLD));
+
+		Label filler = new Label(topComposite, SWT.NONE);
+		filler.setLayoutData(new GridData(SWT.BEGINNING, SWT.TOP, false,
+				true));
+				
+		Label lblDescription = new Label(topComposite, SWT.NONE);
+		lblDescription.setLayoutData(new GridData(SWT.BEGINNING, SWT.TOP, false,
+				true));
+		lblDescription.setText("Description:");
+		
+		
+		txtDescription = new Text(topComposite, SWT.MULTI |  SWT.WRAP | SWT.V_SCROLL | SWT.BORDER);
+		txtDescription.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		txtDescription.setText("");
+		txtDescription.setEditable(false);
+		
+		
+		Label filler2 = new Label(topComposite, SWT.NONE);
+		filler2.setLayoutData(new GridData(SWT.BEGINNING, SWT.TOP, false,
+				false));
+		
+		Label lblProgress = new Label(topComposite, SWT.NONE);
+		lblProgress.setLayoutData(new GridData(SWT.BEGINNING, SWT.TOP, false,
+				false));
+		lblProgress.setText("Progress:");
+		
+		
 		pb = new ProgressBar(topComposite, SWT.HORIZONTAL);
-		pb.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, false, 2, 1));
+		pb.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, true,
+						false));
 
 		pb.setMinimum(0);
-
 		pb.setMaximum(100);
 		pb.setSelection(33);
 
 		addDNDSupport(topComposite);
 	}
 
-	private Image getImage() {
-		labelProvider = new MEClassLabelProvider();
-		return labelProvider.getImage(input);
+	private void refreshView() {
+		lblImage.setImage(labelProvider.getImage(input));
+		lblName.setText(input.getName());
+		String description = input.getDescription() == null ? "" : input.getDescription();
+		txtDescription.setText(description);
+	
+		
+		int maximum = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy()
+				.getOpeners(input).size();
+		pb.setMaximum(maximum);
+		int stillOpens = getStillOpenOpeners(input).size();
+		pb.setSelection(maximum - stillOpens);
+		int progress = (int) ((float)(maximum - stillOpens) / maximum * 100);
+		pb.setToolTipText(Integer.toString(progress) + "% done");
+		
+		
+		// flatTabComposite.setInput(input);
+		// hierarchyTabComposite.setInput(input);
+		// userTabComposite.setInput(input);
+
+	}
+
+	public void setInput(ModelElement me) {
+		ModelElement newInput = me;
+		if (newInput == null) {
+			newInput = ActionHelper.getSelectedModelElement();
+		}
+		if (input == null) {
+			input = newInput;
+			refreshView();
+
+		}
+		if (newInput != null) {
+			this.input = newInput;
+			System.out.println(input.getName());
+			// refresh attributes group and three different views
+			refreshView();
+
+		}
 
 	}
 
@@ -156,51 +223,14 @@ public class StatusView extends ViewPart { // implements IShowInTarget
 
 	}
 
-	public void setInput(ModelElement me) {
-		ModelElement newInput = me;
-		if (newInput == null) {
-			newInput = ActionHelper.getSelectedModelElement();
-		}
-		if(input == null){
-			input = newInput;
-			refreshView();
-
-		}
-		if (newInput != null ) {
-			this.input = newInput;
-			System.out.println(input.getName());
-			// refresh attributes group and three different views
-			refreshView();
-
-		}
-
-	}
-
-	private void refreshView() {
-		lblImage.setImage(labelProvider.getImage(input));
-		
-		lblName.setText(input.getName());
-		
-		int maximum = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy()
-				.getOpeners(input).size();
-		pb.setMaximum(maximum);
-		int stillOpens = getStillOpenOpeners(input).size();
-		pb.setSelection(maximum - stillOpens);
-
-		// flatTabComposite.setInput(input);
-		// hierarchyTabComposite.setInput(input);
-		// userTabComposite.setInput(input);
-
-	}
-
 	private Set<ModelElement> getStillOpenOpeners(ModelElement me) {
 		Set<ModelElement> result = new HashSet<ModelElement>();
 		Set<ModelElement> openers = TaxonomyAccess.getInstance()
 				.getOpeningLinkTaxonomy().getOpeners(input);
-		for(ModelElement opener : openers){
-			if(opener.getState().equals(MEState.OPEN) || 
-					opener.getState().equals(MEState.BLOCKED)){
-				
+		for (ModelElement opener : openers) {
+			if (opener.getState().equals(MEState.OPEN)
+					|| opener.getState().equals(MEState.BLOCKED)) {
+
 				result.add(opener);
 			}
 		}
