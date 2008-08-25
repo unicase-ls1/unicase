@@ -10,6 +10,8 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.ui.URIEditorInput;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gef.palette.PaletteRoot;
@@ -40,6 +42,10 @@ import org.eclipse.ui.navigator.resources.ProjectExplorer;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.IShowInTargetList;
 import org.eclipse.ui.part.ShowInContext;
+import org.unicase.model.diagram.MEDiagram;
+import org.unicase.model.impl.ProjectImpl;
+import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.impl.ProjectSpaceImpl;
 
 /**
  * @generated
@@ -316,4 +322,17 @@ public class ModelDiagramEditor extends DiagramDocumentEditor implements
 		// }
 	}
 
+	
+	@Override
+	public void doSave(IProgressMonitor progressMonitor) {
+		getEditingDomain().getCommandStack().execute(
+				new RecordingCommand(getEditingDomain()) {
+
+					@Override
+					protected void doExecute() {
+						WorkspaceManager.getProjectSpace((MEDiagram)ModelDiagramEditor.this.getDiagram().eContainer()).save();
+					}
+
+				});
+	}
 }
