@@ -108,6 +108,68 @@
           xsi:type="gmfgraph:Label"
           name="ClassMethodNameFigure"/>
     </descriptors>
+  </figures>
+  <figures
+      name="ComponentDiagram">
+    <descriptors
+        name="ComponentFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle">
+        <children
+            xsi:type="gmfgraph:Label"
+            name="ComponentFigure_name"/>
+      </actualFigure>
+      <accessors
+          accessor="getFigureComponentFigure_name"
+          figure="//@figures.1/@descriptors.0/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors
+        name="RequiredInterfaceConnectionFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="RequiredInterfaceConnectionFigure"
+          targetDecoration="//@figures.1/@descriptors.1/@actualFigure/@children.0">
+        <children
+            xsi:type="gmfgraph:CustomDecoration"
+            name="RequiredInterfaceConnectionFigure_Lollypop"
+            qualifiedClassName="org.unicase.ui.usecaseDiagram.unicase.RequiredInterfaceDecoration">
+          <attributes
+              name="radius"
+              value="10"/>
+        </children>
+      </actualFigure>
+    </descriptors>
+    <descriptors
+        name="ProvidedInterfaceCircleFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Ellipse"
+          name="ProvidedInterfaceCircleFigure">
+        <maximumSize
+            dx="15"
+            dy="15"/>
+        <minimumSize
+            dx="15"
+            dy="15"/>
+        <preferredSize
+            dx="15"
+            dy="15"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors
+        name="Interface_NameLabel">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="Interface_NameLabel"/>
+    </descriptors>
+    <descriptors
+        name="ProvidedInterfaceConnectionFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="ProvidedInterfaceConnectionFigure"/>
+    </descriptors>
+  </figures>
+  <figures
+      name="UseCaseDiagram">
     <descriptors
         name="ActorFigure">
       <actualFigure
@@ -130,7 +192,7 @@
       </actualFigure>
       <accessors
           accessor="getUseCaseFigure_name"
-          figure="//@figures.0/@descriptors.5/@actualFigure/@children.0"/>
+          figure="//@figures.2/@descriptors.1/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="InitiateFigure">
@@ -149,14 +211,14 @@
       <actualFigure
           xsi:type="gmfgraph:Label"
           name="InitiateLabel"
-          text="&lt;&lt;initiate>>"/>
+          text="\u00ABinitiate\u00BB"/>
     </descriptors>
     <descriptors
         name="ParticipateLabelFigure">
       <actualFigure
           xsi:type="gmfgraph:Label"
           name="ParticipateLabel"
-          text="&lt;&lt;participate>>"/>
+          text="\u00ABparticipate\u00BB"/>
     </descriptors>
     <descriptors
         name="DashedLineOpenArrow">
@@ -164,7 +226,7 @@
           xsi:type="gmfgraph:PolylineConnection"
           name="DashedLineOpenArrow"
           lineKind="LINE_DASH"
-          targetDecoration="//@figures.0/@descriptors.10/@actualFigure/@children.0">
+          targetDecoration="//@figures.2/@descriptors.6/@actualFigure/@children.0">
         <children
             xsi:type="gmfgraph:PolylineDecoration"
             name="OpenArrow"/>
@@ -175,14 +237,14 @@
       <actualFigure
           xsi:type="gmfgraph:Label"
           name="IncludeLabel"
-          text="&lt;&lt;include>>"/>
+          text="\u00ABinclude\u00BB"/>
     </descriptors>
     <descriptors
         name="ExtendLabelFigure">
       <actualFigure
           xsi:type="gmfgraph:Label"
           name="ExtendLabel"
-          text="&lt;&lt;extend>>"/>
+          text="&lt;&lt;extend\u00BB"/>
     </descriptors>
     <descriptors
         name="Actor_external_name">
@@ -190,49 +252,6 @@
           xsi:type="gmfgraph:Label"
           name="Actor_external_name"
           text=""/>
-    </descriptors>
-  </figures>
-  <figures
-      name="ComponentDiagram">
-    <descriptors
-        name="ComponentFigure">
-      <actualFigure
-          xsi:type="gmfgraph:Rectangle"
-          name="ComponentFigure"
-          outline="false"
-          fill="false">
-        <layout
-            xsi:type="gmfgraph:BorderLayout"/>
-        <children
-            xsi:type="gmfgraph:Rectangle"
-            name="ComponentFigure_LabelsContainer">
-          <layoutData
-              xsi:type="gmfgraph:BorderLayoutData"
-              alignment="BEGINNING"
-              vertical="true"/>
-          <layout
-              xsi:type="gmfgraph:FlowLayout"
-              vertical="true"
-              matchMinorSize="true"
-              forceSingleLine="true"
-              majorAlignment="FILL"
-              minorAlignment="FILL"
-              majorSpacing="0"
-              minorSpacing="0"/>
-          <minimumSize
-              dy="35"/>
-          <children
-              xsi:type="gmfgraph:Label"
-              name="ComponentFigure_fixed_component"
-              text="\u00ABcomponent\u00BB"/>
-          <children
-              xsi:type="gmfgraph:Label"
-              name="ComponentFigure_name"/>
-        </children>
-      </actualFigure>
-      <accessors
-          accessor="getFigureComponentFigure_name"
-          figure="//@figures.1/@descriptors.0/@actualFigure/@children.0/@children.1"/>
     </descriptors>
   </figures>
   <nodes
@@ -268,6 +287,9 @@
           dy="40"/>
     </facets>
   </nodes>
+  <nodes
+      name="ProvidedInterfaceCircleNode"
+      figure="ProvidedInterfaceCircleFigure"/>
   <connections
       name="Association"
       figure="AssociationFigure"/>
@@ -283,6 +305,12 @@
   <connections
       name="Extend"
       figure="DashedLineOpenArrow"/>
+  <connections
+      name="RequiredInterfaceLink"
+      figure="RequiredInterfaceConnectionFigure"/>
+  <connections
+      name="ProvidedInterfaceLink"
+      figure="ProvidedInterfaceConnectionFigure"/>
   <compartments
       name="ClassNode_attributes"
       figure="ClassFigure"
@@ -314,7 +342,7 @@
       name="UseCaseNode_name"
       figure="UseCaseFigure"
       elementIcon="false"
-      accessor="//@figures.0/@descriptors.5/@accessors.0"/>
+      accessor="//@figures.2/@descriptors.1/@accessors.0"/>
   <labels
       name="InitiateLabel"
       figure="InitiateLabelFigure"
@@ -336,5 +364,14 @@
       elementIcon="false"/>
   <labels
       name="ComponentNode_name"
-      accessor="//@figures.1/@descriptors.0/@accessors.0"/>
+      figure="ComponentFigure"
+      accessor="//@figures.1/@descriptors.0/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="END"/>
+  </labels>
+  <labels
+      name="Interface_name"
+      figure="Interface_NameLabel"
+      elementIcon="false"/>
 </gmfgraph:Canvas>
