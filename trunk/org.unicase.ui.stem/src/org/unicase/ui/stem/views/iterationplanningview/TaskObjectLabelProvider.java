@@ -13,7 +13,9 @@ public class TaskObjectLabelProvider extends ColumnLabelProvider {
 
 	public TaskObjectLabelProvider() {
 		super();
-		adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
 
 	@Override

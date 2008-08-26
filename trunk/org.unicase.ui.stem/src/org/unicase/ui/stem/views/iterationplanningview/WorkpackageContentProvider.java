@@ -120,7 +120,7 @@ public class WorkpackageContentProvider extends
 		if (object instanceof ModelElement) {
 			ModelElement me = (ModelElement) object;
 			List<Annotation> annotations = me.getAnnotations();
-			Object parent = getParent(me);
+			//Object parent = getParent(me);
 			return annotations.toArray(new Object[annotations.size()]);
 		} else
 			return super.getChildren(object);

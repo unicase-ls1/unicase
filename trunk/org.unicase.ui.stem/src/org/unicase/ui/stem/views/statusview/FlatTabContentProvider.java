@@ -13,9 +13,9 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.task.Assignable;
 import org.unicase.model.task.Checkable;
 
-public class TableContentProvider extends AdapterFactoryContentProvider {
+public class FlatTabContentProvider extends AdapterFactoryContentProvider {
 
-	public TableContentProvider() {
+	public FlatTabContentProvider() {
 		super(new ComposedAdapterFactory(
 				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		// TODO Auto-generated constructor stub
