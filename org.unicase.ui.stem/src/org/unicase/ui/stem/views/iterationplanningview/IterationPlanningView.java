@@ -42,6 +42,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.task.WorkPackage;
+import org.unicase.ui.common.TreeViewerColumnSorter;
 import org.unicase.ui.common.dnd.UCDropAdapter;
 import org.unicase.ui.meeditor.MEEditor;
 import org.unicase.ui.meeditor.MEEditorInput;
@@ -158,7 +159,7 @@ public class IterationPlanningView extends ViewPart {
 		column2.setLabelProvider(assignedToLabelProvider);
 		column2.setEditingSupport(new AssignedToEditingSupport(viewer));
 		
-		ColumnViewerSorter cSorter = new ColumnViewerSorter(viewer, column2, assignedToLabelProvider);
+		TreeViewerColumnSorter cSorter = new TreeViewerColumnSorter(viewer, column2, assignedToLabelProvider);
 
 		// Create the help context id for the viewer's control
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(viewer.getControl(),
@@ -283,96 +284,4 @@ public class IterationPlanningView extends ViewPart {
 
 	}
 	
-	
-
-	
-	
-	
-	private static  class ColumnViewerSorter extends ViewerComparator {
-	
-		public static final int ASC = 1;
-		public static final int DESC = -1;
-		
-		private int direction = 1;
-		
-		private TreeViewerColumn column;
-		private ColumnLabelProvider columnLabelProvider;
-		
-		private ColumnViewer viewer;
-		
-		
-		public ColumnViewerSorter(ColumnViewer viewer, TreeViewerColumn column,  ColumnLabelProvider columnLabelProvider) {
-			this.columnLabelProvider = columnLabelProvider;
-			this.column = column;
-			this.viewer = viewer;
-			this.column.getColumn().addSelectionListener(new SelectionAdapter() {
-
-				public void widgetSelected(SelectionEvent e) {
-					if( ColumnViewerSorter.this.viewer.getComparator() != null ) {
-						if( ColumnViewerSorter.this.viewer.getComparator() == ColumnViewerSorter.this ) {
-							if( direction == ASC ) {
-								setSorter(ColumnViewerSorter.this, DESC);
-							}else{
-								setSorter(ColumnViewerSorter.this, ASC);
-							}
-						} else {
-							setSorter(ColumnViewerSorter.this, ASC);
-						}
-					} else {
-						setSorter(ColumnViewerSorter.this, ASC);
-					}
-				}
-			});
-		}
-		
-		
-		public void setSorter(ColumnViewerSorter sorter, int direction) {
-				column.getColumn().getParent().setSortColumn(column.getColumn());
-				sorter.direction = direction;
-				
-				if( direction == ASC ) {
-					column.getColumn().getParent().setSortDirection(SWT.DOWN);
-				} else {
-					column.getColumn().getParent().setSortDirection(SWT.UP);
-				}
-				
-				if( viewer.getComparator() == sorter ) {
-					viewer.refresh();
-				} else {
-					viewer.setComparator(sorter);
-				}
-	
-		}
-
-		public int compare(Viewer viewer, Object e1, Object e2) {
-			    	
-		    String name1 = columnLabelProvider.getText(e1);
-			String name2 = columnLabelProvider.getText(e2);
-
-			if (name1 == null) {
-				name1 = "";
-			}
-			if (name2 == null) {
-				name2 = "";
-			}
-
-			// use the comparator to compare the strings
-			if(direction == ASC){
-				return getComparator().compare(name1, name2);
-			}else{
-				return getComparator().compare(name2, name1);
-			}
-		
-		}
-		
-		
-		@Override
-		public int category(Object element) {
-			if(element instanceof Annotation) return 1;
-			if(element instanceof WorkPackage) return 2;
-			return 3;
-		}
-		
-	}
-
 }

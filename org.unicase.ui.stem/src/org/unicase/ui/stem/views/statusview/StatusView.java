@@ -116,7 +116,7 @@ public class StatusView extends ViewPart { // implements IShowInTarget
 
 		pb.setMinimum(0);
 		pb.setMaximum(100);
-		pb.setSelection(33);
+		pb.setSelection(0);
 
 		addDNDSupport(topComposite);
 	}
@@ -133,15 +133,28 @@ public class StatusView extends ViewPart { // implements IShowInTarget
 		
 		int maximum = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy()
 				.getOpeners(input).size();
-		pb.setMaximum(maximum);
-		int stillOpens = getStillOpenOpeners(input).size();
-		pb.setSelection(maximum - stillOpens);
-		int progress = (int) ((float)(maximum - stillOpens) / maximum * 100);
-		pb.setToolTipText(Integer.toString(progress) + "% done");
+		
+		if(maximum == 0){
+			pb.setMaximum(10);
+			if(input.getState().equals(MEState.CLOSED)){
+				pb.setSelection(10);
+				pb.setToolTipText("100% done");
+			}else{
+				pb.setSelection(0);
+				pb.setToolTipText("0% done");
+			}
+		}else{
+			pb.setMaximum(maximum);
+			int stillOpens = getStillOpenOpeners(input).size();
+			pb.setSelection(maximum - stillOpens);
+			int progress = (int) ((float)(maximum - stillOpens) / maximum * 100);
+			pb.setToolTipText(Integer.toString(progress) + "% done");
+		}
+		
 		
 		
 		 flatTabComposite.setInput(input);
-		// hierarchyTabComposite.setInput(input);
+		 hierarchyTabComposite.setInput(input);
 		// userTabComposite.setInput(input);
 
 	}
