@@ -22,6 +22,7 @@ import org.unicase.ui.meeditor.mecontrols.MEControl;
 import org.unicase.ui.meeditor.mecontrols.MEDateControl;
 import org.unicase.ui.meeditor.mecontrols.MEEnumControl;
 import org.unicase.ui.meeditor.mecontrols.MEIntControl;
+import org.unicase.ui.meeditor.mecontrols.MERichTextAreaControl;
 import org.unicase.ui.meeditor.mecontrols.METextAreaControl;
 import org.unicase.ui.meeditor.mecontrols.METextControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEMultiLinkControl;
@@ -70,7 +71,8 @@ public class ControlFactory {
 		if (feature instanceof EAttribute) {
 
 			if (itemPropertyDescriptor.isMultiLine(modelElement)) {
-				return createMETextAreaControl((EAttribute) feature);
+				//return createMETextAreaControl((EAttribute) feature);
+				return createMERichTextAreaControl((EAttribute) feature);
 			}
 			if (feature.getEType().getInstanceClass().equals(boolean.class)) {
 				return createMEBoolControl((EAttribute) feature);
@@ -137,8 +139,14 @@ public class ControlFactory {
 	private MEControl createMETextAreaControl(EAttribute attribute) {
 		return new METextAreaControl(attribute, toolkit, modelElement, editingDomain);
 	}
+	
+	private MEControl createMERichTextAreaControl(EAttribute attribute) {
+		return new MERichTextAreaControl(attribute, toolkit, modelElement, editingDomain);
+		//return new METextAreaControl(attribute, toolkit, modelElement, editingDomain);
+	}
 
 	private MEControl createMETextControl(EAttribute attribute) {
+		//return new MERichTextAreaControl(attribute, toolkit, modelElement, editingDomain);
 		return new METextControl(attribute, toolkit, modelElement, editingDomain);
 	}
 
