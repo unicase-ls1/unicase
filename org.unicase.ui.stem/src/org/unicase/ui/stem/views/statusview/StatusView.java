@@ -33,6 +33,7 @@ import org.unicase.model.task.util.MEState;
 import org.unicase.model.task.util.TaxonomyAccess;
 import org.unicase.ui.common.MEClassLabelProvider;
 import org.unicase.ui.common.commands.ActionHelper;
+import org.unicase.workspace.WorkspaceManager;
 
 public class StatusView extends ViewPart { // implements IShowInTarget
 
@@ -40,14 +41,16 @@ public class StatusView extends ViewPart { // implements IShowInTarget
 	private DropTarget dropTarget;
 	private ProgressBar pb;
 	private MEClassLabelProvider labelProvider;
+
 	private Label lblImage;
 	private Label lblName;
 	private Text txtDescription;
+	private Label lblProjectName;
 	private Composite topComposite;
 
-	 private FlatTabComposite flatTabComposite;
-	 private HierarchyTabComposite hierarchyTabComposite;
-	 private UserTabComposite userTabComposite;
+	private FlatTabComposite flatTabComposite;
+	private HierarchyTabComposite hierarchyTabComposite;
+	private UserTabComposite userTabComposite;
 
 	public StatusView() {
 		this.input = null;
@@ -57,7 +60,7 @@ public class StatusView extends ViewPart { // implements IShowInTarget
 	@Override
 	public void createPartControl(Composite parent) {
 
-		SashForm sash = new SashForm(parent, SWT.VERTICAL );
+		SashForm sash = new SashForm(parent, SWT.VERTICAL);
 		createTopComposite(sash);
 		createTabs(sash);
 		sash.setWeights(new int[] { 20, 80 });
@@ -68,12 +71,11 @@ public class StatusView extends ViewPart { // implements IShowInTarget
 		topComposite = new Composite(sash, SWT.NONE);
 		topComposite.setLayout(new GridLayout(3, false));
 		topComposite
-				.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+				.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		lblImage = new Label(topComposite, SWT.NONE);
-		
-		GridData gridData = new GridData(SWT.BEGINNING, SWT.TOP, false,
-				false);
+
+		GridData gridData = new GridData(SWT.BEGINNING, SWT.TOP, false, false);
 		gridData.heightHint = 25;
 		gridData.widthHint = 25;
 		lblImage.setLayoutData(gridData);
@@ -81,39 +83,47 @@ public class StatusView extends ViewPart { // implements IShowInTarget
 		lblImage.setImage(labelProvider.getImage(input));
 
 		lblName = new Label(topComposite, SWT.NONE);
-		lblName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
+		lblName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
+				2, 1));
 		lblName.setText("Drag a model element here");
 		lblName.setFont(new Font(Display.getDefault(), "Tahoma", 8, SWT.BOLD));
 
 		Label filler = new Label(topComposite, SWT.NONE);
-		filler.setLayoutData(new GridData(SWT.BEGINNING, SWT.TOP, false,
-				true));
-				
+		filler.setLayoutData(new GridData(SWT.BEGINNING, SWT.TOP, false, false));
+		Label lblProject = new Label(topComposite, SWT.NONE);
+		lblProject.setLayoutData(new GridData(SWT.BEGINNING, SWT.TOP, false,
+				false));
+		lblProject.setText("Project:");
+		lblProjectName = new Label(topComposite, SWT.NONE);
+		lblProjectName.setLayoutData(new GridData(SWT.FILL, SWT.TOP, false, false));
+		lblProjectName.setText("");
+		
+
+		Label filler1 = new Label(topComposite, SWT.NONE);
+		filler1.setLayoutData(new GridData(SWT.BEGINNING, SWT.TOP, false, false));
 		Label lblDescription = new Label(topComposite, SWT.NONE);
-		lblDescription.setLayoutData(new GridData(SWT.BEGINNING, SWT.TOP, false,
-				true));
+		lblDescription.setLayoutData(new GridData(SWT.BEGINNING, SWT.TOP,
+				false, false));
 		lblDescription.setText("Description:");
-		
-		
-		txtDescription = new Text(topComposite, SWT.MULTI |  SWT.WRAP | SWT.V_SCROLL | SWT.BORDER);
-		txtDescription.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		txtDescription = new Text(topComposite, SWT.MULTI | SWT.WRAP
+				| SWT.V_SCROLL | SWT.BORDER);
+		txtDescription.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
+				true));
 		txtDescription.setText("");
 		txtDescription.setEditable(false);
-		
-		
+
 		Label filler2 = new Label(topComposite, SWT.NONE);
-		filler2.setLayoutData(new GridData(SWT.BEGINNING, SWT.TOP, false,
-				false));
-		
+		filler2
+				.setLayoutData(new GridData(SWT.BEGINNING, SWT.TOP, false,
+						false));
+
 		Label lblProgress = new Label(topComposite, SWT.NONE);
 		lblProgress.setLayoutData(new GridData(SWT.BEGINNING, SWT.TOP, false,
 				false));
 		lblProgress.setText("Progress:");
-		
-		
+
 		pb = new ProgressBar(topComposite, SWT.HORIZONTAL);
-		pb.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, true,
-						false));
+		pb.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, true, false));
 
 		pb.setMinimum(0);
 		pb.setMaximum(100);
@@ -123,40 +133,40 @@ public class StatusView extends ViewPart { // implements IShowInTarget
 	}
 
 	private void refreshView() {
-		if(input == null){
+		if (input == null) {
 			return;
 		}
 		lblImage.setImage(labelProvider.getImage(input));
 		lblName.setText(input.getName());
-		String description = input.getDescription() == null ? "" : input.getDescription();
+		String description = input.getDescription() == null ? "" : input
+				.getDescription();
 		txtDescription.setText(description);
-	
-		
+		lblProjectName.setText(WorkspaceManager.getProjectSpace(input)
+				.getProjectName());
+
 		int maximum = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy()
 				.getOpenersRecursive(input).size();
-		
-		if(maximum == 0){
+
+		if (maximum == 0) {
 			pb.setMaximum(10);
-			if(input.getState().equals(MEState.CLOSED)){
+			if (input.getState().equals(MEState.CLOSED)) {
 				pb.setSelection(10);
 				pb.setToolTipText("100% done");
-			}else{
+			} else {
 				pb.setSelection(0);
 				pb.setToolTipText("0% done");
 			}
-		}else{
+		} else {
 			pb.setMaximum(maximum);
 			int stillOpens = getStillOpenOpeners(input).size();
 			pb.setSelection(maximum - stillOpens);
-			int progress = (int) ((float)(maximum - stillOpens) / maximum * 100);
+			int progress = (int) ((float) (maximum - stillOpens) / maximum * 100);
 			pb.setToolTipText(Integer.toString(progress) + "% done");
 		}
-		
-		
-		
-		 flatTabComposite.setInput(input);
-		 hierarchyTabComposite.setInput(input);
-		 userTabComposite.setInput(input);
+
+		flatTabComposite.setInput(input);
+		hierarchyTabComposite.setInput(input);
+		userTabComposite.setInput(input);
 
 	}
 

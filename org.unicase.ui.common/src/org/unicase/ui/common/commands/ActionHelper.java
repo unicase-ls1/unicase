@@ -195,19 +195,20 @@ public final class ActionHelper {
 		return result;
 	}
 
-	/**
-	 * . Extract the selected Object in navigator or other
+	/**.
+	 * Extract the selected Object in navigator or other
 	 * StructuredViewer. This method uses the general ISelectionService of 
 	 * Workbench to extract the selection.
+	 * Beware that the part providing the selection should have registered its
+	 * SelectionProvider.
+	 * 
 	 * 
 	 *  @return the selected Object or null if selection is not an IStructuredSelection
 	 */
 	public static Object getSelection(){
 		ISelectionService selectionService = 
 			(ISelectionService)PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getPartService()
-					.getActivePart().getSite().getService(ISelectionService.class);
-	
+				.getActiveWorkbenchWindow().getSelectionService();
 		
 		ISelection sel = selectionService.getSelection();
 		if (!(sel instanceof IStructuredSelection)) {
@@ -227,6 +228,9 @@ public final class ActionHelper {
 	 * . Extract the selected EObject in navigator or other
 	 * StructuredViewer. This method uses the general ISelectionService of 
 	 * Workbench to extract the selection.
+	 * Beware that the part providing the selection should have registered its
+	 * SelectionProvider.
+	 * 
 	 * 
 	 *  @return the selected Object or null if selection is not an IStructuredSelection
 	 */
@@ -243,6 +247,9 @@ public final class ActionHelper {
 	 * . Extract the selected ModelElement in navigator or other
 	 * StructuredViewer. This method uses the general ISelectionService of 
 	 * Workbench to extract the selection.
+	 * Beware that the part providing the selection should have registered its
+	 * SelectionProvider.
+	 * 
 	 * 
 	 *  @return the selected Object or null if selection is not an IStructuredSelection
 	 */
