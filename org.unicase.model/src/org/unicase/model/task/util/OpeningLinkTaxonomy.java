@@ -40,6 +40,27 @@ public class OpeningLinkTaxonomy {
 		
 		return openers;
 	}
+	
+	public Set<ModelElement> getOpenersRecursive(ModelElement me) {
+		Set<ModelElement> openers = new HashSet<ModelElement>();
+		EList<EObject> contents = me.eContents();
+		for(EObject eObject:contents){
+			if(eObject instanceof ModelElement){
+				openers.add((ModelElement) eObject);
+				openers.addAll(getOpenersRecursive((ModelElement) eObject));
+			}
+		}
+		for(ModelElement annotation: me.getAnnotations()){
+			openers.add(annotation);
+		}
+		
+		if(me instanceof WorkPackage){
+			getWorkPackageOpeners((WorkPackage)me, openers);
+		}
+		
+		return openers;
+	}
+	
 
 	private void getWorkPackageOpeners(WorkPackage wp,
 			Set<ModelElement> openers) {

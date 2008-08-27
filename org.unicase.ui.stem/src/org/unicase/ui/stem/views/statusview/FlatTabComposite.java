@@ -14,6 +14,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.unicase.model.ModelElement;
+import org.unicase.model.task.Assignable;
 import org.unicase.model.task.util.MEState;
 import org.unicase.ui.common.TableViewerColumnSorter;
 import org.unicase.ui.common.commands.ActionHelper;
@@ -97,6 +98,32 @@ public class FlatTabComposite extends Composite {
 		};
 		tclmState.setLabelProvider(columnLabelProvider);
 		new TableViewerColumnSorter(tableViewer, tclmState, columnLabelProvider);
+		
+		TableViewerColumn tclmAsignedTo = new TableViewerColumn(tableViewer, SWT.LEAD);
+		tclmAsignedTo.getColumn().setText("Assigned to");
+		tclmAsignedTo.getColumn().setWidth(80);
+		columnLabelProvider = new FlatTabColumnLabelProvider(){
+
+			@Override
+			public String getText(Object element) {
+				
+				if(element instanceof Assignable){
+					Assignable assignable = (Assignable) element;
+					if(assignable.getAssignee() != null){
+						return assignable.getAssignee().getName();
+					}else{
+						return "N/A";
+					}
+					
+				}else{
+					return "N/A";
+				}
+				
+			}
+
+		};
+		tclmAsignedTo.setLabelProvider(columnLabelProvider);
+		new TableViewerColumnSorter(tableViewer, tclmAsignedTo, columnLabelProvider);
 		
 	}
 
