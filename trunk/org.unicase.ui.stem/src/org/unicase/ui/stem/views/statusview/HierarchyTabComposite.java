@@ -1,21 +1,15 @@
 package org.unicase.ui.stem.views.statusview;
 
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.TableColumn;
 import org.unicase.model.ModelElement;
-import org.unicase.model.task.util.MEState;
 import org.unicase.ui.common.commands.ActionHelper;
 
 public class HierarchyTabComposite extends Composite {
@@ -38,7 +32,7 @@ public class HierarchyTabComposite extends Composite {
 		treeViewer.setLabelProvider(new HierarchyTabLabelProvider());
 	
 		treeViewer.setContentProvider(new HierarchyTabContentProvider());
-		
+		treeViewer.setComparator(new ViewerComparator());
 		
 //		createColumns();
 		

@@ -8,6 +8,7 @@ import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
+import org.eclipse.gmf.runtime.notation.Smoothness;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
@@ -56,7 +57,7 @@ public class StatusView extends ViewPart { // implements IShowInTarget
 	@Override
 	public void createPartControl(Composite parent) {
 
-		SashForm sash = new SashForm(parent, SWT.VERTICAL);
+		SashForm sash = new SashForm(parent, SWT.VERTICAL );
 		createTopComposite(sash);
 		createTabs(sash);
 		sash.setWeights(new int[] { 20, 80 });
@@ -64,7 +65,7 @@ public class StatusView extends ViewPart { // implements IShowInTarget
 	}
 
 	private void createTopComposite(SashForm sash) {
-		topComposite = new Composite(sash, SWT.BORDER);
+		topComposite = new Composite(sash, SWT.NONE);
 		topComposite.setLayout(new GridLayout(3, false));
 		topComposite
 				.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
@@ -132,7 +133,7 @@ public class StatusView extends ViewPart { // implements IShowInTarget
 	
 		
 		int maximum = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy()
-				.getOpeners(input).size();
+				.getOpenersRecursive(input).size();
 		
 		if(maximum == 0){
 			pb.setMaximum(10);
@@ -155,7 +156,7 @@ public class StatusView extends ViewPart { // implements IShowInTarget
 		
 		 flatTabComposite.setInput(input);
 		 hierarchyTabComposite.setInput(input);
-		// userTabComposite.setInput(input);
+		 userTabComposite.setInput(input);
 
 	}
 
@@ -244,7 +245,7 @@ public class StatusView extends ViewPart { // implements IShowInTarget
 	private Set<ModelElement> getStillOpenOpeners(ModelElement me) {
 		Set<ModelElement> result = new HashSet<ModelElement>();
 		Set<ModelElement> openers = TaxonomyAccess.getInstance()
-				.getOpeningLinkTaxonomy().getOpeners(input);
+				.getOpeningLinkTaxonomy().getOpenersRecursive(input);
 		for (ModelElement opener : openers) {
 			if (opener.getState().equals(MEState.OPEN)
 					|| opener.getState().equals(MEState.BLOCKED)) {
