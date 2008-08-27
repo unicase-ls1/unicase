@@ -7,10 +7,12 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.unicase.model.ModelElement;
@@ -18,6 +20,7 @@ import org.unicase.model.task.Assignable;
 import org.unicase.model.task.util.MEState;
 import org.unicase.ui.common.TableViewerColumnSorter;
 import org.unicase.ui.common.commands.ActionHelper;
+import org.unicase.ui.stem.views.iterationplanningview.TaskObjectLabelProvider;
 
 public class FlatTabComposite extends Composite {
 
@@ -65,9 +68,20 @@ public class FlatTabComposite extends Composite {
 		FlatTabColumnLabelProvider columnLabelProvider = new FlatTabColumnLabelProvider(){
 			@Override
 			public Image getImage(Object element) {
-				
 				return adapterFactoryLabelProvider.getImage(element);
 			}
+			
+			@Override
+			public Color getBackground(Object object) {
+				ModelElement me = (ModelElement) object;
+				if (me.getState().equals(MEState.CLOSED)) {
+					return Display.getDefault().getSystemColor(SWT.COLOR_GREEN);
+				} else {
+					// return Display.getDefault().getSystemColor(SWT.COLOR_GREEN);
+					return adapterFactoryLabelProvider.getBackground(object);
+				}
+			}
+
 		};
 		tclmTodo.setLabelProvider(columnLabelProvider);
 		new TableViewerColumnSorter(tableViewer, tclmTodo, columnLabelProvider){
@@ -83,6 +97,8 @@ public class FlatTabComposite extends Composite {
 				}
 				return 3;
 			}
+			
+			
 		};
 				
 		TableViewerColumn tclmState = new TableViewerColumn(tableViewer, SWT.LEAD);
@@ -124,6 +140,15 @@ public class FlatTabComposite extends Composite {
 		};
 		tclmAsignedTo.setLabelProvider(columnLabelProvider);
 		new TableViewerColumnSorter(tableViewer, tclmAsignedTo, columnLabelProvider);
+		
+		TableViewerColumn tclmModelElement = new TableViewerColumn(tableViewer, SWT.LEAD);
+		tclmModelElement.getColumn().setText("Model Element");
+		tclmModelElement.getColumn().setWidth(80);
+		TaskObjectLabelProvider labelProvider = new TaskObjectLabelProvider();
+		tclmModelElement.setLabelProvider(labelProvider);
+		new TableViewerColumnSorter(tableViewer, tclmModelElement, labelProvider);
+		
+		
 		
 	}
 
