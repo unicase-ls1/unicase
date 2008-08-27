@@ -18,6 +18,10 @@
                class="org.unicase.ui.common.commands.NewDocumentHandler"
                commandId="org.unicase.ui.common.newDocument">
          </handler>
+         <handler
+               class="org.unicase.ui.common.commands.OpenDiagramWithMEEditorHandler"
+               commandId="org.unicase.ui.common.openDiagramWithMEEditor">
+         </handler>
   </extension>
    <extension
         point="org.eclipse.ui.commands">
@@ -36,11 +40,30 @@
            id="org.unicase.ui.common.newDocument"
            name="New Document">
      </command>
+     <command
+           categoryId="org.unicase.ui.common.modifyModelelement"
+           id="org.unicase.ui.common.openDiagramWithMEEditor"
+           name="Open with MEEditor">
+     </command>
   </extension>
    <extension
         point="org.eclipse.ui.menus">
      <menuContribution
            locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.workspace.edit.scmCommands">
+        <command
+              commandId="org.unicase.ui.common.openDiagramWithMEEditor"
+              label="Open with MEEditor"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <iterate
+                    ifEmpty="false">
+                 <reference
+                       definitionId="org.unicase.ui.common.commands.MEDiagram">
+                 </reference>
+              </iterate>
+           </visibleWhen>
+        </command>
       
         <command
               commandId="org.unicase.ui.common.deleteModelelement"
@@ -218,6 +241,12 @@
            id="org.unicase.ui.common.commands.modelElement">
         <instanceof
               value="org.unicase.model.ModelElement">
+        </instanceof>
+     </definition>
+     <definition
+           id="org.unicase.ui.common.commands.MEDiagram">
+        <instanceof
+              value="org.unicase.model.diagram.MEDiagram">
         </instanceof>
      </definition>
   </extension>

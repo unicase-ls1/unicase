@@ -38,11 +38,26 @@ public class HierarchyTabContentProvider extends AdapterFactoryContentProvider {
 		if (object instanceof ModelElement) {
 			ModelElement me = (ModelElement) object;
 			
-			Set<ModelElement> openers = TaxonomyAccess.getInstance()
-						.getOpeningLinkTaxonomy().getOpeners(me); 
+			Set<ModelElement> openers  = new HashSet<ModelElement>();
+			openers.addAll(TaxonomyAccess.getInstance()
+						.getOpeningLinkTaxonomy().getOpeners(me));
+		
+			Set<ModelElement> ret  = new HashSet<ModelElement>();
+			ret.addAll(openers);
 			
-			openers.addAll(me.getAnnotations());
-			return openers.toArray(new Object[openers.size()]);
+			
+//			for(ModelElement opener : openers){
+//				if(opener instanceof Annotation){
+//					Annotation annotation  = (Annotation) opener;
+//					if(annotation.getAnnotatedModelElements().size() > 0){
+//						ret.remove(annotation);
+//						ret.addAll(annotation.getAnnotatedModelElements());
+//					}
+//				}
+//			}
+			
+			ret.addAll(me.getAnnotations());
+			return ret.toArray(new Object[ret.size()]);
 		} else{
 				return super.getElements(object);
 		}
