@@ -92,6 +92,8 @@ public class WorkspaceItemProvider extends ItemProviderAdapter implements
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures
+					.add(WorkspacePackage.Literals.WORKSPACE__PROJECT_SPACES);
+			childrenFeatures
 					.add(WorkspacePackage.Literals.WORKSPACE__SERVER_INFOS);
 			childrenFeatures
 					.add(WorkspacePackage.Literals.WORKSPACE__USERSESSIONS);
@@ -145,11 +147,11 @@ public class WorkspaceItemProvider extends ItemProviderAdapter implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Workspace.class)) {
-		case WorkspacePackage.WORKSPACE__PROJECT_SPACES:
 		case WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), false, true));
 			return;
+		case WorkspacePackage.WORKSPACE__PROJECT_SPACES:
 		case WorkspacePackage.WORKSPACE__SERVER_INFOS:
 		case WorkspacePackage.WORKSPACE__USERSESSIONS:
 			fireNotifyChanged(new ViewerNotification(notification, notification
@@ -170,6 +172,10 @@ public class WorkspaceItemProvider extends ItemProviderAdapter implements
 	protected void collectNewChildDescriptors(
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.WORKSPACE__PROJECT_SPACES,
+				WorkspaceFactory.eINSTANCE.createProjectSpace()));
 
 		newChildDescriptors.add(createChildParameter(
 				WorkspacePackage.Literals.WORKSPACE__SERVER_INFOS,

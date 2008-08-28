@@ -9,7 +9,7 @@
   <genPackages prefix="Workspace" basePackage="org.unicase" disposableProviderFactory="true"
       ecorePackage="workspace.ecore#/">
     <genClasses ecoreClass="workspace.ecore#//Workspace">
-      <genFeatures createChild="false" propertyCategory="" propertySortChoices="true"
+      <genFeatures children="true" createChild="true" propertyCategory="" propertySortChoices="true"
           ecoreFeature="ecore:EReference workspace.ecore#//Workspace/projectSpaces"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workspace.ecore#//Workspace/serverInfos"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workspace.ecore#//Workspace/usersessions"/>
@@ -44,7 +44,7 @@
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="workspace.ecore#//ProjectSpace">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workspace.ecore#//ProjectSpace/project"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference workspace.ecore#//ProjectSpace/project"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workspace.ecore#//ProjectSpace/projectId"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//ProjectSpace/projectName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//ProjectSpace/projectDescription"/>

@@ -426,8 +426,8 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 		ServerInfo copy = (ServerInfo) EcoreUtil.copy(serverInfo);
 		copy.setLastUsersession(null);
 
-		SessionId newSessionId = connectionManager.logIn(username, getPassword(),
-				copy);
+		SessionId newSessionId = connectionManager.logIn(username,
+				getPassword(), copy);
 		this.setSessionId(newSessionId);
 	}
 
