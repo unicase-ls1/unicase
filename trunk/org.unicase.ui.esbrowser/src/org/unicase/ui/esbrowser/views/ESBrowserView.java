@@ -281,12 +281,6 @@ public class ESBrowserView extends ViewPart {
 						}
 					}
 				});
-				//ZH: remove and add proper notifying
-				IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-				IViewPart navigator = page.findView("org.unicase.ui.navigator.viewer");
-				if (page.isPartVisible(navigator)) {
-					((TreeViewer) navigator.getSite().getSelectionProvider()).refresh();
-				}
 			}
 		};
 		projectCheckout.setText("Checkout");

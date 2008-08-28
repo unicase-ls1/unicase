@@ -52,15 +52,7 @@ public class ImportProjectHandler extends ProjectActionHandler {
 							.getCurrentWorkspace();
 					ProjectSpace projectSpace = currentWorkspace
 							.importProject(absoluteFileName);
-					// JH: remove and add proper notifying
-//					IWorkbenchPage page = PlatformUI.getWorkbench()
-//							.getActiveWorkbenchWindow().getActivePage();
-//					IViewPart navigator = page
-//							.findView("org.unicase.ui.navigator.viewer");
-//					if (page.isPartVisible(navigator)) {
-//						((TreeViewer) navigator.getSite().getSelectionProvider())
-//								.refresh();
-//					}
+	
 				} catch (IOException e) {
 					ExceptionDialogHandler.showExceptionDialog(e);
 				}

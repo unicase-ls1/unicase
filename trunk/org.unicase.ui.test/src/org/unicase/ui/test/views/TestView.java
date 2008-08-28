@@ -147,13 +147,7 @@ public class TestView extends ViewPart {
 			testProjectGenerator.openSomeModelElements(numOfMEsToOpen);
 		}
 		
-		//JH: fix navigator refresh
-		IWorkbenchPage page = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getActivePage();
-		IViewPart navigator = page.findView("org.unicase.ui.navigator.viewer");
-		if (page.isPartVisible(navigator)) {
-			((TreeViewer) navigator.getSite().getSelectionProvider()).refresh();
-		}
+	
 		MessageDialog.openInformation(this.getSite().getShell(), "Project Generation completed",
 		"Generated " + testProjectGenerator.getMECount() + " model elements.");
 	}
