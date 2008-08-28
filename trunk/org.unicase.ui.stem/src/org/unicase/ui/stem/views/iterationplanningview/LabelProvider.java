@@ -8,7 +8,13 @@ package org.unicase.ui.stem.views.iterationplanningview;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryLabelProvider;
+import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.widgets.Display;
+import org.unicase.model.ModelElement;
+import org.unicase.model.task.util.MEState;
 import org.unicase.workspace.WorkspaceManager;
 
 public class LabelProvider extends TransactionalAdapterFactoryLabelProvider
@@ -20,5 +26,9 @@ public class LabelProvider extends TransactionalAdapterFactoryLabelProvider
 				new ComposedAdapterFactory(
 						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
+
+	
+	
+	
 
 }
