@@ -97,38 +97,18 @@ public class TreeView extends ViewPart  { //implements IShowInSource
 
 		}
 		
+		//maybe this fixes the problem of context menu not being updated
+		//on part activation/deactivation
 		this.getSite().getPage().addPartListener(new IPartListener(){
-
 			public void partActivated(IWorkbenchPart part) {
-				
 				menuMgr.update(true);
-				if (part.getTitle().equals("Unicase Navigator")){
-//					PlatformUI.getWorkbench().getDisplay().beep();
-				}
-				
-				
 			}
-
-			public void partBroughtToTop(IWorkbenchPart part) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			public void partClosed(IWorkbenchPart part) {
-				// TODO Auto-generated method stub
-				
-			}
-
 			public void partDeactivated(IWorkbenchPart part) {
 				menuMgr.update(true);
-				
 			}
-
-			public void partOpened(IWorkbenchPart part) {
-				// TODO Auto-generated method stub
-				
-			}
-			
+			public void partBroughtToTop(IWorkbenchPart part) {	  }
+			public void partClosed(IWorkbenchPart part) {	}
+			public void partOpened(IWorkbenchPart part) {	}
 		});
 		
 	}
