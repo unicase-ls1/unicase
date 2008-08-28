@@ -46,9 +46,6 @@ public class DeleteProjectHandler extends ProjectActionHandler {
 			}
 		});
 		
-		//ZH: a workaround fix for update problem in navigator
-		//basically in should have been updated.
-//		((TreeViewer)HandlerUtil.getActivePart(event).getSite().getSelectionProvider()).refresh();
 	
 		return null;
 	}
