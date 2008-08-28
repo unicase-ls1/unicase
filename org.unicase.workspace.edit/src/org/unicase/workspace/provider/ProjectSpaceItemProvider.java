@@ -13,6 +13,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.change.ChangeFactory;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -201,6 +202,8 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 			childrenFeatures
 					.add(WorkspacePackage.Literals.PROJECT_SPACE__PROJECT_ID);
 			childrenFeatures
+					.add(WorkspacePackage.Literals.PROJECT_SPACE__LOCAL_CHANGES);
+			childrenFeatures
 					.add(WorkspacePackage.Literals.PROJECT_SPACE__BASE_VERSION);
 		}
 		return childrenFeatures;
@@ -279,6 +282,7 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 			return;
 		case WorkspacePackage.PROJECT_SPACE__PROJECT:
 		case WorkspacePackage.PROJECT_SPACE__PROJECT_ID:
+		case WorkspacePackage.PROJECT_SPACE__LOCAL_CHANGES:
 		case WorkspacePackage.PROJECT_SPACE__BASE_VERSION:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), true, false));
@@ -306,6 +310,10 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 		newChildDescriptors.add(createChildParameter(
 				WorkspacePackage.Literals.PROJECT_SPACE__PROJECT_ID,
 				EsmodelFactory.eINSTANCE.createProjectId()));
+
+		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__LOCAL_CHANGES,
+				ChangeFactory.eINSTANCE.createChangeDescription()));
 
 		newChildDescriptors.add(createChildParameter(
 				WorkspacePackage.Literals.PROJECT_SPACE__BASE_VERSION,

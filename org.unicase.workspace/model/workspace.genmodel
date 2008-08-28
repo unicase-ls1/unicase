@@ -48,7 +48,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workspace.ecore#//ProjectSpace/projectId"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//ProjectSpace/projectName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//ProjectSpace/projectDescription"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workspace.ecore#//ProjectSpace/localChanges"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference workspace.ecore#//ProjectSpace/localChanges"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workspace.ecore#//ProjectSpace/usersession"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//ProjectSpace/lastUpdated"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workspace.ecore#//ProjectSpace/baseVersion"/>
