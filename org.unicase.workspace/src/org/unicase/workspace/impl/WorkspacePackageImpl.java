@@ -459,8 +459,8 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWorkspace_ProjectSpaces(), this.getProjectSpace(),
 				null, "projectSpaces", null, 0, -1, Workspace.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 		getWorkspace_ProjectSpaces().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());

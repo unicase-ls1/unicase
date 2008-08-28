@@ -48,25 +48,17 @@ import org.unicase.workspace.exceptions.NoLocalChangesException;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProject <em>Project
- * </em>}</li>
- * <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectId <em>
- * Project Id</em>}</li>
- * <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectName <em>
- * Project Name</em>}</li>
- * <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectDescription
- * <em>Project Description</em>}</li>
- * <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getLocalChanges <em>
- * Local Changes</em>}</li>
- * <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getUsersession <em>
- * Usersession</em>}</li>
- * <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getLastUpdated <em>
- * Last Updated</em>}</li>
- * <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getBaseVersion <em>
- * Base Version</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProject <em>Project</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectId <em>Project Id</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectName <em>Project Name</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectDescription <em>Project Description</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getLocalChanges <em>Local Changes</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getUsersession <em>Usersession</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getLastUpdated <em>Last Updated</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getBaseVersion <em>Base Version</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ProjectSpaceImpl extends IdentifiableElementImpl implements
@@ -78,9 +70,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	private ChangeRecorder changeRecorder;
 
 	/**
-	 * The cached value of the '{@link #getProject() <em>Project</em>}'
-	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getProject() <em>Project</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getProject()
 	 * @generated
 	 * @ordered
@@ -88,9 +79,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	protected Project project;
 
 	/**
-	 * The cached value of the '{@link #getProjectId() <em>Project Id</em>}'
-	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getProjectId() <em>Project Id</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getProjectId()
 	 * @generated
 	 * @ordered
@@ -98,9 +88,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	protected ProjectId projectId;
 
 	/**
-	 * The default value of the '{@link #getProjectName() <em>Project Name</em>}
-	 * ' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getProjectName() <em>Project Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getProjectName()
 	 * @generated
 	 * @ordered
@@ -108,9 +97,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	protected static final String PROJECT_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getProjectName() <em>Project Name</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getProjectName() <em>Project Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getProjectName()
 	 * @generated
 	 * @ordered
@@ -118,10 +106,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	protected String projectName = PROJECT_NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getProjectDescription()
-	 * <em>Project Description</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getProjectDescription() <em>Project Description</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getProjectDescription()
 	 * @generated
 	 * @ordered
@@ -129,10 +116,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	protected static final String PROJECT_DESCRIPTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getProjectDescription()
-	 * <em>Project Description</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getProjectDescription() <em>Project Description</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getProjectDescription()
 	 * @generated
 	 * @ordered
@@ -140,10 +126,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	protected String projectDescription = PROJECT_DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getLocalChanges()
-	 * <em>Local Changes</em>}' containment reference. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getLocalChanges() <em>Local Changes</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getLocalChanges()
 	 * @generated
 	 * @ordered
@@ -151,9 +136,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	protected ChangeDescription localChanges;
 
 	/**
-	 * The cached value of the '{@link #getUsersession() <em>Usersession</em>}'
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getUsersession() <em>Usersession</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getUsersession()
 	 * @generated
 	 * @ordered
@@ -161,9 +145,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	protected Usersession usersession;
 
 	/**
-	 * The default value of the '{@link #getLastUpdated() <em>Last Updated</em>}
-	 * ' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getLastUpdated() <em>Last Updated</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getLastUpdated()
 	 * @generated
 	 * @ordered
@@ -171,9 +154,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	protected static final Date LAST_UPDATED_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getLastUpdated() <em>Last Updated</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getLastUpdated() <em>Last Updated</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getLastUpdated()
 	 * @generated
 	 * @ordered
@@ -181,9 +163,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	protected Date lastUpdated = LAST_UPDATED_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getBaseVersion() <em>Base Version</em>}'
-	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getBaseVersion() <em>Base Version</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getBaseVersion()
 	 * @generated
 	 * @ordered
@@ -204,7 +185,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -214,7 +194,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Project getProject() {
@@ -223,7 +202,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetProject(Project newProject,
@@ -244,7 +222,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setProject(Project newProject) {
@@ -271,7 +248,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ProjectId getProjectId() {
@@ -280,7 +256,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetProjectId(ProjectId newProjectId,
@@ -302,7 +277,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setProjectId(ProjectId newProjectId) {
@@ -329,7 +303,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getProjectName() {
@@ -338,7 +311,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setProjectName(String newProjectName) {
@@ -352,7 +324,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getProjectDescription() {
@@ -361,7 +332,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setProjectDescription(String newProjectDescription) {
@@ -375,7 +345,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ChangeDescription getLocalChanges() {
@@ -384,7 +353,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetLocalChanges(
@@ -406,7 +374,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setLocalChanges(ChangeDescription newLocalChanges) {
@@ -437,7 +404,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Usersession getUsersession() {
@@ -456,7 +422,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Usersession basicGetUsersession() {
@@ -465,7 +430,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setUsersession(Usersession newUsersession) {
@@ -479,7 +443,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Date getLastUpdated() {
@@ -488,7 +451,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setLastUpdated(Date newLastUpdated) {
@@ -502,7 +464,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec getBaseVersion() {
@@ -511,7 +472,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetBaseVersion(
@@ -533,7 +493,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setBaseVersion(PrimaryVersionSpec newBaseVersion) {
@@ -611,7 +570,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		ChangePackage changePackage = VersioningFactory.eINSTANCE
 				.createChangePackage();
 		changePackage.init(getProject(), getLocalChanges());
-		
+
 		PrimaryVersionSpec newBaseVersion;
 		try {
 			newBaseVersion = connectionManager.createVersion(getUsersession()
@@ -815,7 +774,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -836,7 +794,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -866,7 +823,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -902,7 +858,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -938,7 +893,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -969,7 +923,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

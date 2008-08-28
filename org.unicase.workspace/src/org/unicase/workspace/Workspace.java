@@ -39,7 +39,7 @@ import org.unicase.workspace.connectionmanager.ConnectionManager;
  */
 public interface Workspace extends EObject, IAdaptable {
 	/**
-	 * Returns the value of the '<em><b>Project Spaces</b></em>' reference list.
+	 * Returns the value of the '<em><b>Project Spaces</b></em>' containment reference list.
 	 * The list contents are of type {@link org.unicase.workspace.ProjectSpace}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -47,9 +47,9 @@ public interface Workspace extends EObject, IAdaptable {
 	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Project Spaces</em>' reference list.
+	 * @return the value of the '<em>Project Spaces</em>' containment reference list.
 	 * @see org.unicase.workspace.WorkspacePackage#getWorkspace_ProjectSpaces()
-	 * @model keys="identifier"
+	 * @model containment="true" keys="identifier"
 	 * @generated
 	 */
 	EList<ProjectSpace> getProjectSpaces();

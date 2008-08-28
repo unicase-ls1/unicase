@@ -26,6 +26,7 @@ import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.model.ModelFactory;
 import org.unicase.model.provider.IdentifiableElementItemProvider;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
 import org.unicase.model.provider.ProjectItemProvider;
@@ -196,6 +197,8 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures
+					.add(WorkspacePackage.Literals.PROJECT_SPACE__PROJECT);
+			childrenFeatures
 					.add(WorkspacePackage.Literals.PROJECT_SPACE__PROJECT_ID);
 			childrenFeatures
 					.add(WorkspacePackage.Literals.PROJECT_SPACE__BASE_VERSION);
@@ -241,13 +244,13 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 			ProjectSpace projectSpace = (ProjectSpace) object;
 			StringBuilder stringBuilder = new StringBuilder();
 			stringBuilder.append(projectSpace.getProjectName());
-//			if (projectSpace.getBaseVersion() != null) {
-//				stringBuilder.append("@");
-//				stringBuilder.append(projectSpace.getBaseVersion()
-//						.getIdentifier());
-//			} else {
-//				stringBuilder.append("(Not shared)");
-//			}
+			//			if (projectSpace.getBaseVersion() != null) {
+			//				stringBuilder.append("@");
+			//				stringBuilder.append(projectSpace.getBaseVersion()
+			//						.getIdentifier());
+			//			} else {
+			//				stringBuilder.append("(Not shared)");
+			//			}
 			String string = stringBuilder.toString();
 			return string;
 		}
@@ -274,6 +277,7 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), false, true));
 			return;
+		case WorkspacePackage.PROJECT_SPACE__PROJECT:
 		case WorkspacePackage.PROJECT_SPACE__PROJECT_ID:
 		case WorkspacePackage.PROJECT_SPACE__BASE_VERSION:
 			fireNotifyChanged(new ViewerNotification(notification, notification
@@ -294,6 +298,10 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 	protected void collectNewChildDescriptors(
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__PROJECT,
+				ModelFactory.eINSTANCE.createProject()));
 
 		newChildDescriptors.add(createChildParameter(
 				WorkspacePackage.Literals.PROJECT_SPACE__PROJECT_ID,

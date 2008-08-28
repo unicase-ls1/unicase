@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -66,7 +65,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	private ResourceSet workspaceResourceSet;
 
 	/**
-	 * The cached value of the '{@link #getProjectSpaces() <em>Project Spaces</em>}' reference list.
+	 * The cached value of the '{@link #getProjectSpaces() <em>Project Spaces</em>}' containment reference list.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * @see #getProjectSpaces()
@@ -139,7 +138,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 */
 	public EList<ProjectSpace> getProjectSpaces() {
 		if (projectSpaces == null) {
-			projectSpaces = new EObjectResolvingEList<ProjectSpace>(
+			projectSpaces = new EObjectContainmentEList<ProjectSpace>(
 					ProjectSpace.class, this,
 					WorkspacePackage.WORKSPACE__PROJECT_SPACES);
 		}
@@ -309,6 +308,9 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
+		case WorkspacePackage.WORKSPACE__PROJECT_SPACES:
+			return ((InternalEList<?>) getProjectSpaces()).basicRemove(
+					otherEnd, msgs);
 		case WorkspacePackage.WORKSPACE__SERVER_INFOS:
 			return ((InternalEList<?>) getServerInfos()).basicRemove(otherEnd,
 					msgs);
