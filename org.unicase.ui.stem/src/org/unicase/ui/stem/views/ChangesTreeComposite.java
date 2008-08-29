@@ -219,7 +219,7 @@ public class ChangesTreeComposite extends Composite {
 	}
 
 
-	public void setChangePackage(ChangePackage changePackage) {
+	public void setInput(ChangePackage changePackage) {
 		this.changePackage = changePackage;
 		if(changePackage != null){
 			treeViewer.setInput(changePackage.getOperations());
