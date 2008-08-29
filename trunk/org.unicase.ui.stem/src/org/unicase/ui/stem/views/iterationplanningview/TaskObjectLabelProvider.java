@@ -36,7 +36,7 @@ public class TaskObjectLabelProvider extends ColumnLabelProvider implements ICol
 	 */
 	public TaskObjectLabelProvider() {
 		super();
-		adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
+		this.adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 				new ComposedAdapterFactory(
 						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
@@ -55,7 +55,7 @@ public class TaskObjectLabelProvider extends ColumnLabelProvider implements ICol
 			}
 			
 			if(modelElement!=null){
-				return adapterFactoryLabelProvider.getImage(modelElement);
+				return getAdapterFactoryLabelProvider().getImage(modelElement);
 			}
 			//JH Take only the first?
 			
@@ -75,7 +75,7 @@ public class TaskObjectLabelProvider extends ColumnLabelProvider implements ICol
 				modelElement = annotation.getAnnotatedModelElements().get(0);
 			}
 			if(modelElement!=null){
-				return adapterFactoryLabelProvider.getText(modelElement);
+				return getAdapterFactoryLabelProvider().getText(modelElement);
 			}
 			//JH Take only the first?
 			
@@ -100,6 +100,14 @@ public class TaskObjectLabelProvider extends ColumnLabelProvider implements ICol
 
 		}
 		return super.getBackground(element);
+	}
+
+	/**.
+	 * this returns the adapterFactoryLabelProvider used to retrieve text and images
+	 * @return AdapterFactoryLabelProvider
+	 */
+	public AdapterFactoryLabelProvider getAdapterFactoryLabelProvider() {
+		return adapterFactoryLabelProvider;
 	}
 
 }
