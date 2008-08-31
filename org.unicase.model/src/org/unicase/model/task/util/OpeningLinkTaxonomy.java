@@ -17,7 +17,9 @@ public class OpeningLinkTaxonomy {
 
 	/**
 	 * Get all openers of a modelelement. Includes Subelements.
-	 * 
+	 * zardosht: I had to implement this method with a set<> because it 
+	 * returned many duplicate opener instances. The other methods that 
+	 * worked with method should have set<> implementation accordingly.
 	 * @param me
 	 *            the Modelelement
 	 * @return a list of modelelements, the openers
@@ -41,6 +43,12 @@ public class OpeningLinkTaxonomy {
 		return openers;
 	}
 	
+	/**.
+	 * zardosht: I thought that we need also a transitive concept of opener.
+	 * This concept is implemented in this method and is used in status view.
+	 * @param me
+	 * @return
+	 */
 	public Set<ModelElement> getOpenersRecursive(ModelElement me) {
 		Set<ModelElement> openers = new HashSet<ModelElement>();
 		EList<EObject> contents = me.eContents();

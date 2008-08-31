@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.ui.stem.views;
 
 import org.eclipse.swt.SWT;
@@ -13,14 +19,41 @@ import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.ui.part.ViewPart;
 
+/**.
+ * 
+ * This is the abstract SCMView. History Browser and Change Browser inherit 
+ * this view. It contains two tabs, QueryTab and BrowserTab. The Query tab
+ * is common for both History Browser and Change Browser. The broswer tab
+ * will be set by inheriting classes using the abstract method setBrowserTabContor().
+ * This view also contains a Refresh bar at top part. Refresh bar has a
+ * refresh button and a Label which shows the criteria selected in Query tab.
+ * 
+ * @author Hodaie
+ *
+ */
 public abstract class AbstractSCMView extends ViewPart {
 
+	//I don't know why does CheckStyle complain about 
+	//protected member variables. I don't want to change them 
+	//in private variables and use a getter instead. 
+	
+	/**.
+	 * This is the bowser tab whose contents are set by inheriting classes
+	 */
 	protected TabItem browserTab;
+	/**.
+	 * Reference to tabFolder will be used in inheriting classes as parent of
+	 * browser tab content. 
+	 */
 	protected TabFolder tabFolder;
+	
 	protected Label lblCriteria;
 	
 	protected QueryComosite queryComposite;
 
+	/**.
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void createPartControl(Composite parent) {
 
@@ -67,19 +100,32 @@ public abstract class AbstractSCMView extends ViewPart {
 		this.queryComposite = new QueryComosite(tabFolder, SWT.NONE);
 		queryTab.setControl(queryComposite);
 						
-//		tabFolder.setSelection(1);
+		//tabFolder.setSelection(1);
 
 	}
 
+	/**.
+	 * This method will be implemented by inheriting classes to set the 
+	 * contents of browser tab. 
+	 * @return contents of browser tab
+	 */
 	protected abstract Control setBrowserTabControl(); 
 	
 
+	/**.
+	 * This will be implemented by inheriting classes to update the 
+	 * information shown on browser tab based on criteria selected in 
+	 * Query tab.
+	 */
 	protected abstract void refreshClicked();
 
+	
+	/**.
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void setFocus() {
-		
-
+	
 	}
 
 }

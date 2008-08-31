@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.ui.stem.views;
 
 import java.util.Calendar;
@@ -5,10 +11,20 @@ import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
-import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.model.ModelElement;
 import org.unicase.model.organization.User;
 
+
+/**.
+ * This is just a test class to test the Query tab of AbstractSCMView.
+ * SCMViews (history browser and change browser) know a Query class 
+ * which based on it show corresponding contents.
+ * The properties of Query class are set using Query tab of a SCMView.
+ * 
+ * 
+ * @author Hodaie
+ *
+ */
 public class Query {
 	
 	public enum QueryRangeType{VERSION, NUMOFDAYS, DATE };

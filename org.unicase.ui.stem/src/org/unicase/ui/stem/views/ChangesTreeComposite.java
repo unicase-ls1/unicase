@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.ui.stem.views;
 
 
@@ -22,15 +28,40 @@ import org.unicase.emfstore.esmodel.versioning.operations.AtomicOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 
+
+/**.
+ * This class is a composite containing a TreeViewer which shows operations
+ * of an input ChangePacage. This composite will be shown on UpdateDialog, 
+ * CommitDialog, MergDialog, and ChangeBrowserView's browser tab. 
+ * Currently contents of this tree comes from a dummy implementation. 
+ * TreeViewer has columns for Name, Description, UserName and Status of
+ * an Operation. In the dummy implementation the Status is just a random 
+ * boolean value. 
+ * MergeDialog has three instances of this composite (my changes, 
+ * merged changes, their changes). The tree in the middles show no columns.
+ * This is set using showColumn flag of composite's contructor. 
+ * 
+ * @author Hodaie
+ *
+ */
 public class ChangesTreeComposite extends Composite {
 
 	private TreeViewer treeViewer;
+	//number of changes will be shown over TreeViewer
 	private int numOfChanges;
+	//if description, user and status columns should be shown.
 	private boolean showColumns;
 	
+	//input ChangePackage
 	private ChangePackage changePackage;
 
 
+	/**.
+	 * Constructor
+	 * @param parent parent
+	 * @param style style
+	 * @param showColumns if description, user and status columns should be shown.
+	 */
 	public ChangesTreeComposite(Composite parent, int style, boolean showColumns) {
 		super(parent, style);
 		this.setLayout(new GridLayout());
@@ -47,6 +78,8 @@ public class ChangesTreeComposite extends Composite {
 
 		treeViewer.setContentProvider(new ChangesTreeContentProvider());
 		
+		//operation's name.
+		//if showColumns is false, this will be the only column shown in tree
 		TreeViewerColumn tclmName = new TreeViewerColumn(treeViewer, SWT.NONE);
 		tclmName.getColumn().setWidth(200);
 		tclmName.getColumn().setText("Name");
@@ -64,15 +97,16 @@ public class ChangesTreeComposite extends Composite {
 			createOtherColumns();
 		}
 		
-		
+		//set the dummy input to tree
 		treeViewer.setInput(getOperations());
+		//auto size tree columns
 		if(showColumns){
 			for (TreeColumn column : treeViewer.getTree().getColumns()) {
 				column.pack();
 			}
 		}
 	
-//		this.numOfChanges = operations.size();
+		//this.numOfChanges = operations.size();
 		
 	}
 
@@ -81,9 +115,8 @@ public class ChangesTreeComposite extends Composite {
 		Tree tree = treeViewer.getTree();
 		tree.setHeaderVisible(true);
 		tree.setLinesVisible(true);
-		
-		
-		
+				
+		//description column
 		TreeViewerColumn tclmDescription = new TreeViewerColumn(treeViewer, SWT.NONE);
 		tclmDescription.getColumn().setText("Description");
 		tclmDescription.getColumn().setWidth(200);
@@ -97,6 +130,7 @@ public class ChangesTreeComposite extends Composite {
 			}			
 		});
 		
+		//username column
 		TreeViewerColumn tclmUsername = new TreeViewerColumn(treeViewer, SWT.NONE);
 		tclmUsername.getColumn().setText("Username");
 		tclmUsername.getColumn().setWidth(200);
@@ -110,14 +144,14 @@ public class ChangesTreeComposite extends Composite {
 			}			
 		});
 	
+		//status column
 		TreeViewerColumn tclmStatus = new TreeViewerColumn(treeViewer, SWT.NONE);
 		tclmStatus.getColumn().setText("Status");
 		tclmStatus.getColumn().setWidth(200);
 		final Random rnd = new Random();
+		//currently status column is set using a random boolean  
 		tclmStatus.setLabelProvider(new ColumnLabelProvider(){
-
 			private boolean accepted;
-			
 			@Override
 			public Color getForeground(Object element) {
 				if(accepted){
@@ -139,7 +173,7 @@ public class ChangesTreeComposite extends Composite {
 				}
 				
 			}
-
+			//a dummy method.
 			private boolean isAccepted(AbstractOperation operation) {
 				return rnd.nextBoolean();
 			}			
@@ -147,16 +181,18 @@ public class ChangesTreeComposite extends Composite {
 	}
 
 
+	//returns dummy contents of tree 
 	private List<AbstractOperation> getOperations() {
-		
-		
 		return createDummyOperations();
 		
 	}
 
 	
-	
-
+	//create some operations
+	//there is a modeling issue that i have also added to unicase: 
+	//a composite operation cannot contains other composite operations
+	//because it has a list of atomic operations and a composite operation 
+	//is not itself an atomic operation but an abstract operation. 
 	private List<AbstractOperation> createDummyOperations() {
 		List<AbstractOperation> ops = new ArrayList<AbstractOperation>();
 		
@@ -204,7 +240,7 @@ public class ChangesTreeComposite extends Composite {
 		compOp2.setUsername("joe");
 		compOp2.getAtomicOperations().add(op3);
 		compOp2.getAtomicOperations().add(op4);
-//		compOp2.getAtomicOperations().add((AtomicOperation)compOp1);
+		//compOp2.getAtomicOperations().add((AtomicOperation)compOp1);
 		ops.add((AbstractOperation)compOp2);
 		
 		this.numOfChanges = ops.size();
@@ -213,12 +249,20 @@ public class ChangesTreeComposite extends Composite {
 	}
 
 
+	/**.
+	 * get number of operations to show at top of tree
+	 * @return number of operations
+	 */
 	public int getNumOfChanges() {
 		
 		return this.numOfChanges;
 	}
 
 
+	/**.
+	 * set input ChangePackage whose operations will be shown in tree
+	 * @param changePackage input ChangePackage
+	 */
 	public void setInput(ChangePackage changePackage) {
 		this.changePackage = changePackage;
 		if(changePackage != null){
@@ -228,6 +272,10 @@ public class ChangesTreeComposite extends Composite {
 	}
 
 
+	/**.
+	 * for future use maybe
+	 * @return input ChangePackage
+	 */
 	public ChangePackage getChangePackage() {
 		return changePackage;
 	}
