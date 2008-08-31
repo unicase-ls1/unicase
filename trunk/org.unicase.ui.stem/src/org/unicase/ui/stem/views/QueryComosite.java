@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.ui.stem.views;
 
 import java.util.ArrayList;
@@ -24,11 +30,9 @@ import org.eclipse.swt.widgets.ExpandBar;
 import org.eclipse.swt.widgets.ExpandItem;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
-import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 import org.unicase.ui.common.MEClassLabelProvider;
@@ -37,6 +41,14 @@ import org.unicase.ui.common.util.UnicaseUtil;
 import org.unicase.ui.stem.views.Query.QueryRangeType;
 import org.unicase.workspace.WorkspaceManager;
 
+/**.
+ * This is the contents of QueryTab in SCMViews (history and change browser views).
+ * Using this tab properties of a Query class are set which later will be
+ * used by view to update what they show.
+ * 
+ * @author Hodaie
+ *
+ */
 public class QueryComosite extends Composite {
 
 	private Button rbtnVer;
@@ -53,6 +65,9 @@ public class QueryComosite extends Composite {
 	private Button chkIncludeChildren;
 	private Button chkIncludeAnnotations;
 
+	//these lists are input to expand item lists (table viewers)
+	//and keep track of what is currently shown in lists.
+	//they are also used to set the right initial input to selection dialogs.
 	private List<ModelElement> modelElementsList = new ArrayList<ModelElement>();
 	private List<User> usersList = new ArrayList<User>();
 	private List<EClass> modelElementTypesList = new ArrayList<EClass>();
@@ -60,6 +75,8 @@ public class QueryComosite extends Composite {
 	private Query query;
 	private Project project;
 
+	//QueryTab has three list. They have many things in common and are therefor
+	//created using a generic method. This enumeration is input to that method.
 	private enum ListCompositeType {
 		ELEMENTS_LIST, USERS_LIST, ELEMENTTYPES_LIST
 	};
@@ -70,12 +87,19 @@ public class QueryComosite extends Composite {
 		createExpandItems();
 	}
 
+	//create ExpandItems using a help method.
+	//Contents of Range expand item is set using createRangeComposite() method.
+	//Contents of expand items containing lists are created using 
+	//a generic method createListComposite()
 	private void createExpandItems() {
 		ExpandBar expandBar = new ExpandBar(this, SWT.V_SCROLL);
 		expandBar.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-
+		
+		//range expand item
 		createExpandItem(expandBar, "Range", createRangeComposite(expandBar));
 		rbtnVer.setSelection(true);
+		
+		//list expand items
 		createExpandItem(expandBar, "Elements", createListComposite(expandBar,
 				"Elements", ListCompositeType.ELEMENTS_LIST));
 		createExpandItem(expandBar, "Users", createListComposite(expandBar,
@@ -85,17 +109,19 @@ public class QueryComosite extends Composite {
 						ListCompositeType.ELEMENTTYPES_LIST));
 	}
 
+	//create an expand with given contents composite
 	private void createExpandItem(ExpandBar expandBar, String title,
 			Composite composite) {
 
-		ExpandItem eitemRange = new ExpandItem(expandBar, SWT.NONE);
-		eitemRange.setText(title);
-		eitemRange.setExpanded(false);
-		eitemRange.setControl(composite);
-		eitemRange.setHeight(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT).y);
+		ExpandItem expandItem = new ExpandItem(expandBar, SWT.NONE);
+		expandItem.setText(title);
+		expandItem.setExpanded(false);
+		expandItem.setControl(composite);
+		expandItem.setHeight(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT).y);
 
 	}
 
+	//a generic method to create three list expand items (elements, users, and element types)
 	private Composite createListComposite(Composite parent, String name,
 			final ListCompositeType type) {
 		Composite composite = new Composite(parent, SWT.NONE);
@@ -105,6 +131,8 @@ public class QueryComosite extends Composite {
 		Label lblName = new Label(composite, SWT.NONE);
 		lblName.setText(name);
 
+		//this button shows based on list type either UnicaseUti.showMESelectionDialog()
+		//(for elements and users list) or shows METypeSelectionDialog (for element type list)
 		Button btnAdd = new Button(composite, SWT.PUSH);
 		GridData gridData = new GridData(SWT.LEFT, SWT.CENTER, false, false);
 		gridData.widthHint = 55;
@@ -115,8 +143,8 @@ public class QueryComosite extends Composite {
 		Button btnRemove = new Button(composite, SWT.PUSH);
 		btnRemove.setText("Remove");
 		
+		//if this the elements list show following two checkboxes
 		if (type == ListCompositeType.ELEMENTS_LIST) {
-
 			chkIncludeChildren = new Button(composite, SWT.CHECK);
 			chkIncludeChildren.setText("Include Children");
 
@@ -124,11 +152,16 @@ public class QueryComosite extends Composite {
 			chkIncludeAnnotations.setText("Include Annotations");
 		}
 
+		//the list (a TableViewer)
 		final TableViewer tableViewer = new TableViewer(composite, SWT.V_SCROLL
 				| SWT.BORDER  | SWT.MULTI);
 		tableViewer.getTable().setLayoutData(
 				new GridData(SWT.FILL, SWT.FILL, true, true, 5, 1));
 
+		//org.unicase.ui.common.MEClassLabelProvider 
+		//This label provider shows appropriate label based on 
+		//if element is a ModelElement (for elements and users list) 
+		//or an EClass (for METype list)
 		tableViewer.setLabelProvider(new MEClassLabelProvider());
 		tableViewer.setContentProvider(new ArrayContentProvider());
 		
@@ -142,11 +175,12 @@ public class QueryComosite extends Composite {
 		case ELEMENTTYPES_LIST:
 			tableViewer.setInput(modelElementTypesList);
 			break;
+		default:
+			//do nothing	
 		}
 
 		if (type == ListCompositeType.USERS_LIST) {
 			btnAdd.addSelectionListener(new SelectionListener() {
-
 				public void widgetDefaultSelected(SelectionEvent e) {
 				}
 
@@ -154,6 +188,7 @@ public class QueryComosite extends Composite {
 					
 					Object[] result =  showMESelectionDialog(type);
 					User[] users = new User[result.length];
+					//cast
 					for(int i = 0; i < users.length; i++ ){
 						users[i] = (User) result[i];
 					}
@@ -185,6 +220,7 @@ public class QueryComosite extends Composite {
 				public void widgetSelected(SelectionEvent e) {
 					Object[] result =  showMESelectionDialog(type);
 					ModelElement[] elements = new ModelElement[result.length];
+					//cast
 					for(int i = 0; i < elements.length; i++ ){
 						elements[i] = (ModelElement) result[i];
 					}
@@ -219,7 +255,6 @@ public class QueryComosite extends Composite {
 					EClass[] types = showMETypeSelectionDialog();
 					if (types != null) {
 						modelElementTypesList.addAll(Arrays.asList(types));
-						
 						tableViewer.refresh(true, true);
 						
 					}
@@ -246,6 +281,7 @@ public class QueryComosite extends Composite {
 		return composite;
 	}
 
+	//helper method to show METypeSelectionDialog
 	protected EClass[] showMETypeSelectionDialog() {
 		EClass[] result = null;
 
@@ -257,6 +293,9 @@ public class QueryComosite extends Composite {
 		return result;
 	}
 
+	//helper method to show MESelectionDialog.
+	//the initial input of MESelectionDialog is set using current content
+	//of corresponding list (TableViewer)
 	private Object[] showMESelectionDialog(ListCompositeType type) {
 		this.project = WorkspaceManager.getInstance().getCurrentWorkspace()
 		 .getActiveProjectSpace().getProject();
@@ -290,10 +329,12 @@ public class QueryComosite extends Composite {
 		return result;
 	}
 
+	
 	private Composite createRangeComposite(Composite parent) {
 		Composite composite = new Composite(parent, SWT.NONE);
 		composite.setLayout(new GridLayout(6, false));
 
+		//version
 		rbtnVer = new Button(composite, SWT.RADIO);
 		rbtnVer.setText("Versions");
 		Label lblVerFrom = new Label(composite, SWT.NONE);
@@ -303,8 +344,7 @@ public class QueryComosite extends Composite {
 		lblVerTo.setText("To:");
 		txtVerTo = new Text(composite, SWT.BORDER);
 		Label lblVerTip = new Label(composite, SWT.NONE);
-		lblVerTip
-				.setText("Enter a positive integer or any tag like BASE, CURRENT, HEAD, etc.");
+		lblVerTip.setText("Enter a positive integer or any tag like BASE, CURRENT, HEAD, etc.");
 		rbtnVer.addSelectionListener(new SelectionListener() {
 
 			public void widgetDefaultSelected(SelectionEvent e) {
@@ -317,6 +357,7 @@ public class QueryComosite extends Composite {
 
 		});
 
+		//number of days
 		rbtnNumOfDays = new Button(composite, SWT.RADIO);
 		rbtnNumOfDays.setText("Number of days:");
 		@SuppressWarnings("unused")
@@ -336,6 +377,7 @@ public class QueryComosite extends Composite {
 
 		});
 
+		//date
 		rbtnDate = new Button(composite, SWT.RADIO);
 		rbtnDate.setText("Date");
 		Label lblDateFrom = new Label(composite, SWT.NONE);
@@ -362,6 +404,11 @@ public class QueryComosite extends Composite {
 
 	}
 
+	//this will be called by SCMViews to invoke the Query from query tab
+	//the properties of Query are set using values of different controls on 
+	//query tab.
+	//currently there are no validations of values (for example for nulls 
+	//or invalid numeric values)
 	public Query getQuery() {
 		if (query == null) {
 			query = new Query();
@@ -405,12 +452,15 @@ public class QueryComosite extends Composite {
 
 	}
 
+	
 	private Collection<? extends Annotation> getAnnotations(ModelElement me) {
+		//TODO: final implementation
 		List<Annotation> result = new ArrayList<Annotation>();
 		return result;
 	}
 
 	private Collection<? extends ModelElement> getChildren(ModelElement me) {
+		//TODO: final implementation
 		List<ModelElement> result = new ArrayList<ModelElement>();
 		return result;
 	}

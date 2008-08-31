@@ -68,6 +68,15 @@ public final class UnicaseUtil {
 	}
 	
 	
+	/**.
+	 * This shows a standard dialog with some given initial contents to
+	 * select model elements.
+	 * @param shell shell
+	 * @param initialContent initilaContents
+	 * @param title title
+	 * @param multiSelection if multiSelection is allowed
+	 * @return
+	 */
 	public static Object[] showMESelectionDialog(Shell shell,
 								Collection<?> initialContent,
 								String title,
