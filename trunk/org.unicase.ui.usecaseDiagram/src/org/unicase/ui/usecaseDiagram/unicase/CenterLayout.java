@@ -21,23 +21,34 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 
 public class CenterLayout extends StackLayout {
-	private static final Rectangle RECTANGLE = new Rectangle();
-	
-	public void layout(IFigure figure) {
-		Rectangle r = figure.getClientArea();
-		final int centerX = r.x + r.width / 2;
-		final int centerY = r.y + r.height / 2;
-		List children = figure.getChildren();		
-		IFigure child;
-		for (int i = 0; i < children.size(); i++) {
-			child = (IFigure)children.get(i);
-			Dimension prefSize = child.getPreferredSize(r.width, r.height);
-			RECTANGLE.x = centerX;
-			RECTANGLE.y = centerY - prefSize.height / 2;
-			RECTANGLE.width = prefSize.width/2;
-			RECTANGLE.height = prefSize.height;
-			//Workaround for 209648
-			child.setBounds(RECTANGLE);
-		}
+		
+	Rectangle clientRect=null;
+	public CenterLayout(Rectangle clientRect){
+		this.clientRect=clientRect;
 	}
+	public CenterLayout(){
+		super();		
+	}
+	public void layout(IFigure container)
+    {   
+		if(clientRect==null){
+			clientRect=container.getClientArea();
+		}
+        List children = container.getChildren();
+        IFigure child;
+        for (int i = 0; i < children.size(); i++)
+        {
+            child = (IFigure) children.get(i);
+            
+            // Initialize with r dimension
+            Dimension size = child.getPreferredSize(clientRect.width, clientRect.height);
+
+            int x = Math.max(clientRect.x, clientRect.x + clientRect.width / 2 - size.width / 2);
+            int y = Math.max(clientRect.y, clientRect.y + clientRect.height / 2 - size.height / 2);
+            int width = Math.min(clientRect.width, size.width);
+            int height = Math.min(clientRect.height, size.height);            
+
+            child.setBounds(new Rectangle(x, y, width, height));
+        }
+    }	
 }
