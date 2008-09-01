@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
 import org.unicase.emfstore.esmodel.ProjectHistory;
@@ -50,7 +51,7 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 	protected EList<ACGroup> groups;
 
 	/**
-	 * The cached value of the '{@link #getProjects() <em>Projects</em>}' containment reference list.
+	 * The cached value of the '{@link #getProjects() <em>Projects</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getProjects()
 	 * @generated
@@ -114,7 +115,7 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 	 */
 	public EList<ProjectHistory> getProjects() {
 		if (projects == null) {
-			projects = new EObjectContainmentEList<ProjectHistory>(
+			projects = new EObjectResolvingEList<ProjectHistory>(
 					ProjectHistory.class, this,
 					EsmodelPackage.SERVER_SPACE__PROJECTS);
 		}
@@ -156,9 +157,6 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 		switch (featureID) {
 		case EsmodelPackage.SERVER_SPACE__GROUPS:
 			return ((InternalEList<?>) getGroups()).basicRemove(otherEnd, msgs);
-		case EsmodelPackage.SERVER_SPACE__PROJECTS:
-			return ((InternalEList<?>) getProjects()).basicRemove(otherEnd,
-					msgs);
 		case EsmodelPackage.SERVER_SPACE__OPEN_SESSIONS:
 			return ((InternalEList<?>) getOpenSessions()).basicRemove(otherEnd,
 					msgs);

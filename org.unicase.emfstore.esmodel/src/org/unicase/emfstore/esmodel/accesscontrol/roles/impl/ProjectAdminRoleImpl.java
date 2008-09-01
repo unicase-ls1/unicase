@@ -37,7 +37,7 @@ public class ProjectAdminRoleImpl extends RoleImpl implements ProjectAdminRole {
 	protected EClass eStaticClass() {
 		return RolesPackage.Literals.PROJECT_ADMIN_ROLE;
 	}
-	
+
 	@Override
 	public boolean canAdministrate(ProjectId projectId) {
 		return isMyProject(projectId);

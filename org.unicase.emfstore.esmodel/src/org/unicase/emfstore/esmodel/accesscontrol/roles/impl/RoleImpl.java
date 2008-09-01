@@ -66,13 +66,13 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 			//because its useEquals() return false.
 			//we need to compare using equals method. 
 			projects = new EObjectResolvingEList<ProjectId>(ProjectId.class,
-					this, RolesPackage.ROLE__PROJECTS){
+					this, RolesPackage.ROLE__PROJECTS) {
 
-						@Override
-						protected boolean useEquals() {
-							return true;
-						}
-				
+				@Override
+				protected boolean useEquals() {
+					return true;
+				}
+
 			};
 		}
 		return projects;
@@ -188,7 +188,6 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 		}
 		return super.eIsSet(featureID);
 	}
-	
 
 	/**
 	 * Checks whether the role is connected to a project.
@@ -200,6 +199,5 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	protected boolean isMyProject(ProjectId projectId) {
 		return getProjects().contains(projectId);
 	}
-
 
 } // RoleImpl

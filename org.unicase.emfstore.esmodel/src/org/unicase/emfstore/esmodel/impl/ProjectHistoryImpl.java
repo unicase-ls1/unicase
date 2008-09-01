@@ -15,8 +15,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
 import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.esmodel.ProjectId;
@@ -48,7 +47,7 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	protected ProjectId projectId;
 
 	/**
-	 * The cached value of the '{@link #getVersions() <em>Versions</em>}' containment reference list.
+	 * The cached value of the '{@link #getVersions() <em>Versions</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getVersions()
 	 * @generated
@@ -172,8 +171,8 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	 */
 	public EList<Version> getVersions() {
 		if (versions == null) {
-			versions = new EObjectContainmentEList<Version>(Version.class,
-					this, EsmodelPackage.PROJECT_HISTORY__VERSIONS);
+			versions = new EObjectResolvingEList<Version>(Version.class, this,
+					EsmodelPackage.PROJECT_HISTORY__VERSIONS);
 		}
 		return versions;
 	}
@@ -244,9 +243,6 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 		switch (featureID) {
 		case EsmodelPackage.PROJECT_HISTORY__PROJECT_ID:
 			return basicSetProjectId(null, msgs);
-		case EsmodelPackage.PROJECT_HISTORY__VERSIONS:
-			return ((InternalEList<?>) getVersions()).basicRemove(otherEnd,
-					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}

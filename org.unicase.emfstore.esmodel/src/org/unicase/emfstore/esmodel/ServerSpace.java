@@ -52,7 +52,7 @@ public interface ServerSpace extends EObject {
 	EList<ACGroup> getGroups();
 
 	/**
-	 * Returns the value of the '<em><b>Projects</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Projects</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.emfstore.esmodel.ProjectHistory}.
 	 * <!-- begin-user-doc
 	 * -->
@@ -61,9 +61,9 @@ public interface ServerSpace extends EObject {
 	 * isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Projects</em>' containment reference list.
+	 * @return the value of the '<em>Projects</em>' reference list.
 	 * @see org.unicase.emfstore.esmodel.EsmodelPackage#getServerSpace_Projects()
-	 * @model containment="true"
+	 * @model
 	 * @generated
 	 */
 	EList<ProjectHistory> getProjects();
