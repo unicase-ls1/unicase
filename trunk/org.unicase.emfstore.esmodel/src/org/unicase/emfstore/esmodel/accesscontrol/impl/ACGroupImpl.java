@@ -62,14 +62,14 @@ public class ACGroupImpl extends ACOrgUnitImpl implements ACGroup {
 		if (members == null) {
 			//see comment in RoleImpl.getProjects()
 			members = new EObjectResolvingEList<ACOrgUnit>(ACOrgUnit.class,
-					this, AccesscontrolPackage.AC_GROUP__MEMBERS){
+					this, AccesscontrolPackage.AC_GROUP__MEMBERS) {
 
-						@Override
-						protected boolean useEquals() {
-							// TODO Auto-generated method stub
-							return true;
-						}
-				
+				@Override
+				protected boolean useEquals() {
+					// TODO Auto-generated method stub
+					return true;
+				}
+
 			};
 		}
 		return members;

@@ -76,7 +76,7 @@ public interface EsmodelPackage extends EPackage {
 	int PROJECT_HISTORY__PROJECT_ID = 0;
 
 	/**
-	 * The feature id for the '<em><b>Versions</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Versions</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -212,7 +212,7 @@ public interface EsmodelPackage extends EPackage {
 	int SERVER_SPACE__GROUPS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Projects</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Projects</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -292,9 +292,9 @@ public interface EsmodelPackage extends EPackage {
 	EReference getProjectHistory_ProjectId();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.emfstore.esmodel.ProjectHistory#getVersions <em>Versions</em>}'.
+	 * Returns the meta object for the reference list '{@link org.unicase.emfstore.esmodel.ProjectHistory#getVersions <em>Versions</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Versions</em>'.
+	 * @return the meta object for the reference list '<em>Versions</em>'.
 	 * @see org.unicase.emfstore.esmodel.ProjectHistory#getVersions()
 	 * @see #getProjectHistory()
 	 * @generated
@@ -404,9 +404,9 @@ public interface EsmodelPackage extends EPackage {
 	EReference getServerSpace_Groups();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.emfstore.esmodel.ServerSpace#getProjects <em>Projects</em>}'.
+	 * Returns the meta object for the reference list '{@link org.unicase.emfstore.esmodel.ServerSpace#getProjects <em>Projects</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Projects</em>'.
+	 * @return the meta object for the reference list '<em>Projects</em>'.
 	 * @see org.unicase.emfstore.esmodel.ServerSpace#getProjects()
 	 * @see #getServerSpace()
 	 * @generated
@@ -486,7 +486,7 @@ public interface EsmodelPackage extends EPackage {
 				.getProjectHistory_ProjectId();
 
 		/**
-		 * The meta object literal for the '<em><b>Versions</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Versions</b></em>' reference list feature.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * @generated
@@ -579,7 +579,7 @@ public interface EsmodelPackage extends EPackage {
 		EReference SERVER_SPACE__GROUPS = eINSTANCE.getServerSpace_Groups();
 
 		/**
-		 * The meta object literal for the '<em><b>Projects</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Projects</b></em>' reference list feature.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * @generated

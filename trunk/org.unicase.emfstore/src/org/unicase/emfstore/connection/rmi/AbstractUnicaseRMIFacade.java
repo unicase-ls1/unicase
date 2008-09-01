@@ -14,7 +14,8 @@ public abstract class AbstractUnicaseRMIFacade extends UnicastRemoteObject {
 	private static final long serialVersionUID = 2586931338749730039L;
 
 	public AbstractUnicaseRMIFacade() throws RemoteException {
-		super();
-		//super(0);
+		// super();
+		super(0, new RMISSLClientSocketFactory(),
+				new RMISSLServerSocketFactory());
 	}
 }

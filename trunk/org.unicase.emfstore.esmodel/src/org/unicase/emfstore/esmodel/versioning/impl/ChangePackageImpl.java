@@ -131,7 +131,7 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		// in a change package. 
 		// without this method, one should go through all ChangeConatainers of a
 		// ChangePackage and gather all operations contained in each of them. 
-		
+
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}

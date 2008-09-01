@@ -8,6 +8,7 @@ package org.unicase.emfstore;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
@@ -15,6 +16,9 @@ import java.util.Properties;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.accesscontrol.AuthorizationControl;
@@ -75,11 +79,11 @@ public class EmfStoreImpl implements EmfStore {
 			ProjectId projectId, PrimaryVersionSpec baseVersionSpec,
 			ChangePackage changePackage, LogMessage logMessage)
 			throws EmfStoreException {
-		//TODO: authorization
+		// TODO: authorization
 		authorizationControl.checkWriteAccess(sessionId, projectId, null);
 		long currentTimeMillis = System.currentTimeMillis();
-
-		List<Version> versions = getProject(projectId).getVersions();
+		ProjectHistory projectHistory = getProject(projectId);
+		List<Version> versions = projectHistory.getVersions();
 		if (versions.size() - 1 != baseVersionSpec.getIdentifier()) {
 			throw new InvalidVersionSpecException("");
 		}
@@ -102,17 +106,19 @@ public class EmfStoreImpl implements EmfStore {
 		version.setProjectState(newProjectState);
 
 		version.setChanges(changePackage);
+		logMessage.setDate(new Date());
 		version.setLogMessage(logMessage);
 		version.setPrimarySpec(newVersionSpec);
 		version.setNextVersion(null);
 		version.setPreviousVersion(previousHeadVersion);
 
 		versions.add(version);
-		save();
-
+		createResourceForVersion(version, projectHistory.getProjectId());
+		// if projectstate of the previous head version is set to null saving is required
+		save(previousHeadVersion);
+		save(projectHistory);
 		LOGGER.error("Total time for commit: "
 				+ (System.currentTimeMillis() - currentTimeMillis));
-
 		return newVersionSpec;
 	}
 
@@ -193,14 +199,15 @@ public class EmfStoreImpl implements EmfStore {
 	public synchronized List<ProjectInfo> getProjectList(SessionId sessionId)
 			throws EmfStoreException {
 		// TODO: authorization
-//		authorizationControl.checkReadAccess(sessionId, null, null);
+		// authorizationControl.checkReadAccess(sessionId, null, null);
 		List<ProjectInfo> result = new ArrayList<ProjectInfo>();
 		for (ProjectHistory project : getServerSpace().getProjects()) {
 			try {
-				authorizationControl.checkReadAccess(sessionId, project.getProjectId(), null);
+				authorizationControl.checkReadAccess(sessionId, project
+						.getProjectId(), null);
 				result.add(getProjectInfo(project));
 			} catch (AccessControlException e) {
-				//do nothing continue
+				// do nothing continue
 			}
 		}
 		return result;
@@ -270,9 +277,31 @@ public class EmfStoreImpl implements EmfStore {
 		// create initial project
 		firstVersion.setProjectState(ModelFactory.eINSTANCE.createProject());
 		projectHistory.getVersions().add(firstVersion);
-		// add to serverspace and save
+		// add to serverspace and saved
+		createResourceForVersion(firstVersion, projectHistory.getProjectId());
+		createResourceForProjectHistory(projectHistory);
 		getServerSpace().getProjects().add(projectHistory);
 		return projectHistory;
+	}
+
+	private void createResourceForProjectHistory(ProjectHistory projectHistory)
+			throws EmfStoreException {
+		String fileName = ServerConfiguration.getServerHome() + "project-"
+				+ projectHistory.getProjectId().getId() + "/projectHistory";
+		Resource resource = getServerSpace().eResource().getResourceSet()
+				.createResource(URI.createFileURI(fileName));
+		resource.getContents().add(projectHistory);
+		save(projectHistory);
+	}
+
+	private void createResourceForVersion(Version version,ProjectId projectId)
+			throws EmfStoreException {
+		String fileName = ServerConfiguration.getServerHome() + "project-"
+				+ projectId.getId() + "/version-"+version.getPrimarySpec().getIdentifier();
+		Resource resource = getServerSpace().eResource().getResourceSet()
+				.createResource(URI.createFileURI(fileName));
+		resource.getContents().add(version);
+		save(version);
 	}
 
 	private ServerSpace getServerSpace() {
@@ -350,6 +379,16 @@ public class EmfStoreImpl implements EmfStore {
 			LOGGER.error("Total time for saving: "
 					+ (System.currentTimeMillis() - currentTimeMillis));
 			currentTimeMillis = System.currentTimeMillis();
+		} catch (IOException e) {
+			throw new StorageException(StorageException.NOSAVE, e);
+		} catch (NullPointerException e) {
+			throw new StorageException(StorageException.NOSAVE, e);
+		}
+	}
+
+	private void save(EObject object) throws EmfStoreException {
+		try {
+			object.eResource().save(null);
 		} catch (IOException e) {
 			throw new StorageException(StorageException.NOSAVE, e);
 		} catch (NullPointerException e) {

@@ -422,7 +422,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		initEReference(getProjectHistory_Versions(), theVersioningPackage
 				.getVersion(), null, "versions", null, 1, -1,
 				ProjectHistory.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getProjectHistory_ProjectName(), ecorePackage
 				.getEString(), "projectName", null, 1, 1, ProjectHistory.class,
@@ -466,8 +466,8 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 				IS_ORDERED);
 		initEReference(getServerSpace_Projects(), this.getProjectHistory(),
 				null, "projects", null, 0, -1, ServerSpace.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 		initEReference(getServerSpace_OpenSessions(), this.getSessionId(),
 				null, "openSessions", null, 0, -1, ServerSpace.class,
