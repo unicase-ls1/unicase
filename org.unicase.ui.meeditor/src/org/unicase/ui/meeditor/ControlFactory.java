@@ -71,8 +71,8 @@ public class ControlFactory {
 		if (feature instanceof EAttribute) {
 
 			if (itemPropertyDescriptor.isMultiLine(modelElement)) {
-				//return createMETextAreaControl((EAttribute) feature);
-				return createMERichTextAreaControl((EAttribute) feature);
+				return createMETextAreaControl((EAttribute) feature);
+				//return createMERichTextAreaControl((EAttribute) feature);
 			}
 			if (feature.getEType().getInstanceClass().equals(boolean.class)) {
 				return createMEBoolControl((EAttribute) feature);
@@ -146,7 +146,6 @@ public class ControlFactory {
 	}
 
 	private MEControl createMETextControl(EAttribute attribute) {
-		//return new MERichTextAreaControl(attribute, toolkit, modelElement, editingDomain);
 		return new METextControl(attribute, toolkit, modelElement, editingDomain);
 	}
 
