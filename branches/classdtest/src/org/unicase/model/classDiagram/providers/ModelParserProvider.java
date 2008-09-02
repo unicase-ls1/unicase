@@ -101,32 +101,6 @@ public class ModelParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	private IParser associationName_4002Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getAssociationName_4002Parser() {
-		if (associationName_4002Parser == null) {
-			associationName_4002Parser = createAssociationName_4002Parser();
-		}
-		return associationName_4002Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected IParser createAssociationName_4002Parser() {
-		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE
-				.getModelElement_Name(), };
-		org.unicase.model.classDiagram.parsers.MessageFormatParser parser = new org.unicase.model.classDiagram.parsers.MessageFormatParser(
-				features);
-		return parser;
-	}
-
-	/**
-	 * @generated
-	 */
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
 		case org.unicase.model.classDiagram.edit.parts.WrappingLabelEditPart.VISUAL_ID:
@@ -135,8 +109,6 @@ public class ModelParserProvider extends AbstractProvider implements
 			return getAttribute_2001Parser();
 		case org.unicase.model.classDiagram.edit.parts.MethodEditPart.VISUAL_ID:
 			return getMethod_2002Parser();
-		case org.unicase.model.classDiagram.edit.parts.AssociationNameEditPart.VISUAL_ID:
-			return getAssociationName_4002Parser();
 		}
 		return null;
 	}

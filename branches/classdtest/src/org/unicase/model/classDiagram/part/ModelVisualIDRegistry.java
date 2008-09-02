@@ -191,11 +191,6 @@ public class ModelVisualIDRegistry {
 				return true;
 			}
 			break;
-		case org.unicase.model.classDiagram.edit.parts.AssociationEditPart.VISUAL_ID:
-			if (org.unicase.model.classDiagram.edit.parts.AssociationNameEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
 		}
 		return false;
 	}
@@ -209,7 +204,7 @@ public class ModelVisualIDRegistry {
 		}
 		if (ClassesPackage.eINSTANCE.getAssociation().isSuperTypeOf(
 				domainElement.eClass())) {
-			return org.unicase.model.classDiagram.edit.parts.AssociationEditPart.VISUAL_ID;
+			return org.unicase.model.classDiagram.edit.parts.ClassSubClassesEditPart.VISUAL_ID;
 		}
 		return -1;
 	}

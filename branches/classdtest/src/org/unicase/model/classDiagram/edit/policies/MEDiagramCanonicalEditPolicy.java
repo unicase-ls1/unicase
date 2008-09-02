@@ -228,7 +228,7 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 			}
 			break;
 		}
-		case org.unicase.model.classDiagram.edit.parts.AssociationEditPart.VISUAL_ID: {
+		case org.unicase.model.classDiagram.edit.parts.ClassSubClassesEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result
 						.addAll(org.unicase.model.classDiagram.part.ModelDiagramUpdater

@@ -100,13 +100,6 @@ public class ModelViewProvider extends AbstractViewProvider {
 						return null; // wrong container
 					}
 					break;
-				case org.unicase.model.classDiagram.edit.parts.AssociationNameEditPart.VISUAL_ID:
-					if (org.unicase.model.classDiagram.edit.parts.AssociationEditPart.VISUAL_ID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
-						return null; // wrong container
-					}
-					break;
 				default:
 					return null;
 				}
@@ -137,8 +130,6 @@ public class ModelViewProvider extends AbstractViewProvider {
 			return org.unicase.model.classDiagram.view.factories.ClassClassNode_attributesViewFactory.class;
 		case org.unicase.model.classDiagram.edit.parts.ClassClassNode_methodsEditPart.VISUAL_ID:
 			return org.unicase.model.classDiagram.view.factories.ClassClassNode_methodsViewFactory.class;
-		case org.unicase.model.classDiagram.edit.parts.AssociationNameEditPart.VISUAL_ID:
-			return org.unicase.model.classDiagram.view.factories.AssociationNameViewFactory.class;
 		}
 		return null;
 	}
@@ -177,6 +168,8 @@ public class ModelViewProvider extends AbstractViewProvider {
 	 */
 	protected Class getEdgeViewClass(int visualID) {
 		switch (visualID) {
+		case org.unicase.model.classDiagram.edit.parts.ClassSubClassesEditPart.VISUAL_ID:
+			return org.unicase.model.classDiagram.view.factories.ClassSubClassesViewFactory.class;
 		case org.unicase.model.classDiagram.edit.parts.AssociationEditPart.VISUAL_ID:
 			return org.unicase.model.classDiagram.view.factories.AssociationViewFactory.class;
 		}

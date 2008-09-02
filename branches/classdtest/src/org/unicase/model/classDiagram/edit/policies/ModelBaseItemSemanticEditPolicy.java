@@ -38,6 +38,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
+import org.unicase.model.Project;
 import org.unicase.model.classes.Class;
 import org.unicase.model.diagram.MEDiagram;
 
@@ -355,8 +356,30 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
+		public static boolean canCreateClassSubClasses_3002(Class source,
+				Class target) {
+			if (source != null) {
+				if (source.getSubClasses().contains(target)) {
+					return false;
+				}
+			}
+			return canExistClassSubClasses_3002(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
 		public static boolean canExistAssociation_3001(MEDiagram container,
 				Class source, Class target) {
+
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistClassSubClasses_3002(Class source,
+				Class target) {
 
 			return true;
 		}
