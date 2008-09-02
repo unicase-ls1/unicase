@@ -22,6 +22,8 @@ import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLServerSocketFactory;
 
+import org.unicase.emfstore.ServerConfiguration;
+
 /**
  * Custom SocketFactory for rmi with encryption.
  * 
@@ -38,18 +40,19 @@ public class RMISSLServerSocketFactory implements RMIServerSocketFactory,
 		SSLContext context;
 		KeyManagerFactory keyManagerFactory;
 		KeyStore keyStore;
-		char[] passphrase = "123456".toCharArray();
+		char[] passphrase = "av374tb$VBGGtrgwa7tosdfa".toCharArray();
 
 		try {
 			context = SSLContext.getInstance("TLS");
 			keyManagerFactory = KeyManagerFactory.getInstance("SunX509");
 			keyStore = KeyStore.getInstance("JKS");
 
-			keyStore.load(new FileInputStream("C:/Dokumente und Einstellungen/Otto/Desktop/server.keystore"), passphrase);
+			keyStore.load(new FileInputStream(ServerConfiguration.getServerHome()+"unicaseServer.keystore"), passphrase);
 			keyManagerFactory.init(keyStore, passphrase);
 			context.init(keyManagerFactory.getKeyManagers(), null, null);
 
 			serverSocketFactory = context.getServerSocketFactory();
+			
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		} catch (KeyStoreException e) {
