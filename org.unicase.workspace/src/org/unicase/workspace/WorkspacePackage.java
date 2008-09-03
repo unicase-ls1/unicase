@@ -241,12 +241,21 @@ public interface WorkspacePackage extends EPackage {
 	int USERSESSION__SAVE_PASSWORD = 5;
 
 	/**
+	 * The feature id for the '<em><b>AC User</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USERSESSION__AC_USER = 6;
+
+	/**
 	 * The number of structural features of the '<em>Usersession</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USERSESSION_FEATURE_COUNT = 6;
+	int USERSESSION_FEATURE_COUNT = 7;
 
 	/**
 	 * The meta object id for the '
@@ -550,6 +559,17 @@ public interface WorkspacePackage extends EPackage {
 	EAttribute getUsersession_SavePassword();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.unicase.workspace.Usersession#getACUser <em>AC User</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>AC User</em>'.
+	 * @see org.unicase.workspace.Usersession#getACUser()
+	 * @see #getUsersession()
+	 * @generated
+	 */
+	EReference getUsersession_ACUser();
+
+	/**
 	 * Returns the meta object for class '
 	 * {@link org.unicase.workspace.ProjectSpace <em>Project Space</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -820,6 +840,14 @@ public interface WorkspacePackage extends EPackage {
 		 */
 		EAttribute USERSESSION__SAVE_PASSWORD = eINSTANCE
 				.getUsersession_SavePassword();
+
+		/**
+		 * The meta object literal for the '<em><b>AC User</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USERSESSION__AC_USER = eINSTANCE.getUsersession_ACUser();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.workspace.impl.ProjectSpaceImpl <em>Project Space</em>}' class.

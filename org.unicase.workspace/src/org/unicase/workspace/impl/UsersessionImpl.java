@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -18,6 +19,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
+import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.ConnectionException;
@@ -42,6 +44,7 @@ import org.unicase.workspace.connectionmanager.ConnectionManager;
  *   <li>{@link org.unicase.workspace.impl.UsersessionImpl#getPersistentPassword <em>Persistent Password</em>}</li>
  *   <li>{@link org.unicase.workspace.impl.UsersessionImpl#getServerInfo <em>Server Info</em>}</li>
  *   <li>{@link org.unicase.workspace.impl.UsersessionImpl#isSavePassword <em>Save Password</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.UsersessionImpl#getACUser <em>AC User</em>}</li>
  * </ul>
  * </p>
  *
@@ -146,6 +149,16 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 * @ordered
 	 */
 	protected boolean savePassword = SAVE_PASSWORD_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getACUser() <em>AC User</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getACUser()
+	 * @generated
+	 * @ordered
+	 */
+	protected ACUser acUser;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -389,6 +402,62 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 		setSavePasswordGen(newSavePassword);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ACUser getACUser() {
+		return acUser;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetACUser(ACUser newACUser,
+			NotificationChain msgs) {
+		ACUser oldACUser = acUser;
+		acUser = newACUser;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET, WorkspacePackage.USERSESSION__AC_USER,
+					oldACUser, newACUser);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setACUser(ACUser newACUser) {
+		if (newACUser != acUser) {
+			NotificationChain msgs = null;
+			if (acUser != null)
+				msgs = ((InternalEObject) acUser).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+								- WorkspacePackage.USERSESSION__AC_USER, null,
+						msgs);
+			if (newACUser != null)
+				msgs = ((InternalEObject) newACUser).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE
+								- WorkspacePackage.USERSESSION__AC_USER, null,
+						msgs);
+			msgs = basicSetACUser(newACUser, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					WorkspacePackage.USERSESSION__AC_USER, newACUser, newACUser));
+	}
+
 	// begin of custom code
 	/**
 	 * <!-- begin-user-doc --> Return whether session is logged in.
@@ -429,6 +498,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 		SessionId newSessionId = connectionManager.logIn(username,
 				getPassword(), copy);
 		this.setSessionId(newSessionId);
+		setACUser(connectionManager.resolveUser(newSessionId, null));
 	}
 
 	/**
@@ -441,6 +511,21 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 			throws EmfStoreException {
 		return this.getWorkspaceManager().getCurrentWorkspace().checkout(this,
 				projectInfo);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case WorkspacePackage.USERSESSION__AC_USER:
+			return basicSetACUser(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -478,6 +563,8 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 			return basicGetServerInfo();
 		case WorkspacePackage.USERSESSION__SAVE_PASSWORD:
 			return isSavePassword() ? Boolean.TRUE : Boolean.FALSE;
+		case WorkspacePackage.USERSESSION__AC_USER:
+			return getACUser();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -506,6 +593,9 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 			return;
 		case WorkspacePackage.USERSESSION__SAVE_PASSWORD:
 			setSavePassword(((Boolean) newValue).booleanValue());
+			return;
+		case WorkspacePackage.USERSESSION__AC_USER:
+			setACUser((ACUser) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -536,6 +626,9 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 		case WorkspacePackage.USERSESSION__SAVE_PASSWORD:
 			setSavePassword(SAVE_PASSWORD_EDEFAULT);
 			return;
+		case WorkspacePackage.USERSESSION__AC_USER:
+			setACUser((ACUser) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -562,6 +655,8 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 			return serverInfo != null;
 		case WorkspacePackage.USERSESSION__SAVE_PASSWORD:
 			return savePassword != SAVE_PASSWORD_EDEFAULT;
+		case WorkspacePackage.USERSESSION__AC_USER:
+			return acUser != null;
 		}
 		return super.eIsSet(featureID);
 	}

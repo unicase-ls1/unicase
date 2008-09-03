@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.accesscontrol.authentication.LDAPVerifier;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
@@ -24,6 +25,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.ServerAdmin;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.ModelElement;
 
 /**
@@ -177,6 +179,16 @@ public class AccessControlImpl implements AuthenticationControl,
 		}
 		return groups;
 	}
+
+	private ACUser getUser(ACOrgUnitId orgUnitId)
+			throws AccessControlException {
+		for (ACUser user : serverSpace.getUsers()) {
+			if (user.getId().equals(orgUnitId)) {
+				return user;
+			}
+		}
+		throw new AccessControlException("Given User doesn't exist.");
+	}
 	
 	/** 
 	 * {@inheritDoc}
@@ -207,7 +219,9 @@ public class AccessControlImpl implements AuthenticationControl,
 			throws AccessControlException {
 		checkSession(sessionId);
 		ACUser user = sessionUserMap.get(sessionId).getUser();
-		List<Role> roles = user.getRoles();
+		List<Role> roles = new ArrayList<Role>(); 
+		roles.addAll(user.getRoles());
+		roles.addAll(getRolesFromGroups(user));
 		for (Role role : roles) {
 			if (role.canAdministrate(projectId)) {
 				return;
@@ -224,7 +238,9 @@ public class AccessControlImpl implements AuthenticationControl,
 			throws AccessControlException {
 		checkSession(sessionId);
 		ACUser user = sessionUserMap.get(sessionId).getUser();
-		List<Role> roles = user.getRoles();
+		List<Role> roles = new ArrayList<Role>(); 
+		roles.addAll(user.getRoles());
+		roles.addAll(getRolesFromGroups(user));
 		for (Role role : roles) {
 			if (role instanceof ServerAdmin) {
 				return;
@@ -259,8 +275,24 @@ public class AccessControlImpl implements AuthenticationControl,
 		
 	}
 
-	public ACUser getUser(SessionId sessionId) throws AccessControlException {
+	/**
+	 * {@inheritDoc}
+	 */
+	public ACUser resolveUser(SessionId sessionId) throws AccessControlException {
 		checkSession(sessionId);
-		return sessionUserMap.get(sessionId).getRawUser();
+		ACUser tmpUser = sessionUserMap.get(sessionId).getRawUser();
+		ACUser user = (ACUser) EcoreUtil.copy(tmpUser);
+		user.getRoles().addAll(getRolesFromGroups(tmpUser));
+		return user;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public ACUser resolveUser(ACOrgUnitId id) throws AccessControlException {
+		ACUser tmpUser = getUser(id);
+		ACUser user = (ACUser) EcoreUtil.copy(tmpUser);
+		user.getRoles().addAll(getRolesFromGroups(tmpUser));
+		return user;
 	}
 }
