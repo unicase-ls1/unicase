@@ -8,6 +8,7 @@ package org.unicase.emfstore;
 
 import java.io.File;
 import java.net.URL;
+import java.util.Properties;
 
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
@@ -30,6 +31,11 @@ public final class ServerConfiguration {
 //	public static final String DEFAULT_RESOURCE_STORAGE = "org.unicase.emfstore.storage.TeneoStorage";
 	public final static String DEFAULT_RESOURCE_STORAGE = "org.unicase.emfstore.storage.XMLStorage";
 
+	
+	public static final String RMI_ENCRYPTION = "RMIEncryption";
+	public static final String DEFAULT_RMI_ENCRYTION = "yes";
+
+	private static Properties properties;
 	
 	private ServerConfiguration() {
 		//nothing to do
@@ -78,5 +84,13 @@ public final class ServerConfiguration {
 		sb.append(System.getProperty("user.home"));
 		sb.append(File.separatorChar);
 		return sb.toString();
+	}
+	
+	public static Properties getProperties() {
+		return properties;
+	}
+	
+	public static void setProperties(Properties prop) {
+		properties = prop;
 	}
 }

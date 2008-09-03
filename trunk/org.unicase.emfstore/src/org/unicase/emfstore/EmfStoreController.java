@@ -253,6 +253,7 @@ public class EmfStoreController implements IApplication {
 		try {
 			FileInputStream fis = new FileInputStream(propertyFile);
 			properties.load(fis);
+			ServerConfiguration.setProperties(properties);
 			fis.close();
 		} catch (IOException e) {
 			System.out.println("Property initialization failed: "

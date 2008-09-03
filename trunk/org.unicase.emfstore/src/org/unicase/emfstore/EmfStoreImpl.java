@@ -28,6 +28,9 @@ import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.esmodel.SessionId;
+import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
+import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
+import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.HeadVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
@@ -114,7 +117,8 @@ public class EmfStoreImpl implements EmfStore {
 
 		versions.add(version);
 		createResourceForVersion(version, projectHistory.getProjectId());
-		// if projectstate of the previous head version is set to null saving is required
+		// if projectstate of the previous head version is set to null saving is
+		// required
 		save(previousHeadVersion);
 		save(projectHistory);
 		LOGGER.error("Total time for commit: "
@@ -227,6 +231,20 @@ public class EmfStoreImpl implements EmfStore {
 	/**
 	 * {@inheritDoc}
 	 */
+	public synchronized ACUser resolveUser(SessionId sessionId,
+			ACOrgUnitId id) throws EmfStoreException {
+		ACUser requestingUser = authorizationControl.getUser(sessionId);
+		ACUser user = getUser(id);
+		if(requestingUser.getId().equals(user.getId())) {
+			return user;
+		}
+		authorizationControl.checkServerAdminAccess(sessionId);
+		return user;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
 	public synchronized ProjectInfo createProject(SessionId sessionId,
 			String name, String description, LogMessage logMessage)
 			throws EmfStoreException {
@@ -294,10 +312,11 @@ public class EmfStoreImpl implements EmfStore {
 		save(projectHistory);
 	}
 
-	private void createResourceForVersion(Version version,ProjectId projectId)
+	private void createResourceForVersion(Version version, ProjectId projectId)
 			throws EmfStoreException {
 		String fileName = ServerConfiguration.getServerHome() + "project-"
-				+ projectId.getId() + "/version-"+version.getPrimarySpec().getIdentifier();
+				+ projectId.getId() + "/version-"
+				+ version.getPrimarySpec().getIdentifier();
 		Resource resource = getServerSpace().eResource().getResourceSet()
 				.createResource(URI.createFileURI(fileName));
 		resource.getContents().add(version);
@@ -370,6 +389,16 @@ public class EmfStoreImpl implements EmfStore {
 		} else {
 			return getVersions(projectId, target, source);
 		}
+	}
+
+	private ACUser getUser(ACOrgUnitId orgUnitId)
+			throws EmfStoreException {
+		for (ACUser user : getServerSpace().getUsers()) {
+			if (user.getId().equals(orgUnitId)) {
+				return user;
+			}
+		}
+		throw new EmfStoreException("Given User doesn't exist.");
 	}
 
 	public void save() throws EmfStoreException {

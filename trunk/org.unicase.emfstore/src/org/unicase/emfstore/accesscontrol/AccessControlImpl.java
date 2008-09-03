@@ -258,4 +258,9 @@ public class AccessControlImpl implements AuthenticationControl,
 		}
 		
 	}
+
+	public ACUser getUser(SessionId sessionId) throws AccessControlException {
+		checkSession(sessionId);
+		return sessionUserMap.get(sessionId).getRawUser();
+	}
 }
