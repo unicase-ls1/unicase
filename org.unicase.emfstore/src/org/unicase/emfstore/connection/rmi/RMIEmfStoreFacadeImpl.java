@@ -21,6 +21,7 @@ import org.unicase.emfstore.accesscontrol.AuthenticationControl;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
+import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
@@ -257,6 +258,9 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public String createProject(String sessionId, String name,
 			String description, String logMessage, String project) throws EmfStoreException, RemoteException {
 		LOGGER.debug("Client call on createProject RECEIVED.");
@@ -265,6 +269,23 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements
 					(SessionId) RMIUtil.stringToEObject(sessionId), name,
 					description, (LogMessage) RMIUtil
 							.stringToEObject(logMessage), (Project) RMIUtil.stringToEObject(project)));
+		} catch (UnsupportedEncodingException e) {
+			throw new EmfStoreException(SERIALEX,e);
+		} catch (IOException e) {
+			throw new EmfStoreException(SERIALEX,e);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String resolveUser(String sessionId, String orgUnitId)
+			throws EmfStoreException, RemoteException {
+		LOGGER.debug("Client call on resolveUser RECEIVED.");
+		try {
+			return RMIUtil.eObjectToString(emfStore.resolveUser(
+					(SessionId) RMIUtil.stringToEObject(sessionId),
+					(ACOrgUnitId) RMIUtil.stringToEObject(orgUnitId)));
 		} catch (UnsupportedEncodingException e) {
 			throw new EmfStoreException(SERIALEX,e);
 		} catch (IOException e) {

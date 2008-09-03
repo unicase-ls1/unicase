@@ -24,6 +24,8 @@ import org.unicase.emfstore.connection.rmi.RMIUtil;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
+import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
+import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
@@ -68,7 +70,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 			throws EmfStoreException {
 
 		try {
-			
+
 			return (PrimaryVersionSpec) RMIUtil.stringToEObject(getFacade(
 					sessionId).createVersion(
 					RMIUtil.eObjectToString(sessionId),
@@ -98,11 +100,12 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 					RMIUtil.eObjectToString(projectId),
 					RMIUtil.eObjectToString(source),
 					RMIUtil.eObjectToString(target))) {
-				
-				ChangePackage changePackageObject = (ChangePackage) RMIUtil.stringToEObject(changePackage);
+
+				ChangePackage changePackageObject = (ChangePackage) RMIUtil
+						.stringToEObject(changePackage);
 				result.add(changePackageObject);
 			}
-			
+
 		} catch (UnsupportedEncodingException e) {
 			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
 		} catch (RemoteException e) {
@@ -216,16 +219,37 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 			throw new ConnectionException(REMOTE, e);
 		}
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
 	public ProjectInfo createProject(SessionId sessionid, String name,
-			String description, LogMessage logMessage, Project project) throws EmfStoreException {
+			String description, LogMessage logMessage, Project project)
+			throws EmfStoreException {
 		try {
 			return (ProjectInfo) RMIUtil.stringToEObject(getFacade(sessionid)
 					.createProject(RMIUtil.eObjectToString(sessionid), name,
-							description, RMIUtil.eObjectToString(logMessage), RMIUtil.eObjectToString(project)));
+							description, RMIUtil.eObjectToString(logMessage),
+							RMIUtil.eObjectToString(project)));
+		} catch (UnsupportedEncodingException e) {
+			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
+		} catch (RemoteException e) {
+			throw new ConnectionException(REMOTE, e);
+		} catch (IOException e) {
+			throw new ConnectionException(REMOTE, e);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public ACUser resolveUser(SessionId sessionId, ACOrgUnitId id)
+			throws EmfStoreException {
+		try {
+			return (ACUser) RMIUtil.stringToEObject(getFacade(
+					sessionId).resolveUser(
+					RMIUtil.eObjectToString(sessionId),
+					RMIUtil.eObjectToString(id)));
 		} catch (UnsupportedEncodingException e) {
 			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
 		} catch (RemoteException e) {
@@ -274,4 +298,5 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 		}
 		return facade;
 	}
+
 }

@@ -10,6 +10,7 @@ import java.util.Set;
 
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.SessionId;
+import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.model.ModelElement;
 
 /**
@@ -83,4 +84,5 @@ public interface AuthorizationControl {
 	void checkWriteAccess(SessionId sessionId, ProjectId projectId,
 			Set<ModelElement> modelElements) throws AccessControlException;
 
+	ACUser getUser(SessionId sessionId) throws AccessControlException;
 }

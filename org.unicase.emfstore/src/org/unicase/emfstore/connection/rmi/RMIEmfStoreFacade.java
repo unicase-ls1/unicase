@@ -134,4 +134,6 @@ public interface RMIEmfStoreFacade extends Remote {
 
 	String createProject(String objectToString, String name,
 			String description, String objectToString2, String objectToString3) throws EmfStoreException, RemoteException;
+	
+	String resolveUser(String sessionId, String orgUnitId) throws EmfStoreException, RemoteException;
 }

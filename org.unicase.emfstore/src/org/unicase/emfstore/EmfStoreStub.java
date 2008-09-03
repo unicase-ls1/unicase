@@ -17,6 +17,8 @@ import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.esmodel.SessionId;
+import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
+import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
@@ -288,6 +290,12 @@ public class EmfStoreStub implements EmfStore {
 			String description, LogMessage logMessage, Project project)
 			throws EmfStoreException {
 		throw new UnsupportedOperationException();
+	}
+
+	public ACUser resolveUser(SessionId sessionId, ACOrgUnitId id)
+			throws EmfStoreException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

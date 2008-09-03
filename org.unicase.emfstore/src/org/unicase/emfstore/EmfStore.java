@@ -12,6 +12,9 @@ import org.eclipse.emf.common.util.URI;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
+import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
+import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
+import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
@@ -200,4 +203,15 @@ public interface EmfStore {
 	 */
 	ProjectInfo createProject(SessionId sessionId, String name,
 			String description, LogMessage logMessage, Project project) throws EmfStoreException;
+	
+	/**
+	 *
+	 * 
+	 * @param sessionId
+	 * @param id
+	 * @return
+	 * @throws EmfStoreException
+	 */
+	ACUser resolveUser(SessionId sessionId, ACOrgUnitId id) throws EmfStoreException;
+	
 }
