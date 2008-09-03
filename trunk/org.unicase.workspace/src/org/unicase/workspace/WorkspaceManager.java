@@ -8,12 +8,7 @@ package org.unicase.workspace;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 
-import javax.swing.JComboBox.KeySelectionManager;
-
-import org.eclipse.core.runtime.FileLocator;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -22,7 +17,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.unicase.emfstore.Activator;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 import org.unicase.workspace.connectionmanager.AdminConnectionManager;

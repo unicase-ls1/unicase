@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
+import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 
@@ -28,6 +29,7 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
  *   <li>{@link org.unicase.workspace.Usersession#getPersistentPassword <em>Persistent Password</em>}</li>
  *   <li>{@link org.unicase.workspace.Usersession#getServerInfo <em>Server Info</em>}</li>
  *   <li>{@link org.unicase.workspace.Usersession#isSavePassword <em>Save Password</em>}</li>
+ *   <li>{@link org.unicase.workspace.Usersession#getACUser <em>AC User</em>}</li>
  * </ul>
  * </p>
  *
@@ -194,6 +196,32 @@ public interface Usersession extends EObject {
 	 * @generated
 	 */
 	void setSavePassword(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>AC User</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>AC User</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>AC User</em>' containment reference.
+	 * @see #setACUser(ACUser)
+	 * @see org.unicase.workspace.WorkspacePackage#getUsersession_ACUser()
+	 * @model containment="true"
+	 * @generated
+	 */
+	ACUser getACUser();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.workspace.Usersession#getACUser <em>AC User</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>AC User</em>' containment reference.
+	 * @see #getACUser()
+	 * @generated
+	 */
+	void setACUser(ACUser value);
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

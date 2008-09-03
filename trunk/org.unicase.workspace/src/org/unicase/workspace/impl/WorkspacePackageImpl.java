@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.change.ChangePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
+import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.workspace.ProjectSpace;
@@ -282,6 +283,15 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getUsersession_ACUser() {
+		return (EReference) usersessionEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -401,6 +411,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 		createEAttribute(usersessionEClass, USERSESSION__PERSISTENT_PASSWORD);
 		createEReference(usersessionEClass, USERSESSION__SERVER_INFO);
 		createEAttribute(usersessionEClass, USERSESSION__SAVE_PASSWORD);
+		createEReference(usersessionEClass, USERSESSION__AC_USER);
 
 		projectSpaceEClass = createEClass(PROJECT_SPACE);
 		createEReference(projectSpaceEClass, PROJECT_SPACE__PROJECT);
@@ -441,6 +452,8 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 				.getEPackage(ModelPackage.eNS_URI);
 		EsmodelPackage theEsmodelPackage = (EsmodelPackage) EPackage.Registry.INSTANCE
 				.getEPackage(EsmodelPackage.eNS_URI);
+		AccesscontrolPackage theAccesscontrolPackage = (AccesscontrolPackage) EPackage.Registry.INSTANCE
+				.getEPackage(AccesscontrolPackage.eNS_URI);
 		ChangePackage theChangePackage = (ChangePackage) EPackage.Registry.INSTANCE
 				.getEPackage(ChangePackage.eNS_URI);
 		VersioningPackage theVersioningPackage = (VersioningPackage) EPackage.Registry.INSTANCE
@@ -550,6 +563,11 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 				.getEBoolean(), "savePassword", null, 0, 1, Usersession.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
 				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUsersession_ACUser(), theAccesscontrolPackage
+				.getACUser(), null, "ACUser", null, 0, 1, Usersession.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
 		addEOperation(usersessionEClass, ecorePackage.getEBoolean(),
 				"isLoggedIn", 0, 1, IS_UNIQUE, IS_ORDERED);

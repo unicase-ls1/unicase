@@ -37,6 +37,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//Usersession/persistentPassword"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workspace.ecore#//Usersession/serverInfo"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//Usersession/savePassword"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workspace.ecore#//Usersession/ACUser"/>
       <genOperations ecoreOperation="workspace.ecore#//Usersession/isLoggedIn"/>
       <genOperations ecoreOperation="workspace.ecore#//Usersession/logIn"/>
       <genOperations ecoreOperation="workspace.ecore#//Usersession/checkout">

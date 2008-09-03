@@ -10,6 +10,7 @@ import java.util.Set;
 
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.SessionId;
+import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.model.ModelElement;
 
@@ -69,6 +70,7 @@ public interface AuthorizationControl {
 	 */
 	void checkReadAccess(SessionId sessionId, ProjectId projectId,
 			Set<ModelElement> modelElements) throws AccessControlException;
+
 	/**
 	 * Check if the session may write the given model elements in the project.
 	 * 
@@ -84,5 +86,31 @@ public interface AuthorizationControl {
 	void checkWriteAccess(SessionId sessionId, ProjectId projectId,
 			Set<ModelElement> modelElements) throws AccessControlException;
 
-	ACUser getUser(SessionId sessionId) throws AccessControlException;
+	/**
+	 * This method looks up the session id on the server and returns the
+	 * relating user. Please notice that the returned user also contains roles
+	 * which are not contained in the original user. These extra roles come from
+	 * the user's groups.
+	 * 
+	 * @param sessionId
+	 *            session id
+	 * @return ACUser user with roles from resolved user and it's groups
+	 * @throws AccessControlException
+	 *             exception
+	 */
+	ACUser resolveUser(SessionId sessionId) throws AccessControlException;
+
+	/**
+	 * This method looks up the orgUnit id the server and returns the relating
+	 * user. Please notice that the returned user also contains roles which are
+	 * not contained in the original user. These extra roles come from the
+	 * user's groups.
+	 * 
+	 * @param orgUnitId
+	 *            OrgUnit id
+	 * @return ACUser user with roles from resolved user and it's groups
+	 * @throws AccessControlException
+	 *             exception
+	 */
+	ACUser resolveUser(ACOrgUnitId orgUnitId) throws AccessControlException;
 }

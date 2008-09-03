@@ -233,8 +233,11 @@ public class EmfStoreImpl implements EmfStore {
 	 */
 	public synchronized ACUser resolveUser(SessionId sessionId,
 			ACOrgUnitId id) throws EmfStoreException {
-		ACUser requestingUser = authorizationControl.getUser(sessionId);
-		ACUser user = getUser(id);
+		ACUser requestingUser = authorizationControl.resolveUser(sessionId);
+		if(id==null) {
+			return requestingUser;
+		}
+		ACUser user = authorizationControl.resolveUser(id);
 		if(requestingUser.getId().equals(user.getId())) {
 			return user;
 		}
@@ -389,16 +392,6 @@ public class EmfStoreImpl implements EmfStore {
 		} else {
 			return getVersions(projectId, target, source);
 		}
-	}
-
-	private ACUser getUser(ACOrgUnitId orgUnitId)
-			throws EmfStoreException {
-		for (ACUser user : getServerSpace().getUsers()) {
-			if (user.getId().equals(orgUnitId)) {
-				return user;
-			}
-		}
-		throw new EmfStoreException("Given User doesn't exist.");
 	}
 
 	public void save() throws EmfStoreException {
