@@ -87,6 +87,9 @@ public final class ServerConfiguration {
 	}
 	
 	public static Properties getProperties() {
+		if(properties == null) {
+			properties = new Properties();
+		}
 		return properties;
 	}
 	
