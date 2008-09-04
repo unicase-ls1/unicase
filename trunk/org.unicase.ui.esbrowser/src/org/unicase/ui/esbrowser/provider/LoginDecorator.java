@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.ui.esbrowser;
+package org.unicase.ui.esbrowser.provider;
 
 import org.eclipse.jface.viewers.IDecoration;
 import org.eclipse.jface.viewers.ILabelProviderListener;
@@ -12,14 +12,10 @@ import org.eclipse.jface.viewers.ILightweightLabelDecorator;
 import org.unicase.workspace.ServerInfo;
 
 /**
- * An example showing how to control when an element is decorated. This example
- * decorates only elements that are instances of IResource and whose attribute
- * is 'Read-only'.
- * 
  * @see ILightweightLabelDecorator
  */
 public class LoginDecorator implements ILightweightLabelDecorator {
-
+	
 	/**
 	 * {@inheritDoc} Decorates the label of a {@link ServerInfo} object
 	 * according to its login state.
@@ -43,9 +39,7 @@ public class LoginDecorator implements ILightweightLabelDecorator {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/**
 	 * @see
 	 * org.eclipse.jface.viewers.IBaseLabelProvider#addListener(org.eclipse.
 	 * jface.viewers.ILabelProviderListener)
@@ -53,17 +47,13 @@ public class LoginDecorator implements ILightweightLabelDecorator {
 	public void addListener(ILabelProviderListener listener) {
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/**
 	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#dispose()
 	 */
 	public void dispose() {
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/**
 	 * @see
 	 * org.eclipse.jface.viewers.IBaseLabelProvider#isLabelProperty(java.lang
 	 * .Object, java.lang.String)
@@ -72,9 +62,7 @@ public class LoginDecorator implements ILightweightLabelDecorator {
 		return false;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/**
 	 * @see
 	 * org.eclipse.jface.viewers.IBaseLabelProvider#removeListener(org.eclipse
 	 * .jface.viewers.ILabelProviderListener)

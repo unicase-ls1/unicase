@@ -27,7 +27,7 @@
         point="org.eclipse.ui.decorators">
      <decorator
            adaptable="true"
-           class="org.unicase.ui.esbrowser.LoginDecorator"
+           class="org.unicase.ui.esbrowser.provider.LoginDecorator"
            id="org.unicase.ui.esbrowser.LoginDecorator"
            label="Login Decorator"
            lightweight="true"

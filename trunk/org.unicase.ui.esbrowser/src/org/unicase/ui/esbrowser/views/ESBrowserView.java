@@ -6,13 +6,9 @@
  */
 package org.unicase.ui.esbrowser.views;
 
-import java.util.HashMap;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -35,8 +31,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.ISharedImages;
-import org.eclipse.ui.IViewPart;
-import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.eclipse.ui.part.ViewPart;
@@ -46,13 +40,12 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.common.exceptions.ExceptionDialogHandler;
 import org.unicase.ui.esbrowser.Activator;
 import org.unicase.ui.esbrowser.dialogs.admin.ManageOrgUnitsDialog;
+import org.unicase.ui.esbrowser.provider.ESBrowserContentProvider;
 import org.unicase.workspace.AdminBroker;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
-import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.edit.dialogs.LoginDialog;
-import org.unicase.workspace.provider.WorkspaceItemProviderAdapterFactory;
+import org.unicase.workspace.accesscontrol.AccesscontrolHelper;
 
 /**
  * View containing the remote repositories.
@@ -70,98 +63,10 @@ public class ESBrowserView extends ViewPart {
 	private Action serverProperties;
 	private Action manageOrgUnits;
 	private Usersession session;
-	private HashMap<ProjectInfo, ServerInfo> projectServerMap = new HashMap<ProjectInfo, ServerInfo>();
-	public ServerInfo serverInfo;
+	
+	private ESBrowserContentProvider contentProvider;
 
-	/**
-	 * Content provider for the tree view.
-	 * 
-	 * @author shterev
-	 * 
-	 */
-	class WorkspaceRootContentProvider extends AdapterFactoryContentProvider {
 
-		/**
-		 * Default constructor.
-		 */
-		public WorkspaceRootContentProvider() {
-			super(new WorkspaceItemProviderAdapterFactory());
-		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		public Object[] getChildren(Object object) {
-			if (object instanceof Workspace) {
-				return ((Workspace) object).getServerInfos().toArray();
-			} else if (object instanceof ServerInfo) {
-				final boolean[] noChildren = {false};
-				serverInfo = (ServerInfo) object;
-				//AS: refactor command to own class with return type
-				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
-				domain.getCommandStack().execute(new RecordingCommand(domain) {
-					@Override
-					protected void doExecute() {
-						session = serverInfo.getLastUsersession();
-
-						// if no usersession has been set yet or if the current one is not logged in
-						if (session==null || !session.isLoggedIn()) {
-							LoginDialog dialog = new LoginDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(), session, serverInfo);
-							dialog.open();
-							if(dialog.getReturnCode()==LoginDialog.CANCELED){
-								noChildren[0] = true;
-							}
-							session = dialog.getSession();
-						}
-						if (session!=null && session.isLoggedIn()) {
-							try {
-								serverInfo.getProjectInfos().clear();
-								serverInfo.getProjectInfos().addAll(session.getRemoteProjectList());
-								WorkspaceManager.getInstance().getCurrentWorkspace().save();
-								viewer.refresh();
-							} catch (EmfStoreException e) {
-								ExceptionDialogHandler.showExceptionDialog(e);
-							}
-						}
-					}
-				});
-				if(noChildren[0]){
-					return new Object[0];
-				}
-				
-				EList<ProjectInfo> pis = serverInfo.getProjectInfos();
-				for (ProjectInfo pi : pis) {
-					projectServerMap.put(pi, serverInfo);
-				}
-				return pis.toArray();
-			}
-			throw new IllegalStateException("Received parent node of unkown type: " + object.getClass());
-		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		public boolean hasChildren(Object parent) {
-			if (parent instanceof ServerInfo) {
-				return true;
-			}
-			return false;
-		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		public Object[] getElements(Object object) {
-			if (object.equals(getViewSite())) {
-				return getChildren(WorkspaceManager.getInstance().getCurrentWorkspace());
-			}
-			return new Object[0];
-		}
-
-	}
 
 	/**
 	 * The constructor.
@@ -184,7 +89,9 @@ public class ESBrowserView extends ViewPart {
 	@Override
 	public void createPartControl(Composite parent) {
 		viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
-		viewer.setContentProvider(new WorkspaceRootContentProvider());
+		
+		contentProvider = new ESBrowserContentProvider(session);
+		viewer.setContentProvider(contentProvider);
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		viewer.setLabelProvider(new DecoratingLabelProvider(adapterFactoryLabelProvider, ((DecoratingLabelProvider) WorkbenchLabelProvider.getDecoratingWorkbenchLabelProvider()).getLabelDecorator()));
 
@@ -217,17 +124,30 @@ public class ESBrowserView extends ViewPart {
 	}
 
 	private void fillContextMenu(IMenuManager manager) {
+		ESBrowserContentProvider provider = (ESBrowserContentProvider) viewer.getContentProvider();
+		AccesscontrolHelper accessControl = provider.getAccesscontrolHelper();
 		ISelection selection = viewer.getSelection();
 		Object obj = ((IStructuredSelection) selection).getFirstElement();
 		if (obj instanceof ServerInfo) {
 			Usersession session = ((ServerInfo) obj).getLastUsersession();
 			if (session != null && session.isLoggedIn()) {
-				manager.add(serverAddProject);
-				serverChangeSession.setText("Log out");
+				manager.add(new Separator("Userspace"));
 				manager.add(serverChangeSession);
-				manager.add(manageOrgUnits);
+				try{
+					accessControl.checkServerAdminAccess();
+					manager.add(new Separator("Administrative"));
+					manager.add(serverAddProject);
+					serverChangeSession.setText("Log out");
+					manager.add(manageOrgUnits);
+				}catch(EmfStoreException e){
+					//
+				}catch(NullPointerException en){
+					// no AccessControlHelper as the user is not logged in
+					System.out.print("jashdkajsd");
+				}
 
 			} else if (session != null && !session.isLoggedIn()) {
+				manager.add(new Separator("Userspace"));
 				serverLogin.setText("Login as " + session.getUsername());
 				manager.add(serverLogin);
 				serverChangeSession.setText("Login as...");
@@ -238,9 +158,18 @@ public class ESBrowserView extends ViewPart {
 			manager.add(new Separator());
 			manager.add(serverProperties);
 		} else if (obj instanceof ProjectInfo) {
+			manager.add(new Separator("Userspace"));
 			manager.add(projectCheckout);
+			try{
+				accessControl.checkProjectAdminAccess(((ProjectInfo)obj).getProjectId());
+				manager.add(new Separator("Administrative"));
+				manager.add(serverAddProject);
+				serverChangeSession.setText("Log out");
+				manager.add(manageOrgUnits);
+			}catch(EmfStoreException e){
+				//
+			}
 		}
-
 	}
 
 	private void fillLocalToolBar(IToolBarManager manager) {
@@ -273,10 +202,8 @@ public class ESBrowserView extends ViewPart {
 					@Override
 					protected void doExecute() {
 						try {
-							projectServerMap.get(element).getLastUsersession().checkout(element);
+							contentProvider.getProjectServerMap().get(element).getLastUsersession().checkout(element);
 						} catch (EmfStoreException e) {
-							ExceptionDialogHandler.showExceptionDialog(e);
-						} catch (RuntimeException e) {
 							ExceptionDialogHandler.showExceptionDialog(e);
 						}
 					}
