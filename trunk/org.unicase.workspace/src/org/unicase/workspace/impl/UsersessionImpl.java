@@ -498,7 +498,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 		SessionId newSessionId = connectionManager.logIn(username,
 				getPassword(), copy);
 		this.setSessionId(newSessionId);
-//		setACUser(connectionManager.resolveUser(newSessionId, null));
+		setACUser(connectionManager.resolveUser(newSessionId, null));
 	}
 
 	/**
@@ -728,7 +728,8 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 * @generated NOT
 	 */
 	public AdminBroker getAdminBroker() throws ConnectionException {
+		//OW: cache admin broker??
 		return new AdminBrokerImpl(getServerInfo(), getSessionId());
 	}
-
+	
 } // UsersessionImpl

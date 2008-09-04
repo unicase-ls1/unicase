@@ -38,7 +38,7 @@ public class AccesscontrolHelper {
 		throw new AccessControlException();
 	}
 
-	public void checkServerAdminAccess(ProjectId projectId)
+	public void checkServerAdminAccess()
 			throws EmfStoreException {
 		for (Role role : user.getRoles()) {
 			if (role instanceof ServerAdmin) {
