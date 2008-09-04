@@ -22,12 +22,12 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.accesscontrol.AccesscontrolHelper;
 
 /**
  * Class for the login dialog.
@@ -56,6 +56,7 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 	private Button savePassword;
 	private Composite contents;
 	private ServerInfo server;
+	private AccesscontrolHelper accessControl;
 
 	/**
 	 * Default constructor.
@@ -149,15 +150,10 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 				WorkspaceManager.getInstance().getCurrentWorkspace().getUsersessions().add(session);
 			}
 			WorkspaceManager.getInstance().getCurrentWorkspace().save();
+			accessControl = new AccesscontrolHelper(session);
 			setReturnCode(SUCCESSFUL);
 			close();
-		} catch (AccessControlException e) {
-			e.printStackTrace();
-			setErrorMessage(e.getMessage());
-			password.selectAll();
-			setReturnCode(FAILED);
 		} catch (EmfStoreException e) {
-			e.printStackTrace();
 			setErrorMessage(e.getMessage());
 			password.selectAll();
 			setReturnCode(FAILED);
@@ -204,6 +200,7 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 			password.setText(session.getPassword());
 		}
 		savePassword.setSelection(session.isSavePassword());
+		this.session = session; 
 	}
 	
 	/**
@@ -219,17 +216,23 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 	@Override
 	public int open(){
 		if(session!=null && session.getUsername()!=null && session.getPassword()!=null){
-				try {
-					session.logIn();
-					close();
-					return SUCCESSFUL;
-				} catch (AccessControlException e) {
-					setErrorMessage(e.getMessage());
-				} catch (EmfStoreException e) {
-					setErrorMessage(e.getMessage());
-				}
+			try {
+				session.logIn();
+				close();
+				return SUCCESSFUL;
+			} catch (EmfStoreException e) {
+				setErrorMessage(e.getMessage());
+			}
 		}
 		return super.open();
+	}
+	
+	/**
+	 * Getter for this dialog's AccesscontrolHelper.
+	 * @return the AccesscontrolHelper
+	 */
+	public AccesscontrolHelper getAccesscontrolHelper(){
+		return accessControl;
 	}
 
 }
