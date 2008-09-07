@@ -8,5 +8,17 @@
     <tools
         xsi:type="gmftool:CreationTool"
         title="Component"/>
+    <tools
+        xsi:type="gmftool:CreationTool"
+        title="ProvidedService"
+        description=""/>
+    <tools
+        xsi:type="gmftool:CreationTool"
+        title="RequiredServiceLink"
+        description=""/>
+    <tools
+        xsi:type="gmftool:CreationTool"
+        title="ProvidedServiceLink"
+        description=""/>
   </palette>
 </gmftool:ToolRegistry>
