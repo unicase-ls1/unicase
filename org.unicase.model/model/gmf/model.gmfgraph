@@ -114,14 +114,83 @@
     <descriptors
         name="ComponentFigure">
       <actualFigure
-          xsi:type="gmfgraph:Rectangle">
+          xsi:type="gmfgraph:Rectangle"
+          name="componentInnerRect">
+        <layout
+            xsi:type="gmfgraph:BorderLayout"/>
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+        <border
+            xsi:type="gmfgraph:MarginBorder">
+          <insets
+              top="5"
+              left="5"
+              bottom="5"
+              right="5"/>
+        </border>
         <children
-            xsi:type="gmfgraph:Label"
-            name="ComponentFigure_name"/>
+            xsi:type="gmfgraph:CustomFigure"
+            name="header"
+            qualifiedClassName="org.eclipse.draw2d.Figure">
+          <layoutData
+              xsi:type="gmfgraph:BorderLayoutData"
+              alignment="BEGINNING"
+              vertical="true"/>
+          <layout
+              xsi:type="gmfgraph:StackLayout"/>
+          <children
+              xsi:type="gmfgraph:CustomFigure"
+              name="componentText"
+              qualifiedClassName="org.unicase.ui.componentDiagram.unicase.Label">
+            <attributes
+                name="text"
+                value="&quot;\u00ABcomponent\u00BB&quot;"/>
+          </children>
+          <children
+              xsi:type="gmfgraph:CustomFigure"
+              name="iconContainer"
+              qualifiedClassName="org.eclipse.draw2d.Figure">
+            <layout
+                xsi:type="gmfgraph:BorderLayout"/>
+            <children
+                xsi:type="gmfgraph:CustomFigure"
+                name="componentIcon"
+                qualifiedClassName="org.unicase.ui.componentDiagram.unicase.ComponentIcon">
+              <layoutData
+                  xsi:type="gmfgraph:BorderLayoutData"
+                  alignment="END"/>
+              <size
+                  x="20"
+                  y="22"/>
+            </children>
+          </children>
+        </children>
+        <children
+            xsi:type="gmfgraph:CustomFigure"
+            name=""
+            qualifiedClassName="org.eclipse.draw2d.Figure">
+          <layoutData
+              xsi:type="gmfgraph:BorderLayoutData"
+              vertical="true"/>
+          <layout
+              xsi:type="gmfgraph:CustomLayout"
+              qualifiedClassName="org.unicase.ui.componentDiagram.unicase.CenterLayoutParent"/>
+          <children
+              xsi:type="gmfgraph:CustomFigure"
+              name="ComponentNode_name"
+              qualifiedClassName="org.unicase.ui.componentDiagram.unicase.Label">
+            <font
+                xsi:type="gmfgraph:BasicFont"
+                faceName="Arial"
+                height="12"
+                style="BOLD"/>
+          </children>
+        </children>
       </actualFigure>
       <accessors
           accessor="getFigureComponentFigure_name"
-          figure="//@figures.1/@descriptors.0/@actualFigure/@children.0"/>
+          figure="//@figures.1/@descriptors.0/@actualFigure/@children.1/@children.0"/>
     </descriptors>
     <descriptors
         name="RequiredInterfaceConnectionFigure">
@@ -129,10 +198,13 @@
           xsi:type="gmfgraph:PolylineConnection"
           name="RequiredInterfaceConnectionFigure"
           targetDecoration="//@figures.1/@descriptors.1/@actualFigure/@children.0">
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
         <children
             xsi:type="gmfgraph:CustomDecoration"
             name="RequiredInterfaceConnectionFigure_Lollypop"
-            qualifiedClassName="org.unicase.ui.usecaseDiagram.unicase.RequiredInterfaceDecoration">
+            qualifiedClassName="org.unicase.ui.componentDiagram.unicase.RequiredInterfaceDecoration">
           <attributes
               name="radius"
               value="10"/>
@@ -144,6 +216,9 @@
       <actualFigure
           xsi:type="gmfgraph:Ellipse"
           name="ProvidedInterfaceCircleFigure">
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
         <maximumSize
             dx="15"
             dy="15"/>
@@ -165,7 +240,11 @@
         name="ProvidedInterfaceConnectionFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="ProvidedInterfaceConnectionFigure"/>
+          name="ProvidedInterfaceConnectionFigure">
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+      </actualFigure>
     </descriptors>
   </figures>
   <figures
@@ -185,10 +264,19 @@
         <layout
             xsi:type="gmfgraph:CustomLayout"
             qualifiedClassName="org.unicase.ui.usecaseDiagram.unicase.CenterLayout"/>
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
         <children
-            xsi:type="gmfgraph:Label"
-            name="UseCaseFigure_name"
-            text=""/>
+            xsi:type="gmfgraph:CustomFigure"
+            name="UsecaseFigure_name"
+            qualifiedClassName="org.unicase.ui.usecaseDiagram.unicase.Label">
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="Arial"
+              height="12"
+              style="BOLD"/>
+        </children>
       </actualFigure>
       <accessors
           accessor="getUseCaseFigure_name"
@@ -198,27 +286,21 @@
         name="InitiateFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="InitiateFigure"/>
+          name="InitiateFigure">
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+      </actualFigure>
     </descriptors>
     <descriptors
         name="ParticipateFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="ParticipateFigure"/>
-    </descriptors>
-    <descriptors
-        name="InitiateLabelFigure">
-      <actualFigure
-          xsi:type="gmfgraph:Label"
-          name="InitiateLabel"
-          text="\u00ABinitiate\u00BB"/>
-    </descriptors>
-    <descriptors
-        name="ParticipateLabelFigure">
-      <actualFigure
-          xsi:type="gmfgraph:Label"
-          name="ParticipateLabel"
-          text="\u00ABparticipate\u00BB"/>
+          name="ParticipateFigure">
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+      </actualFigure>
     </descriptors>
     <descriptors
         name="DashedLineOpenArrow">
@@ -226,7 +308,10 @@
           xsi:type="gmfgraph:PolylineConnection"
           name="DashedLineOpenArrow"
           lineKind="LINE_DASH"
-          targetDecoration="//@figures.2/@descriptors.6/@actualFigure/@children.0">
+          targetDecoration="//@figures.2/@descriptors.4/@actualFigure/@children.0">
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
         <children
             xsi:type="gmfgraph:PolylineDecoration"
             name="OpenArrow"/>
@@ -249,9 +334,15 @@
     <descriptors
         name="Actor_external_name">
       <actualFigure
-          xsi:type="gmfgraph:Label"
+          xsi:type="gmfgraph:CustomFigure"
           name="Actor_external_name"
-          text=""/>
+          qualifiedClassName="org.unicase.ui.usecaseDiagram.unicase.Label">
+        <font
+            xsi:type="gmfgraph:BasicFont"
+            faceName="Arial"
+            height="11"
+            style="BOLD"/>
+      </actualFigure>
     </descriptors>
   </figures>
   <nodes
@@ -342,34 +433,63 @@
       name="UseCaseNode_name"
       figure="UseCaseFigure"
       elementIcon="false"
-      accessor="//@figures.2/@descriptors.1/@accessors.0"/>
+      accessor="//@figures.2/@descriptors.1/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:GeneralFacet"
+        identifier="Alignment"
+        data="PositionConstants.CENTER"/>
+  </labels>
   <labels
       name="InitiateLabel"
-      figure="InitiateLabelFigure"
-      elementIcon="false"/>
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
   <labels
       name="ParticipateLabel"
-      figure="ParticipateLabelFigure"
-      elementIcon="false"/>
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
   <labels
       name="IncludeLabel"
       figure="IncludeLabelFigure"
-      elementIcon="false"/>
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
   <labels
       name="ExtendLabel"
       figure="ExtendLabelFigure"
-      elementIcon="false"/>
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
   <labels
       name="ActorNode_name"
+      figure="Actor_external_name"
       elementIcon="false"/>
   <labels
       name="ComponentNode_name"
       figure="ComponentFigure"
-      accessor="//@figures.1/@descriptors.0/@accessors.0">
-    <facets
-        xsi:type="gmfgraph:AlignmentFacet"
-        alignment="END"/>
-  </labels>
+      elementIcon="false"
+      accessor="//@figures.1/@descriptors.0/@accessors.0"/>
   <labels
       name="Interface_name"
       figure="Interface_NameLabel"
