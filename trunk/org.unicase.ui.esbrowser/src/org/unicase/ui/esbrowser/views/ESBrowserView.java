@@ -6,8 +6,13 @@
  */
 package org.unicase.ui.esbrowser.views;
 
+import java.util.ArrayList;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -18,6 +23,7 @@ import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -28,6 +34,7 @@ import org.eclipse.jface.viewers.ViewerSorter;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.ISharedImages;
@@ -37,11 +44,12 @@ import org.eclipse.ui.part.ViewPart;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.ui.common.exceptions.ExceptionDialogHandler;
+import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.esbrowser.Activator;
 import org.unicase.ui.esbrowser.dialogs.admin.ManageOrgUnitsDialog;
 import org.unicase.ui.esbrowser.provider.ESBrowserContentProvider;
 import org.unicase.workspace.AdminBroker;
+import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
@@ -65,6 +73,7 @@ public class ESBrowserView extends ViewPart {
 	private Usersession session;
 	
 	private ESBrowserContentProvider contentProvider;
+	private Action deleteAction;
 
 
 
@@ -143,7 +152,6 @@ public class ESBrowserView extends ViewPart {
 					//
 				}catch(NullPointerException en){
 					// no AccessControlHelper as the user is not logged in
-					System.out.print("jashdkajsd");
 				}
 
 			} else if (session != null && !session.isLoggedIn()) {
@@ -156,6 +164,7 @@ public class ESBrowserView extends ViewPart {
 				manager.add(serverLogin);
 			}
 			manager.add(new Separator());
+			manager.add(deleteAction);
 			manager.add(serverProperties);
 		} else if (obj instanceof ProjectInfo) {
 			manager.add(new Separator("Userspace"));
@@ -204,7 +213,7 @@ public class ESBrowserView extends ViewPart {
 						try {
 							contentProvider.getProjectServerMap().get(element).getLastUsersession().checkout(element);
 						} catch (EmfStoreException e) {
-							ExceptionDialogHandler.showExceptionDialog(e);
+							DialogHandler.showExceptionDialog(e);
 						}
 					}
 				});
@@ -259,7 +268,7 @@ public class ESBrowserView extends ViewPart {
 				ISelection selection = viewer.getSelection();
 				Object obj = ((IStructuredSelection) selection).getFirstElement();
 				ServerInfo serverInfo = ((ServerInfo) obj);
-				AddRepositoryWizard wizard = new AddRepositoryWizard(ESBrowserView.this);
+				RepositoryWizard wizard = new RepositoryWizard(ESBrowserView.this);
 				wizard.init(getSite().getWorkbenchWindow().getWorkbench(), (IStructuredSelection) getSite().getWorkbenchWindow().getSelectionService().getSelection(), serverInfo);
 				WizardDialog dialog = new WizardDialog(getSite().getWorkbenchWindow().getShell(), wizard);
 				dialog.create();
@@ -273,7 +282,7 @@ public class ESBrowserView extends ViewPart {
 		addRepository = new Action() {
 			@Override
 			public void run() {
-				AddRepositoryWizard wizard = new AddRepositoryWizard(ESBrowserView.this);
+				RepositoryWizard wizard = new RepositoryWizard(ESBrowserView.this);
 				wizard.init(getSite().getWorkbenchWindow().getWorkbench(), (IStructuredSelection) getSite().getWorkbenchWindow().getSelectionService().getSelection());
 				WizardDialog dialog = new WizardDialog(getSite().getWorkbenchWindow().getShell(), wizard);
 				dialog.create();
@@ -297,11 +306,41 @@ public class ESBrowserView extends ViewPart {
 					dialog.create();
 					dialog.open();
 				} catch (ConnectionException e) {
-					ExceptionDialogHandler.showExceptionDialog(e);
+					DialogHandler.showExceptionDialog(e);
 				}
 			}
 		};
 		manageOrgUnits.setText("Manage OrgUnits...");
+		
+		deleteAction = new Action() {
+			public void run() {
+					ISelection selection = viewer.getSelection();
+					ServerInfo serverInfo = ((ServerInfo) ((IStructuredSelection) selection).getFirstElement());
+					EList<ProjectSpace> projectSpaces = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces();
+					ArrayList<ProjectSpace> usedSpaces = new ArrayList<ProjectSpace>();
+					for(ProjectSpace projectSpace : projectSpaces){
+						if(projectSpace.getUsersession().getServerInfo().equals(serverInfo)){
+							usedSpaces.add(projectSpace);
+					}}
+					if(usedSpaces.size()>0){
+						String message = ""; 
+						for (ProjectSpace pSpace : usedSpaces){
+							message+="\n"+pSpace.getProjectName();
+						}
+						DialogHandler.showErrorDialog("Cannot delete \'"+serverInfo.getName()+"\' because it is currently used by the following projects: \n" + message);
+					}else{
+						if(MessageDialog.openQuestion(Display.getCurrent().getActiveShell(), "Confirm deletion", "Are you sure you want to delete \'"+serverInfo.getName()+"\'")){
+							TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+							domain.getCommandStack().execute(DeleteCommand.create(domain,serverInfo));
+							WorkspaceManager.getInstance().getCurrentWorkspace().save();
+							viewer.refresh();
+						}
+					}
+			}
+		};
+		deleteAction.setText("Delete");
+		deleteAction.setImageDescriptor(org.unicase.ui.common.Activator.getImageDescriptor("icons/delete.gif"));
+
 
 	}
 

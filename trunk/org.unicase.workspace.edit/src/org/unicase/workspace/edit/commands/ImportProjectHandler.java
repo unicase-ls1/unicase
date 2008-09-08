@@ -11,7 +11,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.ui.common.exceptions.ExceptionDialogHandler;
+import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
@@ -54,10 +54,10 @@ public class ImportProjectHandler extends ProjectActionHandler {
 							.importProject(absoluteFileName);
 	
 				} catch (IOException e) {
-					ExceptionDialogHandler.showExceptionDialog(e);
+					DialogHandler.showExceptionDialog(e);
 				}
 				catch (RuntimeException e) {
-					ExceptionDialogHandler.showExceptionDialog(e);
+					DialogHandler.showExceptionDialog(e);
 					throw e;
 				}
 			}

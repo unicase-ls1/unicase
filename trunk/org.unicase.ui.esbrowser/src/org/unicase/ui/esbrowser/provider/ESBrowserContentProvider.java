@@ -18,7 +18,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.ui.common.exceptions.ExceptionDialogHandler;
+import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
@@ -155,7 +155,7 @@ private class ContentProviderRecordingCommand extends RecordingCommand{
 					WorkspaceManager.getInstance().getCurrentWorkspace().save();
 					result = serverInfo.getProjectInfos();
 				} catch (EmfStoreException e) {
-					ExceptionDialogHandler.showExceptionDialog(e);
+					DialogHandler.showExceptionDialog(e);
 				}
 			}
 		}

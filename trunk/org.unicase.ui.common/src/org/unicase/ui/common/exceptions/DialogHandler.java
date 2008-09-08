@@ -16,10 +16,10 @@ import org.eclipse.ui.PlatformUI;
  * @author Helming
  * 
  */
-public final class ExceptionDialogHandler {
+public final class DialogHandler {
 
 	
-	private ExceptionDialogHandler(){
+	private DialogHandler(){
 		
 	}
 	
@@ -39,7 +39,7 @@ public final class ExceptionDialogHandler {
 	 * 
 	 * @param  message the message to be shown.
 	 */
-	public static void showExceptionDialog(String message) {
+	public static void showErrorDialog(String message) {
 		showExceptionDialog(message, null);
 	}
 
@@ -56,12 +56,14 @@ public final class ExceptionDialogHandler {
 		
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(message);
+		String title = "Error";
 		if (cause != null) {
 			stringBuilder.append(": ");
 			stringBuilder.append(cause.getMessage());
+			title = cause.getClass().getName();
 		}
 		String string = stringBuilder.toString();
-		MessageDialog.openError(shell, cause.getClass().getName(), string);
+		MessageDialog.openError(shell, title, string);
 	}
 
 }

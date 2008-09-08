@@ -14,7 +14,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.ui.common.exceptions.ExceptionDialogHandler;
+import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
@@ -33,7 +33,7 @@ public class ShareProjectHandler extends ProjectActionHandler {
 				try {
 					createProject(projectSpace);
 				} catch (RuntimeException e) {
-					ExceptionDialogHandler.showExceptionDialog(e);
+					DialogHandler.showExceptionDialog(e);
 					throw e;
 				}
 			}
@@ -69,7 +69,7 @@ public class ShareProjectHandler extends ProjectActionHandler {
 						projectSpace.shareProject(usersession);
 						MessageDialog.openInformation(shell, null, "Your project was successfully shared!");
 					} catch (EmfStoreException e) {
-						ExceptionDialogHandler.showExceptionDialog(e);
+						DialogHandler.showExceptionDialog(e);
 					}
 				}
 			}

@@ -154,6 +154,7 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 			setReturnCode(SUCCESSFUL);
 			close();
 		} catch (EmfStoreException e) {
+			e.printStackTrace();
 			setErrorMessage(e.getMessage());
 			password.selectAll();
 			setReturnCode(FAILED);

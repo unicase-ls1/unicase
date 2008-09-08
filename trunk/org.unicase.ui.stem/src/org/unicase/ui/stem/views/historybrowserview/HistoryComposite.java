@@ -35,7 +35,7 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
-import org.unicase.ui.common.exceptions.ExceptionDialogHandler;
+import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.stem.views.changebrowserview.ChangeBrowserView;
 
 /**
@@ -184,7 +184,7 @@ public class HistoryComposite extends Composite {
 			changeBrowserView = (ChangeBrowserView) page
 					.showView("org.unicase.ui.stem.ChangeBrowserView");
 		} catch (PartInitException e) {
-			ExceptionDialogHandler.showExceptionDialog(e);
+			DialogHandler.showExceptionDialog(e);
 		}
 
 		if (changeBrowserView != null) {

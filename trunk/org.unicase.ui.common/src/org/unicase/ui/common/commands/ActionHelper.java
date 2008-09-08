@@ -29,7 +29,7 @@ import org.eclipse.ui.handlers.IHandlerService;
 import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.ui.common.exceptions.ExceptionDialogHandler;
+import org.unicase.ui.common.exceptions.DialogHandler;
 
 /**
  * 
@@ -124,13 +124,13 @@ public final class ActionHelper {
 					null);
 			
 		} catch (ExecutionException e) {
-			ExceptionDialogHandler.showExceptionDialog(e);
+			DialogHandler.showExceptionDialog(e);
 		} catch (NotDefinedException e) {
-			ExceptionDialogHandler.showExceptionDialog(e);
+			DialogHandler.showExceptionDialog(e);
 		} catch (NotEnabledException e) {
-			ExceptionDialogHandler.showExceptionDialog(e);
+			DialogHandler.showExceptionDialog(e);
 		} catch (NotHandledException e) {
-			ExceptionDialogHandler.showExceptionDialog(e);
+			DialogHandler.showExceptionDialog(e);
 		}
 
 	

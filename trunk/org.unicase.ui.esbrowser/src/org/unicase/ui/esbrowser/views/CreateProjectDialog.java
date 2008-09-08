@@ -21,7 +21,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.ui.common.exceptions.ExceptionDialogHandler;
+import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.Usersession;
 
 /**
@@ -49,8 +49,9 @@ public class CreateProjectDialog extends TitleAreaDialog {
 	}
 
 	/**
-	 * Runs the dialog.
+	 * {@inheritDoc}
 	 */
+	@Override
 	protected Control createDialogArea(Composite parent) {
 		Composite contents = new Composite(parent, SWT.NONE);
 		contents.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
@@ -85,9 +86,9 @@ public class CreateProjectDialog extends TitleAreaDialog {
 				try {
 					session.createProject(projetname.getText(), projectdesc.getText());
 				} catch (AccessControlException e) {
-					ExceptionDialogHandler.showExceptionDialog(e);
+					DialogHandler.showExceptionDialog(e);
 				} catch (EmfStoreException e) {
-					ExceptionDialogHandler.showExceptionDialog(e);
+					DialogHandler.showExceptionDialog(e);
 				}
 			}
 		});
