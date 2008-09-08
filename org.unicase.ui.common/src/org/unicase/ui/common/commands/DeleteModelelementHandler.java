@@ -20,7 +20,7 @@ import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelElement;
-import org.unicase.ui.common.exceptions.ExceptionDialogHandler;
+import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -69,7 +69,7 @@ public class DeleteModelelementHandler extends AbstractHandler {
 					toCloseEditors.add(openEditors[i]);
 				}
 			} catch (PartInitException e) {
-				ExceptionDialogHandler.showExceptionDialog(e);
+				DialogHandler.showExceptionDialog(e);
 				result = false;
 			}
 		}

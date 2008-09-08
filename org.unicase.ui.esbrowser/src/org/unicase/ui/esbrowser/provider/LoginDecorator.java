@@ -40,32 +40,26 @@ public class LoginDecorator implements ILightweightLabelDecorator {
 	}
 
 	/**
-	 * @see
-	 * org.eclipse.jface.viewers.IBaseLabelProvider#addListener(org.eclipse.
-	 * jface.viewers.ILabelProviderListener)
+	 * {@inheritDoc}
 	 */
 	public void addListener(ILabelProviderListener listener) {
 	}
 
 	/**
-	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#dispose()
+	 * {@inheritDoc}
 	 */
 	public void dispose() {
 	}
 
 	/**
-	 * @see
-	 * org.eclipse.jface.viewers.IBaseLabelProvider#isLabelProperty(java.lang
-	 * .Object, java.lang.String)
+	 * {@inheritDoc}
 	 */
 	public boolean isLabelProperty(Object element, String property) {
 		return false;
 	}
 
 	/**
-	 * @see
-	 * org.eclipse.jface.viewers.IBaseLabelProvider#removeListener(org.eclipse
-	 * .jface.viewers.ILabelProviderListener)
+	 * {@inheritDoc}
 	 */
 	public void removeListener(ILabelProviderListener listener) {
 	}

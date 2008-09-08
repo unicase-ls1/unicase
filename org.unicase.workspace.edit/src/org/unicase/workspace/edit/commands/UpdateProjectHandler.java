@@ -16,7 +16,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.ui.common.exceptions.ExceptionDialogHandler;
+import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.edit.dialogs.LoginDialog;
@@ -59,7 +59,7 @@ public class UpdateProjectHandler extends ProjectActionHandler {
 						projectSpace.update();
 						MessageDialog.openInformation(window.getShell(), null, "Update complete!");
 					} catch (EmfStoreException e) {
-						ExceptionDialogHandler.showExceptionDialog(e);
+						DialogHandler.showExceptionDialog(e);
 					}
 				}
 
