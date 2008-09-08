@@ -97,7 +97,10 @@ public final class RMIUtil {
 		Resource res = (new ResourceSetImpl()).createResource(URI
 				.createURI("eineNochTollereUri"));
 		res.load(new ByteArrayInputStream(object.getBytes("UTF-8")), null);
-		return res.getContents().get(0);
+		
+		EObject result = res.getContents().get(0);
+		res.getContents().remove(result);
+		return result;
 	}
 
 	/**
