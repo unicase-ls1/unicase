@@ -335,7 +335,7 @@ public class DocumentPackageImpl extends EPackageImpl implements
 				.getModelElement(), theModelPackage
 				.getModelElement_LeafSection(), "modelElements", null, 0, -1,
 				LeafSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 		getLeafSection_ModelElements().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
@@ -355,7 +355,7 @@ public class DocumentPackageImpl extends EPackageImpl implements
 		initEReference(getCompositeSection_Subsections(), this.getSection(),
 				this.getSection_Parent(), "subsections", null, 0, -1,
 				CompositeSection.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getCompositeSection_Subsections().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
@@ -365,7 +365,7 @@ public class DocumentPackageImpl extends EPackageImpl implements
 		initEReference(getSection_Parent(), this.getCompositeSection(), this
 				.getCompositeSection_Subsections(), "parent", null, 0, 1,
 				Section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 		getSection_Parent().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());

@@ -329,12 +329,12 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		initEReference(getMEDiagram_Gmfdiagram(), theNotationPackage
 				.getDiagram(), null, "gmfdiagram", null, 0, 1, MEDiagram.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 		initEReference(getMEDiagram_NewElements(), theModelPackage
 				.getModelElement(), null, "newElements", null, 0, -1,
 				MEDiagram.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 		getMEDiagram_NewElements().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());

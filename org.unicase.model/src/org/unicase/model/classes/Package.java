@@ -38,7 +38,7 @@ public interface Package extends PackageElement {
 	 * @return the value of the '<em>Contained Package Elements</em>' containment reference list.
 	 * @see org.unicase.model.classes.ClassesPackage#getPackage_ContainedPackageElements()
 	 * @see org.unicase.model.classes.PackageElement#getParentPackage
-	 * @model opposite="parentPackage" containment="true" keys="identifier"
+	 * @model opposite="parentPackage" containment="true" resolveProxies="true" keys="identifier"
 	 * @generated
 	 */
 	EList<PackageElement> getContainedPackageElements();

@@ -151,6 +151,17 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public WorkPackage basicGetContainingWorkpackage() {
+		if (eContainerFeatureID != TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE)
+			return null;
+		return (WorkPackage) eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NotificationChain basicSetContainingWorkpackage(
 			WorkPackage newContainingWorkpackage, NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject) newContainingWorkpackage,
@@ -356,7 +367,7 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	 */
 	public EList<WorkItem> getContainedWorkItems() {
 		if (containedWorkItems == null) {
-			containedWorkItems = new EObjectContainmentWithInverseEList<WorkItem>(
+			containedWorkItems = new EObjectContainmentWithInverseEList.Resolving<WorkItem>(
 					WorkItem.class, this,
 					TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
 					TaskPackage.WORK_ITEM__CONTAINING_WORKPACKAGE);
@@ -490,7 +501,9 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE:
-			return getContainingWorkpackage();
+			if (resolve)
+				return getContainingWorkpackage();
+			return basicGetContainingWorkpackage();
 		case TaskPackage.WORK_PACKAGE__ASSOCIATED_CHANGE_PACKAGES:
 			return getAssociatedChangePackages();
 		case TaskPackage.WORK_PACKAGE__PREDECESSORS:
@@ -588,7 +601,7 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE:
-			return getContainingWorkpackage() != null;
+			return basicGetContainingWorkpackage() != null;
 		case TaskPackage.WORK_PACKAGE__ASSOCIATED_CHANGE_PACKAGES:
 			return associatedChangePackages != null
 					&& !associatedChangePackages.isEmpty();

@@ -41,7 +41,7 @@ public interface Scenario extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Steps</em>' containment reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getScenario_Steps()
-	 * @model containment="true" keys="identifier"
+	 * @model containment="true" resolveProxies="true" keys="identifier"
 	 * @generated
 	 */
 	EList<Step> getSteps();

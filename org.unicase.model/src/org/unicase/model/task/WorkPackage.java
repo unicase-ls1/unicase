@@ -41,7 +41,7 @@ public interface WorkPackage extends WorkItem {
 	 * @return the value of the '<em>Contained Work Items</em>' containment reference list.
 	 * @see org.unicase.model.task.TaskPackage#getWorkPackage_ContainedWorkItems()
 	 * @see org.unicase.model.task.WorkItem#getContainingWorkpackage
-	 * @model opposite="containingWorkpackage" containment="true" keys="identifier"
+	 * @model opposite="containingWorkpackage" containment="true" resolveProxies="true" keys="identifier"
 	 * @generated
 	 */
 	EList<WorkItem> getContainedWorkItems();

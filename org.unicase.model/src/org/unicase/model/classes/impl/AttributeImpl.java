@@ -199,6 +199,17 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public org.unicase.model.classes.Class basicGetDefiningClass() {
+		if (eContainerFeatureID != ClassesPackage.ATTRIBUTE__DEFINING_CLASS)
+			return null;
+		return (org.unicase.model.classes.Class) eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NotificationChain basicSetDefiningClass(
 			org.unicase.model.classes.Class newDefiningClass,
 			NotificationChain msgs) {
@@ -530,7 +541,9 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case ClassesPackage.ATTRIBUTE__DEFINING_CLASS:
-			return getDefiningClass();
+			if (resolve)
+				return getDefiningClass();
+			return basicGetDefiningClass();
 		case ClassesPackage.ATTRIBUTE__VISIBILITY:
 			return getVisibility();
 		case ClassesPackage.ATTRIBUTE__SCOPE:
@@ -624,7 +637,7 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case ClassesPackage.ATTRIBUTE__DEFINING_CLASS:
-			return getDefiningClass() != null;
+			return basicGetDefiningClass() != null;
 		case ClassesPackage.ATTRIBUTE__VISIBILITY:
 			return visibility != VISIBILITY_EDEFAULT;
 		case ClassesPackage.ATTRIBUTE__SCOPE:

@@ -199,6 +199,17 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WorkPackage basicGetContainingWorkpackage() {
+		if (eContainerFeatureID != TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE)
+			return null;
+		return (WorkPackage) eInternalContainer();
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -630,7 +641,9 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
-			return getContainingWorkpackage();
+			if (resolve)
+				return getContainingWorkpackage();
+			return basicGetContainingWorkpackage();
 		case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES:
 			return getAssociatedChangePackages();
 		case TaskPackage.ACTION_ITEM__PREDECESSORS:
@@ -761,7 +774,7 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
-			return getContainingWorkpackage() != null;
+			return basicGetContainingWorkpackage() != null;
 		case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES:
 			return associatedChangePackages != null
 					&& !associatedChangePackages.isEmpty();

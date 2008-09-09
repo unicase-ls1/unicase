@@ -75,6 +75,17 @@ public class ComponentServiceImpl extends ModelElementImpl implements
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Component basicGetOfferingComponent() {
+		if (eContainerFeatureID != ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT)
+			return null;
+		return (Component) eInternalContainer();
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -186,7 +197,9 @@ public class ComponentServiceImpl extends ModelElementImpl implements
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT:
-			return getOfferingComponent();
+			if (resolve)
+				return getOfferingComponent();
+			return basicGetOfferingComponent();
 		case ComponentPackage.COMPONENT_SERVICE__CONSUMING_COMPONENTS:
 			return getConsumingComponents();
 		}
@@ -238,7 +251,7 @@ public class ComponentServiceImpl extends ModelElementImpl implements
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT:
-			return getOfferingComponent() != null;
+			return basicGetOfferingComponent() != null;
 		case ComponentPackage.COMPONENT_SERVICE__CONSUMING_COMPONENTS:
 			return consumingComponents != null
 					&& !consumingComponents.isEmpty();

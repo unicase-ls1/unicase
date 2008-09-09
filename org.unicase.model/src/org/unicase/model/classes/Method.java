@@ -171,7 +171,7 @@ public interface Method extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Arguments</em>' containment reference list.
 	 * @see org.unicase.model.classes.ClassesPackage#getMethod_Arguments()
-	 * @model containment="true"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<MethodArgument> getArguments();

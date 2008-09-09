@@ -101,7 +101,7 @@ public interface ModelElement extends IdentifiableElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Reader Infos</em>' containment reference list.
 	 * @see org.unicase.model.ModelPackage#getModelElement_ReaderInfos()
-	 * @model containment="true" keys="identifier"
+	 * @model containment="true" resolveProxies="true" keys="identifier"
 	 * @generated
 	 */
 	EList<ReaderInfo> getReaderInfos();

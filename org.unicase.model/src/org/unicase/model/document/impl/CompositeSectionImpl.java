@@ -75,6 +75,17 @@ public class CompositeSectionImpl extends ModelElementImpl implements
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompositeSection basicGetParent() {
+		if (eContainerFeatureID != DocumentPackage.COMPOSITE_SECTION__PARENT)
+			return null;
+		return (CompositeSection) eInternalContainer();
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -117,7 +128,7 @@ public class CompositeSectionImpl extends ModelElementImpl implements
 	 */
 	public EList<Section> getSubsections() {
 		if (subsections == null) {
-			subsections = new EObjectContainmentWithInverseEList<Section>(
+			subsections = new EObjectContainmentWithInverseEList.Resolving<Section>(
 					Section.class, this,
 					DocumentPackage.COMPOSITE_SECTION__SUBSECTIONS,
 					DocumentPackage.SECTION__PARENT);
@@ -186,7 +197,9 @@ public class CompositeSectionImpl extends ModelElementImpl implements
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case DocumentPackage.COMPOSITE_SECTION__PARENT:
-			return getParent();
+			if (resolve)
+				return getParent();
+			return basicGetParent();
 		case DocumentPackage.COMPOSITE_SECTION__SUBSECTIONS:
 			return getSubsections();
 		}
@@ -237,7 +250,7 @@ public class CompositeSectionImpl extends ModelElementImpl implements
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case DocumentPackage.COMPOSITE_SECTION__PARENT:
-			return getParent() != null;
+			return basicGetParent() != null;
 		case DocumentPackage.COMPOSITE_SECTION__SUBSECTIONS:
 			return subsections != null && !subsections.isEmpty();
 		}

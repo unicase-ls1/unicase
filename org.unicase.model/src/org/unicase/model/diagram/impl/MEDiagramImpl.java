@@ -14,7 +14,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -125,6 +124,38 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	 * @generated
 	 */
 	public Diagram getGmfdiagram() {
+		if (gmfdiagram != null && gmfdiagram.eIsProxy()) {
+			InternalEObject oldGmfdiagram = (InternalEObject) gmfdiagram;
+			gmfdiagram = (Diagram) eResolveProxy(oldGmfdiagram);
+			if (gmfdiagram != oldGmfdiagram) {
+				InternalEObject newGmfdiagram = (InternalEObject) gmfdiagram;
+				NotificationChain msgs = oldGmfdiagram.eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+								- DiagramPackage.ME_DIAGRAM__GMFDIAGRAM, null,
+						null);
+				if (newGmfdiagram.eInternalContainer() == null) {
+					msgs = newGmfdiagram.eInverseAdd(this,
+							EOPPOSITE_FEATURE_BASE
+									- DiagramPackage.ME_DIAGRAM__GMFDIAGRAM,
+							null, msgs);
+				}
+				if (msgs != null)
+					msgs.dispatch();
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							DiagramPackage.ME_DIAGRAM__GMFDIAGRAM,
+							oldGmfdiagram, gmfdiagram));
+			}
+		}
+		return gmfdiagram;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Diagram basicGetGmfdiagram() {
 		return gmfdiagram;
 	}
 
@@ -256,7 +287,9 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 		case DiagramPackage.ME_DIAGRAM__ELEMENTS:
 			return getElements();
 		case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM:
-			return getGmfdiagram();
+			if (resolve)
+				return getGmfdiagram();
+			return basicGetGmfdiagram();
 		case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
 			return getNewElements();
 		case DiagramPackage.ME_DIAGRAM__TYPE:

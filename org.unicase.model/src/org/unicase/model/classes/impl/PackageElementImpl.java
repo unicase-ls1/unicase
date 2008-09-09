@@ -58,6 +58,17 @@ public abstract class PackageElementImpl extends ModelElementImpl implements
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public org.unicase.model.classes.Package basicGetParentPackage() {
+		if (eContainerFeatureID != ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE)
+			return null;
+		return (org.unicase.model.classes.Package) eInternalContainer();
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -151,7 +162,9 @@ public abstract class PackageElementImpl extends ModelElementImpl implements
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE:
-			return getParentPackage();
+			if (resolve)
+				return getParentPackage();
+			return basicGetParentPackage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -192,7 +205,7 @@ public abstract class PackageElementImpl extends ModelElementImpl implements
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE:
-			return getParentPackage() != null;
+			return basicGetParentPackage() != null;
 		}
 		return super.eIsSet(featureID);
 	}

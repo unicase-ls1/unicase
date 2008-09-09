@@ -65,7 +65,7 @@ public class PackageImpl extends PackageElementImpl implements
 	 */
 	public EList<PackageElement> getContainedPackageElements() {
 		if (containedPackageElements == null) {
-			containedPackageElements = new EObjectContainmentWithInverseEList<PackageElement>(
+			containedPackageElements = new EObjectContainmentWithInverseEList.Resolving<PackageElement>(
 					PackageElement.class, this,
 					ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS,
 					ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE);

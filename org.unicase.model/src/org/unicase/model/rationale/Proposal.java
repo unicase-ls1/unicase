@@ -39,7 +39,7 @@ public interface Proposal extends ModelElement {
 	 * @return the value of the '<em>Assessments</em>' containment reference list.
 	 * @see org.unicase.model.rationale.RationalePackage#getProposal_Assessments()
 	 * @see org.unicase.model.rationale.Assessment#getProposal
-	 * @model opposite="proposal" containment="true" keys="identifier"
+	 * @model opposite="proposal" containment="true" resolveProxies="true" keys="identifier"
 	 * @generated
 	 */
 	EList<Assessment> getAssessments();

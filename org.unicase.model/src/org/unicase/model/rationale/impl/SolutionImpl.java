@@ -87,6 +87,17 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Issue basicGetIssue() {
+		if (eContainerFeatureID != RationalePackage.SOLUTION__ISSUE)
+			return null;
+		return (Issue) eInternalContainer();
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -176,7 +187,9 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 		case RationalePackage.SOLUTION__UNDERLYING_PROPOSALS:
 			return getUnderlyingProposals();
 		case RationalePackage.SOLUTION__ISSUE:
-			return getIssue();
+			if (resolve)
+				return getIssue();
+			return basicGetIssue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -229,7 +242,7 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 			return underlyingProposals != null
 					&& !underlyingProposals.isEmpty();
 		case RationalePackage.SOLUTION__ISSUE:
-			return getIssue() != null;
+			return basicGetIssue() != null;
 		}
 		return super.eIsSet(featureID);
 	}

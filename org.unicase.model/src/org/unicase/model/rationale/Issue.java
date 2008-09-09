@@ -48,7 +48,7 @@ public interface Issue extends Annotation, Checkable, Assignable {
 	 * @return the value of the '<em>Proposals</em>' containment reference list.
 	 * @see org.unicase.model.rationale.RationalePackage#getIssue_Proposals()
 	 * @see org.unicase.model.rationale.Proposal#getIssue
-	 * @model opposite="issue" containment="true" keys="identifier"
+	 * @model opposite="issue" containment="true" resolveProxies="true" keys="identifier"
 	 * @generated
 	 */
 	EList<Proposal> getProposals();
@@ -66,7 +66,7 @@ public interface Issue extends Annotation, Checkable, Assignable {
 	 * @see #setSolution(Solution)
 	 * @see org.unicase.model.rationale.RationalePackage#getIssue_Solution()
 	 * @see org.unicase.model.rationale.Solution#getIssue
-	 * @model opposite="issue" containment="true" keys="identifier"
+	 * @model opposite="issue" containment="true" resolveProxies="true" keys="identifier"
 	 * @generated
 	 */
 	Solution getSolution();
@@ -109,7 +109,7 @@ public interface Issue extends Annotation, Checkable, Assignable {
 	 * @return the value of the '<em>Refining Issues</em>' containment reference list.
 	 * @see org.unicase.model.rationale.RationalePackage#getIssue_RefiningIssues()
 	 * @see org.unicase.model.rationale.Issue#getRefinedIssue
-	 * @model opposite="refinedIssue" containment="true" keys="identifier"
+	 * @model opposite="refinedIssue" containment="true" resolveProxies="true" keys="identifier"
 	 * @generated
 	 */
 	EList<Issue> getRefiningIssues();

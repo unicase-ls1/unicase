@@ -206,7 +206,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 */
 	public EList<Proposal> getProposals() {
 		if (proposals == null) {
-			proposals = new EObjectContainmentWithInverseEList<Proposal>(
+			proposals = new EObjectContainmentWithInverseEList.Resolving<Proposal>(
 					Proposal.class, this, RationalePackage.ISSUE__PROPOSALS,
 					RationalePackage.PROPOSAL__ISSUE);
 		}
@@ -218,6 +218,35 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 * @generated
 	 */
 	public Solution getSolution() {
+		if (solution != null && solution.eIsProxy()) {
+			InternalEObject oldSolution = (InternalEObject) solution;
+			solution = (Solution) eResolveProxy(oldSolution);
+			if (solution != oldSolution) {
+				InternalEObject newSolution = (InternalEObject) solution;
+				NotificationChain msgs = oldSolution.eInverseRemove(this,
+						RationalePackage.SOLUTION__ISSUE, Solution.class, null);
+				if (newSolution.eInternalContainer() == null) {
+					msgs = newSolution.eInverseAdd(this,
+							RationalePackage.SOLUTION__ISSUE, Solution.class,
+							msgs);
+				}
+				if (msgs != null)
+					msgs.dispatch();
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							RationalePackage.ISSUE__SOLUTION, oldSolution,
+							solution));
+			}
+		}
+		return solution;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Solution basicGetSolution() {
 		return solution;
 	}
 
@@ -280,7 +309,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 */
 	public EList<Issue> getRefiningIssues() {
 		if (refiningIssues == null) {
-			refiningIssues = new EObjectContainmentWithInverseEList<Issue>(
+			refiningIssues = new EObjectContainmentWithInverseEList.Resolving<Issue>(
 					Issue.class, this, RationalePackage.ISSUE__REFINING_ISSUES,
 					RationalePackage.ISSUE__REFINED_ISSUE);
 		}
@@ -295,6 +324,17 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 		if (eContainerFeatureID != RationalePackage.ISSUE__REFINED_ISSUE)
 			return null;
 		return (Issue) eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Issue basicGetRefinedIssue() {
+		if (eContainerFeatureID != RationalePackage.ISSUE__REFINED_ISSUE)
+			return null;
+		return (Issue) eInternalContainer();
 	}
 
 	/**
@@ -467,13 +507,17 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 		case RationalePackage.ISSUE__PROPOSALS:
 			return getProposals();
 		case RationalePackage.ISSUE__SOLUTION:
-			return getSolution();
+			if (resolve)
+				return getSolution();
+			return basicGetSolution();
 		case RationalePackage.ISSUE__CRITERIA:
 			return getCriteria();
 		case RationalePackage.ISSUE__REFINING_ISSUES:
 			return getRefiningIssues();
 		case RationalePackage.ISSUE__REFINED_ISSUE:
-			return getRefinedIssue();
+			if (resolve)
+				return getRefinedIssue();
+			return basicGetRefinedIssue();
 		case RationalePackage.ISSUE__FACILITATOR:
 			if (resolve)
 				return getFacilitator();
@@ -585,7 +629,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 		case RationalePackage.ISSUE__REFINING_ISSUES:
 			return refiningIssues != null && !refiningIssues.isEmpty();
 		case RationalePackage.ISSUE__REFINED_ISSUE:
-			return getRefinedIssue() != null;
+			return basicGetRefinedIssue() != null;
 		case RationalePackage.ISSUE__FACILITATOR:
 			return facilitator != null;
 		case RationalePackage.ISSUE__PARTICIPANTS:

@@ -124,8 +124,8 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 	 */
 	public EList<Step> getSteps() {
 		if (steps == null) {
-			steps = new EObjectContainmentEList<Step>(Step.class, this,
-					RequirementPackage.SCENARIO__STEPS);
+			steps = new EObjectContainmentEList.Resolving<Step>(Step.class,
+					this, RequirementPackage.SCENARIO__STEPS);
 		}
 		return steps;
 	}

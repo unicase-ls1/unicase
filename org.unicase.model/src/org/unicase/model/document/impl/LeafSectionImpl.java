@@ -87,6 +87,17 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompositeSection basicGetParent() {
+		if (eContainerFeatureID != DocumentPackage.LEAF_SECTION__PARENT)
+			return null;
+		return (CompositeSection) eInternalContainer();
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -128,7 +139,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	 */
 	public EList<ModelElement> getModelElements() {
 		if (modelElements == null) {
-			modelElements = new EObjectContainmentWithInverseEList<ModelElement>(
+			modelElements = new EObjectContainmentWithInverseEList.Resolving<ModelElement>(
 					ModelElement.class, this,
 					DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS,
 					ModelPackage.MODEL_ELEMENT__LEAF_SECTION);
@@ -217,7 +228,9 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case DocumentPackage.LEAF_SECTION__PARENT:
-			return getParent();
+			if (resolve)
+				return getParent();
+			return basicGetParent();
 		case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
 			return getModelElements();
 		case DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS:
@@ -279,7 +292,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case DocumentPackage.LEAF_SECTION__PARENT:
-			return getParent() != null;
+			return basicGetParent() != null;
 		case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
 			return modelElements != null && !modelElements.isEmpty();
 		case DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS:

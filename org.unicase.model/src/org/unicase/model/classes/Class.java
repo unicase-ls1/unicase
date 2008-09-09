@@ -145,7 +145,7 @@ public interface Class extends PackageElement {
 	 * @return the value of the '<em>Attributes</em>' containment reference list.
 	 * @see org.unicase.model.classes.ClassesPackage#getClass_Attributes()
 	 * @see org.unicase.model.classes.Attribute#getDefiningClass
-	 * @model opposite="definingClass" containment="true"
+	 * @model opposite="definingClass" containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<Attribute> getAttributes();
@@ -163,7 +163,7 @@ public interface Class extends PackageElement {
 	 * @return the value of the '<em>Methods</em>' containment reference list.
 	 * @see org.unicase.model.classes.ClassesPackage#getClass_Methods()
 	 * @see org.unicase.model.classes.Method#getDefiningClass
-	 * @model opposite="definingClass" containment="true"
+	 * @model opposite="definingClass" containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<Method> getMethods();

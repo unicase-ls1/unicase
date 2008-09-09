@@ -71,7 +71,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 */
 	public EList<ModelElement> getModelElements() {
 		if (modelElements == null) {
-			modelElements = new EObjectContainmentEList<ModelElement>(
+			modelElements = new EObjectContainmentEList.Resolving<ModelElement>(
 					ModelElement.class, this,
 					ModelPackage.PROJECT__MODEL_ELEMENTS);
 		}

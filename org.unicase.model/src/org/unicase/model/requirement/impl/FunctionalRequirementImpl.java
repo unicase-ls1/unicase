@@ -214,7 +214,7 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 	 */
 	public EList<FunctionalRequirement> getRefiningRequirements() {
 		if (refiningRequirements == null) {
-			refiningRequirements = new EObjectContainmentWithInverseEList<FunctionalRequirement>(
+			refiningRequirements = new EObjectContainmentWithInverseEList.Resolving<FunctionalRequirement>(
 					FunctionalRequirement.class,
 					this,
 					RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS,
@@ -231,6 +231,17 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 		if (eContainerFeatureID != RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT)
 			return null;
 		return (FunctionalRequirement) eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FunctionalRequirement basicGetRefinedRequirement() {
+		if (eContainerFeatureID != RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT)
+			return null;
+		return (FunctionalRequirement) eInternalContainer();
 	}
 
 	/**
@@ -386,7 +397,9 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS:
 			return getRefiningRequirements();
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT:
-			return getRefinedRequirement();
+			if (resolve)
+				return getRefinedRequirement();
+			return basicGetRefinedRequirement();
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__USE_CASES:
 			return getUseCases();
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__SCENARIOS:
@@ -481,7 +494,7 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 			return refiningRequirements != null
 					&& !refiningRequirements.isEmpty();
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT:
-			return getRefinedRequirement() != null;
+			return basicGetRefinedRequirement() != null;
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__USE_CASES:
 			return useCases != null && !useCases.isEmpty();
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__SCENARIOS:

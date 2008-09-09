@@ -69,7 +69,7 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 	 */
 	public EList<Assessment> getAssessments() {
 		if (assessments == null) {
-			assessments = new EObjectContainmentWithInverseEList<Assessment>(
+			assessments = new EObjectContainmentWithInverseEList.Resolving<Assessment>(
 					Assessment.class, this,
 					RationalePackage.PROPOSAL__ASSESSMENTS,
 					RationalePackage.ASSESSMENT__PROPOSAL);
@@ -85,6 +85,17 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 		if (eContainerFeatureID != RationalePackage.PROPOSAL__ISSUE)
 			return null;
 		return (Issue) eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Issue basicGetIssue() {
+		if (eContainerFeatureID != RationalePackage.PROPOSAL__ISSUE)
+			return null;
+		return (Issue) eInternalContainer();
 	}
 
 	/**
@@ -184,7 +195,9 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 		case RationalePackage.PROPOSAL__ASSESSMENTS:
 			return getAssessments();
 		case RationalePackage.PROPOSAL__ISSUE:
-			return getIssue();
+			if (resolve)
+				return getIssue();
+			return basicGetIssue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -236,7 +249,7 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 		case RationalePackage.PROPOSAL__ASSESSMENTS:
 			return assessments != null && !assessments.isEmpty();
 		case RationalePackage.PROPOSAL__ISSUE:
-			return getIssue() != null;
+			return basicGetIssue() != null;
 		}
 		return super.eIsSet(featureID);
 	}
