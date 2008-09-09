@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.Date;
 
 import org.eclipse.emf.ecore.change.ChangeDescription;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
@@ -33,6 +34,7 @@ import org.unicase.model.Project;
  *   <li>{@link org.unicase.workspace.ProjectSpace#getUsersession <em>Usersession</em>}</li>
  *   <li>{@link org.unicase.workspace.ProjectSpace#getLastUpdated <em>Last Updated</em>}</li>
  *   <li>{@link org.unicase.workspace.ProjectSpace#getBaseVersion <em>Base Version</em>}</li>
+ *   <li>{@link org.unicase.workspace.ProjectSpace#getResourceCount <em>Resource Count</em>}</li>
  * </ul>
  * </p>
  *
@@ -52,7 +54,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @return the value of the '<em>Project</em>' containment reference.
 	 * @see #setProject(Project)
 	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_Project()
-	 * @model containment="true"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	Project getProject();
@@ -77,7 +79,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @return the value of the '<em>Project Id</em>' containment reference.
 	 * @see #setProjectId(ProjectId)
 	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_ProjectId()
-	 * @model containment="true" required="true"
+	 * @model containment="true" resolveProxies="true" required="true"
 	 * @generated
 	 */
 	ProjectId getProjectId();
@@ -156,7 +158,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @return the value of the '<em>Local Changes</em>' containment reference.
 	 * @see #setLocalChanges(ChangeDescription)
 	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_LocalChanges()
-	 * @model containment="true"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	ChangeDescription getLocalChanges();
@@ -235,7 +237,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @return the value of the '<em>Base Version</em>' containment reference.
 	 * @see #setBaseVersion(PrimaryVersionSpec)
 	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_BaseVersion()
-	 * @model containment="true" required="true"
+	 * @model containment="true" resolveProxies="true" required="true"
 	 * @generated
 	 */
 	PrimaryVersionSpec getBaseVersion();
@@ -249,6 +251,32 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @generated
 	 */
 	void setBaseVersion(PrimaryVersionSpec value);
+
+	/**
+	 * Returns the value of the '<em><b>Resource Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Resource Count</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Resource Count</em>' attribute.
+	 * @see #setResourceCount(int)
+	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_ResourceCount()
+	 * @model
+	 * @generated
+	 */
+	int getResourceCount();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getResourceCount <em>Resource Count</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Resource Count</em>' attribute.
+	 * @see #getResourceCount()
+	 * @generated
+	 */
+	void setResourceCount(int value);
 
 	/**
 	 * <!-- begin-user-doc --> Commit the all pending changes of the project.
@@ -331,9 +359,15 @@ public interface ProjectSpace extends IdentifiableElement {
 	PrimaryVersionSpec resolveVersionSpec(VersionSpec versionSpec)
 			throws EmfStoreException;
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	void initResources(ResourceSet resourceSet);
+
 	void shareProject(Usersession usersession) throws EmfStoreException;
 
 	void exportProject(String fileName) throws IOException;
 
-	boolean isDirty();
 } // ProjectContainer

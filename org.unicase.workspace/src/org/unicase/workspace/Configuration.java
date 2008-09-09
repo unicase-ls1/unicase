@@ -94,4 +94,8 @@ public final class Configuration {
 		
 		return serverInfos;
 	}
+	
+	public static int getMaxMECountPerResource() {
+		return 100;
+	}
 }

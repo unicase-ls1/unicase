@@ -6,6 +6,7 @@
  */
 package org.unicase.workspace.impl;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,12 +15,22 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.eclipse.emf.ecore.change.util.ChangeRecorder;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.DanglingHREFException;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
@@ -30,8 +41,11 @@ import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 import org.unicase.model.impl.IdentifiableElementImpl;
+import org.unicase.model.util.ModelElementChangeNotifier;
+import org.unicase.model.util.ModelElementChangeObserver;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
@@ -44,7 +58,9 @@ import org.unicase.workspace.exceptions.NoLocalChangesException;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Project Container</b></em>'. <!-- end-user-doc -->
+ * <em><b>Project Container</b></em>'.
+ * 
+ * @implements ModelElementChangeObserver <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -56,13 +72,14 @@ import org.unicase.workspace.exceptions.NoLocalChangesException;
  *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getUsersession <em>Usersession</em>}</li>
  *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getLastUpdated <em>Last Updated</em>}</li>
  *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getBaseVersion <em>Base Version</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getResourceCount <em>Resource Count</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class ProjectSpaceImpl extends IdentifiableElementImpl implements
-		ProjectSpace {
+		ProjectSpace, ModelElementChangeObserver {
 
 	/**
 	 * @generated NOT
@@ -171,6 +188,26 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 */
 	protected PrimaryVersionSpec baseVersion;
 
+	/**
+	 * The default value of the '{@link #getResourceCount() <em>Resource Count</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @see #getResourceCount()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int RESOURCE_COUNT_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getResourceCount() <em>Resource Count</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @see #getResourceCount()
+	 * @generated
+	 * @ordered
+	 */
+	protected int resourceCount = RESOURCE_COUNT_EDEFAULT;
+
 	// begin of custom code
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -197,6 +234,36 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * @generated
 	 */
 	public Project getProject() {
+		if (project != null && project.eIsProxy()) {
+			InternalEObject oldProject = (InternalEObject) project;
+			project = (Project) eResolveProxy(oldProject);
+			if (project != oldProject) {
+				InternalEObject newProject = (InternalEObject) project;
+				NotificationChain msgs = oldProject.eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+								- WorkspacePackage.PROJECT_SPACE__PROJECT,
+						null, null);
+				if (newProject.eInternalContainer() == null) {
+					msgs = newProject.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+							- WorkspacePackage.PROJECT_SPACE__PROJECT, null,
+							msgs);
+				}
+				if (msgs != null)
+					msgs.dispatch();
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							WorkspacePackage.PROJECT_SPACE__PROJECT,
+							oldProject, project));
+			}
+		}
+		return project;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Project basicGetProject() {
 		return project;
 	}
 
@@ -251,6 +318,39 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * @generated
 	 */
 	public ProjectId getProjectId() {
+		if (projectId != null && projectId.eIsProxy()) {
+			InternalEObject oldProjectId = (InternalEObject) projectId;
+			projectId = (ProjectId) eResolveProxy(oldProjectId);
+			if (projectId != oldProjectId) {
+				InternalEObject newProjectId = (InternalEObject) projectId;
+				NotificationChain msgs = oldProjectId.eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+								- WorkspacePackage.PROJECT_SPACE__PROJECT_ID,
+						null, null);
+				if (newProjectId.eInternalContainer() == null) {
+					msgs = newProjectId
+							.eInverseAdd(
+									this,
+									EOPPOSITE_FEATURE_BASE
+											- WorkspacePackage.PROJECT_SPACE__PROJECT_ID,
+									null, msgs);
+				}
+				if (msgs != null)
+					msgs.dispatch();
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							WorkspacePackage.PROJECT_SPACE__PROJECT_ID,
+							oldProjectId, projectId));
+			}
+		}
+		return projectId;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ProjectId basicGetProjectId() {
 		return projectId;
 	}
 
@@ -348,6 +448,41 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * @generated
 	 */
 	public ChangeDescription getLocalChanges() {
+		if (localChanges != null && localChanges.eIsProxy()) {
+			InternalEObject oldLocalChanges = (InternalEObject) localChanges;
+			localChanges = (ChangeDescription) eResolveProxy(oldLocalChanges);
+			if (localChanges != oldLocalChanges) {
+				InternalEObject newLocalChanges = (InternalEObject) localChanges;
+				NotificationChain msgs = oldLocalChanges
+						.eInverseRemove(
+								this,
+								EOPPOSITE_FEATURE_BASE
+										- WorkspacePackage.PROJECT_SPACE__LOCAL_CHANGES,
+								null, null);
+				if (newLocalChanges.eInternalContainer() == null) {
+					msgs = newLocalChanges
+							.eInverseAdd(
+									this,
+									EOPPOSITE_FEATURE_BASE
+											- WorkspacePackage.PROJECT_SPACE__LOCAL_CHANGES,
+									null, msgs);
+				}
+				if (msgs != null)
+					msgs.dispatch();
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							WorkspacePackage.PROJECT_SPACE__LOCAL_CHANGES,
+							oldLocalChanges, localChanges));
+			}
+		}
+		return localChanges;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ChangeDescription basicGetLocalChanges() {
 		return localChanges;
 	}
 
@@ -467,6 +602,39 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * @generated
 	 */
 	public PrimaryVersionSpec getBaseVersion() {
+		if (baseVersion != null && baseVersion.eIsProxy()) {
+			InternalEObject oldBaseVersion = (InternalEObject) baseVersion;
+			baseVersion = (PrimaryVersionSpec) eResolveProxy(oldBaseVersion);
+			if (baseVersion != oldBaseVersion) {
+				InternalEObject newBaseVersion = (InternalEObject) baseVersion;
+				NotificationChain msgs = oldBaseVersion.eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+								- WorkspacePackage.PROJECT_SPACE__BASE_VERSION,
+						null, null);
+				if (newBaseVersion.eInternalContainer() == null) {
+					msgs = newBaseVersion
+							.eInverseAdd(
+									this,
+									EOPPOSITE_FEATURE_BASE
+											- WorkspacePackage.PROJECT_SPACE__BASE_VERSION,
+									null, msgs);
+				}
+				if (msgs != null)
+					msgs.dispatch();
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							WorkspacePackage.PROJECT_SPACE__BASE_VERSION,
+							oldBaseVersion, baseVersion));
+			}
+		}
+		return baseVersion;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PrimaryVersionSpec basicGetBaseVersion() {
 		return baseVersion;
 	}
 
@@ -515,6 +683,27 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			eNotify(new ENotificationImpl(this, Notification.SET,
 					WorkspacePackage.PROJECT_SPACE__BASE_VERSION,
 					newBaseVersion, newBaseVersion));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getResourceCount() {
+		return resourceCount;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setResourceCount(int newResourceCount) {
+		int oldResourceCount = resourceCount;
+		resourceCount = newResourceCount;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					WorkspacePackage.PROJECT_SPACE__RESOURCE_COUNT,
+					oldResourceCount, resourceCount));
 	}
 
 	/**
@@ -692,10 +881,17 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	public void save() {
 		stopChangeRecording();
 		try {
+			// implement proper save or remove method
 			this.eResource().save(Configuration.getResourceSaveOptions());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Throwable cause = e.getCause();
+			if (cause != null && cause instanceof DanglingHREFException) {
+				DanglingHREFException exception = (DanglingHREFException) cause;
+				Diagnostic diagnostic = EcoreUtil.computeDiagnostic(this
+						.eResource(), false);
+				// FIXME MK/OW: implement some fix for dangling reference here
+
+			}
 		}
 		startChangeRecording();
 	}
@@ -738,6 +934,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	public void init() {
 		// MK: possibly performance hit
 		this.eResource().setTrackingModification(true);
+		for (final ModelElement modelElement : this.getProject()
+				.getAllModelElements()) {
+			new ModelElementChangeNotifier(modelElement, this);
+		}
 		startChangeRecording();
 	}
 
@@ -774,6 +974,48 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	public void initResources(ResourceSet resourceSet) {
+		setResourceCount(0);
+		String fileName = Configuration.getWorkspaceDirectory() + "ps-"
+				+ getIdentifier() + File.separatorChar + getResourceCount();
+		URI fileURI = URI.createFileURI(fileName);
+		List<Resource> resources = new ArrayList<Resource>();
+		Resource resource = resourceSet.createResource(fileURI);
+		resource.getContents().add(this);
+		resources.add(resource);
+		setResourceCount(getResourceCount() + 1);
+		List<ModelElement> modelElements = getProject().getAllModelElements();
+		int counter = 0;
+		for (ModelElement modelElement : modelElements) {
+			if (counter > Configuration.getMaxMECountPerResource()) {
+				fileName = Configuration.getWorkspaceDirectory() + "ps-"
+						+ getIdentifier() + File.separatorChar
+						+ getResourceCount();
+				fileURI = URI.createFileURI(fileName);
+				resource = resourceSet.createResource(fileURI);
+				setResourceCount(getResourceCount() + 1);
+				resources.add(resource);
+				counter = 0;
+			}
+			counter++;
+			resource.getContents().add(modelElement);
+		}
+		for (Resource currentResource : resources) {
+			try {
+				currentResource.save(Configuration.getResourceSaveOptions());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		init();
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -800,15 +1042,21 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case WorkspacePackage.PROJECT_SPACE__PROJECT:
-			return getProject();
+			if (resolve)
+				return getProject();
+			return basicGetProject();
 		case WorkspacePackage.PROJECT_SPACE__PROJECT_ID:
-			return getProjectId();
+			if (resolve)
+				return getProjectId();
+			return basicGetProjectId();
 		case WorkspacePackage.PROJECT_SPACE__PROJECT_NAME:
 			return getProjectName();
 		case WorkspacePackage.PROJECT_SPACE__PROJECT_DESCRIPTION:
 			return getProjectDescription();
 		case WorkspacePackage.PROJECT_SPACE__LOCAL_CHANGES:
-			return getLocalChanges();
+			if (resolve)
+				return getLocalChanges();
+			return basicGetLocalChanges();
 		case WorkspacePackage.PROJECT_SPACE__USERSESSION:
 			if (resolve)
 				return getUsersession();
@@ -816,7 +1064,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		case WorkspacePackage.PROJECT_SPACE__LAST_UPDATED:
 			return getLastUpdated();
 		case WorkspacePackage.PROJECT_SPACE__BASE_VERSION:
-			return getBaseVersion();
+			if (resolve)
+				return getBaseVersion();
+			return basicGetBaseVersion();
+		case WorkspacePackage.PROJECT_SPACE__RESOURCE_COUNT:
+			return new Integer(getResourceCount());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -851,6 +1103,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			return;
 		case WorkspacePackage.PROJECT_SPACE__BASE_VERSION:
 			setBaseVersion((PrimaryVersionSpec) newValue);
+			return;
+		case WorkspacePackage.PROJECT_SPACE__RESOURCE_COUNT:
+			setResourceCount(((Integer) newValue).intValue());
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -887,6 +1142,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		case WorkspacePackage.PROJECT_SPACE__BASE_VERSION:
 			setBaseVersion((PrimaryVersionSpec) null);
 			return;
+		case WorkspacePackage.PROJECT_SPACE__RESOURCE_COUNT:
+			setResourceCount(RESOURCE_COUNT_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -917,6 +1175,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 					: !LAST_UPDATED_EDEFAULT.equals(lastUpdated);
 		case WorkspacePackage.PROJECT_SPACE__BASE_VERSION:
 			return baseVersion != null;
+		case WorkspacePackage.PROJECT_SPACE__RESOURCE_COUNT:
+			return resourceCount != RESOURCE_COUNT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -937,6 +1197,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		result.append(projectDescription);
 		result.append(", lastUpdated: ");
 		result.append(lastUpdated);
+		result.append(", resourceCount: ");
+		result.append(resourceCount);
 		result.append(')');
 		return result.toString();
 	}
@@ -970,8 +1232,74 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 				this, absoluteFileName);
 	}
 
-	public boolean isDirty() {
-		return this.eResource().isModified();
+	public void notify(Notification notification, ModelElement modelElement) {
+		if (notification.getEventType() == Notification.ADD
+				&& notification.getFeature() instanceof EStructuralFeature) {
+			// FIXME OW: check cast
+			EObject newValue = (EObject) notification.getNewValue();
+			addToResource(newValue, modelElement);
+
+		} else if (notification.getEventType() == Notification.ADD_MANY
+				&& notification.getFeature() instanceof EStructuralFeature) {
+			// FIXME OW: check cast
+			List<EObject> newValues = (List<EObject>) notification
+					.getNewValue();
+			for (EObject newElement : newValues) {
+				addToResource(newElement, modelElement);
+			}
+		} else {
+			//MK: can be optimized but is ok at the moment
+			EList<Resource> resources = this.eResource().getResourceSet()
+					.getResources();
+			for (Resource resource : resources) {
+				if (resource.isModified()) {
+					try {
+						resource.save(Configuration.getResourceSaveOptions());
+					} catch (IOException e) {
+						//add proper save handling here
+					}
+
+				}
+			}
+		}
+	}
+
+	private void addToResource(final EObject eObject, final EObject parent) {
+		TransactionalEditingDomain domain = WorkspaceManager.getInstance()
+				.getCurrentWorkspace().getEditingDomain();
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
+			protected void doExecute() {
+				Resource oldResource = parent.eResource();
+				String oldFileName = Configuration.getWorkspaceDirectory()
+						+ "ps-" + getIdentifier() + File.separatorChar
+						+ (getResourceCount() - 1);
+				if (new File(oldFileName).length() > 100) {
+					String newfileName = Configuration.getWorkspaceDirectory()
+							+ "ps-" + getIdentifier() + File.separatorChar
+							+ getResourceCount();
+					URI fileURI = URI.createFileURI(newfileName);
+					Resource resource = oldResource.getResourceSet()
+							.createResource(fileURI);
+					// MK: possibly performance hit
+					resource.setTrackingModification(true);
+
+					setResourceCount(getResourceCount() + 1);
+					// OW MK: Check if object is small (i.e. is not
+					// a big containment tree)
+					resource.getContents().add(eObject);
+					try {
+						resource.save(Configuration.getResourceSaveOptions());
+						oldResource
+								.save(Configuration.getResourceSaveOptions());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		});
+
 	}
 
 } // ProjectContainerImpl

@@ -9,7 +9,6 @@
       <eParameters name="projectInfo" eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//ProjectInfo"/>
     </eOperations>
     <eOperations name="save"/>
-    <eOperations name="isDirty" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="projectSpaces" upperBound="-1"
         eType="#//ProjectSpace" containment="true" eKeys="../../org.unicase.model/model/model.ecore#//IdentifiableElement/identifier"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="serverInfos" upperBound="-1"
@@ -75,5 +74,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="baseVersion" lowerBound="1"
         eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/PrimaryVersionSpec"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="resourceCount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
 </ecore:EPackage>
