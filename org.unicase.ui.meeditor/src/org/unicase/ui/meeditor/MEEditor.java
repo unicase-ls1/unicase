@@ -43,7 +43,6 @@ public class MEEditor extends SharedHeaderFormEditor {
 	private ComposedAdapterFactory adapterFactory;
 	private TransactionalEditingDomain editingDomain;
 	private MEEditorPage form;
-	private boolean dirty;
 
 	/**
 	 * Default constructor.
@@ -87,7 +86,6 @@ public class MEEditor extends SharedHeaderFormEditor {
 					}
 
 				});
-		dirty = false;
 		editorDirtyStateChanged();
 		monitor.done();
 	}
@@ -127,8 +125,6 @@ public class MEEditor extends SharedHeaderFormEditor {
 			Adapter eAdapter = new AdapterImpl() {
 				@Override
 				public void notifyChanged(Notification msg) {
-					dirty = true;
-					editorDirtyStateChanged();
 					if (msg.getFeature() instanceof EAttribute && ((EAttribute)msg.getFeature()).getName().equals("name")) {
 						setPartName(msg.getNewStringValue());
 					}
@@ -190,23 +186,8 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 */
 	@Override
 	public boolean isDirty() {
-//		TODO: fix
-		return dirty;
-		//JH: Syncronize
-//		if(checkingDirty){
-//			return dirty;
-//		}
-//		checkingDirty=true;
-//		editingDomain.getCommandStack().execute(
-//				new RecordingCommand(editingDomain) {
-//					@Override
-//					protected void doExecute() {
-//						//JH: check this
-//						dirty = WorkspaceManager.getProjectSpace(modelElement).isDirty();
-//					}
-//				});
-//		checkingDirty=false;
-//		return dirty;
+		//we do always save immediately so we are never dirty
+		return false;
 	}
 	
 	/**
