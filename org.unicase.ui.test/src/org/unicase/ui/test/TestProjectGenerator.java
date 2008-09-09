@@ -172,7 +172,10 @@ public class TestProjectGenerator {
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-				workspace.setupProjectSpace(projectSpace);
+				//FIXME: ugly code
+				projectSpace.initResources(workspace.eResource().getResourceSet());
+				workspace.getProjectSpaces().add(projectSpace);
+				workspace.save();
 			}
 		});
 	}
