@@ -41,7 +41,7 @@ public interface ChangePackage extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Change Containers</em>' containment reference list.
 	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getChangePackage_ChangeContainers()
-	 * @model containment="true"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<ChangeContainer> getChangeContainers();

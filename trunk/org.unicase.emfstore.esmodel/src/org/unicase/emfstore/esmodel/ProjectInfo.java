@@ -92,7 +92,7 @@ public interface ProjectInfo extends EObject {
 	 * @return the value of the '<em>Project Id</em>' containment reference.
 	 * @see #setProjectId(ProjectId)
 	 * @see org.unicase.emfstore.esmodel.EsmodelPackage#getProjectInfo_ProjectId()
-	 * @model containment="true" required="true"
+	 * @model containment="true" resolveProxies="true" required="true"
 	 * @generated
 	 */
 	ProjectId getProjectId();
@@ -118,7 +118,7 @@ public interface ProjectInfo extends EObject {
 	 * @return the value of the '<em>Version</em>' containment reference.
 	 * @see #setVersion(PrimaryVersionSpec)
 	 * @see org.unicase.emfstore.esmodel.EsmodelPackage#getProjectInfo_Version()
-	 * @model containment="true" required="true"
+	 * @model containment="true" resolveProxies="true" required="true"
 	 * @generated
 	 */
 	PrimaryVersionSpec getVersion();

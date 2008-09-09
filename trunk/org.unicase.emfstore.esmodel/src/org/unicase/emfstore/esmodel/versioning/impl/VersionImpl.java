@@ -131,6 +131,38 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 * @generated
 	 */
 	public Project getProjectState() {
+		if (projectState != null && projectState.eIsProxy()) {
+			InternalEObject oldProjectState = (InternalEObject) projectState;
+			projectState = (Project) eResolveProxy(oldProjectState);
+			if (projectState != oldProjectState) {
+				InternalEObject newProjectState = (InternalEObject) projectState;
+				NotificationChain msgs = oldProjectState.eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+								- VersioningPackage.VERSION__PROJECT_STATE,
+						null, null);
+				if (newProjectState.eInternalContainer() == null) {
+					msgs = newProjectState.eInverseAdd(this,
+							EOPPOSITE_FEATURE_BASE
+									- VersioningPackage.VERSION__PROJECT_STATE,
+							null, msgs);
+				}
+				if (msgs != null)
+					msgs.dispatch();
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							VersioningPackage.VERSION__PROJECT_STATE,
+							oldProjectState, projectState));
+			}
+		}
+		return projectState;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Project basicGetProjectState() {
 		return projectState;
 	}
 
@@ -185,6 +217,38 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 * @generated
 	 */
 	public PrimaryVersionSpec getPrimarySpec() {
+		if (primarySpec != null && primarySpec.eIsProxy()) {
+			InternalEObject oldPrimarySpec = (InternalEObject) primarySpec;
+			primarySpec = (PrimaryVersionSpec) eResolveProxy(oldPrimarySpec);
+			if (primarySpec != oldPrimarySpec) {
+				InternalEObject newPrimarySpec = (InternalEObject) primarySpec;
+				NotificationChain msgs = oldPrimarySpec.eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+								- VersioningPackage.VERSION__PRIMARY_SPEC,
+						null, null);
+				if (newPrimarySpec.eInternalContainer() == null) {
+					msgs = newPrimarySpec.eInverseAdd(this,
+							EOPPOSITE_FEATURE_BASE
+									- VersioningPackage.VERSION__PRIMARY_SPEC,
+							null, msgs);
+				}
+				if (msgs != null)
+					msgs.dispatch();
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							VersioningPackage.VERSION__PRIMARY_SPEC,
+							oldPrimarySpec, primarySpec));
+			}
+		}
+		return primarySpec;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PrimaryVersionSpec basicGetPrimarySpec() {
 		return primarySpec;
 	}
 
@@ -240,7 +304,7 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 */
 	public EList<TagVersionSpec> getTagSpecs() {
 		if (tagSpecs == null) {
-			tagSpecs = new EObjectContainmentEList<TagVersionSpec>(
+			tagSpecs = new EObjectContainmentEList.Resolving<TagVersionSpec>(
 					TagVersionSpec.class, this,
 					VersioningPackage.VERSION__TAG_SPECS);
 		}
@@ -395,6 +459,36 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 * @generated
 	 */
 	public ChangePackage getChanges() {
+		if (changes != null && changes.eIsProxy()) {
+			InternalEObject oldChanges = (InternalEObject) changes;
+			changes = (ChangePackage) eResolveProxy(oldChanges);
+			if (changes != oldChanges) {
+				InternalEObject newChanges = (InternalEObject) changes;
+				NotificationChain msgs = oldChanges.eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+								- VersioningPackage.VERSION__CHANGES, null,
+						null);
+				if (newChanges.eInternalContainer() == null) {
+					msgs = newChanges.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+							- VersioningPackage.VERSION__CHANGES, null, msgs);
+				}
+				if (msgs != null)
+					msgs.dispatch();
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							VersioningPackage.VERSION__CHANGES, oldChanges,
+							changes));
+			}
+		}
+		return changes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ChangePackage basicGetChanges() {
 		return changes;
 	}
 
@@ -448,6 +542,38 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 * @generated
 	 */
 	public LogMessage getLogMessage() {
+		if (logMessage != null && logMessage.eIsProxy()) {
+			InternalEObject oldLogMessage = (InternalEObject) logMessage;
+			logMessage = (LogMessage) eResolveProxy(oldLogMessage);
+			if (logMessage != oldLogMessage) {
+				InternalEObject newLogMessage = (InternalEObject) logMessage;
+				NotificationChain msgs = oldLogMessage.eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+								- VersioningPackage.VERSION__LOG_MESSAGE, null,
+						null);
+				if (newLogMessage.eInternalContainer() == null) {
+					msgs = newLogMessage.eInverseAdd(this,
+							EOPPOSITE_FEATURE_BASE
+									- VersioningPackage.VERSION__LOG_MESSAGE,
+							null, msgs);
+				}
+				if (msgs != null)
+					msgs.dispatch();
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							VersioningPackage.VERSION__LOG_MESSAGE,
+							oldLogMessage, logMessage));
+			}
+		}
+		return logMessage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LogMessage basicGetLogMessage() {
 		return logMessage;
 	}
 
@@ -557,9 +683,13 @@ public class VersionImpl extends EObjectImpl implements Version {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case VersioningPackage.VERSION__PROJECT_STATE:
-			return getProjectState();
+			if (resolve)
+				return getProjectState();
+			return basicGetProjectState();
 		case VersioningPackage.VERSION__PRIMARY_SPEC:
-			return getPrimarySpec();
+			if (resolve)
+				return getPrimarySpec();
+			return basicGetPrimarySpec();
 		case VersioningPackage.VERSION__TAG_SPECS:
 			return getTagSpecs();
 		case VersioningPackage.VERSION__NEXT_VERSION:
@@ -571,9 +701,13 @@ public class VersionImpl extends EObjectImpl implements Version {
 				return getPreviousVersion();
 			return basicGetPreviousVersion();
 		case VersioningPackage.VERSION__CHANGES:
-			return getChanges();
+			if (resolve)
+				return getChanges();
+			return basicGetChanges();
 		case VersioningPackage.VERSION__LOG_MESSAGE:
-			return getLogMessage();
+			if (resolve)
+				return getLogMessage();
+			return basicGetLogMessage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
