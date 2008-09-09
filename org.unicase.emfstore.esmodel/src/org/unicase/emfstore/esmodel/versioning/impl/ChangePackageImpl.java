@@ -71,7 +71,7 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 */
 	public EList<ChangeContainer> getChangeContainers() {
 		if (changeContainers == null) {
-			changeContainers = new EObjectContainmentEList<ChangeContainer>(
+			changeContainers = new EObjectContainmentEList.Resolving<ChangeContainer>(
 					ChangeContainer.class, this,
 					VersioningPackage.CHANGE_PACKAGE__CHANGE_CONTAINERS);
 		}

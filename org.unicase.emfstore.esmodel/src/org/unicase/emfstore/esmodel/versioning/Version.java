@@ -43,7 +43,7 @@ public interface Version extends EObject {
 	 * @return the value of the '<em>Project State</em>' containment reference.
 	 * @see #setProjectState(Project)
 	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getVersion_ProjectState()
-	 * @model containment="true"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	Project getProjectState();
@@ -69,7 +69,7 @@ public interface Version extends EObject {
 	 * @return the value of the '<em>Primary Spec</em>' containment reference.
 	 * @see #setPrimarySpec(PrimaryVersionSpec)
 	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getVersion_PrimarySpec()
-	 * @model containment="true" required="true"
+	 * @model containment="true" resolveProxies="true" required="true"
 	 * @generated
 	 */
 	PrimaryVersionSpec getPrimarySpec();
@@ -168,7 +168,7 @@ public interface Version extends EObject {
 	 * @return the value of the '<em>Changes</em>' containment reference.
 	 * @see #setChanges(ChangePackage)
 	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getVersion_Changes()
-	 * @model containment="true"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	ChangePackage getChanges();
@@ -194,7 +194,7 @@ public interface Version extends EObject {
 	 * @return the value of the '<em>Log Message</em>' containment reference.
 	 * @see #setLogMessage(LogMessage)
 	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getVersion_LogMessage()
-	 * @model containment="true"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	LogMessage getLogMessage();

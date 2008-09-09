@@ -127,8 +127,8 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 	 */
 	public EList<Role> getRoles() {
 		if (roles == null) {
-			roles = new EObjectContainmentEList<Role>(Role.class, this,
-					AccesscontrolPackage.AC_ORG_UNIT__ROLES);
+			roles = new EObjectContainmentEList.Resolving<Role>(Role.class,
+					this, AccesscontrolPackage.AC_ORG_UNIT__ROLES);
 		}
 		return roles;
 	}

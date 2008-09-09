@@ -40,7 +40,7 @@ public interface ProjectHistory extends EObject {
 	 * @return the value of the '<em>Project Id</em>' containment reference.
 	 * @see #setProjectId(ProjectId)
 	 * @see org.unicase.emfstore.esmodel.EsmodelPackage#getProjectHistory_ProjectId()
-	 * @model containment="true"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	ProjectId getProjectId();

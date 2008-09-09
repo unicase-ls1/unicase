@@ -103,8 +103,8 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 	 */
 	public EList<ACGroup> getGroups() {
 		if (groups == null) {
-			groups = new EObjectContainmentEList<ACGroup>(ACGroup.class, this,
-					EsmodelPackage.SERVER_SPACE__GROUPS);
+			groups = new EObjectContainmentEList.Resolving<ACGroup>(
+					ACGroup.class, this, EsmodelPackage.SERVER_SPACE__GROUPS);
 		}
 		return groups;
 	}
@@ -128,7 +128,7 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 	 */
 	public EList<SessionId> getOpenSessions() {
 		if (openSessions == null) {
-			openSessions = new EObjectContainmentEList<SessionId>(
+			openSessions = new EObjectContainmentEList.Resolving<SessionId>(
 					SessionId.class, this,
 					EsmodelPackage.SERVER_SPACE__OPEN_SESSIONS);
 		}
@@ -141,8 +141,8 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 	 */
 	public EList<ACUser> getUsers() {
 		if (users == null) {
-			users = new EObjectContainmentEList<ACUser>(ACUser.class, this,
-					EsmodelPackage.SERVER_SPACE__USERS);
+			users = new EObjectContainmentEList.Resolving<ACUser>(ACUser.class,
+					this, EsmodelPackage.SERVER_SPACE__USERS);
 		}
 		return users;
 	}

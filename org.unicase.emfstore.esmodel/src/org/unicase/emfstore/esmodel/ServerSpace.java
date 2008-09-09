@@ -79,7 +79,7 @@ public interface ServerSpace extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Open Sessions</em>' containment reference list.
 	 * @see org.unicase.emfstore.esmodel.EsmodelPackage#getServerSpace_OpenSessions()
-	 * @model containment="true" transient="true"
+	 * @model containment="true" resolveProxies="true" transient="true"
 	 * @generated
 	 */
 	EList<SessionId> getOpenSessions();

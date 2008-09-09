@@ -417,7 +417,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		initEReference(getProjectHistory_ProjectId(), this.getProjectId(),
 				null, "projectId", null, 0, 1, ProjectHistory.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 		initEReference(getProjectHistory_Versions(), theVersioningPackage
 				.getVersion(), null, "versions", null, 1, -1,
@@ -446,12 +446,12 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 				!IS_DERIVED, IS_ORDERED);
 		initEReference(getProjectInfo_ProjectId(), this.getProjectId(), null,
 				"projectId", null, 1, 1, ProjectInfo.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProjectInfo_Version(), theVersioningPackage
 				.getPrimaryVersionSpec(), null, "version", null, 1, 1,
 				ProjectInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(sessionIdEClass, SessionId.class, "SessionId", !IS_ABSTRACT,
@@ -462,7 +462,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		initEReference(getServerSpace_Groups(), theAccesscontrolPackage
 				.getACGroup(), null, "groups", null, 0, -1, ServerSpace.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 		initEReference(getServerSpace_Projects(), this.getProjectHistory(),
 				null, "projects", null, 0, -1, ServerSpace.class,
@@ -472,12 +472,12 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		initEReference(getServerSpace_OpenSessions(), this.getSessionId(),
 				null, "openSessions", null, 0, -1, ServerSpace.class,
 				IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 		initEReference(getServerSpace_Users(), theAccesscontrolPackage
 				.getACUser(), null, "users", null, 0, -1, ServerSpace.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 
 		initEClass(projectIdEClass, ProjectId.class, "ProjectId", !IS_ABSTRACT,
