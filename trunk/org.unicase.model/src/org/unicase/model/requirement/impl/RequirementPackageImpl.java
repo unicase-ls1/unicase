@@ -912,7 +912,7 @@ public class RequirementPackageImpl extends EPackageImpl implements
 				.getFunctionalRequirement_RefinedRequirement(),
 				"refiningRequirements", null, 0, -1,
 				FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getFunctionalRequirement_RefiningRequirements().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
@@ -921,7 +921,7 @@ public class RequirementPackageImpl extends EPackageImpl implements
 				.getFunctionalRequirement_RefiningRequirements(),
 				"refinedRequirement", null, 0, 1, FunctionalRequirement.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 		getFunctionalRequirement_RefinedRequirement().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
@@ -1040,7 +1040,7 @@ public class RequirementPackageImpl extends EPackageImpl implements
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getScenario_Steps(), this.getStep(), null, "steps",
 				null, 0, -1, Scenario.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getScenario_Steps().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());

@@ -57,7 +57,7 @@ public interface MEDiagram extends ModelElement {
 	 * @return the value of the '<em>Gmfdiagram</em>' containment reference.
 	 * @see #setGmfdiagram(Diagram)
 	 * @see org.unicase.model.diagram.DiagramPackage#getMEDiagram_Gmfdiagram()
-	 * @model containment="true"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	Diagram getGmfdiagram();
@@ -83,7 +83,7 @@ public interface MEDiagram extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>New Elements</em>' containment reference list.
 	 * @see org.unicase.model.diagram.DiagramPackage#getMEDiagram_NewElements()
-	 * @model containment="true" keys="identifier" transient="true"
+	 * @model containment="true" resolveProxies="true" keys="identifier" transient="true"
 	 * @generated
 	 */
 	EList<ModelElement> getNewElements();

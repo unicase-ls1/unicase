@@ -39,7 +39,7 @@ public interface LeafSection extends Section {
 	 * @return the value of the '<em>Model Elements</em>' containment reference list.
 	 * @see org.unicase.model.document.DocumentPackage#getLeafSection_ModelElements()
 	 * @see org.unicase.model.ModelElement#getLeafSection
-	 * @model opposite="leafSection" containment="true" keys="identifier"
+	 * @model opposite="leafSection" containment="true" resolveProxies="true" keys="identifier"
 	 * @generated
 	 */
 	EList<ModelElement> getModelElements();

@@ -260,7 +260,7 @@ public class ClassImpl extends PackageElementImpl implements
 	 */
 	public EList<Attribute> getAttributes() {
 		if (attributes == null) {
-			attributes = new EObjectContainmentWithInverseEList<Attribute>(
+			attributes = new EObjectContainmentWithInverseEList.Resolving<Attribute>(
 					Attribute.class, this, ClassesPackage.CLASS__ATTRIBUTES,
 					ClassesPackage.ATTRIBUTE__DEFINING_CLASS);
 		}
@@ -274,7 +274,7 @@ public class ClassImpl extends PackageElementImpl implements
 	 */
 	public EList<Method> getMethods() {
 		if (methods == null) {
-			methods = new EObjectContainmentWithInverseEList<Method>(
+			methods = new EObjectContainmentWithInverseEList.Resolving<Method>(
 					Method.class, this, ClassesPackage.CLASS__METHODS,
 					ClassesPackage.METHOD__DEFINING_CLASS);
 		}

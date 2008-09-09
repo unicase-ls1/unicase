@@ -102,7 +102,7 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 	 */
 	public EList<ComponentService> getOfferedServices() {
 		if (offeredServices == null) {
-			offeredServices = new EObjectContainmentWithInverseEList<ComponentService>(
+			offeredServices = new EObjectContainmentWithInverseEList.Resolving<ComponentService>(
 					ComponentService.class, this,
 					ComponentPackage.COMPONENT__OFFERED_SERVICES,
 					ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT);

@@ -823,12 +823,12 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		initEReference(getClass_Attributes(), this.getAttribute(), this
 				.getAttribute_DefiningClass(), "attributes", null, 0, -1,
 				org.unicase.model.classes.Class.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getClass_Methods(), this.getMethod(), this
 				.getMethod_DefiningClass(), "methods", null, 0, -1,
 				org.unicase.model.classes.Class.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(packageEClass, org.unicase.model.classes.Package.class,
@@ -838,7 +838,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 				.getPackageElement(), this.getPackageElement_ParentPackage(),
 				"containedPackageElements", null, 0, -1,
 				org.unicase.model.classes.Package.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getPackage_ContainedPackageElements().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
@@ -849,7 +849,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		initEReference(getPackageElement_ParentPackage(), this.getPackage(),
 				this.getPackage_ContainedPackageElements(), "parentPackage",
 				null, 0, 1, PackageElement.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		getPackageElement_ParentPackage().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
@@ -884,7 +884,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		initEReference(getAttribute_DefiningClass(), this.getClass_(), this
 				.getClass_Attributes(), "definingClass", null, 0, 1,
 				Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAttribute_Visibility(), this.getVisibilityType(),
 				"visibility", null, 0, 1, Attribute.class, !IS_TRANSIENT,
@@ -927,7 +927,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		initEReference(getMethod_DefiningClass(), this.getClass_(), this
 				.getClass_Methods(), "definingClass", null, 0, 1, Method.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 		initEAttribute(getMethod_ReturnType(), theEcorePackage.getEString(),
 				"returnType", null, 0, 1, Method.class, !IS_TRANSIENT,
@@ -939,7 +939,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 				IS_ORDERED);
 		initEReference(getMethod_Arguments(), this.getMethodArgument(), null,
 				"arguments", null, 0, -1, Method.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMethod_Properties(), theEcorePackage.getEString(),
 				"properties", null, 0, 1, Method.class, !IS_TRANSIENT,

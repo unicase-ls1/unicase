@@ -368,7 +368,7 @@ public class ComponentPackageImpl extends EPackageImpl implements
 				.getComponentService(), this
 				.getComponentService_OfferingComponent(), "offeredServices",
 				null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getComponent_OfferedServices().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
@@ -388,7 +388,7 @@ public class ComponentPackageImpl extends EPackageImpl implements
 				.getComponent(), this.getComponent_OfferedServices(),
 				"offeringComponent", null, 0, 1, ComponentService.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 		getComponentService_OfferingComponent().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());

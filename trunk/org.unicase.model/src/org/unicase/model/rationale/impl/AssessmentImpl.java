@@ -88,6 +88,17 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Proposal basicGetProposal() {
+		if (eContainerFeatureID != RationalePackage.ASSESSMENT__PROPOSAL)
+			return null;
+		return (Proposal) eInternalContainer();
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -276,7 +287,9 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case RationalePackage.ASSESSMENT__PROPOSAL:
-			return getProposal();
+			if (resolve)
+				return getProposal();
+			return basicGetProposal();
 		case RationalePackage.ASSESSMENT__CRITERION:
 			if (resolve)
 				return getCriterion();
@@ -335,7 +348,7 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case RationalePackage.ASSESSMENT__PROPOSAL:
-			return getProposal() != null;
+			return basicGetProposal() != null;
 		case RationalePackage.ASSESSMENT__CRITERION:
 			return criterion != null;
 		case RationalePackage.ASSESSMENT__VALUE:

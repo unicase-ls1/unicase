@@ -172,6 +172,17 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WorkPackage basicGetContainingWorkpackage() {
+		if (eContainerFeatureID != BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE)
+			return null;
+		return (WorkPackage) eInternalContainer();
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -601,7 +612,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE:
-			return getContainingWorkpackage();
+			if (resolve)
+				return getContainingWorkpackage();
+			return basicGetContainingWorkpackage();
 		case BugPackage.BUG_REPORT__ASSOCIATED_CHANGE_PACKAGES:
 			return getAssociatedChangePackages();
 		case BugPackage.BUG_REPORT__PREDECESSORS:
@@ -728,7 +741,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE:
-			return getContainingWorkpackage() != null;
+			return basicGetContainingWorkpackage() != null;
 		case BugPackage.BUG_REPORT__ASSOCIATED_CHANGE_PACKAGES:
 			return associatedChangePackages != null
 					&& !associatedChangePackages.isEmpty();

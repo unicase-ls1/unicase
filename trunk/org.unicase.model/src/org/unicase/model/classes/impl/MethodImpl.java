@@ -248,6 +248,17 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public org.unicase.model.classes.Class basicGetDefiningClass() {
+		if (eContainerFeatureID != ClassesPackage.METHOD__DEFINING_CLASS)
+			return null;
+		return (org.unicase.model.classes.Class) eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NotificationChain basicSetDefiningClass(
 			org.unicase.model.classes.Class newDefiningClass,
 			NotificationChain msgs) {
@@ -368,7 +379,7 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	 */
 	public EList<MethodArgument> getArguments() {
 		if (arguments == null) {
-			arguments = new EObjectContainmentEList<MethodArgument>(
+			arguments = new EObjectContainmentEList.Resolving<MethodArgument>(
 					MethodArgument.class, this,
 					ClassesPackage.METHOD__ARGUMENTS);
 		}
@@ -441,7 +452,9 @@ public class MethodImpl extends ModelElementImpl implements Method {
 		case ClassesPackage.METHOD__SCOPE:
 			return getScope();
 		case ClassesPackage.METHOD__DEFINING_CLASS:
-			return getDefiningClass();
+			if (resolve)
+				return getDefiningClass();
+			return basicGetDefiningClass();
 		case ClassesPackage.METHOD__RETURN_TYPE:
 			return getReturnType();
 		case ClassesPackage.METHOD__SIGNATURE:
@@ -538,7 +551,7 @@ public class MethodImpl extends ModelElementImpl implements Method {
 		case ClassesPackage.METHOD__SCOPE:
 			return scope != SCOPE_EDEFAULT;
 		case ClassesPackage.METHOD__DEFINING_CLASS:
-			return getDefiningClass() != null;
+			return basicGetDefiningClass() != null;
 		case ClassesPackage.METHOD__RETURN_TYPE:
 			return RETURN_TYPE_EDEFAULT == null ? returnType != null
 					: !RETURN_TYPE_EDEFAULT.equals(returnType);

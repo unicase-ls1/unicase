@@ -131,7 +131,7 @@ public interface FunctionalRequirement extends ModelElement {
 	 * @return the value of the '<em>Refining Requirements</em>' containment reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_RefiningRequirements()
 	 * @see org.unicase.model.requirement.FunctionalRequirement#getRefinedRequirement
-	 * @model opposite="refinedRequirement" containment="true" keys="identifier"
+	 * @model opposite="refinedRequirement" containment="true" resolveProxies="true" keys="identifier"
 	 * @generated
 	 */
 	EList<FunctionalRequirement> getRefiningRequirements();

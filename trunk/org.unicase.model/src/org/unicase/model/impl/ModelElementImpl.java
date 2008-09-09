@@ -198,7 +198,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	 */
 	public EList<ReaderInfo> getReaderInfos() {
 		if (readerInfos == null) {
-			readerInfos = new EObjectContainmentEList<ReaderInfo>(
+			readerInfos = new EObjectContainmentEList.Resolving<ReaderInfo>(
 					ReaderInfo.class, this,
 					ModelPackage.MODEL_ELEMENT__READER_INFOS);
 		}
@@ -241,6 +241,17 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		if (eContainerFeatureID != ModelPackage.MODEL_ELEMENT__LEAF_SECTION)
 			return null;
 		return (LeafSection) eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LeafSection basicGetLeafSection() {
+		if (eContainerFeatureID != ModelPackage.MODEL_ELEMENT__LEAF_SECTION)
+			return null;
+		return (LeafSection) eInternalContainer();
 	}
 
 	/**
@@ -445,7 +456,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
 			return getIncomingDocumentReferences();
 		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
-			return getLeafSection();
+			if (resolve)
+				return getLeafSection();
+			return basicGetLeafSection();
 		case ModelPackage.MODEL_ELEMENT__STATE:
 			return getState();
 		}
@@ -538,7 +551,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 			return incomingDocumentReferences != null
 					&& !incomingDocumentReferences.isEmpty();
 		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
-			return getLeafSection() != null;
+			return basicGetLeafSection() != null;
 		case ModelPackage.MODEL_ELEMENT__STATE:
 			return STATE_EDEFAULT == null ? getState() != null
 					: !STATE_EDEFAULT.equals(getState());

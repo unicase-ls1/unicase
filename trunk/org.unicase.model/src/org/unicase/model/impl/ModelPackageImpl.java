@@ -538,7 +538,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEReference(getModelElement_ReaderInfos(), this.getReaderInfo(),
 				null, "readerInfos", null, 0, -1, ModelElement.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 		getModelElement_ReaderInfos().getEKeys().add(
 				this.getIdentifiableElement_Identifier());
@@ -562,7 +562,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 				.getLeafSection(), theDocumentPackage
 				.getLeafSection_ModelElements(), "leafSection", null, 0, 1,
 				ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 		getModelElement_LeafSection().getEKeys().add(
 				this.getIdentifiableElement_Identifier());
@@ -590,7 +590,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEReference(getProject_ModelElements(), this.getModelElement(),
 				null, "modelElements", null, 0, -1, Project.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				!IS_ORDERED);
 		getProject_ModelElements().getEKeys().add(
 				this.getIdentifiableElement_Identifier());

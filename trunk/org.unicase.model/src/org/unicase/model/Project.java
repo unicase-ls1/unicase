@@ -41,7 +41,7 @@ public interface Project extends EObject, IAdaptable {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Model Elements</em>' containment reference list.
 	 * @see org.unicase.model.ModelPackage#getProject_ModelElements()
-	 * @model containment="true" keys="identifier" ordered="false"
+	 * @model containment="true" resolveProxies="true" keys="identifier" ordered="false"
 	 * @generated
 	 */
 	EList<ModelElement> getModelElements();

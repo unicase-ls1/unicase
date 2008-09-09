@@ -37,7 +37,7 @@ public interface CompositeSection extends Section {
 	 * @return the value of the '<em>Subsections</em>' containment reference list.
 	 * @see org.unicase.model.document.DocumentPackage#getCompositeSection_Subsections()
 	 * @see org.unicase.model.document.Section#getParent
-	 * @model opposite="parent" containment="true" keys="identifier"
+	 * @model opposite="parent" containment="true" resolveProxies="true" keys="identifier"
 	 * @generated
 	 */
 	EList<Section> getSubsections();
