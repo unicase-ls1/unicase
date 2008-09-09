@@ -49,7 +49,7 @@ public interface Workspace extends EObject, IAdaptable {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Project Spaces</em>' containment reference list.
 	 * @see org.unicase.workspace.WorkspacePackage#getWorkspace_ProjectSpaces()
-	 * @model containment="true" keys="identifier"
+	 * @model containment="true" resolveProxies="true" keys="identifier"
 	 * @generated
 	 */
 	EList<ProjectSpace> getProjectSpaces();
@@ -65,7 +65,7 @@ public interface Workspace extends EObject, IAdaptable {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Server Infos</em>' containment reference list.
 	 * @see org.unicase.workspace.WorkspacePackage#getWorkspace_ServerInfos()
-	 * @model containment="true"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<ServerInfo> getServerInfos();
@@ -81,7 +81,7 @@ public interface Workspace extends EObject, IAdaptable {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Usersessions</em>' containment reference list.
 	 * @see org.unicase.workspace.WorkspacePackage#getWorkspace_Usersessions()
-	 * @model containment="true"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<Usersession> getUsersessions();
@@ -137,13 +137,6 @@ public interface Workspace extends EObject, IAdaptable {
 	void save();
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @model kind="operation"
-	 * @generated
-	 */
-	boolean isDirty();
-
-	/**
 	 * Set the workspace connection manager.
 	 * 
 	 * @param connectionManager
@@ -187,10 +180,4 @@ public interface Workspace extends EObject, IAdaptable {
 	void exportProject(ProjectSpace projectSpace, String absoluteFileName)
 			throws IOException;
 
-	/**
-	 * Create a resource for the project space and add it to workspace.
-	 * 
-	 * @param projectSpace the project space to set up
-	 */
-	void setupProjectSpace(ProjectSpace projectSpace);
 } // Workspace

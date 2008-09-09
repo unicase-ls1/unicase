@@ -138,7 +138,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 */
 	public EList<ProjectSpace> getProjectSpaces() {
 		if (projectSpaces == null) {
-			projectSpaces = new EObjectContainmentEList<ProjectSpace>(
+			projectSpaces = new EObjectContainmentEList.Resolving<ProjectSpace>(
 					ProjectSpace.class, this,
 					WorkspacePackage.WORKSPACE__PROJECT_SPACES);
 		}
@@ -151,7 +151,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 */
 	public EList<ServerInfo> getServerInfos() {
 		if (serverInfos == null) {
-			serverInfos = new EObjectContainmentEList<ServerInfo>(
+			serverInfos = new EObjectContainmentEList.Resolving<ServerInfo>(
 					ServerInfo.class, this,
 					WorkspacePackage.WORKSPACE__SERVER_INFOS);
 		}
@@ -164,7 +164,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 */
 	public EList<Usersession> getUsersessions() {
 		if (usersessions == null) {
-			usersessions = new EObjectContainmentEList<Usersession>(
+			usersessions = new EObjectContainmentEList.Resolving<Usersession>(
 					Usersession.class, this,
 					WorkspacePackage.WORKSPACE__USERSESSIONS);
 		}
@@ -244,36 +244,14 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		projectSpace.setLastUpdated(new Date());
 		projectSpace.setUsersession(usersession);
 		projectSpace.setProject(project);
+		projectSpace.setResourceCount(0);
 
-		setupProjectSpace(projectSpace);
-
-		return projectSpace;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.workspace.Workspace#setupProjectSpace(org.unicase.workspace.ProjectSpace)
-	 * 
-	 * @generated NOT
-	 */
-	public void setupProjectSpace(ProjectSpace projectSpace) {
-
-		String fileName = Configuration.getWorkspaceDirectory() + "ps-"
-				+ projectSpace.getIdentifier();
-		URI fileURI = URI.createFileURI(fileName);
-		Resource resource = this.workspaceResourceSet.createResource(fileURI);
-
-		resource.getContents().add(projectSpace);
-		projectSpace.init();
-
-		// MK: possible performance hit
-		resource.setTrackingModification(true);
-
-		projectSpace.save();
+		projectSpace.initResources(this.workspaceResourceSet);
 
 		getProjectSpaces().add(projectSpace);
 		this.save();
+
+		return projectSpace;
 	}
 
 	/**
@@ -286,9 +264,9 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 			this.eResource().save(Configuration.getResourceSaveOptions());
 		} catch (IOException e) {
 			// MK Auto-generated catch block
-			e.printStackTrace();
-		}
+			// FIXME OW MK: also insert code for dangling href handling here
 
+		}
 	}
 
 	/**
@@ -478,6 +456,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		}
 
 		Project project = (Project) directContents.get(0);
+		resource.getContents().remove(project);
 
 		ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE
 				.createProjectSpace();
@@ -486,7 +465,10 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 				.lastIndexOf(File.separatorChar) + 1));
 		projectSpace.setProjectDescription("Imported from " + absoluteFileName);
 
-		setupProjectSpace(projectSpace);
+		projectSpace.initResources(this.workspaceResourceSet);
+
+		getProjectSpaces().add(projectSpace);
+		this.save();
 
 		return projectSpace;
 	}
@@ -500,7 +482,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource resource = resourceSet.createResource(URI
 				.createFileURI(absoluteFileName));
-		Project project = projectSpace.getProject();
+		Project project = (Project) EcoreUtil.copy(projectSpace.getProject());
 
 		//preserve old containment
 		EReference containmentFeature = project.eContainmentFeature();

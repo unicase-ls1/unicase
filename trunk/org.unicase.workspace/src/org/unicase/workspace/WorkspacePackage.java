@@ -345,12 +345,21 @@ public interface WorkspacePackage extends EPackage {
 	int PROJECT_SPACE__BASE_VERSION = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
+	 * The feature id for the '<em><b>Resource Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_SPACE__RESOURCE_COUNT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 8;
+
+	/**
 	 * The number of structural features of the '<em>Project Space</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE_FEATURE_COUNT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 8;
+	int PROJECT_SPACE_FEATURE_COUNT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * Returns the meta object for class '
@@ -664,6 +673,17 @@ public interface WorkspacePackage extends EPackage {
 	EReference getProjectSpace_BaseVersion();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.workspace.ProjectSpace#getResourceCount <em>Resource Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Resource Count</em>'.
+	 * @see org.unicase.workspace.ProjectSpace#getResourceCount()
+	 * @see #getProjectSpace()
+	 * @generated
+	 */
+	EAttribute getProjectSpace_ResourceCount();
+
+	/**
 	 * Returns the factory that creates the instances of the model. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -925,6 +945,15 @@ public interface WorkspacePackage extends EPackage {
 		 */
 		EReference PROJECT_SPACE__BASE_VERSION = eINSTANCE
 				.getProjectSpace_BaseVersion();
+
+		/**
+		 * The meta object literal for the '<em><b>Resource Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROJECT_SPACE__RESOURCE_COUNT = eINSTANCE
+				.getProjectSpace_ResourceCount();
 
 	}
 

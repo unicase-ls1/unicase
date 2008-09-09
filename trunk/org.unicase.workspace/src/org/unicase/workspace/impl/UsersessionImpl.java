@@ -408,6 +408,38 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 * @generated
 	 */
 	public ACUser getACUser() {
+		if (acUser != null && acUser.eIsProxy()) {
+			InternalEObject oldACUser = (InternalEObject) acUser;
+			acUser = (ACUser) eResolveProxy(oldACUser);
+			if (acUser != oldACUser) {
+				InternalEObject newACUser = (InternalEObject) acUser;
+				NotificationChain msgs = oldACUser.eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+								- WorkspacePackage.USERSESSION__AC_USER, null,
+						null);
+				if (newACUser.eInternalContainer() == null) {
+					msgs = newACUser
+							.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+									- WorkspacePackage.USERSESSION__AC_USER,
+									null, msgs);
+				}
+				if (msgs != null)
+					msgs.dispatch();
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							WorkspacePackage.USERSESSION__AC_USER, oldACUser,
+							acUser));
+			}
+		}
+		return acUser;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ACUser basicGetACUser() {
 		return acUser;
 	}
 
@@ -564,7 +596,9 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 		case WorkspacePackage.USERSESSION__SAVE_PASSWORD:
 			return isSavePassword() ? Boolean.TRUE : Boolean.FALSE;
 		case WorkspacePackage.USERSESSION__AC_USER:
-			return getACUser();
+			if (resolve)
+				return getACUser();
+			return basicGetACUser();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -731,5 +765,5 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 		//OW: cache admin broker??
 		return new AdminBrokerImpl(getServerInfo(), getSessionId());
 	}
-	
+
 } // UsersessionImpl

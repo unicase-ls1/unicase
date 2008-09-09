@@ -364,6 +364,15 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProjectSpace_ResourceCount() {
+		return (EAttribute) projectSpaceEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -422,6 +431,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 		createEReference(projectSpaceEClass, PROJECT_SPACE__USERSESSION);
 		createEAttribute(projectSpaceEClass, PROJECT_SPACE__LAST_UPDATED);
 		createEReference(projectSpaceEClass, PROJECT_SPACE__BASE_VERSION);
+		createEAttribute(projectSpaceEClass, PROJECT_SPACE__RESOURCE_COUNT);
 	}
 
 	/**
@@ -473,18 +483,18 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 		initEReference(getWorkspace_ProjectSpaces(), this.getProjectSpace(),
 				null, "projectSpaces", null, 0, -1, Workspace.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 		getWorkspace_ProjectSpaces().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getWorkspace_ServerInfos(), this.getServerInfo(), null,
 				"serverInfos", null, 0, -1, Workspace.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getWorkspace_Usersessions(), this.getUsersession(),
 				null, "usersessions", null, 0, -1, Workspace.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 		initEReference(getWorkspace_ActiveProjectSpace(), this
 				.getProjectSpace(), null, "activeProjectSpace", null, 0, 1,
@@ -503,9 +513,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 
 		addEOperation(workspaceEClass, null, "save", 0, 1, IS_UNIQUE,
 				IS_ORDERED);
-
-		addEOperation(workspaceEClass, ecorePackage.getEBoolean(), "isDirty",
-				0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(serverInfoEClass, ServerInfo.class, "ServerInfo",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -566,7 +573,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 		initEReference(getUsersession_ACUser(), theAccesscontrolPackage
 				.getACUser(), null, "ACUser", null, 0, 1, Usersession.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 
 		addEOperation(usersessionEClass, ecorePackage.getEBoolean(),
@@ -584,12 +591,12 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getProjectSpace_Project(), theModelPackage.getProject(),
 				null, "project", null, 0, 1, ProjectSpace.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProjectSpace_ProjectId(), theEsmodelPackage
 				.getProjectId(), null, "projectId", null, 1, 1,
 				ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getProjectSpace_ProjectName(),
 				ecorePackage.getEString(), "projectName", null, 1, 1,
@@ -602,7 +609,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 		initEReference(getProjectSpace_LocalChanges(), theChangePackage
 				.getChangeDescription(), null, "localChanges", null, 0, 1,
 				ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 		initEReference(getProjectSpace_Usersession(), this.getUsersession(),
 				null, "usersession", null, 0, 1, ProjectSpace.class,
@@ -616,7 +623,11 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 		initEReference(getProjectSpace_BaseVersion(), theVersioningPackage
 				.getPrimaryVersionSpec(), null, "baseVersion", null, 1, 1,
 				ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProjectSpace_ResourceCount(), ecorePackage.getEInt(),
+				"resourceCount", null, 0, 1, ProjectSpace.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 
 		addEOperation(projectSpaceEClass, theVersioningPackage

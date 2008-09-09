@@ -208,7 +208,7 @@ public interface Usersession extends EObject {
 	 * @return the value of the '<em>AC User</em>' containment reference.
 	 * @see #setACUser(ACUser)
 	 * @see org.unicase.workspace.WorkspacePackage#getUsersession_ACUser()
-	 * @model containment="true"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	ACUser getACUser();
