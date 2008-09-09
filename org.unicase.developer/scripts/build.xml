@@ -18,64 +18,30 @@
 
 	<osfamily property="os.family" />
 
-	<target name="cleanModelDb" description="deletes and recreates mysql model db">
-
-		<input message="All data in model DB is going to be deleted !!! Continue (y/n)?" validargs="y,n" addproperty="do.delete" defaultvalue="y" />
-		<condition property="do.abort">
-			<equals arg1="n" arg2="${do.delete}" />
-		</condition>
-		<fail if="do.abort">Cleaning DB aborted by user.</fail>
-
-		<if>
-			<equals arg1="${os.family}" arg2="windows" />
-			<then>
-				<echo message="Running on Windows OS" />
-				<echo message="Not implemented yet! Never tested, fix me please!" />
-				<exec dir="." executable="C:\Programme\MySQL\mysqladmin.exe" spawn="false">
-					<arg line="--user=root --password=pass -f drop model" />
-				</exec>
-				<exec dir="." executable="C:\Programme\MySQL\mysqladmin.exe" spawn="false">
-					<arg line="--user=root --password=pass -f create model" />
-				</exec>
-			</then>
-			<elseif>
-				<equals arg1="${os.name}" arg2="Mac OS X" />
-				<then>
-					<echo message="Deleting database model... (Running on Mac OS X)" />
-					<exec dir="/usr/local/mysql/bin" executable="/usr/local/mysql/bin/mysqladmin" spawn="false">
-						<arg line="--user=${db_user} --password=${db_pass} -f drop model" />
-					</exec>
-					<echo message="Recreating database model..." />
-					<exec dir="/usr/local/mysql/bin" executable="/usr/local/mysql/bin/mysqladmin" spawn="false">
-						<arg line="--user=${db_user} --password=${db_pass} -f create model" />
-					</exec>
-				</then>
-			</elseif>
-
-			<else>
-				<echo message="Running on ${os.family} OS" />
-				<echo message="Not implemented yet!" />
-			</else>
-		</if>
-
-	</target>
-
-	<target name="cleanWorkspace" description="delete the unicase workspace">
+	<target name="cleanWorkspace" description="delete the unicase workspace and all its projectspaces">
 		<echo message="Deleting workspace..." />
 		<delete file="${unicaseWorkspaceDir}/workspace" />
-		<delete>
-			<fileset dir="${unicaseWorkspaceDir}" includes="**/ps-*" />
+		<delete includeemptydirs="yes">
+			<fileset dir="${unicaseWorkspaceDir}" defaultexcludes="no">
+				<include name="**/ps-*/**" />
+			</fileset>
+		</delete>
+
+	</target>
+
+	<target name="cleanServer" description="delete the unicase serverspace">
+		<echo message="Deleting serverspace..." />
+		<delete file="${unicaseWorkspaceDir}/emfstore/storage" />
+		<delete includeemptydirs="yes">
+			<fileset dir="${unicaseWorkspaceDir}/emfstore" defaultexcludes="no">
+				<include name="**/project-*/**" />
+			</fileset>
 		</delete>
 	</target>
-	
-	<target name="cleanServer" description="delete the unicase serverspace">
-			<echo message="Deleting serverspace..." />
-			<delete file="${unicaseWorkspaceDir}/emfstore/storage" />
-		</target>
 
 
 	<target name="cleanAllUnicaseData" description="clean up workspace and db">
-		<ant target="cleanModelDb" />
 		<ant target="cleanWorkspace" />
+		<ant target="cleanServer" />
 	</target>
 </project>
