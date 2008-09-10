@@ -309,6 +309,7 @@ public class ModelDiagramEditor extends DiagramDocumentEditor implements
 
 	@Override
 	public void doSave(IProgressMonitor progressMonitor) {
+		//FIXME JH: can we remove this method
 		getEditingDomain().getCommandStack().execute(
 				new RecordingCommand(getEditingDomain()) {
 
