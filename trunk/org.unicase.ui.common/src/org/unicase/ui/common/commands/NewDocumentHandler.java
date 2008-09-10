@@ -45,7 +45,6 @@ public class NewDocumentHandler extends AbstractHandler {
 						.createCompositeSection();
 				compositeSection.setName("new Document");
 				projectSpace.getProject().addModelElement(compositeSection);
-				projectSpace.save();
 			}
 		});
 

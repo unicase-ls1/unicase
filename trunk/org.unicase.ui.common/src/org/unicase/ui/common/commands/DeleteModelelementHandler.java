@@ -97,7 +97,6 @@ public class DeleteModelelementHandler extends AbstractHandler {
 					ProjectSpace projectSpace = WorkspaceManager
 							.getProjectSpace(me);
 					EcoreUtil.delete(me, true);
-					projectSpace.save();
 				}
 			}
 		});
