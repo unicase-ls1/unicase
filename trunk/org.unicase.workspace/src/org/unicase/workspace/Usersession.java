@@ -10,9 +10,12 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
+import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 
@@ -289,6 +292,19 @@ public interface Usersession extends EObject {
 	 */
 	ProjectInfo createProject(String name, String description)
 			throws AccessControlException, EmfStoreException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Resolve a version spec to a primary version spec.
+	 * @param versionSpec the spec to resolve
+	 * @return the primary version spec
+	 * <!-- end-user-doc -->
+	 * @throws EmfStoreException if resolving fails
+	 * @model
+	 * @generated NOT
+	 */
+	PrimaryVersionSpec resolveVersionSpec(VersionSpec versionSpec,
+			ProjectId projectId) throws EmfStoreException;
 
 	/**
 	 * Returns a {@link AdminBroker} related to the user session.

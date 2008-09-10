@@ -17,10 +17,13 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
+import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
@@ -764,6 +767,14 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	public AdminBroker getAdminBroker() throws ConnectionException {
 		//OW: cache admin broker??
 		return new AdminBrokerImpl(getServerInfo(), getSessionId());
+	}
+
+	public PrimaryVersionSpec resolveVersionSpec(VersionSpec versionSpec,
+			ProjectId projectId) throws EmfStoreException {
+		ConnectionManager connectionManager = WorkspaceManager.getInstance()
+				.getConnectionManager();
+		return connectionManager.resolveVersionSpec(getSessionId(), projectId,
+				versionSpec);
 	}
 
 } // UsersessionImpl
