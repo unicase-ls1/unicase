@@ -74,7 +74,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 */
 	@Override
 	public void doSave(IProgressMonitor monitor) {
-
+		//FIXME JH: can we remove this method?
 		monitor.beginTask("Saving...", 1);
 		editingDomain.getCommandStack().execute(
 				new RecordingCommand(editingDomain) {
