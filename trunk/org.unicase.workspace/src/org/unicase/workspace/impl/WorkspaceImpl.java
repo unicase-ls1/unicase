@@ -229,10 +229,13 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 		// get Project from server
 		final Project project = this.connectionManager.getProject(usersession
-				.getSessionId(), projectInfo.getProjectId(), projectInfo
+				.getSessionId(), projectInfo.getProjectId(), projectInfoCopy
 				.getVersion());
-
-		final PrimaryVersionSpec primaryVersionSpec = projectInfo.getVersion();
+		if (project==null) {
+			throw new EmfStoreException("Server returned a null project!");
+		}
+		
+		final PrimaryVersionSpec primaryVersionSpec = projectInfoCopy.getVersion();
 
 		// init project space
 		ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE
