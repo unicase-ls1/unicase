@@ -114,9 +114,24 @@
               </iterate>
            </visibleWhen>
         </command>
+        <command
+              commandId="org.unicase.workspace.edit.deleteProject"
+              icon="icons/delete.gif"
+              label="Delete Project"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <iterate
+                    ifEmpty="false">
+                 <instanceof
+                       value="org.unicase.workspace.ProjectSpace">
+                 </instanceof>
+              </iterate>
+           </visibleWhen>
+        </command>
         <menu
               icon="icons/full/obj16/createrepos.gif"
-              label="Other Repository Actions">
+              label="Other...">
            <command
                  commandId="org.unicase.workspace.edit.shareProject"
                  icon="icons/full/obj16/relocate.gif"
@@ -152,21 +167,6 @@
                  commandId="org.unicase.workspace.edit.exportProject"
                  icon="icons/full/obj16/export.gif"
                  label="Export Project"
-                 style="push">
-              <visibleWhen
-                    checkEnabled="false">
-                 <iterate
-                       ifEmpty="false">
-                    <instanceof
-                          value="org.unicase.workspace.ProjectSpace">
-                    </instanceof>
-                 </iterate>
-              </visibleWhen>
-           </command>
-           <command
-                 commandId="org.unicase.workspace.edit.deleteProject"
-                 icon="icons/delete.gif"
-                 label="Delete Project"
                  style="push">
               <visibleWhen
                     checkEnabled="false">
