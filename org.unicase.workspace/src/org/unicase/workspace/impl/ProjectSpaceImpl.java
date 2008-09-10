@@ -15,7 +15,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -46,6 +45,7 @@ import org.unicase.model.Project;
 import org.unicase.model.impl.IdentifiableElementImpl;
 import org.unicase.model.util.ModelElementChangeNotifier;
 import org.unicase.model.util.ModelElementChangeObserver;
+import org.unicase.model.util.ModelValidationHelper;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
@@ -777,9 +777,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		// save starts recording ...
 		// startChangeRecording();
 
-		System.out.println("Total time for commit: "
-				+ (System.currentTimeMillis() - currentTimeMillis));
-
 		return newBaseVersion;
 	}
 
@@ -880,19 +877,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 */
 	public void save() {
 		stopChangeRecording();
-		try {
-			// implement proper save or remove method
-			this.eResource().save(Configuration.getResourceSaveOptions());
-		} catch (IOException e) {
-			Throwable cause = e.getCause();
-			if (cause != null && cause instanceof DanglingHREFException) {
-				DanglingHREFException exception = (DanglingHREFException) cause;
-				Diagnostic diagnostic = EcoreUtil.computeDiagnostic(this
-						.eResource(), false);
-				// FIXME MK/OW: implement some fix for dangling reference here
-
-			}
-		}
+		saveResources();
 		startChangeRecording();
 	}
 
@@ -967,6 +952,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			throws EmfStoreException {
 		ConnectionManager connectionManager = WorkspaceManager.getInstance()
 				.getConnectionManager();
+		//FIXME OW why head version spec
+		//FIXME use resolve version spec of usersession
 		return connectionManager.resolveVersionSpec(getUsersession()
 				.getSessionId(), getProjectId(), VersioningFactory.eINSTANCE
 				.createHeadVersionSpec());
@@ -1247,19 +1234,32 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			for (EObject newElement : newValues) {
 				addToResource(newElement, modelElement);
 			}
-		} else {
-			//MK: can be optimized but is ok at the moment
-			EList<Resource> resources = this.eResource().getResourceSet()
-					.getResources();
-			for (Resource resource : resources) {
-				if (resource.isModified()) {
-					try {
-						resource.save(Configuration.getResourceSaveOptions());
-					} catch (IOException e) {
-						//add proper save handling here
+		}
+		saveResources();
+	}
+
+	/**
+	 * Save all resources that are dirty.
+	 */
+	private void saveResources() {
+		EList<Resource> resources = this.eResource().getResourceSet()
+				.getResources();
+		for (Resource resource : resources) {
+			if (resource.isModified()) {
+				try {
+					resource.save(Configuration.getResourceSaveOptions());
+				} catch (IOException e) {
+					Throwable cause = e.getCause();
+					if (cause != null && cause instanceof DanglingHREFException) {
+						boolean foundProblems = ModelValidationHelper
+								.checkAndFixProject(getProject());
+						if (foundProblems) {
+							//FIXME OW MK log problem
+						}
 					}
 
 				}
+
 			}
 		}
 	}
@@ -1274,7 +1274,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 				String oldFileName = Configuration.getWorkspaceDirectory()
 						+ "ps-" + getIdentifier() + File.separatorChar
 						+ (getResourceCount() - 1);
-				if (new File(oldFileName).length() > 100) {
+				//FIXME MK check if file exists
+				if (new File(oldFileName).length() > Configuration
+						.getMaxResourceFileSizeOnExpand()) {
 					String newfileName = Configuration.getWorkspaceDirectory()
 							+ "ps-" + getIdentifier() + File.separatorChar
 							+ getResourceCount();
@@ -1283,19 +1285,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 							.createResource(fileURI);
 					// MK: possibly performance hit
 					resource.setTrackingModification(true);
-
 					setResourceCount(getResourceCount() + 1);
-					// OW MK: Check if object is small (i.e. is not
-					// a big containment tree)
-					resource.getContents().add(eObject);
-					try {
-						resource.save(Configuration.getResourceSaveOptions());
-						oldResource
-								.save(Configuration.getResourceSaveOptions());
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
 				}
 			}
 		});

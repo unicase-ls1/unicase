@@ -98,4 +98,8 @@ public final class Configuration {
 	public static int getMaxMECountPerResource() {
 		return 100;
 	}
+	
+	public static int getMaxResourceFileSizeOnExpand() {
+		return 50000;
+	}
 }
