@@ -282,7 +282,9 @@ public class AccessControlImpl implements AuthenticationControl,
 		checkSession(sessionId);
 		ACUser tmpUser = sessionUserMap.get(sessionId).getRawUser();
 		ACUser user = (ACUser) EcoreUtil.copy(tmpUser);
-		user.getRoles().addAll(getRolesFromGroups(tmpUser));
+		for(Role role: getRolesFromGroups(tmpUser)) {
+			user.getRoles().add((Role) EcoreUtil.copy(role));
+		}
 		return user;
 	}
 	
@@ -292,7 +294,9 @@ public class AccessControlImpl implements AuthenticationControl,
 	public ACUser resolveUser(ACOrgUnitId id) throws AccessControlException {
 		ACUser tmpUser = getUser(id);
 		ACUser user = (ACUser) EcoreUtil.copy(tmpUser);
-		user.getRoles().addAll(getRolesFromGroups(tmpUser));
+		for(Role role: getRolesFromGroups(tmpUser)) {
+			user.getRoles().add((Role) EcoreUtil.copy(role));
+		}
 		return user;
 	}
 }
