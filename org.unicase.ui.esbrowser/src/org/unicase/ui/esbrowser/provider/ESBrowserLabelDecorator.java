@@ -14,7 +14,7 @@ import org.unicase.workspace.ServerInfo;
 /**
  * @see ILightweightLabelDecorator
  */
-public class LoginDecorator implements ILightweightLabelDecorator {
+public class ESBrowserLabelDecorator implements ILightweightLabelDecorator {
 	
 	/**
 	 * {@inheritDoc} Decorates the label of a {@link ServerInfo} object

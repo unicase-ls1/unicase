@@ -11,10 +11,7 @@ import java.util.ArrayList;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.DeleteCommand;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.Action;
@@ -24,7 +21,6 @@ import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
@@ -39,15 +35,16 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.emfstore.esmodel.ProjectInfo;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.esbrowser.Activator;
 import org.unicase.ui.esbrowser.dialogs.admin.ManageOrgUnitsDialog;
 import org.unicase.ui.esbrowser.provider.ESBrowserContentProvider;
+import org.unicase.ui.esbrowser.provider.ESBrowserLabelProvider;
 import org.unicase.workspace.AdminBroker;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
@@ -74,6 +71,7 @@ public class ESBrowserView extends ViewPart {
 	
 	private ESBrowserContentProvider contentProvider;
 	private Action deleteAction;
+	private Action projectProperties;
 
 
 
@@ -101,8 +99,16 @@ public class ESBrowserView extends ViewPart {
 		
 		contentProvider = new ESBrowserContentProvider(session);
 		viewer.setContentProvider(contentProvider);
-		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		viewer.setLabelProvider(new DecoratingLabelProvider(adapterFactoryLabelProvider, ((DecoratingLabelProvider) WorkbenchLabelProvider.getDecoratingWorkbenchLabelProvider()).getLabelDecorator()));
+//		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+//		viewer.setLabelProvider(new DecoratingLabelProvider(adapterFactoryLabelProvider, ((DecoratingLabelProvider) WorkbenchLabelProvider.getDecoratingWorkbenchLabelProvider()).getLabelDecorator()));
+
+		
+//		viewer.setLabelProvider(new DecoratingStyledCellLabelProvider(
+//				new ESBrowserLabelProvider(),
+//				((DecoratingLabelProvider) WorkbenchLabelProvider.getDecoratingWorkbenchLabelProvider()).getLabelDecorator(),
+//				null));
+		
+		viewer.setLabelProvider(new ESBrowserLabelProvider());
 
 		viewer.setSorter(new ViewerSorter());
 		viewer.setInput(getViewSite());
@@ -169,6 +175,7 @@ public class ESBrowserView extends ViewPart {
 		} else if (obj instanceof ProjectInfo) {
 			manager.add(new Separator("Userspace"));
 			manager.add(projectCheckout);
+			manager.add(projectProperties);
 			try{
 				accessControl.checkProjectAdminAccess(((ProjectInfo)obj).getProjectId());
 				manager.add(new Separator("Administrative"));
@@ -177,6 +184,8 @@ public class ESBrowserView extends ViewPart {
 				manager.add(manageOrgUnits);
 			}catch(EmfStoreException e){
 				//
+			}catch(NullPointerException en){
+				// no AccessControlHelper as the user is not logged in
 			}
 		}
 	}
@@ -275,7 +284,7 @@ public class ESBrowserView extends ViewPart {
 				dialog.open();
 			}
 		};
-		serverProperties.setText("Server properties");
+		serverProperties.setText("Edit");
 		serverProperties.setToolTipText("Click to modify the server properties");
 		serverProperties.setImageDescriptor(Activator.getImageDescriptor("icons/serverEdit.png"));
 
@@ -340,6 +349,24 @@ public class ESBrowserView extends ViewPart {
 		};
 		deleteAction.setText("Delete");
 		deleteAction.setImageDescriptor(org.unicase.ui.common.Activator.getImageDescriptor("icons/delete.gif"));
+		
+		projectProperties = new Action(){
+			public void run() {
+				ISelection selection = viewer.getSelection();
+				ProjectInfo projectInfo = ((ProjectInfo) ((IStructuredSelection) selection).getFirstElement());
+				Usersession session = contentProvider.getProjectServerMap().get(projectInfo).getLastUsersession();
+				int revision;
+				try {
+					revision = session.resolveVersionSpec(VersioningFactory.eINSTANCE.createHeadVersionSpec(), projectInfo.getProjectId()).getIdentifier();
+					MessageDialog.openInformation(Display.getCurrent().getActiveShell(), "Project information", "Current revision: "+revision);
+				} catch (EmfStoreException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		};
+		projectProperties.setText("Properties");
+		projectProperties.setImageDescriptor(Activator.getImageDescriptor("icons/info.png"));
 
 
 	}
