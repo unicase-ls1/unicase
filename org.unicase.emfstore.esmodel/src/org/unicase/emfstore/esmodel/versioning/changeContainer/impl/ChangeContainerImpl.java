@@ -9,6 +9,9 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
@@ -34,18 +37,23 @@ import org.unicase.model.Project;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.changeContainer.impl.ChangeContainerImpl#getForwardDelta <em>Forward Delta</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.changeContainer.impl.ChangeContainerImpl#getBackwardDelta <em>Backward Delta</em>}</li>
+ * <li>
+ * {@link org.unicase.emfstore.esmodel.versioning.changeContainer.impl.ChangeContainerImpl#getForwardDelta
+ * <em>Forward Delta</em>}</li>
+ * <li>
+ * {@link org.unicase.emfstore.esmodel.versioning.changeContainer.impl.ChangeContainerImpl#getBackwardDelta
+ * <em>Backward Delta</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ChangeContainerImpl extends EObjectImpl implements ChangeContainer {
 	/**
-	 * The default value of the '{@link #getForwardDelta() <em>Forward Delta</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getForwardDelta()
+	 * <em>Forward Delta</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getForwardDelta()
 	 * @generated
 	 * @ordered
@@ -53,9 +61,10 @@ public class ChangeContainerImpl extends EObjectImpl implements ChangeContainer 
 	protected static final String FORWARD_DELTA_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getForwardDelta() <em>Forward Delta</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getForwardDelta()
+	 * <em>Forward Delta</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getForwardDelta()
 	 * @generated
 	 * @ordered
@@ -63,9 +72,10 @@ public class ChangeContainerImpl extends EObjectImpl implements ChangeContainer 
 	protected String forwardDelta = FORWARD_DELTA_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getBackwardDelta() <em>Backward Delta</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getBackwardDelta()
+	 * <em>Backward Delta</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getBackwardDelta()
 	 * @generated
 	 * @ordered
@@ -73,9 +83,10 @@ public class ChangeContainerImpl extends EObjectImpl implements ChangeContainer 
 	protected static final String BACKWARD_DELTA_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getBackwardDelta() <em>Backward Delta</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getBackwardDelta()
+	 * <em>Backward Delta</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getBackwardDelta()
 	 * @generated
 	 * @ordered
@@ -84,6 +95,7 @@ public class ChangeContainerImpl extends EObjectImpl implements ChangeContainer 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ChangeContainerImpl() {
@@ -92,6 +104,7 @@ public class ChangeContainerImpl extends EObjectImpl implements ChangeContainer 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -101,6 +114,7 @@ public class ChangeContainerImpl extends EObjectImpl implements ChangeContainer 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getForwardDelta() {
@@ -109,6 +123,7 @@ public class ChangeContainerImpl extends EObjectImpl implements ChangeContainer 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setForwardDelta(String newForwardDelta) {
@@ -122,6 +137,7 @@ public class ChangeContainerImpl extends EObjectImpl implements ChangeContainer 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getBackwardDelta() {
@@ -130,6 +146,7 @@ public class ChangeContainerImpl extends EObjectImpl implements ChangeContainer 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBackwardDelta(String newBackwardDelta) {
@@ -195,6 +212,7 @@ public class ChangeContainerImpl extends EObjectImpl implements ChangeContainer 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<AbstractOperation> getOperations() {
@@ -223,6 +241,18 @@ public class ChangeContainerImpl extends EObjectImpl implements ChangeContainer 
 		Resource projectResource = resourceSet
 				.createResource(VIRTUAL_PROJECT_URI);
 		projectResource.getContents().add(project);
+
+		// move all model elements to virtual resource
+		Map<EObject, Resource> touchedMEResourceMap = new HashMap<EObject, Resource>();
+		
+		for (EObject eObject : project.getAllModelElements()) {
+			// preserve old resource
+			Resource resource = eObject.eResource();
+			touchedMEResourceMap.put(eObject, resource);
+			// remove from its resource
+			resource.getContents().remove(eObject);
+		}
+		
 		Resource changeDescriptionResource = resourceSet
 				.createResource(VIRTUAL_CHANGEDESCRIPTION_URI);
 		changeDescriptionResource.getContents().add(
@@ -254,10 +284,15 @@ public class ChangeContainerImpl extends EObjectImpl implements ChangeContainer 
 		if (oldContainer != null) {
 			oldContainer.eSet(containmentFeature, project);
 		}
+		// reintegrate model elements into old resources
+		for (EObject eObject : touchedMEResourceMap.keySet()) {
+			touchedMEResourceMap.get(eObject).getContents().add(eObject);
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -273,6 +308,7 @@ public class ChangeContainerImpl extends EObjectImpl implements ChangeContainer 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -290,6 +326,7 @@ public class ChangeContainerImpl extends EObjectImpl implements ChangeContainer 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -307,6 +344,7 @@ public class ChangeContainerImpl extends EObjectImpl implements ChangeContainer 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -324,6 +362,7 @@ public class ChangeContainerImpl extends EObjectImpl implements ChangeContainer 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
