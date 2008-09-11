@@ -122,7 +122,7 @@ private class ContentProviderRecordingCommand extends RecordingCommand{
 
 		private ServerInfo serverInfo;
 		private Usersession session;
-		private List<ProjectInfo> result;
+		private List<ProjectInfo> result = new ArrayList<ProjectInfo>();
 		
 		
 		public ContentProviderRecordingCommand(Usersession usersession, ServerInfo serverInfo, TransactionalEditingDomain domain){
@@ -142,7 +142,6 @@ private class ContentProviderRecordingCommand extends RecordingCommand{
 				
 				// the login has been canceled and the project list should be cleared since the user is no longer logged in
 				if(dialog.getReturnCode()==LoginDialog.CANCELED){
-					result = new ArrayList<ProjectInfo>();
 					return;
 				}
 				session = dialog.getSession();

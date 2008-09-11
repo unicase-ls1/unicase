@@ -6,6 +6,7 @@
  */
 package org.unicase.ui.common.commands;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +22,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelElement;
 import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -96,7 +98,15 @@ public class DeleteModelelementHandler extends AbstractHandler {
 				if (result == 0) {
 					ProjectSpace projectSpace = WorkspaceManager
 							.getProjectSpace(me);
+					//FIXME MK OW how do we delete model elements
 					EcoreUtil.delete(me, true);
+					me.eResource().getContents().remove(me);
+					try {
+						me.eResource().save(Configuration.getResourceSaveOptions());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			}
 		});
