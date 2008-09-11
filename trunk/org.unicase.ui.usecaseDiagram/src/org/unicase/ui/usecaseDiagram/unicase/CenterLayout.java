@@ -29,26 +29,20 @@ public class CenterLayout extends StackLayout {
 	public CenterLayout(){
 		super();		
 	}
-	public void layout(IFigure container)
-    {   
-		if(clientRect==null){
-			clientRect=container.getClientArea();
+	public void layout(IFigure figure) {
+		
+		Rectangle r=figure.getClientArea();
+		List children = figure.getChildren();
+		IFigure child;
+		Dimension d;
+		for (int i = 0; i < children.size(); i++) {
+			child = (IFigure) children.get(i);
+			d = child.getPreferredSize(r.width, r.height);
+			d.width = Math.min(d.width, r.width);
+			d.height = Math.min(d.height, r.height);
+			Rectangle childRect = new Rectangle(r.x + (r.width - d.width) / 2,
+					r.y + (r.height - d.height) / 2, d.width, d.height);
+			child.setBounds(childRect);
 		}
-        List children = container.getChildren();
-        IFigure child;
-        for (int i = 0; i < children.size(); i++)
-        {
-            child = (IFigure) children.get(i);
-            
-            // Initialize with r dimension
-            Dimension size = child.getPreferredSize(clientRect.width, clientRect.height);
-
-            int x = Math.max(clientRect.x, clientRect.x + clientRect.width / 2 - size.width / 2);
-            int y = Math.max(clientRect.y, clientRect.y + clientRect.height / 2 - size.height / 2);
-            int width = Math.min(clientRect.width, size.width);
-            int height = Math.min(clientRect.height, size.height);            
-
-            child.setBounds(new Rectangle(x, y, width, height));
-        }
-    }	
+	}
 }
