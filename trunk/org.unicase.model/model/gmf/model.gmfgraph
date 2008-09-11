@@ -344,6 +344,20 @@
             style="BOLD"/>
       </actualFigure>
     </descriptors>
+    <descriptors
+        name="ParticipateLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="IncludeLabel"
+          text="\u00ABparticipate\u00BB"/>
+    </descriptors>
+    <descriptors
+        name="InitiateLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="IncludeLabel"
+          text="\u00ABinitiate\u00BB"/>
+    </descriptors>
   </figures>
   <nodes
       name="Class"
@@ -441,6 +455,7 @@
   </labels>
   <labels
       name="InitiateLabel"
+      figure="InitiateLabelFigure"
       elementIcon="false">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
@@ -451,6 +466,7 @@
   </labels>
   <labels
       name="ParticipateLabel"
+      figure="ParticipateLabelFigure"
       elementIcon="false">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
