@@ -945,10 +945,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		changeRecorder = new ChangeRecorder();
 		if (getLocalChanges() == null) {
 			changeRecorder.beginRecording(Collections.singleton(getProject()));
+			setDirty(false);
 		} else {
 			changeRecorder.beginRecording((ChangeDescription) EcoreUtil
 					.copy(getLocalChanges()), Collections
 					.singleton(getProject()));
+			setDirty(true);
 		}
 
 	}
