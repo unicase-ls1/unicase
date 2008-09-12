@@ -21,8 +21,10 @@ import org.unicase.ui.meeditor.mecontrols.MEBoolControl;
 import org.unicase.ui.meeditor.mecontrols.MEControl;
 import org.unicase.ui.meeditor.mecontrols.MEDateControl;
 import org.unicase.ui.meeditor.mecontrols.MEEnumControl;
+import org.unicase.ui.meeditor.mecontrols.MEHtmlControl;
 import org.unicase.ui.meeditor.mecontrols.MEIntControl;
 import org.unicase.ui.meeditor.mecontrols.MERichTextAreaControl;
+import org.unicase.ui.meeditor.mecontrols.MERichTextControl;
 import org.unicase.ui.meeditor.mecontrols.METextAreaControl;
 import org.unicase.ui.meeditor.mecontrols.METextControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEMultiLinkControl;
@@ -71,8 +73,8 @@ public class ControlFactory {
 		if (feature instanceof EAttribute) {
 
 			if (itemPropertyDescriptor.isMultiLine(modelElement)) {
-				return createMETextAreaControl((EAttribute) feature);
-				//return createMERichTextAreaControl((EAttribute) feature);
+//				return createMETextAreaControl((EAttribute) feature);
+				return createMERichTextControl((EAttribute) feature);
 			}
 			if (feature.getEType().getInstanceClass().equals(boolean.class)) {
 				return createMEBoolControl((EAttribute) feature);
@@ -114,6 +116,10 @@ public class ControlFactory {
 		// TODO: Add other types
 	}
 
+	private MEControl createMERichTextControl(EAttribute feature) {
+		return new MERichTextControl(feature, editingDomain, modelElement, toolkit);
+	}
+
 	//Create Control for Use Case Steps
 	private MEControl createMEUseCaseStepsControl(EReference reference, IItemPropertyDescriptor itemPropertyDescriptor) {
 		return new UseCaseStepsControl(modelElement, reference, toolkit, editingDomain, itemPropertyDescriptor);
@@ -141,8 +147,9 @@ public class ControlFactory {
 	}
 	
 	private MEControl createMERichTextAreaControl(EAttribute attribute) {
-		return new MERichTextAreaControl(attribute, toolkit, modelElement, editingDomain);
+//		return new MERichTextAreaControl(attribute, toolkit, modelElement, editingDomain);
 		//return new METextAreaControl(attribute, toolkit, modelElement, editingDomain);
+		return new MEHtmlControl(attribute, toolkit, modelElement, editingDomain);
 	}
 
 	private MEControl createMETextControl(EAttribute attribute) {
