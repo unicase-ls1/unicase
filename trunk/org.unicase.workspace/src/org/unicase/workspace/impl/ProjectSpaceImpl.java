@@ -73,6 +73,7 @@ import org.unicase.workspace.exceptions.NoLocalChangesException;
  *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getLastUpdated <em>Last Updated</em>}</li>
  *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getBaseVersion <em>Base Version</em>}</li>
  *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getResourceCount <em>Resource Count</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#isDirty <em>Dirty</em>}</li>
  * </ul>
  * </p>
  *
@@ -207,6 +208,26 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * @ordered
 	 */
 	protected int resourceCount = RESOURCE_COUNT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isDirty() <em>Dirty</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDirty()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean DIRTY_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isDirty() <em>Dirty</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDirty()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean dirty = DIRTY_EDEFAULT;
 
 	// begin of custom code
 	/**
@@ -707,6 +728,28 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isDirty() {
+		return dirty;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDirty(boolean newDirty) {
+		boolean oldDirty = dirty;
+		dirty = newDirty;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					WorkspacePackage.PROJECT_SPACE__DIRTY, oldDirty, dirty));
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @throws EmfStoreException
@@ -1056,6 +1099,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			return basicGetBaseVersion();
 		case WorkspacePackage.PROJECT_SPACE__RESOURCE_COUNT:
 			return new Integer(getResourceCount());
+		case WorkspacePackage.PROJECT_SPACE__DIRTY:
+			return isDirty() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1093,6 +1138,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			return;
 		case WorkspacePackage.PROJECT_SPACE__RESOURCE_COUNT:
 			setResourceCount(((Integer) newValue).intValue());
+			return;
+		case WorkspacePackage.PROJECT_SPACE__DIRTY:
+			setDirty(((Boolean) newValue).booleanValue());
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -1132,6 +1180,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		case WorkspacePackage.PROJECT_SPACE__RESOURCE_COUNT:
 			setResourceCount(RESOURCE_COUNT_EDEFAULT);
 			return;
+		case WorkspacePackage.PROJECT_SPACE__DIRTY:
+			setDirty(DIRTY_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1164,6 +1215,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			return baseVersion != null;
 		case WorkspacePackage.PROJECT_SPACE__RESOURCE_COUNT:
 			return resourceCount != RESOURCE_COUNT_EDEFAULT;
+		case WorkspacePackage.PROJECT_SPACE__DIRTY:
+			return dirty != DIRTY_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1186,6 +1239,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		result.append(lastUpdated);
 		result.append(", resourceCount: ");
 		result.append(resourceCount);
+		result.append(", dirty: ");
+		result.append(dirty);
 		result.append(')');
 		return result.toString();
 	}

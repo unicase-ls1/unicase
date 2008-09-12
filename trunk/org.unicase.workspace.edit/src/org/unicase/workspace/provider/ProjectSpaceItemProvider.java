@@ -71,6 +71,7 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 			addUsersessionPropertyDescriptor(object);
 			addLastUpdatedPropertyDescriptor(object);
 			addResourceCountPropertyDescriptor(object);
+			addDirtyPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -206,6 +207,24 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Dirty feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDirtyPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_ProjectSpace_dirty_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_ProjectSpace_dirty_feature",
+						"_UI_ProjectSpace_type"),
+				WorkspacePackage.Literals.PROJECT_SPACE__DIRTY, true, false,
+				false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -298,6 +317,7 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 		case WorkspacePackage.PROJECT_SPACE__PROJECT_DESCRIPTION:
 		case WorkspacePackage.PROJECT_SPACE__LAST_UPDATED:
 		case WorkspacePackage.PROJECT_SPACE__RESOURCE_COUNT:
+		case WorkspacePackage.PROJECT_SPACE__DIRTY:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), false, true));
 			return;

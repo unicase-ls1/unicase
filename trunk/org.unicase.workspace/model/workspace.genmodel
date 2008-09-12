@@ -54,6 +54,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//ProjectSpace/lastUpdated"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workspace.ecore#//ProjectSpace/baseVersion"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//ProjectSpace/resourceCount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//ProjectSpace/dirty"/>
       <genOperations ecoreOperation="workspace.ecore#//ProjectSpace/commit"/>
       <genOperations ecoreOperation="workspace.ecore#//ProjectSpace/update"/>
       <genOperations ecoreOperation="workspace.ecore#//ProjectSpace/update.1">
