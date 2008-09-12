@@ -245,18 +245,18 @@ public class ChangeContainerImpl extends EObjectImpl implements ChangeContainer 
 			CreateOperation op = OperationsFactory.eINSTANCE
 					.createCreateOperation();
 			op.setObjectToCreate(obj);
-			op.setName("Created new "+obj.eClass().getName());
+			op.setName("Created new " + obj.eClass().getName());
 			op.setUsername("coldphusion");
-			op.setDescription("Name: "+((ModelElement)obj).getName());
+			op.setDescription("Name: " + ((ModelElement) obj).getName());
 			results.add(op);
 		}
 		for (EObject obj : changeDescription.getObjectsToDetach()) {
 			DeleteOperation op = OperationsFactory.eINSTANCE
 					.createDeleteOperation();
 			op.setObjectToDelete(obj);
-			op.setName("Deleted "+obj.eClass().getName());
+			op.setName("Deleted " + obj.eClass().getName());
 			op.setUsername("coldphusion");
-			op.setDescription("Name: "+((ModelElement)obj).getName());
+			op.setDescription("Name: " + ((ModelElement) obj).getName());
 			results.add(op);
 		}
 		for (Map.Entry<EObject, EList<FeatureChange>> entry : changeDescription
@@ -273,8 +273,9 @@ public class ChangeContainerImpl extends EObjectImpl implements ChangeContainer 
 						mr
 								.getOldValues()
 								.addAll(
-										(EList<EObject>) ((EObjectToChangesMapEntryImpl) featureChange.eContainer())
-												.getTypedKey().eGet(
+										(EList<EObject>) ((EObjectToChangesMapEntryImpl) featureChange
+												.eContainer()).getTypedKey()
+												.eGet(
 														featureChange
 																.getFeature()));
 						mr.getNewValues().clear();
@@ -285,26 +286,25 @@ public class ChangeContainerImpl extends EObjectImpl implements ChangeContainer 
 								.createSingleReferenceOperation();
 						SingleReferenceOperation sr = (SingleReferenceOperation) op;
 						sr
-								.setOldValue((EObject) ((EObjectToChangesMapEntryImpl) featureChange.eContainer())
-										.getTypedKey().eGet(
-												featureChange.getFeature()));
+								.setOldValue((EObject) ((EObjectToChangesMapEntryImpl) featureChange
+										.eContainer()).getTypedKey().eGet(
+										featureChange.getFeature()));
 						sr.setNewValue(featureChange.getReferenceValue());
 					}
 				} else if (featureChange.getFeature() instanceof EAttribute) {
 					op = OperationsFactory.eINSTANCE.createAttributeOperation();
 					AttributeOperation ao = (AttributeOperation) op;
 					ao
-							.setOldValue(((EObjectToChangesMapEntryImpl) featureChange.eContainer())
-									.getTypedKey().eGet(
-											featureChange.getFeature())
-									.toString());
+							.setOldValue(((EObjectToChangesMapEntryImpl) featureChange
+									.eContainer()).getTypedKey().eGet(
+									featureChange.getFeature()).toString());
 					ao.setNewValue(featureChange.getValue().toString());
 				}
 				op.setModelElement((ModelElement) objectToChange);
 				op.setFeatureName(featureChange.getFeatureName());
-				op.setName("ME changed: "+op.getModelElement().getName());
+				op.setName("ME changed: " + op.getModelElement().getName());
 				op.setUsername("coldphusion");
-				op.setDescription("Feature: "+op.getFeatureName());
+				op.setDescription("Feature: " + op.getFeatureName());
 				results.add(op);
 			}
 		}
@@ -339,7 +339,7 @@ public class ChangeContainerImpl extends EObjectImpl implements ChangeContainer 
 
 		// move all model elements to virtual resource
 		Map<EObject, Resource> touchedMEResourceMap = new HashMap<EObject, Resource>();
-		
+
 		for (EObject eObject : project.getAllModelElements()) {
 			// preserve old resource
 			Resource resource = eObject.eResource();
@@ -347,7 +347,7 @@ public class ChangeContainerImpl extends EObjectImpl implements ChangeContainer 
 			// remove from its resource
 			resource.getContents().remove(eObject);
 		}
-		
+
 		Resource changeDescriptionResource = resourceSet
 				.createResource(VIRTUAL_CHANGEDESCRIPTION_URI);
 		changeDescriptionResource.getContents().add(

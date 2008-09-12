@@ -53,7 +53,7 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 * @generated NOT
 	 */
 	private Project project;
-	
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
