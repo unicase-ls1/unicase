@@ -14,6 +14,9 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.diagram.DiagramFactory;
+import org.unicase.model.diagram.DiagramType;
+import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.impl.ModelPackageImpl;
 
 /**
@@ -52,6 +55,11 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 		// show the children only when argument is an EPackage.
 		// Also remove the Children that are abstract or not ModelElement.
 		if (object instanceof EPackage) {
+			// Check if it is Diagram Package for special view
+			if (((EPackage) object).getName().equals("diagram")) {
+				return getDiagramTypes();
+			}
+
 			// remove classes that do not inherit ModelElement
 			// or are abstract.
 			Object[] children = removeNonModelElements(super
@@ -64,6 +72,21 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 			return null;
 		}
 
+	}
+
+	private Object[] getDiagramTypes() {
+		Object[] ret = new Object[DiagramType.values().length];
+		int i = 0;
+		for (DiagramType diagramType : DiagramType.values()) {
+			MEDiagram createMEDiagram = DiagramFactory.eINSTANCE
+					.createMEDiagram();
+			createMEDiagram.setType(diagramType);
+			createMEDiagram.setName(diagramType.getLiteral());
+			ret[i] = createMEDiagram;
+			i++;
+		}
+
+		return ret;
 	}
 
 	/**

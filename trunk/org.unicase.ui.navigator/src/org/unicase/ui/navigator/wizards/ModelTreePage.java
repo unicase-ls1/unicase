@@ -120,7 +120,9 @@ public class ModelTreePage extends WizardPage implements Listener {
 		Object o = ssel.getFirstElement();
 		if (o instanceof EClass) {
 			canFinish = true;
-		} else {
+		}
+		
+		else {
 			canFinish = false;
 		}
 
