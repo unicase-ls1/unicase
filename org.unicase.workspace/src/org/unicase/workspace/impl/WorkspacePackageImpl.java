@@ -373,6 +373,15 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProjectSpace_Dirty() {
+		return (EAttribute) projectSpaceEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -432,6 +441,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 		createEAttribute(projectSpaceEClass, PROJECT_SPACE__LAST_UPDATED);
 		createEReference(projectSpaceEClass, PROJECT_SPACE__BASE_VERSION);
 		createEAttribute(projectSpaceEClass, PROJECT_SPACE__RESOURCE_COUNT);
+		createEAttribute(projectSpaceEClass, PROJECT_SPACE__DIRTY);
 	}
 
 	/**
@@ -627,6 +637,10 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 				!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getProjectSpace_ResourceCount(), ecorePackage.getEInt(),
 				"resourceCount", null, 0, 1, ProjectSpace.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProjectSpace_Dirty(), ecorePackage.getEBoolean(),
+				"dirty", null, 0, 1, ProjectSpace.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 

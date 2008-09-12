@@ -35,6 +35,7 @@ import org.unicase.model.Project;
  *   <li>{@link org.unicase.workspace.ProjectSpace#getLastUpdated <em>Last Updated</em>}</li>
  *   <li>{@link org.unicase.workspace.ProjectSpace#getBaseVersion <em>Base Version</em>}</li>
  *   <li>{@link org.unicase.workspace.ProjectSpace#getResourceCount <em>Resource Count</em>}</li>
+ *   <li>{@link org.unicase.workspace.ProjectSpace#isDirty <em>Dirty</em>}</li>
  * </ul>
  * </p>
  *
@@ -277,6 +278,32 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @generated
 	 */
 	void setResourceCount(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Dirty</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Dirty</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Dirty</em>' attribute.
+	 * @see #setDirty(boolean)
+	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_Dirty()
+	 * @model
+	 * @generated
+	 */
+	boolean isDirty();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#isDirty <em>Dirty</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Dirty</em>' attribute.
+	 * @see #isDirty()
+	 * @generated
+	 */
+	void setDirty(boolean value);
 
 	/**
 	 * <!-- begin-user-doc --> Commit the all pending changes of the project.

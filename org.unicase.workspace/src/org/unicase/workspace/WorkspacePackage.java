@@ -354,12 +354,21 @@ public interface WorkspacePackage extends EPackage {
 	int PROJECT_SPACE__RESOURCE_COUNT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
+	 * The feature id for the '<em><b>Dirty</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_SPACE__DIRTY = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 9;
+
+	/**
 	 * The number of structural features of the '<em>Project Space</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE_FEATURE_COUNT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 9;
+	int PROJECT_SPACE_FEATURE_COUNT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * Returns the meta object for class '
@@ -684,6 +693,17 @@ public interface WorkspacePackage extends EPackage {
 	EAttribute getProjectSpace_ResourceCount();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.workspace.ProjectSpace#isDirty <em>Dirty</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Dirty</em>'.
+	 * @see org.unicase.workspace.ProjectSpace#isDirty()
+	 * @see #getProjectSpace()
+	 * @generated
+	 */
+	EAttribute getProjectSpace_Dirty();
+
+	/**
 	 * Returns the factory that creates the instances of the model. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -954,6 +974,14 @@ public interface WorkspacePackage extends EPackage {
 		 */
 		EAttribute PROJECT_SPACE__RESOURCE_COUNT = eINSTANCE
 				.getProjectSpace_ResourceCount();
+
+		/**
+		 * The meta object literal for the '<em><b>Dirty</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROJECT_SPACE__DIRTY = eINSTANCE.getProjectSpace_Dirty();
 
 	}
 
