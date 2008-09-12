@@ -577,29 +577,4 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		return result.toString();
 	}
 
-	// FIXME MK: hasCode and equals are based on ME id, this might be dangerous
-	// since we have multiple instance of the same ME
-	/**
-	 * Returns true if the other model elements id is identical. False in any
-	 * other case.
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 * @generated NOT
-	 */
-	@Override
-	public boolean equals(Object otherObject) {
-		if (otherObject instanceof ModelElementImpl) {
-			ModelElementImpl otherModelElement = (ModelElementImpl) otherObject;
-			return otherModelElement.getIdentifier().equals(
-					this.getIdentifier());
-		} else {
-			return false;
-		}
-	}
-
-	@Override
-	public int hashCode() {
-		return this.identifier.hashCode();
-	}
-
 } // ModelElementImpl
