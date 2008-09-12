@@ -278,6 +278,19 @@
            </objectClass>
         </enablement>
      </decorator>
+     <decorator
+           adaptable="true"
+           class="org.unicase.ui.common.decorators.DirtyDecorator"
+           id="org.unicase.ui.common.decorators.DirtyDecorator"
+           label="Dirty Decorator"
+           lightweight="true"
+           state="true">
+        <enablement>
+           <objectClass
+                 name="org.unicase.workspace.ProjectSpace">
+           </objectClass>
+        </enablement>
+     </decorator>
   </extension>
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
       <?gmfgen generated="true"?>
