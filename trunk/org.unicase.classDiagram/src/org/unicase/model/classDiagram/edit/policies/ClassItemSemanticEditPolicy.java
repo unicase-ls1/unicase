@@ -94,7 +94,8 @@ public class ClassItemSemanticEditPolicy
 		if (org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3001 == req
 				.getElementType()) {
 			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.AssociationCreateCommand(
-					req, req.getSource(), req.getTarget(), (EObject) getHost().getModel()));
+					req, req.getSource(), req.getTarget(), (EObject) getHost()
+							.getModel()));
 		}
 		if (org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3002 == req
 				.getElementType()) {
@@ -111,9 +112,9 @@ public class ClassItemSemanticEditPolicy
 			CreateRelationshipRequest req) {
 		if (org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3001 == req
 				.getElementType()) {
-						return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.AssociationCreateCommand(
-								req, req.getSource(), req.getTarget(), (EObject) getHost()
-										.getModel()));
+			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.AssociationCreateCommand(
+					req, req.getSource(), req.getTarget(), (EObject) getHost()
+							.getModel()));
 		}
 		if (org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3002 == req
 				.getElementType()) {
@@ -122,7 +123,7 @@ public class ClassItemSemanticEditPolicy
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Returns command to reorient EClass based link. New link target or source
 	 * should be the domain model element associated with this node.

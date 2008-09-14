@@ -117,7 +117,7 @@
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
           name="GeneralizationPolyline"
-          targetDecoration="//@figures.0/@figures.2"/>
+          sourceDecoration="//@figures.0/@figures.2"/>
     </descriptors>
   </figures>
   <figures
