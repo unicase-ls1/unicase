@@ -106,6 +106,9 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 			if(meDiagram.getType().equals(DiagramType.CLASS_DIAGRAM)){
 				id="Model";
 			}
+			if(meDiagram.getType().equals(DiagramType.COMPONENT_DIAGRAM)){
+				id="Component";
+			}
 			if(id==null){
 				throw new RuntimeException("Unsupported diagram type");
 			}
