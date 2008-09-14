@@ -115,7 +115,7 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	 */
 	public DiagramType createDiagramTypeFromString(EDataType eDataType,
 			String initialValue) {
-		DiagramType result = DiagramType.get(initialValue);
+		DiagramType result = DiagramType.getByName(initialValue);
 		if (result == null)
 			throw new IllegalArgumentException("The value '" + initialValue
 					+ "' is not a valid enumerator of '" + eDataType.getName()
