@@ -28,6 +28,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
+import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
@@ -129,6 +130,31 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 					.eObjectToString(sessionId), RMIUtil
 					.eObjectToString(projectId), RMIUtil
 					.eObjectToString(source), RMIUtil.eObjectToString(target))) {
+				result.add((HistoryInfo) RMIUtil.stringToEObject(str));
+			}
+			return result;
+		} catch (UnsupportedEncodingException e) {
+			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
+		} catch (RemoteException e) {
+			throw new ConnectionException(REMOTE, e);
+		} catch (IOException e) {
+			throw new ConnectionException(REMOTE, e);
+		}
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public List<HistoryInfo> getHistoryInfo(SessionId sessionId,
+			ProjectId projectId, HistoryQuery historyQuery)
+			throws EmfStoreException {
+		RMIEmfStoreFacade facade = getFacade(sessionId);
+		try {
+			List<HistoryInfo> result = new ArrayList<HistoryInfo>();
+			for (String str : facade.getHistoryInfo(RMIUtil
+					.eObjectToString(sessionId), RMIUtil
+					.eObjectToString(projectId), RMIUtil
+					.eObjectToString(historyQuery))) {
 				result.add((HistoryInfo) RMIUtil.stringToEObject(str));
 			}
 			return result;

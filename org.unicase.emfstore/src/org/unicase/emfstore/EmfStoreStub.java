@@ -21,6 +21,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
+import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
@@ -293,6 +294,13 @@ public class EmfStoreStub implements EmfStore {
 	}
 
 	public ACUser resolveUser(SessionId sessionId, ACOrgUnitId id)
+			throws EmfStoreException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<HistoryInfo> getHistoryInfo(SessionId sessionId,
+			ProjectId projectId, HistoryQuery historyQuery)
 			throws EmfStoreException {
 		// TODO Auto-generated method stub
 		return null;
