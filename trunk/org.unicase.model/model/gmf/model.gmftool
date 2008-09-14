@@ -28,5 +28,8 @@
     <tools
         xsi:type="gmftool:CreationTool"
         title="Method"/>
+    <tools
+        xsi:type="gmftool:CreationTool"
+        title="Generalization"/>
   </palette>
 </gmftool:ToolRegistry>

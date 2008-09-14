@@ -108,6 +108,16 @@
         xsi:type="ecore:EReference"
         href="../model.ecore#//classes/Association/target"/>
   </links>
+  <links>
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="model.gmftool#//@palette/@tools.7"/>
+    <diagramLink
+        href="model.gmfgraph#Generalization"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="../model.ecore#//classes/Class/subClasses"/>
+  </links>
   <diagram>
     <diagramCanvas
         href="model.gmfgraph#MEDiagram"/>
