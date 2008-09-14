@@ -67,9 +67,9 @@
       </genClasses>
       <genClasses ecoreClass="esmodel.ecore#//versioning/HistoryQuery">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference esmodel.ecore#//versioning/HistoryQuery/from"/>
+            ecoreFeature="ecore:EReference esmodel.ecore#//versioning/HistoryQuery/source"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference esmodel.ecore#//versioning/HistoryQuery/to"/>
+            ecoreFeature="ecore:EReference esmodel.ecore#//versioning/HistoryQuery/target"/>
       </genClasses>
       <genClasses ecoreClass="esmodel.ecore#//versioning/Version">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/Version/projectState"/>

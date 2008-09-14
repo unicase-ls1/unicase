@@ -21,8 +21,8 @@ import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryQueryImpl#getFrom <em>From</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryQueryImpl#getTo <em>To</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryQueryImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryQueryImpl#getTarget <em>Target</em>}</li>
  * </ul>
  * </p>
  *
@@ -30,24 +30,24 @@ import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
  */
 public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	/**
-	 * The cached value of the '{@link #getFrom() <em>From</em>}' reference.
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFrom()
+	 * @see #getSource()
 	 * @generated
 	 * @ordered
 	 */
-	protected PrimaryVersionSpec from;
+	protected PrimaryVersionSpec source;
 
 	/**
-	 * The cached value of the '{@link #getTo() <em>To</em>}' reference.
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTo()
+	 * @see #getTarget()
 	 * @generated
 	 * @ordered
 	 */
-	protected PrimaryVersionSpec to;
+	protected PrimaryVersionSpec target;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -73,18 +73,18 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PrimaryVersionSpec getFrom() {
-		if (from != null && from.eIsProxy()) {
-			InternalEObject oldFrom = (InternalEObject) from;
-			from = (PrimaryVersionSpec) eResolveProxy(oldFrom);
-			if (from != oldFrom) {
+	public PrimaryVersionSpec getSource() {
+		if (source != null && source.eIsProxy()) {
+			InternalEObject oldSource = (InternalEObject) source;
+			source = (PrimaryVersionSpec) eResolveProxy(oldSource);
+			if (source != oldSource) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							VersioningPackage.HISTORY_QUERY__FROM, oldFrom,
-							from));
+							VersioningPackage.HISTORY_QUERY__SOURCE, oldSource,
+							source));
 			}
 		}
-		return from;
+		return source;
 	}
 
 	/**
@@ -92,8 +92,8 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PrimaryVersionSpec basicGetFrom() {
-		return from;
+	public PrimaryVersionSpec basicGetSource() {
+		return source;
 	}
 
 	/**
@@ -101,12 +101,12 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFrom(PrimaryVersionSpec newFrom) {
-		PrimaryVersionSpec oldFrom = from;
-		from = newFrom;
+	public void setSource(PrimaryVersionSpec newSource) {
+		PrimaryVersionSpec oldSource = source;
+		source = newSource;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-					VersioningPackage.HISTORY_QUERY__FROM, oldFrom, from));
+					VersioningPackage.HISTORY_QUERY__SOURCE, oldSource, source));
 	}
 
 	/**
@@ -114,17 +114,18 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PrimaryVersionSpec getTo() {
-		if (to != null && to.eIsProxy()) {
-			InternalEObject oldTo = (InternalEObject) to;
-			to = (PrimaryVersionSpec) eResolveProxy(oldTo);
-			if (to != oldTo) {
+	public PrimaryVersionSpec getTarget() {
+		if (target != null && target.eIsProxy()) {
+			InternalEObject oldTarget = (InternalEObject) target;
+			target = (PrimaryVersionSpec) eResolveProxy(oldTarget);
+			if (target != oldTarget) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							VersioningPackage.HISTORY_QUERY__TO, oldTo, to));
+							VersioningPackage.HISTORY_QUERY__TARGET, oldTarget,
+							target));
 			}
 		}
-		return to;
+		return target;
 	}
 
 	/**
@@ -132,8 +133,8 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PrimaryVersionSpec basicGetTo() {
-		return to;
+	public PrimaryVersionSpec basicGetTarget() {
+		return target;
 	}
 
 	/**
@@ -141,12 +142,12 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTo(PrimaryVersionSpec newTo) {
-		PrimaryVersionSpec oldTo = to;
-		to = newTo;
+	public void setTarget(PrimaryVersionSpec newTarget) {
+		PrimaryVersionSpec oldTarget = target;
+		target = newTarget;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-					VersioningPackage.HISTORY_QUERY__TO, oldTo, to));
+					VersioningPackage.HISTORY_QUERY__TARGET, oldTarget, target));
 	}
 
 	/**
@@ -157,14 +158,14 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case VersioningPackage.HISTORY_QUERY__FROM:
+		case VersioningPackage.HISTORY_QUERY__SOURCE:
 			if (resolve)
-				return getFrom();
-			return basicGetFrom();
-		case VersioningPackage.HISTORY_QUERY__TO:
+				return getSource();
+			return basicGetSource();
+		case VersioningPackage.HISTORY_QUERY__TARGET:
 			if (resolve)
-				return getTo();
-			return basicGetTo();
+				return getTarget();
+			return basicGetTarget();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -177,11 +178,11 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case VersioningPackage.HISTORY_QUERY__FROM:
-			setFrom((PrimaryVersionSpec) newValue);
+		case VersioningPackage.HISTORY_QUERY__SOURCE:
+			setSource((PrimaryVersionSpec) newValue);
 			return;
-		case VersioningPackage.HISTORY_QUERY__TO:
-			setTo((PrimaryVersionSpec) newValue);
+		case VersioningPackage.HISTORY_QUERY__TARGET:
+			setTarget((PrimaryVersionSpec) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -195,11 +196,11 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case VersioningPackage.HISTORY_QUERY__FROM:
-			setFrom((PrimaryVersionSpec) null);
+		case VersioningPackage.HISTORY_QUERY__SOURCE:
+			setSource((PrimaryVersionSpec) null);
 			return;
-		case VersioningPackage.HISTORY_QUERY__TO:
-			setTo((PrimaryVersionSpec) null);
+		case VersioningPackage.HISTORY_QUERY__TARGET:
+			setTarget((PrimaryVersionSpec) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -213,10 +214,10 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case VersioningPackage.HISTORY_QUERY__FROM:
-			return from != null;
-		case VersioningPackage.HISTORY_QUERY__TO:
-			return to != null;
+		case VersioningPackage.HISTORY_QUERY__SOURCE:
+			return source != null;
+		case VersioningPackage.HISTORY_QUERY__TARGET:
+			return target != null;
 		}
 		return super.eIsSet(featureID);
 	}
