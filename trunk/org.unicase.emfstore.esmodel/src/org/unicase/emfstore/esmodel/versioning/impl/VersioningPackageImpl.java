@@ -392,7 +392,7 @@ public class VersioningPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getHistoryQuery_From() {
+	public EReference getHistoryQuery_Source() {
 		return (EReference) historyQueryEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -401,7 +401,7 @@ public class VersioningPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getHistoryQuery_To() {
+	public EReference getHistoryQuery_Target() {
 		return (EReference) historyQueryEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -541,8 +541,8 @@ public class VersioningPackageImpl extends EPackageImpl implements
 		createEReference(historyInfoEClass, HISTORY_INFO__TAG_SPECS);
 
 		historyQueryEClass = createEClass(HISTORY_QUERY);
-		createEReference(historyQueryEClass, HISTORY_QUERY__FROM);
-		createEReference(historyQueryEClass, HISTORY_QUERY__TO);
+		createEReference(historyQueryEClass, HISTORY_QUERY__SOURCE);
+		createEReference(historyQueryEClass, HISTORY_QUERY__TARGET);
 
 		versionEClass = createEClass(VERSION);
 		createEReference(versionEClass, VERSION__PROJECT_STATE);
@@ -697,12 +697,12 @@ public class VersioningPackageImpl extends EPackageImpl implements
 
 		initEClass(historyQueryEClass, HistoryQuery.class, "HistoryQuery",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getHistoryQuery_From(), this.getPrimaryVersionSpec(),
-				null, "from", null, 0, 1, HistoryQuery.class, !IS_TRANSIENT,
+		initEReference(getHistoryQuery_Source(), this.getPrimaryVersionSpec(),
+				null, "source", null, 0, 1, HistoryQuery.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getHistoryQuery_To(), this.getPrimaryVersionSpec(),
-				null, "to", null, 0, 1, HistoryQuery.class, !IS_TRANSIENT,
+		initEReference(getHistoryQuery_Target(), this.getPrimaryVersionSpec(),
+				null, "target", null, 0, 1, HistoryQuery.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

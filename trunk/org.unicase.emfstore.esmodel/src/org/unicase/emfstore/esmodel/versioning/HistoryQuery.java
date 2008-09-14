@@ -15,8 +15,8 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery#getFrom <em>From</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery#getTo <em>To</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery#getSource <em>Source</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery#getTarget <em>Target</em>}</li>
  * </ul>
  * </p>
  *
@@ -26,55 +26,55 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface HistoryQuery extends EObject {
 	/**
-	 * Returns the value of the '<em><b>From</b></em>' reference.
+	 * Returns the value of the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>From</em>' reference isn't clear,
+	 * If the meaning of the '<em>Source</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>From</em>' reference.
-	 * @see #setFrom(PrimaryVersionSpec)
-	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getHistoryQuery_From()
+	 * @return the value of the '<em>Source</em>' reference.
+	 * @see #setSource(PrimaryVersionSpec)
+	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getHistoryQuery_Source()
 	 * @model
 	 * @generated
 	 */
-	PrimaryVersionSpec getFrom();
+	PrimaryVersionSpec getSource();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery#getFrom <em>From</em>}' reference.
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery#getSource <em>Source</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>From</em>' reference.
-	 * @see #getFrom()
+	 * @param value the new value of the '<em>Source</em>' reference.
+	 * @see #getSource()
 	 * @generated
 	 */
-	void setFrom(PrimaryVersionSpec value);
+	void setSource(PrimaryVersionSpec value);
 
 	/**
-	 * Returns the value of the '<em><b>To</b></em>' reference.
+	 * Returns the value of the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>To</em>' reference isn't clear,
+	 * If the meaning of the '<em>Target</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>To</em>' reference.
-	 * @see #setTo(PrimaryVersionSpec)
-	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getHistoryQuery_To()
+	 * @return the value of the '<em>Target</em>' reference.
+	 * @see #setTarget(PrimaryVersionSpec)
+	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getHistoryQuery_Target()
 	 * @model
 	 * @generated
 	 */
-	PrimaryVersionSpec getTo();
+	PrimaryVersionSpec getTarget();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery#getTo <em>To</em>}' reference.
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery#getTarget <em>Target</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>To</em>' reference.
-	 * @see #getTo()
+	 * @param value the new value of the '<em>Target</em>' reference.
+	 * @see #getTarget()
 	 * @generated
 	 */
-	void setTo(PrimaryVersionSpec value);
+	void setTarget(PrimaryVersionSpec value);
 
 } // HistoryQuery

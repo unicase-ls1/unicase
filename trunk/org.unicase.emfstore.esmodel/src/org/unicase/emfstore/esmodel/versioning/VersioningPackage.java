@@ -293,22 +293,22 @@ public interface VersioningPackage extends EPackage {
 	int HISTORY_QUERY = 7;
 
 	/**
-	 * The feature id for the '<em><b>From</b></em>' reference.
+	 * The feature id for the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HISTORY_QUERY__FROM = 0;
+	int HISTORY_QUERY__SOURCE = 0;
 
 	/**
-	 * The feature id for the '<em><b>To</b></em>' reference.
+	 * The feature id for the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HISTORY_QUERY__TO = 1;
+	int HISTORY_QUERY__TARGET = 1;
 
 	/**
 	 * The number of structural features of the '<em>History Query</em>' class.
@@ -611,26 +611,26 @@ public interface VersioningPackage extends EPackage {
 	EClass getHistoryQuery();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery#getFrom <em>From</em>}'.
+	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery#getSource <em>Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>From</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.HistoryQuery#getFrom()
+	 * @return the meta object for the reference '<em>Source</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.HistoryQuery#getSource()
 	 * @see #getHistoryQuery()
 	 * @generated
 	 */
-	EReference getHistoryQuery_From();
+	EReference getHistoryQuery_Source();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery#getTo <em>To</em>}'.
+	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery#getTarget <em>Target</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>To</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.HistoryQuery#getTo()
+	 * @return the meta object for the reference '<em>Target</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.HistoryQuery#getTarget()
 	 * @see #getHistoryQuery()
 	 * @generated
 	 */
-	EReference getHistoryQuery_To();
+	EReference getHistoryQuery_Target();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.Version <em>Version</em>}'.
@@ -918,20 +918,20 @@ public interface VersioningPackage extends EPackage {
 		EClass HISTORY_QUERY = eINSTANCE.getHistoryQuery();
 
 		/**
-		 * The meta object literal for the '<em><b>From</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference HISTORY_QUERY__FROM = eINSTANCE.getHistoryQuery_From();
+		EReference HISTORY_QUERY__SOURCE = eINSTANCE.getHistoryQuery_Source();
 
 		/**
-		 * The meta object literal for the '<em><b>To</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference HISTORY_QUERY__TO = eINSTANCE.getHistoryQuery_To();
+		EReference HISTORY_QUERY__TARGET = eINSTANCE.getHistoryQuery_Target();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.impl.VersionImpl <em>Version</em>}' class.

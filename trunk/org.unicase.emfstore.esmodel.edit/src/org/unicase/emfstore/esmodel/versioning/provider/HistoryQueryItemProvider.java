@@ -52,47 +52,46 @@ public class HistoryQueryItemProvider extends ItemProviderAdapter implements
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addFromPropertyDescriptor(object);
-			addToPropertyDescriptor(object);
+			addSourcePropertyDescriptor(object);
+			addTargetPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the From feature.
+	 * This adds a property descriptor for the Source feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addFromPropertyDescriptor(Object object) {
+	protected void addSourcePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
 						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_HistoryQuery_from_feature"), getString(
+				getString("_UI_HistoryQuery_source_feature"), getString(
 						"_UI_PropertyDescriptor_description",
-						"_UI_HistoryQuery_from_feature",
+						"_UI_HistoryQuery_source_feature",
 						"_UI_HistoryQuery_type"),
-				VersioningPackage.Literals.HISTORY_QUERY__FROM, true, false,
+				VersioningPackage.Literals.HISTORY_QUERY__SOURCE, true, false,
 				true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the To feature.
+	 * This adds a property descriptor for the Target feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addToPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(), getResourceLocator(),
-						getString("_UI_HistoryQuery_to_feature"), getString(
-								"_UI_PropertyDescriptor_description",
-								"_UI_HistoryQuery_to_feature",
-								"_UI_HistoryQuery_type"),
-						VersioningPackage.Literals.HISTORY_QUERY__TO, true,
-						false, true, null, null, null));
+	protected void addTargetPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_HistoryQuery_target_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_HistoryQuery_target_feature",
+						"_UI_HistoryQuery_type"),
+				VersioningPackage.Literals.HISTORY_QUERY__TARGET, true, false,
+				true, null, null, null));
 	}
 
 	/**
