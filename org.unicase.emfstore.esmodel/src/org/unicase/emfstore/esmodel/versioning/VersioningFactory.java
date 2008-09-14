@@ -80,6 +80,15 @@ public interface VersioningFactory extends EFactory {
 	HistoryInfo createHistoryInfo();
 
 	/**
+	 * Returns a new object of class '<em>History Query</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>History Query</em>'.
+	 * @generated
+	 */
+	HistoryQuery createHistoryQuery();
+
+	/**
 	 * Returns a new object of class '<em>Version</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

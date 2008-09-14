@@ -63,6 +63,13 @@
             ecoreFeature="ecore:EReference esmodel.ecore#//versioning/HistoryInfo/primerySpec"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference esmodel.ecore#//versioning/HistoryInfo/logMessage"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/HistoryInfo/tagSpecs"/>
+      </genClasses>
+      <genClasses ecoreClass="esmodel.ecore#//versioning/HistoryQuery">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference esmodel.ecore#//versioning/HistoryQuery/from"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference esmodel.ecore#//versioning/HistoryQuery/to"/>
       </genClasses>
       <genClasses ecoreClass="esmodel.ecore#//versioning/Version">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/Version/projectState"/>

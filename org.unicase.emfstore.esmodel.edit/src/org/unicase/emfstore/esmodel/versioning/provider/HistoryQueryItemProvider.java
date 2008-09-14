@@ -11,7 +11,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -19,19 +19,16 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
-import org.unicase.emfstore.esmodel.versioning.changeContainer.ChangeContainerFactory;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.ChangePackage} object.
+ * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.HistoryQuery} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ChangePackageItemProvider extends ItemProviderAdapter implements
+public class HistoryQueryItemProvider extends ItemProviderAdapter implements
 		IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
@@ -40,7 +37,7 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ChangePackageItemProvider(AdapterFactory adapterFactory) {
+	public HistoryQueryItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -55,44 +52,51 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addFromPropertyDescriptor(object);
+			addToPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * This adds a property descriptor for the From feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(
-			Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures
-					.add(VersioningPackage.Literals.CHANGE_PACKAGE__CHANGE_CONTAINERS);
-		}
-		return childrenFeatures;
+	protected void addFromPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_HistoryQuery_from_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_HistoryQuery_from_feature",
+						"_UI_HistoryQuery_type"),
+				VersioningPackage.Literals.HISTORY_QUERY__FROM, true, false,
+				true, null, null, null));
 	}
 
 	/**
+	 * This adds a property descriptor for the To feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
+	protected void addToPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(), getResourceLocator(),
+						getString("_UI_HistoryQuery_to_feature"), getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_HistoryQuery_to_feature",
+								"_UI_HistoryQuery_type"),
+						VersioningPackage.Literals.HISTORY_QUERY__TO, true,
+						false, true, null, null, null));
 	}
 
 	/**
-	 * This returns ChangePackage.gif.
+	 * This returns HistoryQuery.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -100,7 +104,7 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 	@Override
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/ChangePackage"));
+				"full/obj16/HistoryQuery"));
 	}
 
 	/**
@@ -111,7 +115,7 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ChangePackage_type");
+		return getString("_UI_HistoryQuery_type");
 	}
 
 	/**
@@ -124,13 +128,6 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(ChangePackage.class)) {
-		case VersioningPackage.CHANGE_PACKAGE__CHANGE_CONTAINERS:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
-			return;
-		}
 		super.notifyChanged(notification);
 	}
 
@@ -145,15 +142,6 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 	protected void collectNewChildDescriptors(
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add(createChildParameter(
-				VersioningPackage.Literals.CHANGE_PACKAGE__CHANGE_CONTAINERS,
-				ChangeContainerFactory.eINSTANCE.createChangeContainer()));
-
-		newChildDescriptors.add(createChildParameter(
-				VersioningPackage.Literals.CHANGE_PACKAGE__CHANGE_CONTAINERS,
-				ChangeContainerFactory.eINSTANCE
-						.createCompositeChangeContainer()));
 	}
 
 	/**

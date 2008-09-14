@@ -214,6 +214,29 @@ public class VersioningItemProviderAdapterFactory extends
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.HistoryQuery} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected HistoryQueryItemProvider historyQueryItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.HistoryQuery}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createHistoryQueryAdapter() {
+		if (historyQueryItemProvider == null) {
+			historyQueryItemProvider = new HistoryQueryItemProvider(this);
+		}
+
+		return historyQueryItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.Version} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -373,6 +396,8 @@ public class VersioningItemProviderAdapterFactory extends
 			changePackageItemProvider.dispose();
 		if (historyInfoItemProvider != null)
 			historyInfoItemProvider.dispose();
+		if (historyQueryItemProvider != null)
+			historyQueryItemProvider.dispose();
 		if (versionItemProvider != null)
 			versionItemProvider.dispose();
 		if (headVersionSpecItemProvider != null)

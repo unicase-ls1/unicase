@@ -21,6 +21,7 @@ import org.unicase.emfstore.esmodel.impl.EsmodelPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.DateVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.HeadVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
+import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
@@ -90,6 +91,13 @@ public class VersioningPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	private EClass historyInfoEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass historyQueryEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -366,6 +374,42 @@ public class VersioningPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getHistoryInfo_TagSpecs() {
+		return (EReference) historyInfoEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getHistoryQuery() {
+		return historyQueryEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getHistoryQuery_From() {
+		return (EReference) historyQueryEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getHistoryQuery_To() {
+		return (EReference) historyQueryEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getVersion() {
 		return versionEClass;
 	}
@@ -494,6 +538,11 @@ public class VersioningPackageImpl extends EPackageImpl implements
 		historyInfoEClass = createEClass(HISTORY_INFO);
 		createEReference(historyInfoEClass, HISTORY_INFO__PRIMERY_SPEC);
 		createEReference(historyInfoEClass, HISTORY_INFO__LOG_MESSAGE);
+		createEReference(historyInfoEClass, HISTORY_INFO__TAG_SPECS);
+
+		historyQueryEClass = createEClass(HISTORY_QUERY);
+		createEReference(historyQueryEClass, HISTORY_QUERY__FROM);
+		createEReference(historyQueryEClass, HISTORY_QUERY__TO);
 
 		versionEClass = createEClass(VERSION);
 		createEReference(versionEClass, VERSION__PROJECT_STATE);
@@ -634,10 +683,26 @@ public class VersioningPackageImpl extends EPackageImpl implements
 		initEReference(getHistoryInfo_PrimerySpec(), this
 				.getPrimaryVersionSpec(), null, "primerySpec", null, 1, 1,
 				HistoryInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 		initEReference(getHistoryInfo_LogMessage(), this.getLogMessage(), null,
 				"logMessage", null, 1, 1, HistoryInfo.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getHistoryInfo_TagSpecs(), this.getTagVersionSpec(),
+				null, "tagSpecs", null, 0, -1, HistoryInfo.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+
+		initEClass(historyQueryEClass, HistoryQuery.class, "HistoryQuery",
+				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getHistoryQuery_From(), this.getPrimaryVersionSpec(),
+				null, "from", null, 0, 1, HistoryQuery.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getHistoryQuery_To(), this.getPrimaryVersionSpec(),
+				null, "to", null, 0, 1, HistoryQuery.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

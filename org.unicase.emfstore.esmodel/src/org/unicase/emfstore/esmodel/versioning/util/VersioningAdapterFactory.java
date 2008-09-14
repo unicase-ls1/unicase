@@ -13,6 +13,7 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.DateVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.HeadVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
+import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
@@ -108,6 +109,11 @@ public class VersioningAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseHistoryInfo(HistoryInfo object) {
 			return createHistoryInfoAdapter();
+		}
+
+		@Override
+		public Adapter caseHistoryQuery(HistoryQuery object) {
+			return createHistoryQueryAdapter();
 		}
 
 		@Override
@@ -234,6 +240,20 @@ public class VersioningAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createHistoryInfoAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery <em>History Query</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.emfstore.esmodel.versioning.HistoryQuery
+	 * @generated
+	 */
+	public Adapter createHistoryQueryAdapter() {
 		return null;
 	}
 

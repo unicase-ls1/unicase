@@ -14,6 +14,7 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.DateVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.HeadVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
+import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
@@ -78,6 +79,8 @@ public class VersioningFactoryImpl extends EFactoryImpl implements
 			return createChangePackage();
 		case VersioningPackage.HISTORY_INFO:
 			return createHistoryInfo();
+		case VersioningPackage.HISTORY_QUERY:
+			return createHistoryQuery();
 		case VersioningPackage.VERSION:
 			return createVersion();
 		case VersioningPackage.HEAD_VERSION_SPEC:
@@ -146,6 +149,16 @@ public class VersioningFactoryImpl extends EFactoryImpl implements
 	public HistoryInfo createHistoryInfo() {
 		HistoryInfoImpl historyInfo = new HistoryInfoImpl();
 		return historyInfo;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public HistoryQuery createHistoryQuery() {
+		HistoryQueryImpl historyQuery = new HistoryQueryImpl();
+		return historyQuery;
 	}
 
 	/**

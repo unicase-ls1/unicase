@@ -247,7 +247,7 @@ public interface VersioningPackage extends EPackage {
 	int HISTORY_INFO = 6;
 
 	/**
-	 * The feature id for the '<em><b>Primery Spec</b></em>' reference.
+	 * The feature id for the '<em><b>Primery Spec</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -256,7 +256,7 @@ public interface VersioningPackage extends EPackage {
 	int HISTORY_INFO__PRIMERY_SPEC = 0;
 
 	/**
-	 * The feature id for the '<em><b>Log Message</b></em>' reference.
+	 * The feature id for the '<em><b>Log Message</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -265,13 +265,59 @@ public interface VersioningPackage extends EPackage {
 	int HISTORY_INFO__LOG_MESSAGE = 1;
 
 	/**
+	 * The feature id for the '<em><b>Tag Specs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HISTORY_INFO__TAG_SPECS = 2;
+
+	/**
 	 * The number of structural features of the '<em>History Info</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HISTORY_INFO_FEATURE_COUNT = 2;
+	int HISTORY_INFO_FEATURE_COUNT = 3;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryQueryImpl <em>History Query</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.emfstore.esmodel.versioning.impl.HistoryQueryImpl
+	 * @see org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl#getHistoryQuery()
+	 * @generated
+	 */
+	int HISTORY_QUERY = 7;
+
+	/**
+	 * The feature id for the '<em><b>From</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HISTORY_QUERY__FROM = 0;
+
+	/**
+	 * The feature id for the '<em><b>To</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HISTORY_QUERY__TO = 1;
+
+	/**
+	 * The number of structural features of the '<em>History Query</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HISTORY_QUERY_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.impl.VersionImpl <em>Version</em>}' class.
@@ -281,7 +327,7 @@ public interface VersioningPackage extends EPackage {
 	 * @see org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl#getVersion()
 	 * @generated
 	 */
-	int VERSION = 7;
+	int VERSION = 8;
 
 	/**
 	 * The feature id for the '<em><b>Project State</b></em>' containment reference.
@@ -363,7 +409,7 @@ public interface VersioningPackage extends EPackage {
 	 * @see org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl#getHeadVersionSpec()
 	 * @generated
 	 */
-	int HEAD_VERSION_SPEC = 8;
+	int HEAD_VERSION_SPEC = 9;
 
 	/**
 	 * The number of structural features of the '<em>Head Version Spec</em>' class.
@@ -522,10 +568,10 @@ public interface VersioningPackage extends EPackage {
 	EClass getHistoryInfo();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.versioning.HistoryInfo#getPrimerySpec <em>Primery Spec</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.emfstore.esmodel.versioning.HistoryInfo#getPrimerySpec <em>Primery Spec</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Primery Spec</em>'.
+	 * @return the meta object for the containment reference '<em>Primery Spec</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.HistoryInfo#getPrimerySpec()
 	 * @see #getHistoryInfo()
 	 * @generated
@@ -533,15 +579,58 @@ public interface VersioningPackage extends EPackage {
 	EReference getHistoryInfo_PrimerySpec();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.versioning.HistoryInfo#getLogMessage <em>Log Message</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.emfstore.esmodel.versioning.HistoryInfo#getLogMessage <em>Log Message</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Log Message</em>'.
+	 * @return the meta object for the containment reference '<em>Log Message</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.HistoryInfo#getLogMessage()
 	 * @see #getHistoryInfo()
 	 * @generated
 	 */
 	EReference getHistoryInfo_LogMessage();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.unicase.emfstore.esmodel.versioning.HistoryInfo#getTagSpecs <em>Tag Specs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Tag Specs</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.HistoryInfo#getTagSpecs()
+	 * @see #getHistoryInfo()
+	 * @generated
+	 */
+	EReference getHistoryInfo_TagSpecs();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery <em>History Query</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>History Query</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.HistoryQuery
+	 * @generated
+	 */
+	EClass getHistoryQuery();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery#getFrom <em>From</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>From</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.HistoryQuery#getFrom()
+	 * @see #getHistoryQuery()
+	 * @generated
+	 */
+	EReference getHistoryQuery_From();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery#getTo <em>To</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>To</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.HistoryQuery#getTo()
+	 * @see #getHistoryQuery()
+	 * @generated
+	 */
+	EReference getHistoryQuery_To();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.Version <em>Version</em>}'.
@@ -792,7 +881,7 @@ public interface VersioningPackage extends EPackage {
 		EClass HISTORY_INFO = eINSTANCE.getHistoryInfo();
 
 		/**
-		 * The meta object literal for the '<em><b>Primery Spec</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Primery Spec</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -801,13 +890,48 @@ public interface VersioningPackage extends EPackage {
 				.getHistoryInfo_PrimerySpec();
 
 		/**
-		 * The meta object literal for the '<em><b>Log Message</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Log Message</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference HISTORY_INFO__LOG_MESSAGE = eINSTANCE
 				.getHistoryInfo_LogMessage();
+
+		/**
+		 * The meta object literal for the '<em><b>Tag Specs</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference HISTORY_INFO__TAG_SPECS = eINSTANCE
+				.getHistoryInfo_TagSpecs();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryQueryImpl <em>History Query</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.emfstore.esmodel.versioning.impl.HistoryQueryImpl
+		 * @see org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl#getHistoryQuery()
+		 * @generated
+		 */
+		EClass HISTORY_QUERY = eINSTANCE.getHistoryQuery();
+
+		/**
+		 * The meta object literal for the '<em><b>From</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference HISTORY_QUERY__FROM = eINSTANCE.getHistoryQuery_From();
+
+		/**
+		 * The meta object literal for the '<em><b>To</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference HISTORY_QUERY__TO = eINSTANCE.getHistoryQuery_To();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.impl.VersionImpl <em>Version</em>}' class.
