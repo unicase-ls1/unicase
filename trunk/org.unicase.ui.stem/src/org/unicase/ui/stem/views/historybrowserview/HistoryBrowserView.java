@@ -6,10 +6,22 @@
  */
 package org.unicase.ui.stem.views.historybrowserview;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
+import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.ui.stem.views.AbstractSCMView;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.WorkspaceManager;
 
 /**.
  * This the History Browser view. It inherits AbstractSCMView and hence has
@@ -23,13 +35,46 @@ public class HistoryBrowserView extends AbstractSCMView {
 	//temporarily used to show dialogs.
 	private Composite parent;
 	
+	private List<HistoryInfo> historyInfos;
+	
 	/**.
 	 * Constructor
 	 */
 	public HistoryBrowserView() {
-		
+		load();
 	}
 
+	private void load() {
+		historyInfos = new ArrayList<HistoryInfo>();
+		
+		try {
+		Resource resource = new ResourceSetImpl().createResource(URI.createURI("test"));
+
+		HistoryQuery query = VersioningFactory.eINSTANCE.createHistoryQuery();
+		PrimaryVersionSpec source = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+		source.setIdentifier(0);
+		PrimaryVersionSpec target = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+		target.setIdentifier(2);
+		query.setSource(source);
+		query.setTarget(target);
+		
+		resource.getContents().add(query);
+		resource.getContents().add(source);
+		resource.getContents().add(target);
+		
+		ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
+		List<HistoryInfo> result = activeProjectSpace.getUsersession().getHistoryInfo(activeProjectSpace.getProjectId(), query);
+		
+		if(result != null) {
+			historyInfos = result;			
+		}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
 	/**.
 	 * {@inheritDoc}
 	 */
@@ -80,7 +125,7 @@ public class HistoryBrowserView extends AbstractSCMView {
 	 */
 	@Override
 	protected Control setBrowserTabControl() {
-		return new HistoryComposite(tabFolder, SWT.NONE);
+		return new HistoryComposite(tabFolder, SWT.NONE,historyInfos);
 	}
 
 }

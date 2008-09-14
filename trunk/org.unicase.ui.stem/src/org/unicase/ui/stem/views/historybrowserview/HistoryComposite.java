@@ -70,6 +70,8 @@ public class HistoryComposite extends Composite {
 	private Label lblSourceVersion;
 	private Label lblTargetVersion;
 
+	private List<HistoryInfo> historyInfos;
+
 	/**
 	 * . Constructor
 	 * 
@@ -78,8 +80,10 @@ public class HistoryComposite extends Composite {
 	 * @param style
 	 *            style
 	 */
-	public HistoryComposite(Composite parent, int style) {
+	public HistoryComposite(Composite parent, int style, List<HistoryInfo> infos) {
 		super(parent, style);
+		this.historyInfos = infos;
+		
 		this.setLayout(new GridLayout());
 		createTable();
 		// a dummy input
@@ -210,36 +214,7 @@ public class HistoryComposite extends Composite {
 
 	// a dummay input to table
 	private List<HistoryInfo> getHistoryInfos() {
-		
-		List<HistoryInfo> result = new ArrayList<HistoryInfo>();
-		
-//		try {
-//		Resource resource = new ResourceSetImpl().createResource(URI.createURI("test"));
-//
-//		HistoryQuery query = VersioningFactory.eINSTANCE.createHistoryQuery();
-//		PrimaryVersionSpec source = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-//		source.setIdentifier(0);
-//		PrimaryVersionSpec target = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-//		target.setIdentifier(2);
-//		query.setSource(source);
-//		query.setTarget(target);
-//		
-//		resource.getContents().add(query);
-//		resource.getContents().add(source);
-//		resource.getContents().add(target);
-//		
-//		ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
-//		result = activeProjectSpace.getUsersession().getHistoryInfo(activeProjectSpace.getProjectId(), query);
-//		
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		
-		//result = usersession.getHistoryInfo(projectId, query);
-		
-		return result;
-//		return createDummyVersions();
+		return historyInfos;
 	}
 
 	private List<HistoryInfo> createDummyVersions() {
