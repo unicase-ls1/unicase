@@ -4,10 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.util.MeasurementUnitHelper;
 import org.eclipse.gmf.runtime.diagram.ui.view.factories.AbstractLabelViewFactory;
+import org.eclipse.gmf.runtime.diagram.ui.view.factories.AbstractShapeViewFactory;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
+import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
@@ -16,30 +22,67 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class ClassViewFactory extends AbstractLabelViewFactory {
-
-	/**
-	 * @generated
-	 */
-	public View createView(IAdaptable semanticAdapter, View containerView,
-			String semanticHint, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
-		Node view = (Node) super.createView(semanticAdapter, containerView,
-				semanticHint, index, persisted, preferencesHint);
-		Location location = (Location) view.getLayoutConstraint();
-		IMapMode mapMode = MeasurementUnitHelper.getMapMode(containerView
-				.getDiagram().getMeasurementUnit());
-		location.setX(mapMode.DPtoLP(0));
-		location.setY(mapMode.DPtoLP(5));
-		return view;
-	}
+public class ClassViewFactory extends AbstractShapeViewFactory {
 
 	/**
 	 * @generated
 	 */
 	protected List createStyles(View view) {
 		List styles = new ArrayList();
-		styles.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		styles.add(NotationFactory.eINSTANCE.createShapeStyle());
 		return styles;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void decorateView(View containerView, View view,
+			IAdaptable semanticAdapter, String semanticHint, int index,
+			boolean persisted) {
+		if (semanticHint == null) {
+			semanticHint = org.unicase.model.classDiagram.part.ModelVisualIDRegistry
+					.getType(org.unicase.model.classDiagram.edit.parts.ClassEditPart.VISUAL_ID);
+			view.setType(semanticHint);
+		}
+		super.decorateView(containerView, view, semanticAdapter, semanticHint,
+				index, persisted);
+		if (!org.unicase.model.classDiagram.edit.parts.MEDiagramEditPart.MODEL_ID
+				.equals(org.unicase.model.classDiagram.part.ModelVisualIDRegistry
+						.getModelID(containerView))) {
+			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE
+					.createEAnnotation();
+			shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
+			shortcutAnnotation
+					.getDetails()
+					.put(
+							"modelID", org.unicase.model.classDiagram.edit.parts.MEDiagramEditPart.MODEL_ID); //$NON-NLS-1$
+			view.getEAnnotations().add(shortcutAnnotation);
+		}
+		IAdaptable eObjectAdapter = null;
+		EObject eObject = (EObject) semanticAdapter.getAdapter(EObject.class);
+		if (eObject != null) {
+			eObjectAdapter = new EObjectAdapter(eObject);
+		}
+		getViewService()
+				.createNode(
+						eObjectAdapter,
+						view,
+						org.unicase.model.classDiagram.part.ModelVisualIDRegistry
+								.getType(org.unicase.model.classDiagram.edit.parts.ClassNameEditPart.VISUAL_ID),
+						ViewUtil.APPEND, true, getPreferencesHint());
+		getViewService()
+				.createNode(
+						eObjectAdapter,
+						view,
+						org.unicase.model.classDiagram.part.ModelVisualIDRegistry
+								.getType(org.unicase.model.classDiagram.edit.parts.ClassClassNode_attributesEditPart.VISUAL_ID),
+						ViewUtil.APPEND, true, getPreferencesHint());
+		getViewService()
+				.createNode(
+						eObjectAdapter,
+						view,
+						org.unicase.model.classDiagram.part.ModelVisualIDRegistry
+								.getType(org.unicase.model.classDiagram.edit.parts.ClassClassNode_methodsEditPart.VISUAL_ID),
+						ViewUtil.APPEND, true, getPreferencesHint());
 	}
 }

@@ -84,7 +84,7 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 		case org.unicase.model.classDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Diagram?http://unicase.org/model/diagram?MEDiagram", org.unicase.model.classDiagram.providers.ModelElementTypes.MEDiagram_88); //$NON-NLS-1$
-		case org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart.VISUAL_ID:
+		case org.unicase.model.classDiagram.edit.parts.ClassEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http://unicase.org/model/classes?Class", org.unicase.model.classDiagram.providers.ModelElementTypes.Class_1001); //$NON-NLS-1$
 		case org.unicase.model.classDiagram.edit.parts.AttributeEditPart.VISUAL_ID:
@@ -154,7 +154,7 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 				.getVisualID(view)) {
 		case org.unicase.model.classDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
 			return getMEDiagram_88Text(view);
-		case org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart.VISUAL_ID:
+		case org.unicase.model.classDiagram.edit.parts.ClassEditPart.VISUAL_ID:
 			return getClass_1001Text(view);
 		case org.unicase.model.classDiagram.edit.parts.AttributeEditPart.VISUAL_ID:
 			return getAttribute_2001Text(view);
@@ -189,7 +189,7 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 				org.unicase.model.classDiagram.providers.ModelElementTypes.Class_1001,
 				(view.getElement() != null ? view.getElement() : view),
 				org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-						.getType(org.unicase.model.classDiagram.edit.parts.WrappingLabelEditPart.VISUAL_ID));
+						.getType(org.unicase.model.classDiagram.edit.parts.ClassNameEditPart.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
 		if (parser != null) {

@@ -97,13 +97,13 @@
     </childNodes>
     <topLevelNodes
         visualID="1001"
-        editPartClassName="MEDiagram2EditPart"
-        itemSemanticEditPolicyClassName="MEDiagram2ItemSemanticEditPolicy"
-        notationViewFactoryClassName="MEDiagram2ViewFactory"
-        canonicalEditPolicyClassName="MEDiagram2CanonicalEditPolicy"
+        editPartClassName="ClassEditPart"
+        itemSemanticEditPolicyClassName="ClassItemSemanticEditPolicy"
+        notationViewFactoryClassName="ClassViewFactory"
+        canonicalEditPolicyClassName="ClassCanonicalEditPolicy"
         compartments="//@diagram/@compartments.0 //@diagram/@compartments.1"
-        graphicalNodeEditPolicyClassName="MEDiagramGraphicalNodeEditPolicy"
-        createCommandClassName="MEDiagramCreateCommand">
+        graphicalNodeEditPolicyClassName="ClassGraphicalNodeEditPolicy"
+        createCommandClassName="ClassCreateCommand">
       <diagramRunTimeClass
           href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
       <elementType
@@ -127,9 +127,9 @@
       </modelFacet>
       <labels
           visualID="4001"
-          editPartClassName="WrappingLabelEditPart"
-          itemSemanticEditPolicyClassName="WrappingLabelItemSemanticEditPolicy"
-          notationViewFactoryClassName="WrappingLabelViewFactory"
+          editPartClassName="ClassNameEditPart"
+          itemSemanticEditPolicyClassName="ClassNameItemSemanticEditPolicy"
+          notationViewFactoryClassName="ClassNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>

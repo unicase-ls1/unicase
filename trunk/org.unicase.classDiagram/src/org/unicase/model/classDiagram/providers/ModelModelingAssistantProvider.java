@@ -32,7 +32,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart) host
 				.getAdapter(IGraphicalEditPart.class);
-		if (editPart instanceof org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart) {
+		if (editPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart) {
 			List types = new ArrayList();
 			types
 					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Attribute_2001);
@@ -55,7 +55,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	public List getRelTypesOnSource(IAdaptable source) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
 				.getAdapter(IGraphicalEditPart.class);
-		if (sourceEditPart instanceof org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart) {
+		if (sourceEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart) {
 			List types = new ArrayList();
 			types
 					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3001);
@@ -70,7 +70,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	public List getRelTypesOnTarget(IAdaptable target) {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
 				.getAdapter(IGraphicalEditPart.class);
-		if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart) {
+		if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart) {
 			List types = new ArrayList();
 			types
 					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3001);
@@ -88,9 +88,9 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 				.getAdapter(IGraphicalEditPart.class);
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
 				.getAdapter(IGraphicalEditPart.class);
-		if (sourceEditPart instanceof org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart) {
+		if (sourceEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart) {
 			List types = new ArrayList();
-			if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart) {
+			if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart) {
 				types
 						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3001);
 			}
@@ -106,7 +106,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 			IElementType relationshipType) {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
 				.getAdapter(IGraphicalEditPart.class);
-		if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart) {
+		if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart) {
 			List types = new ArrayList();
 			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3001) {
 				types
@@ -124,7 +124,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 			IElementType relationshipType) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
 				.getAdapter(IGraphicalEditPart.class);
-		if (sourceEditPart instanceof org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart) {
+		if (sourceEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart) {
 			List types = new ArrayList();
 			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3001) {
 				types

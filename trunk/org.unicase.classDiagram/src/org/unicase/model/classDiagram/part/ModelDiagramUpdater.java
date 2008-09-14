@@ -109,7 +109,7 @@ public class ModelDiagramUpdater {
 			ModelElement childElement = (ModelElement) it.next();
 			int visualID = org.unicase.model.classDiagram.part.ModelVisualIDRegistry
 					.getNodeVisualID(view, childElement);
-			if (visualID == org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart.VISUAL_ID) {
+			if (visualID == org.unicase.model.classDiagram.edit.parts.ClassEditPart.VISUAL_ID) {
 				result
 						.add(new org.unicase.model.classDiagram.part.ModelNodeDescriptor(
 								childElement, visualID));
@@ -127,7 +127,7 @@ public class ModelDiagramUpdater {
 				.getVisualID(view)) {
 		case org.unicase.model.classDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
 			return getMEDiagram_88ContainedLinks(view);
-		case org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart.VISUAL_ID:
+		case org.unicase.model.classDiagram.edit.parts.ClassEditPart.VISUAL_ID:
 			return getClass_1001ContainedLinks(view);
 		case org.unicase.model.classDiagram.edit.parts.AttributeEditPart.VISUAL_ID:
 			return getAttribute_2001ContainedLinks(view);
@@ -145,7 +145,7 @@ public class ModelDiagramUpdater {
 	public static List getIncomingLinks(View view) {
 		switch (org.unicase.model.classDiagram.part.ModelVisualIDRegistry
 				.getVisualID(view)) {
-		case org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart.VISUAL_ID:
+		case org.unicase.model.classDiagram.edit.parts.ClassEditPart.VISUAL_ID:
 			return getClass_1001IncomingLinks(view);
 		case org.unicase.model.classDiagram.edit.parts.AttributeEditPart.VISUAL_ID:
 			return getAttribute_2001IncomingLinks(view);
@@ -163,7 +163,7 @@ public class ModelDiagramUpdater {
 	public static List getOutgoingLinks(View view) {
 		switch (org.unicase.model.classDiagram.part.ModelVisualIDRegistry
 				.getVisualID(view)) {
-		case org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart.VISUAL_ID:
+		case org.unicase.model.classDiagram.edit.parts.ClassEditPart.VISUAL_ID:
 			return getClass_1001OutgoingLinks(view);
 		case org.unicase.model.classDiagram.edit.parts.AttributeEditPart.VISUAL_ID:
 			return getAttribute_2001OutgoingLinks(view);

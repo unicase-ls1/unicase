@@ -5,7 +5,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.unicase.model.classes.Class;
+import org.unicase.model.classes.ClassesFactory;
 import org.unicase.model.diagram.DiagramPackage;
+import org.unicase.model.diagram.MEDiagram;
 
 /**
  * @generated
@@ -36,6 +39,21 @@ public class ClassCreateCommand extends CreateElementCommand {
 	 */
 	protected EClass getEClassToEdit() {
 		return DiagramPackage.eINSTANCE.getMEDiagram();
+	}
+
+	/**
+	 * @generated
+	 */
+	protected EObject doDefaultElementCreation() {
+		Class newElement = ClassesFactory.eINSTANCE.createClass();
+
+		MEDiagram owner = (MEDiagram) getElementToEdit();
+		owner.getNewElements().add(newElement);
+
+		MEDiagram childHolder = (MEDiagram) getElementToEdit();
+		childHolder.getElements().add(newElement);
+
+		return newElement;
 	}
 
 }
