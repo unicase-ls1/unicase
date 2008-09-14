@@ -35,6 +35,12 @@
                optional="true"
                typeId="org.unicase.ui.navigator.eClassType">
          </commandParameter>
+         <commandParameter
+               id="org.unicase.ui.navigator.diagramTypeParameter"
+               name="diagramTypeParameter"
+               optional="true"
+               typeId="org.unicase.ui.navigator.diagramType">
+         </commandParameter>
       </command>
       <command
             id="org.unicase.ui.navigator.newMEWizard"
@@ -44,6 +50,11 @@
             converter="org.unicase.ui.navigator.commands.EClassTypeConverter"
             id="org.unicase.ui.navigator.eClassType"
             type="org.eclipse.emf.ecore.EClass">
+      </commandParameterType>
+            <commandParameterType
+            converter="org.unicase.ui.navigator.commands.DiagramTypeConverter"
+            id="org.unicase.ui.navigator.diagramType"
+            type="org.unicase.model.diagram.DiagramType">
       </commandParameterType>
       <command
             id="org.unicase.ui.navigator.newLeafSection"
