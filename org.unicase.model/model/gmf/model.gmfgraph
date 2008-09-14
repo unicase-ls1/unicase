@@ -13,6 +13,10 @@
         xsi:type="gmfgraph:CustomDecoration"
         name="AssociationTargetDecoration"
         qualifiedClassName="org.unicase.model.classDiagram.unicase.AssociationDecoration"/>
+    <figures
+        xsi:type="gmfgraph:CustomDecoration"
+        name="GeneralizationDecoration"
+        qualifiedClassName="org.unicase.model.classDiagram.unicase.GeneralizationDecoration"/>
     <descriptors
         name="ClassFigure">
       <actualFigure
@@ -107,6 +111,13 @@
       <actualFigure
           xsi:type="gmfgraph:Label"
           name="ClassMethodNameFigure"/>
+    </descriptors>
+    <descriptors
+        name="GeneralizationFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="GeneralizationPolyline"
+          targetDecoration="//@figures.0/@figures.2"/>
     </descriptors>
   </figures>
   <figures
@@ -416,6 +427,9 @@
   <connections
       name="ProvidedInterfaceLink"
       figure="ProvidedInterfaceConnectionFigure"/>
+  <connections
+      name="Generalization"
+      figure="GeneralizationFigure"/>
   <compartments
       name="ClassNode_attributes"
       figure="ClassFigure"
