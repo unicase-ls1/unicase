@@ -66,13 +66,13 @@ public class ClassSubClassesEditPart extends ConnectionNodeEditPart implements
 		 */
 		public GeneralizationFigure() {
 
-			setTargetDecoration(createTargetDecoration());
+			setSourceDecoration(createSourceDecoration());
 		}
 
 		/**
 		 * @generated
 		 */
-		private RotatableDecoration createTargetDecoration() {
+		private RotatableDecoration createSourceDecoration() {
 			org.unicase.model.classDiagram.unicase.GeneralizationDecoration df = new org.unicase.model.classDiagram.unicase.GeneralizationDecoration();
 
 			return df;
