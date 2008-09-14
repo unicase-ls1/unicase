@@ -2,6 +2,7 @@ package org.unicase.model.classDiagram.edit.policies;
 
 import java.util.Iterator;
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
@@ -85,27 +86,29 @@ public class ClassItemSemanticEditPolicy
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
 		if (org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3001 == req
 				.getElementType()) {
 			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.AssociationCreateCommand(
-					req, req.getSource(), req.getTarget()));
+					req, req.getSource(), req.getTarget(), (EObject) getHost()
+							.getModel()));
 		}
 		return null;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
 		if (org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3001 == req
 				.getElementType()) {
 			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.AssociationCreateCommand(
-					req, req.getSource(), req.getTarget()));
+					req, req.getSource(), req.getTarget(), (EObject) getHost()
+							.getModel()));
 		}
 		return null;
 	}
