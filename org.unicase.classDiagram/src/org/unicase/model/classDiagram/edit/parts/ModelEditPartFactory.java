@@ -32,12 +32,12 @@ public class ModelEditPartFactory implements EditPartFactory {
 				return new org.unicase.model.classDiagram.edit.parts.MEDiagramEditPart(
 						view);
 
-			case org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart.VISUAL_ID:
-				return new org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart(
+			case org.unicase.model.classDiagram.edit.parts.ClassEditPart.VISUAL_ID:
+				return new org.unicase.model.classDiagram.edit.parts.ClassEditPart(
 						view);
 
-			case org.unicase.model.classDiagram.edit.parts.WrappingLabelEditPart.VISUAL_ID:
-				return new org.unicase.model.classDiagram.edit.parts.WrappingLabelEditPart(
+			case org.unicase.model.classDiagram.edit.parts.ClassNameEditPart.VISUAL_ID:
+				return new org.unicase.model.classDiagram.edit.parts.ClassNameEditPart(
 						view);
 
 			case org.unicase.model.classDiagram.edit.parts.AttributeEditPart.VISUAL_ID:

@@ -218,7 +218,7 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 					"icons/linksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection connectedViews = getChildrenByType(
 					Collections.singleton(view),
-					org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart.VISUAL_ID);
+					org.unicase.model.classDiagram.edit.parts.ClassEditPart.VISUAL_ID);
 			result.addAll(createNavigatorItems(connectedViews, parentElement,
 					false));
 			connectedViews = getDiagramLinksByType(
@@ -233,7 +233,7 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 			return result.toArray();
 		}
 
-		case org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart.VISUAL_ID: {
+		case org.unicase.model.classDiagram.edit.parts.ClassEditPart.VISUAL_ID: {
 			Collection result = new ArrayList();
 			org.unicase.model.classDiagram.navigator.ModelNavigatorGroup incominglinks = new org.unicase.model.classDiagram.navigator.ModelNavigatorGroup(
 					org.unicase.model.classDiagram.part.Messages.NavigatorGroupName_Class_1001_incominglinks,
@@ -286,12 +286,12 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection connectedViews = getLinksTargetByType(
 					Collections.singleton(view),
-					org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart.VISUAL_ID);
+					org.unicase.model.classDiagram.edit.parts.ClassEditPart.VISUAL_ID);
 			target.addChildren(createNavigatorItems(connectedViews, target,
 					true));
 			connectedViews = getLinksSourceByType(
 					Collections.singleton(view),
-					org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart.VISUAL_ID);
+					org.unicase.model.classDiagram.edit.parts.ClassEditPart.VISUAL_ID);
 			source.addChildren(createNavigatorItems(connectedViews, source,
 					true));
 			if (!target.isEmpty()) {

@@ -322,7 +322,6 @@ public class ModelDiagramEditor extends DiagramDocumentEditor implements
 		// }
 	}
 
-	
 	@Override
 	public void doSave(IProgressMonitor progressMonitor) {
 		//FIXME JH: can we remove this method?
@@ -331,7 +330,9 @@ public class ModelDiagramEditor extends DiagramDocumentEditor implements
 
 					@Override
 					protected void doExecute() {
-						WorkspaceManager.getProjectSpace((MEDiagram)ModelDiagramEditor.this.getDiagram().eContainer()).save();
+						WorkspaceManager.getProjectSpace(
+								(MEDiagram) ModelDiagramEditor.this
+										.getDiagram().eContainer()).save();
 					}
 
 				});

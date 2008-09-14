@@ -25,7 +25,7 @@ public class MEDiagramItemSemanticEditPolicy
 				req.setContainmentFeature(DiagramPackage.eINSTANCE
 						.getMEDiagram_NewElements());
 			}
-			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.MEDiagramCreateCommand(
+			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.ClassCreateCommand(
 					req));
 		}
 		return super.getCreateCommand(req);

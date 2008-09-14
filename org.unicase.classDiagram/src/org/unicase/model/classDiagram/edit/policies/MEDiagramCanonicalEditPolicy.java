@@ -66,7 +66,7 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 		int visualID = org.unicase.model.classDiagram.part.ModelVisualIDRegistry
 				.getVisualID(view);
 		switch (visualID) {
-		case org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart.VISUAL_ID:
+		case org.unicase.model.classDiagram.edit.parts.ClassEditPart.VISUAL_ID:
 			if (!semanticChildren.contains(view.getElement())) {
 				return true;
 			}
@@ -216,7 +216,7 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 			}
 			break;
 		}
-		case org.unicase.model.classDiagram.edit.parts.MEDiagram2EditPart.VISUAL_ID: {
+		case org.unicase.model.classDiagram.edit.parts.ClassEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result
 						.addAll(org.unicase.model.classDiagram.part.ModelDiagramUpdater
