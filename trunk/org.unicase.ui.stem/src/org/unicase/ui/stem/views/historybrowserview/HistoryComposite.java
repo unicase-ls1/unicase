@@ -6,10 +6,16 @@
  */
 package org.unicase.ui.stem.views.historybrowserview;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
@@ -30,13 +36,20 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
+import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
+import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.stem.views.changebrowserview.ChangeBrowserView;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.Usersession;
+import org.unicase.workspace.Workspace;
+import org.unicase.workspace.WorkspaceManager;
 
 /**
  * . This class provides contents of borwser tab of HistoryBrowserView. It
@@ -52,8 +65,8 @@ import org.unicase.ui.stem.views.changebrowserview.ChangeBrowserView;
 public class HistoryComposite extends Composite {
 
 	private TableViewer tableViewer;
-	private Version sourceVersion;
-	private Version targetVersion;
+	private HistoryInfo sourceHistoryInfo;
+	private HistoryInfo targetHistoryInfo;
 	private Label lblSourceVersion;
 	private Label lblTargetVersion;
 
@@ -70,7 +83,7 @@ public class HistoryComposite extends Composite {
 		this.setLayout(new GridLayout());
 		createTable();
 		// a dummy input
-		tableViewer.setInput(getVersions());
+		tableViewer.setInput(getHistoryInfos());
 
 		for (TableColumn column : tableViewer.getTable().getColumns()) {
 			column.pack();
@@ -114,7 +127,7 @@ public class HistoryComposite extends Composite {
 
 		tableViewer.setContentProvider(new HistoryTableContentProvider());
 		tableViewer.setLabelProvider(new HistoryTableLabelProvider());
-		tableViewer.setInput(getVersions());
+		tableViewer.setInput(getHistoryInfos());
 
 		hookTableCntextMenu();
 
@@ -129,7 +142,7 @@ public class HistoryComposite extends Composite {
 				IStructuredSelection selection = (IStructuredSelection) tableViewer
 						.getSelection();
 				if (!selection.isEmpty()) {
-					setSourceVersion((Version) selection.getFirstElement());
+					setSourceVersion((HistoryInfo) selection.getFirstElement());
 				}
 			}
 
@@ -141,7 +154,7 @@ public class HistoryComposite extends Composite {
 				IStructuredSelection selection = (IStructuredSelection) tableViewer
 						.getSelection();
 				if (!selection.isEmpty()) {
-					setTargetVersion((Version) selection.getFirstElement());
+					setTargetHistoryInfo((HistoryInfo) selection.getFirstElement());
 				}
 			}
 		};
@@ -153,7 +166,8 @@ public class HistoryComposite extends Composite {
 				IStructuredSelection selection = (IStructuredSelection) tableViewer
 						.getSelection();
 				if (!selection.isEmpty()) {
-					showChangePackages((Version) selection.getFirstElement());
+					showChangePackages((HistoryInfo) selection
+							.getFirstElement());
 				}
 			}
 		};
@@ -174,7 +188,7 @@ public class HistoryComposite extends Composite {
 	 * 
 	 * @param version
 	 */
-	protected void showChangePackages(Version version) {
+	protected void showChangePackages(HistoryInfo info) {
 		// show ChangeBrowserView with version.ChangePackage as input
 
 		IWorkbenchPage page = PlatformUI.getWorkbench()
@@ -188,21 +202,50 @@ public class HistoryComposite extends Composite {
 		}
 
 		if (changeBrowserView != null) {
-			changeBrowserView.setInput(version.getChanges());
+			// FIXME: OW ZH was muss hier hin?
+			// changeBrowserView.setInput(version.getChanges());
 		}
 
 	}
 
 	// a dummay input to table
-	private List<Version> getVersions() {
-
-		return createDummyVersions();
+	private List<HistoryInfo> getHistoryInfos() {
+		
+		List<HistoryInfo> result = new ArrayList<HistoryInfo>();
+		
+//		try {
+//		Resource resource = new ResourceSetImpl().createResource(URI.createURI("test"));
+//
+//		HistoryQuery query = VersioningFactory.eINSTANCE.createHistoryQuery();
+//		PrimaryVersionSpec source = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+//		source.setIdentifier(0);
+//		PrimaryVersionSpec target = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+//		target.setIdentifier(2);
+//		query.setSource(source);
+//		query.setTarget(target);
+//		
+//		resource.getContents().add(query);
+//		resource.getContents().add(source);
+//		resource.getContents().add(target);
+//		
+//		ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
+//		result = activeProjectSpace.getUsersession().getHistoryInfo(activeProjectSpace.getProjectId(), query);
+//		
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		//result = usersession.getHistoryInfo(projectId, query);
+		
+		return result;
+//		return createDummyVersions();
 	}
 
-	private List<Version> createDummyVersions() {
-		Version[] versions = new Version[6];
+	private List<HistoryInfo> createDummyVersions() {
+		HistoryInfo[] versions = new HistoryInfo[6];
 		for (int i = 0; i < 6; i++) {
-			versions[i] = VersioningFactory.eINSTANCE.createVersion();
+			versions[i] = VersioningFactory.eINSTANCE.createHistoryInfo();
 			LogMessage logMessage = VersioningFactory.eINSTANCE
 					.createLogMessage();
 			logMessage.setAuthor("author" + i);
@@ -215,10 +258,10 @@ public class HistoryComposite extends Composite {
 
 			TagVersionSpec tagSpec = VersioningFactory.eINSTANCE
 					.createTagVersionSpec();
-			tagSpec.setName("tag" + i);
+			tagSpec.setName("tag" + i+"test");
 
 			versions[i].setLogMessage(logMessage);
-			versions[i].setPrimarySpec(verSpec);
+			versions[i].setPrimerySpec(verSpec);
 			versions[i].getTagSpecs().add(tagSpec);
 		}
 
@@ -232,7 +275,7 @@ public class HistoryComposite extends Composite {
 				false));
 		grpButtons.setLayout(new GridLayout(10, false));
 
-		//label for source version
+		// label for source version
 		Label lblFrom = new Label(grpButtons, SWT.NONE);
 		lblFrom
 				.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false));
@@ -244,7 +287,7 @@ public class HistoryComposite extends Composite {
 		lblSourceVersion
 				.setText("here is the selected From version shown ....");
 
-		//label for target version
+		// label for target version
 		Label lblTo = new Label(grpButtons, SWT.NONE);
 		lblTo.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false));
 		lblTo.setText("To:");
@@ -254,42 +297,42 @@ public class HistoryComposite extends Composite {
 				false, false, 4, 1));
 		lblTargetVersion.setText("here is the selected To version shown ....");
 
-		//a helper composite for buttons
+		// a helper composite for buttons
 		Composite composite = new Composite(grpButtons, SWT.NONE);
 		composite.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false,
 				false, 10, 1));
 		composite.setLayout(new GridLayout(5, true));
 
-		//btnDiff
+		// btnDiff
 		Button btnDiff = new Button(composite, SWT.PUSH);
 		btnDiff.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		btnDiff.setText("Diff");
-		//TODO final implementation (implement button selected operation)
+		// TODO final implementation (implement button selected operation)
 
-		//btnCreateTag
+		// btnCreateTag
 		Button btnCreateTag = new Button(composite, SWT.PUSH | SWT.CENTER);
 		btnCreateTag
 				.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		btnCreateTag.setText("Create Tag");
-		//TODO final implementation (implement button selected operation)
-		
-		//btnUpdate
+		// TODO final implementation (implement button selected operation)
+
+		// btnUpdate
 		Button btnUpdate = new Button(composite, SWT.PUSH);
 		btnUpdate.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		btnUpdate.setText("Update");
-		//TODO final implementation (implement button selected operation)
-		
-		//btnSwitch
+		// TODO final implementation (implement button selected operation)
+
+		// btnSwitch
 		Button btnSwitch = new Button(composite, SWT.PUSH);
 		btnSwitch.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		btnSwitch.setText("Switch");
-		//TODO final implementation (implement button selected operation)
-		
-		//btnRollback
+		// TODO final implementation (implement button selected operation)
+
+		// btnRollback
 		Button btnRollback = new Button(composite, SWT.PUSH);
 		btnRollback.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		btnRollback.setText("Rollback");
-		//TODO final implementation (implement button selected operation)
+		// TODO final implementation (implement button selected operation)
 	}
 
 	/**
@@ -298,10 +341,10 @@ public class HistoryComposite extends Composite {
 	 * @param sourceVersion
 	 *            sourceVersion
 	 */
-	public void setSourceVersion(Version sourceVersion) {
-		this.sourceVersion = sourceVersion;
+	public void setSourceVersion(HistoryInfo sourceVersion) {
+		this.sourceHistoryInfo = sourceVersion;
 		lblSourceVersion.setText(Integer.toString(sourceVersion
-				.getPrimarySpec().getIdentifier()));
+				.getPrimerySpec().getIdentifier()));
 
 	}
 
@@ -310,8 +353,8 @@ public class HistoryComposite extends Composite {
 	 * 
 	 * @return sourceVersion
 	 */
-	public Version getSourceVersion() {
-		return sourceVersion;
+	public HistoryInfo getSourceHistoryInfo() {
+		return sourceHistoryInfo;
 	}
 
 	/**
@@ -320,10 +363,10 @@ public class HistoryComposite extends Composite {
 	 * @param targetVersion
 	 *            targetVersion
 	 */
-	public void setTargetVersion(Version targetVersion) {
-		this.targetVersion = targetVersion;
+	public void setTargetHistoryInfo(HistoryInfo targetVersion) {
+		this.targetHistoryInfo = targetVersion;
 		lblTargetVersion.setText(Integer.toString(targetVersion
-				.getPrimarySpec().getIdentifier()));
+				.getPrimerySpec().getIdentifier()));
 	}
 
 	/**
@@ -331,8 +374,8 @@ public class HistoryComposite extends Composite {
 	 * 
 	 * @return targetVersion
 	 */
-	public Version getTargetVersion() {
-		return targetVersion;
+	public HistoryInfo getTargetHistoryInfo() {
+		return targetHistoryInfo;
 	}
 
 }

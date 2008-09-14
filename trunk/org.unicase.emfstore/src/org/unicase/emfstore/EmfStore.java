@@ -17,6 +17,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
+import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
@@ -34,15 +35,15 @@ import org.unicase.model.Project;
  */
 /**
  * @author koegel
- *
+ * 
  */
 public interface EmfStore {
-	
+
 	/**
 	 * Virtual Uri for change package de-/serialization.
 	 */
 	URI CHANGEPACKAGE_URI = URI.createURI("unicaseVirtualChangePackageUri");
-	
+
 	/**
 	 * Virtual Uri for project de-/serialization.
 	 */
@@ -165,6 +166,25 @@ public interface EmfStore {
 			VersionSpec source, VersionSpec target) throws EmfStoreException;
 
 	/**
+	 * Get history information from the server. The list returned will describe
+	 * the versions as request through {@link HistoryQuery}.
+	 * 
+	 * @param sessionId
+	 *            the session id
+	 * @param projectId
+	 *            the project id
+	 * @param historyQuery
+	 *            the historyQuery
+	 * @return list of history information
+	 * @throws EmfStoreException
+	 *             if any error in the EmfStore occurs
+	 * 
+	 * @generated NOT
+	 */
+	List<HistoryInfo> getHistoryInfo(SessionId sessionId, ProjectId projectId,
+			HistoryQuery historyQuery) throws EmfStoreException;
+
+	/**
 	 * Create a new project on the server.
 	 * 
 	 * @param sessionId
@@ -173,7 +193,8 @@ public interface EmfStore {
 	 *            the name of the server
 	 * @param description
 	 *            the description
-	 * @param logMessage the logMessage
+	 * @param logMessage
+	 *            the logMessage
 	 * @return a {@link ProjectInfo} for the new project
 	 * @throws EmfStoreException
 	 *             if any error in the EmfStore occurs
@@ -182,7 +203,7 @@ public interface EmfStore {
 	 */
 	ProjectInfo createProject(SessionId sessionId, String name,
 			String description, LogMessage logMessage) throws EmfStoreException;
-	
+
 	/**
 	 * Create a new project on the server.
 	 * 
@@ -192,8 +213,10 @@ public interface EmfStore {
 	 *            the name of the server
 	 * @param description
 	 *            the description
-	 * @param logMessage the logMessage
-	 * @param project the initial project state
+	 * @param logMessage
+	 *            the logMessage
+	 * @param project
+	 *            the initial project state
 	 * 
 	 * @return a {@link ProjectInfo} for the new project
 	 * @throws EmfStoreException
@@ -202,16 +225,18 @@ public interface EmfStore {
 	 * @generated NOT
 	 */
 	ProjectInfo createProject(SessionId sessionId, String name,
-			String description, LogMessage logMessage, Project project) throws EmfStoreException;
-	
+			String description, LogMessage logMessage, Project project)
+			throws EmfStoreException;
+
 	/**
-	 *
+	 * 
 	 * 
 	 * @param sessionId
 	 * @param id
 	 * @return
 	 * @throws EmfStoreException
 	 */
-	ACUser resolveUser(SessionId sessionId, ACOrgUnitId id) throws EmfStoreException;
-	
+	ACUser resolveUser(SessionId sessionId, ACOrgUnitId id)
+			throws EmfStoreException;
+
 }

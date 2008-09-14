@@ -8,6 +8,7 @@ package org.unicase.ui.stem.views.historybrowserview;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.Version;
 
 /**.
@@ -37,11 +38,11 @@ public class HistoryTableLabelProvider extends AdapterFactoryLabelProvider {
 	 */
 	@Override
 	public String getColumnText(Object object, int columnIndex) {
-		if(object instanceof Version){
-			Version version = (Version)object;
+		if(object instanceof HistoryInfo){
+			HistoryInfo version = (HistoryInfo)object;
 			switch (columnIndex){
 			case REVISION_COLUMN :
-				return Integer.toString(version.getPrimarySpec().getIdentifier());
+				return Integer.toString(version.getPrimerySpec().getIdentifier());
 			case TAG_COLUMN :
 				return version.getTagSpecs().get(0).getName();
 			case DATE_COLUMN :

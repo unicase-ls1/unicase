@@ -8,6 +8,7 @@ package org.unicase.emfstore;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -33,8 +34,10 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.HeadVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
+import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
@@ -169,13 +172,44 @@ public class EmfStoreImpl implements EmfStore {
 			throws EmfStoreException {
 		// TODO: authorization
 		authorizationControl.checkReadAccess(sessionId, projectId, null);
+		
+		PrimaryVersionSpec resolvedSource = resolveVersionSpec(projectId, source);
+		PrimaryVersionSpec resolvedTarget = resolveVersionSpec(projectId, target);
+		
+		List<HistoryInfo> result = getHistoryInfo(projectId, resolvedSource, resolvedTarget);
+		if(resolvedSource.compareTo(resolvedTarget) < 0) {
+			Collections.reverse(result);
+		}
+		
+		return result;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public synchronized List<HistoryInfo> getHistoryInfo(SessionId sessionId,
+			ProjectId projectId, HistoryQuery historyQuery)
+			throws EmfStoreException {
+		authorizationControl.checkReadAccess(sessionId, projectId, null);
+		
+		List<HistoryInfo> result = getHistoryInfo(projectId, historyQuery.getSource(), historyQuery.getTarget());
+		if(historyQuery.getSource().compareTo(historyQuery.getTarget()) < 0) {
+			Collections.reverse(result);
+		}
+		return result;
+	}
+
+	private List<HistoryInfo> getHistoryInfo(ProjectId projectId, PrimaryVersionSpec source,
+			PrimaryVersionSpec target) throws EmfStoreException {
 		List<HistoryInfo> result = new ArrayList<HistoryInfo>();
-		for (Version version : getVersions(projectId, resolveVersionSpec(
-				projectId, source), resolveVersionSpec(projectId, target))) {
+		for (Version version : getVersions(projectId, source, target)) {
 			HistoryInfo history = VersioningFactory.eINSTANCE
 					.createHistoryInfo();
-			history.setLogMessage(version.getLogMessage());
-			history.setPrimerySpec(version.getPrimarySpec());
+			history.setLogMessage((LogMessage) EcoreUtil.copy(version.getLogMessage()));
+			history.setPrimerySpec((PrimaryVersionSpec) EcoreUtil.copy(version.getPrimarySpec()));
+			for(TagVersionSpec tagSpec:version.getTagSpecs()) {
+				history.getTagSpecs().add((TagVersionSpec) EcoreUtil.copy(tagSpec));
+			}
 			result.add(history);
 		}
 		return result;
@@ -230,14 +264,14 @@ public class EmfStoreImpl implements EmfStore {
 	/**
 	 * {@inheritDoc}
 	 */
-	public synchronized ACUser resolveUser(SessionId sessionId,
-			ACOrgUnitId id) throws EmfStoreException {
+	public synchronized ACUser resolveUser(SessionId sessionId, ACOrgUnitId id)
+			throws EmfStoreException {
 		ACUser requestingUser = authorizationControl.resolveUser(sessionId);
-		if(id==null) {
+		if (id == null) {
 			return requestingUser;
 		}
 		ACUser user = authorizationControl.resolveUser(id);
-		if(requestingUser.getId().equals(user.getId())) {
+		if (requestingUser.getId().equals(user.getId())) {
 			return user;
 		}
 		authorizationControl.checkServerAdminAccess(sessionId);
@@ -416,5 +450,4 @@ public class EmfStoreImpl implements EmfStore {
 			throw new StorageException(StorageException.NOSAVE, e);
 		}
 	}
-
 }

@@ -14,6 +14,8 @@ import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
+import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
+import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.exceptions.ConnectionException;
@@ -306,6 +308,19 @@ public interface Usersession extends EObject {
 	PrimaryVersionSpec resolveVersionSpec(VersionSpec versionSpec,
 			ProjectId projectId) throws EmfStoreException;
 
+	/**
+	 * Gets a list of history infos.
+	 * 
+	 * @param projectId a project id
+	 * @param query a history query
+	 * @return a list of history infos
+	 * @throws EmfStoreException if server throws an exception
+	 * @generated NOT
+	 */
+	public List<HistoryInfo> getHistoryInfo(ProjectId projectId,
+			HistoryQuery query) throws EmfStoreException;
+	
+	
 	/**
 	 * Returns a {@link AdminBroker} related to the user session.
 	 * 
