@@ -13,6 +13,7 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.DateVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.HeadVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
+import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
@@ -146,6 +147,13 @@ public class VersioningSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case VersioningPackage.HISTORY_QUERY: {
+			HistoryQuery historyQuery = (HistoryQuery) theEObject;
+			T result = caseHistoryQuery(historyQuery);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case VersioningPackage.VERSION: {
 			Version version = (Version) theEObject;
 			T result = caseVersion(version);
@@ -269,6 +277,21 @@ public class VersioningSwitch<T> {
 	 * @generated
 	 */
 	public T caseHistoryInfo(HistoryInfo object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>History Query</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>History Query</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseHistoryQuery(HistoryQuery object) {
 		return null;
 	}
 

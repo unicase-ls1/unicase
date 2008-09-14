@@ -70,9 +70,15 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="HistoryInfo">
       <eStructuralFeatures xsi:type="ecore:EReference" name="primerySpec" lowerBound="1"
-          eType="#//versioning/PrimaryVersionSpec"/>
+          eType="#//versioning/PrimaryVersionSpec" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="logMessage" lowerBound="1"
-          eType="#//versioning/LogMessage"/>
+          eType="#//versioning/LogMessage" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="tagSpecs" upperBound="-1"
+          eType="#//versioning/TagVersionSpec" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="HistoryQuery">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="from" eType="#//versioning/PrimaryVersionSpec"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="to" eType="#//versioning/PrimaryVersionSpec"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Version">
       <eStructuralFeatures xsi:type="ecore:EReference" name="projectState" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"

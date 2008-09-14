@@ -6,6 +6,7 @@
  */
 package org.unicase.emfstore.esmodel.versioning;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -17,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.HistoryInfo#getPrimerySpec <em>Primery Spec</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.HistoryInfo#getLogMessage <em>Log Message</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.HistoryInfo#getTagSpecs <em>Tag Specs</em>}</li>
  * </ul>
  * </p>
  *
@@ -43,10 +45,10 @@ public interface HistoryInfo extends EObject {
 	PrimaryVersionSpec getPrimerySpec();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.HistoryInfo#getPrimerySpec <em>Primery Spec</em>}' reference.
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.HistoryInfo#getPrimerySpec <em>Primery Spec</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * @param value the new value of the '<em>Primery Spec</em>' reference.
+	 * @param value the new value of the '<em>Primery Spec</em>' containment reference.
 	 * @see #getPrimerySpec()
 	 * @generated
 	 */
@@ -70,13 +72,29 @@ public interface HistoryInfo extends EObject {
 	LogMessage getLogMessage();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.HistoryInfo#getLogMessage <em>Log Message</em>}' reference.
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.HistoryInfo#getLogMessage <em>Log Message</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * @param value the new value of the '<em>Log Message</em>' reference.
+	 * @param value the new value of the '<em>Log Message</em>' containment reference.
 	 * @see #getLogMessage()
 	 * @generated
 	 */
 	void setLogMessage(LogMessage value);
+
+	/**
+	 * Returns the value of the '<em><b>Tag Specs</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.emfstore.esmodel.versioning.TagVersionSpec}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Tag Specs</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Tag Specs</em>' containment reference list.
+	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getHistoryInfo_TagSpecs()
+	 * @model containment="true" resolveProxies="true"
+	 * @generated
+	 */
+	EList<TagVersionSpec> getTagSpecs();
 
 } // HistoryInfo
