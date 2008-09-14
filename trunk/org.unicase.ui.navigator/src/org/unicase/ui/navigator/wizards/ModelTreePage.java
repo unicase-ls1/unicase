@@ -7,6 +7,7 @@
 package org.unicase.ui.navigator.wizards;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.impl.EClassImpl;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
@@ -20,7 +21,10 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Tree;
+import org.unicase.model.diagram.MEDiagram;
+import org.unicase.model.diagram.impl.MEDiagramImpl;
 import org.unicase.ui.common.MEClassLabelProvider;
+import org.unicase.ui.navigator.commands.EClassTypeConverter;
 
 /**
  * 
@@ -121,11 +125,17 @@ public class ModelTreePage extends WizardPage implements Listener {
 		if (o instanceof EClass) {
 			canFinish = true;
 		}
-		
+				
 		else {
 			canFinish = false;
 		}
-
+		
+		if(o instanceof MEDiagram) {
+			wizard.setNewMEType(((MEDiagram) o).eClass());
+			wizard.setNewDiagramType(((MEDiagram) o).getType());
+			wizard.setTreePageCompleted(true);
+			return true;
+		}
 		if (canFinish) {
 			EClass newMEType = (EClass) o;
 			wizard.setNewMEType(newMEType);

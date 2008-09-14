@@ -15,6 +15,8 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
 import org.unicase.model.ModelElement;
+import org.unicase.model.diagram.DiagramType;
+import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.document.LeafSection;
 import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.workspace.WorkspaceManager;
@@ -43,6 +45,8 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 	 * finish, i.e. if the selection a model element is and not a package.
 	 */
 	private boolean treePageCompleted;
+	
+	private DiagramType newDiagramType;
 
 	/**
 	 * . ({@inheritDoc})
@@ -69,6 +73,10 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 					.create(newMEType);
 			newMEInstance.setName("new " + newMEType.getName());
 
+			if(newMEInstance instanceof MEDiagram) {
+				((MEDiagram) newMEInstance).setType(this.newDiagramType);
+				newMEInstance.setName("new " + this.newDiagramType.getLiteral());
+			}
 			// 2.add the newly created ME to LeafSection that was selected in
 			// navigator
 			if (selectedME instanceof LeafSection) {
@@ -86,13 +94,11 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 			}
 			// 3.open the newly created ME
 			ActionHelper.openModelElement(newMEInstance);
-			
 		}
 
 		return true;
 	}
-
-	
+		
 	/**
 	 * . ({@inheritDoc})
 	 * 
@@ -134,6 +140,11 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 	 */
 	public void setTreePageCompleted(boolean treePageCompleted) {
 		this.treePageCompleted = treePageCompleted;
+	}
+
+	public void setNewDiagramType(DiagramType type) {
+		this.newDiagramType = type;
+		
 	}
 
 }
