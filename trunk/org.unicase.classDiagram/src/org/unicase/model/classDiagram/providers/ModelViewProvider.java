@@ -179,6 +179,8 @@ public class ModelViewProvider extends AbstractViewProvider {
 		switch (visualID) {
 		case org.unicase.model.classDiagram.edit.parts.AssociationEditPart.VISUAL_ID:
 			return org.unicase.model.classDiagram.view.factories.AssociationViewFactory.class;
+		case org.unicase.model.classDiagram.edit.parts.ClassSubClassesEditPart.VISUAL_ID:
+			return org.unicase.model.classDiagram.view.factories.ClassSubClassesViewFactory.class;
 		}
 		return null;
 	}

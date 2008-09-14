@@ -355,8 +355,30 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
+		public static boolean canCreateClassSubClasses_3002(Class source,
+				Class target) {
+			if (source != null) {
+				if (source.getSubClasses().contains(target)) {
+					return false;
+				}
+			}
+			return canExistClassSubClasses_3002(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
 		public static boolean canExistAssociation_3001(MEDiagram container,
 				Class source, Class target) {
+
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistClassSubClasses_3002(Class source,
+				Class target) {
 
 			return true;
 		}

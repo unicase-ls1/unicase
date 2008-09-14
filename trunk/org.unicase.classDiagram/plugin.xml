@@ -324,6 +324,15 @@
             <param name="semanticHint" value="3001"/>
          </metamodelType>
       </metamodel>
+      <metamodel nsURI="http://unicase.org/model/classes">
+         <specializationType
+               id="org.unicase.classDiagram.ClassSubClasses_3002"
+               name="%metatype.name.ClassSubClasses_3002"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="3002"/>
+         </specializationType>
+      </metamodel>
    </extension>
 
   
@@ -474,24 +483,6 @@
          contextId="org.unicase.model.classDiagram.ui.diagramContext"
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="F5"/>
-   </extension><extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
-      <?gmfgen generated="true"?>
-      <clientContext id="ModelClientContext">
-         <enablement>
-            <test
-               property="org.eclipse.gmf.runtime.emf.core.editingDomain"
-               value="org.unicase.EditingDomain"/>
-         </enablement>
-      </clientContext> 
-      <binding context="ModelClientContext">
-         <elementType ref="org.unicase.classDiagram.MEDiagram_88"/>
-         <elementType ref="org.unicase.classDiagram.Class_1001"/>
-         <elementType ref="org.unicase.classDiagram.Attribute_2001"/>
-         <elementType ref="org.unicase.classDiagram.Method_2002"/>
-         <elementType ref="org.unicase.classDiagram.Association_3001"/>
-         <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
-      </binding>
    </extension>
-
 
 </plugin>

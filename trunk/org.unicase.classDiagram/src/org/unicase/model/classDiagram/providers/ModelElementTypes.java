@@ -72,6 +72,11 @@ public class ModelElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public static final IElementType ClassSubClasses_3002 = getElementType("org.unicase.classDiagram.ClassSubClasses_3002"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	private static ImageRegistry getImageRegistry() {
 		if (imageRegistry == null) {
 			imageRegistry = new ImageRegistry();
@@ -191,6 +196,9 @@ public class ModelElementTypes extends ElementInitializers {
 
 			elements.put(Association_3001, ClassesPackage.eINSTANCE
 					.getAssociation());
+
+			elements.put(ClassSubClasses_3002, ClassesPackage.eINSTANCE
+					.getClass_SubClasses());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -213,6 +221,7 @@ public class ModelElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(Attribute_2001);
 			KNOWN_ELEMENT_TYPES.add(Method_2002);
 			KNOWN_ELEMENT_TYPES.add(Association_3001);
+			KNOWN_ELEMENT_TYPES.add(ClassSubClasses_3002);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}

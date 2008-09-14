@@ -8,6 +8,7 @@ import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
@@ -93,8 +94,12 @@ public class ClassItemSemanticEditPolicy
 		if (org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3001 == req
 				.getElementType()) {
 			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.AssociationCreateCommand(
-					req, req.getSource(), req.getTarget(), (EObject) getHost()
-							.getModel()));
+					req, req.getSource(), req.getTarget(), (EObject) getHost().getModel()));
+		}
+		if (org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3002 == req
+				.getElementType()) {
+			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.ClassSubClassesCreateCommand(
+					req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -106,13 +111,18 @@ public class ClassItemSemanticEditPolicy
 			CreateRelationshipRequest req) {
 		if (org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3001 == req
 				.getElementType()) {
-			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.AssociationCreateCommand(
-					req, req.getSource(), req.getTarget(), (EObject) getHost()
-							.getModel()));
+						return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.AssociationCreateCommand(
+								req, req.getSource(), req.getTarget(), (EObject) getHost()
+										.getModel()));
+		}
+		if (org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3002 == req
+				.getElementType()) {
+			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.ClassSubClassesCreateCommand(
+					req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
-
+	
 	/**
 	 * Returns command to reorient EClass based link. New link target or source
 	 * should be the domain model element associated with this node.
@@ -127,6 +137,22 @@ public class ClassItemSemanticEditPolicy
 					req));
 		}
 		return super.getReorientRelationshipCommand(req);
+	}
+
+	/**
+	 * Returns command to reorient EReference based link. New link target or source
+	 * should be the domain model element associated with this node.
+	 * 
+	 * @generated
+	 */
+	protected Command getReorientReferenceRelationshipCommand(
+			ReorientReferenceRelationshipRequest req) {
+		switch (getVisualID(req)) {
+		case org.unicase.model.classDiagram.edit.parts.ClassSubClassesEditPart.VISUAL_ID:
+			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.ClassSubClassesReorientCommand(
+					req));
+		}
+		return super.getReorientReferenceRelationshipCommand(req);
 	}
 
 }
