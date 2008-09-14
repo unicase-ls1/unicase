@@ -288,6 +288,11 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String Generalization8CreationTool_title;
+
+	/**
+	 * @generated
+	 */
 	public static String ClassClassNode_attributesEditPart_title;
 
 	/**
@@ -324,6 +329,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_Association_3001_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ClassSubClasses_3002_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ClassSubClasses_3002_source;
 
 	/**
 	 * @generated

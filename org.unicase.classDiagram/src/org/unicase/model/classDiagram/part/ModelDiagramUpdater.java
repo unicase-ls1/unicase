@@ -190,7 +190,11 @@ public class ModelDiagramUpdater {
 	 * @generated
 	 */
 	public static List getClass_1001ContainedLinks(View view) {
-		return Collections.EMPTY_LIST;
+		Class modelElement = (Class) view.getElement();
+		List result = new LinkedList();
+		result
+				.addAll(getOutgoingFeatureModelFacetLinks_Class_SubClasses_3002(modelElement));
+		return result;
 	}
 
 	/**
@@ -224,6 +228,8 @@ public class ModelDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_Association_3001(
 				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Class_SubClasses_3002(
+				modelElement, crossReferences));
 		return result;
 	}
 
@@ -256,6 +262,8 @@ public class ModelDiagramUpdater {
 		List result = new LinkedList();
 		result
 				.addAll(getOutgoingTypeModelFacetLinks_Association_3001(modelElement));
+		result
+				.addAll(getOutgoingFeatureModelFacetLinks_Class_SubClasses_3002(modelElement));
 		return result;
 	}
 
@@ -345,6 +353,29 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	private static Collection getIncomingFeatureModelFacetLinks_Class_SubClasses_3002(
+			Class target, Map crossReferences) {
+		Collection result = new LinkedList();
+		Collection settings = (Collection) crossReferences.get(target);
+		for (Iterator it = settings.iterator(); it.hasNext();) {
+			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
+					.next();
+			if (setting.getEStructuralFeature() == ClassesPackage.eINSTANCE
+					.getClass_SubClasses()) {
+				result
+						.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(
+								setting.getEObject(),
+								target,
+								org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3002,
+								org.unicase.model.classDiagram.edit.parts.ClassSubClassesEditPart.VISUAL_ID));
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	private static Collection getOutgoingTypeModelFacetLinks_Association_3001(
 			Class source) {
 		MEDiagram container = null;
@@ -384,6 +415,25 @@ public class ModelDiagramUpdater {
 							link,
 							org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3001,
 							org.unicase.model.classDiagram.edit.parts.AssociationEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection getOutgoingFeatureModelFacetLinks_Class_SubClasses_3002(
+			Class source) {
+		Collection result = new LinkedList();
+		for (Iterator destinations = source.getSubClasses().iterator(); destinations
+				.hasNext();) {
+			Class destination = (Class) destinations.next();
+			result
+					.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(
+							source,
+							destination,
+							org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3002,
+							org.unicase.model.classDiagram.edit.parts.ClassSubClassesEditPart.VISUAL_ID));
 		}
 		return result;
 	}

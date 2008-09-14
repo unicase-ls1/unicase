@@ -40,6 +40,7 @@ public class ModelPaletteFactory {
 		paletteContainer.add(createDirectedAssociation5CreationTool());
 		paletteContainer.add(createAttribute6CreationTool());
 		paletteContainer.add(createMethod7CreationTool());
+		paletteContainer.add(createGeneralization8CreationTool());
 		return paletteContainer;
 	}
 
@@ -142,6 +143,23 @@ public class ModelPaletteFactory {
 		entry
 				.setSmallIcon(org.unicase.model.classDiagram.providers.ModelElementTypes
 						.getImageDescriptor(org.unicase.model.classDiagram.providers.ModelElementTypes.Method_2002));
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createGeneralization8CreationTool() {
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		types
+				.add(org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3002);
+		LinkToolEntry entry = new LinkToolEntry(
+				org.unicase.model.classDiagram.part.Messages.Generalization8CreationTool_title,
+				null, types);
+		entry
+				.setSmallIcon(org.unicase.model.classDiagram.providers.ModelElementTypes
+						.getImageDescriptor(org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3002));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}

@@ -96,6 +96,9 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 		case org.unicase.model.classDiagram.edit.parts.AssociationEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http://unicase.org/model/classes?Association", org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3001); //$NON-NLS-1$
+		case org.unicase.model.classDiagram.edit.parts.ClassSubClassesEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/classes?Class?subClasses", org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3002); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -162,6 +165,8 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 			return getMethod_2002Text(view);
 		case org.unicase.model.classDiagram.edit.parts.AssociationEditPart.VISUAL_ID:
 			return getAssociation_3001Text(view);
+		case org.unicase.model.classDiagram.edit.parts.ClassSubClassesEditPart.VISUAL_ID:
+			return getClassSubClasses_3002Text(view);
 		}
 		return getUnknownElementText(view);
 	}
@@ -269,6 +274,13 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 			return ""; //$NON-NLS-1$
 		}
 
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getClassSubClasses_3002Text(View view) {
+		return ""; //$NON-NLS-1$
 	}
 
 	/**
