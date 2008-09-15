@@ -308,7 +308,9 @@
          <elementType ref="org.unicase.classDiagram.Method_2002"/>
          <elementType ref="org.unicase.classDiagram.Association_3001"/>
          <elementType ref="org.unicase.classDiagram.Association_3002"/>
-         <elementType ref="org.unicase.classDiagram.ClassSubClasses_3003"/>
+         <elementType ref="org.unicase.classDiagram.ClassSubClasses_3005"/>
+         <elementType ref="org.unicase.classDiagram.Association_3004"/>
+         <elementType ref="org.unicase.classDiagram.Association_3003"/>
          
          <elementType ref="org.unicase.ui.usecaseDiagram.MEDiagram_77"/>
          <elementType ref="org.unicase.ui.usecaseDiagram.UseCase_1001"/>

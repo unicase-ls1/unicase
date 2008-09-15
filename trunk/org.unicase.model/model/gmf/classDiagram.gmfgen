@@ -176,7 +176,7 @@
         <containmentMetaFeature
             href="../model.genmodel#//model/diagram/MEDiagram/newElements"/>
         <childMetaFeature
-            href="../model.genmodel#//model/diagram/MEDiagram/newElements"/>
+            href="../model.genmodel#//model/diagram/MEDiagram/elements"/>
         <modelElementInitializer
             xsi:type="gmfgen:GenFeatureSeqInitializer">
           <initializers
@@ -242,7 +242,7 @@
         <containmentMetaFeature
             href="../model.genmodel#//model/diagram/MEDiagram/newElements"/>
         <childMetaFeature
-            href="../model.genmodel#//model/diagram/MEDiagram/newElements"/>
+            href="../model.genmodel#//model/diagram/MEDiagram/elements"/>
         <modelElementInitializer
             xsi:type="gmfgen:GenFeatureSeqInitializer">
           <initializers
@@ -282,7 +282,7 @@
       </labels>
     </links>
     <links
-        visualID="3003"
+        visualID="3005"
         editPartClassName="ClassSubClassesEditPart"
         itemSemanticEditPolicyClassName="ClassSubClassesItemSemanticEditPolicy"
         notationViewFactoryClassName="ClassSubClassesViewFactory"
@@ -304,6 +304,138 @@
         <metaFeature
             href="../model.genmodel#//model/classes/Class/subClasses"/>
       </modelFacet>
+    </links>
+    <links
+        visualID="3004"
+        editPartClassName="Association4EditPart"
+        itemSemanticEditPolicyClassName="Association4ItemSemanticEditPolicy"
+        notationViewFactoryClassName="Association4ViewFactory"
+        createCommandClassName="Association4CreateCommand"
+        reorientCommandClassName="Association4ReorientCommand">
+      <diagramRunTimeClass
+          href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+      <elementType
+          xsi:type="gmfgen:SpecializationType"
+          metamodelType="//@diagram/@links.0/@elementType"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="AssociationFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class AssociationFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureAssociationFigure_name; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public AssociationFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;createContents();&#xA;&#x9;&#x9;setSourceDecoration(createSourceDecoration());&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureAssociationFigure_name = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureAssociationFigure_name.setText(&quot;&quot;);&#xA;&#xA;this.add(fFigureAssociationFigure_name);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createSourceDecoration() {&#xA;&#x9;&#x9;org.unicase.model.classDiagram.unicase.AssociationDecoration df = new org.unicase.model.classDiagram.unicase.AssociationDecoration();&#xA;&#xA;&#xA;&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.unicase.model.classDiagram.unicase.AssociationDecoration df = new org.unicase.model.classDiagram.unicase.AssociationDecoration();&#xA;&#xA;&#xA;&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureAssociationFigure_name() {&#xA;&#x9;&#x9;return fFigureAssociationFigure_name;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
+        <requiredPluginIDs>org.eclipse.draw2d</requiredPluginIDs>
+        <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+      </viewmap>
+      <modelFacet
+          xsi:type="gmfgen:TypeLinkModelFacet"
+          modelElementSelector="//@expressionProviders/@providers.0/@expressions.4">
+        <metaClass
+            href="../model.genmodel#//model/classes/Association"/>
+        <containmentMetaFeature
+            href="../model.genmodel#//model/diagram/MEDiagram/newElements"/>
+        <childMetaFeature
+            href="../model.genmodel#//model/diagram/MEDiagram/elements"/>
+        <modelElementInitializer
+            xsi:type="gmfgen:GenFeatureSeqInitializer">
+          <initializers
+              xsi:type="gmfgen:GenFeatureValueSpec"
+              value="//@expressionProviders/@providers.0/@expressions.5">
+            <feature
+                href="../model.genmodel#//model/classes/Association/type"/>
+          </initializers>
+        </modelElementInitializer>
+        <sourceMetaFeature
+            href="../model.genmodel#//model/classes/Association/source"/>
+        <targetMetaFeature
+            href="../model.genmodel#//model/classes/Association/target"/>
+      </modelFacet>
+      <labels
+          visualID="4004"
+          editPartClassName="AssociationName3EditPart"
+          itemSemanticEditPolicyClassName="AssociationName3ItemSemanticEditPolicy"
+          notationViewFactoryClassName="AssociationName3ViewFactory"
+          elementIcon="true">
+        <diagramRunTimeClass
+            href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getFigureAssociationFigure_name"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+          <attributes
+              xsi:type="gmfgen:LabelOffsetAttributes"
+              y="40"/>
+        </viewmap>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            editorPattern="">
+          <metaFeatures
+              href="../model.genmodel#//model/ModelElement/name"/>
+        </modelFacet>
+      </labels>
+    </links>
+    <links
+        visualID="3003"
+        editPartClassName="Association3EditPart"
+        itemSemanticEditPolicyClassName="Association3ItemSemanticEditPolicy"
+        notationViewFactoryClassName="Association3ViewFactory"
+        createCommandClassName="Association3CreateCommand"
+        reorientCommandClassName="Association3ReorientCommand">
+      <diagramRunTimeClass
+          href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+      <elementType
+          xsi:type="gmfgen:SpecializationType"
+          metamodelType="//@diagram/@links.0/@elementType"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="AssociationFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class AssociationFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureAssociationFigure_name; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public AssociationFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;createContents();&#xA;&#x9;&#x9;setSourceDecoration(createSourceDecoration());&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureAssociationFigure_name = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureAssociationFigure_name.setText(&quot;&quot;);&#xA;&#xA;this.add(fFigureAssociationFigure_name);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createSourceDecoration() {&#xA;&#x9;&#x9;org.unicase.model.classDiagram.unicase.AssociationDecoration df = new org.unicase.model.classDiagram.unicase.AssociationDecoration();&#xA;&#xA;&#xA;&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.unicase.model.classDiagram.unicase.AssociationDecoration df = new org.unicase.model.classDiagram.unicase.AssociationDecoration();&#xA;&#xA;&#xA;&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureAssociationFigure_name() {&#xA;&#x9;&#x9;return fFigureAssociationFigure_name;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
+        <requiredPluginIDs>org.eclipse.draw2d</requiredPluginIDs>
+        <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+      </viewmap>
+      <modelFacet
+          xsi:type="gmfgen:TypeLinkModelFacet"
+          modelElementSelector="//@expressionProviders/@providers.0/@expressions.6">
+        <metaClass
+            href="../model.genmodel#//model/classes/Association"/>
+        <containmentMetaFeature
+            href="../model.genmodel#//model/diagram/MEDiagram/newElements"/>
+        <childMetaFeature
+            href="../model.genmodel#//model/diagram/MEDiagram/elements"/>
+        <modelElementInitializer
+            xsi:type="gmfgen:GenFeatureSeqInitializer">
+          <initializers
+              xsi:type="gmfgen:GenFeatureValueSpec"
+              value="//@expressionProviders/@providers.0/@expressions.7">
+            <feature
+                href="../model.genmodel#//model/classes/Association/type"/>
+          </initializers>
+        </modelElementInitializer>
+        <sourceMetaFeature
+            href="../model.genmodel#//model/classes/Association/source"/>
+        <targetMetaFeature
+            href="../model.genmodel#//model/classes/Association/target"/>
+      </modelFacet>
+      <labels
+          visualID="4005"
+          editPartClassName="AssociationName4EditPart"
+          itemSemanticEditPolicyClassName="AssociationName4ItemSemanticEditPolicy"
+          notationViewFactoryClassName="AssociationName4ViewFactory"
+          elementIcon="true">
+        <diagramRunTimeClass
+            href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getFigureAssociationFigure_name"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+          <attributes
+              xsi:type="gmfgen:LabelOffsetAttributes"
+              y="40"/>
+        </viewmap>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            editorPattern="">
+          <metaFeatures
+              href="../model.genmodel#//model/ModelElement/name"/>
+        </modelFacet>
+      </labels>
     </links>
     <compartments
         visualID="5001"
@@ -360,10 +492,12 @@
             genLinks="//@diagram/@links.1"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="Composition"/>
+            title="Composition"
+            genLinks="//@diagram/@links.3"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="Directed Association"/>
+            title="Directed Association"
+            genLinks="//@diagram/@links.4"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="Attribute"
@@ -512,6 +646,64 @@
         referenceType="out_target"
         groupName="outgoing links"
         groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram"
+        child="//@diagram/@links.3"
+        groupName="links"
+        groupIcon="icons/linksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.3"
+        child="//@diagram/@topLevelNodes.0"
+        referenceType="out_target"
+        groupName="target"
+        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.0"
+        child="//@diagram/@links.3"
+        referenceType="in_source"
+        groupName="incoming links"
+        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.3"
+        child="//@diagram/@topLevelNodes.0"
+        referenceType="in_source"
+        groupName="source"
+        groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.0"
+        child="//@diagram/@links.3"
+        referenceType="out_target"
+        groupName="outgoing links"
+        groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram"
+        child="//@diagram/@links.4"
+        groupName="links"
+        groupIcon="icons/linksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.4"
+        child="//@diagram/@topLevelNodes.0"
+        referenceType="out_target"
+        groupName="target"
+        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.0"
+        child="//@diagram/@links.4"
+        referenceType="in_source"
+        groupName="incoming links"
+        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.4"
+        child="//@diagram/@topLevelNodes.0"
+        referenceType="in_source"
+        groupName="source"
+        groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.0"
+        child="//@diagram/@links.4"
+        referenceType="out_target"
+        groupName="outgoing links"
+        groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
   </navigator>
   <diagramUpdater/>
   <propertySheet>
@@ -548,6 +740,16 @@
           body="self.type = AssociationType::AGGREGATION"/>
       <expressions
           body="AssociationType::AGGREGATION"/>
+      <expressions
+          xsi:type="gmfgen:GenConstraint"
+          body="self.type = AssociationType::COMPOSITION"/>
+      <expressions
+          body="AssociationType::COMPOSITION"/>
+      <expressions
+          xsi:type="gmfgen:GenConstraint"
+          body="self.type = AssociationType::DIRECTED_ASSOCIATION"/>
+      <expressions
+          body="AssociationType::DIRECTED_ASSOCIATION"/>
     </providers>
   </expressionProviders>
 </gmfgen:GenEditorGenerator>

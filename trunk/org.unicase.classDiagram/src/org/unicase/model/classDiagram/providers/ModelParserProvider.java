@@ -153,6 +153,58 @@ public class ModelParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
+	private IParser associationName_4004Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getAssociationName_4004Parser() {
+		if (associationName_4004Parser == null) {
+			associationName_4004Parser = createAssociationName_4004Parser();
+		}
+		return associationName_4004Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IParser createAssociationName_4004Parser() {
+		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE
+				.getModelElement_Name(), };
+		org.unicase.model.classDiagram.parsers.MessageFormatParser parser = new org.unicase.model.classDiagram.parsers.MessageFormatParser(
+				features);
+		return parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser associationName_4005Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getAssociationName_4005Parser() {
+		if (associationName_4005Parser == null) {
+			associationName_4005Parser = createAssociationName_4005Parser();
+		}
+		return associationName_4005Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IParser createAssociationName_4005Parser() {
+		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE
+				.getModelElement_Name(), };
+		org.unicase.model.classDiagram.parsers.MessageFormatParser parser = new org.unicase.model.classDiagram.parsers.MessageFormatParser(
+				features);
+		return parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
 		case org.unicase.model.classDiagram.edit.parts.ClassNameEditPart.VISUAL_ID:
@@ -165,6 +217,10 @@ public class ModelParserProvider extends AbstractProvider implements
 			return getAssociationName_4002Parser();
 		case org.unicase.model.classDiagram.edit.parts.AssociationName2EditPart.VISUAL_ID:
 			return getAssociationName_4003Parser();
+		case org.unicase.model.classDiagram.edit.parts.AssociationName3EditPart.VISUAL_ID:
+			return getAssociationName_4004Parser();
+		case org.unicase.model.classDiagram.edit.parts.AssociationName4EditPart.VISUAL_ID:
+			return getAssociationName_4005Parser();
 		}
 		return null;
 	}

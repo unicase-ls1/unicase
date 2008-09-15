@@ -43,7 +43,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="model.gmftool#//@palette/@tools.5"/>
+              href="model.gmftool#//@palette/@tools.1"/>
           <diagramNode
               href="model.gmfgraph#ClassAttribute_name"/>
         </ownedChild>
@@ -65,7 +65,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="model.gmftool#//@palette/@tools.6"/>
+              href="model.gmftool#//@palette/@tools.2"/>
           <diagramNode
               href="model.gmfgraph#ClassMethod_name"/>
         </ownedChild>
@@ -111,7 +111,7 @@
         href="../model.ecore#//diagram/MEDiagram/newElements"/>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="model.gmftool#//@palette/@tools.1"/>
+        href="model.gmftool#//@palette/@tools.4/@tools.0"/>
     <diagramLink
         href="model.gmfgraph#Association"/>
     <sourceMetaFeature
@@ -150,7 +150,7 @@
         href="../model.ecore#//diagram/MEDiagram/newElements"/>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="model.gmftool#//@palette/@tools.2"/>
+        href="model.gmftool#//@palette/@tools.4/@tools.1"/>
     <diagramLink
         href="model.gmfgraph#Association"/>
     <sourceMetaFeature
@@ -163,12 +163,90 @@
   <links>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="model.gmftool#//@palette/@tools.7"/>
+        href="model.gmftool#//@palette/@tools.3"/>
     <diagramLink
         href="model.gmfgraph#Generalization"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="../model.ecore#//classes/Class/subClasses"/>
+  </links>
+  <links
+      relatedDiagrams="//@diagram">
+    <domainMetaElement
+        href="../model.ecore#//classes/Association"/>
+    <domainSpecialization
+        body="self.type = AssociationType::COMPOSITION"/>
+    <domainInitializer
+        xsi:type="gmfmap:FeatureSeqInitializer">
+      <initializers
+          xsi:type="gmfmap:FeatureValueSpec">
+        <feature
+            xsi:type="ecore:EAttribute"
+            href="../model.ecore#//classes/Association/type"/>
+        <value
+            body="AssociationType::COMPOSITION"/>
+      </initializers>
+    </domainInitializer>
+    <labelMappings
+        xsi:type="gmfmap:FeatureLabelMapping"
+        editorPattern="">
+      <diagramLabel
+          href="model.gmfgraph#AssociationLine_name"/>
+      <features
+          href="../model.ecore#//ModelElement/name"/>
+    </labelMappings>
+    <containmentFeature
+        href="../model.ecore#//diagram/MEDiagram/newElements"/>
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="model.gmftool#//@palette/@tools.4/@tools.2"/>
+    <diagramLink
+        href="model.gmfgraph#Association"/>
+    <sourceMetaFeature
+        xsi:type="ecore:EReference"
+        href="../model.ecore#//classes/Association/source"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="../model.ecore#//classes/Association/target"/>
+  </links>
+  <links
+      relatedDiagrams="//@diagram">
+    <domainMetaElement
+        href="../model.ecore#//classes/Association"/>
+    <domainSpecialization
+        body="self.type = AssociationType::DIRECTED_ASSOCIATION"/>
+    <domainInitializer
+        xsi:type="gmfmap:FeatureSeqInitializer">
+      <initializers
+          xsi:type="gmfmap:FeatureValueSpec">
+        <feature
+            xsi:type="ecore:EAttribute"
+            href="../model.ecore#//classes/Association/type"/>
+        <value
+            body="AssociationType::DIRECTED_ASSOCIATION"/>
+      </initializers>
+    </domainInitializer>
+    <labelMappings
+        xsi:type="gmfmap:FeatureLabelMapping"
+        editorPattern="">
+      <diagramLabel
+          href="model.gmfgraph#AssociationLine_name"/>
+      <features
+          href="../model.ecore#//ModelElement/name"/>
+    </labelMappings>
+    <containmentFeature
+        href="../model.ecore#//diagram/MEDiagram/newElements"/>
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="model.gmftool#//@palette/@tools.4/@tools.3"/>
+    <diagramLink
+        href="model.gmfgraph#Association"/>
+    <sourceMetaFeature
+        xsi:type="ecore:EReference"
+        href="../model.ecore#//classes/Association/source"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="../model.ecore#//classes/Association/target"/>
   </links>
   <diagram>
     <diagramCanvas

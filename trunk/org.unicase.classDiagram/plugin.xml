@@ -335,10 +335,28 @@
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/classes">
          <specializationType
-               id="org.unicase.classDiagram.ClassSubClasses_3003"
-               name="%metatype.name.ClassSubClasses_3003"
+               id="org.unicase.classDiagram.ClassSubClasses_3005"
+               name="%metatype.name.ClassSubClasses_3005"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="3005"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/classes">
+         <specializationType
+               id="org.unicase.classDiagram.Association_3004"
+               name="%metatype.name.Association_3004"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.classDiagram.Association_3001"/>
+            <param name="semanticHint" value="3004"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/classes">
+         <specializationType
+               id="org.unicase.classDiagram.Association_3003"
+               name="%metatype.name.Association_3003"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.classDiagram.Association_3001"/>
             <param name="semanticHint" value="3003"/>
          </specializationType>
       </metamodel>
@@ -493,6 +511,7 @@
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="F5"/>
    </extension>
+
 
 
 </plugin>

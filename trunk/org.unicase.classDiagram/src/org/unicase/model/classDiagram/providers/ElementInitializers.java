@@ -49,4 +49,44 @@ public class ElementInitializers {
 		}
 	}
 
+	/**
+	 * @generated
+	 */
+	public static void init_Association_3004(Association instance) {
+		try {
+			Object value0 = org.unicase.model.classDiagram.expressions.ModelOCLFactory
+					.getExpression("AssociationType::COMPOSITION",
+							ClassesPackage.eINSTANCE.getAssociation())
+					.evaluate(instance);
+
+			value0 = org.unicase.model.classDiagram.expressions.ModelAbstractExpression
+					.performCast(value0, ClassesPackage.eINSTANCE
+							.getAssociationType());
+			instance.setType((AssociationType) value0);
+		} catch (RuntimeException e) {
+			org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin
+					.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static void init_Association_3003(Association instance) {
+		try {
+			Object value0 = org.unicase.model.classDiagram.expressions.ModelOCLFactory
+					.getExpression("AssociationType::DIRECTED_ASSOCIATION",
+							ClassesPackage.eINSTANCE.getAssociation())
+					.evaluate(instance);
+
+			value0 = org.unicase.model.classDiagram.expressions.ModelAbstractExpression
+					.performCast(value0, ClassesPackage.eINSTANCE
+							.getAssociationType());
+			instance.setType((AssociationType) value0);
+		} catch (RuntimeException e) {
+			org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin
+					.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
 }

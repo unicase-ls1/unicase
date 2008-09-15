@@ -343,12 +343,32 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ClassSubClasses_3003_target;
+	public static String NavigatorGroupName_ClassSubClasses_3005_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ClassSubClasses_3003_source;
+	public static String NavigatorGroupName_ClassSubClasses_3005_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Association_3004_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Association_3004_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Association_3003_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Association_3003_source;
 
 	/**
 	 * @generated
