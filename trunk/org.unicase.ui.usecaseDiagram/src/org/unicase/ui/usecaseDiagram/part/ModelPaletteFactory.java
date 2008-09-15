@@ -8,6 +8,7 @@ import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteGroup;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.ToolEntry;
+import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeConnectionTool;
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeCreationTool;
 
 /**
@@ -35,6 +36,8 @@ public class ModelPaletteFactory {
 		paletteContainer.add(createActor2CreationTool());
 		paletteContainer.add(createInitiate3CreationTool());
 		paletteContainer.add(createParticipate4CreationTool());
+		paletteContainer.add(createInclude5CreationTool());
+		paletteContainer.add(createExtend6CreationTool());
 		return paletteContainer;
 	}
 
@@ -44,13 +47,13 @@ public class ModelPaletteFactory {
 	private ToolEntry createUseCase1CreationTool() {
 		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
 		types
-				.add(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCase_1001);
+				.add(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCase_1002);
 		NodeToolEntry entry = new NodeToolEntry(
 				org.unicase.ui.usecaseDiagram.part.Messages.UseCase1CreationTool_title,
 				null, types);
 		entry
 				.setSmallIcon(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes
-						.getImageDescriptor(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCase_1001));
+						.getImageDescriptor(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCase_1002));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -61,13 +64,13 @@ public class ModelPaletteFactory {
 	private ToolEntry createActor2CreationTool() {
 		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
 		types
-				.add(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.Actor_1002);
+				.add(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.Actor_1001);
 		NodeToolEntry entry = new NodeToolEntry(
 				org.unicase.ui.usecaseDiagram.part.Messages.Actor2CreationTool_title,
 				null, types);
 		entry
 				.setSmallIcon(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes
-						.getImageDescriptor(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.Actor_1002));
+						.getImageDescriptor(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.Actor_1001));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -76,10 +79,17 @@ public class ModelPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createInitiate3CreationTool() {
-		ToolEntry entry = new ToolEntry(
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		types
+				.add(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.ActorInitiatedUseCases_3002);
+		LinkToolEntry entry = new LinkToolEntry(
 				org.unicase.ui.usecaseDiagram.part.Messages.Initiate3CreationTool_title,
-				null, null, null) {
-		};
+				org.unicase.ui.usecaseDiagram.part.Messages.Initiate3CreationTool_desc,
+				types);
+		entry
+				.setSmallIcon(org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin
+						.findImageDescriptor("/org.unicase.model.edit/icons/full/obj16/Initiate.gif")); //$NON-NLS-1$
+		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
 
@@ -87,10 +97,50 @@ public class ModelPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createParticipate4CreationTool() {
-		ToolEntry entry = new ToolEntry(
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		types
+				.add(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.ActorParticipatedUseCases_3001);
+		LinkToolEntry entry = new LinkToolEntry(
 				org.unicase.ui.usecaseDiagram.part.Messages.Participate4CreationTool_title,
-				null, null, null) {
-		};
+				null, types);
+		entry
+				.setSmallIcon(org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin
+						.findImageDescriptor("/org.unicase.model.edit/icons/full/obj16/Participate.gif")); //$NON-NLS-1$
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createInclude5CreationTool() {
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		types
+				.add(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCaseIncludedUseCases_3003);
+		LinkToolEntry entry = new LinkToolEntry(
+				org.unicase.ui.usecaseDiagram.part.Messages.Include5CreationTool_title,
+				null, types);
+		entry
+				.setSmallIcon(org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin
+						.findImageDescriptor("/org.unicase.model.edit/icons/full/obj16/Include.gif")); //$NON-NLS-1$
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createExtend6CreationTool() {
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		types
+				.add(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCaseExtendedUseCases_3004);
+		LinkToolEntry entry = new LinkToolEntry(
+				org.unicase.ui.usecaseDiagram.part.Messages.Extend6CreationTool_title,
+				null, types);
+		entry
+				.setSmallIcon(org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin
+						.findImageDescriptor("/org.unicase.model.edit/icons/full/obj16/Extend.gif")); //$NON-NLS-1$
+		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
 
@@ -118,6 +168,35 @@ public class ModelPaletteFactory {
 		 */
 		public Tool createTool() {
 			Tool tool = new UnspecifiedTypeCreationTool(elementTypes);
+			tool.setProperties(getToolProperties());
+			return tool;
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private static class LinkToolEntry extends ToolEntry {
+
+		/**
+		 * @generated
+		 */
+		private final List relationshipTypes;
+
+		/**
+		 * @generated
+		 */
+		private LinkToolEntry(String title, String description,
+				List relationshipTypes) {
+			super(title, description, null, null);
+			this.relationshipTypes = relationshipTypes;
+		}
+
+		/**
+		 * @generated
+		 */
+		public Tool createTool() {
+			Tool tool = new UnspecifiedTypeConnectionTool(relationshipTypes);
 			tool.setProperties(getToolProperties());
 			return tool;
 		}

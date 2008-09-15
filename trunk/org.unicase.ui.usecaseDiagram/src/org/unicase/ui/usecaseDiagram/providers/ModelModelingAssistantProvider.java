@@ -35,9 +35,9 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 		if (editPart instanceof org.unicase.ui.usecaseDiagram.edit.parts.MEDiagramEditPart) {
 			List types = new ArrayList();
 			types
-					.add(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCase_1001);
+					.add(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.Actor_1001);
 			types
-					.add(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.Actor_1002);
+					.add(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCase_1002);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
@@ -49,6 +49,22 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	public List getRelTypesOnSource(IAdaptable source) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
 				.getAdapter(IGraphicalEditPart.class);
+		if (sourceEditPart instanceof org.unicase.ui.usecaseDiagram.edit.parts.ActorEditPart) {
+			List types = new ArrayList();
+			types
+					.add(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.ActorParticipatedUseCases_3001);
+			types
+					.add(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.ActorInitiatedUseCases_3002);
+			return types;
+		}
+		if (sourceEditPart instanceof org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart) {
+			List types = new ArrayList();
+			types
+					.add(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCaseIncludedUseCases_3003);
+			types
+					.add(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCaseExtendedUseCases_3004);
+			return types;
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -58,6 +74,18 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	public List getRelTypesOnTarget(IAdaptable target) {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
 				.getAdapter(IGraphicalEditPart.class);
+		if (targetEditPart instanceof org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart) {
+			List types = new ArrayList();
+			types
+					.add(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.ActorParticipatedUseCases_3001);
+			types
+					.add(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.ActorInitiatedUseCases_3002);
+			types
+					.add(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCaseIncludedUseCases_3003);
+			types
+					.add(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCaseExtendedUseCases_3004);
+			return types;
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -70,6 +98,30 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 				.getAdapter(IGraphicalEditPart.class);
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
 				.getAdapter(IGraphicalEditPart.class);
+		if (sourceEditPart instanceof org.unicase.ui.usecaseDiagram.edit.parts.ActorEditPart) {
+			List types = new ArrayList();
+			if (targetEditPart instanceof org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart) {
+				types
+						.add(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.ActorParticipatedUseCases_3001);
+			}
+			if (targetEditPart instanceof org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart) {
+				types
+						.add(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.ActorInitiatedUseCases_3002);
+			}
+			return types;
+		}
+		if (sourceEditPart instanceof org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart) {
+			List types = new ArrayList();
+			if (targetEditPart instanceof org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart) {
+				types
+						.add(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCaseIncludedUseCases_3003);
+			}
+			if (targetEditPart instanceof org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart) {
+				types
+						.add(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCaseExtendedUseCases_3004);
+			}
+			return types;
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -80,6 +132,26 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 			IElementType relationshipType) {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
 				.getAdapter(IGraphicalEditPart.class);
+		if (targetEditPart instanceof org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart) {
+			List types = new ArrayList();
+			if (relationshipType == org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.ActorParticipatedUseCases_3001) {
+				types
+						.add(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.Actor_1001);
+			}
+			if (relationshipType == org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.ActorInitiatedUseCases_3002) {
+				types
+						.add(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.Actor_1001);
+			}
+			if (relationshipType == org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCaseIncludedUseCases_3003) {
+				types
+						.add(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCase_1002);
+			}
+			if (relationshipType == org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCaseExtendedUseCases_3004) {
+				types
+						.add(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCase_1002);
+			}
+			return types;
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -90,6 +162,30 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 			IElementType relationshipType) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
 				.getAdapter(IGraphicalEditPart.class);
+		if (sourceEditPart instanceof org.unicase.ui.usecaseDiagram.edit.parts.ActorEditPart) {
+			List types = new ArrayList();
+			if (relationshipType == org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.ActorParticipatedUseCases_3001) {
+				types
+						.add(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCase_1002);
+			}
+			if (relationshipType == org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.ActorInitiatedUseCases_3002) {
+				types
+						.add(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCase_1002);
+			}
+			return types;
+		}
+		if (sourceEditPart instanceof org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart) {
+			List types = new ArrayList();
+			if (relationshipType == org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCaseIncludedUseCases_3003) {
+				types
+						.add(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCase_1002);
+			}
+			if (relationshipType == org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCaseExtendedUseCases_3004) {
+				types
+						.add(org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCase_1002);
+			}
+			return types;
+		}
 		return Collections.EMPTY_LIST;
 	}
 

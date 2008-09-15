@@ -258,12 +258,87 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String Initiate3CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String Participate4CreationTool_title;
 
 	/**
 	 * @generated
 	 */
+	public static String Include5CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Extend6CreationTool_title;
+
+	/**
+	 * @generated
+	 */
 	public static String CommandName_OpenDiagram;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_MEDiagram_77_links;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Actor_1001_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_UseCase_1002_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_UseCase_1002_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ActorParticipatedUseCases_3001_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ActorParticipatedUseCases_3001_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ActorInitiatedUseCases_3002_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ActorInitiatedUseCases_3002_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_UseCaseIncludedUseCases_3003_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_UseCaseIncludedUseCases_3003_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_UseCaseExtendedUseCases_3004_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_UseCaseExtendedUseCases_3004_source;
 
 	/**
 	 * @generated

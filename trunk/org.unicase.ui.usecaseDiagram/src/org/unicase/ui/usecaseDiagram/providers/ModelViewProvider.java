@@ -81,8 +81,8 @@ public class ModelViewProvider extends AbstractViewProvider {
 					return null; // foreign diagram
 				}
 				switch (visualID) {
-				case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart.VISUAL_ID:
 				case org.unicase.ui.usecaseDiagram.edit.parts.ActorEditPart.VISUAL_ID:
+				case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart.VISUAL_ID:
 					if (domainElement == null
 							|| visualID != org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
 									.getNodeVisualID(containerView,
@@ -90,8 +90,43 @@ public class ModelViewProvider extends AbstractViewProvider {
 						return null; // visual id in semantic hint should match visual id for domain element
 					}
 					break;
-				case org.unicase.ui.usecaseDiagram.edit.parts.StickManEditPart.VISUAL_ID:
+				case org.unicase.ui.usecaseDiagram.edit.parts.ActorNameEditPart.VISUAL_ID:
+					if (org.unicase.ui.usecaseDiagram.edit.parts.ActorEditPart.VISUAL_ID != org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
+							.getVisualID(containerView)
+							|| containerView.getElement() != domainElement) {
+						return null; // wrong container
+					}
+					break;
+				case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseNameEditPart.VISUAL_ID:
 					if (org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart.VISUAL_ID != org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
+							.getVisualID(containerView)
+							|| containerView.getElement() != domainElement) {
+						return null; // wrong container
+					}
+					break;
+				case org.unicase.ui.usecaseDiagram.edit.parts.LabelEditPart.VISUAL_ID:
+					if (org.unicase.ui.usecaseDiagram.edit.parts.ActorParticipatedUseCasesEditPart.VISUAL_ID != org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
+							.getVisualID(containerView)
+							|| containerView.getElement() != domainElement) {
+						return null; // wrong container
+					}
+					break;
+				case org.unicase.ui.usecaseDiagram.edit.parts.Label2EditPart.VISUAL_ID:
+					if (org.unicase.ui.usecaseDiagram.edit.parts.ActorInitiatedUseCasesEditPart.VISUAL_ID != org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
+							.getVisualID(containerView)
+							|| containerView.getElement() != domainElement) {
+						return null; // wrong container
+					}
+					break;
+				case org.unicase.ui.usecaseDiagram.edit.parts.IncludeLabelEditPart.VISUAL_ID:
+					if (org.unicase.ui.usecaseDiagram.edit.parts.UseCaseIncludedUseCasesEditPart.VISUAL_ID != org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
+							.getVisualID(containerView)
+							|| containerView.getElement() != domainElement) {
+						return null; // wrong container
+					}
+					break;
+				case org.unicase.ui.usecaseDiagram.edit.parts.ExtendLabelEditPart.VISUAL_ID:
+					if (org.unicase.ui.usecaseDiagram.edit.parts.UseCaseExtendedUseCasesEditPart.VISUAL_ID != org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
 							.getVisualID(containerView)
 							|| containerView.getElement() != domainElement) {
 						return null; // wrong container
@@ -115,12 +150,22 @@ public class ModelViewProvider extends AbstractViewProvider {
 			return null;
 		}
 		switch (visualID) {
-		case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart.VISUAL_ID:
-			return org.unicase.ui.usecaseDiagram.view.factories.UseCaseViewFactory.class;
-		case org.unicase.ui.usecaseDiagram.edit.parts.StickManEditPart.VISUAL_ID:
-			return org.unicase.ui.usecaseDiagram.view.factories.StickManViewFactory.class;
 		case org.unicase.ui.usecaseDiagram.edit.parts.ActorEditPart.VISUAL_ID:
 			return org.unicase.ui.usecaseDiagram.view.factories.ActorViewFactory.class;
+		case org.unicase.ui.usecaseDiagram.edit.parts.ActorNameEditPart.VISUAL_ID:
+			return org.unicase.ui.usecaseDiagram.view.factories.ActorNameViewFactory.class;
+		case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart.VISUAL_ID:
+			return org.unicase.ui.usecaseDiagram.view.factories.UseCaseViewFactory.class;
+		case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseNameEditPart.VISUAL_ID:
+			return org.unicase.ui.usecaseDiagram.view.factories.UseCaseNameViewFactory.class;
+		case org.unicase.ui.usecaseDiagram.edit.parts.LabelEditPart.VISUAL_ID:
+			return org.unicase.ui.usecaseDiagram.view.factories.LabelViewFactory.class;
+		case org.unicase.ui.usecaseDiagram.edit.parts.Label2EditPart.VISUAL_ID:
+			return org.unicase.ui.usecaseDiagram.view.factories.Label2ViewFactory.class;
+		case org.unicase.ui.usecaseDiagram.edit.parts.IncludeLabelEditPart.VISUAL_ID:
+			return org.unicase.ui.usecaseDiagram.view.factories.IncludeLabelViewFactory.class;
+		case org.unicase.ui.usecaseDiagram.edit.parts.ExtendLabelEditPart.VISUAL_ID:
+			return org.unicase.ui.usecaseDiagram.view.factories.ExtendLabelViewFactory.class;
 		}
 		return null;
 	}
@@ -159,6 +204,14 @@ public class ModelViewProvider extends AbstractViewProvider {
 	 */
 	protected Class getEdgeViewClass(int visualID) {
 		switch (visualID) {
+		case org.unicase.ui.usecaseDiagram.edit.parts.ActorParticipatedUseCasesEditPart.VISUAL_ID:
+			return org.unicase.ui.usecaseDiagram.view.factories.ActorParticipatedUseCasesViewFactory.class;
+		case org.unicase.ui.usecaseDiagram.edit.parts.ActorInitiatedUseCasesEditPart.VISUAL_ID:
+			return org.unicase.ui.usecaseDiagram.view.factories.ActorInitiatedUseCasesViewFactory.class;
+		case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseIncludedUseCasesEditPart.VISUAL_ID:
+			return org.unicase.ui.usecaseDiagram.view.factories.UseCaseIncludedUseCasesViewFactory.class;
+		case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseExtendedUseCasesEditPart.VISUAL_ID:
+			return org.unicase.ui.usecaseDiagram.view.factories.UseCaseExtendedUseCasesViewFactory.class;
 		}
 		return null;
 	}

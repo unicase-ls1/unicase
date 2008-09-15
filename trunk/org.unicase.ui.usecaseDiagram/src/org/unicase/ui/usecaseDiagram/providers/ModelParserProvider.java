@@ -22,22 +22,48 @@ public class ModelParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	private IParser useCaseName_4001Parser;
+	private IParser actorName_4001Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getUseCaseName_4001Parser() {
-		if (useCaseName_4001Parser == null) {
-			useCaseName_4001Parser = createUseCaseName_4001Parser();
+	private IParser getActorName_4001Parser() {
+		if (actorName_4001Parser == null) {
+			actorName_4001Parser = createActorName_4001Parser();
 		}
-		return useCaseName_4001Parser;
+		return actorName_4001Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected IParser createUseCaseName_4001Parser() {
+	protected IParser createActorName_4001Parser() {
+		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE
+				.getModelElement_Name(), };
+		org.unicase.ui.usecaseDiagram.parsers.MessageFormatParser parser = new org.unicase.ui.usecaseDiagram.parsers.MessageFormatParser(
+				features);
+		return parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser useCaseName_4002Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getUseCaseName_4002Parser() {
+		if (useCaseName_4002Parser == null) {
+			useCaseName_4002Parser = createUseCaseName_4002Parser();
+		}
+		return useCaseName_4002Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IParser createUseCaseName_4002Parser() {
 		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE
 				.getModelElement_Name(), };
 		org.unicase.ui.usecaseDiagram.parsers.MessageFormatParser parser = new org.unicase.ui.usecaseDiagram.parsers.MessageFormatParser(
@@ -50,8 +76,10 @@ public class ModelParserProvider extends AbstractProvider implements
 	 */
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
-		case org.unicase.ui.usecaseDiagram.edit.parts.StickManEditPart.VISUAL_ID:
-			return getUseCaseName_4001Parser();
+		case org.unicase.ui.usecaseDiagram.edit.parts.ActorNameEditPart.VISUAL_ID:
+			return getActorName_4001Parser();
+		case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseNameEditPart.VISUAL_ID:
+			return getUseCaseName_4002Parser();
 		}
 		return null;
 	}

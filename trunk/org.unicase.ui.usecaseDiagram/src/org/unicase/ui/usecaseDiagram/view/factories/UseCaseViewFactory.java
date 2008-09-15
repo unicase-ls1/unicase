@@ -62,7 +62,7 @@ public class UseCaseViewFactory extends AbstractShapeViewFactory {
 						eObjectAdapter,
 						view,
 						org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
-								.getType(org.unicase.ui.usecaseDiagram.edit.parts.StickManEditPart.VISUAL_ID),
+								.getType(org.unicase.ui.usecaseDiagram.edit.parts.UseCaseNameEditPart.VISUAL_ID),
 						ViewUtil.APPEND, true, getPreferencesHint());
 	}
 }
