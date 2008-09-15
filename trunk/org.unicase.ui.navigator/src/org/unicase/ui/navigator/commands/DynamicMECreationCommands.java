@@ -20,6 +20,10 @@ import org.eclipse.ui.actions.CompoundContributionItem;
 import org.eclipse.ui.menus.CommandContributionItem;
 import org.eclipse.ui.menus.CommandContributionItemParameter;
 import org.unicase.model.ModelElement;
+import org.unicase.model.diagram.DiagramFactory;
+import org.unicase.model.diagram.DiagramType;
+import org.unicase.model.diagram.MEDiagram;
+import org.unicase.model.diagram.impl.MEDiagramImpl;
 import org.unicase.model.document.LeafSection;
 import org.unicase.ui.common.commands.ActionHelper;
 
@@ -53,7 +57,7 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 
 		// 1. get a list of MEs in this LeafSection,
 		// (sorted based on their frequency)
-		EClass[] contentTypes = getContentTypes(leafSection);
+		Object[] contentTypes = getContentTypes(leafSection);
 
 		// 2. create commands for these ME types
 		IContributionItem[] commands = createCommands(contentTypes);
@@ -61,7 +65,7 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 
 	}
 
-	private IContributionItem[] createCommands(EClass[] contentTypes) {
+	private IContributionItem[] createCommands(Object[] contentTypes) {
 
 		IContributionItem[] commands = new IContributionItem[contentTypes.length];
 		// every command take its corresponding EClass type as parameter
@@ -69,12 +73,25 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 			CommandContributionItemParameter p = new CommandContributionItemParameter(
 					PlatformUI.getWorkbench(), null, COMMAND_ID,
 					CommandContributionItem.STYLE_PUSH);
-			// set the EClas parameter
+			
 			Map<Object, Object> map = new HashMap<Object, Object>();
-			map.put(CreateMEHandler.COMMAND_ECLASS_PARAM, contentTypes[i]);
-			p.parameters = map;
-			p.label = "New " + contentTypes[i].getName();
+			
+			// set the EClass parameter
+			if (contentTypes[i] instanceof EClass) {
+				map.put(CreateMEHandler.COMMAND_ECLASS_PARAM, contentTypes[i]);
+				p.label = "New " + ((EClass)contentTypes[i]).getName();
+			}
+			//set the DiagramType Parameter if the object is a MEiagram
+			if(contentTypes[i] instanceof DiagramType) {
+				MEDiagram createMEDiagram = DiagramFactory.eINSTANCE
+				.createMEDiagram();
+				DiagramType type =(DiagramType) contentTypes[i];
+				map.put(CreateMEHandler.COMMAND_ECLASS_PARAM, createMEDiagram.eClass());
+				map.put(CreateMEHandler.COMMAND_DIAGRAMTYPE_PARAM, type);
+				p.label = "New " + type.getLiteral();
+			}
 			// create command
+			p.parameters = map;
 			CommandContributionItem command = new CommandContributionItem(p);
 			commands[i] = command;
 		}
@@ -89,62 +106,75 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 	 * @param leafSection
 	 * @return
 	 */
-	private EClass[] getContentTypes(LeafSection leafSection) {
+	private Object[] getContentTypes(LeafSection leafSection) {
 		// create a map of (EClass, EClassCount)
-		Map<EClass, EClassCount> meCounts = new HashMap<EClass, EClassCount>();
+		Map<Object, Countable> meCounts = new HashMap<Object, Countable>();
+		
 		for (ModelElement me : leafSection.getModelElements()) {
-			if (meCounts.containsKey(me.eClass())) {
-				// if EClass for this ME is already added to the map,
+			Object key = null;
+			// separated count for the different diagram types
+			if(me instanceof MEDiagram) {
+				DiagramType type = ((MEDiagram) me).getType();
+				key = type;			
+			}
+			else {
+				key = me.eClass();
+			}
+			if (meCounts.containsKey(key)) {
+				// if Count for this ME is already added to the map,
 				// increment its count.
-				EClassCount eclassCount = meCounts.get(me
-						.eClass());
-				eclassCount.setCount(eclassCount.getCount() + 1);
+				Countable count = meCounts.get(key);
+				count.setCount(count.getCount() + 1);
 			} else {
-				meCounts.put(me.eClass(), new EClassCount(me.eClass()));
-
+				meCounts.put(key, new Countable(key));
 			}
 		}
 
-		// get list of EClassCounts from map and sort it based on count field.
-		List<EClassCount> eclazzSortedByCount = new ArrayList<EClassCount>(
+		// get list of modelelement keys from map and sort it based on count field.
+		List<Countable> meSortedByCount = new ArrayList<Countable>(
 				meCounts.values());
-		Collections.sort(eclazzSortedByCount, new EClassFrequencyComparator());
+		Collections.sort(meSortedByCount, new MeFrequencyComparator());
 
 		// create an array of EClass by extracting the eClass field
 		// from elements of sorted EClassCount list.
-		EClass[] contents = new EClass[eclazzSortedByCount.size()];
-		for (int i = 0; i < eclazzSortedByCount.size(); i++) {
-			contents[i] = eclazzSortedByCount.get(i).getEClass();
+		Object[] contents = new Object[meSortedByCount.size()];
+		for (int i = 0; i < meSortedByCount.size(); i++) {
+			contents[i] = meSortedByCount.get(i).getObject();
 		}
 
 		return contents;
 
 	}
 
+	/**
+	 * 
+	 * @author denglerm This interface is used to count ModelElements in the LeafSection.
+	 * 
+	 */
+	public interface ICountable {
+		
+		public void setCount(int count);
+		public int getCount();
+		public Object getObject();
+		
+	}
 	
 	/**
 	 * 
-	 * @author Hodaie This class is a helper to sort the list of contained
-	 *         ModelElements in a LeafSection based on their frequency. This
-	 *         class just keeps track of count of every EClass type encountered
-	 *         in a LeafSectoin.
+	 * @author denglerm This class is used to count ModelElements in the LeafSection.
 	 * 
 	 */
-	private class EClassCount {
-
-		private EClass eClass;
+	
+	public class Countable implements ICountable {
+		
 		private int count;
-
-		public EClassCount(EClass eClass) {
-			this.eClass = eClass;
-			setCount(1);
-
+		private Object object;
+		
+		public Countable(Object object) {
+			this.setCount(1);
+			this.object = object;
 		}
-
-		public EClass getEClass() {
-			return eClass;
-		}
-
+		
 		public void setCount(int newCount) {
 			this.count = newCount;
 		}
@@ -152,21 +182,23 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 		public int getCount() {
 			return count;
 		}
-
+		
+		public Object getObject() {
+			return object;
+		}
 	}
 
 	/**
 	 * 
-	 * @author Hodaie This is a Comparator for EClassCount type.
+	 * @author denglermThis is a Comparator for Countable type.
 	 * 
 	 */
-	private class EClassFrequencyComparator implements Comparator<EClassCount> {
+	private class MeFrequencyComparator implements Comparator<Countable> {
 
-		public int compare(EClassCount arg0, EClassCount arg1) {
+		public int compare(Countable arg0, Countable arg1) {
 
 			return arg1.getCount() - arg0.getCount();
 		}
 
 	}
-
 }

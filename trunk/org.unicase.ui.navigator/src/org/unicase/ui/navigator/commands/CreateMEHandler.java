@@ -14,6 +14,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.ModelElement;
+import org.unicase.model.diagram.DiagramType;
+import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.document.LeafSection;
 import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.workspace.WorkspaceManager;
@@ -42,6 +44,7 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 	 */
 	public static final String COMMAND_ECLASS_PARAM = "org.unicase.ui.navigator.eClassParameter";
 	
+	public static final String COMMAND_DIAGRAMTYPE_PARAM = "org.unicase.ui.navigator.diagramTypeParameter";
 	/**.
 	 * ({@inheritDoc})
 	 */
@@ -56,6 +59,15 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 			newMEInstance = (ModelElement) newMEType.getEPackage()
 					.getEFactoryInstance().create(newMEType);
 			newMEInstance.setName("new " + newMEType.getName());
+			
+			//if model element if MEDiagram, set the diagram type
+			if(newMEInstance instanceof MEDiagram) {
+				Object p = event.getObjectParameterForExecution(COMMAND_DIAGRAMTYPE_PARAM);
+				DiagramType newDiagramType = (DiagramType) p;
+				((MEDiagram) newMEInstance).setType(newDiagramType);
+				newMEInstance.setName("new " + newDiagramType.getLiteral());
+			}
+			
 			// add this newly created model element to LeafSection
 			final LeafSection leafSection = (LeafSection)ActionHelper.getSelectedModelElement();
 			if (leafSection != null) {
