@@ -18,70 +18,32 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.FeatureOperationImpl#getOldValue <em>Old Value</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.FeatureOperationImpl#getNewValue <em>New Value</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.FeatureOperationImpl#getAttributeName <em>Attribute Name</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.FeatureOperationImpl#getFeatureName <em>Feature Name</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class FeatureOperationImpl extends AtomicOperationImpl implements
-		FeatureOperation {
+public abstract class FeatureOperationImpl extends AtomicOperationImpl
+		implements FeatureOperation {
 	/**
-	 * The default value of the '{@link #getOldValue() <em>Old Value</em>}' attribute.
+	 * The default value of the '{@link #getFeatureName() <em>Feature Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOldValue()
+	 * @see #getFeatureName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String OLD_VALUE_EDEFAULT = null;
+	protected static final String FEATURE_NAME_EDEFAULT = "";
 	/**
-	 * The cached value of the '{@link #getOldValue() <em>Old Value</em>}' attribute.
+	 * The cached value of the '{@link #getFeatureName() <em>Feature Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOldValue()
+	 * @see #getFeatureName()
 	 * @generated
 	 * @ordered
 	 */
-	protected String oldValue = OLD_VALUE_EDEFAULT;
-	/**
-	 * The default value of the '{@link #getNewValue() <em>New Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNewValue()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NEW_VALUE_EDEFAULT = null;
-	/**
-	 * The cached value of the '{@link #getNewValue() <em>New Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNewValue()
-	 * @generated
-	 * @ordered
-	 */
-	protected String newValue = NEW_VALUE_EDEFAULT;
-	/**
-	 * The default value of the '{@link #getAttributeName() <em>Attribute Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAttributeName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String ATTRIBUTE_NAME_EDEFAULT = null;
-	/**
-	 * The cached value of the '{@link #getAttributeName() <em>Attribute Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAttributeName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String attributeName = ATTRIBUTE_NAME_EDEFAULT;
+	protected String featureName = FEATURE_NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -107,8 +69,8 @@ public class FeatureOperationImpl extends AtomicOperationImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getOldValue() {
-		return oldValue;
+	public String getFeatureName() {
+		return featureName;
 	}
 
 	/**
@@ -116,59 +78,13 @@ public class FeatureOperationImpl extends AtomicOperationImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOldValue(String newOldValue) {
-		String oldOldValue = oldValue;
-		oldValue = newOldValue;
+	public void setFeatureName(String newFeatureName) {
+		String oldFeatureName = featureName;
+		featureName = newFeatureName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-					OperationsPackage.FEATURE_OPERATION__OLD_VALUE,
-					oldOldValue, oldValue));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getNewValue() {
-		return newValue;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setNewValue(String newNewValue) {
-		String oldNewValue = newValue;
-		newValue = newNewValue;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					OperationsPackage.FEATURE_OPERATION__NEW_VALUE,
-					oldNewValue, newValue));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getAttributeName() {
-		return attributeName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAttributeName(String newAttributeName) {
-		String oldAttributeName = attributeName;
-		attributeName = newAttributeName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					OperationsPackage.FEATURE_OPERATION__ATTRIBUTE_NAME,
-					oldAttributeName, attributeName));
+					OperationsPackage.FEATURE_OPERATION__FEATURE_NAME,
+					oldFeatureName, featureName));
 	}
 
 	/**
@@ -179,12 +95,8 @@ public class FeatureOperationImpl extends AtomicOperationImpl implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case OperationsPackage.FEATURE_OPERATION__OLD_VALUE:
-			return getOldValue();
-		case OperationsPackage.FEATURE_OPERATION__NEW_VALUE:
-			return getNewValue();
-		case OperationsPackage.FEATURE_OPERATION__ATTRIBUTE_NAME:
-			return getAttributeName();
+		case OperationsPackage.FEATURE_OPERATION__FEATURE_NAME:
+			return getFeatureName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -197,14 +109,8 @@ public class FeatureOperationImpl extends AtomicOperationImpl implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case OperationsPackage.FEATURE_OPERATION__OLD_VALUE:
-			setOldValue((String) newValue);
-			return;
-		case OperationsPackage.FEATURE_OPERATION__NEW_VALUE:
-			setNewValue((String) newValue);
-			return;
-		case OperationsPackage.FEATURE_OPERATION__ATTRIBUTE_NAME:
-			setAttributeName((String) newValue);
+		case OperationsPackage.FEATURE_OPERATION__FEATURE_NAME:
+			setFeatureName((String) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -218,14 +124,8 @@ public class FeatureOperationImpl extends AtomicOperationImpl implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case OperationsPackage.FEATURE_OPERATION__OLD_VALUE:
-			setOldValue(OLD_VALUE_EDEFAULT);
-			return;
-		case OperationsPackage.FEATURE_OPERATION__NEW_VALUE:
-			setNewValue(NEW_VALUE_EDEFAULT);
-			return;
-		case OperationsPackage.FEATURE_OPERATION__ATTRIBUTE_NAME:
-			setAttributeName(ATTRIBUTE_NAME_EDEFAULT);
+		case OperationsPackage.FEATURE_OPERATION__FEATURE_NAME:
+			setFeatureName(FEATURE_NAME_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -239,15 +139,9 @@ public class FeatureOperationImpl extends AtomicOperationImpl implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case OperationsPackage.FEATURE_OPERATION__OLD_VALUE:
-			return OLD_VALUE_EDEFAULT == null ? oldValue != null
-					: !OLD_VALUE_EDEFAULT.equals(oldValue);
-		case OperationsPackage.FEATURE_OPERATION__NEW_VALUE:
-			return NEW_VALUE_EDEFAULT == null ? newValue != null
-					: !NEW_VALUE_EDEFAULT.equals(newValue);
-		case OperationsPackage.FEATURE_OPERATION__ATTRIBUTE_NAME:
-			return ATTRIBUTE_NAME_EDEFAULT == null ? attributeName != null
-					: !ATTRIBUTE_NAME_EDEFAULT.equals(attributeName);
+		case OperationsPackage.FEATURE_OPERATION__FEATURE_NAME:
+			return FEATURE_NAME_EDEFAULT == null ? featureName != null
+					: !FEATURE_NAME_EDEFAULT.equals(featureName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -263,12 +157,8 @@ public class FeatureOperationImpl extends AtomicOperationImpl implements
 			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (oldValue: ");
-		result.append(oldValue);
-		result.append(", newValue: ");
-		result.append(newValue);
-		result.append(", AttributeName: ");
-		result.append(attributeName);
+		result.append(" (featureName: ");
+		result.append(featureName);
 		result.append(')');
 		return result.toString();
 	}

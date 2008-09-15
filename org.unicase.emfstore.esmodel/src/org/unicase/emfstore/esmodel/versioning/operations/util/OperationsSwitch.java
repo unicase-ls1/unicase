@@ -11,11 +11,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AtomicOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.DeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 
 /**
  * <!-- begin-user-doc -->
@@ -146,6 +148,32 @@ public class OperationsSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case OperationsPackage.REFERENCE_OPERATION: {
+			ReferenceOperation referenceOperation = (ReferenceOperation) theEObject;
+			T result = caseReferenceOperation(referenceOperation);
+			if (result == null)
+				result = caseFeatureOperation(referenceOperation);
+			if (result == null)
+				result = caseAtomicOperation(referenceOperation);
+			if (result == null)
+				result = caseAbstractOperation(referenceOperation);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case OperationsPackage.ATTRIBUTE_OPERATION: {
+			AttributeOperation attributeOperation = (AttributeOperation) theEObject;
+			T result = caseAttributeOperation(attributeOperation);
+			if (result == null)
+				result = caseFeatureOperation(attributeOperation);
+			if (result == null)
+				result = caseAtomicOperation(attributeOperation);
+			if (result == null)
+				result = caseAbstractOperation(attributeOperation);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -238,6 +266,36 @@ public class OperationsSwitch<T> {
 	 * @generated
 	 */
 	public T caseAtomicOperation(AtomicOperation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Reference Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Reference Operation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseReferenceOperation(ReferenceOperation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Attribute Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Attribute Operation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAttributeOperation(AttributeOperation object) {
 		return null;
 	}
 

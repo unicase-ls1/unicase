@@ -52,66 +52,26 @@ public class FeatureOperationItemProvider extends AtomicOperationItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addOldValuePropertyDescriptor(object);
-			addNewValuePropertyDescriptor(object);
-			addAttributeNamePropertyDescriptor(object);
+			addFeatureNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Old Value feature.
+	 * This adds a property descriptor for the Feature Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOldValuePropertyDescriptor(Object object) {
+	protected void addFeatureNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
 						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_FeatureOperation_oldValue_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_FeatureOperation_oldValue_feature",
-						"_UI_FeatureOperation_type"),
-				OperationsPackage.Literals.FEATURE_OPERATION__OLD_VALUE, true,
-				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-				null));
-	}
-
-	/**
-	 * This adds a property descriptor for the New Value feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addNewValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_FeatureOperation_newValue_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_FeatureOperation_newValue_feature",
-						"_UI_FeatureOperation_type"),
-				OperationsPackage.Literals.FEATURE_OPERATION__NEW_VALUE, true,
-				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-				null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Attribute Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addAttributeNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_FeatureOperation_AttributeName_feature"),
+				getString("_UI_FeatureOperation_featureName_feature"),
 				getString("_UI_PropertyDescriptor_description",
-						"_UI_FeatureOperation_AttributeName_feature",
+						"_UI_FeatureOperation_featureName_feature",
 						"_UI_FeatureOperation_type"),
-				OperationsPackage.Literals.FEATURE_OPERATION__ATTRIBUTE_NAME,
+				OperationsPackage.Literals.FEATURE_OPERATION__FEATURE_NAME,
 				true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				null, null));
 	}
@@ -153,9 +113,7 @@ public class FeatureOperationItemProvider extends AtomicOperationItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(FeatureOperation.class)) {
-		case OperationsPackage.FEATURE_OPERATION__OLD_VALUE:
-		case OperationsPackage.FEATURE_OPERATION__NEW_VALUE:
-		case OperationsPackage.FEATURE_OPERATION__ATTRIBUTE_NAME:
+		case OperationsPackage.FEATURE_OPERATION__FEATURE_NAME:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), false, true));
 			return;
