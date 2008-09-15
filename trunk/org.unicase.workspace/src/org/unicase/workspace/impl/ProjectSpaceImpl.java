@@ -795,7 +795,13 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			startChangeRecording();
 			throw new BaseVersionOutdatedException();
 		}
-
+		
+		//stop notifications
+		for (ModelElement modelElement: project.getAllModelElements()) {
+			modelElement.eSetDeliver(false);
+		}
+			
+		
 		final ConnectionManager connectionManager = WorkspaceManager
 				.getInstance().getConnectionManager();
 
@@ -819,7 +825,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		save();
 		// save starts recording ...
 		// startChangeRecording();
-
+		
+		//start notifications
+		for (ModelElement modelElement: project.getAllModelElements()) {
+			modelElement.eSetDeliver(true);
+		}
 		return newBaseVersion;
 	}
 
