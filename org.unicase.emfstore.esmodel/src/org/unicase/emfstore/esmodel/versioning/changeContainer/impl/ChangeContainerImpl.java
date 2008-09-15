@@ -188,7 +188,10 @@ public class ChangeContainerImpl extends EObjectImpl implements ChangeContainer 
 				.getContents().get(0);
 
 		fowardChangeDescription.apply();
-
+		
+		//remove from virtual resource
+		projectResource.getContents().remove(project);
+		
 		// reintegrate project into old container
 		if (oldContainer != null) {
 			oldContainer.eSet(containmentFeature, project);
