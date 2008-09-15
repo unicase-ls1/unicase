@@ -1286,23 +1286,55 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		WorkspaceManager.getInstance().getCurrentWorkspace().exportProject(
 				this, absoluteFileName);
 	}
-
+	
+	/**
+	 * @generated NOT
+	 */
 	public void notify(Notification notification, ModelElement modelElement) {
-		if (notification.getEventType() == Notification.ADD
-				&& notification.getFeature() instanceof EStructuralFeature) {
-			// FIXME OW: check cast
-			EObject newValue = (EObject) notification.getNewValue();
-			addToResource(newValue, modelElement);
-
-		} else if (notification.getEventType() == Notification.ADD_MANY
-				&& notification.getFeature() instanceof EStructuralFeature) {
-			// FIXME OW: check cast
-			List<EObject> newValues = (List<EObject>) notification
-					.getNewValue();
-			for (EObject newElement : newValues) {
-				addToResource(newElement, modelElement);
-			}
+		EStructuralFeature feature = (EStructuralFeature) notification.getFeature();
+		EObject newValue = (EObject) notification.getNewValue();
+		switch (notification.getEventType()){
+			case Notification.ADD:
+				if(newValue.eResource()!=null){
+					//known
+					if(feature.getUpperBound()!=1){
+						//multi
+						
+					}else{
+						//single
+						
+					}
+				}else{
+					//unknown
+					
+					//TODO:create
+					if(feature.getUpperBound()!=1){
+						//multi
+						
+					}else{
+						//single
+						
+					}
+				}
+				break;
+			case Notification.REMOVE:
+				break;
 		}
+//		if (notification.getEventType() == Notification.ADD
+//				&& notification.getFeature() instanceof EStructuralFeature) {
+//			// FIXME OW: check cast
+//			EObject newValue = (EObject) notification.getNewValue();
+//			addToResource(newValue, modelElement);
+//
+//		} else if (notification.getEventType() == Notification.ADD_MANY
+//				&& notification.getFeature() instanceof EStructuralFeature) {
+//			// FIXME OW: check cast
+//			List<EObject> newValues = (List<EObject>) notification
+//					.getNewValue();
+//			for (EObject newElement : newValues) {
+//				addToResource(newElement, modelElement);
+//			}
+//		}
 		saveResources(false);
 	}
 
