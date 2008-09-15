@@ -9,6 +9,7 @@ package org.unicase.ui.stem.views.historybrowserview;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
+import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.Version;
 
 /**.
@@ -39,18 +40,22 @@ public class HistoryTableLabelProvider extends AdapterFactoryLabelProvider {
 	@Override
 	public String getColumnText(Object object, int columnIndex) {
 		if(object instanceof HistoryInfo){
-			HistoryInfo version = (HistoryInfo)object;
+			HistoryInfo historyInfo = (HistoryInfo)object;
 			switch (columnIndex){
 			case REVISION_COLUMN :
-				return Integer.toString(version.getPrimerySpec().getIdentifier());
+				return Integer.toString(historyInfo.getPrimerySpec().getIdentifier());
 			case TAG_COLUMN :
-				return version.getTagSpecs().get(0).getName();
+				String tags = "";
+				for(TagVersionSpec tag : historyInfo.getTagSpecs()) {
+					tags += tag.getName()+" ";
+				}
+				return tags;
 			case DATE_COLUMN :
-				return version.getLogMessage().getDate().toString();
+				return historyInfo.getLogMessage().getDate().toString();
 			case AUTHOR_COLUMN :
-				return version.getLogMessage().getAuthor();
+				return historyInfo.getLogMessage().getAuthor();
 			case LOGMSG_COLUMN :
-				return version.getLogMessage().getMessage();
+				return historyInfo.getLogMessage().getMessage();
 			default :
 				return "";
 			}

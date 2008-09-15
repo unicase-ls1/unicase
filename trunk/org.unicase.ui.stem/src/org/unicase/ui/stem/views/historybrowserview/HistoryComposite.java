@@ -88,11 +88,17 @@ public class HistoryComposite extends Composite {
 		this.setLayout(new GridLayout());
 		createTable();
 
-		updateTable();
+		tableViewer.setInput(getHistoryInfos());
+		for (TableColumn column : tableViewer.getTable().getColumns()) {
+			column.pack();
+		}
 
 		createButtons();
 	}
 
+	/**
+	 * Updates the table.
+	 */
 	public void updateTable() {
 		tableViewer.setInput(getHistoryInfos());
 		for (TableColumn column : tableViewer.getTable().getColumns()) {
@@ -217,16 +223,15 @@ public class HistoryComposite extends Composite {
 		}
 
 	}
-
+	private int a = 6;
 	// a dummay input to table
 	private List<HistoryInfo> getHistoryInfos() {
-//		return parentView.getHistoryInfos();
-		return createDummyVersions();
+		return parentView.getHistoryInfos();
 	}
 
 	 private List<HistoryInfo> createDummyVersions() {
-	 HistoryInfo[] versions = new HistoryInfo[6];
-	 for (int i = 0; i < 6; i++) {
+	 HistoryInfo[] versions = new HistoryInfo[a];
+	 for (int i = 0; i < a; i++) {
 	 versions[i] = VersioningFactory.eINSTANCE.createHistoryInfo();
 	 LogMessage logMessage = VersioningFactory.eINSTANCE
 	 .createLogMessage();
@@ -246,7 +251,7 @@ public class HistoryComposite extends Composite {
 	 versions[i].setPrimerySpec(verSpec);
 	 versions[i].getTagSpecs().add(tagSpec);
 	 }
-	
+	 a++;
 	 return Arrays.asList(versions);
 	
 	 }
