@@ -7,13 +7,8 @@
 package org.unicase.ui.stem.views.historybrowserview;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.swt.SWT;
@@ -22,6 +17,7 @@ import org.eclipse.swt.widgets.Control;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.stem.views.AbstractSCMView;
@@ -51,11 +47,9 @@ public class HistoryBrowserView extends AbstractSCMView {
 	 */
 	public HistoryBrowserView() {
 		historyInfos = new ArrayList<HistoryInfo>();
-//		reload();
 	}
 
 	private void reload() {
-		System.out.println("reloading");
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
@@ -69,12 +63,10 @@ public class HistoryBrowserView extends AbstractSCMView {
 						List<HistoryInfo> historyInfo = activeProjectSpace
 								.getUsersession().getHistoryInfo(
 										activeProjectSpace.getProjectId(),
-										getQuery());
+										getQuery(activeProjectSpace));
 						if (historyInfo != null) {
+							historyInfos.clear();
 							historyInfos.addAll(historyInfo);
-							for(HistoryInfo hi : historyInfos) {
-								System.out.println(hi);
-							}
 						}
 					} catch (EmfStoreException e) {
 						e.printStackTrace();
@@ -84,23 +76,19 @@ public class HistoryBrowserView extends AbstractSCMView {
 		});
 	}
 
-	private HistoryQuery getQuery() {
-		// Resource resource = new
-		// ResourceSetImpl().createResource(URI.createURI("EMF IST SCHEISSE!"));
-
+	private HistoryQuery getQuery(ProjectSpace activeProjectSpace)
+			throws EmfStoreException {
 		HistoryQuery query = VersioningFactory.eINSTANCE.createHistoryQuery();
-		PrimaryVersionSpec source = VersioningFactory.eINSTANCE
-				.createPrimaryVersionSpec();
-		source.setIdentifier(0);
-		PrimaryVersionSpec target = VersioningFactory.eINSTANCE
-				.createPrimaryVersionSpec();
-		target.setIdentifier(1);
-		query.setSource(source);
-		query.setTarget(target);
-
-		// resource.getContents().add(query);
-		// resource.getContents().add(source);
-		// resource.getContents().add(target);
+		// if query not set default query 0 to HEAD
+		if (true) {
+			PrimaryVersionSpec source = VersioningFactory.eINSTANCE
+					.createPrimaryVersionSpec();
+			source.setIdentifier(0);
+			PrimaryVersionSpec target = activeProjectSpace
+					.resolveVersionSpec(VersionSpec.HEAD_VERSION);
+			query.setSource(source);
+			query.setTarget(target);
+		}
 
 		return query;
 	}
@@ -132,8 +120,8 @@ public class HistoryBrowserView extends AbstractSCMView {
 	 */
 	@Override
 	protected void refreshClicked() {
-		System.out.println("refresh pressed.");
 		reload();
+		historyComposite.updateTable();
 		// lblCriteria.setText(queryComposite.getQuery().getDescription());
 
 		// ************************************************
