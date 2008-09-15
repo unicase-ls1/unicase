@@ -213,16 +213,222 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 
 		case org.unicase.ui.usecaseDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID: {
 			Collection result = new ArrayList();
+			org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorGroup links = new org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorGroup(
+					org.unicase.ui.usecaseDiagram.part.Messages.NavigatorGroupName_MEDiagram_77_links,
+					"icons/linksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection connectedViews = getChildrenByType(
-					Collections.singleton(view),
-					org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart.VISUAL_ID);
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
 					Collections.singleton(view),
 					org.unicase.ui.usecaseDiagram.edit.parts.ActorEditPart.VISUAL_ID);
 			result.addAll(createNavigatorItems(connectedViews, parentElement,
 					false));
+			connectedViews = getChildrenByType(
+					Collections.singleton(view),
+					org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart.VISUAL_ID);
+			result.addAll(createNavigatorItems(connectedViews, parentElement,
+					false));
+			connectedViews = getDiagramLinksByType(
+					Collections.singleton(view),
+					org.unicase.ui.usecaseDiagram.edit.parts.ActorParticipatedUseCasesEditPart.VISUAL_ID);
+			links
+					.addChildren(createNavigatorItems(connectedViews, links,
+							false));
+			connectedViews = getDiagramLinksByType(
+					Collections.singleton(view),
+					org.unicase.ui.usecaseDiagram.edit.parts.ActorInitiatedUseCasesEditPart.VISUAL_ID);
+			links
+					.addChildren(createNavigatorItems(connectedViews, links,
+							false));
+			connectedViews = getDiagramLinksByType(
+					Collections.singleton(view),
+					org.unicase.ui.usecaseDiagram.edit.parts.UseCaseIncludedUseCasesEditPart.VISUAL_ID);
+			links
+					.addChildren(createNavigatorItems(connectedViews, links,
+							false));
+			connectedViews = getDiagramLinksByType(
+					Collections.singleton(view),
+					org.unicase.ui.usecaseDiagram.edit.parts.UseCaseExtendedUseCasesEditPart.VISUAL_ID);
+			links
+					.addChildren(createNavigatorItems(connectedViews, links,
+							false));
+			if (!links.isEmpty()) {
+				result.add(links);
+			}
+			return result.toArray();
+		}
+
+		case org.unicase.ui.usecaseDiagram.edit.parts.ActorEditPart.VISUAL_ID: {
+			Collection result = new ArrayList();
+			org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorGroup outgoinglinks = new org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorGroup(
+					org.unicase.ui.usecaseDiagram.part.Messages.NavigatorGroupName_Actor_1001_outgoinglinks,
+					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection connectedViews = getOutgoingLinksByType(
+					Collections.singleton(view),
+					org.unicase.ui.usecaseDiagram.edit.parts.ActorParticipatedUseCasesEditPart.VISUAL_ID);
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getOutgoingLinksByType(
+					Collections.singleton(view),
+					org.unicase.ui.usecaseDiagram.edit.parts.ActorInitiatedUseCasesEditPart.VISUAL_ID);
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			if (!outgoinglinks.isEmpty()) {
+				result.add(outgoinglinks);
+			}
+			return result.toArray();
+		}
+
+		case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart.VISUAL_ID: {
+			Collection result = new ArrayList();
+			org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorGroup incominglinks = new org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorGroup(
+					org.unicase.ui.usecaseDiagram.part.Messages.NavigatorGroupName_UseCase_1002_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorGroup outgoinglinks = new org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorGroup(
+					org.unicase.ui.usecaseDiagram.part.Messages.NavigatorGroupName_UseCase_1002_outgoinglinks,
+					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection connectedViews = getIncomingLinksByType(
+					Collections.singleton(view),
+					org.unicase.ui.usecaseDiagram.edit.parts.ActorParticipatedUseCasesEditPart.VISUAL_ID);
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getIncomingLinksByType(
+					Collections.singleton(view),
+					org.unicase.ui.usecaseDiagram.edit.parts.ActorInitiatedUseCasesEditPart.VISUAL_ID);
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getIncomingLinksByType(
+					Collections.singleton(view),
+					org.unicase.ui.usecaseDiagram.edit.parts.UseCaseIncludedUseCasesEditPart.VISUAL_ID);
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(
+					Collections.singleton(view),
+					org.unicase.ui.usecaseDiagram.edit.parts.UseCaseIncludedUseCasesEditPart.VISUAL_ID);
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getIncomingLinksByType(
+					Collections.singleton(view),
+					org.unicase.ui.usecaseDiagram.edit.parts.UseCaseExtendedUseCasesEditPart.VISUAL_ID);
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(
+					Collections.singleton(view),
+					org.unicase.ui.usecaseDiagram.edit.parts.UseCaseExtendedUseCasesEditPart.VISUAL_ID);
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			if (!incominglinks.isEmpty()) {
+				result.add(incominglinks);
+			}
+			if (!outgoinglinks.isEmpty()) {
+				result.add(outgoinglinks);
+			}
+			return result.toArray();
+		}
+
+		case org.unicase.ui.usecaseDiagram.edit.parts.ActorParticipatedUseCasesEditPart.VISUAL_ID: {
+			Collection result = new ArrayList();
+			org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorGroup target = new org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorGroup(
+					org.unicase.ui.usecaseDiagram.part.Messages.NavigatorGroupName_ActorParticipatedUseCases_3001_target,
+					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorGroup source = new org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorGroup(
+					org.unicase.ui.usecaseDiagram.part.Messages.NavigatorGroupName_ActorParticipatedUseCases_3001_source,
+					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection connectedViews = getLinksTargetByType(
+					Collections.singleton(view),
+					org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart.VISUAL_ID);
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksSourceByType(
+					Collections.singleton(view),
+					org.unicase.ui.usecaseDiagram.edit.parts.ActorEditPart.VISUAL_ID);
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			if (!target.isEmpty()) {
+				result.add(target);
+			}
+			if (!source.isEmpty()) {
+				result.add(source);
+			}
+			return result.toArray();
+		}
+
+		case org.unicase.ui.usecaseDiagram.edit.parts.ActorInitiatedUseCasesEditPart.VISUAL_ID: {
+			Collection result = new ArrayList();
+			org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorGroup target = new org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorGroup(
+					org.unicase.ui.usecaseDiagram.part.Messages.NavigatorGroupName_ActorInitiatedUseCases_3002_target,
+					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorGroup source = new org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorGroup(
+					org.unicase.ui.usecaseDiagram.part.Messages.NavigatorGroupName_ActorInitiatedUseCases_3002_source,
+					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection connectedViews = getLinksTargetByType(
+					Collections.singleton(view),
+					org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart.VISUAL_ID);
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksSourceByType(
+					Collections.singleton(view),
+					org.unicase.ui.usecaseDiagram.edit.parts.ActorEditPart.VISUAL_ID);
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			if (!target.isEmpty()) {
+				result.add(target);
+			}
+			if (!source.isEmpty()) {
+				result.add(source);
+			}
+			return result.toArray();
+		}
+
+		case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseIncludedUseCasesEditPart.VISUAL_ID: {
+			Collection result = new ArrayList();
+			org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorGroup target = new org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorGroup(
+					org.unicase.ui.usecaseDiagram.part.Messages.NavigatorGroupName_UseCaseIncludedUseCases_3003_target,
+					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorGroup source = new org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorGroup(
+					org.unicase.ui.usecaseDiagram.part.Messages.NavigatorGroupName_UseCaseIncludedUseCases_3003_source,
+					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection connectedViews = getLinksTargetByType(
+					Collections.singleton(view),
+					org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart.VISUAL_ID);
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksSourceByType(
+					Collections.singleton(view),
+					org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart.VISUAL_ID);
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			if (!target.isEmpty()) {
+				result.add(target);
+			}
+			if (!source.isEmpty()) {
+				result.add(source);
+			}
+			return result.toArray();
+		}
+
+		case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseExtendedUseCasesEditPart.VISUAL_ID: {
+			Collection result = new ArrayList();
+			org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorGroup target = new org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorGroup(
+					org.unicase.ui.usecaseDiagram.part.Messages.NavigatorGroupName_UseCaseExtendedUseCases_3004_target,
+					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorGroup source = new org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorGroup(
+					org.unicase.ui.usecaseDiagram.part.Messages.NavigatorGroupName_UseCaseExtendedUseCases_3004_source,
+					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection connectedViews = getLinksTargetByType(
+					Collections.singleton(view),
+					org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart.VISUAL_ID);
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksSourceByType(
+					Collections.singleton(view),
+					org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart.VISUAL_ID);
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			if (!target.isEmpty()) {
+				result.add(target);
+			}
+			if (!source.isEmpty()) {
+				result.add(source);
+			}
 			return result.toArray();
 		}
 		}

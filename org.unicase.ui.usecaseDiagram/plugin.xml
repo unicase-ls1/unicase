@@ -279,23 +279,59 @@
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/requirement">
          <metamodelType
-               id="org.unicase.ui.usecaseDiagram.UseCase_1001"
-               name="%metatype.name.UseCase_1001"
+               id="org.unicase.ui.usecaseDiagram.Actor_1001"
+               name="%metatype.name.Actor_1001"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="UseCase"
-               edithelper="org.unicase.ui.usecaseDiagram.edit.helpers.UseCaseEditHelper">
+               eclass="Actor"
+               edithelper="org.unicase.ui.usecaseDiagram.edit.helpers.ActorEditHelper">
             <param name="semanticHint" value="1001"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/requirement">
          <metamodelType
-               id="org.unicase.ui.usecaseDiagram.Actor_1002"
-               name="%metatype.name.Actor_1002"
+               id="org.unicase.ui.usecaseDiagram.UseCase_1002"
+               name="%metatype.name.UseCase_1002"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Actor"
-               edithelper="org.unicase.ui.usecaseDiagram.edit.helpers.ActorEditHelper">
+               eclass="UseCase"
+               edithelper="org.unicase.ui.usecaseDiagram.edit.helpers.UseCaseEditHelper">
             <param name="semanticHint" value="1002"/>
          </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/requirement">
+         <specializationType
+               id="org.unicase.ui.usecaseDiagram.ActorParticipatedUseCases_3001"
+               name="%metatype.name.ActorParticipatedUseCases_3001"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="3001"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/requirement">
+         <specializationType
+               id="org.unicase.ui.usecaseDiagram.ActorInitiatedUseCases_3002"
+               name="%metatype.name.ActorInitiatedUseCases_3002"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="3002"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/requirement">
+         <specializationType
+               id="org.unicase.ui.usecaseDiagram.UseCaseIncludedUseCases_3003"
+               name="%metatype.name.UseCaseIncludedUseCases_3003"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="3003"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/requirement">
+         <specializationType
+               id="org.unicase.ui.usecaseDiagram.UseCaseExtendedUseCases_3004"
+               name="%metatype.name.UseCaseExtendedUseCases_3004"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="3004"/>
+         </specializationType>
       </metamodel>
    </extension>
 
@@ -453,7 +489,27 @@
          type="model_diagram"
          class="org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory">
       </parser>
+   </extension><extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+      <?gmfgen generated="true"?>
+      <clientContext id="UseCaseClientContext">
+         <enablement>
+            <test
+               property="org.eclipse.gmf.runtime.emf.core.editingDomain"
+               value="org.unicase.EditingDomain"/>
+         </enablement>
+      </clientContext> 
+      <binding context="UseCaseClientContext">
+         <elementType ref="org.unicase.ui.usecaseDiagram.MEDiagram_77"/>
+         <elementType ref="org.unicase.ui.usecaseDiagram.Actor_1001"/>
+         <elementType ref="org.unicase.ui.usecaseDiagram.UseCase_1002"/>
+         <elementType ref="org.unicase.ui.usecaseDiagram.ActorParticipatedUseCases_3001"/>
+         <elementType ref="org.unicase.ui.usecaseDiagram.ActorInitiatedUseCases_3002"/>
+         <elementType ref="org.unicase.ui.usecaseDiagram.UseCaseIncludedUseCases_3003"/>
+         <elementType ref="org.unicase.ui.usecaseDiagram.UseCaseExtendedUseCases_3004"/>
+         <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
+      </binding>
    </extension>
+
 
   
 

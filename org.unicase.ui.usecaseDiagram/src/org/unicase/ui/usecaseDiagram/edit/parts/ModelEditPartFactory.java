@@ -32,16 +32,52 @@ public class ModelEditPartFactory implements EditPartFactory {
 				return new org.unicase.ui.usecaseDiagram.edit.parts.MEDiagramEditPart(
 						view);
 
+			case org.unicase.ui.usecaseDiagram.edit.parts.ActorEditPart.VISUAL_ID:
+				return new org.unicase.ui.usecaseDiagram.edit.parts.ActorEditPart(
+						view);
+
+			case org.unicase.ui.usecaseDiagram.edit.parts.ActorNameEditPart.VISUAL_ID:
+				return new org.unicase.ui.usecaseDiagram.edit.parts.ActorNameEditPart(
+						view);
+
 			case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart.VISUAL_ID:
 				return new org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart(
 						view);
 
-			case org.unicase.ui.usecaseDiagram.edit.parts.StickManEditPart.VISUAL_ID:
-				return new org.unicase.ui.usecaseDiagram.edit.parts.StickManEditPart(
+			case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseNameEditPart.VISUAL_ID:
+				return new org.unicase.ui.usecaseDiagram.edit.parts.UseCaseNameEditPart(
 						view);
 
-			case org.unicase.ui.usecaseDiagram.edit.parts.ActorEditPart.VISUAL_ID:
-				return new org.unicase.ui.usecaseDiagram.edit.parts.ActorEditPart(
+			case org.unicase.ui.usecaseDiagram.edit.parts.ActorParticipatedUseCasesEditPart.VISUAL_ID:
+				return new org.unicase.ui.usecaseDiagram.edit.parts.ActorParticipatedUseCasesEditPart(
+						view);
+
+			case org.unicase.ui.usecaseDiagram.edit.parts.LabelEditPart.VISUAL_ID:
+				return new org.unicase.ui.usecaseDiagram.edit.parts.LabelEditPart(
+						view);
+
+			case org.unicase.ui.usecaseDiagram.edit.parts.ActorInitiatedUseCasesEditPart.VISUAL_ID:
+				return new org.unicase.ui.usecaseDiagram.edit.parts.ActorInitiatedUseCasesEditPart(
+						view);
+
+			case org.unicase.ui.usecaseDiagram.edit.parts.Label2EditPart.VISUAL_ID:
+				return new org.unicase.ui.usecaseDiagram.edit.parts.Label2EditPart(
+						view);
+
+			case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseIncludedUseCasesEditPart.VISUAL_ID:
+				return new org.unicase.ui.usecaseDiagram.edit.parts.UseCaseIncludedUseCasesEditPart(
+						view);
+
+			case org.unicase.ui.usecaseDiagram.edit.parts.IncludeLabelEditPart.VISUAL_ID:
+				return new org.unicase.ui.usecaseDiagram.edit.parts.IncludeLabelEditPart(
+						view);
+
+			case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseExtendedUseCasesEditPart.VISUAL_ID:
+				return new org.unicase.ui.usecaseDiagram.edit.parts.UseCaseExtendedUseCasesEditPart(
+						view);
+
+			case org.unicase.ui.usecaseDiagram.edit.parts.ExtendLabelEditPart.VISUAL_ID:
+				return new org.unicase.ui.usecaseDiagram.edit.parts.ExtendLabelEditPart(
 						view);
 			}
 		}

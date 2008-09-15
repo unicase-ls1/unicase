@@ -85,12 +85,24 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 		case org.unicase.ui.usecaseDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Diagram?http://unicase.org/model/diagram?MEDiagram", org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.MEDiagram_77); //$NON-NLS-1$
-		case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/requirement?UseCase", org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCase_1001); //$NON-NLS-1$
 		case org.unicase.ui.usecaseDiagram.edit.parts.ActorEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/requirement?Actor", org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.Actor_1002); //$NON-NLS-1$
+					"Navigator?TopLevelNode?http://unicase.org/model/requirement?Actor", org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.Actor_1001); //$NON-NLS-1$
+		case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://unicase.org/model/requirement?UseCase", org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCase_1002); //$NON-NLS-1$
+		case org.unicase.ui.usecaseDiagram.edit.parts.ActorParticipatedUseCasesEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/requirement?Actor?participatedUseCases", org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.ActorParticipatedUseCases_3001); //$NON-NLS-1$
+		case org.unicase.ui.usecaseDiagram.edit.parts.ActorInitiatedUseCasesEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/requirement?Actor?initiatedUseCases", org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.ActorInitiatedUseCases_3002); //$NON-NLS-1$
+		case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseIncludedUseCasesEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/requirement?UseCase?includedUseCases", org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCaseIncludedUseCases_3003); //$NON-NLS-1$
+		case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseExtendedUseCasesEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/requirement?UseCase?extendedUseCases", org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCaseExtendedUseCases_3004); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -149,10 +161,18 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 				.getVisualID(view)) {
 		case org.unicase.ui.usecaseDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
 			return getMEDiagram_77Text(view);
-		case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart.VISUAL_ID:
-			return getUseCase_1001Text(view);
 		case org.unicase.ui.usecaseDiagram.edit.parts.ActorEditPart.VISUAL_ID:
-			return getActor_1002Text(view);
+			return getActor_1001Text(view);
+		case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart.VISUAL_ID:
+			return getUseCase_1002Text(view);
+		case org.unicase.ui.usecaseDiagram.edit.parts.ActorParticipatedUseCasesEditPart.VISUAL_ID:
+			return getActorParticipatedUseCases_3001Text(view);
+		case org.unicase.ui.usecaseDiagram.edit.parts.ActorInitiatedUseCasesEditPart.VISUAL_ID:
+			return getActorInitiatedUseCases_3002Text(view);
+		case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseIncludedUseCasesEditPart.VISUAL_ID:
+			return getUseCaseIncludedUseCases_3003Text(view);
+		case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseExtendedUseCasesEditPart.VISUAL_ID:
+			return getUseCaseExtendedUseCases_3004Text(view);
 		}
 		return getUnknownElementText(view);
 	}
@@ -175,12 +195,12 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 	/**
 	 * @generated
 	 */
-	private String getUseCase_1001Text(View view) {
+	private String getActor_1001Text(View view) {
 		IAdaptable hintAdapter = new org.unicase.ui.usecaseDiagram.providers.ModelParserProvider.HintAdapter(
-				org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCase_1001,
+				org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.Actor_1001,
 				(view.getElement() != null ? view.getElement() : view),
 				org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
-						.getType(org.unicase.ui.usecaseDiagram.edit.parts.StickManEditPart.VISUAL_ID));
+						.getType(org.unicase.ui.usecaseDiagram.edit.parts.ActorNameEditPart.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
 		if (parser != null) {
@@ -198,17 +218,104 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 	/**
 	 * @generated
 	 */
-	private String getActor_1002Text(View view) {
-		Actor domainModelElement = (Actor) view.getElement();
-		if (domainModelElement != null) {
-			return domainModelElement.getName();
+	private String getUseCase_1002Text(View view) {
+		IAdaptable hintAdapter = new org.unicase.ui.usecaseDiagram.providers.ModelParserProvider.HintAdapter(
+				org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCase_1002,
+				(view.getElement() != null ? view.getElement() : view),
+				org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
+						.getType(org.unicase.ui.usecaseDiagram.edit.parts.UseCaseNameEditPart.VISUAL_ID));
+		IParser parser = ParserService.getInstance().getParser(hintAdapter);
+
+		if (parser != null) {
+			return parser.getPrintString(hintAdapter, ParserOptions.NONE
+					.intValue());
 		} else {
 			org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin
-					.getInstance()
-					.logError(
-							"No domain element for view with visualID = " + 1002); //$NON-NLS-1$
+					.getInstance().logError(
+							"Parser was not found for label " + 4002); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
+
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getActorParticipatedUseCases_3001Text(View view) {
+
+		IAdaptable hintAdapter = new org.unicase.ui.usecaseDiagram.providers.ModelParserProvider.HintAdapter(
+				org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.ActorParticipatedUseCases_3001,
+				(view.getElement() != null ? view.getElement() : view),
+				org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
+						.getType(org.unicase.ui.usecaseDiagram.edit.parts.LabelEditPart.VISUAL_ID));
+		IParser parser = ParserService.getInstance().getParser(hintAdapter);
+		if (parser != null) {
+			return parser.getPrintString(hintAdapter, ParserOptions.NONE
+					.intValue());
+		} else {
+			return ""; //$NON-NLS-1$
+		}
+
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getActorInitiatedUseCases_3002Text(View view) {
+
+		IAdaptable hintAdapter = new org.unicase.ui.usecaseDiagram.providers.ModelParserProvider.HintAdapter(
+				org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.ActorInitiatedUseCases_3002,
+				(view.getElement() != null ? view.getElement() : view),
+				org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
+						.getType(org.unicase.ui.usecaseDiagram.edit.parts.Label2EditPart.VISUAL_ID));
+		IParser parser = ParserService.getInstance().getParser(hintAdapter);
+		if (parser != null) {
+			return parser.getPrintString(hintAdapter, ParserOptions.NONE
+					.intValue());
+		} else {
+			return ""; //$NON-NLS-1$
+		}
+
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getUseCaseIncludedUseCases_3003Text(View view) {
+
+		IAdaptable hintAdapter = new org.unicase.ui.usecaseDiagram.providers.ModelParserProvider.HintAdapter(
+				org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCaseIncludedUseCases_3003,
+				(view.getElement() != null ? view.getElement() : view),
+				org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
+						.getType(org.unicase.ui.usecaseDiagram.edit.parts.IncludeLabelEditPart.VISUAL_ID));
+		IParser parser = ParserService.getInstance().getParser(hintAdapter);
+		if (parser != null) {
+			return parser.getPrintString(hintAdapter, ParserOptions.NONE
+					.intValue());
+		} else {
+			return ""; //$NON-NLS-1$
+		}
+
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getUseCaseExtendedUseCases_3004Text(View view) {
+
+		IAdaptable hintAdapter = new org.unicase.ui.usecaseDiagram.providers.ModelParserProvider.HintAdapter(
+				org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCaseExtendedUseCases_3004,
+				(view.getElement() != null ? view.getElement() : view),
+				org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
+						.getType(org.unicase.ui.usecaseDiagram.edit.parts.ExtendLabelEditPart.VISUAL_ID));
+		IParser parser = ParserService.getInstance().getParser(hintAdapter);
+		if (parser != null) {
+			return parser.getPrintString(hintAdapter, ParserOptions.NONE
+					.intValue());
+		} else {
+			return ""; //$NON-NLS-1$
+		}
+
 	}
 
 	/**

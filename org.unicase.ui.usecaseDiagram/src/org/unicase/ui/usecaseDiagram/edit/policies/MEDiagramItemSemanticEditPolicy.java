@@ -19,22 +19,22 @@ public class MEDiagramItemSemanticEditPolicy
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCase_1001 == req
-				.getElementType()) {
-			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(DiagramPackage.eINSTANCE
-						.getMEDiagram_NewElements());
-			}
-			return getGEFWrapper(new org.unicase.ui.usecaseDiagram.edit.commands.UseCaseCreateCommand(
-					req));
-		}
-		if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.Actor_1002 == req
+		if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.Actor_1001 == req
 				.getElementType()) {
 			if (req.getContainmentFeature() == null) {
 				req.setContainmentFeature(DiagramPackage.eINSTANCE
 						.getMEDiagram_NewElements());
 			}
 			return getGEFWrapper(new org.unicase.ui.usecaseDiagram.edit.commands.ActorCreateCommand(
+					req));
+		}
+		if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCase_1002 == req
+				.getElementType()) {
+			if (req.getContainmentFeature() == null) {
+				req.setContainmentFeature(DiagramPackage.eINSTANCE
+						.getMEDiagram_NewElements());
+			}
+			return getGEFWrapper(new org.unicase.ui.usecaseDiagram.edit.commands.UseCaseCreateCommand(
 					req));
 		}
 		return super.getCreateCommand(req);

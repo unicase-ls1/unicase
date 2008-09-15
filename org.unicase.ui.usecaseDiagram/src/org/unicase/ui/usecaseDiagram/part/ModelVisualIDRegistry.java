@@ -121,13 +121,13 @@ public class ModelVisualIDRegistry {
 		}
 		switch (containerVisualID) {
 		case org.unicase.ui.usecaseDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
-			if (RequirementPackage.eINSTANCE.getUseCase().isSuperTypeOf(
-					domainElement.eClass())) {
-				return org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart.VISUAL_ID;
-			}
 			if (RequirementPackage.eINSTANCE.getActor().isSuperTypeOf(
 					domainElement.eClass())) {
 				return org.unicase.ui.usecaseDiagram.edit.parts.ActorEditPart.VISUAL_ID;
+			}
+			if (RequirementPackage.eINSTANCE.getUseCase().isSuperTypeOf(
+					domainElement.eClass())) {
+				return org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart.VISUAL_ID;
 			}
 			break;
 		}
@@ -157,16 +157,41 @@ public class ModelVisualIDRegistry {
 			}
 		}
 		switch (containerVisualID) {
+		case org.unicase.ui.usecaseDiagram.edit.parts.ActorEditPart.VISUAL_ID:
+			if (org.unicase.ui.usecaseDiagram.edit.parts.ActorNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart.VISUAL_ID:
-			if (org.unicase.ui.usecaseDiagram.edit.parts.StickManEditPart.VISUAL_ID == nodeVisualID) {
+			if (org.unicase.ui.usecaseDiagram.edit.parts.UseCaseNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
 		case org.unicase.ui.usecaseDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
+			if (org.unicase.ui.usecaseDiagram.edit.parts.ActorEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			if (org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if (org.unicase.ui.usecaseDiagram.edit.parts.ActorEditPart.VISUAL_ID == nodeVisualID) {
+			break;
+		case org.unicase.ui.usecaseDiagram.edit.parts.ActorParticipatedUseCasesEditPart.VISUAL_ID:
+			if (org.unicase.ui.usecaseDiagram.edit.parts.LabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case org.unicase.ui.usecaseDiagram.edit.parts.ActorInitiatedUseCasesEditPart.VISUAL_ID:
+			if (org.unicase.ui.usecaseDiagram.edit.parts.Label2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseIncludedUseCasesEditPart.VISUAL_ID:
+			if (org.unicase.ui.usecaseDiagram.edit.parts.IncludeLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseExtendedUseCasesEditPart.VISUAL_ID:
+			if (org.unicase.ui.usecaseDiagram.edit.parts.ExtendLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

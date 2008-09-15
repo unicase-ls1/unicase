@@ -3,6 +3,7 @@ package org.unicase.ui.usecaseDiagram.edit.policies;
 import java.util.Collections;
 import java.util.Iterator;
 
+import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
@@ -38,6 +39,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
+import org.unicase.model.requirement.Actor;
+import org.unicase.model.requirement.RequirementPackage;
+import org.unicase.model.requirement.UseCase;
 
 /**
  * @generated
@@ -341,6 +345,180 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	public static class LinkConstraints {
+
+		/**
+		 * @generated
+		 */
+		private static final String OPPOSITE_END_VAR = "oppositeEnd"; //$NON-NLS-1$
+		/**
+		 * @generated
+		 */
+		private static org.unicase.ui.usecaseDiagram.expressions.ModelAbstractExpression ActorInitiatedUseCases_3002_TargetExpression;
+		/**
+		 * @generated
+		 */
+		private static org.unicase.ui.usecaseDiagram.expressions.ModelAbstractExpression UseCaseIncludedUseCases_3003_TargetExpression;
+		/**
+		 * @generated
+		 */
+		private static org.unicase.ui.usecaseDiagram.expressions.ModelAbstractExpression UseCaseExtendedUseCases_3004_SourceExpression;
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateActorParticipatedUseCases_3001(
+				Actor source, UseCase target) {
+			if (source != null) {
+				if (source.getParticipatedUseCases().contains(target)) {
+					return false;
+				}
+			}
+			return canExistActorParticipatedUseCases_3001(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateActorInitiatedUseCases_3002(
+				Actor source, UseCase target) {
+			if (source != null) {
+				if (source.getInitiatedUseCases().contains(target)) {
+					return false;
+				}
+			}
+			return canExistActorInitiatedUseCases_3002(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateUseCaseIncludedUseCases_3003(
+				UseCase source, UseCase target) {
+			if (source != null) {
+				if (source.getIncludedUseCases().contains(target)) {
+					return false;
+				}
+			}
+			return canExistUseCaseIncludedUseCases_3003(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateUseCaseExtendedUseCases_3004(
+				UseCase source, UseCase target) {
+			if (source != null) {
+				if (source.getExtendedUseCases().contains(target)) {
+					return false;
+				}
+			}
+			return canExistUseCaseExtendedUseCases_3004(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistActorParticipatedUseCases_3001(
+				Actor source, UseCase target) {
+
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistActorInitiatedUseCases_3002(Actor source,
+				UseCase target) {
+			try {
+				if (target == null) {
+					return true;
+				}
+				if (ActorInitiatedUseCases_3002_TargetExpression == null) {
+					Map env = Collections.singletonMap(OPPOSITE_END_VAR,
+							RequirementPackage.eINSTANCE.getActor());
+					ActorInitiatedUseCases_3002_TargetExpression = org.unicase.ui.usecaseDiagram.expressions.ModelOCLFactory
+							.getExpression(
+									"self->initiatingActor=null", RequirementPackage.eINSTANCE.getUseCase(), env); //$NON-NLS-1$
+				}
+				Object targetVal = ActorInitiatedUseCases_3002_TargetExpression
+						.evaluate(target, Collections.singletonMap(
+								OPPOSITE_END_VAR, source));
+				if (false == targetVal instanceof Boolean
+						|| !((Boolean) targetVal).booleanValue()) {
+					return false;
+				} // else fall-through
+				return true;
+			} catch (Exception e) {
+				org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin
+						.getInstance().logError(
+								"Link constraint evaluation error", e); //$NON-NLS-1$
+				return false;
+			}
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistUseCaseIncludedUseCases_3003(
+				UseCase source, UseCase target) {
+			try {
+				if (target == null) {
+					return true;
+				}
+				if (UseCaseIncludedUseCases_3003_TargetExpression == null) {
+					Map env = Collections.singletonMap(OPPOSITE_END_VAR,
+							RequirementPackage.eINSTANCE.getUseCase());
+					UseCaseIncludedUseCases_3003_TargetExpression = org.unicase.ui.usecaseDiagram.expressions.ModelOCLFactory
+							.getExpression(
+									"self <> oppositeEnd", RequirementPackage.eINSTANCE.getUseCase(), env); //$NON-NLS-1$
+				}
+				Object targetVal = UseCaseIncludedUseCases_3003_TargetExpression
+						.evaluate(target, Collections.singletonMap(
+								OPPOSITE_END_VAR, source));
+				if (false == targetVal instanceof Boolean
+						|| !((Boolean) targetVal).booleanValue()) {
+					return false;
+				} // else fall-through
+				return true;
+			} catch (Exception e) {
+				org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin
+						.getInstance().logError(
+								"Link constraint evaluation error", e); //$NON-NLS-1$
+				return false;
+			}
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistUseCaseExtendedUseCases_3004(
+				UseCase source, UseCase target) {
+			try {
+				if (source == null) {
+					return true;
+				}
+				if (UseCaseExtendedUseCases_3004_SourceExpression == null) {
+					Map env = Collections.singletonMap(OPPOSITE_END_VAR,
+							RequirementPackage.eINSTANCE.getUseCase());
+					UseCaseExtendedUseCases_3004_SourceExpression = org.unicase.ui.usecaseDiagram.expressions.ModelOCLFactory
+							.getExpression(
+									"self <> oppositeEnd", RequirementPackage.eINSTANCE.getUseCase(), env); //$NON-NLS-1$
+				}
+				Object sourceVal = UseCaseExtendedUseCases_3004_SourceExpression
+						.evaluate(source, Collections.singletonMap(
+								OPPOSITE_END_VAR, target));
+				if (false == sourceVal instanceof Boolean
+						|| !((Boolean) sourceVal).booleanValue()) {
+					return false;
+				} // else fall-through
+				return true;
+			} catch (Exception e) {
+				org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin
+						.getInstance().logError(
+								"Link constraint evaluation error", e); //$NON-NLS-1$
+				return false;
+			}
+		}
 
 	}
 
