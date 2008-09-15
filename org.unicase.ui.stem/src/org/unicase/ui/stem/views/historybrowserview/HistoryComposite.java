@@ -65,35 +65,40 @@ import org.unicase.workspace.WorkspaceManager;
 public class HistoryComposite extends Composite {
 
 	private TableViewer tableViewer;
+	private HistoryBrowserView parentView;
 	private HistoryInfo sourceHistoryInfo;
 	private HistoryInfo targetHistoryInfo;
 	private Label lblSourceVersion;
 	private Label lblTargetVersion;
 
-	private List<HistoryInfo> historyInfos;
-
 	/**
 	 * . Constructor
+	 * 
+	 * @param parentView
 	 * 
 	 * @param parent
 	 *            parent
 	 * @param style
 	 *            style
 	 */
-	public HistoryComposite(Composite parent, int style, List<HistoryInfo> infos) {
+	public HistoryComposite(HistoryBrowserView parentView, Composite parent,
+			int style) {
 		super(parent, style);
-		this.historyInfos = infos;
-		
+		this.parentView = parentView;
 		this.setLayout(new GridLayout());
 		createTable();
-		// a dummy input
-		tableViewer.setInput(getHistoryInfos());
 
+		updateTable();
+
+		createButtons();
+	}
+
+	public void updateTable() {
+		tableViewer.setInput(getHistoryInfos());
 		for (TableColumn column : tableViewer.getTable().getColumns()) {
 			column.pack();
 		}
-
-		createButtons();
+		tableViewer.refresh();
 	}
 
 	private void createTable() {
@@ -158,7 +163,8 @@ public class HistoryComposite extends Composite {
 				IStructuredSelection selection = (IStructuredSelection) tableViewer
 						.getSelection();
 				if (!selection.isEmpty()) {
-					setTargetHistoryInfo((HistoryInfo) selection.getFirstElement());
+					setTargetHistoryInfo((HistoryInfo) selection
+							.getFirstElement());
 				}
 			}
 		};
@@ -214,35 +220,36 @@ public class HistoryComposite extends Composite {
 
 	// a dummay input to table
 	private List<HistoryInfo> getHistoryInfos() {
-		return historyInfos;
+//		return parentView.getHistoryInfos();
+		return createDummyVersions();
 	}
 
-	private List<HistoryInfo> createDummyVersions() {
-		HistoryInfo[] versions = new HistoryInfo[6];
-		for (int i = 0; i < 6; i++) {
-			versions[i] = VersioningFactory.eINSTANCE.createHistoryInfo();
-			LogMessage logMessage = VersioningFactory.eINSTANCE
-					.createLogMessage();
-			logMessage.setAuthor("author" + i);
-			logMessage.setDate(new Date());
-			logMessage.setMessage("a mesage " + i);
-
-			PrimaryVersionSpec verSpec = VersioningFactory.eINSTANCE
-					.createPrimaryVersionSpec();
-			verSpec.setIdentifier(i);
-
-			TagVersionSpec tagSpec = VersioningFactory.eINSTANCE
-					.createTagVersionSpec();
-			tagSpec.setName("tag" + i+"test");
-
-			versions[i].setLogMessage(logMessage);
-			versions[i].setPrimerySpec(verSpec);
-			versions[i].getTagSpecs().add(tagSpec);
-		}
-
-		return Arrays.asList(versions);
-
-	}
+	 private List<HistoryInfo> createDummyVersions() {
+	 HistoryInfo[] versions = new HistoryInfo[6];
+	 for (int i = 0; i < 6; i++) {
+	 versions[i] = VersioningFactory.eINSTANCE.createHistoryInfo();
+	 LogMessage logMessage = VersioningFactory.eINSTANCE
+	 .createLogMessage();
+	 logMessage.setAuthor("author" + i);
+	 logMessage.setDate(new Date());
+	 logMessage.setMessage("a mesage " + i);
+	
+	 PrimaryVersionSpec verSpec = VersioningFactory.eINSTANCE
+	 .createPrimaryVersionSpec();
+	 verSpec.setIdentifier(i);
+	
+	 TagVersionSpec tagSpec = VersioningFactory.eINSTANCE
+	 .createTagVersionSpec();
+	 tagSpec.setName("tag" + i+"test");
+	
+	 versions[i].setLogMessage(logMessage);
+	 versions[i].setPrimerySpec(verSpec);
+	 versions[i].getTagSpecs().add(tagSpec);
+	 }
+	
+	 return Arrays.asList(versions);
+	
+	 }
 
 	private void createButtons() {
 		Group grpButtons = new Group(this, SWT.NONE);
