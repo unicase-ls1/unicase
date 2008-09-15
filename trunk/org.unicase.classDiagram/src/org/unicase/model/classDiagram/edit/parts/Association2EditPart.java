@@ -15,18 +15,18 @@ import org.unicase.model.classes.Association;
 /**
  * @generated
  */
-public class AssociationEditPart extends ConnectionNodeEditPart implements
+public class Association2EditPart extends ConnectionNodeEditPart implements
 		ITreeBranchEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3001;
+	public static final int VISUAL_ID = 3002;
 
 	/**
 	 * @generated
 	 */
-	public AssociationEditPart(View view) {
+	public Association2EditPart(View view) {
 		super(view);
 	}
 
@@ -37,15 +37,15 @@ public class AssociationEditPart extends ConnectionNodeEditPart implements
 		super.createDefaultEditPolicies();
 		installEditPolicy(
 				EditPolicyRoles.SEMANTIC_ROLE,
-				new org.unicase.model.classDiagram.edit.policies.AssociationItemSemanticEditPolicy());
+				new org.unicase.model.classDiagram.edit.policies.Association2ItemSemanticEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof org.unicase.model.classDiagram.edit.parts.AssociationNameEditPart) {
-			((org.unicase.model.classDiagram.edit.parts.AssociationNameEditPart) childEditPart)
+		if (childEditPart instanceof org.unicase.model.classDiagram.edit.parts.AssociationName2EditPart) {
+			((org.unicase.model.classDiagram.edit.parts.AssociationName2EditPart) childEditPart)
 					.setLabel(getPrimaryShape()
 							.getFigureAssociationFigure_name());
 			return true;
@@ -66,11 +66,12 @@ public class AssociationEditPart extends ConnectionNodeEditPart implements
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so
-	 * you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
+
 	protected Connection createConnectionFigure() {
 		return new AssociationFigure();
 	}

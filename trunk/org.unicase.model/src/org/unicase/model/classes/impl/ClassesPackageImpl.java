@@ -369,16 +369,8 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getAssociation_Directed() {
-		return (EAttribute) associationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getAssociation_Source() {
-		return (EReference) associationEClass.getEStructuralFeatures().get(1);
+		return (EReference) associationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -386,7 +378,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 	 * @generated
 	 */
 	public EReference getAssociation_Target() {
-		return (EReference) associationEClass.getEStructuralFeatures().get(2);
+		return (EReference) associationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -394,7 +386,25 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 	 * @generated
 	 */
 	public EAttribute getAssociation_Type() {
+		return (EAttribute) associationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAssociation_SourceMultiplicity() {
 		return (EAttribute) associationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAssociation_TargetMultiplicity() {
+		return (EAttribute) associationEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -696,10 +706,11 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		createEReference(packageElementEClass, PACKAGE_ELEMENT__PARENT_PACKAGE);
 
 		associationEClass = createEClass(ASSOCIATION);
-		createEAttribute(associationEClass, ASSOCIATION__DIRECTED);
 		createEReference(associationEClass, ASSOCIATION__SOURCE);
 		createEReference(associationEClass, ASSOCIATION__TARGET);
 		createEAttribute(associationEClass, ASSOCIATION__TYPE);
+		createEAttribute(associationEClass, ASSOCIATION__SOURCE_MULTIPLICITY);
+		createEAttribute(associationEClass, ASSOCIATION__TARGET_MULTIPLICITY);
 
 		attributeEClass = createEClass(ATTRIBUTE);
 		createEReference(attributeEClass, ATTRIBUTE__DEFINING_CLASS);
@@ -857,10 +868,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 		initEClass(associationEClass, Association.class, "Association",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAssociation_Directed(), ecorePackage.getEBoolean(),
-				"directed", null, 0, 1, Association.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
 		initEReference(getAssociation_Source(), this.getClass_(), this
 				.getClass_OutgoingAssociations(), "source", null, 0, 1,
 				Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
@@ -879,6 +886,14 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 				"type", "", 0, 1, Association.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAssociation_SourceMultiplicity(), ecorePackage
+				.getEString(), "sourceMultiplicity", "1", 0, 1,
+				Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAssociation_TargetMultiplicity(), ecorePackage
+				.getEString(), "targetMultiplicity", "1", 0, 1,
+				Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(attributeEClass, Attribute.class, "Attribute", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -980,10 +995,13 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		// Initialize enums and add enum literals
 		initEEnum(associationTypeEEnum, AssociationType.class,
 				"AssociationType");
-		addEEnumLiteral(associationTypeEEnum, AssociationType.ASSOCIATION);
+		addEEnumLiteral(associationTypeEEnum,
+				AssociationType.UNDIRECTED_ASSOCIATION);
 		addEEnumLiteral(associationTypeEEnum, AssociationType.AGGREGATION);
 		addEEnumLiteral(associationTypeEEnum, AssociationType.COMPOSITION);
 		addEEnumLiteral(associationTypeEEnum, AssociationType.DEPENDENCY);
+		addEEnumLiteral(associationTypeEEnum,
+				AssociationType.DIRECTED_ASSOCIATION);
 
 		initEEnum(visibilityTypeEEnum, VisibilityType.class, "VisibilityType");
 		addEEnumLiteral(visibilityTypeEEnum, VisibilityType.UNDEFINED);

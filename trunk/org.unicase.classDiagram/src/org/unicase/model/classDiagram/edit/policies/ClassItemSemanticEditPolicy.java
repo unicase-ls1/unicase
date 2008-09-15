@@ -93,11 +93,17 @@ public class ClassItemSemanticEditPolicy
 			CreateRelationshipRequest req) {
 		if (org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3001 == req
 				.getElementType()) {
-			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.AssociationCreateCommand(
+			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.Association1CreateCommand(
 					req, req.getSource(), req.getTarget(), (EObject) getHost()
 							.getModel()));
 		}
-		if (org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3002 == req
+		if (org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3002 == req
+				.getElementType()) {
+			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.Association2CreateCommand(
+					req, req.getSource(), req.getTarget(), (EObject) getHost()
+							.getModel()));
+		}
+		if (org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3003 == req
 				.getElementType()) {
 			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.ClassSubClassesCreateCommand(
 					req, req.getSource(), req.getTarget()));
@@ -112,11 +118,17 @@ public class ClassItemSemanticEditPolicy
 			CreateRelationshipRequest req) {
 		if (org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3001 == req
 				.getElementType()) {
-			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.AssociationCreateCommand(
+			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.Association1CreateCommand(
 					req, req.getSource(), req.getTarget(), (EObject) getHost()
 							.getModel()));
 		}
-		if (org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3002 == req
+		if (org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3002 == req
+				.getElementType()) {
+			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.Association2CreateCommand(
+					req, req.getSource(), req.getTarget(), (EObject) getHost()
+							.getModel()));
+		}
+		if (org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3003 == req
 				.getElementType()) {
 			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.ClassSubClassesCreateCommand(
 					req, req.getSource(), req.getTarget()));
@@ -133,8 +145,11 @@ public class ClassItemSemanticEditPolicy
 	protected Command getReorientRelationshipCommand(
 			ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
-		case org.unicase.model.classDiagram.edit.parts.AssociationEditPart.VISUAL_ID:
-			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.AssociationReorientCommand(
+		case org.unicase.model.classDiagram.edit.parts.Association1EditPart.VISUAL_ID:
+			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.Association1ReorientCommand(
+					req));
+		case org.unicase.model.classDiagram.edit.parts.Association2EditPart.VISUAL_ID:
+			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.Association2ReorientCommand(
 					req));
 		}
 		return super.getReorientRelationshipCommand(req);

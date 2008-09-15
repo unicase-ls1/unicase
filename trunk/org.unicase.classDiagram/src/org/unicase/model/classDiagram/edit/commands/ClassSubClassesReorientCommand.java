@@ -71,7 +71,7 @@ public class ClassSubClassesReorientCommand extends EditElementCommand {
 			return false;
 		}
 		return org.unicase.model.classDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistClassSubClasses_3002(getNewSource(), getOldTarget());
+				.canExistClassSubClasses_3003(getNewSource(), getOldTarget());
 	}
 
 	/**
@@ -82,7 +82,7 @@ public class ClassSubClassesReorientCommand extends EditElementCommand {
 			return false;
 		}
 		return org.unicase.model.classDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistClassSubClasses_3002(getOldSource(), getNewTarget());
+				.canExistClassSubClasses_3003(getOldSource(), getNewTarget());
 	}
 
 	/**

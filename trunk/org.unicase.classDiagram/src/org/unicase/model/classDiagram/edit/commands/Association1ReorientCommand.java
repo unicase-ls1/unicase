@@ -14,7 +14,7 @@ import org.unicase.model.diagram.MEDiagram;
 /**
  * @generated
  */
-public class AssociationReorientCommand extends EditElementCommand {
+public class Association1ReorientCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -34,7 +34,7 @@ public class AssociationReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public AssociationReorientCommand(ReorientRelationshipRequest request) {
+	public Association1ReorientCommand(ReorientRelationshipRequest request) {
 		super(request.getLabel(), request.getRelationship(), request);
 		reorientDirection = request.getDirection();
 		oldEnd = request.getOldRelationshipEnd();

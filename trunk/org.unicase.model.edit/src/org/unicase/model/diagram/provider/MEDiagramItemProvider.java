@@ -166,21 +166,8 @@ public class MEDiagramItemProvider extends ModelElementItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		String path = "full/obj16/MEDiagram";
-		if (object instanceof MEDiagram) {
-			MEDiagram meDiagram = (MEDiagram) object;
-			DiagramType type = meDiagram.getType();
-			if (type.equals(DiagramType.CLASS_DIAGRAM)) {
-				path = "full/obj16/ClassDiagram";
-			}
-			else if (type.equals(DiagramType.COMPONENT_DIAGRAM)) {
-				path = "full/obj16/ComponentDiagram";
-			}
-			else if (type.equals(DiagramType.USECASE_DIAGRAM)) {
-				path = "full/obj16/UsecaseDiagram";
-			}
-		}
-		return overlayImage(object, getResourceLocator().getImage(path));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/MEDiagram"));
 	}
 
 	/**

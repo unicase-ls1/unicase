@@ -86,6 +86,19 @@
       relatedDiagrams="//@diagram">
     <domainMetaElement
         href="../model.ecore#//classes/Association"/>
+    <domainSpecialization
+        body="self.type = AssociationType::UNDIRECTED_ASSOCIATION"/>
+    <domainInitializer
+        xsi:type="gmfmap:FeatureSeqInitializer">
+      <initializers
+          xsi:type="gmfmap:FeatureValueSpec">
+        <feature
+            xsi:type="ecore:EAttribute"
+            href="../model.ecore#//classes/Association/type"/>
+        <value
+            body="AssociationType::UNDIRECTED_ASSOCIATION"/>
+      </initializers>
+    </domainInitializer>
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping"
         editorPattern="">
@@ -112,6 +125,19 @@
       relatedDiagrams="//@diagram">
     <domainMetaElement
         href="../model.ecore#//classes/Association"/>
+    <domainSpecialization
+        body="self.type = AssociationType::AGGREGATION"/>
+    <domainInitializer
+        xsi:type="gmfmap:FeatureSeqInitializer">
+      <initializers
+          xsi:type="gmfmap:FeatureValueSpec">
+        <feature
+            xsi:type="ecore:EAttribute"
+            href="../model.ecore#//classes/Association/type"/>
+        <value
+            body="AssociationType::AGGREGATION"/>
+      </initializers>
+    </domainInitializer>
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping"
         editorPattern="">
@@ -125,58 +151,6 @@
     <tool
         xsi:type="gmftool:CreationTool"
         href="model.gmftool#//@palette/@tools.2"/>
-    <diagramLink
-        href="model.gmfgraph#Association"/>
-    <sourceMetaFeature
-        xsi:type="ecore:EReference"
-        href="../model.ecore#//classes/Association/source"/>
-    <linkMetaFeature
-        xsi:type="ecore:EReference"
-        href="../model.ecore#//classes/Association/target"/>
-  </links>
-  <links
-      relatedDiagrams="//@diagram">
-    <domainMetaElement
-        href="../model.ecore#//classes/Association"/>
-    <labelMappings
-        xsi:type="gmfmap:FeatureLabelMapping"
-        editorPattern="">
-      <diagramLabel
-          href="model.gmfgraph#AssociationLine_name"/>
-      <features
-          href="../model.ecore#//ModelElement/name"/>
-    </labelMappings>
-    <containmentFeature
-        href="../model.ecore#//diagram/MEDiagram/newElements"/>
-    <tool
-        xsi:type="gmftool:CreationTool"
-        href="model.gmftool#//@palette/@tools.3"/>
-    <diagramLink
-        href="model.gmfgraph#Association"/>
-    <sourceMetaFeature
-        xsi:type="ecore:EReference"
-        href="../model.ecore#//classes/Association/source"/>
-    <linkMetaFeature
-        xsi:type="ecore:EReference"
-        href="../model.ecore#//classes/Association/target"/>
-  </links>
-  <links
-      relatedDiagrams="//@diagram">
-    <domainMetaElement
-        href="../model.ecore#//classes/Association"/>
-    <labelMappings
-        xsi:type="gmfmap:FeatureLabelMapping"
-        editorPattern="">
-      <diagramLabel
-          href="model.gmfgraph#AssociationLine_name"/>
-      <features
-          href="../model.ecore#//ModelElement/name"/>
-    </labelMappings>
-    <containmentFeature
-        href="../model.ecore#//diagram/MEDiagram/newElements"/>
-    <tool
-        xsi:type="gmftool:CreationTool"
-        href="model.gmftool#//@palette/@tools.4"/>
     <diagramLink
         href="model.gmfgraph#Association"/>
     <sourceMetaFeature
