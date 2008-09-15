@@ -246,13 +246,13 @@ public interface ClassesPackage extends EPackage {
 	int CLASS__PARTICIPATED_USE_CASES = PACKAGE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Super Class</b></em>' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__SUPER_CLASS = PACKAGE_ELEMENT_FEATURE_COUNT + 1;
+	int CLASS__SUPER_CLASSES = PACKAGE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Sub Classes</b></em>' reference list. <!--
@@ -1057,14 +1057,15 @@ public interface ClassesPackage extends EPackage {
 	EReference getClass_ParticipatedUseCases();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.classes.Class#getSuperClass <em>Super Class</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Super Class</em>'.
-	 * @see org.unicase.model.classes.Class#getSuperClass()
+	 * Returns the meta object for the reference list '{@link org.unicase.model.classes.Class#getSuperClasses <em>Super Classes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Super Classes</em>'.
+	 * @see org.unicase.model.classes.Class#getSuperClasses()
 	 * @see #getClass_()
 	 * @generated
 	 */
-	EReference getClass_SuperClass();
+	EReference getClass_SuperClasses();
 
 	/**
 	 * Returns the meta object for the reference list '{@link org.unicase.model.classes.Class#getSubClasses <em>Sub Classes</em>}'.
@@ -1555,11 +1556,12 @@ public interface ClassesPackage extends EPackage {
 		EReference CLASS__PARTICIPATED_USE_CASES = eINSTANCE
 				.getClass_ParticipatedUseCases();
 		/**
-		 * The meta object literal for the '<em><b>Super Class</b></em>' reference feature.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Super Classes</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CLASS__SUPER_CLASS = eINSTANCE.getClass_SuperClass();
+		EReference CLASS__SUPER_CLASSES = eINSTANCE.getClass_SuperClasses();
 		/**
 		 * The meta object literal for the '<em><b>Sub Classes</b></em>' reference list feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->

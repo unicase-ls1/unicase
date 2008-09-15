@@ -102,6 +102,7 @@ public class AssociationCreateCommand extends CreateElementCommand {
 	protected EObject doDefaultElementCreation() {
 		Association newElement = ClassesFactory.eINSTANCE.createAssociation();
 		getContainer().getNewElements().add(newElement);
+		getContainer().getElements().add(newElement);
 		newElement.setSource(getSource());
 		newElement.setTarget(getTarget());
 		return newElement;

@@ -31,7 +31,7 @@ import org.unicase.model.requirement.UseCase;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.unicase.model.classes.impl.ClassImpl#getParticipatedUseCases <em>Participated Use Cases</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.ClassImpl#getSuperClass <em>Super Class</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.ClassImpl#getSuperClasses <em>Super Classes</em>}</li>
  *   <li>{@link org.unicase.model.classes.impl.ClassImpl#getSubClasses <em>Sub Classes</em>}</li>
  *   <li>{@link org.unicase.model.classes.impl.ClassImpl#getIncomingAssociations <em>Incoming Associations</em>}</li>
  *   <li>{@link org.unicase.model.classes.impl.ClassImpl#getOutgoingAssociations <em>Outgoing Associations</em>}</li>
@@ -54,13 +54,14 @@ public class ClassImpl extends PackageElementImpl implements
 	 */
 	protected EList<UseCase> participatedUseCases;
 	/**
-	 * The cached value of the '{@link #getSuperClass() <em>Super Class</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getSuperClass()
+	 * The cached value of the '{@link #getSuperClasses() <em>Super Classes</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSuperClasses()
 	 * @generated
 	 * @ordered
 	 */
-	protected org.unicase.model.classes.Class superClass;
+	protected EList<org.unicase.model.classes.Class> superClasses;
 	/**
 	 * The cached value of the '{@link #getSubClasses() <em>Sub Classes</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -141,74 +142,18 @@ public class ClassImpl extends PackageElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.unicase.model.classes.Class getSuperClass() {
-		if (superClass != null && superClass.eIsProxy()) {
-			InternalEObject oldSuperClass = (InternalEObject) superClass;
-			superClass = (org.unicase.model.classes.Class) eResolveProxy(oldSuperClass);
-			if (superClass != oldSuperClass) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ClassesPackage.CLASS__SUPER_CLASS, oldSuperClass,
-							superClass));
-			}
+	public EList<org.unicase.model.classes.Class> getSuperClasses() {
+		if (superClasses == null) {
+			superClasses = new EObjectWithInverseResolvingEList.ManyInverse<org.unicase.model.classes.Class>(
+					org.unicase.model.classes.Class.class, this,
+					ClassesPackage.CLASS__SUPER_CLASSES,
+					ClassesPackage.CLASS__SUB_CLASSES);
 		}
-		return superClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public org.unicase.model.classes.Class basicGetSuperClass() {
-		return superClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetSuperClass(
-			org.unicase.model.classes.Class newSuperClass,
-			NotificationChain msgs) {
-		org.unicase.model.classes.Class oldSuperClass = superClass;
-		superClass = newSuperClass;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET, ClassesPackage.CLASS__SUPER_CLASS,
-					oldSuperClass, newSuperClass);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSuperClass(org.unicase.model.classes.Class newSuperClass) {
-		if (newSuperClass != superClass) {
-			NotificationChain msgs = null;
-			if (superClass != null)
-				msgs = ((InternalEObject) superClass).eInverseRemove(this,
-						ClassesPackage.CLASS__SUB_CLASSES,
-						org.unicase.model.classes.Class.class, msgs);
-			if (newSuperClass != null)
-				msgs = ((InternalEObject) newSuperClass).eInverseAdd(this,
-						ClassesPackage.CLASS__SUB_CLASSES,
-						org.unicase.model.classes.Class.class, msgs);
-			msgs = basicSetSuperClass(newSuperClass, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ClassesPackage.CLASS__SUPER_CLASS, newSuperClass,
-					newSuperClass));
+		return superClasses;
 	}
 
 	/**
@@ -217,10 +162,10 @@ public class ClassImpl extends PackageElementImpl implements
 	 */
 	public EList<org.unicase.model.classes.Class> getSubClasses() {
 		if (subClasses == null) {
-			subClasses = new EObjectWithInverseResolvingEList<org.unicase.model.classes.Class>(
+			subClasses = new EObjectWithInverseResolvingEList.ManyInverse<org.unicase.model.classes.Class>(
 					org.unicase.model.classes.Class.class, this,
 					ClassesPackage.CLASS__SUB_CLASSES,
-					ClassesPackage.CLASS__SUPER_CLASS);
+					ClassesPackage.CLASS__SUPER_CLASSES);
 		}
 		return subClasses;
 	}
@@ -293,13 +238,9 @@ public class ClassImpl extends PackageElementImpl implements
 		case ClassesPackage.CLASS__PARTICIPATED_USE_CASES:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipatedUseCases())
 					.basicAdd(otherEnd, msgs);
-		case ClassesPackage.CLASS__SUPER_CLASS:
-			if (superClass != null)
-				msgs = ((InternalEObject) superClass).eInverseRemove(this,
-						ClassesPackage.CLASS__SUB_CLASSES,
-						org.unicase.model.classes.Class.class, msgs);
-			return basicSetSuperClass(
-					(org.unicase.model.classes.Class) otherEnd, msgs);
+		case ClassesPackage.CLASS__SUPER_CLASSES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSuperClasses())
+					.basicAdd(otherEnd, msgs);
 		case ClassesPackage.CLASS__SUB_CLASSES:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSubClasses())
 					.basicAdd(otherEnd, msgs);
@@ -330,8 +271,9 @@ public class ClassImpl extends PackageElementImpl implements
 		case ClassesPackage.CLASS__PARTICIPATED_USE_CASES:
 			return ((InternalEList<?>) getParticipatedUseCases()).basicRemove(
 					otherEnd, msgs);
-		case ClassesPackage.CLASS__SUPER_CLASS:
-			return basicSetSuperClass(null, msgs);
+		case ClassesPackage.CLASS__SUPER_CLASSES:
+			return ((InternalEList<?>) getSuperClasses()).basicRemove(otherEnd,
+					msgs);
 		case ClassesPackage.CLASS__SUB_CLASSES:
 			return ((InternalEList<?>) getSubClasses()).basicRemove(otherEnd,
 					msgs);
@@ -360,10 +302,8 @@ public class ClassImpl extends PackageElementImpl implements
 		switch (featureID) {
 		case ClassesPackage.CLASS__PARTICIPATED_USE_CASES:
 			return getParticipatedUseCases();
-		case ClassesPackage.CLASS__SUPER_CLASS:
-			if (resolve)
-				return getSuperClass();
-			return basicGetSuperClass();
+		case ClassesPackage.CLASS__SUPER_CLASSES:
+			return getSuperClasses();
 		case ClassesPackage.CLASS__SUB_CLASSES:
 			return getSubClasses();
 		case ClassesPackage.CLASS__INCOMING_ASSOCIATIONS:
@@ -391,8 +331,11 @@ public class ClassImpl extends PackageElementImpl implements
 			getParticipatedUseCases().addAll(
 					(Collection<? extends UseCase>) newValue);
 			return;
-		case ClassesPackage.CLASS__SUPER_CLASS:
-			setSuperClass((org.unicase.model.classes.Class) newValue);
+		case ClassesPackage.CLASS__SUPER_CLASSES:
+			getSuperClasses().clear();
+			getSuperClasses()
+					.addAll(
+							(Collection<? extends org.unicase.model.classes.Class>) newValue);
 			return;
 		case ClassesPackage.CLASS__SUB_CLASSES:
 			getSubClasses().clear();
@@ -432,8 +375,8 @@ public class ClassImpl extends PackageElementImpl implements
 		case ClassesPackage.CLASS__PARTICIPATED_USE_CASES:
 			getParticipatedUseCases().clear();
 			return;
-		case ClassesPackage.CLASS__SUPER_CLASS:
-			setSuperClass((org.unicase.model.classes.Class) null);
+		case ClassesPackage.CLASS__SUPER_CLASSES:
+			getSuperClasses().clear();
 			return;
 		case ClassesPackage.CLASS__SUB_CLASSES:
 			getSubClasses().clear();
@@ -464,8 +407,8 @@ public class ClassImpl extends PackageElementImpl implements
 		case ClassesPackage.CLASS__PARTICIPATED_USE_CASES:
 			return participatedUseCases != null
 					&& !participatedUseCases.isEmpty();
-		case ClassesPackage.CLASS__SUPER_CLASS:
-			return superClass != null;
+		case ClassesPackage.CLASS__SUPER_CLASSES:
+			return superClasses != null && !superClasses.isEmpty();
 		case ClassesPackage.CLASS__SUB_CLASSES:
 			return subClasses != null && !subClasses.isEmpty();
 		case ClassesPackage.CLASS__INCOMING_ASSOCIATIONS:

@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.model.diagram.*;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.DiagramType;
@@ -115,7 +116,7 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	 */
 	public DiagramType createDiagramTypeFromString(EDataType eDataType,
 			String initialValue) {
-		DiagramType result = DiagramType.getByName(initialValue);
+		DiagramType result = DiagramType.get(initialValue);
 		if (result == null)
 			throw new IllegalArgumentException("The value '" + initialValue
 					+ "' is not a valid enumerator of '" + eDataType.getName()

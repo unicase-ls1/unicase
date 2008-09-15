@@ -17,7 +17,7 @@ import org.unicase.model.requirement.UseCase;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.unicase.model.classes.Class#getParticipatedUseCases <em>Participated Use Cases</em>}</li>
- *   <li>{@link org.unicase.model.classes.Class#getSuperClass <em>Super Class</em>}</li>
+ *   <li>{@link org.unicase.model.classes.Class#getSuperClasses <em>Super Classes</em>}</li>
  *   <li>{@link org.unicase.model.classes.Class#getSubClasses <em>Sub Classes</em>}</li>
  *   <li>{@link org.unicase.model.classes.Class#getIncomingAssociations <em>Incoming Associations</em>}</li>
  *   <li>{@link org.unicase.model.classes.Class#getOutgoingAssociations <em>Outgoing Associations</em>}</li>
@@ -51,37 +51,27 @@ public interface Class extends PackageElement {
 	EList<UseCase> getParticipatedUseCases();
 
 	/**
-	 * Returns the value of the '<em><b>Super Class</b></em>' reference.
+	 * Returns the value of the '<em><b>Super Classes</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.classes.Class}.
 	 * It is bidirectional and its opposite is '{@link org.unicase.model.classes.Class#getSubClasses <em>Sub Classes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Super Class</em>' reference isn't clear, there
-	 * really should be more of a description here...
+	 * If the meaning of the '<em>Super Classes</em>' reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Super Class</em>' reference.
-	 * @see #setSuperClass(Class)
-	 * @see org.unicase.model.classes.ClassesPackage#getClass_SuperClass()
+	 * @return the value of the '<em>Super Classes</em>' reference list.
+	 * @see org.unicase.model.classes.ClassesPackage#getClass_SuperClasses()
 	 * @see org.unicase.model.classes.Class#getSubClasses
 	 * @model opposite="subClasses" keys="identifier"
 	 * @generated
 	 */
-	Class getSuperClass();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.model.classes.Class#getSuperClass <em>Super Class</em>}' reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @param value the new value of the '<em>Super Class</em>' reference.
-	 * @see #getSuperClass()
-	 * @generated
-	 */
-	void setSuperClass(Class value);
+	EList<Class> getSuperClasses();
 
 	/**
 	 * Returns the value of the '<em><b>Sub Classes</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.model.classes.Class}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.classes.Class#getSuperClass <em>Super Class</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.classes.Class#getSuperClasses <em>Super Classes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Sub Classes</em>' reference list isn't clear,
@@ -90,8 +80,8 @@ public interface Class extends PackageElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sub Classes</em>' reference list.
 	 * @see org.unicase.model.classes.ClassesPackage#getClass_SubClasses()
-	 * @see org.unicase.model.classes.Class#getSuperClass
-	 * @model opposite="superClass" keys="identifier"
+	 * @see org.unicase.model.classes.Class#getSuperClasses
+	 * @model opposite="superClasses" keys="identifier"
 	 * @generated
 	 */
 	EList<Class> getSubClasses();
