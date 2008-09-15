@@ -127,6 +127,9 @@ public class MEEditor extends SharedHeaderFormEditor {
 				public void notifyChanged(Notification msg) {
 					if (msg.getFeature() instanceof EAttribute && ((EAttribute)msg.getFeature()).getName().equals("name")) {
 						setPartName(msg.getNewStringValue());
+						if(form!=null){
+							form.getManagedForm().getForm().setText(msg.getNewStringValue());
+						}
 					}
 					
 				}
