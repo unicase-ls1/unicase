@@ -324,7 +324,7 @@ public class StickManEditPart extends LabelEditPart implements
 		if (parser == null) {
 			String parserHint = ((View) getModel()).getType();
 			IAdaptable hintAdapter = new org.unicase.ui.usecaseDiagram.providers.ModelParserProvider.HintAdapter(
-					org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCase_1001,
+					org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCase_1002,
 					getParserElement(), parserHint);
 			parser = ParserService.getInstance().getParser(hintAdapter);
 		}
