@@ -822,7 +822,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		this.setLocalChanges(null);
 		setBaseVersion(newBaseVersion);
 
-		save();
+		saveResources(true);
+		
 		// save starts recording ...
 		// startChangeRecording();
 		
@@ -918,7 +919,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	public void revert() {
 		// MK: fix this for changepackage
 		stopChangeRecording();
-		getLocalChanges().apply();
+		//getLocalChanges().apply();
 		setLocalChanges(null);
 		startChangeRecording();
 	}
@@ -930,7 +931,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 */
 	public void save() {
 		stopChangeRecording();
-		saveResources();
+		saveResources(false);
 		startChangeRecording();
 	}
 
@@ -1302,17 +1303,17 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 				addToResource(newElement, modelElement);
 			}
 		}
-		saveResources();
+		saveResources(false);
 	}
 
 	/**
 	 * Save all resources that are dirty.
 	 */
-	private void saveResources() {
+	private void saveResources(boolean force) {
 		EList<Resource> resources = this.eResource().getResourceSet()
 				.getResources();
 		for (Resource resource : resources) {
-			if (resource.isModified()) {
+			if (resource.isModified() || force) {
 				try {
 					resource.save(Configuration.getResourceSaveOptions());
 				} catch (IOException e) {
