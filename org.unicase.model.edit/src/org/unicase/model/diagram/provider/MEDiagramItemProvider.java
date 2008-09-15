@@ -179,6 +179,12 @@ public class MEDiagramItemProvider extends ModelElementItemProvider implements
 			if (type.equals(DiagramType.CLASS_DIAGRAM)) {
 				path = "full/obj16/ClassDiagram";
 			}
+			else if (type.equals(DiagramType.COMPONENT_DIAGRAM)) {
+				path = "full/obj16/ComponentDiagram";
+			}
+			else if (type.equals(DiagramType.USECASE_DIAGRAM)) {
+				path = "full/obj16/UsecaseDiagram";
+			}
 		}
 		return overlayImage(object, getResourceLocator().getImage(path));
 	}
