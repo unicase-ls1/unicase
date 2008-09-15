@@ -25,12 +25,14 @@ import org.unicase.emfstore.esmodel.versioning.changeContainer.impl.ChangeContai
 import org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AtomicOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.DeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.model.ModelPackage;
 
 /**
@@ -82,6 +84,20 @@ public class OperationsPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	private EClass atomicOperationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass referenceOperationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass attributeOperationEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -274,29 +290,9 @@ public class OperationsPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getFeatureOperation_OldValue() {
+	public EAttribute getFeatureOperation_FeatureName() {
 		return (EAttribute) featureOperationEClass.getEStructuralFeatures()
 				.get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getFeatureOperation_NewValue() {
-		return (EAttribute) featureOperationEClass.getEStructuralFeatures()
-				.get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getFeatureOperation_AttributeName() {
-		return (EAttribute) featureOperationEClass.getEStructuralFeatures()
-				.get(2);
 	}
 
 	/**
@@ -351,6 +347,64 @@ public class OperationsPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getReferenceOperation() {
+		return referenceOperationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getReferenceOperation_OldValue() {
+		return (EReference) referenceOperationEClass.getEStructuralFeatures()
+				.get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getReferenceOperation_NewValue() {
+		return (EReference) referenceOperationEClass.getEStructuralFeatures()
+				.get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getAttributeOperation() {
+		return attributeOperationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAttributeOperation_OldValue() {
+		return (EAttribute) attributeOperationEClass.getEStructuralFeatures()
+				.get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAttributeOperation_NewValue() {
+		return (EAttribute) attributeOperationEClass.getEStructuralFeatures()
+				.get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public OperationsFactory getOperationsFactory() {
 		return (OperationsFactory) getEFactoryInstance();
 	}
@@ -388,10 +442,8 @@ public class OperationsPackageImpl extends EPackageImpl implements
 				COMPOSITE_OPERATION__ATOMIC_OPERATIONS);
 
 		featureOperationEClass = createEClass(FEATURE_OPERATION);
-		createEAttribute(featureOperationEClass, FEATURE_OPERATION__OLD_VALUE);
-		createEAttribute(featureOperationEClass, FEATURE_OPERATION__NEW_VALUE);
 		createEAttribute(featureOperationEClass,
-				FEATURE_OPERATION__ATTRIBUTE_NAME);
+				FEATURE_OPERATION__FEATURE_NAME);
 
 		createOperationEClass = createEClass(CREATE_OPERATION);
 		createEReference(createOperationEClass,
@@ -402,6 +454,18 @@ public class OperationsPackageImpl extends EPackageImpl implements
 				DELETE_OPERATION__OBJECT_TO_DELETE);
 
 		atomicOperationEClass = createEClass(ATOMIC_OPERATION);
+
+		referenceOperationEClass = createEClass(REFERENCE_OPERATION);
+		createEReference(referenceOperationEClass,
+				REFERENCE_OPERATION__OLD_VALUE);
+		createEReference(referenceOperationEClass,
+				REFERENCE_OPERATION__NEW_VALUE);
+
+		attributeOperationEClass = createEClass(ATTRIBUTE_OPERATION);
+		createEAttribute(attributeOperationEClass,
+				ATTRIBUTE_OPERATION__OLD_VALUE);
+		createEAttribute(attributeOperationEClass,
+				ATTRIBUTE_OPERATION__NEW_VALUE);
 	}
 
 	/**
@@ -445,6 +509,10 @@ public class OperationsPackageImpl extends EPackageImpl implements
 		createOperationEClass.getESuperTypes().add(this.getAtomicOperation());
 		deleteOperationEClass.getESuperTypes().add(this.getAtomicOperation());
 		atomicOperationEClass.getESuperTypes().add(this.getAbstractOperation());
+		referenceOperationEClass.getESuperTypes().add(
+				this.getFeatureOperation());
+		attributeOperationEClass.getESuperTypes().add(
+				this.getFeatureOperation());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(abstractOperationEClass, AbstractOperation.class,
@@ -487,21 +555,12 @@ public class OperationsPackageImpl extends EPackageImpl implements
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(featureOperationEClass, FeatureOperation.class,
-				"FeatureOperation", !IS_ABSTRACT, !IS_INTERFACE,
+				"FeatureOperation", IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getFeatureOperation_OldValue(), ecorePackage
-				.getEString(), "oldValue", null, 0, 1, FeatureOperation.class,
+		initEAttribute(getFeatureOperation_FeatureName(), theEcorePackage
+				.getEString(), "featureName", "", 0, 1, FeatureOperation.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
 				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFeatureOperation_NewValue(), ecorePackage
-				.getEString(), "newValue", null, 0, 1, FeatureOperation.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFeatureOperation_AttributeName(), theEcorePackage
-				.getEString(), "AttributeName", null, 0, 1,
-				FeatureOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
 
 		initEClass(createOperationEClass, CreateOperation.class,
 				"CreateOperation", !IS_ABSTRACT, !IS_INTERFACE,
@@ -524,6 +583,34 @@ public class OperationsPackageImpl extends EPackageImpl implements
 		initEClass(atomicOperationEClass, AtomicOperation.class,
 				"AtomicOperation", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(referenceOperationEClass, ReferenceOperation.class,
+				"ReferenceOperation", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getReferenceOperation_OldValue(), theModelPackage
+				.getModelElement(), null, "oldValue", null, 0, 1,
+				ReferenceOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getReferenceOperation_NewValue(), theModelPackage
+				.getModelElement(), null, "newValue", null, 0, 1,
+				ReferenceOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(attributeOperationEClass, AttributeOperation.class,
+				"AttributeOperation", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAttributeOperation_OldValue(), theEcorePackage
+				.getEJavaObject(), "oldValue", null, 0, 1,
+				AttributeOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getAttributeOperation_NewValue(), theEcorePackage
+				.getEJavaObject(), "newValue", null, 0, 1,
+				AttributeOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 	}
 
 } //OperationsPackageImpl

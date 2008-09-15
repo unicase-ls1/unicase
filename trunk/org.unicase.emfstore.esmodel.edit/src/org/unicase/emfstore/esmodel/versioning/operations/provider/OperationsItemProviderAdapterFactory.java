@@ -123,30 +123,6 @@ public class OperationsItemProviderAdapterFactory extends
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected FeatureOperationItemProvider featureOperationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createFeatureOperationAdapter() {
-		if (featureOperationItemProvider == null) {
-			featureOperationItemProvider = new FeatureOperationItemProvider(
-					this);
-		}
-
-		return featureOperationItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.operations.CreateOperation} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -213,6 +189,54 @@ public class OperationsItemProviderAdapterFactory extends
 		}
 
 		return atomicOperationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ReferenceOperationItemProvider referenceOperationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createReferenceOperationAdapter() {
+		if (referenceOperationItemProvider == null) {
+			referenceOperationItemProvider = new ReferenceOperationItemProvider(
+					this);
+		}
+
+		return referenceOperationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AttributeOperationItemProvider attributeOperationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAttributeOperationAdapter() {
+		if (attributeOperationItemProvider == null) {
+			attributeOperationItemProvider = new AttributeOperationItemProvider(
+					this);
+		}
+
+		return attributeOperationItemProvider;
 	}
 
 	/**
@@ -321,14 +345,16 @@ public class OperationsItemProviderAdapterFactory extends
 			abstractOperationItemProvider.dispose();
 		if (compositeOperationItemProvider != null)
 			compositeOperationItemProvider.dispose();
-		if (featureOperationItemProvider != null)
-			featureOperationItemProvider.dispose();
 		if (createOperationItemProvider != null)
 			createOperationItemProvider.dispose();
 		if (deleteOperationItemProvider != null)
 			deleteOperationItemProvider.dispose();
 		if (atomicOperationItemProvider != null)
 			atomicOperationItemProvider.dispose();
+		if (referenceOperationItemProvider != null)
+			referenceOperationItemProvider.dispose();
+		if (attributeOperationItemProvider != null)
+			attributeOperationItemProvider.dispose();
 	}
 
 }

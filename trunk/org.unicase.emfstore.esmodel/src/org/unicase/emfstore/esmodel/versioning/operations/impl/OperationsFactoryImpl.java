@@ -12,12 +12,13 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AtomicOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.DeleteOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 
 /**
  * <!-- begin-user-doc -->
@@ -68,14 +69,16 @@ public class OperationsFactoryImpl extends EFactoryImpl implements
 			return createAbstractOperation();
 		case OperationsPackage.COMPOSITE_OPERATION:
 			return createCompositeOperation();
-		case OperationsPackage.FEATURE_OPERATION:
-			return createFeatureOperation();
 		case OperationsPackage.CREATE_OPERATION:
 			return createCreateOperation();
 		case OperationsPackage.DELETE_OPERATION:
 			return createDeleteOperation();
 		case OperationsPackage.ATOMIC_OPERATION:
 			return createAtomicOperation();
+		case OperationsPackage.REFERENCE_OPERATION:
+			return createReferenceOperation();
+		case OperationsPackage.ATTRIBUTE_OPERATION:
+			return createAttributeOperation();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName()
 					+ "' is not a valid classifier");
@@ -107,16 +110,6 @@ public class OperationsFactoryImpl extends EFactoryImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FeatureOperation createFeatureOperation() {
-		FeatureOperationImpl featureOperation = new FeatureOperationImpl();
-		return featureOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public CreateOperation createCreateOperation() {
 		CreateOperationImpl createOperation = new CreateOperationImpl();
 		return createOperation;
@@ -140,6 +133,26 @@ public class OperationsFactoryImpl extends EFactoryImpl implements
 	public AtomicOperation createAtomicOperation() {
 		AtomicOperationImpl atomicOperation = new AtomicOperationImpl();
 		return atomicOperation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReferenceOperation createReferenceOperation() {
+		ReferenceOperationImpl referenceOperation = new ReferenceOperationImpl();
+		return referenceOperation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AttributeOperation createAttributeOperation() {
+		AttributeOperationImpl attributeOperation = new AttributeOperationImpl();
+		return attributeOperation;
 	}
 
 	/**

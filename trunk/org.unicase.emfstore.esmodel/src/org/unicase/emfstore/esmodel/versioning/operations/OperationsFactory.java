@@ -44,15 +44,6 @@ public interface OperationsFactory extends EFactory {
 	CompositeOperation createCompositeOperation();
 
 	/**
-	 * Returns a new object of class '<em>Feature Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Feature Operation</em>'.
-	 * @generated
-	 */
-	FeatureOperation createFeatureOperation();
-
-	/**
 	 * Returns a new object of class '<em>Create Operation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,6 +69,24 @@ public interface OperationsFactory extends EFactory {
 	 * @generated
 	 */
 	AtomicOperation createAtomicOperation();
+
+	/**
+	 * Returns a new object of class '<em>Reference Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Reference Operation</em>'.
+	 * @generated
+	 */
+	ReferenceOperation createReferenceOperation();
+
+	/**
+	 * Returns a new object of class '<em>Attribute Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Attribute Operation</em>'.
+	 * @generated
+	 */
+	AttributeOperation createAttributeOperation();
 
 	/**
 	 * Returns the package supported by this factory.

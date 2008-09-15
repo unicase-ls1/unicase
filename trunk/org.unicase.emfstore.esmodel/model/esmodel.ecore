@@ -115,10 +115,10 @@
         <eStructuralFeatures xsi:type="ecore:EReference" name="atomicOperations" upperBound="-1"
             eType="#//versioning/operations/AtomicOperation"/>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="FeatureOperation" eSuperTypes="#//versioning/operations/AtomicOperation">
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="oldValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="newValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="AttributeName" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eClassifiers xsi:type="ecore:EClass" name="FeatureOperation" abstract="true"
+          eSuperTypes="#//versioning/operations/AtomicOperation">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="featureName" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
+            defaultValueLiteral=""/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="CreateOperation" eSuperTypes="#//versioning/operations/AtomicOperation">
         <eStructuralFeatures xsi:type="ecore:EReference" name="objectToCreate" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
@@ -127,6 +127,14 @@
         <eStructuralFeatures xsi:type="ecore:EReference" name="objectToDelete" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="AtomicOperation" eSuperTypes="#//versioning/operations/AbstractOperation"/>
+      <eClassifiers xsi:type="ecore:EClass" name="ReferenceOperation" eSuperTypes="#//versioning/operations/FeatureOperation">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="oldValue" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElement"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="newValue" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElement"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="AttributeOperation" eSuperTypes="#//versioning/operations/FeatureOperation">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="oldValue" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="newValue" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
+      </eClassifiers>
     </eSubpackages>
     <eSubpackages name="changeContainer" nsURI="http://unicase.org/esmodel/versioning/changeContainer"
         nsPrefix="org.unicase.emfstore.esmodel.versioning.changeContainer">

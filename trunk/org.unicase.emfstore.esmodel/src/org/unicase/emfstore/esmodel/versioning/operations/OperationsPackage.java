@@ -280,31 +280,13 @@ public interface OperationsPackage extends EPackage {
 	int FEATURE_OPERATION__USERNAME = ATOMIC_OPERATION__USERNAME;
 
 	/**
-	 * The feature id for the '<em><b>Old Value</b></em>' attribute.
+	 * The feature id for the '<em><b>Feature Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_OPERATION__OLD_VALUE = ATOMIC_OPERATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>New Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_OPERATION__NEW_VALUE = ATOMIC_OPERATION_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Attribute Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_OPERATION__ATTRIBUTE_NAME = ATOMIC_OPERATION_FEATURE_COUNT + 2;
+	int FEATURE_OPERATION__FEATURE_NAME = ATOMIC_OPERATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Feature Operation</em>' class.
@@ -313,7 +295,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_OPERATION_FEATURE_COUNT = ATOMIC_OPERATION_FEATURE_COUNT + 3;
+	int FEATURE_OPERATION_FEATURE_COUNT = ATOMIC_OPERATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.CreateOperationImpl <em>Create Operation</em>}' class.
@@ -444,6 +426,170 @@ public interface OperationsPackage extends EPackage {
 	int DELETE_OPERATION_FEATURE_COUNT = ATOMIC_OPERATION_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.ReferenceOperationImpl <em>Reference Operation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.ReferenceOperationImpl
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getReferenceOperation()
+	 * @generated
+	 */
+	int REFERENCE_OPERATION = 6;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_OPERATION__NAME = FEATURE_OPERATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_OPERATION__DESCRIPTION = FEATURE_OPERATION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Model Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_OPERATION__MODEL_ELEMENT = FEATURE_OPERATION__MODEL_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Username</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_OPERATION__USERNAME = FEATURE_OPERATION__USERNAME;
+
+	/**
+	 * The feature id for the '<em><b>Feature Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_OPERATION__FEATURE_NAME = FEATURE_OPERATION__FEATURE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Old Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_OPERATION__OLD_VALUE = FEATURE_OPERATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>New Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_OPERATION__NEW_VALUE = FEATURE_OPERATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Reference Operation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_OPERATION_FEATURE_COUNT = FEATURE_OPERATION_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AttributeOperationImpl <em>Attribute Operation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.AttributeOperationImpl
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getAttributeOperation()
+	 * @generated
+	 */
+	int ATTRIBUTE_OPERATION = 7;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_OPERATION__NAME = FEATURE_OPERATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_OPERATION__DESCRIPTION = FEATURE_OPERATION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Model Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_OPERATION__MODEL_ELEMENT = FEATURE_OPERATION__MODEL_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Username</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_OPERATION__USERNAME = FEATURE_OPERATION__USERNAME;
+
+	/**
+	 * The feature id for the '<em><b>Feature Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_OPERATION__FEATURE_NAME = FEATURE_OPERATION__FEATURE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Old Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_OPERATION__OLD_VALUE = FEATURE_OPERATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>New Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_OPERATION__NEW_VALUE = FEATURE_OPERATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Attribute Operation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_OPERATION_FEATURE_COUNT = FEATURE_OPERATION_FEATURE_COUNT + 2;
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation <em>Abstract Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -529,37 +675,15 @@ public interface OperationsPackage extends EPackage {
 	EClass getFeatureOperation();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation#getOldValue <em>Old Value</em>}'.
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation#getFeatureName <em>Feature Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Old Value</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation#getOldValue()
+	 * @return the meta object for the attribute '<em>Feature Name</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation#getFeatureName()
 	 * @see #getFeatureOperation()
 	 * @generated
 	 */
-	EAttribute getFeatureOperation_OldValue();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation#getNewValue <em>New Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>New Value</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation#getNewValue()
-	 * @see #getFeatureOperation()
-	 * @generated
-	 */
-	EAttribute getFeatureOperation_NewValue();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation#getAttributeName <em>Attribute Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Attribute Name</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation#getAttributeName()
-	 * @see #getFeatureOperation()
-	 * @generated
-	 */
-	EAttribute getFeatureOperation_AttributeName();
+	EAttribute getFeatureOperation_FeatureName();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.CreateOperation <em>Create Operation</em>}'.
@@ -612,6 +736,70 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getAtomicOperation();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation <em>Reference Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Reference Operation</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation
+	 * @generated
+	 */
+	EClass getReferenceOperation();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#getOldValue <em>Old Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Old Value</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#getOldValue()
+	 * @see #getReferenceOperation()
+	 * @generated
+	 */
+	EReference getReferenceOperation_OldValue();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#getNewValue <em>New Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>New Value</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#getNewValue()
+	 * @see #getReferenceOperation()
+	 * @generated
+	 */
+	EReference getReferenceOperation_NewValue();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation <em>Attribute Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Attribute Operation</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation
+	 * @generated
+	 */
+	EClass getAttributeOperation();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation#getOldValue <em>Old Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Old Value</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation#getOldValue()
+	 * @see #getAttributeOperation()
+	 * @generated
+	 */
+	EAttribute getAttributeOperation_OldValue();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation#getNewValue <em>New Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>New Value</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation#getNewValue()
+	 * @see #getAttributeOperation()
+	 * @generated
+	 */
+	EAttribute getAttributeOperation_NewValue();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -711,31 +899,13 @@ public interface OperationsPackage extends EPackage {
 		EClass FEATURE_OPERATION = eINSTANCE.getFeatureOperation();
 
 		/**
-		 * The meta object literal for the '<em><b>Old Value</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Feature Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute FEATURE_OPERATION__OLD_VALUE = eINSTANCE
-				.getFeatureOperation_OldValue();
-
-		/**
-		 * The meta object literal for the '<em><b>New Value</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FEATURE_OPERATION__NEW_VALUE = eINSTANCE
-				.getFeatureOperation_NewValue();
-
-		/**
-		 * The meta object literal for the '<em><b>Attribute Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FEATURE_OPERATION__ATTRIBUTE_NAME = eINSTANCE
-				.getFeatureOperation_AttributeName();
+		EAttribute FEATURE_OPERATION__FEATURE_NAME = eINSTANCE
+				.getFeatureOperation_FeatureName();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.CreateOperationImpl <em>Create Operation</em>}' class.
@@ -784,6 +954,62 @@ public interface OperationsPackage extends EPackage {
 		 * @generated
 		 */
 		EClass ATOMIC_OPERATION = eINSTANCE.getAtomicOperation();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.ReferenceOperationImpl <em>Reference Operation</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.ReferenceOperationImpl
+		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getReferenceOperation()
+		 * @generated
+		 */
+		EClass REFERENCE_OPERATION = eINSTANCE.getReferenceOperation();
+
+		/**
+		 * The meta object literal for the '<em><b>Old Value</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REFERENCE_OPERATION__OLD_VALUE = eINSTANCE
+				.getReferenceOperation_OldValue();
+
+		/**
+		 * The meta object literal for the '<em><b>New Value</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REFERENCE_OPERATION__NEW_VALUE = eINSTANCE
+				.getReferenceOperation_NewValue();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AttributeOperationImpl <em>Attribute Operation</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.AttributeOperationImpl
+		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getAttributeOperation()
+		 * @generated
+		 */
+		EClass ATTRIBUTE_OPERATION = eINSTANCE.getAttributeOperation();
+
+		/**
+		 * The meta object literal for the '<em><b>Old Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ATTRIBUTE_OPERATION__OLD_VALUE = eINSTANCE
+				.getAttributeOperation_OldValue();
+
+		/**
+		 * The meta object literal for the '<em><b>New Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ATTRIBUTE_OPERATION__NEW_VALUE = eINSTANCE
+				.getAttributeOperation_NewValue();
 
 	}
 
