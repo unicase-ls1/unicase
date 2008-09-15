@@ -25,7 +25,7 @@ import org.unicase.model.task.util.MEState;
  * @author Helming
  * 
  */
-public class EMFColumnLabelProvider extends ColumnLabelProvider {
+public class EMFColumnLabelProvider extends IterationPlanningLabelProvider {
 
 	private DecoratingLabelProvider decoratingLabelProvider;
 
@@ -54,24 +54,7 @@ public class EMFColumnLabelProvider extends ColumnLabelProvider {
 		return image;
 	}
 
-	/**.
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Color getBackground(Object element) {
-		Display display = PlatformUI.getWorkbench().getDisplay();
-		if (element instanceof ModelElement) {
-			ModelElement me = (ModelElement) element;
-			if (me.getState().equals(MEState.OPEN)) {
-				return display.getSystemColor(SWT.COLOR_YELLOW);
-			}
-			if (me.getState().equals(MEState.CLOSED)) {
-				return display.getSystemColor(SWT.COLOR_GREEN);
-			}
-
-		}
-		return super.getBackground(element);
-	}
+	
 	
 	
 	/**.
