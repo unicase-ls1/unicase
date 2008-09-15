@@ -56,30 +56,13 @@ public class AssociationItemProvider extends ModelElementItemProvider implements
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addDirectedPropertyDescriptor(object);
 			addSourcePropertyDescriptor(object);
 			addTargetPropertyDescriptor(object);
 			addTypePropertyDescriptor(object);
+			addSourceMultiplicityPropertyDescriptor(object);
+			addTargetMultiplicityPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Directed feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void addDirectedPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Association_directed_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Association_directed_feature",
-						"_UI_Association_type"),
-				ClassesPackage.Literals.ASSOCIATION__DIRECTED, true, false,
-				false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -139,6 +122,44 @@ public class AssociationItemProvider extends ModelElementItemProvider implements
 	}
 
 	/**
+	 * This adds a property descriptor for the Source Multiplicity feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSourceMultiplicityPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Association_sourceMultiplicity_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Association_sourceMultiplicity_feature",
+						"_UI_Association_type"),
+				ClassesPackage.Literals.ASSOCIATION__SOURCE_MULTIPLICITY, true,
+				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Target Multiplicity feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTargetMultiplicityPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Association_targetMultiplicity_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Association_targetMultiplicity_feature",
+						"_UI_Association_type"),
+				ClassesPackage.Literals.ASSOCIATION__TARGET_MULTIPLICITY, true,
+				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
+	}
+
+	/**
 	 * This returns Association.gif. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
@@ -175,8 +196,9 @@ public class AssociationItemProvider extends ModelElementItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Association.class)) {
-		case ClassesPackage.ASSOCIATION__DIRECTED:
 		case ClassesPackage.ASSOCIATION__TYPE:
+		case ClassesPackage.ASSOCIATION__SOURCE_MULTIPLICITY:
+		case ClassesPackage.ASSOCIATION__TARGET_MULTIPLICITY:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), false, true));
 			return;

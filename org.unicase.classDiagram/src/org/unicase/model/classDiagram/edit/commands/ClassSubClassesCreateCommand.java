@@ -52,7 +52,7 @@ public class ClassSubClassesCreateCommand extends EditElementCommand {
 		}
 		// target may be null here but it's possible to check constraint
 		return org.unicase.model.classDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canCreateClassSubClasses_3002(getSource(), getTarget());
+				.canCreateClassSubClasses_3003(getSource(), getTarget());
 	}
 
 	/**

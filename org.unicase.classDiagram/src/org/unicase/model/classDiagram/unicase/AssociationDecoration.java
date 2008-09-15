@@ -55,7 +55,7 @@ public class AssociationDecoration extends Figure implements
 				addDecoration(myCompositeAggrecationDecoration);
 			}
 		}
-		if (association.getType().equals(AssociationType.ASSOCIATION)) {
+		if (association.getType().equals(AssociationType.DIRECTED_ASSOCIATION)) {
 			if (source == false) {
 				addDecoration(myNavigableDecoration);
 			}

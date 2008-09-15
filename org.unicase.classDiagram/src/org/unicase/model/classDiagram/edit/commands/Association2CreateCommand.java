@@ -18,7 +18,7 @@ import org.unicase.model.diagram.MEDiagram;
 /**
  * @generated
  */
-public class AssociationCreateCommand extends CreateElementCommand {
+public class Association2CreateCommand extends CreateElementCommand {
 
 	/**
 	 * @generated
@@ -36,10 +36,35 @@ public class AssociationCreateCommand extends CreateElementCommand {
 	private MEDiagram container;
 
 	/**
+	 * @generated
+	 */
+	public Association2CreateCommand(CreateRelationshipRequest request,
+			EObject source, EObject target) {
+		super(request);
+		this.source = source;
+		this.target = target;
+		if (request.getContainmentFeature() == null) {
+			setContainmentFeature(DiagramPackage.eINSTANCE
+					.getMEDiagram_NewElements());
+		}
+
+		// Find container element for the new link.
+		// Climb up by containment hierarchy starting from the source
+		// and return the first element that is instance of the container class.
+		for (EObject element = source; element != null; element = element
+				.eContainer()) {
+			if (element instanceof MEDiagram) {
+				container = (MEDiagram) element;
+				super.setElementToEdit(container);
+				break;
+			}
+		}
+	}
+
+	/**
 	 * @generated NOT
 	 */
-	public AssociationCreateCommand(CreateRelationshipRequest request,
-			EObject source, EObject target) {
+	public Association2CreateCommand(CreateRelationshipRequest request) {
 		super(request);
 		throw new UnsupportedOperationException();
 	}
@@ -48,7 +73,7 @@ public class AssociationCreateCommand extends CreateElementCommand {
 	 * @param eContainer 
 	 * @generated NOT
 	 */
-	public AssociationCreateCommand(CreateRelationshipRequest request,
+	public Association2CreateCommand(CreateRelationshipRequest request,
 			EObject source, EObject target, EObject eContainer) {
 		super(request);
 		this.source = source;
@@ -92,7 +117,7 @@ public class AssociationCreateCommand extends CreateElementCommand {
 			return false;
 		}
 		return org.unicase.model.classDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canCreateAssociation_3001(getContainer(), getSource(),
+				.canCreateAssociation_3002(getContainer(), getSource(),
 						getTarget());
 	}
 
@@ -102,9 +127,10 @@ public class AssociationCreateCommand extends CreateElementCommand {
 	protected EObject doDefaultElementCreation() {
 		Association newElement = ClassesFactory.eINSTANCE.createAssociation();
 		getContainer().getNewElements().add(newElement);
-		getContainer().getElements().add(newElement);
 		newElement.setSource(getSource());
 		newElement.setTarget(getTarget());
+		org.unicase.model.classDiagram.providers.ModelElementTypes
+				.init_Association_3002(newElement);
 		return newElement;
 	}
 
@@ -164,5 +190,4 @@ public class AssociationCreateCommand extends CreateElementCommand {
 	public MEDiagram getContainer() {
 		return container;
 	}
-
 }

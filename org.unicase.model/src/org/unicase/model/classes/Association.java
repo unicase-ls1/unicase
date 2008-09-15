@@ -15,10 +15,11 @@ import org.unicase.model.ModelElement;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.model.classes.Association#isDirected <em>Directed</em>}</li>
  *   <li>{@link org.unicase.model.classes.Association#getSource <em>Source</em>}</li>
  *   <li>{@link org.unicase.model.classes.Association#getTarget <em>Target</em>}</li>
  *   <li>{@link org.unicase.model.classes.Association#getType <em>Type</em>}</li>
+ *   <li>{@link org.unicase.model.classes.Association#getSourceMultiplicity <em>Source Multiplicity</em>}</li>
+ *   <li>{@link org.unicase.model.classes.Association#getTargetMultiplicity <em>Target Multiplicity</em>}</li>
  * </ul>
  * </p>
  *
@@ -27,36 +28,6 @@ import org.unicase.model.ModelElement;
  * @generated
  */
 public interface Association extends ModelElement {
-	/**
-	 * Returns the value of the '<em><b>Directed</b></em>' attribute. <!--
-	 * begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Directed</em>' attribute isn't clear, there
-	 * really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Directed</em>' attribute.
-	 * @see #setDirected(boolean)
-	 * @see org.unicase.model.classes.ClassesPackage#getAssociation_Directed()
-	 * @model
-	 * @generated
-	 */
-	boolean isDirected();
-
-	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.model.classes.Association#isDirected
-	 * <em>Directed</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Directed</em>' attribute.
-	 * @see #isDirected()
-	 * @generated
-	 */
-	void setDirected(boolean value);
-
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.unicase.model.classes.Class#getOutgoingAssociations <em>Outgoing Associations</em>}'.
@@ -140,5 +111,59 @@ public interface Association extends ModelElement {
 	 * @generated
 	 */
 	void setType(AssociationType value);
+
+	/**
+	 * Returns the value of the '<em><b>Source Multiplicity</b></em>' attribute.
+	 * The default value is <code>"1"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Source Multiplicity</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Source Multiplicity</em>' attribute.
+	 * @see #setSourceMultiplicity(String)
+	 * @see org.unicase.model.classes.ClassesPackage#getAssociation_SourceMultiplicity()
+	 * @model default="1"
+	 * @generated
+	 */
+	String getSourceMultiplicity();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.classes.Association#getSourceMultiplicity <em>Source Multiplicity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Source Multiplicity</em>' attribute.
+	 * @see #getSourceMultiplicity()
+	 * @generated
+	 */
+	void setSourceMultiplicity(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Target Multiplicity</b></em>' attribute.
+	 * The default value is <code>"1"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Target Multiplicity</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Target Multiplicity</em>' attribute.
+	 * @see #setTargetMultiplicity(String)
+	 * @see org.unicase.model.classes.ClassesPackage#getAssociation_TargetMultiplicity()
+	 * @model default="1"
+	 * @generated
+	 */
+	String getTargetMultiplicity();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.classes.Association#getTargetMultiplicity <em>Target Multiplicity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Target Multiplicity</em>' attribute.
+	 * @see #getTargetMultiplicity()
+	 * @generated
+	 */
+	void setTargetMultiplicity(String value);
 
 } // Association

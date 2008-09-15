@@ -22,16 +22,15 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum AssociationType implements Enumerator {
 	/**
-	 * The '<em><b>ASSOCIATION</b></em>' literal object.
+	 * The '<em><b>UNDIRECTED ASSOCIATION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ASSOCIATION_VALUE
+	 * @see #UNDIRECTED_ASSOCIATION_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ASSOCIATION(0, "ASSOCIATION", "ASSOCIATION"),
-
-	/**
+	UNDIRECTED_ASSOCIATION(0, "UNDIRECTED_ASSOCIATION",
+			"UNDIRECTED_ASSOCIATION"), /**
 	 * The '<em><b>AGGREGATION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -59,22 +58,30 @@ public enum AssociationType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DEPENDENCY(3, "DEPENDENCY", "DEPENDENCY");
+	DEPENDENCY(3, "DEPENDENCY", "DEPENDENCY"), /**
+	 * The '<em><b>DIRECTED ASSOCIATION</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #DIRECTED_ASSOCIATION_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	DIRECTED_ASSOCIATION(4, "DIRECTED_ASSOCIATION", "DIRECTED_ASSOCIATION");
 
 	/**
-	 * The '<em><b>ASSOCIATION</b></em>' literal value.
+	 * The '<em><b>UNDIRECTED ASSOCIATION</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Association</b></em>' literal object isn't
-	 * clear, there really should be more of a description here...
+	 * If the meaning of '<em><b>UNDIRECTED ASSOCIATION</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ASSOCIATION
+	 * @see #UNDIRECTED_ASSOCIATION
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ASSOCIATION_VALUE = 0;
+	public static final int UNDIRECTED_ASSOCIATION_VALUE = 0;
 
 	/**
 	 * The '<em><b>AGGREGATION</b></em>' literal value.
@@ -122,13 +129,29 @@ public enum AssociationType implements Enumerator {
 	public static final int DEPENDENCY_VALUE = 3;
 
 	/**
+	 * The '<em><b>DIRECTED ASSOCIATION</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>DIRECTED ASSOCIATION</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #DIRECTED_ASSOCIATION
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int DIRECTED_ASSOCIATION_VALUE = 4;
+
+	/**
 	 * An array of all the '<em><b>Association Type</b></em>' enumerators. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	private static final AssociationType[] VALUES_ARRAY = new AssociationType[] {
-			ASSOCIATION, AGGREGATION, COMPOSITION, DEPENDENCY, };
+			UNDIRECTED_ASSOCIATION, AGGREGATION, COMPOSITION, DEPENDENCY,
+			DIRECTED_ASSOCIATION, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Association Type</b></em>' enumerators.
@@ -175,14 +198,16 @@ public enum AssociationType implements Enumerator {
 	 */
 	public static AssociationType get(int value) {
 		switch (value) {
-		case ASSOCIATION_VALUE:
-			return ASSOCIATION;
+		case UNDIRECTED_ASSOCIATION_VALUE:
+			return UNDIRECTED_ASSOCIATION;
 		case AGGREGATION_VALUE:
 			return AGGREGATION;
 		case COMPOSITION_VALUE:
 			return COMPOSITION;
 		case DEPENDENCY_VALUE:
 			return DEPENDENCY;
+		case DIRECTED_ASSOCIATION_VALUE:
+			return DIRECTED_ASSOCIATION;
 		}
 		return null;
 	}
