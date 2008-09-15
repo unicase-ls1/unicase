@@ -274,10 +274,11 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClass_SuperClass() {
+	public EReference getClass_SuperClasses() {
 		return (EReference) classEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -681,7 +682,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		// Create classes and their features
 		classEClass = createEClass(CLASS);
 		createEReference(classEClass, CLASS__PARTICIPATED_USE_CASES);
-		createEReference(classEClass, CLASS__SUPER_CLASS);
+		createEReference(classEClass, CLASS__SUPER_CLASSES);
 		createEReference(classEClass, CLASS__SUB_CLASSES);
 		createEReference(classEClass, CLASS__INCOMING_ASSOCIATIONS);
 		createEReference(classEClass, CLASS__OUTGOING_ASSOCIATIONS);
@@ -792,15 +793,15 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getClass_ParticipatedUseCases().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getClass_SuperClass(), this.getClass_(), this
-				.getClass_SubClasses(), "superClass", null, 0, 1,
+		initEReference(getClass_SuperClasses(), this.getClass_(), this
+				.getClass_SubClasses(), "superClasses", null, 0, -1,
 				org.unicase.model.classes.Class.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getClass_SuperClass().getEKeys().add(
+		getClass_SuperClasses().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getClass_SubClasses(), this.getClass_(), this
-				.getClass_SuperClass(), "subClasses", null, 0, -1,
+				.getClass_SuperClasses(), "subClasses", null, 0, -1,
 				org.unicase.model.classes.Class.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

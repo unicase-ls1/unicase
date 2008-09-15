@@ -54,7 +54,7 @@ public class ClassItemProvider extends PackageElementItemProvider implements
 			super.getPropertyDescriptors(object);
 
 			addParticipatedUseCasesPropertyDescriptor(object);
-			addSuperClassPropertyDescriptor(object);
+			addSuperClassesPropertyDescriptor(object);
 			addSubClassesPropertyDescriptor(object);
 			addIncomingAssociationsPropertyDescriptor(object);
 			addOutgoingAssociationsPropertyDescriptor(object);
@@ -82,20 +82,20 @@ public class ClassItemProvider extends PackageElementItemProvider implements
 	}
 
 	/**
-	 * This adds a property descriptor for the Super Class feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Super Classes feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSuperClassPropertyDescriptor(Object object) {
+	protected void addSuperClassesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
 						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Class_superClass_feature"), getString(
+				getString("_UI_Class_superClasses_feature"), getString(
 						"_UI_PropertyDescriptor_description",
-						"_UI_Class_superClass_feature", "_UI_Class_type"),
-				ClassesPackage.Literals.CLASS__SUPER_CLASS, true, false, true,
-				null, null, null));
+						"_UI_Class_superClasses_feature", "_UI_Class_type"),
+				ClassesPackage.Literals.CLASS__SUPER_CLASSES, true, false,
+				true, null, null, null));
 	}
 
 	/**

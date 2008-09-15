@@ -29,7 +29,7 @@ public enum DiagramType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CLASS_DIAGRAM(0, "CLASS_DIAGRAM", "Class Diagram"),
+	CLASS_DIAGRAM(0, "CLASS_DIAGRAM", "CLASS_DIAGRAM"),
 
 	/**
 	 * The '<em><b>USECASE DIAGRAM</b></em>' literal object.
@@ -39,7 +39,7 @@ public enum DiagramType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USECASE_DIAGRAM(1, "USECASE_DIAGRAM", "Usecase Diagram"),
+	USECASE_DIAGRAM(1, "USECASE_DIAGRAM", "USECASE_DIAGRAM"),
 
 	/**
 	 * The '<em><b>COMPONENT DIAGRAM</b></em>' literal object.
@@ -49,7 +49,7 @@ public enum DiagramType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	COMPONENT_DIAGRAM(2, "COMPONENT_DIAGRAM", "Component Diagram");
+	COMPONENT_DIAGRAM(2, "COMPONENT_DIAGRAM", "COMPONENT_DIAGRAM");
 
 	/**
 	 * The '<em><b>CLASS DIAGRAM</b></em>' literal value.

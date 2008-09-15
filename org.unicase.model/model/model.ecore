@@ -175,10 +175,10 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="participatedUseCases"
           upperBound="-1" eType="#//requirement/UseCase" eOpposite="#//requirement/UseCase/identifiedClasses"
           eKeys="#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="superClass" eType="#//classes/Class"
-          eOpposite="#//classes/Class/subClasses" eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="superClasses" upperBound="-1"
+          eType="#//classes/Class" eOpposite="#//classes/Class/subClasses" eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="subClasses" upperBound="-1"
-          eType="#//classes/Class" eOpposite="#//classes/Class/superClass" eKeys="#//IdentifiableElement/identifier"/>
+          eType="#//classes/Class" eOpposite="#//classes/Class/superClasses" eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="incomingAssociations"
           upperBound="-1" eType="#//classes/Association" eOpposite="#//classes/Association/target"
           eKeys="#//IdentifiableElement/identifier"/>

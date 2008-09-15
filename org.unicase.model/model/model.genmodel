@@ -177,7 +177,7 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//classes/Class/participatedUseCases"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference model.ecore#//classes/Class/superClass"/>
+            ecoreFeature="ecore:EReference model.ecore#//classes/Class/superClasses"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//classes/Class/subClasses"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
