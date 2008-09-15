@@ -104,7 +104,6 @@ public class Association1CreateCommand extends CreateElementCommand {
 		getContainer().getNewElements().add(newElement);
 		newElement.setSource(getSource());
 		newElement.setTarget(getTarget());
-		getContainer().getElements().add(newElement);
 		org.unicase.model.classDiagram.providers.ModelElementTypes
 				.init_Association_3001(newElement);
 		return newElement;

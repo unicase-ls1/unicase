@@ -62,11 +62,11 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 			types
 					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3002);
 			types
-					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3005);
+					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3003);
 			types
 					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3004);
 			types
-					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3003);
+					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3005);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
@@ -85,11 +85,11 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 			types
 					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3002);
 			types
-					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3005);
+					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3003);
 			types
 					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3004);
 			types
-					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3003);
+					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3005);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
@@ -116,7 +116,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 			}
 			if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart) {
 				types
-						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3005);
+						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3003);
 			}
 			if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart) {
 				types
@@ -124,7 +124,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 			}
 			if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart) {
 				types
-						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3003);
+						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3005);
 			}
 			return types;
 		}
@@ -148,7 +148,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 				types
 						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_1001);
 			}
-			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3005) {
+			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3003) {
 				types
 						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_1001);
 			}
@@ -156,7 +156,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 				types
 						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_1001);
 			}
-			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3003) {
+			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3005) {
 				types
 						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_1001);
 			}
@@ -182,7 +182,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 				types
 						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_1001);
 			}
-			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3005) {
+			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3003) {
 				types
 						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_1001);
 			}
@@ -190,7 +190,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 				types
 						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_1001);
 			}
-			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3003) {
+			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3005) {
 				types
 						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_1001);
 			}

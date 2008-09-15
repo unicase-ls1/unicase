@@ -39,7 +39,7 @@ public class Association2CreateCommand extends CreateElementCommand {
 	 * @generated NOT
 	 */
 	public Association2CreateCommand(CreateRelationshipRequest request,
-			EObject source, EObject target){
+			EObject source, EObject target) {
 		super(request);
 		throw new UnsupportedOperationException();
 	}
@@ -104,7 +104,6 @@ public class Association2CreateCommand extends CreateElementCommand {
 		getContainer().getNewElements().add(newElement);
 		newElement.setSource(getSource());
 		newElement.setTarget(getTarget());
-		getContainer().getElements().add(newElement);
 		org.unicase.model.classDiagram.providers.ModelElementTypes
 				.init_Association_3002(newElement);
 		return newElement;

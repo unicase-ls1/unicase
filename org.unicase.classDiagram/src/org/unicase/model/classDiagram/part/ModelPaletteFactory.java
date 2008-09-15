@@ -5,8 +5,11 @@ import java.util.List;
 
 import org.eclipse.gef.Tool;
 import org.eclipse.gef.palette.PaletteContainer;
+import org.eclipse.gef.palette.PaletteDrawer;
 import org.eclipse.gef.palette.PaletteGroup;
 import org.eclipse.gef.palette.PaletteRoot;
+import org.eclipse.gef.palette.PaletteSeparator;
+import org.eclipse.gef.palette.PaletteStack;
 import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeConnectionTool;
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeCreationTool;
@@ -20,27 +23,37 @@ public class ModelPaletteFactory {
 	 * @generated
 	 */
 	public void fillPalette(PaletteRoot paletteRoot) {
-		paletteRoot.add(createDefault1Group());
+		paletteRoot.add(createNodes1Group());
+		paletteRoot.add(createAssociations2Group());
 	}
 
 	/**
-	 * Creates "Default" palette tool group
-	 * 
+	 * Creates "Nodes" palette tool group
 	 * @generated
 	 */
-	private PaletteContainer createDefault1Group() {
-		PaletteGroup paletteContainer = new PaletteGroup(
-				org.unicase.model.classDiagram.part.Messages.Default1Group_title);
-		paletteContainer
-				.setDescription(org.unicase.model.classDiagram.part.Messages.Default1Group_desc);
+	private PaletteContainer createNodes1Group() {
+		PaletteDrawer paletteContainer = new PaletteDrawer(
+				org.unicase.model.classDiagram.part.Messages.Nodes1Group_title);
 		paletteContainer.add(createClass1CreationTool());
-		paletteContainer.add(createAssociation2CreationTool());
+		paletteContainer.add(createAttribute2CreationTool());
+		paletteContainer.add(createMethod3CreationTool());
+		paletteContainer.add(createGeneralization4CreationTool());
+		return paletteContainer;
+	}
+
+	/**
+	 * Creates "Associations" palette tool group
+	 * @generated
+	 */
+	private PaletteContainer createAssociations2Group() {
+		PaletteDrawer paletteContainer = new PaletteDrawer(
+				org.unicase.model.classDiagram.part.Messages.Associations2Group_title);
+		paletteContainer
+				.setDescription(org.unicase.model.classDiagram.part.Messages.Associations2Group_desc);
+		paletteContainer.add(createUndirectedAssociation1CreationTool());
+		paletteContainer.add(createDirectedAssociation2CreationTool());
 		paletteContainer.add(createAggregation3CreationTool());
 		paletteContainer.add(createComposition4CreationTool());
-		paletteContainer.add(createDirectedAssociation5CreationTool());
-		paletteContainer.add(createAttribute6CreationTool());
-		paletteContainer.add(createMethod7CreationTool());
-		paletteContainer.add(createGeneralization8CreationTool());
 		return paletteContainer;
 	}
 
@@ -65,16 +78,85 @@ public class ModelPaletteFactory {
 	/**
 	 * @generated
 	 */
-	private ToolEntry createAssociation2CreationTool() {
+	private ToolEntry createAttribute2CreationTool() {
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		types
+				.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Attribute_2001);
+		NodeToolEntry entry = new NodeToolEntry(
+				org.unicase.model.classDiagram.part.Messages.Attribute2CreationTool_title,
+				org.unicase.model.classDiagram.part.Messages.Attribute2CreationTool_desc,
+				types);
+		entry
+				.setSmallIcon(org.unicase.model.classDiagram.providers.ModelElementTypes
+						.getImageDescriptor(org.unicase.model.classDiagram.providers.ModelElementTypes.Attribute_2001));
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createMethod3CreationTool() {
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		types
+				.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Method_2002);
+		NodeToolEntry entry = new NodeToolEntry(
+				org.unicase.model.classDiagram.part.Messages.Method3CreationTool_title,
+				null, types);
+		entry
+				.setSmallIcon(org.unicase.model.classDiagram.providers.ModelElementTypes
+						.getImageDescriptor(org.unicase.model.classDiagram.providers.ModelElementTypes.Method_2002));
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createGeneralization4CreationTool() {
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		types
+				.add(org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3005);
+		LinkToolEntry entry = new LinkToolEntry(
+				org.unicase.model.classDiagram.part.Messages.Generalization4CreationTool_title,
+				null, types);
+		entry
+				.setSmallIcon(org.unicase.model.classDiagram.providers.ModelElementTypes
+						.getImageDescriptor(org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3005));
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createUndirectedAssociation1CreationTool() {
 		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
 		types
 				.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3001);
 		LinkToolEntry entry = new LinkToolEntry(
-				org.unicase.model.classDiagram.part.Messages.Association2CreationTool_title,
+				org.unicase.model.classDiagram.part.Messages.UndirectedAssociation1CreationTool_title,
 				null, types);
 		entry
 				.setSmallIcon(org.unicase.model.classDiagram.providers.ModelElementTypes
 						.getImageDescriptor(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3001));
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createDirectedAssociation2CreationTool() {
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		types
+				.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3004);
+		LinkToolEntry entry = new LinkToolEntry(
+				org.unicase.model.classDiagram.part.Messages.DirectedAssociation2CreationTool_title,
+				null, types);
+		entry
+				.setSmallIcon(org.unicase.model.classDiagram.providers.ModelElementTypes
+						.getImageDescriptor(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3004));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -102,82 +184,13 @@ public class ModelPaletteFactory {
 	private ToolEntry createComposition4CreationTool() {
 		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
 		types
-				.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3004);
+				.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3003);
 		LinkToolEntry entry = new LinkToolEntry(
 				org.unicase.model.classDiagram.part.Messages.Composition4CreationTool_title,
 				null, types);
 		entry
 				.setSmallIcon(org.unicase.model.classDiagram.providers.ModelElementTypes
-						.getImageDescriptor(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3004));
-		entry.setLargeIcon(entry.getSmallIcon());
-		return entry;
-	}
-
-	/**
-	 * @generated
-	 */
-	private ToolEntry createDirectedAssociation5CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types
-				.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3003);
-		LinkToolEntry entry = new LinkToolEntry(
-				org.unicase.model.classDiagram.part.Messages.DirectedAssociation5CreationTool_title,
-				null, types);
-		entry
-				.setSmallIcon(org.unicase.model.classDiagram.providers.ModelElementTypes
 						.getImageDescriptor(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3003));
-		entry.setLargeIcon(entry.getSmallIcon());
-		return entry;
-	}
-
-	/**
-	 * @generated
-	 */
-	private ToolEntry createAttribute6CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types
-				.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Attribute_2001);
-		NodeToolEntry entry = new NodeToolEntry(
-				org.unicase.model.classDiagram.part.Messages.Attribute6CreationTool_title,
-				org.unicase.model.classDiagram.part.Messages.Attribute6CreationTool_desc,
-				types);
-		entry
-				.setSmallIcon(org.unicase.model.classDiagram.providers.ModelElementTypes
-						.getImageDescriptor(org.unicase.model.classDiagram.providers.ModelElementTypes.Attribute_2001));
-		entry.setLargeIcon(entry.getSmallIcon());
-		return entry;
-	}
-
-	/**
-	 * @generated
-	 */
-	private ToolEntry createMethod7CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types
-				.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Method_2002);
-		NodeToolEntry entry = new NodeToolEntry(
-				org.unicase.model.classDiagram.part.Messages.Method7CreationTool_title,
-				null, types);
-		entry
-				.setSmallIcon(org.unicase.model.classDiagram.providers.ModelElementTypes
-						.getImageDescriptor(org.unicase.model.classDiagram.providers.ModelElementTypes.Method_2002));
-		entry.setLargeIcon(entry.getSmallIcon());
-		return entry;
-	}
-
-	/**
-	 * @generated
-	 */
-	private ToolEntry createGeneralization8CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types
-				.add(org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3005);
-		LinkToolEntry entry = new LinkToolEntry(
-				org.unicase.model.classDiagram.part.Messages.Generalization8CreationTool_title,
-				null, types);
-		entry
-				.setSmallIcon(org.unicase.model.classDiagram.providers.ModelElementTypes
-						.getImageDescriptor(org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3005));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}

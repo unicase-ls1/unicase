@@ -55,7 +55,7 @@ public class ElementInitializers {
 	public static void init_Association_3004(Association instance) {
 		try {
 			Object value0 = org.unicase.model.classDiagram.expressions.ModelOCLFactory
-					.getExpression("AssociationType::COMPOSITION",
+					.getExpression("AssociationType::DIRECTED_ASSOCIATION",
 							ClassesPackage.eINSTANCE.getAssociation())
 					.evaluate(instance);
 
@@ -75,7 +75,7 @@ public class ElementInitializers {
 	public static void init_Association_3003(Association instance) {
 		try {
 			Object value0 = org.unicase.model.classDiagram.expressions.ModelOCLFactory
-					.getExpression("AssociationType::DIRECTED_ASSOCIATION",
+					.getExpression("AssociationType::COMPOSITION",
 							ClassesPackage.eINSTANCE.getAssociation())
 					.evaluate(instance);
 
