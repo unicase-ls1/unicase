@@ -8,6 +8,8 @@ package org.unicase.ui.meeditor.mecontrols;
 
 import java.util.Date;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -30,7 +32,8 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
  * 
  * @author shterev
  */
-public class MEDateControl extends AbstractMEControl implements MEControl, SelectionListener {
+public class MEDateControl extends AbstractMEControl implements MEControl,
+		SelectionListener {
 
 	private EAttribute attribute;
 	private CDateTime widget;
@@ -47,20 +50,20 @@ public class MEDateControl extends AbstractMEControl implements MEControl, Selec
 	 * @param editingDomain
 	 *            see {@link AbstractMEControl}
 	 */
-	public MEDateControl(EAttribute attribute, FormToolkit toolkit, EObject modelElement, EditingDomain editingDomain) {
+	public MEDateControl(EAttribute attribute, FormToolkit toolkit,
+			EObject modelElement, EditingDomain editingDomain) {
 		super(editingDomain, modelElement, toolkit);
 		this.attribute = attribute;
-		// modelElement.eAdapters().add(new AdapterImpl() {
-		// @Override
-		// public void notifyChanged(Notification msg) {
-		// if (msg.getFeature().equals(MEDateControl.this.attribute)) {
-		// update();
-		// System.out.println(msg.getNewValue());
-		// }
-		// super.notifyChanged(msg);
-		// }
-		//
-		// });
+		modelElement.eAdapters().add(new AdapterImpl() {
+			@Override
+			public void notifyChanged(Notification msg) {
+				if (msg.getFeature()!=null && msg.getFeature().equals(MEDateControl.this.attribute)) {
+					update();
+				}
+				super.notifyChanged(msg);
+			}
+
+		});
 	}
 
 	/**
@@ -70,7 +73,8 @@ public class MEDateControl extends AbstractMEControl implements MEControl, Selec
 		Composite composite = getToolkit().createComposite(parent);
 		composite.setLayout(new GridLayout(2, false));
 
-		widget = new CDateTime(composite, CDT.BORDER | CDT.DROP_DOWN | CDT.COMPACT);
+		widget = new CDateTime(composite, CDT.BORDER | CDT.DROP_DOWN
+				| CDT.COMPACT);
 		widget.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		widget.setFormat(CDT.DATE_MEDIUM);
 		widget.addSelectionListener(this);
@@ -90,7 +94,8 @@ public class MEDateControl extends AbstractMEControl implements MEControl, Selec
 	 * {@inheritDoc}
 	 */
 	public void widgetDefaultSelected(SelectionEvent e) {
-		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
+		TransactionalEditingDomain domain = TransactionUtil
+				.getEditingDomain(getModelElement());
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
@@ -100,7 +105,8 @@ public class MEDateControl extends AbstractMEControl implements MEControl, Selec
 	}
 
 	private void update() {
-		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
+		TransactionalEditingDomain domain = TransactionUtil
+				.getEditingDomain(getModelElement());
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
