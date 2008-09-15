@@ -315,7 +315,9 @@ public class ModelDiagramEditor extends DiagramDocumentEditor implements
 
 					@Override
 					protected void doExecute() {
-						WorkspaceManager.getProjectSpace((MEDiagram)ModelDiagramEditor.this.getDiagram().eContainer()).save();
+						WorkspaceManager.getProjectSpace(
+								(MEDiagram) ModelDiagramEditor.this
+										.getDiagram().eContainer()).save();
 					}
 
 				});
