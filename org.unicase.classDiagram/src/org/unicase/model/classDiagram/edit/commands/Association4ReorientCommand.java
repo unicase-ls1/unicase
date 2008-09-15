@@ -6,24 +6,20 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
-import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.unicase.model.classes.Association;
 import org.unicase.model.classes.Class;
+import org.unicase.model.diagram.MEDiagram;
 
 /**
  * @generated
  */
-public class ClassSubClassesReorientCommand extends EditElementCommand {
+public class Association4ReorientCommand extends EditElementCommand {
 
 	/**
 	 * @generated
 	 */
 	private final int reorientDirection;
-
-	/**
-	 * @generated
-	 */
-	private final EObject referenceOwner;
 
 	/**
 	 * @generated
@@ -38,11 +34,9 @@ public class ClassSubClassesReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public ClassSubClassesReorientCommand(
-			ReorientReferenceRelationshipRequest request) {
-		super(request.getLabel(), null, request);
+	public Association4ReorientCommand(ReorientRelationshipRequest request) {
+		super(request.getLabel(), request.getRelationship(), request);
 		reorientDirection = request.getDirection();
-		referenceOwner = request.getReferenceOwner();
 		oldEnd = request.getOldRelationshipEnd();
 		newEnd = request.getNewRelationshipEnd();
 	}
@@ -51,7 +45,7 @@ public class ClassSubClassesReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (false == referenceOwner instanceof Class) {
+		if (false == getElementToEdit() instanceof Association) {
 			return false;
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
@@ -70,8 +64,13 @@ public class ClassSubClassesReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof Class && newEnd instanceof Class)) {
 			return false;
 		}
+		Class target = getLink().getTarget();
+		if (!(getLink().eContainer() instanceof MEDiagram)) {
+			return false;
+		}
+		MEDiagram container = (MEDiagram) getLink().eContainer();
 		return org.unicase.model.classDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistClassSubClasses_3005(getNewSource(), getOldTarget());
+				.canExistAssociation_3004(container, getNewSource(), target);
 	}
 
 	/**
@@ -81,8 +80,13 @@ public class ClassSubClassesReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof Class && newEnd instanceof Class)) {
 			return false;
 		}
+		Class source = getLink().getSource();
+		if (!(getLink().eContainer() instanceof MEDiagram)) {
+			return false;
+		}
+		MEDiagram container = (MEDiagram) getLink().eContainer();
 		return org.unicase.model.classDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistClassSubClasses_3005(getOldSource(), getNewTarget());
+				.canExistAssociation_3004(container, source, getNewTarget());
 	}
 
 	/**
@@ -107,25 +111,30 @@ public class ClassSubClassesReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getOldSource().getSubClasses().remove(getOldTarget());
-		getNewSource().getSubClasses().add(getOldTarget());
-		return CommandResult.newOKCommandResult(referenceOwner);
+		getLink().setSource(getNewSource());
+		return CommandResult.newOKCommandResult(getLink());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		getOldSource().getSubClasses().remove(getOldTarget());
-		getOldSource().getSubClasses().add(getNewTarget());
-		return CommandResult.newOKCommandResult(referenceOwner);
+		getLink().setTarget(getNewTarget());
+		return CommandResult.newOKCommandResult(getLink());
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Association getLink() {
+		return (Association) getElementToEdit();
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Class getOldSource() {
-		return (Class) referenceOwner;
+		return (Class) oldEnd;
 	}
 
 	/**

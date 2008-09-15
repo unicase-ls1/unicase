@@ -36,35 +36,10 @@ public class Association2CreateCommand extends CreateElementCommand {
 	private MEDiagram container;
 
 	/**
-	 * @generated
-	 */
-	public Association2CreateCommand(CreateRelationshipRequest request,
-			EObject source, EObject target) {
-		super(request);
-		this.source = source;
-		this.target = target;
-		if (request.getContainmentFeature() == null) {
-			setContainmentFeature(DiagramPackage.eINSTANCE
-					.getMEDiagram_NewElements());
-		}
-
-		// Find container element for the new link.
-		// Climb up by containment hierarchy starting from the source
-		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null; element = element
-				.eContainer()) {
-			if (element instanceof MEDiagram) {
-				container = (MEDiagram) element;
-				super.setElementToEdit(container);
-				break;
-			}
-		}
-	}
-
-	/**
 	 * @generated NOT
 	 */
-	public Association2CreateCommand(CreateRelationshipRequest request) {
+	public Association2CreateCommand(CreateRelationshipRequest request,
+			EObject source, EObject target){
 		super(request);
 		throw new UnsupportedOperationException();
 	}
@@ -129,6 +104,7 @@ public class Association2CreateCommand extends CreateElementCommand {
 		getContainer().getNewElements().add(newElement);
 		newElement.setSource(getSource());
 		newElement.setTarget(getTarget());
+		getContainer().getElements().add(newElement);
 		org.unicase.model.classDiagram.providers.ModelElementTypes
 				.init_Association_3002(newElement);
 		return newElement;

@@ -101,7 +101,13 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 					"Navigator?Link?http://unicase.org/model/classes?Association", org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3002); //$NON-NLS-1$
 		case org.unicase.model.classDiagram.edit.parts.ClassSubClassesEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Link?http://unicase.org/model/classes?Class?subClasses", org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3003); //$NON-NLS-1$
+					"Navigator?Link?http://unicase.org/model/classes?Class?subClasses", org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3005); //$NON-NLS-1$
+		case org.unicase.model.classDiagram.edit.parts.Association4EditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/classes?Association", org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3004); //$NON-NLS-1$
+		case org.unicase.model.classDiagram.edit.parts.Association3EditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/classes?Association", org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3003); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -171,7 +177,11 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 		case org.unicase.model.classDiagram.edit.parts.Association2EditPart.VISUAL_ID:
 			return getAssociation_3002Text(view);
 		case org.unicase.model.classDiagram.edit.parts.ClassSubClassesEditPart.VISUAL_ID:
-			return getClassSubClasses_3003Text(view);
+			return getClassSubClasses_3005Text(view);
+		case org.unicase.model.classDiagram.edit.parts.Association4EditPart.VISUAL_ID:
+			return getAssociation_3004Text(view);
+		case org.unicase.model.classDiagram.edit.parts.Association3EditPart.VISUAL_ID:
+			return getAssociation_3003Text(view);
 		}
 		return getUnknownElementText(view);
 	}
@@ -307,8 +317,54 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 	/**
 	 * @generated
 	 */
-	private String getClassSubClasses_3003Text(View view) {
+	private String getClassSubClasses_3005Text(View view) {
 		return ""; //$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getAssociation_3004Text(View view) {
+		IAdaptable hintAdapter = new org.unicase.model.classDiagram.providers.ModelParserProvider.HintAdapter(
+				org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3004,
+				(view.getElement() != null ? view.getElement() : view),
+				org.unicase.model.classDiagram.part.ModelVisualIDRegistry
+						.getType(org.unicase.model.classDiagram.edit.parts.AssociationName3EditPart.VISUAL_ID));
+		IParser parser = ParserService.getInstance().getParser(hintAdapter);
+
+		if (parser != null) {
+			return parser.getPrintString(hintAdapter, ParserOptions.NONE
+					.intValue());
+		} else {
+			org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin
+					.getInstance().logError(
+							"Parser was not found for label " + 4004); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getAssociation_3003Text(View view) {
+		IAdaptable hintAdapter = new org.unicase.model.classDiagram.providers.ModelParserProvider.HintAdapter(
+				org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3003,
+				(view.getElement() != null ? view.getElement() : view),
+				org.unicase.model.classDiagram.part.ModelVisualIDRegistry
+						.getType(org.unicase.model.classDiagram.edit.parts.AssociationName4EditPart.VISUAL_ID));
+		IParser parser = ParserService.getInstance().getParser(hintAdapter);
+
+		if (parser != null) {
+			return parser.getPrintString(hintAdapter, ParserOptions.NONE
+					.intValue());
+		} else {
+			org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin
+					.getInstance().logError(
+							"Parser was not found for label " + 4005); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+
 	}
 
 	/**

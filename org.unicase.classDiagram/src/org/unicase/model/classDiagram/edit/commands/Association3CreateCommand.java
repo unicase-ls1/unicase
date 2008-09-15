@@ -18,7 +18,7 @@ import org.unicase.model.diagram.MEDiagram;
 /**
  * @generated
  */
-public class Association1CreateCommand extends CreateElementCommand {
+public class Association3CreateCommand extends CreateElementCommand {
 
 	/**
 	 * @generated
@@ -38,8 +38,8 @@ public class Association1CreateCommand extends CreateElementCommand {
 	/**
 	 * @generated NOT
 	 */
-	public Association1CreateCommand(CreateRelationshipRequest request,
-			EObject source, EObject target) {
+	public Association3CreateCommand(CreateRelationshipRequest request,
+			EObject source, EObject target){
 		super(request);
 		throw new UnsupportedOperationException();
 	}
@@ -48,7 +48,7 @@ public class Association1CreateCommand extends CreateElementCommand {
 	 * @param eContainer 
 	 * @generated NOT
 	 */
-	public Association1CreateCommand(CreateRelationshipRequest request,
+	public Association3CreateCommand(CreateRelationshipRequest request,
 			EObject source, EObject target, EObject eContainer) {
 		super(request);
 		this.source = source;
@@ -92,7 +92,7 @@ public class Association1CreateCommand extends CreateElementCommand {
 			return false;
 		}
 		return org.unicase.model.classDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canCreateAssociation_3001(getContainer(), getSource(),
+				.canCreateAssociation_3003(getContainer(), getSource(),
 						getTarget());
 	}
 
@@ -106,7 +106,7 @@ public class Association1CreateCommand extends CreateElementCommand {
 		newElement.setTarget(getTarget());
 		getContainer().getElements().add(newElement);
 		org.unicase.model.classDiagram.providers.ModelElementTypes
-				.init_Association_3001(newElement);
+				.init_Association_3003(newElement);
 		return newElement;
 	}
 

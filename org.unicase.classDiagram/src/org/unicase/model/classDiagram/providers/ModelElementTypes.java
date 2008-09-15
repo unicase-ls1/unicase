@@ -77,7 +77,17 @@ public class ModelElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static final IElementType ClassSubClasses_3003 = getElementType("org.unicase.classDiagram.ClassSubClasses_3003"); //$NON-NLS-1$
+	public static final IElementType ClassSubClasses_3005 = getElementType("org.unicase.classDiagram.ClassSubClasses_3005"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Association_3004 = getElementType("org.unicase.classDiagram.Association_3004"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Association_3003 = getElementType("org.unicase.classDiagram.Association_3003"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -205,8 +215,14 @@ public class ModelElementTypes extends ElementInitializers {
 			elements.put(Association_3002, ClassesPackage.eINSTANCE
 					.getAssociation());
 
-			elements.put(ClassSubClasses_3003, ClassesPackage.eINSTANCE
+			elements.put(ClassSubClasses_3005, ClassesPackage.eINSTANCE
 					.getClass_SubClasses());
+
+			elements.put(Association_3004, ClassesPackage.eINSTANCE
+					.getAssociation());
+
+			elements.put(Association_3003, ClassesPackage.eINSTANCE
+					.getAssociation());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -230,7 +246,9 @@ public class ModelElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(Method_2002);
 			KNOWN_ELEMENT_TYPES.add(Association_3001);
 			KNOWN_ELEMENT_TYPES.add(Association_3002);
-			KNOWN_ELEMENT_TYPES.add(ClassSubClasses_3003);
+			KNOWN_ELEMENT_TYPES.add(ClassSubClasses_3005);
+			KNOWN_ELEMENT_TYPES.add(Association_3004);
+			KNOWN_ELEMENT_TYPES.add(Association_3003);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
