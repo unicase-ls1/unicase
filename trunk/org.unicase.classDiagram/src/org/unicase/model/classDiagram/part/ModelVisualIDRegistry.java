@@ -221,12 +221,12 @@ public class ModelVisualIDRegistry {
 				return true;
 			}
 			break;
-		case org.unicase.model.classDiagram.edit.parts.Association4EditPart.VISUAL_ID:
+		case org.unicase.model.classDiagram.edit.parts.Association3EditPart.VISUAL_ID:
 			if (org.unicase.model.classDiagram.edit.parts.AssociationName3EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case org.unicase.model.classDiagram.edit.parts.Association3EditPart.VISUAL_ID:
+		case org.unicase.model.classDiagram.edit.parts.Association4EditPart.VISUAL_ID:
 			if (org.unicase.model.classDiagram.edit.parts.AssociationName4EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -254,13 +254,13 @@ public class ModelVisualIDRegistry {
 		}
 		if (ClassesPackage.eINSTANCE.getAssociation().isSuperTypeOf(
 				domainElement.eClass())
-				&& isAssociation_3004((Association) domainElement)) {
-			return org.unicase.model.classDiagram.edit.parts.Association4EditPart.VISUAL_ID;
+				&& isAssociation_3003((Association) domainElement)) {
+			return org.unicase.model.classDiagram.edit.parts.Association3EditPart.VISUAL_ID;
 		}
 		if (ClassesPackage.eINSTANCE.getAssociation().isSuperTypeOf(
 				domainElement.eClass())
-				&& isAssociation_3003((Association) domainElement)) {
-			return org.unicase.model.classDiagram.edit.parts.Association3EditPart.VISUAL_ID;
+				&& isAssociation_3004((Association) domainElement)) {
+			return org.unicase.model.classDiagram.edit.parts.Association4EditPart.VISUAL_ID;
 		}
 		return -1;
 	}
@@ -308,7 +308,7 @@ public class ModelVisualIDRegistry {
 		if (Association_3004_Constraint == null) { // lazy initialization
 			Association_3004_Constraint = org.unicase.model.classDiagram.expressions.ModelOCLFactory
 					.getExpression(
-							"self.type = AssociationType::COMPOSITION", ClassesPackage.eINSTANCE.getAssociation()); //$NON-NLS-1$
+							"self.type = AssociationType::DIRECTED_ASSOCIATION", ClassesPackage.eINSTANCE.getAssociation()); //$NON-NLS-1$
 		}
 		Object result = Association_3004_Constraint.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
@@ -321,7 +321,7 @@ public class ModelVisualIDRegistry {
 		if (Association_3003_Constraint == null) { // lazy initialization
 			Association_3003_Constraint = org.unicase.model.classDiagram.expressions.ModelOCLFactory
 					.getExpression(
-							"self.type = AssociationType::DIRECTED_ASSOCIATION", ClassesPackage.eINSTANCE.getAssociation()); //$NON-NLS-1$
+							"self.type = AssociationType::COMPOSITION", ClassesPackage.eINSTANCE.getAssociation()); //$NON-NLS-1$
 		}
 		Object result = Association_3003_Constraint.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();

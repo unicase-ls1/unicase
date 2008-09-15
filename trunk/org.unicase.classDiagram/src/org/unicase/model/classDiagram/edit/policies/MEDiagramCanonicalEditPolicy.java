@@ -252,11 +252,11 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 			}
 			break;
 		}
-		case org.unicase.model.classDiagram.edit.parts.Association4EditPart.VISUAL_ID: {
+		case org.unicase.model.classDiagram.edit.parts.Association3EditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result
 						.addAll(org.unicase.model.classDiagram.part.ModelDiagramUpdater
-								.getAssociation_3004ContainedLinks(view));
+								.getAssociation_3003ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
@@ -264,11 +264,11 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 			}
 			break;
 		}
-		case org.unicase.model.classDiagram.edit.parts.Association3EditPart.VISUAL_ID: {
+		case org.unicase.model.classDiagram.edit.parts.Association4EditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result
 						.addAll(org.unicase.model.classDiagram.part.ModelDiagramUpdater
-								.getAssociation_3003ContainedLinks(view));
+								.getAssociation_3004ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$

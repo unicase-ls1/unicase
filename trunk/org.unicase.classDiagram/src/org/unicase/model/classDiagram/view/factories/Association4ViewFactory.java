@@ -49,7 +49,7 @@ public class Association4ViewFactory extends ConnectionViewFactory {
 						eObjectAdapter,
 						view,
 						org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-								.getType(org.unicase.model.classDiagram.edit.parts.AssociationName3EditPart.VISUAL_ID),
+								.getType(org.unicase.model.classDiagram.edit.parts.AssociationName4EditPart.VISUAL_ID),
 						ViewUtil.APPEND, true, getPreferencesHint());
 	}
 }

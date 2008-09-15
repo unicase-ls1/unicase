@@ -44,8 +44,8 @@ public class Association3EditPart extends ConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof org.unicase.model.classDiagram.edit.parts.AssociationName4EditPart) {
-			((org.unicase.model.classDiagram.edit.parts.AssociationName4EditPart) childEditPart)
+		if (childEditPart instanceof org.unicase.model.classDiagram.edit.parts.AssociationName3EditPart) {
+			((org.unicase.model.classDiagram.edit.parts.AssociationName3EditPart) childEditPart)
 					.setLabel(getPrimaryShape()
 							.getFigureAssociationFigure_name());
 			return true;

@@ -23,7 +23,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="model.gmftool#//@palette/@tools.0"/>
+          href="model.gmftool#//@palette/@tools.0/@tools.0"/>
       <diagramNode
           href="model.gmfgraph#Class"/>
       <children
@@ -43,7 +43,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="model.gmftool#//@palette/@tools.1"/>
+              href="model.gmftool#//@palette/@tools.0/@tools.1"/>
           <diagramNode
               href="model.gmfgraph#ClassAttribute_name"/>
         </ownedChild>
@@ -65,7 +65,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="model.gmftool#//@palette/@tools.2"/>
+              href="model.gmftool#//@palette/@tools.0/@tools.2"/>
           <diagramNode
               href="model.gmfgraph#ClassMethod_name"/>
         </ownedChild>
@@ -111,7 +111,7 @@
         href="../model.ecore#//diagram/MEDiagram/newElements"/>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="model.gmftool#//@palette/@tools.4/@tools.0"/>
+        href="model.gmftool#//@palette/@tools.1/@tools.0"/>
     <diagramLink
         href="model.gmfgraph#Association"/>
     <sourceMetaFeature
@@ -150,7 +150,7 @@
         href="../model.ecore#//diagram/MEDiagram/newElements"/>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="model.gmftool#//@palette/@tools.4/@tools.1"/>
+        href="model.gmftool#//@palette/@tools.1/@tools.2"/>
     <diagramLink
         href="model.gmfgraph#Association"/>
     <sourceMetaFeature
@@ -159,16 +159,6 @@
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="../model.ecore#//classes/Association/target"/>
-  </links>
-  <links>
-    <tool
-        xsi:type="gmftool:CreationTool"
-        href="model.gmftool#//@palette/@tools.3"/>
-    <diagramLink
-        href="model.gmfgraph#Generalization"/>
-    <linkMetaFeature
-        xsi:type="ecore:EReference"
-        href="../model.ecore#//classes/Class/subClasses"/>
   </links>
   <links
       relatedDiagrams="//@diagram">
@@ -199,7 +189,7 @@
         href="../model.ecore#//diagram/MEDiagram/newElements"/>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="model.gmftool#//@palette/@tools.4/@tools.2"/>
+        href="model.gmftool#//@palette/@tools.1/@tools.3"/>
     <diagramLink
         href="model.gmfgraph#Association"/>
     <sourceMetaFeature
@@ -238,7 +228,7 @@
         href="../model.ecore#//diagram/MEDiagram/newElements"/>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="model.gmftool#//@palette/@tools.4/@tools.3"/>
+        href="model.gmftool#//@palette/@tools.1/@tools.1"/>
     <diagramLink
         href="model.gmfgraph#Association"/>
     <sourceMetaFeature
@@ -247,6 +237,16 @@
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="../model.ecore#//classes/Association/target"/>
+  </links>
+  <links>
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="model.gmftool#//@palette/@tools.0/@tools.3"/>
+    <diagramLink
+        href="model.gmfgraph#Generalization"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="../model.ecore#//classes/Class/subClasses"/>
   </links>
   <diagram>
     <diagramCanvas

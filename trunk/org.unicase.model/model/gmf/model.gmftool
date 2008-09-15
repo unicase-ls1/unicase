@@ -6,37 +6,43 @@
   <palette
       title="Standard">
     <tools
-        xsi:type="gmftool:CreationTool"
-        title="Class"
-        description=""/>
-    <tools
-        xsi:type="gmftool:CreationTool"
-        title="Attribute"
-        description=""/>
-    <tools
-        xsi:type="gmftool:CreationTool"
-        title="Method"/>
-    <tools
-        xsi:type="gmftool:CreationTool"
-        title="Generalization"/>
+        xsi:type="gmftool:ToolGroup"
+        title="Nodes"
+        collapsible="true"
+        active="//@palette/@tools.0/@tools.0">
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Class"
+          description=""/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Attribute"
+          description=""/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Method"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Generalization"/>
+    </tools>
     <tools
         xsi:type="gmftool:ToolGroup"
         title="Associations"
         description=""
-        stack="true"
-        active="//@palette/@tools.4/@tools.0">
+        collapsible="true"
+        active="//@palette/@tools.1/@tools.0">
       <tools
           xsi:type="gmftool:CreationTool"
-          title="Association"/>
+          title="Undirected Association"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Directed Association"/>
       <tools
           xsi:type="gmftool:CreationTool"
           title="Aggregation"/>
       <tools
           xsi:type="gmftool:CreationTool"
           title="Composition"/>
-      <tools
-          xsi:type="gmftool:CreationTool"
-          title="Directed Association"/>
     </tools>
   </palette>
 </gmftool:ToolRegistry>

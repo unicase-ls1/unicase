@@ -137,10 +137,10 @@ public class ModelDiagramUpdater {
 			return getAssociation_3001ContainedLinks(view);
 		case org.unicase.model.classDiagram.edit.parts.Association2EditPart.VISUAL_ID:
 			return getAssociation_3002ContainedLinks(view);
-		case org.unicase.model.classDiagram.edit.parts.Association4EditPart.VISUAL_ID:
-			return getAssociation_3004ContainedLinks(view);
 		case org.unicase.model.classDiagram.edit.parts.Association3EditPart.VISUAL_ID:
 			return getAssociation_3003ContainedLinks(view);
+		case org.unicase.model.classDiagram.edit.parts.Association4EditPart.VISUAL_ID:
+			return getAssociation_3004ContainedLinks(view);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -161,10 +161,10 @@ public class ModelDiagramUpdater {
 			return getAssociation_3001IncomingLinks(view);
 		case org.unicase.model.classDiagram.edit.parts.Association2EditPart.VISUAL_ID:
 			return getAssociation_3002IncomingLinks(view);
-		case org.unicase.model.classDiagram.edit.parts.Association4EditPart.VISUAL_ID:
-			return getAssociation_3004IncomingLinks(view);
 		case org.unicase.model.classDiagram.edit.parts.Association3EditPart.VISUAL_ID:
 			return getAssociation_3003IncomingLinks(view);
+		case org.unicase.model.classDiagram.edit.parts.Association4EditPart.VISUAL_ID:
+			return getAssociation_3004IncomingLinks(view);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -185,10 +185,10 @@ public class ModelDiagramUpdater {
 			return getAssociation_3001OutgoingLinks(view);
 		case org.unicase.model.classDiagram.edit.parts.Association2EditPart.VISUAL_ID:
 			return getAssociation_3002OutgoingLinks(view);
-		case org.unicase.model.classDiagram.edit.parts.Association4EditPart.VISUAL_ID:
-			return getAssociation_3004OutgoingLinks(view);
 		case org.unicase.model.classDiagram.edit.parts.Association3EditPart.VISUAL_ID:
 			return getAssociation_3003OutgoingLinks(view);
+		case org.unicase.model.classDiagram.edit.parts.Association4EditPart.VISUAL_ID:
+			return getAssociation_3004OutgoingLinks(view);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -204,9 +204,9 @@ public class ModelDiagramUpdater {
 		result
 				.addAll(getContainedTypeModelFacetLinks_Association_3002(modelElement));
 		result
-				.addAll(getContainedTypeModelFacetLinks_Association_3004(modelElement));
-		result
 				.addAll(getContainedTypeModelFacetLinks_Association_3003(modelElement));
+		result
+				.addAll(getContainedTypeModelFacetLinks_Association_3004(modelElement));
 		return result;
 	}
 
@@ -275,11 +275,11 @@ public class ModelDiagramUpdater {
 				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Association_3002(
 				modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Class_SubClasses_3005(
+		result.addAll(getIncomingTypeModelFacetLinks_Association_3003(
 				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Association_3004(
 				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Association_3003(
+		result.addAll(getIncomingFeatureModelFacetLinks_Class_SubClasses_3005(
 				modelElement, crossReferences));
 		return result;
 	}
@@ -337,11 +337,11 @@ public class ModelDiagramUpdater {
 		result
 				.addAll(getOutgoingTypeModelFacetLinks_Association_3002(modelElement));
 		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Class_SubClasses_3005(modelElement));
+				.addAll(getOutgoingTypeModelFacetLinks_Association_3003(modelElement));
 		result
 				.addAll(getOutgoingTypeModelFacetLinks_Association_3004(modelElement));
 		result
-				.addAll(getOutgoingTypeModelFacetLinks_Association_3003(modelElement));
+				.addAll(getOutgoingFeatureModelFacetLinks_Class_SubClasses_3005(modelElement));
 		return result;
 	}
 
@@ -393,7 +393,7 @@ public class ModelDiagramUpdater {
 	private static Collection getContainedTypeModelFacetLinks_Association_3001(
 			MEDiagram container) {
 		Collection result = new LinkedList();
-		for (Iterator links = container.getElements().iterator(); links
+		for (Iterator links = container.getNewElements().iterator(); links
 				.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Association) {
@@ -423,7 +423,7 @@ public class ModelDiagramUpdater {
 	private static Collection getContainedTypeModelFacetLinks_Association_3002(
 			MEDiagram container) {
 		Collection result = new LinkedList();
-		for (Iterator links = container.getElements().iterator(); links
+		for (Iterator links = container.getNewElements().iterator(); links
 				.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Association) {
@@ -453,7 +453,7 @@ public class ModelDiagramUpdater {
 	private static Collection getContainedTypeModelFacetLinks_Association_3004(
 			MEDiagram container) {
 		Collection result = new LinkedList();
-		for (Iterator links = container.getElements().iterator(); links
+		for (Iterator links = container.getNewElements().iterator(); links
 				.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Association) {
@@ -483,7 +483,7 @@ public class ModelDiagramUpdater {
 	private static Collection getContainedTypeModelFacetLinks_Association_3003(
 			MEDiagram container) {
 		Collection result = new LinkedList();
-		for (Iterator links = container.getElements().iterator(); links
+		for (Iterator links = container.getNewElements().iterator(); links
 				.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Association) {
@@ -677,7 +677,7 @@ public class ModelDiagramUpdater {
 			return Collections.EMPTY_LIST;
 		}
 		Collection result = new LinkedList();
-		for (Iterator links = container.getElements().iterator(); links
+		for (Iterator links = container.getNewElements().iterator(); links
 				.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Association) {
@@ -723,7 +723,7 @@ public class ModelDiagramUpdater {
 			return Collections.EMPTY_LIST;
 		}
 		Collection result = new LinkedList();
-		for (Iterator links = container.getElements().iterator(); links
+		for (Iterator links = container.getNewElements().iterator(); links
 				.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Association) {
@@ -788,7 +788,7 @@ public class ModelDiagramUpdater {
 			return Collections.EMPTY_LIST;
 		}
 		Collection result = new LinkedList();
-		for (Iterator links = container.getElements().iterator(); links
+		for (Iterator links = container.getNewElements().iterator(); links
 				.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Association) {
@@ -834,7 +834,7 @@ public class ModelDiagramUpdater {
 			return Collections.EMPTY_LIST;
 		}
 		Collection result = new LinkedList();
-		for (Iterator links = container.getElements().iterator(); links
+		for (Iterator links = container.getNewElements().iterator(); links
 				.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Association) {
