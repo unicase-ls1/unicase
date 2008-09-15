@@ -35,11 +35,12 @@ import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
 
 /**
- * This view helps managing WorkPackages (sprints) contained in
- * a project. It shows the WorkPackages of active project space (the project 
- * currently selected in navigator)
+ * This view helps managing WorkPackages (sprints) contained in a project. It
+ * shows the WorkPackages of active project space (the project currently
+ * selected in navigator)
+ * 
  * @author Hodaie
- *
+ * 
  */
 public class IterationPlanningView extends ViewPart {
 	private TreeViewer viewer;
@@ -52,25 +53,25 @@ public class IterationPlanningView extends ViewPart {
 	public IterationPlanningView() {
 	}
 
-	/**.
-	 * {@inheritDoc}
+	/**
+	 * . {@inheritDoc}
 	 */
 	public void createPartControl(Composite parent) {
 
-		//create a TreeViewer for WorkPackages.
-		//Root nodes are WorkPackage and children are their WorkItems
-		//The tree has columns showing annotated model element and 
-		//Assignee of a WorkItem
+		// create a TreeViewer for WorkPackages.
+		// Root nodes are WorkPackage and children are their WorkItems
+		// The tree has columns showing annotated model element and
+		// Assignee of a WorkItem
 		createTreeViwer(parent);
-		
+
 		// Create the help context id for the viewer's control
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(viewer.getControl(),
 				"org.unicase.ui.treeview.viewer");
 
 		hookDoubleClickAction();
 		addDNDSupport();
-		
-		//respond to change of active ProjectSpace
+
+		// respond to change of active ProjectSpace
 		final Workspace workspace = WorkspaceManager.getInstance()
 				.getCurrentWorkspace();
 		workspace.eAdapters().add(new AdapterImpl() {
@@ -78,7 +79,8 @@ public class IterationPlanningView extends ViewPart {
 			public void notifyChanged(Notification msg) {
 				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
 					if (workspace.getActiveProjectSpace() != null) {
-						project = workspace.getActiveProjectSpace().getProject();
+						project = workspace.getActiveProjectSpace()
+								.getProject();
 					}
 					setInput();
 				}
@@ -86,7 +88,7 @@ public class IterationPlanningView extends ViewPart {
 			}
 		});
 
-		//set input when showing the view for the first time.
+		// set input when showing the view for the first time.
 		if (workspace.getActiveProjectSpace() != null) {
 			project = workspace.getActiveProjectSpace().getProject();
 			setInput();
@@ -96,25 +98,25 @@ public class IterationPlanningView extends ViewPart {
 
 	}
 
-	
 	private void createTreeViwer(Composite parent) {
 		viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL
 				| SWT.FULL_SELECTION);
 		workpackageContentProvider = new WorkpackageContentProvider();
 		viewer.setContentProvider(workpackageContentProvider);
-		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
+		IDecoratorManager decoratorManager = PlatformUI.getWorkbench()
+				.getDecoratorManager();
 		viewer.setLabelProvider(new DecoratingLabelProvider(
 				new LabelProvider(), decoratorManager.getLabelDecorator()));
-		
+
 		createColumns(viewer);
-			
+
 	}
 
 	private void createColumns(TreeViewer viewer2) {
 		Tree tree = viewer.getTree();
 		tree.setHeaderVisible(true);
 
-		//root nodes (WorkPackage) and their contained WorkItems
+		// root nodes (WorkPackage) and their contained WorkItems
 		TreeViewerColumn tclmWorkItem = new TreeViewerColumn(viewer, SWT.NONE);
 		tclmWorkItem.getColumn().setText("WorkItem");
 		tclmWorkItem.getColumn().setWidth(400);
@@ -122,7 +124,14 @@ public class IterationPlanningView extends ViewPart {
 		tclmWorkItem.setLabelProvider(emfColumnLabelProvider);
 		new TreeViewerColumnSorter(viewer, tclmWorkItem, emfColumnLabelProvider);
 
-		//annotated model element
+		TreeViewerColumn status = new TreeViewerColumn(viewer, SWT.NONE);
+		status.getColumn().setWidth(20);
+		status.setLabelProvider(new StatusLabelProvider());
+		// status.setEditingSupport(new StatusEditingSupport(viewer));
+		// new TreeViewerColumnSorter(viewer, tclmWorkItem,
+		// emfColumnLabelProvider);
+
+		// annotated model element
 		TreeViewerColumn tclmAnnotatedME = new TreeViewerColumn(viewer,
 				SWT.NONE);
 		tclmAnnotatedME.getColumn().setText("Annotated");
@@ -130,31 +139,34 @@ public class IterationPlanningView extends ViewPart {
 		TaskObjectLabelProvider taskObjectLabelProvider = new TaskObjectLabelProvider();
 		tclmAnnotatedME.setLabelProvider(taskObjectLabelProvider);
 		tclmAnnotatedME.setEditingSupport(new TaskObjectEditingSupport(viewer));
-		new TreeViewerColumnSorter(viewer, tclmAnnotatedME,	taskObjectLabelProvider);
+		new TreeViewerColumnSorter(viewer, tclmAnnotatedME,
+				taskObjectLabelProvider);
 
-		//Assignee
+		// Assignee
 		TreeViewerColumn tclmAssignedTo = new TreeViewerColumn(viewer, SWT.NONE);
 		tclmAssignedTo.getColumn().setText("Assigned to");
 		tclmAssignedTo.getColumn().setWidth(100);
 		AssignedToLabelProvider assignedToLabelProvider = new AssignedToLabelProvider();
 		tclmAssignedTo.setLabelProvider(assignedToLabelProvider);
 		tclmAssignedTo.setEditingSupport(new AssignedToEditingSupport(viewer));
-		new TreeViewerColumnSorter(viewer, tclmAssignedTo, assignedToLabelProvider);
-		
+		new TreeViewerColumnSorter(viewer, tclmAssignedTo,
+				assignedToLabelProvider);
+		// Status of model elements
+
 	}
 
-	/**.
-	 * This sets the input of viewer on change of active ProjectSpace.
-	 * The project is a field being set when activeProjectSpace is changed
+	/**
+	 * . This sets the input of viewer on change of active ProjectSpace. The
+	 * project is a field being set when activeProjectSpace is changed
 	 * 
 	 */
 	protected void setInput() {
 		viewer.setInput(project);
-		////I thought this might help making tree columns look better.
-		////Currently the width of tree columns are hard coded.
-		//for (TreeColumn column : viewer.getTree().getColumns()) {
-		//	column.pack();
-		//}
+		// //I thought this might help making tree columns look better.
+		// //Currently the width of tree columns are hard coded.
+		// for (TreeColumn column : viewer.getTree().getColumns()) {
+		// column.pack();
+		// }
 	}
 
 	/**
@@ -184,10 +196,13 @@ public class IterationPlanningView extends ViewPart {
 		int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
 		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
 
-		viewer.addDragSupport(dndOperations, transfers, new ViewerDragAdapter(viewer));
-		viewer.addDropSupport(dndOperations, transfers, new UCDropAdapter(
-						      TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain"),
-						      viewer));
+		viewer.addDragSupport(dndOperations, transfers, new ViewerDragAdapter(
+				viewer));
+		viewer
+				.addDropSupport(dndOperations, transfers, new UCDropAdapter(
+						TransactionalEditingDomain.Registry.INSTANCE
+								.getEditingDomain("org.unicase.EditingDomain"),
+						viewer));
 
 	}
 
