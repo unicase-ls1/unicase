@@ -293,7 +293,7 @@ public interface VersioningPackage extends EPackage {
 	int HISTORY_QUERY = 7;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * The feature id for the '<em><b>Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -302,7 +302,7 @@ public interface VersioningPackage extends EPackage {
 	int HISTORY_QUERY__SOURCE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * The feature id for the '<em><b>Target</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -611,10 +611,10 @@ public interface VersioningPackage extends EPackage {
 	EClass getHistoryQuery();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery#getSource <em>Source</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery#getSource <em>Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Source</em>'.
+	 * @return the meta object for the containment reference '<em>Source</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.HistoryQuery#getSource()
 	 * @see #getHistoryQuery()
 	 * @generated
@@ -622,10 +622,10 @@ public interface VersioningPackage extends EPackage {
 	EReference getHistoryQuery_Source();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery#getTarget <em>Target</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery#getTarget <em>Target</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Target</em>'.
+	 * @return the meta object for the containment reference '<em>Target</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.HistoryQuery#getTarget()
 	 * @see #getHistoryQuery()
 	 * @generated
@@ -918,7 +918,7 @@ public interface VersioningPackage extends EPackage {
 		EClass HISTORY_QUERY = eINSTANCE.getHistoryQuery();
 
 		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Source</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -926,7 +926,7 @@ public interface VersioningPackage extends EPackage {
 		EReference HISTORY_QUERY__SOURCE = eINSTANCE.getHistoryQuery_Source();
 
 		/**
-		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Target</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

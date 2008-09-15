@@ -6,6 +6,7 @@
 package org.unicase.emfstore.esmodel.versioning.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -30,7 +31,7 @@ import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
  */
 public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSource()
@@ -40,7 +41,7 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	protected PrimaryVersionSpec source;
 
 	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getTarget()
@@ -78,6 +79,18 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 			InternalEObject oldSource = (InternalEObject) source;
 			source = (PrimaryVersionSpec) eResolveProxy(oldSource);
 			if (source != oldSource) {
+				InternalEObject newSource = (InternalEObject) source;
+				NotificationChain msgs = oldSource.eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+								- VersioningPackage.HISTORY_QUERY__SOURCE,
+						null, null);
+				if (newSource.eInternalContainer() == null) {
+					msgs = newSource.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+							- VersioningPackage.HISTORY_QUERY__SOURCE, null,
+							msgs);
+				}
+				if (msgs != null)
+					msgs.dispatch();
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 							VersioningPackage.HISTORY_QUERY__SOURCE, oldSource,
@@ -101,12 +114,47 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSource(PrimaryVersionSpec newSource) {
+	public NotificationChain basicSetSource(PrimaryVersionSpec newSource,
+			NotificationChain msgs) {
 		PrimaryVersionSpec oldSource = source;
 		source = newSource;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET, VersioningPackage.HISTORY_QUERY__SOURCE,
+					oldSource, newSource);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSource(PrimaryVersionSpec newSource) {
+		if (newSource != source) {
+			NotificationChain msgs = null;
+			if (source != null)
+				msgs = ((InternalEObject) source).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+								- VersioningPackage.HISTORY_QUERY__SOURCE,
+						null, msgs);
+			if (newSource != null)
+				msgs = ((InternalEObject) newSource).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE
+								- VersioningPackage.HISTORY_QUERY__SOURCE,
+						null, msgs);
+			msgs = basicSetSource(newSource, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-					VersioningPackage.HISTORY_QUERY__SOURCE, oldSource, source));
+					VersioningPackage.HISTORY_QUERY__SOURCE, newSource,
+					newSource));
 	}
 
 	/**
@@ -119,6 +167,18 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 			InternalEObject oldTarget = (InternalEObject) target;
 			target = (PrimaryVersionSpec) eResolveProxy(oldTarget);
 			if (target != oldTarget) {
+				InternalEObject newTarget = (InternalEObject) target;
+				NotificationChain msgs = oldTarget.eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+								- VersioningPackage.HISTORY_QUERY__TARGET,
+						null, null);
+				if (newTarget.eInternalContainer() == null) {
+					msgs = newTarget.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+							- VersioningPackage.HISTORY_QUERY__TARGET, null,
+							msgs);
+				}
+				if (msgs != null)
+					msgs.dispatch();
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 							VersioningPackage.HISTORY_QUERY__TARGET, oldTarget,
@@ -142,12 +202,64 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTarget(PrimaryVersionSpec newTarget) {
+	public NotificationChain basicSetTarget(PrimaryVersionSpec newTarget,
+			NotificationChain msgs) {
 		PrimaryVersionSpec oldTarget = target;
 		target = newTarget;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET, VersioningPackage.HISTORY_QUERY__TARGET,
+					oldTarget, newTarget);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTarget(PrimaryVersionSpec newTarget) {
+		if (newTarget != target) {
+			NotificationChain msgs = null;
+			if (target != null)
+				msgs = ((InternalEObject) target).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+								- VersioningPackage.HISTORY_QUERY__TARGET,
+						null, msgs);
+			if (newTarget != null)
+				msgs = ((InternalEObject) newTarget).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE
+								- VersioningPackage.HISTORY_QUERY__TARGET,
+						null, msgs);
+			msgs = basicSetTarget(newTarget, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-					VersioningPackage.HISTORY_QUERY__TARGET, oldTarget, target));
+					VersioningPackage.HISTORY_QUERY__TARGET, newTarget,
+					newTarget));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case VersioningPackage.HISTORY_QUERY__SOURCE:
+			return basicSetSource(null, msgs);
+		case VersioningPackage.HISTORY_QUERY__TARGET:
+			return basicSetTarget(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
