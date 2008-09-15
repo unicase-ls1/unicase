@@ -56,7 +56,7 @@ public class MERichTextControl extends AbstractMEControl {
 		eAdapter = new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
-				if (msg.getFeature().equals(MERichTextControl.this.attribute)) {
+				if (msg.getFeature()!=null && msg.getFeature().equals(MERichTextControl.this.attribute)) {
 					load();
 				}
 				super.notifyChanged(msg);
