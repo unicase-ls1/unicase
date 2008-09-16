@@ -39,7 +39,6 @@ import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesFactory;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.emfstore.storage.ResourceStorage;
-import org.unicase.emfstore.test.TestDriver;
 
 /**
  * The {@link EmfStoreController} is controlling startup and shutdown of the
@@ -305,7 +304,7 @@ public class EmfStoreController implements IApplication {
 			logger.warn("Waiting for termination was interrupted", e);
 		}
 	}
-
+	
 	private synchronized void wakeForTermination() {
 		notify();
 	}

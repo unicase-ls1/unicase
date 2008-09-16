@@ -3,7 +3,6 @@ package org.unicase.emfstore.test;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
-import java.util.UUID;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

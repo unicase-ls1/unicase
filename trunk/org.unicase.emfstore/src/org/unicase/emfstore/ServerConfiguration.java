@@ -7,11 +7,7 @@
 package org.unicase.emfstore;
 
 import java.io.File;
-import java.net.URL;
 import java.util.Properties;
-
-import org.eclipse.core.runtime.FileLocator;
-import org.eclipse.core.runtime.Path;
 
 /**
  * Represents the current server configuration.
