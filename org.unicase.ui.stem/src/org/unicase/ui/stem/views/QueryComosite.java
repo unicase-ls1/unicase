@@ -422,9 +422,9 @@ public class QueryComosite extends Composite {
 			query.setQueryRangeType(QueryRangeType.DATE);
 		}
 
-		query.setStartVersion(Integer.parseInt(txtVerFrom.getText()));
-		query.setEndVersion(Integer.parseInt(txtVerTo.getText()));
-		query.setNumOfDays(Integer.parseInt(txtNumOfDays.getText()));
+		query.setStartVersion((txtVerFrom.getText().length()==0)?-1:Integer.parseInt(txtVerFrom.getText()));
+		query.setEndVersion((txtVerTo.getText().length()==0)?-1:Integer.parseInt(txtVerTo.getText()));
+		query.setNumOfDays((txtNumOfDays.getText().length()==0)?-1:Integer.parseInt(txtNumOfDays.getText()));
 		query.setStartDate(dtFrom.getSelection());
 		query.setEndDate(dtTo.getSelection());
 		List<ModelElement> modelElements = new ArrayList<ModelElement>();

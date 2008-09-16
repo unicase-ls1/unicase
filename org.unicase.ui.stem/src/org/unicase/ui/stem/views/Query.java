@@ -31,8 +31,9 @@ public class Query {
 	
 	private QueryRangeType queryRangeType; 
 	
-	private int startVersion = 0;
-	private int endVersion = 0;
+	// -1 will be interpreted as not set
+	private int startVersion = -1;
+	private int endVersion = -1;
 	
 	private int numOfDays = 0;
 	

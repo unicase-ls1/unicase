@@ -17,10 +17,14 @@ import org.eclipse.swt.widgets.Control;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.stem.views.AbstractSCMView;
+import org.unicase.ui.stem.views.Query;
+import org.unicase.ui.stem.views.Query.QueryRangeType;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -57,20 +61,35 @@ public class HistoryBrowserView extends AbstractSCMView {
 				ProjectSpace activeProjectSpace = WorkspaceManager
 						.getInstance().getCurrentWorkspace()
 						.getActiveProjectSpace();
-				if (activeProjectSpace != null
-						&& activeProjectSpace.getUsersession().isLoggedIn()) {
-					try {
-						List<HistoryInfo> historyInfo = activeProjectSpace
-								.getUsersession().getHistoryInfo(
-										activeProjectSpace.getProjectId(),
-										getQuery(activeProjectSpace));
-						if (historyInfo != null) {
-							historyInfos.clear();
-							historyInfos.addAll(historyInfo);
+				if (activeProjectSpace == null) {
+					DialogHandler.showErrorDialog("No active project chosen.");
+					historyInfos.clear();
+					return;
+				}
+				if (activeProjectSpace.getUsersession() == null || !activeProjectSpace.getUsersession().isLoggedIn()) {
+					DialogHandler.showErrorDialog("Chosen Project is not logged in.");
+					historyInfos.clear();
+					return;
+				}
+				try {
+					List<HistoryInfo> historyInfo = activeProjectSpace
+							.getUsersession().getHistoryInfo(
+									activeProjectSpace.getProjectId(),
+									getQuery(activeProjectSpace));
+					if (historyInfo != null) {
+						for(HistoryInfo hi : historyInfo) {
+							if(hi.getPrimerySpec().equals(activeProjectSpace.getBaseVersion())) {
+								TagVersionSpec spec = VersioningFactory.eINSTANCE.createTagVersionSpec();
+								spec.setName("BASE");
+								hi.getTagSpecs().add(spec);
+								break;
+							}
 						}
-					} catch (EmfStoreException e) {
-						e.printStackTrace();
+						historyInfos.clear();
+						historyInfos.addAll(historyInfo);
 					}
+				} catch (EmfStoreException e) {
+					DialogHandler.showExceptionDialog(e);
 				}
 			}
 		});
@@ -78,21 +97,44 @@ public class HistoryBrowserView extends AbstractSCMView {
 
 	private HistoryQuery getQuery(ProjectSpace activeProjectSpace)
 			throws EmfStoreException {
+		System.out.println("getQuery");
 		HistoryQuery query = VersioningFactory.eINSTANCE.createHistoryQuery();
-		// if query not set default query 0 to HEAD
-		if (true) {
-			PrimaryVersionSpec source = VersioningFactory.eINSTANCE
-					.createPrimaryVersionSpec();
-			source.setIdentifier(0);
-			PrimaryVersionSpec target = activeProjectSpace
+
+		int start = 0;
+		int end = 0;
+
+		Query qury = queryComposite.getQuery();
+		if (qury.getQueryRangeType().equals(QueryRangeType.VERSION)
+				&& qury.getStartVersion() != -1 && qury.getEndVersion() != -1) {
+			start = qury.getStartVersion();
+			end = qury.getEndVersion();
+		} else {
+			// if query not set default query 0 to HEAD
+			PrimaryVersionSpec resolveVersionSpec = activeProjectSpace
 					.resolveVersionSpec(VersionSpec.HEAD_VERSION);
-			query.setSource(source);
-			query.setTarget(target);
+			start = 0;
+			end = resolveVersionSpec.getIdentifier();
 		}
+
+		PrimaryVersionSpec source = VersioningFactory.eINSTANCE
+				.createPrimaryVersionSpec();
+		source.setIdentifier(start);
+		PrimaryVersionSpec target = VersioningFactory.eINSTANCE
+				.createPrimaryVersionSpec();
+		target.setIdentifier(end);
+		query.setSource(source);
+		query.setTarget(target);
+
+		System.out.println(start + " " + end);
 
 		return query;
 	}
 
+	/**
+	 * Returns a list of history infos.
+	 * 
+	 * @return a list of history infos
+	 */
 	public List<HistoryInfo> getHistoryInfos() {
 		return historyInfos;
 	}

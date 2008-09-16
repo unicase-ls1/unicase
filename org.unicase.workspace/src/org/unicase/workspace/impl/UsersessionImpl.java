@@ -814,6 +814,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @generated NOT
 	 */
 	public PrimaryVersionSpec resolveVersionSpec(VersionSpec versionSpec,
@@ -826,7 +827,8 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 
 	/**
 	 *{@inheritDoc}
-	 *@generated NOT
+	 * 
+	 * @generated NOT
 	 */
 	public List<HistoryInfo> getHistoryInfo(ProjectId projectId,
 			HistoryQuery query) throws EmfStoreException {
