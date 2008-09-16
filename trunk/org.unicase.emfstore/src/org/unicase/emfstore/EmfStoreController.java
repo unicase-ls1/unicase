@@ -36,6 +36,7 @@ import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesFactory;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.emfstore.storage.ResourceStorage;
@@ -65,8 +66,7 @@ public class EmfStoreController implements IApplication {
 	 * 
 	 * @see org.eclipse.equinox.app.IApplication#start(org.eclipse.equinox.app.IApplicationContext)
 	 */
-	public Object start(IApplicationContext context)
-			throws FatalEmfStoreException {
+	public Object start(IApplicationContext context) throws EmfStoreException {
 
 		if (instance != null) {
 			throw new FatalEmfStoreException(
@@ -84,7 +84,6 @@ public class EmfStoreController implements IApplication {
 		this.serverSpace = initServerSpace();
 		accessControl = initAccessControl(serverSpace, properties);
 		emfStore = new EmfStoreImpl(serverSpace, accessControl, properties);
-		// emfStore = new EmfStoreStub();
 		adminEmfStore = new AdminEmfStoreImpl(serverSpace, accessControl,
 				properties);
 		// FIXME: combine connectionHandler and adminConnectionHandler
@@ -102,7 +101,8 @@ public class EmfStoreController implements IApplication {
 	}
 
 	private Set<ConnectionHandler> initConnectionHandlers(EmfStore emfStore,
-			AuthenticationControl accessControl) throws FatalEmfStoreException {
+			AuthenticationControl accessControl) throws FatalEmfStoreException,
+			EmfStoreException {
 		Set<ConnectionHandler> connectionHandlers = new HashSet<ConnectionHandler>();
 
 		// create RMI connection handler
@@ -142,8 +142,6 @@ public class EmfStoreController implements IApplication {
 		// if no serverspace can be loaded, create one
 		logger.debug("Creating dummy server space...");
 		ServerSpace serverSpace = EsmodelFactory.eINSTANCE.createServerSpace();
-
-		// EmfStoreStub.createDummyProjectHistories(serverSpace);
 
 		serverSpace.setResource(resource);
 		resource.getContents().add(serverSpace);
@@ -243,7 +241,8 @@ public class EmfStoreController implements IApplication {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		logger.info("added superuser "+AbstractAuthenticationControl.SUPER_USER);
+		logger.info("added superuser "
+				+ AbstractAuthenticationControl.SUPER_USER);
 	}
 
 	private Properties initProperties() {
@@ -304,7 +303,7 @@ public class EmfStoreController implements IApplication {
 			logger.warn("Waiting for termination was interrupted", e);
 		}
 	}
-	
+
 	private synchronized void wakeForTermination() {
 		notify();
 	}

@@ -13,14 +13,16 @@ import java.rmi.registry.Registry;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.unicase.emfstore.AdminEmfStore;
+import org.unicase.emfstore.EmfStore;
 import org.unicase.emfstore.accesscontrol.AuthenticationControl;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 
 /**
  * ConnectionHandler for the AdminEmfStore interface using rmi.
  * 
  * @author Wesendonk
- *
+ * 
  */
 public class RMIAdminConnectionHandler {
 
@@ -31,7 +33,8 @@ public class RMIAdminConnectionHandler {
 
 	private RMIAdminEmfStoreFacade stub;
 
-	private static Log logger = LogFactory.getLog(RMIAdminConnectionHandler.class);
+	private static Log logger = LogFactory
+			.getLog(RMIAdminConnectionHandler.class);
 
 	/**
 	 * Default constructor.
@@ -39,8 +42,20 @@ public class RMIAdminConnectionHandler {
 	public RMIAdminConnectionHandler() {
 	}
 
-	public void init(AdminEmfStore adminEmfStore, AuthenticationControl accessControl)
-			throws FatalEmfStoreException {
+	/**
+	 * This method initializes the ConnectionHandler.
+	 * 
+	 * @param adminEmfStore
+	 *            an implementation of the {@link AdminEmfStore}
+	 * @param accessControl
+	 *            an implementation of the {@link AuthenticationControl}
+	 * @throws FatalEmfStoreException
+	 *             is thrown if the server can't initialize
+	 * @throws EmfStoreException
+	 * 				exception within the server
+	 */
+	public void init(AdminEmfStore adminEmfStore,
+			AuthenticationControl accessControl) throws FatalEmfStoreException, EmfStoreException {
 		try {
 			stub = new RMIAdminEmfStoreFacadeImpl(adminEmfStore, accessControl);
 			Registry registry = RMIRegistryManager.getInstance().getRegistry();
@@ -53,6 +68,12 @@ public class RMIAdminConnectionHandler {
 		logger.debug("RMIAdminConnectionHandler is running.");
 	}
 
+	/**
+	 * Stops the connection handler.
+	 * 
+	 * @param force
+	 *            true if handler should be stopped forcefully
+	 */
 	public void stop(boolean force) {
 		if (force) {
 			return;

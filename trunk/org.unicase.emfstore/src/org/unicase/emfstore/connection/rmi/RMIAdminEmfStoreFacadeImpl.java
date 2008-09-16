@@ -44,9 +44,11 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade impleme
 	 *            the {@link AuthenticationControl}
 	 * @throws RemoteException
 	 *             thrown if there are rmi-related problems
+	 * @throws EmfStoreException
+	 * 				exception within the server
 	 */
 	public RMIAdminEmfStoreFacadeImpl(AdminEmfStore adminEmfStore,
-			AuthenticationControl accessControl) throws RemoteException {
+			AuthenticationControl accessControl) throws RemoteException, EmfStoreException {
 		this.adminEmfStore = adminEmfStore;
 	}
 
