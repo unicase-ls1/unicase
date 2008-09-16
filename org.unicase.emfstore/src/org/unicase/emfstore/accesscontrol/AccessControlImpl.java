@@ -15,7 +15,6 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.accesscontrol.authentication.LDAPVerifier;
-import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.esmodel.SessionId;
@@ -25,7 +24,6 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.ServerAdmin;
-import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.ModelElement;
 
 /**

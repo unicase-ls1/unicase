@@ -202,6 +202,7 @@ public class EmfStoreImpl implements EmfStore {
 	private List<HistoryInfo> getHistoryInfo(ProjectId projectId, PrimaryVersionSpec source,
 			PrimaryVersionSpec target) throws EmfStoreException {
 		List<HistoryInfo> result = new ArrayList<HistoryInfo>();
+		PrimaryVersionSpec headRevision = getProject(projectId).getLastVersion().getPrimarySpec();
 		for (Version version : getVersions(projectId, source, target)) {
 			HistoryInfo history = VersioningFactory.eINSTANCE
 					.createHistoryInfo();
@@ -209,6 +210,11 @@ public class EmfStoreImpl implements EmfStore {
 			history.setPrimerySpec((PrimaryVersionSpec) EcoreUtil.copy(version.getPrimarySpec()));
 			for(TagVersionSpec tagSpec:version.getTagSpecs()) {
 				history.getTagSpecs().add((TagVersionSpec) EcoreUtil.copy(tagSpec));
+			}
+			if(version.getPrimarySpec().equals(headRevision)) {
+				TagVersionSpec spec = VersioningFactory.eINSTANCE.createTagVersionSpec();
+				spec.setName("HEAD");
+				history.getTagSpecs().add(spec);
 			}
 			result.add(history);
 		}
