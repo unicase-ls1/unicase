@@ -56,7 +56,9 @@ public class MERichTextControl extends AbstractMEControl {
 		eAdapter = new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
-				if (msg.getFeature()!=null && msg.getFeature().equals(MERichTextControl.this.attribute)) {
+				if (msg.getFeature() != null
+						&& msg.getFeature().equals(
+								MERichTextControl.this.attribute)) {
 					load();
 				}
 				super.notifyChanged(msg);
@@ -206,7 +208,7 @@ public class MERichTextControl extends AbstractMEControl {
 					}
 				}
 			});
-			txt=value.toString();
+			txt = value.toString();
 
 			StringTokenizer stringTokenizer = new StringTokenizer(txt, ",");
 			while (stringTokenizer.hasMoreElements()) {
@@ -218,7 +220,11 @@ public class MERichTextControl extends AbstractMEControl {
 				}
 			}
 			String[] split = txt.split("%BEGINNTEXT%");
-			viewer.getDocument().set(split[1]);
+			if (split.length == 1) {
+				viewer.getDocument().set("");
+			} else {
+				viewer.getDocument().set(split[1]);
+			}
 			for (int i = 0; i < text.getLineCount(); i++) {
 				text.setLineBullet(i, 1, null);
 			}
