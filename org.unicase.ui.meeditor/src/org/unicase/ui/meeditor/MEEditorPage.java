@@ -36,6 +36,7 @@ import org.eclipse.ui.services.IEvaluationService;
 import org.unicase.model.ModelElement;
 import org.unicase.ui.meeditor.mecontrols.MEControl;
 import org.unicase.ui.meeditor.mecontrols.METextControl;
+import org.unicase.ui.meeditor.mecontrols.uccontrol.UseCaseStepsControl;
 
 /**
  * The editor page for the {@link MEEditor}.
@@ -56,6 +57,7 @@ public class MEEditorPage extends FormPage {
 	private List<IItemPropertyDescriptor> multiReferences = new ArrayList<IItemPropertyDescriptor>();
 	private Composite left;
 	private Composite right;
+	private Composite bottom;
 
 	/**
 	 * Default constructor.
@@ -85,6 +87,7 @@ public class MEEditorPage extends FormPage {
 		body = form.getBody();
 		TableWrapLayout tableLayout = new TableWrapLayout();
 		tableLayout.numColumns = 2;
+		tableLayout.makeColumnsEqualWidth = true;
 		body.setLayout(tableLayout);
 
 		TableWrapLayout columnLayout = new TableWrapLayout();
@@ -97,6 +100,10 @@ public class MEEditorPage extends FormPage {
 		right = toolkit.createComposite(body);
 		right.setLayout(columnLayout);
 		right.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
+
+		bottom = toolkit.createComposite(body);
+		bottom.setLayout(columnLayout);
+		bottom.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB,TableWrapData.TOP,1,2));
 
 		// Layout form
 		form.setText(modelElement.getName());
@@ -181,7 +188,12 @@ public class MEEditorPage extends FormPage {
 					.createControl(itemPropertyDescriptor);
 			if (meControl != null) {
 				meControls.add(meControl);
-				Control control = meControl.createControl(right, SWT.WRAP);
+				Control control;
+				if(meControl instanceof UseCaseStepsControl){
+					control = meControl.createControl(bottom, SWT.WRAP);
+				}else{
+					control = meControl.createControl(right, SWT.WRAP);
+				}
 				control.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
 			}
 		}
