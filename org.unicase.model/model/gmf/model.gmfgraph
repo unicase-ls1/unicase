@@ -263,9 +263,39 @@
     <descriptors
         name="ActorFigure">
       <actualFigure
-          xsi:type="gmfgraph:CustomFigure"
-          name="ActorFigure"
-          qualifiedClassName="org.unicase.ui.usecaseDiagram.unicase.StickMan"/>
+          xsi:type="gmfgraph:Rectangle">
+        <layout
+            xsi:type="gmfgraph:GridLayout">
+          <margins/>
+          <spacing/>
+        </layout>
+        <children
+            xsi:type="gmfgraph:CustomFigure"
+            name="ActorFigure"
+            qualifiedClassName="org.unicase.ui.usecaseDiagram.unicase.StickMan">
+          <layoutData
+              xsi:type="gmfgraph:GridLayoutData"
+              grabExcessHorizontalSpace="true"
+              grabExcessVerticalSpace="true"
+              verticalAlignment="FILL"
+              horizontalAlignment="FILL"/>
+        </children>
+        <children
+            xsi:type="gmfgraph:CustomFigure"
+            name="ActorNode_name"
+            qualifiedClassName="org.unicase.ui.usecaseDiagram.unicase.Label">
+          <layoutData
+              xsi:type="gmfgraph:GridLayoutData"/>
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="Arial"
+              height="12"
+              style="BOLD"/>
+        </children>
+      </actualFigure>
+      <accessors
+          accessor="getFigureActorFigure_name"
+          figure="//@figures.2/@descriptors.0/@actualFigure/@children.1"/>
     </descriptors>
     <descriptors
         name="UseCaseFigure">
@@ -385,14 +415,7 @@
   </nodes>
   <nodes
       name="Actor"
-      figure="ActorFigure">
-    <facets
-        xsi:type="gmfgraph:DefaultSizeFacet">
-      <defaultSize
-          dx="30"
-          dy="50"/>
-    </facets>
-  </nodes>
+      figure="ActorFigure"/>
   <nodes
       name="ComponentNode"
       figure="ComponentFigure">
