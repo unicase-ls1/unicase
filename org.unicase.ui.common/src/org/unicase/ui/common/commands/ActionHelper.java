@@ -167,7 +167,7 @@ public final class ActionHelper {
 		}
 		URI uri = EcoreUtil.getURI(diagram);
 		uri.appendFragment(diagram.eResource().getURIFragment(diagram));
-		URIEditorInput input = new URIEditorInput(uri);
+		URIEditorInput input = new URIEditorInput(uri, diagram.getName());
 
 		try {
 			PlatformUI.getWorkbench().getActiveWorkbenchWindow()
