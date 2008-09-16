@@ -87,7 +87,7 @@ public class MERichTextControl extends AbstractMEControl {
 
 	private void createStyledText() {
 
-		viewer = new TextViewer(composite, SWT.BORDER | SWT.MULTI
+		viewer = new TextViewer(composite, SWT.BORDER | SWT.MULTI | SWT.WRAP
 				| SWT.V_SCROLL);
 		viewer.setDocument(new Document());
 
