@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
+import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.exceptions.EmfStoreException;
@@ -315,6 +316,18 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @generated NOT
 	 */
 	PrimaryVersionSpec commit() throws EmfStoreException;
+	
+	/**
+	 * <!-- begin-user-doc --> Commit the all pending changes of the project.
+	 * 
+	 * @return new base version
+	 * @throws EmfStoreException
+	 *             if commit fails <!-- end-user-doc -->
+	 * @model
+	 * @param logMessage the {@link LogMessage} for this commit.
+	 * @generated NOT
+	 */
+	PrimaryVersionSpec commit(LogMessage logMessage) throws EmfStoreException;
 
 	/**
 	 * <!-- begin-user-doc --> Update the project to the head version.
