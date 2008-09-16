@@ -373,19 +373,6 @@
           text="&lt;&lt;extend\u00BB"/>
     </descriptors>
     <descriptors
-        name="Actor_external_name">
-      <actualFigure
-          xsi:type="gmfgraph:CustomFigure"
-          name="Actor_external_name"
-          qualifiedClassName="org.unicase.ui.usecaseDiagram.unicase.Label">
-        <font
-            xsi:type="gmfgraph:BasicFont"
-            faceName="Arial"
-            height="11"
-            style="BOLD"/>
-      </actualFigure>
-    </descriptors>
-    <descriptors
         name="ParticipateLabelFigure">
       <actualFigure
           xsi:type="gmfgraph:Label"
@@ -536,8 +523,9 @@
   </labels>
   <labels
       name="ActorNode_name"
-      figure="Actor_external_name"
-      elementIcon="false"/>
+      figure="ActorFigure"
+      elementIcon="false"
+      accessor="//@figures.2/@descriptors.0/@accessors.0"/>
   <labels
       name="ComponentNode_name"
       figure="ComponentFigure"
