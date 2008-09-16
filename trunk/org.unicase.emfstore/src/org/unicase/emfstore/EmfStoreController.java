@@ -27,7 +27,6 @@ import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.unicase.emfstore.accesscontrol.AccessControlImpl;
 import org.unicase.emfstore.accesscontrol.AuthenticationControl;
-import org.unicase.emfstore.accesscontrol.authentication.AbstractAuthenticationControl;
 import org.unicase.emfstore.connection.ConnectionHandler;
 import org.unicase.emfstore.connection.rmi.RMIAdminConnectionHandler;
 import org.unicase.emfstore.connection.rmi.RMIConnectionHandler;
@@ -46,6 +45,7 @@ import org.unicase.emfstore.storage.ResourceStorage;
  * EmfStore.
  * 
  * @author koegel
+ * @author wesendonk
  * 
  */
 public class EmfStoreController implements IApplication {
@@ -82,10 +82,9 @@ public class EmfStoreController implements IApplication {
 		initLogging(properties);
 		logger = LogFactory.getLog(EmfStoreController.class);
 		this.serverSpace = initServerSpace();
-		accessControl = initAccessControl(serverSpace, properties);
-		emfStore = new EmfStoreImpl(serverSpace, accessControl, properties);
-		adminEmfStore = new AdminEmfStoreImpl(serverSpace, accessControl,
-				properties);
+		accessControl = initAccessControl(serverSpace);
+		emfStore = new EmfStoreImpl(serverSpace, accessControl);
+		adminEmfStore = new AdminEmfStoreImpl(serverSpace, accessControl);
 		// FIXME: combine connectionHandler and adminConnectionHandler
 		adminConnectionHandler = new RMIAdminConnectionHandler();
 		adminConnectionHandler.init(adminEmfStore, accessControl);
@@ -140,7 +139,7 @@ public class EmfStoreController implements IApplication {
 		}
 
 		// if no serverspace can be loaded, create one
-		logger.debug("Creating dummy server space...");
+		logger.debug("Creating initial server space...");
 		ServerSpace serverSpace = EsmodelFactory.eINSTANCE.createServerSpace();
 
 		serverSpace.setResource(resource);
@@ -216,33 +215,34 @@ public class EmfStoreController implements IApplication {
 		}
 	}
 
-	private AccessControlImpl initAccessControl(ServerSpace serverSpace,
-			Properties properties) {
+	private AccessControlImpl initAccessControl(ServerSpace serverSpace) throws EmfStoreException {
 		setSuperUser(serverSpace);
-		return new AccessControlImpl(serverSpace, properties);
+		return new AccessControlImpl(serverSpace);
 	}
 
-	private void setSuperUser(ServerSpace serverSpace) {
+	private void setSuperUser(ServerSpace serverSpace) throws StorageException {
+		String superuser = ServerConfiguration.getProperties().getProperty(
+				ServerConfiguration.SUPER_USER,
+				ServerConfiguration.DEFAULT_SUPER_USER);
 		for (ACUser user : serverSpace.getUsers()) {
-			if (user.getName().equals(AbstractAuthenticationControl.SUPER_USER)) {
+			if (user.getName().equals(superuser)) {
 				return;
 			}
 		}
 		ACUser superUser = AccesscontrolFactory.eINSTANCE.createACUser();
-		superUser.setName(AbstractAuthenticationControl.SUPER_USER);
+		superUser.setName(superuser);
 		superUser.setFirstName("super");
 		superUser.setLastName("user");
-		superUser.setDescription("default server admin");
+		superUser.setDescription("default server admin (superuser)");
 		superUser.getRoles().add(RolesFactory.eINSTANCE.createServerAdmin());
 		serverSpace.getUsers().add(superUser);
 		try {
 			serverSpace.save();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new StorageException(StorageException.NOSAVE,e);
 		}
 		logger.info("added superuser "
-				+ AbstractAuthenticationControl.SUPER_USER);
+				+ superuser);
 	}
 
 	private Properties initProperties() {
@@ -254,8 +254,7 @@ public class EmfStoreController implements IApplication {
 			ServerConfiguration.setProperties(properties);
 			fis.close();
 		} catch (IOException e) {
-			System.out.println("Property initialization failed: "
-					+ e.toString());
+			logger.warn("Property initialization failed",e);
 		}
 		return properties;
 	}

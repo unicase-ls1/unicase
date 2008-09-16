@@ -27,33 +27,38 @@ public abstract class AbstractUnicaseRMIFacade extends UnicastRemoteObject {
 
 	/**
 	 * Default constructor.
-	 * @throws RemoteException rmi related exception
-	 * @throws EmfStoreException a server exception
+	 * 
+	 * @throws RemoteException
+	 *             rmi related exception
+	 * @throws EmfStoreException
+	 *             a server exception
 	 */
 	public AbstractUnicaseRMIFacade() throws RemoteException, EmfStoreException {
-		super(0,getClientFactory(),getServerFactory());
+		super(0, getClientFactory(), getServerFactory());
 	}
 
-	private static RMIServerSocketFactory getServerFactory() throws InvalidPropertyException {
+	private static RMIServerSocketFactory getServerFactory()
+			throws InvalidPropertyException {
 		String property = ServerConfiguration.getProperties().getProperty(
 				ServerConfiguration.RMI_ENCRYPTION,
-				ServerConfiguration.DEFAULT_RMI_ENCRYTION);
-		if(property.equals("true")) {
+				ServerConfiguration.RMI_ENCRYTION_DEFAULT);
+		if (property.equals(ServerConfiguration.TRUE)) {
 			return new RMISSLServerSocketFactory();
-		} else if(property.equals("false")) {
+		} else if (property.equals(ServerConfiguration.FALSE)) {
 			return RMISocketFactory.getDefaultSocketFactory();
 		} else {
 			throw new InvalidPropertyException();
 		}
 	}
 
-	private static RMIClientSocketFactory getClientFactory() throws InvalidPropertyException {
+	private static RMIClientSocketFactory getClientFactory()
+			throws InvalidPropertyException {
 		String property = ServerConfiguration.getProperties().getProperty(
 				ServerConfiguration.RMI_ENCRYPTION,
-				ServerConfiguration.DEFAULT_RMI_ENCRYTION);
-		if(property.equals("true")) {
+				ServerConfiguration.RMI_ENCRYTION_DEFAULT);
+		if (property.equals(ServerConfiguration.TRUE)) {
 			return new RMISSLClientSocketFactory();
-		} else if(property.equals("false")){
+		} else if (property.equals(ServerConfiguration.FALSE)) {
 			return RMISocketFactory.getDefaultSocketFactory();
 		} else {
 			throw new InvalidPropertyException();

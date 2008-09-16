@@ -28,6 +28,7 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
  * 
  * @author Wesendonk
  */
+@SuppressWarnings("serial")
 public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements
 		RMIAdminEmfStoreFacade {
 
