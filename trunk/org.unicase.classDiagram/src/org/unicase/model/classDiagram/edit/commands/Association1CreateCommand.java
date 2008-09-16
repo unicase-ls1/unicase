@@ -97,11 +97,12 @@ public class Association1CreateCommand extends CreateElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected EObject doDefaultElementCreation() {
 		Association newElement = ClassesFactory.eINSTANCE.createAssociation();
 		getContainer().getNewElements().add(newElement);
+		getContainer().getElements().add(newElement);
 		newElement.setSource(getSource());
 		newElement.setTarget(getTarget());
 		org.unicase.model.classDiagram.providers.ModelElementTypes
