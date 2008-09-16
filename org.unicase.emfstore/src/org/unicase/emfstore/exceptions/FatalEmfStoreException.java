@@ -16,7 +16,7 @@ package org.unicase.emfstore.exceptions;
  * @generated NOT
  */
 @SuppressWarnings("serial")
-public class FatalEmfStoreException extends Exception {
+public class FatalEmfStoreException extends EmfStoreException {
 
 	/**
 	 * Default constructor.

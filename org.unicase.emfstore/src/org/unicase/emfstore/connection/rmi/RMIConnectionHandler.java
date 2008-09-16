@@ -15,6 +15,7 @@ import org.apache.commons.logging.LogFactory;
 import org.unicase.emfstore.EmfStore;
 import org.unicase.emfstore.accesscontrol.AuthenticationControl;
 import org.unicase.emfstore.connection.ConnectionHandler;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 
 /**
@@ -48,10 +49,11 @@ public class RMIConnectionHandler implements ConnectionHandler {
 
 	/** 
 	 * {@inheritDoc}
+	 * @throws EmfStoreException 
 	 * @see org.unicase.emfstore.connection.ConnectionHandler#init(org.unicase.emfstore.EmfStore, org.unicase.emfstore.accesscontrol.AuthenticationControl)
 	 */
 	public void init(EmfStore emfStore, AuthenticationControl accessControl)
-			throws FatalEmfStoreException {
+			throws FatalEmfStoreException, EmfStoreException {
 		try {
 			stub = new RMIEmfStoreFacadeImpl(emfStore, accessControl);
 			Registry registry = RMIRegistryManager.getInstance().getRegistry();

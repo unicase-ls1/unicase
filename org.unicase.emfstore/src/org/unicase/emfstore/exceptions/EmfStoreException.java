@@ -49,4 +49,14 @@ public class EmfStoreException extends Exception {
 	public EmfStoreException(String message) {
 		super(message);
 	}
+
+	/**
+	 * Default constructor.
+	 * 
+	 * @param cause
+	 *            the causing exception
+	 */
+	public EmfStoreException(Throwable cause) {
+		super(cause);
+	}
 }

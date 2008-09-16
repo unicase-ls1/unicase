@@ -8,6 +8,7 @@ package org.unicase.emfstore.connection;
 
 import org.unicase.emfstore.EmfStore;
 import org.unicase.emfstore.accesscontrol.AuthenticationControl;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 
 /**
@@ -29,9 +30,11 @@ public interface ConnectionHandler {
 	 *            an implementation of the {@link AuthenticationControl}
 	 * @throws FatalEmfStoreException
 	 *             is thrown if the server can't initialize
+	 * @throws EmfStoreException
+	 * 				exception within the server
 	 */
 	void init(EmfStore emfStore, AuthenticationControl accessControl)
-			throws FatalEmfStoreException;
+			throws FatalEmfStoreException, EmfStoreException;
 
 	/**
 	 * Stop the handler.

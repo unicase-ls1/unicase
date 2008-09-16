@@ -11,8 +11,10 @@ import java.util.Properties;
 
 /**
  * Represents the current server configuration.
+ * 
  * @author koegel
- *
+ * @author wesendonk
+ * 
  */
 public final class ServerConfiguration {
 
@@ -24,21 +26,38 @@ public final class ServerConfiguration {
 	/**
 	 * Constant for the Default Resource Storage.
 	 */
-//	public static final String DEFAULT_RESOURCE_STORAGE = "org.unicase.emfstore.storage.TeneoStorage";
-	public final static String DEFAULT_RESOURCE_STORAGE = "org.unicase.emfstore.storage.XMLStorage";
+	public static final String DEFAULT_RESOURCE_STORAGE = "org.unicase.emfstore.storage.XMLStorage";
 
-	
-	public static final String RMI_ENCRYPTION = "RMIEncryption";
-	public static final String DEFAULT_RMI_ENCRYTION = "yes";
+	/**
+	 * RMI encryption property, possible values are true and false.
+	 */
+	public static final String RMI_ENCRYPTION = "rmi.encryption";
 
-	private static Properties properties;
-	
-	private ServerConfiguration() {
-		//nothing to do
-	}
+	/**
+	 * Default RMI encryption property value.
+	 */
+	public static final String DEFAULT_RMI_ENCRYTION = "true";
+
+	/**
+	 * Property for projectstate persistence policy in versions. Possible values
+	 * are <b>lastVersionOnly</b> and <b>everyVersion</b>
+	 */
+	public static final String PROJECTSTATE_VERSION_PERSISTENCE = "persistence.version.projectstate";
 	
 	/**
+	 * Default value for projectstate persistence policy in versions.
+	 */
+	public static final String DEFAULT_PROJECTSPACE_VERSION_PERSISTENCY = "everyVersion";
+
+	private static Properties properties;
+
+	private ServerConfiguration() {
+		// nothing to do
+	}
+
+	/**
 	 * Return the configuration directory location.
+	 * 
 	 * @return the dir path string
 	 */
 	public static String getConfDirectory() {
@@ -52,6 +71,7 @@ public final class ServerConfiguration {
 
 	/**
 	 * Return the configuration file location.
+	 * 
 	 * @return the file path string
 	 */
 	public static String getConfFile() {
@@ -60,6 +80,7 @@ public final class ServerConfiguration {
 
 	/**
 	 * Return the server home directory location.
+	 * 
 	 * @return the dir path string
 	 */
 	public static String getServerHome() {
@@ -73,6 +94,7 @@ public final class ServerConfiguration {
 
 	/**
 	 * Return the user home directory location.
+	 * 
 	 * @return the dir path string
 	 */
 	public static String getUserHome() {
@@ -81,14 +103,23 @@ public final class ServerConfiguration {
 		sb.append(File.separatorChar);
 		return sb.toString();
 	}
-	
+
+	/**
+	 * Gets the server's properties.
+	 * 
+	 * @return properties
+	 */
 	public static Properties getProperties() {
-		if(properties == null) {
+		if (properties == null) {
 			properties = new Properties();
 		}
 		return properties;
 	}
-	
+
+	/**
+	 * Sets the server's properties.
+	 * @param prop properties
+	 */
 	public static void setProperties(Properties prop) {
 		properties = prop;
 	}
