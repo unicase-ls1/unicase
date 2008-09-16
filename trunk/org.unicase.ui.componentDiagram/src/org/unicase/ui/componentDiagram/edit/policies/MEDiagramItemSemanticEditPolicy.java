@@ -25,7 +25,7 @@ public class MEDiagramItemSemanticEditPolicy
 				req.setContainmentFeature(DiagramPackage.eINSTANCE
 						.getMEDiagram_NewElements());
 			}
-			return getGEFWrapper(new org.unicase.ui.componentDiagram.edit.commands.ComponentCreateCommand(
+			return getGEFWrapper(new org.unicase.ui.componentDiagram.edit.commands.Component2CreateCommand(
 					req));
 		}
 		if (org.unicase.ui.componentDiagram.providers.ModelElementTypes.Component_1002 == req
@@ -34,7 +34,7 @@ public class MEDiagramItemSemanticEditPolicy
 				req.setContainmentFeature(DiagramPackage.eINSTANCE
 						.getMEDiagram_NewElements());
 			}
-			return getGEFWrapper(new org.unicase.ui.componentDiagram.edit.commands.Component2CreateCommand(
+			return getGEFWrapper(new org.unicase.ui.componentDiagram.edit.commands.ComponentCreateCommand(
 					req));
 		}
 		return super.getCreateCommand(req);

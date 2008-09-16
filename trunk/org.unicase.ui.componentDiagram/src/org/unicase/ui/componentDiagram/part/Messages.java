@@ -248,32 +248,22 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String ProvidedService2CreationTool_title;
+	public static String Need2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ProvidedService2CreationTool_desc;
+	public static String Need2CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String RequiredServiceLink3CreationTool_title;
+	public static String Ability3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String RequiredServiceLink3CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String ProvidedServiceLink4CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String ProvidedServiceLink4CreationTool_desc;
+	public static String Ability3CreationTool_desc;
 
 	/**
 	 * @generated

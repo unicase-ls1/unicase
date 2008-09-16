@@ -32,20 +32,20 @@ public class ModelEditPartFactory implements EditPartFactory {
 				return new org.unicase.ui.componentDiagram.edit.parts.MEDiagramEditPart(
 						view);
 
+			case org.unicase.ui.componentDiagram.edit.parts.Component2EditPart.VISUAL_ID:
+				return new org.unicase.ui.componentDiagram.edit.parts.Component2EditPart(
+						view);
+
+			case org.unicase.ui.componentDiagram.edit.parts.ComponentServiceNameEditPart.VISUAL_ID:
+				return new org.unicase.ui.componentDiagram.edit.parts.ComponentServiceNameEditPart(
+						view);
+
 			case org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID:
 				return new org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart(
 						view);
 
 			case org.unicase.ui.componentDiagram.edit.parts.ComponentNameEditPart.VISUAL_ID:
 				return new org.unicase.ui.componentDiagram.edit.parts.ComponentNameEditPart(
-						view);
-
-			case org.unicase.ui.componentDiagram.edit.parts.Component2EditPart.VISUAL_ID:
-				return new org.unicase.ui.componentDiagram.edit.parts.Component2EditPart(
-						view);
-
-			case org.unicase.ui.componentDiagram.edit.parts.ComponentName2EditPart.VISUAL_ID:
-				return new org.unicase.ui.componentDiagram.edit.parts.ComponentName2EditPart(
 						view);
 
 			case org.unicase.ui.componentDiagram.edit.parts.ComponentOfferedServicesEditPart.VISUAL_ID:

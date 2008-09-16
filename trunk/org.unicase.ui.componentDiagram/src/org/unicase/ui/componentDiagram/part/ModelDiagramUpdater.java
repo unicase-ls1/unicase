@@ -46,13 +46,13 @@ public class ModelDiagramUpdater {
 			ModelElement childElement = (ModelElement) it.next();
 			int visualID = org.unicase.ui.componentDiagram.part.ModelVisualIDRegistry
 					.getNodeVisualID(view, childElement);
-			if (visualID == org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID) {
+			if (visualID == org.unicase.ui.componentDiagram.edit.parts.Component2EditPart.VISUAL_ID) {
 				result
 						.add(new org.unicase.ui.componentDiagram.part.ModelNodeDescriptor(
 								childElement, visualID));
 				continue;
 			}
-			if (visualID == org.unicase.ui.componentDiagram.edit.parts.Component2EditPart.VISUAL_ID) {
+			if (visualID == org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID) {
 				result
 						.add(new org.unicase.ui.componentDiagram.part.ModelNodeDescriptor(
 								childElement, visualID));
@@ -70,9 +70,9 @@ public class ModelDiagramUpdater {
 				.getVisualID(view)) {
 		case org.unicase.ui.componentDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
 			return getMEDiagram_99ContainedLinks(view);
-		case org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID:
-			return getComponentService_1001ContainedLinks(view);
 		case org.unicase.ui.componentDiagram.edit.parts.Component2EditPart.VISUAL_ID:
+			return getComponentService_1001ContainedLinks(view);
+		case org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID:
 			return getComponent_1002ContainedLinks(view);
 		}
 		return Collections.EMPTY_LIST;
@@ -84,9 +84,9 @@ public class ModelDiagramUpdater {
 	public static List getIncomingLinks(View view) {
 		switch (org.unicase.ui.componentDiagram.part.ModelVisualIDRegistry
 				.getVisualID(view)) {
-		case org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID:
-			return getComponentService_1001IncomingLinks(view);
 		case org.unicase.ui.componentDiagram.edit.parts.Component2EditPart.VISUAL_ID:
+			return getComponentService_1001IncomingLinks(view);
+		case org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID:
 			return getComponent_1002IncomingLinks(view);
 		}
 		return Collections.EMPTY_LIST;
@@ -98,9 +98,9 @@ public class ModelDiagramUpdater {
 	public static List getOutgoingLinks(View view) {
 		switch (org.unicase.ui.componentDiagram.part.ModelVisualIDRegistry
 				.getVisualID(view)) {
-		case org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID:
-			return getComponentService_1001OutgoingLinks(view);
 		case org.unicase.ui.componentDiagram.edit.parts.Component2EditPart.VISUAL_ID:
+			return getComponentService_1001OutgoingLinks(view);
+		case org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID:
 			return getComponent_1002OutgoingLinks(view);
 		}
 		return Collections.EMPTY_LIST;

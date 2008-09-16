@@ -1,5 +1,6 @@
 package org.unicase.ui.componentDiagram.edit.parts;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -13,7 +14,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.gef.AccessibleEditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
+import org.eclipse.gef.handles.NonResizableHandleKit;
 import org.eclipse.gef.requests.DirectEditRequest;
 import org.eclipse.gef.tools.DirectEditManager;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
@@ -21,6 +26,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserService;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
@@ -47,13 +53,13 @@ import org.eclipse.swt.graphics.Image;
 /**
  * @generated
  */
-public class ComponentNameEditPart extends LabelEditPart implements
-		ITextAwareEditPart, IBorderItemEditPart {
+public class ComponentNameEditPart extends CompartmentEditPart implements
+		ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4001;
+	public static final int VISUAL_ID = 4002;
 
 	/**
 	 * @generated
@@ -78,16 +84,6 @@ public class ComponentNameEditPart extends LabelEditPart implements
 	/**
 	 * @generated
 	 */
-	static {
-		registerSnapBackPosition(
-				org.unicase.ui.componentDiagram.part.ModelVisualIDRegistry
-						.getType(org.unicase.ui.componentDiagram.edit.parts.ComponentNameEditPart.VISUAL_ID),
-				new Point(0, 0));
-	}
-
-	/**
-	 * @generated
-	 */
 	public ComponentNameEditPart(View view) {
 		super(view);
 	}
@@ -99,35 +95,24 @@ public class ComponentNameEditPart extends LabelEditPart implements
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE,
 				new LabelDirectEditPolicy());
-	}
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE,
+				new NonResizableEditPolicy() {
 
-	/**
-	 * @generated
-	 */
-	public IBorderItemLocator getBorderItemLocator() {
-		IFigure parentFigure = getFigure().getParent();
-		if (parentFigure != null && parentFigure.getLayoutManager() != null) {
-			Object constraint = parentFigure.getLayoutManager().getConstraint(
-					getFigure());
-			return (IBorderItemLocator) constraint;
-		}
-		return null;
-	}
+					protected List createSelectionHandles() {
+						List handles = new ArrayList();
+						NonResizableHandleKit.addMoveHandle(
+								(GraphicalEditPart) getHost(), handles);
+						return handles;
+					}
 
-	/**
-	 * @generated
-	 */
-	public void refreshBounds() {
-		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE
-				.getLocation_X())).intValue();
-		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE
-				.getLocation_Y())).intValue();
-		int width = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE
-				.getSize_Width())).intValue();
-		int height = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE
-				.getSize_Height())).intValue();
-		getBorderItemLocator()
-				.setConstraint(new Rectangle(x, y, width, height));
+					public Command getCommand(Request request) {
+						return null;
+					}
+
+					public boolean understandsRequest(Request request) {
+						return false;
+					}
+				});
 	}
 
 	/**
@@ -177,7 +162,7 @@ public class ComponentNameEditPart extends LabelEditPart implements
 	/**
 	 * @generated
 	 */
-	public void setLabel(IFigure figure) {
+	public void setLabel(org.unicase.ui.componentDiagram.unicase.Label figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
@@ -319,7 +304,7 @@ public class ComponentNameEditPart extends LabelEditPart implements
 		if (parser == null) {
 			String parserHint = ((View) getModel()).getType();
 			IAdaptable hintAdapter = new org.unicase.ui.componentDiagram.providers.ModelParserProvider.HintAdapter(
-					org.unicase.ui.componentDiagram.providers.ModelElementTypes.ComponentService_1001,
+					org.unicase.ui.componentDiagram.providers.ModelElementTypes.Component_1002,
 					getParserElement(), parserHint);
 			parser = ParserService.getInstance().getParser(hintAdapter);
 		}
@@ -527,7 +512,23 @@ public class ComponentNameEditPart extends LabelEditPart implements
 	 * @generated
 	 */
 	private View getFontStyleOwnerView() {
-		return getPrimaryView();
+		return (View) getModel();
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void addNotationalListeners() {
+		super.addNotationalListeners();
+		addListenerFilter("PrimaryView", this, getPrimaryView()); //$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void removeNotationalListeners() {
+		super.removeNotationalListeners();
+		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
 
 	/**
@@ -577,16 +578,8 @@ public class ComponentNameEditPart extends LabelEditPart implements
 	 * @generated
 	 */
 	protected IFigure createFigure() {
-		IFigure label = createFigurePrim();
-		defaultText = getLabelTextHelper(label);
-		return label;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected IFigure createFigurePrim() {
-		return new WrappingLabel();
+		// Parent should assign one using setLabel() method
+		return null;
 	}
 
 }
