@@ -2,6 +2,7 @@ package org.unicase.ui.componentDiagram.edit.parts;
 
 import org.eclipse.draw2d.BorderLayout;
 import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.draw2d.Ellipse;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.MarginBorder;
@@ -28,16 +29,19 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * @generated
  */
-public class Component2EditPart extends ShapeNodeEditPart {
+public class Component2EditPart extends AbstractBorderedShapeEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 1002;
+	public static final int VISUAL_ID = 1001;
 
 	/**
 	 * @generated
@@ -76,6 +80,9 @@ public class Component2EditPart extends ShapeNodeEditPart {
 		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
+				if (child instanceof IBorderItemEditPart) {
+					return new BorderItemSelectionEditPolicy();
+				}
 				EditPolicy result = child
 						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
@@ -99,63 +106,30 @@ public class Component2EditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		ComponentFigure figure = new ComponentFigure();
+		ProvidedInterfaceCircleFigure figure = new ProvidedInterfaceCircleFigure();
 		return primaryShape = figure;
 	}
 
 	/**
 	 * @generated
 	 */
-	public ComponentFigure getPrimaryShape() {
-		return (ComponentFigure) primaryShape;
+	public ProvidedInterfaceCircleFigure getPrimaryShape() {
+		return (ProvidedInterfaceCircleFigure) primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof org.unicase.ui.componentDiagram.edit.parts.ComponentName2EditPart) {
-			((org.unicase.ui.componentDiagram.edit.parts.ComponentName2EditPart) childEditPart)
-					.setLabel(getPrimaryShape().getFigureComponentFigure_name());
-			return true;
+	protected void addBorderItem(IFigure borderItemContainer,
+			IBorderItemEditPart borderItemEditPart) {
+		if (borderItemEditPart instanceof org.unicase.ui.componentDiagram.edit.parts.ComponentServiceNameEditPart) {
+			BorderItemLocator locator = new BorderItemLocator(getMainFigure(),
+					PositionConstants.SOUTH);
+			locator.setBorderItemOffset(new Dimension(-20, -20));
+			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
+		} else {
+			super.addBorderItem(borderItemContainer, borderItemEditPart);
 		}
-		return false;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected boolean removeFixedChild(EditPart childEditPart) {
-
-		return false;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
-			return;
-		}
-		super.addChildVisual(childEditPart, -1);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
-			return;
-		}
-		super.removeChildVisual(childEditPart);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-
-		return super.getContentPaneFor(editPart);
 	}
 
 	/**
@@ -163,7 +137,7 @@ public class Component2EditPart extends ShapeNodeEditPart {
 	 */
 	protected NodeFigure createNodePlate() {
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode()
-				.DPtoLP(100), getMapMode().DPtoLP(40));
+				.DPtoLP(15), getMapMode().DPtoLP(15));
 		return result;
 	}
 
@@ -175,7 +149,7 @@ public class Component2EditPart extends ShapeNodeEditPart {
 	 * 
 	 * @generated
 	 */
-	protected NodeFigure createNodeFigure() {
+	protected NodeFigure createMainFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
 		IFigure shape = createNodeShape();
@@ -191,11 +165,6 @@ public class Component2EditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if (nodeShape.getLayoutManager() == null) {
-			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
-			layout.setSpacing(getMapMode().DPtoLP(5));
-			nodeShape.setLayoutManager(layout);
-		}
 		return nodeShape; // use nodeShape itself as contentPane
 	}
 
@@ -214,76 +183,25 @@ public class Component2EditPart extends ShapeNodeEditPart {
 	 */
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(org.unicase.ui.componentDiagram.part.ModelVisualIDRegistry
-				.getType(org.unicase.ui.componentDiagram.edit.parts.ComponentName2EditPart.VISUAL_ID));
+				.getType(org.unicase.ui.componentDiagram.edit.parts.ComponentServiceNameEditPart.VISUAL_ID));
 	}
 
 	/**
 	 * @generated
 	 */
-	public class ComponentFigure extends RectangleFigure {
+	public class ProvidedInterfaceCircleFigure extends Ellipse {
 
 		/**
 		 * @generated
 		 */
-		private org.unicase.ui.componentDiagram.unicase.Label fFigureComponentFigure_name;
-
-		/**
-		 * @generated
-		 */
-		public ComponentFigure() {
-
-			BorderLayout layoutThis = new BorderLayout();
-			this.setLayoutManager(layoutThis);
-
+		public ProvidedInterfaceCircleFigure() {
 			this.setForegroundColor(ColorConstants.black);
-			this.setBorder(new MarginBorder(getMapMode().DPtoLP(5),
-					getMapMode().DPtoLP(5), getMapMode().DPtoLP(5),
-					getMapMode().DPtoLP(5)));
-			createContents();
-		}
-
-		/**
-		 * @generated
-		 */
-		private void createContents() {
-
-			Figure header0 = new Figure();
-
-			this.add(header0, BorderLayout.TOP);
-			header0.setLayoutManager(new StackLayout());
-
-			org.unicase.ui.componentDiagram.unicase.Label componentText1 = new org.unicase.ui.componentDiagram.unicase.Label();
-
-			componentText1.setText("\u00ABcomponent\u00BB");
-
-			header0.add(componentText1);
-
-			Figure iconContainer1 = new Figure();
-
-			header0.add(iconContainer1);
-
-			BorderLayout layoutIconContainer1 = new BorderLayout();
-			iconContainer1.setLayoutManager(layoutIconContainer1);
-
-			org.unicase.ui.componentDiagram.unicase.ComponentIcon componentIcon2 = new org.unicase.ui.componentDiagram.unicase.ComponentIcon();
-
-			componentIcon2.setSize(getMapMode().DPtoLP(20), getMapMode()
-					.DPtoLP(22));
-
-			iconContainer1.add(componentIcon2, BorderLayout.RIGHT);
-
-			Figure fig0 = new Figure();
-
-			this.add(fig0, BorderLayout.CENTER);
-
-			org.unicase.ui.componentDiagram.unicase.CenterLayoutParent layoutFig0 = new org.unicase.ui.componentDiagram.unicase.CenterLayoutParent();
-
-			fig0.setLayoutManager(layoutFig0);
-
-			fFigureComponentFigure_name = new org.unicase.ui.componentDiagram.unicase.Label();
-
-			fig0.add(fFigureComponentFigure_name);
-
+			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(15),
+					getMapMode().DPtoLP(15)));
+			this.setMaximumSize(new Dimension(getMapMode().DPtoLP(15),
+					getMapMode().DPtoLP(15)));
+			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(15),
+					getMapMode().DPtoLP(15)));
 		}
 
 		/**
@@ -303,13 +221,6 @@ public class Component2EditPart extends ShapeNodeEditPart {
 		 */
 		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
 			myUseLocalCoordinates = useLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		public org.unicase.ui.componentDiagram.unicase.Label getFigureComponentFigure_name() {
-			return fFigureComponentFigure_name;
 		}
 
 	}

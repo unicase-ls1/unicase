@@ -5,6 +5,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.unicase.model.component.Component;
 import org.unicase.model.component.ComponentFactory;
 import org.unicase.model.component.ComponentService;
 import org.unicase.model.diagram.DiagramPackage;
@@ -45,8 +46,7 @@ public class ComponentCreateCommand extends CreateElementCommand {
 	 * @generated
 	 */
 	protected EObject doDefaultElementCreation() {
-		ComponentService newElement = ComponentFactory.eINSTANCE
-				.createComponentService();
+		Component newElement = ComponentFactory.eINSTANCE.createComponent();
 
 		MEDiagram owner = (MEDiagram) getElementToEdit();
 		owner.getNewElements().add(newElement);

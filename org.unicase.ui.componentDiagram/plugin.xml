@@ -289,7 +289,7 @@
                name="%metatype.name.ComponentService_1001"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ComponentService"
-               edithelper="org.unicase.ui.componentDiagram.edit.helpers.ComponentEditHelper">
+               edithelper="org.unicase.ui.componentDiagram.edit.helpers.Component2EditHelper">
             <param name="semanticHint" value="1001"/>
          </metamodelType>
       </metamodel>
@@ -299,7 +299,7 @@
                name="%metatype.name.Component_1002"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Component"
-               edithelper="org.unicase.ui.componentDiagram.edit.helpers.Component2EditHelper">
+               edithelper="org.unicase.ui.componentDiagram.edit.helpers.ComponentEditHelper">
             <param name="semanticHint" value="1002"/>
          </metamodelType>
       </metamodel>
@@ -470,24 +470,9 @@
          contextId="org.unicase.ui.componentDiagram.ui.diagramContext"
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="F5"/>
-   </extension><extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
-      <?gmfgen generated="true"?>
-      <clientContext id="ComponentClientContext">
-         <enablement>
-            <test
-               property="org.eclipse.gmf.runtime.emf.core.editingDomain"
-               value="org.unicase.EditingDomain"/>
-         </enablement>
-      </clientContext> 
-      <binding context="ComponentClientContext">
-         <elementType ref="org.unicase.ui.componentDiagram.MEDiagram_99"/>
-         <elementType ref="org.unicase.ui.componentDiagram.ComponentService_1001"/>
-         <elementType ref="org.unicase.ui.componentDiagram.Component_1002"/>
-         <elementType ref="org.unicase.ui.componentDiagram.ComponentOfferedServices_3001"/>
-         <elementType ref="org.unicase.ui.componentDiagram.ComponentConsumedServices_3002"/>
-         <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
-      </binding>
    </extension>
+
+
 
 
 </plugin>

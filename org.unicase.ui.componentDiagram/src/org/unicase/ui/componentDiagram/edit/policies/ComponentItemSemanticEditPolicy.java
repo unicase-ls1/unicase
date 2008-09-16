@@ -46,11 +46,13 @@ public class ComponentItemSemanticEditPolicy
 			CreateRelationshipRequest req) {
 		if (org.unicase.ui.componentDiagram.providers.ModelElementTypes.ComponentOfferedServices_3001 == req
 				.getElementType()) {
-			return null;
+			return getGEFWrapper(new org.unicase.ui.componentDiagram.edit.commands.ComponentOfferedServicesCreateCommand(
+					req, req.getSource(), req.getTarget()));
 		}
 		if (org.unicase.ui.componentDiagram.providers.ModelElementTypes.ComponentConsumedServices_3002 == req
 				.getElementType()) {
-			return null;
+			return getGEFWrapper(new org.unicase.ui.componentDiagram.edit.commands.ComponentConsumedServicesCreateCommand(
+					req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -62,13 +64,11 @@ public class ComponentItemSemanticEditPolicy
 			CreateRelationshipRequest req) {
 		if (org.unicase.ui.componentDiagram.providers.ModelElementTypes.ComponentOfferedServices_3001 == req
 				.getElementType()) {
-			return getGEFWrapper(new org.unicase.ui.componentDiagram.edit.commands.ComponentOfferedServicesCreateCommand(
-					req, req.getSource(), req.getTarget()));
+			return null;
 		}
 		if (org.unicase.ui.componentDiagram.providers.ModelElementTypes.ComponentConsumedServices_3002 == req
 				.getElementType()) {
-			return getGEFWrapper(new org.unicase.ui.componentDiagram.edit.commands.ComponentConsumedServicesCreateCommand(
-					req, req.getSource(), req.getTarget()));
+			return null;
 		}
 		return null;
 	}

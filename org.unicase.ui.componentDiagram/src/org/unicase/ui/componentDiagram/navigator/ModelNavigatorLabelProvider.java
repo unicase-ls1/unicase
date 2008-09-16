@@ -85,10 +85,10 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 		case org.unicase.ui.componentDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Diagram?http://unicase.org/model/diagram?MEDiagram", org.unicase.ui.componentDiagram.providers.ModelElementTypes.MEDiagram_99); //$NON-NLS-1$
-		case org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID:
+		case org.unicase.ui.componentDiagram.edit.parts.Component2EditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http://unicase.org/model/component?ComponentService", org.unicase.ui.componentDiagram.providers.ModelElementTypes.ComponentService_1001); //$NON-NLS-1$
-		case org.unicase.ui.componentDiagram.edit.parts.Component2EditPart.VISUAL_ID:
+		case org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http://unicase.org/model/component?Component", org.unicase.ui.componentDiagram.providers.ModelElementTypes.Component_1002); //$NON-NLS-1$
 		case org.unicase.ui.componentDiagram.edit.parts.ComponentOfferedServicesEditPart.VISUAL_ID:
@@ -155,9 +155,9 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 				.getVisualID(view)) {
 		case org.unicase.ui.componentDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
 			return getMEDiagram_99Text(view);
-		case org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID:
-			return getComponentService_1001Text(view);
 		case org.unicase.ui.componentDiagram.edit.parts.Component2EditPart.VISUAL_ID:
+			return getComponentService_1001Text(view);
+		case org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID:
 			return getComponent_1002Text(view);
 		case org.unicase.ui.componentDiagram.edit.parts.ComponentOfferedServicesEditPart.VISUAL_ID:
 			return getComponentOfferedServices_3001Text(view);
@@ -190,7 +190,7 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 				org.unicase.ui.componentDiagram.providers.ModelElementTypes.ComponentService_1001,
 				(view.getElement() != null ? view.getElement() : view),
 				org.unicase.ui.componentDiagram.part.ModelVisualIDRegistry
-						.getType(org.unicase.ui.componentDiagram.edit.parts.ComponentNameEditPart.VISUAL_ID));
+						.getType(org.unicase.ui.componentDiagram.edit.parts.ComponentServiceNameEditPart.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
 		if (parser != null) {
@@ -213,7 +213,7 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 				org.unicase.ui.componentDiagram.providers.ModelElementTypes.Component_1002,
 				(view.getElement() != null ? view.getElement() : view),
 				org.unicase.ui.componentDiagram.part.ModelVisualIDRegistry
-						.getType(org.unicase.ui.componentDiagram.edit.parts.ComponentName2EditPart.VISUAL_ID));
+						.getType(org.unicase.ui.componentDiagram.edit.parts.ComponentNameEditPart.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
 		if (parser != null) {

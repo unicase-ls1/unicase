@@ -81,8 +81,8 @@ public class ModelViewProvider extends AbstractViewProvider {
 					return null; // foreign diagram
 				}
 				switch (visualID) {
-				case org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID:
 				case org.unicase.ui.componentDiagram.edit.parts.Component2EditPart.VISUAL_ID:
+				case org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID:
 					if (domainElement == null
 							|| visualID != org.unicase.ui.componentDiagram.part.ModelVisualIDRegistry
 									.getNodeVisualID(containerView,
@@ -90,15 +90,15 @@ public class ModelViewProvider extends AbstractViewProvider {
 						return null; // visual id in semantic hint should match visual id for domain element
 					}
 					break;
-				case org.unicase.ui.componentDiagram.edit.parts.ComponentNameEditPart.VISUAL_ID:
-					if (org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID != org.unicase.ui.componentDiagram.part.ModelVisualIDRegistry
+				case org.unicase.ui.componentDiagram.edit.parts.ComponentServiceNameEditPart.VISUAL_ID:
+					if (org.unicase.ui.componentDiagram.edit.parts.Component2EditPart.VISUAL_ID != org.unicase.ui.componentDiagram.part.ModelVisualIDRegistry
 							.getVisualID(containerView)
 							|| containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
-				case org.unicase.ui.componentDiagram.edit.parts.ComponentName2EditPart.VISUAL_ID:
-					if (org.unicase.ui.componentDiagram.edit.parts.Component2EditPart.VISUAL_ID != org.unicase.ui.componentDiagram.part.ModelVisualIDRegistry
+				case org.unicase.ui.componentDiagram.edit.parts.ComponentNameEditPart.VISUAL_ID:
+					if (org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID != org.unicase.ui.componentDiagram.part.ModelVisualIDRegistry
 							.getVisualID(containerView)
 							|| containerView.getElement() != domainElement) {
 						return null; // wrong container
@@ -122,14 +122,14 @@ public class ModelViewProvider extends AbstractViewProvider {
 			return null;
 		}
 		switch (visualID) {
+		case org.unicase.ui.componentDiagram.edit.parts.Component2EditPart.VISUAL_ID:
+			return org.unicase.ui.componentDiagram.view.factories.Component2ViewFactory.class;
+		case org.unicase.ui.componentDiagram.edit.parts.ComponentServiceNameEditPart.VISUAL_ID:
+			return org.unicase.ui.componentDiagram.view.factories.ComponentServiceNameViewFactory.class;
 		case org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID:
 			return org.unicase.ui.componentDiagram.view.factories.ComponentViewFactory.class;
 		case org.unicase.ui.componentDiagram.edit.parts.ComponentNameEditPart.VISUAL_ID:
 			return org.unicase.ui.componentDiagram.view.factories.ComponentNameViewFactory.class;
-		case org.unicase.ui.componentDiagram.edit.parts.Component2EditPart.VISUAL_ID:
-			return org.unicase.ui.componentDiagram.view.factories.Component2ViewFactory.class;
-		case org.unicase.ui.componentDiagram.edit.parts.ComponentName2EditPart.VISUAL_ID:
-			return org.unicase.ui.componentDiagram.view.factories.ComponentName2ViewFactory.class;
 		}
 		return null;
 	}

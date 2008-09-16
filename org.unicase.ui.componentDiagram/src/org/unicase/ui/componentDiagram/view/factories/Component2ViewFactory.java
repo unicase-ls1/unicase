@@ -62,7 +62,7 @@ public class Component2ViewFactory extends AbstractShapeViewFactory {
 						eObjectAdapter,
 						view,
 						org.unicase.ui.componentDiagram.part.ModelVisualIDRegistry
-								.getType(org.unicase.ui.componentDiagram.edit.parts.ComponentName2EditPart.VISUAL_ID),
+								.getType(org.unicase.ui.componentDiagram.edit.parts.ComponentServiceNameEditPart.VISUAL_ID),
 						ViewUtil.APPEND, true, getPreferencesHint());
 	}
 }
