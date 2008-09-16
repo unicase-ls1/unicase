@@ -22,7 +22,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.unicase.model.edit;visibility:=reexport,
  org.eclipse.ui,
  org.eclipse.emf.transaction,
- org.unicase.ui.common
+ org.unicase.ui.common,
+ org.unicase.ui.stem
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.emf.ecore.change.provider,
  org.eclipse.emf.edit.ui.provider
