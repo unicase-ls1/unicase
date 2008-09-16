@@ -3,7 +3,7 @@ package org.unicase.emfstore.conflictDetection;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 
 /**
-* This is the interface for a conflict detection strategy
+* This is the interface for a conflict detection strategy.
 * 
 * @author Maximilian Koegel
 * 

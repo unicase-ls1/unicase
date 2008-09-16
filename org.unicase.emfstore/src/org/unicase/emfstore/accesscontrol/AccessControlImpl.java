@@ -10,11 +10,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.accesscontrol.authentication.LDAPVerifier;
+import org.unicase.emfstore.accesscontrol.authentication.SimplePropertyFileVerifyer;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.esmodel.SessionId;
@@ -24,6 +25,8 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.ServerAdmin;
+import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.emfstore.exceptions.InvalidPropertyException;
 import org.unicase.model.ModelElement;
 
 /**
@@ -44,14 +47,27 @@ public class AccessControlImpl implements AuthenticationControl,
 	 * 
 	 * @param serverSpace
 	 *            the server space to work on
-	 * @param properties 
+	 * @throws EmfStoreException
+	 *             an exception
 	 */
-	public AccessControlImpl(ServerSpace serverSpace, Properties properties) {
+	public AccessControlImpl(ServerSpace serverSpace) throws EmfStoreException {
 		this.sessionUserMap = new HashMap<SessionId, ACUserContainer>();
 		this.serverSpace = serverSpace;
-		authenticationControl = new LDAPVerifier(properties);
+
+		String property = ServerConfiguration.getProperties().getProperty(
+				ServerConfiguration.AUTHENTICATION_POLICY,
+				ServerConfiguration.AUTHENTICATION_POLICY_DEFAULT);
+		if (property.equals(ServerConfiguration.AUTHENTICATION_LDAP)) {
+			authenticationControl = new LDAPVerifier();
+		} else if (property.equals(ServerConfiguration.AUTHENTICATION_SPFV)) {
+			authenticationControl = new SimplePropertyFileVerifyer(
+					ServerConfiguration.getProperties().getProperty(
+							ServerConfiguration.AUTHENTICATION_SPFV_FILEPATH));
+		} else {
+			throw new InvalidPropertyException();
+		}
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,7 +77,8 @@ public class AccessControlImpl implements AuthenticationControl,
 	public SessionId logIn(String username, String password)
 			throws AccessControlException {
 		ACUser user = resolveUser(username);
-		SessionId sessionId = authenticationControl.logIn(user.getName(), password);
+		SessionId sessionId = authenticationControl.logIn(user.getName(),
+				password);
 		sessionUserMap.put(sessionId, new ACUserContainer(user));
 		return sessionId;
 	}
@@ -104,16 +121,16 @@ public class AccessControlImpl implements AuthenticationControl,
 			Set<ModelElement> modelElements) throws AccessControlException {
 		checkSession(sessionId);
 		ACUser user = sessionUserMap.get(sessionId).getUser();
-		List<Role> roles = new ArrayList<Role>(); 
+		List<Role> roles = new ArrayList<Role>();
 		roles.addAll(user.getRoles());
 		roles.addAll(getRolesFromGroups(user));
-		//FIXME
+		// FIXME
 		if (!canWrite(roles, projectId, null)) {
 			throw new AccessControlException();
-//		for (ModelElement modelElement : modelElements) {
-//			if (!canWrite(roles, projectId, modelElement)) {
-//				throw new AccessControlException();
-//			}
+			// for (ModelElement modelElement : modelElements) {
+			// if (!canWrite(roles, projectId, modelElement)) {
+			// throw new AccessControlException();
+			// }
 		}
 	}
 
@@ -121,9 +138,12 @@ public class AccessControlImpl implements AuthenticationControl,
 	 * Check if the given list of roles can write to the model element in the
 	 * project.
 	 * 
-	 * @param roles a list of roles
-	 * @param projectId a project id
-	 * @param modelElement a model element
+	 * @param roles
+	 *            a list of roles
+	 * @param projectId
+	 *            a project id
+	 * @param modelElement
+	 *            a model element
 	 * @return true if one of the roles can write
 	 * @throws AccessControlException
 	 */
@@ -143,9 +163,12 @@ public class AccessControlImpl implements AuthenticationControl,
 	 * Check if the given list of roles can read the model element in the
 	 * project.
 	 * 
-	 * @param roles a list of roles
-	 * @param projectId a project id
-	 * @param modelElement a model element
+	 * @param roles
+	 *            a list of roles
+	 * @param projectId
+	 *            a project id
+	 * @param modelElement
+	 *            a model element
 	 * @return true if one of the roles can read
 	 * @throws AccessControlException
 	 */
@@ -161,16 +184,16 @@ public class AccessControlImpl implements AuthenticationControl,
 
 	private List<Role> getRolesFromGroups(ACOrgUnit orgUnit) {
 		ArrayList<Role> roles = new ArrayList<Role>();
-		for(ACGroup group : getGroups(orgUnit)) {
+		for (ACGroup group : getGroups(orgUnit)) {
 			roles.addAll(group.getRoles());
 		}
 		return roles;
 	}
-	
+
 	private List<ACGroup> getGroups(ACOrgUnit orgUnit) {
 		ArrayList<ACGroup> groups = new ArrayList<ACGroup>();
-		for(ACGroup group : serverSpace.getGroups()) {
-			if(group.getMembers().contains(orgUnit)) {
+		for (ACGroup group : serverSpace.getGroups()) {
+			if (group.getMembers().contains(orgUnit)) {
 				groups.add(group);
 				groups.addAll(getGroups(group));
 			}
@@ -178,8 +201,7 @@ public class AccessControlImpl implements AuthenticationControl,
 		return groups;
 	}
 
-	private ACUser getUser(ACOrgUnitId orgUnitId)
-			throws AccessControlException {
+	private ACUser getUser(ACOrgUnitId orgUnitId) throws AccessControlException {
 		for (ACUser user : serverSpace.getUsers()) {
 			if (user.getId().equals(orgUnitId)) {
 				return user;
@@ -187,37 +209,41 @@ public class AccessControlImpl implements AuthenticationControl,
 		}
 		throw new AccessControlException("Given User doesn't exist.");
 	}
-	
-	/** 
+
+	/**
 	 * {@inheritDoc}
-	 * @see org.unicase.emfstore.accesscontrol.AuthorizationControl#checkReadAccess(org.unicase.emfstore.esmodel.SessionId, org.unicase.emfstore.esmodel.ProjectId, java.util.Set)
+	 * 
+	 * @see org.unicase.emfstore.accesscontrol.AuthorizationControl#checkReadAccess(org.unicase.emfstore.esmodel.SessionId,
+	 *      org.unicase.emfstore.esmodel.ProjectId, java.util.Set)
 	 */
 	public void checkReadAccess(SessionId sessionId, ProjectId projectId,
 			Set<ModelElement> modelElements) throws AccessControlException {
 		checkSession(sessionId);
 		ACUser user = sessionUserMap.get(sessionId).getUser();
-		List<Role> roles = new ArrayList<Role>(); 
+		List<Role> roles = new ArrayList<Role>();
 		roles.addAll(user.getRoles());
 		roles.addAll(getRolesFromGroups(user));
-		//FIXME
+		// FIXME
 		if (!canRead(roles, projectId, null)) {
 			throw new AccessControlException();
-//		for (ModelElement modelElement : modelElements) {
-//			if (!canRead(roles, projectId, modelElement)) {
-//				throw new AccessControlException();
-//			}
+			// for (ModelElement modelElement : modelElements) {
+			// if (!canRead(roles, projectId, modelElement)) {
+			// throw new AccessControlException();
+			// }
 		}
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
-	 * @see org.unicase.emfstore.accesscontrol.AuthorizationControl#checkProjectAdminAccess(org.unicase.emfstore.esmodel.SessionId, org.unicase.emfstore.esmodel.ProjectId)
+	 * 
+	 * @see org.unicase.emfstore.accesscontrol.AuthorizationControl#checkProjectAdminAccess(org.unicase.emfstore.esmodel.SessionId,
+	 *      org.unicase.emfstore.esmodel.ProjectId)
 	 */
 	public void checkProjectAdminAccess(SessionId sessionId, ProjectId projectId)
 			throws AccessControlException {
 		checkSession(sessionId);
 		ACUser user = sessionUserMap.get(sessionId).getUser();
-		List<Role> roles = new ArrayList<Role>(); 
+		List<Role> roles = new ArrayList<Role>();
 		roles.addAll(user.getRoles());
 		roles.addAll(getRolesFromGroups(user));
 		for (Role role : roles) {
@@ -228,15 +254,16 @@ public class AccessControlImpl implements AuthenticationControl,
 		throw new AccessControlException();
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.emfstore.accesscontrol.AuthorizationControl#checkServerAdminAccess(org.unicase.emfstore.esmodel.SessionId)
 	 */
 	public void checkServerAdminAccess(SessionId sessionId)
 			throws AccessControlException {
 		checkSession(sessionId);
 		ACUser user = sessionUserMap.get(sessionId).getUser();
-		List<Role> roles = new ArrayList<Role>(); 
+		List<Role> roles = new ArrayList<Role>();
 		roles.addAll(user.getRoles());
 		roles.addAll(getRolesFromGroups(user));
 		for (Role role : roles) {
@@ -247,52 +274,53 @@ public class AccessControlImpl implements AuthenticationControl,
 		throw new AccessControlException();
 
 	}
-	
+
 	private class ACUserContainer {
 		private ACUser acUser;
 		private long lastActive;
-		
+
 		public ACUserContainer(ACUser acUser) {
 			this.acUser = acUser;
 			active();
 		}
 
 		public ACUser getUser() {
-			//TODO: timed-out session id
+			// TODO: timed-out session id
 			active();
 			return getRawUser();
 		}
-		
+
 		public ACUser getRawUser() {
 			return acUser;
 		}
-		
+
 		private void active() {
 			lastActive = System.currentTimeMillis();
 		}
-		
+
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public ACUser resolveUser(SessionId sessionId) throws AccessControlException {
+	public ACUser resolveUser(SessionId sessionId)
+			throws AccessControlException {
 		checkSession(sessionId);
 		ACUser tmpUser = sessionUserMap.get(sessionId).getRawUser();
 		ACUser user = (ACUser) EcoreUtil.copy(tmpUser);
-		for(Role role: getRolesFromGroups(tmpUser)) {
+		for (Role role : getRolesFromGroups(tmpUser)) {
 			user.getRoles().add((Role) EcoreUtil.copy(role));
 		}
 		return user;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
 	public ACUser resolveUser(ACOrgUnitId id) throws AccessControlException {
 		ACUser tmpUser = getUser(id);
 		ACUser user = (ACUser) EcoreUtil.copy(tmpUser);
-		for(Role role: getRolesFromGroups(tmpUser)) {
+		for (Role role : getRolesFromGroups(tmpUser)) {
 			user.getRoles().add((Role) EcoreUtil.copy(role));
 		}
 		return user;

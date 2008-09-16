@@ -200,6 +200,29 @@ public interface RMIEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link EmfStore}.
 	 * 
+	 * @param sessionId
+	 *            the session id
+	 * @param name
+	 *            the name
+	 * @param description
+	 *            the description
+	 * @param logMessage
+	 *            the log message
+	 * @param project
+	 *            the initial project state
+	 * @return the project id
+	 * @throws RemoteException
+	 *             if RMI remote invocation fails
+	 * @throws EmfStoreException
+	 *             if a problem in the element store occurs
+	 */
+	String createProject(String sessionId, String name, String description,
+			String logMessage, String project) throws EmfStoreException,
+			RemoteException;
+
+	/**
+	 * String typed implementation of method in {@link EmfStore}.
+	 * 
 	 * @see org.unicase.emfstore.accesscontrol.AuthenticationControl#logIn(String,
 	 *      String)
 	 * @param username
@@ -217,10 +240,19 @@ public interface RMIEmfStoreFacade extends Remote {
 	String login(String username, String password, String serverInfo)
 			throws RemoteException, AccessControlException;
 
-	String createProject(String objectToString, String name,
-			String description, String objectToString2, String objectToString3)
-			throws EmfStoreException, RemoteException;
-
+	/**
+	 * Resolves the user's rights.
+	 * 
+	 * @param sessionId
+	 *            the sessionid
+	 * @param orgUnitId
+	 *            the user's id
+	 * @return an ACUser
+	 * @throws EmfStoreException
+	 *             server related exception
+	 * @throws RemoteException
+	 *             rmi related exception
+	 */
 	String resolveUser(String sessionId, String orgUnitId)
 			throws EmfStoreException, RemoteException;
 }

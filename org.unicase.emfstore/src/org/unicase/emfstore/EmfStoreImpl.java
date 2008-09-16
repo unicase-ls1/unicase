@@ -12,7 +12,6 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Properties;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -69,11 +68,9 @@ public class EmfStoreImpl implements EmfStore {
 	 *            the serverspace
 	 * @param authorizationControl
 	 *            the accesscontroller
-	 * @param properties
-	 *            server properties
 	 */
 	public EmfStoreImpl(ServerSpace serverSpace,
-			AuthorizationControl authorizationControl, Properties properties) {
+			AuthorizationControl authorizationControl) {
 		this.serverSpace = serverSpace;
 		this.authorizationControl = authorizationControl;
 	}
@@ -104,7 +101,7 @@ public class EmfStoreImpl implements EmfStore {
 
 		String property = ServerConfiguration.getProperties().getProperty(
 				ServerConfiguration.PROJECTSTATE_VERSION_PERSISTENCE,
-				ServerConfiguration.DEFAULT_PROJECTSPACE_VERSION_PERSISTENCY);
+				ServerConfiguration.PROJECTSPACE_VERSION_PERSISTENCY_DEFAULT);
 		Project newProjectState = null;
 		if (property.equals("lastVersionOnly")) {
 			newProjectState = previousHeadVersion.getProjectState();

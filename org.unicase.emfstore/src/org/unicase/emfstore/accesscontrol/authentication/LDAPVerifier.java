@@ -39,10 +39,11 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 
 	/**
 	 * Default constructor.
-	 * @param properties 
+	 * 
+	 * @param properties
 	 */
-	public LDAPVerifier(Properties properties) {
-		super(properties);
+	public LDAPVerifier() {
+		super();
 		logger = LogFactory.getLog(LDAPVerifier.class);
 	}
 
@@ -50,23 +51,24 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public
-	boolean verifyPassword(String username, String password)
+	public boolean verifyPassword(String username, String password)
 			throws AccessControlException {
 		Properties props = new Properties();
 		DirContext dirContext = null;
-
 		// anonymous bind
-		props.put("java.naming.ldap.version", "3");
-		props.put(Context.INITIAL_CONTEXT_FACTORY, DEFAULT_CTX);
-		props.put(Context.PROVIDER_URL, ldapURL);
-		//props.put(Context.SECURITY_PROTOCOL, "ssl");
-		try {
-			dirContext = new InitialDirContext(props);
-		} catch (NamingException e) {
-			logger.info("LDAP Directory " + ldapURL + " not found.", e);
-			return false;
-		}
+		// props.put("java.naming.ldap.version",
+		// "3"); props.put(Context.
+		// INITIAL_CONTEXT_FACTORY,
+		// DEFAULT_CTX);
+		// props.put(Context.PROVIDER_URL,
+		// ldapURL);
+		// //props.put(Context.SECURITY_PROTOCOL
+		// , "ssl"); try { dirContext = new
+		// InitialDirContext(props); } catch
+		// (NamingException e) {
+		// logger.info("LDAP Directory " +
+		// ldapURL + " not found.", e); return
+		// false; }
 
 		SearchControls constraints = new SearchControls();
 		constraints.setSearchScope(SearchControls.SUBTREE_SCOPE);
@@ -104,7 +106,7 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 		// TODO: use ssl? password hash?
 		// Authenticated bind
 		props = new Properties();
-		//props.put(Context.SECURITY_PROTOCOL, "ssl");
+		// props.put(Context.SECURITY_PROTOCOL, "ssl");
 		props.put(Context.SECURITY_AUTHENTICATION, "simple");
 		props.put(Context.SECURITY_PRINCIPAL, resolvedName + ", " + ldapBase);
 		props.put(Context.SECURITY_CREDENTIALS, password);
