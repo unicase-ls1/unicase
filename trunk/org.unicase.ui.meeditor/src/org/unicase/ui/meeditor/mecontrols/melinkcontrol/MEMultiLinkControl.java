@@ -182,7 +182,10 @@ public class MEMultiLinkControl extends AbstractMEControl {
 						RowLayout layout = new RowLayout(SWT.VERTICAL);
 						layout.wrap = true;
 						scrollClient.setLayout(layout);
-						scrollPane.setLayoutData(new GridData(400,150));
+						GridData spec = new GridData(400,150);
+						spec.horizontalAlignment = GridData.FILL;
+						spec.grabExcessHorizontalSpace = true;
+						scrollPane.setLayoutData(spec);
 						scrollPane.setMinSize(150,150);
 						parent = scrollClient;
 					}
@@ -203,7 +206,9 @@ public class MEMultiLinkControl extends AbstractMEControl {
 						linkArea.layout();
 					}
 					section.setExpanded(false);
-					section.setExpanded(true);
+					if(eList.size()>0){
+						section.setExpanded(true);
+					}
 				}
 			}
 		});
