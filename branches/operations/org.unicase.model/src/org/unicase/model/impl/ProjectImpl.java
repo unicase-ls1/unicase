@@ -10,9 +10,11 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -22,6 +24,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
+import org.unicase.model.util.ProjectChangeNotifier;
+import org.unicase.model.util.ProjectChangeObserver;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '
@@ -36,7 +40,7 @@ import org.unicase.model.Project;
  * @generated
  */
 
-public class ProjectImpl extends EObjectImpl implements Project {
+public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeObserver {
 
 	/**
 	 * The cached value of the '{@link #getModelElements() <em>Model Elements</em>}' containment reference list.
@@ -47,6 +51,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @ordered
 	 */
 	protected EList<ModelElement> modelElements;
+	private Set<ModelElement> modelElementCache;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -112,24 +117,10 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			return list;
 		}
 
-		//elements to do
-		Set<EObject> todo = new HashSet<EObject>();
-
-		//init with the project itself
-		todo.add(this);
-
-		while (!todo.isEmpty()) {
-			EObject obj = todo.iterator().next();
-			EList<EObject> contents = obj.eContents();
-			for (EObject content : contents) {
-				if (modelElementClass.isInstance(content)) {
-					list.add((T) content);
-					todo.add((ModelElement) content);
-				} else {
-					todo.add(content);
-				}
+		for (ModelElement modelElement: getModelElementsFromCache()) {
+			if (modelElementClass.isInstance(modelElement)) {
+					list.add((T) modelElement);
 			}
-			todo.remove(obj);
 		}
 
 		return list;
@@ -233,5 +224,40 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	public Object getAdapter(Class adapter) {
 		// JH Auto-generated method stub
 		return null;
+	}
+
+	
+	public boolean contains(ModelElement modelElement) {
+		return getModelElementsFromCache().contains(modelElement);
+	}
+	
+	private Set<ModelElement> getModelElementsFromCache() {
+		if (modelElementCache==null) {
+			//init cache
+			modelElementCache = new HashSet<ModelElement>();
+			TreeIterator<EObject> allContents = this.eAllContents();
+			while (allContents.hasNext()) {
+				EObject next = allContents.next();
+				if (ModelPackage.eINSTANCE.getModelElement().isInstance(next)) {
+					modelElementCache.add((ModelElement)next);
+				}
+			}
+			//init cache update
+			new ProjectChangeNotifier(this, this);
+		}
+		return modelElementCache;		
+	}
+
+	public void modelElementAdded(Project project, ModelElement modelElement) {
+		this.modelElementCache.add(modelElement);
+	}
+
+	public void notify(Notification notification, Project project,
+			ModelElement modelElement) {
+		//nop
+	}
+
+	public void modelElementRemoved(Project project, ModelElement modelElement) {
+		this.modelElementCache.remove(modelElement);
 	}
 }
