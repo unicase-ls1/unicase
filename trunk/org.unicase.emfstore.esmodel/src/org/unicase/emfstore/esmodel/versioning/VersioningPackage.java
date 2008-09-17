@@ -228,13 +228,22 @@ public interface VersioningPackage extends EPackage {
 	int CHANGE_PACKAGE__CHANGE_CONTAINERS = 0;
 
 	/**
+	 * The feature id for the '<em><b>Operations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHANGE_PACKAGE__OPERATIONS = 1;
+
+	/**
 	 * The number of structural features of the '<em>Change Package</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_PACKAGE_FEATURE_COUNT = 1;
+	int CHANGE_PACKAGE_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryInfoImpl <em>History Info</em>}' class.
@@ -558,6 +567,17 @@ public interface VersioningPackage extends EPackage {
 	EReference getChangePackage_ChangeContainers();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getOperations <em>Operations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Operations</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.ChangePackage#getOperations()
+	 * @see #getChangePackage()
+	 * @generated
+	 */
+	EReference getChangePackage_Operations();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.HistoryInfo <em>History Info</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -869,6 +889,15 @@ public interface VersioningPackage extends EPackage {
 		 */
 		EReference CHANGE_PACKAGE__CHANGE_CONTAINERS = eINSTANCE
 				.getChangePackage_ChangeContainers();
+
+		/**
+		 * The meta object literal for the '<em><b>Operations</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CHANGE_PACKAGE__OPERATIONS = eINSTANCE
+				.getChangePackage_Operations();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryInfoImpl <em>History Info</em>}' class.

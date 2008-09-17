@@ -347,6 +347,15 @@ public class VersioningPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getChangePackage_Operations() {
+		return (EReference) changePackageEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getHistoryInfo() {
 		return historyInfoEClass;
 	}
@@ -534,6 +543,7 @@ public class VersioningPackageImpl extends EPackageImpl implements
 
 		changePackageEClass = createEClass(CHANGE_PACKAGE);
 		createEReference(changePackageEClass, CHANGE_PACKAGE__CHANGE_CONTAINERS);
+		createEReference(changePackageEClass, CHANGE_PACKAGE__OPERATIONS);
 
 		historyInfoEClass = createEClass(HISTORY_INFO);
 		createEReference(historyInfoEClass, HISTORY_INFO__PRIMERY_SPEC);
@@ -658,6 +668,12 @@ public class VersioningPackageImpl extends EPackageImpl implements
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		initEReference(getChangePackage_Operations(), theOperationsPackage
+				.getAbstractOperation(), null, "operations", null, 0, -1,
+				org.unicase.emfstore.esmodel.versioning.ChangePackage.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
 		addEOperation(changePackageEClass, this.getChangePackage(), "reverse",
 				0, 1, IS_UNIQUE, IS_ORDERED);
@@ -673,10 +689,6 @@ public class VersioningPackageImpl extends EPackageImpl implements
 				IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theChangePackage.getChangeDescription(),
 				"backwardChangeDescription", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		addEOperation(changePackageEClass, theOperationsPackage
-				.getAbstractOperation(), "getOperations", 0, -1, IS_UNIQUE,
-				IS_ORDERED);
 
 		initEClass(historyInfoEClass, HistoryInfo.class, "HistoryInfo",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
