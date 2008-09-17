@@ -13,10 +13,12 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -28,7 +30,11 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.DanglingHREFException;
+import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.ResourceSetChangeEvent;
+import org.eclipse.emf.transaction.ResourceSetListener;
+import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
@@ -38,6 +44,9 @@ import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.ModelElement;
@@ -80,7 +89,7 @@ import org.unicase.workspace.exceptions.NoLocalChangesException;
  * @generated
  */
 public class ProjectSpaceImpl extends IdentifiableElementImpl implements
-		ProjectSpace, ModelElementChangeObserver {
+		ProjectSpace, ResourceSetListener {
 
 	/**
 	 * @generated NOT
@@ -228,6 +237,16 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * @ordered
 	 */
 	protected boolean dirty = DIRTY_EDEFAULT;
+
+	private List<AbstractOperation> operations;
+
+	public List<AbstractOperation> getOperations() {
+		return operations;
+	}
+
+	public void setOperations(List<AbstractOperation> operations) {
+		this.operations = operations;
+	}
 
 	// begin of custom code
 	/**
@@ -973,12 +992,13 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * @generated NOT
 	 */
 	public void init() {
+		TransactionalEditingDomain domain = WorkspaceManager.getInstance()
+		.getCurrentWorkspace().getEditingDomain();
+		domain.addResourceSetListener(this);
+		this.operations=new ArrayList<AbstractOperation>();
+		
 		// MK: possibly performance hit
 		this.eResource().setTrackingModification(true);
-		for (final ModelElement modelElement : this.getProject()
-				.getAllModelElements()) {
-			new ModelElementChangeNotifier(modelElement, this);
-		}
 		startChangeRecording();
 	}
 
@@ -1288,57 +1308,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	}
 	
 	/**
-	 * @generated NOT
-	 */
-	public void notify(Notification notification, ModelElement modelElement) {
-		EStructuralFeature feature = (EStructuralFeature) notification.getFeature();
-		EObject newValue = (EObject) notification.getNewValue();
-		switch (notification.getEventType()){
-			case Notification.ADD:
-				if(newValue.eResource()!=null){
-					//known
-					if(feature.getUpperBound()!=1){
-						//multi
-						
-					}else{
-						//single
-						
-					}
-				}else{
-					//unknown
-					
-					//TODO:create
-					if(feature.getUpperBound()!=1){
-						//multi
-						
-					}else{
-						//single
-						
-					}
-				}
-				break;
-			case Notification.REMOVE:
-				break;
-		}
-//		if (notification.getEventType() == Notification.ADD
-//				&& notification.getFeature() instanceof EStructuralFeature) {
-//			// FIXME OW: check cast
-//			EObject newValue = (EObject) notification.getNewValue();
-//			addToResource(newValue, modelElement);
-//
-//		} else if (notification.getEventType() == Notification.ADD_MANY
-//				&& notification.getFeature() instanceof EStructuralFeature) {
-//			// FIXME OW: check cast
-//			List<EObject> newValues = (List<EObject>) notification
-//					.getNewValue();
-//			for (EObject newElement : newValues) {
-//				addToResource(newElement, modelElement);
-//			}
-//		}
-		saveResources(false);
-	}
-
-	/**
 	 * Save all resources that are dirty.
 	 */
 	private void saveResources(boolean force) {
@@ -1390,6 +1359,63 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			}
 		});
 
+	}
+
+	public NotificationFilter getFilter() {
+		return NotificationFilter.NOT_TOUCH;
+	}
+
+	public boolean isAggregatePrecommitListener() {
+		return false;
+	}
+
+	public boolean isPostcommitOnly() {
+		return true;
+	}
+
+	public boolean isPrecommitOnly() {
+		return false;
+	}
+
+	public void resourceSetChanged(ResourceSetChangeEvent event) {
+		
+		//filter notifications to project
+		List<Notification> notifications = event.getNotifications();
+		List<Notification> projectNotifications = new ArrayList<Notification>();
+		for (Notification notification: notifications) {
+			Object notifier = notification.getNotifier();
+			if (notifier instanceof ModelElement) {
+				ModelElement modelElement = (ModelElement) notifier;
+				if (this.getProject().contains(modelElement)) {
+					projectNotifications.add(notification);
+				}
+			}
+		}
+		if (projectNotifications.size()==0) {
+			return;
+		}
+		
+		Notification notification = projectNotifications.get(0);
+		if (notification.getEventType()==Notification.SET) {
+			AttributeOperation attributeOperation = OperationsFactory.eINSTANCE.createAttributeOperation();
+			attributeOperation.setName("Attribute change");
+			attributeOperation.setDescription("Attribute changed description");
+			EAttribute attribute = (EAttribute)notification.getFeature();
+			attributeOperation.setFeatureName(attribute.getName());
+			attributeOperation.setModelElement((ModelElement)notification.getNotifier());
+			attributeOperation.setNewValue(notification.getNewValue());
+			attributeOperation.setOldValue(notification.getOldValue());
+			this.operations.add(attributeOperation);
+		}
+		
+		return;
+		
+	}
+
+	public Command transactionAboutToCommit(ResourceSetChangeEvent event)
+			throws RollbackException {
+		//do nothing
+		return null;
 	}
 
 } // ProjectContainerImpl

@@ -8,6 +8,7 @@ package org.unicase.workspace;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -15,6 +16,7 @@ import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.Project;
@@ -396,5 +398,9 @@ public interface ProjectSpace extends IdentifiableElement {
 	void shareProject(Usersession usersession) throws EmfStoreException;
 
 	void exportProject(String fileName) throws IOException;
+
+	List<AbstractOperation> getOperations();
+
+	void setOperations(List<AbstractOperation> operations);
 
 } // ProjectContainer
