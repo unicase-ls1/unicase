@@ -155,6 +155,17 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		return list;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean contains(ModelElement modelElement) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
 	//end of custom code
 
 	/**

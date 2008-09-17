@@ -82,4 +82,12 @@ public interface Project extends EObject, IAdaptable {
 	<T extends ModelElement> EList<T> getModelElementsByClass(
 			EClass modelElementClass, EList<T> list);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean contains(ModelElement modelElement);
+
 } // Project
