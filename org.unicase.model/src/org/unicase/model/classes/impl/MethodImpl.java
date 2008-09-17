@@ -637,7 +637,7 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	 * @generated NOT
 	 */
 	public void setLabel(String newLabel) {
-		String oldLabel = getLabel();
+		String oldLabel = label;
 		if (!newLabel.equals(oldLabel)) {
 			label = newLabel;
 
