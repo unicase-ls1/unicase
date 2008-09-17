@@ -7,7 +7,9 @@
 package org.unicase.model.impl;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -22,6 +24,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.ModelElement;
+import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.util.ProjectChangeNotifier;
@@ -51,7 +54,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 	 * @ordered
 	 */
 	protected EList<ModelElement> modelElements;
-	private Set<ModelElement> modelElementCache;
+	private Map<ModelElementId, ModelElement> modelElementCache;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -117,7 +120,8 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 			return list;
 		}
 
-		for (ModelElement modelElement: getModelElementsFromCache()) {
+		for (ModelElementId modelElementId: getModelElementsFromCache().keySet()) {
+			ModelElement modelElement = this.getModelElement(modelElementId);
 			if (modelElementClass.isInstance(modelElement)) {
 					list.add((T) modelElement);
 			}
@@ -144,17 +148,6 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 			}
 		}
 		return list;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean contains(ModelElement modelElement) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
 	}
 
 	//end of custom code
@@ -239,18 +232,19 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	
 	public boolean contains(ModelElement modelElement) {
-		return getModelElementsFromCache().contains(modelElement);
+		return contains(modelElement.getModelElementId());
 	}
 	
-	private Set<ModelElement> getModelElementsFromCache() {
+	private Map<ModelElementId, ModelElement> getModelElementsFromCache() {
 		if (modelElementCache==null) {
 			//init cache
-			modelElementCache = new HashSet<ModelElement>();
+			modelElementCache = new HashMap<ModelElementId, ModelElement>();
 			TreeIterator<EObject> allContents = this.eAllContents();
 			while (allContents.hasNext()) {
 				EObject next = allContents.next();
 				if (ModelPackage.eINSTANCE.getModelElement().isInstance(next)) {
-					modelElementCache.add((ModelElement)next);
+					ModelElement modelElement = (ModelElement)next;
+					modelElementCache.put(modelElement.getModelElementId(), modelElement);
 				}
 			}
 			//init cache update
@@ -260,7 +254,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 	}
 
 	public void modelElementAdded(Project project, ModelElement modelElement) {
-		this.modelElementCache.add(modelElement);
+		this.modelElementCache.put(modelElement.getModelElementId(), modelElement);
 	}
 
 	public void notify(Notification notification, Project project,
@@ -269,6 +263,14 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 	}
 
 	public void modelElementRemoved(Project project, ModelElement modelElement) {
-		this.modelElementCache.remove(modelElement);
+		this.modelElementCache.remove(modelElement.getIdentifier());
+	}
+
+	public boolean contains(ModelElementId modelElementId) {
+		return this.getModelElementsFromCache().containsKey(modelElementId);
+	}
+
+	public ModelElement getModelElement(ModelElementId modelElementId) {
+		return this.getModelElementsFromCache().get(modelElementId);
 	}
 }

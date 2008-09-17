@@ -12,7 +12,7 @@ public class BasicConflictDetectionStrategy implements
 
 	public boolean doConflict(AbstractOperation operationA,
 			AbstractOperation operationB) {
-		return operationA.getModelElement().equals(operationB.getModelElement());
+		return operationA.getModelElementId().equals(operationB.getModelElementId());
 	}
 
 	public boolean isRequired(AbstractOperation requiredOperation,

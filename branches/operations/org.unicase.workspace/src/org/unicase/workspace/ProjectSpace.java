@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
@@ -446,9 +447,5 @@ public interface ProjectSpace extends IdentifiableElement {
 	void shareProject(Usersession usersession) throws EmfStoreException;
 
 	void exportProject(String fileName) throws IOException;
-
-	List<AbstractOperation> getOperations();
-
-	void setOperations(List<AbstractOperation> operations);
 
 } // ProjectContainer

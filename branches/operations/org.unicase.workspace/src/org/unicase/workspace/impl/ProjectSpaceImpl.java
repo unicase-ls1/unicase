@@ -9,6 +9,7 @@ package org.unicase.workspace.impl;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -21,14 +22,16 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.eclipse.emf.ecore.change.util.ChangeRecorder;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.xmi.DanglingHREFException;
 import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -52,9 +55,8 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 import org.unicase.model.impl.IdentifiableElementImpl;
-import org.unicase.model.util.ModelElementChangeNotifier;
-import org.unicase.model.util.ModelElementChangeObserver;
 import org.unicase.model.util.ModelValidationHelper;
+import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
@@ -69,7 +71,7 @@ import org.unicase.workspace.exceptions.NoLocalChangesException;
  * <!-- begin-user-doc --> An implementation of the model object '
  * <em><b>Project Container</b></em>'.
  * 
- * @implements ModelElementChangeObserver <!-- end-user-doc -->
+ * @implements ProjectChangeObserver, ResourceSetListener <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -78,18 +80,20 @@ import org.unicase.workspace.exceptions.NoLocalChangesException;
  *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectName <em>Project Name</em>}</li>
  *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectDescription <em>Project Description</em>}</li>
  *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getLocalChanges <em>Local Changes</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getOperations <em>Operations</em>}</li>
  *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getUsersession <em>Usersession</em>}</li>
  *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getLastUpdated <em>Last Updated</em>}</li>
  *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getBaseVersion <em>Base Version</em>}</li>
  *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getResourceCount <em>Resource Count</em>}</li>
  *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#isDirty <em>Dirty</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getOldLogMessages <em>Old Log Messages</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class ProjectSpaceImpl extends IdentifiableElementImpl implements
-		ProjectSpace, ResourceSetListener {
+		ProjectSpace, ProjectChangeObserver, ResourceSetListener {
 
 	/**
 	 * @generated NOT
@@ -851,13 +855,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			startChangeRecording();
 			throw new BaseVersionOutdatedException();
 		}
-		
+
 		//stop notifications
-		for (ModelElement modelElement: project.getAllModelElements()) {
+		for (ModelElement modelElement : project.getAllModelElements()) {
 			modelElement.eSetDeliver(false);
 		}
-			
-		
+
 		final ConnectionManager connectionManager = WorkspaceManager
 				.getInstance().getConnectionManager();
 
@@ -879,12 +882,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		setBaseVersion(newBaseVersion);
 
 		saveResources(true);
-		
+
 		// save starts recording ...
 		// startChangeRecording();
-		
+
 		//start notifications
-		for (ModelElement modelElement: project.getAllModelElements()) {
+		for (ModelElement modelElement : project.getAllModelElements()) {
 			modelElement.eSetDeliver(true);
 		}
 		return newBaseVersion;
@@ -1030,10 +1033,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 */
 	public void init() {
 		TransactionalEditingDomain domain = WorkspaceManager.getInstance()
-		.getCurrentWorkspace().getEditingDomain();
+				.getCurrentWorkspace().getEditingDomain();
 		domain.addResourceSetListener(this);
-		this.operations=new BasicEList<AbstractOperation>();
-		
 		// MK: possibly performance hit
 		this.eResource().setTrackingModification(true);
 		startChangeRecording();
@@ -1372,7 +1373,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		WorkspaceManager.getInstance().getCurrentWorkspace().exportProject(
 				this, absoluteFileName);
 	}
-	
+
 	/**
 	 * Save all resources that are dirty.
 	 */
@@ -1381,8 +1382,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 				.getResources();
 		for (Resource resource : resources) {
 			if (resource.isModified() || force) {
-			//if (true) {
-			//TODO: Check if merging is correct
+				//if (true) {
+				//TODO: Check if merging is correct
 				try {
 					resource.save(Configuration.getResourceSaveOptions());
 				} catch (IOException e) {
@@ -1446,11 +1447,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	}
 
 	public void resourceSetChanged(ResourceSetChangeEvent event) {
-		
+
 		//filter notifications to project
 		List<Notification> notifications = event.getNotifications();
 		List<Notification> projectNotifications = new ArrayList<Notification>();
-		for (Notification notification: notifications) {
+		for (Notification notification : notifications) {
 			Object notifier = notification.getNotifier();
 			if (notifier instanceof ModelElement) {
 				ModelElement modelElement = (ModelElement) notifier;
@@ -1459,31 +1460,54 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 				}
 			}
 		}
-		if (projectNotifications.size()==0) {
+		if (projectNotifications.size() == 0) {
 			return;
 		}
-		
+
 		Notification notification = projectNotifications.get(0);
-		if (notification.getEventType()==Notification.SET) {
-			AttributeOperation attributeOperation = OperationsFactory.eINSTANCE.createAttributeOperation();
+		if (notification.getEventType() == Notification.SET) {
+			AttributeOperation attributeOperation = OperationsFactory.eINSTANCE
+					.createAttributeOperation();
 			attributeOperation.setName("Attribute change");
 			attributeOperation.setDescription("Attribute changed description");
-			EAttribute attribute = (EAttribute)notification.getFeature();
+			EAttribute attribute = (EAttribute) notification.getFeature();
 			attributeOperation.setFeatureName(attribute.getName());
-			attributeOperation.setModelElement((ModelElement)notification.getNotifier());
+			attributeOperation.setModelElementId(((ModelElement) notification
+					.getNotifier()).getModelElementId());
 			attributeOperation.setNewValue(notification.getNewValue());
 			attributeOperation.setOldValue(notification.getOldValue());
 			this.operations.add(attributeOperation);
 		}
-		
+
 		return;
-		
+
 	}
 
 	public Command transactionAboutToCommit(ResourceSetChangeEvent event)
 			throws RollbackException {
 		//do nothing
 		return null;
+	}
+
+	public void modelElementAdded(Project project, ModelElement modelElement) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void modelElementRemoved(Project project, ModelElement modelElement) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void notify(Notification notification, Project project,
+			ModelElement modelElement) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void setOperations(List<AbstractOperation> operations) {
+		// TODO Auto-generated method stub
+
 	}
 
 } // ProjectContainerImpl

@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.model.Project;
 
 /**
  * <!-- begin-user-doc -->
@@ -219,6 +220,11 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements
 		result.append(newValue);
 		result.append(')');
 		return result.toString();
+	}
+
+	@Override
+	public void apply(Project project) {
+		project.getModelElement(this.getModelElementId());
 	}
 
 } //AttributeOperationImpl
