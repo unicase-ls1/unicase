@@ -1475,7 +1475,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 					.getNotifier()).getModelElementId());
 			attributeOperation.setNewValue(notification.getNewValue());
 			attributeOperation.setOldValue(notification.getOldValue());
-			this.operations.add(attributeOperation);
+			this.getOperations().add(attributeOperation);
 		}
 
 		return;
