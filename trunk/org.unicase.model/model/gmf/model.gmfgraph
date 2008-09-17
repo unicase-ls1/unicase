@@ -49,7 +49,8 @@
                 qualifiedClassName="org.unicase.model.classDiagram.unicase.CenterLayout"/>
             <children
                 xsi:type="gmfgraph:Label"
-                name="ClassFigure_name">
+                name="ClassFigure_name"
+                text="unnamed">
               <font
                   xsi:type="gmfgraph:BasicFont"/>
               <insets
@@ -94,23 +95,39 @@
         <children
             xsi:type="gmfgraph:Label"
             name="AssociationFigure_name"
-            text=""/>
+            text="unnamed"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="AssociationFigure_targetMultiplicity"
+            text="1"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="AssociationFigure_sourceMultiplicity"
+            text="1"/>
       </actualFigure>
       <accessors
           accessor="getFigureAssociationFigure_name"
           figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getFigureAssociationFigure_sourceMultiplicity"
+          figure="//@figures.0/@descriptors.1/@actualFigure/@children.2"/>
+      <accessors
+          accessor="getFigureAssociationFigure_targetMultiplicity"
+          figure="//@figures.0/@descriptors.1/@actualFigure/@children.1"/>
     </descriptors>
     <descriptors
         name="ClassAttributeFigure">
       <actualFigure
           xsi:type="gmfgraph:Label"
-          name="ClassAttributeNameFigure"/>
+          name="ClassAttributeNameFigure"
+          text="unnamed"/>
     </descriptors>
     <descriptors
         name="ClassMethodFigure">
       <actualFigure
           xsi:type="gmfgraph:Label"
-          name="ClassMethodNameFigure"/>
+          name="ClassMethodNameFigure"
+          text="unnamed"/>
     </descriptors>
     <descriptors
         name="GeneralizationFigure">
@@ -455,6 +472,7 @@
   <labels
       name="AssociationLine_name"
       figure="AssociationFigure"
+      elementIcon="false"
       accessor="//@figures.0/@descriptors.1/@accessors.0"/>
   <labels
       name="ClassNode_decoration"
@@ -535,4 +553,25 @@
       name="Interface_name"
       figure="Interface_NameLabel"
       elementIcon="false"/>
+  <labels
+      name="AssociationLine_sourceMultiplicity"
+      figure="AssociationFigure"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.1/@accessors.1">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="END"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"/>
+  </labels>
+  <labels
+      name="AssociationLine_targetMultiplicity"
+      figure="AssociationFigure"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.1/@accessors.2">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"/>
+  </labels>
 </gmfgraph:Canvas>

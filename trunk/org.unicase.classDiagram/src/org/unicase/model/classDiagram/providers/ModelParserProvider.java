@@ -127,24 +127,24 @@ public class ModelParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	private IParser associationName_4003Parser;
+	private IParser associationSourceMultiplicity_4003Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getAssociationName_4003Parser() {
-		if (associationName_4003Parser == null) {
-			associationName_4003Parser = createAssociationName_4003Parser();
+	private IParser getAssociationSourceMultiplicity_4003Parser() {
+		if (associationSourceMultiplicity_4003Parser == null) {
+			associationSourceMultiplicity_4003Parser = createAssociationSourceMultiplicity_4003Parser();
 		}
-		return associationName_4003Parser;
+		return associationSourceMultiplicity_4003Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected IParser createAssociationName_4003Parser() {
-		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE
-				.getModelElement_Name(), };
+	protected IParser createAssociationSourceMultiplicity_4003Parser() {
+		EAttribute[] features = new EAttribute[] { ClassesPackage.eINSTANCE
+				.getAssociation_SourceMultiplicity(), };
 		org.unicase.model.classDiagram.parsers.MessageFormatParser parser = new org.unicase.model.classDiagram.parsers.MessageFormatParser(
 				features);
 		return parser;
@@ -153,24 +153,24 @@ public class ModelParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	private IParser associationName_4004Parser;
+	private IParser associationTargetMultiplicity_4004Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getAssociationName_4004Parser() {
-		if (associationName_4004Parser == null) {
-			associationName_4004Parser = createAssociationName_4004Parser();
+	private IParser getAssociationTargetMultiplicity_4004Parser() {
+		if (associationTargetMultiplicity_4004Parser == null) {
+			associationTargetMultiplicity_4004Parser = createAssociationTargetMultiplicity_4004Parser();
 		}
-		return associationName_4004Parser;
+		return associationTargetMultiplicity_4004Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected IParser createAssociationName_4004Parser() {
-		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE
-				.getModelElement_Name(), };
+	protected IParser createAssociationTargetMultiplicity_4004Parser() {
+		EAttribute[] features = new EAttribute[] { ClassesPackage.eINSTANCE
+				.getAssociation_TargetMultiplicity(), };
 		org.unicase.model.classDiagram.parsers.MessageFormatParser parser = new org.unicase.model.classDiagram.parsers.MessageFormatParser(
 				features);
 		return parser;
@@ -205,6 +205,214 @@ public class ModelParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
+	private IParser associationSourceMultiplicity_4006Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getAssociationSourceMultiplicity_4006Parser() {
+		if (associationSourceMultiplicity_4006Parser == null) {
+			associationSourceMultiplicity_4006Parser = createAssociationSourceMultiplicity_4006Parser();
+		}
+		return associationSourceMultiplicity_4006Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IParser createAssociationSourceMultiplicity_4006Parser() {
+		EAttribute[] features = new EAttribute[] { ClassesPackage.eINSTANCE
+				.getAssociation_SourceMultiplicity(), };
+		org.unicase.model.classDiagram.parsers.MessageFormatParser parser = new org.unicase.model.classDiagram.parsers.MessageFormatParser(
+				features);
+		return parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser associationTargetMultiplicity_4007Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getAssociationTargetMultiplicity_4007Parser() {
+		if (associationTargetMultiplicity_4007Parser == null) {
+			associationTargetMultiplicity_4007Parser = createAssociationTargetMultiplicity_4007Parser();
+		}
+		return associationTargetMultiplicity_4007Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IParser createAssociationTargetMultiplicity_4007Parser() {
+		EAttribute[] features = new EAttribute[] { ClassesPackage.eINSTANCE
+				.getAssociation_TargetMultiplicity(), };
+		org.unicase.model.classDiagram.parsers.MessageFormatParser parser = new org.unicase.model.classDiagram.parsers.MessageFormatParser(
+				features);
+		return parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser associationName_4008Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getAssociationName_4008Parser() {
+		if (associationName_4008Parser == null) {
+			associationName_4008Parser = createAssociationName_4008Parser();
+		}
+		return associationName_4008Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IParser createAssociationName_4008Parser() {
+		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE
+				.getModelElement_Name(), };
+		org.unicase.model.classDiagram.parsers.MessageFormatParser parser = new org.unicase.model.classDiagram.parsers.MessageFormatParser(
+				features);
+		return parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser associationSourceMultiplicity_4009Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getAssociationSourceMultiplicity_4009Parser() {
+		if (associationSourceMultiplicity_4009Parser == null) {
+			associationSourceMultiplicity_4009Parser = createAssociationSourceMultiplicity_4009Parser();
+		}
+		return associationSourceMultiplicity_4009Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IParser createAssociationSourceMultiplicity_4009Parser() {
+		EAttribute[] features = new EAttribute[] { ClassesPackage.eINSTANCE
+				.getAssociation_SourceMultiplicity(), };
+		org.unicase.model.classDiagram.parsers.MessageFormatParser parser = new org.unicase.model.classDiagram.parsers.MessageFormatParser(
+				features);
+		return parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser associationTargetMultiplicity_4010Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getAssociationTargetMultiplicity_4010Parser() {
+		if (associationTargetMultiplicity_4010Parser == null) {
+			associationTargetMultiplicity_4010Parser = createAssociationTargetMultiplicity_4010Parser();
+		}
+		return associationTargetMultiplicity_4010Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IParser createAssociationTargetMultiplicity_4010Parser() {
+		EAttribute[] features = new EAttribute[] { ClassesPackage.eINSTANCE
+				.getAssociation_TargetMultiplicity(), };
+		org.unicase.model.classDiagram.parsers.MessageFormatParser parser = new org.unicase.model.classDiagram.parsers.MessageFormatParser(
+				features);
+		return parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser associationName_4011Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getAssociationName_4011Parser() {
+		if (associationName_4011Parser == null) {
+			associationName_4011Parser = createAssociationName_4011Parser();
+		}
+		return associationName_4011Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IParser createAssociationName_4011Parser() {
+		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE
+				.getModelElement_Name(), };
+		org.unicase.model.classDiagram.parsers.MessageFormatParser parser = new org.unicase.model.classDiagram.parsers.MessageFormatParser(
+				features);
+		return parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser associationSourceMultiplicity_4012Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getAssociationSourceMultiplicity_4012Parser() {
+		if (associationSourceMultiplicity_4012Parser == null) {
+			associationSourceMultiplicity_4012Parser = createAssociationSourceMultiplicity_4012Parser();
+		}
+		return associationSourceMultiplicity_4012Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IParser createAssociationSourceMultiplicity_4012Parser() {
+		EAttribute[] features = new EAttribute[] { ClassesPackage.eINSTANCE
+				.getAssociation_SourceMultiplicity(), };
+		org.unicase.model.classDiagram.parsers.MessageFormatParser parser = new org.unicase.model.classDiagram.parsers.MessageFormatParser(
+				features);
+		return parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser associationTargetMultiplicity_4013Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getAssociationTargetMultiplicity_4013Parser() {
+		if (associationTargetMultiplicity_4013Parser == null) {
+			associationTargetMultiplicity_4013Parser = createAssociationTargetMultiplicity_4013Parser();
+		}
+		return associationTargetMultiplicity_4013Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IParser createAssociationTargetMultiplicity_4013Parser() {
+		EAttribute[] features = new EAttribute[] { ClassesPackage.eINSTANCE
+				.getAssociation_TargetMultiplicity(), };
+		org.unicase.model.classDiagram.parsers.MessageFormatParser parser = new org.unicase.model.classDiagram.parsers.MessageFormatParser(
+				features);
+		return parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
 		case org.unicase.model.classDiagram.edit.parts.ClassNameEditPart.VISUAL_ID:
@@ -215,12 +423,28 @@ public class ModelParserProvider extends AbstractProvider implements
 			return getMethod_2002Parser();
 		case org.unicase.model.classDiagram.edit.parts.AssociationNameEditPart.VISUAL_ID:
 			return getAssociationName_4002Parser();
+		case org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicityEditPart.VISUAL_ID:
+			return getAssociationSourceMultiplicity_4003Parser();
+		case org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicityEditPart.VISUAL_ID:
+			return getAssociationTargetMultiplicity_4004Parser();
 		case org.unicase.model.classDiagram.edit.parts.AssociationName2EditPart.VISUAL_ID:
-			return getAssociationName_4003Parser();
-		case org.unicase.model.classDiagram.edit.parts.AssociationName3EditPart.VISUAL_ID:
-			return getAssociationName_4004Parser();
-		case org.unicase.model.classDiagram.edit.parts.AssociationName4EditPart.VISUAL_ID:
 			return getAssociationName_4005Parser();
+		case org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity2EditPart.VISUAL_ID:
+			return getAssociationSourceMultiplicity_4006Parser();
+		case org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity2EditPart.VISUAL_ID:
+			return getAssociationTargetMultiplicity_4007Parser();
+		case org.unicase.model.classDiagram.edit.parts.AssociationName3EditPart.VISUAL_ID:
+			return getAssociationName_4008Parser();
+		case org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity3EditPart.VISUAL_ID:
+			return getAssociationSourceMultiplicity_4009Parser();
+		case org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity3EditPart.VISUAL_ID:
+			return getAssociationTargetMultiplicity_4010Parser();
+		case org.unicase.model.classDiagram.edit.parts.AssociationName4EditPart.VISUAL_ID:
+			return getAssociationName_4011Parser();
+		case org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity4EditPart.VISUAL_ID:
+			return getAssociationSourceMultiplicity_4012Parser();
+		case org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity4EditPart.VISUAL_ID:
+			return getAssociationTargetMultiplicity_4013Parser();
 		}
 		return null;
 	}

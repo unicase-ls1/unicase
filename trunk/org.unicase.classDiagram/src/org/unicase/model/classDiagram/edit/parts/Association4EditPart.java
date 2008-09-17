@@ -50,6 +50,18 @@ public class Association4EditPart extends ConnectionNodeEditPart implements
 							.getFigureAssociationFigure_name());
 			return true;
 		}
+		if (childEditPart instanceof org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity4EditPart) {
+			((org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity4EditPart) childEditPart)
+					.setLabel(getPrimaryShape()
+							.getFigureAssociationFigure_sourceMultiplicity());
+			return true;
+		}
+		if (childEditPart instanceof org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity4EditPart) {
+			((org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity4EditPart) childEditPart)
+					.setLabel(getPrimaryShape()
+							.getFigureAssociationFigure_targetMultiplicity());
+			return true;
+		}
 		return false;
 	}
 
@@ -96,6 +108,15 @@ public class Association4EditPart extends ConnectionNodeEditPart implements
 		/**
 		 * @generated
 		 */
+		private WrappingLabel fFigureAssociationFigure_sourceMultiplicity;
+		/**
+		 * @generated
+		 */
+		private WrappingLabel fFigureAssociationFigure_targetMultiplicity;
+
+		/**
+		 * @generated
+		 */
 		public AssociationFigure() {
 
 			createContents();
@@ -109,9 +130,19 @@ public class Association4EditPart extends ConnectionNodeEditPart implements
 		private void createContents() {
 
 			fFigureAssociationFigure_name = new WrappingLabel();
-			fFigureAssociationFigure_name.setText("");
+			fFigureAssociationFigure_name.setText("unnamed");
 
 			this.add(fFigureAssociationFigure_name);
+
+			fFigureAssociationFigure_targetMultiplicity = new WrappingLabel();
+			fFigureAssociationFigure_targetMultiplicity.setText("1");
+
+			this.add(fFigureAssociationFigure_targetMultiplicity);
+
+			fFigureAssociationFigure_sourceMultiplicity = new WrappingLabel();
+			fFigureAssociationFigure_sourceMultiplicity.setText("1");
+
+			this.add(fFigureAssociationFigure_sourceMultiplicity);
 
 		}
 
@@ -160,6 +191,20 @@ public class Association4EditPart extends ConnectionNodeEditPart implements
 		 */
 		public WrappingLabel getFigureAssociationFigure_name() {
 			return fFigureAssociationFigure_name;
+		}
+
+		/**
+		 * @generated
+		 */
+		public WrappingLabel getFigureAssociationFigure_sourceMultiplicity() {
+			return fFigureAssociationFigure_sourceMultiplicity;
+		}
+
+		/**
+		 * @generated
+		 */
+		public WrappingLabel getFigureAssociationFigure_targetMultiplicity() {
+			return fFigureAssociationFigure_targetMultiplicity;
 		}
 
 	}

@@ -584,7 +584,21 @@ public class MethodEditPart extends CompartmentEditPart implements
 	 * @generated
 	 */
 	protected IFigure createFigurePrim() {
-		return new WrappingLabel();
+		return new ClassMethodFigure();
+	}
+
+	/**
+	 * @generated
+	 */
+	public class ClassMethodFigure extends WrappingLabel {
+
+		/**
+		 * @generated
+		 */
+		public ClassMethodFigure() {
+			this.setText("unnamed");
+		}
+
 	}
 
 }

@@ -215,9 +215,21 @@ public class ModelVisualIDRegistry {
 			if (org.unicase.model.classDiagram.edit.parts.AssociationNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicityEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicityEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case org.unicase.model.classDiagram.edit.parts.Association2EditPart.VISUAL_ID:
 			if (org.unicase.model.classDiagram.edit.parts.AssociationName2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -225,9 +237,21 @@ public class ModelVisualIDRegistry {
 			if (org.unicase.model.classDiagram.edit.parts.AssociationName3EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity3EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity3EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case org.unicase.model.classDiagram.edit.parts.Association4EditPart.VISUAL_ID:
 			if (org.unicase.model.classDiagram.edit.parts.AssociationName4EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity4EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity4EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

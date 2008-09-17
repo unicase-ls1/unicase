@@ -592,7 +592,21 @@ public class AttributeEditPart extends CompartmentEditPart implements
 	 * @generated
 	 */
 	protected IFigure createFigurePrim() {
-		return new WrappingLabel();
+		return new ClassAttributeFigure();
+	}
+
+	/**
+	 * @generated
+	 */
+	public class ClassAttributeFigure extends WrappingLabel {
+
+		/**
+		 * @generated
+		 */
+		public ClassAttributeFigure() {
+			this.setText("unnamed");
+		}
+
 	}
 
 }

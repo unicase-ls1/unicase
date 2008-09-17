@@ -101,6 +101,8 @@ public class ModelViewProvider extends AbstractViewProvider {
 					}
 					break;
 				case org.unicase.model.classDiagram.edit.parts.AssociationNameEditPart.VISUAL_ID:
+				case org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicityEditPart.VISUAL_ID:
+				case org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicityEditPart.VISUAL_ID:
 					if (org.unicase.model.classDiagram.edit.parts.Association1EditPart.VISUAL_ID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
 							.getVisualID(containerView)
 							|| containerView.getElement() != domainElement) {
@@ -108,6 +110,8 @@ public class ModelViewProvider extends AbstractViewProvider {
 					}
 					break;
 				case org.unicase.model.classDiagram.edit.parts.AssociationName2EditPart.VISUAL_ID:
+				case org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity2EditPart.VISUAL_ID:
+				case org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity2EditPart.VISUAL_ID:
 					if (org.unicase.model.classDiagram.edit.parts.Association2EditPart.VISUAL_ID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
 							.getVisualID(containerView)
 							|| containerView.getElement() != domainElement) {
@@ -115,6 +119,8 @@ public class ModelViewProvider extends AbstractViewProvider {
 					}
 					break;
 				case org.unicase.model.classDiagram.edit.parts.AssociationName3EditPart.VISUAL_ID:
+				case org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity3EditPart.VISUAL_ID:
+				case org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity3EditPart.VISUAL_ID:
 					if (org.unicase.model.classDiagram.edit.parts.Association3EditPart.VISUAL_ID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
 							.getVisualID(containerView)
 							|| containerView.getElement() != domainElement) {
@@ -122,6 +128,8 @@ public class ModelViewProvider extends AbstractViewProvider {
 					}
 					break;
 				case org.unicase.model.classDiagram.edit.parts.AssociationName4EditPart.VISUAL_ID:
+				case org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity4EditPart.VISUAL_ID:
+				case org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity4EditPart.VISUAL_ID:
 					if (org.unicase.model.classDiagram.edit.parts.Association4EditPart.VISUAL_ID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
 							.getVisualID(containerView)
 							|| containerView.getElement() != domainElement) {
@@ -160,12 +168,28 @@ public class ModelViewProvider extends AbstractViewProvider {
 			return org.unicase.model.classDiagram.view.factories.ClassClassNode_methodsViewFactory.class;
 		case org.unicase.model.classDiagram.edit.parts.AssociationNameEditPart.VISUAL_ID:
 			return org.unicase.model.classDiagram.view.factories.AssociationNameViewFactory.class;
+		case org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicityEditPart.VISUAL_ID:
+			return org.unicase.model.classDiagram.view.factories.AssociationSourceMultiplicityViewFactory.class;
+		case org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicityEditPart.VISUAL_ID:
+			return org.unicase.model.classDiagram.view.factories.AssociationTargetMultiplicityViewFactory.class;
 		case org.unicase.model.classDiagram.edit.parts.AssociationName2EditPart.VISUAL_ID:
 			return org.unicase.model.classDiagram.view.factories.AssociationName2ViewFactory.class;
+		case org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity2EditPart.VISUAL_ID:
+			return org.unicase.model.classDiagram.view.factories.AssociationSourceMultiplicity2ViewFactory.class;
+		case org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity2EditPart.VISUAL_ID:
+			return org.unicase.model.classDiagram.view.factories.AssociationTargetMultiplicity2ViewFactory.class;
 		case org.unicase.model.classDiagram.edit.parts.AssociationName3EditPart.VISUAL_ID:
 			return org.unicase.model.classDiagram.view.factories.AssociationName3ViewFactory.class;
+		case org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity3EditPart.VISUAL_ID:
+			return org.unicase.model.classDiagram.view.factories.AssociationSourceMultiplicity3ViewFactory.class;
+		case org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity3EditPart.VISUAL_ID:
+			return org.unicase.model.classDiagram.view.factories.AssociationTargetMultiplicity3ViewFactory.class;
 		case org.unicase.model.classDiagram.edit.parts.AssociationName4EditPart.VISUAL_ID:
 			return org.unicase.model.classDiagram.view.factories.AssociationName4ViewFactory.class;
+		case org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity4EditPart.VISUAL_ID:
+			return org.unicase.model.classDiagram.view.factories.AssociationSourceMultiplicity4ViewFactory.class;
+		case org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity4EditPart.VISUAL_ID:
+			return org.unicase.model.classDiagram.view.factories.AssociationTargetMultiplicity4ViewFactory.class;
 		}
 		return null;
 	}

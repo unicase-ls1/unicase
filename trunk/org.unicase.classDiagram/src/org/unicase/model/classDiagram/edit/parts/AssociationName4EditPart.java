@@ -51,7 +51,7 @@ public class AssociationName4EditPart extends LabelEditPart implements
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4005;
+	public static final int VISUAL_ID = 4011;
 
 	/**
 	 * @generated
@@ -186,12 +186,7 @@ public class AssociationName4EditPart extends LabelEditPart implements
 	 * @generated
 	 */
 	protected Image getLabelIcon() {
-		EObject parserElement = getParserElement();
-		if (parserElement == null) {
-			return null;
-		}
-		return org.unicase.model.classDiagram.providers.ModelElementTypes
-				.getImage(parserElement.eClass());
+		return null;
 	}
 
 	/**

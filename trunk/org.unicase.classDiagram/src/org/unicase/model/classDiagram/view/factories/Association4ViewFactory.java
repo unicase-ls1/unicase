@@ -51,5 +51,19 @@ public class Association4ViewFactory extends ConnectionViewFactory {
 						org.unicase.model.classDiagram.part.ModelVisualIDRegistry
 								.getType(org.unicase.model.classDiagram.edit.parts.AssociationName4EditPart.VISUAL_ID),
 						ViewUtil.APPEND, true, getPreferencesHint());
+		getViewService()
+				.createNode(
+						eObjectAdapter,
+						view,
+						org.unicase.model.classDiagram.part.ModelVisualIDRegistry
+								.getType(org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity4EditPart.VISUAL_ID),
+						ViewUtil.APPEND, true, getPreferencesHint());
+		getViewService()
+				.createNode(
+						eObjectAdapter,
+						view,
+						org.unicase.model.classDiagram.part.ModelVisualIDRegistry
+								.getType(org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity4EditPart.VISUAL_ID),
+						ViewUtil.APPEND, true, getPreferencesHint());
 	}
 }

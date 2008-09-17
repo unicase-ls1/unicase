@@ -21,28 +21,73 @@
       <tools
           xsi:type="gmftool:CreationTool"
           title="Method"/>
-      <tools
-          xsi:type="gmftool:CreationTool"
-          title="Generalization"/>
     </tools>
     <tools
         xsi:type="gmftool:ToolGroup"
-        title="Associations"
+        title="Connections"
         description=""
         collapsible="true"
-        active="//@palette/@tools.1/@tools.0">
+        active="//@palette/@tools.1/@tools.1">
       <tools
           xsi:type="gmftool:CreationTool"
-          title="Undirected Association"/>
+          title="Generalization">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Generalization.gif"
+            bundle="org.unicase.model.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Generalization.gif"
+            bundle="org.unicase.model.edit"/>
+      </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="Directed Association"/>
+          title="Undirected Association">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Association.gif"
+            bundle="org.unicase.model.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Association.gif"
+            bundle="org.unicase.model.edit"/>
+      </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="Aggregation"/>
+          title="Directed Association">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Directed_Association.gif"
+            bundle="org.unicase.model.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Directed_Association.gif"
+            bundle="org.unicase.model.edit"/>
+      </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="Composition"/>
+          title="Aggregation">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Aggregation.gif"
+            bundle="org.unicase.model.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Aggregation.gif"
+            bundle="org.unicase.model.edit"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Composition">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Composition.gif"
+            bundle="org.unicase.model.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Composition.gif"
+            bundle="org.unicase.model.edit"/>
+      </tools>
     </tools>
   </palette>
 </gmftool:ToolRegistry>
