@@ -3,6 +3,7 @@ package org.unicase.ui.componentDiagram.edit.policies;
 import java.util.Collections;
 import java.util.Iterator;
 
+import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
@@ -39,6 +40,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.component.Component;
+import org.unicase.model.component.ComponentPackage;
 import org.unicase.model.component.ComponentService;
 
 /**
@@ -347,6 +349,28 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
+		private static final String OPPOSITE_END_VAR = "oppositeEnd"; //$NON-NLS-1$
+		/**
+		 * @generated
+		 */
+		private static org.unicase.ui.componentDiagram.expressions.ModelAbstractExpression ComponentOfferedServices_3001_SourceExpression;
+		/**
+		 * @generated
+		 */
+		private static org.unicase.ui.componentDiagram.expressions.ModelAbstractExpression ComponentOfferedServices_3001_TargetExpression;
+		/**
+		 * @generated
+		 */
+		private static org.unicase.ui.componentDiagram.expressions.ModelAbstractExpression ComponentConsumedServices_3002_SourceExpression;
+
+		/**
+		 * @generated
+		 */
+		private static org.unicase.ui.componentDiagram.expressions.ModelAbstractExpression ComponentConsumedServices_3002_TargetExpression;
+
+		/**
+		 * @generated
+		 */
 		public static boolean canCreateComponentOfferedServices_3001(
 				Component source, ComponentService target) {
 			if (source != null) {
@@ -378,8 +402,48 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public static boolean canExistComponentOfferedServices_3001(
 				Component source, ComponentService target) {
-
-			return true;
+			try {
+				if (source == null) {
+					return true;
+				}
+				if (ComponentOfferedServices_3001_SourceExpression == null) {
+					Map env = Collections.singletonMap(OPPOSITE_END_VAR,
+							ComponentPackage.eINSTANCE.getComponentService());
+					ComponentOfferedServices_3001_SourceExpression = org.unicase.ui.componentDiagram.expressions.ModelOCLFactory
+							.getExpression(
+									"self <> oppositeEnd", ComponentPackage.eINSTANCE.getComponent(), env); //$NON-NLS-1$
+				}
+				Object sourceVal = ComponentOfferedServices_3001_SourceExpression
+						.evaluate(source, Collections.singletonMap(
+								OPPOSITE_END_VAR, target));
+				if (false == sourceVal instanceof Boolean
+						|| !((Boolean) sourceVal).booleanValue()) {
+					return false;
+				} // else fall-through
+				if (target == null) {
+					return true;
+				}
+				if (ComponentOfferedServices_3001_TargetExpression == null) {
+					Map env = Collections.singletonMap(OPPOSITE_END_VAR,
+							ComponentPackage.eINSTANCE.getComponent());
+					ComponentOfferedServices_3001_TargetExpression = org.unicase.ui.componentDiagram.expressions.ModelOCLFactory
+							.getExpression(
+									"self->offeringComponent=null", ComponentPackage.eINSTANCE.getComponentService(), env); //$NON-NLS-1$
+				}
+				Object targetVal = ComponentOfferedServices_3001_TargetExpression
+						.evaluate(target, Collections.singletonMap(
+								OPPOSITE_END_VAR, source));
+				if (false == targetVal instanceof Boolean
+						|| !((Boolean) targetVal).booleanValue()) {
+					return false;
+				} // else fall-through
+				return true;
+			} catch (Exception e) {
+				org.unicase.ui.componentDiagram.part.ModelDiagramEditorPlugin
+						.getInstance().logError(
+								"Link constraint evaluation error", e); //$NON-NLS-1$
+				return false;
+			}
 		}
 
 		/**
@@ -387,8 +451,48 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public static boolean canExistComponentConsumedServices_3002(
 				Component source, ComponentService target) {
-
-			return true;
+			try {
+				if (source == null) {
+					return true;
+				}
+				if (ComponentConsumedServices_3002_SourceExpression == null) {
+					Map env = Collections.singletonMap(OPPOSITE_END_VAR,
+							ComponentPackage.eINSTANCE.getComponentService());
+					ComponentConsumedServices_3002_SourceExpression = org.unicase.ui.componentDiagram.expressions.ModelOCLFactory
+							.getExpression(
+									"self <> oppositeEnd", ComponentPackage.eINSTANCE.getComponent(), env); //$NON-NLS-1$
+				}
+				Object sourceVal = ComponentConsumedServices_3002_SourceExpression
+						.evaluate(source, Collections.singletonMap(
+								OPPOSITE_END_VAR, target));
+				if (false == sourceVal instanceof Boolean
+						|| !((Boolean) sourceVal).booleanValue()) {
+					return false;
+				} // else fall-through
+				if (target == null) {
+					return true;
+				}
+				if (ComponentConsumedServices_3002_TargetExpression == null) {
+					Map env = Collections.singletonMap(OPPOSITE_END_VAR,
+							ComponentPackage.eINSTANCE.getComponent());
+					ComponentConsumedServices_3002_TargetExpression = org.unicase.ui.componentDiagram.expressions.ModelOCLFactory
+							.getExpression(
+									"self->offeringComponent <> oppositeEnd", ComponentPackage.eINSTANCE.getComponentService(), env); //$NON-NLS-1$
+				}
+				Object targetVal = ComponentConsumedServices_3002_TargetExpression
+						.evaluate(target, Collections.singletonMap(
+								OPPOSITE_END_VAR, source));
+				if (false == targetVal instanceof Boolean
+						|| !((Boolean) targetVal).booleanValue()) {
+					return false;
+				} // else fall-through
+				return true;
+			} catch (Exception e) {
+				org.unicase.ui.componentDiagram.part.ModelDiagramEditorPlugin
+						.getInstance().logError(
+								"Link constraint evaluation error", e); //$NON-NLS-1$
+				return false;
+			}
 		}
 	}
 

@@ -123,11 +123,11 @@ public class ModelVisualIDRegistry {
 		case org.unicase.ui.componentDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
 			if (ComponentPackage.eINSTANCE.getComponentService().isSuperTypeOf(
 					domainElement.eClass())) {
-				return org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID;
+				return org.unicase.ui.componentDiagram.edit.parts.Component2EditPart.VISUAL_ID;
 			}
 			if (ComponentPackage.eINSTANCE.getComponent().isSuperTypeOf(
 					domainElement.eClass())) {
-				return org.unicase.ui.componentDiagram.edit.parts.Component2EditPart.VISUAL_ID;
+				return org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID;
 			}
 			break;
 		}
@@ -157,21 +157,21 @@ public class ModelVisualIDRegistry {
 			}
 		}
 		switch (containerVisualID) {
+		case org.unicase.ui.componentDiagram.edit.parts.Component2EditPart.VISUAL_ID:
+			if (org.unicase.ui.componentDiagram.edit.parts.ComponentServiceNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID:
 			if (org.unicase.ui.componentDiagram.edit.parts.ComponentNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case org.unicase.ui.componentDiagram.edit.parts.Component2EditPart.VISUAL_ID:
-			if (org.unicase.ui.componentDiagram.edit.parts.ComponentName2EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
 		case org.unicase.ui.componentDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
-			if (org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID == nodeVisualID) {
+			if (org.unicase.ui.componentDiagram.edit.parts.Component2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if (org.unicase.ui.componentDiagram.edit.parts.Component2EditPart.VISUAL_ID == nodeVisualID) {
+			if (org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

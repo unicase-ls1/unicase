@@ -21,6 +21,7 @@ import org.unicase.model.Project;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getChangeContainers <em>Change Containers</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getOperations <em>Operations</em>}</li>
  * </ul>
  * </p>
  *
@@ -70,9 +71,13 @@ public interface ChangePackage extends EObject {
 	void init(Project project, ChangeDescription backwardChangeDescription);
 
 	/**
+	 * Returns the value of the '<em><b>Operations</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model kind="operation"
+	 * @return the value of the '<em>Operations</em>' containment reference list.
+	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getChangePackage_Operations()
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<AbstractOperation> getOperations();

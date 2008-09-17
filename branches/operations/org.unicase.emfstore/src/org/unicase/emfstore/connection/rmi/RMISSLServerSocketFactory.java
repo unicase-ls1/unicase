@@ -29,6 +29,7 @@ import org.unicase.emfstore.ServerConfiguration;
  * 
  * @author Wesendonk
  */
+@SuppressWarnings("serial")
 public class RMISSLServerSocketFactory implements RMIServerSocketFactory,
 		Serializable {
 
@@ -40,19 +41,22 @@ public class RMISSLServerSocketFactory implements RMIServerSocketFactory,
 		SSLContext context;
 		KeyManagerFactory keyManagerFactory;
 		KeyStore keyStore;
-		char[] passphrase = "av374tb$VBGGtrgwa7tosdfa".toCharArray();
+		char[] passphrase = ServerConfiguration.getProperties().getProperty(
+				ServerConfiguration.SSL_PASSWORD,
+				ServerConfiguration.SSL_PASSWORD_DEFAULT).toCharArray();
 
 		try {
 			context = SSLContext.getInstance("TLS");
 			keyManagerFactory = KeyManagerFactory.getInstance("SunX509");
 			keyStore = KeyStore.getInstance("JKS");
 
-			keyStore.load(new FileInputStream(ServerConfiguration.getServerHome()+"unicaseServer.keystore"), passphrase);
+			keyStore.load(new FileInputStream(ServerConfiguration
+					.getServerKeyStorePath()), passphrase);
 			keyManagerFactory.init(keyStore, passphrase);
 			context.init(keyManagerFactory.getKeyManagers(), null, null);
 
 			serverSocketFactory = context.getServerSocketFactory();
-			
+
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		} catch (KeyStoreException e) {

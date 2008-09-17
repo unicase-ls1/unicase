@@ -15,7 +15,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.unicase.ui.stem.views.ChangesTreeComposite;
+import org.unicase.ui.stem.Activator;
 
 /**.
  * This class shows a ChangesTreeComposite and a Text control to enter
@@ -26,6 +26,9 @@ import org.unicase.ui.stem.views.ChangesTreeComposite;
  */
 public class CommitDialog extends TitleAreaDialog {
 
+	private Text txtLogMsg;
+	private String logMsg = "";
+
 	/**.
 	 * Constructor
 	 * 
@@ -35,22 +38,26 @@ public class CommitDialog extends TitleAreaDialog {
 
 		super(parentShell);
 		this.setShellStyle(this.getShellStyle() | SWT.RESIZE );
-		
 
 	}
 
 	
-	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	protected Control createDialogArea(Composite parent) {
 		Composite contents = new Composite(parent, SWT.NONE);
 		contents.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		contents.setLayout(new GridLayout(2, false));
 		
-		//ChangesTree	
-		ChangesTreeComposite changesTree = new ChangesTreeComposite(contents,
-				SWT.BORDER, true);
-		changesTree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
-		//TODO final implementation (set input for ChangesTreeComposite)
+//		//ChangesTree	
+//		ChangesTreeComposite changesTree = new ChangesTreeComposite(contents,
+//				SWT.BORDER, true);
+//		changesTree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
+//		//TODO final implementation (set input for ChangesTreeComposite)
+		setTitle("Commit your chnages");
+		setMessage("Don't forget the commit message!");
+		setTitleImage(Activator.getImageDescriptor("icons/dontForget.png").createImage());
 		
 		//Log message
 		Label lblLogMsg = new Label(contents, SWT.NONE);
@@ -58,13 +65,10 @@ public class CommitDialog extends TitleAreaDialog {
 				false, 2, 1));
 		lblLogMsg.setText("Log message:");
 		
-		Text txtLogMsg = new Text(contents, SWT.MULTI | SWT.LEAD | SWT.BORDER);
+		txtLogMsg = new Text(contents, SWT.MULTI | SWT.LEAD | SWT.BORDER);
 		txtLogMsg.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 		txtLogMsg.setText("");
 		
-		//set number of chnages on dialog title
-		setTitle("Uncommited changes");
-		setMessage("Number of changes: " + changesTree.getNumOfChanges());
 		
 		return contents;
 
@@ -89,18 +93,15 @@ public class CommitDialog extends TitleAreaDialog {
 	 */
 	@Override
 	protected void okPressed() {
-		// TODO final implementation
+		logMsg = txtLogMsg.getText();
 		super.okPressed();
 	}
-
-	/**.
-	 * {@inheritDoc}
-	 * 
+	
+	/**
+	 * @return the log message that has been set by the user.
 	 */
-	@Override
-	public int open() {
-		this.getButton(TitleAreaDialog.OK).setText("Commit");
-		return super.open();
+	public String getLogText(){
+		return logMsg.equals("")?"<Empty log message>":logMsg;
 	}
 	
 }

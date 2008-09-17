@@ -22,34 +22,17 @@ import org.unicase.model.impl.ModelElementImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.classes.impl.AssociationImpl#isDirected <em>Directed</em>}</li>
  *   <li>{@link org.unicase.model.classes.impl.AssociationImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.unicase.model.classes.impl.AssociationImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link org.unicase.model.classes.impl.AssociationImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.AssociationImpl#getSourceMultiplicity <em>Source Multiplicity</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.AssociationImpl#getTargetMultiplicity <em>Target Multiplicity</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class AssociationImpl extends ModelElementImpl implements Association {
-	/**
-	 * The default value of the '{@link #isDirected() <em>Directed</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #isDirected()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean DIRECTED_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isDirected() <em>Directed</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #isDirected()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean directed = DIRECTED_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -75,7 +58,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final AssociationType TYPE_EDEFAULT = AssociationType.ASSOCIATION;
+	protected static final AssociationType TYPE_EDEFAULT = AssociationType.UNDIRECTED_ASSOCIATION;
 
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
@@ -85,6 +68,46 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	 * @ordered
 	 */
 	protected AssociationType type = TYPE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getSourceMultiplicity() <em>Source Multiplicity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSourceMultiplicity()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String SOURCE_MULTIPLICITY_EDEFAULT = "1";
+
+	/**
+	 * The cached value of the '{@link #getSourceMultiplicity() <em>Source Multiplicity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSourceMultiplicity()
+	 * @generated
+	 * @ordered
+	 */
+	protected String sourceMultiplicity = SOURCE_MULTIPLICITY_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getTargetMultiplicity() <em>Target Multiplicity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTargetMultiplicity()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TARGET_MULTIPLICITY_EDEFAULT = "1";
+
+	/**
+	 * The cached value of the '{@link #getTargetMultiplicity() <em>Target Multiplicity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTargetMultiplicity()
+	 * @generated
+	 * @ordered
+	 */
+	protected String targetMultiplicity = TARGET_MULTIPLICITY_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -101,26 +124,6 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	@Override
 	protected EClass eStaticClass() {
 		return ClassesPackage.Literals.ASSOCIATION;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isDirected() {
-		return directed;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDirected(boolean newDirected) {
-		boolean oldDirected = directed;
-		directed = newDirected;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ClassesPackage.ASSOCIATION__DIRECTED, oldDirected, directed));
 	}
 
 	/**
@@ -282,6 +285,52 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getSourceMultiplicity() {
+		return sourceMultiplicity;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSourceMultiplicity(String newSourceMultiplicity) {
+		String oldSourceMultiplicity = sourceMultiplicity;
+		sourceMultiplicity = newSourceMultiplicity;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ClassesPackage.ASSOCIATION__SOURCE_MULTIPLICITY,
+					oldSourceMultiplicity, sourceMultiplicity));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getTargetMultiplicity() {
+		return targetMultiplicity;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTargetMultiplicity(String newTargetMultiplicity) {
+		String oldTargetMultiplicity = targetMultiplicity;
+		targetMultiplicity = newTargetMultiplicity;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ClassesPackage.ASSOCIATION__TARGET_MULTIPLICITY,
+					oldTargetMultiplicity, targetMultiplicity));
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -330,8 +379,6 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case ClassesPackage.ASSOCIATION__DIRECTED:
-			return isDirected() ? Boolean.TRUE : Boolean.FALSE;
 		case ClassesPackage.ASSOCIATION__SOURCE:
 			if (resolve)
 				return getSource();
@@ -342,6 +389,10 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 			return basicGetTarget();
 		case ClassesPackage.ASSOCIATION__TYPE:
 			return getType();
+		case ClassesPackage.ASSOCIATION__SOURCE_MULTIPLICITY:
+			return getSourceMultiplicity();
+		case ClassesPackage.ASSOCIATION__TARGET_MULTIPLICITY:
+			return getTargetMultiplicity();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -353,9 +404,6 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case ClassesPackage.ASSOCIATION__DIRECTED:
-			setDirected(((Boolean) newValue).booleanValue());
-			return;
 		case ClassesPackage.ASSOCIATION__SOURCE:
 			setSource((org.unicase.model.classes.Class) newValue);
 			return;
@@ -364,6 +412,12 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 			return;
 		case ClassesPackage.ASSOCIATION__TYPE:
 			setType((AssociationType) newValue);
+			return;
+		case ClassesPackage.ASSOCIATION__SOURCE_MULTIPLICITY:
+			setSourceMultiplicity((String) newValue);
+			return;
+		case ClassesPackage.ASSOCIATION__TARGET_MULTIPLICITY:
+			setTargetMultiplicity((String) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -376,9 +430,6 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case ClassesPackage.ASSOCIATION__DIRECTED:
-			setDirected(DIRECTED_EDEFAULT);
-			return;
 		case ClassesPackage.ASSOCIATION__SOURCE:
 			setSource((org.unicase.model.classes.Class) null);
 			return;
@@ -387,6 +438,12 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 			return;
 		case ClassesPackage.ASSOCIATION__TYPE:
 			setType(TYPE_EDEFAULT);
+			return;
+		case ClassesPackage.ASSOCIATION__SOURCE_MULTIPLICITY:
+			setSourceMultiplicity(SOURCE_MULTIPLICITY_EDEFAULT);
+			return;
+		case ClassesPackage.ASSOCIATION__TARGET_MULTIPLICITY:
+			setTargetMultiplicity(TARGET_MULTIPLICITY_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -399,14 +456,18 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case ClassesPackage.ASSOCIATION__DIRECTED:
-			return directed != DIRECTED_EDEFAULT;
 		case ClassesPackage.ASSOCIATION__SOURCE:
 			return source != null;
 		case ClassesPackage.ASSOCIATION__TARGET:
 			return target != null;
 		case ClassesPackage.ASSOCIATION__TYPE:
 			return type != TYPE_EDEFAULT;
+		case ClassesPackage.ASSOCIATION__SOURCE_MULTIPLICITY:
+			return SOURCE_MULTIPLICITY_EDEFAULT == null ? sourceMultiplicity != null
+					: !SOURCE_MULTIPLICITY_EDEFAULT.equals(sourceMultiplicity);
+		case ClassesPackage.ASSOCIATION__TARGET_MULTIPLICITY:
+			return TARGET_MULTIPLICITY_EDEFAULT == null ? targetMultiplicity != null
+					: !TARGET_MULTIPLICITY_EDEFAULT.equals(targetMultiplicity);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -421,10 +482,12 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (directed: ");
-		result.append(directed);
-		result.append(", type: ");
+		result.append(" (type: ");
 		result.append(type);
+		result.append(", sourceMultiplicity: ");
+		result.append(sourceMultiplicity);
+		result.append(", targetMultiplicity: ");
+		result.append(targetMultiplicity);
 		result.append(')');
 		return result.toString();
 	}

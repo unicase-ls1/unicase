@@ -6,6 +6,8 @@
  */
 package org.unicase.workspace.edit.commands;
 
+import java.util.Date;
+
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -15,8 +17,11 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
+import org.unicase.emfstore.esmodel.versioning.LogMessage;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.ui.stem.views.dialogs.CommitDialog;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.edit.dialogs.LoginDialog;
@@ -48,19 +53,25 @@ public class CommitProjectHandler extends ProjectActionHandler {
 				// initially setting the status as successful in case the user
 				// is already logged in
 				int loginStatus = LoginDialog.SUCCESSFUL;
-				if (usersession == null) {
-					// TODO: 
-				} else if (!usersession.isLoggedIn()) {
-					login = new LoginDialog(shell, usersession, usersession.getServerInfo());
-					loginStatus = login.open();
-				}
-				if (loginStatus == LoginDialog.SUCCESSFUL) {
-					try {
-						projectSpace.commit();
-						MessageDialog.openInformation(window.getShell(), null, "Commit completed.");
-					} catch (EmfStoreException e) {
-						DialogHandler.showExceptionDialog(e);
+				try{
+					if (!usersession.isLoggedIn()) {
+						login = new LoginDialog(shell, usersession, usersession.getServerInfo());
+						loginStatus = login.open();
 					}
+					if (loginStatus == LoginDialog.SUCCESSFUL) {
+						CommitDialog commitDialog = new CommitDialog(shell);
+						commitDialog.open();
+						LogMessage logMessage = VersioningFactory.eINSTANCE.createLogMessage();
+						logMessage.setAuthor(usersession.getUsername());
+						logMessage.setDate(new Date());
+						logMessage.setMessage(commitDialog.getLogText());
+						projectSpace.commit(logMessage);
+						MessageDialog.openInformation(window.getShell(), null, "Commit completed.");
+					}
+				} catch (EmfStoreException e) {
+					DialogHandler.showExceptionDialog(e);
+				}catch(NullPointerException np){
+					//usersession was null -> fail silently
 				}
 			}
 		});

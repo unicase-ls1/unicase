@@ -49,7 +49,8 @@
                 qualifiedClassName="org.unicase.model.classDiagram.unicase.CenterLayout"/>
             <children
                 xsi:type="gmfgraph:Label"
-                name="ClassFigure_name">
+                name="ClassFigure_name"
+                text="unnamed">
               <font
                   xsi:type="gmfgraph:BasicFont"/>
               <insets
@@ -94,23 +95,39 @@
         <children
             xsi:type="gmfgraph:Label"
             name="AssociationFigure_name"
-            text=""/>
+            text="unnamed"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="AssociationFigure_targetMultiplicity"
+            text="1"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="AssociationFigure_sourceMultiplicity"
+            text="1"/>
       </actualFigure>
       <accessors
           accessor="getFigureAssociationFigure_name"
           figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getFigureAssociationFigure_sourceMultiplicity"
+          figure="//@figures.0/@descriptors.1/@actualFigure/@children.2"/>
+      <accessors
+          accessor="getFigureAssociationFigure_targetMultiplicity"
+          figure="//@figures.0/@descriptors.1/@actualFigure/@children.1"/>
     </descriptors>
     <descriptors
         name="ClassAttributeFigure">
       <actualFigure
           xsi:type="gmfgraph:Label"
-          name="ClassAttributeNameFigure"/>
+          name="ClassAttributeNameFigure"
+          text="unnamed"/>
     </descriptors>
     <descriptors
         name="ClassMethodFigure">
       <actualFigure
           xsi:type="gmfgraph:Label"
-          name="ClassMethodNameFigure"/>
+          name="ClassMethodNameFigure"
+          text="unnamed"/>
     </descriptors>
     <descriptors
         name="GeneralizationFigure">
@@ -263,9 +280,39 @@
     <descriptors
         name="ActorFigure">
       <actualFigure
-          xsi:type="gmfgraph:CustomFigure"
-          name="ActorFigure"
-          qualifiedClassName="org.unicase.ui.usecaseDiagram.unicase.StickMan"/>
+          xsi:type="gmfgraph:Rectangle">
+        <layout
+            xsi:type="gmfgraph:GridLayout">
+          <margins/>
+          <spacing/>
+        </layout>
+        <children
+            xsi:type="gmfgraph:CustomFigure"
+            name="ActorFigure"
+            qualifiedClassName="org.unicase.ui.usecaseDiagram.unicase.StickMan">
+          <layoutData
+              xsi:type="gmfgraph:GridLayoutData"
+              grabExcessHorizontalSpace="true"
+              grabExcessVerticalSpace="true"
+              verticalAlignment="FILL"
+              horizontalAlignment="FILL"/>
+        </children>
+        <children
+            xsi:type="gmfgraph:CustomFigure"
+            name="ActorNode_name"
+            qualifiedClassName="org.unicase.ui.usecaseDiagram.unicase.Label">
+          <layoutData
+              xsi:type="gmfgraph:GridLayoutData"/>
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="Arial"
+              height="12"
+              style="BOLD"/>
+        </children>
+      </actualFigure>
+      <accessors
+          accessor="getFigureActorFigure_name"
+          figure="//@figures.2/@descriptors.0/@actualFigure/@children.1"/>
     </descriptors>
     <descriptors
         name="UseCaseFigure">
@@ -343,19 +390,6 @@
           text="&lt;&lt;extend\u00BB"/>
     </descriptors>
     <descriptors
-        name="Actor_external_name">
-      <actualFigure
-          xsi:type="gmfgraph:CustomFigure"
-          name="Actor_external_name"
-          qualifiedClassName="org.unicase.ui.usecaseDiagram.unicase.Label">
-        <font
-            xsi:type="gmfgraph:BasicFont"
-            faceName="Arial"
-            height="11"
-            style="BOLD"/>
-      </actualFigure>
-    </descriptors>
-    <descriptors
         name="ParticipateLabelFigure">
       <actualFigure
           xsi:type="gmfgraph:Label"
@@ -385,14 +419,7 @@
   </nodes>
   <nodes
       name="Actor"
-      figure="ActorFigure">
-    <facets
-        xsi:type="gmfgraph:DefaultSizeFacet">
-      <defaultSize
-          dx="30"
-          dy="50"/>
-    </facets>
-  </nodes>
+      figure="ActorFigure"/>
   <nodes
       name="ComponentNode"
       figure="ComponentFigure">
@@ -445,6 +472,7 @@
   <labels
       name="AssociationLine_name"
       figure="AssociationFigure"
+      elementIcon="false"
       accessor="//@figures.0/@descriptors.1/@accessors.0"/>
   <labels
       name="ClassNode_decoration"
@@ -513,8 +541,9 @@
   </labels>
   <labels
       name="ActorNode_name"
-      figure="Actor_external_name"
-      elementIcon="false"/>
+      figure="ActorFigure"
+      elementIcon="false"
+      accessor="//@figures.2/@descriptors.0/@accessors.0"/>
   <labels
       name="ComponentNode_name"
       figure="ComponentFigure"
@@ -524,4 +553,25 @@
       name="Interface_name"
       figure="Interface_NameLabel"
       elementIcon="false"/>
+  <labels
+      name="AssociationLine_sourceMultiplicity"
+      figure="AssociationFigure"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.1/@accessors.1">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="END"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"/>
+  </labels>
+  <labels
+      name="AssociationLine_targetMultiplicity"
+      figure="AssociationFigure"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.1/@accessors.2">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"/>
+  </labels>
 </gmfgraph:Canvas>

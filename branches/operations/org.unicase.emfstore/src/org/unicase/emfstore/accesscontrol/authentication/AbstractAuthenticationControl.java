@@ -6,9 +6,7 @@
  */
 package org.unicase.emfstore.accesscontrol.authentication;
 
-
-import java.util.Properties;
-
+import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.accesscontrol.AuthenticationControl;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
@@ -22,22 +20,49 @@ import org.unicase.emfstore.esmodel.SessionId;
 public abstract class AbstractAuthenticationControl implements
 		AuthenticationControl {
 
-	public static final String SUPER_USER = "super";
-	
-	public static final String SUPER_USER_PW = "super";
-	
-	public AbstractAuthenticationControl(Properties properties) {
-	
+	private String superuser;
+	private String superuserpw;
+
+	/**
+	 * Default constructor.
+	 */
+	public AbstractAuthenticationControl() {
+		superuser = ServerConfiguration.getProperties().getProperty(
+				ServerConfiguration.SUPER_USER,
+				ServerConfiguration.DEFAULT_SUPER_USER);
+		superuserpw = ServerConfiguration.getProperties().getProperty(
+				ServerConfiguration.SUPER_USER_PASSWORD,
+				ServerConfiguration.SUPER_USER_PASSWORD_DEFAULT);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public SessionId logIn(String username, String password)
 			throws AccessControlException {
-		if((username.equals(SUPER_USER) && password.equals(SUPER_USER_PW)) || verifyPassword(username, password)) {
+		if ((username.equals(superuser) && password.equals(superuserpw))
+				|| verifyPassword(username, password)) {
 			return EsmodelFactory.eINSTANCE.createSessionId();
 		}
 		throw new AccessControlException();
 	}
-	
-	abstract public boolean verifyPassword(String username, String password) throws AccessControlException;
+
+	/**
+	 * This method must be implemented by subclasses in order to verify a pair
+	 * of username and password. When using authentication you should use
+	 * {@link AuthenticationControl#logIn(String, String)} in order to
+	 * gain a session id.
+	 * 
+	 * 
+	 * @param username
+	 *            the username
+	 * @param password
+	 *            the password
+	 * @return boolean true if authentication was successful
+	 * @throws AccessControlException
+	 *             an exception
+	 */
+	protected abstract boolean verifyPassword(String username, String password)
+			throws AccessControlException;
 
 }

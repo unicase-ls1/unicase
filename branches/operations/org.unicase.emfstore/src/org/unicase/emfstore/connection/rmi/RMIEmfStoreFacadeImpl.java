@@ -9,7 +9,6 @@ package org.unicase.emfstore.connection.rmi;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,9 +60,12 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements
 	 *            the authentication controler
 	 * @throws RemoteException
 	 *             if an RMI problem occurs
+	 * @throws EmfStoreException
+	 *             exception within the server
 	 */
 	public RMIEmfStoreFacadeImpl(EmfStore emfStore,
-			AuthenticationControl authenticationControl) throws RemoteException {
+			AuthenticationControl authenticationControl)
+			throws RemoteException, EmfStoreException {
 		super();
 		this.emfStore = emfStore;
 		this.accessControl = authenticationControl;

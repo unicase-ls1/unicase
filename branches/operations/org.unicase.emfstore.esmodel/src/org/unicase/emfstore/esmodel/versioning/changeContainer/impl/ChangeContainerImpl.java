@@ -189,6 +189,9 @@ public class ChangeContainerImpl extends EObjectImpl implements ChangeContainer 
 
 		fowardChangeDescription.apply();
 
+		//remove from virtual resource
+		projectResource.getContents().remove(project);
+
 		// reintegrate project into old container
 		if (oldContainer != null) {
 			oldContainer.eSet(containmentFeature, project);
@@ -215,7 +218,6 @@ public class ChangeContainerImpl extends EObjectImpl implements ChangeContainer 
 		// preserve old project container
 		EReference containmentFeature = project.eContainmentFeature();
 		EObject oldContainer = project.eContainer();
-		
 
 		// important in order to keep the changes in case of connection problems
 		// when commiting
@@ -232,7 +234,7 @@ public class ChangeContainerImpl extends EObjectImpl implements ChangeContainer 
 			// remove from its resource
 			resource.getContents().remove(eObject);
 		}
-		
+
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource projectResource = resourceSet
 				.createResource(VIRTUAL_PROJECT_URI);
@@ -264,10 +266,10 @@ public class ChangeContainerImpl extends EObjectImpl implements ChangeContainer 
 		this.setForwardDelta(out.toString());
 
 		newbackwardChangeDescription.apply();
-		
+
 		//remove project from the virtual resource
 		projectResource.getContents().remove(project);
-		
+
 		// reintegrate project into old container
 		if (oldContainer != null) {
 			oldContainer.eSet(containmentFeature, project);

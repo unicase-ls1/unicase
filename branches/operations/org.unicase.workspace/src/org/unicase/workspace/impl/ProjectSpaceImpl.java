@@ -163,6 +163,16 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	protected ChangeDescription localChanges;
 
 	/**
+	 * The cached value of the '{@link #getOperations() <em>Operations</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOperations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<AbstractOperation> operations;
+
+	/**
 	 * The cached value of the '{@link #getUsersession() <em>Usersession</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getUsersession()
@@ -238,15 +248,15 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 */
 	protected boolean dirty = DIRTY_EDEFAULT;
 
-	private List<AbstractOperation> operations;
-
-	public List<AbstractOperation> getOperations() {
-		return operations;
-	}
-
-	public void setOperations(List<AbstractOperation> operations) {
-		this.operations = operations;
-	}
+	/**
+	 * The cached value of the '{@link #getOldLogMessages() <em>Old Log Messages</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOldLogMessages()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<String> oldLogMessages;
 
 	// begin of custom code
 	/**
@@ -578,6 +588,20 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<AbstractOperation> getOperations() {
+		if (operations == null) {
+			operations = new EObjectContainmentEList.Resolving<AbstractOperation>(
+					AbstractOperation.class, this,
+					WorkspacePackage.PROJECT_SPACE__OPERATIONS);
+		}
+		return operations;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -766,6 +790,19 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
 					WorkspacePackage.PROJECT_SPACE__DIRTY, oldDirty, dirty));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<String> getOldLogMessages() {
+		if (oldLogMessages == null) {
+			oldLogMessages = new EDataTypeUniqueEList<String>(String.class,
+					this, WorkspacePackage.PROJECT_SPACE__OLD_LOG_MESSAGES);
+		}
+		return oldLogMessages;
 	}
 
 	/**
@@ -995,7 +1032,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		TransactionalEditingDomain domain = WorkspaceManager.getInstance()
 		.getCurrentWorkspace().getEditingDomain();
 		domain.addResourceSetListener(this);
-		this.operations=new ArrayList<AbstractOperation>();
+		this.operations=new BasicEList<AbstractOperation>();
 		
 		// MK: possibly performance hit
 		this.eResource().setTrackingModification(true);
@@ -1091,6 +1128,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			return basicSetProjectId(null, msgs);
 		case WorkspacePackage.PROJECT_SPACE__LOCAL_CHANGES:
 			return basicSetLocalChanges(null, msgs);
+		case WorkspacePackage.PROJECT_SPACE__OPERATIONS:
+			return ((InternalEList<?>) getOperations()).basicRemove(otherEnd,
+					msgs);
 		case WorkspacePackage.PROJECT_SPACE__BASE_VERSION:
 			return basicSetBaseVersion(null, msgs);
 		}
@@ -1120,6 +1160,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			if (resolve)
 				return getLocalChanges();
 			return basicGetLocalChanges();
+		case WorkspacePackage.PROJECT_SPACE__OPERATIONS:
+			return getOperations();
 		case WorkspacePackage.PROJECT_SPACE__USERSESSION:
 			if (resolve)
 				return getUsersession();
@@ -1134,6 +1176,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			return new Integer(getResourceCount());
 		case WorkspacePackage.PROJECT_SPACE__DIRTY:
 			return isDirty() ? Boolean.TRUE : Boolean.FALSE;
+		case WorkspacePackage.PROJECT_SPACE__OLD_LOG_MESSAGES:
+			return getOldLogMessages();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1142,6 +1186,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -1160,6 +1205,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		case WorkspacePackage.PROJECT_SPACE__LOCAL_CHANGES:
 			setLocalChanges((ChangeDescription) newValue);
 			return;
+		case WorkspacePackage.PROJECT_SPACE__OPERATIONS:
+			getOperations().clear();
+			getOperations().addAll(
+					(Collection<? extends AbstractOperation>) newValue);
+			return;
 		case WorkspacePackage.PROJECT_SPACE__USERSESSION:
 			setUsersession((Usersession) newValue);
 			return;
@@ -1174,6 +1224,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			return;
 		case WorkspacePackage.PROJECT_SPACE__DIRTY:
 			setDirty(((Boolean) newValue).booleanValue());
+			return;
+		case WorkspacePackage.PROJECT_SPACE__OLD_LOG_MESSAGES:
+			getOldLogMessages().clear();
+			getOldLogMessages().addAll((Collection<? extends String>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -1201,6 +1255,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		case WorkspacePackage.PROJECT_SPACE__LOCAL_CHANGES:
 			setLocalChanges((ChangeDescription) null);
 			return;
+		case WorkspacePackage.PROJECT_SPACE__OPERATIONS:
+			getOperations().clear();
+			return;
 		case WorkspacePackage.PROJECT_SPACE__USERSESSION:
 			setUsersession((Usersession) null);
 			return;
@@ -1215,6 +1272,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			return;
 		case WorkspacePackage.PROJECT_SPACE__DIRTY:
 			setDirty(DIRTY_EDEFAULT);
+			return;
+		case WorkspacePackage.PROJECT_SPACE__OLD_LOG_MESSAGES:
+			getOldLogMessages().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -1239,6 +1299,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 					: !PROJECT_DESCRIPTION_EDEFAULT.equals(projectDescription);
 		case WorkspacePackage.PROJECT_SPACE__LOCAL_CHANGES:
 			return localChanges != null;
+		case WorkspacePackage.PROJECT_SPACE__OPERATIONS:
+			return operations != null && !operations.isEmpty();
 		case WorkspacePackage.PROJECT_SPACE__USERSESSION:
 			return usersession != null;
 		case WorkspacePackage.PROJECT_SPACE__LAST_UPDATED:
@@ -1250,6 +1312,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			return resourceCount != RESOURCE_COUNT_EDEFAULT;
 		case WorkspacePackage.PROJECT_SPACE__DIRTY:
 			return dirty != DIRTY_EDEFAULT;
+		case WorkspacePackage.PROJECT_SPACE__OLD_LOG_MESSAGES:
+			return oldLogMessages != null && !oldLogMessages.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1274,6 +1338,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		result.append(resourceCount);
 		result.append(", dirty: ");
 		result.append(dirty);
+		result.append(", oldLogMessages: ");
+		result.append(oldLogMessages);
 		result.append(')');
 		return result.toString();
 	}
@@ -1315,6 +1381,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 				.getResources();
 		for (Resource resource : resources) {
 			if (resource.isModified() || force) {
+			//if (true) {
+			//TODO: Check if merging is correct
 				try {
 					resource.save(Configuration.getResourceSaveOptions());
 				} catch (IOException e) {

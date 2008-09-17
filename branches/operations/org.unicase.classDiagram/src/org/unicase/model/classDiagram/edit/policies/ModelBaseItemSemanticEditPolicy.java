@@ -347,6 +347,11 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
+		private static final String OPPOSITE_END_VAR = "oppositeEnd"; //$NON-NLS-1$
+
+		/**
+		 * @generated
+		 */
 		public static boolean canCreateAssociation_3001(MEDiagram container,
 				Class source, Class target) {
 			return canExistAssociation_3001(container, source, target);
@@ -355,14 +360,38 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateClassSubClasses_3002(Class source,
+		public static boolean canCreateAssociation_3002(MEDiagram container,
+				Class source, Class target) {
+			return canExistAssociation_3002(container, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateClassSubClasses_3005(Class source,
 				Class target) {
 			if (source != null) {
 				if (source.getSubClasses().contains(target)) {
 					return false;
 				}
 			}
-			return canExistClassSubClasses_3002(source, target);
+			return canExistClassSubClasses_3005(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateAssociation_3004(MEDiagram container,
+				Class source, Class target) {
+			return canExistAssociation_3004(container, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateAssociation_3003(MEDiagram container,
+				Class source, Class target) {
+			return canExistAssociation_3003(container, source, target);
 		}
 
 		/**
@@ -377,8 +406,35 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistClassSubClasses_3002(Class source,
+		public static boolean canExistAssociation_3002(MEDiagram container,
+				Class source, Class target) {
+
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistClassSubClasses_3005(Class source,
 				Class target) {
+
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistAssociation_3004(MEDiagram container,
+				Class source, Class target) {
+
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistAssociation_3003(MEDiagram container,
+				Class source, Class target) {
 
 			return true;
 		}

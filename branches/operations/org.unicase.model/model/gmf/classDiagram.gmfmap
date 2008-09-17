@@ -23,7 +23,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="model.gmftool#//@palette/@tools.0"/>
+          href="model.gmftool#//@palette/@tools.0/@tools.0"/>
       <diagramNode
           href="model.gmfgraph#Class"/>
       <children
@@ -43,7 +43,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="model.gmftool#//@palette/@tools.5"/>
+              href="model.gmftool#//@palette/@tools.0/@tools.1"/>
           <diagramNode
               href="model.gmfgraph#ClassAttribute_name"/>
         </ownedChild>
@@ -65,7 +65,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="model.gmftool#//@palette/@tools.6"/>
+              href="model.gmftool#//@palette/@tools.0/@tools.2"/>
           <diagramNode
               href="model.gmfgraph#ClassMethod_name"/>
         </ownedChild>
@@ -86,6 +86,19 @@
       relatedDiagrams="//@diagram">
     <domainMetaElement
         href="../model.ecore#//classes/Association"/>
+    <domainSpecialization
+        body="self.type = AssociationType::UNDIRECTED_ASSOCIATION"/>
+    <domainInitializer
+        xsi:type="gmfmap:FeatureSeqInitializer">
+      <initializers
+          xsi:type="gmfmap:FeatureValueSpec">
+        <feature
+            xsi:type="ecore:EAttribute"
+            href="../model.ecore#//classes/Association/type"/>
+        <value
+            body="AssociationType::UNDIRECTED_ASSOCIATION"/>
+      </initializers>
+    </domainInitializer>
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping"
         editorPattern="">
@@ -94,11 +107,26 @@
       <features
           href="../model.ecore#//ModelElement/name"/>
     </labelMappings>
+    <labelMappings
+        xsi:type="gmfmap:FeatureLabelMapping">
+      <diagramLabel
+          href="model.gmfgraph#AssociationLine_sourceMultiplicity"/>
+      <features
+          href="../model.ecore#//classes/Association/sourceMultiplicity"/>
+    </labelMappings>
+    <labelMappings
+        xsi:type="gmfmap:FeatureLabelMapping"
+        viewPattern="">
+      <diagramLabel
+          href="model.gmfgraph#AssociationLine_targetMultiplicity"/>
+      <features
+          href="../model.ecore#//classes/Association/targetMultiplicity"/>
+    </labelMappings>
     <containmentFeature
         href="../model.ecore#//diagram/MEDiagram/newElements"/>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="model.gmftool#//@palette/@tools.1"/>
+        href="model.gmftool#//@palette/@tools.1/@tools.1"/>
     <diagramLink
         href="model.gmfgraph#Association"/>
     <sourceMetaFeature
@@ -112,6 +140,19 @@
       relatedDiagrams="//@diagram">
     <domainMetaElement
         href="../model.ecore#//classes/Association"/>
+    <domainSpecialization
+        body="self.type = AssociationType::AGGREGATION"/>
+    <domainInitializer
+        xsi:type="gmfmap:FeatureSeqInitializer">
+      <initializers
+          xsi:type="gmfmap:FeatureValueSpec">
+        <feature
+            xsi:type="ecore:EAttribute"
+            href="../model.ecore#//classes/Association/type"/>
+        <value
+            body="AssociationType::AGGREGATION"/>
+      </initializers>
+    </domainInitializer>
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping"
         editorPattern="">
@@ -120,11 +161,26 @@
       <features
           href="../model.ecore#//ModelElement/name"/>
     </labelMappings>
+    <labelMappings
+        xsi:type="gmfmap:FeatureLabelMapping">
+      <diagramLabel
+          href="model.gmfgraph#AssociationLine_sourceMultiplicity"/>
+      <features
+          href="../model.ecore#//classes/Association/sourceMultiplicity"/>
+    </labelMappings>
+    <labelMappings
+        xsi:type="gmfmap:FeatureLabelMapping"
+        viewPattern="">
+      <diagramLabel
+          href="model.gmfgraph#AssociationLine_targetMultiplicity"/>
+      <features
+          href="../model.ecore#//classes/Association/targetMultiplicity"/>
+    </labelMappings>
     <containmentFeature
         href="../model.ecore#//diagram/MEDiagram/newElements"/>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="model.gmftool#//@palette/@tools.2"/>
+        href="model.gmftool#//@palette/@tools.1/@tools.3"/>
     <diagramLink
         href="model.gmfgraph#Association"/>
     <sourceMetaFeature
@@ -138,6 +194,19 @@
       relatedDiagrams="//@diagram">
     <domainMetaElement
         href="../model.ecore#//classes/Association"/>
+    <domainSpecialization
+        body="self.type = AssociationType::COMPOSITION"/>
+    <domainInitializer
+        xsi:type="gmfmap:FeatureSeqInitializer">
+      <initializers
+          xsi:type="gmfmap:FeatureValueSpec">
+        <feature
+            xsi:type="ecore:EAttribute"
+            href="../model.ecore#//classes/Association/type"/>
+        <value
+            body="AssociationType::COMPOSITION"/>
+      </initializers>
+    </domainInitializer>
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping"
         editorPattern="">
@@ -146,11 +215,26 @@
       <features
           href="../model.ecore#//ModelElement/name"/>
     </labelMappings>
+    <labelMappings
+        xsi:type="gmfmap:FeatureLabelMapping">
+      <diagramLabel
+          href="model.gmfgraph#AssociationLine_sourceMultiplicity"/>
+      <features
+          href="../model.ecore#//classes/Association/sourceMultiplicity"/>
+    </labelMappings>
+    <labelMappings
+        xsi:type="gmfmap:FeatureLabelMapping"
+        viewPattern="">
+      <diagramLabel
+          href="model.gmfgraph#AssociationLine_targetMultiplicity"/>
+      <features
+          href="../model.ecore#//classes/Association/targetMultiplicity"/>
+    </labelMappings>
     <containmentFeature
         href="../model.ecore#//diagram/MEDiagram/newElements"/>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="model.gmftool#//@palette/@tools.3"/>
+        href="model.gmftool#//@palette/@tools.1/@tools.4"/>
     <diagramLink
         href="model.gmfgraph#Association"/>
     <sourceMetaFeature
@@ -164,6 +248,19 @@
       relatedDiagrams="//@diagram">
     <domainMetaElement
         href="../model.ecore#//classes/Association"/>
+    <domainSpecialization
+        body="self.type = AssociationType::DIRECTED_ASSOCIATION"/>
+    <domainInitializer
+        xsi:type="gmfmap:FeatureSeqInitializer">
+      <initializers
+          xsi:type="gmfmap:FeatureValueSpec">
+        <feature
+            xsi:type="ecore:EAttribute"
+            href="../model.ecore#//classes/Association/type"/>
+        <value
+            body="AssociationType::DIRECTED_ASSOCIATION"/>
+      </initializers>
+    </domainInitializer>
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping"
         editorPattern="">
@@ -172,11 +269,26 @@
       <features
           href="../model.ecore#//ModelElement/name"/>
     </labelMappings>
+    <labelMappings
+        xsi:type="gmfmap:FeatureLabelMapping">
+      <diagramLabel
+          href="model.gmfgraph#AssociationLine_sourceMultiplicity"/>
+      <features
+          href="../model.ecore#//classes/Association/sourceMultiplicity"/>
+    </labelMappings>
+    <labelMappings
+        xsi:type="gmfmap:FeatureLabelMapping"
+        viewPattern="">
+      <diagramLabel
+          href="model.gmfgraph#AssociationLine_targetMultiplicity"/>
+      <features
+          href="../model.ecore#//classes/Association/targetMultiplicity"/>
+    </labelMappings>
     <containmentFeature
         href="../model.ecore#//diagram/MEDiagram/newElements"/>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="model.gmftool#//@palette/@tools.4"/>
+        href="model.gmftool#//@palette/@tools.1/@tools.2"/>
     <diagramLink
         href="model.gmfgraph#Association"/>
     <sourceMetaFeature
@@ -189,7 +301,7 @@
   <links>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="model.gmftool#//@palette/@tools.7"/>
+        href="model.gmftool#//@palette/@tools.1/@tools.0"/>
     <diagramLink
         href="model.gmfgraph#Generalization"/>
     <linkMetaFeature

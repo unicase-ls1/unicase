@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Properties;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -51,11 +50,9 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	 *            the serverspace
 	 * @param authorizationControl
 	 *            the authoriazationcontrol
-	 * @param properties
-	 *            the properties
 	 */
 	public AdminEmfStoreImpl(ServerSpace serverSpace,
-			AuthorizationControl authorizationControl, Properties properties) {
+			AuthorizationControl authorizationControl) {
 		this.serverSpace = serverSpace;
 		this.authorizationControl = authorizationControl;
 	}

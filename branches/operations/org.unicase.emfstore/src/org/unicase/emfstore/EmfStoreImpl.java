@@ -12,7 +12,6 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Properties;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -43,6 +42,7 @@ import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidProjectIdException;
+import org.unicase.emfstore.exceptions.InvalidPropertyException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.model.ModelFactory;
@@ -68,11 +68,9 @@ public class EmfStoreImpl implements EmfStore {
 	 *            the serverspace
 	 * @param authorizationControl
 	 *            the accesscontroller
-	 * @param properties
-	 *            server properties
 	 */
 	public EmfStoreImpl(ServerSpace serverSpace,
-			AuthorizationControl authorizationControl, Properties properties) {
+			AuthorizationControl authorizationControl) {
 		this.serverSpace = serverSpace;
 		this.authorizationControl = authorizationControl;
 	}
@@ -101,10 +99,18 @@ public class EmfStoreImpl implements EmfStore {
 
 		Version previousHeadVersion = versions.get(versions.size() - 1);
 
-		// MK: removed state copy for performance
-		// Project newProjectState =
-		// (Project)EcoreUtil.copy(previousHeadVersion.getProjectState());
-		Project newProjectState = previousHeadVersion.getProjectState();
+		String property = ServerConfiguration.getProperties().getProperty(
+				ServerConfiguration.PROJECTSTATE_VERSION_PERSISTENCE,
+				ServerConfiguration.PROJECTSPACE_VERSION_PERSISTENCY_DEFAULT);
+		Project newProjectState = null;
+		if (property.equals("lastVersionOnly")) {
+			newProjectState = previousHeadVersion.getProjectState();
+		} else if (property.equals("everyVersion")) {
+			newProjectState = (Project) EcoreUtil.copy(previousHeadVersion
+					.getProjectState());
+		} else {
+			throw new InvalidPropertyException();
+		}
 
 		changePackage.apply(newProjectState);
 
@@ -172,15 +178,18 @@ public class EmfStoreImpl implements EmfStore {
 			throws EmfStoreException {
 		// TODO: authorization
 		authorizationControl.checkReadAccess(sessionId, projectId, null);
-		
-		PrimaryVersionSpec resolvedSource = resolveVersionSpec(projectId, source);
-		PrimaryVersionSpec resolvedTarget = resolveVersionSpec(projectId, target);
-		
-		List<HistoryInfo> result = getHistoryInfo(projectId, resolvedSource, resolvedTarget);
-		if(resolvedSource.compareTo(resolvedTarget) < 0) {
+
+		PrimaryVersionSpec resolvedSource = resolveVersionSpec(projectId,
+				source);
+		PrimaryVersionSpec resolvedTarget = resolveVersionSpec(projectId,
+				target);
+
+		List<HistoryInfo> result = getHistoryInfo(projectId, resolvedSource,
+				resolvedTarget);
+		if (resolvedSource.compareTo(resolvedTarget) < 0) {
 			Collections.reverse(result);
 		}
-		
+
 		return result;
 	}
 
@@ -191,24 +200,37 @@ public class EmfStoreImpl implements EmfStore {
 			ProjectId projectId, HistoryQuery historyQuery)
 			throws EmfStoreException {
 		authorizationControl.checkReadAccess(sessionId, projectId, null);
-		
-		List<HistoryInfo> result = getHistoryInfo(projectId, historyQuery.getSource(), historyQuery.getTarget());
-		if(historyQuery.getSource().compareTo(historyQuery.getTarget()) < 0) {
+
+		List<HistoryInfo> result = getHistoryInfo(projectId, historyQuery
+				.getSource(), historyQuery.getTarget());
+		if (historyQuery.getSource().compareTo(historyQuery.getTarget()) < 0) {
 			Collections.reverse(result);
 		}
 		return result;
 	}
 
-	private List<HistoryInfo> getHistoryInfo(ProjectId projectId, PrimaryVersionSpec source,
-			PrimaryVersionSpec target) throws EmfStoreException {
+	private List<HistoryInfo> getHistoryInfo(ProjectId projectId,
+			PrimaryVersionSpec source, PrimaryVersionSpec target)
+			throws EmfStoreException {
 		List<HistoryInfo> result = new ArrayList<HistoryInfo>();
+		PrimaryVersionSpec headRevision = getProject(projectId)
+				.getLastVersion().getPrimarySpec();
 		for (Version version : getVersions(projectId, source, target)) {
 			HistoryInfo history = VersioningFactory.eINSTANCE
 					.createHistoryInfo();
-			history.setLogMessage((LogMessage) EcoreUtil.copy(version.getLogMessage()));
-			history.setPrimerySpec((PrimaryVersionSpec) EcoreUtil.copy(version.getPrimarySpec()));
-			for(TagVersionSpec tagSpec:version.getTagSpecs()) {
-				history.getTagSpecs().add((TagVersionSpec) EcoreUtil.copy(tagSpec));
+			history.setLogMessage((LogMessage) EcoreUtil.copy(version
+					.getLogMessage()));
+			history.setPrimerySpec((PrimaryVersionSpec) EcoreUtil.copy(version
+					.getPrimarySpec()));
+			for (TagVersionSpec tagSpec : version.getTagSpecs()) {
+				history.getTagSpecs().add(
+						(TagVersionSpec) EcoreUtil.copy(tagSpec));
+			}
+			if (version.getPrimarySpec().equals(headRevision)) {
+				TagVersionSpec spec = VersioningFactory.eINSTANCE
+						.createTagVersionSpec();
+				spec.setName("HEAD");
+				history.getTagSpecs().add(spec);
 			}
 			result.add(history);
 		}

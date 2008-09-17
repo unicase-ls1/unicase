@@ -9,7 +9,6 @@ package org.unicase.emfstore.connection.rmi;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +28,7 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
  * 
  * @author Wesendonk
  */
+@SuppressWarnings("serial")
 public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements
 		RMIAdminEmfStoreFacade {
 
@@ -45,9 +45,11 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade impleme
 	 *            the {@link AuthenticationControl}
 	 * @throws RemoteException
 	 *             thrown if there are rmi-related problems
+	 * @throws EmfStoreException
+	 * 				exception within the server
 	 */
 	public RMIAdminEmfStoreFacadeImpl(AdminEmfStore adminEmfStore,
-			AuthenticationControl accessControl) throws RemoteException {
+			AuthenticationControl accessControl) throws RemoteException, EmfStoreException {
 		this.adminEmfStore = adminEmfStore;
 	}
 

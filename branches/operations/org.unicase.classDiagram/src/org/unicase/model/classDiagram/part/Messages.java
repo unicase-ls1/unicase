@@ -233,12 +233,17 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Default1Group_title;
+	public static String Nodes1Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Default1Group_desc;
+	public static String Connections2Group_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Connections2Group_desc;
 
 	/**
 	 * @generated
@@ -253,42 +258,42 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Association2CreationTool_title;
+	public static String Attribute2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Aggregation3CreationTool_title;
+	public static String Attribute2CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Composition4CreationTool_title;
+	public static String Method3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String DirectedAssociation5CreationTool_title;
+	public static String Generalization1CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Attribute6CreationTool_title;
+	public static String UndirectedAssociation2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Attribute6CreationTool_desc;
+	public static String DirectedAssociation3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Method7CreationTool_title;
+	public static String Aggregation4CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Generalization8CreationTool_title;
+	public static String Composition5CreationTool_title;
 
 	/**
 	 * @generated
@@ -333,12 +338,42 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ClassSubClasses_3002_target;
+	public static String NavigatorGroupName_Association_3002_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ClassSubClasses_3002_source;
+	public static String NavigatorGroupName_Association_3002_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ClassSubClasses_3005_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ClassSubClasses_3005_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Association_3004_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Association_3004_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Association_3003_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Association_3003_source;
 
 	/**
 	 * @generated

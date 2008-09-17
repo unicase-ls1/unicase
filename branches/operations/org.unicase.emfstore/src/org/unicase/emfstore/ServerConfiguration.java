@@ -7,18 +7,20 @@
 package org.unicase.emfstore;
 
 import java.io.File;
-import java.net.URL;
 import java.util.Properties;
-
-import org.eclipse.core.runtime.FileLocator;
-import org.eclipse.core.runtime.Path;
 
 /**
  * Represents the current server configuration.
+ * 
  * @author koegel
- *
+ * @author wesendonk
+ * 
  */
 public final class ServerConfiguration {
+
+	public static final String TRUE = "true";
+
+	public static final String FALSE = "false";
 
 	/**
 	 * Constant for the name of the Resource Storage Property.
@@ -28,21 +30,64 @@ public final class ServerConfiguration {
 	/**
 	 * Constant for the Default Resource Storage.
 	 */
-//	public static final String DEFAULT_RESOURCE_STORAGE = "org.unicase.emfstore.storage.TeneoStorage";
-	public final static String DEFAULT_RESOURCE_STORAGE = "org.unicase.emfstore.storage.XMLStorage";
+	public static final String DEFAULT_RESOURCE_STORAGE = "org.unicase.emfstore.storage.XMLStorage";
 
-	
-	public static final String RMI_ENCRYPTION = "RMIEncryption";
-	public static final String DEFAULT_RMI_ENCRYTION = "yes";
+	/**
+	 * RMI encryption property, possible values are true and false.
+	 */
+	public static final String RMI_ENCRYPTION = "rmi.encryption";
+
+	/**
+	 * Default RMI encryption property value.
+	 */
+	public static final String RMI_ENCRYTION_DEFAULT = "true";
+
+	public static final String SSL_PASSWORD = "rmi.encryption.ssl.password";
+
+	public static final String SSL_PASSWORD_DEFAULT = "av374tb$VBGGtrgwa7tosdfa";
+
+	/**
+	 * Property for projectstate persistence policy in versions. Possible values
+	 * are <b>lastVersionOnly</b> and <b>everyVersion</b>
+	 */
+	public static final String PROJECTSTATE_VERSION_PERSISTENCE = "persistence.version.projectstate";
+
+	public static final String PROJECTSTATE_VERSION_PERSISTENCE_LASTVERSIONONLY = "lastVersionOnly";
+
+	public static final String PROJECTSTATE_VERSION_PERSISTENCE_EVERYVERSION = "everyVersion";
+
+	/**
+	 * Default value for projectstate persistence policy in versions.
+	 */
+	public static final String PROJECTSPACE_VERSION_PERSISTENCY_DEFAULT = "everyVersion";
+
+	public static final String SUPER_USER = "accesscontrol.authentication.superuser";
+
+	public static final String DEFAULT_SUPER_USER = "super";
+
+	public static final String SUPER_USER_PASSWORD = "accesscontrol.authentication.superuser.password";
+
+	public static final String SUPER_USER_PASSWORD_DEFAULT = "super";
+
+	public static final String AUTHENTICATION_POLICY = "accesscontrol.authentication.policy";
+
+	public static final String AUTHENTICATION_LDAP = "ldap";
+
+	public static final String AUTHENTICATION_SPFV = "spfv";
+
+	public static final String AUTHENTICATION_POLICY_DEFAULT = AUTHENTICATION_LDAP;
+
+	public static final String AUTHENTICATION_SPFV_FILEPATH = "";
 
 	private static Properties properties;
-	
+
 	private ServerConfiguration() {
-		//nothing to do
+		// nothing to do
 	}
-	
+
 	/**
 	 * Return the configuration directory location.
+	 * 
 	 * @return the dir path string
 	 */
 	public static String getConfDirectory() {
@@ -56,6 +101,7 @@ public final class ServerConfiguration {
 
 	/**
 	 * Return the configuration file location.
+	 * 
 	 * @return the file path string
 	 */
 	public static String getConfFile() {
@@ -64,6 +110,7 @@ public final class ServerConfiguration {
 
 	/**
 	 * Return the server home directory location.
+	 * 
 	 * @return the dir path string
 	 */
 	public static String getServerHome() {
@@ -77,6 +124,7 @@ public final class ServerConfiguration {
 
 	/**
 	 * Return the user home directory location.
+	 * 
 	 * @return the dir path string
 	 */
 	public static String getUserHome() {
@@ -85,15 +133,35 @@ public final class ServerConfiguration {
 		sb.append(File.separatorChar);
 		return sb.toString();
 	}
-	
+
+	/**
+	 * Gets the server's properties.
+	 * 
+	 * @return properties
+	 */
 	public static Properties getProperties() {
-		if(properties == null) {
+		if (properties == null) {
 			properties = new Properties();
 		}
 		return properties;
 	}
-	
+
+	/**
+	 * Sets the server's properties.
+	 * 
+	 * @param prop
+	 *            properties
+	 */
 	public static void setProperties(Properties prop) {
 		properties = prop;
+	}
+
+	/**
+	 * Returns the path to the server's keystore.
+	 * 
+	 * @return path to keystore
+	 */
+	public static String getServerKeyStorePath() {
+		return getServerHome() + "unicaseServer.keystore";
 	}
 }

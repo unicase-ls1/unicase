@@ -27,11 +27,11 @@ import org.unicase.emfstore.accesscontrol.AccessControlException;
  */
 public class LDAPVerifier extends AbstractAuthenticationControl {
 
-	private static final String ldapURL = "ldap://opendirectorybruegge.informatik.tu-muenchen.de";
+	private static final String LDAPURL = "ldap://opendirectorybruegge.informatik.tu-muenchen.de";
 
-	private static final String ldapBase = "dc=opendirectorybruegge,dc=informatik,dc=tu-muenchen,dc=de";
+	private static final String LDAPBASE = "dc=opendirectorybruegge,dc=informatik,dc=tu-muenchen,dc=de";
 
-	private static final String searchDN = "uid";
+	private static final String SEARCHDN = "uid";
 
 	private static final String DEFAULT_CTX = "com.sun.jndi.ldap.LdapCtxFactory";
 
@@ -39,10 +39,11 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 
 	/**
 	 * Default constructor.
-	 * @param properties 
+	 * 
+	 * @param properties
 	 */
-	public LDAPVerifier(Properties properties) {
-		super(properties);
+	public LDAPVerifier() {
+		super();
 		logger = LogFactory.getLog(LDAPVerifier.class);
 	}
 
@@ -50,8 +51,7 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public
-	boolean verifyPassword(String username, String password)
+	public boolean verifyPassword(String username, String password)
 			throws AccessControlException {
 		Properties props = new Properties();
 		DirContext dirContext = null;
@@ -59,12 +59,12 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 		// anonymous bind
 		props.put("java.naming.ldap.version", "3");
 		props.put(Context.INITIAL_CONTEXT_FACTORY, DEFAULT_CTX);
-		props.put(Context.PROVIDER_URL, ldapURL);
-		//props.put(Context.SECURITY_PROTOCOL, "ssl");
+		props.put(Context.PROVIDER_URL, LDAPURL);
+		// props.put(Context.SECURITY_PROTOCOL, "ssl");
 		try {
 			dirContext = new InitialDirContext(props);
 		} catch (NamingException e) {
-			logger.info("LDAP Directory " + ldapURL + " not found.", e);
+			logger.info("LDAP Directory " + LDAPURL + " not found.", e);
 			return false;
 		}
 
@@ -72,11 +72,11 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 		constraints.setSearchScope(SearchControls.SUBTREE_SCOPE);
 		NamingEnumeration results = null;
 		try {
-			results = dirContext.search(ldapBase, "(& (" + searchDN + "="
+			results = dirContext.search(LDAPBASE, "(& (" + SEARCHDN + "="
 					+ username + ") (objectclass=*))", constraints);
 		} catch (Exception e) {
 			e.printStackTrace();
-			logger.info("Search failed, base = " + ldapBase);
+			logger.info("Search failed, base = " + LDAPBASE);
 			return false;
 		}
 
@@ -104,13 +104,13 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 		// TODO: use ssl? password hash?
 		// Authenticated bind
 		props = new Properties();
-		//props.put(Context.SECURITY_PROTOCOL, "ssl");
+		// props.put(Context.SECURITY_PROTOCOL, "ssl");
 		props.put(Context.SECURITY_AUTHENTICATION, "simple");
-		props.put(Context.SECURITY_PRINCIPAL, resolvedName + ", " + ldapBase);
+		props.put(Context.SECURITY_PRINCIPAL, resolvedName + ", " + LDAPBASE);
 		props.put(Context.SECURITY_CREDENTIALS, password);
 		props.put("java.naming.ldap.version", "3");
 		props.put(Context.INITIAL_CONTEXT_FACTORY, DEFAULT_CTX);
-		props.put(Context.PROVIDER_URL, ldapURL);
+		props.put(Context.PROVIDER_URL, LDAPURL);
 		try {
 			dirContext = new InitialDirContext(props);
 		} catch (NamingException e) {

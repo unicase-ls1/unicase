@@ -396,7 +396,7 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 			if (eNotificationRequired()) {
 				eNotify(new ENotificationImpl(this, Notification.SET,
 						ClassesPackage.ATTRIBUTE__SIGNATURE, oldLabel,
-						getSignature()));
+						getLabel()));
 			}
 		}
 	}

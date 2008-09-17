@@ -21,7 +21,6 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.rationale.provider.CriterionItemProvider;
-import org.unicase.model.requirement.NonFunctionalRequirement;
 import org.unicase.model.requirement.RequirementPackage;
 
 /**
@@ -114,16 +113,14 @@ public class NonFunctionalRequirementItemProvider extends CriterionItemProvider
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
+	 * This returns the label text for the adapted class. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * @generated
+	 * 
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((NonFunctionalRequirement) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_NonFunctionalRequirement_type")
-				: getString("_UI_NonFunctionalRequirement_type") + " " + label;
+		return super.getText(object);
 	}
 
 	/**

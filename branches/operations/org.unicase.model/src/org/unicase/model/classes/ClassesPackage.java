@@ -489,22 +489,13 @@ public interface ClassesPackage extends EPackage {
 	int ASSOCIATION__STATE = ModelPackage.MODEL_ELEMENT__STATE;
 
 	/**
-	 * The feature id for the '<em><b>Directed</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION__DIRECTED = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__SOURCE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int ASSOCIATION__SOURCE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference. <!--
@@ -513,7 +504,7 @@ public interface ClassesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__TARGET = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int ASSOCIATION__TARGET = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute. <!--
@@ -522,7 +513,25 @@ public interface ClassesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__TYPE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int ASSOCIATION__TYPE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Source Multiplicity</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__SOURCE_MULTIPLICITY = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Target Multiplicity</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__TARGET_MULTIPLICITY = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Association</em>' class.
@@ -530,7 +539,7 @@ public interface ClassesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int ASSOCIATION_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.classes.impl.AttributeImpl <em>Attribute</em>}' class.
@@ -1174,16 +1183,6 @@ public interface ClassesPackage extends EPackage {
 	EClass getAssociation();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.classes.Association#isDirected <em>Directed</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Directed</em>'.
-	 * @see org.unicase.model.classes.Association#isDirected()
-	 * @see #getAssociation()
-	 * @generated
-	 */
-	EAttribute getAssociation_Directed();
-
-	/**
 	 * Returns the meta object for the reference '{@link org.unicase.model.classes.Association#getSource <em>Source</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Source</em>'.
@@ -1212,6 +1211,28 @@ public interface ClassesPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getAssociation_Type();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.classes.Association#getSourceMultiplicity <em>Source Multiplicity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Source Multiplicity</em>'.
+	 * @see org.unicase.model.classes.Association#getSourceMultiplicity()
+	 * @see #getAssociation()
+	 * @generated
+	 */
+	EAttribute getAssociation_SourceMultiplicity();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.classes.Association#getTargetMultiplicity <em>Target Multiplicity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Target Multiplicity</em>'.
+	 * @see org.unicase.model.classes.Association#getTargetMultiplicity()
+	 * @see #getAssociation()
+	 * @generated
+	 */
+	EAttribute getAssociation_TargetMultiplicity();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.classes.Attribute <em>Attribute</em>}'.
@@ -1642,12 +1663,6 @@ public interface ClassesPackage extends EPackage {
 		 */
 		EClass ASSOCIATION = eINSTANCE.getAssociation();
 		/**
-		 * The meta object literal for the '<em><b>Directed</b></em>' attribute feature.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ASSOCIATION__DIRECTED = eINSTANCE.getAssociation_Directed();
-		/**
 		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
@@ -1665,6 +1680,22 @@ public interface ClassesPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ASSOCIATION__TYPE = eINSTANCE.getAssociation_Type();
+		/**
+		 * The meta object literal for the '<em><b>Source Multiplicity</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ASSOCIATION__SOURCE_MULTIPLICITY = eINSTANCE
+				.getAssociation_SourceMultiplicity();
+		/**
+		 * The meta object literal for the '<em><b>Target Multiplicity</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ASSOCIATION__TARGET_MULTIPLICITY = eINSTANCE
+				.getAssociation_TargetMultiplicity();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.classes.impl.AttributeImpl <em>Attribute</em>}' class.
 		 * <!-- begin-user-doc -->

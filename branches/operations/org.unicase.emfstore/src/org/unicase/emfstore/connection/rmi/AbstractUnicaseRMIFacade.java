@@ -13,34 +13,55 @@ import java.rmi.server.RMISocketFactory;
 import java.rmi.server.UnicastRemoteObject;
 
 import org.unicase.emfstore.ServerConfiguration;
+import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.emfstore.exceptions.InvalidPropertyException;
 
+/**
+ * Abstract parent class for all rmi facades.
+ * 
+ * @author wesendonk
+ */
 public abstract class AbstractUnicaseRMIFacade extends UnicastRemoteObject {
 
 	private static final long serialVersionUID = 2586931338749730039L;
 
-	public AbstractUnicaseRMIFacade() throws RemoteException {
-		super(0,getClientFactory(),getServerFactory());
+	/**
+	 * Default constructor.
+	 * 
+	 * @throws RemoteException
+	 *             rmi related exception
+	 * @throws EmfStoreException
+	 *             a server exception
+	 */
+	public AbstractUnicaseRMIFacade() throws RemoteException, EmfStoreException {
+		super(0, getClientFactory(), getServerFactory());
 	}
 
-	private static RMIServerSocketFactory getServerFactory() {
+	private static RMIServerSocketFactory getServerFactory()
+			throws InvalidPropertyException {
 		String property = ServerConfiguration.getProperties().getProperty(
 				ServerConfiguration.RMI_ENCRYPTION,
-				ServerConfiguration.DEFAULT_RMI_ENCRYTION);
-		if(property.equals("yes")) {
+				ServerConfiguration.RMI_ENCRYTION_DEFAULT);
+		if (property.equals(ServerConfiguration.TRUE)) {
 			return new RMISSLServerSocketFactory();
-		} else {
+		} else if (property.equals(ServerConfiguration.FALSE)) {
 			return RMISocketFactory.getDefaultSocketFactory();
+		} else {
+			throw new InvalidPropertyException();
 		}
 	}
 
-	private static RMIClientSocketFactory getClientFactory() {
+	private static RMIClientSocketFactory getClientFactory()
+			throws InvalidPropertyException {
 		String property = ServerConfiguration.getProperties().getProperty(
 				ServerConfiguration.RMI_ENCRYPTION,
-				ServerConfiguration.DEFAULT_RMI_ENCRYTION);
-		if(property.equals("yes")) {
+				ServerConfiguration.RMI_ENCRYTION_DEFAULT);
+		if (property.equals(ServerConfiguration.TRUE)) {
 			return new RMISSLClientSocketFactory();
-		} else {
+		} else if (property.equals(ServerConfiguration.FALSE)) {
 			return RMISocketFactory.getDefaultSocketFactory();
+		} else {
+			throw new InvalidPropertyException();
 		}
 	}
 }

@@ -76,9 +76,9 @@ public class ModelParserProvider extends AbstractProvider implements
 	 */
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
-		case org.unicase.ui.componentDiagram.edit.parts.ComponentNameEditPart.VISUAL_ID:
+		case org.unicase.ui.componentDiagram.edit.parts.ComponentServiceNameEditPart.VISUAL_ID:
 			return getComponentServiceName_4001Parser();
-		case org.unicase.ui.componentDiagram.edit.parts.ComponentName2EditPart.VISUAL_ID:
+		case org.unicase.ui.componentDiagram.edit.parts.ComponentNameEditPart.VISUAL_ID:
 			return getComponentName_4002Parser();
 		}
 		return null;
