@@ -19,5 +19,4 @@ public class BasicConflictDetectionStrategy implements
 			AbstractOperation operation) {
 		return doConflict(requiredOperation, operation);
 	}
-
 }
