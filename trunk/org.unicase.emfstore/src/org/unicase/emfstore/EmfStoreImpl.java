@@ -6,6 +6,7 @@
  */
 package org.unicase.emfstore;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -82,13 +83,13 @@ public class EmfStoreImpl implements EmfStore {
 			ProjectId projectId, PrimaryVersionSpec baseVersionSpec,
 			ChangePackage changePackage, LogMessage logMessage)
 			throws EmfStoreException {
-		// TODO: authorization
 		authorizationControl.checkWriteAccess(sessionId, projectId, null);
 		long currentTimeMillis = System.currentTimeMillis();
+
 		ProjectHistory projectHistory = getProject(projectId);
 		List<Version> versions = projectHistory.getVersions();
 		if (versions.size() - 1 != baseVersionSpec.getIdentifier()) {
-			throw new InvalidVersionSpecException("");
+			throw new InvalidVersionSpecException();
 		}
 
 		PrimaryVersionSpec newVersionSpec = VersioningFactory.eINSTANCE
@@ -102,12 +103,15 @@ public class EmfStoreImpl implements EmfStore {
 		String property = ServerConfiguration.getProperties().getProperty(
 				ServerConfiguration.PROJECTSTATE_VERSION_PERSISTENCE,
 				ServerConfiguration.PROJECTSPACE_VERSION_PERSISTENCY_DEFAULT);
+
+		// allways save projecstate of first version
 		Project newProjectState = null;
-		if (property.equals("lastVersionOnly")) {
-			newProjectState = previousHeadVersion.getProjectState();
-		} else if (property.equals("everyVersion")) {
+		if (previousHeadVersion.getPrimarySpec().getIdentifier() == 0
+				|| property.equals(ServerConfiguration.EVERYVERSION)) {
 			newProjectState = (Project) EcoreUtil.copy(previousHeadVersion
 					.getProjectState());
+		} else if (property.equals(ServerConfiguration.FIRSTANDLASTVERSIONONLY)) {
+			newProjectState = previousHeadVersion.getProjectState();
 		} else {
 			throw new InvalidPropertyException();
 		}
@@ -125,6 +129,7 @@ public class EmfStoreImpl implements EmfStore {
 
 		versions.add(version);
 		createResourceForVersion(version, projectHistory.getProjectId());
+
 		// if projectstate of the previous head version is set to null saving is
 		// required
 		save(previousHeadVersion);
@@ -140,7 +145,6 @@ public class EmfStoreImpl implements EmfStore {
 	public synchronized List<ChangePackage> getChanges(SessionId sessionId,
 			ProjectId projectId, VersionSpec source, VersionSpec target)
 			throws EmfStoreException {
-		// TODO: authorization
 		authorizationControl.checkReadAccess(sessionId, projectId, null);
 
 		PrimaryVersionSpec resolvedSource = resolveVersionSpec(projectId,
@@ -160,11 +164,7 @@ public class EmfStoreImpl implements EmfStore {
 		// if source is after target in time
 		if (resolvedSource.compareTo(resolvedTarget) > 0) {
 			// reverse list and change packages
-			List<ChangePackage> cps = result;
-			result = new ArrayList<ChangePackage>();
-			for (ChangePackage cp : cps) {
-				result.add(0, cp.reverse());
-			}
+			Collections.reverse(result);
 		}
 
 		return result;
@@ -176,7 +176,6 @@ public class EmfStoreImpl implements EmfStore {
 	public synchronized List<HistoryInfo> getHistoryInfo(SessionId sessionId,
 			ProjectId projectId, VersionSpec source, VersionSpec target)
 			throws EmfStoreException {
-		// TODO: authorization
 		authorizationControl.checkReadAccess(sessionId, projectId, null);
 
 		PrimaryVersionSpec resolvedSource = resolveVersionSpec(projectId,
@@ -189,7 +188,6 @@ public class EmfStoreImpl implements EmfStore {
 		if (resolvedSource.compareTo(resolvedTarget) < 0) {
 			Collections.reverse(result);
 		}
-
 		return result;
 	}
 
@@ -226,6 +224,7 @@ public class EmfStoreImpl implements EmfStore {
 				history.getTagSpecs().add(
 						(TagVersionSpec) EcoreUtil.copy(tagSpec));
 			}
+			// add HEAD tag to history info
 			if (version.getPrimarySpec().equals(headRevision)) {
 				TagVersionSpec spec = VersioningFactory.eINSTANCE
 						.createTagVersionSpec();
@@ -257,8 +256,6 @@ public class EmfStoreImpl implements EmfStore {
 	 */
 	public synchronized List<ProjectInfo> getProjectList(SessionId sessionId)
 			throws EmfStoreException {
-		// TODO: authorization
-		// authorizationControl.checkReadAccess(sessionId, null, null);
 		List<ProjectInfo> result = new ArrayList<ProjectInfo>();
 		for (ProjectHistory project : getServerSpace().getProjects()) {
 			try {
@@ -266,7 +263,7 @@ public class EmfStoreImpl implements EmfStore {
 						.getProjectId(), null);
 				result.add(getProjectInfo(project));
 			} catch (AccessControlException e) {
-				// do nothing continue
+				// do nothing and continue
 			}
 		}
 		return result;
@@ -278,7 +275,6 @@ public class EmfStoreImpl implements EmfStore {
 	public synchronized PrimaryVersionSpec resolveVersionSpec(
 			SessionId sessionId, ProjectId projectId, VersionSpec versionSpec)
 			throws EmfStoreException {
-		// TODO: authorization
 		authorizationControl.checkReadAccess(sessionId, projectId, null);
 		return resolveVersionSpec(projectId, versionSpec);
 	}
@@ -327,22 +323,16 @@ public class EmfStoreImpl implements EmfStore {
 		return getProjectInfo(projectHistory);
 	}
 
-	/**
-	 * @param name
-	 * @param description
-	 * @param logMessage
-	 * @return
-	 * @throws EmfStoreException
-	 */
 	private ProjectHistory createEmptyProject(String name, String description,
 			LogMessage logMessage) throws EmfStoreException {
-		// TODO: authorization
+
 		// create initial ProjectHistory
 		ProjectHistory projectHistory = EsmodelFactory.eINSTANCE
 				.createProjectHistory();
 		projectHistory.setProjectName(name);
 		projectHistory.setProjectDescription(description);
 		projectHistory.setProjectId(EsmodelFactory.eINSTANCE.createProjectId());
+
 		// create a initial version without previous and change package
 		Version firstVersion = VersioningFactory.eINSTANCE.createVersion();
 		firstVersion.setLogMessage(logMessage);
@@ -350,9 +340,11 @@ public class EmfStoreImpl implements EmfStore {
 				.createPrimaryVersionSpec();
 		primary.setIdentifier(0);
 		firstVersion.setPrimarySpec(primary);
+
 		// create initial project
 		firstVersion.setProjectState(ModelFactory.eINSTANCE.createProject());
 		projectHistory.getVersions().add(firstVersion);
+
 		// add to serverspace and saved
 		createResourceForVersion(firstVersion, projectHistory.getProjectId());
 		createResourceForProjectHistory(projectHistory);
@@ -363,7 +355,8 @@ public class EmfStoreImpl implements EmfStore {
 	private void createResourceForProjectHistory(ProjectHistory projectHistory)
 			throws EmfStoreException {
 		String fileName = ServerConfiguration.getServerHome() + "project-"
-				+ projectHistory.getProjectId().getId() + "/projectHistory";
+				+ projectHistory.getProjectId().getId() + File.separatorChar
+				+ "projectHistory";
 		Resource resource = getServerSpace().eResource().getResourceSet()
 				.createResource(URI.createFileURI(fileName));
 		resource.getContents().add(projectHistory);
@@ -373,7 +366,7 @@ public class EmfStoreImpl implements EmfStore {
 	private void createResourceForVersion(Version version, ProjectId projectId)
 			throws EmfStoreException {
 		String fileName = ServerConfiguration.getServerHome() + "project-"
-				+ projectId.getId() + "/version-"
+				+ projectId.getId() + File.separatorChar + "version-"
 				+ version.getPrimarySpec().getIdentifier();
 		Resource resource = getServerSpace().eResource().getResourceSet()
 				.createResource(URI.createFileURI(fileName));
@@ -401,8 +394,8 @@ public class EmfStoreImpl implements EmfStore {
 		ProjectInfo info = EsmodelFactory.eINSTANCE.createProjectInfo();
 		info.setName(project.getProjectName());
 		info.setDescription(project.getProjectDescription());
-		info.setProjectId(project.getProjectId());
-		info.setVersion(project.getLastVersion().getPrimarySpec());
+		info.setProjectId((ProjectId) EcoreUtil.copy(project.getProjectId()));
+		info.setVersion((PrimaryVersionSpec) EcoreUtil.copy(project.getLastVersion().getPrimarySpec()));
 		return info;
 	}
 
@@ -421,7 +414,7 @@ public class EmfStoreImpl implements EmfStore {
 					.getLastVersion().getPrimarySpec());
 		} else {
 			// FIXME OW MK: Tag- and DateVersionSpec
-			throw new InvalidVersionSpecException("");
+			throw new InvalidVersionSpecException();
 		}
 	}
 

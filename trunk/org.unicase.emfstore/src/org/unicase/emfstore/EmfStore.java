@@ -32,10 +32,6 @@ import org.unicase.model.Project;
  * 
  * @generated NOT
  */
-/**
- * @author koegel
- * 
- */
 public interface EmfStore {
 
 	/**
@@ -228,12 +224,16 @@ public interface EmfStore {
 			throws EmfStoreException;
 
 	/**
-	 * 
+	 * Resolves a user by id and returns an ACUser with all roles on the server.
+	 * Also roles from groups are aggregated and added to the user.
 	 * 
 	 * @param sessionId
+	 *            session id
 	 * @param id
-	 * @return
+	 *            user id
+	 * @return ACuser with all roles on the server
 	 * @throws EmfStoreException
+	 *             if any error in the EmfStore occurs
 	 */
 	ACUser resolveUser(SessionId sessionId, ACOrgUnitId id)
 			throws EmfStoreException;

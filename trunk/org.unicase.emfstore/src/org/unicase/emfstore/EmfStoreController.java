@@ -82,7 +82,7 @@ public class EmfStoreController implements IApplication {
 		logger = LogFactory.getLog(EmfStoreController.class);
 		
 		properties = initProperties();
-		initLogging(properties);
+		initLogging();
 
 		try {
 			this.serverSpace = initServerSpace();
@@ -169,7 +169,7 @@ public class EmfStoreController implements IApplication {
 		return instance;
 	}
 
-	private void initLogging(Properties properties) {
+	private void initLogging() {
 		// FIXME: fix logging config
 		// ConsoleAppender console = new ConsoleAppender(new SimpleLayout());
 		// try {
@@ -232,7 +232,7 @@ public class EmfStoreController implements IApplication {
 	private void setSuperUser(ServerSpace serverSpace) throws StorageException {
 		String superuser = ServerConfiguration.getProperties().getProperty(
 				ServerConfiguration.SUPER_USER,
-				ServerConfiguration.DEFAULT_SUPER_USER);
+				ServerConfiguration.SUPER_USER_DEFAULT);
 		for (ACUser user : serverSpace.getUsers()) {
 			if (user.getName().equals(superuser)) {
 				return;
