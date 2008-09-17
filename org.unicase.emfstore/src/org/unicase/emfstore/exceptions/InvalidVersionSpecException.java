@@ -16,6 +16,13 @@ public class InvalidVersionSpecException extends EmfStoreException {
 
 	/**
 	 * Default constructor.
+	 */
+	public InvalidVersionSpecException() {
+		super("");
+	}
+	
+	/**
+	 * Default constructor.
 	 * @param message the message
 	 */
 	public InvalidVersionSpecException(String message) {

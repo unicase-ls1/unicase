@@ -52,18 +52,18 @@ public final class ServerConfiguration {
 	 */
 	public static final String PROJECTSTATE_VERSION_PERSISTENCE = "persistence.version.projectstate";
 
-	public static final String PROJECTSTATE_VERSION_PERSISTENCE_LASTVERSIONONLY = "lastVersionOnly";
+	public static final String FIRSTANDLASTVERSIONONLY = "firstAndLastVersionOnly";
 
-	public static final String PROJECTSTATE_VERSION_PERSISTENCE_EVERYVERSION = "everyVersion";
+	public static final String EVERYVERSION = "everyVersion";
 
 	/**
 	 * Default value for projectstate persistence policy in versions.
 	 */
-	public static final String PROJECTSPACE_VERSION_PERSISTENCY_DEFAULT = "everyVersion";
+	public static final String PROJECTSPACE_VERSION_PERSISTENCY_DEFAULT = EVERYVERSION;
 
 	public static final String SUPER_USER = "accesscontrol.authentication.superuser";
 
-	public static final String DEFAULT_SUPER_USER = "super";
+	public static final String SUPER_USER_DEFAULT = "super";
 
 	public static final String SUPER_USER_PASSWORD = "accesscontrol.authentication.superuser.password";
 

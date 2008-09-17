@@ -29,7 +29,7 @@ public abstract class AbstractAuthenticationControl implements
 	public AbstractAuthenticationControl() {
 		superuser = ServerConfiguration.getProperties().getProperty(
 				ServerConfiguration.SUPER_USER,
-				ServerConfiguration.DEFAULT_SUPER_USER);
+				ServerConfiguration.SUPER_USER_DEFAULT);
 		superuserpw = ServerConfiguration.getProperties().getProperty(
 				ServerConfiguration.SUPER_USER_PASSWORD,
 				ServerConfiguration.SUPER_USER_PASSWORD_DEFAULT);
