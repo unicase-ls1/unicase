@@ -319,8 +319,7 @@ public interface Usersession extends EObject {
 	 */
 	public List<HistoryInfo> getHistoryInfo(ProjectId projectId,
 			HistoryQuery query) throws EmfStoreException;
-	
-	
+
 	/**
 	 * Returns a {@link AdminBroker} related to the user session.
 	 * 

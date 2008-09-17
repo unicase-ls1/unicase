@@ -9,6 +9,7 @@ package org.unicase.workspace;
 import java.io.IOException;
 import java.util.Date;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.unicase.emfstore.esmodel.ProjectId;
@@ -16,6 +17,7 @@ import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.Project;
@@ -32,11 +34,13 @@ import org.unicase.model.Project;
  *   <li>{@link org.unicase.workspace.ProjectSpace#getProjectName <em>Project Name</em>}</li>
  *   <li>{@link org.unicase.workspace.ProjectSpace#getProjectDescription <em>Project Description</em>}</li>
  *   <li>{@link org.unicase.workspace.ProjectSpace#getLocalChanges <em>Local Changes</em>}</li>
+ *   <li>{@link org.unicase.workspace.ProjectSpace#getOperations <em>Operations</em>}</li>
  *   <li>{@link org.unicase.workspace.ProjectSpace#getUsersession <em>Usersession</em>}</li>
  *   <li>{@link org.unicase.workspace.ProjectSpace#getLastUpdated <em>Last Updated</em>}</li>
  *   <li>{@link org.unicase.workspace.ProjectSpace#getBaseVersion <em>Base Version</em>}</li>
  *   <li>{@link org.unicase.workspace.ProjectSpace#getResourceCount <em>Resource Count</em>}</li>
  *   <li>{@link org.unicase.workspace.ProjectSpace#isDirty <em>Dirty</em>}</li>
+ *   <li>{@link org.unicase.workspace.ProjectSpace#getOldLogMessages <em>Old Log Messages</em>}</li>
  * </ul>
  * </p>
  *
@@ -176,6 +180,22 @@ public interface ProjectSpace extends IdentifiableElement {
 	void setLocalChanges(ChangeDescription value);
 
 	/**
+	 * Returns the value of the '<em><b>Operations</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Operations</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Operations</em>' containment reference list.
+	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_Operations()
+	 * @model containment="true" resolveProxies="true"
+	 * @generated
+	 */
+	EList<AbstractOperation> getOperations();
+
+	/**
 	 * Returns the value of the '<em><b>Usersession</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -307,6 +327,22 @@ public interface ProjectSpace extends IdentifiableElement {
 	void setDirty(boolean value);
 
 	/**
+	 * Returns the value of the '<em><b>Old Log Messages</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Old Log Messages</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Old Log Messages</em>' attribute list.
+	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_OldLogMessages()
+	 * @model
+	 * @generated
+	 */
+	EList<String> getOldLogMessages();
+
+	/**
 	 * <!-- begin-user-doc --> Commit the all pending changes of the project.
 	 * 
 	 * @return new base version
@@ -316,7 +352,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @generated NOT
 	 */
 	PrimaryVersionSpec commit() throws EmfStoreException;
-	
+
 	/**
 	 * <!-- begin-user-doc --> Commit the all pending changes of the project.
 	 * 
