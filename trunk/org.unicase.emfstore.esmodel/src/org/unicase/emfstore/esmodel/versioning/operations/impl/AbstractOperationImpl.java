@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
-import org.unicase.model.ModelElement;
+import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
 
 /**
@@ -24,7 +24,7 @@ import org.unicase.model.Project;
  * <ul>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AbstractOperationImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AbstractOperationImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AbstractOperationImpl#getModelElement <em>Model Element</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AbstractOperationImpl#getModelElementId <em>Model Element Id</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AbstractOperationImpl#getUsername <em>Username</em>}</li>
  * </ul>
  * </p>
@@ -70,14 +70,14 @@ public class AbstractOperationImpl extends EObjectImpl implements
 	 */
 	protected String description = DESCRIPTION_EDEFAULT;
 	/**
-	 * The cached value of the '{@link #getModelElement() <em>Model Element</em>}' reference.
+	 * The cached value of the '{@link #getModelElementId() <em>Model Element Id</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getModelElement()
+	 * @see #getModelElementId()
 	 * @generated
 	 * @ordered
 	 */
-	protected ModelElement modelElement;
+	protected ModelElementId modelElementId;
 	/**
 	 * The default value of the '{@link #getUsername() <em>Username</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -166,20 +166,20 @@ public class AbstractOperationImpl extends EObjectImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelElement getModelElement() {
-		if (modelElement != null && modelElement.eIsProxy()) {
-			InternalEObject oldModelElement = (InternalEObject) modelElement;
-			modelElement = (ModelElement) eResolveProxy(oldModelElement);
-			if (modelElement != oldModelElement) {
+	public ModelElementId getModelElementId() {
+		if (modelElementId != null && modelElementId.eIsProxy()) {
+			InternalEObject oldModelElementId = (InternalEObject) modelElementId;
+			modelElementId = (ModelElementId) eResolveProxy(oldModelElementId);
+			if (modelElementId != oldModelElementId) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(
 							this,
 							Notification.RESOLVE,
-							OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT,
-							oldModelElement, modelElement));
+							OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID,
+							oldModelElementId, modelElementId));
 			}
 		}
-		return modelElement;
+		return modelElementId;
 	}
 
 	/**
@@ -187,8 +187,8 @@ public class AbstractOperationImpl extends EObjectImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelElement basicGetModelElement() {
-		return modelElement;
+	public ModelElementId basicGetModelElementId() {
+		return modelElementId;
 	}
 
 	/**
@@ -196,13 +196,13 @@ public class AbstractOperationImpl extends EObjectImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setModelElement(ModelElement newModelElement) {
-		ModelElement oldModelElement = modelElement;
-		modelElement = newModelElement;
+	public void setModelElementId(ModelElementId newModelElementId) {
+		ModelElementId oldModelElementId = modelElementId;
+		modelElementId = newModelElementId;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-					OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT,
-					oldModelElement, modelElement));
+					OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID,
+					oldModelElementId, modelElementId));
 	}
 
 	/**
@@ -273,10 +273,10 @@ public class AbstractOperationImpl extends EObjectImpl implements
 			return getName();
 		case OperationsPackage.ABSTRACT_OPERATION__DESCRIPTION:
 			return getDescription();
-		case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT:
+		case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID:
 			if (resolve)
-				return getModelElement();
-			return basicGetModelElement();
+				return getModelElementId();
+			return basicGetModelElementId();
 		case OperationsPackage.ABSTRACT_OPERATION__USERNAME:
 			return getUsername();
 		}
@@ -297,8 +297,8 @@ public class AbstractOperationImpl extends EObjectImpl implements
 		case OperationsPackage.ABSTRACT_OPERATION__DESCRIPTION:
 			setDescription((String) newValue);
 			return;
-		case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT:
-			setModelElement((ModelElement) newValue);
+		case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID:
+			setModelElementId((ModelElementId) newValue);
 			return;
 		case OperationsPackage.ABSTRACT_OPERATION__USERNAME:
 			setUsername((String) newValue);
@@ -321,8 +321,8 @@ public class AbstractOperationImpl extends EObjectImpl implements
 		case OperationsPackage.ABSTRACT_OPERATION__DESCRIPTION:
 			setDescription(DESCRIPTION_EDEFAULT);
 			return;
-		case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT:
-			setModelElement((ModelElement) null);
+		case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID:
+			setModelElementId((ModelElementId) null);
 			return;
 		case OperationsPackage.ABSTRACT_OPERATION__USERNAME:
 			setUsername(USERNAME_EDEFAULT);
@@ -345,8 +345,8 @@ public class AbstractOperationImpl extends EObjectImpl implements
 		case OperationsPackage.ABSTRACT_OPERATION__DESCRIPTION:
 			return DESCRIPTION_EDEFAULT == null ? description != null
 					: !DESCRIPTION_EDEFAULT.equals(description);
-		case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT:
-			return modelElement != null;
+		case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID:
+			return modelElementId != null;
 		case OperationsPackage.ABSTRACT_OPERATION__USERNAME:
 			return USERNAME_EDEFAULT == null ? username != null
 					: !USERNAME_EDEFAULT.equals(username);

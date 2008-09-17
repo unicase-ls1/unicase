@@ -89,7 +89,7 @@
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/AbstractOperation/name"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/AbstractOperation/description"/>
           <genFeatures notify="false" createChild="false" propertySortChoices="true"
-              ecoreFeature="ecore:EReference esmodel.ecore#//versioning/operations/AbstractOperation/modelElement"/>
+              ecoreFeature="ecore:EReference esmodel.ecore#//versioning/operations/AbstractOperation/modelElementId"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/AbstractOperation/username"/>
           <genOperations ecoreOperation="esmodel.ecore#//versioning/operations/AbstractOperation/apply">
             <genParameters ecoreParameter="esmodel.ecore#//versioning/operations/AbstractOperation/apply/project"/>

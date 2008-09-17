@@ -6,7 +6,7 @@
 package org.unicase.emfstore.esmodel.versioning.operations;
 
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.model.ModelElement;
+import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
 
 /**
@@ -19,7 +19,7 @@ import org.unicase.model.Project;
  * <ul>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getName <em>Name</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getDescription <em>Description</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getModelElement <em>Model Element</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getModelElementId <em>Model Element Id</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getUsername <em>Username</em>}</li>
  * </ul>
  * </p>
@@ -82,30 +82,30 @@ public interface AbstractOperation extends EObject {
 	void setDescription(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Model Element</b></em>' reference.
+	 * Returns the value of the '<em><b>Model Element Id</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Model Element</em>' reference isn't clear,
+	 * If the meaning of the '<em>Model Element Id</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Model Element</em>' reference.
-	 * @see #setModelElement(ModelElement)
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getAbstractOperation_ModelElement()
+	 * @return the value of the '<em>Model Element Id</em>' reference.
+	 * @see #setModelElementId(ModelElementId)
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getAbstractOperation_ModelElementId()
 	 * @model
 	 * @generated
 	 */
-	ModelElement getModelElement();
+	ModelElementId getModelElementId();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getModelElement <em>Model Element</em>}' reference.
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getModelElementId <em>Model Element Id</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Model Element</em>' reference.
-	 * @see #getModelElement()
+	 * @param value the new value of the '<em>Model Element Id</em>' reference.
+	 * @see #getModelElementId()
 	 * @generated
 	 */
-	void setModelElement(ModelElement value);
+	void setModelElementId(ModelElementId value);
 
 	/**
 	 * Returns the value of the '<em><b>Username</b></em>' attribute.
