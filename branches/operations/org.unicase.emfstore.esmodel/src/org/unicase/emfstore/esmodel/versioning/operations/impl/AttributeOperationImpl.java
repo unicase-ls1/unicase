@@ -5,11 +5,18 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
+import java.util.Iterator;
+
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 
 /**
@@ -224,7 +231,38 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements
 
 	@Override
 	public void apply(Project project) {
-		project.getModelElement(this.getModelElementId());
+		if (!canApply(project)) {
+			throw new IllegalStateException("can not apply operation to this project");
+		}
+		ModelElement modelElement = project.getModelElement(this.getModelElementId());
+		EList<EAttribute> attributes = modelElement.eClass().getEAllAttributes();
+		for (EAttribute attribute : attributes) {
+			if (attribute.getName().equals(this.getFeatureName())) {
+				modelElement.eSet(attribute, this.getNewValue());
+				return;
+			}
+		}
+		throw new IllegalStateException("cannot find attribute");
 	}
+
+	@Override
+	public AbstractOperation reverse() {
+		AttributeOperation attributeOperation = OperationsFactory.eINSTANCE.createAttributeOperation();
+		attributeOperation.setFeatureName(getName());
+		attributeOperation.setFeatureName(getFeatureName());
+		attributeOperation.setDescription(getDescription());
+		attributeOperation.setModelElementId(getModelElementId());
+		//swap old and new value
+		attributeOperation.setNewValue(getOldValue());
+		attributeOperation.setOldValue(getNewValue());
+		return attributeOperation;
+	}
+
+	@Override
+	public boolean canApply(Project project) {
+		return project.contains(this.getModelElementId());
+	}
+	
+	
 
 } //AttributeOperationImpl
