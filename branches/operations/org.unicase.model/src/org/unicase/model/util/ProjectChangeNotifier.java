@@ -56,14 +56,13 @@ public class ProjectChangeNotifier extends AdapterImpl {
 				List<EObject> newValues = (List<EObject>) notification
 						.getNewValue();
 				for (EObject newElement : newValues) {
-					EObject newValue = (EObject) notification.getNewValue();
 					if (ModelPackage.eINSTANCE.getModelElement().isInstance(
-							newValue)) {
-						ModelElement modelElement = (ModelElement) newValue;
+							newElement)) {
+						ModelElement modelElement = (ModelElement) newElement;
 						if (!project.contains(modelElement)) {
-							newValue.eAdapters().add(this);
+							newElement.eAdapters().add(this);
 							this.projectChangeObserver.modelElementAdded(
-									project, (ModelElement) newValue);
+									project, modelElement);
 						}
 					}
 
@@ -72,32 +71,27 @@ public class ProjectChangeNotifier extends AdapterImpl {
 			break;
 		case Notification.REMOVE:
 			if (notification.getFeature() instanceof EStructuralFeature) {
-				EObject newValue = (EObject) notification.getNewValue();
+				EObject newValue = (EObject) notification.getOldValue();
 				if (ModelPackage.eINSTANCE.getModelElement().isInstance(
 						newValue)) {
 					ModelElement modelElement = (ModelElement) newValue;
-					if (!project.contains(modelElement)) {
-						newValue.eAdapters().remove(this);
-						this.projectChangeObserver.modelElementAdded(project,
-								(ModelElement) newValue);
-					}
+					newValue.eAdapters().remove(this);
+					this.projectChangeObserver.modelElementRemoved(project,
+							(ModelElement) newValue);
 				}
 			}
 			break;
 		case Notification.REMOVE_MANY:
 			if (notification.getFeature() instanceof EStructuralFeature) {
-				List<EObject> newValues = (List<EObject>) notification
-						.getNewValue();
-				for (EObject newElement : newValues) {
-					EObject newValue = (EObject) notification.getNewValue();
+				List<EObject> oldValues = (List<EObject>) notification
+						.getOldValue();
+				for (EObject newElement : oldValues) {
 					if (ModelPackage.eINSTANCE.getModelElement().isInstance(
-							newValue)) {
-						ModelElement modelElement = (ModelElement) newValue;
-						if (!project.contains(modelElement)) {
-							newValue.eAdapters().add(this);
-							this.projectChangeObserver.modelElementAdded(
-									project, (ModelElement) newValue);
-						}
+							newElement)) {
+						ModelElement modelElement = (ModelElement) newElement;
+						newElement.eAdapters().add(this);
+						this.projectChangeObserver.modelElementRemoved(project,
+								modelElement);
 					}
 
 				}
