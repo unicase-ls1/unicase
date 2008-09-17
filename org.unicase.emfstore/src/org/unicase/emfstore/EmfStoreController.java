@@ -66,7 +66,8 @@ public class EmfStoreController implements IApplication {
 	 * 
 	 * @see org.eclipse.equinox.app.IApplication#start(org.eclipse.equinox.app.IApplicationContext)
 	 */
-	public Object start(IApplicationContext context) throws EmfStoreException {
+	public Object start(IApplicationContext context)
+			throws FatalEmfStoreException {
 
 		if (instance != null) {
 			throw new FatalEmfStoreException(
@@ -78,17 +79,24 @@ public class EmfStoreController implements IApplication {
 		System.out.println("| unicase EmfStore |");
 		System.out.println("*------------------*");
 
+		logger = LogFactory.getLog(EmfStoreController.class);
+		
 		properties = initProperties();
 		initLogging(properties);
-		logger = LogFactory.getLog(EmfStoreController.class);
-		this.serverSpace = initServerSpace();
-		accessControl = initAccessControl(serverSpace);
-		emfStore = new EmfStoreImpl(serverSpace, accessControl);
-		adminEmfStore = new AdminEmfStoreImpl(serverSpace, accessControl);
-		// FIXME: combine connectionHandler and adminConnectionHandler
-		adminConnectionHandler = new RMIAdminConnectionHandler();
-		adminConnectionHandler.init(adminEmfStore, accessControl);
-		connectionHandlers = initConnectionHandlers(emfStore, accessControl);
+
+		try {
+			this.serverSpace = initServerSpace();
+			accessControl = initAccessControl(serverSpace);
+			emfStore = new EmfStoreImpl(serverSpace, accessControl);
+			adminEmfStore = new AdminEmfStoreImpl(serverSpace, accessControl);
+			// FIXME: combine connectionHandler and adminConnectionHandler
+			adminConnectionHandler = new RMIAdminConnectionHandler();
+			adminConnectionHandler.init(adminEmfStore, accessControl);
+			connectionHandlers = initConnectionHandlers(emfStore, accessControl);
+		} catch (EmfStoreException e) {
+			throw new FatalEmfStoreException(e);
+		}
+		
 		logger.info("Initialitation COMPLETE.");
 
 		logger.info("Server is RUNNING...");
@@ -215,7 +223,8 @@ public class EmfStoreController implements IApplication {
 		}
 	}
 
-	private AccessControlImpl initAccessControl(ServerSpace serverSpace) throws EmfStoreException {
+	private AccessControlImpl initAccessControl(ServerSpace serverSpace)
+			throws EmfStoreException {
 		setSuperUser(serverSpace);
 		return new AccessControlImpl(serverSpace);
 	}
@@ -239,10 +248,9 @@ public class EmfStoreController implements IApplication {
 		try {
 			serverSpace.save();
 		} catch (IOException e) {
-			throw new StorageException(StorageException.NOSAVE,e);
+			throw new StorageException(StorageException.NOSAVE, e);
 		}
-		logger.info("added superuser "
-				+ superuser);
+		logger.info("added superuser " + superuser);
 	}
 
 	private Properties initProperties() {
@@ -254,7 +262,7 @@ public class EmfStoreController implements IApplication {
 			ServerConfiguration.setProperties(properties);
 			fis.close();
 		} catch (IOException e) {
-			logger.warn("Property initialization failed",e);
+			logger.warn("Property initialization failed", e);
 		}
 		return properties;
 	}
