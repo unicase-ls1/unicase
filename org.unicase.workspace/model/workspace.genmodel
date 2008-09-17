@@ -50,11 +50,13 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//ProjectSpace/projectName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//ProjectSpace/projectDescription"/>
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference workspace.ecore#//ProjectSpace/localChanges"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workspace.ecore#//ProjectSpace/operations"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workspace.ecore#//ProjectSpace/usersession"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//ProjectSpace/lastUpdated"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workspace.ecore#//ProjectSpace/baseVersion"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//ProjectSpace/resourceCount"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//ProjectSpace/dirty"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//ProjectSpace/oldLogMessages"/>
       <genOperations ecoreOperation="workspace.ecore#//ProjectSpace/commit"/>
       <genOperations ecoreOperation="workspace.ecore#//ProjectSpace/update"/>
       <genOperations ecoreOperation="workspace.ecore#//ProjectSpace/update.1">

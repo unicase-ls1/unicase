@@ -27,6 +27,7 @@ import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.provider.IdentifiableElementItemProvider;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
@@ -72,6 +73,7 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 			addLastUpdatedPropertyDescriptor(object);
 			addResourceCountPropertyDescriptor(object);
 			addDirtyPropertyDescriptor(object);
+			addOldLogMessagesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -225,6 +227,25 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Old Log Messages feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOldLogMessagesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_ProjectSpace_oldLogMessages_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ProjectSpace_oldLogMessages_feature",
+						"_UI_ProjectSpace_type"),
+				WorkspacePackage.Literals.PROJECT_SPACE__OLD_LOG_MESSAGES,
+				true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null, null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -242,6 +263,8 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 					.add(WorkspacePackage.Literals.PROJECT_SPACE__PROJECT_ID);
 			childrenFeatures
 					.add(WorkspacePackage.Literals.PROJECT_SPACE__LOCAL_CHANGES);
+			childrenFeatures
+					.add(WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS);
 			childrenFeatures
 					.add(WorkspacePackage.Literals.PROJECT_SPACE__BASE_VERSION);
 		}
@@ -318,12 +341,14 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 		case WorkspacePackage.PROJECT_SPACE__LAST_UPDATED:
 		case WorkspacePackage.PROJECT_SPACE__RESOURCE_COUNT:
 		case WorkspacePackage.PROJECT_SPACE__DIRTY:
+		case WorkspacePackage.PROJECT_SPACE__OLD_LOG_MESSAGES:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), false, true));
 			return;
 		case WorkspacePackage.PROJECT_SPACE__PROJECT:
 		case WorkspacePackage.PROJECT_SPACE__PROJECT_ID:
 		case WorkspacePackage.PROJECT_SPACE__LOCAL_CHANGES:
+		case WorkspacePackage.PROJECT_SPACE__OPERATIONS:
 		case WorkspacePackage.PROJECT_SPACE__BASE_VERSION:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), true, false));
@@ -355,6 +380,34 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 		newChildDescriptors.add(createChildParameter(
 				WorkspacePackage.Literals.PROJECT_SPACE__LOCAL_CHANGES,
 				ChangeFactory.eINSTANCE.createChangeDescription()));
+
+		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS,
+				OperationsFactory.eINSTANCE.createAbstractOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS,
+				OperationsFactory.eINSTANCE.createCompositeOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS,
+				OperationsFactory.eINSTANCE.createAtomicOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS,
+				OperationsFactory.eINSTANCE.createCreateOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS,
+				OperationsFactory.eINSTANCE.createDeleteOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS,
+				OperationsFactory.eINSTANCE.createReferenceOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS,
+				OperationsFactory.eINSTANCE.createAttributeOperation()));
 
 		newChildDescriptors.add(createChildParameter(
 				WorkspacePackage.Literals.PROJECT_SPACE__BASE_VERSION,

@@ -232,7 +232,8 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements
 	public String getText(Object object) {
 		Usersession session = ((Usersession) object);
 		ServerInfo server = session.getServerInfo();
-		return session.getUsername() + "@" + (server!=null?server.getName():"unknown");
+		return session.getUsername() + "@"
+				+ (server != null ? server.getName() : "unknown");
 	}
 
 	/**
