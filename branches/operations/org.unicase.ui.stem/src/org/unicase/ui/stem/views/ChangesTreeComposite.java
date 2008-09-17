@@ -98,7 +98,7 @@ public class ChangesTreeComposite extends Composite {
 		}
 		
 		//set the dummy input to tree
-		treeViewer.setInput(getOperations());
+//		treeViewer.setInput(getOperations());
 		//auto size tree columns
 		if(showColumns){
 			for (TreeColumn column : treeViewer.getTree().getColumns()) {

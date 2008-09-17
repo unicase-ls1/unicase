@@ -59,7 +59,7 @@ public class CommitProjectHandler extends ProjectActionHandler {
 						loginStatus = login.open();
 					}
 					if (loginStatus == LoginDialog.SUCCESSFUL) {
-						CommitDialog commitDialog = new CommitDialog(shell);
+						CommitDialog commitDialog = new CommitDialog(shell,projectSpace);
 						commitDialog.open();
 						LogMessage logMessage = VersioningFactory.eINSTANCE.createLogMessage();
 						logMessage.setAuthor(usersession.getUsername());

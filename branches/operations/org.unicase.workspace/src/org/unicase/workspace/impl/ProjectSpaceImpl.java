@@ -1445,39 +1445,44 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		return false;
 	}
 
-	public void resourceSetChanged(ResourceSetChangeEvent event) {
+	public void resourceSetChanged(final ResourceSetChangeEvent event) {
 
-		//filter notifications to project
-		List<Notification> notifications = event.getNotifications();
-		List<Notification> projectNotifications = new ArrayList<Notification>();
-		for (Notification notification : notifications) {
-			Object notifier = notification.getNotifier();
-			if (notifier instanceof ModelElement) {
-				ModelElement modelElement = (ModelElement) notifier;
-				if (this.getProject().contains(modelElement)) {
-					projectNotifications.add(notification);
+//		TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain();
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			protected void doExecute() {
+				//filter notifications to project
+				List<Notification> notifications = event.getNotifications();
+				List<Notification> projectNotifications = new ArrayList<Notification>();
+				for (Notification notification : notifications) {
+					Object notifier = notification.getNotifier();
+					if (notifier instanceof ModelElement) {
+						ModelElement modelElement = (ModelElement) notifier;
+						if (ProjectSpaceImpl.this.getProject().contains(modelElement)) {
+							projectNotifications.add(notification);
+						}
+					}
+				}
+				if (projectNotifications.size() == 0) {
+					return;
+				}
+			
+				Notification notification = projectNotifications.get(0);
+				if (notification.getEventType() == Notification.SET) {
+					AttributeOperation attributeOperation = OperationsFactory.eINSTANCE
+							.createAttributeOperation();
+					attributeOperation.setName("Attribute change");
+					attributeOperation.setDescription("Attribute changed description");
+					EAttribute attribute = (EAttribute) notification.getFeature();
+					attributeOperation.setFeatureName(attribute.getName());
+					attributeOperation.setModelElementId(((ModelElement) notification
+							.getNotifier()).getModelElementId());
+					attributeOperation.setNewValue(notification.getNewValue());
+					attributeOperation.setOldValue(notification.getOldValue());
+					ProjectSpaceImpl.this.getOperations().add(attributeOperation);
 				}
 			}
-		}
-		if (projectNotifications.size() == 0) {
-			return;
-		}
-
-		Notification notification = projectNotifications.get(0);
-		if (notification.getEventType() == Notification.SET) {
-			AttributeOperation attributeOperation = OperationsFactory.eINSTANCE
-					.createAttributeOperation();
-			attributeOperation.setName("Attribute change");
-			attributeOperation.setDescription("Attribute changed description");
-			EAttribute attribute = (EAttribute) notification.getFeature();
-			attributeOperation.setFeatureName(attribute.getName());
-			attributeOperation.setModelElementId(((ModelElement) notification
-					.getNotifier()).getModelElementId());
-			attributeOperation.setNewValue(notification.getNewValue());
-			attributeOperation.setOldValue(notification.getOldValue());
-			this.getOperations().add(attributeOperation);
-		}
-
+		});
 		return;
 
 	}
