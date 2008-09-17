@@ -199,6 +199,9 @@ public class ESBrowserView extends ViewPart {
 			@Override
 			public void run() {
 				ISelection selection = viewer.getSelection();
+				if(selection.isEmpty()){
+					return;
+				}
 				Object obj = ((IStructuredSelection) selection).getFirstElement();
 				viewer.collapseToLevel(obj, -1);
 				viewer.expandToLevel(obj, -1);
@@ -223,6 +226,7 @@ public class ESBrowserView extends ViewPart {
 							contentProvider.getProjectServerMap().get(element).getLastUsersession().checkout(element);
 						} catch (EmfStoreException e) {
 							DialogHandler.showExceptionDialog(e);
+							e.printStackTrace();
 						}
 					}
 				});
