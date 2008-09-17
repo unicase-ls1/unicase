@@ -88,13 +88,13 @@ public interface OperationsPackage extends EPackage {
 	int ABSTRACT_OPERATION__DESCRIPTION = 1;
 
 	/**
-	 * The feature id for the '<em><b>Model Element</b></em>' reference.
+	 * The feature id for the '<em><b>Model Element Id</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_OPERATION__MODEL_ELEMENT = 2;
+	int ABSTRACT_OPERATION__MODEL_ELEMENT_ID = 2;
 
 	/**
 	 * The feature id for the '<em><b>Username</b></em>' attribute.
@@ -143,13 +143,13 @@ public interface OperationsPackage extends EPackage {
 	int COMPOSITE_OPERATION__DESCRIPTION = ABSTRACT_OPERATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Model Element</b></em>' reference.
+	 * The feature id for the '<em><b>Model Element Id</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITE_OPERATION__MODEL_ELEMENT = ABSTRACT_OPERATION__MODEL_ELEMENT;
+	int COMPOSITE_OPERATION__MODEL_ELEMENT_ID = ABSTRACT_OPERATION__MODEL_ELEMENT_ID;
 
 	/**
 	 * The feature id for the '<em><b>Username</b></em>' attribute.
@@ -207,13 +207,13 @@ public interface OperationsPackage extends EPackage {
 	int ATOMIC_OPERATION__DESCRIPTION = ABSTRACT_OPERATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Model Element</b></em>' reference.
+	 * The feature id for the '<em><b>Model Element Id</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATOMIC_OPERATION__MODEL_ELEMENT = ABSTRACT_OPERATION__MODEL_ELEMENT;
+	int ATOMIC_OPERATION__MODEL_ELEMENT_ID = ABSTRACT_OPERATION__MODEL_ELEMENT_ID;
 
 	/**
 	 * The feature id for the '<em><b>Username</b></em>' attribute.
@@ -262,13 +262,13 @@ public interface OperationsPackage extends EPackage {
 	int FEATURE_OPERATION__DESCRIPTION = ATOMIC_OPERATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Model Element</b></em>' reference.
+	 * The feature id for the '<em><b>Model Element Id</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_OPERATION__MODEL_ELEMENT = ATOMIC_OPERATION__MODEL_ELEMENT;
+	int FEATURE_OPERATION__MODEL_ELEMENT_ID = ATOMIC_OPERATION__MODEL_ELEMENT_ID;
 
 	/**
 	 * The feature id for the '<em><b>Username</b></em>' attribute.
@@ -326,13 +326,13 @@ public interface OperationsPackage extends EPackage {
 	int CREATE_OPERATION__DESCRIPTION = ATOMIC_OPERATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Model Element</b></em>' reference.
+	 * The feature id for the '<em><b>Model Element Id</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CREATE_OPERATION__MODEL_ELEMENT = ATOMIC_OPERATION__MODEL_ELEMENT;
+	int CREATE_OPERATION__MODEL_ELEMENT_ID = ATOMIC_OPERATION__MODEL_ELEMENT_ID;
 
 	/**
 	 * The feature id for the '<em><b>Username</b></em>' attribute.
@@ -390,13 +390,13 @@ public interface OperationsPackage extends EPackage {
 	int DELETE_OPERATION__DESCRIPTION = ATOMIC_OPERATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Model Element</b></em>' reference.
+	 * The feature id for the '<em><b>Model Element Id</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DELETE_OPERATION__MODEL_ELEMENT = ATOMIC_OPERATION__MODEL_ELEMENT;
+	int DELETE_OPERATION__MODEL_ELEMENT_ID = ATOMIC_OPERATION__MODEL_ELEMENT_ID;
 
 	/**
 	 * The feature id for the '<em><b>Username</b></em>' attribute.
@@ -454,13 +454,13 @@ public interface OperationsPackage extends EPackage {
 	int REFERENCE_OPERATION__DESCRIPTION = FEATURE_OPERATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Model Element</b></em>' reference.
+	 * The feature id for the '<em><b>Model Element Id</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_OPERATION__MODEL_ELEMENT = FEATURE_OPERATION__MODEL_ELEMENT;
+	int REFERENCE_OPERATION__MODEL_ELEMENT_ID = FEATURE_OPERATION__MODEL_ELEMENT_ID;
 
 	/**
 	 * The feature id for the '<em><b>Username</b></em>' attribute.
@@ -536,13 +536,13 @@ public interface OperationsPackage extends EPackage {
 	int ATTRIBUTE_OPERATION__DESCRIPTION = FEATURE_OPERATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Model Element</b></em>' reference.
+	 * The feature id for the '<em><b>Model Element Id</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_OPERATION__MODEL_ELEMENT = FEATURE_OPERATION__MODEL_ELEMENT;
+	int ATTRIBUTE_OPERATION__MODEL_ELEMENT_ID = FEATURE_OPERATION__MODEL_ELEMENT_ID;
 
 	/**
 	 * The feature id for the '<em><b>Username</b></em>' attribute.
@@ -622,15 +622,15 @@ public interface OperationsPackage extends EPackage {
 	EAttribute getAbstractOperation_Description();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getModelElement <em>Model Element</em>}'.
+	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getModelElementId <em>Model Element Id</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Model Element</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getModelElement()
+	 * @return the meta object for the reference '<em>Model Element Id</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getModelElementId()
 	 * @see #getAbstractOperation()
 	 * @generated
 	 */
-	EReference getAbstractOperation_ModelElement();
+	EReference getAbstractOperation_ModelElementId();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getUsername <em>Username</em>}'.
@@ -852,13 +852,13 @@ public interface OperationsPackage extends EPackage {
 				.getAbstractOperation_Description();
 
 		/**
-		 * The meta object literal for the '<em><b>Model Element</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Model Element Id</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ABSTRACT_OPERATION__MODEL_ELEMENT = eINSTANCE
-				.getAbstractOperation_ModelElement();
+		EReference ABSTRACT_OPERATION__MODEL_ELEMENT_ID = eINSTANCE
+				.getAbstractOperation_ModelElementId();
 
 		/**
 		 * The meta object literal for the '<em><b>Username</b></em>' attribute feature.

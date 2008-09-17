@@ -242,7 +242,7 @@ public class OperationsPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAbstractOperation_ModelElement() {
+	public EReference getAbstractOperation_ModelElementId() {
 		return (EReference) abstractOperationEClass.getEStructuralFeatures()
 				.get(2);
 	}
@@ -434,7 +434,7 @@ public class OperationsPackageImpl extends EPackageImpl implements
 		createEAttribute(abstractOperationEClass,
 				ABSTRACT_OPERATION__DESCRIPTION);
 		createEReference(abstractOperationEClass,
-				ABSTRACT_OPERATION__MODEL_ELEMENT);
+				ABSTRACT_OPERATION__MODEL_ELEMENT_ID);
 		createEAttribute(abstractOperationEClass, ABSTRACT_OPERATION__USERNAME);
 
 		compositeOperationEClass = createEClass(COMPOSITE_OPERATION);
@@ -527,8 +527,8 @@ public class OperationsPackageImpl extends EPackageImpl implements
 				AbstractOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
-		initEReference(getAbstractOperation_ModelElement(), theModelPackage
-				.getModelElement(), null, "modelElement", null, 0, 1,
+		initEReference(getAbstractOperation_ModelElementId(), theModelPackage
+				.getModelElementId(), null, "modelElementId", null, 0, 1,
 				AbstractOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -57,7 +57,7 @@ public class AbstractOperationItemProvider extends ItemProviderAdapter
 
 			addNamePropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
-			addModelElementPropertyDescriptor(object);
+			addModelElementIdPropertyDescriptor(object);
 			addUsernamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -102,21 +102,23 @@ public class AbstractOperationItemProvider extends ItemProviderAdapter
 	}
 
 	/**
-	 * This adds a property descriptor for the Model Element feature.
+	 * This adds a property descriptor for the Model Element Id feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addModelElementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_AbstractOperation_modelElement_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_AbstractOperation_modelElement_feature",
-						"_UI_AbstractOperation_type"),
-				OperationsPackage.Literals.ABSTRACT_OPERATION__MODEL_ELEMENT,
-				true, false, true, null, null, null));
+	protected void addModelElementIdPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_AbstractOperation_modelElementId_feature"),
+						getString("_UI_PropertyDescriptor_description",
+								"_UI_AbstractOperation_modelElementId_feature",
+								"_UI_AbstractOperation_type"),
+						OperationsPackage.Literals.ABSTRACT_OPERATION__MODEL_ELEMENT_ID,
+						true, false, true, null, null, null));
 	}
 
 	/**
