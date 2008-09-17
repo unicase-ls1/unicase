@@ -19,9 +19,9 @@ import java.util.Properties;
 public final class ServerConfiguration {
 
 	public static final String TRUE = "true";
-	
+
 	public static final String FALSE = "false";
-	
+
 	/**
 	 * Constant for the name of the Resource Storage Property.
 	 */
@@ -42,16 +42,20 @@ public final class ServerConfiguration {
 	 */
 	public static final String RMI_ENCRYTION_DEFAULT = "true";
 
+	public static final String SSL_PASSWORD = "rmi.encryption.ssl.password";
+
+	public static final String SSL_PASSWORD_DEFAULT = "av374tb$VBGGtrgwa7tosdfa";
+
 	/**
 	 * Property for projectstate persistence policy in versions. Possible values
 	 * are <b>lastVersionOnly</b> and <b>everyVersion</b>
 	 */
 	public static final String PROJECTSTATE_VERSION_PERSISTENCE = "persistence.version.projectstate";
-	
+
 	public static final String PROJECTSTATE_VERSION_PERSISTENCE_LASTVERSIONONLY = "lastVersionOnly";
-	
+
 	public static final String PROJECTSTATE_VERSION_PERSISTENCE_EVERYVERSION = "everyVersion";
-	
+
 	/**
 	 * Default value for projectstate persistence policy in versions.
 	 */
@@ -67,13 +71,12 @@ public final class ServerConfiguration {
 
 	public static final String AUTHENTICATION_POLICY = "accesscontrol.authentication.policy";
 
-	
 	public static final String AUTHENTICATION_LDAP = "ldap";
-	
+
 	public static final String AUTHENTICATION_SPFV = "spfv";
-	
+
 	public static final String AUTHENTICATION_POLICY_DEFAULT = AUTHENTICATION_LDAP;
-	
+
 	public static final String AUTHENTICATION_SPFV_FILEPATH = "";
 
 	private static Properties properties;
@@ -145,9 +148,20 @@ public final class ServerConfiguration {
 
 	/**
 	 * Sets the server's properties.
-	 * @param prop properties
+	 * 
+	 * @param prop
+	 *            properties
 	 */
 	public static void setProperties(Properties prop) {
 		properties = prop;
+	}
+
+	/**
+	 * Returns the path to the server's keystore.
+	 * 
+	 * @return path to keystore
+	 */
+	public static String getServerKeyStorePath() {
+		return getServerHome() + "unicaseServer.keystore";
 	}
 }
