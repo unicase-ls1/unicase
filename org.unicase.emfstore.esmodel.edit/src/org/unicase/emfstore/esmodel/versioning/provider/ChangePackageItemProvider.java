@@ -24,6 +24,7 @@ import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 import org.unicase.emfstore.esmodel.versioning.changeContainer.ChangeContainerFactory;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.ChangePackage} object.
@@ -74,6 +75,8 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 			super.getChildrenFeatures(object);
 			childrenFeatures
 					.add(VersioningPackage.Literals.CHANGE_PACKAGE__CHANGE_CONTAINERS);
+			childrenFeatures
+					.add(VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS);
 		}
 		return childrenFeatures;
 	}
@@ -127,6 +130,7 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 
 		switch (notification.getFeatureID(ChangePackage.class)) {
 		case VersioningPackage.CHANGE_PACKAGE__CHANGE_CONTAINERS:
+		case VersioningPackage.CHANGE_PACKAGE__OPERATIONS:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), true, false));
 			return;
@@ -154,6 +158,34 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 				VersioningPackage.Literals.CHANGE_PACKAGE__CHANGE_CONTAINERS,
 				ChangeContainerFactory.eINSTANCE
 						.createCompositeChangeContainer()));
+
+		newChildDescriptors.add(createChildParameter(
+				VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
+				OperationsFactory.eINSTANCE.createAbstractOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
+				OperationsFactory.eINSTANCE.createCompositeOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
+				OperationsFactory.eINSTANCE.createAtomicOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
+				OperationsFactory.eINSTANCE.createCreateOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
+				OperationsFactory.eINSTANCE.createDeleteOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
+				OperationsFactory.eINSTANCE.createReferenceOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
+				OperationsFactory.eINSTANCE.createAttributeOperation()));
 	}
 
 	/**

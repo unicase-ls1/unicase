@@ -64,9 +64,10 @@
         <eParameters name="project" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"/>
         <eParameters name="backwardChangeDescription" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore.change/model/Change.ecore#//ChangeDescription"/>
       </eOperations>
-      <eOperations name="getOperations" upperBound="-1" eType="#//versioning/operations/AbstractOperation"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="changeContainers" upperBound="-1"
           eType="#//versioning/changeContainer/ChangeContainer" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="operations" upperBound="-1"
+          eType="#//versioning/operations/AbstractOperation" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="HistoryInfo">
       <eStructuralFeatures xsi:type="ecore:EReference" name="primerySpec" lowerBound="1"
@@ -106,6 +107,9 @@
           <eParameters name="project" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"/>
         </eOperations>
         <eOperations name="reverse" eType="#//versioning/operations/AbstractOperation"/>
+        <eOperations name="canApply" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+          <eParameters name="project" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"/>
+        </eOperations>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="modelElement" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElement"/>

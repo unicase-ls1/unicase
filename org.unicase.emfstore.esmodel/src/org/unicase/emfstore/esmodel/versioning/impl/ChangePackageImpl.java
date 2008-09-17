@@ -31,6 +31,7 @@ import org.unicase.model.Project;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.impl.ChangePackageImpl#getChangeContainers <em>Change Containers</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.impl.ChangePackageImpl#getOperations <em>Operations</em>}</li>
  * </ul>
  * </p>
  *
@@ -47,6 +48,16 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 * @ordered
 	 */
 	protected EList<ChangeContainer> changeContainers;
+
+	/**
+	 * The cached value of the '{@link #getOperations() <em>Operations</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOperations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<AbstractOperation> operations;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -147,6 +158,9 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		case VersioningPackage.CHANGE_PACKAGE__CHANGE_CONTAINERS:
 			return ((InternalEList<?>) getChangeContainers()).basicRemove(
 					otherEnd, msgs);
+		case VersioningPackage.CHANGE_PACKAGE__OPERATIONS:
+			return ((InternalEList<?>) getOperations()).basicRemove(otherEnd,
+					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -162,6 +176,8 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		switch (featureID) {
 		case VersioningPackage.CHANGE_PACKAGE__CHANGE_CONTAINERS:
 			return getChangeContainers();
+		case VersioningPackage.CHANGE_PACKAGE__OPERATIONS:
+			return getOperations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -179,6 +195,11 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 			getChangeContainers().addAll(
 					(Collection<? extends ChangeContainer>) newValue);
 			return;
+		case VersioningPackage.CHANGE_PACKAGE__OPERATIONS:
+			getOperations().clear();
+			getOperations().addAll(
+					(Collection<? extends AbstractOperation>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -193,6 +214,9 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		case VersioningPackage.CHANGE_PACKAGE__CHANGE_CONTAINERS:
 			getChangeContainers().clear();
 			return;
+		case VersioningPackage.CHANGE_PACKAGE__OPERATIONS:
+			getOperations().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -206,6 +230,8 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		switch (featureID) {
 		case VersioningPackage.CHANGE_PACKAGE__CHANGE_CONTAINERS:
 			return changeContainers != null && !changeContainers.isEmpty();
+		case VersioningPackage.CHANGE_PACKAGE__OPERATIONS:
+			return operations != null && !operations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

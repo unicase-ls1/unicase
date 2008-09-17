@@ -545,6 +545,11 @@ public class OperationsPackageImpl extends EPackageImpl implements
 		addEOperation(abstractOperationEClass, this.getAbstractOperation(),
 				"reverse", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = addEOperation(abstractOperationEClass, ecorePackage.getEBoolean(),
+				"canApply", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theModelPackage.getProject(), "project", 0, 1,
+				IS_UNIQUE, IS_ORDERED);
+
 		initEClass(compositeOperationEClass, CompositeOperation.class,
 				"CompositeOperation", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);

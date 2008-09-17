@@ -149,4 +149,12 @@ public interface AbstractOperation extends EObject {
 	 */
 	AbstractOperation reverse();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean canApply(Project project);
+
 } // AbstractOperation
