@@ -61,7 +61,7 @@ public class StateDecorator implements ILightweightLabelDecorator {
 	/**. 
 	 * The icon image location in the project folder 
 	 */
-	private String openPath = "icons/open.gif"; // NON-NLS-1
+	private String openPath = "icons/open.jpg"; // NON-NLS-1
 
 	/** .
 	 * The icon image location in the project folder 
