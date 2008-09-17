@@ -63,7 +63,6 @@ public class NonFunctionalRequirementItemProvider extends CriterionItemProvider
 	/**
 	 * This adds a property descriptor for the Restricted Scenarios feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addRestrictedScenariosPropertyDescriptor(Object object) {
@@ -84,7 +83,6 @@ public class NonFunctionalRequirementItemProvider extends CriterionItemProvider
 	/**
 	 * This adds a property descriptor for the Restricted Use Cases feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addRestrictedUseCasesPropertyDescriptor(Object object) {
@@ -103,9 +101,9 @@ public class NonFunctionalRequirementItemProvider extends CriterionItemProvider
 	}
 
 	/**
-	 * This returns NonFunctionalRequirement.gif. <!-- begin-user-doc --> <!--
+	 * This returns NonFunctionalRequirement.gif.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -126,11 +124,10 @@ public class NonFunctionalRequirementItemProvider extends CriterionItemProvider
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

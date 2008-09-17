@@ -627,6 +627,11 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		g1 = createEGenericType(t1);
 		initEOperation(op, g1);
 
+		op = addEOperation(projectEClass, theEcorePackage.getEBoolean(),
+				"contains", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getModelElement(), "modelElement", 0, 1,
+				IS_UNIQUE, IS_ORDERED);
+
 		initEClass(uniqueIdentifierEClass, UniqueIdentifier.class,
 				"UniqueIdentifier", IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);

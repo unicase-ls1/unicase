@@ -54,6 +54,9 @@
         <eGenericType eTypeParameter="#//Project/getModelElementsByClass/T"/>
       </eParameters>
     </eOperations>
+    <eOperations name="contains" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+      <eParameters name="modelElement" eType="#//ModelElement"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="modelElements" ordered="false"
         upperBound="-1" eType="#//ModelElement" containment="true" eKeys="#//IdentifiableElement/identifier"/>
   </eClassifiers>

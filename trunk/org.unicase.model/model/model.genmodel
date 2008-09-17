@@ -42,6 +42,9 @@
         <genParameters ecoreParameter="model.ecore#//Project/getModelElementsByClass/list"/>
         <genTypeParameters ecoreTypeParameter="model.ecore#//Project/getModelElementsByClass/T"/>
       </genOperations>
+      <genOperations ecoreOperation="model.ecore#//Project/contains">
+        <genParameters ecoreParameter="model.ecore#//Project/contains/modelElement"/>
+      </genOperations>
     </genClasses>
     <genClasses image="false" ecoreClass="model.ecore#//UniqueIdentifier">
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//UniqueIdentifier/id"/>
