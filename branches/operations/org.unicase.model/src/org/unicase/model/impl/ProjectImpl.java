@@ -230,7 +230,11 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 		return null;
 	}
 
-	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	public boolean contains(ModelElement modelElement) {
 		return contains(modelElement.getModelElementId());
 	}

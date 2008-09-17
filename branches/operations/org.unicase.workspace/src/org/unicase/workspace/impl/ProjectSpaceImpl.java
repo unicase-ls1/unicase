@@ -1381,9 +1381,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		EList<Resource> resources = this.eResource().getResourceSet()
 				.getResources();
 		for (Resource resource : resources) {
-			if (resource.isModified() || force) {
-				//if (true) {
-				//TODO: Check if merging is correct
+			//if (resource.isModified() || force) {
+			if (true) {
 				try {
 					resource.save(Configuration.getResourceSaveOptions());
 				} catch (IOException e) {
