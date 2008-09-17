@@ -382,7 +382,7 @@ public class ClassEditPart extends ShapeNodeEditPart {
 					.setLayoutManager(layoutClassFigure_NameContainer1);
 
 			fFigureClassFigure_name = new WrappingLabel();
-			fFigureClassFigure_name.setText("");
+			fFigureClassFigure_name.setText("unnamed");
 
 			fFigureClassFigure_name.setFont(FFIGURECLASSFIGURE_NAME_FONT);
 

@@ -238,12 +238,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Associations2Group_title;
+	public static String Connections2Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Associations2Group_desc;
+	public static String Connections2Group_desc;
 
 	/**
 	 * @generated
@@ -273,27 +273,27 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Generalization4CreationTool_title;
+	public static String Generalization1CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String UndirectedAssociation1CreationTool_title;
+	public static String UndirectedAssociation2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String DirectedAssociation2CreationTool_title;
+	public static String DirectedAssociation3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Aggregation3CreationTool_title;
+	public static String Aggregation4CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Composition4CreationTool_title;
+	public static String Composition5CreationTool_title;
 
 	/**
 	 * @generated

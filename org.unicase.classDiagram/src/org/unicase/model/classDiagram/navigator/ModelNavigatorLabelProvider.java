@@ -308,7 +308,7 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 		} else {
 			org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin
 					.getInstance().logError(
-							"Parser was not found for label " + 4003); //$NON-NLS-1$
+							"Parser was not found for label " + 4005); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 
@@ -338,7 +338,7 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 		} else {
 			org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin
 					.getInstance().logError(
-							"Parser was not found for label " + 4005); //$NON-NLS-1$
+							"Parser was not found for label " + 4011); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 
@@ -361,7 +361,7 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 		} else {
 			org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin
 					.getInstance().logError(
-							"Parser was not found for label " + 4004); //$NON-NLS-1$
+							"Parser was not found for label " + 4008); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 

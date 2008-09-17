@@ -64,12 +64,28 @@ public class ModelEditPartFactory implements EditPartFactory {
 				return new org.unicase.model.classDiagram.edit.parts.AssociationNameEditPart(
 						view);
 
+			case org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicityEditPart.VISUAL_ID:
+				return new org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicityEditPart(
+						view);
+
+			case org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicityEditPart.VISUAL_ID:
+				return new org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicityEditPart(
+						view);
+
 			case org.unicase.model.classDiagram.edit.parts.Association2EditPart.VISUAL_ID:
 				return new org.unicase.model.classDiagram.edit.parts.Association2EditPart(
 						view);
 
 			case org.unicase.model.classDiagram.edit.parts.AssociationName2EditPart.VISUAL_ID:
 				return new org.unicase.model.classDiagram.edit.parts.AssociationName2EditPart(
+						view);
+
+			case org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity2EditPart.VISUAL_ID:
+				return new org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity2EditPart(
+						view);
+
+			case org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity2EditPart.VISUAL_ID:
+				return new org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity2EditPart(
 						view);
 
 			case org.unicase.model.classDiagram.edit.parts.Association3EditPart.VISUAL_ID:
@@ -80,12 +96,28 @@ public class ModelEditPartFactory implements EditPartFactory {
 				return new org.unicase.model.classDiagram.edit.parts.AssociationName3EditPart(
 						view);
 
+			case org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity3EditPart.VISUAL_ID:
+				return new org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity3EditPart(
+						view);
+
+			case org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity3EditPart.VISUAL_ID:
+				return new org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity3EditPart(
+						view);
+
 			case org.unicase.model.classDiagram.edit.parts.Association4EditPart.VISUAL_ID:
 				return new org.unicase.model.classDiagram.edit.parts.Association4EditPart(
 						view);
 
 			case org.unicase.model.classDiagram.edit.parts.AssociationName4EditPart.VISUAL_ID:
 				return new org.unicase.model.classDiagram.edit.parts.AssociationName4EditPart(
+						view);
+
+			case org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity4EditPart.VISUAL_ID:
+				return new org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity4EditPart(
+						view);
+
+			case org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity4EditPart.VISUAL_ID:
+				return new org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity4EditPart(
 						view);
 
 			case org.unicase.model.classDiagram.edit.parts.ClassSubClassesEditPart.VISUAL_ID:

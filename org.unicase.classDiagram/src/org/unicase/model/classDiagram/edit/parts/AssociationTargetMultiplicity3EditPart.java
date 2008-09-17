@@ -45,13 +45,13 @@ import org.eclipse.swt.graphics.Image;
 /**
  * @generated
  */
-public class AssociationNameEditPart extends LabelEditPart implements
-		ITextAwareEditPart {
+public class AssociationTargetMultiplicity3EditPart extends LabelEditPart
+		implements ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4002;
+	public static final int VISUAL_ID = 4010;
 
 	/**
 	 * @generated
@@ -79,14 +79,14 @@ public class AssociationNameEditPart extends LabelEditPart implements
 	static {
 		registerSnapBackPosition(
 				org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-						.getType(org.unicase.model.classDiagram.edit.parts.AssociationNameEditPart.VISUAL_ID),
-				new Point(0, 40));
+						.getType(org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity3EditPart.VISUAL_ID),
+				new Point(0, 0));
 	}
 
 	/**
 	 * @generated
 	 */
-	public AssociationNameEditPart(View view) {
+	public AssociationTargetMultiplicity3EditPart(View view) {
 		super(view);
 	}
 
@@ -103,7 +103,7 @@ public class AssociationNameEditPart extends LabelEditPart implements
 	 * @generated
 	 */
 	public int getKeyPoint() {
-		return ConnectionLocator.MIDDLE;
+		return ConnectionLocator.SOURCE;
 	}
 
 	/**
@@ -295,7 +295,7 @@ public class AssociationNameEditPart extends LabelEditPart implements
 		if (parser == null) {
 			String parserHint = ((View) getModel()).getType();
 			IAdaptable hintAdapter = new org.unicase.model.classDiagram.providers.ModelParserProvider.HintAdapter(
-					org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3001,
+					org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3003,
 					getParserElement(), parserHint);
 			parser = ParserService.getInstance().getParser(hintAdapter);
 		}

@@ -1,5 +1,6 @@
 package org.unicase.model.classDiagram.unicase;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.draw2d.ColorConstants;
@@ -136,11 +137,19 @@ public class AssociationDecoration extends Figure implements
 	};
 
 	public void removeDecoration() {
-		for (Object object : getChildren()) {
+		
+		List children = getChildren();
+		List decorations = new ArrayList(2);
+		for (Object object : children) {
 			if (object instanceof Figure) {
-				remove((IFigure) object);
+				decorations.add(object);	
 			}
 		}
+		
+		for (Object object : decorations) {
+			remove((IFigure) object);
+		}
+
 	}
 
 	private static class LocatorStub implements Locator {

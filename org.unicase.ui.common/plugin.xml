@@ -313,8 +313,13 @@
          <elementType ref="org.unicase.classDiagram.Association_3003"/>
          
          <elementType ref="org.unicase.ui.usecaseDiagram.MEDiagram_77"/>
-         <elementType ref="org.unicase.ui.usecaseDiagram.UseCase_1001"/>
-         <elementType ref="org.unicase.ui.usecaseDiagram.Actor_1002"/>
+         <elementType ref="org.unicase.ui.usecaseDiagram.Actor_1001"/>
+         <elementType ref="org.unicase.ui.usecaseDiagram.UseCase_1002"/>
+         <elementType ref="org.unicase.ui.usecaseDiagram.ActorParticipatedUseCases_3001"/>
+         <elementType ref="org.unicase.ui.usecaseDiagram.ActorInitiatedUseCases_3002"/>
+         <elementType ref="org.unicase.ui.usecaseDiagram.UseCaseIncludedUseCases_3003"/>
+         <elementType ref="org.unicase.ui.usecaseDiagram.UseCaseExtendedUseCases_3004"/>
+         
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
