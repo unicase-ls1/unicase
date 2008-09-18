@@ -167,7 +167,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	 */
 	public List<ACOrgUnit> getParticipants(SessionId sessionId,
 			ProjectId projectId) throws AccessControlException {
-		authorizationControl.checkServerAdminAccess(sessionId);
+		authorizationControl.checkProjectAdminAccess(sessionId, projectId);
 		List<ACOrgUnit> result = new ArrayList<ACOrgUnit>();
 		for (ACOrgUnit orgUnit : getServerSpace().getUsers()) {
 			for (Role role : orgUnit.getRoles()) {
