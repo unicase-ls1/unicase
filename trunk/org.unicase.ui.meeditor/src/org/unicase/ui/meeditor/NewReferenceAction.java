@@ -13,17 +13,22 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.action.Action;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.window.Window;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.model.ModelElement;
 import org.unicase.ui.common.MEClassLabelProvider;
 import org.unicase.ui.common.commands.ActionHelper;
+import org.unicase.ui.common.decorators.OverlayImageDescriptor;
 import org.unicase.ui.common.util.UnicaseUtil;
 
 /**
@@ -49,22 +54,42 @@ public class NewReferenceAction extends Action {
 	 * @param descriptor
 	 *            the descriptor used to generate display content
 	 */
-	public NewReferenceAction(ModelElement modelElement, EReference eReference, IItemPropertyDescriptor descriptor) {
-		setImageDescriptor(Activator.getImageDescriptor("icons/link_add.png"));
+	public NewReferenceAction(ModelElement modelElement, EReference eReference,
+			IItemPropertyDescriptor descriptor) {
+		this.modelElement = modelElement;
+		this.eReference = eReference;
+
+		Object obj = null;
+		if(!eReference.getEReferenceType().isAbstract()){
+			obj = eReference.getEReferenceType().getEPackage().getEFactoryInstance().create(eReference.getEReferenceType());
+		}
+		Image image = new AdapterFactoryLabelProvider(
+				new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)).getImage(obj);
+		
+		ImageDescriptor addOverlay = org.unicase.ui.common.Activator
+				.getImageDescriptor("icons/add_overlay.png");
+		OverlayImageDescriptor imageDescriptor = new OverlayImageDescriptor(
+				image, addOverlay, OverlayImageDescriptor.LOWER_RIGHT);
+		setImageDescriptor(imageDescriptor);
+
 		String attribute = descriptor.getDisplayName(eReference);
-		if (attribute.endsWith("s")) {
+
+		// make singular attribute labels
+		if (attribute.endsWith("ies")) {
+			attribute = attribute.substring(0, attribute.length() - 3) + "y";
+		} else if (attribute.endsWith("s")) {
 			attribute = attribute.substring(0, attribute.length() - 1);
 		}
 		setToolTipText("Create and add new " + attribute);
-		this.modelElement = modelElement;
-		this.eReference = eReference;
+
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public void run() {
-		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
+		TransactionalEditingDomain domain = TransactionUtil
+				.getEditingDomain(modelElement);
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@SuppressWarnings("unchecked")
 			@Override
@@ -75,7 +100,10 @@ public class NewReferenceAction extends Action {
 				if (subclasses.size() == 1) {
 					newClass = clazz;
 				} else {
-					ElementListSelectionDialog dlg = new ElementListSelectionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), new MEClassLabelProvider());
+					ElementListSelectionDialog dlg = new ElementListSelectionDialog(
+							PlatformUI.getWorkbench()
+									.getActiveWorkbenchWindow().getShell(),
+							new MEClassLabelProvider());
 					dlg.setElements(subclasses.toArray());
 
 					dlg.setTitle("Select Element type");
@@ -91,7 +119,8 @@ public class NewReferenceAction extends Action {
 				final ModelElement newMEInstance;
 
 				EPackage ePackage = newClass.getEPackage();
-				newMEInstance = (ModelElement) ePackage.getEFactoryInstance().create(newClass);
+				newMEInstance = (ModelElement) ePackage.getEFactoryInstance()
+						.create(newClass);
 				newMEInstance.setName("new " + newClass.getName());
 
 				Object objectList = modelElement.eGet(eReference);
@@ -99,7 +128,8 @@ public class NewReferenceAction extends Action {
 				if (objectList instanceof EList) {
 					list = (EList<EObject>) objectList;
 					if (!eReference.isContainer()) {
-						modelElement.getProject().addModelElement(newMEInstance);
+						modelElement.getProject()
+								.addModelElement(newMEInstance);
 					}
 					list.add(newMEInstance);
 				}
