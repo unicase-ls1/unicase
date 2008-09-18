@@ -20,10 +20,15 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.action.Action;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.window.Window;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.model.ModelElement;
+import org.unicase.ui.common.decorators.OverlayImageDescriptor;
+import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEMultiLinkControl;
 
 /**
  * 
@@ -41,35 +46,68 @@ public class AddReferenceAction extends Action {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param modelElement the source model element
-	 * @param eReference the target reference
-	 * @param descriptor the descriptor used to generate display content
+	 * @param modelElement
+	 *            the source model element
+	 * @param eReference
+	 *            the target reference
+	 * @param descriptor
+	 *            the descriptor used to generate display content
 	 */
-	public AddReferenceAction(ModelElement modelElement, EReference eReference, IItemPropertyDescriptor descriptor) {
-		setImageDescriptor(Activator.getImageDescriptor("icons/link.png"));
-		String attribute = descriptor.getDisplayName(eReference);
-		if(attribute.endsWith("s")){
-			attribute = attribute.substring(0, attribute.length()-1);
-		}
-		setToolTipText("Add new "+attribute);
+	public AddReferenceAction(ModelElement modelElement, EReference eReference,
+			IItemPropertyDescriptor descriptor) {
 		this.modelElement = modelElement;
 		this.eReference = eReference;
+		
+		
+		Object obj = null;
+		if(!eReference.getEReferenceType().isAbstract()){
+			obj = eReference.getEReferenceType().getEPackage().getEFactoryInstance().create(eReference.getEReferenceType());
+		}
+		Image image = new AdapterFactoryLabelProvider(
+				new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)).getImage(obj);
+		
+		ImageDescriptor addOverlay = org.unicase.ui.common.Activator.getImageDescriptor("icons/link_overlay.png");
+		OverlayImageDescriptor imageDescriptor = new OverlayImageDescriptor(image,addOverlay,OverlayImageDescriptor.LOWER_RIGHT);
+		setImageDescriptor(imageDescriptor);
+
+		String attribute = descriptor.getDisplayName(eReference);
+		// make singular attribute labels
+		if (attribute.endsWith("ies")) {
+			attribute = attribute.substring(0, attribute.length() - 3) + "y";
+		} else if (attribute.endsWith("s")) {
+			attribute = attribute.substring(0, attribute.length() - 1);
+		}
+		
+		String action;
+		if(isMultiReference()){
+			action = "Add";
+		}else{
+			action = "Set";
+		}
+		setToolTipText(action+" new " + attribute);
+
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public void run() {
-		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
+		TransactionalEditingDomain domain = TransactionUtil
+				.getEditingDomain(modelElement);
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@SuppressWarnings("unchecked")
 			@Override
 			protected void doExecute() {
 				EClass clazz = eReference.getEReferenceType();
-				ElementListSelectionDialog dlg = new ElementListSelectionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-						ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
-				// JH: fill only with right elements
-				Collection<ModelElement> allElements = ((ModelElement) modelElement).getProject().getAllModelElementsbyClass(clazz, new BasicEList<ModelElement>());
+				ElementListSelectionDialog dlg = new ElementListSelectionDialog(
+						PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+								.getShell(),
+						new AdapterFactoryLabelProvider(
+								new ComposedAdapterFactory(
+										ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
+				Collection<ModelElement> allElements = ((ModelElement) modelElement)
+						.getProject().getAllModelElementsbyClass(clazz,
+								new BasicEList<ModelElement>());
 				allElements.remove(modelElement);
 				Object objectList = modelElement.eGet(eReference);
 				EList<EObject> list;
@@ -78,7 +116,7 @@ public class AddReferenceAction extends Action {
 					for (EObject ref : list) {
 						allElements.remove(ref);
 					}
-					dlg.setMultipleSelection(true);
+					dlg.setMultipleSelection(isMultiReference());
 					dlg.setElements(allElements.toArray());
 					dlg.setTitle("Select Elements");
 					dlg.setBlockOnOpen(true);
@@ -96,6 +134,10 @@ public class AddReferenceAction extends Action {
 			}
 		});
 
+	}
+	
+	private boolean isMultiReference(){
+		return eReference.getUpperBound()==-1;
 	}
 
 }

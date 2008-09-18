@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.unicase.model.requirement.Step;
 import org.unicase.ui.meeditor.mecontrols.MEBoolControl;
@@ -106,7 +107,7 @@ public class ControlFactory {
 			}
 	
 			if (feature.getUpperBound() == 1) {
-				return createMESingleLinkControl(reference);
+				return createMESingleLinkControl(reference, itemPropertyDescriptor);
 	
 			}
 			
@@ -125,8 +126,8 @@ public class ControlFactory {
 		return new UseCaseStepsControl(modelElement, reference, toolkit, editingDomain, itemPropertyDescriptor);
 	}
 
-	private MEControl createMESingleLinkControl(EReference reference) {
-		return new MESingleLinkControl(editingDomain, modelElement, toolkit, reference);
+	private MEControl createMESingleLinkControl(EReference reference, IItemPropertyDescriptor itemPropertyDescriptor) {
+		return new MESingleLinkControl(editingDomain, modelElement, toolkit, reference, itemPropertyDescriptor);
 	}
 
 	private MEControl createMEDateControl(EAttribute attribute) {

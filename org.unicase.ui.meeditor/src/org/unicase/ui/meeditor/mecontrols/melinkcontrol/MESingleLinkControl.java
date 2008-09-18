@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -58,6 +59,8 @@ public class MESingleLinkControl extends AbstractMEControl {
 	private Label labelWidget;
 	private AdapterImpl eAdapter;
 
+	private IItemPropertyDescriptor itemPropertyDescriptor;
+
 	/**
 	 * Default constructor.
 	 * 
@@ -70,9 +73,10 @@ public class MESingleLinkControl extends AbstractMEControl {
 	 * @param reference
 	 *            the reference link
 	 */
-	public MESingleLinkControl(EditingDomain editingDomain, EObject modelElement, FormToolkit toolkit, EReference reference) {
+	public MESingleLinkControl(EditingDomain editingDomain, EObject modelElement, FormToolkit toolkit, EReference reference, IItemPropertyDescriptor itemPropertyDescriptor) {
 		super(editingDomain, modelElement, toolkit);
 		this.eReference = reference;
+		this.itemPropertyDescriptor = itemPropertyDescriptor;
 		eAdapter = new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
@@ -97,6 +101,17 @@ public class MESingleLinkControl extends AbstractMEControl {
 		linkArea = getToolkit().createComposite(composite);
 		linkArea.setLayout(new FillLayout());
 		updateLink();
+		
+//		Composite addLink = getToolkit().createComposite(composite);
+//		addLink.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_YELLOW));
+//		AddReferenceAction addAction = new AddReferenceAction((ModelElement)getModelElement(),eReference,itemPropertyDescriptor); 
+//		ActionContributionItem addButton = new ActionContributionItem(addAction); 
+//		addButton.fill(addLink);
+//		Composite addNew = getToolkit().createComposite(composite);
+//		addNew.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_RED));
+//		NewReferenceAction newAction = new NewReferenceAction((ModelElement)getModelElement(),eReference,itemPropertyDescriptor); 
+//		ActionContributionItem newButton = new ActionContributionItem(newAction); 
+//		newButton.fill(addNew);
 		Button button = getToolkit().createButton(composite, "Select", SWT.PUSH);
 		button.addSelectionListener(new SelectionAdapter() {
 
