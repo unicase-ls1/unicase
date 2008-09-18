@@ -78,9 +78,9 @@ public class EmfStoreController implements IApplication {
 		System.out.println("| unicase EmfStore |");
 		System.out.println("*------------------*");
 
+		logger = LogFactory.getLog(EmfStoreController.class);
 		properties = initProperties();
 		initLogging(properties);
-		logger = LogFactory.getLog(EmfStoreController.class);
 		this.serverSpace = initServerSpace();
 		accessControl = initAccessControl(serverSpace);
 		emfStore = new EmfStoreImpl(serverSpace, accessControl);
