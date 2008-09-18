@@ -18,15 +18,15 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
-import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation} object.
+ * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ReferenceOperationItemProvider extends
+public class SingleReferenceOperationItemProvider extends
 		FeatureOperationItemProvider implements IEditingDomainItemProvider,
 		IStructuredItemContentProvider, ITreeItemContentProvider,
 		IItemLabelProvider, IItemPropertySource {
@@ -36,7 +36,7 @@ public class ReferenceOperationItemProvider extends
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReferenceOperationItemProvider(AdapterFactory adapterFactory) {
+	public SingleReferenceOperationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -64,15 +64,18 @@ public class ReferenceOperationItemProvider extends
 	 * @generated
 	 */
 	protected void addOldValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ReferenceOperation_oldValue_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_ReferenceOperation_oldValue_feature",
-						"_UI_ReferenceOperation_type"),
-				OperationsPackage.Literals.REFERENCE_OPERATION__OLD_VALUE,
-				true, false, true, null, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_SingleReferenceOperation_oldValue_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_SingleReferenceOperation_oldValue_feature",
+								"_UI_SingleReferenceOperation_type"),
+						OperationsPackage.Literals.SINGLE_REFERENCE_OPERATION__OLD_VALUE,
+						true, false, true, null, null, null));
 	}
 
 	/**
@@ -82,19 +85,22 @@ public class ReferenceOperationItemProvider extends
 	 * @generated
 	 */
 	protected void addNewValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ReferenceOperation_newValue_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_ReferenceOperation_newValue_feature",
-						"_UI_ReferenceOperation_type"),
-				OperationsPackage.Literals.REFERENCE_OPERATION__NEW_VALUE,
-				true, false, true, null, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_SingleReferenceOperation_newValue_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_SingleReferenceOperation_newValue_feature",
+								"_UI_SingleReferenceOperation_type"),
+						OperationsPackage.Literals.SINGLE_REFERENCE_OPERATION__NEW_VALUE,
+						true, false, true, null, null, null));
 	}
 
 	/**
-	 * This returns ReferenceOperation.gif.
+	 * This returns SingleReferenceOperation.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -102,7 +108,7 @@ public class ReferenceOperationItemProvider extends
 	@Override
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/ReferenceOperation"));
+				"full/obj16/SingleReferenceOperation"));
 	}
 
 	/**
@@ -113,9 +119,9 @@ public class ReferenceOperationItemProvider extends
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ReferenceOperation) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_ReferenceOperation_type")
-				: getString("_UI_ReferenceOperation_type") + " " + label;
+		String label = ((SingleReferenceOperation) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_SingleReferenceOperation_type")
+				: getString("_UI_SingleReferenceOperation_type") + " " + label;
 	}
 
 	/**

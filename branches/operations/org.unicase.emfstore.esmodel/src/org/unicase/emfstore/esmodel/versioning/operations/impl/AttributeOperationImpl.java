@@ -5,8 +5,6 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
-import java.util.Iterator;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
@@ -232,10 +230,13 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements
 	@Override
 	public void apply(Project project) {
 		if (!canApply(project)) {
-			throw new IllegalStateException("can not apply operation to this project");
+			throw new IllegalStateException(
+					"can not apply operation to this project");
 		}
-		ModelElement modelElement = project.getModelElement(this.getModelElementId());
-		EList<EAttribute> attributes = modelElement.eClass().getEAllAttributes();
+		ModelElement modelElement = project.getModelElement(this
+				.getModelElementId());
+		EList<EAttribute> attributes = modelElement.eClass()
+				.getEAllAttributes();
 		for (EAttribute attribute : attributes) {
 			if (attribute.getName().equals(this.getFeatureName())) {
 				modelElement.eSet(attribute, this.getNewValue());
@@ -247,7 +248,8 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements
 
 	@Override
 	public AbstractOperation reverse() {
-		AttributeOperation attributeOperation = OperationsFactory.eINSTANCE.createAttributeOperation();
+		AttributeOperation attributeOperation = OperationsFactory.eINSTANCE
+				.createAttributeOperation();
 		attributeOperation.setFeatureName(getName());
 		attributeOperation.setFeatureName(getFeatureName());
 		attributeOperation.setDescription(getDescription());
@@ -262,7 +264,5 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements
 	public boolean canApply(Project project) {
 		return project.contains(this.getModelElementId());
 	}
-	
-	
 
 } //AttributeOperationImpl

@@ -10,25 +10,25 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
-import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
-import org.unicase.model.ModelElement;
+import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
+import org.unicase.model.ModelElementId;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Reference Operation</b></em>'.
+ * An implementation of the model object '<em><b>Single Reference Operation</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.ReferenceOperationImpl#getOldValue <em>Old Value</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.ReferenceOperationImpl#getNewValue <em>New Value</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.SingleReferenceOperationImpl#getOldValue <em>Old Value</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.SingleReferenceOperationImpl#getNewValue <em>New Value</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ReferenceOperationImpl extends FeatureOperationImpl implements
-		ReferenceOperation {
+public class SingleReferenceOperationImpl extends FeatureOperationImpl
+		implements SingleReferenceOperation {
 	/**
 	 * The cached value of the '{@link #getOldValue() <em>Old Value</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -37,7 +37,7 @@ public class ReferenceOperationImpl extends FeatureOperationImpl implements
 	 * @generated
 	 * @ordered
 	 */
-	protected ModelElement oldValue;
+	protected ModelElementId oldValue;
 
 	/**
 	 * The cached value of the '{@link #getNewValue() <em>New Value</em>}' reference.
@@ -47,14 +47,14 @@ public class ReferenceOperationImpl extends FeatureOperationImpl implements
 	 * @generated
 	 * @ordered
 	 */
-	protected ModelElement newValue;
+	protected ModelElementId newValue;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ReferenceOperationImpl() {
+	protected SingleReferenceOperationImpl() {
 		super();
 	}
 
@@ -65,7 +65,7 @@ public class ReferenceOperationImpl extends FeatureOperationImpl implements
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return OperationsPackage.Literals.REFERENCE_OPERATION;
+		return OperationsPackage.Literals.SINGLE_REFERENCE_OPERATION;
 	}
 
 	/**
@@ -73,14 +73,16 @@ public class ReferenceOperationImpl extends FeatureOperationImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelElement getOldValue() {
+	public ModelElementId getOldValue() {
 		if (oldValue != null && oldValue.eIsProxy()) {
 			InternalEObject oldOldValue = (InternalEObject) oldValue;
-			oldValue = (ModelElement) eResolveProxy(oldOldValue);
+			oldValue = (ModelElementId) eResolveProxy(oldOldValue);
 			if (oldValue != oldOldValue) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							OperationsPackage.REFERENCE_OPERATION__OLD_VALUE,
+					eNotify(new ENotificationImpl(
+							this,
+							Notification.RESOLVE,
+							OperationsPackage.SINGLE_REFERENCE_OPERATION__OLD_VALUE,
 							oldOldValue, oldValue));
 			}
 		}
@@ -92,7 +94,7 @@ public class ReferenceOperationImpl extends FeatureOperationImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelElement basicGetOldValue() {
+	public ModelElementId basicGetOldValue() {
 		return oldValue;
 	}
 
@@ -101,12 +103,12 @@ public class ReferenceOperationImpl extends FeatureOperationImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOldValue(ModelElement newOldValue) {
-		ModelElement oldOldValue = oldValue;
+	public void setOldValue(ModelElementId newOldValue) {
+		ModelElementId oldOldValue = oldValue;
 		oldValue = newOldValue;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-					OperationsPackage.REFERENCE_OPERATION__OLD_VALUE,
+					OperationsPackage.SINGLE_REFERENCE_OPERATION__OLD_VALUE,
 					oldOldValue, oldValue));
 	}
 
@@ -115,14 +117,16 @@ public class ReferenceOperationImpl extends FeatureOperationImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelElement getNewValue() {
+	public ModelElementId getNewValue() {
 		if (newValue != null && newValue.eIsProxy()) {
 			InternalEObject oldNewValue = (InternalEObject) newValue;
-			newValue = (ModelElement) eResolveProxy(oldNewValue);
+			newValue = (ModelElementId) eResolveProxy(oldNewValue);
 			if (newValue != oldNewValue) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							OperationsPackage.REFERENCE_OPERATION__NEW_VALUE,
+					eNotify(new ENotificationImpl(
+							this,
+							Notification.RESOLVE,
+							OperationsPackage.SINGLE_REFERENCE_OPERATION__NEW_VALUE,
 							oldNewValue, newValue));
 			}
 		}
@@ -134,7 +138,7 @@ public class ReferenceOperationImpl extends FeatureOperationImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelElement basicGetNewValue() {
+	public ModelElementId basicGetNewValue() {
 		return newValue;
 	}
 
@@ -143,12 +147,12 @@ public class ReferenceOperationImpl extends FeatureOperationImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNewValue(ModelElement newNewValue) {
-		ModelElement oldNewValue = newValue;
+	public void setNewValue(ModelElementId newNewValue) {
+		ModelElementId oldNewValue = newValue;
 		newValue = newNewValue;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-					OperationsPackage.REFERENCE_OPERATION__NEW_VALUE,
+					OperationsPackage.SINGLE_REFERENCE_OPERATION__NEW_VALUE,
 					oldNewValue, newValue));
 	}
 
@@ -160,11 +164,11 @@ public class ReferenceOperationImpl extends FeatureOperationImpl implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case OperationsPackage.REFERENCE_OPERATION__OLD_VALUE:
+		case OperationsPackage.SINGLE_REFERENCE_OPERATION__OLD_VALUE:
 			if (resolve)
 				return getOldValue();
 			return basicGetOldValue();
-		case OperationsPackage.REFERENCE_OPERATION__NEW_VALUE:
+		case OperationsPackage.SINGLE_REFERENCE_OPERATION__NEW_VALUE:
 			if (resolve)
 				return getNewValue();
 			return basicGetNewValue();
@@ -180,11 +184,11 @@ public class ReferenceOperationImpl extends FeatureOperationImpl implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case OperationsPackage.REFERENCE_OPERATION__OLD_VALUE:
-			setOldValue((ModelElement) newValue);
+		case OperationsPackage.SINGLE_REFERENCE_OPERATION__OLD_VALUE:
+			setOldValue((ModelElementId) newValue);
 			return;
-		case OperationsPackage.REFERENCE_OPERATION__NEW_VALUE:
-			setNewValue((ModelElement) newValue);
+		case OperationsPackage.SINGLE_REFERENCE_OPERATION__NEW_VALUE:
+			setNewValue((ModelElementId) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -198,11 +202,11 @@ public class ReferenceOperationImpl extends FeatureOperationImpl implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case OperationsPackage.REFERENCE_OPERATION__OLD_VALUE:
-			setOldValue((ModelElement) null);
+		case OperationsPackage.SINGLE_REFERENCE_OPERATION__OLD_VALUE:
+			setOldValue((ModelElementId) null);
 			return;
-		case OperationsPackage.REFERENCE_OPERATION__NEW_VALUE:
-			setNewValue((ModelElement) null);
+		case OperationsPackage.SINGLE_REFERENCE_OPERATION__NEW_VALUE:
+			setNewValue((ModelElementId) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -216,12 +220,12 @@ public class ReferenceOperationImpl extends FeatureOperationImpl implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case OperationsPackage.REFERENCE_OPERATION__OLD_VALUE:
+		case OperationsPackage.SINGLE_REFERENCE_OPERATION__OLD_VALUE:
 			return oldValue != null;
-		case OperationsPackage.REFERENCE_OPERATION__NEW_VALUE:
+		case OperationsPackage.SINGLE_REFERENCE_OPERATION__NEW_VALUE:
 			return newValue != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //ReferenceOperationImpl
+} //SingleReferenceOperationImpl

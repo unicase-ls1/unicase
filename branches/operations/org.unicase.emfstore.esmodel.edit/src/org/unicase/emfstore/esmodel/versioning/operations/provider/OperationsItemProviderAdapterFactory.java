@@ -123,49 +123,27 @@ public class OperationsItemProviderAdapterFactory extends
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.operations.CreateOperation} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CreateOperationItemProvider createOperationItemProvider;
+	protected CreateDeleteOperationItemProvider createDeleteOperationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.CreateOperation}.
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createCreateOperationAdapter() {
-		if (createOperationItemProvider == null) {
-			createOperationItemProvider = new CreateOperationItemProvider(this);
+	public Adapter createCreateDeleteOperationAdapter() {
+		if (createDeleteOperationItemProvider == null) {
+			createDeleteOperationItemProvider = new CreateDeleteOperationItemProvider(
+					this);
 		}
 
-		return createOperationItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.operations.DeleteOperation} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected DeleteOperationItemProvider deleteOperationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.DeleteOperation}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createDeleteOperationAdapter() {
-		if (deleteOperationItemProvider == null) {
-			deleteOperationItemProvider = new DeleteOperationItemProvider(this);
-		}
-
-		return deleteOperationItemProvider;
+		return createDeleteOperationItemProvider;
 	}
 
 	/**
@@ -192,30 +170,6 @@ public class OperationsItemProviderAdapterFactory extends
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ReferenceOperationItemProvider referenceOperationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createReferenceOperationAdapter() {
-		if (referenceOperationItemProvider == null) {
-			referenceOperationItemProvider = new ReferenceOperationItemProvider(
-					this);
-		}
-
-		return referenceOperationItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -237,6 +191,78 @@ public class OperationsItemProviderAdapterFactory extends
 		}
 
 		return attributeOperationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SingleReferenceOperationItemProvider singleReferenceOperationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSingleReferenceOperationAdapter() {
+		if (singleReferenceOperationItemProvider == null) {
+			singleReferenceOperationItemProvider = new SingleReferenceOperationItemProvider(
+					this);
+		}
+
+		return singleReferenceOperationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MultiReferenceOperationItemProvider multiReferenceOperationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMultiReferenceOperationAdapter() {
+		if (multiReferenceOperationItemProvider == null) {
+			multiReferenceOperationItemProvider = new MultiReferenceOperationItemProvider(
+					this);
+		}
+
+		return multiReferenceOperationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MultiReferenceMoveOperationItemProvider multiReferenceMoveOperationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMultiReferenceMoveOperationAdapter() {
+		if (multiReferenceMoveOperationItemProvider == null) {
+			multiReferenceMoveOperationItemProvider = new MultiReferenceMoveOperationItemProvider(
+					this);
+		}
+
+		return multiReferenceMoveOperationItemProvider;
 	}
 
 	/**
@@ -345,16 +371,18 @@ public class OperationsItemProviderAdapterFactory extends
 			abstractOperationItemProvider.dispose();
 		if (compositeOperationItemProvider != null)
 			compositeOperationItemProvider.dispose();
-		if (createOperationItemProvider != null)
-			createOperationItemProvider.dispose();
-		if (deleteOperationItemProvider != null)
-			deleteOperationItemProvider.dispose();
+		if (createDeleteOperationItemProvider != null)
+			createDeleteOperationItemProvider.dispose();
 		if (atomicOperationItemProvider != null)
 			atomicOperationItemProvider.dispose();
-		if (referenceOperationItemProvider != null)
-			referenceOperationItemProvider.dispose();
 		if (attributeOperationItemProvider != null)
 			attributeOperationItemProvider.dispose();
+		if (singleReferenceOperationItemProvider != null)
+			singleReferenceOperationItemProvider.dispose();
+		if (multiReferenceOperationItemProvider != null)
+			multiReferenceOperationItemProvider.dispose();
+		if (multiReferenceMoveOperationItemProvider != null)
+			multiReferenceMoveOperationItemProvider.dispose();
 	}
 
 }

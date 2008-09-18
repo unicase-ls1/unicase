@@ -25,7 +25,7 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface CompositeOperation extends AbstractOperation {
 	/**
-	 * Returns the value of the '<em><b>Atomic Operations</b></em>' reference list.
+	 * Returns the value of the '<em><b>Atomic Operations</b></em>' containment reference list.
 	 * The list contents are of type {@link org.unicase.emfstore.esmodel.versioning.operations.AtomicOperation}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -33,9 +33,9 @@ public interface CompositeOperation extends AbstractOperation {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Atomic Operations</em>' reference list.
+	 * @return the value of the '<em>Atomic Operations</em>' containment reference list.
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getCompositeOperation_AtomicOperations()
-	 * @model
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<AtomicOperation> getAtomicOperations();

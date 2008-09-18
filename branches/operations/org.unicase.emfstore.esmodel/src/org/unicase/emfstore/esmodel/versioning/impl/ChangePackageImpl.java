@@ -89,6 +89,20 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		return changeContainers;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<AbstractOperation> getOperations() {
+		if (operations == null) {
+			operations = new EObjectContainmentEList.Resolving<AbstractOperation>(
+					AbstractOperation.class, this,
+					VersioningPackage.CHANGE_PACKAGE__OPERATIONS);
+		}
+		return operations;
+	}
+
 	// begin of custom code
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -113,8 +127,11 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 * @generated NOT
 	 */
 	public void apply(Project project) {
-		for (ChangeContainer changeContainer : getChangeContainers()) {
-			changeContainer.apply(project);
+		//		for (ChangeContainer changeContainer : getChangeContainers()) {
+		//			changeContainer.apply(project);
+		//		}
+		for (AbstractOperation abstractOperation : getOperations()) {
+			abstractOperation.apply(project);
 		}
 	}
 
@@ -129,22 +146,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 				.createChangeContainer();
 		changeContainer.init(project, backwardChangeDescription);
 		getChangeContainers().add(changeContainer);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public EList<AbstractOperation> getOperations() {
-		// TODO: implement this method
-		// it is perhaps a helper method to directly get all operations contained 
-		// in a change package. 
-		// without this method, one should go through all ChangeConatainers of a
-		// ChangePackage and gather all operations contained in each of them. 
-
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
 	}
 
 	/**

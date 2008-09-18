@@ -6,6 +6,7 @@
 package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -70,7 +71,7 @@ public class AbstractOperationImpl extends EObjectImpl implements
 	 */
 	protected String description = DESCRIPTION_EDEFAULT;
 	/**
-	 * The cached value of the '{@link #getModelElementId() <em>Model Element Id</em>}' reference.
+	 * The cached value of the '{@link #getModelElementId() <em>Model Element Id</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getModelElementId()
@@ -171,6 +172,23 @@ public class AbstractOperationImpl extends EObjectImpl implements
 			InternalEObject oldModelElementId = (InternalEObject) modelElementId;
 			modelElementId = (ModelElementId) eResolveProxy(oldModelElementId);
 			if (modelElementId != oldModelElementId) {
+				InternalEObject newModelElementId = (InternalEObject) modelElementId;
+				NotificationChain msgs = oldModelElementId
+						.eInverseRemove(
+								this,
+								EOPPOSITE_FEATURE_BASE
+										- OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID,
+								null, null);
+				if (newModelElementId.eInternalContainer() == null) {
+					msgs = newModelElementId
+							.eInverseAdd(
+									this,
+									EOPPOSITE_FEATURE_BASE
+											- OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID,
+									null, msgs);
+				}
+				if (msgs != null)
+					msgs.dispatch();
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(
 							this,
@@ -196,13 +214,52 @@ public class AbstractOperationImpl extends EObjectImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setModelElementId(ModelElementId newModelElementId) {
+	public NotificationChain basicSetModelElementId(
+			ModelElementId newModelElementId, NotificationChain msgs) {
 		ModelElementId oldModelElementId = modelElementId;
 		modelElementId = newModelElementId;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET,
+					OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID,
+					oldModelElementId, newModelElementId);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setModelElementId(ModelElementId newModelElementId) {
+		if (newModelElementId != modelElementId) {
+			NotificationChain msgs = null;
+			if (modelElementId != null)
+				msgs = ((InternalEObject) modelElementId)
+						.eInverseRemove(
+								this,
+								EOPPOSITE_FEATURE_BASE
+										- OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID,
+								null, msgs);
+			if (newModelElementId != null)
+				msgs = ((InternalEObject) newModelElementId)
+						.eInverseAdd(
+								this,
+								EOPPOSITE_FEATURE_BASE
+										- OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID,
+								null, msgs);
+			msgs = basicSetModelElementId(newModelElementId, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
 					OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID,
-					oldModelElementId, modelElementId));
+					newModelElementId, newModelElementId));
 	}
 
 	/**
@@ -259,6 +316,21 @@ public class AbstractOperationImpl extends EObjectImpl implements
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID:
+			return basicSetModelElementId(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

@@ -7,9 +7,12 @@ package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.emfstore.esmodel.versioning.operations.AtomicOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
@@ -30,7 +33,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 public class CompositeOperationImpl extends AbstractOperationImpl implements
 		CompositeOperation {
 	/**
-	 * The cached value of the '{@link #getAtomicOperations() <em>Atomic Operations</em>}' reference list.
+	 * The cached value of the '{@link #getAtomicOperations() <em>Atomic Operations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getAtomicOperations()
@@ -65,11 +68,27 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 	 */
 	public EList<AtomicOperation> getAtomicOperations() {
 		if (atomicOperations == null) {
-			atomicOperations = new EObjectResolvingEList<AtomicOperation>(
+			atomicOperations = new EObjectContainmentEList.Resolving<AtomicOperation>(
 					AtomicOperation.class, this,
 					OperationsPackage.COMPOSITE_OPERATION__ATOMIC_OPERATIONS);
 		}
 		return atomicOperations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case OperationsPackage.COMPOSITE_OPERATION__ATOMIC_OPERATIONS:
+			return ((InternalEList<?>) getAtomicOperations()).basicRemove(
+					otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
