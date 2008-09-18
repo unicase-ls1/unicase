@@ -20,6 +20,7 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.ui.stem.Activator;
 import org.unicase.ui.stem.views.ChangesTreeComposite;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.impl.ProjectSpaceImpl;
 
 /**.
  * This class shows a ChangesTreeComposite and a Text control to enter
@@ -75,7 +76,7 @@ public class CommitDialog extends TitleAreaDialog {
 				SWT.BORDER, true);
 		changesTree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 		ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
-		changePackage.getOperations().addAll(projectSpace.getOperations());
+		changePackage.getOperations().addAll(((ProjectSpaceImpl)projectSpace).myOperations);
 		changesTree.setInput(changePackage);
 		
 		return contents;
