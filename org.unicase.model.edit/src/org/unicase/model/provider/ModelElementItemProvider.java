@@ -55,6 +55,10 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider
 
 			addNamePropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
+			addCreatorPropertyDescriptor(object);
+			addCreationDatePropertyDescriptor(object);
+			addLastModifierPropertyDescriptor(object);
+			addLastModifiedDatePropertyDescriptor(object);
 			addAnnotationsPropertyDescriptor(object);
 			addIncomingDocumentReferencesPropertyDescriptor(object);
 		}
@@ -95,6 +99,81 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider
 						"_UI_ModelElement_type"),
 				ModelPackage.Literals.MODEL_ELEMENT__DESCRIPTION, true, true,
 				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Creator feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCreatorPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_ModelElement_creator_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_ModelElement_creator_feature",
+						"_UI_ModelElement_type"),
+				ModelPackage.Literals.MODEL_ELEMENT__CREATOR, true, false,
+				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Creation Date feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCreationDatePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_ModelElement_creationDate_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_ModelElement_creationDate_feature",
+						"_UI_ModelElement_type"),
+				ModelPackage.Literals.MODEL_ELEMENT__CREATION_DATE, true,
+				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Last Modifier feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addLastModifierPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_ModelElement_lastModifier_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_ModelElement_lastModifier_feature",
+						"_UI_ModelElement_type"),
+				ModelPackage.Literals.MODEL_ELEMENT__LAST_MODIFIER, true,
+				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Last Modified Date feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addLastModifiedDatePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_ModelElement_lastModifiedDate_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ModelElement_lastModifiedDate_feature",
+						"_UI_ModelElement_type"),
+				ModelPackage.Literals.MODEL_ELEMENT__LAST_MODIFIED_DATE, true,
+				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
@@ -162,7 +241,11 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider
 		switch (notification.getFeatureID(ModelElement.class)) {
 		case ModelPackage.MODEL_ELEMENT__NAME:
 		case ModelPackage.MODEL_ELEMENT__DESCRIPTION:
-		case ModelPackage.MODEL_ELEMENT__READER_INFOS:
+		case ModelPackage.MODEL_ELEMENT__CREATOR:
+		case ModelPackage.MODEL_ELEMENT__CREATION_DATE:
+		case ModelPackage.MODEL_ELEMENT__LAST_MODIFIER:
+		case ModelPackage.MODEL_ELEMENT__LAST_MODIFIED_DATE:
+		case ModelPackage.MODEL_ELEMENT__STRING_READER_INFOS:
 		case ModelPackage.MODEL_ELEMENT__STATE:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), false, true));
@@ -183,12 +266,12 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
-	
+
 	/**
 	 * @return the ImageDescriptor for this class.
 	 * @generated NOT
 	 */
-	public Object getImage(Object object){
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/ModelElement");
 	}
 

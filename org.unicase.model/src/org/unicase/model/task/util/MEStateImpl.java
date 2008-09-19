@@ -14,8 +14,6 @@ import org.unicase.model.bug.BugReport;
 import org.unicase.model.bug.BugStatus;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.ActionItem;
-import org.unicase.model.task.Checkable;
-import org.unicase.model.task.TaskPackage;
 
 public class MEStateImpl implements MEState {
 

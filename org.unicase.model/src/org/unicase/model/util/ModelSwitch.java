@@ -10,14 +10,12 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.model.*;
 import org.unicase.model.Annotation;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
-import org.unicase.model.ReaderInfo;
 import org.unicase.model.UniqueIdentifier;
 
 /**
@@ -110,15 +108,6 @@ public class ModelSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case ModelPackage.READER_INFO: {
-			ReaderInfo readerInfo = (ReaderInfo) theEObject;
-			T result = caseReaderInfo(readerInfo);
-			if (result == null)
-				result = caseIdentifiableElement(readerInfo);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case ModelPackage.ANNOTATION: {
 			Annotation annotation = (Annotation) theEObject;
 			T result = caseAnnotation(annotation);
@@ -190,20 +179,6 @@ public class ModelSwitch<T> {
 	 * @generated
 	 */
 	public T caseUniqueIdentifier(UniqueIdentifier object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Reader Info</em>'.
-	 * <!-- begin-user-doc --> This implementation
-	 * returns null; returning a non-null result will terminate the switch. <!--
-	 * end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Reader Info</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseReaderInfo(ReaderInfo object) {
 		return null;
 	}
 

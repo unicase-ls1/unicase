@@ -13,17 +13,19 @@
       <genFeatures createChild="false" propertyDescription="" ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/name"/>
       <genFeatures createChild="false" propertyCategory="" propertyDescription=""
           propertyMultiLine="true" ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/description"/>
-      <genFeatures property="None" createChild="false" propertyCategory="" propertyDescription=""
-          ecoreFeature="ecore:EReference model.ecore#//ModelElement/readerInfos"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/creator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/creationDate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/lastModifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/lastModifiedDate"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/stringReaderInfos"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//ModelElement/annotations"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//ModelElement/incomingDocumentReferences"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//ModelElement/leafSection"/>
       <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/state"/>
       <genOperations ecoreOperation="model.ecore#//ModelElement/getProject"/>
       <genOperations ecoreOperation="model.ecore#//ModelElement/addReader">
-        <genParameters ecoreParameter="model.ecore#//ModelElement/addReader/readerName"/>
+        <genParameters ecoreParameter="model.ecore#//ModelElement/addReader/acOrgId"/>
       </genOperations>
-      <genOperations ecoreOperation="model.ecore#//ModelElement/getMEState"/>
       <genOperations ecoreOperation="model.ecore#//ModelElement/getModelElementId"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//Project">
@@ -48,10 +50,6 @@
     </genClasses>
     <genClasses image="false" ecoreClass="model.ecore#//UniqueIdentifier">
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//UniqueIdentifier/id"/>
-    </genClasses>
-    <genClasses ecoreClass="model.ecore#//ReaderInfo">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ReaderInfo/date"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//ReaderInfo/readerId"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//Annotation">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Annotation/annotatedModelElements"/>
