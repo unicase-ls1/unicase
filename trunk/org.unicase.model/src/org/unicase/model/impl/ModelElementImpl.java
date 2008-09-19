@@ -6,6 +6,10 @@
  */
 package org.unicase.model.impl;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -25,6 +29,7 @@ import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
+import org.unicase.model.ReaderInfo;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.task.util.CircularDependencyException;
@@ -500,17 +505,18 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		}
 	}
 
+	//begin of custom code
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * Adds a reader to the list of readers.
+	 * @param acOrgId the reader's AcOrgId
+	 * @generated NOT
 	 */
 	public void addReader(String acOrgId) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		SimpleDateFormat df = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");
+		getStringReaderInfos().add(acOrgId.concat("#").concat(df.format(new Date())));
 	}
-
+	//end of custom code
+	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -795,5 +801,28 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		result.append(')');
 		return result.toString();
 	}
+	
+	//begin of custom code
+	/**
+	 * @return a list of {@link ReaderInfo}s derived from the {@link ModelElement}{@link #stringReaderInfos} parameter.
+	 * @generated NOT
+	 */
+	public ArrayList<ReaderInfo> getReaderInfos(){
+		SimpleDateFormat df = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");
+		ArrayList<ReaderInfo> ret = new ArrayList<ReaderInfo>(); 
+		for(String info : getStringReaderInfos()){
+			String[] infos = info.split("#");
+			ReaderInfo readerInfo = new ReaderInfo();
+			readerInfo.setReaderId(infos[0]);
+			try {
+				readerInfo.setDate(df.parse(infos[1]));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			ret.add(readerInfo);
+		}
+		return ret;
+	}
+	//end of custom code
 
 } // ModelElementImpl
