@@ -306,13 +306,13 @@
           eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="FunctionalRequirement" eSuperTypes="#//ModelElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="refinedRequirement" eType="#//requirement/FunctionalRequirement"
+          eOpposite="#//requirement/FunctionalRequirement/refiningRequirements" eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="storyPoints" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="priority" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="refiningRequirements"
           upperBound="-1" eType="#//requirement/FunctionalRequirement" containment="true"
           eOpposite="#//requirement/FunctionalRequirement/refinedRequirement" eKeys="#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="refinedRequirement" eType="#//requirement/FunctionalRequirement"
-          eOpposite="#//requirement/FunctionalRequirement/refiningRequirements" eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="useCases" upperBound="-1"
           eType="#//requirement/UseCase" eOpposite="#//requirement/UseCase/functionalRequirements"
           eKeys="#//IdentifiableElement/identifier"/>

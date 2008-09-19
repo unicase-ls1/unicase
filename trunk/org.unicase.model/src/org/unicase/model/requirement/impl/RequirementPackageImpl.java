@@ -293,7 +293,7 @@ public class RequirementPackageImpl extends EPackageImpl implements
 	 */
 	public EAttribute getFunctionalRequirement_StoryPoints() {
 		return (EAttribute) functionalRequirementEClass
-				.getEStructuralFeatures().get(0);
+				.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -302,7 +302,7 @@ public class RequirementPackageImpl extends EPackageImpl implements
 	 */
 	public EAttribute getFunctionalRequirement_Priority() {
 		return (EAttribute) functionalRequirementEClass
-				.getEStructuralFeatures().get(1);
+				.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -311,7 +311,7 @@ public class RequirementPackageImpl extends EPackageImpl implements
 	 */
 	public EReference getFunctionalRequirement_RefiningRequirements() {
 		return (EReference) functionalRequirementEClass
-				.getEStructuralFeatures().get(2);
+				.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -320,7 +320,7 @@ public class RequirementPackageImpl extends EPackageImpl implements
 	 */
 	public EReference getFunctionalRequirement_RefinedRequirement() {
 		return (EReference) functionalRequirementEClass
-				.getEStructuralFeatures().get(3);
+				.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -750,14 +750,14 @@ public class RequirementPackageImpl extends EPackageImpl implements
 				NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_USE_CASES);
 
 		functionalRequirementEClass = createEClass(FUNCTIONAL_REQUIREMENT);
+		createEReference(functionalRequirementEClass,
+				FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT);
 		createEAttribute(functionalRequirementEClass,
 				FUNCTIONAL_REQUIREMENT__STORY_POINTS);
 		createEAttribute(functionalRequirementEClass,
 				FUNCTIONAL_REQUIREMENT__PRIORITY);
 		createEReference(functionalRequirementEClass,
 				FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS);
-		createEReference(functionalRequirementEClass,
-				FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT);
 		createEReference(functionalRequirementEClass,
 				FUNCTIONAL_REQUIREMENT__USE_CASES);
 		createEReference(functionalRequirementEClass,
@@ -897,6 +897,15 @@ public class RequirementPackageImpl extends EPackageImpl implements
 		initEClass(functionalRequirementEClass, FunctionalRequirement.class,
 				"FunctionalRequirement", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFunctionalRequirement_RefinedRequirement(), this
+				.getFunctionalRequirement(), this
+				.getFunctionalRequirement_RefiningRequirements(),
+				"refinedRequirement", null, 0, 1, FunctionalRequirement.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		getFunctionalRequirement_RefinedRequirement().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 		initEAttribute(getFunctionalRequirement_StoryPoints(), ecorePackage
 				.getEInt(), "storyPoints", null, 0, 1,
 				FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE,
@@ -915,15 +924,6 @@ public class RequirementPackageImpl extends EPackageImpl implements
 				IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getFunctionalRequirement_RefiningRequirements().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getFunctionalRequirement_RefinedRequirement(), this
-				.getFunctionalRequirement(), this
-				.getFunctionalRequirement_RefiningRequirements(),
-				"refinedRequirement", null, 0, 1, FunctionalRequirement.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		getFunctionalRequirement_RefinedRequirement().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getFunctionalRequirement_UseCases(), this.getUseCase(),
 				this.getUseCase_FunctionalRequirements(), "useCases", null, 0,
