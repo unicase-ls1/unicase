@@ -163,7 +163,7 @@ public interface BugPackage extends EPackage {
 	int BUG_REPORT__ASSOCIATED_CHANGE_PACKAGES = TaskPackage.WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES;
 
 	/**
-	 * The feature id for the '<em><b>Predecessors</b></em>' reference.
+	 * The feature id for the '<em><b>Predecessors</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -172,7 +172,7 @@ public interface BugPackage extends EPackage {
 	int BUG_REPORT__PREDECESSORS = TaskPackage.WORK_ITEM__PREDECESSORS;
 
 	/**
-	 * The feature id for the '<em><b>Successors</b></em>' reference.
+	 * The feature id for the '<em><b>Successors</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

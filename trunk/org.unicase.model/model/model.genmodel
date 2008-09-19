@@ -102,7 +102,7 @@
       </genClasses>
       <genClasses image="false" ecoreClass="model.ecore#//task/WorkItem">
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//task/WorkItem/containingWorkpackage"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+        <genFeatures property="None" notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//task/WorkItem/associatedChangePackages"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//task/WorkItem/predecessors"/>

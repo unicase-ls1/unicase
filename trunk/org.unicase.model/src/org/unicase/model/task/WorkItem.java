@@ -80,7 +80,8 @@ public interface WorkItem extends Annotation {
 	EList<ModelChangePackage> getAssociatedChangePackages();
 
 	/**
-	 * Returns the value of the '<em><b>Predecessors</b></em>' reference.
+	 * Returns the value of the '<em><b>Predecessors</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.task.WorkItem}.
 	 * It is bidirectional and its opposite is '{@link org.unicase.model.task.WorkItem#getSuccessors <em>Successors</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -88,27 +89,17 @@ public interface WorkItem extends Annotation {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Predecessors</em>' reference.
-	 * @see #setPredecessors(WorkItem)
+	 * @return the value of the '<em>Predecessors</em>' reference list.
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_Predecessors()
 	 * @see org.unicase.model.task.WorkItem#getSuccessors
 	 * @model opposite="successors" keys="identifier"
 	 * @generated
 	 */
-	WorkItem getPredecessors();
+	EList<WorkItem> getPredecessors();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.task.WorkItem#getPredecessors <em>Predecessors</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Predecessors</em>' reference.
-	 * @see #getPredecessors()
-	 * @generated
-	 */
-	void setPredecessors(WorkItem value);
-
-	/**
-	 * Returns the value of the '<em><b>Successors</b></em>' reference.
+	 * Returns the value of the '<em><b>Successors</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.task.WorkItem}.
 	 * It is bidirectional and its opposite is '{@link org.unicase.model.task.WorkItem#getPredecessors <em>Predecessors</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -116,23 +107,12 @@ public interface WorkItem extends Annotation {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Successors</em>' reference.
-	 * @see #setSuccessors(WorkItem)
+	 * @return the value of the '<em>Successors</em>' reference list.
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_Successors()
 	 * @see org.unicase.model.task.WorkItem#getPredecessors
 	 * @model opposite="predecessors" keys="identifier"
 	 * @generated
 	 */
-	WorkItem getSuccessors();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.model.task.WorkItem#getSuccessors <em>Successors</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Successors</em>' reference.
-	 * @see #getSuccessors()
-	 * @generated
-	 */
-	void setSuccessors(WorkItem value);
+	EList<WorkItem> getSuccessors();
 
 } // WorkItem

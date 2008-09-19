@@ -698,14 +698,14 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		getWorkItem_AssociatedChangePackages().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getWorkItem_Predecessors(), this.getWorkItem(), this
-				.getWorkItem_Successors(), "predecessors", null, 0, 1,
+				.getWorkItem_Successors(), "predecessors", null, 0, -1,
 				WorkItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 		getWorkItem_Predecessors().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getWorkItem_Successors(), this.getWorkItem(), this
-				.getWorkItem_Predecessors(), "successors", null, 0, 1,
+				.getWorkItem_Predecessors(), "successors", null, 0, -1,
 				WorkItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
