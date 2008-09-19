@@ -11,11 +11,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.TreeViewerColumn;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -24,10 +28,13 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.AtomicOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
+import org.unicase.model.ModelElement;
+import org.unicase.model.Project;
+import org.unicase.workspace.Workspace;
+import org.unicase.workspace.WorkspaceManager;
 
 
 /**.
@@ -83,15 +90,25 @@ public class ChangesTreeComposite extends Composite {
 		//if showColumns is false, this will be the only column shown in tree
 		TreeViewerColumn tclmName = new TreeViewerColumn(treeViewer, SWT.NONE);
 		tclmName.getColumn().setWidth(200);
-		tclmName.getColumn().setText("Name");
+		tclmName.getColumn().setText("ModelElement");
+		final ILabelProvider emfProvider = new AdapterFactoryLabelProvider(
+				new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		tclmName.setLabelProvider(new ColumnLabelProvider(){
 
 			@Override
 			public String getText(Object element) {
 				AbstractOperation operation = (AbstractOperation)element;
-				return operation.getName();
-				
+				ModelElement me = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getProject().getModelElement(operation.getModelElementId());
+				return me.getName();
 			}			
+			
+			@Override
+			public Image getImage(Object element) {
+				AbstractOperation operation = (AbstractOperation)element;
+				ModelElement me = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getProject().getModelElement(operation.getModelElementId());
+				return emfProvider.getImage(me);
+			}
+ 
 		});
 		
 		if (showColumns){
@@ -117,6 +134,20 @@ public class ChangesTreeComposite extends Composite {
 		tree.setHeaderVisible(true);
 		tree.setLinesVisible(true);
 				
+		//operation column
+		TreeViewerColumn tclmName = new TreeViewerColumn(treeViewer, SWT.NONE);
+		tclmName.getColumn().setText("Operation");
+		tclmName.getColumn().setWidth(200);
+		tclmName.setLabelProvider(new ColumnLabelProvider(){
+			
+			@Override
+			public String getText(Object element) {
+				AbstractOperation operation = (AbstractOperation)element;
+				return operation.getName();
+				
+			}			
+		});
+		
 		//description column
 		TreeViewerColumn tclmDescription = new TreeViewerColumn(treeViewer, SWT.NONE);
 		tclmDescription.getColumn().setText("Description");
