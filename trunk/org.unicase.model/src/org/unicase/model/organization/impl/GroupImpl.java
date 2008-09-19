@@ -6,10 +6,14 @@
  */
 package org.unicase.model.organization.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
@@ -29,14 +33,14 @@ import org.unicase.model.organization.OrganizationPackage;
  */
 public class GroupImpl extends OrgUnitImpl implements Group {
 	/**
-	 * The cached value of the '{@link #getOrgUnits() <em>Org Units</em>}' reference.
+	 * The cached value of the '{@link #getOrgUnits() <em>Org Units</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getOrgUnits()
 	 * @generated
 	 * @ordered
 	 */
-	protected OrgUnit orgUnits;
+	protected EList<OrgUnit> orgUnits;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -60,16 +64,11 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OrgUnit getOrgUnits() {
-		if (orgUnits != null && orgUnits.eIsProxy()) {
-			InternalEObject oldOrgUnits = (InternalEObject) orgUnits;
-			orgUnits = (OrgUnit) eResolveProxy(oldOrgUnits);
-			if (orgUnits != oldOrgUnits) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							OrganizationPackage.GROUP__ORG_UNITS, oldOrgUnits,
-							orgUnits));
-			}
+	public EList<OrgUnit> getOrgUnits() {
+		if (orgUnits == null) {
+			orgUnits = new EObjectWithInverseResolvingEList.ManyInverse<OrgUnit>(
+					OrgUnit.class, this, OrganizationPackage.GROUP__ORG_UNITS,
+					OrganizationPackage.ORG_UNIT__GROUP_MEMBERSHIPS);
 		}
 		return orgUnits;
 	}
@@ -79,71 +78,14 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OrgUnit basicGetOrgUnits() {
-		return orgUnits;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOrgUnits(OrgUnit newOrgUnits,
-			NotificationChain msgs) {
-		OrgUnit oldOrgUnits = orgUnits;
-		orgUnits = newOrgUnits;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET, OrganizationPackage.GROUP__ORG_UNITS,
-					oldOrgUnits, newOrgUnits);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOrgUnits(OrgUnit newOrgUnits) {
-		if (newOrgUnits != orgUnits) {
-			NotificationChain msgs = null;
-			if (orgUnits != null)
-				msgs = ((InternalEObject) orgUnits).eInverseRemove(this,
-						OrganizationPackage.ORG_UNIT__GROUP_MEMBERSHIPS,
-						OrgUnit.class, msgs);
-			if (newOrgUnits != null)
-				msgs = ((InternalEObject) newOrgUnits).eInverseAdd(this,
-						OrganizationPackage.ORG_UNIT__GROUP_MEMBERSHIPS,
-						OrgUnit.class, msgs);
-			msgs = basicSetOrgUnits(newOrgUnits, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					OrganizationPackage.GROUP__ORG_UNITS, newOrgUnits,
-					newOrgUnits));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case OrganizationPackage.GROUP__ORG_UNITS:
-			if (orgUnits != null)
-				msgs = ((InternalEObject) orgUnits).eInverseRemove(this,
-						OrganizationPackage.ORG_UNIT__GROUP_MEMBERSHIPS,
-						OrgUnit.class, msgs);
-			return basicSetOrgUnits((OrgUnit) otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getOrgUnits())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -158,7 +100,8 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case OrganizationPackage.GROUP__ORG_UNITS:
-			return basicSetOrgUnits(null, msgs);
+			return ((InternalEList<?>) getOrgUnits()).basicRemove(otherEnd,
+					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -172,9 +115,7 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case OrganizationPackage.GROUP__ORG_UNITS:
-			if (resolve)
-				return getOrgUnits();
-			return basicGetOrgUnits();
+			return getOrgUnits();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -184,11 +125,13 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case OrganizationPackage.GROUP__ORG_UNITS:
-			setOrgUnits((OrgUnit) newValue);
+			getOrgUnits().clear();
+			getOrgUnits().addAll((Collection<? extends OrgUnit>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -203,7 +146,7 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 		case OrganizationPackage.GROUP__ORG_UNITS:
-			setOrgUnits((OrgUnit) null);
+			getOrgUnits().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -218,7 +161,7 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case OrganizationPackage.GROUP__ORG_UNITS:
-			return orgUnits != null;
+			return orgUnits != null && !orgUnits.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

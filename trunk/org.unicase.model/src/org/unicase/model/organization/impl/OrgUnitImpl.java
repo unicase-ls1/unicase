@@ -6,11 +6,15 @@
  */
 package org.unicase.model.organization.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.impl.ModelElementImpl;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
@@ -49,14 +53,14 @@ public class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 	 */
 	protected String acOrgId = AC_ORG_ID_EDEFAULT;
 	/**
-	 * The cached value of the '{@link #getGroupMemberships() <em>Group Memberships</em>}' reference.
+	 * The cached value of the '{@link #getGroupMemberships() <em>Group Memberships</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getGroupMemberships()
 	 * @generated
 	 * @ordered
 	 */
-	protected Group groupMemberships;
+	protected EList<Group> groupMemberships;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -103,16 +107,12 @@ public class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Group getGroupMemberships() {
-		if (groupMemberships != null && groupMemberships.eIsProxy()) {
-			InternalEObject oldGroupMemberships = (InternalEObject) groupMemberships;
-			groupMemberships = (Group) eResolveProxy(oldGroupMemberships);
-			if (groupMemberships != oldGroupMemberships) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							OrganizationPackage.ORG_UNIT__GROUP_MEMBERSHIPS,
-							oldGroupMemberships, groupMemberships));
-			}
+	public EList<Group> getGroupMemberships() {
+		if (groupMemberships == null) {
+			groupMemberships = new EObjectWithInverseResolvingEList.ManyInverse<Group>(
+					Group.class, this,
+					OrganizationPackage.ORG_UNIT__GROUP_MEMBERSHIPS,
+					OrganizationPackage.GROUP__ORG_UNITS);
 		}
 		return groupMemberships;
 	}
@@ -122,72 +122,14 @@ public class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Group basicGetGroupMemberships() {
-		return groupMemberships;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetGroupMemberships(
-			Group newGroupMemberships, NotificationChain msgs) {
-		Group oldGroupMemberships = groupMemberships;
-		groupMemberships = newGroupMemberships;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET,
-					OrganizationPackage.ORG_UNIT__GROUP_MEMBERSHIPS,
-					oldGroupMemberships, newGroupMemberships);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setGroupMemberships(Group newGroupMemberships) {
-		if (newGroupMemberships != groupMemberships) {
-			NotificationChain msgs = null;
-			if (groupMemberships != null)
-				msgs = ((InternalEObject) groupMemberships).eInverseRemove(
-						this, OrganizationPackage.GROUP__ORG_UNITS,
-						Group.class, msgs);
-			if (newGroupMemberships != null)
-				msgs = ((InternalEObject) newGroupMemberships).eInverseAdd(
-						this, OrganizationPackage.GROUP__ORG_UNITS,
-						Group.class, msgs);
-			msgs = basicSetGroupMemberships(newGroupMemberships, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					OrganizationPackage.ORG_UNIT__GROUP_MEMBERSHIPS,
-					newGroupMemberships, newGroupMemberships));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case OrganizationPackage.ORG_UNIT__GROUP_MEMBERSHIPS:
-			if (groupMemberships != null)
-				msgs = ((InternalEObject) groupMemberships).eInverseRemove(
-						this, OrganizationPackage.GROUP__ORG_UNITS,
-						Group.class, msgs);
-			return basicSetGroupMemberships((Group) otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getGroupMemberships())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -201,7 +143,8 @@ public class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case OrganizationPackage.ORG_UNIT__GROUP_MEMBERSHIPS:
-			return basicSetGroupMemberships(null, msgs);
+			return ((InternalEList<?>) getGroupMemberships()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -216,9 +159,7 @@ public class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 		case OrganizationPackage.ORG_UNIT__AC_ORG_ID:
 			return getAcOrgId();
 		case OrganizationPackage.ORG_UNIT__GROUP_MEMBERSHIPS:
-			if (resolve)
-				return getGroupMemberships();
-			return basicGetGroupMemberships();
+			return getGroupMemberships();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -227,6 +168,7 @@ public class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -234,7 +176,9 @@ public class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 			setAcOrgId((String) newValue);
 			return;
 		case OrganizationPackage.ORG_UNIT__GROUP_MEMBERSHIPS:
-			setGroupMemberships((Group) newValue);
+			getGroupMemberships().clear();
+			getGroupMemberships()
+					.addAll((Collection<? extends Group>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -251,7 +195,7 @@ public class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 			setAcOrgId(AC_ORG_ID_EDEFAULT);
 			return;
 		case OrganizationPackage.ORG_UNIT__GROUP_MEMBERSHIPS:
-			setGroupMemberships((Group) null);
+			getGroupMemberships().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -268,7 +212,7 @@ public class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 			return AC_ORG_ID_EDEFAULT == null ? acOrgId != null
 					: !AC_ORG_ID_EDEFAULT.equals(acOrgId);
 		case OrganizationPackage.ORG_UNIT__GROUP_MEMBERSHIPS:
-			return groupMemberships != null;
+			return groupMemberships != null && !groupMemberships.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

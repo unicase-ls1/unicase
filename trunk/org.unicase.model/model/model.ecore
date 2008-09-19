@@ -86,12 +86,14 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OrgUnit" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="acOrgId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="groupMemberships" eType="#//organization/Group"
-          eOpposite="#//organization/Group/orgUnits" eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="groupMemberships" upperBound="-1"
+          eType="#//organization/Group" eOpposite="#//organization/Group/orgUnits"
+          eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Group" eSuperTypes="#//organization/OrgUnit">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="orgUnits" eType="#//organization/OrgUnit"
-          eOpposite="#//organization/OrgUnit/groupMemberships" eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="orgUnits" upperBound="-1"
+          eType="#//organization/OrgUnit" eOpposite="#//organization/OrgUnit/groupMemberships"
+          eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="task" nsURI="http://unicase.org/model/task" nsPrefix="org.unicase.model.task">
