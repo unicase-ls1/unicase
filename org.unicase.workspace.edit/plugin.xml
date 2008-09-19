@@ -42,6 +42,10 @@
             class="org.unicase.workspace.edit.commands.DeleteProjectHandler"
             commandId="org.unicase.workspace.edit.deleteProject">
       </handler>
+      <handler
+            class="org.unicase.workspace.edit.commands.ImportUserHandler"
+            commandId="org.unicase.workspace.edit.importUser">
+      </handler>
   </extension>
   <extension
         point="org.eclipse.ui.commands">
@@ -78,6 +82,12 @@
            categoryId="org.unicase.workspace.edit.project"
            id="org.unicase.workspace.edit.deleteProject"
            name="deleteProject">
+     </command>
+     <command
+           category="Unicase"
+           categoryId="org.unicase"
+           id="org.unicase.workspace.edit.importUser"
+           name="Import User">
      </command>
   </extension>
   <extension
@@ -167,6 +177,21 @@
                  commandId="org.unicase.workspace.edit.exportProject"
                  icon="icons/full/obj16/export.gif"
                  label="Export Project"
+                 style="push">
+              <visibleWhen
+                    checkEnabled="false">
+                 <iterate
+                       ifEmpty="false">
+                    <instanceof
+                          value="org.unicase.workspace.ProjectSpace">
+                    </instanceof>
+                 </iterate>
+              </visibleWhen>
+           </command>
+           <command
+                 commandId="org.unicase.workspace.edit.importUser"
+                 icon="icons/importuser.png"
+                 label="Import User"
                  style="push">
               <visibleWhen
                     checkEnabled="false">
