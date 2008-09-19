@@ -6,7 +6,11 @@
  */
 package org.unicase.ui.stem.views.iterationplanningview;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider;
 import org.unicase.model.Project;
@@ -14,17 +18,17 @@ import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.workspace.WorkspaceManager;
 
-/**.
- * ContentProvider for IterationPlaningView
+/**
+ * . ContentProvider for IterationPlaningView
+ * 
  * @author Helming
- *
+ * 
  */
 public class WorkpackageContentProvider extends
 		TransactionalAdapterFactoryContentProvider {
 
-
-	/**.
-	 * Constructor
+	/**
+	 * . Constructor
 	 */
 	public WorkpackageContentProvider() {
 		super(WorkspaceManager.getInstance().getCurrentWorkspace()
@@ -32,39 +36,43 @@ public class WorkpackageContentProvider extends
 				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
 
-	/**.
-	 * {@inheritDoc}
-	 * returns WorkPackages contained in a Project
+	/**
+	 * . {@inheritDoc} returns WorkPackages contained in a Project
 	 */
 	@Override
 	public Object[] getElements(Object object) {
+		List<WorkPackage> ret = new ArrayList<WorkPackage>();
 		if (object instanceof Project) {
-			return ((Project) object).getAllModelElementsbyClass(
-					TaskPackage.eINSTANCE.getWorkPackage(),
-					new BasicEList<WorkPackage>()).toArray();
+			EList<WorkPackage> allModelElementsbyClass = ((Project) object)
+					.getAllModelElementsbyClass(TaskPackage.eINSTANCE
+							.getWorkPackage(), new BasicEList<WorkPackage>());
+			for (WorkPackage workPackage : allModelElementsbyClass) {
+				if (workPackage.getContainingWorkpackage() == null) {
+
+					ret.add(workPackage);
+				}
+			}
+
 		}
-		return super.getElements(object);
+		return ret.toArray();
 	}
 
-	/**.
-	 * {@inheritDoc}
+	/**
+	 * . {@inheritDoc}
 	 */
 	@Override
 	public Object[] getChildren(Object object) {
-			return super.getChildren(object);
+		return super.getChildren(object);
 	}
 
-	
-	
-	/**.
-	 * {@inheritDoc}
+	/**
+	 * . {@inheritDoc}
 	 */
 	@Override
 	public boolean hasChildren(Object object) {
-		
-			return super.hasChildren(object);
-		
-	}
 
+		return super.hasChildren(object);
+
+	}
 
 }
