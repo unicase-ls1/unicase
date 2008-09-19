@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
 import org.unicase.model.task.WorkItem;
 
@@ -12,9 +13,9 @@ public class BlockingLinkTaxonomy {
 	public ArrayList<ModelElement> getBlocked(ModelElement modelElement) {
 		ArrayList<ModelElement> blocked = new ArrayList<ModelElement>();
 		if(modelElement instanceof WorkItem){
-			WorkItem successors = ((WorkItem) modelElement).getSuccessors();
+			EList<WorkItem> successors = ((WorkItem) modelElement).getSuccessors();
 			if(successors!=null){
-				blocked.add(successors);
+				blocked.addAll(successors);
 			}
 		}
 		return blocked;
@@ -23,9 +24,9 @@ public class BlockingLinkTaxonomy {
 	public Set<ModelElement> getBlockers(ModelElement modelElement) {
 		Set<ModelElement> blockers = new HashSet<ModelElement>();
 		if(modelElement instanceof WorkItem){
-			WorkItem predecessors = ((WorkItem) modelElement).getPredecessors();
+			EList<WorkItem> predecessors = ((WorkItem) modelElement).getPredecessors();
 			if(predecessors!=null){
-				blockers.add(predecessors);
+				blockers.addAll(predecessors);
 			}
 		}
 		return blockers;

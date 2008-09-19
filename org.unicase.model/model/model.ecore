@@ -119,10 +119,10 @@
           eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="associatedChangePackages"
           upperBound="-1" eType="#//change/ModelChangePackage" eKeys="#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="predecessors" eType="#//task/WorkItem"
-          eOpposite="#//task/WorkItem/successors" eKeys="#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="successors" eType="#//task/WorkItem"
-          eOpposite="#//task/WorkItem/predecessors" eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="predecessors" upperBound="-1"
+          eType="#//task/WorkItem" eOpposite="#//task/WorkItem/successors" eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="successors" upperBound="-1"
+          eType="#//task/WorkItem" eOpposite="#//task/WorkItem/predecessors" eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Meeting" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
