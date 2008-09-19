@@ -50,6 +50,8 @@ import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
@@ -261,6 +263,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * @ordered
 	 */
 	protected EList<String> oldLogMessages;
+
+	private boolean isRecording;
 
 	// begin of custom code
 	/**
@@ -998,6 +1002,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * @generated NOT
 	 */
 	private void stopChangeRecording() {
+		this.isRecording = false;
 		this.setLocalChanges(this.changeRecorder.endRecording());
 	}
 
@@ -1009,6 +1014,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 */
 	private void startChangeRecording() {
 
+		isRecording = true;
 		changeRecorder = new ChangeRecorder();
 		if (getLocalChanges() == null) {
 			changeRecorder.beginRecording(Collections.singleton(getProject()));
@@ -1445,6 +1451,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	public void resourceSetChanged(final ResourceSetChangeEvent event) {
 
+		if (!this.isRecording) {
+			return;
+		}
+
 		// filter notifications to project
 		List<Notification> notifications = event.getNotifications();
 		List<Notification> projectNotifications = new ArrayList<Notification>();
@@ -1462,30 +1472,70 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		}
 
 		for (Notification notification : projectNotifications) {
+			Object feature = notification.getFeature();
+			Object newValue = notification.getNewValue();
+			Object oldValue = notification.getOldValue();
 			if (notification.getEventType() == Notification.SET) {
-				Object feature = notification.getFeature();
 				if (feature instanceof EAttribute) {
 					EAttribute attribute = (EAttribute) feature;
 					AttributeOperation attributeOperation = OperationsFactory.eINSTANCE
 							.createAttributeOperation();
-					attributeOperation.setName("Attribute change");
-					attributeOperation
-							.setDescription("Attribute changed description");
 					attributeOperation.setFeatureName(attribute.getName());
 					ModelElement modelElement = (ModelElement) notification
 							.getNotifier();
 					attributeOperation
 							.setModelElementId((ModelElementId) EcoreUtil
 									.copy(modelElement.getModelElementId()));
-					attributeOperation.setNewValue(notification.getNewValue());
-					attributeOperation.setOldValue(notification.getOldValue());
+					attributeOperation.setNewValue(newValue);
+					attributeOperation.setOldValue(oldValue);
 					this.myOperations.add(attributeOperation);
 				} else if (feature instanceof EReference) {
 					EReference reference = (EReference) feature;
+					//move
 				}
 			}
 			if (notification.getEventType() == Notification.ADD) {
-
+				if (feature instanceof EReference) {
+					EReference reference = (EReference) feature;
+					if (reference.isContainment()) {
+						if (!(newValue instanceof ModelElement)) {
+							throw new IllegalStateException();
+						}
+						ModelElement modelElement = (ModelElement) newValue;
+						CreateDeleteOperation createDeleteOperation = OperationsFactory.eINSTANCE
+								.createCreateDeleteOperation();
+						createDeleteOperation.setDelete(false);
+						createDeleteOperation
+								.setModelElement((ModelElement) EcoreUtil
+										.copy(modelElement));
+						createDeleteOperation
+								.setModelElementId((ModelElementId) EcoreUtil
+										.copy(modelElement.getModelElementId()));
+						this.myOperations.add(createDeleteOperation);
+						if (!(notification.getNotifier() instanceof ModelElement)) {
+							continue;
+						}
+						//parent is a model element
+						ModelElement parent = (ModelElement) notification
+								.getNotifier();
+						if (reference.isMany()) {
+							MultiReferenceOperation multiReferenceOperation = OperationsFactory.eINSTANCE
+									.createMultiReferenceOperation();
+							multiReferenceOperation.setAdd(true);
+							multiReferenceOperation.setIndex(notification
+									.getPosition());
+							multiReferenceOperation
+									.getReferencedModelElements().add(
+											(ModelElementId) (modelElement
+													.getModelElementId()));
+							multiReferenceOperation.setModelElementId(parent
+									.getModelElementId());
+							this.myOperations.add(multiReferenceOperation);
+						} else {
+							//Singleref
+						}
+					}
+				}
 			}
 		}
 
