@@ -19,6 +19,7 @@ import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.esmodel.SessionId;
+import org.unicase.emfstore.esmodel.VersionInfo;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.impl.AccesscontrolPackageImpl;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
@@ -66,6 +67,13 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * @generated
 	 */
 	private EClass projectIdEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass versionInfoEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -315,6 +323,24 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getVersionInfo() {
+		return versionInfoEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getVersionInfo_EmfStoreVersionString() {
+		return (EAttribute) versionInfoEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -363,6 +389,10 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		createEReference(serverSpaceEClass, SERVER_SPACE__USERS);
 
 		projectIdEClass = createEClass(PROJECT_ID);
+
+		versionInfoEClass = createEClass(VERSION_INFO);
+		createEAttribute(versionInfoEClass,
+				VERSION_INFO__EMF_STORE_VERSION_STRING);
 	}
 
 	/**
@@ -482,6 +512,13 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 
 		initEClass(projectIdEClass, ProjectId.class, "ProjectId", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(versionInfoEClass, VersionInfo.class, "VersionInfo",
+				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getVersionInfo_EmfStoreVersionString(), ecorePackage
+				.getEString(), "emfStoreVersionString", null, 0, 1,
+				VersionInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

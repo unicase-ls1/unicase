@@ -16,11 +16,13 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.osgi.framework.Bundle;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.accesscontrol.AuthorizationControl;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
@@ -139,6 +141,18 @@ public class EmfStoreImpl implements EmfStore {
 		return newVersionSpec;
 	}
 
+	/**
+	 * @generated NOT
+	 * @return the emf store model version number as in the manifest file 
+	 */
+	public static org.osgi.framework.Version getModelVersion(){
+		Bundle emfStoreBundle = Platform.getBundle("org.unicase.emfstore");
+		String emfStoreVersionString = (String) emfStoreBundle.getHeaders().get(org.osgi.framework.Constants.BUNDLE_VERSION);
+		org.osgi.framework.Version emfStoreVersion = new org.osgi.framework.Version(emfStoreVersionString);
+
+		return emfStoreVersion;
+	}
+	
 	/**
 	 * {@inheritDoc}
 	 */

@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.emfstore.esmodel.*;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
 import org.unicase.emfstore.esmodel.ProjectHistory;
@@ -71,6 +72,8 @@ public class EsmodelFactoryImpl extends EFactoryImpl implements EsmodelFactory {
 			return createServerSpace();
 		case EsmodelPackage.PROJECT_ID:
 			return createProjectId();
+		case EsmodelPackage.VERSION_INFO:
+			return createVersionInfo();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName()
 					+ "' is not a valid classifier");
@@ -120,6 +123,16 @@ public class EsmodelFactoryImpl extends EFactoryImpl implements EsmodelFactory {
 	public ProjectId createProjectId() {
 		ProjectIdImpl projectId = new ProjectIdImpl();
 		return projectId;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public VersionInfo createVersionInfo() {
+		VersionInfoImpl versionInfo = new VersionInfoImpl();
+		return versionInfo;
 	}
 
 	/**

@@ -58,7 +58,7 @@ public interface EmfStore {
 	 */
 	List<ProjectInfo> getProjectList(SessionId sessionId)
 			throws EmfStoreException;
-
+	
 	/**
 	 * Get a project in a certain revision from the server.
 	 * 
