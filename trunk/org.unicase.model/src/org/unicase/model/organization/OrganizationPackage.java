@@ -102,12 +102,49 @@ public interface OrganizationPackage extends EPackage {
 	int ORG_UNIT__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ORG_UNIT__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
+	int ORG_UNIT__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORG_UNIT__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Last Modifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORG_UNIT__LAST_MODIFIER = ModelPackage.MODEL_ELEMENT__LAST_MODIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Last Modified Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORG_UNIT__LAST_MODIFIED_DATE = ModelPackage.MODEL_ELEMENT__LAST_MODIFIED_DATE;
+
+	/**
+	 * The feature id for the '<em><b>String Reader Infos</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORG_UNIT__STRING_READER_INFOS = ModelPackage.MODEL_ELEMENT__STRING_READER_INFOS;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!--
@@ -197,12 +234,49 @@ public interface OrganizationPackage extends EPackage {
 	int USER__DESCRIPTION = ORG_UNIT__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER__READER_INFOS = ORG_UNIT__READER_INFOS;
+	int USER__CREATOR = ORG_UNIT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__CREATION_DATE = ORG_UNIT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Last Modifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__LAST_MODIFIER = ORG_UNIT__LAST_MODIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Last Modified Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__LAST_MODIFIED_DATE = ORG_UNIT__LAST_MODIFIED_DATE;
+
+	/**
+	 * The feature id for the '<em><b>String Reader Infos</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__STRING_READER_INFOS = ORG_UNIT__STRING_READER_INFOS;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!--
@@ -328,12 +402,49 @@ public interface OrganizationPackage extends EPackage {
 	int GROUP__DESCRIPTION = ORG_UNIT__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GROUP__READER_INFOS = ORG_UNIT__READER_INFOS;
+	int GROUP__CREATOR = ORG_UNIT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP__CREATION_DATE = ORG_UNIT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Last Modifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP__LAST_MODIFIER = ORG_UNIT__LAST_MODIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Last Modified Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP__LAST_MODIFIED_DATE = ORG_UNIT__LAST_MODIFIED_DATE;
+
+	/**
+	 * The feature id for the '<em><b>String Reader Infos</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP__STRING_READER_INFOS = ORG_UNIT__STRING_READER_INFOS;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!--

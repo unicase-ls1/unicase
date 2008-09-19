@@ -23,7 +23,6 @@ import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
-import org.unicase.model.ReaderInfo;
 import org.unicase.model.UniqueIdentifier;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.bug.impl.BugPackageImpl;
@@ -69,12 +68,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	private EClass uniqueIdentifierEClass = null;
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass readerInfoEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -257,11 +250,48 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModelElement_ReaderInfos() {
-		return (EReference) modelElementEClass.getEStructuralFeatures().get(2);
+	public EAttribute getModelElement_Creator() {
+		return (EAttribute) modelElementEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getModelElement_CreationDate() {
+		return (EAttribute) modelElementEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getModelElement_LastModifier() {
+		return (EAttribute) modelElementEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getModelElement_LastModifiedDate() {
+		return (EAttribute) modelElementEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getModelElement_StringReaderInfos() {
+		return (EAttribute) modelElementEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -269,7 +299,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	public EReference getModelElement_Annotations() {
-		return (EReference) modelElementEClass.getEStructuralFeatures().get(3);
+		return (EReference) modelElementEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -277,7 +307,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	public EReference getModelElement_IncomingDocumentReferences() {
-		return (EReference) modelElementEClass.getEStructuralFeatures().get(4);
+		return (EReference) modelElementEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -285,7 +315,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	public EReference getModelElement_LeafSection() {
-		return (EReference) modelElementEClass.getEStructuralFeatures().get(5);
+		return (EReference) modelElementEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -294,7 +324,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	public EAttribute getModelElement_State() {
-		return (EAttribute) modelElementEClass.getEStructuralFeatures().get(6);
+		return (EAttribute) modelElementEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -328,30 +358,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	public EAttribute getUniqueIdentifier_Id() {
 		return (EAttribute) uniqueIdentifierEClass.getEStructuralFeatures()
 				.get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getReaderInfo() {
-		return readerInfoEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getReaderInfo_Date() {
-		return (EAttribute) readerInfoEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getReaderInfo_ReaderId() {
-		return (EReference) readerInfoEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -428,7 +434,11 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		modelElementEClass = createEClass(MODEL_ELEMENT);
 		createEAttribute(modelElementEClass, MODEL_ELEMENT__NAME);
 		createEAttribute(modelElementEClass, MODEL_ELEMENT__DESCRIPTION);
-		createEReference(modelElementEClass, MODEL_ELEMENT__READER_INFOS);
+		createEAttribute(modelElementEClass, MODEL_ELEMENT__CREATOR);
+		createEAttribute(modelElementEClass, MODEL_ELEMENT__CREATION_DATE);
+		createEAttribute(modelElementEClass, MODEL_ELEMENT__LAST_MODIFIER);
+		createEAttribute(modelElementEClass, MODEL_ELEMENT__LAST_MODIFIED_DATE);
+		createEAttribute(modelElementEClass, MODEL_ELEMENT__STRING_READER_INFOS);
 		createEReference(modelElementEClass, MODEL_ELEMENT__ANNOTATIONS);
 		createEReference(modelElementEClass,
 				MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES);
@@ -440,10 +450,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 		uniqueIdentifierEClass = createEClass(UNIQUE_IDENTIFIER);
 		createEAttribute(uniqueIdentifierEClass, UNIQUE_IDENTIFIER__ID);
-
-		readerInfoEClass = createEClass(READER_INFO);
-		createEAttribute(readerInfoEClass, READER_INFO__DATE);
-		createEReference(readerInfoEClass, READER_INFO__READER_ID);
 
 		annotationEClass = createEClass(ANNOTATION);
 		createEReference(annotationEClass, ANNOTATION__ANNOTATED_MODEL_ELEMENTS);
@@ -520,7 +526,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 		// Add supertypes to classes
 		modelElementEClass.getESuperTypes().add(this.getIdentifiableElement());
-		readerInfoEClass.getESuperTypes().add(this.getIdentifiableElement());
 		annotationEClass.getESuperTypes().add(this.getModelElement());
 		modelElementIdEClass.getESuperTypes().add(this.getUniqueIdentifier());
 
@@ -535,13 +540,27 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 				ecorePackage.getEString(), "description", null, 0, 1,
 				ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModelElement_ReaderInfos(), this.getReaderInfo(),
-				null, "readerInfos", null, 0, -1, ModelElement.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+		initEAttribute(getModelElement_Creator(), theEcorePackage.getEString(),
+				"creator", null, 0, 1, ModelElement.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getModelElement_CreationDate(), ecorePackage.getEDate(),
+				"creationDate", null, 0, 1, ModelElement.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getModelElement_LastModifier(), ecorePackage
+				.getEString(), "lastModifier", null, 0, 1, ModelElement.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getModelElement_LastModifiedDate(), ecorePackage
+				.getEDate(), "lastModifiedDate", null, 0, 1,
+				ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getModelElement_StringReaderInfos(), ecorePackage
+				.getEString(), "stringReaderInfos", null, 0, -1,
+				ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE,
+				!IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
-		getModelElement_ReaderInfos().getEKeys().add(
-				this.getIdentifiableElement_Identifier());
 		initEReference(getModelElement_Annotations(), this.getAnnotation(),
 				this.getAnnotation_AnnotatedModelElements(), "annotations",
 				null, 0, -1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE,
@@ -576,11 +595,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 		EOperation op = addEOperation(modelElementEClass, null, "addReader", 0,
 				1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theOrganizationPackage.getUser(), "readerName", 0, 1,
+		addEParameter(op, ecorePackage.getEString(), "acOrgId", 0, 1,
 				IS_UNIQUE, IS_ORDERED);
-
-		addEOperation(modelElementEClass, null, "getMEState", 0, 1, IS_UNIQUE,
-				IS_ORDERED);
 
 		addEOperation(modelElementEClass, this.getModelElementId(),
 				"getModelElementId", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -639,18 +655,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 				"id", "Default Value Literal\t", 1, 1, UniqueIdentifier.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
 				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(readerInfoEClass, ReaderInfo.class, "ReaderInfo",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getReaderInfo_Date(), ecorePackage.getEDate(), "date",
-				null, 0, 1, ReaderInfo.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEReference(getReaderInfo_ReaderId(), theOrganizationPackage
-				.getOrgUnit(), null, "readerId", null, 0, 1, ReaderInfo.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
 
 		initEClass(annotationEClass, Annotation.class, "Annotation",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

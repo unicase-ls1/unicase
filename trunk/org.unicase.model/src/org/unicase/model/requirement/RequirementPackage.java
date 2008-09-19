@@ -95,12 +95,49 @@ public interface RequirementPackage extends EPackage {
 	int NON_FUNCTIONAL_REQUIREMENT__DESCRIPTION = RationalePackage.CRITERION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NON_FUNCTIONAL_REQUIREMENT__READER_INFOS = RationalePackage.CRITERION__READER_INFOS;
+	int NON_FUNCTIONAL_REQUIREMENT__CREATOR = RationalePackage.CRITERION__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NON_FUNCTIONAL_REQUIREMENT__CREATION_DATE = RationalePackage.CRITERION__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Last Modifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NON_FUNCTIONAL_REQUIREMENT__LAST_MODIFIER = RationalePackage.CRITERION__LAST_MODIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Last Modified Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NON_FUNCTIONAL_REQUIREMENT__LAST_MODIFIED_DATE = RationalePackage.CRITERION__LAST_MODIFIED_DATE;
+
+	/**
+	 * The feature id for the '<em><b>String Reader Infos</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NON_FUNCTIONAL_REQUIREMENT__STRING_READER_INFOS = RationalePackage.CRITERION__STRING_READER_INFOS;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!--
@@ -207,12 +244,49 @@ public interface RequirementPackage extends EPackage {
 	int FUNCTIONAL_REQUIREMENT__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTIONAL_REQUIREMENT__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
+	int FUNCTIONAL_REQUIREMENT__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTIONAL_REQUIREMENT__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Last Modifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTIONAL_REQUIREMENT__LAST_MODIFIER = ModelPackage.MODEL_ELEMENT__LAST_MODIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Last Modified Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTIONAL_REQUIREMENT__LAST_MODIFIED_DATE = ModelPackage.MODEL_ELEMENT__LAST_MODIFIED_DATE;
+
+	/**
+	 * The feature id for the '<em><b>String Reader Infos</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTIONAL_REQUIREMENT__STRING_READER_INFOS = ModelPackage.MODEL_ELEMENT__STRING_READER_INFOS;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!--
@@ -353,12 +427,49 @@ public interface RequirementPackage extends EPackage {
 	int USE_CASE__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
+	int USE_CASE__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USE_CASE__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Last Modifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USE_CASE__LAST_MODIFIER = ModelPackage.MODEL_ELEMENT__LAST_MODIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Last Modified Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USE_CASE__LAST_MODIFIED_DATE = ModelPackage.MODEL_ELEMENT__LAST_MODIFIED_DATE;
+
+	/**
+	 * The feature id for the '<em><b>String Reader Infos</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USE_CASE__STRING_READER_INFOS = ModelPackage.MODEL_ELEMENT__STRING_READER_INFOS;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!--
@@ -561,12 +672,49 @@ public interface RequirementPackage extends EPackage {
 	int SCENARIO__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SCENARIO__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
+	int SCENARIO__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCENARIO__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Last Modifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCENARIO__LAST_MODIFIER = ModelPackage.MODEL_ELEMENT__LAST_MODIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Last Modified Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCENARIO__LAST_MODIFIED_DATE = ModelPackage.MODEL_ELEMENT__LAST_MODIFIED_DATE;
+
+	/**
+	 * The feature id for the '<em><b>String Reader Infos</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCENARIO__STRING_READER_INFOS = ModelPackage.MODEL_ELEMENT__STRING_READER_INFOS;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!--
@@ -695,12 +843,49 @@ public interface RequirementPackage extends EPackage {
 	int ACTOR__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
+	int ACTOR__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTOR__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Last Modifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTOR__LAST_MODIFIER = ModelPackage.MODEL_ELEMENT__LAST_MODIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Last Modified Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTOR__LAST_MODIFIED_DATE = ModelPackage.MODEL_ELEMENT__LAST_MODIFIED_DATE;
+
+	/**
+	 * The feature id for the '<em><b>String Reader Infos</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTOR__STRING_READER_INFOS = ModelPackage.MODEL_ELEMENT__STRING_READER_INFOS;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!--
@@ -825,12 +1010,49 @@ public interface RequirementPackage extends EPackage {
 	int ACTOR_INSTANCE__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR_INSTANCE__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
+	int ACTOR_INSTANCE__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTOR_INSTANCE__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Last Modifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTOR_INSTANCE__LAST_MODIFIER = ModelPackage.MODEL_ELEMENT__LAST_MODIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Last Modified Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTOR_INSTANCE__LAST_MODIFIED_DATE = ModelPackage.MODEL_ELEMENT__LAST_MODIFIED_DATE;
+
+	/**
+	 * The feature id for the '<em><b>String Reader Infos</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTOR_INSTANCE__STRING_READER_INFOS = ModelPackage.MODEL_ELEMENT__STRING_READER_INFOS;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!--
@@ -934,12 +1156,49 @@ public interface RequirementPackage extends EPackage {
 	int STEP__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STEP__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
+	int STEP__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Last Modifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP__LAST_MODIFIER = ModelPackage.MODEL_ELEMENT__LAST_MODIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Last Modified Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP__LAST_MODIFIED_DATE = ModelPackage.MODEL_ELEMENT__LAST_MODIFIED_DATE;
+
+	/**
+	 * The feature id for the '<em><b>String Reader Infos</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP__STRING_READER_INFOS = ModelPackage.MODEL_ELEMENT__STRING_READER_INFOS;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!--
@@ -1049,13 +1308,49 @@ public interface RequirementPackage extends EPackage {
 	int SYSTEM_FUNCTION__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_FUNCTION__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
+	int SYSTEM_FUNCTION__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_FUNCTION__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Last Modifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_FUNCTION__LAST_MODIFIER = ModelPackage.MODEL_ELEMENT__LAST_MODIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Last Modified Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_FUNCTION__LAST_MODIFIED_DATE = ModelPackage.MODEL_ELEMENT__LAST_MODIFIED_DATE;
+
+	/**
+	 * The feature id for the '<em><b>String Reader Infos</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_FUNCTION__STRING_READER_INFOS = ModelPackage.MODEL_ELEMENT__STRING_READER_INFOS;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
@@ -1167,13 +1462,49 @@ public interface RequirementPackage extends EPackage {
 	int USER_TASK__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER_TASK__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
+	int USER_TASK__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_TASK__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Last Modifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_TASK__LAST_MODIFIER = ModelPackage.MODEL_ELEMENT__LAST_MODIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Last Modified Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_TASK__LAST_MODIFIED_DATE = ModelPackage.MODEL_ELEMENT__LAST_MODIFIED_DATE;
+
+	/**
+	 * The feature id for the '<em><b>String Reader Infos</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_TASK__STRING_READER_INFOS = ModelPackage.MODEL_ELEMENT__STRING_READER_INFOS;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list.

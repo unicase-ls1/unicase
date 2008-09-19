@@ -33,15 +33,6 @@ public interface ModelFactory extends EFactory {
 	Project createProject();
 
 	/**
-	 * Returns a new object of class '<em>Reader Info</em>'.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
-	 * @return a new object of class '<em>Reader Info</em>'.
-	 * @generated
-	 */
-	ReaderInfo createReaderInfo();
-
-	/**
 	 * Returns a new object of class '<em>Annotation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
