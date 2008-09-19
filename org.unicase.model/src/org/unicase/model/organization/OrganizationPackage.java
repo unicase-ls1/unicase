@@ -266,13 +266,31 @@ public interface OrganizationPackage extends EPackage {
 	int USER__EMAIL = ORG_UNIT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>First Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__FIRST_NAME = ORG_UNIT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Last Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__LAST_NAME = ORG_UNIT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>User</em>' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int USER_FEATURE_COUNT = ORG_UNIT_FEATURE_COUNT + 1;
+	int USER_FEATURE_COUNT = ORG_UNIT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.organization.impl.GroupImpl <em>Group</em>}' class.
@@ -410,6 +428,28 @@ public interface OrganizationPackage extends EPackage {
 	EAttribute getUser_Email();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.organization.User#getFirstName <em>First Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>First Name</em>'.
+	 * @see org.unicase.model.organization.User#getFirstName()
+	 * @see #getUser()
+	 * @generated
+	 */
+	EAttribute getUser_FirstName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.organization.User#getLastName <em>Last Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Last Name</em>'.
+	 * @see org.unicase.model.organization.User#getLastName()
+	 * @see #getUser()
+	 * @generated
+	 */
+	EAttribute getUser_LastName();
+
+	/**
 	 * Returns the meta object for class '
 	 * {@link org.unicase.model.organization.OrgUnit <em>Org Unit</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -501,6 +541,20 @@ public interface OrganizationPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute USER__EMAIL = eINSTANCE.getUser_Email();
+		/**
+		 * The meta object literal for the '<em><b>First Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USER__FIRST_NAME = eINSTANCE.getUser_FirstName();
+		/**
+		 * The meta object literal for the '<em><b>Last Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USER__LAST_NAME = eINSTANCE.getUser_LastName();
 		/**
 		 * The meta object literal for the '
 		 * {@link org.unicase.model.organization.impl.OrgUnitImpl
