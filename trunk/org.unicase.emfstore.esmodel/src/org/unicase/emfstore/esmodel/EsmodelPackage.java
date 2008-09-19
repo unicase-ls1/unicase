@@ -273,6 +273,34 @@ public interface EsmodelPackage extends EPackage {
 	int PROJECT_ID_FEATURE_COUNT = ModelPackage.UNIQUE_IDENTIFIER_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.impl.VersionInfoImpl <em>Version Info</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.emfstore.esmodel.impl.VersionInfoImpl
+	 * @see org.unicase.emfstore.esmodel.impl.EsmodelPackageImpl#getVersionInfo()
+	 * @generated
+	 */
+	int VERSION_INFO = 5;
+
+	/**
+	 * The feature id for the '<em><b>Emf Store Version String</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERSION_INFO__EMF_STORE_VERSION_STRING = 0;
+
+	/**
+	 * The number of structural features of the '<em>Version Info</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERSION_INFO_FEATURE_COUNT = 1;
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.ProjectHistory <em>Project History</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Project History</em>'.
@@ -445,6 +473,27 @@ public interface EsmodelPackage extends EPackage {
 	EClass getProjectId();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.VersionInfo <em>Version Info</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Version Info</em>'.
+	 * @see org.unicase.emfstore.esmodel.VersionInfo
+	 * @generated
+	 */
+	EClass getVersionInfo();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.VersionInfo#getEmfStoreVersionString <em>Emf Store Version String</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Emf Store Version String</em>'.
+	 * @see org.unicase.emfstore.esmodel.VersionInfo#getEmfStoreVersionString()
+	 * @see #getVersionInfo()
+	 * @generated
+	 */
+	EAttribute getVersionInfo_EmfStoreVersionString();
+
+	/**
 	 * Returns the factory that creates the instances of the model. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -611,6 +660,25 @@ public interface EsmodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PROJECT_ID = eINSTANCE.getProjectId();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.impl.VersionInfoImpl <em>Version Info</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.emfstore.esmodel.impl.VersionInfoImpl
+		 * @see org.unicase.emfstore.esmodel.impl.EsmodelPackageImpl#getVersionInfo()
+		 * @generated
+		 */
+		EClass VERSION_INFO = eINSTANCE.getVersionInfo();
+
+		/**
+		 * The meta object literal for the '<em><b>Emf Store Version String</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VERSION_INFO__EMF_STORE_VERSION_STRING = eINSTANCE
+				.getVersionInfo_EmfStoreVersionString();
 
 	}
 

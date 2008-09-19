@@ -32,13 +32,16 @@ import org.unicase.emfstore.connection.rmi.RMIAdminConnectionHandler;
 import org.unicase.emfstore.connection.rmi.RMIConnectionHandler;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ServerSpace;
+import org.unicase.emfstore.esmodel.VersionInfo;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesFactory;
+import org.unicase.emfstore.esmodel.impl.VersionInfoImpl;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.emfstore.storage.ResourceStorage;
+import org.unicase.emfstore.update.UpdateController;
 
 /**
  * The {@link EmfStoreController} is controlling startup and shutdown of the
@@ -71,7 +74,7 @@ public class EmfStoreController implements IApplication {
 
 		if (instance != null) {
 			throw new FatalEmfStoreException(
-					"Another EmfStore Controller seems to be ruinning already!");
+					"Another EmfStore Controller seems to be ruining it already!");
 		}
 		instance = this;
 
@@ -137,27 +140,62 @@ public class EmfStoreController implements IApplication {
 		} catch (IOException e) {
 			throw new FatalEmfStoreException(StorageException.NOLOAD, e);
 		}
+		
+		ServerSpace result = null; 
 		EList<EObject> contents = resource.getContents();
 		for (EObject content : contents) {
 			if (content instanceof ServerSpace) {
-				ServerSpace result = (ServerSpace) content;
-				result.setResource(resource);
-				return result;
+				result = (ServerSpace) content;
+				break;
+			}
+		}
+			
+		if (result != null) {
+			result.setResource(resource);			
+		}else{
+			// if no serverspace can be loaded, create one
+			logger.debug("Creating initial server space...");
+			result = EsmodelFactory.eINSTANCE.createServerSpace();
+
+			result.setResource(resource);
+			resource.getContents().add(result);
+			
+			try {
+				result.save();
+			} catch (IOException e) {
+				throw new FatalEmfStoreException(StorageException.NOSAVE, e);
 			}
 		}
 
-		// if no serverspace can be loaded, create one
-		logger.debug("Creating initial server space...");
-		ServerSpace serverSpace = EsmodelFactory.eINSTANCE.createServerSpace();
-
-		serverSpace.setResource(resource);
-		resource.getContents().add(serverSpace);
-		try {
-			serverSpace.save();
-		} catch (IOException e) {
-			throw new FatalEmfStoreException(StorageException.NOSAVE, e);
+		VersionInfo versionInformation = null;
+		for (EObject content : contents) {
+			if (content instanceof VersionInfo) {
+				versionInformation = (VersionInfo) content;
+				break;
+			}	
 		}
-		return serverSpace;
+		
+		if (versionInformation == null) {
+			versionInformation = EsmodelFactory.eINSTANCE.createVersionInfo();
+			versionInformation.setEmfStoreVersion(EmfStoreImpl.getModelVersion());
+			resource.getContents().add(versionInformation);
+			
+			try {
+				result.save();
+			} catch (IOException e) {
+				throw new FatalEmfStoreException(StorageException.NOSAVE, e);
+			}
+			
+		}else{
+			
+			int compareTo = EmfStoreImpl.getModelVersion().compareTo(EmfStoreImpl.getModelVersion());
+			if (compareTo < 0) {
+				UpdateController updateController = new UpdateController();
+				updateController.updateResource(resource);
+			}
+		}
+
+		return result;
 	}
 
 	/**

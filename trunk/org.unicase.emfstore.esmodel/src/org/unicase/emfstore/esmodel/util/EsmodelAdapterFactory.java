@@ -10,6 +10,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.emfstore.esmodel.*;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
 import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.esmodel.ProjectId;
@@ -94,6 +95,11 @@ public class EsmodelAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseProjectId(ProjectId object) {
 			return createProjectIdAdapter();
+		}
+
+		@Override
+		public Adapter caseVersionInfo(VersionInfo object) {
+			return createVersionInfoAdapter();
 		}
 
 		@Override
@@ -187,6 +193,20 @@ public class EsmodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createProjectIdAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.VersionInfo <em>Version Info</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.emfstore.esmodel.VersionInfo
+	 * @generated
+	 */
+	public Adapter createVersionInfoAdapter() {
 		return null;
 	}
 
