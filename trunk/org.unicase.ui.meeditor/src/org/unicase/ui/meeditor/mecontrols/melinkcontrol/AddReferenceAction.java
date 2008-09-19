@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.ui.meeditor;
+package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
 import java.util.Collection;
 
@@ -22,13 +22,11 @@ import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.window.Window;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.model.ModelElement;
 import org.unicase.ui.common.decorators.OverlayImageDescriptor;
-import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEMultiLinkControl;
 
 /**
  * 
@@ -109,27 +107,47 @@ public class AddReferenceAction extends Action {
 						.getProject().getAllModelElementsbyClass(clazz,
 								new BasicEList<ModelElement>());
 				allElements.remove(modelElement);
-				Object objectList = modelElement.eGet(eReference);
-				EList<EObject> list;
-				if (objectList instanceof EList) {
-					list = (EList<EObject>) objectList;
-					for (EObject ref : list) {
+				Object object = modelElement.eGet(eReference);
+
+				EList<EObject> eList = null;
+				EObject eObject = null;
+				
+				// don't the instances that are already linked
+				if(isMultiReference() && object instanceof EList) {
+					eList = (EList<EObject>) object;
+					for (EObject ref : eList) {
 						allElements.remove(ref);
 					}
-					dlg.setMultipleSelection(isMultiReference());
-					dlg.setElements(allElements.toArray());
-					dlg.setTitle("Select Elements");
-					dlg.setBlockOnOpen(true);
-					if (dlg.open() == Window.OK) {
-						Object[] result = dlg.getResult();
-						for (Object object : result) {
-							if (object instanceof EObject) {
-								EObject eObject = (EObject) object;
-								list.add(eObject);
+				}else if(!isMultiReference() && object instanceof EObject){
+					eObject = (EObject) object;
+					allElements.remove(eObject);
+				}
+				
+				// don't show contained elements for inverse containment references
+				if(eReference.isContainer()){
+					allElements.removeAll(modelElement.eContents());
+				}
+				
+				dlg.setMultipleSelection(isMultiReference());
+				dlg.setElements(allElements.toArray());
+				dlg.setTitle("Select Elements");
+				dlg.setBlockOnOpen(true);
+				if (dlg.open() == Window.OK) {
+										
+					if(isMultiReference()){
+						Object[] results = dlg.getResult();
+						for (Object result : results) {
+							if (result instanceof EObject) {
+								eList.add((EObject) result);
 							}
 						}
-
+					}else{
+						Object result = dlg.getFirstResult();
+						if(result instanceof EObject){
+							modelElement.eSet(eReference, (EObject)result);
+						}
 					}
+					
 				}
 			}
 		});

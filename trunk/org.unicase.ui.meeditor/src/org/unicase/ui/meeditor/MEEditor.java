@@ -37,7 +37,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 */
 	public static final String ID = "org.unicase.ui.meeditor";
 	
-	
+	private int titleLimit = 25;
 
 	private ModelElement modelElement;
 	private ComposedAdapterFactory adapterFactory;
@@ -116,8 +116,8 @@ public class MEEditor extends SharedHeaderFormEditor {
 		super.init(site, input);
 		if (input instanceof MEEditorInput) {
 			setInput(input);
-			MEEditorInput meInput = (MEEditorInput) input;
-			setPartName(input.getName());
+			final MEEditorInput meInput = (MEEditorInput) input;
+			setPartName(getLimitedTitle(input.getName()));
 			setTitleImage(input.getImageDescriptor().createImage());
 
 			modelElement = meInput.getModelElement();
@@ -126,7 +126,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 				@Override
 				public void notifyChanged(Notification msg) {
 					if (msg.getFeature() instanceof EAttribute && ((EAttribute)msg.getFeature()).getName().equals("name")) {
-						setPartName(msg.getNewStringValue());
+						setPartName(getLimitedTitle(msg.getNewStringValue()));
 						if(form!=null){
 							form.getManagedForm().getForm().setText(msg.getNewStringValue());
 						}
@@ -204,7 +204,11 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 	}
 	
-	
-
+	private String getLimitedTitle(String name){
+		if(name.length()>titleLimit){
+			name=name.substring(0, titleLimit).concat("...");
+		}
+		return name;
+	}
 
 }

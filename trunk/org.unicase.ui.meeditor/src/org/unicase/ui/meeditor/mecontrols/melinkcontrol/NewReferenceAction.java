@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.ui.meeditor;
+package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
 import java.util.ArrayList;
 
@@ -29,6 +29,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.ui.common.MEClassLabelProvider;
 import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.ui.common.decorators.OverlayImageDescriptor;
+import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.UnicaseUtil;
 
 /**
@@ -88,6 +89,10 @@ public class NewReferenceAction extends Action {
 	 * {@inheritDoc}
 	 */
 	public void run() {
+		if(eReference.isContainer()){
+			DialogHandler.showErrorDialog("Operation not permitted for container references!");
+			return;
+		}
 		TransactionalEditingDomain domain = TransactionUtil
 				.getEditingDomain(modelElement);
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
@@ -119,24 +124,31 @@ public class NewReferenceAction extends Action {
 				final ModelElement newMEInstance;
 
 				EPackage ePackage = newClass.getEPackage();
-				newMEInstance = (ModelElement) ePackage.getEFactoryInstance()
-						.create(newClass);
+				newMEInstance = (ModelElement) ePackage.getEFactoryInstance().create(newClass);
 				newMEInstance.setName("new " + newClass.getName());
 
-				Object objectList = modelElement.eGet(eReference);
-				EList<EObject> list;
-				if (objectList instanceof EList) {
-					list = (EList<EObject>) objectList;
-					if (!eReference.isContainer()) {
-						modelElement.getProject()
-								.addModelElement(newMEInstance);
-					}
-					list.add(newMEInstance);
+				if (!eReference.isContainer()) {
+					modelElement.getProject()
+					.addModelElement(newMEInstance);
 				}
+				
+				// add the new object to the reference
+				Object object = modelElement.eGet(eReference);
+				if(isMultiReference()) {
+					EList<EObject> eList = (EList<EObject>) object;
+					eList.add(newMEInstance);
+				}else{
+					modelElement.eSet(eReference, newMEInstance);
+				}
+				
 				ActionHelper.openModelElement(newMEInstance);
 			}
 		});
 
+	}
+	
+	private boolean isMultiReference(){
+		return eReference.getUpperBound()==-1;
 	}
 
 }

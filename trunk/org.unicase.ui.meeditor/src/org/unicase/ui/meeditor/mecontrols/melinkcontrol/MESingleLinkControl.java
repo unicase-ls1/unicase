@@ -21,6 +21,8 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
+import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -34,6 +36,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.unicase.model.ModelElement;
+import org.unicase.ui.meeditor.Activator;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 
 /**
@@ -95,59 +98,35 @@ public class MESingleLinkControl extends AbstractMEControl {
 	 */
 	public Control createControl(final Composite parent, int style) {
 		composite = getToolkit().createComposite(parent, style);
-		composite.setLayout(new GridLayout(2, false));
+//		composite.setLayout(new GridLayout(3, false));
+		GridLayoutFactory.fillDefaults().spacing(0, 0).numColumns(3).equalWidth(false).applyTo(composite);
 		this.parent = parent;
 		this.style = style;
 		linkArea = getToolkit().createComposite(composite);
 		linkArea.setLayout(new FillLayout());
 		updateLink();
 		
-//		Composite addLink = getToolkit().createComposite(composite);
-//		addLink.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_YELLOW));
-//		AddReferenceAction addAction = new AddReferenceAction((ModelElement)getModelElement(),eReference,itemPropertyDescriptor); 
-//		ActionContributionItem addButton = new ActionContributionItem(addAction); 
-//		addButton.fill(addLink);
-//		Composite addNew = getToolkit().createComposite(composite);
-//		addNew.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_RED));
-//		NewReferenceAction newAction = new NewReferenceAction((ModelElement)getModelElement(),eReference,itemPropertyDescriptor); 
-//		ActionContributionItem newButton = new ActionContributionItem(newAction); 
-//		newButton.fill(addNew);
-		Button button = getToolkit().createButton(composite, "Select", SWT.PUSH);
-		button.addSelectionListener(new SelectionAdapter() {
-
+		final AddReferenceAction addAction = new AddReferenceAction((ModelElement)getModelElement(),eReference,itemPropertyDescriptor); 
+		final NewReferenceAction newAction = new NewReferenceAction((ModelElement)getModelElement(),eReference,itemPropertyDescriptor); 
+		
+		Button selectButton = getToolkit().createButton(composite, "", SWT.PUSH);
+		selectButton.setImage(addAction.getImageDescriptor().createImage());
+		selectButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
-				domain.getCommandStack().execute(new RecordingCommand(domain) {
-
-					@Override
-					protected void doExecute() {
-						EClass clazz = eReference.getEReferenceType();
-						ElementListSelectionDialog dlg = new ElementListSelectionDialog(parent.getShell(), new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-								ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
-						// JH: fill only with right elements
-						Collection<ModelElement> allElements = ((ModelElement) getModelElement()).getProject().getAllModelElementsbyClass(clazz, new BasicEList<ModelElement>());
-						allElements.remove(getModelElement());
-						Object object = getModelElement().eGet(eReference);
-						if (object instanceof EObject) {
-							allElements.remove(object);
-						}
-						dlg.setElements(allElements.toArray());
-						dlg.setTitle("Select Element");
-						dlg.setBlockOnOpen(true);
-						if (dlg.open() == Window.OK) {
-							Object result = dlg.getFirstResult();
-							if (result instanceof EObject) {
-								EObject eObject = (EObject) result;
-								getModelElement().eSet(eReference, eObject);
-							}
-						}
-					}
-				});
-
+				addAction.run();
 			}
 
 		});
+		Button newButton = getToolkit().createButton(composite, "", SWT.PUSH);
+		newButton.setImage(newAction.getImageDescriptor().createImage());//Activator.getImageDescriptor("icons/link.png").createImage());
+		newButton.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				newAction.run();
+			}
+		});
+		
 		return composite;
 	}
 
