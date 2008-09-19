@@ -239,12 +239,12 @@
     <nestedGenPackages prefix="Document" basePackage="org.unicase.model" disposableProviderFactory="true"
         ecorePackage="model.ecore#//document">
       <genClasses ecoreClass="model.ecore#//document/LeafSection">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//document/LeafSection/modelElements"/>
+        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//document/LeafSection/modelElements"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//document/LeafSection/referencedModelElements"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//document/CompositeSection">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//document/CompositeSection/subsections"/>
+        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//document/CompositeSection/subsections"/>
       </genClasses>
       <genClasses image="false" ecoreClass="model.ecore#//document/Section">
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//document/Section/parent"/>

@@ -67,9 +67,28 @@ public class LeafSectionItemProvider extends ModelElementItemProvider implements
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addModelElementsPropertyDescriptor(object);
 			addReferencedModelElementsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Model Elements feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addModelElementsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_LeafSection_modelElements_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_LeafSection_modelElements_feature",
+						"_UI_LeafSection_type"),
+				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS, true,
+				false, false, null, null, null));
 	}
 
 	/**
