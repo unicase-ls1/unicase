@@ -375,7 +375,7 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 		initEReference(getOrgUnit_GroupMemberships(), this.getGroup(), this
-				.getGroup_OrgUnits(), "groupMemberships", null, 0, 1,
+				.getGroup_OrgUnits(), "groupMemberships", null, 0, -1,
 				OrgUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
@@ -385,7 +385,7 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 		initEClass(groupEClass, Group.class, "Group", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGroup_OrgUnits(), this.getOrgUnit(), this
-				.getOrgUnit_GroupMemberships(), "orgUnits", null, 0, 1,
+				.getOrgUnit_GroupMemberships(), "orgUnits", null, 0, -1,
 				Group.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);

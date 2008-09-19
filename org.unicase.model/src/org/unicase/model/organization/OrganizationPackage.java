@@ -153,7 +153,7 @@ public interface OrganizationPackage extends EPackage {
 	int ORG_UNIT__AC_ORG_ID = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Group Memberships</b></em>' reference.
+	 * The feature id for the '<em><b>Group Memberships</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -248,7 +248,7 @@ public interface OrganizationPackage extends EPackage {
 	int USER__AC_ORG_ID = ORG_UNIT__AC_ORG_ID;
 
 	/**
-	 * The feature id for the '<em><b>Group Memberships</b></em>' reference.
+	 * The feature id for the '<em><b>Group Memberships</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -379,7 +379,7 @@ public interface OrganizationPackage extends EPackage {
 	int GROUP__AC_ORG_ID = ORG_UNIT__AC_ORG_ID;
 
 	/**
-	 * The feature id for the '<em><b>Group Memberships</b></em>' reference.
+	 * The feature id for the '<em><b>Group Memberships</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -388,7 +388,7 @@ public interface OrganizationPackage extends EPackage {
 	int GROUP__GROUP_MEMBERSHIPS = ORG_UNIT__GROUP_MEMBERSHIPS;
 
 	/**
-	 * The feature id for the '<em><b>Org Units</b></em>' reference.
+	 * The feature id for the '<em><b>Org Units</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -472,10 +472,10 @@ public interface OrganizationPackage extends EPackage {
 	EAttribute getOrgUnit_AcOrgId();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.organization.OrgUnit#getGroupMemberships <em>Group Memberships</em>}'.
+	 * Returns the meta object for the reference list '{@link org.unicase.model.organization.OrgUnit#getGroupMemberships <em>Group Memberships</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Group Memberships</em>'.
+	 * @return the meta object for the reference list '<em>Group Memberships</em>'.
 	 * @see org.unicase.model.organization.OrgUnit#getGroupMemberships()
 	 * @see #getOrgUnit()
 	 * @generated
@@ -494,10 +494,10 @@ public interface OrganizationPackage extends EPackage {
 	EClass getGroup();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.organization.Group#getOrgUnits <em>Org Units</em>}'.
+	 * Returns the meta object for the reference list '{@link org.unicase.model.organization.Group#getOrgUnits <em>Org Units</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Org Units</em>'.
+	 * @return the meta object for the reference list '<em>Org Units</em>'.
 	 * @see org.unicase.model.organization.Group#getOrgUnits()
 	 * @see #getGroup()
 	 * @generated
@@ -574,7 +574,7 @@ public interface OrganizationPackage extends EPackage {
 		 */
 		EAttribute ORG_UNIT__AC_ORG_ID = eINSTANCE.getOrgUnit_AcOrgId();
 		/**
-		 * The meta object literal for the '<em><b>Group Memberships</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Group Memberships</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -590,7 +590,7 @@ public interface OrganizationPackage extends EPackage {
 		 */
 		EClass GROUP = eINSTANCE.getGroup();
 		/**
-		 * The meta object literal for the '<em><b>Org Units</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Org Units</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

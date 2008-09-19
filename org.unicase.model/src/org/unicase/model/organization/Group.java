@@ -6,6 +6,8 @@
  */
 package org.unicase.model.organization;
 
+import org.eclipse.emf.common.util.EList;
+
 /**
  * <!-- begin-user-doc --> A representation of the model object '
  * <em><b>Group</b></em>'. <!-- end-user-doc -->
@@ -24,7 +26,8 @@ package org.unicase.model.organization;
 public interface Group extends OrgUnit {
 
 	/**
-	 * Returns the value of the '<em><b>Org Units</b></em>' reference.
+	 * Returns the value of the '<em><b>Org Units</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.organization.OrgUnit}.
 	 * It is bidirectional and its opposite is '{@link org.unicase.model.organization.OrgUnit#getGroupMemberships <em>Group Memberships</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -32,22 +35,11 @@ public interface Group extends OrgUnit {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Org Units</em>' reference.
-	 * @see #setOrgUnits(OrgUnit)
+	 * @return the value of the '<em>Org Units</em>' reference list.
 	 * @see org.unicase.model.organization.OrganizationPackage#getGroup_OrgUnits()
 	 * @see org.unicase.model.organization.OrgUnit#getGroupMemberships
 	 * @model opposite="groupMemberships" keys="identifier"
 	 * @generated
 	 */
-	OrgUnit getOrgUnits();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.model.organization.Group#getOrgUnits <em>Org Units</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Org Units</em>' reference.
-	 * @see #getOrgUnits()
-	 * @generated
-	 */
-	void setOrgUnits(OrgUnit value);
+	EList<OrgUnit> getOrgUnits();
 } // Group
