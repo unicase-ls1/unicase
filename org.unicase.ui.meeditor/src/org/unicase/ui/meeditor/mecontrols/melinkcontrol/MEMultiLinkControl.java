@@ -34,8 +34,6 @@ import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
 import org.unicase.model.ModelElement;
-import org.unicase.ui.meeditor.AddReferenceAction;
-import org.unicase.ui.meeditor.NewReferenceAction;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.workspace.WorkspaceManager;
 
