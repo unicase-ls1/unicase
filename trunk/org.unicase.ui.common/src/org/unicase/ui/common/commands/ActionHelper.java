@@ -17,6 +17,8 @@ import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -30,6 +32,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.workspace.WorkspaceManager;
 
 /**
  * 
@@ -68,7 +71,7 @@ public final class ActionHelper {
 					.getActiveWorkbenchWindow().getActivePage()
 					.getActiveEditor().getEditorInput();
 			Object obj = editorInput.getAdapter(ModelElement.class);
-			
+
 			if (obj instanceof ModelElement) {
 				me = (ModelElement) obj;
 			}
@@ -93,36 +96,45 @@ public final class ActionHelper {
 	 * @param me
 	 *            ModelElement to open
 	 */
-	public static void openModelElement(ModelElement me) {
-		if(!(me instanceof ModelElement)){
+	public static void openModelElement(final ModelElement me) {
+		if (!(me instanceof ModelElement)) {
 			return;
 		}
+
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			protected void doExecute() {
+				me.addReader(WorkspaceManager.getInstance().getCurrentWorkspace()
+						.getActiveProjectSpace().getUsersession().getACUser().getName());
+			}
+		});
 		
-		if(me instanceof MEDiagram){
-			openMEDiagram((MEDiagram)me, false);
-		}else {
+		if (me instanceof MEDiagram) {
+			openMEDiagram((MEDiagram) me, false);
+		} else {
 			openMEwithMEEditor(me);
 		}
-			
-		
+
 	}
-	
-	private static void openMEwithMEEditor(ModelElement me){
-		//this method opens a model element indirectly using IEvaluationContext variable
-		//the variable is here set to ME which must be opened, 
-		//and this ME is then read in MEEditor form this variable
-		//after setting the Variable, the open command in MEEditor is invoked using 
-		//HandlerService
-		IHandlerService handlerService = (IHandlerService)PlatformUI.getWorkbench().getService(
-						IHandlerService.class);
+
+	private static void openMEwithMEEditor(ModelElement me) {
+		// this method opens a model element indirectly using IEvaluationContext
+		// variable
+		// the variable is here set to ME which must be opened,
+		// and this ME is then read in MEEditor form this variable
+		// after setting the Variable, the open command in MEEditor is invoked
+		// using
+		// HandlerService
+		IHandlerService handlerService = (IHandlerService) PlatformUI
+				.getWorkbench().getService(IHandlerService.class);
 
 		IEvaluationContext context = handlerService.getCurrentState();
 		context.addVariable(ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE, me);
-		
+
 		try {
 			handlerService.executeCommand(MEEDITOR_OPENMODELELEMENT_COMMAND_ID,
 					null);
-			
+
 		} catch (ExecutionException e) {
 			DialogHandler.showExceptionDialog(e);
 		} catch (NotDefinedException e) {
@@ -133,25 +145,20 @@ public final class ActionHelper {
 			DialogHandler.showExceptionDialog(e);
 		}
 
-	
-	
-	
-	
 	}
-	
-	
-	/**.
-	 * This opens the MEDiagram.
+
+	/**
+	 * . This opens the MEDiagram.
 	 * 
 	 * @param diagram
 	 *            MEDiagram to open
 	 */
-	public static void openMEDiagram(MEDiagram diagram, boolean withMEEditor){
-		if(withMEEditor){
+	public static void openMEDiagram(MEDiagram diagram, boolean withMEEditor) {
+		if (withMEEditor) {
 			openMEwithMEEditor(diagram);
 			return;
 		}
-		
+
 		String id = null;
 		if (diagram.getType().equals(DiagramType.CLASS_DIAGRAM)) {
 			id = "org.unicase.model.classDiagram.part.ModelDiagramEditorID";
@@ -181,10 +188,11 @@ public final class ActionHelper {
 
 	/**
 	 * . Extract the selected ModelElement in navigator or other
-	 * StructuredViewer This will be called from Handler classes, which pass the 
+	 * StructuredViewer This will be called from Handler classes, which pass the
 	 * ExecutionEvent.
 	 * 
-	 * @param event ExecutionEvent to extract the selection from.
+	 * @param event
+	 *            ExecutionEvent to extract the selection from.
 	 * @return the selected EObject or null.
 	 */
 	public static EObject getSelection(ExecutionEvent event) {
@@ -206,21 +214,21 @@ public final class ActionHelper {
 		return result;
 	}
 
-	/**.
-	 * Extract the selected Object in navigator or other
-	 * StructuredViewer. This method uses the general ISelectionService of 
-	 * Workbench to extract the selection.
-	 * Beware that the part providing the selection should have registered its
-	 * SelectionProvider.
+	/**
+	 * . Extract the selected Object in navigator or other StructuredViewer.
+	 * This method uses the general ISelectionService of Workbench to extract
+	 * the selection. Beware that the part providing the selection should have
+	 * registered its SelectionProvider.
 	 * 
 	 * 
-	 *  @return the selected Object or null if selection is not an IStructuredSelection
+	 * @return the selected Object or null if selection is not an
+	 *         IStructuredSelection
 	 */
-	public static Object getSelection(){
-		ISelectionService selectionService = 
-			(ISelectionService)PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getSelectionService();
-		
+	public static Object getSelection() {
+		ISelectionService selectionService = (ISelectionService) PlatformUI
+				.getWorkbench().getActiveWorkbenchWindow()
+				.getSelectionService();
+
 		ISelection sel = selectionService.getSelection();
 		if (!(sel instanceof IStructuredSelection)) {
 			return null;
@@ -234,41 +242,41 @@ public final class ActionHelper {
 		Object o = ssel.getFirstElement();
 		return o;
 	}
-	
+
 	/**
-	 * . Extract the selected EObject in navigator or other
-	 * StructuredViewer. This method uses the general ISelectionService of 
-	 * Workbench to extract the selection.
-	 * Beware that the part providing the selection should have registered its
-	 * SelectionProvider.
+	 * . Extract the selected EObject in navigator or other StructuredViewer.
+	 * This method uses the general ISelectionService of Workbench to extract
+	 * the selection. Beware that the part providing the selection should have
+	 * registered its SelectionProvider.
 	 * 
 	 * 
-	 *  @return the selected Object or null if selection is not an IStructuredSelection
+	 * @return the selected Object or null if selection is not an
+	 *         IStructuredSelection
 	 */
-	public static EObject getSelectedEObject(){
+	public static EObject getSelectedEObject() {
 		Object obj = getSelection();
-		if (obj instanceof EObject){
+		if (obj instanceof EObject) {
 			return (EObject) obj;
-		}else{
+		} else {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * . Extract the selected ModelElement in navigator or other
-	 * StructuredViewer. This method uses the general ISelectionService of 
-	 * Workbench to extract the selection.
-	 * Beware that the part providing the selection should have registered its
-	 * SelectionProvider.
+	 * StructuredViewer. This method uses the general ISelectionService of
+	 * Workbench to extract the selection. Beware that the part providing the
+	 * selection should have registered its SelectionProvider.
 	 * 
 	 * 
-	 *  @return the selected Object or null if selection is not an IStructuredSelection
+	 * @return the selected Object or null if selection is not an
+	 *         IStructuredSelection
 	 */
-	public static ModelElement getSelectedModelElement(){
+	public static ModelElement getSelectedModelElement() {
 		Object obj = getSelection();
-		if (obj instanceof ModelElement){
+		if (obj instanceof ModelElement) {
 			return (ModelElement) obj;
-		}else{
+		} else {
 			return null;
 		}
 	}
