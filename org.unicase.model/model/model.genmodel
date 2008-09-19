@@ -88,10 +88,10 @@
         <genEnumLiterals ecoreEnumLiteral="model.ecore#//task/ActivityType/TESTING"/>
       </genEnums>
       <genClasses ecoreClass="model.ecore#//task/ActionItem">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//task/ActionItem/done"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//task/ActionItem/assignedTo"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//task/ActionItem/dueDate"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//task/ActionItem/done"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//task/ActionItem/estimate"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//task/ActionItem/activity"/>
       </genClasses>

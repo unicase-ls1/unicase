@@ -323,13 +323,22 @@ public interface TaskPackage extends EPackage {
 	int ACTION_ITEM__ASSIGNEE = WORK_ITEM_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Done</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_ITEM__DONE = WORK_ITEM_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Assigned To</b></em>' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM__ASSIGNED_TO = WORK_ITEM_FEATURE_COUNT + 2;
+	int ACTION_ITEM__ASSIGNED_TO = WORK_ITEM_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Due Date</b></em>' attribute. <!--
@@ -338,16 +347,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM__DUE_DATE = WORK_ITEM_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Done</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ACTION_ITEM__DONE = WORK_ITEM_FEATURE_COUNT + 4;
+	int ACTION_ITEM__DUE_DATE = WORK_ITEM_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Estimate</b></em>' attribute. <!--

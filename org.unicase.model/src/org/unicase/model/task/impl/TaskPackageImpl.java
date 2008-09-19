@@ -252,7 +252,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * @generated
 	 */
 	public EReference getActionItem_AssignedTo() {
-		return (EReference) actionItemEClass.getEStructuralFeatures().get(0);
+		return (EReference) actionItemEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -260,7 +260,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * @generated
 	 */
 	public EAttribute getActionItem_DueDate() {
-		return (EAttribute) actionItemEClass.getEStructuralFeatures().get(1);
+		return (EAttribute) actionItemEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -268,7 +268,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * @generated
 	 */
 	public EAttribute getActionItem_Done() {
-		return (EAttribute) actionItemEClass.getEStructuralFeatures().get(2);
+		return (EAttribute) actionItemEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -546,9 +546,9 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 		// Create classes and their features
 		actionItemEClass = createEClass(ACTION_ITEM);
+		createEAttribute(actionItemEClass, ACTION_ITEM__DONE);
 		createEReference(actionItemEClass, ACTION_ITEM__ASSIGNED_TO);
 		createEAttribute(actionItemEClass, ACTION_ITEM__DUE_DATE);
-		createEAttribute(actionItemEClass, ACTION_ITEM__DONE);
 		createEAttribute(actionItemEClass, ACTION_ITEM__ESTIMATE);
 		createEAttribute(actionItemEClass, ACTION_ITEM__ACTIVITY);
 
@@ -638,6 +638,10 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		// Initialize classes and features; add operations and parameters
 		initEClass(actionItemEClass, ActionItem.class, "ActionItem",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getActionItem_Done(), ecorePackage.getEBoolean(),
+				"done", null, 0, 1, ActionItem.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 		initEReference(getActionItem_AssignedTo(), theOrganizationPackage
 				.getUser(), null, "assignedTo", null, 0, -1, ActionItem.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
@@ -647,10 +651,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 				theModelPackage.getIdentifiableElement_Identifier());
 		initEAttribute(getActionItem_DueDate(), ecorePackage.getEDate(),
 				"dueDate", null, 0, 1, ActionItem.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getActionItem_Done(), ecorePackage.getEBoolean(),
-				"done", null, 0, 1, ActionItem.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getActionItem_Estimate(), ecorePackage.getEInt(),
