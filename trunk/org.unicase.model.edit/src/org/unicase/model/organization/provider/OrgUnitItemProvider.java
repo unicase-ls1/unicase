@@ -56,27 +56,9 @@ public class OrgUnitItemProvider extends ModelElementItemProvider implements
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addAcOrgIdPropertyDescriptor(object);
 			addGroupMembershipsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Ac Org Id feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addAcOrgIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_OrgUnit_acOrgId_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_OrgUnit_acOrgId_feature", "_UI_OrgUnit_type"),
-				OrganizationPackage.Literals.ORG_UNIT__AC_ORG_ID, true, false,
-				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
