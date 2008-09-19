@@ -13,6 +13,8 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.window.Window;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
@@ -60,13 +62,15 @@ public class CommitProjectHandler extends ProjectActionHandler {
 					}
 					if (loginStatus == LoginDialog.SUCCESSFUL) {
 						CommitDialog commitDialog = new CommitDialog(shell,projectSpace);
-						commitDialog.open();
-						LogMessage logMessage = VersioningFactory.eINSTANCE.createLogMessage();
-						logMessage.setAuthor(usersession.getUsername());
-						logMessage.setDate(new Date());
-						logMessage.setMessage(commitDialog.getLogText());
-						projectSpace.commit(logMessage);
-						MessageDialog.openInformation(window.getShell(), null, "Commit completed.");
+						int returnCode = commitDialog.open();
+						if(returnCode==Window.OK){
+							LogMessage logMessage = VersioningFactory.eINSTANCE.createLogMessage();
+							logMessage.setAuthor(usersession.getUsername());
+							logMessage.setDate(new Date());
+							logMessage.setMessage(commitDialog.getLogText());
+							projectSpace.commit(logMessage);
+							MessageDialog.openInformation(window.getShell(), null, "Commit completed.");
+						}
 					}
 				} catch (EmfStoreException e) {
 					DialogHandler.showExceptionDialog(e);
