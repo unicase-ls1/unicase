@@ -61,9 +61,9 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 			addPredecessorsPropertyDescriptor(object);
 			addSuccessorsPropertyDescriptor(object);
 			addAssigneePropertyDescriptor(object);
+			addDonePropertyDescriptor(object);
 			addAssignedToPropertyDescriptor(object);
 			addDueDatePropertyDescriptor(object);
-			addDonePropertyDescriptor(object);
 			addEstimatePropertyDescriptor(object);
 			addActivityPropertyDescriptor(object);
 		}
@@ -287,8 +287,8 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 
 		switch (notification.getFeatureID(ActionItem.class)) {
 		case TaskPackage.ACTION_ITEM__CHECKED:
-		case TaskPackage.ACTION_ITEM__DUE_DATE:
 		case TaskPackage.ACTION_ITEM__DONE:
+		case TaskPackage.ACTION_ITEM__DUE_DATE:
 		case TaskPackage.ACTION_ITEM__ESTIMATE:
 		case TaskPackage.ACTION_ITEM__ACTIVITY:
 			fireNotifyChanged(new ViewerNotification(notification, notification
