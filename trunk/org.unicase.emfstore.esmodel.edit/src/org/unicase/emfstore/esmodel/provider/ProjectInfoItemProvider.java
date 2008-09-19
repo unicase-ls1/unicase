@@ -152,12 +152,10 @@ public class ProjectInfoItemProvider extends ItemProviderAdapter implements
 	// begin of custom code
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * @param object the object the label is based upon.
+	 * @return the label for the object
 	 * @generated NOT
 	 */
-	//AS: fix java doc
-	@Override
 	public String getText(Object object) {
 		ProjectInfo projectInfo = ((ProjectInfo) object);
 		String ret = "";
