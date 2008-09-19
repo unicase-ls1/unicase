@@ -175,6 +175,13 @@ public class IssueItemProvider extends AnnotationItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
+		if(object instanceof Issue){
+			boolean checked = ((Issue) object).isChecked();
+			if(checked){
+				return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/IssueClosed"));
+			}
+		}
 		return overlayImage(object, getResourceLocator().getImage(
 				"full/obj16/Issue"));
 	}
