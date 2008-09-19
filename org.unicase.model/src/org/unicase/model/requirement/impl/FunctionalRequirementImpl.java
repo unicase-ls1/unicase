@@ -30,10 +30,10 @@ import org.unicase.model.requirement.UseCase;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getRefinedRequirement <em>Refined Requirement</em>}</li>
  *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getStoryPoints <em>Story Points</em>}</li>
  *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getPriority <em>Priority</em>}</li>
  *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getRefiningRequirements <em>Refining Requirements</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getRefinedRequirement <em>Refined Requirement</em>}</li>
  *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getUseCases <em>Use Cases</em>}</li>
  *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getScenarios <em>Scenarios</em>}</li>
  *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#isReviewed <em>Reviewed</em>}</li>
@@ -324,14 +324,14 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getRefiningRequirements())
-					.basicAdd(otherEnd, msgs);
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetRefinedRequirement((FunctionalRequirement) otherEnd,
 					msgs);
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getRefiningRequirements())
+					.basicAdd(otherEnd, msgs);
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__USE_CASES:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getUseCases())
 					.basicAdd(otherEnd, msgs);
@@ -350,11 +350,11 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT:
+			return basicSetRefinedRequirement(null, msgs);
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS:
 			return ((InternalEList<?>) getRefiningRequirements()).basicRemove(
 					otherEnd, msgs);
-		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT:
-			return basicSetRefinedRequirement(null, msgs);
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__USE_CASES:
 			return ((InternalEList<?>) getUseCases()).basicRemove(otherEnd,
 					msgs);
@@ -390,16 +390,16 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT:
+			if (resolve)
+				return getRefinedRequirement();
+			return basicGetRefinedRequirement();
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__STORY_POINTS:
 			return new Integer(getStoryPoints());
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__PRIORITY:
 			return new Integer(getPriority());
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS:
 			return getRefiningRequirements();
-		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT:
-			if (resolve)
-				return getRefinedRequirement();
-			return basicGetRefinedRequirement();
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__USE_CASES:
 			return getUseCases();
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__SCENARIOS:
@@ -418,6 +418,9 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT:
+			setRefinedRequirement((FunctionalRequirement) newValue);
+			return;
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__STORY_POINTS:
 			setStoryPoints(((Integer) newValue).intValue());
 			return;
@@ -428,9 +431,6 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 			getRefiningRequirements().clear();
 			getRefiningRequirements().addAll(
 					(Collection<? extends FunctionalRequirement>) newValue);
-			return;
-		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT:
-			setRefinedRequirement((FunctionalRequirement) newValue);
 			return;
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__USE_CASES:
 			getUseCases().clear();
@@ -454,6 +454,9 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT:
+			setRefinedRequirement((FunctionalRequirement) null);
+			return;
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__STORY_POINTS:
 			setStoryPoints(STORY_POINTS_EDEFAULT);
 			return;
@@ -462,9 +465,6 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 			return;
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS:
 			getRefiningRequirements().clear();
-			return;
-		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT:
-			setRefinedRequirement((FunctionalRequirement) null);
 			return;
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__USE_CASES:
 			getUseCases().clear();
@@ -486,6 +486,8 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT:
+			return basicGetRefinedRequirement() != null;
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__STORY_POINTS:
 			return storyPoints != STORY_POINTS_EDEFAULT;
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__PRIORITY:
@@ -493,8 +495,6 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS:
 			return refiningRequirements != null
 					&& !refiningRequirements.isEmpty();
-		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT:
-			return basicGetRefinedRequirement() != null;
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__USE_CASES:
 			return useCases != null && !useCases.isEmpty();
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__SCENARIOS:

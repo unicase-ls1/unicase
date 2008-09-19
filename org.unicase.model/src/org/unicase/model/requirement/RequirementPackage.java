@@ -249,13 +249,21 @@ public interface RequirementPackage extends EPackage {
 	int FUNCTIONAL_REQUIREMENT__STATE = ModelPackage.MODEL_ELEMENT__STATE;
 
 	/**
+	 * The feature id for the '<em><b>Refined Requirement</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Story Points</b></em>' attribute. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTIONAL_REQUIREMENT__STORY_POINTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int FUNCTIONAL_REQUIREMENT__STORY_POINTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Priority</b></em>' attribute. <!--
@@ -264,7 +272,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTIONAL_REQUIREMENT__PRIORITY = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int FUNCTIONAL_REQUIREMENT__PRIORITY = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Refining Requirements</b></em>' containment reference list.
@@ -272,15 +280,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Refined Requirement</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Use Cases</b></em>' reference list. <!--

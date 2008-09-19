@@ -59,10 +59,9 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addStoryPointsPropertyDescriptor(object);
+			addRefinedRequirementPropertyDescriptor(object);
 			addPriorityPropertyDescriptor(object);
 			addRefiningRequirementsPropertyDescriptor(object);
-			addRefinedRequirementPropertyDescriptor(object);
 			addUseCasesPropertyDescriptor(object);
 			addScenariosPropertyDescriptor(object);
 			addReviewedPropertyDescriptor(object);
@@ -87,28 +86,6 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider
 				RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__REVIEWED,
 				true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Story Points feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void addStoryPointsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_FunctionalRequirement_storyPoints_feature"),
-						getString(
-								"_UI_PropertyDescriptor_description",
-								"_UI_FunctionalRequirement_storyPoints_feature",
-								"_UI_FunctionalRequirement_type"),
-						RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__STORY_POINTS,
-						true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**

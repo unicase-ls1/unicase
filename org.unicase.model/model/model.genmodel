@@ -257,10 +257,10 @@
             ecoreFeature="ecore:EReference model.ecore#//requirement/NonFunctionalRequirement/restrictedUseCases"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//requirement/FunctionalRequirement">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/FunctionalRequirement/storyPoints"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//requirement/FunctionalRequirement/refinedRequirement"/>
+        <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/FunctionalRequirement/storyPoints"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/FunctionalRequirement/priority"/>
         <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//requirement/FunctionalRequirement/refiningRequirements"/>
-        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//requirement/FunctionalRequirement/refinedRequirement"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/FunctionalRequirement/useCases"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
