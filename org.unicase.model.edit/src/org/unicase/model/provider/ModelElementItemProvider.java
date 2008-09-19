@@ -183,5 +183,13 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
+	
+	/**
+	 * @return the ImageDescriptor for this class.
+	 * @generated NOT
+	 */
+	public Object getImage(Object object){
+		return getResourceLocator().getImage("full/obj16/ModelElement");
+	}
 
 }
