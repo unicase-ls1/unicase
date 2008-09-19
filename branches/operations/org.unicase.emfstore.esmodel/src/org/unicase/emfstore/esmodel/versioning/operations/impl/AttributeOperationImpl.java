@@ -229,10 +229,7 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements
 
 	@Override
 	public void apply(Project project) {
-		if (!canApply(project)) {
-			throw new IllegalStateException(
-					"can not apply operation to this project");
-		}
+		super.apply(project);
 		ModelElement modelElement = project.getModelElement(this
 				.getModelElementId());
 		EList<EAttribute> attributes = modelElement.eClass()
@@ -243,6 +240,7 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements
 				return;
 			}
 		}
+		//FIXME MK: exception
 		throw new IllegalStateException("cannot find attribute");
 	}
 
@@ -250,10 +248,7 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements
 	public AbstractOperation reverse() {
 		AttributeOperation attributeOperation = OperationsFactory.eINSTANCE
 				.createAttributeOperation();
-		attributeOperation.setFeatureName(getName());
-		attributeOperation.setFeatureName(getFeatureName());
-		attributeOperation.setDescription(getDescription());
-		attributeOperation.setModelElementId(getModelElementId());
+		super.reverse(attributeOperation);
 		//swap old and new value
 		attributeOperation.setNewValue(getOldValue());
 		attributeOperation.setOldValue(getNewValue());
@@ -263,6 +258,38 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements
 	@Override
 	public boolean canApply(Project project) {
 		return project.contains(this.getModelElementId());
+	}
+
+	@Override
+	public String getDescription() {
+		StringBuilder stringBuilder = new StringBuilder();
+		if (getOldValue()==null) {
+			stringBuilder.append("Set ");
+			stringBuilder.append(getFeatureName());
+			stringBuilder.append(" to ");
+			stringBuilder.append(getNewValue());
+		}
+		else {
+			stringBuilder.append("Changed ");
+			stringBuilder.append(getFeatureName());
+			stringBuilder.append(" from ");
+			stringBuilder.append(getOldValue());
+			stringBuilder.append(" to ");
+			stringBuilder.append(getNewValue());
+		}
+		stringBuilder.append(".");
+		String name = stringBuilder.toString();
+		return name;
+	}
+
+	@Override
+	public String getName() {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("Set ");
+		stringBuilder.append(getFeatureName());
+		stringBuilder.append(" attribute");
+		String name = stringBuilder.toString();
+		return name;
 	}
 
 } //AttributeOperationImpl

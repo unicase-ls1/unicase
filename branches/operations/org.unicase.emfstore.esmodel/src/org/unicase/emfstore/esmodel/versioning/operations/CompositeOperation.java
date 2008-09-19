@@ -16,6 +16,8 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#getAtomicOperations <em>Atomic Operations</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#getCompositeName <em>Composite Name</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#getCompositeDescription <em>Composite Description</em>}</li>
  * </ul>
  * </p>
  *
@@ -26,7 +28,7 @@ import org.eclipse.emf.common.util.EList;
 public interface CompositeOperation extends AbstractOperation {
 	/**
 	 * Returns the value of the '<em><b>Atomic Operations</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.emfstore.esmodel.versioning.operations.AtomicOperation}.
+	 * The list contents are of type {@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Atomic Operations</em>' reference list isn't clear,
@@ -38,6 +40,58 @@ public interface CompositeOperation extends AbstractOperation {
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
-	EList<AtomicOperation> getAtomicOperations();
+	EList<AbstractOperation> getAtomicOperations();
+
+	/**
+	 * Returns the value of the '<em><b>Composite Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Composite Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Composite Name</em>' attribute.
+	 * @see #setCompositeName(String)
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getCompositeOperation_CompositeName()
+	 * @model
+	 * @generated
+	 */
+	String getCompositeName();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#getCompositeName <em>Composite Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Composite Name</em>' attribute.
+	 * @see #getCompositeName()
+	 * @generated
+	 */
+	void setCompositeName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Composite Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Composite Description</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Composite Description</em>' attribute.
+	 * @see #setCompositeDescription(String)
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getCompositeOperation_CompositeDescription()
+	 * @model
+	 * @generated
+	 */
+	String getCompositeDescription();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#getCompositeDescription <em>Composite Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Composite Description</em>' attribute.
+	 * @see #getCompositeDescription()
+	 * @generated
+	 */
+	void setCompositeDescription(String value);
 
 } // CompositeOperation

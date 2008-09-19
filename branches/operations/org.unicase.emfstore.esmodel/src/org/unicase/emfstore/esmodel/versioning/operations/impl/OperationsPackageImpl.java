@@ -24,7 +24,6 @@ import org.unicase.emfstore.esmodel.versioning.changeContainer.ChangeContainerPa
 import org.unicase.emfstore.esmodel.versioning.changeContainer.impl.ChangeContainerPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.AtomicOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
@@ -71,13 +70,6 @@ public class OperationsPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	private EClass createDeleteOperationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass atomicOperationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -289,6 +281,26 @@ public class OperationsPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getCompositeOperation_CompositeName() {
+		return (EAttribute) compositeOperationEClass.getEStructuralFeatures()
+				.get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCompositeOperation_CompositeDescription() {
+		return (EAttribute) compositeOperationEClass.getEStructuralFeatures()
+				.get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getFeatureOperation() {
 		return featureOperationEClass;
 	}
@@ -330,15 +342,6 @@ public class OperationsPackageImpl extends EPackageImpl implements
 	public EReference getCreateDeleteOperation_ModelElement() {
 		return (EReference) createDeleteOperationEClass
 				.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getAtomicOperation() {
-		return atomicOperationEClass;
 	}
 
 	/**
@@ -517,6 +520,10 @@ public class OperationsPackageImpl extends EPackageImpl implements
 		compositeOperationEClass = createEClass(COMPOSITE_OPERATION);
 		createEReference(compositeOperationEClass,
 				COMPOSITE_OPERATION__ATOMIC_OPERATIONS);
+		createEAttribute(compositeOperationEClass,
+				COMPOSITE_OPERATION__COMPOSITE_NAME);
+		createEAttribute(compositeOperationEClass,
+				COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION);
 
 		featureOperationEClass = createEClass(FEATURE_OPERATION);
 		createEAttribute(featureOperationEClass,
@@ -527,8 +534,6 @@ public class OperationsPackageImpl extends EPackageImpl implements
 				CREATE_DELETE_OPERATION__DELETE);
 		createEReference(createDeleteOperationEClass,
 				CREATE_DELETE_OPERATION__MODEL_ELEMENT);
-
-		atomicOperationEClass = createEClass(ATOMIC_OPERATION);
 
 		attributeOperationEClass = createEClass(ATTRIBUTE_OPERATION);
 		createEAttribute(attributeOperationEClass,
@@ -596,31 +601,31 @@ public class OperationsPackageImpl extends EPackageImpl implements
 		// Add supertypes to classes
 		compositeOperationEClass.getESuperTypes().add(
 				this.getAbstractOperation());
-		featureOperationEClass.getESuperTypes().add(this.getAtomicOperation());
+		featureOperationEClass.getESuperTypes()
+				.add(this.getAbstractOperation());
 		createDeleteOperationEClass.getESuperTypes().add(
-				this.getAtomicOperation());
-		atomicOperationEClass.getESuperTypes().add(this.getAbstractOperation());
+				this.getAbstractOperation());
 		attributeOperationEClass.getESuperTypes().add(
 				this.getFeatureOperation());
 		singleReferenceOperationEClass.getESuperTypes().add(
 				this.getFeatureOperation());
 		multiReferenceOperationEClass.getESuperTypes().add(
-				this.getAtomicOperation());
+				this.getFeatureOperation());
 		multiReferenceMoveOperationEClass.getESuperTypes().add(
 				this.getFeatureOperation());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(abstractOperationEClass, AbstractOperation.class,
-				"AbstractOperation", !IS_ABSTRACT, !IS_INTERFACE,
+				"AbstractOperation", IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAbstractOperation_Name(), ecorePackage.getEString(),
-				"name", null, 0, 1, AbstractOperation.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+				"name", null, 0, 1, AbstractOperation.class, IS_TRANSIENT,
+				IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractOperation_Description(), ecorePackage
-				.getEString(), "description", null, 0, 1,
-				AbstractOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				.getEString(), "description", "", 0, 1,
+				AbstractOperation.class, IS_TRANSIENT, IS_VOLATILE,
+				!IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED,
 				IS_ORDERED);
 		initEReference(getAbstractOperation_ModelElementId(), theModelPackage
 				.getModelElementId(), null, "modelElementId", null, 0, 1,
@@ -649,10 +654,20 @@ public class OperationsPackageImpl extends EPackageImpl implements
 				"CompositeOperation", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompositeOperation_AtomicOperations(), this
-				.getAtomicOperation(), null, "atomicOperations", null, 0, -1,
+				.getAbstractOperation(), null, "atomicOperations", null, 0, -1,
 				CompositeOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCompositeOperation_CompositeName(), ecorePackage
+				.getEString(), "compositeName", null, 0, 1,
+				CompositeOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getCompositeOperation_CompositeDescription(),
+				ecorePackage.getEString(), "compositeDescription", null, 0, 1,
+				CompositeOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
 		initEClass(featureOperationEClass, FeatureOperation.class,
 				"FeatureOperation", IS_ABSTRACT, !IS_INTERFACE,
@@ -675,10 +690,6 @@ public class OperationsPackageImpl extends EPackageImpl implements
 				CreateDeleteOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(atomicOperationEClass, AtomicOperation.class,
-				"AtomicOperation", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(attributeOperationEClass, AttributeOperation.class,
 				"AttributeOperation", !IS_ABSTRACT, !IS_INTERFACE,

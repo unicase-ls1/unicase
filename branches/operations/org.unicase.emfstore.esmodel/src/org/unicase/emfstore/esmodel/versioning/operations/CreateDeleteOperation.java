@@ -24,7 +24,7 @@ import org.unicase.model.ModelElement;
  * @model
  * @generated
  */
-public interface CreateDeleteOperation extends AtomicOperation {
+public interface CreateDeleteOperation extends AbstractOperation {
 	/**
 	 * Returns the value of the '<em><b>Delete</b></em>' attribute.
 	 * <!-- begin-user-doc -->

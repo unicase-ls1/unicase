@@ -9,9 +9,11 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.model.ModelElementId;
+import org.unicase.model.Project;
 
 /**
  * <!-- begin-user-doc -->
@@ -226,6 +228,30 @@ public class SingleReferenceOperationImpl extends FeatureOperationImpl
 			return newValue != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@Override
+	public void apply(Project project) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getDescription() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public AbstractOperation reverse() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 } //SingleReferenceOperationImpl

@@ -15,6 +15,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
+import org.unicase.model.util.ModelUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,7 +33,7 @@ import org.unicase.model.Project;
  *
  * @generated
  */
-public class AbstractOperationImpl extends EObjectImpl implements
+public abstract class AbstractOperationImpl extends EObjectImpl implements
 		AbstractOperation {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -44,15 +45,6 @@ public class AbstractOperationImpl extends EObjectImpl implements
 	 */
 	protected static final String NAME_EDEFAULT = null;
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-	/**
 	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,16 +52,7 @@ public class AbstractOperationImpl extends EObjectImpl implements
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String DESCRIPTION_EDEFAULT = null;
-	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDescription()
-	 * @generated
-	 * @ordered
-	 */
-	protected String description = DESCRIPTION_EDEFAULT;
+	protected static final String DESCRIPTION_EDEFAULT = "";
 	/**
 	 * The cached value of the '{@link #getModelElementId() <em>Model Element Id</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -120,47 +103,16 @@ public class AbstractOperationImpl extends EObjectImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public String getName() {
-		return name;
-	}
-
+	public abstract String getName();
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					OperationsPackage.ABSTRACT_OPERATION__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getDescription() {
-		return description;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDescription(String newDescription) {
-		String oldDescription = description;
-		description = newDescription;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					OperationsPackage.ABSTRACT_OPERATION__DESCRIPTION,
-					oldDescription, description));
-	}
+	public abstract String getDescription();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -288,35 +240,38 @@ public class AbstractOperationImpl extends EObjectImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void apply(Project project) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		if (!canApply(project)) {
+			//MK throw proper exception
+			throw new IllegalStateException("Cannot apply!");
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public AbstractOperation reverse() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+	public abstract AbstractOperation reverse();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	protected void reverse(AbstractOperation abstractOperation) {
+		abstractOperation.setModelElementId(ModelUtil
+				.clone(getModelElementId()));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public boolean canApply(Project project) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
+	public abstract boolean canApply(Project project);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -363,12 +318,6 @@ public class AbstractOperationImpl extends EObjectImpl implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case OperationsPackage.ABSTRACT_OPERATION__NAME:
-			setName((String) newValue);
-			return;
-		case OperationsPackage.ABSTRACT_OPERATION__DESCRIPTION:
-			setDescription((String) newValue);
-			return;
 		case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID:
 			setModelElementId((ModelElementId) newValue);
 			return;
@@ -387,12 +336,6 @@ public class AbstractOperationImpl extends EObjectImpl implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case OperationsPackage.ABSTRACT_OPERATION__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case OperationsPackage.ABSTRACT_OPERATION__DESCRIPTION:
-			setDescription(DESCRIPTION_EDEFAULT);
-			return;
 		case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID:
 			setModelElementId((ModelElementId) null);
 			return;
@@ -412,11 +355,11 @@ public class AbstractOperationImpl extends EObjectImpl implements
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case OperationsPackage.ABSTRACT_OPERATION__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT
-					.equals(name);
+			return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT
+					.equals(getName());
 		case OperationsPackage.ABSTRACT_OPERATION__DESCRIPTION:
-			return DESCRIPTION_EDEFAULT == null ? description != null
-					: !DESCRIPTION_EDEFAULT.equals(description);
+			return DESCRIPTION_EDEFAULT == null ? getDescription() != null
+					: !DESCRIPTION_EDEFAULT.equals(getDescription());
 		case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID:
 			return modelElementId != null;
 		case OperationsPackage.ABSTRACT_OPERATION__USERNAME:
@@ -437,11 +380,7 @@ public class AbstractOperationImpl extends EObjectImpl implements
 			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(", description: ");
-		result.append(description);
-		result.append(", username: ");
+		result.append(" (username: ");
 		result.append(username);
 		result.append(')');
 		return result.toString();

@@ -10,7 +10,6 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.AtomicOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
@@ -93,11 +92,6 @@ public class OperationsAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseCreateDeleteOperation(CreateDeleteOperation object) {
 			return createCreateDeleteOperationAdapter();
-		}
-
-		@Override
-		public Adapter caseAtomicOperation(AtomicOperation object) {
-			return createAtomicOperationAdapter();
 		}
 
 		@Override
@@ -195,20 +189,6 @@ public class OperationsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCreateDeleteOperationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.operations.AtomicOperation <em>Atomic Operation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.AtomicOperation
-	 * @generated
-	 */
-	public Adapter createAtomicOperationAdapter() {
 		return null;
 	}
 

@@ -10,7 +10,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.AtomicOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
@@ -111,8 +110,6 @@ public class OperationsSwitch<T> {
 			FeatureOperation featureOperation = (FeatureOperation) theEObject;
 			T result = caseFeatureOperation(featureOperation);
 			if (result == null)
-				result = caseAtomicOperation(featureOperation);
-			if (result == null)
 				result = caseAbstractOperation(featureOperation);
 			if (result == null)
 				result = defaultCase(theEObject);
@@ -122,18 +119,7 @@ public class OperationsSwitch<T> {
 			CreateDeleteOperation createDeleteOperation = (CreateDeleteOperation) theEObject;
 			T result = caseCreateDeleteOperation(createDeleteOperation);
 			if (result == null)
-				result = caseAtomicOperation(createDeleteOperation);
-			if (result == null)
 				result = caseAbstractOperation(createDeleteOperation);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OperationsPackage.ATOMIC_OPERATION: {
-			AtomicOperation atomicOperation = (AtomicOperation) theEObject;
-			T result = caseAtomicOperation(atomicOperation);
-			if (result == null)
-				result = caseAbstractOperation(atomicOperation);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -143,8 +129,6 @@ public class OperationsSwitch<T> {
 			T result = caseAttributeOperation(attributeOperation);
 			if (result == null)
 				result = caseFeatureOperation(attributeOperation);
-			if (result == null)
-				result = caseAtomicOperation(attributeOperation);
 			if (result == null)
 				result = caseAbstractOperation(attributeOperation);
 			if (result == null)
@@ -157,8 +141,6 @@ public class OperationsSwitch<T> {
 			if (result == null)
 				result = caseFeatureOperation(singleReferenceOperation);
 			if (result == null)
-				result = caseAtomicOperation(singleReferenceOperation);
-			if (result == null)
 				result = caseAbstractOperation(singleReferenceOperation);
 			if (result == null)
 				result = defaultCase(theEObject);
@@ -168,7 +150,7 @@ public class OperationsSwitch<T> {
 			MultiReferenceOperation multiReferenceOperation = (MultiReferenceOperation) theEObject;
 			T result = caseMultiReferenceOperation(multiReferenceOperation);
 			if (result == null)
-				result = caseAtomicOperation(multiReferenceOperation);
+				result = caseFeatureOperation(multiReferenceOperation);
 			if (result == null)
 				result = caseAbstractOperation(multiReferenceOperation);
 			if (result == null)
@@ -180,8 +162,6 @@ public class OperationsSwitch<T> {
 			T result = caseMultiReferenceMoveOperation(multiReferenceMoveOperation);
 			if (result == null)
 				result = caseFeatureOperation(multiReferenceMoveOperation);
-			if (result == null)
-				result = caseAtomicOperation(multiReferenceMoveOperation);
 			if (result == null)
 				result = caseAbstractOperation(multiReferenceMoveOperation);
 			if (result == null)
@@ -250,21 +230,6 @@ public class OperationsSwitch<T> {
 	 * @generated
 	 */
 	public T caseCreateDeleteOperation(CreateDeleteOperation object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Atomic Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Atomic Operation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAtomicOperation(AtomicOperation object) {
 		return null;
 	}
 

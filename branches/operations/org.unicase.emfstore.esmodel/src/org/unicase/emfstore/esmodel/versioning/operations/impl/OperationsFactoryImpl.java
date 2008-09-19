@@ -10,8 +10,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.AtomicOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
@@ -66,14 +64,10 @@ public class OperationsFactoryImpl extends EFactoryImpl implements
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case OperationsPackage.ABSTRACT_OPERATION:
-			return createAbstractOperation();
 		case OperationsPackage.COMPOSITE_OPERATION:
 			return createCompositeOperation();
 		case OperationsPackage.CREATE_DELETE_OPERATION:
 			return createCreateDeleteOperation();
-		case OperationsPackage.ATOMIC_OPERATION:
-			return createAtomicOperation();
 		case OperationsPackage.ATTRIBUTE_OPERATION:
 			return createAttributeOperation();
 		case OperationsPackage.SINGLE_REFERENCE_OPERATION:
@@ -86,16 +80,6 @@ public class OperationsFactoryImpl extends EFactoryImpl implements
 			throw new IllegalArgumentException("The class '" + eClass.getName()
 					+ "' is not a valid classifier");
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public AbstractOperation createAbstractOperation() {
-		AbstractOperationImpl abstractOperation = new AbstractOperationImpl();
-		return abstractOperation;
 	}
 
 	/**
@@ -116,16 +100,6 @@ public class OperationsFactoryImpl extends EFactoryImpl implements
 	public CreateDeleteOperation createCreateDeleteOperation() {
 		CreateDeleteOperationImpl createDeleteOperation = new CreateDeleteOperationImpl();
 		return createDeleteOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public AtomicOperation createAtomicOperation() {
-		AtomicOperationImpl atomicOperation = new AtomicOperationImpl();
-		return atomicOperation;
 	}
 
 	/**

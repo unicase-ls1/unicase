@@ -75,30 +75,6 @@ public class OperationsItemProviderAdapterFactory extends
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected AbstractOperationItemProvider abstractOperationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createAbstractOperationAdapter() {
-		if (abstractOperationItemProvider == null) {
-			abstractOperationItemProvider = new AbstractOperationItemProvider(
-					this);
-		}
-
-		return abstractOperationItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -144,29 +120,6 @@ public class OperationsItemProviderAdapterFactory extends
 		}
 
 		return createDeleteOperationItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.operations.AtomicOperation} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected AtomicOperationItemProvider atomicOperationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.AtomicOperation}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createAtomicOperationAdapter() {
-		if (atomicOperationItemProvider == null) {
-			atomicOperationItemProvider = new AtomicOperationItemProvider(this);
-		}
-
-		return atomicOperationItemProvider;
 	}
 
 	/**
@@ -367,14 +320,10 @@ public class OperationsItemProviderAdapterFactory extends
 	 * @generated
 	 */
 	public void dispose() {
-		if (abstractOperationItemProvider != null)
-			abstractOperationItemProvider.dispose();
 		if (compositeOperationItemProvider != null)
 			compositeOperationItemProvider.dispose();
 		if (createDeleteOperationItemProvider != null)
 			createDeleteOperationItemProvider.dispose();
-		if (atomicOperationItemProvider != null)
-			atomicOperationItemProvider.dispose();
 		if (attributeOperationItemProvider != null)
 			attributeOperationItemProvider.dispose();
 		if (singleReferenceOperationItemProvider != null)

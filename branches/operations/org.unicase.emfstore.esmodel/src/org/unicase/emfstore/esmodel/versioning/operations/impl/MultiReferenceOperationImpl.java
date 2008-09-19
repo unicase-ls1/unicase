@@ -5,19 +5,25 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
+import org.unicase.model.Project;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,7 +40,7 @@ import org.unicase.model.ModelElementId;
  *
  * @generated
  */
-public class MultiReferenceOperationImpl extends AtomicOperationImpl implements
+public class MultiReferenceOperationImpl extends FeatureOperationImpl implements
 		MultiReferenceOperation {
 	/**
 	 * The default value of the '{@link #isAdd() <em>Add</em>}' attribute.
@@ -281,6 +287,53 @@ public class MultiReferenceOperationImpl extends AtomicOperationImpl implements
 		result.append(index);
 		result.append(')');
 		return result.toString();
+	}
+
+	@Override
+	public void apply(Project project) {
+		super.apply(project);
+		ModelElement modelElement = project.getModelElement(getModelElementId());
+		EList<ModelElementId> referencedModelElementIds = getReferencedModelElements();
+		List<ModelElement> referencedModelElements = new ArrayList<ModelElement>();
+		for (ModelElementId modelElementId : referencedModelElementIds) {
+			referencedModelElements.add(project.getModelElement(modelElementId));
+		}
+		EList<EReference> references = modelElement.eClass()
+				.getEAllReferences();
+		for (EReference reference : references) {
+			if (reference.getName().equals(this.getFeatureName())) {
+				Object object = modelElement.eGet(reference);
+				EList<ModelElement> list = (EList<ModelElement>) object;
+				if (isAdd()) {
+					list.addAll(getIndex(), referencedModelElements);
+				}
+				else {
+					list.removeAll(referencedModelElements);
+				}
+				return;
+			}
+		}
+		//FIXME MK: exception
+		throw new IllegalStateException("cannot find reference feature");
+		
+	}
+
+	@Override
+	public String getDescription() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public AbstractOperation reverse() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 } //MultiReferenceOperationImpl

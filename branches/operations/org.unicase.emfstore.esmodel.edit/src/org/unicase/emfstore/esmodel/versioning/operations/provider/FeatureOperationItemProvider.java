@@ -28,7 +28,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class FeatureOperationItemProvider extends AtomicOperationItemProvider
+public class FeatureOperationItemProvider extends AbstractOperationItemProvider
 		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**

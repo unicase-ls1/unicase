@@ -41,7 +41,7 @@ import org.unicase.model.task.TaskFactory;
  * @generated
  */
 public class CreateDeleteOperationItemProvider extends
-		AtomicOperationItemProvider implements IEditingDomainItemProvider,
+		AbstractOperationItemProvider implements IEditingDomainItemProvider,
 		IStructuredItemContentProvider, ITreeItemContentProvider,
 		IItemLabelProvider, IItemPropertySource {
 	/**

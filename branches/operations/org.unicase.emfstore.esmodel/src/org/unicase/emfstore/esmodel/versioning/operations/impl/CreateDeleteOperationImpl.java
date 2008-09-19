@@ -10,9 +10,13 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.model.ModelElement;
+import org.unicase.model.Project;
+import org.unicase.model.util.ModelUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,8 +32,31 @@ import org.unicase.model.ModelElement;
  *
  * @generated
  */
-public class CreateDeleteOperationImpl extends AtomicOperationImpl implements
+public class CreateDeleteOperationImpl extends AbstractOperationImpl implements
 		CreateDeleteOperation {
+
+	@Override
+	public void apply(Project project) {
+		super.apply(project);
+		project.getModelElements().add(ModelUtil.clone(modelElement));
+	}
+
+	@Override
+	public boolean canApply(Project project) {
+		return !project.contains(getModelElementId());
+	}
+
+	@Override
+	public AbstractOperation reverse() {
+		CreateDeleteOperation createDeleteOperation = OperationsFactory.eINSTANCE
+				.createCreateDeleteOperation();
+		super.reverse(createDeleteOperation);
+		createDeleteOperation.setDelete(!this.isDelete());
+		createDeleteOperation.setModelElement(ModelUtil.clone(this
+				.getModelElement()));
+		return createDeleteOperation;
+	}
+
 	/**
 	 * The default value of the '{@link #isDelete() <em>Delete</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -302,6 +329,38 @@ public class CreateDeleteOperationImpl extends AtomicOperationImpl implements
 		result.append(delete);
 		result.append(')');
 		return result.toString();
+	}
+
+	@Override
+	public String getDescription() {
+		StringBuilder stringBuilder = new StringBuilder();
+		if (isDelete()) {
+			stringBuilder.append("Deleted  ");
+		}
+		else {
+			stringBuilder.append("Created ");
+		}
+		stringBuilder.append(getModelElement().eClass().getName());
+		stringBuilder.append(" ");
+		stringBuilder.append(getModelElement().getName());
+		stringBuilder.append(".");
+		return stringBuilder.toString();
+	}
+
+	@Override
+	public String getName() {
+		StringBuilder stringBuilder = new StringBuilder();
+		if (isDelete()) {
+			stringBuilder.append("Deleted  ");
+			stringBuilder.append(getModelElement().eClass().getName());
+			stringBuilder.append(" ");
+			stringBuilder.append(getModelElement().getName());
+		}
+		else {
+			stringBuilder.append("Created ");
+			stringBuilder.append(getModelElement().eClass().getName());
+		}
+		return stringBuilder.toString();
 	}
 
 } //CreateDeleteOperationImpl

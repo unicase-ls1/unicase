@@ -26,15 +26,6 @@ public interface OperationsFactory extends EFactory {
 			.init();
 
 	/**
-	 * Returns a new object of class '<em>Abstract Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Abstract Operation</em>'.
-	 * @generated
-	 */
-	AbstractOperation createAbstractOperation();
-
-	/**
 	 * Returns a new object of class '<em>Composite Operation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -51,15 +42,6 @@ public interface OperationsFactory extends EFactory {
 	 * @generated
 	 */
 	CreateDeleteOperation createCreateDeleteOperation();
-
-	/**
-	 * Returns a new object of class '<em>Atomic Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Atomic Operation</em>'.
-	 * @generated
-	 */
-	AtomicOperation createAtomicOperation();
 
 	/**
 	 * Returns a new object of class '<em>Attribute Operation</em>'.
