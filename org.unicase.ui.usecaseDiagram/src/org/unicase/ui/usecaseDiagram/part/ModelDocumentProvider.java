@@ -157,8 +157,8 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 		DiagramDocument document = new DiagramDocument();
 		//document.setEditingDomain(TransactionalEditingDomain.Registry.INSTANCE
 		//		.getEditingDomain("org.unicase.EditingDomain"));
-		document.setEditingDomain(WorkspaceManager
-		.getInstance().getCurrentWorkspace().getEditingDomain());
+		document.setEditingDomain(WorkspaceManager.getInstance()
+				.getCurrentWorkspace().getEditingDomain());
 		return document;
 	}
 
@@ -212,7 +212,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 	protected void setDocumentContent(IDocument document, IEditorInput element)
 			throws CoreException {
 		IDiagramDocument diagramDocument = (IDiagramDocument) document;
-		TransactionalEditingDomain domain = diagramDocument.getEditingDomain();		
+		TransactionalEditingDomain domain = diagramDocument.getEditingDomain();
 		if (element instanceof FileEditorInput) {
 			IStorage storage = ((FileEditorInput) element).getStorage();
 			Diagram diagram = DiagramIOUtil.load(domain, storage, true,
