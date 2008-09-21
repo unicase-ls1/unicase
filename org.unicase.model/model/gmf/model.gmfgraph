@@ -244,6 +244,12 @@
       <actualFigure
           xsi:type="gmfgraph:Ellipse"
           name="ProvidedInterfaceCircleFigure">
+        <layoutData
+            xsi:type="gmfgraph:GridLayoutData"
+            grabExcessHorizontalSpace="true"
+            grabExcessVerticalSpace="true"
+            verticalAlignment="FILL"
+            horizontalAlignment="FILL"/>
         <foregroundColor
             xsi:type="gmfgraph:ConstantColor"
             value="black"/>
@@ -259,12 +265,6 @@
       </actualFigure>
     </descriptors>
     <descriptors
-        name="Interface_NameLabel">
-      <actualFigure
-          xsi:type="gmfgraph:Label"
-          name="Interface_NameLabel"/>
-    </descriptors>
-    <descriptors
         name="ProvidedInterfaceConnectionFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
@@ -274,13 +274,27 @@
             value="black"/>
       </actualFigure>
     </descriptors>
+    <descriptors
+        name="InterfaceNameLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:CustomFigure"
+          name="InterfaceNode_name"
+          qualifiedClassName="org.unicase.ui.componentDiagram.unicase.Label">
+        <font
+            xsi:type="gmfgraph:BasicFont"
+            faceName="Arial"
+            height="10"/>
+      </actualFigure>
+    </descriptors>
   </figures>
   <figures
       name="UseCaseDiagram">
     <descriptors
         name="ActorFigure">
       <actualFigure
-          xsi:type="gmfgraph:Rectangle">
+          xsi:type="gmfgraph:Rectangle"
+          name=""
+          outline="false">
         <layout
             xsi:type="gmfgraph:GridLayout">
           <margins/>
@@ -551,7 +565,7 @@
       accessor="//@figures.1/@descriptors.0/@accessors.0"/>
   <labels
       name="Interface_name"
-      figure="Interface_NameLabel"
+      figure="InterfaceNameLabelFigure"
       elementIcon="false"/>
   <labels
       name="AssociationLine_sourceMultiplicity"
