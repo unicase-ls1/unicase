@@ -38,6 +38,8 @@ public class MEDiagramEditPart extends DiagramEditPart {
 				EditPolicyRoles.CANONICAL_ROLE,
 				new org.unicase.ui.componentDiagram.edit.policies.MEDiagramCanonicalEditPolicy());
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
+				new org.unicase.ui.componentDiagram.edit.policies.ComponentDiagramDragDropEditPolicy());
 	}
 
 }

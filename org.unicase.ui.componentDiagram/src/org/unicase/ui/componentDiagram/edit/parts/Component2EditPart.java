@@ -4,6 +4,8 @@ import org.eclipse.draw2d.BorderLayout;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Ellipse;
 import org.eclipse.draw2d.Figure;
+import org.eclipse.draw2d.GridData;
+import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.PositionConstants;
@@ -32,6 +34,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
+import org.unicase.ui.componentDiagram.unicase.ComponentBorderItemLocator;
 
 /**
  * @generated
@@ -123,9 +126,9 @@ public class Component2EditPart extends AbstractBorderedShapeEditPart {
 	protected void addBorderItem(IFigure borderItemContainer,
 			IBorderItemEditPart borderItemEditPart) {
 		if (borderItemEditPart instanceof org.unicase.ui.componentDiagram.edit.parts.ComponentServiceNameEditPart) {
-			BorderItemLocator locator = new BorderItemLocator(getMainFigure(),
+			ComponentBorderItemLocator locator = new ComponentBorderItemLocator(getMainFigure(),
 					PositionConstants.SOUTH);
-			locator.setBorderItemOffset(new Dimension(-20, -20));
+			locator.setBorderItemOffset(new Dimension(0, 10));
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);

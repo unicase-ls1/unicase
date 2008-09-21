@@ -1,5 +1,6 @@
 package org.unicase.ui.componentDiagram.edit.parts;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -13,7 +14,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.gef.AccessibleEditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
+import org.eclipse.gef.handles.NonResizableHandleKit;
 import org.eclipse.gef.requests.DirectEditRequest;
 import org.eclipse.gef.tools.DirectEditManager;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
@@ -21,6 +26,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserService;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
@@ -41,8 +47,10 @@ import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * @generated
@@ -527,7 +535,7 @@ public class ComponentServiceNameEditPart extends LabelEditPart implements
 	 * @generated
 	 */
 	private View getFontStyleOwnerView() {
-		return getPrimaryView();
+		return (View) getModel();
 	}
 
 	/**
@@ -586,7 +594,49 @@ public class ComponentServiceNameEditPart extends LabelEditPart implements
 	 * @generated
 	 */
 	protected IFigure createFigurePrim() {
-		return new WrappingLabel();
+		return new InterfaceNameLabelFigure();
 	}
+
+	/**
+	 * @generated
+	 */
+	public class InterfaceNameLabelFigure extends
+			org.unicase.ui.componentDiagram.unicase.Label {
+
+		/**
+		 * @generated
+		 */
+		public InterfaceNameLabelFigure() {
+
+			this.setFont(THIS_FONT);
+
+		}
+
+		/**
+		 * @generated
+		 */
+		private boolean myUseLocalCoordinates = false;
+
+		/**
+		 * @generated
+		 */
+		protected boolean useLocalCoordinates() {
+			return myUseLocalCoordinates;
+		}
+
+		/**
+		 * @generated
+		 */
+		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
+			myUseLocalCoordinates = useLocalCoordinates;
+		}
+
+	}
+
+	/**
+	 * @generated
+	 */
+	static final Font THIS_FONT = new Font(Display.getCurrent(), "Arial", 10,
+			SWT.NORMAL);
 
 }
