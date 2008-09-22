@@ -1,3 +1,6 @@
+/**
+ * @generated
+ */
 package org.eclipse.uml2.diagram.usecase.draw2d;
 
 import org.eclipse.draw2d.ColorConstants;
