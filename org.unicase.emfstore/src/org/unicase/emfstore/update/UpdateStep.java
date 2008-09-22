@@ -10,5 +10,4 @@ public interface UpdateStep {
 	public Version getTargetVersion();
 	
 	public int updateProjectHistory(ProjectHistory projectHistory);
-	
 }
