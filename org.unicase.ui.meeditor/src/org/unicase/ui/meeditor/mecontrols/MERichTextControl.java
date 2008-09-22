@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.ui.meeditor.mecontrols;
 
 import java.net.URL;
@@ -42,12 +48,30 @@ import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 
+/**
+ * The standard widget for multi line text fields.
+ * 
+ * @author helming
+ * 
+ */
 public class MERichTextControl extends AbstractMEControl {
 
 	private EAttribute attribute;
 
 	private AdapterImpl eAdapter;
 
+	/**
+	 * Default constructor.
+	 * 
+	 * @param feature
+	 *            The displayed feature
+	 * @param editingDomain
+	 *            the editing domain
+	 * @param modelElement
+	 *            the modelelement
+	 * @param toolkit
+	 *            the toolkit
+	 */
 	public MERichTextControl(EAttribute feature, EditingDomain editingDomain,
 			EObject modelElement, FormToolkit toolkit) {
 		super(editingDomain, modelElement, toolkit);
@@ -67,6 +91,9 @@ public class MERichTextControl extends AbstractMEControl {
 		getModelElement().eAdapters().add(eAdapter);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Control createControl(Composite parent, int style) {
 		composite = new Composite(parent, style);
 		GridLayout layout = new GridLayout();
@@ -79,11 +106,11 @@ public class MERichTextControl extends AbstractMEControl {
 		return composite;
 	}
 
-	Composite composite;
+	private Composite composite;
 
-	ToolBar toolBar;
+	private ToolBar toolBar;
 
-	StyledText text;
+	private StyledText text;
 
 	private TextViewer viewer;
 
@@ -117,8 +144,9 @@ public class MERichTextControl extends AbstractMEControl {
 				Display display = event.display;
 				StyleRange style = event.style;
 				Font font = style.font;
-				if (font == null)
+				if (font == null) {
 					font = text.getFont();
+				}
 				TextLayout layout = new TextLayout(display);
 				layout.setAscent(event.ascent);
 				layout.setDescent(event.descent);
@@ -159,6 +187,14 @@ public class MERichTextControl extends AbstractMEControl {
 
 	}
 
+	/**
+	 * Removes bullets.
+	 * 
+	 * @param line
+	 *            The startline
+	 * @param count
+	 *            The number of lines
+	 */
 	protected void unbullet(int line, int count) {
 		text.setLineBullet(line + count - 1, 1, null);
 
@@ -193,44 +229,38 @@ public class MERichTextControl extends AbstractMEControl {
 	private void load() {
 		List<Integer> bulletedLines = new ArrayList<Integer>();
 		String txt = "";
-		try {
-
-			final StringBuffer value = new StringBuffer();
-			TransactionalEditingDomain domain = TransactionUtil
-					.getEditingDomain(getModelElement());
-			domain.getCommandStack().execute(new RecordingCommand(domain) {
-				@Override
-				protected void doExecute() {
-					if (getModelElement().eGet(attribute) == null) {
-						value.append("");
-					} else {
-						value.append(getModelElement().eGet(attribute));
-					}
-				}
-			});
-			txt = value.toString();
-
-			StringTokenizer stringTokenizer = new StringTokenizer(txt, ",");
-			while (stringTokenizer.hasMoreElements()) {
-				String nextElement = (String) stringTokenizer.nextElement();
-				if (nextElement.equals(";")) {
-					break;
+		final StringBuffer value = new StringBuffer();
+		TransactionalEditingDomain domain = TransactionUtil
+				.getEditingDomain(getModelElement());
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
+			protected void doExecute() {
+				if (getModelElement().eGet(attribute) == null) {
+					value.append("");
 				} else {
-					bulletedLines.add(Integer.parseInt(nextElement));
+					value.append(getModelElement().eGet(attribute));
 				}
 			}
-			String[] split = txt.split("%BEGINNTEXT%");
-			if (split.length == 1) {
-				viewer.getDocument().set("");
-			} else {
-				viewer.getDocument().set(split[1]);
-			}
-			for (int i = 0; i < text.getLineCount(); i++) {
-				text.setLineBullet(i, 1, null);
-			}
+		});
+		txt = value.toString();
 
-		} catch (RuntimeException e) {
-			viewer.getDocument().set(txt);
+		StringTokenizer stringTokenizer = new StringTokenizer(txt, ",");
+		while (stringTokenizer.hasMoreElements()) {
+			String nextElement = (String) stringTokenizer.nextElement();
+			if (nextElement.equals(";")) {
+				break;
+			} else {
+				bulletedLines.add(Integer.parseInt(nextElement));
+			}
+		}
+		String[] split = txt.split("%BEGINNTEXT%");
+		if (split.length == 1) {
+			viewer.getDocument().set("");
+		} else {
+			viewer.getDocument().set(split[1]);
+		}
+		for (int i = 0; i < text.getLineCount(); i++) {
+			text.setLineBullet(i, 1, null);
 		}
 		for (Integer line : bulletedLines) {
 			bullet(line, 1);
@@ -238,6 +268,14 @@ public class MERichTextControl extends AbstractMEControl {
 
 	}
 
+	/**
+	 * Adds bullets.
+	 * 
+	 * @param line
+	 *            The start line
+	 * @param count
+	 *            The number of lines
+	 */
 	protected void bullet(int line, int count) {
 
 		StyleRange style0 = new StyleRange();
