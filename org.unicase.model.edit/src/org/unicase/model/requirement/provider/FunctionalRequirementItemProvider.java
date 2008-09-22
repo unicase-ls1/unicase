@@ -232,6 +232,7 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * @generated NOT
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getText(Object object) {

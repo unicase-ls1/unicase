@@ -18,7 +18,6 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrganizationPackage;
 
 /**
@@ -88,6 +87,7 @@ public class GroupItemProvider extends OrgUnitItemProvider implements
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * {@inheritDoc}
 	 * @generated NOT
 	 */
 	@Override
