@@ -8,9 +8,7 @@ package org.unicase.model.impl;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -31,7 +29,8 @@ import org.unicase.model.util.ProjectChangeNotifier;
 import org.unicase.model.util.ProjectChangeObserver;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
+ * <!-- begin-user-doc --> An implementation of the model object. '
+ * @implements ProjectChangeObserver
  * <em><b>Project</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -120,10 +119,11 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 			return list;
 		}
 
-		for (ModelElementId modelElementId: getModelElementsFromCache().keySet()) {
+		for (ModelElementId modelElementId : getModelElementsFromCache()
+				.keySet()) {
 			ModelElement modelElement = this.getModelElement(modelElementId);
 			if (modelElementClass.isInstance(modelElement)) {
-					list.add((T) modelElement);
+				list.add((T) modelElement);
 			}
 		}
 
@@ -238,27 +238,29 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 	public boolean contains(ModelElement modelElement) {
 		return contains(modelElement.getModelElementId());
 	}
-	
+
 	private Map<ModelElementId, ModelElement> getModelElementsFromCache() {
-		if (modelElementCache==null) {
+		if (modelElementCache == null) {
 			//init cache
 			modelElementCache = new HashMap<ModelElementId, ModelElement>();
 			TreeIterator<EObject> allContents = this.eAllContents();
 			while (allContents.hasNext()) {
 				EObject next = allContents.next();
 				if (ModelPackage.eINSTANCE.getModelElement().isInstance(next)) {
-					ModelElement modelElement = (ModelElement)next;
-					modelElementCache.put(modelElement.getModelElementId(), modelElement);
+					ModelElement modelElement = (ModelElement) next;
+					modelElementCache.put(modelElement.getModelElementId(),
+							modelElement);
 				}
 			}
 			//init cache update
 			new ProjectChangeNotifier(this, this);
 		}
-		return modelElementCache;		
+		return modelElementCache;
 	}
 
 	public void modelElementAdded(Project project, ModelElement modelElement) {
-		this.modelElementCache.put(modelElement.getModelElementId(), modelElement);
+		this.modelElementCache.put(modelElement.getModelElementId(),
+				modelElement);
 	}
 
 	public void notify(Notification notification, Project project,
