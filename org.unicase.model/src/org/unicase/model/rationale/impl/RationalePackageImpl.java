@@ -280,14 +280,6 @@ public class RationalePackageImpl extends EPackageImpl implements
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIssue_Participants() {
-		return (EReference) issueEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getProposal() {
 		return proposalEClass;
 	}
@@ -430,7 +422,6 @@ public class RationalePackageImpl extends EPackageImpl implements
 		createEReference(issueEClass, ISSUE__REFINING_ISSUES);
 		createEReference(issueEClass, ISSUE__REFINED_ISSUE);
 		createEReference(issueEClass, ISSUE__FACILITATOR);
-		createEReference(issueEClass, ISSUE__PARTICIPANTS);
 
 		proposalEClass = createEClass(PROPOSAL);
 		createEReference(proposalEClass, PROPOSAL__ASSESSMENTS);
@@ -490,7 +481,7 @@ public class RationalePackageImpl extends EPackageImpl implements
 		// Add supertypes to classes
 		issueEClass.getESuperTypes().add(theModelPackage.getAnnotation());
 		issueEClass.getESuperTypes().add(theTaskPackage.getCheckable());
-		issueEClass.getESuperTypes().add(theTaskPackage.getAssignable());
+		issueEClass.getESuperTypes().add(theTaskPackage.getWorkItem());
 		proposalEClass.getESuperTypes().add(theModelPackage.getModelElement());
 		solutionEClass.getESuperTypes().add(theModelPackage.getModelElement());
 		criterionEClass.getESuperTypes().add(theModelPackage.getModelElement());
@@ -541,13 +532,6 @@ public class RationalePackageImpl extends EPackageImpl implements
 				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 		getIssue_Facilitator().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getIssue_Participants(), theOrganizationPackage
-				.getOrgUnit(), null, "participants", null, 0, -1, Issue.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		getIssue_Participants().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(proposalEClass, Proposal.class, "Proposal", !IS_ABSTRACT,

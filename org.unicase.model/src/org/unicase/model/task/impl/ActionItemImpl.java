@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.change.ModelChangePackage;
 import org.unicase.model.impl.AnnotationImpl;
 import org.unicase.model.organization.OrgUnit;
+import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.ActivityType;
@@ -41,8 +42,9 @@ import org.unicase.model.task.WorkPackage;
  *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getAssociatedChangePackages <em>Associated Change Packages</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getPredecessors <em>Predecessors</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getSuccessors <em>Successors</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#isChecked <em>Checked</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getAssignee <em>Assignee</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getParticipants <em>Participants</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#isChecked <em>Checked</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#isDone <em>Done</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getAssignedTo <em>Assigned To</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getDueDate <em>Due Date</em>}</li>
@@ -81,6 +83,26 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	 * @ordered
 	 */
 	protected EList<WorkItem> successors;
+
+	/**
+	 * The cached value of the '{@link #getAssignee() <em>Assignee</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAssignee()
+	 * @generated
+	 * @ordered
+	 */
+	protected OrgUnit assignee;
+
+	/**
+	 * The cached value of the '{@link #getParticipants() <em>Participants</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getParticipants()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<OrgUnit> participants;
 
 	/**
 	 * The default value of the '{@link #isChecked() <em>Checked</em>}' attribute.
@@ -289,6 +311,25 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 		return successors;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OrgUnit getAssignee() {
+		if (assignee != null && assignee.eIsProxy()) {
+			InternalEObject oldAssignee = (InternalEObject) assignee;
+			assignee = (OrgUnit) eResolveProxy(oldAssignee);
+			if (assignee != oldAssignee) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							TaskPackage.ACTION_ITEM__ASSIGNEE, oldAssignee,
+							assignee));
+			}
+		}
+		return assignee;
+	}
+
 	// begin of custom code
 	/**
 	 * <!-- begin-user-doc -->
@@ -309,16 +350,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	 */
 	public void setChecked(boolean newChecked) {
 		setDone(newChecked);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OrgUnit getAssignee() {
-		OrgUnit assignee = basicGetAssignee();
-		return assignee != null && assignee.eIsProxy() ? (OrgUnit) eResolveProxy((InternalEObject) assignee)
-				: assignee;
 	}
 
 	/**
@@ -348,6 +379,27 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetAssignee(OrgUnit newAssignee,
+			NotificationChain msgs) {
+		OrgUnit oldAssignee = assignee;
+		assignee = newAssignee;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET, TaskPackage.ACTION_ITEM__ASSIGNEE,
+					oldAssignee, newAssignee);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -362,6 +414,20 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 						getAssignedTo()));
 			}
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<OrgUnit> getParticipants() {
+		if (participants == null) {
+			participants = new EObjectWithInverseResolvingEList.ManyInverse<OrgUnit>(
+					OrgUnit.class, this, TaskPackage.ACTION_ITEM__PARTICIPANTS,
+					OrganizationPackage.ORG_UNIT__PARTICIPATIONS);
+		}
+		return participants;
 	}
 
 	// end of custom code
@@ -477,6 +543,15 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 		case TaskPackage.ACTION_ITEM__SUCCESSORS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSuccessors())
 					.basicAdd(otherEnd, msgs);
+		case TaskPackage.ACTION_ITEM__ASSIGNEE:
+			if (assignee != null)
+				msgs = ((InternalEObject) assignee).eInverseRemove(this,
+						OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
+						OrgUnit.class, msgs);
+			return basicSetAssignee((OrgUnit) otherEnd, msgs);
+		case TaskPackage.ACTION_ITEM__PARTICIPANTS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipants())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -496,6 +571,11 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 					msgs);
 		case TaskPackage.ACTION_ITEM__SUCCESSORS:
 			return ((InternalEList<?>) getSuccessors()).basicRemove(otherEnd,
+					msgs);
+		case TaskPackage.ACTION_ITEM__ASSIGNEE:
+			return basicSetAssignee(null, msgs);
+		case TaskPackage.ACTION_ITEM__PARTICIPANTS:
+			return ((InternalEList<?>) getParticipants()).basicRemove(otherEnd,
 					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -534,12 +614,14 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 			return getPredecessors();
 		case TaskPackage.ACTION_ITEM__SUCCESSORS:
 			return getSuccessors();
-		case TaskPackage.ACTION_ITEM__CHECKED:
-			return isChecked() ? Boolean.TRUE : Boolean.FALSE;
 		case TaskPackage.ACTION_ITEM__ASSIGNEE:
 			if (resolve)
 				return getAssignee();
 			return basicGetAssignee();
+		case TaskPackage.ACTION_ITEM__PARTICIPANTS:
+			return getParticipants();
+		case TaskPackage.ACTION_ITEM__CHECKED:
+			return isChecked() ? Boolean.TRUE : Boolean.FALSE;
 		case TaskPackage.ACTION_ITEM__DONE:
 			return isDone() ? Boolean.TRUE : Boolean.FALSE;
 		case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
@@ -578,11 +660,15 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 			getSuccessors().clear();
 			getSuccessors().addAll((Collection<? extends WorkItem>) newValue);
 			return;
-		case TaskPackage.ACTION_ITEM__CHECKED:
-			setChecked(((Boolean) newValue).booleanValue());
-			return;
 		case TaskPackage.ACTION_ITEM__ASSIGNEE:
 			setAssignee((OrgUnit) newValue);
+			return;
+		case TaskPackage.ACTION_ITEM__PARTICIPANTS:
+			getParticipants().clear();
+			getParticipants().addAll((Collection<? extends OrgUnit>) newValue);
+			return;
+		case TaskPackage.ACTION_ITEM__CHECKED:
+			setChecked(((Boolean) newValue).booleanValue());
 			return;
 		case TaskPackage.ACTION_ITEM__DONE:
 			setDone(((Boolean) newValue).booleanValue());
@@ -623,11 +709,14 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 		case TaskPackage.ACTION_ITEM__SUCCESSORS:
 			getSuccessors().clear();
 			return;
-		case TaskPackage.ACTION_ITEM__CHECKED:
-			setChecked(CHECKED_EDEFAULT);
-			return;
 		case TaskPackage.ACTION_ITEM__ASSIGNEE:
 			setAssignee((OrgUnit) null);
+			return;
+		case TaskPackage.ACTION_ITEM__PARTICIPANTS:
+			getParticipants().clear();
+			return;
+		case TaskPackage.ACTION_ITEM__CHECKED:
+			setChecked(CHECKED_EDEFAULT);
 			return;
 		case TaskPackage.ACTION_ITEM__DONE:
 			setDone(DONE_EDEFAULT);
@@ -664,10 +753,12 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 			return predecessors != null && !predecessors.isEmpty();
 		case TaskPackage.ACTION_ITEM__SUCCESSORS:
 			return successors != null && !successors.isEmpty();
+		case TaskPackage.ACTION_ITEM__ASSIGNEE:
+			return assignee != null;
+		case TaskPackage.ACTION_ITEM__PARTICIPANTS:
+			return participants != null && !participants.isEmpty();
 		case TaskPackage.ACTION_ITEM__CHECKED:
 			return isChecked() != CHECKED_EDEFAULT;
-		case TaskPackage.ACTION_ITEM__ASSIGNEE:
-			return basicGetAssignee() != null;
 		case TaskPackage.ACTION_ITEM__DONE:
 			return done != DONE_EDEFAULT;
 		case TaskPackage.ACTION_ITEM__ASSIGNED_TO:
@@ -697,14 +788,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 				return -1;
 			}
 		}
-		if (baseClass == Assignable.class) {
-			switch (derivedFeatureID) {
-			case TaskPackage.ACTION_ITEM__ASSIGNEE:
-				return TaskPackage.ASSIGNABLE__ASSIGNEE;
-			default:
-				return -1;
-			}
-		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
@@ -718,14 +801,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 			switch (baseFeatureID) {
 			case TaskPackage.CHECKABLE__CHECKED:
 				return TaskPackage.ACTION_ITEM__CHECKED;
-			default:
-				return -1;
-			}
-		}
-		if (baseClass == Assignable.class) {
-			switch (baseFeatureID) {
-			case TaskPackage.ASSIGNABLE__ASSIGNEE:
-				return TaskPackage.ACTION_ITEM__ASSIGNEE;
 			default:
 				return -1;
 			}

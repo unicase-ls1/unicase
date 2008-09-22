@@ -12,6 +12,7 @@ import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.Assignable;
 import org.unicase.model.task.Checkable;
+import org.unicase.model.task.WorkItem;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '
@@ -26,7 +27,6 @@ import org.unicase.model.task.Checkable;
  *   <li>{@link org.unicase.model.rationale.Issue#getRefiningIssues <em>Refining Issues</em>}</li>
  *   <li>{@link org.unicase.model.rationale.Issue#getRefinedIssue <em>Refined Issue</em>}</li>
  *   <li>{@link org.unicase.model.rationale.Issue#getFacilitator <em>Facilitator</em>}</li>
- *   <li>{@link org.unicase.model.rationale.Issue#getParticipants <em>Participants</em>}</li>
  * </ul>
  * </p>
  *
@@ -34,7 +34,7 @@ import org.unicase.model.task.Checkable;
  * @model
  * @generated
  */
-public interface Issue extends Annotation, Checkable, Assignable {
+public interface Issue extends Annotation, Checkable, WorkItem {
 	/**
 	 * Returns the value of the '<em><b>Proposals</b></em>' containment reference list.
 	 * The list contents are of type {@link org.unicase.model.rationale.Proposal}.
@@ -168,21 +168,5 @@ public interface Issue extends Annotation, Checkable, Assignable {
 	 * @generated
 	 */
 	void setFacilitator(User value);
-
-	/**
-	 * Returns the value of the '<em><b>Participants</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.organization.OrgUnit}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Participants</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Participants</em>' reference list.
-	 * @see org.unicase.model.rationale.RationalePackage#getIssue_Participants()
-	 * @model keys="identifier"
-	 * @generated
-	 */
-	EList<OrgUnit> getParticipants();
 
 } // Issue

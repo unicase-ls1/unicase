@@ -61,6 +61,7 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 			addPredecessorsPropertyDescriptor(object);
 			addSuccessorsPropertyDescriptor(object);
 			addAssigneePropertyDescriptor(object);
+			addParticipantsPropertyDescriptor(object);
 			addStepsToReproducePropertyDescriptor(object);
 			addStatusPropertyDescriptor(object);
 			addAssignedToPropertyDescriptor(object);
@@ -135,12 +136,29 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
 						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Assignable_assignee_feature"), getString(
+				getString("_UI_WorkItem_assignee_feature"), getString(
 						"_UI_PropertyDescriptor_description",
-						"_UI_Assignable_assignee_feature",
-						"_UI_Assignable_type"),
-				TaskPackage.Literals.ASSIGNABLE__ASSIGNEE, true, false, true,
+						"_UI_WorkItem_assignee_feature", "_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__ASSIGNEE, true, false, true,
 				null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Participants feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addParticipantsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkItem_participants_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_WorkItem_participants_feature",
+						"_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__PARTICIPANTS, true, false,
+				true, null, null, null));
 	}
 
 	/**

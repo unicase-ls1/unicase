@@ -22,6 +22,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.change.ModelChangePackage;
 import org.unicase.model.impl.AnnotationImpl;
+import org.unicase.model.organization.OrgUnit;
+import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
@@ -36,6 +38,8 @@ import org.unicase.model.task.WorkPackage;
  *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getAssociatedChangePackages <em>Associated Change Packages</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getPredecessors <em>Predecessors</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getSuccessors <em>Successors</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getAssignee <em>Assignee</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getParticipants <em>Participants</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getContainedWorkItems <em>Contained Work Items</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getStartDate <em>Start Date</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getEndDate <em>End Date</em>}</li>
@@ -73,6 +77,24 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	 */
 	protected EList<WorkItem> successors;
 	/**
+	 * The cached value of the '{@link #getAssignee() <em>Assignee</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAssignee()
+	 * @generated
+	 * @ordered
+	 */
+	protected OrgUnit assignee;
+	/**
+	 * The cached value of the '{@link #getParticipants() <em>Participants</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getParticipants()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<OrgUnit> participants;
+	/**
 	 * The cached value of the '{@link #getContainedWorkItems() <em>Contained Work Items</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -81,7 +103,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	 * @ordered
 	 */
 	protected EList<WorkItem> containedWorkItems;
-
 	/**
 	 * The default value of the '{@link #getStartDate() <em>Start Date</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -306,6 +327,95 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public OrgUnit getAssignee() {
+		if (assignee != null && assignee.eIsProxy()) {
+			InternalEObject oldAssignee = (InternalEObject) assignee;
+			assignee = (OrgUnit) eResolveProxy(oldAssignee);
+			if (assignee != oldAssignee) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							TaskPackage.WORK_PACKAGE__ASSIGNEE, oldAssignee,
+							assignee));
+			}
+		}
+		return assignee;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OrgUnit basicGetAssignee() {
+		return assignee;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetAssignee(OrgUnit newAssignee,
+			NotificationChain msgs) {
+		OrgUnit oldAssignee = assignee;
+		assignee = newAssignee;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET, TaskPackage.WORK_PACKAGE__ASSIGNEE,
+					oldAssignee, newAssignee);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAssignee(OrgUnit newAssignee) {
+		if (newAssignee != assignee) {
+			NotificationChain msgs = null;
+			if (assignee != null)
+				msgs = ((InternalEObject) assignee).eInverseRemove(this,
+						OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
+						OrgUnit.class, msgs);
+			if (newAssignee != null)
+				msgs = ((InternalEObject) newAssignee).eInverseAdd(this,
+						OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
+						OrgUnit.class, msgs);
+			msgs = basicSetAssignee(newAssignee, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					TaskPackage.WORK_PACKAGE__ASSIGNEE, newAssignee,
+					newAssignee));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<OrgUnit> getParticipants() {
+		if (participants == null) {
+			participants = new EObjectWithInverseResolvingEList.ManyInverse<OrgUnit>(
+					OrgUnit.class, this,
+					TaskPackage.WORK_PACKAGE__PARTICIPANTS,
+					OrganizationPackage.ORG_UNIT__PARTICIPATIONS);
+		}
+		return participants;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
@@ -320,6 +430,15 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 					.basicAdd(otherEnd, msgs);
 		case TaskPackage.WORK_PACKAGE__SUCCESSORS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSuccessors())
+					.basicAdd(otherEnd, msgs);
+		case TaskPackage.WORK_PACKAGE__ASSIGNEE:
+			if (assignee != null)
+				msgs = ((InternalEObject) assignee).eInverseRemove(this,
+						OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
+						OrgUnit.class, msgs);
+			return basicSetAssignee((OrgUnit) otherEnd, msgs);
+		case TaskPackage.WORK_PACKAGE__PARTICIPANTS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipants())
 					.basicAdd(otherEnd, msgs);
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getContainedWorkItems())
@@ -344,6 +463,11 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 					msgs);
 		case TaskPackage.WORK_PACKAGE__SUCCESSORS:
 			return ((InternalEList<?>) getSuccessors()).basicRemove(otherEnd,
+					msgs);
+		case TaskPackage.WORK_PACKAGE__ASSIGNEE:
+			return basicSetAssignee(null, msgs);
+		case TaskPackage.WORK_PACKAGE__PARTICIPANTS:
+			return ((InternalEList<?>) getParticipants()).basicRemove(otherEnd,
 					msgs);
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
 			return ((InternalEList<?>) getContainedWorkItems()).basicRemove(
@@ -386,6 +510,12 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 			return getPredecessors();
 		case TaskPackage.WORK_PACKAGE__SUCCESSORS:
 			return getSuccessors();
+		case TaskPackage.WORK_PACKAGE__ASSIGNEE:
+			if (resolve)
+				return getAssignee();
+			return basicGetAssignee();
+		case TaskPackage.WORK_PACKAGE__PARTICIPANTS:
+			return getParticipants();
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
 			return getContainedWorkItems();
 		case TaskPackage.WORK_PACKAGE__START_DATE:
@@ -419,6 +549,13 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 		case TaskPackage.WORK_PACKAGE__SUCCESSORS:
 			getSuccessors().clear();
 			getSuccessors().addAll((Collection<? extends WorkItem>) newValue);
+			return;
+		case TaskPackage.WORK_PACKAGE__ASSIGNEE:
+			setAssignee((OrgUnit) newValue);
+			return;
+		case TaskPackage.WORK_PACKAGE__PARTICIPANTS:
+			getParticipants().clear();
+			getParticipants().addAll((Collection<? extends OrgUnit>) newValue);
 			return;
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
 			getContainedWorkItems().clear();
@@ -454,6 +591,12 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 		case TaskPackage.WORK_PACKAGE__SUCCESSORS:
 			getSuccessors().clear();
 			return;
+		case TaskPackage.WORK_PACKAGE__ASSIGNEE:
+			setAssignee((OrgUnit) null);
+			return;
+		case TaskPackage.WORK_PACKAGE__PARTICIPANTS:
+			getParticipants().clear();
+			return;
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
 			getContainedWorkItems().clear();
 			return;
@@ -483,6 +626,10 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 			return predecessors != null && !predecessors.isEmpty();
 		case TaskPackage.WORK_PACKAGE__SUCCESSORS:
 			return successors != null && !successors.isEmpty();
+		case TaskPackage.WORK_PACKAGE__ASSIGNEE:
+			return assignee != null;
+		case TaskPackage.WORK_PACKAGE__PARTICIPANTS:
+			return participants != null && !participants.isEmpty();
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
 			return containedWorkItems != null && !containedWorkItems.isEmpty();
 		case TaskPackage.WORK_PACKAGE__START_DATE:

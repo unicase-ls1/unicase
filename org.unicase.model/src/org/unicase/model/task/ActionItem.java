@@ -30,7 +30,7 @@ import org.unicase.model.organization.User;
  * @model
  * @generated
  */
-public interface ActionItem extends WorkItem, Checkable, Assignable {
+public interface ActionItem extends WorkItem, Checkable {
 	/**
 	 * Returns the value of the '<em><b>Assigned To</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.model.organization.User}.

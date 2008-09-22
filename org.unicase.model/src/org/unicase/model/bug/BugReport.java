@@ -31,7 +31,7 @@ import org.unicase.model.task.WorkItem;
  * @model
  * @generated
  */
-public interface BugReport extends WorkItem, Assignable {
+public interface BugReport extends WorkItem {
 	/**
 	 * Returns the value of the '<em><b>Steps To Reproduce</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.model.requirement.Step}.

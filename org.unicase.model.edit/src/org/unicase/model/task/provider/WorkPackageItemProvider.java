@@ -22,8 +22,10 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.model.bug.BugFactory;
+import org.unicase.model.change.ChangeFactory;
 import org.unicase.model.provider.AnnotationItemProvider;
 import org.unicase.model.provider.ModelEditPlugin;
+import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkPackage;
@@ -61,6 +63,8 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 			addContainingWorkpackagePropertyDescriptor(object);
 			addPredecessorsPropertyDescriptor(object);
 			addSuccessorsPropertyDescriptor(object);
+			addAssigneePropertyDescriptor(object);
+			addParticipantsPropertyDescriptor(object);
 			addContainedWorkItemsPropertyDescriptor(object);
 			addStartDatePropertyDescriptor(object);
 			addEndDatePropertyDescriptor(object);
@@ -178,6 +182,41 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 	}
 
 	/**
+	 * This adds a property descriptor for the Assignee feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAssigneePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkItem_assignee_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_WorkItem_assignee_feature", "_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__ASSIGNEE, true, false, true,
+				null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Participants feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addParticipantsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkItem_participants_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_WorkItem_participants_feature",
+						"_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__PARTICIPANTS, true, false,
+				true, null, null, null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -276,6 +315,14 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
 				TaskFactory.eINSTANCE.createWorkPackage()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
+				RationaleFactory.eINSTANCE.createIssue()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
+				ChangeFactory.eINSTANCE.createMergingIssue()));
 
 		newChildDescriptors.add(createChildParameter(
 				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS,

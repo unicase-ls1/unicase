@@ -94,13 +94,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass assignableEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EEnum activityTypeEEnum = null;
 
 	/**
@@ -370,6 +363,24 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getWorkItem_Assignee() {
+		return (EReference) workItemEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getWorkItem_Participants() {
+		return (EReference) workItemEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getMeeting() {
 		return meetingEClass;
 	}
@@ -496,24 +507,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAssignable() {
-		return assignableEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getAssignable_Assignee() {
-		return (EReference) assignableEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EEnum getActivityType() {
 		return activityTypeEEnum;
 	}
@@ -562,6 +555,8 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		createEReference(workItemEClass, WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES);
 		createEReference(workItemEClass, WORK_ITEM__PREDECESSORS);
 		createEReference(workItemEClass, WORK_ITEM__SUCCESSORS);
+		createEReference(workItemEClass, WORK_ITEM__ASSIGNEE);
+		createEReference(workItemEClass, WORK_ITEM__PARTICIPANTS);
 
 		meetingEClass = createEClass(MEETING);
 		createEAttribute(meetingEClass, MEETING__LOCATION);
@@ -579,9 +574,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 		checkableEClass = createEClass(CHECKABLE);
 		createEAttribute(checkableEClass, CHECKABLE__CHECKED);
-
-		assignableEClass = createEClass(ASSIGNABLE);
-		createEReference(assignableEClass, ASSIGNABLE__ASSIGNEE);
 
 		// Create enums
 		activityTypeEEnum = createEEnum(ACTIVITY_TYPE);
@@ -629,7 +621,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		// Add supertypes to classes
 		actionItemEClass.getESuperTypes().add(this.getWorkItem());
 		actionItemEClass.getESuperTypes().add(this.getCheckable());
-		actionItemEClass.getESuperTypes().add(this.getAssignable());
 		workPackageEClass.getESuperTypes().add(this.getWorkItem());
 		workItemEClass.getESuperTypes().add(theModelPackage.getAnnotation());
 		meetingEClass.getESuperTypes().add(theModelPackage.getModelElement());
@@ -711,6 +702,21 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 				!IS_DERIVED, IS_ORDERED);
 		getWorkItem_Successors().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getWorkItem_Assignee(), theOrganizationPackage
+				.getOrgUnit(), theOrganizationPackage.getOrgUnit_Assignments(),
+				"assignee", null, 0, 1, WorkItem.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getWorkItem_Assignee().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getWorkItem_Participants(), theOrganizationPackage
+				.getOrgUnit(), theOrganizationPackage
+				.getOrgUnit_Participations(), "participants", null, 0, -1,
+				WorkItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		getWorkItem_Participants().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(meetingEClass, Meeting.class, "Meeting", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -781,16 +787,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 				"checked", null, 0, 1, Checkable.class, IS_TRANSIENT,
 				IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				IS_DERIVED, IS_ORDERED);
-
-		initEClass(assignableEClass, Assignable.class, "Assignable",
-				IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAssignable_Assignee(), theOrganizationPackage
-				.getOrgUnit(), null, "assignee", null, 0, 1, Assignable.class,
-				IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED,
-				IS_ORDERED);
-		getAssignable_Assignee().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
 
 		// Initialize enums and add enum literals
 		initEEnum(activityTypeEEnum, ActivityType.class, "ActivityType");

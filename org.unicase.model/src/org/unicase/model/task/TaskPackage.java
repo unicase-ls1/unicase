@@ -214,13 +214,31 @@ public interface TaskPackage extends EPackage {
 	int WORK_ITEM__SUCCESSORS = ModelPackage.ANNOTATION_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Assignee</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM__ASSIGNEE = ModelPackage.ANNOTATION_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Participants</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM__PARTICIPANTS = ModelPackage.ANNOTATION_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Work Item</em>' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_ITEM_FEATURE_COUNT = ModelPackage.ANNOTATION_FEATURE_COUNT + 4;
+	int WORK_ITEM_FEATURE_COUNT = ModelPackage.ANNOTATION_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.task.impl.ActionItemImpl <em>Action Item</em>}' class.
@@ -379,6 +397,24 @@ public interface TaskPackage extends EPackage {
 	int ACTION_ITEM__SUCCESSORS = WORK_ITEM__SUCCESSORS;
 
 	/**
+	 * The feature id for the '<em><b>Assignee</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_ITEM__ASSIGNEE = WORK_ITEM__ASSIGNEE;
+
+	/**
+	 * The feature id for the '<em><b>Participants</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_ITEM__PARTICIPANTS = WORK_ITEM__PARTICIPANTS;
+
+	/**
 	 * The feature id for the '<em><b>Checked</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -388,22 +424,13 @@ public interface TaskPackage extends EPackage {
 	int ACTION_ITEM__CHECKED = WORK_ITEM_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Assignee</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTION_ITEM__ASSIGNEE = WORK_ITEM_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Done</b></em>' attribute. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM__DONE = WORK_ITEM_FEATURE_COUNT + 2;
+	int ACTION_ITEM__DONE = WORK_ITEM_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Assigned To</b></em>' reference list. <!--
@@ -412,7 +439,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM__ASSIGNED_TO = WORK_ITEM_FEATURE_COUNT + 3;
+	int ACTION_ITEM__ASSIGNED_TO = WORK_ITEM_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Due Date</b></em>' attribute. <!--
@@ -421,7 +448,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM__DUE_DATE = WORK_ITEM_FEATURE_COUNT + 4;
+	int ACTION_ITEM__DUE_DATE = WORK_ITEM_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Estimate</b></em>' attribute. <!--
@@ -430,7 +457,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM__ESTIMATE = WORK_ITEM_FEATURE_COUNT + 5;
+	int ACTION_ITEM__ESTIMATE = WORK_ITEM_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Activity</b></em>' attribute.
@@ -439,7 +466,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM__ACTIVITY = WORK_ITEM_FEATURE_COUNT + 6;
+	int ACTION_ITEM__ACTIVITY = WORK_ITEM_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Action Item</em>' class.
@@ -447,7 +474,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM_FEATURE_COUNT = WORK_ITEM_FEATURE_COUNT + 7;
+	int ACTION_ITEM_FEATURE_COUNT = WORK_ITEM_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.task.impl.WorkPackageImpl <em>Work Package</em>}' class.
@@ -607,6 +634,24 @@ public interface TaskPackage extends EPackage {
 	 * @ordered
 	 */
 	int WORK_PACKAGE__SUCCESSORS = WORK_ITEM__SUCCESSORS;
+
+	/**
+	 * The feature id for the '<em><b>Assignee</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE__ASSIGNEE = WORK_ITEM__ASSIGNEE;
+
+	/**
+	 * The feature id for the '<em><b>Participants</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE__PARTICIPANTS = WORK_ITEM__PARTICIPANTS;
 
 	/**
 	 * The feature id for the '<em><b>Contained Work Items</b></em>' containment reference list.
@@ -1016,34 +1061,6 @@ public interface TaskPackage extends EPackage {
 	int CHECKABLE_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.model.task.Assignable <em>Assignable</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.unicase.model.task.Assignable
-	 * @see org.unicase.model.task.impl.TaskPackageImpl#getAssignable()
-	 * @generated
-	 */
-	int ASSIGNABLE = 6;
-
-	/**
-	 * The feature id for the '<em><b>Assignee</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSIGNABLE__ASSIGNEE = 0;
-
-	/**
-	 * The number of structural features of the '<em>Assignable</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSIGNABLE_FEATURE_COUNT = 1;
-
-	/**
 	 * The meta object id for the '{@link org.unicase.model.task.ActivityType <em>Activity Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1051,7 +1068,7 @@ public interface TaskPackage extends EPackage {
 	 * @see org.unicase.model.task.impl.TaskPackageImpl#getActivityType()
 	 * @generated
 	 */
-	int ACTIVITY_TYPE = 7;
+	int ACTIVITY_TYPE = 6;
 
 	/**
 	 * Returns the meta object for class '
@@ -1217,6 +1234,28 @@ public interface TaskPackage extends EPackage {
 	EReference getWorkItem_Successors();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.unicase.model.task.WorkItem#getAssignee <em>Assignee</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Assignee</em>'.
+	 * @see org.unicase.model.task.WorkItem#getAssignee()
+	 * @see #getWorkItem()
+	 * @generated
+	 */
+	EReference getWorkItem_Assignee();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.task.WorkItem#getParticipants <em>Participants</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Participants</em>'.
+	 * @see org.unicase.model.task.WorkItem#getParticipants()
+	 * @see #getWorkItem()
+	 * @generated
+	 */
+	EReference getWorkItem_Participants();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.model.task.Meeting <em>Meeting</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1366,27 +1405,6 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getCheckable_Checked();
-
-	/**
-	 * Returns the meta object for class '{@link org.unicase.model.task.Assignable <em>Assignable</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Assignable</em>'.
-	 * @see org.unicase.model.task.Assignable
-	 * @generated
-	 */
-	EClass getAssignable();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.task.Assignable#getAssignee <em>Assignee</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Assignee</em>'.
-	 * @see org.unicase.model.task.Assignable#getAssignee()
-	 * @see #getAssignable()
-	 * @generated
-	 */
-	EReference getAssignable_Assignee();
 
 	/**
 	 * Returns the meta object for enum '{@link org.unicase.model.task.ActivityType <em>Activity Type</em>}'.
@@ -1546,6 +1564,23 @@ public interface TaskPackage extends EPackage {
 		EReference WORK_ITEM__SUCCESSORS = eINSTANCE.getWorkItem_Successors();
 
 		/**
+		 * The meta object literal for the '<em><b>Assignee</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference WORK_ITEM__ASSIGNEE = eINSTANCE.getWorkItem_Assignee();
+
+		/**
+		 * The meta object literal for the '<em><b>Participants</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference WORK_ITEM__PARTICIPANTS = eINSTANCE
+				.getWorkItem_Participants();
+
+		/**
 		 * The meta object literal for the '{@link org.unicase.model.task.impl.MeetingImpl <em>Meeting</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1666,24 +1701,6 @@ public interface TaskPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CHECKABLE__CHECKED = eINSTANCE.getCheckable_Checked();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.model.task.Assignable <em>Assignable</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.unicase.model.task.Assignable
-		 * @see org.unicase.model.task.impl.TaskPackageImpl#getAssignable()
-		 * @generated
-		 */
-		EClass ASSIGNABLE = eINSTANCE.getAssignable();
-
-		/**
-		 * The meta object literal for the '<em><b>Assignee</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ASSIGNABLE__ASSIGNEE = eINSTANCE.getAssignable_Assignee();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.task.ActivityType <em>Activity Type</em>}' enum.
