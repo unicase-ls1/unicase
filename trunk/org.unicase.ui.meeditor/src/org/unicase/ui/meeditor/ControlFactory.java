@@ -15,18 +15,14 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.unicase.model.requirement.Step;
 import org.unicase.ui.meeditor.mecontrols.MEBoolControl;
 import org.unicase.ui.meeditor.mecontrols.MEControl;
 import org.unicase.ui.meeditor.mecontrols.MEDateControl;
 import org.unicase.ui.meeditor.mecontrols.MEEnumControl;
-import org.unicase.ui.meeditor.mecontrols.MEHtmlControl;
 import org.unicase.ui.meeditor.mecontrols.MEIntControl;
-import org.unicase.ui.meeditor.mecontrols.MERichTextAreaControl;
 import org.unicase.ui.meeditor.mecontrols.MERichTextControl;
-import org.unicase.ui.meeditor.mecontrols.METextAreaControl;
 import org.unicase.ui.meeditor.mecontrols.METextControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEMultiLinkControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MESingleLinkControl;
@@ -72,24 +68,7 @@ public class ControlFactory {
 
 		EStructuralFeature feature = (EStructuralFeature) itemPropertyDescriptor.getFeature(modelElement);
 		if (feature instanceof EAttribute) {
-
-			if (itemPropertyDescriptor.isMultiLine(modelElement)) {
-//				return createMETextAreaControl((EAttribute) feature);
-				return createMERichTextControl((EAttribute) feature);
-			}
-			if (feature.getEType().getInstanceClass().equals(boolean.class)) {
-				return createMEBoolControl((EAttribute) feature);
-			}
-			if (feature.getEType().getInstanceClass().equals(int.class)) {
-				return createMEIntControl((EAttribute) feature);
-			}
-			if (feature.getEType().getInstanceClass().equals(Date.class)) {
-				return createMEDateControl((EAttribute) feature);
-			}
-			if (feature.getEType() instanceof EEnum) {
-				return createMEEnumControl((EAttribute) feature);
-			}
-			return createMETextControl((EAttribute) feature);
+			return createAttributeControl(itemPropertyDescriptor, feature);
 		}
 		
 		//Changed by Lars Borner
@@ -115,6 +94,27 @@ public class ControlFactory {
 
 		return null;
 		// TODO: Add other types
+	}
+
+	private MEControl createAttributeControl(
+			IItemPropertyDescriptor itemPropertyDescriptor,
+			EStructuralFeature feature) {
+		if (itemPropertyDescriptor.isMultiLine(modelElement)) {
+			return createMERichTextControl((EAttribute) feature);
+		}
+		if (feature.getEType().getInstanceClass().equals(boolean.class)) {
+			return createMEBoolControl((EAttribute) feature);
+		}
+		if (feature.getEType().getInstanceClass().equals(int.class)) {
+			return createMEIntControl((EAttribute) feature);
+		}
+		if (feature.getEType().getInstanceClass().equals(Date.class)) {
+			return createMEDateControl((EAttribute) feature);
+		}
+		if (feature.getEType() instanceof EEnum) {
+			return createMEEnumControl((EAttribute) feature);
+		}
+		return createMETextControl((EAttribute) feature);
 	}
 
 	private MEControl createMERichTextControl(EAttribute feature) {
@@ -143,15 +143,6 @@ public class ControlFactory {
 
 	}
 
-	private MEControl createMETextAreaControl(EAttribute attribute) {
-		return new METextAreaControl(attribute, toolkit, modelElement, editingDomain);
-	}
-	
-	private MEControl createMERichTextAreaControl(EAttribute attribute) {
-//		return new MERichTextAreaControl(attribute, toolkit, modelElement, editingDomain);
-		//return new METextAreaControl(attribute, toolkit, modelElement, editingDomain);
-		return new MEHtmlControl(attribute, toolkit, modelElement, editingDomain);
-	}
 
 	private MEControl createMETextControl(EAttribute attribute) {
 		return new METextControl(attribute, toolkit, modelElement, editingDomain);
