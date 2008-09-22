@@ -603,7 +603,7 @@ public class RationalePackageImpl extends EPackageImpl implements
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getComment_Replies(), this.getComment(), null,
 				"replies", null, 0, -1, Comment.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getComment_Replies().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());

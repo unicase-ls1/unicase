@@ -26,7 +26,7 @@ import org.unicase.model.Annotation;
  */
 public interface Comment extends Annotation {
 	/**
-	 * Returns the value of the '<em><b>Replies</b></em>' reference list.
+	 * Returns the value of the '<em><b>Replies</b></em>' containment reference list.
 	 * The list contents are of type {@link org.unicase.model.rationale.Comment}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -34,9 +34,9 @@ public interface Comment extends Annotation {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Replies</em>' reference list.
+	 * @return the value of the '<em>Replies</em>' containment reference list.
 	 * @see org.unicase.model.rationale.RationalePackage#getComment_Replies()
-	 * @model keys="identifier"
+	 * @model containment="true" resolveProxies="true" keys="identifier"
 	 * @generated
 	 */
 	EList<Comment> getReplies();
