@@ -30,7 +30,8 @@ import org.unicase.model.ModelPackage;
  *
  * @generated
  */
-public class AnnotationImpl extends ModelElementImpl implements Annotation {
+public abstract class AnnotationImpl extends ModelElementImpl implements
+		Annotation {
 	/**
 	 * The cached value of the '{@link #getAnnotatedModelElements() <em>Annotated Model Elements</em>}' reference list.
 	 * <!-- begin-user-doc
