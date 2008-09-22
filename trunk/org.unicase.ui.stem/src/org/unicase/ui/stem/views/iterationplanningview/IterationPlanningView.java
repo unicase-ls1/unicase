@@ -6,11 +6,17 @@
  */
 package org.unicase.ui.stem.views.iterationplanningview;
 
+import java.io.IOException;
+
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.IToolBarManager;
+import org.eclipse.jface.dialogs.DialogSettings;
 import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -22,6 +28,7 @@ import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Tree;
+import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
@@ -30,6 +37,7 @@ import org.unicase.model.Project;
 import org.unicase.ui.common.TreeViewerColumnSorter;
 import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.ui.common.dnd.UCDropAdapter;
+import org.unicase.ui.stem.Activator;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
@@ -46,11 +54,22 @@ public class IterationPlanningView extends ViewPart {
 	private TreeViewer viewer;
 	private WorkpackageContentProvider workpackageContentProvider;
 	private Project project;
+	private DialogSettings settings;
+	private String filename;
+	private Action filterToMyTeam;
 
 	/**
 	 * The constructor.
 	 */
 	public IterationPlanningView() {
+		IPath path = Activator.getDefault().getStateLocation();
+		filename = path.append("settings.txt").toOSString();
+		settings = new DialogSettings("Top");
+		try {
+			settings.load(filename);
+		} catch (IOException e) {
+			//Do nothing.
+		}
 	}
 
 	/**
@@ -62,7 +81,23 @@ public class IterationPlanningView extends ViewPart {
 		// Root nodes are WorkPackage and children are their WorkItems
 		// The tree has columns showing annotated model element and
 		// Assignee of a WorkItem
-		createTreeViwer(parent);
+		createTreeViewer(parent);
+
+		IActionBars bars = getViewSite().getActionBars();
+		IToolBarManager menuManager = bars.getToolBarManager();
+		filterToMyTeam = new Action("", SWT.TOGGLE) {
+
+			@Override
+			public void run() {
+				workpackageContentProvider.setTeamFilter(isChecked());
+			}
+
+		};
+		filterToMyTeam.setImageDescriptor(Activator
+				.getImageDescriptor("/icons/filtertomyteam.png"));
+		Boolean teamFilter=Boolean.parseBoolean(settings.get("TeamFilter"));
+		filterToMyTeam.setChecked(teamFilter);
+		menuManager.add(filterToMyTeam);
 
 		// Create the help context id for the viewer's control
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(viewer.getControl(),
@@ -98,7 +133,7 @@ public class IterationPlanningView extends ViewPart {
 
 	}
 
-	private void createTreeViwer(Composite parent) {
+	private void createTreeViewer(Composite parent) {
 		viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL
 				| SWT.FULL_SELECTION);
 		workpackageContentProvider = new WorkpackageContentProvider();
@@ -170,7 +205,7 @@ public class IterationPlanningView extends ViewPart {
 	}
 
 	/**
-	 * open WorkItem on double-click
+	 * open WorkItem on double-click.
 	 */
 	private void hookDoubleClickAction() {
 		viewer.addDoubleClickListener(new IDoubleClickListener() {
@@ -204,6 +239,20 @@ public class IterationPlanningView extends ViewPart {
 								.getEditingDomain("org.unicase.EditingDomain"),
 						viewer));
 
+	}
+
+	@Override
+	public void dispose() {
+
+		settings.put("TeamFilter",filterToMyTeam.isChecked());
+		try {
+			settings.save(filename);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		super.dispose();
 	}
 
 }
