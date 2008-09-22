@@ -27,6 +27,8 @@ import org.unicase.workspace.WorkspaceManager;
 public class WorkpackageContentProvider extends
 		TransactionalAdapterFactoryContentProvider {
 
+	boolean teamFilter = false;
+
 	/**
 	 * . Constructor
 	 */
@@ -48,13 +50,29 @@ public class WorkpackageContentProvider extends
 							.getWorkPackage(), new BasicEList<WorkPackage>());
 			for (WorkPackage workPackage : allModelElementsbyClass) {
 				if (workPackage.getContainingWorkpackage() == null) {
-
 					ret.add(workPackage);
 				}
 			}
 
+			if (teamFilter) {
+				filterByTeam(ret);
+			}
+
 		}
 		return ret.toArray();
+	}
+
+	private void filterByTeam(List<WorkPackage> ret) {
+		// JH. Activate after model reviewed
+		// List<WorkPackage> cache = new ArrayList<WorkPackage>();
+		// List<OrgUnit> team = new ArrayList<OrgUnit>();
+		// for(WorkPackage workPackage: ret){
+		// if(team.contains(workPackage.getAssignedto())){
+		// cache.add(workPackage);
+		// }
+		// }
+		//		
+		// ret=cache;
 	}
 
 	/**
@@ -73,6 +91,17 @@ public class WorkpackageContentProvider extends
 
 		return super.hasChildren(object);
 
+	}
+
+	/**
+	 * sets if the workpackages are filtered to the team of the current user.
+	 * 
+	 * @param checked
+	 *            If the filter is turned on
+	 */
+	public void setTeamFilter(boolean checked) {
+		teamFilter = checked;
+		viewer.refresh();
 	}
 
 }
