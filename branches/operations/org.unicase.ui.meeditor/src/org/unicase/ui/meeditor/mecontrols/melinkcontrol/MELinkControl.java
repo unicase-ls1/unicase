@@ -9,9 +9,9 @@ package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.jface.viewers.LabelProviderChangedEvent;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -29,12 +29,16 @@ import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
  * GUI Control for the ME reference links.
  * 
  * @author helming
+ * @author shterev
  */
 public class MELinkControl extends AbstractMEControl {
 
 	private Composite linkComposite;
 	private EObject contextModelElement;
 	private EReference reference;
+	private Hyperlink hyperlink;
+	private ILabelProvider labelProvider;
+	private ILabelProviderListener labelListener;
 
 	/**
 	 * Default constructor.
@@ -62,12 +66,22 @@ public class MELinkControl extends AbstractMEControl {
 	public Control createControl(Composite parent, int style) {
 		linkComposite = getToolkit().createComposite(parent, style);
 		linkComposite.setLayout(new GridLayout(3, false));
-		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(
-				new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		labelProvider = new MELinkLabelProvider();
+		labelListener = new ILabelProviderListener(){
+			public void labelProviderChanged(LabelProviderChangedEvent event) {
+				if(hyperlink==null){
+					//no hyperlink defined yet -> nothing to refresh
+					return;
+				}
+				hyperlink.setText(labelProvider.getText(getModelElement()));
+				linkComposite.layout();
+			}
+		};
+		labelProvider.addListener(labelListener);
 		Image image = labelProvider.getImage(getModelElement());
 		ImageHyperlink imageHyperlink = getToolkit().createImageHyperlink(linkComposite, style);
 		imageHyperlink.setImage(image);
-		Hyperlink hyperlink = getToolkit().createHyperlink(linkComposite, labelProvider.getText(getModelElement()), style);
+		hyperlink = getToolkit().createHyperlink(linkComposite, labelProvider.getText(getModelElement()), style);
 		IHyperlinkListener listener = new MEHyperLinkAdapter((ModelElement) getModelElement());
 		hyperlink.addHyperlinkListener(listener);
 		imageHyperlink.addHyperlinkListener(listener);
@@ -86,5 +100,6 @@ public class MELinkControl extends AbstractMEControl {
 		if (linkComposite!=null){
 			linkComposite.dispose();
 		}
+		labelProvider.removeListener(labelListener);
 	}
 }

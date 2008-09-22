@@ -19,6 +19,8 @@ import org.unicase.model.organization.User;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.unicase.model.organization.impl.UserImpl#getEmail <em>Email</em>}</li>
+ *   <li>{@link org.unicase.model.organization.impl.UserImpl#getFirstName <em>First Name</em>}</li>
+ *   <li>{@link org.unicase.model.organization.impl.UserImpl#getLastName <em>Last Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -43,6 +45,43 @@ public class UserImpl extends OrgUnitImpl implements User {
 	 * @ordered
 	 */
 	protected String email = EMAIL_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getFirstName() <em>First Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFirstName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String FIRST_NAME_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getFirstName() <em>First Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFirstName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String firstName = FIRST_NAME_EDEFAULT;
+	/**
+	 * The default value of the '{@link #getLastName() <em>Last Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLastName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String LAST_NAME_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getLastName() <em>Last Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLastName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String lastName = LAST_NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -88,11 +127,60 @@ public class UserImpl extends OrgUnitImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getFirstName() {
+		return firstName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFirstName(String newFirstName) {
+		String oldFirstName = firstName;
+		firstName = newFirstName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					OrganizationPackage.USER__FIRST_NAME, oldFirstName,
+					firstName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getLastName() {
+		return lastName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLastName(String newLastName) {
+		String oldLastName = lastName;
+		lastName = newLastName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					OrganizationPackage.USER__LAST_NAME, oldLastName, lastName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case OrganizationPackage.USER__EMAIL:
 			return getEmail();
+		case OrganizationPackage.USER__FIRST_NAME:
+			return getFirstName();
+		case OrganizationPackage.USER__LAST_NAME:
+			return getLastName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -107,6 +195,12 @@ public class UserImpl extends OrgUnitImpl implements User {
 		switch (featureID) {
 		case OrganizationPackage.USER__EMAIL:
 			setEmail((String) newValue);
+			return;
+		case OrganizationPackage.USER__FIRST_NAME:
+			setFirstName((String) newValue);
+			return;
+		case OrganizationPackage.USER__LAST_NAME:
+			setLastName((String) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -123,6 +217,12 @@ public class UserImpl extends OrgUnitImpl implements User {
 		case OrganizationPackage.USER__EMAIL:
 			setEmail(EMAIL_EDEFAULT);
 			return;
+		case OrganizationPackage.USER__FIRST_NAME:
+			setFirstName(FIRST_NAME_EDEFAULT);
+			return;
+		case OrganizationPackage.USER__LAST_NAME:
+			setLastName(LAST_NAME_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -138,6 +238,12 @@ public class UserImpl extends OrgUnitImpl implements User {
 		case OrganizationPackage.USER__EMAIL:
 			return EMAIL_EDEFAULT == null ? email != null : !EMAIL_EDEFAULT
 					.equals(email);
+		case OrganizationPackage.USER__FIRST_NAME:
+			return FIRST_NAME_EDEFAULT == null ? firstName != null
+					: !FIRST_NAME_EDEFAULT.equals(firstName);
+		case OrganizationPackage.USER__LAST_NAME:
+			return LAST_NAME_EDEFAULT == null ? lastName != null
+					: !LAST_NAME_EDEFAULT.equals(lastName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -155,6 +261,10 @@ public class UserImpl extends OrgUnitImpl implements User {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (email: ");
 		result.append(email);
+		result.append(", firstName: ");
+		result.append(firstName);
+		result.append(", lastName: ");
+		result.append(lastName);
 		result.append(')');
 		return result.toString();
 	}

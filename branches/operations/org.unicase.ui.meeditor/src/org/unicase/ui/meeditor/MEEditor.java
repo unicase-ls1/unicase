@@ -6,6 +6,9 @@
  */
 package org.unicase.ui.meeditor;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -37,7 +40,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 */
 	public static final String ID = "org.unicase.ui.meeditor";
 	
-	
+	private int titleLimit = 25;
 
 	private ModelElement modelElement;
 	private ComposedAdapterFactory adapterFactory;
@@ -48,7 +51,6 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 * Default constructor.
 	 */
 	public MEEditor() {
-
 	}
 	
 	
@@ -116,8 +118,8 @@ public class MEEditor extends SharedHeaderFormEditor {
 		super.init(site, input);
 		if (input instanceof MEEditorInput) {
 			setInput(input);
-			MEEditorInput meInput = (MEEditorInput) input;
-			setPartName(input.getName());
+			final MEEditorInput meInput = (MEEditorInput) input;
+			setPartName(getLimitedTitle(input.getName()));
 			setTitleImage(input.getImageDescriptor().createImage());
 
 			modelElement = meInput.getModelElement();
@@ -126,7 +128,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 				@Override
 				public void notifyChanged(Notification msg) {
 					if (msg.getFeature() instanceof EAttribute && ((EAttribute)msg.getFeature()).getName().equals("name")) {
-						setPartName(msg.getNewStringValue());
+						setPartName(getLimitedTitle(msg.getNewStringValue()));
 						if(form!=null){
 							form.getManagedForm().getForm().setText(msg.getNewStringValue());
 						}
@@ -134,8 +136,34 @@ public class MEEditor extends SharedHeaderFormEditor {
 					
 				}
 				
-			};
+			};			
 			this.modelElement.eAdapters().add(eAdapter);
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+			StringBuffer stringBuffer = new StringBuffer();
+			Date creationDate = modelElement.getCreationDate();
+			if(creationDate==null){
+				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+				domain.getCommandStack().execute(new RecordingCommand(domain) {
+					protected void doExecute() {
+						modelElement.setCreator("unicase");
+						modelElement.setCreationDate(new Date());
+					}
+				});
+			}
+			creationDate = modelElement.getCreationDate();
+			stringBuffer.append("Created: ");
+			stringBuffer.append(dateFormat.format(creationDate));
+			stringBuffer.append(" by ");
+			stringBuffer.append(modelElement.getCreator());
+			Date lastModifiedDate = modelElement.getLastModifiedDate();
+			if(lastModifiedDate!=null){
+				stringBuffer.append(" | ");
+				stringBuffer.append("Last modified: ");
+				stringBuffer.append(dateFormat.format(lastModifiedDate));
+				stringBuffer.append(" by ");
+				stringBuffer.append(modelElement.getLastModifier());
+			}
+			getEditorSite().getActionBars().getStatusLineManager().setMessage(stringBuffer.toString());
 		} else {
 			throw new PartInitException(
 					"MEEditor is only appliable for MEEditorInputs");
@@ -204,7 +232,11 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 	}
 	
-	
-
+	private String getLimitedTitle(String name){
+		if(name.length()>titleLimit){
+			name=name.substring(0, titleLimit).concat("...");
+		}
+		return name;
+	}
 
 }

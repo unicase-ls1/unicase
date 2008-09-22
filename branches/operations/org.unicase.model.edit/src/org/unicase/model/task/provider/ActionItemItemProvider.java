@@ -57,13 +57,12 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 			super.getPropertyDescriptors(object);
 
 			addContainingWorkpackagePropertyDescriptor(object);
-			addAssociatedChangePackagesPropertyDescriptor(object);
 			addPredecessorsPropertyDescriptor(object);
 			addSuccessorsPropertyDescriptor(object);
 			addAssigneePropertyDescriptor(object);
+			addDonePropertyDescriptor(object);
 			addAssignedToPropertyDescriptor(object);
 			addDueDatePropertyDescriptor(object);
-			addDonePropertyDescriptor(object);
 			addEstimatePropertyDescriptor(object);
 			addActivityPropertyDescriptor(object);
 		}
@@ -86,23 +85,6 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 						"_UI_WorkItem_type"),
 				TaskPackage.Literals.WORK_ITEM__CONTAINING_WORKPACKAGE, true,
 				false, false, null, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Associated Change Packages feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addAssociatedChangePackagesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_WorkItem_associatedChangePackages_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_WorkItem_associatedChangePackages_feature",
-						"_UI_WorkItem_type"),
-				TaskPackage.Literals.WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES,
-				true, false, true, null, null, null));
 	}
 
 	/**
@@ -287,8 +269,8 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 
 		switch (notification.getFeatureID(ActionItem.class)) {
 		case TaskPackage.ACTION_ITEM__CHECKED:
-		case TaskPackage.ACTION_ITEM__DUE_DATE:
 		case TaskPackage.ACTION_ITEM__DONE:
+		case TaskPackage.ACTION_ITEM__DUE_DATE:
 		case TaskPackage.ACTION_ITEM__ESTIMATE:
 		case TaskPackage.ACTION_ITEM__ACTIVITY:
 			fireNotifyChanged(new ViewerNotification(notification, notification

@@ -98,29 +98,6 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.model.ReaderInfo} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ReaderInfoItemProvider readerInfoItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.model.ReaderInfo}. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public Adapter createReaderInfoAdapter() {
-		if (readerInfoItemProvider == null) {
-			readerInfoItemProvider = new ReaderInfoItemProvider(this);
-		}
-
-		return readerInfoItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.unicase.model.Annotation} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -290,8 +267,6 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory
 	public void dispose() {
 		if (projectItemProvider != null)
 			projectItemProvider.dispose();
-		if (readerInfoItemProvider != null)
-			readerInfoItemProvider.dispose();
 		if (annotationItemProvider != null)
 			annotationItemProvider.dispose();
 		if (identifiableElementItemProvider != null)

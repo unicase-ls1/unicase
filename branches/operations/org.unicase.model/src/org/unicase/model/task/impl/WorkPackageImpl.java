@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.change.ModelChangePackage;
@@ -54,23 +55,23 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	 */
 	protected EList<ModelChangePackage> associatedChangePackages;
 	/**
-	 * The cached value of the '{@link #getPredecessors() <em>Predecessors</em>}' reference.
+	 * The cached value of the '{@link #getPredecessors() <em>Predecessors</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getPredecessors()
 	 * @generated
 	 * @ordered
 	 */
-	protected WorkItem predecessors;
+	protected EList<WorkItem> predecessors;
 	/**
-	 * The cached value of the '{@link #getSuccessors() <em>Successors</em>}' reference.
+	 * The cached value of the '{@link #getSuccessors() <em>Successors</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSuccessors()
 	 * @generated
 	 * @ordered
 	 */
-	protected WorkItem successors;
+	protected EList<WorkItem> successors;
 	/**
 	 * The cached value of the '{@link #getContainedWorkItems() <em>Contained Work Items</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -216,16 +217,12 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public WorkItem getPredecessors() {
-		if (predecessors != null && predecessors.eIsProxy()) {
-			InternalEObject oldPredecessors = (InternalEObject) predecessors;
-			predecessors = (WorkItem) eResolveProxy(oldPredecessors);
-			if (predecessors != oldPredecessors) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							TaskPackage.WORK_PACKAGE__PREDECESSORS,
-							oldPredecessors, predecessors));
-			}
+	public EList<WorkItem> getPredecessors() {
+		if (predecessors == null) {
+			predecessors = new EObjectWithInverseResolvingEList.ManyInverse<WorkItem>(
+					WorkItem.class, this,
+					TaskPackage.WORK_PACKAGE__PREDECESSORS,
+					TaskPackage.WORK_ITEM__SUCCESSORS);
 		}
 		return predecessors;
 	}
@@ -235,129 +232,13 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public WorkItem basicGetPredecessors() {
-		return predecessors;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetPredecessors(WorkItem newPredecessors,
-			NotificationChain msgs) {
-		WorkItem oldPredecessors = predecessors;
-		predecessors = newPredecessors;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET, TaskPackage.WORK_PACKAGE__PREDECESSORS,
-					oldPredecessors, newPredecessors);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setPredecessors(WorkItem newPredecessors) {
-		if (newPredecessors != predecessors) {
-			NotificationChain msgs = null;
-			if (predecessors != null)
-				msgs = ((InternalEObject) predecessors)
-						.eInverseRemove(this,
-								TaskPackage.WORK_ITEM__SUCCESSORS,
-								WorkItem.class, msgs);
-			if (newPredecessors != null)
-				msgs = ((InternalEObject) newPredecessors)
-						.eInverseAdd(this, TaskPackage.WORK_ITEM__SUCCESSORS,
-								WorkItem.class, msgs);
-			msgs = basicSetPredecessors(newPredecessors, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					TaskPackage.WORK_PACKAGE__PREDECESSORS, newPredecessors,
-					newPredecessors));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public WorkItem getSuccessors() {
-		if (successors != null && successors.eIsProxy()) {
-			InternalEObject oldSuccessors = (InternalEObject) successors;
-			successors = (WorkItem) eResolveProxy(oldSuccessors);
-			if (successors != oldSuccessors) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							TaskPackage.WORK_PACKAGE__SUCCESSORS,
-							oldSuccessors, successors));
-			}
+	public EList<WorkItem> getSuccessors() {
+		if (successors == null) {
+			successors = new EObjectWithInverseResolvingEList.ManyInverse<WorkItem>(
+					WorkItem.class, this, TaskPackage.WORK_PACKAGE__SUCCESSORS,
+					TaskPackage.WORK_ITEM__PREDECESSORS);
 		}
 		return successors;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public WorkItem basicGetSuccessors() {
-		return successors;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetSuccessors(WorkItem newSuccessors,
-			NotificationChain msgs) {
-		WorkItem oldSuccessors = successors;
-		successors = newSuccessors;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET, TaskPackage.WORK_PACKAGE__SUCCESSORS,
-					oldSuccessors, newSuccessors);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSuccessors(WorkItem newSuccessors) {
-		if (newSuccessors != successors) {
-			NotificationChain msgs = null;
-			if (successors != null)
-				msgs = ((InternalEObject) successors).eInverseRemove(this,
-						TaskPackage.WORK_ITEM__PREDECESSORS, WorkItem.class,
-						msgs);
-			if (newSuccessors != null)
-				msgs = ((InternalEObject) newSuccessors).eInverseAdd(this,
-						TaskPackage.WORK_ITEM__PREDECESSORS, WorkItem.class,
-						msgs);
-			msgs = basicSetSuccessors(newSuccessors, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					TaskPackage.WORK_PACKAGE__SUCCESSORS, newSuccessors,
-					newSuccessors));
 	}
 
 	/**
@@ -435,18 +316,11 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetContainingWorkpackage((WorkPackage) otherEnd, msgs);
 		case TaskPackage.WORK_PACKAGE__PREDECESSORS:
-			if (predecessors != null)
-				msgs = ((InternalEObject) predecessors)
-						.eInverseRemove(this,
-								TaskPackage.WORK_ITEM__SUCCESSORS,
-								WorkItem.class, msgs);
-			return basicSetPredecessors((WorkItem) otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getPredecessors())
+					.basicAdd(otherEnd, msgs);
 		case TaskPackage.WORK_PACKAGE__SUCCESSORS:
-			if (successors != null)
-				msgs = ((InternalEObject) successors).eInverseRemove(this,
-						TaskPackage.WORK_ITEM__PREDECESSORS, WorkItem.class,
-						msgs);
-			return basicSetSuccessors((WorkItem) otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSuccessors())
+					.basicAdd(otherEnd, msgs);
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getContainedWorkItems())
 					.basicAdd(otherEnd, msgs);
@@ -466,9 +340,11 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 		case TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE:
 			return basicSetContainingWorkpackage(null, msgs);
 		case TaskPackage.WORK_PACKAGE__PREDECESSORS:
-			return basicSetPredecessors(null, msgs);
+			return ((InternalEList<?>) getPredecessors()).basicRemove(otherEnd,
+					msgs);
 		case TaskPackage.WORK_PACKAGE__SUCCESSORS:
-			return basicSetSuccessors(null, msgs);
+			return ((InternalEList<?>) getSuccessors()).basicRemove(otherEnd,
+					msgs);
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
 			return ((InternalEList<?>) getContainedWorkItems()).basicRemove(
 					otherEnd, msgs);
@@ -507,13 +383,9 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 		case TaskPackage.WORK_PACKAGE__ASSOCIATED_CHANGE_PACKAGES:
 			return getAssociatedChangePackages();
 		case TaskPackage.WORK_PACKAGE__PREDECESSORS:
-			if (resolve)
-				return getPredecessors();
-			return basicGetPredecessors();
+			return getPredecessors();
 		case TaskPackage.WORK_PACKAGE__SUCCESSORS:
-			if (resolve)
-				return getSuccessors();
-			return basicGetSuccessors();
+			return getSuccessors();
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
 			return getContainedWorkItems();
 		case TaskPackage.WORK_PACKAGE__START_DATE:
@@ -541,10 +413,12 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 					(Collection<? extends ModelChangePackage>) newValue);
 			return;
 		case TaskPackage.WORK_PACKAGE__PREDECESSORS:
-			setPredecessors((WorkItem) newValue);
+			getPredecessors().clear();
+			getPredecessors().addAll((Collection<? extends WorkItem>) newValue);
 			return;
 		case TaskPackage.WORK_PACKAGE__SUCCESSORS:
-			setSuccessors((WorkItem) newValue);
+			getSuccessors().clear();
+			getSuccessors().addAll((Collection<? extends WorkItem>) newValue);
 			return;
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
 			getContainedWorkItems().clear();
@@ -575,10 +449,10 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 			getAssociatedChangePackages().clear();
 			return;
 		case TaskPackage.WORK_PACKAGE__PREDECESSORS:
-			setPredecessors((WorkItem) null);
+			getPredecessors().clear();
 			return;
 		case TaskPackage.WORK_PACKAGE__SUCCESSORS:
-			setSuccessors((WorkItem) null);
+			getSuccessors().clear();
 			return;
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
 			getContainedWorkItems().clear();
@@ -606,9 +480,9 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 			return associatedChangePackages != null
 					&& !associatedChangePackages.isEmpty();
 		case TaskPackage.WORK_PACKAGE__PREDECESSORS:
-			return predecessors != null;
+			return predecessors != null && !predecessors.isEmpty();
 		case TaskPackage.WORK_PACKAGE__SUCCESSORS:
-			return successors != null;
+			return successors != null && !successors.isEmpty();
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
 			return containedWorkItems != null && !containedWorkItems.isEmpty();
 		case TaskPackage.WORK_PACKAGE__START_DATE:

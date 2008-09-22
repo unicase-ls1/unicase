@@ -16,10 +16,10 @@ import org.unicase.model.ModelElement;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getRefinedRequirement <em>Refined Requirement</em>}</li>
  *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getStoryPoints <em>Story Points</em>}</li>
  *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getPriority <em>Priority</em>}</li>
  *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getRefiningRequirements <em>Refining Requirements</em>}</li>
- *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getRefinedRequirement <em>Refined Requirement</em>}</li>
  *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getUseCases <em>Use Cases</em>}</li>
  *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getScenarios <em>Scenarios</em>}</li>
  *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#isReviewed <em>Reviewed</em>}</li>

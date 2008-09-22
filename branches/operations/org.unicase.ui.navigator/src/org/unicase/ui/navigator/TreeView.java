@@ -122,6 +122,9 @@ public class TreeView extends ViewPart  { //implements IShowInSource
 							.getSelection();
 					Object obj = selection.getFirstElement();
 					setActiveProjectSpace(obj);
+					if(obj instanceof ModelElement){
+						getViewSite().getActionBars().getStatusLineManager().setMessage(((ModelElement)obj).getName());
+					}
 				}
 			}
 		});

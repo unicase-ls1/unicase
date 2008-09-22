@@ -93,12 +93,49 @@ public interface TaskPackage extends EPackage {
 	int WORK_ITEM__DESCRIPTION = ModelPackage.ANNOTATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_ITEM__READER_INFOS = ModelPackage.ANNOTATION__READER_INFOS;
+	int WORK_ITEM__CREATOR = ModelPackage.ANNOTATION__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM__CREATION_DATE = ModelPackage.ANNOTATION__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Last Modifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM__LAST_MODIFIER = ModelPackage.ANNOTATION__LAST_MODIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Last Modified Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM__LAST_MODIFIED_DATE = ModelPackage.ANNOTATION__LAST_MODIFIED_DATE;
+
+	/**
+	 * The feature id for the '<em><b>String Reader Infos</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM__STRING_READER_INFOS = ModelPackage.ANNOTATION__STRING_READER_INFOS;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!--
@@ -159,7 +196,7 @@ public interface TaskPackage extends EPackage {
 	int WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES = ModelPackage.ANNOTATION_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Predecessors</b></em>' reference.
+	 * The feature id for the '<em><b>Predecessors</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -168,7 +205,7 @@ public interface TaskPackage extends EPackage {
 	int WORK_ITEM__PREDECESSORS = ModelPackage.ANNOTATION_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Successors</b></em>' reference.
+	 * The feature id for the '<em><b>Successors</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -221,12 +258,49 @@ public interface TaskPackage extends EPackage {
 	int ACTION_ITEM__DESCRIPTION = WORK_ITEM__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM__READER_INFOS = WORK_ITEM__READER_INFOS;
+	int ACTION_ITEM__CREATOR = WORK_ITEM__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_ITEM__CREATION_DATE = WORK_ITEM__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Last Modifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_ITEM__LAST_MODIFIER = WORK_ITEM__LAST_MODIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Last Modified Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_ITEM__LAST_MODIFIED_DATE = WORK_ITEM__LAST_MODIFIED_DATE;
+
+	/**
+	 * The feature id for the '<em><b>String Reader Infos</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_ITEM__STRING_READER_INFOS = WORK_ITEM__STRING_READER_INFOS;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!--
@@ -287,7 +361,7 @@ public interface TaskPackage extends EPackage {
 	int ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES = WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES;
 
 	/**
-	 * The feature id for the '<em><b>Predecessors</b></em>' reference.
+	 * The feature id for the '<em><b>Predecessors</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -296,7 +370,7 @@ public interface TaskPackage extends EPackage {
 	int ACTION_ITEM__PREDECESSORS = WORK_ITEM__PREDECESSORS;
 
 	/**
-	 * The feature id for the '<em><b>Successors</b></em>' reference.
+	 * The feature id for the '<em><b>Successors</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -323,13 +397,22 @@ public interface TaskPackage extends EPackage {
 	int ACTION_ITEM__ASSIGNEE = WORK_ITEM_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Done</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_ITEM__DONE = WORK_ITEM_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Assigned To</b></em>' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM__ASSIGNED_TO = WORK_ITEM_FEATURE_COUNT + 2;
+	int ACTION_ITEM__ASSIGNED_TO = WORK_ITEM_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Due Date</b></em>' attribute. <!--
@@ -338,16 +421,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM__DUE_DATE = WORK_ITEM_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Done</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ACTION_ITEM__DONE = WORK_ITEM_FEATURE_COUNT + 4;
+	int ACTION_ITEM__DUE_DATE = WORK_ITEM_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Estimate</b></em>' attribute. <!--
@@ -411,12 +485,49 @@ public interface TaskPackage extends EPackage {
 	int WORK_PACKAGE__DESCRIPTION = WORK_ITEM__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_PACKAGE__READER_INFOS = WORK_ITEM__READER_INFOS;
+	int WORK_PACKAGE__CREATOR = WORK_ITEM__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE__CREATION_DATE = WORK_ITEM__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Last Modifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE__LAST_MODIFIER = WORK_ITEM__LAST_MODIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Last Modified Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE__LAST_MODIFIED_DATE = WORK_ITEM__LAST_MODIFIED_DATE;
+
+	/**
+	 * The feature id for the '<em><b>String Reader Infos</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE__STRING_READER_INFOS = WORK_ITEM__STRING_READER_INFOS;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!--
@@ -480,7 +591,7 @@ public interface TaskPackage extends EPackage {
 	int WORK_PACKAGE__ASSOCIATED_CHANGE_PACKAGES = WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES;
 
 	/**
-	 * The feature id for the '<em><b>Predecessors</b></em>' reference.
+	 * The feature id for the '<em><b>Predecessors</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -489,7 +600,7 @@ public interface TaskPackage extends EPackage {
 	int WORK_PACKAGE__PREDECESSORS = WORK_ITEM__PREDECESSORS;
 
 	/**
-	 * The feature id for the '<em><b>Successors</b></em>' reference.
+	 * The feature id for the '<em><b>Successors</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -570,13 +681,49 @@ public interface TaskPackage extends EPackage {
 	int MEETING__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
+	int MEETING__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Last Modifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING__LAST_MODIFIER = ModelPackage.MODEL_ELEMENT__LAST_MODIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Last Modified Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING__LAST_MODIFIED_DATE = ModelPackage.MODEL_ELEMENT__LAST_MODIFIED_DATE;
+
+	/**
+	 * The feature id for the '<em><b>String Reader Infos</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING__STRING_READER_INFOS = ModelPackage.MODEL_ELEMENT__STRING_READER_INFOS;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
@@ -751,13 +898,49 @@ public interface TaskPackage extends EPackage {
 	int MILESTONE__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Reader Infos</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MILESTONE__READER_INFOS = ModelPackage.MODEL_ELEMENT__READER_INFOS;
+	int MILESTONE__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Last Modifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__LAST_MODIFIER = ModelPackage.MODEL_ELEMENT__LAST_MODIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Last Modified Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__LAST_MODIFIED_DATE = ModelPackage.MODEL_ELEMENT__LAST_MODIFIED_DATE;
+
+	/**
+	 * The feature id for the '<em><b>String Reader Infos</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__STRING_READER_INFOS = ModelPackage.MODEL_ELEMENT__STRING_READER_INFOS;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
@@ -1012,10 +1195,10 @@ public interface TaskPackage extends EPackage {
 	EReference getWorkItem_AssociatedChangePackages();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.task.WorkItem#getPredecessors <em>Predecessors</em>}'.
+	 * Returns the meta object for the reference list '{@link org.unicase.model.task.WorkItem#getPredecessors <em>Predecessors</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Predecessors</em>'.
+	 * @return the meta object for the reference list '<em>Predecessors</em>'.
 	 * @see org.unicase.model.task.WorkItem#getPredecessors()
 	 * @see #getWorkItem()
 	 * @generated
@@ -1023,10 +1206,10 @@ public interface TaskPackage extends EPackage {
 	EReference getWorkItem_Predecessors();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.task.WorkItem#getSuccessors <em>Successors</em>}'.
+	 * Returns the meta object for the reference list '{@link org.unicase.model.task.WorkItem#getSuccessors <em>Successors</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Successors</em>'.
+	 * @return the meta object for the reference list '<em>Successors</em>'.
 	 * @see org.unicase.model.task.WorkItem#getSuccessors()
 	 * @see #getWorkItem()
 	 * @generated
@@ -1346,7 +1529,7 @@ public interface TaskPackage extends EPackage {
 				.getWorkItem_AssociatedChangePackages();
 
 		/**
-		 * The meta object literal for the '<em><b>Predecessors</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Predecessors</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1355,7 +1538,7 @@ public interface TaskPackage extends EPackage {
 				.getWorkItem_Predecessors();
 
 		/**
-		 * The meta object literal for the '<em><b>Successors</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Successors</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

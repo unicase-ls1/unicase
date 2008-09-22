@@ -162,7 +162,11 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider
 		switch (notification.getFeatureID(ModelElement.class)) {
 		case ModelPackage.MODEL_ELEMENT__NAME:
 		case ModelPackage.MODEL_ELEMENT__DESCRIPTION:
-		case ModelPackage.MODEL_ELEMENT__READER_INFOS:
+		case ModelPackage.MODEL_ELEMENT__CREATOR:
+		case ModelPackage.MODEL_ELEMENT__CREATION_DATE:
+		case ModelPackage.MODEL_ELEMENT__LAST_MODIFIER:
+		case ModelPackage.MODEL_ELEMENT__LAST_MODIFIED_DATE:
+		case ModelPackage.MODEL_ELEMENT__STRING_READER_INFOS:
 		case ModelPackage.MODEL_ELEMENT__STATE:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), false, true));
@@ -182,6 +186,14 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider
 	protected void collectNewChildDescriptors(
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+
+	/**
+	 * @return the ImageDescriptor for this class.
+	 * @generated NOT
+	 */
+	public Object getImage(Object object) {
+		return getResourceLocator().getImage("full/obj16/ModelElement");
 	}
 
 }

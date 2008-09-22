@@ -6,7 +6,11 @@
  */
 package org.unicase.model.impl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -14,7 +18,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -27,7 +31,6 @@ import org.unicase.model.Project;
 import org.unicase.model.ReaderInfo;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.LeafSection;
-import org.unicase.model.organization.User;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
 import org.unicase.model.task.util.MEStateImpl;
@@ -40,7 +43,11 @@ import org.unicase.model.task.util.MEStateImpl;
  * <ul>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link org.unicase.model.impl.ModelElementImpl#getReaderInfos <em>Reader Infos</em>}</li>
+ *   <li>{@link org.unicase.model.impl.ModelElementImpl#getCreator <em>Creator</em>}</li>
+ *   <li>{@link org.unicase.model.impl.ModelElementImpl#getCreationDate <em>Creation Date</em>}</li>
+ *   <li>{@link org.unicase.model.impl.ModelElementImpl#getLastModifier <em>Last Modifier</em>}</li>
+ *   <li>{@link org.unicase.model.impl.ModelElementImpl#getLastModifiedDate <em>Last Modified Date</em>}</li>
+ *   <li>{@link org.unicase.model.impl.ModelElementImpl#getStringReaderInfos <em>String Reader Infos</em>}</li>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getIncomingDocumentReferences <em>Incoming Document References</em>}</li>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getLeafSection <em>Leaf Section</em>}</li>
@@ -89,13 +96,94 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getReaderInfos() <em>Reader Infos</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getReaderInfos()
+	 * The default value of the '{@link #getCreator() <em>Creator</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCreator()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ReaderInfo> readerInfos;
+	protected static final String CREATOR_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getCreator() <em>Creator</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCreator()
+	 * @generated
+	 * @ordered
+	 */
+	protected String creator = CREATOR_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getCreationDate() <em>Creation Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCreationDate()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Date CREATION_DATE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getCreationDate() <em>Creation Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCreationDate()
+	 * @generated
+	 * @ordered
+	 */
+	protected Date creationDate = CREATION_DATE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getLastModifier() <em>Last Modifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLastModifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String LAST_MODIFIER_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getLastModifier() <em>Last Modifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLastModifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected String lastModifier = LAST_MODIFIER_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getLastModifiedDate() <em>Last Modified Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLastModifiedDate()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Date LAST_MODIFIED_DATE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getLastModifiedDate() <em>Last Modified Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLastModifiedDate()
+	 * @generated
+	 * @ordered
+	 */
+	protected Date lastModifiedDate = LAST_MODIFIED_DATE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getStringReaderInfos() <em>String Reader Infos</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStringReaderInfos()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<String> stringReaderInfos;
 
 	/**
 	 * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}' reference list.
@@ -193,16 +281,107 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ReaderInfo> getReaderInfos() {
-		if (readerInfos == null) {
-			readerInfos = new EObjectContainmentEList.Resolving<ReaderInfo>(
-					ReaderInfo.class, this,
-					ModelPackage.MODEL_ELEMENT__READER_INFOS);
+	public String getCreator() {
+		return creator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCreator(String newCreator) {
+		String oldCreator = creator;
+		creator = newCreator;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ModelPackage.MODEL_ELEMENT__CREATOR, oldCreator, creator));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCreationDate(Date newCreationDate) {
+		Date oldCreationDate = creationDate;
+		creationDate = newCreationDate;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ModelPackage.MODEL_ELEMENT__CREATION_DATE, oldCreationDate,
+					creationDate));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getLastModifier() {
+		return lastModifier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLastModifier(String newLastModifier) {
+		String oldLastModifier = lastModifier;
+		lastModifier = newLastModifier;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ModelPackage.MODEL_ELEMENT__LAST_MODIFIER, oldLastModifier,
+					lastModifier));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Date getLastModifiedDate() {
+		return lastModifiedDate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLastModifiedDate(Date newLastModifiedDate) {
+		Date oldLastModifiedDate = lastModifiedDate;
+		lastModifiedDate = newLastModifiedDate;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ModelPackage.MODEL_ELEMENT__LAST_MODIFIED_DATE,
+					oldLastModifiedDate, lastModifiedDate));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<String> getStringReaderInfos() {
+		if (stringReaderInfos == null) {
+			stringReaderInfos = new EDataTypeUniqueEList<String>(String.class,
+					this, ModelPackage.MODEL_ELEMENT__STRING_READER_INFOS);
 		}
-		return readerInfos;
+		return stringReaderInfos;
 	}
 
 	/**
@@ -325,15 +504,19 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		}
 	}
 
+	//begin of custom code
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * Adds a reader to the list of readers.
+	 * @param acOrgId the reader's AcOrgId
+	 * @generated NOT
 	 */
-	public void addReader(User readerName) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+	public void addReader(String acOrgId) {
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		getStringReaderInfos().add(
+				acOrgId.concat("#").concat(df.format(new Date())));
 	}
+
+	//end of custom code
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -407,9 +590,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ModelPackage.MODEL_ELEMENT__READER_INFOS:
-			return ((InternalEList<?>) getReaderInfos()).basicRemove(otherEnd,
-					msgs);
 		case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:
 			return ((InternalEList<?>) getAnnotations()).basicRemove(otherEnd,
 					msgs);
@@ -449,8 +629,16 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 			return getName();
 		case ModelPackage.MODEL_ELEMENT__DESCRIPTION:
 			return getDescription();
-		case ModelPackage.MODEL_ELEMENT__READER_INFOS:
-			return getReaderInfos();
+		case ModelPackage.MODEL_ELEMENT__CREATOR:
+			return getCreator();
+		case ModelPackage.MODEL_ELEMENT__CREATION_DATE:
+			return getCreationDate();
+		case ModelPackage.MODEL_ELEMENT__LAST_MODIFIER:
+			return getLastModifier();
+		case ModelPackage.MODEL_ELEMENT__LAST_MODIFIED_DATE:
+			return getLastModifiedDate();
+		case ModelPackage.MODEL_ELEMENT__STRING_READER_INFOS:
+			return getStringReaderInfos();
 		case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:
 			return getAnnotations();
 		case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
@@ -479,10 +667,17 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		case ModelPackage.MODEL_ELEMENT__DESCRIPTION:
 			setDescription((String) newValue);
 			return;
-		case ModelPackage.MODEL_ELEMENT__READER_INFOS:
-			getReaderInfos().clear();
-			getReaderInfos()
-					.addAll((Collection<? extends ReaderInfo>) newValue);
+		case ModelPackage.MODEL_ELEMENT__CREATOR:
+			setCreator((String) newValue);
+			return;
+		case ModelPackage.MODEL_ELEMENT__CREATION_DATE:
+			setCreationDate((Date) newValue);
+			return;
+		case ModelPackage.MODEL_ELEMENT__LAST_MODIFIER:
+			setLastModifier((String) newValue);
+			return;
+		case ModelPackage.MODEL_ELEMENT__LAST_MODIFIED_DATE:
+			setLastModifiedDate((Date) newValue);
 			return;
 		case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:
 			getAnnotations().clear();
@@ -514,8 +709,17 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		case ModelPackage.MODEL_ELEMENT__DESCRIPTION:
 			setDescription(DESCRIPTION_EDEFAULT);
 			return;
-		case ModelPackage.MODEL_ELEMENT__READER_INFOS:
-			getReaderInfos().clear();
+		case ModelPackage.MODEL_ELEMENT__CREATOR:
+			setCreator(CREATOR_EDEFAULT);
+			return;
+		case ModelPackage.MODEL_ELEMENT__CREATION_DATE:
+			setCreationDate(CREATION_DATE_EDEFAULT);
+			return;
+		case ModelPackage.MODEL_ELEMENT__LAST_MODIFIER:
+			setLastModifier(LAST_MODIFIER_EDEFAULT);
+			return;
+		case ModelPackage.MODEL_ELEMENT__LAST_MODIFIED_DATE:
+			setLastModifiedDate(LAST_MODIFIED_DATE_EDEFAULT);
 			return;
 		case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:
 			getAnnotations().clear();
@@ -543,8 +747,20 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		case ModelPackage.MODEL_ELEMENT__DESCRIPTION:
 			return DESCRIPTION_EDEFAULT == null ? description != null
 					: !DESCRIPTION_EDEFAULT.equals(description);
-		case ModelPackage.MODEL_ELEMENT__READER_INFOS:
-			return readerInfos != null && !readerInfos.isEmpty();
+		case ModelPackage.MODEL_ELEMENT__CREATOR:
+			return CREATOR_EDEFAULT == null ? creator != null
+					: !CREATOR_EDEFAULT.equals(creator);
+		case ModelPackage.MODEL_ELEMENT__CREATION_DATE:
+			return CREATION_DATE_EDEFAULT == null ? creationDate != null
+					: !CREATION_DATE_EDEFAULT.equals(creationDate);
+		case ModelPackage.MODEL_ELEMENT__LAST_MODIFIER:
+			return LAST_MODIFIER_EDEFAULT == null ? lastModifier != null
+					: !LAST_MODIFIER_EDEFAULT.equals(lastModifier);
+		case ModelPackage.MODEL_ELEMENT__LAST_MODIFIED_DATE:
+			return LAST_MODIFIED_DATE_EDEFAULT == null ? lastModifiedDate != null
+					: !LAST_MODIFIED_DATE_EDEFAULT.equals(lastModifiedDate);
+		case ModelPackage.MODEL_ELEMENT__STRING_READER_INFOS:
+			return stringReaderInfos != null && !stringReaderInfos.isEmpty();
 		case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:
 			return annotations != null && !annotations.isEmpty();
 		case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
@@ -573,8 +789,41 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		result.append(name);
 		result.append(", description: ");
 		result.append(description);
+		result.append(", creator: ");
+		result.append(creator);
+		result.append(", creationDate: ");
+		result.append(creationDate);
+		result.append(", lastModifier: ");
+		result.append(lastModifier);
+		result.append(", lastModifiedDate: ");
+		result.append(lastModifiedDate);
+		result.append(", stringReaderInfos: ");
+		result.append(stringReaderInfos);
 		result.append(')');
 		return result.toString();
 	}
+
+	//begin of custom code
+	/**
+	 * @return a list of {@link ReaderInfo}s derived from the {@link ModelElement}{@link #stringReaderInfos} parameter.
+	 * @generated NOT
+	 */
+	public ArrayList<ReaderInfo> getReaderInfos() {
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		ArrayList<ReaderInfo> ret = new ArrayList<ReaderInfo>();
+		for (String info : getStringReaderInfos()) {
+			String[] infos = info.split("#");
+			ReaderInfo readerInfo = new ReaderInfo();
+			readerInfo.setReaderId(infos[0]);
+			try {
+				readerInfo.setDate(df.parse(infos[1]));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			ret.add(readerInfo);
+		}
+		return ret;
+	}
+	//end of custom code
 
 } // ModelElementImpl

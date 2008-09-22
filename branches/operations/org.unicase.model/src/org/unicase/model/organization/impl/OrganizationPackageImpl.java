@@ -216,6 +216,24 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getUser_FirstName() {
+		return (EAttribute) userEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getUser_LastName() {
+		return (EAttribute) userEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -287,6 +305,8 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 		// Create classes and their features
 		userEClass = createEClass(USER);
 		createEAttribute(userEClass, USER__EMAIL);
+		createEAttribute(userEClass, USER__FIRST_NAME);
+		createEAttribute(userEClass, USER__LAST_NAME);
 
 		orgUnitEClass = createEClass(ORG_UNIT);
 		createEAttribute(orgUnitEClass, ORG_UNIT__AC_ORG_ID);
@@ -339,6 +359,14 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 				null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		initEAttribute(getUser_FirstName(), ecorePackage.getEString(),
+				"firstName", null, 0, 1, User.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUser_LastName(), ecorePackage.getEString(),
+				"lastName", null, 0, 1, User.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(orgUnitEClass, OrgUnit.class, "OrgUnit", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -347,7 +375,7 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 		initEReference(getOrgUnit_GroupMemberships(), this.getGroup(), this
-				.getGroup_OrgUnits(), "groupMemberships", null, 0, 1,
+				.getGroup_OrgUnits(), "groupMemberships", null, 0, -1,
 				OrgUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
@@ -357,7 +385,7 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 		initEClass(groupEClass, Group.class, "Group", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGroup_OrgUnits(), this.getOrgUnit(), this
-				.getOrgUnit_GroupMemberships(), "orgUnits", null, 0, 1,
+				.getOrgUnit_GroupMemberships(), "orgUnits", null, 0, -1,
 				Group.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);

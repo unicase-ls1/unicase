@@ -54,50 +54,11 @@ public class ActorItemProvider extends ModelElementItemProvider implements
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addInitiatedUserTaskPropertyDescriptor(object);
-			addParticipatedUserTasksPropertyDescriptor(object);
 			addInitiatedUseCasesPropertyDescriptor(object);
 			addParticipatedUseCasesPropertyDescriptor(object);
 			addInstancesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Initiated User Task feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addInitiatedUserTaskPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(), getResourceLocator(),
-						getString("_UI_Actor_initiatedUserTask_feature"),
-						getString("_UI_PropertyDescriptor_description",
-								"_UI_Actor_initiatedUserTask_feature",
-								"_UI_Actor_type"),
-						RequirementPackage.Literals.ACTOR__INITIATED_USER_TASK,
-						true, false, true, null, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Participated User Tasks feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addParticipatedUserTasksPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Actor_participatedUserTasks_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_Actor_participatedUserTasks_feature",
-						"_UI_Actor_type"),
-				RequirementPackage.Literals.ACTOR__PARTICIPATED_USER_TASKS,
-				true, false, true, null, null, null));
 	}
 
 	/**

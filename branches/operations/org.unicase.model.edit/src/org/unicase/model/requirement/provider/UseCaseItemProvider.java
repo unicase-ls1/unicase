@@ -19,7 +19,6 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.ModelElementItemProvider;
@@ -58,12 +57,7 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements
 
 			addInitiatingActorPropertyDescriptor(object);
 			addParticipatingActorsPropertyDescriptor(object);
-			addRealizedUserTaskPropertyDescriptor(object);
-			addPreconditionPropertyDescriptor(object);
 			addUseCaseStepsPropertyDescriptor(object);
-			addPostconditionPropertyDescriptor(object);
-			addRulesPropertyDescriptor(object);
-			addExceptionPropertyDescriptor(object);
 			addScenariosPropertyDescriptor(object);
 			addFunctionalRequirementsPropertyDescriptor(object);
 			addNonFunctionalRequirementsPropertyDescriptor(object);
@@ -218,44 +212,6 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements
 	}
 
 	/**
-	 * This adds a property descriptor for the Realized User Task feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addRealizedUserTaskPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_UseCase_realizedUserTask_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_UseCase_realizedUserTask_feature",
-						"_UI_UseCase_type"),
-				RequirementPackage.Literals.USE_CASE__REALIZED_USER_TASK, true,
-				false, true, null, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Precondition feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addPreconditionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(), getResourceLocator(),
-						getString("_UI_UseCase_precondition_feature"),
-						getString("_UI_PropertyDescriptor_description",
-								"_UI_UseCase_precondition_feature",
-								"_UI_UseCase_type"),
-						RequirementPackage.Literals.USE_CASE__PRECONDITION,
-						true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Use Case Steps feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -272,60 +228,6 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements
 								"_UI_UseCase_type"),
 						RequirementPackage.Literals.USE_CASE__USE_CASE_STEPS,
 						true, false, true, null, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Postcondition feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addPostconditionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(), getResourceLocator(),
-						getString("_UI_UseCase_postcondition_feature"),
-						getString("_UI_PropertyDescriptor_description",
-								"_UI_UseCase_postcondition_feature",
-								"_UI_UseCase_type"),
-						RequirementPackage.Literals.USE_CASE__POSTCONDITION,
-						true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Rules feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addRulesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_UseCase_rules_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_UseCase_rules_feature", "_UI_UseCase_type"),
-				RequirementPackage.Literals.USE_CASE__RULES, true, false,
-				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Exception feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addExceptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_UseCase_exception_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_UseCase_exception_feature", "_UI_UseCase_type"),
-				RequirementPackage.Literals.USE_CASE__EXCEPTION, true, false,
-				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**

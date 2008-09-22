@@ -6,9 +6,10 @@
  */
 package org.unicase.model;
 
+import java.util.Date;
+
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.document.LeafSection;
-import org.unicase.model.organization.User;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
 
@@ -21,7 +22,11 @@ import org.unicase.model.task.util.MEState;
  * <ul>
  *   <li>{@link org.unicase.model.ModelElement#getName <em>Name</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getDescription <em>Description</em>}</li>
- *   <li>{@link org.unicase.model.ModelElement#getReaderInfos <em>Reader Infos</em>}</li>
+ *   <li>{@link org.unicase.model.ModelElement#getCreator <em>Creator</em>}</li>
+ *   <li>{@link org.unicase.model.ModelElement#getCreationDate <em>Creation Date</em>}</li>
+ *   <li>{@link org.unicase.model.ModelElement#getLastModifier <em>Last Modifier</em>}</li>
+ *   <li>{@link org.unicase.model.ModelElement#getLastModifiedDate <em>Last Modified Date</em>}</li>
+ *   <li>{@link org.unicase.model.ModelElement#getStringReaderInfos <em>String Reader Infos</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getIncomingDocumentReferences <em>Incoming Document References</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getLeafSection <em>Leaf Section</em>}</li>
@@ -91,20 +96,124 @@ public interface ModelElement extends IdentifiableElement {
 	void setDescription(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Reader Infos</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.model.ReaderInfo}.
+	 * Returns the value of the '<em><b>Creator</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Reader Infos</em>' containment reference list
-	 * isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Creator</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Reader Infos</em>' containment reference list.
-	 * @see org.unicase.model.ModelPackage#getModelElement_ReaderInfos()
-	 * @model containment="true" resolveProxies="true" keys="identifier"
+	 * @return the value of the '<em>Creator</em>' attribute.
+	 * @see #setCreator(String)
+	 * @see org.unicase.model.ModelPackage#getModelElement_Creator()
+	 * @model
 	 * @generated
 	 */
-	EList<ReaderInfo> getReaderInfos();
+	String getCreator();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.ModelElement#getCreator <em>Creator</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Creator</em>' attribute.
+	 * @see #getCreator()
+	 * @generated
+	 */
+	void setCreator(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Creation Date</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Creation Date</em>' attribute.
+	 * @see #setCreationDate(Date)
+	 * @see org.unicase.model.ModelPackage#getModelElement_CreationDate()
+	 * @model
+	 * @generated
+	 */
+	Date getCreationDate();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.ModelElement#getCreationDate <em>Creation Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Creation Date</em>' attribute.
+	 * @see #getCreationDate()
+	 * @generated
+	 */
+	void setCreationDate(Date value);
+
+	/**
+	 * Returns the value of the '<em><b>Last Modifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Last Modifier</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Last Modifier</em>' attribute.
+	 * @see #setLastModifier(String)
+	 * @see org.unicase.model.ModelPackage#getModelElement_LastModifier()
+	 * @model
+	 * @generated
+	 */
+	String getLastModifier();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.ModelElement#getLastModifier <em>Last Modifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Last Modifier</em>' attribute.
+	 * @see #getLastModifier()
+	 * @generated
+	 */
+	void setLastModifier(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Last Modified Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Last Modified Date</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Last Modified Date</em>' attribute.
+	 * @see #setLastModifiedDate(Date)
+	 * @see org.unicase.model.ModelPackage#getModelElement_LastModifiedDate()
+	 * @model
+	 * @generated
+	 */
+	Date getLastModifiedDate();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.ModelElement#getLastModifiedDate <em>Last Modified Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Last Modified Date</em>' attribute.
+	 * @see #getLastModifiedDate()
+	 * @generated
+	 */
+	void setLastModifiedDate(Date value);
+
+	/**
+	 * Returns the value of the '<em><b>String Reader Infos</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>String Reader Infos</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>String Reader Infos</em>' attribute list.
+	 * @see org.unicase.model.ModelPackage#getModelElement_StringReaderInfos()
+	 * @model changeable="false"
+	 * @generated
+	 */
+	EList<String> getStringReaderInfos();
 
 	/**
 	 * Returns the value of the '<em><b>Annotations</b></em>' reference list.
@@ -199,11 +308,12 @@ public interface ModelElement extends IdentifiableElement {
 	Project getProject();
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model
 	 * @generated
 	 */
-	void addReader(User readerName);
+	void addReader(String acOrgId);
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -1464,6 +1464,26 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 				this, absoluteFileName);
 	}
 
+	public void notify(Notification notification, ModelElement modelElement) {
+		if (notification.getEventType() == Notification.ADD
+				&& notification.getFeature() instanceof EStructuralFeature
+				&& notification.getNewValue() instanceof EObject) {
+			// FIXME OW: check cast
+			EObject newValue = (EObject) notification.getNewValue();
+			addToResource(newValue, modelElement);
+
+		} else if (notification.getEventType() == Notification.ADD_MANY
+				&& notification.getFeature() instanceof EStructuralFeature) {
+			// FIXME OW: check cast
+			List<EObject> newValues = (List<EObject>) notification
+					.getNewValue();
+			for (EObject newElement : newValues) {
+				addToResource(newElement, modelElement);
+			}
+		}
+		saveResources(false);
+	}
+
 	/**
 	 * Save all resources that are dirty.
 	 */

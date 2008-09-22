@@ -18,9 +18,9 @@ import org.unicase.model.organization.User;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.unicase.model.task.ActionItem#isDone <em>Done</em>}</li>
  *   <li>{@link org.unicase.model.task.ActionItem#getAssignedTo <em>Assigned To</em>}</li>
  *   <li>{@link org.unicase.model.task.ActionItem#getDueDate <em>Due Date</em>}</li>
- *   <li>{@link org.unicase.model.task.ActionItem#isDone <em>Done</em>}</li>
  *   <li>{@link org.unicase.model.task.ActionItem#getEstimate <em>Estimate</em>}</li>
  *   <li>{@link org.unicase.model.task.ActionItem#getActivity <em>Activity</em>}</li>
  * </ul>

@@ -17,7 +17,6 @@ import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
-import org.unicase.model.ReaderInfo;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
@@ -63,8 +62,6 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 		switch (eClass.getClassifierID()) {
 		case ModelPackage.PROJECT:
 			return createProject();
-		case ModelPackage.READER_INFO:
-			return createReaderInfo();
 		case ModelPackage.ANNOTATION:
 			return createAnnotation();
 		case ModelPackage.IDENTIFIABLE_ELEMENT:
@@ -84,15 +81,6 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	public Project createProject() {
 		ProjectImpl project = new ProjectImpl();
 		return project;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ReaderInfo createReaderInfo() {
-		ReaderInfoImpl readerInfo = new ReaderInfoImpl();
-		return readerInfo;
 	}
 
 	/**

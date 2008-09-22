@@ -61,7 +61,7 @@ public class StateDecorator implements ILightweightLabelDecorator {
 	/**. 
 	 * The icon image location in the project folder 
 	 */
-	private String openPath = "icons/open.gif"; // NON-NLS-1
+	private String openPath = "icons/open.jpg"; // NON-NLS-1
 
 	/** .
 	 * The icon image location in the project folder 
@@ -110,8 +110,7 @@ public class StateDecorator implements ILightweightLabelDecorator {
 			}
 		} catch (CircularDependencyException e) {
 			//JH : add questionmark image
-			//Dont show exception dialog, cause it is intrusive
-			e.printStackTrace();
+			//Dont show exception dialog, cause it is intrusives
 			return;
 		}
 
