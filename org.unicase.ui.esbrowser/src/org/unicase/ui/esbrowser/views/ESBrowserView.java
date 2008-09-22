@@ -176,17 +176,6 @@ public class ESBrowserView extends ViewPart {
 			manager.add(new Separator("Userspace"));
 			manager.add(projectCheckout);
 			manager.add(projectProperties);
-			try{
-				accessControl.checkProjectAdminAccess(((ProjectInfo)obj).getProjectId());
-				manager.add(new Separator("Administrative"));
-				manager.add(serverAddProject);
-				serverChangeSession.setText("Log out");
-				manager.add(manageOrgUnits);
-			}catch(EmfStoreException e){
-				//
-			}catch(NullPointerException en){
-				// no AccessControlHelper as the user is not logged in
-			}
 		}
 	}
 
