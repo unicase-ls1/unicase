@@ -63,6 +63,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 		switch (eClass.getClassifierID()) {
 		case ModelPackage.PROJECT:
 			return createProject();
+		case ModelPackage.ANNOTATION:
+			return createAnnotation();
 		case ModelPackage.IDENTIFIABLE_ELEMENT:
 			return createIdentifiableElement();
 		case ModelPackage.MODEL_ELEMENT_ID:
@@ -80,6 +82,16 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	public Project createProject() {
 		ProjectImpl project = new ProjectImpl();
 		return project;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Annotation createAnnotation() {
+		AnnotationImpl annotation = new AnnotationImpl();
+		return annotation;
 	}
 
 	/**

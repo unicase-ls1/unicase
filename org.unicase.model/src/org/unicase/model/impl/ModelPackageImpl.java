@@ -657,7 +657,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(annotationEClass, Annotation.class, "Annotation",
-				IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAnnotation_AnnotatedModelElements(), this
 				.getModelElement(), this.getModelElement_Annotations(),
 				"annotatedModelElements", null, 0, -1, Annotation.class,

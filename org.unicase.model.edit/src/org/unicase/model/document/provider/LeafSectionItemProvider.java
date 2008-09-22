@@ -21,6 +21,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.unicase.model.ModelFactory;
 import org.unicase.model.bug.BugFactory;
 import org.unicase.model.change.ChangeFactory;
 import org.unicase.model.classes.ClassesFactory;
@@ -203,6 +204,10 @@ public class LeafSectionItemProvider extends ModelElementItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				DocumentFactory.eINSTANCE.createCompositeSection()));
+
+		newChildDescriptors.add(createChildParameter(
+				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				ModelFactory.eINSTANCE.createAnnotation()));
 
 		newChildDescriptors.add(createChildParameter(
 				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
