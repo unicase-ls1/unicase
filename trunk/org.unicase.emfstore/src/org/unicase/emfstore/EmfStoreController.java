@@ -14,9 +14,12 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.LogManager;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -25,6 +28,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
+import org.eclipse.osgi.framework.internal.core.ConsoleMsg;
 import org.unicase.emfstore.accesscontrol.AccessControlImpl;
 import org.unicase.emfstore.accesscontrol.AuthenticationControl;
 import org.unicase.emfstore.connection.ConnectionHandler;
@@ -32,6 +36,7 @@ import org.unicase.emfstore.connection.rmi.RMIAdminConnectionHandler;
 import org.unicase.emfstore.connection.rmi.RMIConnectionHandler;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ServerSpace;
+import org.unicase.emfstore.esmodel.VersionInfo;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesFactory;
@@ -39,6 +44,7 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.emfstore.storage.ResourceStorage;
+import org.unicase.emfstore.update.UpdateController;
 
 /**
  * The {@link EmfStoreController} is controlling startup and shutdown of the
@@ -129,27 +135,81 @@ public class EmfStoreController implements IApplication {
 		} catch (IOException e) {
 			throw new FatalEmfStoreException(StorageException.NOLOAD, e);
 		}
+		
+		ServerSpace result = null; 
 		EList<EObject> contents = resource.getContents();
 		for (EObject content : contents) {
 			if (content instanceof ServerSpace) {
-				ServerSpace result = (ServerSpace) content;
-				result.setResource(resource);
-				return result;
+				result = (ServerSpace) content;
+				break;
+			}
+		}
+			
+		if (result != null) {
+			result.setResource(resource);			
+		}else{
+			// if no serverspace can be loaded, create one
+			logger.debug("Creating initial server space...");
+			result = EsmodelFactory.eINSTANCE.createServerSpace();
+
+			result.setResource(resource);
+			resource.getContents().add(result);
+			
+			try {
+				result.save();
+			} catch (IOException e) {
+				throw new FatalEmfStoreException(StorageException.NOSAVE, e);
 			}
 		}
 
-		// if no serverspace can be loaded, create one
-		logger.debug("Creating initial server space...");
-		ServerSpace serverSpace = EsmodelFactory.eINSTANCE.createServerSpace();
-
-		serverSpace.setResource(resource);
-		resource.getContents().add(serverSpace);
-		try {
-			serverSpace.save();
-		} catch (IOException e) {
-			throw new FatalEmfStoreException(StorageException.NOSAVE, e);
+		VersionInfo versionInformation = null;
+		for (EObject content : contents) {
+			if (content instanceof VersionInfo) {
+				versionInformation = (VersionInfo) content;
+				break;
+			}	
 		}
-		return serverSpace;
+		
+		//If our model does not contain a VersionInfo, we assume version 0.0.1.qualifier
+		if (versionInformation == null) {
+			versionInformation = EsmodelFactory.eINSTANCE.createVersionInfo();
+			versionInformation.setEmfStoreVersionString("0.0.1.qualifier");
+			resource.getContents().add(versionInformation);
+			
+			try {
+				result.save();
+			} catch (IOException e) {
+				throw new FatalEmfStoreException(StorageException.NOSAVE, e);
+			}
+			
+		}
+
+		int compareTo = versionInformation.getEmfStoreVersion().compareTo(EmfStoreImpl.getModelVersion());
+		if (compareTo < 0) {
+			System.out.println("Your model is not up to date. Do you want to update now? (y/n)");
+			
+			byte buffer[] = new byte[1];
+			String input = ""; 
+			int read = 0; 
+			
+			try {
+				read = System.in.read(buffer, 0, 1);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+            input = new String(buffer, 0, read);
+            if (input.equalsIgnoreCase("y")) {
+    			UpdateController updateController = new UpdateController();
+    			updateController.updateResource(resource);				
+			}else{
+				System.out.println("Could not load model, shutting down");
+				return null;
+			}
+		}
+
+		return result;
 	}
 
 	/**

@@ -88,6 +88,10 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="groupMemberships" upperBound="-1"
           eType="#//organization/Group" eOpposite="#//organization/Group/orgUnits"
           eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="assignments" upperBound="-1"
+          eType="#//task/WorkItem" eOpposite="#//task/WorkItem/assignee" eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="participations" upperBound="-1"
+          eType="#//task/WorkItem" eOpposite="#//task/WorkItem/participants" eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Group" eSuperTypes="#//organization/OrgUnit">
       <eStructuralFeatures xsi:type="ecore:EReference" name="orgUnits" upperBound="-1"
@@ -96,7 +100,7 @@
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="task" nsURI="http://unicase.org/model/task" nsPrefix="org.unicase.model.task">
-    <eClassifiers xsi:type="ecore:EClass" name="ActionItem" eSuperTypes="#//task/WorkItem #//task/Checkable #//task/Assignable">
+    <eClassifiers xsi:type="ecore:EClass" name="ActionItem" eSuperTypes="#//task/WorkItem #//task/Checkable">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="done" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="assignedTo" upperBound="-1"
           eType="#//organization/User" eKeys="#//IdentifiableElement/identifier"/>
@@ -122,6 +126,11 @@
           eType="#//task/WorkItem" eOpposite="#//task/WorkItem/successors" eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="successors" upperBound="-1"
           eType="#//task/WorkItem" eOpposite="#//task/WorkItem/predecessors" eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="assignee" eType="#//organization/OrgUnit"
+          eOpposite="#//organization/OrgUnit/assignments" eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="participants" upperBound="-1"
+          eType="#//organization/OrgUnit" eOpposite="#//organization/OrgUnit/participations"
+          eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Meeting" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -154,10 +163,6 @@
     <eClassifiers xsi:type="ecore:EClass" name="Checkable" abstract="true" interface="true">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="checked" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
           volatile="true" transient="true" derived="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Assignable" abstract="true" interface="true">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="assignee" eType="#//organization/OrgUnit"
-          volatile="true" transient="true" derived="true" eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="diagram" nsURI="http://unicase.org/model/diagram" nsPrefix="org.unicase.model.diagram">
@@ -427,7 +432,7 @@
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="rationale" nsURI="http://unicase.org/model/rationale" nsPrefix="org.unicase.model.rationale">
-    <eClassifiers xsi:type="ecore:EClass" name="Issue" eSuperTypes="#//Annotation #//task/Checkable #//task/Assignable">
+    <eClassifiers xsi:type="ecore:EClass" name="Issue" eSuperTypes="#//Annotation #//task/Checkable #//task/WorkItem">
       <eStructuralFeatures xsi:type="ecore:EReference" name="proposals" upperBound="-1"
           eType="#//rationale/Proposal" containment="true" eOpposite="#//rationale/Proposal/issue"
           eKeys="#//IdentifiableElement/identifier"/>
@@ -442,8 +447,6 @@
           eOpposite="#//rationale/Issue/refiningIssues" eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="facilitator" eType="#//organization/User"
           eKeys="#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="participants" upperBound="-1"
-          eType="#//organization/OrgUnit" eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Proposal" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="assessments" upperBound="-1"
@@ -495,7 +498,7 @@
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="bug" nsURI="http://unicase.org/model/bug" nsPrefix="org.unicase.model.bug">
-    <eClassifiers xsi:type="ecore:EClass" name="BugReport" eSuperTypes="#//task/WorkItem #//task/Assignable">
+    <eClassifiers xsi:type="ecore:EClass" name="BugReport" eSuperTypes="#//task/WorkItem">
       <eStructuralFeatures xsi:type="ecore:EReference" name="stepsToReproduce" upperBound="-1"
           eType="#//requirement/Step" eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Status" eType="#//bug/BugStatus"/>
