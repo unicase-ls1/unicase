@@ -67,6 +67,8 @@ import org.unicase.model.Project;
 import org.unicase.model.impl.IdentifiableElementImpl;
 import org.unicase.model.util.ModelUtil;
 import org.unicase.model.util.ModelValidationHelper;
+import org.unicase.model.util.ProjectChangeNotifier;
+import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
@@ -126,7 +128,7 @@ import org.unicase.workspace.exceptions.NoLocalChangesException;
  * @generated
  */
 public class ProjectSpaceImpl extends IdentifiableElementImpl implements
-		ProjectSpace, ResourceSetListener {
+		ProjectSpace, ResourceSetListener, ProjectChangeObserver {
 
 	/**
 	 * @generated NOT
@@ -1122,7 +1124,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		domain.addResourceSetListener(this);
 		// MK: possibly performance hit
 		this.eResource().setTrackingModification(true);
+		new ProjectChangeNotifier(this.getProject(), this);
 		startChangeRecording();
+		
 	}
 
 	/**
@@ -1465,26 +1469,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 				this, absoluteFileName);
 	}
 
-	public void notify(Notification notification, ModelElement modelElement) {
-		if (notification.getEventType() == Notification.ADD
-				&& notification.getFeature() instanceof EStructuralFeature
-				&& notification.getNewValue() instanceof EObject) {
-			// FIXME OW: check cast
-			EObject newValue = (EObject) notification.getNewValue();
-			addToResource(newValue, modelElement);
-
-		} else if (notification.getEventType() == Notification.ADD_MANY
-				&& notification.getFeature() instanceof EStructuralFeature) {
-			// FIXME OW: check cast
-			List<EObject> newValues = (List<EObject>) notification
-					.getNewValue();
-			for (EObject newElement : newValues) {
-				addToResource(newElement, modelElement);
-			}
-		}
-		saveResources(false);
-	}
-
 	/**
 	 * Save all resources that are dirty.
 	 */
@@ -1573,6 +1557,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 					projectNotifications.add(notification);
 				}
 			}
+			if (notifier instanceof Project) {
+				projectNotifications.add(notification);
+			}
 		}
 		if (projectNotifications.size() == 0) {
 			return;
@@ -1589,7 +1576,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 					AttributeOperation attributeOperation = createAttributeOperation(
 							notification, feature, newValue, oldValue);
 					this.myOperations.add(attributeOperation);
-					notification = null;
 					continue;
 				} else if (feature instanceof EReference) {
 
@@ -1632,7 +1618,13 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 			if (notification.getEventType() == Notification.ADD) {
 				if (feature instanceof EReference) {
-					i = handleEReference(feature, newValue, notification, true, projectNotifications, i);
+					if (notification.getNotifier() instanceof Project) {
+						CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation((ModelElement) newValue, false);
+						this.myOperations.add(createDeleteOperation);
+					}
+					else {
+						i = handleEReference(feature, newValue, notification, false, projectNotifications, i);
+					}
 				} else {
 					// FIXME MK: this should never happen
 					throw new IllegalStateException();
@@ -1642,7 +1634,13 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 			if (notification.getEventType() == Notification.REMOVE) {
 				if (feature instanceof EReference) {
-					i = handleEReference(feature, newValue, notification, false, projectNotifications, i);
+					if (notification.getNotifier() instanceof Project) {
+						CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation((ModelElement) newValue, true);
+						this.myOperations.add(createDeleteOperation);
+					}
+					else {
+						i = handleEReference(feature, newValue, notification, true, projectNotifications, i);
+					}
 				} else {
 					// FIXME MK: this should never happen
 					throw new IllegalStateException();
@@ -1715,10 +1713,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 		if (reference.isContainment()) {
 			// element was added or removed to/from containment hierachy
-			if (!(newValue instanceof ModelElement)) {
-				// FIXME MK exception
-				throw new IllegalStateException();
-			}
+			
 			CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(
 					modelElement, isAdd);
 			this.myOperations.add(createDeleteOperation);
@@ -1802,6 +1797,39 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			throws RollbackException {
 		// do nothing
 		return null;
+	}
+
+	public void modelElementAdded(Project project, ModelElement modelElement) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void modelElementRemoved(Project project, ModelElement modelElement) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void notify(Notification notification, Project project,
+			ModelElement modelElement) {
+		if (notification.getEventType() == Notification.ADD
+				&& notification.getFeature() instanceof EStructuralFeature
+				&& notification.getNewValue() instanceof EObject) {
+			// FIXME OW: check cast
+			EObject newValue = (EObject) notification.getNewValue();
+			addToResource(newValue, modelElement);
+
+		} else if (notification.getEventType() == Notification.ADD_MANY
+				&& notification.getFeature() instanceof EStructuralFeature) {
+			// FIXME OW: check cast
+			List<EObject> newValues = (List<EObject>) notification
+					.getNewValue();
+			for (EObject newElement : newValues) {
+				addToResource(newElement, modelElement);
+			}
+		}
+		this.getOperations().addAll(this.myOperations);
+		Usersession usersession2 = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getUsersession();
+		saveResources(false);
 	}
 
 } // ProjectContainerImpl
