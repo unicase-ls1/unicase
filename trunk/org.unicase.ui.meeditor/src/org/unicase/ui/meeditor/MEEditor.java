@@ -47,6 +47,8 @@ public class MEEditor extends SharedHeaderFormEditor {
 	private TransactionalEditingDomain editingDomain;
 	private MEEditorPage form;
 
+	private Adapter eAdapter;
+
 	/**
 	 * Default constructor.
 	 */
@@ -124,7 +126,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 			modelElement = meInput.getModelElement();
 			initializeEditingDomain();
-			Adapter eAdapter = new AdapterImpl() {
+			eAdapter = new AdapterImpl() {
 				@Override
 				public void notifyChanged(Notification msg) {
 					if (msg.getFeature() instanceof EAttribute && ((EAttribute)msg.getFeature()).getName().equals("name")) {
@@ -238,5 +240,13 @@ public class MEEditor extends SharedHeaderFormEditor {
 		}
 		return name;
 	}
-
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void dispose(){
+		modelElement.eAdapters().remove(eAdapter);
+		super.dispose();
+	}
 }
