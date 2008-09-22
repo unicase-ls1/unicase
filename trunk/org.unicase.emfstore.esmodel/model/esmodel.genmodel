@@ -29,6 +29,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//ServerSpace/users"/>
     </genClasses>
     <genClasses ecoreClass="esmodel.ecore#//ProjectId"/>
+    <genClasses ecoreClass="esmodel.ecore#//VersionInfo">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//VersionInfo/emfStoreVersionString"/>
+    </genClasses>
     <nestedGenPackages prefix="Versioning" basePackage="org.unicase.emfstore.esmodel"
         disposableProviderFactory="true" ecorePackage="esmodel.ecore#//versioning">
       <genClasses ecoreClass="esmodel.ecore#//versioning/TagVersionSpec">
