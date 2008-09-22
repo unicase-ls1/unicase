@@ -37,67 +37,85 @@ public class ProjectChangeNotifier extends AdapterImpl {
 
 	public void notifyChanged(Notification notification) {
 
-		switch (notification.getEventType()) {
-		case Notification.ADD:
-			if (notification.getFeature() instanceof EReference) {
-				EObject newValue = (EObject) notification.getNewValue();
-				if (ModelPackage.eINSTANCE.getModelElement().isInstance(
-						newValue)) {
-					ModelElement modelElement = (ModelElement) newValue;
-					if (!project.contains(modelElement)) {
-						newValue.eAdapters().add(this);
-						this.projectChangeObserver.modelElementAdded(project,
-								(ModelElement) newValue);
-					}
-				}
-			}
-			break;
-		case Notification.ADD_MANY:
-			if (notification.getFeature() instanceof EReference) {
-				List<EObject> newValues = (List<EObject>) notification
-						.getNewValue();
-				for (EObject newElement : newValues) {
+		if ((notification.getFeature() instanceof EReference)) {
+			EReference reference = (EReference) notification.getFeature();
+			if (reference.isContainment()) {
+				switch (notification.getEventType()) {
+				case Notification.ADD:
+
+					EObject newValue = (EObject) notification.getNewValue();
 					if (ModelPackage.eINSTANCE.getModelElement().isInstance(
-							newElement)) {
-						ModelElement modelElement = (ModelElement) newElement;
+							newValue)) {
+						ModelElement modelElement = (ModelElement) newValue;
 						if (!project.contains(modelElement)) {
-							newElement.eAdapters().add(this);
+							newValue.eAdapters().add(this);
 							this.projectChangeObserver.modelElementAdded(
-									project, modelElement);
+									project, (ModelElement) newValue);
 						}
 					}
 
-				}
-			}
-			break;
-		case Notification.REMOVE:
-			if (notification.getFeature() instanceof EReference) {
-				EObject newValue = (EObject) notification.getOldValue();
-				if (ModelPackage.eINSTANCE.getModelElement().isInstance(
-						newValue)) {
-					ModelElement modelElement = (ModelElement) newValue;
-					newValue.eAdapters().remove(this);
-					this.projectChangeObserver.modelElementRemoved(project,
-							(ModelElement) newValue);
-				}
-			}
-			break;
-		case Notification.REMOVE_MANY:
-			if (notification.getFeature() instanceof EReference) {
-				List<EObject> oldValues = (List<EObject>) notification
-						.getOldValue();
-				for (EObject newElement : oldValues) {
-					if (ModelPackage.eINSTANCE.getModelElement().isInstance(
-							newElement)) {
-						ModelElement modelElement = (ModelElement) newElement;
-						newElement.eAdapters().add(this);
-						this.projectChangeObserver.modelElementRemoved(project,
-								modelElement);
+					break;
+				case Notification.ADD_MANY:
+
+					List<EObject> newValues = (List<EObject>) notification
+							.getNewValue();
+					for (EObject newElement : newValues) {
+						if (ModelPackage.eINSTANCE.getModelElement()
+								.isInstance(newElement)) {
+							ModelElement modelElement = (ModelElement) newElement;
+							if (!project.contains(modelElement)) {
+								newElement.eAdapters().add(this);
+								this.projectChangeObserver.modelElementAdded(
+										project, modelElement);
+							}
+						}
+
 					}
 
+					break;
+				case Notification.REMOVE:
+					EObject oldValue = (EObject) notification.getOldValue();
+					if (ModelPackage.eINSTANCE.getModelElement().isInstance(
+							oldValue)) {
+						ModelElement modelElement = (ModelElement) oldValue;
+						oldValue.eAdapters().remove(this);
+						this.projectChangeObserver.modelElementRemoved(project,
+								(ModelElement) oldValue);
+					}
+
+					break;
+				case Notification.REMOVE_MANY:
+
+					List<EObject> oldValues = (List<EObject>) notification
+							.getOldValue();
+					for (EObject newElement : oldValues) {
+						if (ModelPackage.eINSTANCE.getModelElement()
+								.isInstance(newElement)) {
+							ModelElement modelElement = (ModelElement) newElement;
+							newElement.eAdapters().remove(this);
+							this.projectChangeObserver.modelElementRemoved(
+									project, modelElement);
+						}
+
+					}
+					break;
+				case Notification.SET:
+					Object newSetValue = notification.getNewValue();
+					Object oldSetValue = notification.getOldValue();
+					if (newSetValue != null) {
+						if (newSetValue instanceof ModelElement) {
+							this.projectChangeObserver.modelElementAdded(
+									project, (ModelElement) newSetValue);
+						}
+					} else {
+						if (oldSetValue instanceof ModelElement)
+							this.projectChangeObserver.modelElementRemoved(
+									project, (ModelElement) oldSetValue);
+					}
 				}
+
 			}
-			break;
+
 		}
 
 		Object notifier = notification.getNotifier();
