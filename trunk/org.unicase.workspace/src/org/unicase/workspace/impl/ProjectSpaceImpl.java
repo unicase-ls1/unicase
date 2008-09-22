@@ -1371,7 +1371,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	public void notify(Notification notification, ModelElement modelElement) {
 		if (notification.getEventType() == Notification.ADD
-				&& notification.getFeature() instanceof EStructuralFeature) {
+				&& notification.getFeature() instanceof EStructuralFeature
+				&& notification.getNewValue() instanceof EObject) {
 			// FIXME OW: check cast
 			EObject newValue = (EObject) notification.getNewValue();
 			addToResource(newValue, modelElement);
