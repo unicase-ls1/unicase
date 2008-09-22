@@ -54,7 +54,7 @@ public class UpdateController {
 		necessaryUpdateSteps = new ArrayList<UpdateStep>(); 
 		
 		updateSteps.add(new UpdateStepAssignableTransformation());
-		
+		updateSteps.add(new UpdateStepRemoveAnnotationInstances());
 	}
 	
 	public Boolean updateIsNecessary(){
@@ -62,7 +62,6 @@ public class UpdateController {
 	}
 
 	public void updateResource(Resource resource) throws FatalEmfStoreException{
-		System.out.println("Updating model…");
 		
 		ServerSpace serverSpace = null; 
 		EList<EObject> contents = resource.getContents();

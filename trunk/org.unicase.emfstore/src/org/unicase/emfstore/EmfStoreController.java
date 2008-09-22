@@ -64,8 +64,10 @@ public class EmfStoreController implements IApplication {
 	private Properties properties;
 	private static Log logger;
 	private ServerSpace serverSpace;
+	private Resource resource;
 
 	private static EmfStoreController instance;
+	private VersionInfo versionInfo;
 
 	/**
 	 * {@inheritDoc}
@@ -88,6 +90,9 @@ public class EmfStoreController implements IApplication {
 		properties = initProperties();
 		initLogging(properties);
 		this.serverSpace = initServerSpace();
+		versionInfo = initVersionInfo();
+		performNecessaryUpdates();
+		
 		accessControl = initAccessControl(serverSpace);
 		emfStore = new EmfStoreImpl(serverSpace, accessControl);
 		adminEmfStore = new AdminEmfStoreImpl(serverSpace, accessControl);
@@ -125,11 +130,63 @@ public class EmfStoreController implements IApplication {
 		return connectionHandlers;
 	}
 
+	private void performNecessaryUpdates() throws FatalEmfStoreException{
+		int compareTo = versionInfo.getEmfStoreVersion().compareTo(EmfStoreImpl.getModelVersion());
+		if (compareTo < 0) {
+			System.out.println("Your model is not up to date. Do you want to update now? (y/n)");
+			
+			byte buffer[] = new byte[1];
+			String input = ""; 
+			int read = 0; 
+			
+			try {
+				read = System.in.read(buffer, 0, 1);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+            input = new String(buffer, 0, read);
+            if (input.equalsIgnoreCase("y")) {
+    			UpdateController updateController = new UpdateController();
+    			updateController.updateResource(resource);				
+			}else{
+				System.out.println("Could not load model, shutting down");
+				throw new FatalEmfStoreException("Unable to load model version");
+			}
+		}
+	}
+	
+	private VersionInfo initVersionInfo() throws FatalEmfStoreException {
+		VersionInfo versionInformation = null;
+		for (EObject content : resource.getContents()) {
+			if (content instanceof VersionInfo) {
+				versionInformation = (VersionInfo) content;
+				break;
+			}	
+		}
+		
+		//If our model does not contain a VersionInfo, we assume version 0.0.1.qualifier
+		if (versionInformation == null) {
+			versionInformation = EsmodelFactory.eINSTANCE.createVersionInfo();
+			versionInformation.setEmfStoreVersionString("0.0.1.qualifier");
+			resource.getContents().add(versionInformation);
+			
+			try {
+				serverSpace.save();
+			} catch (IOException e) {
+				throw new FatalEmfStoreException(StorageException.NOSAVE, e);
+			}
+		}
+		
+		return versionInformation;
+	}
+	
 	private ServerSpace initServerSpace() throws FatalEmfStoreException {
 		ResourceStorage storage = initStorage(properties);
 		URI resourceUri = storage.init(properties);
 		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.getResource(resourceUri, true);
+		resource = resourceSet.getResource(resourceUri, true);
 		try {
 			resource.load(Collections.EMPTY_MAP);
 		} catch (IOException e) {
@@ -159,53 +216,6 @@ public class EmfStoreController implements IApplication {
 				result.save();
 			} catch (IOException e) {
 				throw new FatalEmfStoreException(StorageException.NOSAVE, e);
-			}
-		}
-
-		VersionInfo versionInformation = null;
-		for (EObject content : contents) {
-			if (content instanceof VersionInfo) {
-				versionInformation = (VersionInfo) content;
-				break;
-			}	
-		}
-		
-		//If our model does not contain a VersionInfo, we assume version 0.0.1.qualifier
-		if (versionInformation == null) {
-			versionInformation = EsmodelFactory.eINSTANCE.createVersionInfo();
-			versionInformation.setEmfStoreVersionString("0.0.1.qualifier");
-			resource.getContents().add(versionInformation);
-			
-			try {
-				result.save();
-			} catch (IOException e) {
-				throw new FatalEmfStoreException(StorageException.NOSAVE, e);
-			}
-			
-		}
-
-		int compareTo = versionInformation.getEmfStoreVersion().compareTo(EmfStoreImpl.getModelVersion());
-		if (compareTo < 0) {
-			System.out.println("Your model is not up to date. Do you want to update now? (y/n)");
-			
-			byte buffer[] = new byte[1];
-			String input = ""; 
-			int read = 0; 
-			
-			try {
-				read = System.in.read(buffer, 0, 1);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-            input = new String(buffer, 0, read);
-            if (input.equalsIgnoreCase("y")) {
-    			UpdateController updateController = new UpdateController();
-    			updateController.updateResource(resource);				
-			}else{
-				System.out.println("Could not load model, shutting down");
-				return null;
 			}
 		}
 

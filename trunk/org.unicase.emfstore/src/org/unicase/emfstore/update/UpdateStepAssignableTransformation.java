@@ -5,18 +5,15 @@ import org.eclipse.emf.common.util.EList;
 import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.model.ModelElement;
-import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.bug.BugReport;
-import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.RationalePackage;
-import org.unicase.model.task.WorkItem;
 
-public class UpdateStepAssignableTransformation implements UpdateStep {
+public class UpdateStepAssignableTransformation extends UpdateStepImpl {
 
 	protected org.osgi.framework.Version sourceVersion = new org.osgi.framework.Version("0.0.1");
 	protected org.osgi.framework.Version targetVersion = new org.osgi.framework.Version("0.0.2");
