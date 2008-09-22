@@ -13,10 +13,10 @@
       <genFeatures createChild="false" propertyDescription="" ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/name"/>
       <genFeatures createChild="false" propertyCategory="" propertyDescription=""
           propertyMultiLine="true" ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/description"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/creator"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/creationDate"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/lastModifier"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/lastModifiedDate"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/creator"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/creationDate"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/lastModifier"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/lastModifiedDate"/>
       <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/stringReaderInfos"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//ModelElement/annotations"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//ModelElement/incomingDocumentReferences"/>

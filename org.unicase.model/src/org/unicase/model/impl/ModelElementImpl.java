@@ -6,7 +6,6 @@
  */
 package org.unicase.model.impl;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -512,11 +511,13 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	 * @generated NOT
 	 */
 	public void addReader(String acOrgId) {
-		SimpleDateFormat df = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");
-		getStringReaderInfos().add(acOrgId.concat("#").concat(df.format(new Date())));
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		getStringReaderInfos().add(
+				acOrgId.concat("#").concat(df.format(new Date())));
 	}
+
 	//end of custom code
-	
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -801,16 +802,16 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		result.append(')');
 		return result.toString();
 	}
-	
+
 	//begin of custom code
 	/**
 	 * @return a list of {@link ReaderInfo}s derived from the {@link ModelElement}{@link #stringReaderInfos} parameter.
 	 * @generated NOT
 	 */
-	public ArrayList<ReaderInfo> getReaderInfos(){
-		SimpleDateFormat df = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");
-		ArrayList<ReaderInfo> ret = new ArrayList<ReaderInfo>(); 
-		for(String info : getStringReaderInfos()){
+	public ArrayList<ReaderInfo> getReaderInfos() {
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		ArrayList<ReaderInfo> ret = new ArrayList<ReaderInfo>();
+		for (String info : getStringReaderInfos()) {
 			String[] infos = info.split("#");
 			ReaderInfo readerInfo = new ReaderInfo();
 			readerInfo.setReaderId(infos[0]);

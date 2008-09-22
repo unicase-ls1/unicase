@@ -171,7 +171,7 @@ public class IssueItemProvider extends AnnotationItemProvider implements
 	/**
 	 * This returns Issue.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
