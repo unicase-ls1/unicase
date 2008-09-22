@@ -9,12 +9,12 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.emfstore.esmodel.versioning.operations.*;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
@@ -169,6 +169,17 @@ public class OperationsSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION: {
+			MultiAttributeOperation multiAttributeOperation = (MultiAttributeOperation) theEObject;
+			T result = caseMultiAttributeOperation(multiAttributeOperation);
+			if (result == null)
+				result = caseFeatureOperation(multiAttributeOperation);
+			if (result == null)
+				result = caseAbstractOperation(multiAttributeOperation);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -291,6 +302,21 @@ public class OperationsSwitch<T> {
 	 * @generated
 	 */
 	public T caseMultiReferenceMoveOperation(MultiReferenceMoveOperation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Multi Attribute Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Multi Attribute Operation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMultiAttributeOperation(MultiAttributeOperation object) {
 		return null;
 	}
 

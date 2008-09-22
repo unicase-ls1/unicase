@@ -68,5 +68,5 @@ public interface VersionInfo extends EObject {
 	 * @param emfStoreVersion the version of the emf store plugin
 	 */
 	void setEmfStoreVersion(Version emfStoreVersion);
-	
+
 } // VersionInfo

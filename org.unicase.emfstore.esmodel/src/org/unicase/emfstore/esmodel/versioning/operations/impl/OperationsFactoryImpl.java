@@ -10,10 +10,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.unicase.emfstore.esmodel.versioning.operations.*;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
@@ -77,6 +77,8 @@ public class OperationsFactoryImpl extends EFactoryImpl implements
 			return createMultiReferenceOperation();
 		case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION:
 			return createMultiReferenceMoveOperation();
+		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION:
+			return createMultiAttributeOperation();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName()
 					+ "' is not a valid classifier");
@@ -141,6 +143,16 @@ public class OperationsFactoryImpl extends EFactoryImpl implements
 	public MultiReferenceMoveOperation createMultiReferenceMoveOperation() {
 		MultiReferenceMoveOperationImpl multiReferenceMoveOperation = new MultiReferenceMoveOperationImpl();
 		return multiReferenceMoveOperation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MultiAttributeOperation createMultiAttributeOperation() {
+		MultiAttributeOperationImpl multiAttributeOperation = new MultiAttributeOperationImpl();
+		return multiAttributeOperation;
 	}
 
 	/**
