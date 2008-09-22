@@ -9,6 +9,6 @@ public interface UpdateStep {
 	public Version getSourceVersion();
 	public Version getTargetVersion();
 	
-	public void updateProjectHistory(ProjectHistory projectHistory);
+	public int updateProjectHistory(ProjectHistory projectHistory);
 	
 }
