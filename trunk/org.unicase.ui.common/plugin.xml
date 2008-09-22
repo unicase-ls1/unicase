@@ -22,6 +22,10 @@
                class="org.unicase.ui.common.commands.OpenDiagramWithMEEditorHandler"
                commandId="org.unicase.ui.common.openDiagramWithMEEditor">
          </handler>
+         <handler
+               class="org.unicase.ui.common.commands.ValidateHandler"
+               commandId="org.unicase.ui.common.validate">
+         </handler>
   </extension>
    <extension
         point="org.eclipse.ui.commands">
@@ -44,6 +48,10 @@
            categoryId="org.unicase.ui.common.modifyModelelement"
            id="org.unicase.ui.common.openDiagramWithMEEditor"
            name="Open with MEEditor">
+     </command>
+     <command
+           id="org.unicase.ui.common.validate"
+           name="Validate">
      </command>
   </extension>
    <extension
