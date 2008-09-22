@@ -174,7 +174,6 @@ public class MEDiagramItemProvider extends ModelElementItemProvider implements
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
-	 * {@inheritDoc}
 	 */
 	@Override
 	public String getText(Object object) {

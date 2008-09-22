@@ -6,10 +6,16 @@
 package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.model.ModelElement;
+import org.unicase.model.Project;
 
 /**
  * <!-- begin-user-doc -->
@@ -219,6 +225,76 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements
 		result.append(newValue);
 		result.append(')');
 		return result.toString();
+	}
+
+	@Override
+	public void apply(Project project) {
+		super.apply(project);
+		ModelElement modelElement = project.getModelElement(this
+				.getModelElementId());
+		EList<EAttribute> attributes = modelElement.eClass()
+				.getEAllAttributes();
+		for (EAttribute attribute : attributes) {
+			if (attribute.getName().equals(this.getFeatureName())) {
+				modelElement.eSet(attribute, this.getNewValue());
+				return;
+			}
+		}
+		//FIXME MK: exception
+		throw new IllegalStateException("cannot find attribute");
+	}
+
+	@Override
+	public AbstractOperation reverse() {
+		AttributeOperation attributeOperation = OperationsFactory.eINSTANCE
+				.createAttributeOperation();
+		super.reverse(attributeOperation);
+		//swap old and new value
+		attributeOperation.setNewValue(getOldValue());
+		attributeOperation.setOldValue(getNewValue());
+		return attributeOperation;
+	}
+
+	@Override
+	public boolean canApply(Project project) {
+		return project.contains(this.getModelElementId());
+	}
+
+	@Override
+	public String getDescription() {
+		StringBuilder stringBuilder = new StringBuilder();
+		if (getOldValue() == null) {
+			stringBuilder.append("Set ");
+			stringBuilder.append(getFeatureName());
+			stringBuilder.append(" to ");
+			stringBuilder.append("\"");
+			stringBuilder.append(getNewValue());
+			stringBuilder.append("\"");
+		} else {
+			stringBuilder.append("Changed ");
+			stringBuilder.append(getFeatureName());
+			stringBuilder.append(" from ");
+			stringBuilder.append("\"");
+			stringBuilder.append(getOldValue());
+			stringBuilder.append("\"");
+			stringBuilder.append(" to ");
+			stringBuilder.append("\"");
+			stringBuilder.append(getNewValue());
+			stringBuilder.append("\"");
+		}
+		stringBuilder.append(".");
+		String name = stringBuilder.toString();
+		return name;
+	}
+
+	@Override
+	public String getName() {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("Set ");
+		stringBuilder.append(getFeatureName());
+		stringBuilder.append(" attribute");
+		String name = stringBuilder.toString();
+		return name;
 	}
 
 } //AttributeOperationImpl

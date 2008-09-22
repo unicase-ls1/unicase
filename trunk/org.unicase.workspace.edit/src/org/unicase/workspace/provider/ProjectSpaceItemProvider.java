@@ -383,31 +383,29 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 				WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS,
-				OperationsFactory.eINSTANCE.createAbstractOperation()));
-
-		newChildDescriptors.add(createChildParameter(
-				WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS,
 				OperationsFactory.eINSTANCE.createCompositeOperation()));
 
 		newChildDescriptors.add(createChildParameter(
 				WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS,
-				OperationsFactory.eINSTANCE.createAtomicOperation()));
-
-		newChildDescriptors.add(createChildParameter(
-				WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS,
-				OperationsFactory.eINSTANCE.createCreateOperation()));
-
-		newChildDescriptors.add(createChildParameter(
-				WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS,
-				OperationsFactory.eINSTANCE.createDeleteOperation()));
-
-		newChildDescriptors.add(createChildParameter(
-				WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS,
-				OperationsFactory.eINSTANCE.createReferenceOperation()));
+				OperationsFactory.eINSTANCE.createCreateDeleteOperation()));
 
 		newChildDescriptors.add(createChildParameter(
 				WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS,
 				OperationsFactory.eINSTANCE.createAttributeOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS,
+				OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS,
+				OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS,
+						OperationsFactory.eINSTANCE
+								.createMultiReferenceMoveOperation()));
 
 		newChildDescriptors.add(createChildParameter(
 				WorkspacePackage.Literals.PROJECT_SPACE__BASE_VERSION,

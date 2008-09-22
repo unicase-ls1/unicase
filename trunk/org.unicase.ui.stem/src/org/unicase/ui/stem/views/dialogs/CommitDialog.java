@@ -15,7 +15,12 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.ui.stem.Activator;
+import org.unicase.ui.stem.views.ChangesTreeComposite;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.impl.ProjectSpaceImpl;
 
 /**.
  * This class shows a ChangesTreeComposite and a Text control to enter
@@ -28,16 +33,18 @@ public class CommitDialog extends TitleAreaDialog {
 
 	private Text txtLogMsg;
 	private String logMsg = "";
+	private ProjectSpace projectSpace;
 
 	/**.
 	 * Constructor
 	 * 
 	 * @param parentShell shell
 	 */
-	public CommitDialog(Shell parentShell) {
+	public CommitDialog(Shell parentShell, ProjectSpace projectSpace) {
 
 		super(parentShell);
 		this.setShellStyle(this.getShellStyle() | SWT.RESIZE );
+		this.projectSpace = projectSpace;
 
 	}
 
@@ -50,11 +57,6 @@ public class CommitDialog extends TitleAreaDialog {
 		contents.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		contents.setLayout(new GridLayout(2, false));
 		
-//		//ChangesTree	
-//		ChangesTreeComposite changesTree = new ChangesTreeComposite(contents,
-//				SWT.BORDER, true);
-//		changesTree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
-//		//TODO final implementation (set input for ChangesTreeComposite)
 		setTitle("Commit your chnages");
 		setMessage("Don't forget the commit message!");
 		setTitleImage(Activator.getImageDescriptor("icons/dontForget.png").createImage());
@@ -69,6 +71,13 @@ public class CommitDialog extends TitleAreaDialog {
 		txtLogMsg.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 		txtLogMsg.setText("");
 		
+		//ChangesTree	
+		ChangesTreeComposite changesTree = new ChangesTreeComposite(contents,
+				SWT.BORDER, true);
+		changesTree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
+		ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
+		changePackage.getOperations().addAll(((ProjectSpaceImpl)projectSpace).myOperations);
+		changesTree.setInput(changePackage);
 		
 		return contents;
 

@@ -8,8 +8,10 @@ package org.unicase.emfstore.esmodel.versioning.operations.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.model.Project;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,8 +26,25 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
  *
  * @generated
  */
-public abstract class FeatureOperationImpl extends AtomicOperationImpl
+public abstract class FeatureOperationImpl extends AbstractOperationImpl
 		implements FeatureOperation {
+
+	@Override
+	public boolean canApply(Project project) {
+		return project.contains(getModelElementId());
+	}
+
+	@Override
+	public void reverse(AbstractOperation abstractOperation) {
+		super.reverse(abstractOperation);
+		if (!(abstractOperation instanceof FeatureOperation)) {
+			throw new IllegalArgumentException(
+					"Given operation is not a feature operation.");
+		}
+		FeatureOperation featureOperation = (FeatureOperation) abstractOperation;
+		featureOperation.setFeatureName(getFeatureName());
+	}
+
 	/**
 	 * The default value of the '{@link #getFeatureName() <em>Feature Name</em>}' attribute.
 	 * <!-- begin-user-doc -->

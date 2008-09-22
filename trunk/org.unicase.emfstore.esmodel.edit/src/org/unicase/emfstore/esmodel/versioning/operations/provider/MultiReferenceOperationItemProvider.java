@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -17,16 +18,19 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
-import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
+import org.unicase.model.ModelFactory;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation} object.
+ * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ReferenceOperationItemProvider extends
+public class MultiReferenceOperationItemProvider extends
 		FeatureOperationItemProvider implements IEditingDomainItemProvider,
 		IStructuredItemContentProvider, ITreeItemContentProvider,
 		IItemLabelProvider, IItemPropertySource {
@@ -36,7 +40,7 @@ public class ReferenceOperationItemProvider extends
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReferenceOperationItemProvider(AdapterFactory adapterFactory) {
+	public MultiReferenceOperationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -51,50 +55,84 @@ public class ReferenceOperationItemProvider extends
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addOldValuePropertyDescriptor(object);
-			addNewValuePropertyDescriptor(object);
+			addAddPropertyDescriptor(object);
+			addIndexPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Old Value feature.
+	 * This adds a property descriptor for the Add feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOldValuePropertyDescriptor(Object object) {
+	protected void addAddPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
 						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ReferenceOperation_oldValue_feature"),
+				getString("_UI_MultiReferenceOperation_add_feature"),
 				getString("_UI_PropertyDescriptor_description",
-						"_UI_ReferenceOperation_oldValue_feature",
-						"_UI_ReferenceOperation_type"),
-				OperationsPackage.Literals.REFERENCE_OPERATION__OLD_VALUE,
-				true, false, true, null, null, null));
+						"_UI_MultiReferenceOperation_add_feature",
+						"_UI_MultiReferenceOperation_type"),
+				OperationsPackage.Literals.MULTI_REFERENCE_OPERATION__ADD,
+				true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the New Value feature.
+	 * This adds a property descriptor for the Index feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNewValuePropertyDescriptor(Object object) {
+	protected void addIndexPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
 						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ReferenceOperation_newValue_feature"),
+				getString("_UI_MultiReferenceOperation_index_feature"),
 				getString("_UI_PropertyDescriptor_description",
-						"_UI_ReferenceOperation_newValue_feature",
-						"_UI_ReferenceOperation_type"),
-				OperationsPackage.Literals.REFERENCE_OPERATION__NEW_VALUE,
-				true, false, true, null, null, null));
+						"_UI_MultiReferenceOperation_index_feature",
+						"_UI_MultiReferenceOperation_type"),
+				OperationsPackage.Literals.MULTI_REFERENCE_OPERATION__INDEX,
+				true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This returns ReferenceOperation.gif.
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(
+			Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures
+					.add(OperationsPackage.Literals.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS);
+		}
+		return childrenFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
+	}
+
+	/**
+	 * This returns MultiReferenceOperation.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -102,7 +140,7 @@ public class ReferenceOperationItemProvider extends
 	@Override
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/ReferenceOperation"));
+				"full/obj16/MultiReferenceOperation"));
 	}
 
 	/**
@@ -113,9 +151,9 @@ public class ReferenceOperationItemProvider extends
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ReferenceOperation) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_ReferenceOperation_type")
-				: getString("_UI_ReferenceOperation_type") + " " + label;
+		String label = ((MultiReferenceOperation) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_MultiReferenceOperation_type")
+				: getString("_UI_MultiReferenceOperation_type") + " " + label;
 	}
 
 	/**
@@ -128,6 +166,18 @@ public class ReferenceOperationItemProvider extends
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(MultiReferenceOperation.class)) {
+		case OperationsPackage.MULTI_REFERENCE_OPERATION__ADD:
+		case OperationsPackage.MULTI_REFERENCE_OPERATION__INDEX:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), false, true));
+			return;
+		case OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), true, false));
+			return;
+		}
 		super.notifyChanged(notification);
 	}
 
@@ -142,6 +192,11 @@ public class ReferenceOperationItemProvider extends
 	protected void collectNewChildDescriptors(
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors
+				.add(createChildParameter(
+						OperationsPackage.Literals.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS,
+						ModelFactory.eINSTANCE.createModelElementId()));
 	}
 
 }
