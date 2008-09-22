@@ -1211,9 +1211,9 @@ public interface RationalePackage extends EPackage {
 	EClass getComment();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.rationale.Comment#getReplies <em>Replies</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.unicase.model.rationale.Comment#getReplies <em>Replies</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Replies</em>'.
+	 * @return the meta object for the containment reference list '<em>Replies</em>'.
 	 * @see org.unicase.model.rationale.Comment#getReplies()
 	 * @see #getComment()
 	 * @generated
@@ -1414,7 +1414,7 @@ public interface RationalePackage extends EPackage {
 		EClass COMMENT = eINSTANCE.getComment();
 
 		/**
-		 * The meta object literal for the '<em><b>Replies</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Replies</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */

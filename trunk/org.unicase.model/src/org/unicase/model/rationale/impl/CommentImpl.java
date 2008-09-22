@@ -8,8 +8,12 @@ package org.unicase.model.rationale.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.unicase.model.impl.AnnotationImpl;
 import org.unicase.model.rationale.Comment;
@@ -29,7 +33,7 @@ import org.unicase.model.rationale.RationalePackage;
  */
 public class CommentImpl extends AnnotationImpl implements Comment {
 	/**
-	 * The cached value of the '{@link #getReplies() <em>Replies</em>}' reference list.
+	 * The cached value of the '{@link #getReplies() <em>Replies</em>}' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getReplies()
 	 * @generated
@@ -60,10 +64,26 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 	 */
 	public EList<Comment> getReplies() {
 		if (replies == null) {
-			replies = new EObjectResolvingEList<Comment>(Comment.class, this,
-					RationalePackage.COMMENT__REPLIES);
+			replies = new EObjectContainmentEList.Resolving<Comment>(
+					Comment.class, this, RationalePackage.COMMENT__REPLIES);
 		}
 		return replies;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case RationalePackage.COMMENT__REPLIES:
+			return ((InternalEList<?>) getReplies())
+					.basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

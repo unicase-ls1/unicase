@@ -475,7 +475,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Comment" eSuperTypes="#//Annotation">
       <eStructuralFeatures xsi:type="ecore:EReference" name="replies" upperBound="-1"
-          eType="#//rationale/Comment" eKeys="#//IdentifiableElement/identifier"/>
+          eType="#//rationale/Comment" containment="true" eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="change" nsURI="http://unicase.org/model/change" nsPrefix="org.unicase.model.rationale">
