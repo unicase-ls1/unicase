@@ -95,6 +95,7 @@ public class MEEditorInput implements IEditorInput {
 	 * Custom equals() for this class.
 	 * @param obj the compared object.
 	 * @return the boolean state.
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -104,6 +105,16 @@ public class MEEditorInput implements IEditorInput {
 			return ret;
 		}
 		return false;
+	}
+	
+
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int hashCode() {
+		throw new  UnsupportedOperationException();
 	}
 
 	/**
