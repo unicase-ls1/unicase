@@ -1,5 +1,6 @@
 package org.unicase.emfstore.update;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -13,6 +14,8 @@ import org.unicase.emfstore.EmfStoreImpl;
 import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.esmodel.VersionInfo;
+import org.unicase.emfstore.exceptions.FatalEmfStoreException;
+import org.unicase.emfstore.exceptions.StorageException;
 
 public class UpdateController {
 
@@ -47,6 +50,7 @@ public class UpdateController {
 	
 	public UpdateController(){
 		updateSteps = new ArrayList<UpdateStep>();
+		necessaryUpdateSteps = new ArrayList<UpdateStep>(); 
 		
 		updateSteps.add(new UpdateStepAssignableTransformation());
 		
@@ -56,7 +60,9 @@ public class UpdateController {
 		return false;
 	}
 
-	public void updateResource(Resource resource){
+	public void updateResource(Resource resource) throws FatalEmfStoreException{
+		System.out.println("Updating model…");
+		
 		ServerSpace serverSpace = null; 
 		EList<EObject> contents = resource.getContents();
 		for (EObject content : contents) {
@@ -101,26 +107,22 @@ public class UpdateController {
 		
 		for (ProjectHistory projectHistory : serverSpace.getProjects()) {
 			for (UpdateStep updateStep : getNecessaryUpdateSteps()) {
+				System.out.println("Performing update: " + updateStep.getTitle());
+				System.out.println("Updating from version " 
+						+ updateStep.getSourceVersion() 
+						+ " to version " 
+						+ updateStep.getTargetVersion());
+								
 				updateStep.updateProjectHistory(projectHistory);
 			}
-		}		
+			
+		}
+		
+		try {
+			serverSpace.save();
+			System.out.println("Update successfull");
+		} catch (IOException e) {
+			throw new FatalEmfStoreException(StorageException.NOSAVE, e);
+		}
 	}
-	
-//	String[] namespaces = Platform.getExtensionRegistry().getNamespaces();
-//	IExtension[] extensions = Platform.getExtensionRegistry().getExtensions("org.unicase.emfstore");
-//	
-//	for (IExtension extension : extensions) {
-//		IConfigurationElement[] configurationElements = extension.getConfigurationElements();
-//		for (IConfigurationElement configurationElement : configurationElements) {
-//			String[] attributeNames = configurationElement.getAttributeNames();
-//			for (String string : attributeNames) {
-//				System.out.println(string);	
-//			}
-//					 
-//		}
-//	}
-	
-	
-	
-
 }

@@ -5,6 +5,7 @@ import org.unicase.emfstore.esmodel.ProjectHistory;
 
 public interface UpdateStep {
 
+	public String getTitle();
 	public Version getSourceVersion();
 	public Version getTargetVersion();
 	
