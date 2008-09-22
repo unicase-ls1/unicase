@@ -1752,7 +1752,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			// element was added or removed to/from containment hierachy
 
 			CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(
-					modelElement, isAdd);
+					modelElement, !isAdd);
 			this.myOperations.add(createDeleteOperation);
 
 		}
