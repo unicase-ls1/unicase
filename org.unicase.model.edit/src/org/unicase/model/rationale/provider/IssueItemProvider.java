@@ -170,8 +170,11 @@ public class IssueItemProvider extends AnnotationItemProvider implements
 
 	/**
 	 * This returns Issue.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * 
+	 * <!-- end-user-doc -->
 	 * @generated NOT
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Object getImage(Object object) {
@@ -191,6 +194,7 @@ public class IssueItemProvider extends AnnotationItemProvider implements
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * @generated NOT
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getText(Object object) {

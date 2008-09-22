@@ -60,6 +60,7 @@ public class PackageElementItemProvider extends ModelElementItemProvider
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * @generated NOT
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getText(Object object) {

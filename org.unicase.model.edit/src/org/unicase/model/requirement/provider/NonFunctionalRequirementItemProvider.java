@@ -117,6 +117,7 @@ public class NonFunctionalRequirementItemProvider extends CriterionItemProvider
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getText(Object object) {
