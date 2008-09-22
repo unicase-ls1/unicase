@@ -13,6 +13,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -56,8 +57,46 @@ public class ProposalItemProvider extends ModelElementItemProvider implements
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addAssessmentsPropertyDescriptor(object);
+			addIssuePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Assessments feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAssessmentsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(), getResourceLocator(),
+						getString("_UI_Proposal_assessments_feature"),
+						getString("_UI_PropertyDescriptor_description",
+								"_UI_Proposal_assessments_feature",
+								"_UI_Proposal_type"),
+						RationalePackage.Literals.PROPOSAL__ASSESSMENTS, true,
+						false, false, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Issue feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIssuePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Proposal_issue_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Proposal_issue_feature", "_UI_Proposal_type"),
+				RationalePackage.Literals.PROPOSAL__ISSUE, true, false, false,
+				null, null, null));
 	}
 
 	/**

@@ -64,6 +64,8 @@ public class IssueItemProvider extends AnnotationItemProvider implements
 			addSuccessorsPropertyDescriptor(object);
 			addAssigneePropertyDescriptor(object);
 			addParticipantsPropertyDescriptor(object);
+			addProposalsPropertyDescriptor(object);
+			addSolutionPropertyDescriptor(object);
 			addCriteriaPropertyDescriptor(object);
 			addFacilitatorPropertyDescriptor(object);
 		}
@@ -192,6 +194,40 @@ public class IssueItemProvider extends AnnotationItemProvider implements
 						"_UI_WorkItem_type"),
 				TaskPackage.Literals.WORK_ITEM__PARTICIPANTS, true, false,
 				true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Proposals feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addProposalsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Issue_proposals_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Issue_proposals_feature", "_UI_Issue_type"),
+				RationalePackage.Literals.ISSUE__PROPOSALS, true, false, false,
+				null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Solution feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSolutionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Issue_solution_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Issue_solution_feature", "_UI_Issue_type"),
+				RationalePackage.Literals.ISSUE__SOLUTION, true, false, false,
+				null, null, null));
 	}
 
 	/**

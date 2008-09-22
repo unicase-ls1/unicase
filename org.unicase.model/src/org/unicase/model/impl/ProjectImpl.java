@@ -42,7 +42,8 @@ import org.unicase.model.util.ProjectChangeObserver;
  * @generated
  */
 
-public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeObserver {
+public class ProjectImpl extends EObjectImpl implements Project,
+		ProjectChangeObserver {
 
 	/**
 	 * The cached value of the '{@link #getModelElements() <em>Model Elements</em>}' containment reference list.

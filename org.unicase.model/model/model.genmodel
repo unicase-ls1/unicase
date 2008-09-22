@@ -354,8 +354,8 @@
     <nestedGenPackages prefix="Rationale" basePackage="org.unicase.model" disposableProviderFactory="true"
         ecorePackage="model.ecore#//rationale">
       <genClasses ecoreClass="model.ecore#//rationale/Issue">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//rationale/Issue/proposals"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//rationale/Issue/solution"/>
+        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//rationale/Issue/proposals"/>
+        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//rationale/Issue/solution"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//rationale/Issue/criteria"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//rationale/Issue/refiningIssues"/>
@@ -364,8 +364,8 @@
             ecoreFeature="ecore:EReference model.ecore#//rationale/Issue/facilitator"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//rationale/Proposal">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//rationale/Proposal/assessments"/>
-        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//rationale/Proposal/issue"/>
+        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//rationale/Proposal/assessments"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//rationale/Proposal/issue"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//rationale/Solution">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
