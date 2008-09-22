@@ -172,7 +172,7 @@ public class MEDiagramItemProvider extends ModelElementItemProvider implements
 	/**
 	 * This returns the label text for the adapted class. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
+	 * {@inheritDoc}
 	 * @generated NOT
 	 */
 	@Override

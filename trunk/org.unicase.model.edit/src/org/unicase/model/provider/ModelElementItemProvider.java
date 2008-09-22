@@ -140,6 +140,7 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * @generated NOT
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getText(Object object) {
@@ -191,6 +192,7 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider
 	/**
 	 * @return the ImageDescriptor for this class.
 	 * @generated NOT
+	 * {@inheritDoc}
 	 */
 	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/ModelElement");
