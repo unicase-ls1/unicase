@@ -7,6 +7,10 @@
 package org.unicase.emfstore.esmodel.versioning.impl;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -22,6 +26,12 @@ import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 import org.unicase.emfstore.esmodel.versioning.changeContainer.ChangeContainer;
 import org.unicase.emfstore.esmodel.versioning.changeContainer.ChangeContainerFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
+import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
 
 /**
@@ -151,11 +161,68 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void cannonize() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
+		Set<ModelElementId> deletedElements = new HashSet<ModelElementId>();
+		Map<String, AttributeOperation> changedAttributes = new HashMap<String, AttributeOperation>();
+		Map<String, SingleReferenceOperation> changedSingleReferences = new HashMap<String, SingleReferenceOperation>();
+		Set<AbstractOperation> operationsToBeDeleted = new HashSet<AbstractOperation>();
+		EList<AbstractOperation> list = getOperations();
+		for (int i = list.size(); i>0; i--) {
+			AbstractOperation operation = list.get(i);
+			if (operation instanceof CompositeOperation) {
+				//FIXME MK: check if composite will be empty after cannonize:
+				//FIXME MK: check if composite in context of cp
+				((CompositeOperation) operation).cannonize();
+				continue;
+			}
+			if (deletedElements.contains(operation.getModelElementId())) {
+				operationsToBeDeleted.add(operation);
+				continue;
+			}
+			if (operation instanceof CreateDeleteOperation) {
+				boolean isDelete = ((CreateDeleteOperation) operation).isDelete();
+				if (isDelete) {
+					deletedElements.add(operation.getModelElementId());
+				}
+				continue;
+			}
+			if (operation instanceof AttributeOperation) {
+				AttributeOperation attributeOperation = (AttributeOperation) operation;
+				String key = attributeOperation.getModelElementId() + attributeOperation.getFeatureName();
+				if (changedAttributes.containsKey(key)) {
+					//aggregate the two attribute changes
+					AttributeOperation lastAttributeOperation = changedAttributes.get(key);
+					lastAttributeOperation.setOldValue(attributeOperation.getOldValue());
+					operationsToBeDeleted.add(attributeOperation);
+				}
+				else {
+					changedAttributes.put(key, attributeOperation);
+				}
+				continue;
+			}
+			if (operation instanceof SingleReferenceOperation) {
+				SingleReferenceOperation singleReferenceOperation = (SingleReferenceOperation) operation;
+				String key = singleReferenceOperation.getModelElementId() + singleReferenceOperation.getFeatureName();
+				if (changedSingleReferences.containsKey(key)) {
+					//aggregate the two single reference changes
+					SingleReferenceOperation lastSingleReferenceOperation = changedSingleReferences.get(key);
+					lastSingleReferenceOperation.setOldValue(singleReferenceOperation.getOldValue());
+					operationsToBeDeleted.add(singleReferenceOperation);
+				}
+				else {
+					changedSingleReferences.put(key, singleReferenceOperation);
+				}
+				continue;
+			}
+			//nop
+			//we do not aggregate MultiReferenceOperations since this might be confusing for the user
+			//we cannot aggregate operations we do not know
+		}
+		//remove all obsolete operations
+		list.removeAll(operationsToBeDeleted);
+		
 		throw new UnsupportedOperationException();
 	}
 
