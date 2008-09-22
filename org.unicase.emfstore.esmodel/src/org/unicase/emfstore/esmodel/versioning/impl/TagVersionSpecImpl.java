@@ -19,16 +19,19 @@ import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.impl.TagVersionSpecImpl#getName <em>Name</em>}</li>
+ * <li>
+ * {@link org.unicase.emfstore.esmodel.versioning.impl.TagVersionSpecImpl#getName
+ * <em>Name</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -38,6 +41,7 @@ public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -46,6 +50,7 @@ public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected TagVersionSpecImpl() {
@@ -54,6 +59,7 @@ public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,6 +69,7 @@ public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -71,6 +78,7 @@ public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setName(String newName) {
@@ -83,6 +91,7 @@ public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -96,6 +105,7 @@ public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -110,6 +120,7 @@ public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -124,6 +135,7 @@ public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -138,6 +150,7 @@ public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -150,6 +163,21 @@ public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 		result.append(name);
 		result.append(')');
 		return result.toString();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof TagVersionSpec) {
+			if (((TagVersionSpec) obj).getName().equals(getName())) {
+				return true;
+			}
+		}
+		return super.equals(obj);
 	}
 
 } // TagVersionSpecImpl

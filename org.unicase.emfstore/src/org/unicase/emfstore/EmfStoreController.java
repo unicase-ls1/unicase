@@ -66,7 +66,7 @@ public class EmfStoreController implements IApplication {
 	 * 
 	 * @see org.eclipse.equinox.app.IApplication#start(org.eclipse.equinox.app.IApplicationContext)
 	 */
-	public Object start(IApplicationContext context) throws EmfStoreException {
+	public Object start(IApplicationContext context) throws EmfStoreException, FatalEmfStoreException {
 
 		if (instance != null) {
 			throw new FatalEmfStoreException(
@@ -223,7 +223,7 @@ public class EmfStoreController implements IApplication {
 	private void setSuperUser(ServerSpace serverSpace) throws StorageException {
 		String superuser = ServerConfiguration.getProperties().getProperty(
 				ServerConfiguration.SUPER_USER,
-				ServerConfiguration.DEFAULT_SUPER_USER);
+				ServerConfiguration.SUPER_USER_DEFAULT);
 		for (ACUser user : serverSpace.getUsers()) {
 			if (user.getName().equals(superuser)) {
 				return;

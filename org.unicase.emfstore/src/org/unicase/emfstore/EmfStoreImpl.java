@@ -34,6 +34,7 @@ import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.DateVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.HeadVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
@@ -85,6 +86,10 @@ public class EmfStoreImpl implements EmfStore {
 			ProjectId projectId, PrimaryVersionSpec baseVersionSpec,
 			ChangePackage changePackage, LogMessage logMessage)
 			throws EmfStoreException {
+		if (sessionId == null || projectId == null || baseVersionSpec == null
+				|| changePackage == null || logMessage == null) {
+			throw new InvalidVersionSpecException();
+		}
 		authorizationControl.checkWriteAccess(sessionId, projectId, null);
 		long currentTimeMillis = System.currentTimeMillis();
 
@@ -143,22 +148,28 @@ public class EmfStoreImpl implements EmfStore {
 
 	/**
 	 * @generated NOT
-	 * @return the emf store model version number as in the manifest file 
+	 * @return the emf store model version number as in the manifest file
 	 */
-	public static org.osgi.framework.Version getModelVersion(){
+	public static org.osgi.framework.Version getModelVersion() {
 		Bundle emfStoreBundle = Platform.getBundle("org.unicase.emfstore");
-		String emfStoreVersionString = (String) emfStoreBundle.getHeaders().get(org.osgi.framework.Constants.BUNDLE_VERSION);
-		org.osgi.framework.Version emfStoreVersion = new org.osgi.framework.Version(emfStoreVersionString);
+		String emfStoreVersionString = (String) emfStoreBundle.getHeaders()
+				.get(org.osgi.framework.Constants.BUNDLE_VERSION);
+		org.osgi.framework.Version emfStoreVersion = new org.osgi.framework.Version(
+				emfStoreVersionString);
 
 		return emfStoreVersion;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
 	public synchronized List<ChangePackage> getChanges(SessionId sessionId,
 			ProjectId projectId, VersionSpec source, VersionSpec target)
 			throws EmfStoreException {
+		if (sessionId == null || projectId == null || source == null
+				|| target == null) {
+			throw new InvalidVersionSpecException();
+		}
 		authorizationControl.checkReadAccess(sessionId, projectId, null);
 
 		PrimaryVersionSpec resolvedSource = resolveVersionSpec(projectId,
@@ -190,6 +201,10 @@ public class EmfStoreImpl implements EmfStore {
 	public synchronized List<HistoryInfo> getHistoryInfo(SessionId sessionId,
 			ProjectId projectId, VersionSpec source, VersionSpec target)
 			throws EmfStoreException {
+		if (sessionId == null || projectId == null || source == null
+				|| target == null) {
+			throw new InvalidVersionSpecException();
+		}
 		authorizationControl.checkReadAccess(sessionId, projectId, null);
 
 		PrimaryVersionSpec resolvedSource = resolveVersionSpec(projectId,
@@ -211,8 +226,10 @@ public class EmfStoreImpl implements EmfStore {
 	public synchronized List<HistoryInfo> getHistoryInfo(SessionId sessionId,
 			ProjectId projectId, HistoryQuery historyQuery)
 			throws EmfStoreException {
+		if (sessionId == null || projectId == null || historyQuery == null) {
+			throw new InvalidVersionSpecException();
+		}
 		authorizationControl.checkReadAccess(sessionId, projectId, null);
-
 		List<HistoryInfo> result = getHistoryInfo(projectId, historyQuery
 				.getSource(), historyQuery.getTarget());
 		if (historyQuery.getSource().compareTo(historyQuery.getTarget()) < 0) {
@@ -224,6 +241,9 @@ public class EmfStoreImpl implements EmfStore {
 	private List<HistoryInfo> getHistoryInfo(ProjectId projectId,
 			PrimaryVersionSpec source, PrimaryVersionSpec target)
 			throws EmfStoreException {
+		if (projectId == null || source == null || target == null) {
+			throw new InvalidVersionSpecException();
+		}
 		List<HistoryInfo> result = new ArrayList<HistoryInfo>();
 		PrimaryVersionSpec headRevision = getProject(projectId)
 				.getLastVersion().getPrimarySpec();
@@ -256,13 +276,27 @@ public class EmfStoreImpl implements EmfStore {
 	public synchronized Project getProject(SessionId sessionId,
 			ProjectId projectId, VersionSpec versionSpec)
 			throws EmfStoreException {
-		// TODO: authorization
+		if (sessionId == null || projectId == null || versionSpec == null) {
+			throw new InvalidVersionSpecException();
+		}
 		authorizationControl.checkReadAccess(sessionId, projectId, null);
-		// MK: TODO recalulate project state if not available
-		// copy projectstate of nearest version
-		// then apply changepackages to get to state (maybe reverse)
-		return getVersion(projectId, resolveVersionSpec(projectId, versionSpec))
-				.getProjectState();
+		PrimaryVersionSpec resolvedVersion = resolveVersionSpec(projectId,
+				versionSpec);
+		Version version = getVersion(projectId, resolvedVersion);
+		if (version.getProjectState() == null) {
+			// TODO OW MK: speed up calculation by using nearer projectstate
+			// instead of first.
+			Version firstVersion = getProject(projectId).getVersions().get(0);
+			Project projectState = (Project) EcoreUtil.copy(firstVersion.getProjectState());
+			for (Version next = firstVersion.getNextVersion(); next != null
+					&& next.getPrimarySpec().compareTo(resolvedVersion) < 1; next = next
+					.getNextVersion()) {
+				next.getChanges().apply(projectState);
+			}
+			return projectState;
+		} else {
+			return version.getProjectState();
+		}
 	}
 
 	/**
@@ -270,6 +304,9 @@ public class EmfStoreImpl implements EmfStore {
 	 */
 	public synchronized List<ProjectInfo> getProjectList(SessionId sessionId)
 			throws EmfStoreException {
+		if (sessionId == null) {
+			throw new InvalidVersionSpecException();
+		}
 		List<ProjectInfo> result = new ArrayList<ProjectInfo>();
 		for (ProjectHistory project : getServerSpace().getProjects()) {
 			try {
@@ -289,6 +326,9 @@ public class EmfStoreImpl implements EmfStore {
 	public synchronized PrimaryVersionSpec resolveVersionSpec(
 			SessionId sessionId, ProjectId projectId, VersionSpec versionSpec)
 			throws EmfStoreException {
+		if (sessionId == null || projectId == null || versionSpec == null) {
+			throw new InvalidVersionSpecException();
+		}
 		authorizationControl.checkReadAccess(sessionId, projectId, null);
 		return resolveVersionSpec(projectId, versionSpec);
 	}
@@ -298,6 +338,9 @@ public class EmfStoreImpl implements EmfStore {
 	 */
 	public synchronized ACUser resolveUser(SessionId sessionId, ACOrgUnitId id)
 			throws EmfStoreException {
+		if (sessionId == null) {
+			throw new InvalidVersionSpecException();
+		}
 		ACUser requestingUser = authorizationControl.resolveUser(sessionId);
 		if (id == null) {
 			return requestingUser;
@@ -316,6 +359,10 @@ public class EmfStoreImpl implements EmfStore {
 	public synchronized ProjectInfo createProject(SessionId sessionId,
 			String name, String description, LogMessage logMessage)
 			throws EmfStoreException {
+		if (sessionId == null || name == null || description == null
+				|| logMessage == null) {
+			throw new InvalidVersionSpecException();
+		}
 		authorizationControl.checkServerAdminAccess(sessionId);
 		ProjectHistory projectHistory = createEmptyProject(name, description,
 				logMessage);
@@ -329,6 +376,10 @@ public class EmfStoreImpl implements EmfStore {
 	public synchronized ProjectInfo createProject(SessionId sessionId,
 			String name, String description, LogMessage logMessage,
 			Project project) throws EmfStoreException {
+		if (sessionId == null || name == null || description == null
+				|| logMessage == null || project == null) {
+			throw new InvalidVersionSpecException();
+		}
 		authorizationControl.checkServerAdminAccess(sessionId);
 		ProjectHistory projectHistory = createEmptyProject(name, description,
 				logMessage);
@@ -409,7 +460,8 @@ public class EmfStoreImpl implements EmfStore {
 		info.setName(project.getProjectName());
 		info.setDescription(project.getProjectDescription());
 		info.setProjectId((ProjectId) EcoreUtil.copy(project.getProjectId()));
-		info.setVersion((PrimaryVersionSpec) EcoreUtil.copy(project.getLastVersion().getPrimarySpec()));
+		info.setVersion((PrimaryVersionSpec) EcoreUtil.copy(project
+				.getLastVersion().getPrimarySpec()));
 		return info;
 	}
 
@@ -426,16 +478,41 @@ public class EmfStoreImpl implements EmfStore {
 		} else if (versionSpec instanceof HeadVersionSpec) {
 			return (PrimaryVersionSpec) EcoreUtil.copy(getProject(projectId)
 					.getLastVersion().getPrimarySpec());
+		} else if (versionSpec instanceof DateVersionSpec) {
+			for (Version version : projectHistory.getVersions()) {
+				if (((DateVersionSpec) versionSpec).getDate().before(
+						version.getLogMessage().getDate())) {
+					Version previousVersion = version.getPreviousVersion();
+					if (previousVersion == null) {
+						break;
+					}
+					return previousVersion.getPrimarySpec();
+				}
+			}
+			throw new InvalidVersionSpecException();
+		} else if (versionSpec instanceof TagVersionSpec) {
+			for (Version version : projectHistory.getVersions()) {
+				for (TagVersionSpec tag : version.getTagSpecs()) {
+					if (((TagVersionSpec) versionSpec).equals(tag)) {
+						return (PrimaryVersionSpec) EcoreUtil.copy(version
+								.getPrimarySpec());
+					}
+				}
+			}
+			throw new InvalidVersionSpecException();
 		} else {
-			// FIXME OW MK: Tag- and DateVersionSpec
 			throw new InvalidVersionSpecException();
 		}
 	}
 
 	private Version getVersion(ProjectId projectId,
 			PrimaryVersionSpec versionSpec) throws EmfStoreException {
-		return getProject(projectId).getVersions().get(
-				versionSpec.getIdentifier());
+		EList<Version> versions = getProject(projectId).getVersions();
+		if (versionSpec.getIdentifier() < 0
+				|| versionSpec.getIdentifier() > versions.size() - 1) {
+			throw new InvalidVersionSpecException();
+		}
+		return versions.get(versionSpec.getIdentifier());
 	}
 
 	private List<Version> getVersions(ProjectId projectId,
@@ -443,6 +520,12 @@ public class EmfStoreImpl implements EmfStore {
 			throws EmfStoreException {
 		if (source.compareTo(target) < 1) {
 			EList<Version> versions = getProject(projectId).getVersions();
+			if (source.getIdentifier() < 0
+					|| source.getIdentifier() > versions.size() - 1
+					|| target.getIdentifier() < 0
+					|| target.getIdentifier() > versions.size() - 1) {
+				throw new InvalidVersionSpecException();
+			}
 			List<Version> result = new ArrayList<Version>();
 			Iterator<Version> iter = versions.listIterator(source
 					.getIdentifier());
