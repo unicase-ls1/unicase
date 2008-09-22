@@ -967,7 +967,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		setBaseVersion(newBaseVersion);
 
 		saveResources(true);
-
+		save();
 		// save starts recording ...
 		// startChangeRecording();
 
