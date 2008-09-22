@@ -9,6 +9,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
@@ -38,7 +39,7 @@ public class ProjectChangeNotifier extends AdapterImpl {
 
 		switch (notification.getEventType()) {
 		case Notification.ADD:
-			if (notification.getFeature() instanceof EStructuralFeature) {
+			if (notification.getFeature() instanceof EReference) {
 				EObject newValue = (EObject) notification.getNewValue();
 				if (ModelPackage.eINSTANCE.getModelElement().isInstance(
 						newValue)) {
@@ -52,7 +53,7 @@ public class ProjectChangeNotifier extends AdapterImpl {
 			}
 			break;
 		case Notification.ADD_MANY:
-			if (notification.getFeature() instanceof EStructuralFeature) {
+			if (notification.getFeature() instanceof EReference) {
 				List<EObject> newValues = (List<EObject>) notification
 						.getNewValue();
 				for (EObject newElement : newValues) {
@@ -70,7 +71,7 @@ public class ProjectChangeNotifier extends AdapterImpl {
 			}
 			break;
 		case Notification.REMOVE:
-			if (notification.getFeature() instanceof EStructuralFeature) {
+			if (notification.getFeature() instanceof EReference) {
 				EObject newValue = (EObject) notification.getOldValue();
 				if (ModelPackage.eINSTANCE.getModelElement().isInstance(
 						newValue)) {
@@ -82,7 +83,7 @@ public class ProjectChangeNotifier extends AdapterImpl {
 			}
 			break;
 		case Notification.REMOVE_MANY:
-			if (notification.getFeature() instanceof EStructuralFeature) {
+			if (notification.getFeature() instanceof EReference) {
 				List<EObject> oldValues = (List<EObject>) notification
 						.getOldValue();
 				for (EObject newElement : oldValues) {
