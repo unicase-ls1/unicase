@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.model.Project;
 
@@ -27,9 +28,10 @@ import org.unicase.model.Project;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.CompositeOperationImpl#getAtomicOperations <em>Atomic Operations</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.CompositeOperationImpl#getSubOperations <em>Sub Operations</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.CompositeOperationImpl#getCompositeName <em>Composite Name</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.CompositeOperationImpl#getCompositeDescription <em>Composite Description</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.CompositeOperationImpl#isReversed <em>Reversed</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,14 +40,14 @@ import org.unicase.model.Project;
 public class CompositeOperationImpl extends AbstractOperationImpl implements
 		CompositeOperation {
 	/**
-	 * The cached value of the '{@link #getAtomicOperations() <em>Atomic Operations</em>}' containment reference list.
+	 * The cached value of the '{@link #getSubOperations() <em>Sub Operations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAtomicOperations()
+	 * @see #getSubOperations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AbstractOperation> atomicOperations;
+	protected EList<AbstractOperation> subOperations;
 
 	/**
 	 * The default value of the '{@link #getCompositeName() <em>Composite Name</em>}' attribute.
@@ -85,6 +87,26 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 	protected String compositeDescription = COMPOSITE_DESCRIPTION_EDEFAULT;
 
 	/**
+	 * The default value of the '{@link #isReversed() <em>Reversed</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isReversed()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean REVERSED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isReversed() <em>Reversed</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isReversed()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean reversed = REVERSED_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -108,13 +130,13 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<AbstractOperation> getAtomicOperations() {
-		if (atomicOperations == null) {
-			atomicOperations = new EObjectContainmentEList.Resolving<AbstractOperation>(
+	public EList<AbstractOperation> getSubOperations() {
+		if (subOperations == null) {
+			subOperations = new EObjectContainmentEList.Resolving<AbstractOperation>(
 					AbstractOperation.class, this,
-					OperationsPackage.COMPOSITE_OPERATION__ATOMIC_OPERATIONS);
+					OperationsPackage.COMPOSITE_OPERATION__SUB_OPERATIONS);
 		}
-		return atomicOperations;
+		return subOperations;
 	}
 
 	/**
@@ -170,6 +192,29 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isReversed() {
+		return reversed;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setReversed(boolean newReversed) {
+		boolean oldReversed = reversed;
+		reversed = newReversed;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					OperationsPackage.COMPOSITE_OPERATION__REVERSED,
+					oldReversed, reversed));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public void cannonize() {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
@@ -185,8 +230,8 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case OperationsPackage.COMPOSITE_OPERATION__ATOMIC_OPERATIONS:
-			return ((InternalEList<?>) getAtomicOperations()).basicRemove(
+		case OperationsPackage.COMPOSITE_OPERATION__SUB_OPERATIONS:
+			return ((InternalEList<?>) getSubOperations()).basicRemove(
 					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -200,12 +245,14 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case OperationsPackage.COMPOSITE_OPERATION__ATOMIC_OPERATIONS:
-			return getAtomicOperations();
+		case OperationsPackage.COMPOSITE_OPERATION__SUB_OPERATIONS:
+			return getSubOperations();
 		case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_NAME:
 			return getCompositeName();
 		case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION:
 			return getCompositeDescription();
+		case OperationsPackage.COMPOSITE_OPERATION__REVERSED:
+			return isReversed() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -219,9 +266,9 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case OperationsPackage.COMPOSITE_OPERATION__ATOMIC_OPERATIONS:
-			getAtomicOperations().clear();
-			getAtomicOperations().addAll(
+		case OperationsPackage.COMPOSITE_OPERATION__SUB_OPERATIONS:
+			getSubOperations().clear();
+			getSubOperations().addAll(
 					(Collection<? extends AbstractOperation>) newValue);
 			return;
 		case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_NAME:
@@ -229,6 +276,9 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 			return;
 		case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION:
 			setCompositeDescription((String) newValue);
+			return;
+		case OperationsPackage.COMPOSITE_OPERATION__REVERSED:
+			setReversed(((Boolean) newValue).booleanValue());
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -242,14 +292,17 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case OperationsPackage.COMPOSITE_OPERATION__ATOMIC_OPERATIONS:
-			getAtomicOperations().clear();
+		case OperationsPackage.COMPOSITE_OPERATION__SUB_OPERATIONS:
+			getSubOperations().clear();
 			return;
 		case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_NAME:
 			setCompositeName(COMPOSITE_NAME_EDEFAULT);
 			return;
 		case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION:
 			setCompositeDescription(COMPOSITE_DESCRIPTION_EDEFAULT);
+			return;
+		case OperationsPackage.COMPOSITE_OPERATION__REVERSED:
+			setReversed(REVERSED_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -263,8 +316,8 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case OperationsPackage.COMPOSITE_OPERATION__ATOMIC_OPERATIONS:
-			return atomicOperations != null && !atomicOperations.isEmpty();
+		case OperationsPackage.COMPOSITE_OPERATION__SUB_OPERATIONS:
+			return subOperations != null && !subOperations.isEmpty();
 		case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_NAME:
 			return COMPOSITE_NAME_EDEFAULT == null ? compositeName != null
 					: !COMPOSITE_NAME_EDEFAULT.equals(compositeName);
@@ -272,6 +325,8 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 			return COMPOSITE_DESCRIPTION_EDEFAULT == null ? compositeDescription != null
 					: !COMPOSITE_DESCRIPTION_EDEFAULT
 							.equals(compositeDescription);
+		case OperationsPackage.COMPOSITE_OPERATION__REVERSED:
+			return reversed != REVERSED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -291,37 +346,66 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 		result.append(compositeName);
 		result.append(", compositeDescription: ");
 		result.append(compositeDescription);
+		result.append(", reversed: ");
+		result.append(reversed);
 		result.append(')');
 		return result.toString();
 	}
 
 	@Override
 	public void apply(Project project) {
-
+		super.apply(project);
+		for (AbstractOperation abstractOperation : getSubOperations()) {
+			abstractOperation.apply(project);
+		}
 	}
 
 	@Override
 	public boolean canApply(Project project) {
-		// TODO Auto-generated method stub
-		return false;
+		for (AbstractOperation abstractOperation : getSubOperations()) {
+			if (!abstractOperation.canApply(project)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	@Override
 	public String getDescription() {
-		// TODO Auto-generated method stub
-		return null;
+		StringBuilder stringBuilder = new StringBuilder();
+		if (isReversed()) {
+			stringBuilder.append("Undo of ");
+		}
+		stringBuilder.append(getCompositeDescription());
+		stringBuilder.append(".");
+		return stringBuilder.toString();
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		StringBuilder stringBuilder = new StringBuilder();
+		if (isReversed()) {
+			stringBuilder.append("Undo of ");
+		}
+		stringBuilder.append(getCompositeName());
+		return stringBuilder.toString();
 	}
 
 	@Override
 	public AbstractOperation reverse() {
-		// TODO Auto-generated method stub
-		return null;
+		CompositeOperation compositeOperation = OperationsFactory.eINSTANCE
+				.createCompositeOperation();
+		super.reverse(compositeOperation);
+		compositeOperation.setCompositeName(getCompositeName());
+		compositeOperation.setCompositeDescription(getCompositeDescription());
+		compositeOperation.setReversed(!isReversed());
+		//reverse subOperations and add in reverse order
+		EList<AbstractOperation> copiedSubOperations = compositeOperation
+				.getSubOperations();
+		for (AbstractOperation abstractOperation : getSubOperations()) {
+			copiedSubOperations.add(0, abstractOperation.reverse());
+		}
+		return compositeOperation;
 	}
 
 } //CompositeOperationImpl

@@ -250,14 +250,14 @@ public class ChangesTreeComposite extends Composite {
 		
 		CompositeOperation compOp1 = OperationsFactory.eINSTANCE.createCompositeOperation();
 		compOp1.setUsername("joe");
-		compOp1.getAtomicOperations().add(op1);
-		compOp1.getAtomicOperations().add(op2);
+		compOp1.getSubOperations().add(op1);
+		compOp1.getSubOperations().add(op2);
 		ops.add((AbstractOperation)compOp1);
 		
 		CompositeOperation compOp2 = OperationsFactory.eINSTANCE.createCompositeOperation();
 		compOp2.setUsername("joe");
-		compOp2.getAtomicOperations().add(op3);
-		compOp2.getAtomicOperations().add(op4);
+		compOp2.getSubOperations().add(op3);
+		compOp2.getSubOperations().add(op4);
 		//compOp2.getAtomicOperations().add((AtomicOperation)compOp1);
 		ops.add((AbstractOperation)compOp2);
 		

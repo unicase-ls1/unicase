@@ -271,7 +271,7 @@ public class OperationsPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCompositeOperation_AtomicOperations() {
+	public EReference getCompositeOperation_SubOperations() {
 		return (EReference) compositeOperationEClass.getEStructuralFeatures()
 				.get(0);
 	}
@@ -294,6 +294,16 @@ public class OperationsPackageImpl extends EPackageImpl implements
 	public EAttribute getCompositeOperation_CompositeDescription() {
 		return (EAttribute) compositeOperationEClass.getEStructuralFeatures()
 				.get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCompositeOperation_Reversed() {
+		return (EAttribute) compositeOperationEClass.getEStructuralFeatures()
+				.get(3);
 	}
 
 	/**
@@ -519,11 +529,13 @@ public class OperationsPackageImpl extends EPackageImpl implements
 
 		compositeOperationEClass = createEClass(COMPOSITE_OPERATION);
 		createEReference(compositeOperationEClass,
-				COMPOSITE_OPERATION__ATOMIC_OPERATIONS);
+				COMPOSITE_OPERATION__SUB_OPERATIONS);
 		createEAttribute(compositeOperationEClass,
 				COMPOSITE_OPERATION__COMPOSITE_NAME);
 		createEAttribute(compositeOperationEClass,
 				COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION);
+		createEAttribute(compositeOperationEClass,
+				COMPOSITE_OPERATION__REVERSED);
 
 		featureOperationEClass = createEClass(FEATURE_OPERATION);
 		createEAttribute(featureOperationEClass,
@@ -653,8 +665,8 @@ public class OperationsPackageImpl extends EPackageImpl implements
 		initEClass(compositeOperationEClass, CompositeOperation.class,
 				"CompositeOperation", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCompositeOperation_AtomicOperations(), this
-				.getAbstractOperation(), null, "atomicOperations", null, 0, -1,
+		initEReference(getCompositeOperation_SubOperations(), this
+				.getAbstractOperation(), null, "subOperations", null, 0, -1,
 				CompositeOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -665,6 +677,11 @@ public class OperationsPackageImpl extends EPackageImpl implements
 				IS_ORDERED);
 		initEAttribute(getCompositeOperation_CompositeDescription(),
 				ecorePackage.getEString(), "compositeDescription", null, 0, 1,
+				CompositeOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getCompositeOperation_Reversed(), ecorePackage
+				.getEBoolean(), "reversed", null, 0, 1,
 				CompositeOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);

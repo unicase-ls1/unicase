@@ -161,13 +161,13 @@ public interface OperationsPackage extends EPackage {
 	int COMPOSITE_OPERATION__USERNAME = ABSTRACT_OPERATION__USERNAME;
 
 	/**
-	 * The feature id for the '<em><b>Atomic Operations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Sub Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITE_OPERATION__ATOMIC_OPERATIONS = ABSTRACT_OPERATION_FEATURE_COUNT + 0;
+	int COMPOSITE_OPERATION__SUB_OPERATIONS = ABSTRACT_OPERATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Composite Name</b></em>' attribute.
@@ -188,13 +188,22 @@ public interface OperationsPackage extends EPackage {
 	int COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION = ABSTRACT_OPERATION_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Reversed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_OPERATION__REVERSED = ABSTRACT_OPERATION_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Composite Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITE_OPERATION_FEATURE_COUNT = ABSTRACT_OPERATION_FEATURE_COUNT + 3;
+	int COMPOSITE_OPERATION_FEATURE_COUNT = ABSTRACT_OPERATION_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.FeatureOperationImpl <em>Feature Operation</em>}' class.
@@ -744,15 +753,15 @@ public interface OperationsPackage extends EPackage {
 	EClass getCompositeOperation();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#getAtomicOperations <em>Atomic Operations</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#getSubOperations <em>Sub Operations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Atomic Operations</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#getAtomicOperations()
+	 * @return the meta object for the containment reference list '<em>Sub Operations</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#getSubOperations()
 	 * @see #getCompositeOperation()
 	 * @generated
 	 */
-	EReference getCompositeOperation_AtomicOperations();
+	EReference getCompositeOperation_SubOperations();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#getCompositeName <em>Composite Name</em>}'.
@@ -775,6 +784,17 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getCompositeOperation_CompositeDescription();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#isReversed <em>Reversed</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Reversed</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#isReversed()
+	 * @see #getCompositeOperation()
+	 * @generated
+	 */
+	EAttribute getCompositeOperation_Reversed();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation <em>Feature Operation</em>}'.
@@ -1058,13 +1078,13 @@ public interface OperationsPackage extends EPackage {
 		EClass COMPOSITE_OPERATION = eINSTANCE.getCompositeOperation();
 
 		/**
-		 * The meta object literal for the '<em><b>Atomic Operations</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Sub Operations</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPOSITE_OPERATION__ATOMIC_OPERATIONS = eINSTANCE
-				.getCompositeOperation_AtomicOperations();
+		EReference COMPOSITE_OPERATION__SUB_OPERATIONS = eINSTANCE
+				.getCompositeOperation_SubOperations();
 
 		/**
 		 * The meta object literal for the '<em><b>Composite Name</b></em>' attribute feature.
@@ -1083,6 +1103,15 @@ public interface OperationsPackage extends EPackage {
 		 */
 		EAttribute COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION = eINSTANCE
 				.getCompositeOperation_CompositeDescription();
+
+		/**
+		 * The meta object literal for the '<em><b>Reversed</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMPOSITE_OPERATION__REVERSED = eINSTANCE
+				.getCompositeOperation_Reversed();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.FeatureOperationImpl <em>Feature Operation</em>}' class.
