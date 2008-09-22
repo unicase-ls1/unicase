@@ -56,8 +56,7 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 			EClass newMEType = (EClass) o;
 			final ModelElement newMEInstance;
 			// create a new model element from this EClass
-			newMEInstance = (ModelElement) newMEType.getEPackage()
-					.getEFactoryInstance().create(newMEType);
+			newMEInstance = (ModelElement) ActionHelper.createModelElement(newMEType.getEPackage().getEFactoryInstance(),newMEType);
 			newMEInstance.setName("new " + newMEType.getName());
 			
 			//if model element if MEDiagram, set the diagram type
