@@ -71,6 +71,14 @@ public interface ChangePackage extends EObject {
 	void init(Project project, ChangeDescription backwardChangeDescription);
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void cannonize();
+
+	/**
 	 * Returns the value of the '<em><b>Operations</b></em>' containment reference list.
 	 * The list contents are of type {@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation}.
 	 * <!-- begin-user-doc -->

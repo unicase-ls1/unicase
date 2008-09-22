@@ -89,5 +89,8 @@ public interface Project extends EObject, IAdaptable {
 	 * @generated
 	 */
 	boolean contains(ModelElement modelElement);
-
+	
+	boolean contains(ModelElementId modelElementId);
+		
+	ModelElement getModelElement(ModelElementId modelElementId);
 } // Project

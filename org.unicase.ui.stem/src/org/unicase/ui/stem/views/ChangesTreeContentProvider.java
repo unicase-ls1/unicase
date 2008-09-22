@@ -51,7 +51,7 @@ public class ChangesTreeContentProvider extends AdapterFactoryContentProvider
 
 		if (object instanceof CompositeOperation) {
 			return getElements(((CompositeOperation) object)
-					.getAtomicOperations());
+					.getSubOperations());
 		} else {
 			return super.getChildren(object);
 		}

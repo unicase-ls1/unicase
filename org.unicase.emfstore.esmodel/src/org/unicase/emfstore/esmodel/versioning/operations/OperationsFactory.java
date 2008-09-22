@@ -26,15 +26,6 @@ public interface OperationsFactory extends EFactory {
 			.init();
 
 	/**
-	 * Returns a new object of class '<em>Abstract Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Abstract Operation</em>'.
-	 * @generated
-	 */
-	AbstractOperation createAbstractOperation();
-
-	/**
 	 * Returns a new object of class '<em>Composite Operation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -44,40 +35,13 @@ public interface OperationsFactory extends EFactory {
 	CompositeOperation createCompositeOperation();
 
 	/**
-	 * Returns a new object of class '<em>Create Operation</em>'.
+	 * Returns a new object of class '<em>Create Delete Operation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Create Operation</em>'.
+	 * @return a new object of class '<em>Create Delete Operation</em>'.
 	 * @generated
 	 */
-	CreateOperation createCreateOperation();
-
-	/**
-	 * Returns a new object of class '<em>Delete Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Delete Operation</em>'.
-	 * @generated
-	 */
-	DeleteOperation createDeleteOperation();
-
-	/**
-	 * Returns a new object of class '<em>Atomic Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Atomic Operation</em>'.
-	 * @generated
-	 */
-	AtomicOperation createAtomicOperation();
-
-	/**
-	 * Returns a new object of class '<em>Reference Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Reference Operation</em>'.
-	 * @generated
-	 */
-	ReferenceOperation createReferenceOperation();
+	CreateDeleteOperation createCreateDeleteOperation();
 
 	/**
 	 * Returns a new object of class '<em>Attribute Operation</em>'.
@@ -87,6 +51,33 @@ public interface OperationsFactory extends EFactory {
 	 * @generated
 	 */
 	AttributeOperation createAttributeOperation();
+
+	/**
+	 * Returns a new object of class '<em>Single Reference Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Single Reference Operation</em>'.
+	 * @generated
+	 */
+	SingleReferenceOperation createSingleReferenceOperation();
+
+	/**
+	 * Returns a new object of class '<em>Multi Reference Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Multi Reference Operation</em>'.
+	 * @generated
+	 */
+	MultiReferenceOperation createMultiReferenceOperation();
+
+	/**
+	 * Returns a new object of class '<em>Multi Reference Move Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Multi Reference Move Operation</em>'.
+	 * @generated
+	 */
+	MultiReferenceMoveOperation createMultiReferenceMoveOperation();
 
 	/**
 	 * Returns the package supported by this factory.

@@ -25,26 +25,26 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface CreateOperation extends AtomicOperation {
 	/**
-	 * Returns the value of the '<em><b>Object To Create</b></em>' reference.
+	 * Returns the value of the '<em><b>Object To Create</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Object To Create</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Object To Create</em>' reference.
+	 * @return the value of the '<em>Object To Create</em>' containment reference.
 	 * @see #setObjectToCreate(EObject)
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getCreateOperation_ObjectToCreate()
-	 * @model
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EObject getObjectToCreate();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.CreateOperation#getObjectToCreate <em>Object To Create</em>}' reference.
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.CreateOperation#getObjectToCreate <em>Object To Create</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Object To Create</em>' reference.
+	 * @param value the new value of the '<em>Object To Create</em>' containment reference.
 	 * @see #getObjectToCreate()
 	 * @generated
 	 */

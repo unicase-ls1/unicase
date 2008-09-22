@@ -161,31 +161,29 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 
 		newChildDescriptors.add(createChildParameter(
 				VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
-				OperationsFactory.eINSTANCE.createAbstractOperation()));
-
-		newChildDescriptors.add(createChildParameter(
-				VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
 				OperationsFactory.eINSTANCE.createCompositeOperation()));
 
 		newChildDescriptors.add(createChildParameter(
 				VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
-				OperationsFactory.eINSTANCE.createAtomicOperation()));
-
-		newChildDescriptors.add(createChildParameter(
-				VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
-				OperationsFactory.eINSTANCE.createCreateOperation()));
-
-		newChildDescriptors.add(createChildParameter(
-				VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
-				OperationsFactory.eINSTANCE.createDeleteOperation()));
-
-		newChildDescriptors.add(createChildParameter(
-				VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
-				OperationsFactory.eINSTANCE.createReferenceOperation()));
+				OperationsFactory.eINSTANCE.createCreateDeleteOperation()));
 
 		newChildDescriptors.add(createChildParameter(
 				VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
 				OperationsFactory.eINSTANCE.createAttributeOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
+				OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
+				OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
+						OperationsFactory.eINSTANCE
+								.createMultiReferenceMoveOperation()));
 	}
 
 	/**

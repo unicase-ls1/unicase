@@ -17,25 +17,26 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.unicase.emfstore.esmodel.versioning.operations.DeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.DeleteOperation} object.
+ * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DeleteOperationItemProvider extends AtomicOperationItemProvider
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class SingleReferenceOperationItemProvider extends
+		FeatureOperationItemProvider implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider,
+		IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeleteOperationItemProvider(AdapterFactory adapterFactory) {
+	public SingleReferenceOperationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -50,31 +51,56 @@ public class DeleteOperationItemProvider extends AtomicOperationItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addObjectToDeletePropertyDescriptor(object);
+			addOldValuePropertyDescriptor(object);
+			addNewValuePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Object To Delete feature.
+	 * This adds a property descriptor for the Old Value feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addObjectToDeletePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_DeleteOperation_objectToDelete_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_DeleteOperation_objectToDelete_feature",
-						"_UI_DeleteOperation_type"),
-				OperationsPackage.Literals.DELETE_OPERATION__OBJECT_TO_DELETE,
-				true, false, true, null, null, null));
+	protected void addOldValuePropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_SingleReferenceOperation_oldValue_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_SingleReferenceOperation_oldValue_feature",
+								"_UI_SingleReferenceOperation_type"),
+						OperationsPackage.Literals.SINGLE_REFERENCE_OPERATION__OLD_VALUE,
+						true, false, true, null, null, null));
 	}
 
 	/**
-	 * This returns DeleteOperation.gif.
+	 * This adds a property descriptor for the New Value feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNewValuePropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_SingleReferenceOperation_newValue_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_SingleReferenceOperation_newValue_feature",
+								"_UI_SingleReferenceOperation_type"),
+						OperationsPackage.Literals.SINGLE_REFERENCE_OPERATION__NEW_VALUE,
+						true, false, true, null, null, null));
+	}
+
+	/**
+	 * This returns SingleReferenceOperation.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -82,7 +108,7 @@ public class DeleteOperationItemProvider extends AtomicOperationItemProvider
 	@Override
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/DeleteOperation"));
+				"full/obj16/SingleReferenceOperation"));
 	}
 
 	/**
@@ -93,9 +119,9 @@ public class DeleteOperationItemProvider extends AtomicOperationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((DeleteOperation) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_DeleteOperation_type")
-				: getString("_UI_DeleteOperation_type") + " " + label;
+		String label = ((SingleReferenceOperation) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_SingleReferenceOperation_type")
+				: getString("_UI_SingleReferenceOperation_type") + " " + label;
 	}
 
 	/**

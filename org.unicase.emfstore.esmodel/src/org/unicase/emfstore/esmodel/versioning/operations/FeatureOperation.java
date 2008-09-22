@@ -21,7 +21,7 @@ package org.unicase.emfstore.esmodel.versioning.operations;
  * @model abstract="true"
  * @generated
  */
-public interface FeatureOperation extends AtomicOperation {
+public interface FeatureOperation extends AbstractOperation {
 	/**
 	 * Returns the value of the '<em><b>Feature Name</b></em>' attribute.
 	 * The default value is <code>""</code>.

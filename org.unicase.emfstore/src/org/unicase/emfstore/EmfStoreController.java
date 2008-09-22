@@ -32,16 +32,13 @@ import org.unicase.emfstore.connection.rmi.RMIAdminConnectionHandler;
 import org.unicase.emfstore.connection.rmi.RMIConnectionHandler;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ServerSpace;
-import org.unicase.emfstore.esmodel.VersionInfo;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesFactory;
-import org.unicase.emfstore.esmodel.impl.VersionInfoImpl;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.emfstore.storage.ResourceStorage;
-import org.unicase.emfstore.update.UpdateController;
 
 /**
  * The {@link EmfStoreController} is controlling startup and shutdown of the
@@ -69,12 +66,11 @@ public class EmfStoreController implements IApplication {
 	 * 
 	 * @see org.eclipse.equinox.app.IApplication#start(org.eclipse.equinox.app.IApplicationContext)
 	 */
-	public Object start(IApplicationContext context)
-			throws FatalEmfStoreException {
+	public Object start(IApplicationContext context) throws EmfStoreException {
 
 		if (instance != null) {
 			throw new FatalEmfStoreException(
-					"Another EmfStore Controller seems to be ruining it already!");
+					"Another EmfStore Controller seems to be ruinning already!");
 		}
 		instance = this;
 
@@ -83,23 +79,16 @@ public class EmfStoreController implements IApplication {
 		System.out.println("*------------------*");
 
 		logger = LogFactory.getLog(EmfStoreController.class);
-		
 		properties = initProperties();
-		initLogging();
-
-		try {
-			this.serverSpace = initServerSpace();
-			accessControl = initAccessControl(serverSpace);
-			emfStore = new EmfStoreImpl(serverSpace, accessControl);
-			adminEmfStore = new AdminEmfStoreImpl(serverSpace, accessControl);
-			// FIXME: combine connectionHandler and adminConnectionHandler
-			adminConnectionHandler = new RMIAdminConnectionHandler();
-			adminConnectionHandler.init(adminEmfStore, accessControl);
-			connectionHandlers = initConnectionHandlers(emfStore, accessControl);
-		} catch (EmfStoreException e) {
-			throw new FatalEmfStoreException(e);
-		}
-		
+		initLogging(properties);
+		this.serverSpace = initServerSpace();
+		accessControl = initAccessControl(serverSpace);
+		emfStore = new EmfStoreImpl(serverSpace, accessControl);
+		adminEmfStore = new AdminEmfStoreImpl(serverSpace, accessControl);
+		// FIXME: combine connectionHandler and adminConnectionHandler
+		adminConnectionHandler = new RMIAdminConnectionHandler();
+		adminConnectionHandler.init(adminEmfStore, accessControl);
+		connectionHandlers = initConnectionHandlers(emfStore, accessControl);
 		logger.info("Initialitation COMPLETE.");
 
 		logger.info("Server is RUNNING...");
@@ -140,62 +129,27 @@ public class EmfStoreController implements IApplication {
 		} catch (IOException e) {
 			throw new FatalEmfStoreException(StorageException.NOLOAD, e);
 		}
-		
-		ServerSpace result = null; 
 		EList<EObject> contents = resource.getContents();
 		for (EObject content : contents) {
 			if (content instanceof ServerSpace) {
-				result = (ServerSpace) content;
-				break;
-			}
-		}
-			
-		if (result != null) {
-			result.setResource(resource);			
-		}else{
-			// if no serverspace can be loaded, create one
-			logger.debug("Creating initial server space...");
-			result = EsmodelFactory.eINSTANCE.createServerSpace();
-
-			result.setResource(resource);
-			resource.getContents().add(result);
-			
-			try {
-				result.save();
-			} catch (IOException e) {
-				throw new FatalEmfStoreException(StorageException.NOSAVE, e);
+				ServerSpace result = (ServerSpace) content;
+				result.setResource(resource);
+				return result;
 			}
 		}
 
-		VersionInfo versionInformation = null;
-		for (EObject content : contents) {
-			if (content instanceof VersionInfo) {
-				versionInformation = (VersionInfo) content;
-				break;
-			}	
-		}
-		
-		if (versionInformation == null) {
-			versionInformation = EsmodelFactory.eINSTANCE.createVersionInfo();
-			versionInformation.setEmfStoreVersion(EmfStoreImpl.getModelVersion());
-			resource.getContents().add(versionInformation);
-			
-			try {
-				result.save();
-			} catch (IOException e) {
-				throw new FatalEmfStoreException(StorageException.NOSAVE, e);
-			}
-			
-		}else{
-			
-			int compareTo = EmfStoreImpl.getModelVersion().compareTo(EmfStoreImpl.getModelVersion());
-			if (compareTo < 0) {
-				UpdateController updateController = new UpdateController();
-				updateController.updateResource(resource);
-			}
-		}
+		// if no serverspace can be loaded, create one
+		logger.debug("Creating initial server space...");
+		ServerSpace serverSpace = EsmodelFactory.eINSTANCE.createServerSpace();
 
-		return result;
+		serverSpace.setResource(resource);
+		resource.getContents().add(serverSpace);
+		try {
+			serverSpace.save();
+		} catch (IOException e) {
+			throw new FatalEmfStoreException(StorageException.NOSAVE, e);
+		}
+		return serverSpace;
 	}
 
 	/**
@@ -207,7 +161,7 @@ public class EmfStoreController implements IApplication {
 		return instance;
 	}
 
-	private void initLogging() {
+	private void initLogging(Properties properties) {
 		// FIXME: fix logging config
 		// ConsoleAppender console = new ConsoleAppender(new SimpleLayout());
 		// try {
@@ -261,8 +215,7 @@ public class EmfStoreController implements IApplication {
 		}
 	}
 
-	private AccessControlImpl initAccessControl(ServerSpace serverSpace)
-			throws EmfStoreException {
+	private AccessControlImpl initAccessControl(ServerSpace serverSpace) throws EmfStoreException {
 		setSuperUser(serverSpace);
 		return new AccessControlImpl(serverSpace);
 	}
@@ -270,7 +223,7 @@ public class EmfStoreController implements IApplication {
 	private void setSuperUser(ServerSpace serverSpace) throws StorageException {
 		String superuser = ServerConfiguration.getProperties().getProperty(
 				ServerConfiguration.SUPER_USER,
-				ServerConfiguration.SUPER_USER_DEFAULT);
+				ServerConfiguration.DEFAULT_SUPER_USER);
 		for (ACUser user : serverSpace.getUsers()) {
 			if (user.getName().equals(superuser)) {
 				return;
@@ -286,9 +239,10 @@ public class EmfStoreController implements IApplication {
 		try {
 			serverSpace.save();
 		} catch (IOException e) {
-			throw new StorageException(StorageException.NOSAVE, e);
+			throw new StorageException(StorageException.NOSAVE,e);
 		}
-		logger.info("added superuser " + superuser);
+		logger.info("added superuser "
+				+ superuser);
 	}
 
 	private Properties initProperties() {
@@ -300,7 +254,7 @@ public class EmfStoreController implements IApplication {
 			ServerConfiguration.setProperties(properties);
 			fis.close();
 		} catch (IOException e) {
-			logger.warn("Property initialization failed", e);
+			logger.warn("Property initialization failed",e);
 		}
 		return properties;
 	}

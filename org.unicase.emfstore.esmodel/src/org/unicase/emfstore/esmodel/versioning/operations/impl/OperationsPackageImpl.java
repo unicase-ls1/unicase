@@ -24,15 +24,15 @@ import org.unicase.emfstore.esmodel.versioning.changeContainer.ChangeContainerPa
 import org.unicase.emfstore.esmodel.versioning.changeContainer.impl.ChangeContainerPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.AtomicOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CreateOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.DeleteOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
-import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.model.ModelPackage;
 
 /**
@@ -69,28 +69,7 @@ public class OperationsPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass createOperationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass deleteOperationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass atomicOperationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass referenceOperationEClass = null;
+	private EClass createDeleteOperationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -98,6 +77,27 @@ public class OperationsPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	private EClass attributeOperationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass singleReferenceOperationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass multiReferenceOperationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass multiReferenceMoveOperationEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -271,9 +271,39 @@ public class OperationsPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCompositeOperation_AtomicOperations() {
+	public EReference getCompositeOperation_SubOperations() {
 		return (EReference) compositeOperationEClass.getEStructuralFeatures()
 				.get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCompositeOperation_CompositeName() {
+		return (EAttribute) compositeOperationEClass.getEStructuralFeatures()
+				.get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCompositeOperation_CompositeDescription() {
+		return (EAttribute) compositeOperationEClass.getEStructuralFeatures()
+				.get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCompositeOperation_Reversed() {
+		return (EAttribute) compositeOperationEClass.getEStructuralFeatures()
+				.get(3);
 	}
 
 	/**
@@ -300,8 +330,8 @@ public class OperationsPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCreateOperation() {
-		return createOperationEClass;
+	public EClass getCreateDeleteOperation() {
+		return createDeleteOperationEClass;
 	}
 
 	/**
@@ -309,9 +339,9 @@ public class OperationsPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCreateOperation_ObjectToCreate() {
-		return (EReference) createOperationEClass.getEStructuralFeatures().get(
-				0);
+	public EAttribute getCreateDeleteOperation_Delete() {
+		return (EAttribute) createDeleteOperationEClass
+				.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -319,56 +349,9 @@ public class OperationsPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDeleteOperation() {
-		return deleteOperationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getDeleteOperation_ObjectToDelete() {
-		return (EReference) deleteOperationEClass.getEStructuralFeatures().get(
-				0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getAtomicOperation() {
-		return atomicOperationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getReferenceOperation() {
-		return referenceOperationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getReferenceOperation_OldValue() {
-		return (EReference) referenceOperationEClass.getEStructuralFeatures()
-				.get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getReferenceOperation_NewValue() {
-		return (EReference) referenceOperationEClass.getEStructuralFeatures()
-				.get(1);
+	public EReference getCreateDeleteOperation_ModelElement() {
+		return (EReference) createDeleteOperationEClass
+				.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -398,6 +381,113 @@ public class OperationsPackageImpl extends EPackageImpl implements
 	public EAttribute getAttributeOperation_NewValue() {
 		return (EAttribute) attributeOperationEClass.getEStructuralFeatures()
 				.get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSingleReferenceOperation() {
+		return singleReferenceOperationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSingleReferenceOperation_OldValue() {
+		return (EReference) singleReferenceOperationEClass
+				.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSingleReferenceOperation_NewValue() {
+		return (EReference) singleReferenceOperationEClass
+				.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMultiReferenceOperation() {
+		return multiReferenceOperationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMultiReferenceOperation_Add() {
+		return (EAttribute) multiReferenceOperationEClass
+				.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMultiReferenceOperation_Index() {
+		return (EAttribute) multiReferenceOperationEClass
+				.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMultiReferenceOperation_ReferencedModelElements() {
+		return (EReference) multiReferenceOperationEClass
+				.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMultiReferenceMoveOperation() {
+		return multiReferenceMoveOperationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMultiReferenceMoveOperation_OldIndex() {
+		return (EAttribute) multiReferenceMoveOperationEClass
+				.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMultiReferenceMoveOperation_NewIndex() {
+		return (EAttribute) multiReferenceMoveOperationEClass
+				.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMultiReferenceMoveOperation_ReferencedModelElementId() {
+		return (EReference) multiReferenceMoveOperationEClass
+				.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -439,33 +529,51 @@ public class OperationsPackageImpl extends EPackageImpl implements
 
 		compositeOperationEClass = createEClass(COMPOSITE_OPERATION);
 		createEReference(compositeOperationEClass,
-				COMPOSITE_OPERATION__ATOMIC_OPERATIONS);
+				COMPOSITE_OPERATION__SUB_OPERATIONS);
+		createEAttribute(compositeOperationEClass,
+				COMPOSITE_OPERATION__COMPOSITE_NAME);
+		createEAttribute(compositeOperationEClass,
+				COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION);
+		createEAttribute(compositeOperationEClass,
+				COMPOSITE_OPERATION__REVERSED);
 
 		featureOperationEClass = createEClass(FEATURE_OPERATION);
 		createEAttribute(featureOperationEClass,
 				FEATURE_OPERATION__FEATURE_NAME);
 
-		createOperationEClass = createEClass(CREATE_OPERATION);
-		createEReference(createOperationEClass,
-				CREATE_OPERATION__OBJECT_TO_CREATE);
-
-		deleteOperationEClass = createEClass(DELETE_OPERATION);
-		createEReference(deleteOperationEClass,
-				DELETE_OPERATION__OBJECT_TO_DELETE);
-
-		atomicOperationEClass = createEClass(ATOMIC_OPERATION);
-
-		referenceOperationEClass = createEClass(REFERENCE_OPERATION);
-		createEReference(referenceOperationEClass,
-				REFERENCE_OPERATION__OLD_VALUE);
-		createEReference(referenceOperationEClass,
-				REFERENCE_OPERATION__NEW_VALUE);
+		createDeleteOperationEClass = createEClass(CREATE_DELETE_OPERATION);
+		createEAttribute(createDeleteOperationEClass,
+				CREATE_DELETE_OPERATION__DELETE);
+		createEReference(createDeleteOperationEClass,
+				CREATE_DELETE_OPERATION__MODEL_ELEMENT);
 
 		attributeOperationEClass = createEClass(ATTRIBUTE_OPERATION);
 		createEAttribute(attributeOperationEClass,
 				ATTRIBUTE_OPERATION__OLD_VALUE);
 		createEAttribute(attributeOperationEClass,
 				ATTRIBUTE_OPERATION__NEW_VALUE);
+
+		singleReferenceOperationEClass = createEClass(SINGLE_REFERENCE_OPERATION);
+		createEReference(singleReferenceOperationEClass,
+				SINGLE_REFERENCE_OPERATION__OLD_VALUE);
+		createEReference(singleReferenceOperationEClass,
+				SINGLE_REFERENCE_OPERATION__NEW_VALUE);
+
+		multiReferenceOperationEClass = createEClass(MULTI_REFERENCE_OPERATION);
+		createEAttribute(multiReferenceOperationEClass,
+				MULTI_REFERENCE_OPERATION__ADD);
+		createEAttribute(multiReferenceOperationEClass,
+				MULTI_REFERENCE_OPERATION__INDEX);
+		createEReference(multiReferenceOperationEClass,
+				MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS);
+
+		multiReferenceMoveOperationEClass = createEClass(MULTI_REFERENCE_MOVE_OPERATION);
+		createEAttribute(multiReferenceMoveOperationEClass,
+				MULTI_REFERENCE_MOVE_OPERATION__OLD_INDEX);
+		createEAttribute(multiReferenceMoveOperationEClass,
+				MULTI_REFERENCE_MOVE_OPERATION__NEW_INDEX);
+		createEReference(multiReferenceMoveOperationEClass,
+				MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID);
 	}
 
 	/**
@@ -505,32 +613,36 @@ public class OperationsPackageImpl extends EPackageImpl implements
 		// Add supertypes to classes
 		compositeOperationEClass.getESuperTypes().add(
 				this.getAbstractOperation());
-		featureOperationEClass.getESuperTypes().add(this.getAtomicOperation());
-		createOperationEClass.getESuperTypes().add(this.getAtomicOperation());
-		deleteOperationEClass.getESuperTypes().add(this.getAtomicOperation());
-		atomicOperationEClass.getESuperTypes().add(this.getAbstractOperation());
-		referenceOperationEClass.getESuperTypes().add(
-				this.getFeatureOperation());
+		featureOperationEClass.getESuperTypes()
+				.add(this.getAbstractOperation());
+		createDeleteOperationEClass.getESuperTypes().add(
+				this.getAbstractOperation());
 		attributeOperationEClass.getESuperTypes().add(
+				this.getFeatureOperation());
+		singleReferenceOperationEClass.getESuperTypes().add(
+				this.getFeatureOperation());
+		multiReferenceOperationEClass.getESuperTypes().add(
+				this.getFeatureOperation());
+		multiReferenceMoveOperationEClass.getESuperTypes().add(
 				this.getFeatureOperation());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(abstractOperationEClass, AbstractOperation.class,
-				"AbstractOperation", !IS_ABSTRACT, !IS_INTERFACE,
+				"AbstractOperation", IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAbstractOperation_Name(), ecorePackage.getEString(),
-				"name", null, 0, 1, AbstractOperation.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+				"name", null, 0, 1, AbstractOperation.class, IS_TRANSIENT,
+				IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractOperation_Description(), ecorePackage
-				.getEString(), "description", null, 0, 1,
-				AbstractOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				.getEString(), "description", "", 0, 1,
+				AbstractOperation.class, IS_TRANSIENT, IS_VOLATILE,
+				!IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED,
 				IS_ORDERED);
 		initEReference(getAbstractOperation_ModelElementId(), theModelPackage
 				.getModelElementId(), null, "modelElementId", null, 0, 1,
 				AbstractOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractOperation_Username(), ecorePackage
 				.getEString(), "username", null, 0, 1, AbstractOperation.class,
@@ -553,11 +665,29 @@ public class OperationsPackageImpl extends EPackageImpl implements
 		initEClass(compositeOperationEClass, CompositeOperation.class,
 				"CompositeOperation", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCompositeOperation_AtomicOperations(), this
-				.getAtomicOperation(), null, "atomicOperations", null, 0, -1,
+		initEReference(getCompositeOperation_SubOperations(), this
+				.getAbstractOperation(), null, "subOperations", null, 0, -1,
 				CompositeOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCompositeOperation_CompositeName(), ecorePackage
+				.getEString(), "compositeName", null, 0, 1,
+				CompositeOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getCompositeOperation_CompositeDescription(),
+				ecorePackage.getEString(), "compositeDescription", null, 0, 1,
+				CompositeOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getCompositeOperation_Reversed(), ecorePackage
+				.getEBoolean(), "reversed", null, 0, 1,
+				CompositeOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+
+		addEOperation(compositeOperationEClass, null, "cannonize", 0, 1,
+				IS_UNIQUE, IS_ORDERED);
 
 		initEClass(featureOperationEClass, FeatureOperation.class,
 				"FeatureOperation", IS_ABSTRACT, !IS_INTERFACE,
@@ -567,40 +697,18 @@ public class OperationsPackageImpl extends EPackageImpl implements
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
 				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(createOperationEClass, CreateOperation.class,
-				"CreateOperation", !IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(createDeleteOperationEClass, CreateDeleteOperation.class,
+				"CreateDeleteOperation", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCreateOperation_ObjectToCreate(), theEcorePackage
-				.getEObject(), null, "objectToCreate", null, 0, 1,
-				CreateOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(deleteOperationEClass, DeleteOperation.class,
-				"DeleteOperation", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDeleteOperation_ObjectToDelete(), theEcorePackage
-				.getEObject(), null, "objectToDelete", null, 0, 1,
-				DeleteOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(atomicOperationEClass, AtomicOperation.class,
-				"AtomicOperation", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(referenceOperationEClass, ReferenceOperation.class,
-				"ReferenceOperation", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getReferenceOperation_OldValue(), theModelPackage
-				.getModelElement(), null, "oldValue", null, 0, 1,
-				ReferenceOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getReferenceOperation_NewValue(), theModelPackage
-				.getModelElement(), null, "newValue", null, 0, 1,
-				ReferenceOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+		initEAttribute(getCreateDeleteOperation_Delete(), ecorePackage
+				.getEBoolean(), "delete", null, 0, 1,
+				CreateDeleteOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEReference(getCreateDeleteOperation_ModelElement(), theModelPackage
+				.getModelElement(), null, "modelElement", null, 0, 1,
+				CreateDeleteOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(attributeOperationEClass, AttributeOperation.class,
@@ -616,6 +724,61 @@ public class OperationsPackageImpl extends EPackageImpl implements
 				AttributeOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+
+		initEClass(singleReferenceOperationEClass,
+				SingleReferenceOperation.class, "SingleReferenceOperation",
+				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSingleReferenceOperation_OldValue(), theModelPackage
+				.getModelElementId(), null, "oldValue", null, 0, 1,
+				SingleReferenceOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSingleReferenceOperation_NewValue(), theModelPackage
+				.getModelElementId(), null, "newValue", null, 0, 1,
+				SingleReferenceOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(multiReferenceOperationEClass,
+				MultiReferenceOperation.class, "MultiReferenceOperation",
+				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getMultiReferenceOperation_Add(), ecorePackage
+				.getEBoolean(), "add", null, 0, 1,
+				MultiReferenceOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getMultiReferenceOperation_Index(), ecorePackage
+				.getEInt(), "index", null, 0, 1, MultiReferenceOperation.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMultiReferenceOperation_ReferencedModelElements(),
+				theModelPackage.getModelElementId(), null,
+				"referencedModelElements", null, 0, -1,
+				MultiReferenceOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(multiReferenceMoveOperationEClass,
+				MultiReferenceMoveOperation.class,
+				"MultiReferenceMoveOperation", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getMultiReferenceMoveOperation_OldIndex(), ecorePackage
+				.getEInt(), "oldIndex", null, 0, 1,
+				MultiReferenceMoveOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getMultiReferenceMoveOperation_NewIndex(), ecorePackage
+				.getEInt(), "newIndex", null, 0, 1,
+				MultiReferenceMoveOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEReference(
+				getMultiReferenceMoveOperation_ReferencedModelElementId(),
+				theModelPackage.getModelElementId(), null,
+				"referencedModelElementId", null, 0, 1,
+				MultiReferenceMoveOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 } //OperationsPackageImpl

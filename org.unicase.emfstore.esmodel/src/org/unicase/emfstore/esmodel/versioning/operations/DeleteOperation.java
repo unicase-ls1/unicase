@@ -25,26 +25,26 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface DeleteOperation extends AtomicOperation {
 	/**
-	 * Returns the value of the '<em><b>Object To Delete</b></em>' reference.
+	 * Returns the value of the '<em><b>Object To Delete</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Object To Delete</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Object To Delete</em>' reference.
+	 * @return the value of the '<em>Object To Delete</em>' containment reference.
 	 * @see #setObjectToDelete(EObject)
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getDeleteOperation_ObjectToDelete()
-	 * @model
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EObject getObjectToDelete();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.DeleteOperation#getObjectToDelete <em>Object To Delete</em>}' reference.
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.DeleteOperation#getObjectToDelete <em>Object To Delete</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Object To Delete</em>' reference.
+	 * @param value the new value of the '<em>Object To Delete</em>' containment reference.
 	 * @see #getObjectToDelete()
 	 * @generated
 	 */

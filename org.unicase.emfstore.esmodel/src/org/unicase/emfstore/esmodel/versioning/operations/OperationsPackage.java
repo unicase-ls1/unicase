@@ -88,7 +88,7 @@ public interface OperationsPackage extends EPackage {
 	int ABSTRACT_OPERATION__DESCRIPTION = 1;
 
 	/**
-	 * The feature id for the '<em><b>Model Element Id</b></em>' reference.
+	 * The feature id for the '<em><b>Model Element Id</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -143,7 +143,7 @@ public interface OperationsPackage extends EPackage {
 	int COMPOSITE_OPERATION__DESCRIPTION = ABSTRACT_OPERATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Model Element Id</b></em>' reference.
+	 * The feature id for the '<em><b>Model Element Id</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -161,13 +161,40 @@ public interface OperationsPackage extends EPackage {
 	int COMPOSITE_OPERATION__USERNAME = ABSTRACT_OPERATION__USERNAME;
 
 	/**
-	 * The feature id for the '<em><b>Atomic Operations</b></em>' reference list.
+	 * The feature id for the '<em><b>Sub Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITE_OPERATION__ATOMIC_OPERATIONS = ABSTRACT_OPERATION_FEATURE_COUNT + 0;
+	int COMPOSITE_OPERATION__SUB_OPERATIONS = ABSTRACT_OPERATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Composite Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_OPERATION__COMPOSITE_NAME = ABSTRACT_OPERATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Composite Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION = ABSTRACT_OPERATION_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Reversed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_OPERATION__REVERSED = ABSTRACT_OPERATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Composite Operation</em>' class.
@@ -176,62 +203,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITE_OPERATION_FEATURE_COUNT = ABSTRACT_OPERATION_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AtomicOperationImpl <em>Atomic Operation</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.AtomicOperationImpl
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getAtomicOperation()
-	 * @generated
-	 */
-	int ATOMIC_OPERATION = 5;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATOMIC_OPERATION__NAME = ABSTRACT_OPERATION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATOMIC_OPERATION__DESCRIPTION = ABSTRACT_OPERATION__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Model Element Id</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATOMIC_OPERATION__MODEL_ELEMENT_ID = ABSTRACT_OPERATION__MODEL_ELEMENT_ID;
-
-	/**
-	 * The feature id for the '<em><b>Username</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATOMIC_OPERATION__USERNAME = ABSTRACT_OPERATION__USERNAME;
-
-	/**
-	 * The number of structural features of the '<em>Atomic Operation</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATOMIC_OPERATION_FEATURE_COUNT = ABSTRACT_OPERATION_FEATURE_COUNT + 0;
+	int COMPOSITE_OPERATION_FEATURE_COUNT = ABSTRACT_OPERATION_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.FeatureOperationImpl <em>Feature Operation</em>}' class.
@@ -250,7 +222,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_OPERATION__NAME = ATOMIC_OPERATION__NAME;
+	int FEATURE_OPERATION__NAME = ABSTRACT_OPERATION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -259,16 +231,16 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_OPERATION__DESCRIPTION = ATOMIC_OPERATION__DESCRIPTION;
+	int FEATURE_OPERATION__DESCRIPTION = ABSTRACT_OPERATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Model Element Id</b></em>' reference.
+	 * The feature id for the '<em><b>Model Element Id</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_OPERATION__MODEL_ELEMENT_ID = ATOMIC_OPERATION__MODEL_ELEMENT_ID;
+	int FEATURE_OPERATION__MODEL_ELEMENT_ID = ABSTRACT_OPERATION__MODEL_ELEMENT_ID;
 
 	/**
 	 * The feature id for the '<em><b>Username</b></em>' attribute.
@@ -277,7 +249,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_OPERATION__USERNAME = ATOMIC_OPERATION__USERNAME;
+	int FEATURE_OPERATION__USERNAME = ABSTRACT_OPERATION__USERNAME;
 
 	/**
 	 * The feature id for the '<em><b>Feature Name</b></em>' attribute.
@@ -286,7 +258,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_OPERATION__FEATURE_NAME = ATOMIC_OPERATION_FEATURE_COUNT + 0;
+	int FEATURE_OPERATION__FEATURE_NAME = ABSTRACT_OPERATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Feature Operation</em>' class.
@@ -295,81 +267,17 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_OPERATION_FEATURE_COUNT = ATOMIC_OPERATION_FEATURE_COUNT + 1;
+	int FEATURE_OPERATION_FEATURE_COUNT = ABSTRACT_OPERATION_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.CreateOperationImpl <em>Create Operation</em>}' class.
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.CreateDeleteOperationImpl <em>Create Delete Operation</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.CreateOperationImpl
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getCreateOperation()
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.CreateDeleteOperationImpl
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getCreateDeleteOperation()
 	 * @generated
 	 */
-	int CREATE_OPERATION = 3;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CREATE_OPERATION__NAME = ATOMIC_OPERATION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CREATE_OPERATION__DESCRIPTION = ATOMIC_OPERATION__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Model Element Id</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CREATE_OPERATION__MODEL_ELEMENT_ID = ATOMIC_OPERATION__MODEL_ELEMENT_ID;
-
-	/**
-	 * The feature id for the '<em><b>Username</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CREATE_OPERATION__USERNAME = ATOMIC_OPERATION__USERNAME;
-
-	/**
-	 * The feature id for the '<em><b>Object To Create</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CREATE_OPERATION__OBJECT_TO_CREATE = ATOMIC_OPERATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Create Operation</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CREATE_OPERATION_FEATURE_COUNT = ATOMIC_OPERATION_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.DeleteOperationImpl <em>Delete Operation</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.DeleteOperationImpl
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getDeleteOperation()
-	 * @generated
-	 */
-	int DELETE_OPERATION = 4;
+	int CREATE_DELETE_OPERATION = 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -378,7 +286,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DELETE_OPERATION__NAME = ATOMIC_OPERATION__NAME;
+	int CREATE_DELETE_OPERATION__NAME = ABSTRACT_OPERATION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -387,16 +295,16 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DELETE_OPERATION__DESCRIPTION = ATOMIC_OPERATION__DESCRIPTION;
+	int CREATE_DELETE_OPERATION__DESCRIPTION = ABSTRACT_OPERATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Model Element Id</b></em>' reference.
+	 * The feature id for the '<em><b>Model Element Id</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DELETE_OPERATION__MODEL_ELEMENT_ID = ATOMIC_OPERATION__MODEL_ELEMENT_ID;
+	int CREATE_DELETE_OPERATION__MODEL_ELEMENT_ID = ABSTRACT_OPERATION__MODEL_ELEMENT_ID;
 
 	/**
 	 * The feature id for the '<em><b>Username</b></em>' attribute.
@@ -405,107 +313,34 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DELETE_OPERATION__USERNAME = ATOMIC_OPERATION__USERNAME;
+	int CREATE_DELETE_OPERATION__USERNAME = ABSTRACT_OPERATION__USERNAME;
 
 	/**
-	 * The feature id for the '<em><b>Object To Delete</b></em>' reference.
+	 * The feature id for the '<em><b>Delete</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DELETE_OPERATION__OBJECT_TO_DELETE = ATOMIC_OPERATION_FEATURE_COUNT + 0;
+	int CREATE_DELETE_OPERATION__DELETE = ABSTRACT_OPERATION_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Delete Operation</em>' class.
+	 * The feature id for the '<em><b>Model Element</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DELETE_OPERATION_FEATURE_COUNT = ATOMIC_OPERATION_FEATURE_COUNT + 1;
+	int CREATE_DELETE_OPERATION__MODEL_ELEMENT = ABSTRACT_OPERATION_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.ReferenceOperationImpl <em>Reference Operation</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.ReferenceOperationImpl
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getReferenceOperation()
-	 * @generated
-	 */
-	int REFERENCE_OPERATION = 6;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The number of structural features of the '<em>Create Delete Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_OPERATION__NAME = FEATURE_OPERATION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_OPERATION__DESCRIPTION = FEATURE_OPERATION__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Model Element Id</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_OPERATION__MODEL_ELEMENT_ID = FEATURE_OPERATION__MODEL_ELEMENT_ID;
-
-	/**
-	 * The feature id for the '<em><b>Username</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_OPERATION__USERNAME = FEATURE_OPERATION__USERNAME;
-
-	/**
-	 * The feature id for the '<em><b>Feature Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_OPERATION__FEATURE_NAME = FEATURE_OPERATION__FEATURE_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Old Value</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_OPERATION__OLD_VALUE = FEATURE_OPERATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>New Value</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_OPERATION__NEW_VALUE = FEATURE_OPERATION_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Reference Operation</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_OPERATION_FEATURE_COUNT = FEATURE_OPERATION_FEATURE_COUNT + 2;
+	int CREATE_DELETE_OPERATION_FEATURE_COUNT = ABSTRACT_OPERATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AttributeOperationImpl <em>Attribute Operation</em>}' class.
@@ -515,7 +350,7 @@ public interface OperationsPackage extends EPackage {
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getAttributeOperation()
 	 * @generated
 	 */
-	int ATTRIBUTE_OPERATION = 7;
+	int ATTRIBUTE_OPERATION = 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -536,7 +371,7 @@ public interface OperationsPackage extends EPackage {
 	int ATTRIBUTE_OPERATION__DESCRIPTION = FEATURE_OPERATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Model Element Id</b></em>' reference.
+	 * The feature id for the '<em><b>Model Element Id</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -590,6 +425,270 @@ public interface OperationsPackage extends EPackage {
 	int ATTRIBUTE_OPERATION_FEATURE_COUNT = FEATURE_OPERATION_FEATURE_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.SingleReferenceOperationImpl <em>Single Reference Operation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.SingleReferenceOperationImpl
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getSingleReferenceOperation()
+	 * @generated
+	 */
+	int SINGLE_REFERENCE_OPERATION = 5;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_REFERENCE_OPERATION__NAME = FEATURE_OPERATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_REFERENCE_OPERATION__DESCRIPTION = FEATURE_OPERATION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Model Element Id</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_REFERENCE_OPERATION__MODEL_ELEMENT_ID = FEATURE_OPERATION__MODEL_ELEMENT_ID;
+
+	/**
+	 * The feature id for the '<em><b>Username</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_REFERENCE_OPERATION__USERNAME = FEATURE_OPERATION__USERNAME;
+
+	/**
+	 * The feature id for the '<em><b>Feature Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_REFERENCE_OPERATION__FEATURE_NAME = FEATURE_OPERATION__FEATURE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Old Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_REFERENCE_OPERATION__OLD_VALUE = FEATURE_OPERATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>New Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_REFERENCE_OPERATION__NEW_VALUE = FEATURE_OPERATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Single Reference Operation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_REFERENCE_OPERATION_FEATURE_COUNT = FEATURE_OPERATION_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceOperationImpl <em>Multi Reference Operation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceOperationImpl
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getMultiReferenceOperation()
+	 * @generated
+	 */
+	int MULTI_REFERENCE_OPERATION = 6;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_REFERENCE_OPERATION__NAME = FEATURE_OPERATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_REFERENCE_OPERATION__DESCRIPTION = FEATURE_OPERATION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Model Element Id</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_REFERENCE_OPERATION__MODEL_ELEMENT_ID = FEATURE_OPERATION__MODEL_ELEMENT_ID;
+
+	/**
+	 * The feature id for the '<em><b>Username</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_REFERENCE_OPERATION__USERNAME = FEATURE_OPERATION__USERNAME;
+
+	/**
+	 * The feature id for the '<em><b>Feature Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_REFERENCE_OPERATION__FEATURE_NAME = FEATURE_OPERATION__FEATURE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Add</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_REFERENCE_OPERATION__ADD = FEATURE_OPERATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_REFERENCE_OPERATION__INDEX = FEATURE_OPERATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Model Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS = FEATURE_OPERATION_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Multi Reference Operation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_REFERENCE_OPERATION_FEATURE_COUNT = FEATURE_OPERATION_FEATURE_COUNT + 3;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceMoveOperationImpl <em>Multi Reference Move Operation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceMoveOperationImpl
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getMultiReferenceMoveOperation()
+	 * @generated
+	 */
+	int MULTI_REFERENCE_MOVE_OPERATION = 7;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_REFERENCE_MOVE_OPERATION__NAME = FEATURE_OPERATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_REFERENCE_MOVE_OPERATION__DESCRIPTION = FEATURE_OPERATION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Model Element Id</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_REFERENCE_MOVE_OPERATION__MODEL_ELEMENT_ID = FEATURE_OPERATION__MODEL_ELEMENT_ID;
+
+	/**
+	 * The feature id for the '<em><b>Username</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_REFERENCE_MOVE_OPERATION__USERNAME = FEATURE_OPERATION__USERNAME;
+
+	/**
+	 * The feature id for the '<em><b>Feature Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_REFERENCE_MOVE_OPERATION__FEATURE_NAME = FEATURE_OPERATION__FEATURE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Old Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_REFERENCE_MOVE_OPERATION__OLD_INDEX = FEATURE_OPERATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>New Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_REFERENCE_MOVE_OPERATION__NEW_INDEX = FEATURE_OPERATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Model Element Id</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID = FEATURE_OPERATION_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Multi Reference Move Operation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_REFERENCE_MOVE_OPERATION_FEATURE_COUNT = FEATURE_OPERATION_FEATURE_COUNT + 3;
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation <em>Abstract Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -622,10 +721,10 @@ public interface OperationsPackage extends EPackage {
 	EAttribute getAbstractOperation_Description();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getModelElementId <em>Model Element Id</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getModelElementId <em>Model Element Id</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Model Element Id</em>'.
+	 * @return the meta object for the containment reference '<em>Model Element Id</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getModelElementId()
 	 * @see #getAbstractOperation()
 	 * @generated
@@ -654,15 +753,48 @@ public interface OperationsPackage extends EPackage {
 	EClass getCompositeOperation();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#getAtomicOperations <em>Atomic Operations</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#getSubOperations <em>Sub Operations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Atomic Operations</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#getAtomicOperations()
+	 * @return the meta object for the containment reference list '<em>Sub Operations</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#getSubOperations()
 	 * @see #getCompositeOperation()
 	 * @generated
 	 */
-	EReference getCompositeOperation_AtomicOperations();
+	EReference getCompositeOperation_SubOperations();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#getCompositeName <em>Composite Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Composite Name</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#getCompositeName()
+	 * @see #getCompositeOperation()
+	 * @generated
+	 */
+	EAttribute getCompositeOperation_CompositeName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#getCompositeDescription <em>Composite Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Composite Description</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#getCompositeDescription()
+	 * @see #getCompositeOperation()
+	 * @generated
+	 */
+	EAttribute getCompositeOperation_CompositeDescription();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#isReversed <em>Reversed</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Reversed</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#isReversed()
+	 * @see #getCompositeOperation()
+	 * @generated
+	 */
+	EAttribute getCompositeOperation_Reversed();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation <em>Feature Operation</em>}'.
@@ -686,88 +818,36 @@ public interface OperationsPackage extends EPackage {
 	EAttribute getFeatureOperation_FeatureName();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.CreateOperation <em>Create Operation</em>}'.
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation <em>Create Delete Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Create Operation</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.CreateOperation
+	 * @return the meta object for class '<em>Create Delete Operation</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation
 	 * @generated
 	 */
-	EClass getCreateOperation();
+	EClass getCreateDeleteOperation();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.versioning.operations.CreateOperation#getObjectToCreate <em>Object To Create</em>}'.
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation#isDelete <em>Delete</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Object To Create</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.CreateOperation#getObjectToCreate()
-	 * @see #getCreateOperation()
+	 * @return the meta object for the attribute '<em>Delete</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation#isDelete()
+	 * @see #getCreateDeleteOperation()
 	 * @generated
 	 */
-	EReference getCreateOperation_ObjectToCreate();
+	EAttribute getCreateDeleteOperation_Delete();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.DeleteOperation <em>Delete Operation</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation#getModelElement <em>Model Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Delete Operation</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.DeleteOperation
+	 * @return the meta object for the containment reference '<em>Model Element</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation#getModelElement()
+	 * @see #getCreateDeleteOperation()
 	 * @generated
 	 */
-	EClass getDeleteOperation();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.versioning.operations.DeleteOperation#getObjectToDelete <em>Object To Delete</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Object To Delete</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.DeleteOperation#getObjectToDelete()
-	 * @see #getDeleteOperation()
-	 * @generated
-	 */
-	EReference getDeleteOperation_ObjectToDelete();
-
-	/**
-	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.AtomicOperation <em>Atomic Operation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Atomic Operation</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.AtomicOperation
-	 * @generated
-	 */
-	EClass getAtomicOperation();
-
-	/**
-	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation <em>Reference Operation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Reference Operation</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation
-	 * @generated
-	 */
-	EClass getReferenceOperation();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#getOldValue <em>Old Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Old Value</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#getOldValue()
-	 * @see #getReferenceOperation()
-	 * @generated
-	 */
-	EReference getReferenceOperation_OldValue();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#getNewValue <em>New Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>New Value</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#getNewValue()
-	 * @see #getReferenceOperation()
-	 * @generated
-	 */
-	EReference getReferenceOperation_NewValue();
+	EReference getCreateDeleteOperation_ModelElement();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation <em>Attribute Operation</em>}'.
@@ -800,6 +880,124 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getAttributeOperation_NewValue();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation <em>Single Reference Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Single Reference Operation</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation
+	 * @generated
+	 */
+	EClass getSingleReferenceOperation();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation#getOldValue <em>Old Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Old Value</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation#getOldValue()
+	 * @see #getSingleReferenceOperation()
+	 * @generated
+	 */
+	EReference getSingleReferenceOperation_OldValue();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation#getNewValue <em>New Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>New Value</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation#getNewValue()
+	 * @see #getSingleReferenceOperation()
+	 * @generated
+	 */
+	EReference getSingleReferenceOperation_NewValue();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation <em>Multi Reference Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Multi Reference Operation</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation
+	 * @generated
+	 */
+	EClass getMultiReferenceOperation();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation#isAdd <em>Add</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Add</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation#isAdd()
+	 * @see #getMultiReferenceOperation()
+	 * @generated
+	 */
+	EAttribute getMultiReferenceOperation_Add();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation#getIndex <em>Index</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Index</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation#getIndex()
+	 * @see #getMultiReferenceOperation()
+	 * @generated
+	 */
+	EAttribute getMultiReferenceOperation_Index();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation#getReferencedModelElements <em>Referenced Model Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Referenced Model Elements</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation#getReferencedModelElements()
+	 * @see #getMultiReferenceOperation()
+	 * @generated
+	 */
+	EReference getMultiReferenceOperation_ReferencedModelElements();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation <em>Multi Reference Move Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Multi Reference Move Operation</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation
+	 * @generated
+	 */
+	EClass getMultiReferenceMoveOperation();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation#getOldIndex <em>Old Index</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Old Index</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation#getOldIndex()
+	 * @see #getMultiReferenceMoveOperation()
+	 * @generated
+	 */
+	EAttribute getMultiReferenceMoveOperation_OldIndex();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation#getNewIndex <em>New Index</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>New Index</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation#getNewIndex()
+	 * @see #getMultiReferenceMoveOperation()
+	 * @generated
+	 */
+	EAttribute getMultiReferenceMoveOperation_NewIndex();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation#getReferencedModelElementId <em>Referenced Model Element Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Referenced Model Element Id</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation#getReferencedModelElementId()
+	 * @see #getMultiReferenceMoveOperation()
+	 * @generated
+	 */
+	EReference getMultiReferenceMoveOperation_ReferencedModelElementId();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -852,7 +1050,7 @@ public interface OperationsPackage extends EPackage {
 				.getAbstractOperation_Description();
 
 		/**
-		 * The meta object literal for the '<em><b>Model Element Id</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Model Element Id</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -880,13 +1078,40 @@ public interface OperationsPackage extends EPackage {
 		EClass COMPOSITE_OPERATION = eINSTANCE.getCompositeOperation();
 
 		/**
-		 * The meta object literal for the '<em><b>Atomic Operations</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Sub Operations</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPOSITE_OPERATION__ATOMIC_OPERATIONS = eINSTANCE
-				.getCompositeOperation_AtomicOperations();
+		EReference COMPOSITE_OPERATION__SUB_OPERATIONS = eINSTANCE
+				.getCompositeOperation_SubOperations();
+
+		/**
+		 * The meta object literal for the '<em><b>Composite Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMPOSITE_OPERATION__COMPOSITE_NAME = eINSTANCE
+				.getCompositeOperation_CompositeName();
+
+		/**
+		 * The meta object literal for the '<em><b>Composite Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION = eINSTANCE
+				.getCompositeOperation_CompositeDescription();
+
+		/**
+		 * The meta object literal for the '<em><b>Reversed</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMPOSITE_OPERATION__REVERSED = eINSTANCE
+				.getCompositeOperation_Reversed();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.FeatureOperationImpl <em>Feature Operation</em>}' class.
@@ -908,80 +1133,32 @@ public interface OperationsPackage extends EPackage {
 				.getFeatureOperation_FeatureName();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.CreateOperationImpl <em>Create Operation</em>}' class.
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.CreateDeleteOperationImpl <em>Create Delete Operation</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.CreateOperationImpl
-		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getCreateOperation()
+		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.CreateDeleteOperationImpl
+		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getCreateDeleteOperation()
 		 * @generated
 		 */
-		EClass CREATE_OPERATION = eINSTANCE.getCreateOperation();
+		EClass CREATE_DELETE_OPERATION = eINSTANCE.getCreateDeleteOperation();
 
 		/**
-		 * The meta object literal for the '<em><b>Object To Create</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Delete</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CREATE_OPERATION__OBJECT_TO_CREATE = eINSTANCE
-				.getCreateOperation_ObjectToCreate();
+		EAttribute CREATE_DELETE_OPERATION__DELETE = eINSTANCE
+				.getCreateDeleteOperation_Delete();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.DeleteOperationImpl <em>Delete Operation</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.DeleteOperationImpl
-		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getDeleteOperation()
-		 * @generated
-		 */
-		EClass DELETE_OPERATION = eINSTANCE.getDeleteOperation();
-
-		/**
-		 * The meta object literal for the '<em><b>Object To Delete</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Model Element</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DELETE_OPERATION__OBJECT_TO_DELETE = eINSTANCE
-				.getDeleteOperation_ObjectToDelete();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AtomicOperationImpl <em>Atomic Operation</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.AtomicOperationImpl
-		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getAtomicOperation()
-		 * @generated
-		 */
-		EClass ATOMIC_OPERATION = eINSTANCE.getAtomicOperation();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.ReferenceOperationImpl <em>Reference Operation</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.ReferenceOperationImpl
-		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getReferenceOperation()
-		 * @generated
-		 */
-		EClass REFERENCE_OPERATION = eINSTANCE.getReferenceOperation();
-
-		/**
-		 * The meta object literal for the '<em><b>Old Value</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference REFERENCE_OPERATION__OLD_VALUE = eINSTANCE
-				.getReferenceOperation_OldValue();
-
-		/**
-		 * The meta object literal for the '<em><b>New Value</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference REFERENCE_OPERATION__NEW_VALUE = eINSTANCE
-				.getReferenceOperation_NewValue();
+		EReference CREATE_DELETE_OPERATION__MODEL_ELEMENT = eINSTANCE
+				.getCreateDeleteOperation_ModelElement();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AttributeOperationImpl <em>Attribute Operation</em>}' class.
@@ -1010,6 +1187,111 @@ public interface OperationsPackage extends EPackage {
 		 */
 		EAttribute ATTRIBUTE_OPERATION__NEW_VALUE = eINSTANCE
 				.getAttributeOperation_NewValue();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.SingleReferenceOperationImpl <em>Single Reference Operation</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.SingleReferenceOperationImpl
+		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getSingleReferenceOperation()
+		 * @generated
+		 */
+		EClass SINGLE_REFERENCE_OPERATION = eINSTANCE
+				.getSingleReferenceOperation();
+
+		/**
+		 * The meta object literal for the '<em><b>Old Value</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SINGLE_REFERENCE_OPERATION__OLD_VALUE = eINSTANCE
+				.getSingleReferenceOperation_OldValue();
+
+		/**
+		 * The meta object literal for the '<em><b>New Value</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SINGLE_REFERENCE_OPERATION__NEW_VALUE = eINSTANCE
+				.getSingleReferenceOperation_NewValue();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceOperationImpl <em>Multi Reference Operation</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceOperationImpl
+		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getMultiReferenceOperation()
+		 * @generated
+		 */
+		EClass MULTI_REFERENCE_OPERATION = eINSTANCE
+				.getMultiReferenceOperation();
+
+		/**
+		 * The meta object literal for the '<em><b>Add</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MULTI_REFERENCE_OPERATION__ADD = eINSTANCE
+				.getMultiReferenceOperation_Add();
+
+		/**
+		 * The meta object literal for the '<em><b>Index</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MULTI_REFERENCE_OPERATION__INDEX = eINSTANCE
+				.getMultiReferenceOperation_Index();
+
+		/**
+		 * The meta object literal for the '<em><b>Referenced Model Elements</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS = eINSTANCE
+				.getMultiReferenceOperation_ReferencedModelElements();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceMoveOperationImpl <em>Multi Reference Move Operation</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceMoveOperationImpl
+		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getMultiReferenceMoveOperation()
+		 * @generated
+		 */
+		EClass MULTI_REFERENCE_MOVE_OPERATION = eINSTANCE
+				.getMultiReferenceMoveOperation();
+
+		/**
+		 * The meta object literal for the '<em><b>Old Index</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MULTI_REFERENCE_MOVE_OPERATION__OLD_INDEX = eINSTANCE
+				.getMultiReferenceMoveOperation_OldIndex();
+
+		/**
+		 * The meta object literal for the '<em><b>New Index</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MULTI_REFERENCE_MOVE_OPERATION__NEW_INDEX = eINSTANCE
+				.getMultiReferenceMoveOperation_NewIndex();
+
+		/**
+		 * The meta object literal for the '<em><b>Referenced Model Element Id</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID = eINSTANCE
+				.getMultiReferenceMoveOperation_ReferencedModelElementId();
 
 	}
 
