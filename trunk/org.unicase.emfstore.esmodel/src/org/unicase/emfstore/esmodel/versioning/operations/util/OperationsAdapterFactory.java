@@ -9,12 +9,12 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.emfstore.esmodel.versioning.operations.*;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
@@ -116,6 +116,12 @@ public class OperationsAdapterFactory extends AdapterFactoryImpl {
 		public Adapter caseMultiReferenceMoveOperation(
 				MultiReferenceMoveOperation object) {
 			return createMultiReferenceMoveOperationAdapter();
+		}
+
+		@Override
+		public Adapter caseMultiAttributeOperation(
+				MultiAttributeOperation object) {
+			return createMultiAttributeOperationAdapter();
 		}
 
 		@Override
@@ -246,6 +252,20 @@ public class OperationsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMultiReferenceMoveOperationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation <em>Multi Attribute Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation
+	 * @generated
+	 */
+	public Adapter createMultiAttributeOperationAdapter() {
 		return null;
 	}
 

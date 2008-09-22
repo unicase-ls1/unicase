@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.unicase.emfstore.esmodel.*;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
 import org.unicase.emfstore.esmodel.ProjectHistory;
@@ -19,6 +18,7 @@ import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.esmodel.SessionId;
+import org.unicase.emfstore.esmodel.VersionInfo;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--

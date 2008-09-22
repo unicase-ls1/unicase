@@ -689,6 +689,97 @@ public interface OperationsPackage extends EPackage {
 	int MULTI_REFERENCE_MOVE_OPERATION_FEATURE_COUNT = FEATURE_OPERATION_FEATURE_COUNT + 3;
 
 	/**
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiAttributeOperationImpl <em>Multi Attribute Operation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.MultiAttributeOperationImpl
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getMultiAttributeOperation()
+	 * @generated
+	 */
+	int MULTI_ATTRIBUTE_OPERATION = 8;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_ATTRIBUTE_OPERATION__NAME = FEATURE_OPERATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_ATTRIBUTE_OPERATION__DESCRIPTION = FEATURE_OPERATION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Model Element Id</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_ATTRIBUTE_OPERATION__MODEL_ELEMENT_ID = FEATURE_OPERATION__MODEL_ELEMENT_ID;
+
+	/**
+	 * The feature id for the '<em><b>Username</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_ATTRIBUTE_OPERATION__USERNAME = FEATURE_OPERATION__USERNAME;
+
+	/**
+	 * The feature id for the '<em><b>Feature Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_ATTRIBUTE_OPERATION__FEATURE_NAME = FEATURE_OPERATION__FEATURE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Add</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_ATTRIBUTE_OPERATION__ADD = FEATURE_OPERATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_ATTRIBUTE_OPERATION__INDEX = FEATURE_OPERATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Values</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_ATTRIBUTE_OPERATION__VALUES = FEATURE_OPERATION_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Multi Attribute Operation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_ATTRIBUTE_OPERATION_FEATURE_COUNT = FEATURE_OPERATION_FEATURE_COUNT + 3;
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation <em>Abstract Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1000,6 +1091,49 @@ public interface OperationsPackage extends EPackage {
 	EReference getMultiReferenceMoveOperation_ReferencedModelElementId();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation <em>Multi Attribute Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Multi Attribute Operation</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation
+	 * @generated
+	 */
+	EClass getMultiAttributeOperation();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation#isAdd <em>Add</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Add</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation#isAdd()
+	 * @see #getMultiAttributeOperation()
+	 * @generated
+	 */
+	EAttribute getMultiAttributeOperation_Add();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation#getIndex <em>Index</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Index</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation#getIndex()
+	 * @see #getMultiAttributeOperation()
+	 * @generated
+	 */
+	EAttribute getMultiAttributeOperation_Index();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation#getValues <em>Values</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Values</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation#getValues()
+	 * @see #getMultiAttributeOperation()
+	 * @generated
+	 */
+	EAttribute getMultiAttributeOperation_Values();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1292,6 +1426,44 @@ public interface OperationsPackage extends EPackage {
 		 */
 		EReference MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID = eINSTANCE
 				.getMultiReferenceMoveOperation_ReferencedModelElementId();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiAttributeOperationImpl <em>Multi Attribute Operation</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.MultiAttributeOperationImpl
+		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getMultiAttributeOperation()
+		 * @generated
+		 */
+		EClass MULTI_ATTRIBUTE_OPERATION = eINSTANCE
+				.getMultiAttributeOperation();
+
+		/**
+		 * The meta object literal for the '<em><b>Add</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MULTI_ATTRIBUTE_OPERATION__ADD = eINSTANCE
+				.getMultiAttributeOperation_Add();
+
+		/**
+		 * The meta object literal for the '<em><b>Index</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MULTI_ATTRIBUTE_OPERATION__INDEX = eINSTANCE
+				.getMultiAttributeOperation_Index();
+
+		/**
+		 * The meta object literal for the '<em><b>Values</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MULTI_ATTRIBUTE_OPERATION__VALUES = eINSTANCE
+				.getMultiAttributeOperation_Values();
 
 	}
 

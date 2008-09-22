@@ -184,6 +184,10 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 						VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
 						OperationsFactory.eINSTANCE
 								.createMultiReferenceMoveOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
+				OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
 	}
 
 	/**

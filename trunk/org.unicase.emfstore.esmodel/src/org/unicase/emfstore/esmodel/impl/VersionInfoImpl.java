@@ -6,12 +6,9 @@
 package org.unicase.emfstore.esmodel.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.osgi.framework.Version;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
 import org.unicase.emfstore.esmodel.VersionInfo;
@@ -91,7 +88,7 @@ public class VersionInfoImpl extends EObjectImpl implements VersionInfo {
 					EsmodelPackage.VERSION_INFO__EMF_STORE_VERSION_STRING,
 					oldEmfStoreVersionString, emfStoreVersionString));
 	}
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -109,7 +106,6 @@ public class VersionInfoImpl extends EObjectImpl implements VersionInfo {
 	public void setEmfStoreVersion(Version emfStoreVersion) {
 		setEmfStoreVersionString(emfStoreVersion.toString());
 	}
-	
 
 	/**
 	 * <!-- begin-user-doc -->

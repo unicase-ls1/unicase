@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.emfstore.esmodel.versioning.changeContainer.*;
 import org.unicase.emfstore.esmodel.versioning.changeContainer.ChangeContainer;
 import org.unicase.emfstore.esmodel.versioning.changeContainer.ChangeContainerPackage;
 import org.unicase.emfstore.esmodel.versioning.changeContainer.CompositeChangeContainer;

@@ -33,6 +33,10 @@
         eType="#//accesscontrol/ACUser" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProjectId" eSuperTypes="../../org.unicase.model/model/model.ecore#//UniqueIdentifier"/>
+  <eClassifiers xsi:type="ecore:EClass" name="VersionInfo">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="emfStoreVersionString"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eSubpackages name="versioning" nsURI="http://unicase.org/esmodel/versioning" nsPrefix="org.unicase.emfstore.esmodel.versioning">
     <eClassifiers xsi:type="ecore:EClass" name="TagVersionSpec" eSuperTypes="#//versioning/VersionSpec">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
@@ -159,6 +163,12 @@
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="newIndex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="referencedModelElementId"
             eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="MultiAttributeOperation" eSuperTypes="#//versioning/operations/FeatureOperation">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="add" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="values" upperBound="-1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
       </eClassifiers>
     </eSubpackages>
     <eSubpackages name="changeContainer" nsURI="http://unicase.org/esmodel/versioning/changeContainer"

@@ -242,6 +242,10 @@ public class CompositeOperationItemProvider extends
 						OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
 						OperationsFactory.eINSTANCE
 								.createMultiReferenceMoveOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
 	}
 
 }

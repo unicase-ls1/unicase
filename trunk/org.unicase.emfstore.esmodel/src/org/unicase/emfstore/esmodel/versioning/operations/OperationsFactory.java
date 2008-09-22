@@ -80,6 +80,15 @@ public interface OperationsFactory extends EFactory {
 	MultiReferenceMoveOperation createMultiReferenceMoveOperation();
 
 	/**
+	 * Returns a new object of class '<em>Multi Attribute Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Multi Attribute Operation</em>'.
+	 * @generated
+	 */
+	MultiAttributeOperation createMultiAttributeOperation();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
