@@ -330,6 +330,15 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 		return assignee;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OrgUnit basicGetAssignee() {
+		return assignee;
+	}
+
 	// begin of custom code
 	/**
 	 * <!-- begin-user-doc -->
@@ -350,32 +359,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	 */
 	public void setChecked(boolean newChecked) {
 		setDone(newChecked);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> Simply calling {@link #getAssignedTo()} did not
-	 * work as the collection was empty. So I used
-	 * {@link #eGet(org.eclipse.emf.ecore.EStructuralFeature)}.
-	 * 
-	 * @return the first element of the assignedTo List
-	 * @author Florian Schneider <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
-	 */
-	public OrgUnit basicGetAssignee() {
-		Object value = eGet(TaskPackage.Literals.ACTION_ITEM__ASSIGNED_TO);
-		if ((value != null) && (value instanceof EList)) {
-			EList<OrgUnit> list = (EList<OrgUnit>) value;
-			if (!list.isEmpty()) {
-				return list.get(0);
-			} else {
-				return null;
-			}
-
-		} else {
-			return null;
-		}
-
 	}
 
 	/**
@@ -400,20 +383,27 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	public void setAssignee(OrgUnit newAssignee) {
-		if (newAssignee instanceof User) {
-			EList<User> oldUsers = getAssignedTo();
-			getAssignedTo().add(0, (User) newAssignee);
-			if (eNotificationRequired()) {
-				eNotify(new ENotificationImpl(this, Notification.ADD,
-						TaskPackage.ACTION_ITEM__ASSIGNED_TO, oldUsers,
-						getAssignedTo()));
-			}
-		}
+		if (newAssignee != assignee) {
+			NotificationChain msgs = null;
+			if (assignee != null)
+				msgs = ((InternalEObject) assignee).eInverseRemove(this,
+						OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
+						OrgUnit.class, msgs);
+			if (newAssignee != null)
+				msgs = ((InternalEObject) newAssignee).eInverseAdd(this,
+						OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
+						OrgUnit.class, msgs);
+			msgs = basicSetAssignee(newAssignee, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					TaskPackage.ACTION_ITEM__ASSIGNEE, newAssignee, newAssignee));
 	}
 
 	/**
