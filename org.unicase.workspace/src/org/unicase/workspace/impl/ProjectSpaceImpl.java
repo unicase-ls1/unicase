@@ -1869,8 +1869,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			}
 		}
 		this.getOperations().addAll(this.myOperations);
-		Usersession usersession2 = WorkspaceManager.getInstance()
-				.getCurrentWorkspace().getActiveProjectSpace().getUsersession();
 		saveResources(false);
 	}
 
