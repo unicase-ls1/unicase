@@ -110,8 +110,7 @@ public class StateDecorator implements ILightweightLabelDecorator {
 			}
 		} catch (CircularDependencyException e) {
 			//JH : add questionmark image
-			//Dont show exception dialog, cause it is intrusive
-			e.printStackTrace();
+			//Dont show exception dialog, cause it is intrusives
 			return;
 		}
 
