@@ -19,9 +19,8 @@ import org.unicase.model.Project;
 import org.unicase.model.util.ModelUtil;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Create Delete Operation</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>Create Delete Operation</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -38,12 +37,27 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements
 	@Override
 	public void apply(Project project) {
 		super.apply(project);
-		project.getModelElements().add(ModelUtil.clone(modelElement));
+		if (isDelete()) {
+			project.getModelElements();
+			for (ModelElement modelElement : project.getModelElements()) {
+				if (getModelElementId().getId().equals(
+						modelElement.getIdentifier())) {
+					project.getModelElements().remove(modelElement);
+					break;
+				}
+			}
+		} else {
+			project.getModelElements().add(ModelUtil.clone(modelElement));
+		}
 	}
 
 	@Override
 	public boolean canApply(Project project) {
-		return !project.contains(getModelElementId());
+		if (isDelete()) {
+			return project.contains(getModelElementId());
+		} else {
+			return !project.contains(getModelElementId());
+		}
 	}
 
 	@Override
@@ -59,8 +73,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements
 
 	/**
 	 * The default value of the '{@link #isDelete() <em>Delete</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isDelete()
 	 * @generated
 	 * @ordered
@@ -69,8 +82,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements
 
 	/**
 	 * The cached value of the '{@link #isDelete() <em>Delete</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isDelete()
 	 * @generated
 	 * @ordered
@@ -88,8 +100,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements
 	protected ModelElement modelElement;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected CreateDeleteOperationImpl() {
@@ -97,8 +108,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -107,8 +117,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isDelete() {
@@ -116,8 +125,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setDelete(boolean newDelete) {
@@ -130,8 +138,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ModelElement getModelElement() {
@@ -168,8 +175,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ModelElement basicGetModelElement() {
@@ -177,8 +183,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationChain basicSetModelElement(ModelElement newModelElement,
@@ -199,8 +204,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setModelElement(ModelElement newModelElement) {
@@ -230,8 +234,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -245,8 +248,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -263,8 +265,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -281,8 +282,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -299,8 +299,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -315,8 +314,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -336,8 +334,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements
 		StringBuilder stringBuilder = new StringBuilder();
 		if (isDelete()) {
 			stringBuilder.append("Deleted  ");
-		}
-		else {
+		} else {
 			stringBuilder.append("Created ");
 		}
 		stringBuilder.append(getModelElement().eClass().getName());
@@ -353,14 +350,14 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements
 		if (isDelete()) {
 			stringBuilder.append("Deleted  ");
 			stringBuilder.append(getModelElement().eClass().getName());
-			stringBuilder.append(" ");
+			stringBuilder.append(" \"");
 			stringBuilder.append(getModelElement().getName());
-		}
-		else {
+			stringBuilder.append("\"");
+		} else {
 			stringBuilder.append("Created ");
 			stringBuilder.append(getModelElement().eClass().getName());
 		}
 		return stringBuilder.toString();
 	}
 
-} //CreateDeleteOperationImpl
+} // CreateDeleteOperationImpl

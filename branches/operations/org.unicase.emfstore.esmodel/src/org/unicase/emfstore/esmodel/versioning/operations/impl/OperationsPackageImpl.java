@@ -669,6 +669,9 @@ public class OperationsPackageImpl extends EPackageImpl implements
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 
+		addEOperation(compositeOperationEClass, null, "cannonize", 0, 1,
+				IS_UNIQUE, IS_ORDERED);
+
 		initEClass(featureOperationEClass, FeatureOperation.class,
 				"FeatureOperation", IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);

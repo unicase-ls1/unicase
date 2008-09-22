@@ -5,15 +5,21 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
+import java.util.List;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
+import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
+import org.unicase.model.util.ModelUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -232,26 +238,50 @@ public class SingleReferenceOperationImpl extends FeatureOperationImpl
 
 	@Override
 	public void apply(Project project) {
-		// TODO Auto-generated method stub
-		
+		super.apply(project);
+		ModelElement modelElement = project
+				.getModelElement(getModelElementId());
+		ModelElement newModelElement = project.getModelElement(getNewValue());
+		List<EReference> references = modelElement.eClass().getEAllReferences();
+		for (EReference reference : references) {
+			if (reference.getName().equals(this.getFeatureName())) {
+				modelElement.eSet(reference, newModelElement);
+				return;
+			}
+		}
+		//FIXME MK: exception
+		throw new IllegalStateException("cannot find reference feature");
+
 	}
 
 	@Override
 	public String getDescription() {
-		// TODO Auto-generated method stub
-		return null;
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append(getName());
+		stringBuilder.append(".");
+		return stringBuilder.toString();
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		StringBuilder stringBuilder = new StringBuilder();
+		if (getNewValue() != null) {
+			stringBuilder.append("Set ");
+		} else {
+			stringBuilder.append("Removed ");
+		}
+		stringBuilder.append(featureName);
+		return stringBuilder.toString();
 	}
 
 	@Override
 	public AbstractOperation reverse() {
-		// TODO Auto-generated method stub
-		return null;
+		SingleReferenceOperation singleReferenceOperation = OperationsFactory.eINSTANCE
+				.createSingleReferenceOperation();
+		reverse(singleReferenceOperation);
+		singleReferenceOperation.setNewValue(ModelUtil.clone(getOldValue()));
+		singleReferenceOperation.setOldValue(ModelUtil.clone(getOldValue()));
+		return singleReferenceOperation;
 	}
 
 } //SingleReferenceOperationImpl

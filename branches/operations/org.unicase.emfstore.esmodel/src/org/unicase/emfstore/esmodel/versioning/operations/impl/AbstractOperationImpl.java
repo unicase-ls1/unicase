@@ -106,7 +106,7 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements
 	 * @generated NOT
 	 */
 	public abstract String getName();
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

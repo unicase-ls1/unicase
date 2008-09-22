@@ -94,4 +94,12 @@ public interface CompositeOperation extends AbstractOperation {
 	 */
 	void setCompositeDescription(String value);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void cannonize();
+
 } // CompositeOperation

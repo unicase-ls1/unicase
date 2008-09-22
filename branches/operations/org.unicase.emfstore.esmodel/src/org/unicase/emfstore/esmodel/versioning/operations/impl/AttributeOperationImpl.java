@@ -263,19 +263,24 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements
 	@Override
 	public String getDescription() {
 		StringBuilder stringBuilder = new StringBuilder();
-		if (getOldValue()==null) {
+		if (getOldValue() == null) {
 			stringBuilder.append("Set ");
 			stringBuilder.append(getFeatureName());
 			stringBuilder.append(" to ");
+			stringBuilder.append("\"");
 			stringBuilder.append(getNewValue());
-		}
-		else {
+			stringBuilder.append("\"");
+		} else {
 			stringBuilder.append("Changed ");
 			stringBuilder.append(getFeatureName());
 			stringBuilder.append(" from ");
+			stringBuilder.append("\"");
 			stringBuilder.append(getOldValue());
+			stringBuilder.append("\"");
 			stringBuilder.append(" to ");
+			stringBuilder.append("\"");
 			stringBuilder.append(getNewValue());
+			stringBuilder.append("\"");
 		}
 		stringBuilder.append(".");
 		String name = stringBuilder.toString();

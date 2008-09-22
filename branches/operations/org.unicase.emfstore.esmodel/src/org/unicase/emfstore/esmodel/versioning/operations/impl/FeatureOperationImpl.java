@@ -28,7 +28,7 @@ import org.unicase.model.Project;
  */
 public abstract class FeatureOperationImpl extends AbstractOperationImpl
 		implements FeatureOperation {
-	
+
 	@Override
 	public boolean canApply(Project project) {
 		return project.contains(getModelElementId());
@@ -38,7 +38,8 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl
 	public void reverse(AbstractOperation abstractOperation) {
 		super.reverse(abstractOperation);
 		if (!(abstractOperation instanceof FeatureOperation)) {
-			throw new IllegalArgumentException("Given operation is not a feature operation.");
+			throw new IllegalArgumentException(
+					"Given operation is not a feature operation.");
 		}
 		FeatureOperation featureOperation = (FeatureOperation) abstractOperation;
 		featureOperation.setFeatureName(getFeatureName());

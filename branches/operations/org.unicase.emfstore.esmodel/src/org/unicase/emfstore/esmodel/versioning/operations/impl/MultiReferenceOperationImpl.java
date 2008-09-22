@@ -292,11 +292,13 @@ public class MultiReferenceOperationImpl extends FeatureOperationImpl implements
 	@Override
 	public void apply(Project project) {
 		super.apply(project);
-		ModelElement modelElement = project.getModelElement(getModelElementId());
+		ModelElement modelElement = project
+				.getModelElement(getModelElementId());
 		EList<ModelElementId> referencedModelElementIds = getReferencedModelElements();
 		List<ModelElement> referencedModelElements = new ArrayList<ModelElement>();
 		for (ModelElementId modelElementId : referencedModelElementIds) {
-			referencedModelElements.add(project.getModelElement(modelElementId));
+			referencedModelElements
+					.add(project.getModelElement(modelElementId));
 		}
 		EList<EReference> references = modelElement.eClass()
 				.getEAllReferences();
@@ -306,8 +308,7 @@ public class MultiReferenceOperationImpl extends FeatureOperationImpl implements
 				EList<ModelElement> list = (EList<ModelElement>) object;
 				if (isAdd()) {
 					list.addAll(getIndex(), referencedModelElements);
-				}
-				else {
+				} else {
 					list.removeAll(referencedModelElements);
 				}
 				return;
@@ -315,19 +316,49 @@ public class MultiReferenceOperationImpl extends FeatureOperationImpl implements
 		}
 		//FIXME MK: exception
 		throw new IllegalStateException("cannot find reference feature");
-		
+
 	}
 
 	@Override
 	public String getDescription() {
-		// TODO Auto-generated method stub
-		return null;
+		StringBuilder stringBuilder = new StringBuilder();
+
+		if (isAdd()) {
+			stringBuilder.append("Added ");
+			stringBuilder.append(getMiddleDescription());
+			stringBuilder.append(" to ");
+		} else {
+			stringBuilder.append("Removed ");
+			stringBuilder.append(getMiddleDescription());
+			stringBuilder.append(" from ");
+		}
+		stringBuilder.append(featureName);
+		stringBuilder.append(".");
+		return stringBuilder.toString();
+	}
+
+	private String getMiddleDescription() {
+		String featureName = getFeatureName();
+		StringBuilder stringBuilder = new StringBuilder();
+
+		if (getReferencedModelElements().size() > 1) {
+			stringBuilder.append(getReferencedModelElements().size());
+			stringBuilder.append(" ");
+			stringBuilder.append(featureName);
+		} else {
+			String singular = featureName
+					.substring(0, featureName.length() - 1);
+			stringBuilder.append(singular);
+		}
+		return stringBuilder.toString();
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("Changed ");
+		stringBuilder.append(getFeatureName());
+		return stringBuilder.toString();
 	}
 
 	@Override

@@ -6,14 +6,19 @@
 package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
+import org.unicase.model.util.ModelUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -301,26 +306,56 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl
 
 	@Override
 	public void apply(Project project) {
-		// TODO Auto-generated method stub
-		
+		super.apply(project);
+		ModelElement modelElement = project
+				.getModelElement(getModelElementId());
+		EList<EReference> references = modelElement.eClass()
+				.getEAllReferences();
+		for (EReference reference : references) {
+			if (reference.getName().equals(this.getFeatureName())) {
+				Object object = modelElement.eGet(reference);
+				EList<ModelElement> list = (EList<ModelElement>) object;
+				list.move(getNewIndex(), project
+						.getModelElement(getReferencedModelElementId()));
+				return;
+			}
+		}
+		//FIXME MK: exception
+		throw new IllegalStateException("cannot find reference feature");
 	}
 
 	@Override
 	public String getDescription() {
-		// TODO Auto-generated method stub
-		return null;
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("Moved ");
+		stringBuilder.append(getFeatureName().substring(0,
+				getFeatureName().length() - 1));
+		stringBuilder.append(" from position ");
+		stringBuilder.append(getOldIndex() + 1);
+		stringBuilder.append(" to ");
+		stringBuilder.append(getNewIndex() + 1);
+		stringBuilder.append(".");
+		return stringBuilder.toString();
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("Changed order of ");
+		stringBuilder.append(getFeatureName());
+		return stringBuilder.toString();
 	}
 
 	@Override
 	public AbstractOperation reverse() {
-		// TODO Auto-generated method stub
-		return null;
+		MultiReferenceMoveOperation multiReferenceMoveOperation = OperationsFactory.eINSTANCE
+				.createMultiReferenceMoveOperation();
+		reverse(multiReferenceMoveOperation);
+		multiReferenceMoveOperation.setNewIndex(getOldIndex());
+		multiReferenceMoveOperation.setOldIndex(getNewIndex());
+		multiReferenceMoveOperation.setReferencedModelElementId(ModelUtil
+				.clone(getReferencedModelElementId()));
+		return multiReferenceMoveOperation;
 	}
 
 } //MultiReferenceMoveOperationImpl
