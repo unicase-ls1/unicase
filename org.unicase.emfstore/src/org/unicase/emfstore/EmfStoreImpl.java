@@ -366,7 +366,6 @@ public class EmfStoreImpl implements EmfStore {
 		authorizationControl.checkServerAdminAccess(sessionId);
 		ProjectHistory projectHistory = createEmptyProject(name, description,
 				logMessage);
-		save();
 		return getProjectInfo(projectHistory);
 	}
 
@@ -383,8 +382,9 @@ public class EmfStoreImpl implements EmfStore {
 		authorizationControl.checkServerAdminAccess(sessionId);
 		ProjectHistory projectHistory = createEmptyProject(name, description,
 				logMessage);
-		projectHistory.getLastVersion().setProjectState(project);
-		save();
+		Version lastVersion = projectHistory.getLastVersion();
+		lastVersion.setProjectState(project);
+		save(lastVersion);
 		return getProjectInfo(projectHistory);
 	}
 
@@ -414,6 +414,7 @@ public class EmfStoreImpl implements EmfStore {
 		createResourceForVersion(firstVersion, projectHistory.getProjectId());
 		createResourceForProjectHistory(projectHistory);
 		getServerSpace().getProjects().add(projectHistory);
+		save();
 		return projectHistory;
 	}
 
@@ -478,6 +479,7 @@ public class EmfStoreImpl implements EmfStore {
 		} else if (versionSpec instanceof HeadVersionSpec) {
 			return (PrimaryVersionSpec) EcoreUtil.copy(getProject(projectId)
 					.getLastVersion().getPrimarySpec());
+			// DateVersionSpec
 		} else if (versionSpec instanceof DateVersionSpec) {
 			for (Version version : projectHistory.getVersions()) {
 				if (((DateVersionSpec) versionSpec).getDate().before(
@@ -490,6 +492,7 @@ public class EmfStoreImpl implements EmfStore {
 				}
 			}
 			throw new InvalidVersionSpecException();
+			// TagVersionSpec
 		} else if (versionSpec instanceof TagVersionSpec) {
 			for (Version version : projectHistory.getVersions()) {
 				for (TagVersionSpec tag : version.getTagSpecs()) {
