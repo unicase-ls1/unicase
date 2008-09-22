@@ -1587,10 +1587,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 					if (reference.isContainment()) {
 						if (newValue == null) {
 							// element removed from containment hierachy
-							createCreateDeleteOperation(newValueME, true);
+							CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(newValueME, true);
+							this.myOperations.add(createDeleteOperation);
 						} else {
 							// element added to containment hierachy
-							createCreateDeleteOperation(newValueME, false);
+							CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(newValueME, false);
+							this.myOperations.add(createDeleteOperation);
 						}
 					}
 
@@ -1631,7 +1633,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 						this.myOperations.add(createDeleteOperation);
 					} else {
 						i = handleEReference(feature, newValue, notification,
-								false, projectNotifications, i);
+								true, projectNotifications, i);
 					}
 				} else if (feature instanceof EAttribute) {
 					EAttribute attribute = (EAttribute) feature;
@@ -1654,7 +1656,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 						this.myOperations.add(createDeleteOperation);
 					} else {
 						i = handleEReference(feature, newValue, notification,
-								true, projectNotifications, i);
+								false, projectNotifications, i);
 					}
 				} else if (feature instanceof EAttribute) {
 					EAttribute attribute = (EAttribute) feature;
