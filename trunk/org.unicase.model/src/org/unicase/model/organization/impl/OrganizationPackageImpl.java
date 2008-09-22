@@ -260,6 +260,24 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOrgUnit_Assignments() {
+		return (EReference) orgUnitEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOrgUnit_Participations() {
+		return (EReference) orgUnitEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -311,6 +329,8 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 		orgUnitEClass = createEClass(ORG_UNIT);
 		createEAttribute(orgUnitEClass, ORG_UNIT__AC_ORG_ID);
 		createEReference(orgUnitEClass, ORG_UNIT__GROUP_MEMBERSHIPS);
+		createEReference(orgUnitEClass, ORG_UNIT__ASSIGNMENTS);
+		createEReference(orgUnitEClass, ORG_UNIT__PARTICIPATIONS);
 
 		groupEClass = createEClass(GROUP);
 		createEReference(groupEClass, GROUP__ORG_UNITS);
@@ -342,6 +362,8 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 		// Obtain other dependent packages
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE
 				.getEPackage(ModelPackage.eNS_URI);
+		TaskPackage theTaskPackage = (TaskPackage) EPackage.Registry.INSTANCE
+				.getEPackage(TaskPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -380,6 +402,20 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 		getOrgUnit_GroupMemberships().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getOrgUnit_Assignments(), theTaskPackage.getWorkItem(),
+				theTaskPackage.getWorkItem_Assignee(), "assignments", null, 0,
+				-1, OrgUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		getOrgUnit_Assignments().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getOrgUnit_Participations(), theTaskPackage
+				.getWorkItem(), theTaskPackage.getWorkItem_Participants(),
+				"participations", null, 0, -1, OrgUnit.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getOrgUnit_Participations().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(groupEClass, Group.class, "Group", !IS_ABSTRACT,

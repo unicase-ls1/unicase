@@ -334,6 +334,42 @@ public interface ChangePackage extends EPackage {
 	int MERGING_ISSUE__CHECKED = RationalePackage.ISSUE__CHECKED;
 
 	/**
+	 * The feature id for the '<em><b>Containing Workpackage</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_ISSUE__CONTAINING_WORKPACKAGE = RationalePackage.ISSUE__CONTAINING_WORKPACKAGE;
+
+	/**
+	 * The feature id for the '<em><b>Associated Change Packages</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_ISSUE__ASSOCIATED_CHANGE_PACKAGES = RationalePackage.ISSUE__ASSOCIATED_CHANGE_PACKAGES;
+
+	/**
+	 * The feature id for the '<em><b>Predecessors</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_ISSUE__PREDECESSORS = RationalePackage.ISSUE__PREDECESSORS;
+
+	/**
+	 * The feature id for the '<em><b>Successors</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_ISSUE__SUCCESSORS = RationalePackage.ISSUE__SUCCESSORS;
+
+	/**
 	 * The feature id for the '<em><b>Assignee</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -341,6 +377,14 @@ public interface ChangePackage extends EPackage {
 	 * @ordered
 	 */
 	int MERGING_ISSUE__ASSIGNEE = RationalePackage.ISSUE__ASSIGNEE;
+
+	/**
+	 * The feature id for the '<em><b>Participants</b></em>' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_ISSUE__PARTICIPANTS = RationalePackage.ISSUE__PARTICIPANTS;
 
 	/**
 	 * The feature id for the '<em><b>Proposals</b></em>' containment reference list.
@@ -391,14 +435,6 @@ public interface ChangePackage extends EPackage {
 	 * @ordered
 	 */
 	int MERGING_ISSUE__FACILITATOR = RationalePackage.ISSUE__FACILITATOR;
-
-	/**
-	 * The feature id for the '<em><b>Participants</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_ISSUE__PARTICIPANTS = RationalePackage.ISSUE__PARTICIPANTS;
 
 	/**
 	 * The feature id for the '<em><b>Resolving Revision</b></em>' attribute.

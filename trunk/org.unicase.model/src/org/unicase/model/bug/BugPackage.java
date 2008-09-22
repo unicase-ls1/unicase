@@ -224,7 +224,16 @@ public interface BugPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUG_REPORT__ASSIGNEE = TaskPackage.WORK_ITEM_FEATURE_COUNT + 0;
+	int BUG_REPORT__ASSIGNEE = TaskPackage.WORK_ITEM__ASSIGNEE;
+
+	/**
+	 * The feature id for the '<em><b>Participants</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUG_REPORT__PARTICIPANTS = TaskPackage.WORK_ITEM__PARTICIPANTS;
 
 	/**
 	 * The feature id for the '<em><b>Steps To Reproduce</b></em>' reference list.
@@ -232,7 +241,7 @@ public interface BugPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUG_REPORT__STEPS_TO_REPRODUCE = TaskPackage.WORK_ITEM_FEATURE_COUNT + 1;
+	int BUG_REPORT__STEPS_TO_REPRODUCE = TaskPackage.WORK_ITEM_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Status</b></em>' attribute. <!--
@@ -241,7 +250,7 @@ public interface BugPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUG_REPORT__STATUS = TaskPackage.WORK_ITEM_FEATURE_COUNT + 2;
+	int BUG_REPORT__STATUS = TaskPackage.WORK_ITEM_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Assigned To</b></em>' reference. <!--
@@ -250,7 +259,7 @@ public interface BugPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUG_REPORT__ASSIGNED_TO = TaskPackage.WORK_ITEM_FEATURE_COUNT + 3;
+	int BUG_REPORT__ASSIGNED_TO = TaskPackage.WORK_ITEM_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Resolution</b></em>' reference. <!--
@@ -259,7 +268,7 @@ public interface BugPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUG_REPORT__RESOLUTION = TaskPackage.WORK_ITEM_FEATURE_COUNT + 4;
+	int BUG_REPORT__RESOLUTION = TaskPackage.WORK_ITEM_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Severity</b></em>' attribute. <!--
@@ -268,7 +277,7 @@ public interface BugPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUG_REPORT__SEVERITY = TaskPackage.WORK_ITEM_FEATURE_COUNT + 5;
+	int BUG_REPORT__SEVERITY = TaskPackage.WORK_ITEM_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Report</em>' class. <!--
@@ -277,7 +286,7 @@ public interface BugPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUG_REPORT_FEATURE_COUNT = TaskPackage.WORK_ITEM_FEATURE_COUNT + 6;
+	int BUG_REPORT_FEATURE_COUNT = TaskPackage.WORK_ITEM_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.bug.impl.BugResolutionImpl <em>Resolution</em>}' class.

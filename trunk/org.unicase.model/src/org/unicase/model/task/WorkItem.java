@@ -9,6 +9,7 @@ package org.unicase.model.task;
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.Annotation;
 import org.unicase.model.change.ModelChangePackage;
+import org.unicase.model.organization.OrgUnit;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '
@@ -21,6 +22,8 @@ import org.unicase.model.change.ModelChangePackage;
  *   <li>{@link org.unicase.model.task.WorkItem#getAssociatedChangePackages <em>Associated Change Packages</em>}</li>
  *   <li>{@link org.unicase.model.task.WorkItem#getPredecessors <em>Predecessors</em>}</li>
  *   <li>{@link org.unicase.model.task.WorkItem#getSuccessors <em>Successors</em>}</li>
+ *   <li>{@link org.unicase.model.task.WorkItem#getAssignee <em>Assignee</em>}</li>
+ *   <li>{@link org.unicase.model.task.WorkItem#getParticipants <em>Participants</em>}</li>
  * </ul>
  * </p>
  *
@@ -114,5 +117,51 @@ public interface WorkItem extends Annotation {
 	 * @generated
 	 */
 	EList<WorkItem> getSuccessors();
+
+	/**
+	 * Returns the value of the '<em><b>Assignee</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.organization.OrgUnit#getAssignments <em>Assignments</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Assignee</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Assignee</em>' reference.
+	 * @see #setAssignee(OrgUnit)
+	 * @see org.unicase.model.task.TaskPackage#getWorkItem_Assignee()
+	 * @see org.unicase.model.organization.OrgUnit#getAssignments
+	 * @model opposite="assignments" keys="identifier"
+	 * @generated
+	 */
+	OrgUnit getAssignee();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.task.WorkItem#getAssignee <em>Assignee</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Assignee</em>' reference.
+	 * @see #getAssignee()
+	 * @generated
+	 */
+	void setAssignee(OrgUnit value);
+
+	/**
+	 * Returns the value of the '<em><b>Participants</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.organization.OrgUnit}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.organization.OrgUnit#getParticipations <em>Participations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Participants</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Participants</em>' reference list.
+	 * @see org.unicase.model.task.TaskPackage#getWorkItem_Participants()
+	 * @see org.unicase.model.organization.OrgUnit#getParticipations
+	 * @model opposite="participations" keys="identifier"
+	 * @generated
+	 */
+	EList<OrgUnit> getParticipants();
 
 } // WorkItem

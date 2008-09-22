@@ -8,6 +8,7 @@ package org.unicase.model.organization;
 
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
+import org.unicase.model.task.WorkItem;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '
@@ -18,6 +19,8 @@ import org.unicase.model.ModelElement;
  * <ul>
  *   <li>{@link org.unicase.model.organization.OrgUnit#getAcOrgId <em>Ac Org Id</em>}</li>
  *   <li>{@link org.unicase.model.organization.OrgUnit#getGroupMemberships <em>Group Memberships</em>}</li>
+ *   <li>{@link org.unicase.model.organization.OrgUnit#getAssignments <em>Assignments</em>}</li>
+ *   <li>{@link org.unicase.model.organization.OrgUnit#getParticipations <em>Participations</em>}</li>
  * </ul>
  * </p>
  *
@@ -69,5 +72,41 @@ public interface OrgUnit extends ModelElement {
 	 * @generated
 	 */
 	EList<Group> getGroupMemberships();
+
+	/**
+	 * Returns the value of the '<em><b>Assignments</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.task.WorkItem}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.task.WorkItem#getAssignee <em>Assignee</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Assignments</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Assignments</em>' reference list.
+	 * @see org.unicase.model.organization.OrganizationPackage#getOrgUnit_Assignments()
+	 * @see org.unicase.model.task.WorkItem#getAssignee
+	 * @model opposite="assignee" keys="identifier"
+	 * @generated
+	 */
+	EList<WorkItem> getAssignments();
+
+	/**
+	 * Returns the value of the '<em><b>Participations</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.task.WorkItem}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.task.WorkItem#getParticipants <em>Participants</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Participations</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Participations</em>' reference list.
+	 * @see org.unicase.model.organization.OrganizationPackage#getOrgUnit_Participations()
+	 * @see org.unicase.model.task.WorkItem#getParticipants
+	 * @model opposite="participants" keys="identifier"
+	 * @generated
+	 */
+	EList<WorkItem> getParticipations();
 
 } // OrgUnit

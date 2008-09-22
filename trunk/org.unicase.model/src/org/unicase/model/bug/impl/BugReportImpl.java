@@ -26,6 +26,7 @@ import org.unicase.model.bug.Severity;
 import org.unicase.model.change.ModelChangePackage;
 import org.unicase.model.impl.AnnotationImpl;
 import org.unicase.model.organization.OrgUnit;
+import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.requirement.Step;
 import org.unicase.model.task.Assignable;
 import org.unicase.model.task.TaskPackage;
@@ -43,6 +44,7 @@ import org.unicase.model.task.WorkPackage;
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getPredecessors <em>Predecessors</em>}</li>
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getSuccessors <em>Successors</em>}</li>
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getAssignee <em>Assignee</em>}</li>
+ *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getParticipants <em>Participants</em>}</li>
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getStepsToReproduce <em>Steps To Reproduce</em>}</li>
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getStatus <em>Status</em>}</li>
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getAssignedTo <em>Assigned To</em>}</li>
@@ -81,6 +83,26 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	 * @ordered
 	 */
 	protected EList<WorkItem> successors;
+
+	/**
+	 * The cached value of the '{@link #getAssignee() <em>Assignee</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAssignee()
+	 * @generated
+	 * @ordered
+	 */
+	protected OrgUnit assignee;
+
+	/**
+	 * The cached value of the '{@link #getParticipants() <em>Participants</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getParticipants()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<OrgUnit> participants;
 
 	/**
 	 * The cached value of the '{@link #getStepsToReproduce() <em>Steps To Reproduce</em>}' reference list.
@@ -262,40 +284,90 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public OrgUnit getAssignee() {
-		OrgUnit assignee = basicGetAssignee();
-		return assignee != null && assignee.eIsProxy() ? (OrgUnit) eResolveProxy((InternalEObject) assignee)
-				: assignee;
+		if (assignee != null && assignee.eIsProxy()) {
+			InternalEObject oldAssignee = (InternalEObject) assignee;
+			assignee = (OrgUnit) eResolveProxy(oldAssignee);
+			if (assignee != oldAssignee) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							BugPackage.BUG_REPORT__ASSIGNEE, oldAssignee,
+							assignee));
+			}
+		}
+		return assignee;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> Delegates to {@link #basicGetAssignedTo()}.
-	 * 
-	 * @return the {@link OrgUnit} returned by {@link #basicGetAssignedTo()}
-	 * @author Florian Schneider
-	 * 
-	 *         <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	public OrgUnit basicGetAssignee() {
-		return basicGetAssignedTo();
+		return assignee;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> Delegates to {@link #setAssignedTo(OrgUnit)}.
-	 * 
-	 * @param newAssignee
-	 *            the new organizational unit that shall be assigned to resolve
-	 *            this bug. <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetAssignee(OrgUnit newAssignee,
+			NotificationChain msgs) {
+		OrgUnit oldAssignee = assignee;
+		assignee = newAssignee;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET, BugPackage.BUG_REPORT__ASSIGNEE,
+					oldAssignee, newAssignee);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	public void setAssignee(OrgUnit newAssignee) {
-		setAssignedTo(newAssignee);
+		if (newAssignee != assignee) {
+			NotificationChain msgs = null;
+			if (assignee != null)
+				msgs = ((InternalEObject) assignee).eInverseRemove(this,
+						OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
+						OrgUnit.class, msgs);
+			if (newAssignee != null)
+				msgs = ((InternalEObject) newAssignee).eInverseAdd(this,
+						OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
+						OrgUnit.class, msgs);
+			msgs = basicSetAssignee(newAssignee, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					BugPackage.BUG_REPORT__ASSIGNEE, newAssignee, newAssignee));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<OrgUnit> getParticipants() {
+		if (participants == null) {
+			participants = new EObjectWithInverseResolvingEList.ManyInverse<OrgUnit>(
+					OrgUnit.class, this, BugPackage.BUG_REPORT__PARTICIPANTS,
+					OrganizationPackage.ORG_UNIT__PARTICIPATIONS);
+		}
+		return participants;
 	}
 
 	/**
@@ -447,6 +519,15 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 		case BugPackage.BUG_REPORT__SUCCESSORS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSuccessors())
 					.basicAdd(otherEnd, msgs);
+		case BugPackage.BUG_REPORT__ASSIGNEE:
+			if (assignee != null)
+				msgs = ((InternalEObject) assignee).eInverseRemove(this,
+						OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
+						OrgUnit.class, msgs);
+			return basicSetAssignee((OrgUnit) otherEnd, msgs);
+		case BugPackage.BUG_REPORT__PARTICIPANTS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipants())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -466,6 +547,11 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 					msgs);
 		case BugPackage.BUG_REPORT__SUCCESSORS:
 			return ((InternalEList<?>) getSuccessors()).basicRemove(otherEnd,
+					msgs);
+		case BugPackage.BUG_REPORT__ASSIGNEE:
+			return basicSetAssignee(null, msgs);
+		case BugPackage.BUG_REPORT__PARTICIPANTS:
+			return ((InternalEList<?>) getParticipants()).basicRemove(otherEnd,
 					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -508,6 +594,8 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			if (resolve)
 				return getAssignee();
 			return basicGetAssignee();
+		case BugPackage.BUG_REPORT__PARTICIPANTS:
+			return getParticipants();
 		case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE:
 			return getStepsToReproduce();
 		case BugPackage.BUG_REPORT__STATUS:
@@ -553,6 +641,10 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 		case BugPackage.BUG_REPORT__ASSIGNEE:
 			setAssignee((OrgUnit) newValue);
 			return;
+		case BugPackage.BUG_REPORT__PARTICIPANTS:
+			getParticipants().clear();
+			getParticipants().addAll((Collection<? extends OrgUnit>) newValue);
+			return;
 		case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE:
 			getStepsToReproduce().clear();
 			getStepsToReproduce().addAll((Collection<? extends Step>) newValue);
@@ -595,6 +687,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 		case BugPackage.BUG_REPORT__ASSIGNEE:
 			setAssignee((OrgUnit) null);
 			return;
+		case BugPackage.BUG_REPORT__PARTICIPANTS:
+			getParticipants().clear();
+			return;
 		case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE:
 			getStepsToReproduce().clear();
 			return;
@@ -631,7 +726,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 		case BugPackage.BUG_REPORT__SUCCESSORS:
 			return successors != null && !successors.isEmpty();
 		case BugPackage.BUG_REPORT__ASSIGNEE:
-			return basicGetAssignee() != null;
+			return assignee != null;
+		case BugPackage.BUG_REPORT__PARTICIPANTS:
+			return participants != null && !participants.isEmpty();
 		case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE:
 			return stepsToReproduce != null && !stepsToReproduce.isEmpty();
 		case BugPackage.BUG_REPORT__STATUS:
@@ -644,40 +741,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			return severity != SEVERITY_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == Assignable.class) {
-			switch (derivedFeatureID) {
-			case BugPackage.BUG_REPORT__ASSIGNEE:
-				return TaskPackage.ASSIGNABLE__ASSIGNEE;
-			default:
-				return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == Assignable.class) {
-			switch (baseFeatureID) {
-			case TaskPackage.ASSIGNABLE__ASSIGNEE:
-				return BugPackage.BUG_REPORT__ASSIGNEE;
-			default:
-				return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**

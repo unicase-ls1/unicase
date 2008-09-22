@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.Annotation;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
+import org.unicase.model.rationale.*;
 import org.unicase.model.rationale.Assessment;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.Criterion;
@@ -22,6 +23,7 @@ import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.rationale.Solution;
 import org.unicase.model.task.Assignable;
 import org.unicase.model.task.Checkable;
+import org.unicase.model.task.WorkItem;
 
 /**
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides
@@ -127,8 +129,8 @@ public class RationaleAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseAssignable(Assignable object) {
-			return createAssignableAdapter();
+		public Adapter caseWorkItem(WorkItem object) {
+			return createWorkItemAdapter();
 		}
 
 		@Override
@@ -284,16 +286,16 @@ public class RationaleAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.task.Assignable <em>Assignable</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.task.WorkItem <em>Work Item</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.unicase.model.task.Assignable
+	 * @see org.unicase.model.task.WorkItem
 	 * @generated
 	 */
-	public Adapter createAssignableAdapter() {
+	public Adapter createWorkItemAdapter() {
 		return null;
 	}
 

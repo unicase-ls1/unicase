@@ -199,13 +199,31 @@ public interface OrganizationPackage extends EPackage {
 	int ORG_UNIT__GROUP_MEMBERSHIPS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Assignments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORG_UNIT__ASSIGNMENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Participations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORG_UNIT__PARTICIPATIONS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Org Unit</em>' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ORG_UNIT_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int ORG_UNIT_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -329,6 +347,24 @@ public interface OrganizationPackage extends EPackage {
 	 * @ordered
 	 */
 	int USER__GROUP_MEMBERSHIPS = ORG_UNIT__GROUP_MEMBERSHIPS;
+
+	/**
+	 * The feature id for the '<em><b>Assignments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__ASSIGNMENTS = ORG_UNIT__ASSIGNMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Participations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__PARTICIPATIONS = ORG_UNIT__PARTICIPATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Email</b></em>' attribute.
@@ -499,6 +535,24 @@ public interface OrganizationPackage extends EPackage {
 	int GROUP__GROUP_MEMBERSHIPS = ORG_UNIT__GROUP_MEMBERSHIPS;
 
 	/**
+	 * The feature id for the '<em><b>Assignments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP__ASSIGNMENTS = ORG_UNIT__ASSIGNMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Participations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP__PARTICIPATIONS = ORG_UNIT__PARTICIPATIONS;
+
+	/**
 	 * The feature id for the '<em><b>Org Units</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -592,6 +646,28 @@ public interface OrganizationPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getOrgUnit_GroupMemberships();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.organization.OrgUnit#getAssignments <em>Assignments</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Assignments</em>'.
+	 * @see org.unicase.model.organization.OrgUnit#getAssignments()
+	 * @see #getOrgUnit()
+	 * @generated
+	 */
+	EReference getOrgUnit_Assignments();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.organization.OrgUnit#getParticipations <em>Participations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Participations</em>'.
+	 * @see org.unicase.model.organization.OrgUnit#getParticipations()
+	 * @see #getOrgUnit()
+	 * @generated
+	 */
+	EReference getOrgUnit_Participations();
 
 	/**
 	 * Returns the meta object for class '
@@ -692,6 +768,21 @@ public interface OrganizationPackage extends EPackage {
 		 */
 		EReference ORG_UNIT__GROUP_MEMBERSHIPS = eINSTANCE
 				.getOrgUnit_GroupMemberships();
+		/**
+		 * The meta object literal for the '<em><b>Assignments</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ORG_UNIT__ASSIGNMENTS = eINSTANCE.getOrgUnit_Assignments();
+		/**
+		 * The meta object literal for the '<em><b>Participations</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ORG_UNIT__PARTICIPATIONS = eINSTANCE
+				.getOrgUnit_Participations();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.organization.impl.GroupImpl <em>Group</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
