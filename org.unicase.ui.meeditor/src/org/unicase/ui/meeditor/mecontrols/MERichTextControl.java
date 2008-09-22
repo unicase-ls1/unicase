@@ -227,40 +227,45 @@ public class MERichTextControl extends AbstractMEControl {
 	}
 
 	private void load() {
+
 		List<Integer> bulletedLines = new ArrayList<Integer>();
 		String txt = "";
-		final StringBuffer value = new StringBuffer();
-		TransactionalEditingDomain domain = TransactionUtil
-				.getEditingDomain(getModelElement());
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-			@Override
-			protected void doExecute() {
-				if (getModelElement().eGet(attribute) == null) {
-					value.append("");
+		try {
+			final StringBuffer value = new StringBuffer();
+			TransactionalEditingDomain domain = TransactionUtil
+					.getEditingDomain(getModelElement());
+			domain.getCommandStack().execute(new RecordingCommand(domain) {
+				@Override
+				protected void doExecute() {
+					if (getModelElement().eGet(attribute) == null) {
+						value.append("");
+					} else {
+						value.append(getModelElement().eGet(attribute));
+					}
+				}
+			});
+			txt = value.toString();
+
+			StringTokenizer stringTokenizer = new StringTokenizer(txt, ",");
+			while (stringTokenizer.hasMoreElements()) {
+				String nextElement = (String) stringTokenizer.nextElement();
+				if (nextElement.equals(";")) {
+					break;
 				} else {
-					value.append(getModelElement().eGet(attribute));
+					bulletedLines.add(Integer.parseInt(nextElement));
 				}
 			}
-		});
-		txt = value.toString();
-
-		StringTokenizer stringTokenizer = new StringTokenizer(txt, ",");
-		while (stringTokenizer.hasMoreElements()) {
-			String nextElement = (String) stringTokenizer.nextElement();
-			if (nextElement.equals(";")) {
-				break;
+			String[] split = txt.split("%BEGINNTEXT%");
+			if (split.length == 1) {
+				viewer.getDocument().set("");
 			} else {
-				bulletedLines.add(Integer.parseInt(nextElement));
+				viewer.getDocument().set(split[1]);
 			}
-		}
-		String[] split = txt.split("%BEGINNTEXT%");
-		if (split.length == 1) {
-			viewer.getDocument().set("");
-		} else {
-			viewer.getDocument().set(split[1]);
-		}
-		for (int i = 0; i < text.getLineCount(); i++) {
-			text.setLineBullet(i, 1, null);
+			for (int i = 0; i < text.getLineCount(); i++) {
+				text.setLineBullet(i, 1, null);
+			}
+		} catch (RuntimeException e) {
+			viewer.getDocument().set(txt);
 		}
 		for (Integer line : bulletedLines) {
 			bullet(line, 1);
