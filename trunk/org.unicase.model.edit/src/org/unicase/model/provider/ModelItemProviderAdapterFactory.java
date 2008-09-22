@@ -98,6 +98,29 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.Annotation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AnnotationItemProvider annotationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.Annotation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAnnotationAdapter() {
+		if (annotationItemProvider == null) {
+			annotationItemProvider = new AnnotationItemProvider(this);
+		}
+
+		return annotationItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.unicase.model.IdentifiableElement} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -244,6 +267,8 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory
 	public void dispose() {
 		if (projectItemProvider != null)
 			projectItemProvider.dispose();
+		if (annotationItemProvider != null)
+			annotationItemProvider.dispose();
 		if (identifiableElementItemProvider != null)
 			identifiableElementItemProvider.dispose();
 		if (modelElementIdItemProvider != null)

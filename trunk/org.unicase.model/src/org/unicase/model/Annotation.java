@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see org.unicase.model.ModelPackage#getAnnotation()
- * @model abstract="true"
+ * @model
  * @generated
  */
 public interface Annotation extends ModelElement {
