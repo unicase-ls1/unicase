@@ -55,6 +55,7 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
@@ -949,7 +950,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 				.createChangePackage();
 		changePackage.init(getProject(), getLocalChanges());
 		changePackage.getOperations().addAll(this.myOperations);
-		//changePackage.cannonize();
+		// changePackage.cannonize();
 
 		PrimaryVersionSpec newBaseVersion;
 		try {
@@ -962,7 +963,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		}
 
 		this.setLocalChanges(null);
-		this.myOperations=new ArrayList<AbstractOperation>();
+		this.myOperations = new ArrayList<AbstractOperation>();
 		setBaseVersion(newBaseVersion);
 
 		saveResources(true);
@@ -1120,13 +1121,13 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	public void init() {
 		this.myOperations = new ArrayList<AbstractOperation>();
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-		.getEditingDomain("org.unicase.EditingDomain");
+				.getEditingDomain("org.unicase.EditingDomain");
 		domain.addResourceSetListener(this);
 		// MK: possibly performance hit
 		this.eResource().setTrackingModification(true);
 		new ProjectChangeNotifier(this.getProject(), this);
 		startChangeRecording();
-		
+
 	}
 
 	/**
@@ -1564,8 +1565,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		if (projectNotifications.size() == 0) {
 			return;
 		}
-		
-		for (int i = 0; i<projectNotifications.size();  i++) {
+
+		for (int i = 0; i < projectNotifications.size(); i++) {
 			Notification notification = projectNotifications.get(i);
 			Object feature = notification.getFeature();
 			Object newValue = notification.getNewValue();
@@ -1596,12 +1597,18 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 					// handle bidirectional features
 					EReference opposite = reference.getEOpposite();
 					if (opposite != null) {
-						if (projectNotifications.size()>i+1) {
-							Notification nextNotification = projectNotifications.get(i+1);
-							//next notification is about the opposite of this notification
-							if ((nextNotification.getFeature() instanceof EReference)  && nextNotification.getNotifier()==newValue && opposite.getName().equals(((EReference)nextNotification.getFeature()).getName())) {
-								//skip
-								//i++;
+						if (projectNotifications.size() > i + 1) {
+							Notification nextNotification = projectNotifications
+									.get(i + 1);
+							// next notification is about the opposite of this
+							// notification
+							if ((nextNotification.getFeature() instanceof EReference)
+									&& nextNotification.getNotifier() == newValue
+									&& opposite.getName().equals(
+											((EReference) nextNotification
+													.getFeature()).getName())) {
+								// skip
+								// i++;
 								continue;
 							}
 						}
@@ -1619,12 +1626,19 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			if (notification.getEventType() == Notification.ADD) {
 				if (feature instanceof EReference) {
 					if (notification.getNotifier() instanceof Project) {
-						CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation((ModelElement) newValue, false);
+						CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(
+								(ModelElement) newValue, false);
 						this.myOperations.add(createDeleteOperation);
+					} else {
+						i = handleEReference(feature, newValue, notification,
+								false, projectNotifications, i);
 					}
-					else {
-						i = handleEReference(feature, newValue, notification, false, projectNotifications, i);
-					}
+				} else if (feature instanceof EAttribute) {
+					EAttribute attribute = (EAttribute) feature;
+					MultiAttributeOperation multiAttributeOperation = createMultiAttributeOperation(
+							notification, newValue, attribute, true);
+					this.myOperations.add(multiAttributeOperation);
+					continue;
 				} else {
 					// FIXME MK: this should never happen
 					throw new IllegalStateException();
@@ -1635,12 +1649,19 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			if (notification.getEventType() == Notification.REMOVE) {
 				if (feature instanceof EReference) {
 					if (notification.getNotifier() instanceof Project) {
-						CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation((ModelElement) newValue, true);
+						CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(
+								(ModelElement) newValue, true);
 						this.myOperations.add(createDeleteOperation);
+					} else {
+						i = handleEReference(feature, newValue, notification,
+								true, projectNotifications, i);
 					}
-					else {
-						i = handleEReference(feature, newValue, notification, true, projectNotifications, i);
-					}
+				} else if (feature instanceof EAttribute) {
+					EAttribute attribute = (EAttribute) feature;
+					MultiAttributeOperation multiAttributeOperation = createMultiAttributeOperation(
+							notification, newValue, attribute, false);
+					this.myOperations.add(multiAttributeOperation);
+					continue;
 				} else {
 					// FIXME MK: this should never happen
 					throw new IllegalStateException();
@@ -1689,6 +1710,20 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	}
 
+	private MultiAttributeOperation createMultiAttributeOperation(
+			Notification notification, Object newValue, EAttribute attribute,
+			boolean isAdd) {
+		MultiAttributeOperation multiAttributeOperation = OperationsFactory.eINSTANCE
+				.createMultiAttributeOperation();
+		multiAttributeOperation.setAdd(isAdd);
+		multiAttributeOperation.setFeatureName(attribute.getName());
+		multiAttributeOperation.setIndex(notification.getPosition());
+		multiAttributeOperation.setModelElementId(((ModelElement) notification
+				.getNotifier()).getModelElementId());
+		multiAttributeOperation.getValues().add(newValue);
+		return multiAttributeOperation;
+	}
+
 	private AttributeOperation createAttributeOperation(
 			Notification notification, Object feature, Object newValue,
 			Object oldValue) {
@@ -1705,30 +1740,34 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	}
 
 	private int handleEReference(Object feature, Object newValue,
-			Notification notification, boolean isAdd, List<Notification> projectNotifications, int i) {
-		
-		
+			Notification notification, boolean isAdd,
+			List<Notification> projectNotifications, int i) {
+
 		EReference reference = (EReference) feature;
 		ModelElement modelElement = (ModelElement) newValue;
 
 		if (reference.isContainment()) {
 			// element was added or removed to/from containment hierachy
-			
+
 			CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(
 					modelElement, isAdd);
 			this.myOperations.add(createDeleteOperation);
 
 		}
-		
+
 		// handle bidirectional features
 		EReference opposite = reference.getEOpposite();
 		if (opposite != null) {
-			if (projectNotifications.size()>i+1) {
-				Notification nextNotification = projectNotifications.get(i+1);
-				//next notification is about the opposite of this notification
-				if ((nextNotification.getFeature() instanceof EReference)  && nextNotification.getNotifier()==newValue && opposite.getName().equals(((EReference)nextNotification.getFeature()).getName())) {
-					//skip
-					//i++;
+			if (projectNotifications.size() > i + 1) {
+				Notification nextNotification = projectNotifications.get(i + 1);
+				// next notification is about the opposite of this notification
+				if ((nextNotification.getFeature() instanceof EReference)
+						&& nextNotification.getNotifier() == newValue
+						&& opposite.getName().equals(
+								((EReference) nextNotification.getFeature())
+										.getName())) {
+					// skip
+					// i++;
 					return i;
 				}
 			}
@@ -1801,12 +1840,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	public void modelElementAdded(Project project, ModelElement modelElement) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void modelElementRemoved(Project project, ModelElement modelElement) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void notify(Notification notification, Project project,
@@ -1828,7 +1867,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			}
 		}
 		this.getOperations().addAll(this.myOperations);
-		Usersession usersession2 = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getUsersession();
+		Usersession usersession2 = WorkspaceManager.getInstance()
+				.getCurrentWorkspace().getActiveProjectSpace().getUsersession();
 		saveResources(false);
 	}
 
