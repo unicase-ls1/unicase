@@ -35,16 +35,10 @@ public class OverlayImageDescriptor extends CompositeImageDescriptor {
 	public static final int LOWER_LEFT = 3;
 
 	/** default image width. */
-	private static final int DEFAULT_IMAGE_WIDTH = 16;
+	private static final int DEFAULT_IMAGE_WIDTH = 19;
 
 	/** default image height. */
-	private static final int DEFAULT_IMAGE_HEIGHT = 16;
-
-	/** image width. */
-	private int imageWidth = DEFAULT_IMAGE_WIDTH;
-
-	/** image height. */
-	private int imageHeight = DEFAULT_IMAGE_HEIGHT;
+	private static final int DEFAULT_IMAGE_HEIGHT = 19;
 
 	/** base image. */
 	private Image srcImage;
@@ -54,6 +48,8 @@ public class OverlayImageDescriptor extends CompositeImageDescriptor {
 	
 	/** the position of the overlay image. */
 	private int overlayPos = LOWER_RIGHT;
+
+	private int offset = 3;
 
 	/**
 	 * OverlayImageDescriptor constructor.
@@ -97,22 +93,22 @@ public class OverlayImageDescriptor extends CompositeImageDescriptor {
 			Point pos = null;
 			switch (overlayPos){
 				case UPPER_LEFT:
-					pos = new Point(0,0);
+					pos = new Point(-overlayData.width/2,-overlayData.height/2);
 					break;
 				case UPPER_RIGHT:
-					pos = new Point(backgroundData.width-overlayData.width,0);
+					pos = new Point(backgroundData.width-overlayData.width/2,0);
 					break;
 				case LOWER_RIGHT:
-					pos = new Point(backgroundData.width-overlayData.width,
-							backgroundData.height-overlayData.height);
+					pos = new Point(backgroundData.width-overlayData.width/2,
+							backgroundData.height-overlayData.height/2);
 					break;
 				//default = LOWER_LEFT
 				default:
 					pos = new Point(0,
-							backgroundData.height-overlayData.height);
+							backgroundData.height-overlayData.height/2);
 					break;
 			}
-			drawImage(overlayData, pos.x, pos.y);
+			drawImage(overlayData, pos.x-offset, pos.y-offset);
 		}
 	}
 
@@ -123,7 +119,7 @@ public class OverlayImageDescriptor extends CompositeImageDescriptor {
 	 * @see org.eclipse.jface.resource.CompositeImageDescriptor#getSize()
 	 */
 	protected Point getSize() {
-		return new Point(imageWidth, imageHeight);
+		return new Point(DEFAULT_IMAGE_WIDTH, DEFAULT_IMAGE_HEIGHT);
 	}
 
 }

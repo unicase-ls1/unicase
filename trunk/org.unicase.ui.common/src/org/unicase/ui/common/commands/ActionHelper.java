@@ -7,6 +7,8 @@
 
 package org.unicase.ui.common.commands;
 
+import java.util.Date;
+
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.NotEnabledException;
@@ -15,6 +17,8 @@ import org.eclipse.core.commands.common.NotDefinedException;
 import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -89,6 +93,28 @@ public final class ActionHelper {
 
 		return me;
 	}
+	
+	/**
+	 * MUST BE WRAPPED IN A RECORDING COMMAND!
+	 * This method creates a new model element using:
+	 * @param factory the factory
+	 * @param clazz the element class
+	 * @return the new element
+	 */
+	public static EObject createModelElement(EFactory factory, EClass clazz){
+		EObject obj = factory.create(clazz);
+		ModelElement me = (ModelElement) obj;
+		final StringBuffer creator = new StringBuffer();
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			protected void doExecute() {
+				creator.append(WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getUsersession().getACUser().getName());
+			}
+		});
+		me.setCreator(creator.toString());
+		me.setCreationDate(new Date());
+		return me;
+	}
 
 	/**
 	 * This opens the model element.
@@ -104,8 +130,10 @@ public final class ActionHelper {
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			protected void doExecute() {
-				me.addReader(WorkspaceManager.getInstance().getCurrentWorkspace()
-						.getActiveProjectSpace().getUsersession().getACUser().getName());
+				String user = WorkspaceManager.getInstance().getCurrentWorkspace()
+				.getActiveProjectSpace().getUsersession().getACUser().getName();
+				me.addReader(user);
+				
 			}
 		});
 		

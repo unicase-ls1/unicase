@@ -21,6 +21,7 @@ import org.eclipse.jface.action.ContributionManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.AbstractSourceProvider;
 import org.eclipse.ui.ISourceProvider;
 import org.eclipse.ui.PlatformUI;
@@ -216,13 +217,15 @@ public class MEEditorPage extends FormPage {
 		ControlFactory controlFactory = new ControlFactory(editingDomain,
 				modelElement, this.getEditor().getToolkit());
 		for (IItemPropertyDescriptor itemPropertyDescriptor : simpleAttributes) {
-			toolkit.createLabel(attributeComposite, itemPropertyDescriptor
+			Label label = toolkit.createLabel(attributeComposite, itemPropertyDescriptor
 					.getDisplayName(modelElement));
 			MEControl meControl = controlFactory
 					.createControl(itemPropertyDescriptor);
 			meControls.add(meControl);
 			Control control = meControl.createControl(attributeComposite,
 					SWT.WRAP);
+			
+			label.setLayoutData(new TableWrapData(TableWrapData.LEFT,TableWrapData.MIDDLE));
 			control.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
 		}
 		attributeSection.setClient(attributeComposite);

@@ -6,6 +6,9 @@
  */
 package org.unicase.ui.meeditor;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -48,7 +51,6 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 * Default constructor.
 	 */
 	public MEEditor() {
-
 	}
 	
 	
@@ -134,8 +136,34 @@ public class MEEditor extends SharedHeaderFormEditor {
 					
 				}
 				
-			};
+			};			
 			this.modelElement.eAdapters().add(eAdapter);
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+			StringBuffer stringBuffer = new StringBuffer();
+			Date creationDate = modelElement.getCreationDate();
+			if(creationDate==null){
+				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+				domain.getCommandStack().execute(new RecordingCommand(domain) {
+					protected void doExecute() {
+						modelElement.setCreator("unicase");
+						modelElement.setCreationDate(new Date());
+					}
+				});
+			}
+			creationDate = modelElement.getCreationDate();
+			stringBuffer.append("Created: ");
+			stringBuffer.append(dateFormat.format(creationDate));
+			stringBuffer.append(" by ");
+			stringBuffer.append(modelElement.getCreator());
+			Date lastModifiedDate = modelElement.getLastModifiedDate();
+			if(lastModifiedDate!=null){
+				stringBuffer.append(" | ");
+				stringBuffer.append("Last modified: ");
+				stringBuffer.append(dateFormat.format(lastModifiedDate));
+				stringBuffer.append(" by ");
+				stringBuffer.append(modelElement.getLastModifier());
+			}
+			getEditorSite().getActionBars().getStatusLineManager().setMessage(stringBuffer.toString());
 		} else {
 			throw new PartInitException(
 					"MEEditor is only appliable for MEEditorInputs");
