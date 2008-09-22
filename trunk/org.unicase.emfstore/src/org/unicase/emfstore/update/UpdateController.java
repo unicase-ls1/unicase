@@ -10,6 +10,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.osgi.framework.Version;
+import org.unicase.emfstore.EmfStore;
 import org.unicase.emfstore.EmfStoreImpl;
 import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.esmodel.ServerSpace;
@@ -105,6 +106,9 @@ public class UpdateController {
 			}
 		}
 		
+		int numberOfUpdatedItems = 0;
+		
+		System.out.println("Starting update…");
 		for (ProjectHistory projectHistory : serverSpace.getProjects()) {
 			for (UpdateStep updateStep : getNecessaryUpdateSteps()) {
 				System.out.println("Performing update: " + updateStep.getTitle());
@@ -113,14 +117,16 @@ public class UpdateController {
 						+ " to version " 
 						+ updateStep.getTargetVersion());
 								
-				updateStep.updateProjectHistory(projectHistory);
+				numberOfUpdatedItems += updateStep.updateProjectHistory(projectHistory);
 			}
 			
 		}
 		
+		versionInformation.setEmfStoreVersion(EmfStoreImpl.getModelVersion());
+		
 		try {
 			serverSpace.save();
-			System.out.println("Update successfull");
+			System.out.println("Successfully updated " + numberOfUpdatedItems + " items");
 		} catch (IOException e) {
 			throw new FatalEmfStoreException(StorageException.NOSAVE, e);
 		}

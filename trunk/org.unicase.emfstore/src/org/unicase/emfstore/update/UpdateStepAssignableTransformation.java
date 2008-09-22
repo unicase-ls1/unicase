@@ -33,9 +33,9 @@ public class UpdateStepAssignableTransformation implements UpdateStep {
 		return targetVersion;
 	}
 
-	public void updateProjectHistory(ProjectHistory projectHistory) {
+	public int updateProjectHistory(ProjectHistory projectHistory) {
 		
-		
+		int numberOfUpdatedItems = 0;
 		EList<Version> versions = projectHistory.getVersions();
 		
 		for (Version version : versions) {
@@ -47,6 +47,7 @@ public class UpdateStepAssignableTransformation implements UpdateStep {
 				if (modelElement instanceof BugReport) {
 					OrgUnit assignedTo = ((BugReport) modelElement).getAssignedTo();
 					if (assignedTo != null) {
+						numberOfUpdatedItems++;
 						((BugReport) modelElement).setAssignee(assignedTo);
 						((BugReport) modelElement).setAssignedTo(null);
 						System.out.println("Updated assignee of bug report \"" 
@@ -63,6 +64,7 @@ public class UpdateStepAssignableTransformation implements UpdateStep {
 				if (modelElement instanceof Issue) {
 					User facilitator = ((Issue) modelElement).getFacilitator();
 					if (facilitator != null) {
+						numberOfUpdatedItems++;
 						((Issue) modelElement).setAssignee(facilitator);
 						((Issue) modelElement).setFacilitator(null);
 						System.out.println("Updated assignee of issue \"" 
@@ -71,8 +73,10 @@ public class UpdateStepAssignableTransformation implements UpdateStep {
 								+ ((Issue) modelElement).getAssignee().getName());
 					}
 				}
-			}
+			}	
 		}
+		
+		return numberOfUpdatedItems;
 	}
 
 }
