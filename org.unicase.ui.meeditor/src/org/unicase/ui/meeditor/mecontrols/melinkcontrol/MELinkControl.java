@@ -72,6 +72,10 @@ public class MELinkControl extends AbstractMEControl {
 		labelProvider = new MELinkLabelProvider();
 		labelListener = new ILabelProviderListener(){
 			public void labelProviderChanged(LabelProviderChangedEvent event) {
+				if(hyperlink==null){
+					//no hyperlink defined yet -> nothing to refresh
+					return;
+				}
 				hyperlink.setText(labelProvider.getText(getModelElement()));
 				linkComposite.layout();
 			}
