@@ -5,16 +5,23 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.model.ModelElement;
+import org.unicase.model.ModelElementId;
+import org.unicase.model.Project;
 
 /**
  * <!-- begin-user-doc -->
@@ -275,7 +282,33 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 
 	@Override
 	public AbstractOperation reverse() {
+		//FIXME MK implement
 		return null;
+	}
+
+	@Override
+	public void apply(Project project) {
+		super.apply(project);
+		ModelElement modelElement = project
+				.getModelElement(getModelElementId());
+		EList<Object> values = getValues();
+		EList<EAttribute> attributes = modelElement.eClass()
+				.getEAllAttributes();
+		for (EAttribute attribute : attributes) {
+			if (attribute.getName().equals(this.getFeatureName())) {
+				Object object = modelElement.eGet(attribute);
+				EList<Object> list = (EList<Object>) object;
+				if (isAdd()) {
+					list.addAll(getIndex(), values );
+				} else {
+					list.removeAll(values);
+				}
+				return;
+			}
+		}
+		//FIXME MK: exception
+		throw new IllegalStateException("cannot find reference feature");
+
 	}
 
 } //MultiAttributeOperationImpl
