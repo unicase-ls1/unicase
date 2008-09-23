@@ -34,6 +34,11 @@ import org.unicase.model.requirement.UseCase;
 import org.unicase.model.requirement.impl.RequirementFactoryImpl;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 
+/**
+ * Class creates a widget that displays all use case steps of a use case.
+ * @author lars
+ *
+ */
 public class UseCaseStepsControl extends AbstractMEControl{
 	
 	private final EReference eReference;
@@ -41,8 +46,7 @@ public class UseCaseStepsControl extends AbstractMEControl{
 	private AdapterImpl eAdapter;
 	
 	private Composite mainComposite;
-	
-	private Composite parentComposite;
+		
 	private int parentStyle;
 	private Section section;
 	
@@ -52,6 +56,14 @@ public class UseCaseStepsControl extends AbstractMEControl{
 	
 	private ArrayList<SingleUseCaseStepControl> stepControls = new ArrayList<SingleUseCaseStepControl>();
 
+	/**
+	 * public constructor.
+	 * @param modelElement ModelElement that is shown
+	 * @param reference specific reference
+	 * @param toolkit the used toolkit
+	 * @param editingDomain the specific editing Domain
+	 * @param descriptor an ItemPropertyDescriptor for the modelElement
+	 */
 	public UseCaseStepsControl(EObject modelElement, EReference reference, FormToolkit toolkit, EditingDomain editingDomain,
 			IItemPropertyDescriptor descriptor) {
 		super(editingDomain, modelElement, toolkit);
@@ -70,8 +82,14 @@ public class UseCaseStepsControl extends AbstractMEControl{
 		modelElement.eAdapters().add(eAdapter);
 	}
 
+	/**
+	 * Method creates the specific widget and the containing display elements.
+	 * @param parent surrounding widget or container
+	 * @param style represents the style that should be used
+	 * @return the control containing all use case steps
+	 * 
+	 */
 	public Control createControl(final Composite parent, final int style) {
-		this.parentComposite = parent;
 		this.parentStyle = style;
 		section = getToolkit().createSection(parent, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
 		section.setText(descriptor.getDisplayName(getModelElement()));		
@@ -91,6 +109,7 @@ public class UseCaseStepsControl extends AbstractMEControl{
 		return section;
 	}
 	
+	@SuppressWarnings("unchecked")
 	private void rebuildStepList() {
 		stepArea.dispose();
 		for(SingleUseCaseStepControl step : stepControls){
@@ -108,46 +127,37 @@ public class UseCaseStepsControl extends AbstractMEControl{
 		}
 		stepControls.clear();
 		
-		/*TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain();
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-			@SuppressWarnings("unchecked")
-			@Override
-			protected void doExecute() {*/
-				Object objectList = getModelElement().eGet(eReference);
-				if (objectList instanceof EList) {
-					EList<EObject> eList = (EList<EObject>) objectList;
-					int currentPosition = 0;
-					for (EObject object : eList) {
-						if (object instanceof ModelElement) {
-							
-							
-							
-							Step me = (Step) object;
-							GridData gdEmtpy = new GridData(GridData.FILL_HORIZONTAL);
-							gdEmtpy.verticalIndent = 0;
-							
-							GridData gdUserStep = new GridData(GridData.FILL_HORIZONTAL);
-							gdUserStep.verticalIndent = 0;							
-							SingleUseCaseStepControl stepControl = new SingleUseCaseStepControl(getEditingDomain(), me, getToolkit(), getModelElement(), eReference);
-							
-							if(me.isUserStep()){	
-								Control c = stepControl.createControl(stepArea, parentStyle);								
-								c.setLayoutData(gdUserStep);
-								Control empty2 = getToolkit().createComposite(stepArea, parentStyle);						
-								empty2.setLayoutData(gdEmtpy);								
-							} else {
-								Control empty2 = getToolkit().createComposite(stepArea, parentStyle);						
-								empty2.setLayoutData(gdEmtpy);
-								Control c = stepControl.createControl(stepArea, parentStyle);								
-								c.setLayoutData(gdUserStep);
-							}
-							stepControls.add(stepControl);
-						}
-						currentPosition++;
+		Object objectList = getModelElement().eGet(eReference);
+		if (objectList instanceof EList) {
+			EList<EObject> eList = (EList<EObject>) objectList;
+			int currentPosition = 0;
+			for (EObject object : eList) {
+				if (object instanceof ModelElement) {
+					
+					Step me = (Step) object;
+					GridData gdEmtpy = new GridData(GridData.FILL_HORIZONTAL);
+					gdEmtpy.verticalIndent = 0;
+					
+					GridData gdUserStep = new GridData(GridData.FILL_HORIZONTAL);
+					gdUserStep.verticalIndent = 0;							
+					SingleUseCaseStepControl stepControl = new SingleUseCaseStepControl(getEditingDomain(), me, getToolkit(), getModelElement(), eReference);
+					
+					if(me.isUserStep()){	
+						Control c = stepControl.createControl(stepArea, parentStyle);								
+						c.setLayoutData(gdUserStep);
+						Control empty2 = getToolkit().createComposite(stepArea, parentStyle);						
+						empty2.setLayoutData(gdEmtpy);								
+					} else {
+						Control empty2 = getToolkit().createComposite(stepArea, parentStyle);						
+						empty2.setLayoutData(gdEmtpy);
+						Control c = stepControl.createControl(stepArea, parentStyle);								
+						c.setLayoutData(gdUserStep);
 					}
+					stepControls.add(stepControl);
 				}
-	/*		}
-		});*/
+				currentPosition++;
+			}
+		}
 		
 		GridData gdButtonPanel = new GridData(GridData.FILL_HORIZONTAL);
 		gdButtonPanel.verticalIndent = 0;
@@ -183,13 +193,10 @@ public class UseCaseStepsControl extends AbstractMEControl{
 		
 		Hyperlink addActorStepLink = getToolkit().createHyperlink(buttonControl, "Insert Actor Step", GridData.HORIZONTAL_ALIGN_BEGINNING);
 		addActorStepLink.addHyperlinkListener(new IHyperlinkListener() {
-
 			public void linkActivated(HyperlinkEvent e) {
 				TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
-					@SuppressWarnings("unchecked")
-					@Override
-					protected void doExecute() {
+				protected void doExecute() {
 						RequirementFactory rFactory = RequirementFactoryImpl.init();						
 						Step p = rFactory.createStep();
 						p.setName("New Actor Step");
@@ -197,30 +204,13 @@ public class UseCaseStepsControl extends AbstractMEControl{
 						UseCase uc = (UseCase) getModelElement();
 						EList<Step> allSteps = uc.getUseCaseSteps();
 						uc.getProject().addModelElement(p);
-						
-						if(position == -1) {
-							//Add step at the end of the line
-							allSteps.add(p);
-						} else {
-							//Add step the selected position
-							allSteps.add(position, p);
-						}
-						
+						if(position == -1) {allSteps.add(p);} 
+						else {allSteps.add(position, p);}
 					}
 				});
-				
 			}
-
-			public void linkEntered(HyperlinkEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			public void linkExited(HyperlinkEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
+			public void linkEntered(HyperlinkEvent e) {	}
+			public void linkExited(HyperlinkEvent e) {	}
 		});
 		
 		addActorStepLink.setLayoutData(gdActorLink);
@@ -231,13 +221,9 @@ public class UseCaseStepsControl extends AbstractMEControl{
 		
 		Hyperlink addSystemStepLink = getToolkit().createHyperlink(buttonControl, "Insert System Step", GridData.HORIZONTAL_ALIGN_END);
 		addSystemStepLink.addHyperlinkListener(new IHyperlinkListener() {
-
 			public void linkActivated(HyperlinkEvent e) {
-
 				TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
-					@SuppressWarnings("unchecked")
-					@Override
 					protected void doExecute() {
 						RequirementFactory rFactory = RequirementFactoryImpl.init();
 						Step p = rFactory.createStep();
@@ -245,29 +231,14 @@ public class UseCaseStepsControl extends AbstractMEControl{
 						uc.getProject().addModelElement(p);
 						p.setName("New System Step");
 						p.setUserStep(false);
-									
 						EList<Step> allSteps = uc.getUseCaseSteps();
-						if(position == -1) {
-							allSteps.add(p);
-						} else {
-							allSteps.add(position, p);
-						}
-						
+						if(position == -1) {allSteps.add(p);} 
+						else {allSteps.add(position, p);}
 					}
 				});
 			}
-				
-			public void linkEntered(HyperlinkEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			public void linkExited(HyperlinkEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		
-		
+			public void linkEntered(HyperlinkEvent e) {}
+			public void linkExited(HyperlinkEvent e) {}
 		});
 		addSystemStepLink.setLayoutData(gdSystemLink);
 		

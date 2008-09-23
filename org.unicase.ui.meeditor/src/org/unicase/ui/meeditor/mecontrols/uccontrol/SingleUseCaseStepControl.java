@@ -43,6 +43,11 @@ import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.meeditor.mecontrols.MEControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEHyperLinkDeleteAdapter;
 
+/**
+ * class creates and controls a widget to display one single use case step. 
+ * @author lars
+ *
+ */
 public class SingleUseCaseStepControl extends AbstractMEControl{
 
 	private EReference reference;
@@ -72,6 +77,14 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 	private MEControl includeLinkControl;	
 	private Control cIncludeLink;
 	
+	/**
+	 * Public constructor.
+	 * @param editingDomain the current editing Domain
+	 * @param modelElement current ModelElement that is displayed
+	 * @param toolkit used toolkit
+	 * @param contextModelElement the 
+	 * @param reference a specific reference
+	 */
 	public SingleUseCaseStepControl(EditingDomain editingDomain, EObject modelElement, FormToolkit toolkit, EObject contextModelElement, final EReference reference) {
 		super(editingDomain, modelElement, toolkit);
 		this.reference = reference;
@@ -96,7 +109,14 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 		modelElement.eAdapters().add(eAdapter);
 		
 	}
-
+	
+	/**
+	 * Method creates the specific widget and the containing elements.
+	 * @param parent surrounding widget or container
+	 * @param style represents the style that should be used
+	 * @return the control representing an single use case step
+	 * 
+	 */
 	public Control createControl(Composite parent, int style) {
 		parentStyle = style;
 		parentComposite = parent;
@@ -262,8 +282,7 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 			includeLinkControl.dispose();
 		}
 		
-		final IItemPropertyDescriptor pDescriptorIncluded;
-		final EReference ref;
+		final IItemPropertyDescriptor pDescriptorIncluded;		
 		ControlFactory cFactory = new ControlFactory(getEditingDomain(), getModelElement(), getToolkit());
 		
 		if( ((Step)getModelElement()).isUserStep()) {
@@ -279,9 +298,6 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 			includeTextLabel.setBackground(backGroundColor);
 		}
 		
-		//cFactory.createControl(pDescriptorIncluded);
-		//ref = (EReference) pDescriptorIncluded.getFeature(getModelElement());
-		//includeLinkControl = new MESingleLinkControl(getEditingDomain(), getModelElement(), getToolkit(), ref);
 		includeLinkControl = cFactory.createControl(pDescriptorIncluded);
 		cIncludeLink = includeLinkControl.createControl(includeComposite, parentStyle);
 		
@@ -293,8 +309,7 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-				RequirementFactory rFactory = RequirementFactoryImpl.init();
-				
+				RequirementFactory rFactory = RequirementFactoryImpl.init();				
 				Step p = rFactory.createStep();
 				UseCase uc = (UseCase) contextModelElement;
 				Project project = uc.getProject();
@@ -310,13 +325,14 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 					allSteps.add(position, p);
 				}				
 			}
-			
 		});
 	}
 	
+	/**
+	 * Method closes all containing Widgets and removes the the adapter.
+	 */
 	@Override
-	public void dispose(){
-		
+	public void dispose(){		
 		if(includeLinkControl != null) {
 			includeLinkControl.dispose();
 		}
