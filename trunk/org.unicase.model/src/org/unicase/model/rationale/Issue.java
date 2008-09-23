@@ -8,9 +8,7 @@ package org.unicase.model.rationale;
 
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.Annotation;
-import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
-import org.unicase.model.task.Assignable;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.WorkItem;
 

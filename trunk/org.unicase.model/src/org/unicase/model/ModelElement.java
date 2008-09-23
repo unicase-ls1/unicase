@@ -321,14 +321,17 @@ public interface ModelElement extends IdentifiableElement {
 	 * @throws CircularDependencyException 
 	 * @model kind="operation"
 	 * @generated NOT
+	 * @return MEState
+	 * @throws CircularDependencyException if there is a circular dependency
 	 */
 	MEState getMEState() throws CircularDependencyException;
 
 	/**
+	 * @generated
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation"
-	 * @generated
+	 * 
 	 */
 	ModelElementId getModelElementId();
 
