@@ -448,12 +448,14 @@
       <genClasses ecoreClass="model.ecore#//component/Component">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//component/Component/packages"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//component/Component/offeredServices"/>
+        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//component/Component/offeredServices"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//component/Component/consumedServices"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//component/Component/subsystems"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//component/ComponentService">
-        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//component/ComponentService/offeringComponent"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//component/ComponentService/offeringComponent"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//component/ComponentService/consumingComponents"/>
       </genClasses>

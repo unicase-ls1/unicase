@@ -231,6 +231,15 @@ public class ComponentPackageImpl extends EPackageImpl implements
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getComponent_Subsystems() {
+		return (EReference) componentEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -304,6 +313,7 @@ public class ComponentPackageImpl extends EPackageImpl implements
 		createEReference(componentEClass, COMPONENT__PACKAGES);
 		createEReference(componentEClass, COMPONENT__OFFERED_SERVICES);
 		createEReference(componentEClass, COMPONENT__CONSUMED_SERVICES);
+		createEReference(componentEClass, COMPONENT__SUBSYSTEMS);
 
 		componentServiceEClass = createEClass(COMPONENT_SERVICE);
 		createEReference(componentServiceEClass,
@@ -379,6 +389,13 @@ public class ComponentPackageImpl extends EPackageImpl implements
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getComponent_ConsumedServices().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getComponent_Subsystems(), theClassesPackage
+				.getPackage(), null, "subsystems", null, 0, -1,
+				Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		getComponent_Subsystems().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(componentServiceEClass, ComponentService.class,

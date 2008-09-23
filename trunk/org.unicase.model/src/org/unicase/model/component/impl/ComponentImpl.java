@@ -30,6 +30,7 @@ import org.unicase.model.impl.ModelElementImpl;
  *   <li>{@link org.unicase.model.component.impl.ComponentImpl#getPackages <em>Packages</em>}</li>
  *   <li>{@link org.unicase.model.component.impl.ComponentImpl#getOfferedServices <em>Offered Services</em>}</li>
  *   <li>{@link org.unicase.model.component.impl.ComponentImpl#getConsumedServices <em>Consumed Services</em>}</li>
+ *   <li>{@link org.unicase.model.component.impl.ComponentImpl#getSubsystems <em>Subsystems</em>}</li>
  * </ul>
  * </p>
  *
@@ -65,6 +66,16 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 	 * @ordered
 	 */
 	protected EList<ComponentService> consumedServices;
+
+	/**
+	 * The cached value of the '{@link #getSubsystems() <em>Subsystems</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSubsystems()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<org.unicase.model.classes.Package> subsystems;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -125,6 +136,20 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<org.unicase.model.classes.Package> getSubsystems() {
+		if (subsystems == null) {
+			subsystems = new EObjectResolvingEList<org.unicase.model.classes.Package>(
+					org.unicase.model.classes.Package.class, this,
+					ComponentPackage.COMPONENT__SUBSYSTEMS);
+		}
+		return subsystems;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -174,6 +199,8 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 			return getOfferedServices();
 		case ComponentPackage.COMPONENT__CONSUMED_SERVICES:
 			return getConsumedServices();
+		case ComponentPackage.COMPONENT__SUBSYSTEMS:
+			return getSubsystems();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -202,6 +229,12 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 			getConsumedServices().addAll(
 					(Collection<? extends ComponentService>) newValue);
 			return;
+		case ComponentPackage.COMPONENT__SUBSYSTEMS:
+			getSubsystems().clear();
+			getSubsystems()
+					.addAll(
+							(Collection<? extends org.unicase.model.classes.Package>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -222,6 +255,9 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 		case ComponentPackage.COMPONENT__CONSUMED_SERVICES:
 			getConsumedServices().clear();
 			return;
+		case ComponentPackage.COMPONENT__SUBSYSTEMS:
+			getSubsystems().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -239,6 +275,8 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 			return offeredServices != null && !offeredServices.isEmpty();
 		case ComponentPackage.COMPONENT__CONSUMED_SERVICES:
 			return consumedServices != null && !consumedServices.isEmpty();
+		case ComponentPackage.COMPONENT__SUBSYSTEMS:
+			return subsystems != null && !subsystems.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -58,7 +58,9 @@ public class ComponentItemProvider extends ModelElementItemProvider implements
 			super.getPropertyDescriptors(object);
 
 			addPackagesPropertyDescriptor(object);
+			addOfferedServicesPropertyDescriptor(object);
 			addConsumedServicesPropertyDescriptor(object);
+			addSubsystemsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -83,6 +85,24 @@ public class ComponentItemProvider extends ModelElementItemProvider implements
 	}
 
 	/**
+	 * This adds a property descriptor for the Offered Services feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOfferedServicesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Component_offeredServices_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Component_offeredServices_feature",
+						"_UI_Component_type"),
+				ComponentPackage.Literals.COMPONENT__OFFERED_SERVICES, true,
+				false, false, null, null, null));
+	}
+
+	/**
 	 * This adds a property descriptor for the Consumed Services feature. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -98,6 +118,24 @@ public class ComponentItemProvider extends ModelElementItemProvider implements
 						"_UI_Component_type"),
 				ComponentPackage.Literals.COMPONENT__CONSUMED_SERVICES, true,
 				false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Subsystems feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSubsystemsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Component_subsystems_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Component_subsystems_feature",
+						"_UI_Component_type"),
+				ComponentPackage.Literals.COMPONENT__SUBSYSTEMS, true, false,
+				true, null, null, null));
 	}
 
 	/**
