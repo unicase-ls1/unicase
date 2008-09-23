@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.util.Date;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
@@ -23,6 +22,7 @@ import org.unicase.model.IdentifiableElement;
 import org.unicase.model.Project;
 import org.unicase.workspace.util.UpdateObserver;
 
+
 /**
  * <!-- begin-user-doc --> A representation of the model object '
  * <em><b>Project Container</b></em>'. <!-- end-user-doc -->
@@ -34,7 +34,6 @@ import org.unicase.workspace.util.UpdateObserver;
  *   <li>{@link org.unicase.workspace.ProjectSpace#getProjectId <em>Project Id</em>}</li>
  *   <li>{@link org.unicase.workspace.ProjectSpace#getProjectName <em>Project Name</em>}</li>
  *   <li>{@link org.unicase.workspace.ProjectSpace#getProjectDescription <em>Project Description</em>}</li>
- *   <li>{@link org.unicase.workspace.ProjectSpace#getLocalChanges <em>Local Changes</em>}</li>
  *   <li>{@link org.unicase.workspace.ProjectSpace#getOperations <em>Operations</em>}</li>
  *   <li>{@link org.unicase.workspace.ProjectSpace#getUsersession <em>Usersession</em>}</li>
  *   <li>{@link org.unicase.workspace.ProjectSpace#getLastUpdated <em>Last Updated</em>}</li>
@@ -153,32 +152,6 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @generated
 	 */
 	void setProjectDescription(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Local Changes</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Local Changes</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Local Changes</em>' containment reference.
-	 * @see #setLocalChanges(ChangeDescription)
-	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_LocalChanges()
-	 * @model containment="true" resolveProxies="true"
-	 * @generated
-	 */
-	ChangeDescription getLocalChanges();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getLocalChanges <em>Local Changes</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Local Changes</em>' containment reference.
-	 * @see #getLocalChanges()
-	 * @generated
-	 */
-	void setLocalChanges(ChangeDescription value);
 
 	/**
 	 * Returns the value of the '<em><b>Operations</b></em>' containment reference list.
@@ -350,17 +323,6 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @throws EmfStoreException
 	 *             if commit fails <!-- end-user-doc -->
 	 * @model
-	 * @generated NOT
-	 */
-	PrimaryVersionSpec commit() throws EmfStoreException;
-
-	/**
-	 * <!-- begin-user-doc --> Commit the all pending changes of the project.
-	 * 
-	 * @return new base version
-	 * @throws EmfStoreException
-	 *             if commit fails <!-- end-user-doc -->
-	 * @model
 	 * @param logMessage the {@link LogMessage} for this commit.
 	 * @generated NOT
 	 */
@@ -446,7 +408,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	void shareProject(Usersession usersession) throws EmfStoreException;
 
 	void exportProject(String fileName) throws IOException;
-
+	
 	void update(VersionSpec version, UpdateObserver observer)
 			throws EmfStoreException;
 

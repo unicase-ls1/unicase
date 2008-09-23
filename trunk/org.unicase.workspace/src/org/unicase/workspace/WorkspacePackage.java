@@ -312,21 +312,13 @@ public interface WorkspacePackage extends EPackage {
 	int PROJECT_SPACE__PROJECT_DESCRIPTION = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Local Changes</b></em>' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROJECT_SPACE__LOCAL_CHANGES = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 4;
-
-	/**
 	 * The feature id for the '<em><b>Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__OPERATIONS = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 5;
+	int PROJECT_SPACE__OPERATIONS = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Usersession</b></em>' reference.
@@ -334,7 +326,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__USERSESSION = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 6;
+	int PROJECT_SPACE__USERSESSION = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Last Updated</b></em>' attribute. <!--
@@ -343,7 +335,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__LAST_UPDATED = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 7;
+	int PROJECT_SPACE__LAST_UPDATED = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Base Version</b></em>' containment reference.
@@ -351,7 +343,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__BASE_VERSION = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 8;
+	int PROJECT_SPACE__BASE_VERSION = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Resource Count</b></em>' attribute.
@@ -360,7 +352,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__RESOURCE_COUNT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 9;
+	int PROJECT_SPACE__RESOURCE_COUNT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Dirty</b></em>' attribute.
@@ -369,7 +361,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__DIRTY = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 10;
+	int PROJECT_SPACE__DIRTY = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Old Log Messages</b></em>' attribute list.
@@ -378,7 +370,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__OLD_LOG_MESSAGES = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 11;
+	int PROJECT_SPACE__OLD_LOG_MESSAGES = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The number of structural features of the '<em>Project Space</em>' class.
@@ -386,7 +378,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE_FEATURE_COUNT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 12;
+	int PROJECT_SPACE_FEATURE_COUNT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
 	 * Returns the meta object for class '
@@ -658,16 +650,6 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getProjectSpace_ProjectDescription();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.unicase.workspace.ProjectSpace#getLocalChanges <em>Local Changes</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Local Changes</em>'.
-	 * @see org.unicase.workspace.ProjectSpace#getLocalChanges()
-	 * @see #getProjectSpace()
-	 * @generated
-	 */
-	EReference getProjectSpace_LocalChanges();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.unicase.workspace.ProjectSpace#getOperations <em>Operations</em>}'.
@@ -970,15 +952,6 @@ public interface WorkspacePackage extends EPackage {
 		 */
 		EAttribute PROJECT_SPACE__PROJECT_DESCRIPTION = eINSTANCE
 				.getProjectSpace_ProjectDescription();
-
-		/**
-		 * The meta object literal for the '<em><b>Local Changes</b></em>' containment reference feature.
-		 * <!-- begin-user-doc --> <!--
-		 * end-user-doc -->
-		 * @generated
-		 */
-		EReference PROJECT_SPACE__LOCAL_CHANGES = eINSTANCE
-				.getProjectSpace_LocalChanges();
 
 		/**
 		 * The meta object literal for the '<em><b>Operations</b></em>' containment reference list feature.

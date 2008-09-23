@@ -13,7 +13,6 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.change.ChangeFactory;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -68,7 +67,6 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 			addProjectPropertyDescriptor(object);
 			addProjectNamePropertyDescriptor(object);
 			addProjectDescriptionPropertyDescriptor(object);
-			addLocalChangesPropertyDescriptor(object);
 			addUsersessionPropertyDescriptor(object);
 			addLastUpdatedPropertyDescriptor(object);
 			addResourceCountPropertyDescriptor(object);
@@ -132,24 +130,6 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 				WorkspacePackage.Literals.PROJECT_SPACE__PROJECT_DESCRIPTION,
 				true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Local Changes feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void addLocalChangesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ProjectSpace_localChanges_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_ProjectSpace_localChanges_feature",
-						"_UI_ProjectSpace_type"),
-				WorkspacePackage.Literals.PROJECT_SPACE__LOCAL_CHANGES, true,
-				false, true, null, null, null));
 	}
 
 	/**
@@ -262,8 +242,6 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 			childrenFeatures
 					.add(WorkspacePackage.Literals.PROJECT_SPACE__PROJECT_ID);
 			childrenFeatures
-					.add(WorkspacePackage.Literals.PROJECT_SPACE__LOCAL_CHANGES);
-			childrenFeatures
 					.add(WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS);
 			childrenFeatures
 					.add(WorkspacePackage.Literals.PROJECT_SPACE__BASE_VERSION);
@@ -347,7 +325,6 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 			return;
 		case WorkspacePackage.PROJECT_SPACE__PROJECT:
 		case WorkspacePackage.PROJECT_SPACE__PROJECT_ID:
-		case WorkspacePackage.PROJECT_SPACE__LOCAL_CHANGES:
 		case WorkspacePackage.PROJECT_SPACE__OPERATIONS:
 		case WorkspacePackage.PROJECT_SPACE__BASE_VERSION:
 			fireNotifyChanged(new ViewerNotification(notification, notification
@@ -378,10 +355,6 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 				EsmodelFactory.eINSTANCE.createProjectId()));
 
 		newChildDescriptors.add(createChildParameter(
-				WorkspacePackage.Literals.PROJECT_SPACE__LOCAL_CHANGES,
-				ChangeFactory.eINSTANCE.createChangeDescription()));
-
-		newChildDescriptors.add(createChildParameter(
 				WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS,
 				OperationsFactory.eINSTANCE.createCompositeOperation()));
 
@@ -406,6 +379,10 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 						WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS,
 						OperationsFactory.eINSTANCE
 								.createMultiReferenceMoveOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS,
+				OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
 
 		newChildDescriptors.add(createChildParameter(
 				WorkspacePackage.Literals.PROJECT_SPACE__BASE_VERSION,
