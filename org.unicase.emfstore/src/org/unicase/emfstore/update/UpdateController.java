@@ -10,7 +10,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.osgi.framework.Version;
-import org.unicase.emfstore.EmfStore;
 import org.unicase.emfstore.EmfStoreImpl;
 import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.esmodel.ServerSpace;
@@ -18,67 +17,71 @@ import org.unicase.emfstore.esmodel.VersionInfo;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.StorageException;
 
+/**
+ * @author schroech
+ *
+ */
 public class UpdateController {
 
-	protected List<UpdateStep> updateSteps;
-	protected List<UpdateStep> necessaryUpdateSteps;
+
+	private List<UpdateStep> updateSteps;
+	private List<UpdateStep> necessaryUpdateSteps;
+
 	
+	/**
+	 * @return A list of necessary update steps to upgrade from the model version to the emf store version
+	 */
 	public List<UpdateStep> getNecessaryUpdateSteps() {
 		return necessaryUpdateSteps;
 	}
 
+	/**
+	 * @param necessaryUpdateSteps list of necessary update steps
+	 */
 	public void setNecessaryUpdateSteps(List<UpdateStep> necessaryUpdateSteps) {
 		this.necessaryUpdateSteps = necessaryUpdateSteps;
 	}
 
+	/**
+	 * @return A list of all available update steps
+	 */
 	public List<UpdateStep> getUpdateSteps() {
 		return updateSteps;
 	}
 
+	
+	/**
+	 * @param updateSteps 
+	 * A list of all available update steps
+	 */
 	public void setUpdateSteps(List<UpdateStep> updateSteps) {
 		this.updateSteps = updateSteps;
 	}
-
-	public int getModelVersion() {
-		return modelVersion;
-	}
-
-	public void setModelVersion(int modelVersion) {
-		this.modelVersion = modelVersion;
-	}
-
-	protected int modelVersion;
 	
+	/**
+	 * A fucking constructor.
+	 */
 	public UpdateController(){
 		updateSteps = new ArrayList<UpdateStep>();
 		necessaryUpdateSteps = new ArrayList<UpdateStep>(); 
 		
-		updateSteps.add(new UpdateStepAssignableTransformation());
+		updateSteps.add(new UpdateStepRenameFacilitator());
 		updateSteps.add(new UpdateStepRemoveAnnotationInstances());
 	}
 	
-	public Boolean updateIsNecessary(){
-		return false;
-	}
 
+	/**
+	 * @param resource 
+	 * The resource to update
+	 * @throws FatalEmfStoreException
+	 * Throws an {@link FatalEmfStoreException} if the {@link Resource} could not be saved
+	 */
 	public void updateResource(Resource resource) throws FatalEmfStoreException{
 		
-		ServerSpace serverSpace = null; 
 		EList<EObject> contents = resource.getContents();
-		for (EObject content : contents) {
-			if (content instanceof ServerSpace) {
-				serverSpace = (ServerSpace) content;
-				break;
-			}
-		}
 		
-		VersionInfo versionInformation = null;
-		for (EObject content : contents) {
-			if (content instanceof VersionInfo) {
-				versionInformation = (VersionInfo) content;
-				break;
-			}	
-		}
+		ServerSpace serverSpace = getServerSpace(contents);
+		VersionInfo versionInformation = getVersionInformation(contents);
 		
 		Version sourceEMFStoreVersion;
 		Version targetEMFStoreVersion;
@@ -129,5 +132,27 @@ public class UpdateController {
 		} catch (IOException e) {
 			throw new FatalEmfStoreException(StorageException.NOSAVE, e);
 		}
+	}
+
+	private ServerSpace getServerSpace(EList<EObject> contents) {
+		ServerSpace serverSpace = null;
+		for (EObject content : contents) {
+			if (content instanceof ServerSpace) {
+				serverSpace = (ServerSpace) content;
+				break;
+			}
+		}
+		return serverSpace;
+	}
+
+	private VersionInfo getVersionInformation(EList<EObject> contents) {
+		VersionInfo versionInformation = null;
+		for (EObject content : contents) {
+			if (content instanceof VersionInfo) {
+				versionInformation = (VersionInfo) content;
+				break;
+			}	
+		}
+		return versionInformation;
 	}
 }
