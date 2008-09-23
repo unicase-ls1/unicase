@@ -12,10 +12,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-
-import javax.naming.NoInitialContextException;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Notification;
@@ -44,6 +41,8 @@ import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.unicase.emfstore.conflictDetection.BasicConflictDetectionStrategy;
+import org.unicase.emfstore.conflictDetection.ConflictDetector;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
@@ -66,7 +65,6 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
 import org.unicase.model.impl.IdentifiableElementImpl;
-import org.unicase.model.util.ModelUtil;
 import org.unicase.model.util.ModelValidationHelper;
 import org.unicase.model.util.ProjectChangeNotifier;
 import org.unicase.model.util.ProjectChangeObserver;
@@ -76,9 +74,11 @@ import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
+import org.unicase.workspace.exceptions.ChangeConflictException;
 import org.unicase.workspace.exceptions.IllegalProjectSpaceStateException;
 import org.unicase.workspace.exceptions.NoChangesOnServerException;
 import org.unicase.workspace.exceptions.NoLocalChangesException;
+import org.unicase.workspace.util.UpdateObserver;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '
@@ -1001,6 +1001,15 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * @generated NOT
 	 */
 	public void update(final VersionSpec version) throws EmfStoreException {
+		update(version, null);
+	}
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.ProjectSpace#update(org.unicase.emfstore.esmodel.versioning.VersionSpec)
+	 * @generated NOT
+	 */
+	public void update(final VersionSpec version, UpdateObserver observer) throws EmfStoreException {
 
 		final ConnectionManager connectionManager = WorkspaceManager
 				.getInstance().getConnectionManager();
@@ -1027,19 +1036,21 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			throw e;
 		}
 
-		// detect conflicts
-		// for (ChangePackage change : changes) {
-		// // MK: implement conflict detection here
-		// ConflictDetector conflictDetector = new ConflictDetector(
-		// new BasicConflictDetectionStrategy());
-		// ChangePackage changePackage = VersioningFactory.eINSTANCE
-		// .createChangePackage();
-		// changePackage.init(getProject(), getLocalChanges());
-		// if (conflictDetector.doConflict(change, changePackage)) {
-		// throw new ChangeConflictException();
-		// }
-		// }
-
+		// detect conflicts		 
+		ConflictDetector conflictDetector = new ConflictDetector(new BasicConflictDetectionStrategy());
+		for (ChangePackage change : changes) {
+			ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
+			changePackage.getOperations().addAll(myOperations);
+			if (conflictDetector.doConflict(change, changePackage)) {
+				throw new ChangeConflictException(changes);
+			}
+		 }
+		
+		//notify updateObserver if there is one
+		if (observer!=null && !observer.inspectChanges(changes)){
+			return;
+		}
+		
 		for (ChangePackage change : changes) {
 			change.apply(getProject());
 		}
@@ -1655,7 +1666,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 								(ModelElement) newValue, true);
 						this.myOperations.add(createDeleteOperation);
 					} else {
-						i = handleEReference(feature, newValue, notification,
+						i = handleEReference(feature, oldValue, notification,
 								false, projectNotifications, i);
 					}
 				} else if (feature instanceof EAttribute) {
@@ -1741,12 +1752,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		return attributeOperation;
 	}
 
-	private int handleEReference(Object feature, Object newValue,
+	private int handleEReference(Object feature, Object value,
 			Notification notification, boolean isAdd,
 			List<Notification> projectNotifications, int i) {
 
 		EReference reference = (EReference) feature;
-		ModelElement modelElement = (ModelElement) newValue;
+		ModelElement modelElement = (ModelElement) value;
 
 		if (reference.isContainment()) {
 			// element was added or removed to/from containment hierachy
@@ -1764,7 +1775,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 				Notification nextNotification = projectNotifications.get(i + 1);
 				// next notification is about the opposite of this notification
 				if ((nextNotification.getFeature() instanceof EReference)
-						&& nextNotification.getNotifier() == newValue
+						&& nextNotification.getNotifier() == value
 						&& opposite.getName().equals(
 								((EReference) nextNotification.getFeature())
 										.getName())) {

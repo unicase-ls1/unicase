@@ -21,6 +21,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.Project;
+import org.unicase.workspace.util.UpdateObserver;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '
@@ -445,5 +446,8 @@ public interface ProjectSpace extends IdentifiableElement {
 	void shareProject(Usersession usersession) throws EmfStoreException;
 
 	void exportProject(String fileName) throws IOException;
+
+	void update(VersionSpec version, UpdateObserver observer)
+			throws EmfStoreException;
 
 } // ProjectContainer
