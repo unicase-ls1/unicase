@@ -23,7 +23,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
-import org.unicase.emfstore.esmodel.versioning.changeContainer.ChangeContainerFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 
 /**
@@ -73,8 +72,6 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures
-					.add(VersioningPackage.Literals.CHANGE_PACKAGE__CHANGE_CONTAINERS);
 			childrenFeatures
 					.add(VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS);
 		}
@@ -129,7 +126,6 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ChangePackage.class)) {
-		case VersioningPackage.CHANGE_PACKAGE__CHANGE_CONTAINERS:
 		case VersioningPackage.CHANGE_PACKAGE__OPERATIONS:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), true, false));
@@ -149,15 +145,6 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 	protected void collectNewChildDescriptors(
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add(createChildParameter(
-				VersioningPackage.Literals.CHANGE_PACKAGE__CHANGE_CONTAINERS,
-				ChangeContainerFactory.eINSTANCE.createChangeContainer()));
-
-		newChildDescriptors.add(createChildParameter(
-				VersioningPackage.Literals.CHANGE_PACKAGE__CHANGE_CONTAINERS,
-				ChangeContainerFactory.eINSTANCE
-						.createCompositeChangeContainer()));
 
 		newChildDescriptors.add(createChildParameter(
 				VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,

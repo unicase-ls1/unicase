@@ -29,8 +29,6 @@ import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
-import org.unicase.emfstore.esmodel.versioning.changeContainer.ChangeContainerPackage;
-import org.unicase.emfstore.esmodel.versioning.changeContainer.impl.ChangeContainerPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl;
 import org.unicase.model.ModelPackage;
@@ -187,10 +185,6 @@ public class VersioningPackageImpl extends EPackageImpl implements
 				.getEPackage(OperationsPackage.eNS_URI) instanceof OperationsPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(OperationsPackage.eNS_URI)
 				: OperationsPackage.eINSTANCE);
-		ChangeContainerPackageImpl theChangeContainerPackage = (ChangeContainerPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(ChangeContainerPackage.eNS_URI) instanceof ChangeContainerPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ChangeContainerPackage.eNS_URI)
-				: ChangeContainerPackage.eINSTANCE);
 		AccesscontrolPackageImpl theAccesscontrolPackage = (AccesscontrolPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(AccesscontrolPackage.eNS_URI) instanceof AccesscontrolPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(AccesscontrolPackage.eNS_URI)
@@ -204,7 +198,6 @@ public class VersioningPackageImpl extends EPackageImpl implements
 		theVersioningPackage.createPackageContents();
 		theEsmodelPackage.createPackageContents();
 		theOperationsPackage.createPackageContents();
-		theChangeContainerPackage.createPackageContents();
 		theAccesscontrolPackage.createPackageContents();
 		theRolesPackage.createPackageContents();
 
@@ -212,7 +205,6 @@ public class VersioningPackageImpl extends EPackageImpl implements
 		theVersioningPackage.initializePackageContents();
 		theEsmodelPackage.initializePackageContents();
 		theOperationsPackage.initializePackageContents();
-		theChangeContainerPackage.initializePackageContents();
 		theAccesscontrolPackage.initializePackageContents();
 		theRolesPackage.initializePackageContents();
 
@@ -338,17 +330,8 @@ public class VersioningPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getChangePackage_ChangeContainers() {
-		return (EReference) changePackageEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getChangePackage_Operations() {
-		return (EReference) changePackageEClass.getEStructuralFeatures().get(1);
+		return (EReference) changePackageEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -542,7 +525,6 @@ public class VersioningPackageImpl extends EPackageImpl implements
 		createEAttribute(logMessageEClass, LOG_MESSAGE__AUTHOR);
 
 		changePackageEClass = createEClass(CHANGE_PACKAGE);
-		createEReference(changePackageEClass, CHANGE_PACKAGE__CHANGE_CONTAINERS);
 		createEReference(changePackageEClass, CHANGE_PACKAGE__OPERATIONS);
 
 		historyInfoEClass = createEClass(HISTORY_INFO);
@@ -593,16 +575,11 @@ public class VersioningPackageImpl extends EPackageImpl implements
 		// Obtain other dependent packages
 		OperationsPackage theOperationsPackage = (OperationsPackage) EPackage.Registry.INSTANCE
 				.getEPackage(OperationsPackage.eNS_URI);
-		ChangeContainerPackage theChangeContainerPackage = (ChangeContainerPackage) EPackage.Registry.INSTANCE
-				.getEPackage(ChangeContainerPackage.eNS_URI);
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE
 				.getEPackage(ModelPackage.eNS_URI);
-		ChangePackage theChangePackage = (ChangePackage) EPackage.Registry.INSTANCE
-				.getEPackage(ChangePackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theOperationsPackage);
-		getESubpackages().add(theChangeContainerPackage);
 
 		// Create type parameters
 
@@ -661,13 +638,6 @@ public class VersioningPackageImpl extends EPackageImpl implements
 				org.unicase.emfstore.esmodel.versioning.ChangePackage.class,
 				"ChangePackage", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getChangePackage_ChangeContainers(),
-				theChangeContainerPackage.getChangeContainer(), null,
-				"changeContainers", null, 0, -1,
-				org.unicase.emfstore.esmodel.versioning.ChangePackage.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
 		initEReference(getChangePackage_Operations(), theOperationsPackage
 				.getAbstractOperation(), null, "operations", null, 0, -1,
 				org.unicase.emfstore.esmodel.versioning.ChangePackage.class,
@@ -682,13 +652,6 @@ public class VersioningPackageImpl extends EPackageImpl implements
 				IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theModelPackage.getProject(), "project", 0, 1,
 				IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(changePackageEClass, null, "init", 0, 1, IS_UNIQUE,
-				IS_ORDERED);
-		addEParameter(op, theModelPackage.getProject(), "project", 0, 1,
-				IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theChangePackage.getChangeDescription(),
-				"backwardChangeDescription", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		addEOperation(changePackageEClass, null, "cannonize", 0, 1, IS_UNIQUE,
 				IS_ORDERED);

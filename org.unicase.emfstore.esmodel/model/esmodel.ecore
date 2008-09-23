@@ -64,13 +64,7 @@
       <eOperations name="apply">
         <eParameters name="project" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"/>
       </eOperations>
-      <eOperations name="init">
-        <eParameters name="project" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"/>
-        <eParameters name="backwardChangeDescription" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore.change/model/Change.ecore#//ChangeDescription"/>
-      </eOperations>
       <eOperations name="cannonize"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="changeContainers" upperBound="-1"
-          eType="#//versioning/changeContainer/ChangeContainer" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="operations" upperBound="-1"
           eType="#//versioning/operations/AbstractOperation" containment="true"/>
     </eClassifiers>
@@ -169,42 +163,6 @@
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="values" upperBound="-1"
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-      </eClassifiers>
-    </eSubpackages>
-    <eSubpackages name="changeContainer" nsURI="http://unicase.org/esmodel/versioning/changeContainer"
-        nsPrefix="org.unicase.emfstore.esmodel.versioning.changeContainer">
-      <eClassifiers xsi:type="ecore:EClass" name="ChangeContainer">
-        <eOperations name="reverse" eType="#//versioning/changeContainer/ChangeContainer"/>
-        <eOperations name="apply">
-          <eParameters name="project" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"/>
-        </eOperations>
-        <eOperations name="getOperations" upperBound="-1" eType="#//versioning/operations/AbstractOperation"/>
-        <eOperations name="init">
-          <eParameters name="project" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"/>
-          <eParameters name="backwardChangeDescription" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore.change/model/Change.ecore#//ChangeDescription"/>
-        </eOperations>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="forwardDelta" lowerBound="1"
-            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-          <eAnnotations source="teneo.jpa">
-            <details key="value" value="@Type(type=&quot;text&quot;)"/>
-          </eAnnotations>
-        </eStructuralFeatures>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="backwardDelta" lowerBound="1"
-            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-          <eAnnotations source="teneo.jpa">
-            <details key="value" value="@Type(type=&quot;text&quot;)"/>
-          </eAnnotations>
-        </eStructuralFeatures>
-      </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="CompositeChangeContainer" eSuperTypes="#//versioning/changeContainer/ChangeContainer">
-        <eOperations name="init">
-          <eParameters name="project" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"/>
-          <eParameters name="backwardChangeDescription" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore.change/model/Change.ecore#//ChangeDescription"/>
-          <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-          <eParameters name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        </eOperations>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eClassifiers>
     </eSubpackages>
   </eSubpackages>
