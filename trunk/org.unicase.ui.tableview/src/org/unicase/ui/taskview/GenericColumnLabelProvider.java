@@ -5,15 +5,28 @@ import java.lang.reflect.Method;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.jface.viewers.DecoratingLabelProvider;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.ui.IDecoratorManager;
+import org.eclipse.ui.PlatformUI;
 
 public class GenericColumnLabelProvider extends
 		org.eclipse.jface.viewers.ColumnLabelProvider {
 
 	private EStructuralFeature feature;
+	private DecoratingLabelProvider decoratingLabelProvider;
 
 	public GenericColumnLabelProvider(EStructuralFeature feature) {
 		super();
 		this.feature = feature;
+		IDecoratorManager decoratorManager = PlatformUI.getWorkbench()
+				.getDecoratorManager();
+		decoratingLabelProvider = new DecoratingLabelProvider(
+				new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE)),
+				decoratorManager.getLabelDecorator());
 	}
 
 	@Override
@@ -43,6 +56,14 @@ public class GenericColumnLabelProvider extends
 		} else {
 			return super.getText(element);
 		}
+	}
+
+	@Override
+	public Image getImage(Object element) {
+		Image image = decoratingLabelProvider.getImage(element);
+		decoratingLabelProvider.getLabelDecorator().decorateImage(image,
+				element);
+		return image;
 	}
 
 }

@@ -8,6 +8,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+import org.eclipse.jface.viewers.CheckboxCellEditor;
+import org.eclipse.jface.viewers.CheckboxTableViewer;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
@@ -19,11 +21,12 @@ import org.unicase.model.Project;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.ui.common.TableViewerColumnSorter;
+import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
 
-public class METableViewer extends TableViewer {
+public class METableViewer extends CheckboxTableViewer {
 
 	private Project currentProject;
 	private AdapterFactory adapterFactory;
@@ -81,6 +84,13 @@ public class METableViewer extends TableViewer {
 		this.setAdapterFactory(adapterFactory);
 
 		this.createColumns();
+		ProjectSpace activeProjectSpace = WorkspaceManager.getInstance()
+				.getCurrentWorkspace().getActiveProjectSpace();
+		if (activeProjectSpace != null) {
+			Project project = activeProjectSpace.getProject();
+			setInput(project);
+		}
+
 		this.getTable().setLinesVisible(true);
 		this.getTable().setHeaderVisible(true);
 	}
@@ -122,6 +132,9 @@ public class METableViewer extends TableViewer {
 
 		EReference container = TaskPackage.Literals.WORK_ITEM__CONTAINING_WORKPACKAGE;
 		TableViewerColumn containerColumn = prepareColumn(container, 150);
+		
+//		TableViewerColumn checked = prepareColumn(state, 150);
+//		checked.setLabelProvider(new CheckboxCellEditor());
 	}
 
 	private String getFeatureName(EStructuralFeature feature) {
