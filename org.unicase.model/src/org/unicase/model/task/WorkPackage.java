@@ -9,7 +9,6 @@ package org.unicase.model.task;
 import java.util.Date;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.organization.OrgUnit;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '

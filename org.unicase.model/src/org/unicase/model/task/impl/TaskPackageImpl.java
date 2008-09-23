@@ -36,7 +36,6 @@ import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.impl.RequirementPackageImpl;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.ActivityType;
-import org.unicase.model.task.Assignable;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.Meeting;
 import org.unicase.model.task.Milestone;

@@ -9,7 +9,6 @@ package org.unicase.model.bug;
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.requirement.Step;
-import org.unicase.model.task.Assignable;
 import org.unicase.model.task.WorkItem;
 
 /**
