@@ -313,7 +313,7 @@ public class EmfStoreController implements IApplication {
 		}
 		logger.info("added superuser "
 				+ superuser);
-	}
+	}																																	
 
 	private Properties initProperties() {
 		File propertyFile = new File(ServerConfiguration.getConfFile());
@@ -324,7 +324,7 @@ public class EmfStoreController implements IApplication {
 			ServerConfiguration.setProperties(properties);
 			fis.close();
 		} catch (IOException e) {
-			logger.warn("Property initialization failed",e);
+			logger.warn("Property initialization failed.");
 		}
 		return properties;
 	}
