@@ -6,8 +6,10 @@
  */
 package org.unicase.model.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -55,6 +57,7 @@ public class ProjectImpl extends EObjectImpl implements Project,
 	 */
 	protected EList<ModelElement> modelElements;
 	private Map<ModelElementId, ModelElement> modelElementCache;
+	private List<ProjectChangeObserver> observers;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -62,6 +65,7 @@ public class ProjectImpl extends EObjectImpl implements Project,
 	 */
 	protected ProjectImpl() {
 		super();
+		observers = new ArrayList<ProjectChangeObserver>();
 	}
 
 	/**
@@ -262,15 +266,23 @@ public class ProjectImpl extends EObjectImpl implements Project,
 	public void modelElementAdded(Project project, ModelElement modelElement) {
 		this.modelElementCache.put(modelElement.getModelElementId(),
 				modelElement);
+		for (ProjectChangeObserver projectChangeObserver : this.observers) {
+			projectChangeObserver.modelElementAdded(project, modelElement);
+		}
 	}
 
 	public void notify(Notification notification, Project project,
 			ModelElement modelElement) {
-		//nop
+		for (ProjectChangeObserver projectChangeObserver : this.observers) {
+			projectChangeObserver.notify(notification, project, modelElement);
+		}
 	}
 
 	public void modelElementRemoved(Project project, ModelElement modelElement) {
 		this.modelElementCache.remove(modelElement.getIdentifier());
+		for (ProjectChangeObserver projectChangeObserver : this.observers) {
+			projectChangeObserver.modelElementRemoved(project, modelElement);
+		}
 	}
 
 	public boolean contains(ModelElementId modelElementId) {
@@ -279,5 +291,18 @@ public class ProjectImpl extends EObjectImpl implements Project,
 
 	public ModelElement getModelElement(ModelElementId modelElementId) {
 		return this.getModelElementsFromCache().get(modelElementId);
+	}
+
+	public void addProjectChangeObserver(
+			ProjectChangeObserver projectChangeObserver) {
+		//FIXME: hack to init notifier and cache
+		getModelElementsFromCache();
+		this.observers.add(projectChangeObserver);
+	}
+
+	public void removeProjectChangeObserver(
+			ProjectChangeObserver projectChangeObserver) {
+		this.observers.remove(projectChangeObserver);
+		
 	}
 }

@@ -36,7 +36,10 @@ public class ProjectChangeNotifier extends AdapterImpl {
 	}
 
 	public void notifyChanged(Notification notification) {
-
+		
+		if (notification.isTouch()) {
+			return;
+		}
 		if ((notification.getFeature() instanceof EReference)) {
 			EReference reference = (EReference) notification.getFeature();
 			if (reference.isContainment()) {
