@@ -67,7 +67,9 @@ public class MEClassLabelProvider extends AdapterFactoryLabelProvider {
 		return super.getImage(object);
 
 	}
-	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Image getColumnImage(Object object, int columnIndex) {
 		if (columnIndex == 0 ) {
@@ -77,7 +79,9 @@ public class MEClassLabelProvider extends AdapterFactoryLabelProvider {
 		}
 	
 	}
-
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String getColumnText(Object object, int columnIndex) {
 		if (columnIndex == 0 ) {
