@@ -230,7 +230,6 @@ public class MERichTextControl extends AbstractMEControl {
 
 		List<Integer> bulletedLines = new ArrayList<Integer>();
 		String txt = "";
-		try {
 			final StringBuffer value = new StringBuffer();
 			TransactionalEditingDomain domain = TransactionUtil
 					.getEditingDomain(getModelElement());
@@ -246,27 +245,26 @@ public class MERichTextControl extends AbstractMEControl {
 			});
 			txt = value.toString();
 
-			StringTokenizer stringTokenizer = new StringTokenizer(txt, ",");
-			while (stringTokenizer.hasMoreElements()) {
-				String nextElement = (String) stringTokenizer.nextElement();
-				if (nextElement.equals(";")) {
-					break;
-				} else {
-					bulletedLines.add(Integer.parseInt(nextElement));
-				}
-			}
 			String[] split = txt.split("%BEGINNTEXT%");
+			
 			if (split.length == 1) {
 				viewer.getDocument().set("");
 			} else {
+
+				StringTokenizer stringTokenizer = new StringTokenizer(split[0], ",");
+				while (stringTokenizer.hasMoreElements()) {
+					String nextElement = (String) stringTokenizer.nextElement();
+					if (nextElement.equals(";")) {
+						break;
+					} else {
+						bulletedLines.add(Integer.parseInt(nextElement));
+					}
+				}
 				viewer.getDocument().set(split[1]);
 			}
 			for (int i = 0; i < text.getLineCount(); i++) {
 				text.setLineBullet(i, 1, null);
 			}
-		} catch (RuntimeException e) {
-			viewer.getDocument().set(txt);
-		}
 		for (Integer line : bulletedLines) {
 			bullet(line, 1);
 		}

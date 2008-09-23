@@ -37,6 +37,75 @@ import org.unicase.ui.common.decorators.OverlayImageDescriptor;
  * 
  */
 public class AddReferenceAction extends Action {
+	/**
+	 * Command to add a new reference.
+	 * 
+	 * @author helming
+	 * 
+	 */
+	private final class AddReferenceCommand extends RecordingCommand {
+		private AddReferenceCommand(TransactionalEditingDomain domain) {
+			super(domain);
+		}
+
+		@SuppressWarnings("unchecked")
+		@Override
+		protected void doExecute() {
+			EClass clazz = eReference.getEReferenceType();
+			ElementListSelectionDialog dlg = new ElementListSelectionDialog(
+					PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+							.getShell(),
+					new AdapterFactoryLabelProvider(
+							new ComposedAdapterFactory(
+									ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
+			Collection<ModelElement> allElements = ((ModelElement) modelElement)
+					.getProject().getAllModelElementsbyClass(clazz,
+							new BasicEList<ModelElement>());
+			allElements.remove(modelElement);
+			Object object = modelElement.eGet(eReference);
+
+			EList<EObject> eList = null;
+			EObject eObject = null;
+
+			// don't the instances that are already linked
+			if (isMultiReference() && object instanceof EList) {
+				eList = (EList<EObject>) object;
+				for (EObject ref : eList) {
+					allElements.remove(ref);
+				}
+			} else if (!isMultiReference() && object instanceof EObject) {
+				eObject = (EObject) object;
+				allElements.remove(eObject);
+			}
+
+			// don't show contained elements for inverse containment references
+			if (eReference.isContainer()) {
+				allElements.removeAll(modelElement.eContents());
+			}
+
+			dlg.setMultipleSelection(isMultiReference());
+			dlg.setElements(allElements.toArray());
+			dlg.setTitle("Select Elements");
+			dlg.setBlockOnOpen(true);
+			if (dlg.open() == Window.OK) {
+
+				if (isMultiReference()) {
+					Object[] results = dlg.getResult();
+					for (Object result : results) {
+						if (result instanceof EObject) {
+							eList.add((EObject) result);
+						}
+					}
+				} else {
+					Object result = dlg.getFirstResult();
+					if (result instanceof EObject) {
+						modelElement.eSet(eReference, (EObject) result);
+					}
+				}
+
+			}
+		}
+	}
 
 	private EReference eReference;
 	private ModelElement modelElement;
@@ -55,17 +124,22 @@ public class AddReferenceAction extends Action {
 			IItemPropertyDescriptor descriptor) {
 		this.modelElement = modelElement;
 		this.eReference = eReference;
-		
-		
+
 		Object obj = null;
-		if(!eReference.getEReferenceType().isAbstract()){
-			obj = eReference.getEReferenceType().getEPackage().getEFactoryInstance().create(eReference.getEReferenceType());
+		if (!eReference.getEReferenceType().isAbstract()) {
+			obj = eReference.getEReferenceType().getEPackage()
+					.getEFactoryInstance().create(
+							eReference.getEReferenceType());
 		}
 		Image image = new AdapterFactoryLabelProvider(
-				new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)).getImage(obj);
-		
-		ImageDescriptor addOverlay = org.unicase.ui.common.Activator.getImageDescriptor("icons/link_overlay.png");
-		OverlayImageDescriptor imageDescriptor = new OverlayImageDescriptor(image,addOverlay,OverlayImageDescriptor.LOWER_RIGHT);
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE))
+				.getImage(obj);
+
+		ImageDescriptor addOverlay = org.unicase.ui.common.Activator
+				.getImageDescriptor("icons/link_overlay.png");
+		OverlayImageDescriptor imageDescriptor = new OverlayImageDescriptor(
+				image, addOverlay, OverlayImageDescriptor.LOWER_RIGHT);
 		setImageDescriptor(imageDescriptor);
 
 		String attribute = descriptor.getDisplayName(eReference);
@@ -75,14 +149,14 @@ public class AddReferenceAction extends Action {
 		} else if (attribute.endsWith("s")) {
 			attribute = attribute.substring(0, attribute.length() - 1);
 		}
-		
+
 		String action;
-		if(isMultiReference()){
+		if (isMultiReference()) {
 			action = "Add";
-		}else{
+		} else {
 			action = "Set";
 		}
-		setToolTipText(action+" new " + attribute);
+		setToolTipText(action + " new " + attribute);
 
 	}
 
@@ -92,70 +166,12 @@ public class AddReferenceAction extends Action {
 	public void run() {
 		TransactionalEditingDomain domain = TransactionUtil
 				.getEditingDomain(modelElement);
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-			@SuppressWarnings("unchecked")
-			@Override
-			protected void doExecute() {
-				EClass clazz = eReference.getEReferenceType();
-				ElementListSelectionDialog dlg = new ElementListSelectionDialog(
-						PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-								.getShell(),
-						new AdapterFactoryLabelProvider(
-								new ComposedAdapterFactory(
-										ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
-				Collection<ModelElement> allElements = ((ModelElement) modelElement)
-						.getProject().getAllModelElementsbyClass(clazz,
-								new BasicEList<ModelElement>());
-				allElements.remove(modelElement);
-				Object object = modelElement.eGet(eReference);
-
-				EList<EObject> eList = null;
-				EObject eObject = null;
-				
-				// don't the instances that are already linked
-				if(isMultiReference() && object instanceof EList) {
-					eList = (EList<EObject>) object;
-					for (EObject ref : eList) {
-						allElements.remove(ref);
-					}
-				}else if(!isMultiReference() && object instanceof EObject){
-					eObject = (EObject) object;
-					allElements.remove(eObject);
-				}
-				
-				// don't show contained elements for inverse containment references
-				if(eReference.isContainer()){
-					allElements.removeAll(modelElement.eContents());
-				}
-				
-				dlg.setMultipleSelection(isMultiReference());
-				dlg.setElements(allElements.toArray());
-				dlg.setTitle("Select Elements");
-				dlg.setBlockOnOpen(true);
-				if (dlg.open() == Window.OK) {
-										
-					if(isMultiReference()){
-						Object[] results = dlg.getResult();
-						for (Object result : results) {
-							if (result instanceof EObject) {
-								eList.add((EObject) result);
-							}
-						}
-					}else{
-						Object result = dlg.getFirstResult();
-						if(result instanceof EObject){
-							modelElement.eSet(eReference, (EObject)result);
-						}
-					}
-					
-				}
-			}
-		});
+		domain.getCommandStack().execute(new AddReferenceCommand(domain));
 
 	}
-	
-	private boolean isMultiReference(){
-		return eReference.getUpperBound()==-1;
+
+	private boolean isMultiReference() {
+		return eReference.getUpperBound() == -1;
 	}
 
 }
