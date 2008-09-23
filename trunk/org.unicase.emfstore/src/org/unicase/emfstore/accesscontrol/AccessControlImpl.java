@@ -315,7 +315,8 @@ public class AccessControlImpl implements AuthenticationControl,
 		}
 
 		public ACUser getUser() throws AccessControlException {
-			checkLastActive();
+			//FIXME OW timeout
+			//checkLastActive();
 			active();
 			return getRawUser();
 		}
