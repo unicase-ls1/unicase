@@ -10,6 +10,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.model.util.ProjectChangeObserver;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '
@@ -93,4 +94,8 @@ public interface Project extends EObject, IAdaptable {
 	boolean contains(ModelElementId modelElementId);
 
 	ModelElement getModelElement(ModelElementId modelElementId);
+	
+	void addProjectChangeObserver(ProjectChangeObserver projectChangeObserver);
+	
+	void removeProjectChangeObserver(ProjectChangeObserver projectChangeObserver);
 } // Project
