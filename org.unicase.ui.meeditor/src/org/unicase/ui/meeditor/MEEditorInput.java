@@ -114,7 +114,7 @@ public class MEEditorInput implements IEditorInput {
 	 */
 	@Override
 	public int hashCode() {
-		throw new  UnsupportedOperationException();
+		return 0;
 	}
 
 	/**
