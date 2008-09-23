@@ -41,6 +41,64 @@ import org.unicase.ui.common.util.UnicaseUtil;
  * 
  */
 public class NewReferenceAction extends Action {
+	/**
+	 * Command to create a new reference.
+	 * 
+	 * @author helming
+	 * 
+	 */
+	private final class NewReferenceCommand extends RecordingCommand {
+		private NewReferenceCommand(TransactionalEditingDomain domain) {
+			super(domain);
+		}
+
+		@SuppressWarnings("unchecked")
+		@Override
+		protected void doExecute() {
+			EClass clazz = eReference.getEReferenceType();
+			EClass newClass = null;
+			ArrayList<EClass> subclasses = UnicaseUtil.getSubclasses(clazz);
+			if (subclasses.size() == 1) {
+				newClass = clazz;
+			} else {
+				ElementListSelectionDialog dlg = new ElementListSelectionDialog(
+						PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+								.getShell(), new MEClassLabelProvider());
+				dlg.setElements(subclasses.toArray());
+
+				dlg.setTitle("Select Element type");
+				dlg.setBlockOnOpen(true);
+				if (dlg.open() != Window.OK) {
+					return;
+				}
+				Object result = dlg.getFirstResult();
+				if (result instanceof EClass) {
+					newClass = (EClass) result;
+				}
+			}
+			final ModelElement newMEInstance;
+
+			EPackage ePackage = newClass.getEPackage();
+			newMEInstance = (ModelElement) ActionHelper.createModelElement(
+					ePackage.getEFactoryInstance(), newClass);
+			newMEInstance.setName("new " + newClass.getName());
+
+			if (!eReference.isContainer()) {
+				modelElement.getProject().addModelElement(newMEInstance);
+			}
+
+			// add the new object to the reference
+			Object object = modelElement.eGet(eReference);
+			if (isMultiReference()) {
+				EList<EObject> eList = (EList<EObject>) object;
+				eList.add(newMEInstance);
+			} else {
+				modelElement.eSet(eReference, newMEInstance);
+			}
+
+			ActionHelper.openModelElement(newMEInstance);
+		}
+	}
 
 	private EReference eReference;
 	private ModelElement modelElement;
@@ -61,12 +119,16 @@ public class NewReferenceAction extends Action {
 		this.eReference = eReference;
 
 		Object obj = null;
-		if(!eReference.getEReferenceType().isAbstract()){
-			obj = eReference.getEReferenceType().getEPackage().getEFactoryInstance().create(eReference.getEReferenceType());
+		if (!eReference.getEReferenceType().isAbstract()) {
+			obj = eReference.getEReferenceType().getEPackage()
+					.getEFactoryInstance().create(
+							eReference.getEReferenceType());
 		}
 		Image image = new AdapterFactoryLabelProvider(
-				new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)).getImage(obj);
-		
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE))
+				.getImage(obj);
+
 		ImageDescriptor addOverlay = org.unicase.ui.common.Activator
 				.getImageDescriptor("icons/add_overlay.png");
 		OverlayImageDescriptor imageDescriptor = new OverlayImageDescriptor(
@@ -89,66 +151,19 @@ public class NewReferenceAction extends Action {
 	 * {@inheritDoc}
 	 */
 	public void run() {
-		if(eReference.isContainer()){
-			DialogHandler.showErrorDialog("Operation not permitted for container references!");
+		if (eReference.isContainer()) {
+			DialogHandler
+					.showErrorDialog("Operation not permitted for container references!");
 			return;
 		}
 		TransactionalEditingDomain domain = TransactionUtil
 				.getEditingDomain(modelElement);
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-			@SuppressWarnings("unchecked")
-			@Override
-			protected void doExecute() {
-				EClass clazz = eReference.getEReferenceType();
-				EClass newClass = null;
-				ArrayList<EClass> subclasses = UnicaseUtil.getSubclasses(clazz);
-				if (subclasses.size() == 1) {
-					newClass = clazz;
-				} else {
-					ElementListSelectionDialog dlg = new ElementListSelectionDialog(
-							PlatformUI.getWorkbench()
-									.getActiveWorkbenchWindow().getShell(),
-							new MEClassLabelProvider());
-					dlg.setElements(subclasses.toArray());
-
-					dlg.setTitle("Select Element type");
-					dlg.setBlockOnOpen(true);
-					if (dlg.open() != Window.OK) {
-						return;
-					}
-					Object result = dlg.getFirstResult();
-					if (result instanceof EClass) {
-						newClass = (EClass) result;
-					}
-				}
-				final ModelElement newMEInstance;
-
-				EPackage ePackage = newClass.getEPackage();
-				newMEInstance = (ModelElement) ActionHelper.createModelElement(ePackage.getEFactoryInstance(),newClass);
-				newMEInstance.setName("new " + newClass.getName());
-
-				if (!eReference.isContainer()) {
-					modelElement.getProject()
-					.addModelElement(newMEInstance);
-				}
-				
-				// add the new object to the reference
-				Object object = modelElement.eGet(eReference);
-				if(isMultiReference()) {
-					EList<EObject> eList = (EList<EObject>) object;
-					eList.add(newMEInstance);
-				}else{
-					modelElement.eSet(eReference, newMEInstance);
-				}
-				
-				ActionHelper.openModelElement(newMEInstance);
-			}
-		});
+		domain.getCommandStack().execute(new NewReferenceCommand(domain));
 
 	}
-	
-	private boolean isMultiReference(){
-		return eReference.getUpperBound()==-1;
+
+	private boolean isMultiReference() {
+		return eReference.getUpperBound() == -1;
 	}
 
 }
