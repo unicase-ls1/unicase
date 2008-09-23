@@ -8,8 +8,10 @@ package org.unicase.ui.taskview;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.unicase.model.Project;
 import org.unicase.model.provider.IdentifiableElementItemProvider;
 
@@ -65,6 +67,12 @@ public class FilteredItemProvider extends IdentifiableElementItemProvider {
 			}
 		}
 		return filteredChildren;
+	}
+
+	@Override
+	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+		// TODO Auto-generated method stub
+		return super.getPropertyDescriptors(object);
 	}
 
 	/**

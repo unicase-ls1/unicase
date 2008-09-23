@@ -1,62 +1,32 @@
-/**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
- */
 package org.unicase.ui.taskview;
-
-import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
-import org.eclipse.jface.viewers.ViewerSorter;
+import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
-import org.unicase.ui.tableview.viewer.TableViewColumnLabelProvider;
+import org.unicase.model.provider.ModelEditPlugin;
+import org.unicase.model.task.TaskPackage;
+import org.unicase.ui.common.TableViewerColumnSorter;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
 
-/**
- * A {@link TableViewer} subclass to display model elements.
- * 
- * @author Florian Schneider
- * 
- */
 public class METableViewer extends TableViewer {
 
 	private Project currentProject;
 	private AdapterFactory adapterFactory;
-
-	/**
-	 * Updates the {@code adapterFactory} attribute of this class. Calls
-	 * {@link #setInput(Object)} to reflect the changed set of items that shall
-	 * be displayed.
-	 * 
-	 * @param adapterFactory
-	 *            the new adapter factory that is used to create the
-	 *            AdapterFactoryContentProvider that bridges jFace to EMF
-	 *            provider calls.
-	 */
-	public void setAdapterFactory(AdapterFactory adapterFactory) {
-		this.adapterFactory = adapterFactory;
-		AdapterFactoryContentProvider contentProvider = new AdapterFactoryContentProvider(
-				this.adapterFactory);
-		this.setContentProvider(contentProvider);
-		setInput(currentProject);
-	}
-
 	private EClass itemMetaClass;
 
 	/**
@@ -89,19 +59,18 @@ public class METableViewer extends TableViewer {
 	 */
 	public METableViewer(Composite parent, AdapterFactory adapterFactory,
 			EClass itemMetaClass) {
-		super(parent);
+		super(parent, SWT.FULL_SELECTION);
 		this.adapterFactory = adapterFactory;
 		this.itemMetaClass = itemMetaClass;
 
-		Workspace workspace = WorkspaceManager.getInstance()
+		final Workspace workspace = WorkspaceManager.getInstance()
 				.getCurrentWorkspace();
 
 		workspace.eAdapters().add(new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
 				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
-					currentProject = WorkspaceManager.getInstance()
-							.getCurrentWorkspace().getActiveProjectSpace()
+					currentProject = workspace.getActiveProjectSpace()
 							.getProject();
 					setInput(currentProject);
 				}
@@ -110,7 +79,6 @@ public class METableViewer extends TableViewer {
 		});
 
 		this.setAdapterFactory(adapterFactory);
-		this.setSorter(new ViewerSorter());
 
 		this.createColumns();
 		this.getTable().setLinesVisible(true);
@@ -118,50 +86,73 @@ public class METableViewer extends TableViewer {
 	}
 
 	/**
-	 * All props to the guy who coded the {@link AdapterFactoryItemDelegator}
-	 * class.
+	 * Updates the {@code adapterFactory} attribute of this class. Calls
+	 * {@link #setInput(Object)} to reflect the changed set of items that shall
+	 * be displayed.
 	 * 
-	 * @param object
-	 * @return the list of property descriptors for the given object
-	 * @see AdapterFactoryItemDelegator#getPropertyDescriptors(Object)
+	 * @param adapterFactory
+	 *            the new adapter factory that is used to create the
+	 *            AdapterFactoryContentProvider that bridges jFace to EMF
+	 *            provider calls.
 	 */
-	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		//
-		IItemPropertySource itemPropertySource = (IItemPropertySource) adapterFactory
-				.adapt(object, IItemPropertySource.class);
+	public void setAdapterFactory(AdapterFactory adapterFactory) {
+		this.adapterFactory = adapterFactory;
+		AdapterFactoryContentProvider contentProvider = new AdapterFactoryContentProvider(
+				this.adapterFactory);
+		this.setContentProvider(contentProvider);
 
-		return itemPropertySource != null ? itemPropertySource
-				.getPropertyDescriptors(object) : null;
+		setInput(currentProject);
 	}
 
 	private void createColumns() {
+		EAttribute name = ModelPackage.Literals.MODEL_ELEMENT__NAME;
+		TableViewerColumn nameColumn = prepareColumn(name, 250);
 
-		Object templateObject = itemMetaClass.getEPackage()
-				.getEFactoryInstance().create(itemMetaClass);
+		EAttribute creator = ModelPackage.Literals.MODEL_ELEMENT__CREATOR;
+		TableViewerColumn creatorColumn = prepareColumn(creator, 100);
 
-		AdapterFactoryItemDelegator adapterFactoryItemDelegator = new AdapterFactoryItemDelegator(
-				new ComposedAdapterFactory(
-						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		EAttribute creationDate = ModelPackage.Literals.MODEL_ELEMENT__CREATION_DATE;
+		TableViewerColumn creationDateColumn = prepareColumn(creationDate, 150);
 
-		List<IItemPropertyDescriptor> descriptors = adapterFactoryItemDelegator
-				.getPropertyDescriptors(templateObject);
+		EAttribute state = ModelPackage.Literals.MODEL_ELEMENT__STATE;
+		TableViewerColumn stateColumn = prepareColumn(state, 140);
 
-		for (IItemPropertyDescriptor currentDescriptor : descriptors) {
+		EReference assignee = TaskPackage.Literals.WORK_ITEM__ASSIGNEE;
+		TableViewerColumn assigneeColumn = prepareColumn(assignee, 150);
 
-			if (!currentDescriptor.isMany(templateObject)) {
-				TableViewerColumn currentColumn = new TableViewerColumn(this,
-						SWT.CENTER);
-				currentColumn.getColumn().setText(
-						currentDescriptor.getDisplayName(templateObject));
-				currentColumn.getColumn().setWidth(100);
-				currentColumn.getColumn().setMoveable(true);
-				currentColumn.getColumn().setResizable(true);
-
-				currentColumn
-						.setLabelProvider(new TableViewColumnLabelProvider(
-								currentDescriptor));
-			}
-		}
-
+		EReference container = TaskPackage.Literals.WORK_ITEM__CONTAINING_WORKPACKAGE;
+		TableViewerColumn containerColumn = prepareColumn(container, 150);
 	}
+
+	private String getFeatureName(EStructuralFeature feature) {
+		EStructuralFeature currentFeature = feature;
+		String nameLookupString = "_UI_"
+				+ ((EClass) currentFeature.eContainer()).getName() + "_"
+				+ currentFeature.getName() + "_feature";
+		return ModelEditPlugin.INSTANCE.getString(nameLookupString);
+	}
+
+	private TableViewerColumn prepareColumn(EStructuralFeature currentFeature,
+			int width) {
+		TableViewerColumn currentColumn;
+		currentColumn = new TableViewerColumn(this, SWT.CENTER);
+
+		String name = getFeatureName(currentFeature);
+		currentColumn.getColumn().setText(name);
+		currentColumn.getColumn().setWidth(width);
+
+		currentColumn.getColumn().setMoveable(true);
+		currentColumn.getColumn().setResizable(true);
+
+		ColumnLabelProvider provider = new GenericColumnLabelProvider(
+				currentFeature);
+		currentColumn.setLabelProvider(provider);
+
+		ViewerComparator comp = new TableViewerColumnSorter(this,
+				currentColumn, provider);
+		currentColumn.getViewer().setComparator(comp);
+
+		return currentColumn;
+	}
+
 }
