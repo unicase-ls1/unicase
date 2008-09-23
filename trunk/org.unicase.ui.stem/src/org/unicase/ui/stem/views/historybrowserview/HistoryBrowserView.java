@@ -109,11 +109,10 @@ public class HistoryBrowserView extends AbstractSCMView {
 			start = qury.getStartVersion();
 			end = qury.getEndVersion();
 		} else {
-			// if query not set default query 0 to HEAD
 			PrimaryVersionSpec resolveVersionSpec = activeProjectSpace
 					.resolveVersionSpec(VersionSpec.HEAD_VERSION);
-			start = 0;
 			end = resolveVersionSpec.getIdentifier();
+			start = (end>20)?end-20:0;
 		}
 
 		PrimaryVersionSpec source = VersioningFactory.eINSTANCE
