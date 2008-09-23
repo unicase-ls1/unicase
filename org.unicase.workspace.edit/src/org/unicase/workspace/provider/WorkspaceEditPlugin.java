@@ -8,7 +8,6 @@ package org.unicase.workspace.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.change.provider.ChangeEditPlugin;
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 import org.eclipse.gmf.runtime.notation.NotationEditPlugin;
 import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
@@ -43,9 +42,9 @@ public final class WorkspaceEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public WorkspaceEditPlugin() {
-		super(new ResourceLocator[] { ChangeEditPlugin.INSTANCE,
-				EcoreEditPlugin.INSTANCE, EsmodelEditPlugin.INSTANCE,
-				ModelEditPlugin.INSTANCE, NotationEditPlugin.INSTANCE, });
+		super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE,
+				EsmodelEditPlugin.INSTANCE, ModelEditPlugin.INSTANCE,
+				NotationEditPlugin.INSTANCE, });
 	}
 
 	/**

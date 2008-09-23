@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.change.ChangePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
@@ -333,20 +332,12 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getProjectSpace_LocalChanges() {
-		return (EReference) projectSpaceEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getProjectSpace_Operations() {
-		return (EReference) projectSpaceEClass.getEStructuralFeatures().get(5);
+		return (EReference) projectSpaceEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -354,7 +345,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getProjectSpace_Usersession() {
-		return (EReference) projectSpaceEClass.getEStructuralFeatures().get(6);
+		return (EReference) projectSpaceEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -362,7 +353,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EAttribute getProjectSpace_LastUpdated() {
-		return (EAttribute) projectSpaceEClass.getEStructuralFeatures().get(7);
+		return (EAttribute) projectSpaceEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -370,7 +361,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getProjectSpace_BaseVersion() {
-		return (EReference) projectSpaceEClass.getEStructuralFeatures().get(8);
+		return (EReference) projectSpaceEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -379,7 +370,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EAttribute getProjectSpace_ResourceCount() {
-		return (EAttribute) projectSpaceEClass.getEStructuralFeatures().get(9);
+		return (EAttribute) projectSpaceEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -388,7 +379,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EAttribute getProjectSpace_Dirty() {
-		return (EAttribute) projectSpaceEClass.getEStructuralFeatures().get(10);
+		return (EAttribute) projectSpaceEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -397,7 +388,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EAttribute getProjectSpace_OldLogMessages() {
-		return (EAttribute) projectSpaceEClass.getEStructuralFeatures().get(11);
+		return (EAttribute) projectSpaceEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -455,7 +446,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 		createEReference(projectSpaceEClass, PROJECT_SPACE__PROJECT_ID);
 		createEAttribute(projectSpaceEClass, PROJECT_SPACE__PROJECT_NAME);
 		createEAttribute(projectSpaceEClass, PROJECT_SPACE__PROJECT_DESCRIPTION);
-		createEReference(projectSpaceEClass, PROJECT_SPACE__LOCAL_CHANGES);
 		createEReference(projectSpaceEClass, PROJECT_SPACE__OPERATIONS);
 		createEReference(projectSpaceEClass, PROJECT_SPACE__USERSESSION);
 		createEAttribute(projectSpaceEClass, PROJECT_SPACE__LAST_UPDATED);
@@ -495,8 +485,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 				.getEPackage(EsmodelPackage.eNS_URI);
 		AccesscontrolPackage theAccesscontrolPackage = (AccesscontrolPackage) EPackage.Registry.INSTANCE
 				.getEPackage(AccesscontrolPackage.eNS_URI);
-		ChangePackage theChangePackage = (ChangePackage) EPackage.Registry.INSTANCE
-				.getEPackage(ChangePackage.eNS_URI);
 		OperationsPackage theOperationsPackage = (OperationsPackage) EPackage.Registry.INSTANCE
 				.getEPackage(OperationsPackage.eNS_URI);
 		VersioningPackage theVersioningPackage = (VersioningPackage) EPackage.Registry.INSTANCE
@@ -639,11 +627,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 				.getEString(), "projectDescription", null, 1, 1,
 				ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProjectSpace_LocalChanges(), theChangePackage
-				.getChangeDescription(), null, "localChanges", null, 0, 1,
-				ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
 		initEReference(getProjectSpace_Operations(), theOperationsPackage
 				.getAbstractOperation(), null, "operations", null, 0, -1,
 				ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
@@ -676,8 +659,10 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 				ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		addEOperation(projectSpaceEClass, theVersioningPackage
+		op = addEOperation(projectSpaceEClass, theVersioningPackage
 				.getChangePackage(), "commit", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theVersioningPackage.getLogMessage(), "logMessage",
+				0, 1, IS_UNIQUE, IS_ORDERED);
 
 		addEOperation(projectSpaceEClass, null, "update", 0, 1, IS_UNIQUE,
 				IS_ORDERED);
