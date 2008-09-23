@@ -6,6 +6,8 @@
  */
 package org.unicase.ui.stem.views.dialogs;
 
+import java.util.List;
+
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -13,6 +15,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.ui.stem.views.ChangesTreeComposite;
 
 /**.
@@ -23,13 +26,18 @@ import org.unicase.ui.stem.views.ChangesTreeComposite;
 
 public class UpdateDialog extends TitleAreaDialog {
 
+	private List<ChangePackage> changes;
+
+
 	/**.
-	 * Constructor
-	 * @param parentShell
+	 * Constructor.
+	 * @param parentShell the parent shell
+	 * @param changes the list of changes
 	 */
-	public UpdateDialog(Shell parentShell) {
+	public UpdateDialog(Shell parentShell, List<ChangePackage> changes) {
 		super(parentShell);
 		this.setShellStyle(this.getShellStyle() | SWT.RESIZE );
+		this.changes = changes;
 	}
 
 	
@@ -45,15 +53,16 @@ public class UpdateDialog extends TitleAreaDialog {
 			
 		//changes tree
 		ChangesTreeComposite changesTree = new ChangesTreeComposite(contents,
-				SWT.BORDER, true);
+				SWT.BORDER);
 		changesTree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
-		//TODO final implementation (set input to changes tree)
-		
+
+		if(changes!=null){
+			changesTree.setInput(changes);
+		}
 		
 		//show number of changes on dialog title
 		setTitle("Changes from repository");
-		setMessage("Number of changes: " + changesTree.getNumOfChanges());
-		
+		setMessage(changesTree.getNumOfChanges() + " changes will be merged in your project.");
 		return contents;
 		
 	}
@@ -67,15 +76,6 @@ public class UpdateDialog extends TitleAreaDialog {
 		newShell.setText("Update");
 	}
 	
-	/**.
-	 * {@inheritDoc}
-	 * 
-	 */
-	@Override
-	public int open() {
-		this.getButton(TitleAreaDialog.OK).setText("Update");
-		return super.open();
-	}
 	
 	/**.
 	 * {@inheritDoc}

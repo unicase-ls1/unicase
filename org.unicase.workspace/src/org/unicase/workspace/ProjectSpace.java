@@ -20,6 +20,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.Project;
+import org.unicase.workspace.util.CommitObserver;
 import org.unicase.workspace.util.UpdateObserver;
 
 
@@ -411,5 +412,8 @@ public interface ProjectSpace extends IdentifiableElement {
 	
 	void update(VersionSpec version, UpdateObserver observer)
 			throws EmfStoreException;
+
+	PrimaryVersionSpec commit(LogMessage logMessage,
+			CommitObserver commitObserver) throws EmfStoreException;
 
 } // ProjectContainer

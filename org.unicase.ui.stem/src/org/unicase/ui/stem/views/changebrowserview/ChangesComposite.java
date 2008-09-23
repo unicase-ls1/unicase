@@ -6,6 +6,8 @@
  */
 package org.unicase.ui.stem.views.changebrowserview;
 
+import java.util.ArrayList;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -39,17 +41,20 @@ public class ChangesComposite extends Composite {
 
 
 	private void createTree() {
-		changesTree = new ChangesTreeComposite(this, SWT.BORDER, true);
+		changesTree = new ChangesTreeComposite(this, SWT.BORDER);
 		changesTree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		changesTree.setInput(this.input);
-		
+		setInput(input);		
 	}
 
-	//set input to changes tree shwon on composite
+	/**
+	 * set input to changes tree shwon on composite.
+	 * @param changePackage the new {@link ChangePackage}
+	 */
 	public void setInput(ChangePackage changePackage) {
 		this.input = changePackage;
-		changesTree.setInput(changePackage);
-		
+		ArrayList<ChangePackage> packages = new ArrayList<ChangePackage>();
+		packages.add(input);
+		changesTree.setInput(packages);	
 	}
 
 }

@@ -8,16 +8,17 @@ package org.unicase.ui.stem.views;
 
 import java.util.List;
 
-import org.eclipse.core.commands.operations.AbstractOperation;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.IContentProvider;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 
 /**
- * . This is the content provider for TreeViewer on ChangesTreeComposite.
+ * This is the content provider for TreeViewer on ChangesTreeComposite.
  * 
  * @author Hodaie
+ * @author Shterev
  * 
  */
 public class ChangesTreeContentProvider extends AdapterFactoryContentProvider
@@ -36,11 +37,11 @@ public class ChangesTreeContentProvider extends AdapterFactoryContentProvider
 	 * .
 	 * {@inheritDoc}
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public Object[] getElements(Object object) {
-		List<AbstractOperation> ops = (List<AbstractOperation>) object;
-
-		return ops.toArray(new Object[ops.size()]);
+		List<ChangePackage> packages = (List<ChangePackage>) object;
+		return packages.toArray(new Object[packages.size()]);
 	}
 
 	/**.
@@ -48,10 +49,12 @@ public class ChangesTreeContentProvider extends AdapterFactoryContentProvider
 	 */
 	@Override
 	public Object[] getChildren(Object object) {
-
+		if (object instanceof ChangePackage){
+			return ((ChangePackage) object).getOperations().toArray();
+		}
 		if (object instanceof CompositeOperation) {
-			return getElements(((CompositeOperation) object)
-					.getSubOperations());
+			return ((CompositeOperation) object)
+					.getSubOperations().toArray();
 		} else {
 			return super.getChildren(object);
 		}
@@ -63,7 +66,8 @@ public class ChangesTreeContentProvider extends AdapterFactoryContentProvider
 	 */
 	@Override
 	public boolean hasChildren(Object object) {
-		if (object instanceof CompositeOperation) {
+		if (object instanceof CompositeOperation
+				|| object instanceof ChangePackage) {
 			return true;
 		} else {
 			return super.hasChildren(object);

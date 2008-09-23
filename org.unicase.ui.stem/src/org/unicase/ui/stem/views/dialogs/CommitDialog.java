@@ -6,6 +6,8 @@
  */
 package org.unicase.ui.stem.views.dialogs;
 
+import java.util.ArrayList;
+
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -27,25 +29,25 @@ import org.unicase.workspace.impl.ProjectSpaceImpl;
  * commit message.
  * 
  * @author Hodaie
+ * @author Shterev
  *
  */
 public class CommitDialog extends TitleAreaDialog {
 
 	private Text txtLogMsg;
 	private String logMsg = "";
-	private ProjectSpace projectSpace;
+	private ChangePackage changes;
 
-	/**.
-	 * Constructor
+	/**
+	 * Constructor.
 	 * 
 	 * @param parentShell shell
+	 * @param projectSpace the current project space
 	 */
-	public CommitDialog(Shell parentShell, ProjectSpace projectSpace) {
-
+	public CommitDialog(Shell parentShell, ChangePackage changes) {
 		super(parentShell);
 		this.setShellStyle(this.getShellStyle() | SWT.RESIZE );
-		this.projectSpace = projectSpace;
-
+		this.changes = changes;
 	}
 
 	
@@ -73,11 +75,11 @@ public class CommitDialog extends TitleAreaDialog {
 		
 		//ChangesTree	
 		ChangesTreeComposite changesTree = new ChangesTreeComposite(contents,
-				SWT.BORDER, true);
+				SWT.BORDER);
 		changesTree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
-		ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
-		changePackage.getOperations().addAll(projectSpace.getOperations());
-		changesTree.setInput(changePackage);
+		ArrayList<ChangePackage> changePackages = new ArrayList<ChangePackage>();
+		changePackages.add(changes);
+		changesTree.setInput(changePackages);
 		
 		return contents;
 
