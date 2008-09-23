@@ -23,7 +23,46 @@ import org.unicase.model.ModelElement;
  * @author helming
  * 
  */
-public class MEHyperLinkDeleteAdapter extends HyperlinkAdapter implements IHyperlinkListener {
+public class MEHyperLinkDeleteAdapter extends HyperlinkAdapter implements
+		IHyperlinkListener {
+	/**
+	 * Command to delete a reference.
+	 * 
+	 * @author helming
+	 * 
+	 */
+	private final class DeleteReferenceCommand extends RecordingCommand {
+		private DeleteReferenceCommand(TransactionalEditingDomain domain) {
+			super(domain);
+		}
+
+		@Override
+		protected void doExecute() {
+			Object object = modelElement.eGet(reference);
+
+			if (reference.isContainer()) {
+				ModelElement me = ((ModelElement) modelElement);
+				((ModelElement) opposite).getProject().addModelElement(me);
+				return;
+			}
+			if (reference.isContainment()) {
+				ModelElement me = ((ModelElement) opposite);
+				((ModelElement) modelElement).getProject().addModelElement(me);
+				return;
+			}
+
+			if (object instanceof EList) {
+				@SuppressWarnings("unchecked")
+				EList<EObject> list = (EList<EObject>) object;
+				list.remove(opposite);
+				return;
+			} else {
+				modelElement.eSet(reference, null);
+				return;
+			}
+
+		}
+	}
 
 	private EObject modelElement;
 	private EReference reference;
@@ -39,7 +78,8 @@ public class MEHyperLinkDeleteAdapter extends HyperlinkAdapter implements IHyper
 	 * @param opposite
 	 *            the model element on the other side of the link
 	 */
-	public MEHyperLinkDeleteAdapter(EObject modelElement, EReference reference, EObject opposite) {
+	public MEHyperLinkDeleteAdapter(EObject modelElement, EReference reference,
+			EObject opposite) {
 		this.modelElement = modelElement;
 		this.reference = reference;
 		this.opposite = opposite;
@@ -50,35 +90,8 @@ public class MEHyperLinkDeleteAdapter extends HyperlinkAdapter implements IHyper
 	 */
 	@Override
 	public void linkActivated(HyperlinkEvent e) {
-		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-			
-			@Override
-			protected void doExecute() {
-				Object object = modelElement.eGet(reference);
-
-				if (reference.isContainer()) {
-					ModelElement me = ((ModelElement) modelElement);
-					((ModelElement) opposite).getProject().addModelElement(me);
-					return;
-				}
-				if (reference.isContainment()) {
-					ModelElement me = ((ModelElement) opposite);
-					((ModelElement) modelElement).getProject().addModelElement(me);
-					return;
-				}
-
-				if (object instanceof EList) {
-					@SuppressWarnings("unchecked")
-					EList<EObject> list = (EList<EObject>) object;
-					list.remove(opposite);
-					return;
-				} else {
-					modelElement.eSet(reference, null);
-					return;
-				}
-
-			}
-		});
+		TransactionalEditingDomain domain = TransactionUtil
+				.getEditingDomain(modelElement);
+		domain.getCommandStack().execute(new DeleteReferenceCommand(domain));
 	}
 }
