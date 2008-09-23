@@ -275,31 +275,6 @@ public class AccessControlImpl implements AuthenticationControl,
 
 	}
 
-	private class ACUserContainer {
-		private ACUser acUser;
-		private long lastActive;
-
-		public ACUserContainer(ACUser acUser) {
-			this.acUser = acUser;
-			active();
-		}
-
-		public ACUser getUser() {
-			// TODO: timed-out session id
-			active();
-			return getRawUser();
-		}
-
-		public ACUser getRawUser() {
-			return acUser;
-		}
-
-		private void active() {
-			lastActive = System.currentTimeMillis();
-		}
-
-	}
-
 	/**
 	 * {@inheritDoc}
 	 */
@@ -325,4 +300,44 @@ public class AccessControlImpl implements AuthenticationControl,
 		}
 		return user;
 	}
+
+	/**
+	 * 
+	 * @author wesendonk
+	 */
+	private class ACUserContainer {
+		private ACUser acUser;
+		private long lastActive;
+
+		public ACUserContainer(ACUser acUser) {
+			this.acUser = acUser;
+			active();
+		}
+
+		public ACUser getUser() throws AccessControlException {
+			checkLastActive();
+			active();
+			return getRawUser();
+		}
+
+		public ACUser getRawUser() {
+			return acUser;
+		}
+
+		public void checkLastActive() throws AccessControlException {
+			String property = ServerConfiguration.getProperties().getProperty(
+					ServerConfiguration.SESSION_TIMEOUT,
+					ServerConfiguration.SESSION_TIMEOUT_DEFAULT);
+			if (System.currentTimeMillis() - lastActive > Integer
+					.parseInt(property)) {
+				//TODO: delete from map
+				throw new AccessControlException("Usersession timed out.");
+			}
+		}
+
+		private void active() {
+			lastActive = System.currentTimeMillis();
+		}
+	}
+
 }

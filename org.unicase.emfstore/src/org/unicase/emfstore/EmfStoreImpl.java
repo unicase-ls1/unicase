@@ -45,6 +45,7 @@ import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.emfstore.exceptions.InvalidInputException;
 import org.unicase.emfstore.exceptions.InvalidProjectIdException;
 import org.unicase.emfstore.exceptions.InvalidPropertyException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
@@ -88,7 +89,7 @@ public class EmfStoreImpl implements EmfStore {
 			throws EmfStoreException {
 		if (sessionId == null || projectId == null || baseVersionSpec == null
 				|| changePackage == null || logMessage == null) {
-			throw new InvalidVersionSpecException();
+			throw new InvalidInputException();
 		}
 		authorizationControl.checkWriteAccess(sessionId, projectId, null);
 		long currentTimeMillis = System.currentTimeMillis();
@@ -168,7 +169,7 @@ public class EmfStoreImpl implements EmfStore {
 			throws EmfStoreException {
 		if (sessionId == null || projectId == null || source == null
 				|| target == null) {
-			throw new InvalidVersionSpecException();
+			throw new InvalidInputException();
 		}
 		authorizationControl.checkReadAccess(sessionId, projectId, null);
 
@@ -203,7 +204,7 @@ public class EmfStoreImpl implements EmfStore {
 			throws EmfStoreException {
 		if (sessionId == null || projectId == null || source == null
 				|| target == null) {
-			throw new InvalidVersionSpecException();
+			throw new InvalidInputException();
 		}
 		authorizationControl.checkReadAccess(sessionId, projectId, null);
 
@@ -227,7 +228,7 @@ public class EmfStoreImpl implements EmfStore {
 			ProjectId projectId, HistoryQuery historyQuery)
 			throws EmfStoreException {
 		if (sessionId == null || projectId == null || historyQuery == null) {
-			throw new InvalidVersionSpecException();
+			throw new InvalidInputException();
 		}
 		authorizationControl.checkReadAccess(sessionId, projectId, null);
 		List<HistoryInfo> result = getHistoryInfo(projectId, historyQuery
@@ -242,7 +243,7 @@ public class EmfStoreImpl implements EmfStore {
 			PrimaryVersionSpec source, PrimaryVersionSpec target)
 			throws EmfStoreException {
 		if (projectId == null || source == null || target == null) {
-			throw new InvalidVersionSpecException();
+			throw new InvalidInputException();
 		}
 		List<HistoryInfo> result = new ArrayList<HistoryInfo>();
 		PrimaryVersionSpec headRevision = getProject(projectId)
@@ -277,7 +278,7 @@ public class EmfStoreImpl implements EmfStore {
 			ProjectId projectId, VersionSpec versionSpec)
 			throws EmfStoreException {
 		if (sessionId == null || projectId == null || versionSpec == null) {
-			throw new InvalidVersionSpecException();
+			throw new InvalidInputException();
 		}
 		authorizationControl.checkReadAccess(sessionId, projectId, null);
 		PrimaryVersionSpec resolvedVersion = resolveVersionSpec(projectId,
@@ -305,7 +306,7 @@ public class EmfStoreImpl implements EmfStore {
 	public synchronized List<ProjectInfo> getProjectList(SessionId sessionId)
 			throws EmfStoreException {
 		if (sessionId == null) {
-			throw new InvalidVersionSpecException();
+			throw new InvalidInputException();
 		}
 		List<ProjectInfo> result = new ArrayList<ProjectInfo>();
 		for (ProjectHistory project : getServerSpace().getProjects()) {
@@ -327,7 +328,7 @@ public class EmfStoreImpl implements EmfStore {
 			SessionId sessionId, ProjectId projectId, VersionSpec versionSpec)
 			throws EmfStoreException {
 		if (sessionId == null || projectId == null || versionSpec == null) {
-			throw new InvalidVersionSpecException();
+			throw new InvalidInputException();
 		}
 		authorizationControl.checkReadAccess(sessionId, projectId, null);
 		return resolveVersionSpec(projectId, versionSpec);
@@ -339,7 +340,7 @@ public class EmfStoreImpl implements EmfStore {
 	public synchronized ACUser resolveUser(SessionId sessionId, ACOrgUnitId id)
 			throws EmfStoreException {
 		if (sessionId == null) {
-			throw new InvalidVersionSpecException();
+			throw new InvalidInputException();
 		}
 		ACUser requestingUser = authorizationControl.resolveUser(sessionId);
 		if (id == null) {
@@ -361,7 +362,7 @@ public class EmfStoreImpl implements EmfStore {
 			throws EmfStoreException {
 		if (sessionId == null || name == null || description == null
 				|| logMessage == null) {
-			throw new InvalidVersionSpecException();
+			throw new InvalidInputException();
 		}
 		authorizationControl.checkServerAdminAccess(sessionId);
 		ProjectHistory projectHistory = createEmptyProject(name, description,
@@ -377,7 +378,7 @@ public class EmfStoreImpl implements EmfStore {
 			Project project) throws EmfStoreException {
 		if (sessionId == null || name == null || description == null
 				|| logMessage == null || project == null) {
-			throw new InvalidVersionSpecException();
+			throw new InvalidInputException();
 		}
 		authorizationControl.checkServerAdminAccess(sessionId);
 		ProjectHistory projectHistory = createEmptyProject(name, description,

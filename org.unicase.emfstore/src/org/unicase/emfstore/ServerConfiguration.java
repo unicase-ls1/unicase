@@ -61,6 +61,10 @@ public final class ServerConfiguration {
 	 */
 	public static final String PROJECTSPACE_VERSION_PERSISTENCY_DEFAULT = EVERYVERSION;
 
+	public static final String SESSION_TIMEOUT = "accesscontrol.session.timeout";
+	
+	public static final String SESSION_TIMEOUT_DEFAULT = "7200";
+
 	public static final String SUPER_USER = "accesscontrol.authentication.superuser";
 
 	public static final String SUPER_USER_DEFAULT = "super";
