@@ -32,9 +32,10 @@ import org.unicase.workspace.WorkspaceManager;
 public class TaskView extends ViewPart {
 
 	private METableViewer viewer;
-	private final EClass itemMetaClass = TaskPackage.eINSTANCE.getActionItem();
-	private boolean restrictedToCurrentUser;
+	private final EClass itemMetaClass = TaskPackage.eINSTANCE.getWorkItem();
 	private FilteredItemProviderAdapterFactory adapterFactory;
+
+	private boolean restrictedToCurrentUser;
 	private Action doubleClickAction;
 
 	/**
@@ -49,6 +50,7 @@ public class TaskView extends ViewPart {
 		adapterFactory.setFilteredItemProvider(new EClassFilterItemProvider(
 				adapterFactory, itemMetaClass));
 		viewer = new METableViewer(parent, adapterFactory, itemMetaClass);
+
 		getSite().setSelectionProvider(viewer);
 		hookDoubleClickAction();
 		getViewSite().getActionBars().getToolBarManager().add(
@@ -56,7 +58,6 @@ public class TaskView extends ViewPart {
 	}
 
 	private void hookDoubleClickAction() {
-
 		createDoubleClickAction();
 		viewer.addDoubleClickListener(new IDoubleClickListener() {
 			public void doubleClick(DoubleClickEvent event) {
@@ -72,7 +73,6 @@ public class TaskView extends ViewPart {
 						.getSelectedModelElement());
 			}
 		};
-
 	}
 
 	/**
@@ -152,8 +152,7 @@ public class TaskView extends ViewPart {
 		} else {
 			adapterFactory
 					.setFilteredItemProvider(new EClassFilterItemProvider(
-							adapterFactory, TaskPackage.eINSTANCE
-									.getActionItem()));
+							adapterFactory, itemMetaClass));
 			viewer.setAdapterFactory(adapterFactory);
 		}
 	}

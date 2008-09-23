@@ -29,7 +29,7 @@ public class EClassFilterItemProvider extends FilteredItemProvider {
 	@Override
 	protected boolean permitsObject(Object objectToTest) {
 		if (objectToTest instanceof EObject) {
-			return ((EObject) objectToTest).eClass().equals(itemClass);
+			return itemClass.isSuperTypeOf(((EObject) objectToTest).eClass());
 		} else {
 			return false;
 		}
