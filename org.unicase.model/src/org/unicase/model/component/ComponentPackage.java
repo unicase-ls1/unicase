@@ -196,13 +196,22 @@ public interface ComponentPackage extends EPackage {
 	int COMPONENT__CONSUMED_SERVICES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Subsystems</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT__SUBSYSTEMS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Component</em>' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int COMPONENT_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.component.impl.ComponentServiceImpl <em>Service</em>}' class.
@@ -525,6 +534,17 @@ public interface ComponentPackage extends EPackage {
 	EReference getComponent_ConsumedServices();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.component.Component#getSubsystems <em>Subsystems</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Subsystems</em>'.
+	 * @see org.unicase.model.component.Component#getSubsystems()
+	 * @see #getComponent()
+	 * @generated
+	 */
+	EReference getComponent_Subsystems();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.model.component.ComponentService <em>Service</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Service</em>'.
@@ -634,6 +654,14 @@ public interface ComponentPackage extends EPackage {
 		 */
 		EReference COMPONENT__CONSUMED_SERVICES = eINSTANCE
 				.getComponent_ConsumedServices();
+
+		/**
+		 * The meta object literal for the '<em><b>Subsystems</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPONENT__SUBSYSTEMS = eINSTANCE.getComponent_Subsystems();
 
 		/**
 		 * The meta object literal for the '

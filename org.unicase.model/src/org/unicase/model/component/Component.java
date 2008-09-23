@@ -19,6 +19,7 @@ import org.unicase.model.ModelElement;
  *   <li>{@link org.unicase.model.component.Component#getPackages <em>Packages</em>}</li>
  *   <li>{@link org.unicase.model.component.Component#getOfferedServices <em>Offered Services</em>}</li>
  *   <li>{@link org.unicase.model.component.Component#getConsumedServices <em>Consumed Services</em>}</li>
+ *   <li>{@link org.unicase.model.component.Component#getSubsystems <em>Subsystems</em>}</li>
  * </ul>
  * </p>
  *
@@ -79,5 +80,21 @@ public interface Component extends ModelElement {
 	 * @generated
 	 */
 	EList<ComponentService> getConsumedServices();
+
+	/**
+	 * Returns the value of the '<em><b>Subsystems</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.classes.Package}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Subsystems</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Subsystems</em>' reference list.
+	 * @see org.unicase.model.component.ComponentPackage#getComponent_Subsystems()
+	 * @model keys="identifier"
+	 * @generated
+	 */
+	EList<org.unicase.model.classes.Package> getSubsystems();
 
 } // Component
