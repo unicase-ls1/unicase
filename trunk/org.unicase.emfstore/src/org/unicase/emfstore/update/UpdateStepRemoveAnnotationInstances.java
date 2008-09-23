@@ -1,39 +1,65 @@
 package org.unicase.emfstore.update;
 
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.osgi.framework.Version;
 import org.unicase.model.Annotation;
+import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.Project;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationaleFactory;
-import org.unicase.model.rationale.RationalePackage;
-import org.unicase.model.rationale.impl.CommentImpl;
 
-public class UpdateStepRemoveAnnotationInstances extends UpdateStepImpl {
+/**
+ * @author schroech
+ *
+ */
+public class UpdateStepRemoveAnnotationInstances extends UpdateStepTransformClass{
 
+	/**
+	 * {@inheritDoc}
+	 * @see org.unicase.emfstore.update.UpdateStep#getSourceVersion()
+	 */
 	public Version getSourceVersion() {
 		return new Version("0.0.2.beta");
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * @see org.unicase.emfstore.update.UpdateStep#getTargetVersion()
+	 */
 	public Version getTargetVersion() {
 		return new Version("0.0.3.beta");
 	}
 
+	
+	/**
+	 * {@inheritDoc}
+	 * @see org.unicase.emfstore.update.UpdateStep#getTitle()
+	 */
 	public String getTitle() {
 		return "Remove Annotation Instances";
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * @see org.unicase.emfstore.update.UpdateStepTransformClass#getTransformableEClass()
+	 */
 	@Override
-	public int updateProjectState(Project state) {
-		int numberOfUpdatedItems =  super.updateProjectState(state);
-		
-		EList<Annotation> allAnnotations = state.getAllModelElementsbyClass(ModelPackage.eINSTANCE.getAnnotation(), 
-				new BasicEList<Annotation>());
-		
-		for (Annotation annotation : allAnnotations) {
+	public EClass getTransformableEClass() {
+		return ModelPackage.eINSTANCE.getAnnotation();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.unicase.emfstore.update.UpdateStepTransformClass#updateModelElement(org.unicase.model.ModelElement)
+	 */
+	@Override
+	public int updateModelElement(ModelElement modelElement) {
+		if (modelElement instanceof Annotation) {
+			Annotation annotation = (Annotation)modelElement;
+			
 			Comment newComment = RationaleFactory.eINSTANCE.createComment();
 			
 			EList<EStructuralFeature> structuralFeatures = annotation.eClass().getEStructuralFeatures();
@@ -44,10 +70,10 @@ public class UpdateStepRemoveAnnotationInstances extends UpdateStepImpl {
 				}
 			}
 			
-			numberOfUpdatedItems ++; 
+			EcoreUtil.remove(annotation);
+			
+			return 1;
 		}
-		
-		return numberOfUpdatedItems;
+		return 0;
 	}
-
 }

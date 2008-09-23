@@ -5,8 +5,16 @@ import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.model.Project;
 
+/**
+ * @author schroech
+ *
+ */
 public abstract class UpdateStepImpl implements UpdateStep {
 
+	/**
+	 * {@inheritDoc}
+	 * @see org.unicase.emfstore.update.UpdateStep#updateProjectHistory(org.unicase.emfstore.esmodel.ProjectHistory)
+	 */
 	public int updateProjectHistory(ProjectHistory projectHistory) {
 		EList<Version> versions = projectHistory.getVersions();
 		int numberOfUpdatedItems = 0;
@@ -17,7 +25,11 @@ public abstract class UpdateStepImpl implements UpdateStep {
 		return numberOfUpdatedItems;
 	}
 
-	public int updateProjectState(Project state){
-		return 0;
-	}
+	/**
+	 * @param state
+	 * The project state to be updated
+	 * @return
+	 * The number of model elements updated during execution
+	 */
+	public abstract int updateProjectState(Project state);
 }

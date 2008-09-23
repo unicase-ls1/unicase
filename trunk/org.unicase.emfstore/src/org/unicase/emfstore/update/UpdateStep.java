@@ -3,11 +3,34 @@ package org.unicase.emfstore.update;
 import org.osgi.framework.Version;
 import org.unicase.emfstore.esmodel.ProjectHistory;
 
+/**
+ * @author schroech
+ * 
+ */
 public interface UpdateStep {
 
-	public String getTitle();
-	public Version getSourceVersion();
-	public Version getTargetVersion();
 	
-	public int updateProjectHistory(ProjectHistory projectHistory);
+	/**
+	 * @return The title of the update step, printed to the console during execution  
+	 */
+	String getTitle();
+	
+	
+	/**
+	 * @return The emf store version from which this update step can update 
+	 */
+	Version getSourceVersion();
+	
+	/**
+	 * @return The emf store version to which this update step can update 
+	 */
+	Version getTargetVersion();
+	
+
+	/**
+	 * @param projectHistory
+	 * The project history which is to be updated
+	 * @return The number of model elements that were actually updated
+	 */
+	int updateProjectHistory(ProjectHistory projectHistory);
 }

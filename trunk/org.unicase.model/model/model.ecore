@@ -541,6 +541,8 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="consumedServices" upperBound="-1"
           eType="#//component/ComponentService" eOpposite="#//component/ComponentService/consumingComponents"
           eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="subsystems" upperBound="-1"
+          eType="#//classes/Package" eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ComponentService" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="offeringComponent" eType="#//component/Component"
