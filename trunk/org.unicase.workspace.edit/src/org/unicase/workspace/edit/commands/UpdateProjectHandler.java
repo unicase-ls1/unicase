@@ -6,65 +6,89 @@
  */
 package org.unicase.workspace.edit.commands;
 
+import java.util.List;
+
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.handlers.HandlerUtil;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.ui.stem.views.dialogs.MergeDialog;
+import org.unicase.ui.stem.views.dialogs.UpdateDialog;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.edit.dialogs.LoginDialog;
+import org.unicase.workspace.exceptions.ChangeConflictException;
+import org.unicase.workspace.util.UpdateObserver;
 
 /**
  * 
- * @author Hodaie This handlers handles UpdateWorkspace command. This command is
+ * @author Hodaie
+ * @author Shterev
+ * 
+ * This handlers handles UpdateWorkspace command. This command is
  *         shown in UC View context menu only for Projects
  * 
  */
-public class UpdateProjectHandler extends ProjectActionHandler {
+public class UpdateProjectHandler extends ProjectActionHandler implements UpdateObserver {
 
+	private Shell shell;
+	
 	/**
-	 * . ({@inheritDoc})
-	 * 
+	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-
-		final IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
 
 		final ProjectSpace projectSpace = (ProjectSpace) getProjectSpace(event);
 
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
+
 			protected void doExecute() {
 				Usersession usersession = projectSpace.getUsersession();
-				Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+				shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 				LoginDialog login;
 				// initially setting the status as successful in case the user
 				// is already logged in
 				int loginStatus = LoginDialog.SUCCESSFUL;
-				if (usersession == null) {
-					// TODO: 
-				} else if (!usersession.isLoggedIn()) {
-					login = new LoginDialog(shell, usersession, usersession.getServerInfo());
-					loginStatus = login.open();
-				}
-				if (loginStatus == LoginDialog.SUCCESSFUL) {
-					try {
-						projectSpace.update();
-						MessageDialog.openInformation(window.getShell(), null, "Update complete!");
-					} catch (EmfStoreException e) {
-						DialogHandler.showExceptionDialog(e);
+				try{
+					if (!usersession.isLoggedIn()) {
+						login = new LoginDialog(shell, usersession, usersession.getServerInfo());
+						loginStatus = login.open();
 					}
+					if (loginStatus == LoginDialog.SUCCESSFUL) {
+						projectSpace.update(VersionSpec.HEAD_VERSION,UpdateProjectHandler.this);
+					}
+				} catch (ChangeConflictException e1) {
+					List<ChangePackage> changePackages = e1.newPackages;
+					MergeDialog mergeDialog = new MergeDialog(shell,changePackages);
+					mergeDialog.open();
+				} catch (EmfStoreException e2) {
+					DialogHandler.showExceptionDialog(e2);
+					e2.printStackTrace();
+				}catch(NullPointerException e3){
+					//usersession was null -> fail silently
 				}
-
 			}
 		});
 		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean inspectChanges(List<ChangePackage> changePackages) {
+		UpdateDialog updateDialog = new UpdateDialog(shell,changePackages);
+		int returnCode = updateDialog.open();
+		if(returnCode==Window.OK){
+			return true;
+		}
+		return false;
 	}
 }

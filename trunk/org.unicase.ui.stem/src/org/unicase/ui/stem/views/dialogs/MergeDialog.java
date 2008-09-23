@@ -6,6 +6,9 @@
  */
 package org.unicase.ui.stem.views.dialogs;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -14,7 +17,12 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.ui.stem.views.ChangesTreeComposite;
+import org.unicase.ui.stem.views.MergeTreeComposite;
+import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.impl.ProjectSpaceImpl;
 
 /**.
  * This is the merge dialog. It shows three ChangesTreeComposites (my changes, 
@@ -25,13 +33,16 @@ import org.unicase.ui.stem.views.ChangesTreeComposite;
  */
 public class MergeDialog extends TitleAreaDialog {
 
+	private List<ChangePackage> newChangePackages;
+
 	/**.
 	 * Constructor
 	 * @param parentShell shell
 	 */
-	public  MergeDialog(Shell parentShell) {
+	public  MergeDialog(Shell parentShell, List<ChangePackage> changePackages) {
 		super(parentShell);
 		this.setShellStyle(this.getShellStyle() | SWT.RESIZE );
+		this.newChangePackages = changePackages;
 	}
 
 	/**.
@@ -52,19 +63,13 @@ public class MergeDialog extends TitleAreaDialog {
 	protected Control createDialogArea(Composite parent) {
 		Composite contents = new Composite(parent, SWT.NONE);
 		contents.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		contents.setLayout(new GridLayout(5, true));
+		contents.setLayout(new GridLayout(4, false));
 		
 		//lblMyChanges
 		Label lblMyChanges = new Label(contents, SWT.NONE);
 		lblMyChanges.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false,
 				false, 2, 1));
 		lblMyChanges.setText("My changes: ");
-		
-		//lblMergedChanges
-		Label lblMergedChanges = new Label(contents, SWT.NONE);
-		lblMergedChanges.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false,
-				false));
-		lblMergedChanges.setText("Merged changes");
 		
 		//lblTheirChanges
 		Label lblTheirChanges = new Label(contents, SWT.NONE);
@@ -74,29 +79,20 @@ public class MergeDialog extends TitleAreaDialog {
 		
 		//my changes tree
 		ChangesTreeComposite myChangesTree = new ChangesTreeComposite(contents,
-				SWT.BORDER, true);
+				SWT.BORDER);
 		myChangesTree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
-		//TODO final implementation (set input to my changes tree)
-		
-		//merged changes
-		ChangesTreeComposite mergedChangesTree = new ChangesTreeComposite(contents,
-				SWT.BORDER, false);
-		mergedChangesTree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		//TODO final implementation (set input to merged changes tree)
-		
+		ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
+		//FIXME AS MK: add the correct operations  
+		changePackage.getOperations().addAll(((ProjectSpaceImpl)WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()).getOperations());
+		ArrayList<ChangePackage> changePackages = new ArrayList<ChangePackage>();
+		changePackages.add(changePackage);
+		myChangesTree.setInput(changePackages);
+						
 		//their changes
-		ChangesTreeComposite theirChangesTree = new ChangesTreeComposite(contents,
-				SWT.BORDER, true);
+		MergeTreeComposite theirChangesTree = new MergeTreeComposite(contents,
+				SWT.BORDER);
 		theirChangesTree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
-		//TODO final implementation (set input to their changes tree)
-		
-		//set number of changes on my and their changes
-		lblMyChanges.setText("My changes: " + mergedChangesTree.getNumOfChanges());
-		lblTheirChanges.setText("Their changes: " + mergedChangesTree.getNumOfChanges());
-		
-		//set number of merged changes on dialog title
-		setTitle("Merge");
-		setMessage("Number of merged changes: " + mergedChangesTree.getNumOfChanges());
+		theirChangesTree.setInput(newChangePackages);
 		
 		return contents;
 		
@@ -118,7 +114,6 @@ public class MergeDialog extends TitleAreaDialog {
 	 */
 	@Override
 	public int open() {
-		this.getButton(TitleAreaDialog.OK).setText("Merge");
 		return super.open();
 	}
 
