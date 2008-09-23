@@ -20,8 +20,6 @@ import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RolesPackageImpl;
 import org.unicase.emfstore.esmodel.impl.EsmodelPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
-import org.unicase.emfstore.esmodel.versioning.changeContainer.ChangeContainerPackage;
-import org.unicase.emfstore.esmodel.versioning.changeContainer.impl.ChangeContainerPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
@@ -181,10 +179,6 @@ public class OperationsPackageImpl extends EPackageImpl implements
 				.getEPackage(VersioningPackage.eNS_URI) instanceof VersioningPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(VersioningPackage.eNS_URI)
 				: VersioningPackage.eINSTANCE);
-		ChangeContainerPackageImpl theChangeContainerPackage = (ChangeContainerPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(ChangeContainerPackage.eNS_URI) instanceof ChangeContainerPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ChangeContainerPackage.eNS_URI)
-				: ChangeContainerPackage.eINSTANCE);
 		AccesscontrolPackageImpl theAccesscontrolPackage = (AccesscontrolPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(AccesscontrolPackage.eNS_URI) instanceof AccesscontrolPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(AccesscontrolPackage.eNS_URI)
@@ -198,7 +192,6 @@ public class OperationsPackageImpl extends EPackageImpl implements
 		theOperationsPackage.createPackageContents();
 		theEsmodelPackage.createPackageContents();
 		theVersioningPackage.createPackageContents();
-		theChangeContainerPackage.createPackageContents();
 		theAccesscontrolPackage.createPackageContents();
 		theRolesPackage.createPackageContents();
 
@@ -206,7 +199,6 @@ public class OperationsPackageImpl extends EPackageImpl implements
 		theOperationsPackage.initializePackageContents();
 		theEsmodelPackage.initializePackageContents();
 		theVersioningPackage.initializePackageContents();
-		theChangeContainerPackage.initializePackageContents();
 		theAccesscontrolPackage.initializePackageContents();
 		theRolesPackage.initializePackageContents();
 

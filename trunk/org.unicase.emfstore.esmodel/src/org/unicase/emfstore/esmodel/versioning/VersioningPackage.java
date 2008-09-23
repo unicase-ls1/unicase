@@ -219,22 +219,13 @@ public interface VersioningPackage extends EPackage {
 	int CHANGE_PACKAGE = 5;
 
 	/**
-	 * The feature id for the '<em><b>Change Containers</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHANGE_PACKAGE__CHANGE_CONTAINERS = 0;
-
-	/**
 	 * The feature id for the '<em><b>Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_PACKAGE__OPERATIONS = 1;
+	int CHANGE_PACKAGE__OPERATIONS = 0;
 
 	/**
 	 * The number of structural features of the '<em>Change Package</em>' class.
@@ -243,7 +234,7 @@ public interface VersioningPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_PACKAGE_FEATURE_COUNT = 2;
+	int CHANGE_PACKAGE_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryInfoImpl <em>History Info</em>}' class.
@@ -554,17 +545,6 @@ public interface VersioningPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getChangePackage();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getChangeContainers <em>Change Containers</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Change Containers</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.ChangePackage#getChangeContainers()
-	 * @see #getChangePackage()
-	 * @generated
-	 */
-	EReference getChangePackage_ChangeContainers();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getOperations <em>Operations</em>}'.
@@ -880,15 +860,6 @@ public interface VersioningPackage extends EPackage {
 		 * @generated
 		 */
 		EClass CHANGE_PACKAGE = eINSTANCE.getChangePackage();
-
-		/**
-		 * The meta object literal for the '<em><b>Change Containers</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CHANGE_PACKAGE__CHANGE_CONTAINERS = eINSTANCE
-				.getChangePackage_ChangeContainers();
 
 		/**
 		 * The meta object literal for the '<em><b>Operations</b></em>' containment reference list feature.

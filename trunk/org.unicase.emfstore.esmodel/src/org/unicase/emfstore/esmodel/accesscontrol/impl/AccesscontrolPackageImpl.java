@@ -23,8 +23,6 @@ import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RolesPackageImpl;
 import org.unicase.emfstore.esmodel.impl.EsmodelPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
-import org.unicase.emfstore.esmodel.versioning.changeContainer.ChangeContainerPackage;
-import org.unicase.emfstore.esmodel.versioning.changeContainer.impl.ChangeContainerPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl;
@@ -138,10 +136,6 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements
 				.getEPackage(OperationsPackage.eNS_URI) instanceof OperationsPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(OperationsPackage.eNS_URI)
 				: OperationsPackage.eINSTANCE);
-		ChangeContainerPackageImpl theChangeContainerPackage = (ChangeContainerPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(ChangeContainerPackage.eNS_URI) instanceof ChangeContainerPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ChangeContainerPackage.eNS_URI)
-				: ChangeContainerPackage.eINSTANCE);
 		RolesPackageImpl theRolesPackage = (RolesPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(RolesPackage.eNS_URI) instanceof RolesPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(RolesPackage.eNS_URI)
@@ -152,7 +146,6 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements
 		theEsmodelPackage.createPackageContents();
 		theVersioningPackage.createPackageContents();
 		theOperationsPackage.createPackageContents();
-		theChangeContainerPackage.createPackageContents();
 		theRolesPackage.createPackageContents();
 
 		// Initialize created meta-data
@@ -160,7 +153,6 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements
 		theEsmodelPackage.initializePackageContents();
 		theVersioningPackage.initializePackageContents();
 		theOperationsPackage.initializePackageContents();
-		theChangeContainerPackage.initializePackageContents();
 		theRolesPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed

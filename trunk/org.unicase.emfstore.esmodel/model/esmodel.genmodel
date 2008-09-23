@@ -50,7 +50,6 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/LogMessage/author"/>
       </genClasses>
       <genClasses ecoreClass="esmodel.ecore#//versioning/ChangePackage">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/ChangePackage/changeContainers"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/ChangePackage/operations"/>
         <genOperations ecoreOperation="esmodel.ecore#//versioning/ChangePackage/reverse"/>
         <genOperations ecoreOperation="esmodel.ecore#//versioning/ChangePackage/apply">
@@ -138,31 +137,10 @@
           <genFeatures notify="false" createChild="false" propertySortChoices="true"
               ecoreFeature="ecore:EReference esmodel.ecore#//versioning/operations/MultiReferenceMoveOperation/referencedModelElementId"/>
         </genClasses>
-      </nestedGenPackages>
-      <nestedGenPackages prefix="ChangeContainer" basePackage="org.unicase.emfstore.esmodel.versioning"
-          disposableProviderFactory="true" ecorePackage="esmodel.ecore#//versioning/changeContainer">
-        <genClasses ecoreClass="esmodel.ecore#//versioning/changeContainer/ChangeContainer">
-          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/changeContainer/ChangeContainer/forwardDelta"/>
-          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/changeContainer/ChangeContainer/backwardDelta"/>
-          <genOperations ecoreOperation="esmodel.ecore#//versioning/changeContainer/ChangeContainer/reverse"/>
-          <genOperations ecoreOperation="esmodel.ecore#//versioning/changeContainer/ChangeContainer/apply">
-            <genParameters ecoreParameter="esmodel.ecore#//versioning/changeContainer/ChangeContainer/apply/project"/>
-          </genOperations>
-          <genOperations ecoreOperation="esmodel.ecore#//versioning/changeContainer/ChangeContainer/getOperations"/>
-          <genOperations ecoreOperation="esmodel.ecore#//versioning/changeContainer/ChangeContainer/init">
-            <genParameters ecoreParameter="esmodel.ecore#//versioning/changeContainer/ChangeContainer/init/project"/>
-            <genParameters ecoreParameter="esmodel.ecore#//versioning/changeContainer/ChangeContainer/init/backwardChangeDescription"/>
-          </genOperations>
-        </genClasses>
-        <genClasses ecoreClass="esmodel.ecore#//versioning/changeContainer/CompositeChangeContainer">
-          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/changeContainer/CompositeChangeContainer/name"/>
-          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/changeContainer/CompositeChangeContainer/description"/>
-          <genOperations ecoreOperation="esmodel.ecore#//versioning/changeContainer/CompositeChangeContainer/init">
-            <genParameters ecoreParameter="esmodel.ecore#//versioning/changeContainer/CompositeChangeContainer/init/project"/>
-            <genParameters ecoreParameter="esmodel.ecore#//versioning/changeContainer/CompositeChangeContainer/init/backwardChangeDescription"/>
-            <genParameters ecoreParameter="esmodel.ecore#//versioning/changeContainer/CompositeChangeContainer/init/name"/>
-            <genParameters ecoreParameter="esmodel.ecore#//versioning/changeContainer/CompositeChangeContainer/init/description"/>
-          </genOperations>
+        <genClasses ecoreClass="esmodel.ecore#//versioning/operations/MultiAttributeOperation">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/MultiAttributeOperation/add"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/MultiAttributeOperation/index"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/MultiAttributeOperation/values"/>
         </genClasses>
       </nestedGenPackages>
     </nestedGenPackages>

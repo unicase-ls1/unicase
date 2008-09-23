@@ -8,8 +8,6 @@ package org.unicase.emfstore.esmodel.versioning;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.change.ChangeDescription;
-import org.unicase.emfstore.esmodel.versioning.changeContainer.ChangeContainer;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.model.Project;
 
@@ -20,7 +18,6 @@ import org.unicase.model.Project;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getChangeContainers <em>Change Containers</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getOperations <em>Operations</em>}</li>
  * </ul>
  * </p>
@@ -30,22 +27,6 @@ import org.unicase.model.Project;
  * @generated
  */
 public interface ChangePackage extends EObject {
-
-	/**
-	 * Returns the value of the '<em><b>Change Containers</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.emfstore.esmodel.versioning.changeContainer.ChangeContainer}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Change Containers</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Change Containers</em>' containment reference list.
-	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getChangePackage_ChangeContainers()
-	 * @model containment="true" resolveProxies="true"
-	 * @generated
-	 */
-	EList<ChangeContainer> getChangeContainers();
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -61,14 +42,6 @@ public interface ChangePackage extends EObject {
 	 * @generated
 	 */
 	void apply(Project project);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
-	void init(Project project, ChangeDescription backwardChangeDescription);
 
 	/**
 	 * <!-- begin-user-doc -->
