@@ -76,7 +76,7 @@ public class CommitDialog extends TitleAreaDialog {
 				SWT.BORDER, true);
 		changesTree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 		ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
-		changePackage.getOperations().addAll(((ProjectSpaceImpl)projectSpace).myOperations);
+		changePackage.getOperations().addAll(projectSpace.getOperations());
 		changesTree.setInput(changePackage);
 		
 		return contents;
