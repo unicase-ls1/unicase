@@ -17,6 +17,7 @@
       <view
             category="org.unicase"
             class="org.unicase.ui.taskview.TaskView"
+            icon="icons/table.png"
             id="org.unicase.ui.taskview"
             name="Task View"
             restorable="true">
