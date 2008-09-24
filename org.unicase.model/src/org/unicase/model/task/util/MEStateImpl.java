@@ -71,7 +71,7 @@ public class MEStateImpl implements MEState {
 					effectiveBlocker.add(blocker);
 				}
 			} catch (CircularDependencyException e) {
-				// JH: handle Exception
+				// JH: log Exception
 			}
 		}
 
@@ -88,7 +88,7 @@ public class MEStateImpl implements MEState {
 					effectiveOpeners.add(opener);
 				}
 			} catch (CircularDependencyException e) {
-				// JH: handle Exception
+				// JH: log Exception
 			}
 		}
 
@@ -107,7 +107,7 @@ public class MEStateImpl implements MEState {
 	 * {@inheritDoc}
 	 */
 	public void addModifiedChild(ModelElement me) {
-		// JH Auto-generated method stub
+		throw new UnsupportedOperationException();
 
 	}
 
@@ -167,8 +167,7 @@ public class MEStateImpl implements MEState {
 	 * {@inheritDoc}
 	 */
 	public boolean isRecursivlyModified() {
-		// JH Auto-generated method stub
-		return false;
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -186,8 +185,7 @@ public class MEStateImpl implements MEState {
 	 * {@inheritDoc}
 	 */
 	public boolean removeModifiedChild(ModelElement me) {
-		// JH Auto-generated method stub
-		return false;
+		throw new UnsupportedOperationException();
 	}
 
 	/**
