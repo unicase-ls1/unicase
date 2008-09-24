@@ -12,6 +12,8 @@ import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.jface.viewers.DelegatingStyledCellLabelProvider.IStyledLabelProvider;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.ui.ISharedImages;
+import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.ui.esbrowser.Activator;
 import org.unicase.workspace.ServerInfo;
@@ -26,6 +28,7 @@ public class ESBrowserLabelProvider extends StyledCellLabelProvider implements I
 	/**
 	 * {@inheritDoc}
 	 */
+	//AS: Check, this method is never called!
 	public Image getImage(Object element) {
 		if (element instanceof ServerInfo){
 			return Activator.getImageDescriptor("icons/ServerInfo.gif").createImage();
@@ -38,6 +41,7 @@ public class ESBrowserLabelProvider extends StyledCellLabelProvider implements I
 	/**
 	 * {@inheritDoc}
 	 */
+	@SuppressWarnings("deprecation")
 	public void update(ViewerCell cell) {
 		Object element= cell.getElement();
 		if(element instanceof ServerInfo){
@@ -56,7 +60,8 @@ public class ESBrowserLabelProvider extends StyledCellLabelProvider implements I
 			cell.setText(styledString.toString());
 			cell.setStyleRanges(styledString.getStyleRanges());
 			
-			cell.setImage(Activator.getImageDescriptor("icons/ProjectInfo.gif").createImage());
+			cell.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(
+					ISharedImages.IMG_OBJ_PROJECT));
 		}
 		super.update(cell);
 	}
