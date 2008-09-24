@@ -177,7 +177,7 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 		
 		final int position = getStepPosition();
 				
-		//TODO Layout is not correct
+		//TODO LB Layout is not correct
 		GridData gdActorLink = new GridData(GridData.FILL_HORIZONTAL);		
 		gdActorLink.grabExcessHorizontalSpace = true;
 		gdActorLink.horizontalAlignment = GridData.HORIZONTAL_ALIGN_BEGINNING;
