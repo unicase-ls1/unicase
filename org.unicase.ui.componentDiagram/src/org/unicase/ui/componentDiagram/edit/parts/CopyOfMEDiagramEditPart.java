@@ -24,7 +24,7 @@ import org.unicase.model.diagram.DiagramPackage;
 /**
  * @generated
  */
-public class MEDiagramEditPart extends DiagramEditPart {
+public class CopyOfMEDiagramEditPart extends DiagramEditPart {
 
 	/**
 	 * @generated
@@ -39,7 +39,7 @@ public class MEDiagramEditPart extends DiagramEditPart {
 	/**
 	 * @generated
 	 */
-	public MEDiagramEditPart(View view) {
+	public CopyOfMEDiagramEditPart(View view) {
 		super(view);
 	}
 
@@ -81,23 +81,15 @@ public class MEDiagramEditPart extends DiagramEditPart {
 						Command command = createViewsAndArrangeCommand(
 								dropRequest, viewDescriptors);
 						if (command != null) {
-							CreateElementRequest req = new CreateElementRequest(
-									((View) getModel()).getElement(),
-									ElementTypeRegistry.getInstance()
-											.getElementType(
-													dropRequest.getObjects()
-															.iterator().next()));
-							req.setNewElement((EObject) dropRequest
-									.getObjects().iterator().next());
-							/*return command
-									.chain(new ICommandProxy(
-											new org.unicase.ui.componentDiagram.edit.commands.ModelCreateShortcutDecorationsCommand(
-													getEditingDomain(),
-													(View) getModel(),
-													viewDescriptors)));*/
+							CreateElementRequest req = new CreateElementRequest(((View)getModel()).getElement(),
+									ElementTypeRegistry.getInstance().getElementType(dropRequest.getObjects().
+											iterator().next()));
+									req.setNewElement((EObject)dropRequest.getObjects().iterator().next());
+											
 							return command
-							.chain(new ICommandProxy(
-									new org.unicase.ui.componentDiagram.edit.commands.ComponentAddCommand(req)));
+									.chain(new ICommandProxy(
+											new org.unicase.ui.componentDiagram.edit.commands.ComponentAddCommand(req)));
+													
 						}
 						return null;
 					}
@@ -114,5 +106,4 @@ public class MEDiagramEditPart extends DiagramEditPart {
 		}
 		super.handleNotificationEvent(event);
 	}
-
 }
