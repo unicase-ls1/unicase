@@ -205,25 +205,10 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 					newGmfdiagram));
 	}
 
-	// /**
-	// * <!-- begin-user-doc -->
-	// * <!-- end-user-doc -->
-	// * @generated
-	// */
-	// public EList<ModelElement> getNewElements() {
-	// if (newElements == null) {
-	// newElements = new EObjectContainmentEList<ModelElement>(
-	// ModelElement.class, this,
-	// DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS);
-	// }
-	// return newElements;
-	// }
-	// JH/MK still throws exception:
-	// org.eclipse.emf.common.util.BasicEList$BasicIndexOutOfBoundsException:
-	// index=0, size=0
+	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * @return A DiagramNewEelementsList
 	 * @generated NOT
 	 */
 	public EList<ModelElement> getNewElements() {
@@ -241,8 +226,9 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 */
 	public DiagramType getType() {
 		return type;
