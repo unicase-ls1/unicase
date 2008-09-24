@@ -46,6 +46,10 @@
             class="org.unicase.workspace.edit.commands.ImportUserHandler"
             commandId="org.unicase.workspace.edit.importUser">
       </handler>
+      <handler
+            class="org.unicase.workspace.edit.commands.RevertHandler"
+            commandId="org.unicase.workspace.edit.revert">
+      </handler>
   </extension>
   <extension
         point="org.eclipse.ui.commands">
@@ -89,6 +93,12 @@
            id="org.unicase.workspace.edit.importUser"
            name="Import User">
      </command>
+     <command
+           category="Unicase"
+           categoryId="org.unicase"
+           id="org.unicase.workspace.edit.revert"
+           name="Revert">
+     </command>
   </extension>
   <extension
         point="org.eclipse.ui.menus">
@@ -123,6 +133,12 @@
                  </instanceof>
               </iterate>
            </visibleWhen>
+        </command>
+        <command
+              commandId="org.unicase.workspace.edit.revert"
+              icon="icons/revert.png"
+              label="Revert Project"
+              style="push">
         </command>
         <command
               commandId="org.unicase.workspace.edit.deleteProject"
