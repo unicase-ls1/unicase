@@ -1424,7 +1424,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			Object notifier = notification.getNotifier();
 			if (notifier instanceof ModelElement) {
 				ModelElement modelElement = (ModelElement) notifier;
-				if (ProjectSpaceImpl.this.getProject().contains(modelElement)) {
+				if (ProjectSpaceImpl.this.getProject().containsInstance(modelElement)) {
 					projectNotifications.add(notification);
 				}
 			}
