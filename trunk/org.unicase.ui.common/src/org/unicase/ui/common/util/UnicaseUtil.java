@@ -18,7 +18,6 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
-import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.model.ModelPackage;
 
 /**
@@ -75,8 +74,9 @@ public final class UnicaseUtil {
 	 * @param initialContent initilaContents
 	 * @param title title
 	 * @param multiSelection if multiSelection is allowed
-	 * @return
+	 * @return The selected objects
 	 */
+	//AS Why does this return Objects?:
 	public static Object[] showMESelectionDialog(Shell shell,
 								Collection<?> initialContent,
 								String title,

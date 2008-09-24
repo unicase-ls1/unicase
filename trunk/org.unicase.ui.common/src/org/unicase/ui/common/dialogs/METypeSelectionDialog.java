@@ -1,5 +1,10 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.ui.common.dialogs;
-
 
 import java.util.Iterator;
 
@@ -38,13 +43,23 @@ public class METypeSelectionDialog extends TitleAreaDialog implements Listener {
 	private boolean multiSelection;
 	private EClass[] result;
 
+	/**
+	 * default constructor.
+	 * 
+	 * @param parent
+	 *            The parent composite
+	 * @param multiSelection
+	 *            if multiselection is allowed.
+	 */
 	public METypeSelectionDialog(Shell parent, boolean multiSelection) {
 		super(parent);
 		this.multiSelection = multiSelection;
-		
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected Control createDialogArea(Composite parent) {
 
@@ -53,7 +68,7 @@ public class METypeSelectionDialog extends TitleAreaDialog implements Listener {
 		contents.setLayout(new GridLayout());
 		setTitle("Model element type");
 		setMessage("Please select model element type.");
-		
+
 		Tree tree;
 		if (!multiSelection) {
 			tree = new Tree(contents, SWT.SINGLE);
@@ -77,27 +92,34 @@ public class METypeSelectionDialog extends TitleAreaDialog implements Listener {
 			}
 
 		});
-		
+
 		return contents;
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void okPressed() {
-		IStructuredSelection ssel = (IStructuredSelection) treeViewer.getSelection();
-		
+		IStructuredSelection ssel = (IStructuredSelection) treeViewer
+				.getSelection();
+
 		Object[] objs = ssel.toArray();
 		EClass[] eClazz = new EClass[objs.length];
-		
-		for(int i = 0; i < objs.length; i++){
-			eClazz[i] = (EClass)objs[i];
+
+		for (int i = 0; i < objs.length; i++) {
+			eClazz[i] = (EClass) objs[i];
 		}
 		this.result = eClazz;
 		this.setReturnCode(Window.OK);
 		super.okPressed();
-	
+
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void handleEvent(Event event) {
 		checkSelection();
 
@@ -117,11 +139,16 @@ public class METypeSelectionDialog extends TitleAreaDialog implements Listener {
 		if (!getButton(Dialog.OK).getEnabled()) {
 			getButton(Dialog.OK).setEnabled(true);
 			setErrorMessage(null);
-			
+
 		}
 		return true;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @return
+	 */
 	public EClass[] getResult() {
 		return result;
 	}

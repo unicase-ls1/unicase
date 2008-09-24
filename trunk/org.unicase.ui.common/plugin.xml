@@ -446,5 +446,8 @@
                relative="org.unicase.ui.treeview.views.StatusView">
          </view> -->
       </perspectiveExtension> 
-  </extension> 
+  </extension>
+    <extension
+          point="org.eclipse.ui.ide.markerSupport">
+    </extension> 
 </plugin>
