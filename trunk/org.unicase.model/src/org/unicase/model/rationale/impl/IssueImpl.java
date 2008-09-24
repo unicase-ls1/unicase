@@ -209,9 +209,10 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	}
 
 	/**
+	 * @generated
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * 
 	 */
 	public WorkPackage getContainingWorkpackage() {
 		if (eContainerFeatureID != RationalePackage.ISSUE__CONTAINING_WORKPACKAGE)
