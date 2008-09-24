@@ -25,6 +25,7 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.edit.dialogs.LoginDialog;
 import org.unicase.workspace.exceptions.ChangeConflictException;
+import org.unicase.workspace.util.RecordingCommandWithResult;
 import org.unicase.workspace.util.UpdateObserver;
 
 /**
@@ -32,14 +33,15 @@ import org.unicase.workspace.util.UpdateObserver;
  * @author Hodaie
  * @author Shterev
  * 
- * This handlers handles UpdateWorkspace command. This command is
- *         shown in UC View context menu only for Projects
+ *         This handlers handles UpdateWorkspace command. This command is shown
+ *         in UC View context menu only for Projects
  * 
  */
-public class UpdateProjectHandler extends ProjectActionHandler implements UpdateObserver {
+public class UpdateProjectHandler extends ProjectActionHandler implements
+		UpdateObserver {
 
 	private Shell shell;
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -47,36 +49,50 @@ public class UpdateProjectHandler extends ProjectActionHandler implements Update
 
 		final ProjectSpace projectSpace = (ProjectSpace) getProjectSpace(event);
 
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain");
+		RecordingCommandWithResult<Integer> command = new RecordingCommandWithResult<Integer>(
+				domain) {
 
 			protected void doExecute() {
 				Usersession usersession = projectSpace.getUsersession();
-				shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+				shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+						.getShell();
 				LoginDialog login;
 				// initially setting the status as successful in case the user
 				// is already logged in
 				int loginStatus = LoginDialog.SUCCESSFUL;
-				try{
+				try {
 					if (!usersession.isLoggedIn()) {
-						login = new LoginDialog(shell, usersession, usersession.getServerInfo());
+						login = new LoginDialog(shell, usersession, usersession
+								.getServerInfo());
 						loginStatus = login.open();
 					}
-					if (loginStatus == LoginDialog.SUCCESSFUL) {
-						projectSpace.update(VersionSpec.HEAD_VERSION,UpdateProjectHandler.this);
-					}
-				} catch (ChangeConflictException e1) {
-					List<ChangePackage> changePackages = e1.newPackages;
-					MergeDialog mergeDialog = new MergeDialog(shell,changePackages);
-					mergeDialog.open();
-				} catch (EmfStoreException e2) {
-					DialogHandler.showExceptionDialog(e2);
-					e2.printStackTrace();
-				}catch(NullPointerException e3){
-					//usersession was null -> fail silently
+					this.setTypedResult(loginStatus);
+				} catch (NullPointerException e3) {
+					//FIXME AS why?
+					// usersession was null -> fail silently
 				}
 			}
-		});
+		};
+		domain.getCommandStack().execute(command);
+
+		if (command.getTypedResult() != null) {
+			try {
+				if (command.getTypedResult().intValue() == LoginDialog.SUCCESSFUL) {
+					projectSpace.update(VersionSpec.HEAD_VERSION,
+							UpdateProjectHandler.this);
+				}
+			} catch (ChangeConflictException e1) {
+				List<ChangePackage> changePackages = e1.newPackages;
+				MergeDialog mergeDialog = new MergeDialog(shell, changePackages);
+				mergeDialog.open();
+			} catch (EmfStoreException e2) {
+				DialogHandler.showExceptionDialog(e2);
+				e2.printStackTrace();
+			}
+		}
+
 		return null;
 	}
 
@@ -84,9 +100,9 @@ public class UpdateProjectHandler extends ProjectActionHandler implements Update
 	 * {@inheritDoc}
 	 */
 	public boolean inspectChanges(List<ChangePackage> changePackages) {
-		UpdateDialog updateDialog = new UpdateDialog(shell,changePackages);
+		UpdateDialog updateDialog = new UpdateDialog(shell, changePackages);
 		int returnCode = updateDialog.open();
-		if(returnCode==Window.OK){
+		if (returnCode == Window.OK) {
 			return true;
 		}
 		return false;
