@@ -13,8 +13,6 @@ import java.util.List;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -23,56 +21,84 @@ import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelElement;
-import org.unicase.model.organization.User;
-import org.unicase.model.task.ActionItem;
-import org.unicase.model.task.TaskPackage;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.Configuration;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
 
-/**.
- * This is the Handler to delete a ModelElement
+/**
+ * . This is the Handler to delete a ModelElement
+ * 
  * @author Helming
- *
+ * 
  */
 public class DeleteModelelementHandler extends AbstractHandler {
 
-	
-	
-	
-	/**.
-	 * {@inheritDoc}
+	/**
+	 * Command to delete a modelelement.
+	 * 
+	 * @author helming
+	 * 
+	 */
+	private final class DeleteCommand extends RecordingCommand {
+		private final ModelElement me;
+
+		private DeleteCommand(TransactionalEditingDomain domain, ModelElement me) {
+			super(domain);
+			this.me = me;
+		}
+
+		protected void doExecute() {
+			MessageDialog dialog = new MessageDialog(null, "Confirmation",
+					null, "Do you really want to delete " + me.getName(),
+					MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
+			int result = dialog.open();
+			if (result == 0) {
+
+				// FIXME MK OW how do we delete model elements
+
+				EcoreUtil.delete(me, true);
+				me.eResource().getContents().remove(me);
+				try {
+					me.eResource().save(Configuration.getResourceSaveOptions());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	/**
+	 * . {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		ModelElement me = ActionHelper.getModelElement(event);
 		if (me != null) {
-			//check if this model element is already opened in an editor
-			//and if yes, prompt to close editor.
-			if(closeEditor(me)){
+			// check if this model element is already opened in an editor
+			// and if yes, prompt to close editor.
+			if (closeEditor(me)) {
 				deleteModelElement(me);
 			}
-			
+
 		}
 		return null;
 	}
 
-	
-	
 	private boolean closeEditor(ModelElement me) {
 
-		boolean result = true; 
+		boolean result = true;
 
-		//we could find editors with this ME as input
-		//but we don't want to have a dependency on meeditor plug-in
-		//Therefore we have no access to MEEditorInput class
+		// we could find editors with this ME as input
+		// but we don't want to have a dependency on meeditor plug-in
+		// Therefore we have no access to MEEditorInput class
 		IEditorReference[] openEditors = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getActivePage().getEditorReferences();
-		
+				.getActiveWorkbenchWindow().getActivePage()
+				.getEditorReferences();
+
 		List<IEditorReference> toCloseEditors = new ArrayList<IEditorReference>();
-		for(int i = 0; i < openEditors.length; i++){
+		for (int i = 0; i < openEditors.length; i++) {
 			try {
-				if (openEditors[i].getEditorInput().getAdapter(ModelElement.class).equals(me)){
+				if (openEditors[i].getEditorInput().getAdapter(
+						ModelElement.class).equals(me)) {
 					toCloseEditors.add(openEditors[i]);
 				}
 			} catch (PartInitException e) {
@@ -80,47 +106,26 @@ public class DeleteModelelementHandler extends AbstractHandler {
 				result = false;
 			}
 		}
-			
+
 		if (toCloseEditors.size() > 0) {
-			result = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-					.getActivePage().closeEditors(toCloseEditors.toArray(new IEditorReference[toCloseEditors.size()]), true);
+			result = PlatformUI
+					.getWorkbench()
+					.getActiveWorkbenchWindow()
+					.getActivePage()
+					.closeEditors(
+							toCloseEditors
+									.toArray(new IEditorReference[toCloseEditors
+											.size()]), true);
 
 		}
 
 		return result;
 	}
 
-	
 	private void deleteModelElement(final ModelElement me) {
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-			protected void doExecute() {
-				MessageDialog dialog = new MessageDialog(null, "Confirmation",
-						null, "Do you really want to delete " + me.getName(),
-						MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
-				int result = dialog.open();
-				if (result == 0) {
-					ProjectSpace projectSpace = WorkspaceManager
-							.getProjectSpace(me);
-					//FIXME MK OW how do we delete model elements
-					
-					EList<ActionItem> modelElementsByClass = projectSpace.getProject().getAllModelElementsbyClass(TaskPackage.eINSTANCE.getActionItem(), new BasicEList<ActionItem>());
-					for(ActionItem ai: modelElementsByClass){
-						EList<User> assignedTo = ai.getAssignedTo();
-					}
-					
-					EcoreUtil.delete(me, true);
-					me.eResource().getContents().remove(me);
-					try {
-						me.eResource().save(Configuration.getResourceSaveOptions());
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-			}
-		});
+		domain.getCommandStack().execute(new DeleteCommand(domain, me));
 
 	}
 
