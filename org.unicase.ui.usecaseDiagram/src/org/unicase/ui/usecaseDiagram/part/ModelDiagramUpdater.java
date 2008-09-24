@@ -21,6 +21,7 @@ import org.unicase.model.requirement.UseCase;
  */
 public class ModelDiagramUpdater {
 
+
 	/**
 	 * @generated
 	 */
