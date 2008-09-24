@@ -25,7 +25,6 @@ import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelElement;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.ActionItem;
-import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.Configuration;
