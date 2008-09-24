@@ -115,6 +115,7 @@ public class ProjectImpl extends EObjectImpl implements Project,
 	 * @see org.unicase.model.Project#getAllModelElementsbyClass(org.eclipse.emf.ecore.EClass)
 	 * @generated NOT
 	 */
+	//MK: Why not Elist<T extends Modlelelement> ? Please remove warnings
 	public <T extends ModelElement> EList<T> getAllModelElementsbyClass(
 			EClass modelElementClass, EList<T> list) {
 
