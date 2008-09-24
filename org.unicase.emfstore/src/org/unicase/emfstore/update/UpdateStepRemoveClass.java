@@ -21,6 +21,7 @@ public abstract class UpdateStepRemoveClass extends UpdateStepTransformClass {
 	 */
 	@Override
 	public int updateModelElement(ModelElement modelElement) {
+		System.out.println("Removed model element instance \"" + modelElement.getName() + "\"");
 		EcoreUtil.remove(modelElement);
 		return 1;
 	}

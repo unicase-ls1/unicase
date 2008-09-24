@@ -32,8 +32,7 @@ public class UpdateStepRemoveRefiningIssues extends UpdateStepRemoveFeature {
 	 */
 	@Override
 	public EClass getTransformableEClass() {
-		RationalePackage.eINSTANCE.getIssue();
-		return null;
+		return RationalePackage.eINSTANCE.getIssue();
 	}
 
 	/**
