@@ -13,6 +13,8 @@ import java.util.List;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -21,6 +23,10 @@ import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelElement;
+import org.unicase.model.organization.User;
+import org.unicase.model.task.ActionItem;
+import org.unicase.model.task.TaskFactory;
+import org.unicase.model.task.TaskPackage;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
@@ -99,6 +105,12 @@ public class DeleteModelelementHandler extends AbstractHandler {
 					ProjectSpace projectSpace = WorkspaceManager
 							.getProjectSpace(me);
 					//FIXME MK OW how do we delete model elements
+					
+					EList<ActionItem> modelElementsByClass = projectSpace.getProject().getAllModelElementsbyClass(TaskPackage.eINSTANCE.getActionItem(), new BasicEList<ActionItem>());
+					for(ActionItem ai: modelElementsByClass){
+						EList<User> assignedTo = ai.getAssignedTo();
+					}
+					
 					EcoreUtil.delete(me, true);
 					me.eResource().getContents().remove(me);
 					try {
