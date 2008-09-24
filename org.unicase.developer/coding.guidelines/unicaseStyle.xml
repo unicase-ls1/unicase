@@ -3,7 +3,7 @@
     This configuration file was written by the eclipse-cs plugin configuration editor
 -->
 <!--
-    Checkstyle-Configuration: unicase Style
+    Checkstyle-Configuration: Unicase
     Description: none
 -->
 <!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.2//EN" "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
@@ -33,7 +33,9 @@
         <module name="IllegalImport"/>
         <module name="RedundantImport"/>
         <module name="UnusedImports"/>
-        <module name="FileLength"/>
+        <module name="FileLength">
+            <property name="severity" value="info"/>
+        </module>
         <module name="LineLength">
             <property name="severity" value="ignore"/>
         </module>
