@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.model.task.util;
 
 import java.util.ArrayList;
@@ -15,16 +21,26 @@ import org.unicase.model.bug.BugStatus;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.ActionItem;
 
+/**
+ * Implementation of MEState.
+ * 
+ * @author helming
+ * 
+ */
 public class MEStateImpl implements MEState {
 
 	private ModelElement modelElement;
-
-	private HashSet<ModelElement> modifiedChilds = new HashSet<ModelElement>();
 
 	private HashSet<ModelElement> effectiveOpeners = new HashSet<ModelElement>();
 
 	private HashSet<ModelElement> effectiveBlocker = new HashSet<ModelElement>();
 
+	/**
+	 * default constructor.
+	 * 
+	 * @param modelElement
+	 *            The modelelement this state is related to.
+	 */
 	public MEStateImpl(ModelElement modelElement) {
 		this.modelElement = modelElement;
 		// Initially fill opener
@@ -78,17 +94,26 @@ public class MEStateImpl implements MEState {
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void addBlocker(ModelElement me) {
 		if (effectiveBlocker.size() == 1) {
 			recursivlyUpdateStatus(getStatus());
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void addModifiedChild(ModelElement me) {
 		// JH Auto-generated method stub
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void addOpener(ModelElement me) {
 		effectiveOpeners.add(me);
 		if (effectiveOpeners.size() == 1) {
@@ -96,6 +121,9 @@ public class MEStateImpl implements MEState {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public String getStatus() {
 		// If there is a blocker, every me is blocked
 		if (effectiveBlocker.size() > 0) {
@@ -135,11 +163,17 @@ public class MEStateImpl implements MEState {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public boolean isRecursivlyModified() {
 		// JH Auto-generated method stub
 		return false;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public boolean removeBlocker(ModelElement me) {
 		boolean ret = effectiveBlocker.remove(me);
 		if (effectiveBlocker.size() == 0) {
@@ -148,11 +182,17 @@ public class MEStateImpl implements MEState {
 		return ret;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public boolean removeModifiedChild(ModelElement me) {
 		// JH Auto-generated method stub
 		return false;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public boolean removeOpener(ModelElement me) {
 		boolean ret = effectiveOpeners.remove(me);
 		if (effectiveOpeners.size() == 0) {
