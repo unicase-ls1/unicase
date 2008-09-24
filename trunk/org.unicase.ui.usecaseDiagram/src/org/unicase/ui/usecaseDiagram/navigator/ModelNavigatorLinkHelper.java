@@ -3,6 +3,7 @@ package org.unicase.ui.usecaseDiagram.navigator;
 import java.util.Iterator;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -95,6 +96,9 @@ public class ModelNavigatorLinkHelper implements ILinkHelper {
 			if (navigatorGroup.getParent() instanceof org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorItem) {
 				navigatorView = ((org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorItem) navigatorGroup
 						.getParent()).getView();
+			} else if (navigatorGroup.getParent() instanceof IAdaptable) {
+				navigatorView = (View) ((IAdaptable) navigatorGroup.getParent())
+						.getAdapter(View.class);
 			}
 		}
 		if (navigatorView == null) {

@@ -104,7 +104,8 @@ public class ModelVisualIDRegistry {
 		String containerModelID = org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
 				.getModelID(containerView);
 		if (!org.unicase.ui.usecaseDiagram.edit.parts.MEDiagramEditPart.MODEL_ID
-				.equals(containerModelID)) {
+				.equals(containerModelID)
+				&& !"99".equals(containerModelID)) { //$NON-NLS-1$
 			return -1;
 		}
 		int containerVisualID;
@@ -141,7 +142,8 @@ public class ModelVisualIDRegistry {
 		String containerModelID = org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
 				.getModelID(containerView);
 		if (!org.unicase.ui.usecaseDiagram.edit.parts.MEDiagramEditPart.MODEL_ID
-				.equals(containerModelID)) {
+				.equals(containerModelID)
+				&& !"99".equals(containerModelID)) { //$NON-NLS-1$
 			return false;
 		}
 		int containerVisualID;
