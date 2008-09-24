@@ -14,24 +14,50 @@ import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
 import org.unicase.model.task.WorkItem;
 
+/**
+ * Taxonomy to define blocking links.
+ * 
+ * @author helming
+ * 
+ */
 public class BlockingLinkTaxonomy {
-
+	/**
+	 * Returns all elements which are blocked by the source model element. That
+	 * means, they are connected with the source by a blocking link. The target
+	 * element has not to be blocked until the source is open or blocked.
+	 * 
+	 * @param modelElement
+	 *            The source modelelement
+	 * @return all blocke modelelements
+	 */
 	public ArrayList<ModelElement> getBlocked(ModelElement modelElement) {
 		ArrayList<ModelElement> blocked = new ArrayList<ModelElement>();
-		if(modelElement instanceof WorkItem){
-			EList<WorkItem> successors = ((WorkItem) modelElement).getSuccessors();
-			if(successors!=null){
+		if (modelElement instanceof WorkItem) {
+			EList<WorkItem> successors = ((WorkItem) modelElement)
+					.getSuccessors();
+			if (successors != null) {
 				blocked.addAll(successors);
 			}
 		}
 		return blocked;
 	}
 
+	/**
+	 * Returns all elements which are blocking the target model element. That
+	 * means, they are connected with the target by a blocking link. The target
+	 * element has not to be blocked until one of the sources is open or
+	 * blocked.
+	 * 
+	 * @param modelElement
+	 *            The target modelelement
+	 * @return all blocking modelelements
+	 */
 	public Set<ModelElement> getBlockers(ModelElement modelElement) {
 		Set<ModelElement> blockers = new HashSet<ModelElement>();
-		if(modelElement instanceof WorkItem){
-			EList<WorkItem> predecessors = ((WorkItem) modelElement).getPredecessors();
-			if(predecessors!=null){
+		if (modelElement instanceof WorkItem) {
+			EList<WorkItem> predecessors = ((WorkItem) modelElement)
+					.getPredecessors();
+			if (predecessors != null) {
 				blockers.addAll(predecessors);
 			}
 		}
