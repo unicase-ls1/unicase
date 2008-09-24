@@ -62,7 +62,7 @@ public class ProjectImpl extends EObjectImpl implements Project,
 	private Map<ModelElementId, ModelElement> modelElementCache;
 	private List<ProjectChangeObserver> observers;
 
-	// begin of custom code
+	//begin of custom code
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -73,7 +73,7 @@ public class ProjectImpl extends EObjectImpl implements Project,
 		observers = new ArrayList<ProjectChangeObserver>();
 	}
 
-	// end of custom code
+	//end of custom code
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -127,8 +127,6 @@ public class ProjectImpl extends EObjectImpl implements Project,
 	 * @see org.unicase.model.Project#getAllModelElementsbyClass(org.eclipse.emf.ecore.EClass)
 	 * @generated NOT
 	 */
-	// cast below is guarded by sanity check
-	@SuppressWarnings("unchecked")
 	public <T extends ModelElement> EList<T> getAllModelElementsbyClass(
 			EClass modelElementClass, EList<T> list) {
 		return getAllModelElementsbyClass(modelElementClass, list, true);
@@ -139,6 +137,8 @@ public class ProjectImpl extends EObjectImpl implements Project,
 	 * @see org.unicase.model.Project#getAllModelElementsbyClass(org.eclipse.emf.ecore.EClass)
 	 * @generated NOT
 	 */
+	// two casts below are guarded by initial sanity check and if statement
+	@SuppressWarnings("unchecked")
 	public <T extends ModelElement> EList<T> getAllModelElementsbyClass(
 			EClass modelElementClass, EList<T> list, Boolean subclasses) {
 
@@ -286,11 +286,17 @@ public class ProjectImpl extends EObjectImpl implements Project,
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
+	 * {@inheritDoc}
+	 * @see org.unicase.model.Project#contains(org.unicase.model.ModelElement)
 	 */
 	public boolean contains(ModelElement modelElement) {
 		return contains(modelElement.getModelElementId());
 	}
 
+	/**
+	 * Get the model element cache.
+	 * @return the cache map
+	 */
 	private Map<ModelElementId, ModelElement> getModelElementsFromCache() {
 		if (modelElementCache == null) {
 			// init cache
@@ -310,6 +316,10 @@ public class ProjectImpl extends EObjectImpl implements Project,
 		return modelElementCache;
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.model.Project, org.unicase.model.ModelElement)
+	 */
 	public void modelElementAdded(Project project, ModelElement modelElement) {
 		this.modelElementCache.put(modelElement.getModelElementId(),
 				modelElement);
@@ -318,6 +328,10 @@ public class ProjectImpl extends EObjectImpl implements Project,
 		}
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification, org.unicase.model.Project, org.unicase.model.ModelElement)
+	 */
 	public void notify(Notification notification, Project project,
 			ModelElement modelElement) {
 		for (ProjectChangeObserver projectChangeObserver : this.observers) {
@@ -325,6 +339,10 @@ public class ProjectImpl extends EObjectImpl implements Project,
 		}
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementRemoved(org.unicase.model.Project, org.unicase.model.ModelElement)
+	 */
 	public void modelElementRemoved(Project project, ModelElement modelElement) {
 		this.modelElementCache.remove(modelElement.getIdentifier());
 		for (ProjectChangeObserver projectChangeObserver : this.observers) {
@@ -332,14 +350,26 @@ public class ProjectImpl extends EObjectImpl implements Project,
 		}
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.model.Project#contains(org.unicase.model.ModelElementId)
+	 */
 	public boolean contains(ModelElementId modelElementId) {
 		return this.getModelElementsFromCache().containsKey(modelElementId);
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.model.Project#getModelElement(org.unicase.model.ModelElementId)
+	 */
 	public ModelElement getModelElement(ModelElementId modelElementId) {
 		return this.getModelElementsFromCache().get(modelElementId);
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.model.Project#addProjectChangeObserver(org.unicase.model.util.ProjectChangeObserver)
+	 */
 	public void addProjectChangeObserver(
 			ProjectChangeObserver projectChangeObserver) {
 		// FIXME: hack to init notifier and cache
@@ -347,12 +377,20 @@ public class ProjectImpl extends EObjectImpl implements Project,
 		this.observers.add(projectChangeObserver);
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.model.Project#removeProjectChangeObserver(org.unicase.model.util.ProjectChangeObserver)
+	 */
 	public void removeProjectChangeObserver(
 			ProjectChangeObserver projectChangeObserver) {
 		this.observers.remove(projectChangeObserver);
 
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.model.Project#containsInstance(org.unicase.model.ModelElement)
+	 */
 	public boolean containsInstance(ModelElement modelElement) {
 		ModelElementId modelElementId = modelElement.getModelElementId();
 		if (!this.contains(modelElementId)) {
