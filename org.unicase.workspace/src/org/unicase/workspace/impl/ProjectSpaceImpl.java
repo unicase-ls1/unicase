@@ -850,6 +850,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		}
 
 		setBaseVersion(newBaseVersion);
+		getOperations().clear();
 
 		// FIXME: hack to make sure all resources are saved
 		saveResources(true);
