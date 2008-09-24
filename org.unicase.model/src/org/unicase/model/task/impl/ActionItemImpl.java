@@ -361,6 +361,7 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	}
 
 	/**
+	 * @generated
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
