@@ -59,6 +59,7 @@ public class ProjectImpl extends EObjectImpl implements Project,
 	private Map<ModelElementId, ModelElement> modelElementCache;
 	private List<ProjectChangeObserver> observers;
 
+	//begin of custom code
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated NOT
@@ -68,6 +69,8 @@ public class ProjectImpl extends EObjectImpl implements Project,
 		observers = new ArrayList<ProjectChangeObserver>();
 	}
 
+	//end of custom code
+	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -115,7 +118,8 @@ public class ProjectImpl extends EObjectImpl implements Project,
 	 * @see org.unicase.model.Project#getAllModelElementsbyClass(org.eclipse.emf.ecore.EClass)
 	 * @generated NOT
 	 */
-	//MK: Why not Elist<T extends Modlelelement> ? Please remove warnings
+	//cast below is guarded by sanity check
+	@SuppressWarnings("unchecked")
 	public <T extends ModelElement> EList<T> getAllModelElementsbyClass(
 			EClass modelElementClass, EList<T> list) {
 
@@ -141,6 +145,8 @@ public class ProjectImpl extends EObjectImpl implements Project,
 	 * @see org.unicase.model.Project#getModelElementsByClass(org.eclipse.emf.ecore.EClass)
 	 * @generated NOT
 	 */
+	//cast below is guarded by sanity check
+	@SuppressWarnings("unchecked")
 	public <T extends ModelElement> EList<T> getModelElementsByClass(
 			EClass modelElementClass, EList<T> list) {
 
