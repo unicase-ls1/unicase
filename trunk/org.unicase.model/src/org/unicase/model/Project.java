@@ -85,13 +85,26 @@ public interface Project extends EObject, IAdaptable {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Returns wether the project contains a model element with the same id.
 	 * <!-- end-user-doc -->
 	 * @model
 	 * @generated
 	 */
 	boolean contains(ModelElement modelElement);
 
+	/**
+	 * Returns wether the project contains a model element with the same id.
+	 * @param modelElementId the id
+	 * @return true if the project contains such a model element
+	 */
 	boolean contains(ModelElementId modelElementId);
+	
+	/**
+	 * Returns wether the project contains the exact same instance of the model element.
+	 * @param modelElement the model element
+	 * @return true if the project contains the instance
+	 */
+	boolean containsInstance(ModelElement modelElement);
 
 	ModelElement getModelElement(ModelElementId modelElementId);
 	

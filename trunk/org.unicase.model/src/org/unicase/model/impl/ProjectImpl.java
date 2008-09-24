@@ -305,4 +305,13 @@ public class ProjectImpl extends EObjectImpl implements Project,
 		this.observers.remove(projectChangeObserver);
 		
 	}
+
+	public boolean containsInstance(ModelElement modelElement) {
+		ModelElementId modelElementId = modelElement.getModelElementId();
+		if (!this.contains(modelElementId)) {
+			return false;
+		}
+		ModelElement element = this.getModelElementsFromCache().get(modelElementId);
+		return element==modelElement;
+	}
 }
