@@ -93,22 +93,28 @@ public final class ActionHelper {
 
 		return me;
 	}
-	
+
 	/**
-	 * MUST BE WRAPPED IN A RECORDING COMMAND!
-	 * This method creates a new model element using:
-	 * @param factory the factory
-	 * @param clazz the element class
+	 * MUST BE WRAPPED IN A RECORDING COMMAND! This method creates a new model
+	 * element using:
+	 * 
+	 * @param factory
+	 *            the factory
+	 * @param clazz
+	 *            the element class
 	 * @return the new element
 	 */
-	public static EObject createModelElement(EFactory factory, EClass clazz){
+	public static EObject createModelElement(EFactory factory, EClass clazz) {
 		EObject obj = factory.create(clazz);
 		ModelElement me = (ModelElement) obj;
 		final StringBuffer creator = new StringBuffer();
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			protected void doExecute() {
-				creator.append(WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getUsersession().getACUser().getName());
+				creator.append(WorkspaceManager.getInstance()
+						.getCurrentWorkspace().getActiveProjectSpace()
+						.getUsersession().getACUser().getName());
 			}
 		});
 		me.setCreator(creator.toString());
@@ -127,16 +133,18 @@ public final class ActionHelper {
 			return;
 		}
 
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			protected void doExecute() {
-				String user = WorkspaceManager.getInstance().getCurrentWorkspace()
-				.getActiveProjectSpace().getUsersession().getACUser().getName();
+				String user = WorkspaceManager.getInstance()
+						.getCurrentWorkspace().getActiveProjectSpace()
+						.getUsersession().getACUser().getName();
 				me.addReader(user);
-				
+
 			}
 		});
-		
+
 		if (me instanceof MEDiagram) {
 			openMEDiagram((MEDiagram) me, false);
 		} else {
@@ -180,6 +188,8 @@ public final class ActionHelper {
 	 * 
 	 * @param diagram
 	 *            MEDiagram to open
+	 * @param withMEEditor
+	 *            If the diagram is open in the meeditor
 	 */
 	public static void openMEDiagram(MEDiagram diagram, boolean withMEEditor) {
 		if (withMEEditor) {
