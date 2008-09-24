@@ -13,7 +13,6 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchWizard;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceFactory;
@@ -59,7 +58,7 @@ public class RepositoryWizard extends Wizard implements INewWizard {
 	}
 
 	/**
-	 * @see IWorkbenchWizard#init(IWorkbench, IStructuredSelection)
+	 * {@inheritDoc}
 	 * @param workbench
 	 *            the workbench
 	 * @param selection
@@ -72,7 +71,7 @@ public class RepositoryWizard extends Wizard implements INewWizard {
 	}
 
 	/**
-	 * @see IWorkbenchWizard#init(IWorkbench, IStructuredSelection)
+	 *{@inheritDoc}
 	 * @param workbench
 	 *            the workbench
 	 * @param selection
