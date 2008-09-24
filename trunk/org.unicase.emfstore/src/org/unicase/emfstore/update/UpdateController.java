@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.emfstore.update;
 
 import java.io.IOException;
@@ -16,6 +22,13 @@ import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.esmodel.VersionInfo;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.StorageException;
+import org.unicase.emfstore.update.steps.UpdateStepRemoveAnnotationInstances;
+import org.unicase.emfstore.update.steps.UpdateStepRemoveBugResolution;
+import org.unicase.emfstore.update.steps.UpdateStepRemoveRefiningIssues;
+import org.unicase.emfstore.update.steps.UpdateStepRemoveStepsToReproduce;
+import org.unicase.emfstore.update.steps.UpdateStepRenameAssignedTo;
+import org.unicase.emfstore.update.steps.UpdateStepRenameFacilitator;
+import org.unicase.emfstore.update.steps.UpdateStepRenamePackages;
 
 /**
  * @author schroech
@@ -63,10 +76,15 @@ public class UpdateController {
 	 */
 	public UpdateController(){
 		updateSteps = new ArrayList<UpdateStep>();
-		necessaryUpdateSteps = new ArrayList<UpdateStep>(); 
+		necessaryUpdateSteps = new ArrayList<UpdateStep>();
 		
 		updateSteps.add(new UpdateStepRenameFacilitator());
 		updateSteps.add(new UpdateStepRemoveAnnotationInstances());
+		updateSteps.add(new UpdateStepRemoveBugResolution());
+		updateSteps.add(new UpdateStepRemoveRefiningIssues());
+		updateSteps.add(new UpdateStepRemoveStepsToReproduce());
+		updateSteps.add(new UpdateStepRenameAssignedTo());
+		updateSteps.add(new UpdateStepRenamePackages());
 	}
 	
 
@@ -103,7 +121,19 @@ public class UpdateController {
 		for (UpdateStep updateStep : getUpdateSteps()) {
 			if (updateStep.getTargetVersion().compareTo(sourceEMFStoreVersion) > 0) {
 				if (updateStep.getTargetVersion().compareTo(targetEMFStoreVersion) <= 0) {
-					getNecessaryUpdateSteps().add(updateStep);
+					if (updateStep instanceof ModelCleanupUpdateStep) {
+						String updateMessage = "Your model version is outdated!\n" 
+						+ "Please start the emf store version"
+						+ updateStep.getSourceVersion() 
+						+ "and perform all available "
+						+ "updates before loading the model with emf store version "
+						+ updateStep.getTargetVersion()
+						+ ".";
+						
+						System.out.println(updateMessage);
+					}else{
+						getNecessaryUpdateSteps().add(updateStep);
+					}
 				}
 			}
 		}
