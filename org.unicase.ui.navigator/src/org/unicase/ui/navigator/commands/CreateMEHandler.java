@@ -44,6 +44,9 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 	 */
 	public static final String COMMAND_ECLASS_PARAM = "org.unicase.ui.navigator.eClassParameter";
 	
+	/**
+	 * The Id for DiagramType parameter to command. A diagram of this type is created in the handler.
+	 */
 	public static final String COMMAND_DIAGRAMTYPE_PARAM = "org.unicase.ui.navigator.diagramTypeParameter";
 	/**.
 	 * ({@inheritDoc})

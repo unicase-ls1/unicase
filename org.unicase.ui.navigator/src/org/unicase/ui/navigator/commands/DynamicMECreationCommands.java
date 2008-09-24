@@ -23,7 +23,6 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.model.diagram.impl.MEDiagramImpl;
 import org.unicase.model.document.LeafSection;
 import org.unicase.ui.common.commands.ActionHelper;
 
@@ -151,11 +150,30 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 	 * @author denglerm This interface is used to count ModelElements in the LeafSection.
 	 * 
 	 */
+
+	/**
+	 * This Interface is used to count the  occurrence of model elements in the navigator.
+	 */
 	public interface ICountable {
 		
-		public void setCount(int count);
-		public int getCount();
-		public Object getObject();
+		/**
+		 * This method should set the occurrence count.
+		 * @param count
+		 *             the new occurrence count value
+		 */
+		void setCount(int count);
+		/**
+		 * This method should return the occurrence count.
+		 * @return
+		 *        the occurrence count
+		 */
+		int getCount();
+		/**
+		 * This method should return the object, for which the occurrence is counted.
+		 * @return Object
+		 *             the object, which is counted
+		 */
+		Object getObject();
 		
 	}
 	
@@ -170,19 +188,36 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 		private int count;
 		private Object object;
 		
+		/**
+		 * The constructor.
+		 * @param object
+		 *             the object, for which the occurrence is counted
+		 */
 		public Countable(Object object) {
 			this.setCount(1);
 			this.object = object;
 		}
-		
+		/**
+		 * @see ICountable.
+		 * @param newCount
+		 *             the new occurrence count value
+		 */
 		public void setCount(int newCount) {
 			this.count = newCount;
 		}
-
+		/**
+		 * @see ICountable.
+		 * @return
+		 *        the occurrence count
+		 */
 		public int getCount() {
 			return count;
 		}
-		
+		/**
+		 * @see ICountable.
+		 * @return
+		 *        the occurrence count
+		 */
 		public Object getObject() {
 			return object;
 		}

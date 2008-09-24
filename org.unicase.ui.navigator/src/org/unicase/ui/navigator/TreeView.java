@@ -184,7 +184,7 @@ public class TreeView extends ViewPart  { //implements IShowInSource
 						TransactionalEditingDomain.Registry.INSTANCE
 								.getEditingDomain("org.unicase.EditingDomain"),
 						viewer));
-
+		
 	}
 
 	/**
@@ -223,7 +223,7 @@ public class TreeView extends ViewPart  { //implements IShowInSource
 		};
 
 	}
-
+	
 //	public ShowInContext getShowInContext() {
 //		IStructuredSelection sel = (IStructuredSelection)viewer.getSelection();
 //		ModelElement me = null;

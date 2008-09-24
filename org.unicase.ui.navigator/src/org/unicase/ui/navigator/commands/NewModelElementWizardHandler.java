@@ -33,7 +33,7 @@ public class NewModelElementWizardHandler extends AbstractHandler implements
 	/**
 	 * . ({@inheritDoc})
 	 */
-	public Object execute(ExecutionEvent event) throws ExecutionException {
+	public Object execute(final ExecutionEvent event) throws ExecutionException {
 
 		NewModelElementWizard wizard = new NewModelElementWizard();
 
