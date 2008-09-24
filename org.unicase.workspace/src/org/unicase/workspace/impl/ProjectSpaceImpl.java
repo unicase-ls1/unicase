@@ -827,7 +827,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 		ChangePackage changePackage = VersioningFactory.eINSTANCE
 				.createChangePackage();
-		changePackage.getOperations().addAll(getOperations());
+		//copy operations from projectspace
+		for (AbstractOperation abstractOperation : getOperations()) {
+			AbstractOperation copy = (AbstractOperation) EcoreUtil.copy(abstractOperation);
+			changePackage.getOperations().add(copy);
+		}
+		
 		// changePackage.cannonize();
 		
 		if (commitObserver!=null && !commitObserver.inspectChanges(changePackage)) {
