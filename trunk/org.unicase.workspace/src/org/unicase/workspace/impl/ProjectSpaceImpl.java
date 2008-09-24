@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Observer;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Notification;
@@ -43,6 +44,7 @@ import org.unicase.emfstore.conflictDetection.ConflictDetector;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
+import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
@@ -75,6 +77,7 @@ import org.unicase.workspace.exceptions.IllegalProjectSpaceStateException;
 import org.unicase.workspace.exceptions.NoChangesOnServerException;
 import org.unicase.workspace.exceptions.NoLocalChangesException;
 import org.unicase.workspace.util.CommitObserver;
+import org.unicase.workspace.util.RecordingCommandWithResult;
 import org.unicase.workspace.util.UpdateObserver;
 
 /**
@@ -890,13 +893,14 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * @see org.unicase.workspace.ProjectSpace#update(org.unicase.emfstore.esmodel.versioning.VersionSpec)
 	 * @generated NOT
 	 */
-	public void update(final VersionSpec version, UpdateObserver observer) throws EmfStoreException {
-
+	public void update(final VersionSpec version, final UpdateObserver observer) throws EmfStoreException {
+		
+				
 		final ConnectionManager connectionManager = WorkspaceManager
 				.getInstance().getConnectionManager();
-		PrimaryVersionSpec resolvedVersion = resolveVersionSpec(version);
+		final PrimaryVersionSpec resolvedVersion = resolveVersionSpec(version);
 
-		if (resolvedVersion.compareTo(getBaseVersion()) == 0) {
+		if (resolvedVersion.compareTo(baseVersion) == 0) {
 			throw new NoChangesOnServerException();
 		}
 		if (resolvedVersion.compareTo(getBaseVersion()) < 0) {
@@ -906,11 +910,20 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 							+ ", but the server version of this project is "
 							+ resolvedVersion.getIdentifier() + "!");
 		}
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+		
 		stopChangeRecording();
+		
+		RecordingCommandWithResult<SessionId> command = new RecordingCommandWithResult<SessionId>(domain) {
+			protected void doExecute() {
+				setTypedResult(getUsersession().getSessionId());
+		}};
+		domain.getCommandStack().execute(command);
+		
 		List<ChangePackage> changes = new ArrayList<ChangePackage>();
 		try {
-			changes = connectionManager.getChanges(getUsersession()
-					.getSessionId(), getProjectId(), getBaseVersion(),
+			
+			changes = connectionManager.getChanges(command.getTypedResult(), projectId, baseVersion,
 					resolvedVersion);
 		} catch (EmfStoreException e) {
 			startChangeRecording();
@@ -931,20 +944,21 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		if (observer!=null && !observer.inspectChanges(changes)){
 			return;
 		}
-		
-		for (ChangePackage change : changes) {
+		final List<ChangePackage> cps = changes;
+		RecordingCommand command2 = new RecordingCommand(domain) {
+			protected void doExecute() {
+		for (ChangePackage change : cps) {
 			change.apply(getProject());
-		}
-		setBaseVersion(resolvedVersion);
-
-		// FIXME: record has to be started, because save() calls endrecording
-		// and
-		// whithout a running recording endrecording sets localchanges to null
-		// there must be a nicer solution
-		startChangeRecording();
-		save();
-		// save() calls startChangeRecording ...
-		// startChangeRecording();
+		}}};
+		domain.getCommandStack().execute(command2);
+		
+		RecordingCommand command3 = new RecordingCommand(domain) {
+			protected void doExecute() {
+				setBaseVersion(resolvedVersion);
+				save();
+			}};
+		domain.getCommandStack().execute(command3);
+		
 	}
 
 	/**
@@ -1723,6 +1737,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	public void notify(Notification notification, Project project,
 			ModelElement modelElement) {
-		save();
+		if (isRecording) {
+			save();
+		}
 	}
 } // ProjectContainerImpl
