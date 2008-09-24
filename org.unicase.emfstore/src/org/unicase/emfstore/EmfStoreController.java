@@ -14,12 +14,9 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.LogManager;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -28,7 +25,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
-import org.eclipse.osgi.framework.internal.core.ConsoleMsg;
 import org.unicase.emfstore.accesscontrol.AccessControlImpl;
 import org.unicase.emfstore.accesscontrol.AuthenticationControl;
 import org.unicase.emfstore.connection.ConnectionHandler;
@@ -169,7 +165,12 @@ public class EmfStoreController implements IApplication {
 		//If our model does not contain a VersionInfo, we assume version 0.0.1.qualifier
 		if (versionInformation == null) {
 			versionInformation = EsmodelFactory.eINSTANCE.createVersionInfo();
-			versionInformation.setEmfStoreVersionString("0.0.1.qualifier");
+			if (serverSpace.getProjects().size() != 0) {
+				versionInformation.setEmfStoreVersionString("0.0.1.qualifier");
+			}else{
+				versionInformation.setEmfStoreVersionString(EmfStoreImpl.getModelVersion().toString());
+			}
+			
 			resource.getContents().add(versionInformation);
 			
 			try {
