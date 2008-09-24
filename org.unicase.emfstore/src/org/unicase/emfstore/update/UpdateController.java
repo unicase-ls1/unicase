@@ -24,6 +24,7 @@ import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.emfstore.update.steps.UpdateStepRemoveAnnotationInstances;
 import org.unicase.emfstore.update.steps.UpdateStepRemoveBugResolution;
+import org.unicase.emfstore.update.steps.UpdateStepRemoveOrgUnit;
 import org.unicase.emfstore.update.steps.UpdateStepRemoveRefiningIssues;
 import org.unicase.emfstore.update.steps.UpdateStepRemoveStepsToReproduce;
 import org.unicase.emfstore.update.steps.UpdateStepRenameAssignedTo;
@@ -85,6 +86,7 @@ public class UpdateController {
 		updateSteps.add(new UpdateStepRemoveStepsToReproduce());
 		updateSteps.add(new UpdateStepRenameAssignedTo());
 		updateSteps.add(new UpdateStepRenamePackages());
+		updateSteps.add(new UpdateStepRemoveOrgUnit());
 	}
 	
 

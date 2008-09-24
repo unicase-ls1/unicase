@@ -85,6 +85,15 @@ public interface Project extends EObject, IAdaptable {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model ordered="false" listMany="true" subclasses ="false"
+	 * @generated NOT
+	 */
+	<T extends ModelElement> EList<T> getAllModelElementsbyClass(
+			EClass modelElementClass, EList<T> list, Boolean subclasses);
+	
+	/**
+	 * <!-- begin-user-doc -->
 	 * Returns wether the project contains a model element with the same id.
 	 * <!-- end-user-doc -->
 	 * @model

@@ -6,25 +6,44 @@
  */
 package org.unicase.emfstore.update;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.model.ModelElement;
+import org.unicase.model.Project;
 
 /**
  * @author schroech
  *
  */
-public abstract class UpdateStepRemoveClass extends UpdateStepTransformClass {
+public abstract class UpdateStepRemoveClass extends UpdateStepImpl{
 
 	/**
+	 * @return The {@link EClass} which is about to be transformed
+	 */
+	public abstract EClass getRemovableEClass();	
+	
+	/**
 	 * {@inheritDoc}
-	 * @see org.unicase.emfstore.update.UpdateStepTransformClass#updateModelElement(org.unicase.model.ModelElement)
+	 * @see org.unicase.emfstore.update.UpdateStepImpl#updateProjectState(org.unicase.model.Project)
 	 */
 	@Override
-	public int updateModelElement(ModelElement modelElement) {
-		System.out.println("Removed model element instance \"" + modelElement.getName() + "\"");
-		EcoreUtil.remove(modelElement);
-		return 1;
+	public int updateProjectState(Project state) {
+		int numberOfUpdatedItems = 0;
+		EList<ModelElement> allModelElementsbyClass = state.getAllModelElementsbyClass(getRemovableEClass(), 
+				new BasicEList<ModelElement>(), 
+				false);
+		
+		for (ModelElement modelElement : allModelElementsbyClass) {
+			EcoreUtil.remove(modelElement);
+			System.out.println("Removed instance of class \""
+					+ getRemovableEClass()
+					+ "\"");
+			numberOfUpdatedItems++;
+		}
+		
+		return numberOfUpdatedItems;
 	}
-
 
 }

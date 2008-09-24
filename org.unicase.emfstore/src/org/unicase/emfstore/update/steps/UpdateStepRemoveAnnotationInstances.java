@@ -6,23 +6,16 @@
  */
 package org.unicase.emfstore.update.steps;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.osgi.framework.Version;
-import org.unicase.emfstore.update.UpdateStepTransformClass;
-import org.unicase.model.Annotation;
-import org.unicase.model.ModelElement;
+import org.unicase.emfstore.update.UpdateStepRemoveClass;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.rationale.Comment;
-import org.unicase.model.rationale.RationaleFactory;
 
 /**
  * @author schroech
  *
  */
-public class UpdateStepRemoveAnnotationInstances extends UpdateStepTransformClass{
+public class UpdateStepRemoveAnnotationInstances extends UpdateStepRemoveClass{
 
 	/**
 	 * {@inheritDoc}
@@ -49,38 +42,8 @@ public class UpdateStepRemoveAnnotationInstances extends UpdateStepTransformClas
 		return "Remove Annotation Instances";
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * @see org.unicase.emfstore.update.UpdateStepTransformClass#getTransformableEClass()
-	 */
 	@Override
-	public EClass getTransformableEClass() {
+	public EClass getRemovableEClass() {
 		return ModelPackage.eINSTANCE.getAnnotation();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * @see org.unicase.emfstore.update.UpdateStepTransformClass#updateModelElement(org.unicase.model.ModelElement)
-	 */
-	@Override
-	public int updateModelElement(ModelElement modelElement) {
-		if (modelElement instanceof Annotation) {
-			Annotation annotation = (Annotation)modelElement;
-			
-			Comment newComment = RationaleFactory.eINSTANCE.createComment();
-			
-			EList<EStructuralFeature> structuralFeatures = annotation.eClass().getEStructuralFeatures();
-			for (EStructuralFeature structuralFeature : structuralFeatures) {
-				int featureID = structuralFeature.getFeatureID();
-				if (featureID != ModelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER) {
-					newComment.eSet(structuralFeature, annotation.eGet(structuralFeature));
-				}
-			}
-			
-			EcoreUtil.remove(annotation);
-			
-			return 1;
-		}
-		return 0;
 	}
 }

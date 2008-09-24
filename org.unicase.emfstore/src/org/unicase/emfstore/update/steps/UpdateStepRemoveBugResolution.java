@@ -22,7 +22,7 @@ public class UpdateStepRemoveBugResolution extends UpdateStepRemoveClass{
 	 * @see org.unicase.emfstore.update.UpdateStepTransformClass#getTransformableEClass()
 	 */
 	@Override
-	public EClass getTransformableEClass() {
+	public EClass getRemovableEClass() {
 		return BugPackage.eINSTANCE.getBugResolution();
 	}
 

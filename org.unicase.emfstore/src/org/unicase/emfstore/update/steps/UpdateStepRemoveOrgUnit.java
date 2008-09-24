@@ -9,6 +9,7 @@ package org.unicase.emfstore.update.steps;
 import org.eclipse.emf.ecore.EClass;
 import org.osgi.framework.Version;
 import org.unicase.emfstore.update.UpdateStepRemoveClass;
+import org.unicase.model.organization.OrganizationPackage;
 
 /**
  * @author schroech
@@ -21,9 +22,8 @@ public class UpdateStepRemoveOrgUnit extends UpdateStepRemoveClass {
 	 * @see org.unicase.emfstore.update.UpdateStepTransformClass#getTransformableEClass()
 	 */
 	@Override
-	public EClass getTransformableEClass() {
-		// TODO Auto-generated method stub
-		return null;
+	public EClass getRemovableEClass() {
+		return OrganizationPackage.eINSTANCE.getOrgUnit();
 	}
 
 	/**

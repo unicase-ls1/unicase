@@ -131,6 +131,16 @@ public class ProjectImpl extends EObjectImpl implements Project,
 	@SuppressWarnings("unchecked")
 	public <T extends ModelElement> EList<T> getAllModelElementsbyClass(
 			EClass modelElementClass, EList<T> list) {
+		return getAllModelElementsbyClass(modelElementClass, list, true);
+	}
+	
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.model.Project#getAllModelElementsbyClass(org.eclipse.emf.ecore.EClass)
+	 * @generated NOT
+	 */
+	public <T extends ModelElement> EList<T> getAllModelElementsbyClass(
+			EClass modelElementClass, EList<T> list, Boolean subclasses) {
 
 		// sanity check
 		if (!ModelPackage.eINSTANCE.getModelElement().isSuperTypeOf(
@@ -138,11 +148,21 @@ public class ProjectImpl extends EObjectImpl implements Project,
 			return list;
 		}
 
-		for (ModelElementId modelElementId : getModelElementsFromCache()
-				.keySet()) {
-			ModelElement modelElement = this.getModelElement(modelElementId);
-			if (modelElementClass.isInstance(modelElement)) {
-				list.add((T) modelElement);
+		if (subclasses) {
+			for (ModelElementId modelElementId : getModelElementsFromCache()
+					.keySet()) {
+				ModelElement modelElement = this.getModelElement(modelElementId);
+				if (modelElementClass.isInstance(modelElement)) {
+					list.add((T) modelElement);
+				}
+			}
+		}else{
+			for (ModelElementId modelElementId : getModelElementsFromCache()
+					.keySet()) {
+				ModelElement modelElement = this.getModelElement(modelElementId);
+				if (modelElement.eClass() == modelElementClass) {
+					list.add((T) modelElement);
+				}
 			}
 		}
 
