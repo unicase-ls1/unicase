@@ -85,6 +85,15 @@ public interface Project extends EObject, IAdaptable {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * 
+	 * Retrieve a list of model elements of a certain type in project.
+	 * 
+	 * @param <T> a subtype of model element
+	 * @param modelElementClass the eclass (must be a subtype of model element)
+	 * @param list a list of model elements, can be emtpy, but must be of the same type as the modelElementClass indicates.
+	 * @param subclasses whether to also include all subclasses of the given EClass in the list
+	 * @return a list of model elements of the given type
+	 * 
 	 * <!-- end-user-doc -->
 	 * @model ordered="false" listMany="true" subclasses ="false"
 	 * @generated NOT
@@ -94,7 +103,7 @@ public interface Project extends EObject, IAdaptable {
 	
 	/**
 	 * <!-- begin-user-doc -->
-	 * Returns wether the project contains a model element with the same id.
+	 * Returns whether the project contains a model element with the same id.
 	 * <!-- end-user-doc -->
 	 * @model
 	 * @generated
@@ -102,22 +111,35 @@ public interface Project extends EObject, IAdaptable {
 	boolean contains(ModelElement modelElement);
 
 	/**
-	 * Returns wether the project contains a model element with the same id.
+	 * Returns whether the project contains a model element with the same id.
 	 * @param modelElementId the id
 	 * @return true if the project contains such a model element
 	 */
 	boolean contains(ModelElementId modelElementId);
 	
 	/**
-	 * Returns wether the project contains the exact same instance of the model element.
+	 * Returns whether the project contains the exact same instance of the model element.
 	 * @param modelElement the model element
 	 * @return true if the project contains the instance
 	 */
 	boolean containsInstance(ModelElement modelElement);
 
+	/**
+	 * Get the model element with the given id from the project.
+	 * @param modelElementId the model element id
+	 * @return the model element or null if it is not in the project
+	 */
 	ModelElement getModelElement(ModelElementId modelElementId);
 	
+	/**
+	 * Add an observer to the project. Will be notified on project changes. See {@link ProjectChangeObserver}.
+	 * @param projectChangeObserver
+	 */
 	void addProjectChangeObserver(ProjectChangeObserver projectChangeObserver);
 	
+	/**
+	 * Remove an observer to the project. See {@link ProjectChangeObserver}.
+	 * @param projectChangeObserver
+	 */
 	void removeProjectChangeObserver(ProjectChangeObserver projectChangeObserver);
 } // Project
