@@ -46,6 +46,10 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 	 */
 	private boolean treePageCompleted;
 	
+	/**
+	 * Through this field, the ModelTreePage tells the wizard, which diagram type should be created
+	 * e.g. a Class Diagram or Usecase Diagram
+	 */
 	private DiagramType newDiagramType;
 
 	/**
@@ -141,6 +145,11 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 		this.treePageCompleted = treePageCompleted;
 	}
 
+	/**
+	 * @see newDiagramType
+	 * @param type
+	 *            the type of the diagram, to be created.
+	 */
 	public void setNewDiagramType(DiagramType type) {
 		this.newDiagramType = type;
 		
