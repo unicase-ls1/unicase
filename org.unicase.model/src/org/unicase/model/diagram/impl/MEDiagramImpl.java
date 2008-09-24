@@ -213,7 +213,7 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	 */
 	public EList<ModelElement> getNewElements() {
 
-		// FIXME: this line is needed in order to avoid exception when
+		// this line is needed in order to avoid exception when
 		// initializing Teneo. Otherwise getProjects() throws an exception
 		// because eContainer is null. Returning null in this case shouldn't be
 		// a problem because getNewElements() is transient anyway.
@@ -221,7 +221,7 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 			return null;
 		}
 
-		// JH: cache instance
+		//MD: Should we cache this instance?
 		return new DiagramNewElementsList(getElements(), getProject());
 	}
 

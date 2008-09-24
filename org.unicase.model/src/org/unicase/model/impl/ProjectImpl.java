@@ -32,15 +32,17 @@ import org.unicase.model.util.ProjectChangeObserver;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object. '
- * @implements ProjectChangeObserver
- * <em><b>Project</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.impl.ProjectImpl#getModelElements <em>Model Elements</em>}</li>
- * </ul>
- * </p>
- *
+ * 
+ * @implements ProjectChangeObserver <em><b>Project</b></em>'. <!-- end-user-doc
+ *             -->
+ *             <p>
+ *             The following features are implemented:
+ *             <ul>
+ *             <li>{@link org.unicase.model.impl.ProjectImpl#getModelElements
+ *             <em>Model Elements</em>}</li>
+ *             </ul>
+ *             </p>
+ * 
  * @generated
  */
 
@@ -48,9 +50,10 @@ public class ProjectImpl extends EObjectImpl implements Project,
 		ProjectChangeObserver {
 
 	/**
-	 * The cached value of the '{@link #getModelElements() <em>Model Elements</em>}' containment reference list.
-	 * <!-- begin-user-doc
+	 * The cached value of the '{@link #getModelElements()
+	 * <em>Model Elements</em>}' containment reference list. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getModelElements()
 	 * @generated
 	 * @ordered
@@ -59,9 +62,10 @@ public class ProjectImpl extends EObjectImpl implements Project,
 	private Map<ModelElementId, ModelElement> modelElementCache;
 	private List<ProjectChangeObserver> observers;
 
-	//begin of custom code
+	// begin of custom code
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	protected ProjectImpl() {
@@ -69,10 +73,11 @@ public class ProjectImpl extends EObjectImpl implements Project,
 		observers = new ArrayList<ProjectChangeObserver>();
 	}
 
-	//end of custom code
-	
+	// end of custom code
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -82,6 +87,7 @@ public class ProjectImpl extends EObjectImpl implements Project,
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ModelElement> getModelElements() {
@@ -93,9 +99,10 @@ public class ProjectImpl extends EObjectImpl implements Project,
 		return modelElements;
 	}
 
-	//begin of custom code
+	// begin of custom code
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.model.Project#addModelElement(org.unicase.model.ModelElement)
 	 * @generated NOT
 	 */
@@ -105,6 +112,7 @@ public class ProjectImpl extends EObjectImpl implements Project,
 
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.model.Project#getAllModelElements()
 	 * @generated NOT
 	 */
@@ -113,17 +121,18 @@ public class ProjectImpl extends EObjectImpl implements Project,
 				.getModelElement(), new BasicEList<ModelElement>());
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.model.Project#getAllModelElementsbyClass(org.eclipse.emf.ecore.EClass)
 	 * @generated NOT
 	 */
-	//cast below is guarded by sanity check
+	// cast below is guarded by sanity check
 	@SuppressWarnings("unchecked")
 	public <T extends ModelElement> EList<T> getAllModelElementsbyClass(
 			EClass modelElementClass, EList<T> list) {
 
-		//sanity check
+		// sanity check
 		if (!ModelPackage.eINSTANCE.getModelElement().isSuperTypeOf(
 				modelElementClass)) {
 			return list;
@@ -140,12 +149,13 @@ public class ProjectImpl extends EObjectImpl implements Project,
 		return list;
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.model.Project#getModelElementsByClass(org.eclipse.emf.ecore.EClass)
 	 * @generated NOT
 	 */
-	//cast below is guarded by sanity check
+	// cast below is guarded by sanity check
 	@SuppressWarnings("unchecked")
 	public <T extends ModelElement> EList<T> getModelElementsByClass(
 			EClass modelElementClass, EList<T> list) {
@@ -162,10 +172,11 @@ public class ProjectImpl extends EObjectImpl implements Project,
 		return list;
 	}
 
-	//end of custom code
+	// end of custom code
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -181,6 +192,7 @@ public class ProjectImpl extends EObjectImpl implements Project,
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -194,6 +206,7 @@ public class ProjectImpl extends EObjectImpl implements Project,
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -211,6 +224,7 @@ public class ProjectImpl extends EObjectImpl implements Project,
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -225,6 +239,7 @@ public class ProjectImpl extends EObjectImpl implements Project,
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -236,15 +251,20 @@ public class ProjectImpl extends EObjectImpl implements Project,
 		return super.eIsSet(featureID);
 	}
 
+	/**
+	 * this methods implements the adapter interface which is needed by the
+	 * navigator
+	 * 
+	 * @author helming
+	 */
 	@SuppressWarnings("unchecked")
 	public Object getAdapter(Class adapter) {
-		// JH Auto-generated method stub
 		return null;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public boolean contains(ModelElement modelElement) {
@@ -253,7 +273,7 @@ public class ProjectImpl extends EObjectImpl implements Project,
 
 	private Map<ModelElementId, ModelElement> getModelElementsFromCache() {
 		if (modelElementCache == null) {
-			//init cache
+			// init cache
 			modelElementCache = new HashMap<ModelElementId, ModelElement>();
 			TreeIterator<EObject> allContents = this.eAllContents();
 			while (allContents.hasNext()) {
@@ -264,7 +284,7 @@ public class ProjectImpl extends EObjectImpl implements Project,
 							modelElement);
 				}
 			}
-			//init cache update
+			// init cache update
 			new ProjectChangeNotifier(this, this);
 		}
 		return modelElementCache;
@@ -302,7 +322,7 @@ public class ProjectImpl extends EObjectImpl implements Project,
 
 	public void addProjectChangeObserver(
 			ProjectChangeObserver projectChangeObserver) {
-		//FIXME: hack to init notifier and cache
+		// FIXME: hack to init notifier and cache
 		getModelElementsFromCache();
 		this.observers.add(projectChangeObserver);
 	}
@@ -310,7 +330,7 @@ public class ProjectImpl extends EObjectImpl implements Project,
 	public void removeProjectChangeObserver(
 			ProjectChangeObserver projectChangeObserver) {
 		this.observers.remove(projectChangeObserver);
-		
+
 	}
 
 	public boolean containsInstance(ModelElement modelElement) {
@@ -318,7 +338,8 @@ public class ProjectImpl extends EObjectImpl implements Project,
 		if (!this.contains(modelElementId)) {
 			return false;
 		}
-		ModelElement element = this.getModelElementsFromCache().get(modelElementId);
-		return element==modelElement;
+		ModelElement element = this.getModelElementsFromCache().get(
+				modelElementId);
+		return element == modelElement;
 	}
 }
