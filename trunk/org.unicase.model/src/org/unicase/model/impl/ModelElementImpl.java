@@ -516,8 +516,8 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	 */
 	public void addReader(String acOrgId) {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		getStringReaderInfos().add(
-				acOrgId.concat("#").concat(df.format(new Date())));
+//		getStringReaderInfos().add(
+//				acOrgId.concat("#").concat(df.format(new Date())));
 	}
 
 	//end of custom code
