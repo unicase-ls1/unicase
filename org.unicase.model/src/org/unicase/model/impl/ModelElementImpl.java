@@ -225,14 +225,16 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	 * @generated NOT
 	 */
 	protected ModelElementImpl() {
+		//MK: Document why this is so.
 		super();
 	}
 
 	// end of custom code
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 */
 	@Override
 	protected EClass eStaticClass() {
@@ -474,6 +476,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
+	 * @return The state of the model element
 	 */
 	public String getState() {
 		try {
@@ -485,9 +488,10 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->.
 	 * 
 	 * @generated NOT
+	 * @return the project in which the modelelement is contained.
 	 */
 	public Project getProject() {
 		// check if my container is a project
