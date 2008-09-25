@@ -379,6 +379,9 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl
 				return;
 			}
 		}
+		if (!project.contains(newModelElement)) {
+			project.addModelElement(newModelElement);
+		}
 		//FIXME MK: exception
 		throw new IllegalStateException("cannot find reference feature");
 
