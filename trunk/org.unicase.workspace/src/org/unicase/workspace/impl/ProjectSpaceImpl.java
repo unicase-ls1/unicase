@@ -779,16 +779,17 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		}
 		return oldLogMessages;
 	}
-	
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @throws EmfStoreException 
+	 * 
+	 * @throws EmfStoreException
 	 * 
 	 * @throws EmfStoreException
 	 * @generated NOT
 	 */
-	public PrimaryVersionSpec commit(final LogMessage logMessage) throws EmfStoreException {
+	public PrimaryVersionSpec commit(final LogMessage logMessage)
+			throws EmfStoreException {
 		return commit(logMessage, null);
 	}
 
@@ -798,8 +799,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * @throws EmfStoreException
 	 * @generated NOT
 	 */
-	public PrimaryVersionSpec commit(final LogMessage logMessage, CommitObserver commitObserver)
-			throws EmfStoreException {
+	public PrimaryVersionSpec commit(final LogMessage logMessage,
+			CommitObserver commitObserver) throws EmfStoreException {
 
 		long currentTimeMillis = System.currentTimeMillis();
 
@@ -823,24 +824,26 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			startChangeRecording();
 			throw new BaseVersionOutdatedException();
 		}
-		
+
 		final ConnectionManager connectionManager = WorkspaceManager
 				.getInstance().getConnectionManager();
 
 		ChangePackage changePackage = VersioningFactory.eINSTANCE
 				.createChangePackage();
-		//copy operations from projectspace
+		// copy operations from projectspace
 		for (AbstractOperation abstractOperation : getOperations()) {
-			AbstractOperation copy = (AbstractOperation) EcoreUtil.copy(abstractOperation);
+			AbstractOperation copy = (AbstractOperation) EcoreUtil
+					.copy(abstractOperation);
 			changePackage.getOperations().add(copy);
 		}
-		
+
 		changePackage.cannonize();
-		
-		if (commitObserver!=null && !commitObserver.inspectChanges(changePackage)) {
+
+		if (commitObserver != null
+				&& !commitObserver.inspectChanges(changePackage)) {
 			return this.getBaseVersion();
 		}
-		
+
 		PrimaryVersionSpec newBaseVersion;
 		try {
 			newBaseVersion = connectionManager.createVersion(getUsersession()
@@ -886,15 +889,16 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	public void update(final VersionSpec version) throws EmfStoreException {
 		update(version, null);
 	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.workspace.ProjectSpace#update(org.unicase.emfstore.esmodel.versioning.VersionSpec)
 	 * @generated NOT
 	 */
-	public void update(final VersionSpec version, final UpdateObserver observer) throws EmfStoreException {
-		
-				
+	public void update(final VersionSpec version, final UpdateObserver observer)
+			throws EmfStoreException {
+
 		final ConnectionManager connectionManager = WorkspaceManager
 				.getInstance().getConnectionManager();
 		final PrimaryVersionSpec resolvedVersion = resolveVersionSpec(version);
@@ -909,55 +913,63 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 							+ ", but the server version of this project is "
 							+ resolvedVersion.getIdentifier() + "!");
 		}
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
-		
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain");
+
 		stopChangeRecording();
-		
-		RecordingCommandWithResult<SessionId> command = new RecordingCommandWithResult<SessionId>(domain) {
+
+		RecordingCommandWithResult<SessionId> command = new RecordingCommandWithResult<SessionId>(
+				domain) {
 			protected void doExecute() {
 				setTypedResult(getUsersession().getSessionId());
-		}};
+			}
+		};
 		domain.getCommandStack().execute(command);
-		
+
 		List<ChangePackage> changes = new ArrayList<ChangePackage>();
 		try {
-			
-			changes = connectionManager.getChanges(command.getTypedResult(), projectId, baseVersion,
-					resolvedVersion);
+
+			changes = connectionManager.getChanges(command.getTypedResult(),
+					projectId, baseVersion, resolvedVersion);
 		} catch (EmfStoreException e) {
 			startChangeRecording();
 			throw e;
 		}
 
-		// detect conflicts		 
-		ConflictDetector conflictDetector = new ConflictDetector(new BasicConflictDetectionStrategy());
+		// detect conflicts
+		ConflictDetector conflictDetector = new ConflictDetector(
+				new BasicConflictDetectionStrategy());
 		for (ChangePackage change : changes) {
-			ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
+			ChangePackage changePackage = VersioningFactory.eINSTANCE
+					.createChangePackage();
 			changePackage.getOperations().addAll(myOperations);
 			if (conflictDetector.doConflict(change, changePackage)) {
 				throw new ChangeConflictException(changes);
 			}
-		 }
-		
-		//notify updateObserver if there is one
-		if (observer!=null && !observer.inspectChanges(changes)){
+		}
+
+		// notify updateObserver if there is one
+		if (observer != null && !observer.inspectChanges(changes)) {
 			return;
 		}
 		final List<ChangePackage> cps = changes;
 		RecordingCommand command2 = new RecordingCommand(domain) {
 			protected void doExecute() {
-		for (ChangePackage change : cps) {
-			change.apply(getProject());
-		}}};
+				for (ChangePackage change : cps) {
+					change.apply(getProject());
+				}
+			}
+		};
 		domain.getCommandStack().execute(command2);
-		
+
 		RecordingCommand command3 = new RecordingCommand(domain) {
 			protected void doExecute() {
 				setBaseVersion(resolvedVersion);
 				save();
-			}};
+			}
+		};
 		domain.getCommandStack().execute(command3);
-		
+
 	}
 
 	/**
@@ -1438,11 +1450,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			Object notifier = notification.getNotifier();
 			if (notifier instanceof ModelElement) {
 				ModelElement modelElement = (ModelElement) notifier;
-				if (ProjectSpaceImpl.this.getProject().containsInstance(modelElement)) {
+				if (ProjectSpaceImpl.this.getProject().containsInstance(
+						modelElement)) {
 					projectNotifications.add(notification);
 				}
 			}
-			if (notifier==getProject()) {
+			if (notifier == getProject()) {
 				projectNotifications.add(notification);
 			}
 		}
@@ -1462,48 +1475,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 					this.myOperations.add(attributeOperation);
 					continue;
 				} else if (feature instanceof EReference) {
-
-					// single reference set
-					EReference reference = (EReference) feature;
-					ModelElement newValueME = (ModelElement) newValue;
-
-					if (reference.isContainment()) {
-						if (newValue == null) {
-							// element removed from containment hierachy
-							CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(
-									newValueME, true);
-							this.myOperations.add(createDeleteOperation);
-						} else {
-							// element added to containment hierachy
-							CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(
-									newValueME, false);
-							this.myOperations.add(createDeleteOperation);
-						}
-					}
-
-					// handle bidirectional features
-					EReference opposite = reference.getEOpposite();
-					if (opposite != null) {
-						if (projectNotifications.size() > i + 1) {
-							Notification nextNotification = projectNotifications
-									.get(i + 1);
-							// next notification is about the opposite of this
-							// notification
-							if ((nextNotification.getFeature() instanceof EReference)
-									&& nextNotification.getNotifier() == newValue
-									&& opposite.getName().equals(
-											((EReference) nextNotification
-													.getFeature()).getName())) {
-								// skip
-								// i++;
-								continue;
-							}
-						}
-					}
-
-					SingleReferenceOperation singleReferenceOperation = createSingleReferenceOperation(
-							notification, oldValue, reference, newValueME);
-					this.myOperations.add(singleReferenceOperation);
+					handleSetReference(projectNotifications, i, notification, feature,
+							newValue, oldValue);
 					continue;
 				}
 				// FIXME MK: this should never happen
@@ -1517,8 +1490,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 								(ModelElement) newValue, false);
 						this.myOperations.add(createDeleteOperation);
 					} else {
-						i = handleEReference(feature, newValue, notification,
-								true, projectNotifications, i);
+						handleEReference(feature, newValue, notification, true,
+								projectNotifications, i);
 					}
 				} else if (feature instanceof EAttribute) {
 					EAttribute attribute = (EAttribute) feature;
@@ -1540,7 +1513,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 								(ModelElement) oldValue, true);
 						this.myOperations.add(createDeleteOperation);
 					} else {
-						i = handleEReference(feature, oldValue, notification,
+						handleEReference(feature, oldValue, notification,
 								false, projectNotifications, i);
 					}
 				} else if (feature instanceof EAttribute) {
@@ -1597,6 +1570,43 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	}
 
+	private void handleSetReference(List<Notification> projectNotifications, int i,
+			Notification notification, Object feature, Object newValue,
+			Object oldValue) {
+		// single reference set
+		EReference reference = (EReference) feature;
+		ModelElement newValueME = (ModelElement) newValue;
+
+		if (reference.isContainment() && newValue != null) {
+			// element added to containment hierachy
+			CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(
+					newValueME, false);
+			this.myOperations.add(createDeleteOperation);
+
+		}
+
+		boolean skip;
+		if (newValue != null) {
+			skip = isBirectionalNotification(reference,
+					projectNotifications, newValue, i);
+		} else {
+			skip = isBirectionalNotification(reference,
+					projectNotifications, oldValue, i);
+		}
+		if (!skip) {
+			SingleReferenceOperation singleReferenceOperation = createSingleReferenceOperation(
+					notification, oldValue, reference, newValueME);
+			this.myOperations.add(singleReferenceOperation);
+		}
+		
+		if (reference.isContainment() && newValue == null) {
+			// element removed from containment hierachy
+			CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(
+					newValueME, true);
+			this.myOperations.add(createDeleteOperation);
+		}
+	}
+
 	private MultiAttributeOperation createMultiAttributeOperation(
 			Notification notification, Object newValue, EAttribute attribute,
 			boolean isAdd) {
@@ -1626,22 +1636,49 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		return attributeOperation;
 	}
 
-	private int handleEReference(Object feature, Object value,
+	private void handleEReference(Object feature, Object value,
 			Notification notification, boolean isAdd,
 			List<Notification> projectNotifications, int i) {
 
 		EReference reference = (EReference) feature;
 		ModelElement modelElement = (ModelElement) value;
 
-		if (reference.isContainment()) {
+		if (reference.isContainment() && isAdd) {
 			// element was added or removed to/from containment hierachy
 			CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(
-					modelElement, !isAdd);
+					modelElement, false);
 			this.myOperations.add(createDeleteOperation);
 
 		}
 
-		// handle bidirectional features
+		if (!isBirectionalNotification(reference, projectNotifications, value,
+				i)) {
+			// element was added/removed to/from a reference feature
+			ModelElement parent = (ModelElement) notification.getNotifier();
+
+			if (reference.isMany()) {
+				MultiReferenceOperation multiReferenceOperation = createMultiReferenceOperation(
+						notification, reference, modelElement, parent, isAdd);
+				this.myOperations.add(multiReferenceOperation);
+			} else {
+				// should never hit here
+				throw new IllegalStateException();
+			}
+		}
+
+		if (reference.isContainment() && !isAdd) {
+			// element was removed to/from containment hierachy
+			CreateDeleteOperation deleteOperation = createCreateDeleteOperation(
+					modelElement, true);
+			this.myOperations.add(deleteOperation);
+
+		}
+
+		return;
+	}
+
+	private boolean isBirectionalNotification(EReference reference,
+			List<Notification> projectNotifications, Object value, int i) {
 		EReference opposite = reference.getEOpposite();
 		if (opposite != null) {
 			if (projectNotifications.size() > i + 1) {
@@ -1652,25 +1689,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 						&& opposite.getName().equals(
 								((EReference) nextNotification.getFeature())
 										.getName())) {
-					// skip
-					// i++;
-					return i;
+					return true;
 				}
 			}
 		}
-
-		// element was added/removed to/from a reference feature
-		ModelElement parent = (ModelElement) notification.getNotifier();
-
-		if (reference.isMany()) {
-			MultiReferenceOperation multiReferenceOperation = createMultiReferenceOperation(
-					notification, reference, modelElement, parent, isAdd);
-			this.myOperations.add(multiReferenceOperation);
-		} else {
-			// should never hit here
-			throw new IllegalStateException();
-		}
-		return i;
+		return false;
 	}
 
 	private MultiReferenceOperation createMultiReferenceOperation(
