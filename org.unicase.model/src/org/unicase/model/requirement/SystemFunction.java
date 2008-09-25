@@ -7,6 +7,7 @@
 package org.unicase.model.requirement;
 
 import org.unicase.model.ModelElement;
+import org.unicase.model.NonDomainElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +27,7 @@ import org.unicase.model.ModelElement;
  * @model
  * @generated
  */
-public interface SystemFunction extends ModelElement {
+public interface SystemFunction extends ModelElement, NonDomainElement {
 	/**
 	 * Returns the value of the '<em><b>Input</b></em>' attribute.
 	 * <!-- begin-user-doc -->

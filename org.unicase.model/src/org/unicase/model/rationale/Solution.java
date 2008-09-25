@@ -8,6 +8,7 @@ package org.unicase.model.rationale;
 
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
+import org.unicase.model.NonDomainElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '
@@ -25,7 +26,7 @@ import org.unicase.model.ModelElement;
  * @model
  * @generated
  */
-public interface Solution extends ModelElement {
+public interface Solution extends ModelElement, NonDomainElement {
 	/**
 	 * Returns the value of the '<em><b>Underlying Proposals</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.model.rationale.Proposal}.

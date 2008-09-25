@@ -58,6 +58,7 @@
       <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//IdentifiableElement/identifier"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//ModelElementId"/>
+    <genClasses image="false" ecoreClass="model.ecore#//NonDomainElement"/>
     <nestedGenPackages prefix="Organization" basePackage="org.unicase.model" disposableProviderFactory="true"
         ecorePackage="model.ecore#//organization">
       <genClasses ecoreClass="model.ecore#//organization/User">

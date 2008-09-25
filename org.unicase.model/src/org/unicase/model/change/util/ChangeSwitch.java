@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.Annotation;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
+import org.unicase.model.NonDomainElement;
 import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.MergingIssue;
 import org.unicase.model.change.MergingProposal;
@@ -129,6 +130,8 @@ public class ChangeSwitch<T> {
 			if (result == null)
 				result = caseModelElement(mergingProposal);
 			if (result == null)
+				result = caseNonDomainElement(mergingProposal);
+			if (result == null)
 				result = caseIdentifiableElement(mergingProposal);
 			if (result == null)
 				result = defaultCase(theEObject);
@@ -141,6 +144,8 @@ public class ChangeSwitch<T> {
 				result = caseSolution(mergingSolution);
 			if (result == null)
 				result = caseModelElement(mergingSolution);
+			if (result == null)
+				result = caseNonDomainElement(mergingSolution);
 			if (result == null)
 				result = caseIdentifiableElement(mergingSolution);
 			if (result == null)
@@ -292,6 +297,21 @@ public class ChangeSwitch<T> {
 	 * @generated
 	 */
 	public T caseIssue(Issue object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Non Domain Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Non Domain Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNonDomainElement(NonDomainElement object) {
 		return null;
 	}
 

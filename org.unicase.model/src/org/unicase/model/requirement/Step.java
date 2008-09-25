@@ -7,6 +7,7 @@
 package org.unicase.model.requirement;
 
 import org.unicase.model.ModelElement;
+import org.unicase.model.NonDomainElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '
@@ -25,7 +26,7 @@ import org.unicase.model.ModelElement;
  * @model
  * @generated
  */
-public interface Step extends ModelElement {
+public interface Step extends ModelElement, NonDomainElement {
 	/**
 	 * Returns the value of the '<em><b>User Step</b></em>' attribute. <!--
 	 * begin-user-doc -->

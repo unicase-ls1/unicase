@@ -376,9 +376,10 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	}
 
 	/**
-	 * @generated
 	 * <!-- begin-user-doc -->
+	 * .
 	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	public EList<MethodArgument> getArguments() {
 		if (arguments == null) {
@@ -705,7 +706,7 @@ public class MethodImpl extends ModelElementImpl implements Method {
 			}
 		}
 
-		if (eNotificationRequired()){
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET,
 					ClassesPackage.METHOD__SIGNATURE, oldLabel, getLabel()));
 		}

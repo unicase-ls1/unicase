@@ -23,19 +23,14 @@ import org.unicase.model.impl.ModelElementImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.classes.impl.MethodArgumentImpl#getType <em>Type
- * </em>}</li>
- * <li>{@link org.unicase.model.classes.impl.MethodArgumentImpl#getDirection
- * <em>Direction</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.MethodArgumentImpl#getDefaultValue
- * <em>Default Value</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.MethodArgumentImpl#getSignature
- * <em>Signature</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.MethodArgumentImpl#getLabel <em>
- * Label</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.MethodArgumentImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.MethodArgumentImpl#getDirection <em>Direction</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.MethodArgumentImpl#getDefaultValue <em>Default Value</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.MethodArgumentImpl#getSignature <em>Signature</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.MethodArgumentImpl#getLabel <em>Label</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class MethodArgumentImpl extends ModelElementImpl implements
@@ -43,7 +38,6 @@ public class MethodArgumentImpl extends ModelElementImpl implements
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getType()
 	 * @generated
 	 * @ordered
@@ -53,7 +47,6 @@ public class MethodArgumentImpl extends ModelElementImpl implements
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getType()
 	 * @generated
 	 * @ordered
@@ -61,9 +54,8 @@ public class MethodArgumentImpl extends ModelElementImpl implements
 	protected String type = TYPE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDirection() <em>Direction</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getDirection() <em>Direction</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getDirection()
 	 * @generated
 	 * @ordered
@@ -71,9 +63,8 @@ public class MethodArgumentImpl extends ModelElementImpl implements
 	protected static final ArgumentDirectionType DIRECTION_EDEFAULT = ArgumentDirectionType.UNDEFINED;
 
 	/**
-	 * The cached value of the '{@link #getDirection() <em>Direction</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getDirection() <em>Direction</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getDirection()
 	 * @generated
 	 * @ordered
@@ -81,10 +72,9 @@ public class MethodArgumentImpl extends ModelElementImpl implements
 	protected ArgumentDirectionType direction = DIRECTION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDefaultValue()
-	 * <em>Default Value</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getDefaultValue()
 	 * @generated
 	 * @ordered
@@ -92,10 +82,9 @@ public class MethodArgumentImpl extends ModelElementImpl implements
 	protected static final String DEFAULT_VALUE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDefaultValue()
-	 * <em>Default Value</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getDefaultValue()
 	 * @generated
 	 * @ordered
@@ -103,9 +92,8 @@ public class MethodArgumentImpl extends ModelElementImpl implements
 	protected String defaultValue = DEFAULT_VALUE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getSignature() <em>Signature</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getSignature() <em>Signature</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getSignature()
 	 * @generated
 	 * @ordered
@@ -115,7 +103,6 @@ public class MethodArgumentImpl extends ModelElementImpl implements
 	/**
 	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getLabel()
 	 * @generated
 	 * @ordered
@@ -125,7 +112,6 @@ public class MethodArgumentImpl extends ModelElementImpl implements
 	/**
 	 * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getLabel()
 	 * @generated
 	 * @ordered
@@ -134,7 +120,6 @@ public class MethodArgumentImpl extends ModelElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected MethodArgumentImpl() {
@@ -143,7 +128,6 @@ public class MethodArgumentImpl extends ModelElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -153,7 +137,6 @@ public class MethodArgumentImpl extends ModelElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getType() {
@@ -162,7 +145,6 @@ public class MethodArgumentImpl extends ModelElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setType(String newType) {
@@ -175,7 +157,6 @@ public class MethodArgumentImpl extends ModelElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ArgumentDirectionType getDirection() {
@@ -184,7 +165,6 @@ public class MethodArgumentImpl extends ModelElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDirection(ArgumentDirectionType newDirection) {
@@ -198,7 +178,6 @@ public class MethodArgumentImpl extends ModelElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getDefaultValue() {
@@ -207,7 +186,6 @@ public class MethodArgumentImpl extends ModelElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDefaultValue(String newDefaultValue) {
@@ -330,12 +308,9 @@ public class MethodArgumentImpl extends ModelElementImpl implements
 		}
 	}
 
-
 	/**
+	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
 	 * @generated
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * 
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
@@ -356,7 +331,6 @@ public class MethodArgumentImpl extends ModelElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -380,7 +354,6 @@ public class MethodArgumentImpl extends ModelElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -404,7 +377,6 @@ public class MethodArgumentImpl extends ModelElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -430,7 +402,6 @@ public class MethodArgumentImpl extends ModelElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -869,9 +869,14 @@ public class RequirementPackageImpl extends EPackageImpl implements
 		actorInstanceEClass.getESuperTypes().add(
 				theModelPackage.getModelElement());
 		stepEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		stepEClass.getESuperTypes().add(theModelPackage.getNonDomainElement());
 		systemFunctionEClass.getESuperTypes().add(
 				theModelPackage.getModelElement());
+		systemFunctionEClass.getESuperTypes().add(
+				theModelPackage.getNonDomainElement());
 		userTaskEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		userTaskEClass.getESuperTypes().add(
+				theModelPackage.getNonDomainElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(nonFunctionalRequirementEClass,

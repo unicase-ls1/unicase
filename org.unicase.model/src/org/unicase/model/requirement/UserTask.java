@@ -8,6 +8,7 @@ package org.unicase.model.requirement;
 
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
+import org.unicase.model.NonDomainElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +28,7 @@ import org.unicase.model.ModelElement;
  * @model
  * @generated
  */
-public interface UserTask extends ModelElement {
+public interface UserTask extends ModelElement, NonDomainElement {
 	/**
 	 * Returns the value of the '<em><b>Initiating Actor</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.Actor#getInitiatedUserTask <em>Initiated User Task</em>}'.
