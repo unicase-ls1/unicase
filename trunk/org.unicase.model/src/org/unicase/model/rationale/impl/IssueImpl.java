@@ -23,7 +23,6 @@ import org.unicase.model.change.ModelChangePackage;
 import org.unicase.model.impl.AnnotationImpl;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
-import org.unicase.model.organization.User;
 import org.unicase.model.rationale.Criterion;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.Proposal;
@@ -187,6 +186,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * .
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */

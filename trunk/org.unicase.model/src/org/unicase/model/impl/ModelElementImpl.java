@@ -232,7 +232,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	// end of custom code
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

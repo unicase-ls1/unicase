@@ -8,9 +8,6 @@ package org.unicase.model.task;
 
 import java.util.Date;
 
-import org.eclipse.emf.common.util.EList;
-import org.unicase.model.organization.User;
-
 /**
  * <!-- begin-user-doc --> A representation of the model object '
  * <em><b>Action Item</b></em>'. <!-- end-user-doc -->
