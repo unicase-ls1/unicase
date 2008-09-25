@@ -230,6 +230,7 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(BugReport.class)) {
+		case BugPackage.BUG_REPORT__CHECKED:
 		case BugPackage.BUG_REPORT__STATUS:
 		case BugPackage.BUG_REPORT__SEVERITY:
 			fireNotifyChanged(new ViewerNotification(notification, notification

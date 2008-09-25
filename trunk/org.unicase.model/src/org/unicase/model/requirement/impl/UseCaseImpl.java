@@ -14,6 +14,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -105,7 +106,7 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	protected String precondition = PRECONDITION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getUseCaseSteps() <em>Use Case Steps</em>}' reference list.
+	 * The cached value of the '{@link #getUseCaseSteps() <em>Use Case Steps</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getUseCaseSteps()
@@ -528,8 +529,10 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	 */
 	public EList<Step> getUseCaseSteps() {
 		if (useCaseSteps == null) {
-			useCaseSteps = new EObjectResolvingEList<Step>(Step.class, this,
-					RequirementPackage.USE_CASE__USE_CASE_STEPS);
+			useCaseSteps = new EObjectContainmentWithInverseEList.Resolving<Step>(
+					Step.class, this,
+					RequirementPackage.USE_CASE__USE_CASE_STEPS,
+					RequirementPackage.STEP__USE_CASE);
 		}
 		return useCaseSteps;
 	}
@@ -627,6 +630,9 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 						RequirementPackage.USER_TASK__REALIZING_USE_CASES,
 						UserTask.class, msgs);
 			return basicSetRealizedUserTask((UserTask) otherEnd, msgs);
+		case RequirementPackage.USE_CASE__USE_CASE_STEPS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getUseCaseSteps())
+					.basicAdd(otherEnd, msgs);
 		case RequirementPackage.USE_CASE__SCENARIOS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getScenarios())
 					.basicAdd(otherEnd, msgs);
@@ -658,6 +664,9 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 					otherEnd, msgs);
 		case RequirementPackage.USE_CASE__REALIZED_USER_TASK:
 			return basicSetRealizedUserTask(null, msgs);
+		case RequirementPackage.USE_CASE__USE_CASE_STEPS:
+			return ((InternalEList<?>) getUseCaseSteps()).basicRemove(otherEnd,
+					msgs);
 		case RequirementPackage.USE_CASE__SCENARIOS:
 			return ((InternalEList<?>) getScenarios()).basicRemove(otherEnd,
 					msgs);

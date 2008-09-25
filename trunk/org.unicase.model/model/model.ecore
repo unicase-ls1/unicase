@@ -338,7 +338,8 @@
           eOpposite="#//requirement/UserTask/realizingUseCases" eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="precondition" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="useCaseSteps" upperBound="-1"
-          eType="#//requirement/Step" eKeys="#//IdentifiableElement/identifier"/>
+          eType="#//requirement/Step" containment="true" eOpposite="#//requirement/Step/useCase"
+          eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="postcondition" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="rules" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
           defaultValueLiteral=""/>
@@ -413,6 +414,8 @@
           eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="includedSystemFunction"
           eType="#//requirement/SystemFunction" eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="useCase" eType="#//requirement/UseCase"
+          eOpposite="#//requirement/UseCase/useCaseSteps" eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SystemFunction" eSuperTypes="#//ModelElement #//NonDomainElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="input" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
@@ -490,7 +493,7 @@
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="bug" nsURI="http://unicase.org/model/bug" nsPrefix="org.unicase.model.bug">
-    <eClassifiers xsi:type="ecore:EClass" name="BugReport" eSuperTypes="#//task/WorkItem">
+    <eClassifiers xsi:type="ecore:EClass" name="BugReport" eSuperTypes="#//task/WorkItem #//task/Checkable">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Status" eType="#//bug/BugStatus"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="severity" eType="#//bug/Severity"/>
     </eClassifiers>

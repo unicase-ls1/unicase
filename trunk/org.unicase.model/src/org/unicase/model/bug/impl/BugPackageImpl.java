@@ -323,6 +323,7 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 
 		// Add supertypes to classes
 		bugReportEClass.getESuperTypes().add(theTaskPackage.getWorkItem());
+		bugReportEClass.getESuperTypes().add(theTaskPackage.getCheckable());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(bugReportEClass, BugReport.class, "BugReport", !IS_ABSTRACT,

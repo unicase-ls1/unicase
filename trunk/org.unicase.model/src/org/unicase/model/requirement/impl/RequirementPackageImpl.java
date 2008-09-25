@@ -646,6 +646,15 @@ public class RequirementPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getStep_UseCase() {
+		return (EReference) stepEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSystemFunction() {
 		return systemFunctionEClass;
 	}
@@ -809,6 +818,7 @@ public class RequirementPackageImpl extends EPackageImpl implements
 		createEAttribute(stepEClass, STEP__USER_STEP);
 		createEReference(stepEClass, STEP__INCLUDED_USE_CASE);
 		createEReference(stepEClass, STEP__INCLUDED_SYSTEM_FUNCTION);
+		createEReference(stepEClass, STEP__USE_CASE);
 
 		systemFunctionEClass = createEClass(SYSTEM_FUNCTION);
 		createEAttribute(systemFunctionEClass, SYSTEM_FUNCTION__INPUT);
@@ -978,10 +988,11 @@ public class RequirementPackageImpl extends EPackageImpl implements
 				"precondition", null, 0, 1, UseCase.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		initEReference(getUseCase_UseCaseSteps(), this.getStep(), null,
-				"useCaseSteps", null, 0, -1, UseCase.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUseCase_UseCaseSteps(), this.getStep(), this
+				.getStep_UseCase(), "useCaseSteps", null, 0, -1, UseCase.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 		getUseCase_UseCaseSteps().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
 		initEAttribute(getUseCase_Postcondition(),
@@ -1175,6 +1186,13 @@ public class RequirementPackageImpl extends EPackageImpl implements
 				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 		getStep_IncludedSystemFunction().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getStep_UseCase(), this.getUseCase(), this
+				.getUseCase_UseCaseSteps(), "useCase", null, 0, 1, Step.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		getStep_UseCase().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(systemFunctionEClass, SystemFunction.class,

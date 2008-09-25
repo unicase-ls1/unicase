@@ -541,7 +541,7 @@ public interface RequirementPackage extends EPackage {
 	int USE_CASE__PRECONDITION = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Use Case Steps</b></em>' reference list.
+	 * The feature id for the '<em><b>Use Case Steps</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1262,13 +1262,22 @@ public interface RequirementPackage extends EPackage {
 	int STEP__INCLUDED_SYSTEM_FUNCTION = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Use Case</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP__USE_CASE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Step</em>' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int STEP_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int STEP_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.requirement.impl.SystemFunctionImpl <em>System Function</em>}' class.
@@ -1821,10 +1830,10 @@ public interface RequirementPackage extends EPackage {
 	EAttribute getUseCase_Precondition();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.requirement.UseCase#getUseCaseSteps <em>Use Case Steps</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.unicase.model.requirement.UseCase#getUseCaseSteps <em>Use Case Steps</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Use Case Steps</em>'.
+	 * @return the meta object for the containment reference list '<em>Use Case Steps</em>'.
 	 * @see org.unicase.model.requirement.UseCase#getUseCaseSteps()
 	 * @see #getUseCase()
 	 * @generated
@@ -2097,6 +2106,17 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getStep_IncludedSystemFunction();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.unicase.model.requirement.Step#getUseCase <em>Use Case</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Use Case</em>'.
+	 * @see org.unicase.model.requirement.Step#getUseCase()
+	 * @see #getStep()
+	 * @generated
+	 */
+	EReference getStep_UseCase();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.requirement.SystemFunction <em>System Function</em>}'.
@@ -2381,7 +2401,7 @@ public interface RequirementPackage extends EPackage {
 		 */
 		EAttribute USE_CASE__PRECONDITION = eINSTANCE.getUseCase_Precondition();
 		/**
-		 * The meta object literal for the '<em><b>Use Case Steps</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Use Case Steps</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -2576,6 +2596,13 @@ public interface RequirementPackage extends EPackage {
 		 */
 		EReference STEP__INCLUDED_SYSTEM_FUNCTION = eINSTANCE
 				.getStep_IncludedSystemFunction();
+		/**
+		 * The meta object literal for the '<em><b>Use Case</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STEP__USE_CASE = eINSTANCE.getStep_UseCase();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.requirement.impl.SystemFunctionImpl <em>System Function</em>}' class.
 		 * <!-- begin-user-doc -->
