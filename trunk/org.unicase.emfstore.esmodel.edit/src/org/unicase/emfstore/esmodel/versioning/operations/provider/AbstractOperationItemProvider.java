@@ -58,7 +58,6 @@ public class AbstractOperationItemProvider extends ItemProviderAdapter
 			addNamePropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
 			addModelElementIdPropertyDescriptor(object);
-			addUsernamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -122,25 +121,6 @@ public class AbstractOperationItemProvider extends ItemProviderAdapter
 	}
 
 	/**
-	 * This adds a property descriptor for the Username feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addUsernamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_AbstractOperation_username_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_AbstractOperation_username_feature",
-						"_UI_AbstractOperation_type"),
-				OperationsPackage.Literals.ABSTRACT_OPERATION__USERNAME, true,
-				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-				null));
-	}
-
-	/**
 	 * This returns AbstractOperation.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -179,7 +159,6 @@ public class AbstractOperationItemProvider extends ItemProviderAdapter
 		switch (notification.getFeatureID(AbstractOperation.class)) {
 		case OperationsPackage.ABSTRACT_OPERATION__NAME:
 		case OperationsPackage.ABSTRACT_OPERATION__DESCRIPTION:
-		case OperationsPackage.ABSTRACT_OPERATION__USERNAME:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), false, true));
 			return;

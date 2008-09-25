@@ -51,7 +51,7 @@ public class MergeTreeComposite extends ChangesTreeComposite {
 			public String getText(Object element) {
 				if(element instanceof AbstractOperation){
 					AbstractOperation operation = (AbstractOperation) element;
-					return operation.getUsername();
+					return "";
 				}
 				return "";
 

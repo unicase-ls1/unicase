@@ -243,6 +243,29 @@ public class OperationsItemProviderAdapterFactory extends
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.operations.ReadOperation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ReadOperationItemProvider readOperationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.ReadOperation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createReadOperationAdapter() {
+		if (readOperationItemProvider == null) {
+			readOperationItemProvider = new ReadOperationItemProvider(this);
+		}
+
+		return readOperationItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -358,6 +381,8 @@ public class OperationsItemProviderAdapterFactory extends
 			multiReferenceMoveOperationItemProvider.dispose();
 		if (multiAttributeOperationItemProvider != null)
 			multiAttributeOperationItemProvider.dispose();
+		if (readOperationItemProvider != null)
+			readOperationItemProvider.dispose();
 	}
 
 }

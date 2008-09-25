@@ -35,7 +35,7 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl
 	}
 
 	@Override
-	public void reverse(AbstractOperation abstractOperation) {
+	protected void reverse(AbstractOperation abstractOperation) {
 		super.reverse(abstractOperation);
 		if (!(abstractOperation instanceof FeatureOperation)) {
 			throw new IllegalArgumentException(

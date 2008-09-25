@@ -31,7 +31,7 @@ import org.unicase.model.ModelFactory;
  * @generated
  */
 public class MultiReferenceOperationItemProvider extends
-		FeatureOperationItemProvider implements IEditingDomainItemProvider,
+		ReferenceOperationItemProvider implements IEditingDomainItemProvider,
 		IStructuredItemContentProvider, ITreeItemContentProvider,
 		IItemLabelProvider, IItemPropertySource {
 	/**

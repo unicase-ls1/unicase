@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.change.ChangePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
@@ -120,7 +119,6 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements
 		isInited = true;
 
 		// Initialize simple dependencies
-		ChangePackage.eINSTANCE.eClass();
 		ModelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies

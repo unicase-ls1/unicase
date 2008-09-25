@@ -27,7 +27,6 @@ import org.unicase.model.util.ModelUtil;
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AbstractOperationImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AbstractOperationImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AbstractOperationImpl#getModelElementId <em>Model Element Id</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AbstractOperationImpl#getUsername <em>Username</em>}</li>
  * </ul>
  * </p>
  *
@@ -62,24 +61,6 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements
 	 * @ordered
 	 */
 	protected ModelElementId modelElementId;
-	/**
-	 * The default value of the '{@link #getUsername() <em>Username</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUsername()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String USERNAME_EDEFAULT = null;
-	/**
-	 * The cached value of the '{@link #getUsername() <em>Username</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUsername()
-	 * @generated
-	 * @ordered
-	 */
-	protected String username = USERNAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -217,29 +198,6 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getUsername() {
-		return username;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setUsername(String newUsername) {
-		String oldUsername = username;
-		username = newUsername;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					OperationsPackage.ABSTRACT_OPERATION__USERNAME,
-					oldUsername, username));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public void apply(Project project) {
@@ -278,6 +236,17 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isChange() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
@@ -304,8 +273,6 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements
 			if (resolve)
 				return getModelElementId();
 			return basicGetModelElementId();
-		case OperationsPackage.ABSTRACT_OPERATION__USERNAME:
-			return getUsername();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -321,9 +288,6 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements
 		case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID:
 			setModelElementId((ModelElementId) newValue);
 			return;
-		case OperationsPackage.ABSTRACT_OPERATION__USERNAME:
-			setUsername((String) newValue);
-			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -338,9 +302,6 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements
 		switch (featureID) {
 		case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID:
 			setModelElementId((ModelElementId) null);
-			return;
-		case OperationsPackage.ABSTRACT_OPERATION__USERNAME:
-			setUsername(USERNAME_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -362,28 +323,8 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements
 					: !DESCRIPTION_EDEFAULT.equals(getDescription());
 		case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID:
 			return modelElementId != null;
-		case OperationsPackage.ABSTRACT_OPERATION__USERNAME:
-			return USERNAME_EDEFAULT == null ? username != null
-					: !USERNAME_EDEFAULT.equals(username);
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy())
-			return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (username: ");
-		result.append(username);
-		result.append(')');
-		return result.toString();
 	}
 
 } //AbstractOperationImpl

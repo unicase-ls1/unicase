@@ -173,7 +173,6 @@ public class VersioningPackageImpl extends EPackageImpl implements
 		isInited = true;
 
 		// Initialize simple dependencies
-		ChangePackage.eINSTANCE.eClass();
 		ModelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
@@ -634,16 +633,13 @@ public class VersioningPackageImpl extends EPackageImpl implements
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 
-		initEClass(changePackageEClass,
-				org.unicase.emfstore.esmodel.versioning.ChangePackage.class,
-				"ChangePackage", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
+		initEClass(changePackageEClass, ChangePackage.class, "ChangePackage",
+				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getChangePackage_Operations(), theOperationsPackage
 				.getAbstractOperation(), null, "operations", null, 0, -1,
-				org.unicase.emfstore.esmodel.versioning.ChangePackage.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+				ChangePackage.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		addEOperation(changePackageEClass, this.getChangePackage(), "reverse",
 				0, 1, IS_UNIQUE, IS_ORDERED);

@@ -39,6 +39,17 @@ import org.unicase.model.Project;
  */
 public class CompositeOperationImpl extends AbstractOperationImpl implements
 		CompositeOperation {
+
+	@Override
+	public boolean isChange() {
+		for (AbstractOperation abstractOperation : getSubOperations()) {
+			if (abstractOperation.isChange()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	/**
 	 * The cached value of the '{@link #getSubOperations() <em>Sub Operations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

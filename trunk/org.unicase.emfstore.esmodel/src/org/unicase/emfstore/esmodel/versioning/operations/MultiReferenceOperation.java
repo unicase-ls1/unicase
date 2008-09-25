@@ -26,7 +26,7 @@ import org.unicase.model.ModelElementId;
  * @model
  * @generated
  */
-public interface MultiReferenceOperation extends FeatureOperation {
+public interface MultiReferenceOperation extends ReferenceOperation {
 	/**
 	 * Returns the value of the '<em><b>Add</b></em>' attribute.
 	 * <!-- begin-user-doc -->

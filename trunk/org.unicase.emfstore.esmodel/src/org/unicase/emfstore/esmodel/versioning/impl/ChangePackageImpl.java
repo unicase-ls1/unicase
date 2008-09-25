@@ -36,19 +36,16 @@ import org.unicase.model.Project;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.unicase.emfstore.esmodel.versioning.impl.ChangePackageImpl#getOperations
- * <em>Operations</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.impl.ChangePackageImpl#getOperations <em>Operations</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	/**
-	 * The cached value of the '{@link #getOperations() <em>Operations</em>}'
-	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getOperations() <em>Operations</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getOperations()
 	 * @generated
 	 * @ordered
@@ -57,7 +54,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ChangePackageImpl() {
@@ -66,7 +62,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -76,7 +71,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<AbstractOperation> getOperations() {
@@ -128,11 +122,14 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 */
 	public void cannonize() {
 		Set<ModelElementId> deletedElements = new HashSet<ModelElementId>();
+		Map<ModelElementId, AbstractOperation> createdElements = new HashMap<ModelElementId, AbstractOperation>();
 		Map<String, AttributeOperation> changedAttributes = new HashMap<String, AttributeOperation>();
 		Map<String, SingleReferenceOperation> changedSingleReferences = new HashMap<String, SingleReferenceOperation>();
+
 		Set<AbstractOperation> operationsToBeDeleted = new HashSet<AbstractOperation>();
+
 		EList<AbstractOperation> list = getOperations();
-		for (int i = list.size(); i > 0; i--) {
+		for (int i = list.size() - 1; i >= 0; i--) {
 			AbstractOperation operation = list.get(i);
 			if (operation instanceof CompositeOperation) {
 				// FIXME MK: check if composite will be empty after cannonize:
@@ -140,15 +137,31 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 				((CompositeOperation) operation).cannonize();
 				continue;
 			}
-			if (deletedElements.contains(operation.getModelElementId())) {
+
+			ModelElementId modelElementId = operation.getModelElementId();
+			if (deletedElements.contains(modelElementId)) {
 				operationsToBeDeleted.add(operation);
 				continue;
 			}
+
 			if (operation instanceof CreateDeleteOperation) {
 				boolean isDelete = ((CreateDeleteOperation) operation)
 						.isDelete();
 				if (isDelete) {
-					deletedElements.add(operation.getModelElementId());
+					if (createdElements.keySet().contains(modelElementId)) {
+						operationsToBeDeleted.add(operation);
+						operationsToBeDeleted.add(createdElements
+								.get(modelElementId));
+						createdElements.remove(modelElementId);
+
+					} else {
+						deletedElements.add(modelElementId);
+					}
+				} else {
+					if (createdElements.keySet().contains(modelElementId)) {
+						operationsToBeDeleted.add(operation);
+					}
+					createdElements.put(modelElementId, operation);
 				}
 				continue;
 			}
@@ -191,13 +204,10 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		}
 		// remove all obsolete operations
 		list.removeAll(operationsToBeDeleted);
-
-		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -215,7 +225,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -229,7 +238,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -247,7 +255,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -262,7 +269,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
