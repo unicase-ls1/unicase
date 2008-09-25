@@ -52,6 +52,7 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.part.FileEditorInput;
+import org.unicase.workspace.WorkspaceManager;
 
 /**
  * @generated
@@ -154,8 +155,8 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 	 */
 	protected IDocument createEmptyDocument() {
 		DiagramDocument document = new DiagramDocument();
-		document.setEditingDomain(TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain"));
+		document.setEditingDomain(WorkspaceManager.getInstance()
+				.getCurrentWorkspace().getEditingDomain());
 		return document;
 	}
 
