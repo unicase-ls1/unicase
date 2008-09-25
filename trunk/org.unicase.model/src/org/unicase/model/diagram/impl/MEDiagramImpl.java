@@ -14,6 +14,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -205,7 +206,6 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 					newGmfdiagram));
 	}
 
-	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return A DiagramNewEelementsList
@@ -226,9 +226,8 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	}
 
 	/**
-	 * @generated
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * @generated
 	 */
 	public DiagramType getType() {
 		return type;

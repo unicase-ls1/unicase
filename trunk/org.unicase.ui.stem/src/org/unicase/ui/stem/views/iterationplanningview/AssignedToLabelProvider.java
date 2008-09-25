@@ -37,11 +37,11 @@ public class AssignedToLabelProvider extends IterationPlanningLabelProvider {
 	 */
 	@Override
 	public Image getImage(Object element) {
-		EObject assignedTo = getAssignedTo(element);
-		if (assignedTo==null){
+		EObject assignee = getAssignee(element);
+		if (assignee==null){
 			return null;
 		}
-		return adapterFactoryLabelProvider.getImage(assignedTo);
+		return adapterFactoryLabelProvider.getImage(assignee);
 	}
 
 	
@@ -50,23 +50,14 @@ public class AssignedToLabelProvider extends IterationPlanningLabelProvider {
 	 * @param element the Assignable
 	 * @return
 	 */
-	private EObject getAssignedTo(Object element) {
-	
-		//JH: Model issue. This doesn't work. 
-//		if(element instanceof Assignable){
-//			((Assignable) element).getAssignee();
-//		}
-//		return null;
+	private EObject getAssignee(Object element) {
 		
 		if(element instanceof BugReport){
-			return ((BugReport) element).getAssignedTo();
+			return ((BugReport) element).getAssignee();
 		}
 		if(element instanceof ActionItem){
 			ActionItem ai = (ActionItem) element;
-			if (ai.getAssignedTo().size()>0){
-				return ai.getAssignedTo().get(0);
-				//JH: return only first?
-			}
+				return ai.getAssignee();
 		}
 		return null;
 	}
@@ -77,11 +68,11 @@ public class AssignedToLabelProvider extends IterationPlanningLabelProvider {
 	 */
 	@Override
 	public String getText(Object element) {
-		EObject assignedTo = getAssignedTo(element);
-		if (assignedTo==null){
+		EObject assignee = getAssignee(element);
+		if (assignee==null){
 			return "N/A";
 		}
-		return adapterFactoryLabelProvider.getText(assignedTo);
+		return adapterFactoryLabelProvider.getText(assignee);
 	}
 	
 	

@@ -390,7 +390,7 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 
-		initEClass(orgUnitEClass, OrgUnit.class, "OrgUnit", !IS_ABSTRACT,
+		initEClass(orgUnitEClass, OrgUnit.class, "OrgUnit", IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getOrgUnit_AcOrgId(), ecorePackage.getEString(),
 				"acOrgId", null, 0, 1, OrgUnit.class, !IS_TRANSIENT,

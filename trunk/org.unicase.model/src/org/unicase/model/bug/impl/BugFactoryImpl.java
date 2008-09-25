@@ -12,10 +12,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.model.bug.*;
 import org.unicase.model.bug.BugFactory;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.bug.BugReport;
-import org.unicase.model.bug.BugResolution;
 import org.unicase.model.bug.BugStatus;
 import org.unicase.model.bug.ResolutionType;
 import org.unicase.model.bug.Severity;
@@ -64,8 +64,6 @@ public class BugFactoryImpl extends EFactoryImpl implements BugFactory {
 		switch (eClass.getClassifierID()) {
 		case BugPackage.BUG_REPORT:
 			return createBugReport();
-		case BugPackage.BUG_RESOLUTION:
-			return createBugResolution();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName()
 					+ "' is not a valid classifier");
@@ -117,15 +115,6 @@ public class BugFactoryImpl extends EFactoryImpl implements BugFactory {
 	public BugReport createBugReport() {
 		BugReportImpl bugReport = new BugReportImpl();
 		return bugReport;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BugResolution createBugResolution() {
-		BugResolutionImpl bugResolution = new BugResolutionImpl();
-		return bugResolution;
 	}
 
 	/**

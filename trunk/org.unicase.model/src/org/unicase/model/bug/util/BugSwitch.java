@@ -13,9 +13,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.Annotation;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
+import org.unicase.model.bug.*;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.bug.BugReport;
-import org.unicase.model.bug.BugResolution;
 import org.unicase.model.task.WorkItem;
 
 /**
@@ -100,17 +100,6 @@ public class BugSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case BugPackage.BUG_RESOLUTION: {
-			BugResolution bugResolution = (BugResolution) theEObject;
-			T result = caseBugResolution(bugResolution);
-			if (result == null)
-				result = caseModelElement(bugResolution);
-			if (result == null)
-				result = caseIdentifiableElement(bugResolution);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -127,20 +116,6 @@ public class BugSwitch<T> {
 	 * @generated
 	 */
 	public T caseBugReport(BugReport object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Resolution</em>'.
-	 * <!-- begin-user-doc --> This implementation returns
-	 * null; returning a non-null result will terminate the switch. <!--
-	 * end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Resolution</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseBugResolution(BugResolution object) {
 		return null;
 	}
 

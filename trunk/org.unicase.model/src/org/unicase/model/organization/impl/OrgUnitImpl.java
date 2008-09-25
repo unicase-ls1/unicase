@@ -38,7 +38,7 @@ import org.unicase.model.task.WorkItem;
  *
  * @generated
  */
-public class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
+public abstract class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 	/**
 	 * The default value of the '{@link #getAcOrgId() <em>Ac Org Id</em>}' attribute.
 	 * <!-- begin-user-doc -->

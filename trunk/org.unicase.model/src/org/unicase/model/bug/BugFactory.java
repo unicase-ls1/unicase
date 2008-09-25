@@ -33,15 +33,6 @@ public interface BugFactory extends EFactory {
 	BugReport createBugReport();
 
 	/**
-	 * Returns a new object of class '<em>Resolution</em>'.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
-	 * @return a new object of class '<em>Resolution</em>'.
-	 * @generated
-	 */
-	BugResolution createBugResolution();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

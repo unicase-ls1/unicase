@@ -31,29 +31,18 @@ import org.unicase.model.util.ProjectChangeNotifier;
 import org.unicase.model.util.ProjectChangeObserver;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object. '
- * 
- * @implements ProjectChangeObserver <em><b>Project</b></em>'. <!-- end-user-doc
- *             -->
- *             <p>
- *             The following features are implemented:
- *             <ul>
- *             <li>{@link org.unicase.model.impl.ProjectImpl#getModelElements
- *             <em>Model Elements</em>}</li>
- *             </ul>
- *             </p>
+ * @author schroech
+ * @implements ProjectChangeObserver 
  * 
  * @generated
  */
 
 public class ProjectImpl extends EObjectImpl implements Project,
 		ProjectChangeObserver {
-
 	/**
-	 * The cached value of the '{@link #getModelElements()
-	 * <em>Model Elements</em>}' containment reference list. <!-- begin-user-doc
+	 * The cached value of the '{@link #getModelElements() <em>Model Elements</em>}' containment reference list.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getModelElements()
 	 * @generated
 	 * @ordered
@@ -77,7 +66,6 @@ public class ProjectImpl extends EObjectImpl implements Project,
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -87,7 +75,6 @@ public class ProjectImpl extends EObjectImpl implements Project,
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ModelElement> getModelElements() {
@@ -131,7 +118,7 @@ public class ProjectImpl extends EObjectImpl implements Project,
 			EClass modelElementClass, EList<T> list) {
 		return getAllModelElementsbyClass(modelElementClass, list, true);
 	}
-	
+
 	/** 
 	 * {@inheritDoc}
 	 * @see org.unicase.model.Project#getAllModelElementsbyClass(org.eclipse.emf.ecore.EClass)
@@ -151,15 +138,17 @@ public class ProjectImpl extends EObjectImpl implements Project,
 		if (subclasses) {
 			for (ModelElementId modelElementId : getModelElementsFromCache()
 					.keySet()) {
-				ModelElement modelElement = this.getModelElement(modelElementId);
+				ModelElement modelElement = this
+						.getModelElement(modelElementId);
 				if (modelElementClass.isInstance(modelElement)) {
 					list.add((T) modelElement);
 				}
 			}
-		}else{
+		} else {
 			for (ModelElementId modelElementId : getModelElementsFromCache()
 					.keySet()) {
-				ModelElement modelElement = this.getModelElement(modelElementId);
+				ModelElement modelElement = this
+						.getModelElement(modelElementId);
 				if (modelElement.eClass() == modelElementClass) {
 					list.add((T) modelElement);
 				}
@@ -196,7 +185,6 @@ public class ProjectImpl extends EObjectImpl implements Project,
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -212,7 +200,6 @@ public class ProjectImpl extends EObjectImpl implements Project,
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -226,7 +213,6 @@ public class ProjectImpl extends EObjectImpl implements Project,
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -244,7 +230,6 @@ public class ProjectImpl extends EObjectImpl implements Project,
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -259,7 +244,6 @@ public class ProjectImpl extends EObjectImpl implements Project,
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -32,7 +32,7 @@ public class UserAndEClassFilterItemProvider extends EClassFilterItemProvider {
 			if (objectToTest instanceof WorkItem) {
 				unit = ((WorkItem) objectToTest).getAssignee();
 			} else if (objectToTest instanceof ActionItem) {
-				unit = ((ActionItem) objectToTest).getAssignedTo().get(0);
+				unit = ((ActionItem) objectToTest).getAssignee();
 			} else {
 				return false;
 			}

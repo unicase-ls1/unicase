@@ -50,9 +50,6 @@ import org.unicase.model.task.WorkPackage;
  *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getProposals <em>Proposals</em>}</li>
  *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getSolution <em>Solution</em>}</li>
  *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getCriteria <em>Criteria</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getRefiningIssues <em>Refining Issues</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getRefinedIssue <em>Refined Issue</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getFacilitator <em>Facilitator</em>}</li>
  * </ul>
  * </p>
  *
@@ -145,26 +142,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	protected EList<Criterion> criteria;
 
 	/**
-	 * The cached value of the '{@link #getRefiningIssues()
-	 * <em>Refining Issues</em>}' containment reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see #getRefiningIssues()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Issue> refiningIssues;
-
-	/**
-	 * The cached value of the '{@link #getFacilitator() <em>Facilitator</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getFacilitator()
-	 * @generated
-	 * @ordered
-	 */
-	protected User facilitator;
-
-	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -209,10 +186,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	}
 
 	/**
-	 * @generated
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 * @generated
 	 */
 	public WorkPackage getContainingWorkpackage() {
 		if (eContainerFeatureID != RationalePackage.ISSUE__CONTAINING_WORKPACKAGE)
@@ -493,116 +469,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Issue> getRefiningIssues() {
-		if (refiningIssues == null) {
-			refiningIssues = new EObjectContainmentWithInverseEList.Resolving<Issue>(
-					Issue.class, this, RationalePackage.ISSUE__REFINING_ISSUES,
-					RationalePackage.ISSUE__REFINED_ISSUE);
-		}
-		return refiningIssues;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Issue getRefinedIssue() {
-		if (eContainerFeatureID != RationalePackage.ISSUE__REFINED_ISSUE)
-			return null;
-		return (Issue) eContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Issue basicGetRefinedIssue() {
-		if (eContainerFeatureID != RationalePackage.ISSUE__REFINED_ISSUE)
-			return null;
-		return (Issue) eInternalContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetRefinedIssue(Issue newRefinedIssue,
-			NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newRefinedIssue,
-				RationalePackage.ISSUE__REFINED_ISSUE, msgs);
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setRefinedIssue(Issue newRefinedIssue) {
-		if (newRefinedIssue != eInternalContainer()
-				|| (eContainerFeatureID != RationalePackage.ISSUE__REFINED_ISSUE && newRefinedIssue != null)) {
-			if (EcoreUtil.isAncestor(this, newRefinedIssue))
-				throw new IllegalArgumentException(
-						"Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newRefinedIssue != null)
-				msgs = ((InternalEObject) newRefinedIssue).eInverseAdd(this,
-						RationalePackage.ISSUE__REFINING_ISSUES, Issue.class,
-						msgs);
-			msgs = basicSetRefinedIssue(newRefinedIssue, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					RationalePackage.ISSUE__REFINED_ISSUE, newRefinedIssue,
-					newRefinedIssue));
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public User getFacilitator() {
-		if (facilitator != null && facilitator.eIsProxy()) {
-			InternalEObject oldFacilitator = (InternalEObject) facilitator;
-			facilitator = (User) eResolveProxy(oldFacilitator);
-			if (facilitator != oldFacilitator) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							RationalePackage.ISSUE__FACILITATOR,
-							oldFacilitator, facilitator));
-			}
-		}
-		return facilitator;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public User basicGetFacilitator() {
-		return facilitator;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setFacilitator(User newFacilitator) {
-		User oldFacilitator = facilitator;
-		facilitator = newFacilitator;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					RationalePackage.ISSUE__FACILITATOR, oldFacilitator,
-					facilitator));
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<OrgUnit> getParticipants() {
 		if (participants == null) {
 			participants = new EObjectWithInverseResolvingEList.ManyInverse<OrgUnit>(
@@ -649,13 +515,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 						EOPPOSITE_FEATURE_BASE
 								- RationalePackage.ISSUE__SOLUTION, null, msgs);
 			return basicSetSolution((Solution) otherEnd, msgs);
-		case RationalePackage.ISSUE__REFINING_ISSUES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getRefiningIssues())
-					.basicAdd(otherEnd, msgs);
-		case RationalePackage.ISSUE__REFINED_ISSUE:
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			return basicSetRefinedIssue((Issue) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -686,11 +545,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 					msgs);
 		case RationalePackage.ISSUE__SOLUTION:
 			return basicSetSolution(null, msgs);
-		case RationalePackage.ISSUE__REFINING_ISSUES:
-			return ((InternalEList<?>) getRefiningIssues()).basicRemove(
-					otherEnd, msgs);
-		case RationalePackage.ISSUE__REFINED_ISSUE:
-			return basicSetRefinedIssue(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -707,9 +561,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			return eInternalContainer().eInverseRemove(this,
 					TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
 					WorkPackage.class, msgs);
-		case RationalePackage.ISSUE__REFINED_ISSUE:
-			return eInternalContainer().eInverseRemove(this,
-					RationalePackage.ISSUE__REFINING_ISSUES, Issue.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -747,16 +598,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			return basicGetSolution();
 		case RationalePackage.ISSUE__CRITERIA:
 			return getCriteria();
-		case RationalePackage.ISSUE__REFINING_ISSUES:
-			return getRefiningIssues();
-		case RationalePackage.ISSUE__REFINED_ISSUE:
-			if (resolve)
-				return getRefinedIssue();
-			return basicGetRefinedIssue();
-		case RationalePackage.ISSUE__FACILITATOR:
-			if (resolve)
-				return getFacilitator();
-			return basicGetFacilitator();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -806,16 +647,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			getCriteria().clear();
 			getCriteria().addAll((Collection<? extends Criterion>) newValue);
 			return;
-		case RationalePackage.ISSUE__REFINING_ISSUES:
-			getRefiningIssues().clear();
-			getRefiningIssues().addAll((Collection<? extends Issue>) newValue);
-			return;
-		case RationalePackage.ISSUE__REFINED_ISSUE:
-			setRefinedIssue((Issue) newValue);
-			return;
-		case RationalePackage.ISSUE__FACILITATOR:
-			setFacilitator((User) newValue);
-			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -857,15 +688,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 		case RationalePackage.ISSUE__CRITERIA:
 			getCriteria().clear();
 			return;
-		case RationalePackage.ISSUE__REFINING_ISSUES:
-			getRefiningIssues().clear();
-			return;
-		case RationalePackage.ISSUE__REFINED_ISSUE:
-			setRefinedIssue((Issue) null);
-			return;
-		case RationalePackage.ISSUE__FACILITATOR:
-			setFacilitator((User) null);
-			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -898,12 +720,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			return solution != null;
 		case RationalePackage.ISSUE__CRITERIA:
 			return criteria != null && !criteria.isEmpty();
-		case RationalePackage.ISSUE__REFINING_ISSUES:
-			return refiningIssues != null && !refiningIssues.isEmpty();
-		case RationalePackage.ISSUE__REFINED_ISSUE:
-			return basicGetRefinedIssue() != null;
-		case RationalePackage.ISSUE__FACILITATOR:
-			return facilitator != null;
 		}
 		return super.eIsSet(featureID);
 	}

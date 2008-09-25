@@ -25,7 +25,7 @@ import org.unicase.model.task.WorkItem;
  * </p>
  *
  * @see org.unicase.model.organization.OrganizationPackage#getOrgUnit()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface OrgUnit extends ModelElement {

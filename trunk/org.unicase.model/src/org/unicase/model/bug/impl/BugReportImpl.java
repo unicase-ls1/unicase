@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.bug.BugReport;
-import org.unicase.model.bug.BugResolution;
 import org.unicase.model.bug.BugStatus;
 import org.unicase.model.bug.Severity;
 import org.unicase.model.change.ModelChangePackage;
@@ -44,10 +43,7 @@ import org.unicase.model.task.WorkPackage;
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getSuccessors <em>Successors</em>}</li>
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getAssignee <em>Assignee</em>}</li>
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getParticipants <em>Participants</em>}</li>
- *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getStepsToReproduce <em>Steps To Reproduce</em>}</li>
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getStatus <em>Status</em>}</li>
- *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getAssignedTo <em>Assigned To</em>}</li>
- *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getResolution <em>Resolution</em>}</li>
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getSeverity <em>Severity</em>}</li>
  * </ul>
  * </p>
@@ -104,16 +100,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected EList<OrgUnit> participants;
 
 	/**
-	 * The cached value of the '{@link #getStepsToReproduce() <em>Steps To Reproduce</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStepsToReproduce()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Step> stepsToReproduce;
-
-	/**
 	 * The default value of the '{@link #getStatus() <em>Status</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getStatus()
@@ -130,24 +116,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	 * @ordered
 	 */
 	protected BugStatus status = STATUS_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getAssignedTo() <em>Assigned To</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getAssignedTo()
-	 * @generated
-	 * @ordered
-	 */
-	protected OrgUnit assignedTo;
-
-	/**
-	 * The cached value of the '{@link #getResolution() <em>Resolution</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getResolution()
-	 * @generated
-	 * @ordered
-	 */
-	protected BugResolution resolution;
 
 	/**
 	 * The default value of the '{@link #getSeverity() <em>Severity</em>}' attribute.
@@ -373,18 +341,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Step> getStepsToReproduce() {
-		if (stepsToReproduce == null) {
-			stepsToReproduce = new EObjectResolvingEList<Step>(Step.class,
-					this, BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE);
-		}
-		return stepsToReproduce;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	public BugStatus getStatus() {
 		return status;
 	}
@@ -399,84 +355,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
 					BugPackage.BUG_REPORT__STATUS, oldStatus, status));
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OrgUnit getAssignedTo() {
-		if (assignedTo != null && assignedTo.eIsProxy()) {
-			InternalEObject oldAssignedTo = (InternalEObject) assignedTo;
-			assignedTo = (OrgUnit) eResolveProxy(oldAssignedTo);
-			if (assignedTo != oldAssignedTo) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							BugPackage.BUG_REPORT__ASSIGNED_TO, oldAssignedTo,
-							assignedTo));
-			}
-		}
-		return assignedTo;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OrgUnit basicGetAssignedTo() {
-		return assignedTo;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAssignedTo(OrgUnit newAssignedTo) {
-		OrgUnit oldAssignedTo = assignedTo;
-		assignedTo = newAssignedTo;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					BugPackage.BUG_REPORT__ASSIGNED_TO, oldAssignedTo,
-					assignedTo));
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BugResolution getResolution() {
-		if (resolution != null && resolution.eIsProxy()) {
-			InternalEObject oldResolution = (InternalEObject) resolution;
-			resolution = (BugResolution) eResolveProxy(oldResolution);
-			if (resolution != oldResolution) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							BugPackage.BUG_REPORT__RESOLUTION, oldResolution,
-							resolution));
-			}
-		}
-		return resolution;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BugResolution basicGetResolution() {
-		return resolution;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setResolution(BugResolution newResolution) {
-		BugResolution oldResolution = resolution;
-		resolution = newResolution;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					BugPackage.BUG_REPORT__RESOLUTION, oldResolution,
-					resolution));
 	}
 
 	/**
@@ -595,18 +473,8 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			return basicGetAssignee();
 		case BugPackage.BUG_REPORT__PARTICIPANTS:
 			return getParticipants();
-		case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE:
-			return getStepsToReproduce();
 		case BugPackage.BUG_REPORT__STATUS:
 			return getStatus();
-		case BugPackage.BUG_REPORT__ASSIGNED_TO:
-			if (resolve)
-				return getAssignedTo();
-			return basicGetAssignedTo();
-		case BugPackage.BUG_REPORT__RESOLUTION:
-			if (resolve)
-				return getResolution();
-			return basicGetResolution();
 		case BugPackage.BUG_REPORT__SEVERITY:
 			return getSeverity();
 		}
@@ -644,18 +512,8 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			getParticipants().clear();
 			getParticipants().addAll((Collection<? extends OrgUnit>) newValue);
 			return;
-		case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE:
-			getStepsToReproduce().clear();
-			getStepsToReproduce().addAll((Collection<? extends Step>) newValue);
-			return;
 		case BugPackage.BUG_REPORT__STATUS:
 			setStatus((BugStatus) newValue);
-			return;
-		case BugPackage.BUG_REPORT__ASSIGNED_TO:
-			setAssignedTo((OrgUnit) newValue);
-			return;
-		case BugPackage.BUG_REPORT__RESOLUTION:
-			setResolution((BugResolution) newValue);
 			return;
 		case BugPackage.BUG_REPORT__SEVERITY:
 			setSeverity((Severity) newValue);
@@ -689,17 +547,8 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 		case BugPackage.BUG_REPORT__PARTICIPANTS:
 			getParticipants().clear();
 			return;
-		case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE:
-			getStepsToReproduce().clear();
-			return;
 		case BugPackage.BUG_REPORT__STATUS:
 			setStatus(STATUS_EDEFAULT);
-			return;
-		case BugPackage.BUG_REPORT__ASSIGNED_TO:
-			setAssignedTo((OrgUnit) null);
-			return;
-		case BugPackage.BUG_REPORT__RESOLUTION:
-			setResolution((BugResolution) null);
 			return;
 		case BugPackage.BUG_REPORT__SEVERITY:
 			setSeverity(SEVERITY_EDEFAULT);
@@ -728,14 +577,8 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			return assignee != null;
 		case BugPackage.BUG_REPORT__PARTICIPANTS:
 			return participants != null && !participants.isEmpty();
-		case BugPackage.BUG_REPORT__STEPS_TO_REPRODUCE:
-			return stepsToReproduce != null && !stepsToReproduce.isEmpty();
 		case BugPackage.BUG_REPORT__STATUS:
 			return status != STATUS_EDEFAULT;
-		case BugPackage.BUG_REPORT__ASSIGNED_TO:
-			return assignedTo != null;
-		case BugPackage.BUG_REPORT__RESOLUTION:
-			return resolution != null;
 		case BugPackage.BUG_REPORT__SEVERITY:
 			return severity != SEVERITY_EDEFAULT;
 		}

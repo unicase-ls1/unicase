@@ -11,8 +11,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.model.organization.*;
 import org.unicase.model.organization.Group;
-import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
@@ -62,8 +62,6 @@ public class OrganizationFactoryImpl extends EFactoryImpl implements
 		switch (eClass.getClassifierID()) {
 		case OrganizationPackage.USER:
 			return createUser();
-		case OrganizationPackage.ORG_UNIT:
-			return createOrgUnit();
 		case OrganizationPackage.GROUP:
 			return createGroup();
 		default:
@@ -79,15 +77,6 @@ public class OrganizationFactoryImpl extends EFactoryImpl implements
 	public User createUser() {
 		UserImpl user = new UserImpl();
 		return user;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OrgUnit createOrgUnit() {
-		OrgUnitImpl orgUnit = new OrgUnitImpl();
-		return orgUnit;
 	}
 
 	/**

@@ -97,29 +97,6 @@ public class BugItemProviderAdapterFactory extends BugAdapterFactory implements
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.unicase.model.bug.BugResolution} instances. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected BugResolutionItemProvider bugResolutionItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.model.bug.BugResolution}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createBugResolutionAdapter() {
-		if (bugResolutionItemProvider == null) {
-			bugResolutionItemProvider = new BugResolutionItemProvider(this);
-		}
-
-		return bugResolutionItemProvider;
-	}
-
-	/**
 	 * This returns the root adapter factory that contains this factory. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -219,8 +196,6 @@ public class BugItemProviderAdapterFactory extends BugAdapterFactory implements
 	public void dispose() {
 		if (bugReportItemProvider != null)
 			bugReportItemProvider.dispose();
-		if (bugResolutionItemProvider != null)
-			bugResolutionItemProvider.dispose();
 	}
 
 }

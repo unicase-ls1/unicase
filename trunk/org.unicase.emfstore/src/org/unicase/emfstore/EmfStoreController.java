@@ -12,17 +12,22 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Properties;
 import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.unicase.emfstore.accesscontrol.AccessControlImpl;
@@ -31,11 +36,14 @@ import org.unicase.emfstore.connection.ConnectionHandler;
 import org.unicase.emfstore.connection.rmi.RMIAdminConnectionHandler;
 import org.unicase.emfstore.connection.rmi.RMIConnectionHandler;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
+import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.esmodel.VersionInfo;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesFactory;
+import org.unicase.emfstore.esmodel.versioning.Version;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.StorageException;
@@ -189,10 +197,15 @@ public class EmfStoreController implements IApplication {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		resource = resourceSet.getResource(resourceUri, true);
 		try {
-			resource.load(Collections.EMPTY_MAP);
+			resource.load(resourceSet.getLoadOptions());
+			
+			if (properties.getProperty(ServerConfiguration.VALIDATE_SERVERSPACE_ON_SERVERSTART, "true").equals("true")) {
+				validateServerSpace(resource);	
+			}
 		} catch (IOException e) {
 			throw new FatalEmfStoreException(StorageException.NOLOAD, e);
 		}
+		
 		
 		ServerSpace result = null; 
 		EList<EObject> contents = resource.getContents();
@@ -202,7 +215,7 @@ public class EmfStoreController implements IApplication {
 				break;
 			}
 		}
-			
+		
 		if (result != null) {
 			result.setResource(resource);			
 		}else{
@@ -221,6 +234,37 @@ public class EmfStoreController implements IApplication {
 		}
 
 		return result;
+	}
+
+	private void validateServerSpace(Resource resource)
+			throws FatalEmfStoreException {
+		EList<EObject> contents = resource.getContents();
+		//OW FIXME> project should be contained in serverspace and version in projecthistory
+		for (EObject object : contents) {
+			if (object instanceof ServerSpace) {
+				EList<ProjectHistory> projects = ((ServerSpace) object).getProjects();
+				for (ProjectHistory projectHistory : projects) {
+					EList<Version> versions = projectHistory.getVersions();
+					for (Version version : versions) {
+						 TreeIterator<EObject> allContents = version.eResource().getAllContents();
+						 while (allContents.hasNext()) {
+							EObject object2 = (EObject) allContents.next();
+							
+						}
+					}
+				}
+			}
+		}
+		
+		EList<Diagnostic> errors = new BasicEList<Diagnostic>();
+		EList<Resource> resources = resource.getResourceSet().getResources();
+		for (Resource currentResource : resources) {
+			errors.addAll(currentResource.getErrors());	
+		}
+		
+		if (errors.size() > 0) {
+			throw new FatalEmfStoreException(StorageException.NOLOAD + " : " + errors.get(0).getMessage());
+		}
 	}
 
 	/**

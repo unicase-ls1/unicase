@@ -34,15 +34,6 @@ public interface OrganizationFactory extends EFactory {
 	User createUser();
 
 	/**
-	 * Returns a new object of class '<em>Org Unit</em>'.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
-	 * @return a new object of class '<em>Org Unit</em>'.
-	 * @generated
-	 */
-	OrgUnit createOrgUnit();
-
-	/**
 	 * Returns a new object of class '<em>Group</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

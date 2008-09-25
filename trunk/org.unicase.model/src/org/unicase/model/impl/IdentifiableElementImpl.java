@@ -60,9 +60,9 @@ public class IdentifiableElementImpl extends EObjectImpl implements
 	}
 
 	/**
-	 * @generated
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {

@@ -62,10 +62,7 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 			addSuccessorsPropertyDescriptor(object);
 			addAssigneePropertyDescriptor(object);
 			addParticipantsPropertyDescriptor(object);
-			addStepsToReproducePropertyDescriptor(object);
 			addStatusPropertyDescriptor(object);
-			addAssignedToPropertyDescriptor(object);
-			addResolutionPropertyDescriptor(object);
 			addSeverityPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -162,24 +159,6 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 	}
 
 	/**
-	 * This adds a property descriptor for the Steps To Reproduce feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void addStepsToReproducePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_BugReport_stepsToReproduce_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_BugReport_stepsToReproduce_feature",
-						"_UI_BugReport_type"),
-				BugPackage.Literals.BUG_REPORT__STEPS_TO_REPRODUCE, true,
-				false, true, null, null, null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Status feature. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -194,42 +173,6 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 						"_UI_BugReport_Status_feature", "_UI_BugReport_type"),
 				BugPackage.Literals.BUG_REPORT__STATUS, true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Assigned To feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void addAssignedToPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_BugReport_assignedTo_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_BugReport_assignedTo_feature",
-						"_UI_BugReport_type"),
-				BugPackage.Literals.BUG_REPORT__ASSIGNED_TO, true, false, true,
-				null, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Resolution feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void addResolutionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_BugReport_resolution_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_BugReport_resolution_feature",
-						"_UI_BugReport_type"),
-				BugPackage.Literals.BUG_REPORT__RESOLUTION, true, false, true,
-				null, null, null));
 	}
 
 	/**

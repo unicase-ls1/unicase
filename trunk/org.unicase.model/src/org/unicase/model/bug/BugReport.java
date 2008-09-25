@@ -7,7 +7,6 @@
 package org.unicase.model.bug;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.requirement.Step;
 import org.unicase.model.task.WorkItem;
 
@@ -18,10 +17,7 @@ import org.unicase.model.task.WorkItem;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.model.bug.BugReport#getStepsToReproduce <em>Steps To Reproduce</em>}</li>
  *   <li>{@link org.unicase.model.bug.BugReport#getStatus <em>Status</em>}</li>
- *   <li>{@link org.unicase.model.bug.BugReport#getAssignedTo <em>Assigned To</em>}</li>
- *   <li>{@link org.unicase.model.bug.BugReport#getResolution <em>Resolution</em>}</li>
  *   <li>{@link org.unicase.model.bug.BugReport#getSeverity <em>Severity</em>}</li>
  * </ul>
  * </p>
@@ -31,22 +27,6 @@ import org.unicase.model.task.WorkItem;
  * @generated
  */
 public interface BugReport extends WorkItem {
-	/**
-	 * Returns the value of the '<em><b>Steps To Reproduce</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.requirement.Step}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Steps To Reproduce</em>' reference list isn't
-	 * clear, there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Steps To Reproduce</em>' reference list.
-	 * @see org.unicase.model.bug.BugPackage#getBugReport_StepsToReproduce()
-	 * @model keys="identifier"
-	 * @generated
-	 */
-	EList<Step> getStepsToReproduce();
-
 	/**
 	 * Returns the value of the '<em><b>Status</b></em>' attribute. The literals
 	 * are from the enumeration {@link org.unicase.model.bug.BugStatus}. <!--
@@ -78,59 +58,6 @@ public interface BugReport extends WorkItem {
 	 * @generated
 	 */
 	void setStatus(BugStatus value);
-
-	/**
-	 * Returns the value of the '<em><b>Assigned To</b></em>' reference. <!--
-	 * begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Assigned To</em>' reference isn't clear, there
-	 * really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Assigned To</em>' reference.
-	 * @see #setAssignedTo(OrgUnit)
-	 * @see org.unicase.model.bug.BugPackage#getBugReport_AssignedTo()
-	 * @model
-	 * @generated
-	 */
-	OrgUnit getAssignedTo();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.model.bug.BugReport#getAssignedTo <em>Assigned To</em>}' reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @param value the new value of the '<em>Assigned To</em>' reference.
-	 * @see #getAssignedTo()
-	 * @generated
-	 */
-	void setAssignedTo(OrgUnit value);
-
-	/**
-	 * Returns the value of the '<em><b>Resolution</b></em>' reference. <!--
-	 * begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Resolution</em>' reference isn't clear, there
-	 * really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Resolution</em>' reference.
-	 * @see #setResolution(BugResolution)
-	 * @see org.unicase.model.bug.BugPackage#getBugReport_Resolution()
-	 * @model
-	 * @generated
-	 */
-	BugResolution getResolution();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.model.bug.BugReport#getResolution <em>Resolution</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Resolution</em>' reference.
-	 * @see #getResolution()
-	 * @generated
-	 */
-	void setResolution(BugResolution value);
 
 	/**
 	 * Returns the value of the '<em><b>Severity</b></em>' attribute.
