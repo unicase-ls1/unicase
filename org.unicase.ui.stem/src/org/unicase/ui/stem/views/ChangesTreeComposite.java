@@ -132,6 +132,7 @@ public class ChangesTreeComposite extends Composite {
 		});
 
 		createOtherColumns();
+		treeViewer.expandAll();
 
 	}
 
@@ -165,6 +166,7 @@ public class ChangesTreeComposite extends Composite {
 		this.changePackages = changePackages;
 		if (changePackages != null) {
 			treeViewer.setInput(changePackages);
+			treeViewer.expandAll();
 		}
 
 	}
