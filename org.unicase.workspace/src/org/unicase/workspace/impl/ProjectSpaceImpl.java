@@ -984,8 +984,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		ChangePackage changePackage = VersioningFactory.eINSTANCE
 				.createChangePackage();
 		changePackage.getOperations().addAll(getOperations());
+		changePackage.cannonize();
 		changePackage.reverse().apply(project);
-
+		
+		this.getOperations().clear();
+		
 		startChangeRecording();
 	}
 
@@ -1020,6 +1023,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 */
 	private void startChangeRecording() {
 		isRecording = true;
+		setDirty(getOperations().size()>0);
 	}
 
 	/**
