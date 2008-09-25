@@ -10,6 +10,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
@@ -38,16 +39,9 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements
 	public void apply(Project project) {
 		super.apply(project);
 		if (isDelete()) {
-			project.getModelElements();
-			for (ModelElement modelElement : project.getModelElements()) {
-				if (getModelElementId().getId().equals(
-						modelElement.getIdentifier())) {
-					project.getModelElements().remove(modelElement);
-					break;
-				}
-			}
+			EcoreUtil.delete(project.getModelElement(getModelElementId()), true);
 		} else {
-			project.getModelElements().add(ModelUtil.clone(modelElement));
+			project.getModelElements().add(ModelUtil.clone(getModelElement()));
 		}
 	}
 
