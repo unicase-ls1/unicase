@@ -26,6 +26,10 @@
                class="org.unicase.ui.common.commands.ValidateHandler"
                commandId="org.unicase.ui.common.validate">
          </handler>
+         <handler
+               class="OpenModelelementHandler"
+               commandId="org.unicase.ui.common.openModelelement">
+         </handler>
   </extension>
    <extension
         point="org.eclipse.ui.commands">
@@ -53,6 +57,15 @@
            id="org.unicase.ui.common.validate"
            name="Validate">
      </command>
+     <command
+           categoryId="org.unicase.ui.common.modifyModelelement"
+           id="org.unicase.ui.common.openDiagramWithMEEditor"
+           name="Quick open modelelement">
+     </command>
+     <keyBinding
+           command="quick open"
+           commandId="org.unicase.ui.common.openDiagramWithMEEditor">
+     </keyBinding>
   </extension>
    <extension
         point="org.eclipse.ui.menus">
@@ -368,8 +381,8 @@
          <view
                id="org.unicase.ui.repository.views.RepositoryView"
                ratio="0.5"
-               relationship="right"
-               relative="org.eclipse.ui.views.TaskList">
+               relationship="stack"
+               relative="org.eclipse.ui.views.ProblemView">
          </view>
       </perspectiveExtension>
       <perspectiveExtension
