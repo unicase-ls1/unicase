@@ -22,15 +22,6 @@ import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.esmodel.VersionInfo;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.StorageException;
-import org.unicase.emfstore.update.steps.UpdateStepRemoveAnnotationInstances;
-import org.unicase.emfstore.update.steps.UpdateStepRemoveBugResolution;
-import org.unicase.emfstore.update.steps.UpdateStepRemoveOrgUnit;
-import org.unicase.emfstore.update.steps.UpdateStepRemoveRefiningIssues;
-import org.unicase.emfstore.update.steps.UpdateStepRemoveStepsToReproduce;
-import org.unicase.emfstore.update.steps.UpdateStepRenameActionItemAssignedTo;
-import org.unicase.emfstore.update.steps.UpdateStepRenameAssignedTo;
-import org.unicase.emfstore.update.steps.UpdateStepRenameFacilitator;
-import org.unicase.emfstore.update.steps.UpdateStepRenamePackages;
 
 /**
  * @author schroech
@@ -80,15 +71,16 @@ public class UpdateController {
 		updateSteps = new ArrayList<UpdateStep>();
 		necessaryUpdateSteps = new ArrayList<UpdateStep>();
 		
-		updateSteps.add(new UpdateStepRenameFacilitator());
-		updateSteps.add(new UpdateStepRemoveAnnotationInstances());
-		updateSteps.add(new UpdateStepRemoveBugResolution());
-		updateSteps.add(new UpdateStepRemoveRefiningIssues());
-		updateSteps.add(new UpdateStepRemoveStepsToReproduce());
-		updateSteps.add(new UpdateStepRenameAssignedTo());
-		updateSteps.add(new UpdateStepRenameActionItemAssignedTo());
-		updateSteps.add(new UpdateStepRenamePackages());
-		updateSteps.add(new UpdateStepRemoveOrgUnit());
+		//Version 0.0.4
+//		updateSteps.add(new UpdateStepRenameFacilitator());
+//		updateSteps.add(new UpdateStepRemoveAnnotationInstances());
+//		updateSteps.add(new UpdateStepRemoveBugResolution());
+//		updateSteps.add(new UpdateStepRemoveRefiningIssues());
+//		updateSteps.add(new UpdateStepRemoveStepsToReproduce());
+//		updateSteps.add(new UpdateStepRenameAssignedTo());
+//		updateSteps.add(new UpdateStepRenameActionItemAssignedTo());
+//		updateSteps.add(new UpdateStepRenamePackages());
+//		updateSteps.add(new UpdateStepRemoveOrgUnit());
 	}
 	
 

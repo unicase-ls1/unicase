@@ -267,38 +267,13 @@ public interface RationalePackage extends EPackage {
 	int ISSUE__CRITERIA = ModelPackage.ANNOTATION_FEATURE_COUNT + 9;
 
 	/**
-	 * The feature id for the '<em><b>Refining Issues</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ISSUE__REFINING_ISSUES = ModelPackage.ANNOTATION_FEATURE_COUNT + 10;
-
-	/**
-	 * The feature id for the '<em><b>Refined Issue</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ISSUE__REFINED_ISSUE = ModelPackage.ANNOTATION_FEATURE_COUNT + 11;
-
-	/**
-	 * The feature id for the '<em><b>Facilitator</b></em>' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ISSUE__FACILITATOR = ModelPackage.ANNOTATION_FEATURE_COUNT + 12;
-
-	/**
 	 * The number of structural features of the '<em>Issue</em>' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE_FEATURE_COUNT = ModelPackage.ANNOTATION_FEATURE_COUNT + 13;
+	int ISSUE_FEATURE_COUNT = ModelPackage.ANNOTATION_FEATURE_COUNT + 10;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.rationale.impl.ProposalImpl <em>Proposal</em>}' class.
@@ -1045,36 +1020,6 @@ public interface RationalePackage extends EPackage {
 	EReference getIssue_Criteria();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.model.rationale.Issue#getRefiningIssues <em>Refining Issues</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Refining Issues</em>'.
-	 * @see org.unicase.model.rationale.Issue#getRefiningIssues()
-	 * @see #getIssue()
-	 * @generated
-	 */
-	EReference getIssue_RefiningIssues();
-
-	/**
-	 * Returns the meta object for the container reference '{@link org.unicase.model.rationale.Issue#getRefinedIssue <em>Refined Issue</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Refined Issue</em>'.
-	 * @see org.unicase.model.rationale.Issue#getRefinedIssue()
-	 * @see #getIssue()
-	 * @generated
-	 */
-	EReference getIssue_RefinedIssue();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.rationale.Issue#getFacilitator <em>Facilitator</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Facilitator</em>'.
-	 * @see org.unicase.model.rationale.Issue#getFacilitator()
-	 * @see #getIssue()
-	 * @generated
-	 */
-	EReference getIssue_Facilitator();
-
-	/**
 	 * Returns the meta object for class '
 	 * {@link org.unicase.model.rationale.Proposal <em>Proposal</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -1273,29 +1218,6 @@ public interface RationalePackage extends EPackage {
 		 * @generated
 		 */
 		EReference ISSUE__CRITERIA = eINSTANCE.getIssue_Criteria();
-
-		/**
-		 * The meta object literal for the '<em><b>Refining Issues</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc --> <!--
-		 * end-user-doc -->
-		 * @generated
-		 */
-		EReference ISSUE__REFINING_ISSUES = eINSTANCE.getIssue_RefiningIssues();
-
-		/**
-		 * The meta object literal for the '<em><b>Refined Issue</b></em>' container reference feature.
-		 * <!-- begin-user-doc --> <!--
-		 * end-user-doc -->
-		 * @generated
-		 */
-		EReference ISSUE__REFINED_ISSUE = eINSTANCE.getIssue_RefinedIssue();
-
-		/**
-		 * The meta object literal for the '<em><b>Facilitator</b></em>' reference feature.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ISSUE__FACILITATOR = eINSTANCE.getIssue_Facilitator();
 
 		/**
 		 * The meta object literal for the '

@@ -17,7 +17,6 @@ import org.unicase.model.ModelPackage;
 import org.unicase.model.bug.BugFactory;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.bug.BugReport;
-import org.unicase.model.bug.BugResolution;
 import org.unicase.model.bug.BugStatus;
 import org.unicase.model.bug.ResolutionType;
 import org.unicase.model.bug.Severity;
@@ -52,12 +51,6 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 	 * @generated
 	 */
 	private EClass bugReportEClass = null;
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass bugResolutionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -225,32 +218,8 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBugReport_StepsToReproduce() {
-		return (EReference) bugReportEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getBugReport_Status() {
-		return (EAttribute) bugReportEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getBugReport_AssignedTo() {
-		return (EReference) bugReportEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getBugReport_Resolution() {
-		return (EReference) bugReportEClass.getEStructuralFeatures().get(3);
+		return (EAttribute) bugReportEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -258,23 +227,7 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 	 * @generated
 	 */
 	public EAttribute getBugReport_Severity() {
-		return (EAttribute) bugReportEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getBugResolution() {
-		return bugResolutionEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getBugResolution_ResoultionType() {
-		return (EAttribute) bugResolutionEClass.getEStructuralFeatures().get(0);
+		return (EAttribute) bugReportEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -329,14 +282,8 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 
 		// Create classes and their features
 		bugReportEClass = createEClass(BUG_REPORT);
-		createEReference(bugReportEClass, BUG_REPORT__STEPS_TO_REPRODUCE);
 		createEAttribute(bugReportEClass, BUG_REPORT__STATUS);
-		createEReference(bugReportEClass, BUG_REPORT__ASSIGNED_TO);
-		createEReference(bugReportEClass, BUG_REPORT__RESOLUTION);
 		createEAttribute(bugReportEClass, BUG_REPORT__SEVERITY);
-
-		bugResolutionEClass = createEClass(BUG_RESOLUTION);
-		createEAttribute(bugResolutionEClass, BUG_RESOLUTION__RESOULTION_TYPE);
 
 		// Create enums
 		bugStatusEEnum = createEEnum(BUG_STATUS);
@@ -370,12 +317,6 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 		// Obtain other dependent packages
 		TaskPackage theTaskPackage = (TaskPackage) EPackage.Registry.INSTANCE
 				.getEPackage(TaskPackage.eNS_URI);
-		RequirementPackage theRequirementPackage = (RequirementPackage) EPackage.Registry.INSTANCE
-				.getEPackage(RequirementPackage.eNS_URI);
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE
-				.getEPackage(ModelPackage.eNS_URI);
-		OrganizationPackage theOrganizationPackage = (OrganizationPackage) EPackage.Registry.INSTANCE
-				.getEPackage(OrganizationPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -383,46 +324,16 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 
 		// Add supertypes to classes
 		bugReportEClass.getESuperTypes().add(theTaskPackage.getWorkItem());
-		bugResolutionEClass.getESuperTypes().add(
-				theModelPackage.getModelElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(bugReportEClass, BugReport.class, "BugReport", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBugReport_StepsToReproduce(), theRequirementPackage
-				.getStep(), null, "stepsToReproduce", null, 0, -1,
-				BugReport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		getBugReport_StepsToReproduce().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
 		initEAttribute(getBugReport_Status(), this.getBugStatus(), "Status",
 				null, 0, 1, BugReport.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
-		initEReference(getBugReport_AssignedTo(), theOrganizationPackage
-				.getOrgUnit(), null, "assignedTo", null, 0, 1, BugReport.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		getBugReport_AssignedTo().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getBugReport_Resolution(), this.getBugResolution(),
-				null, "resolution", null, 0, 1, BugReport.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getBugReport_Resolution().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
 		initEAttribute(getBugReport_Severity(), this.getSeverity(), "severity",
 				null, 0, 1, BugReport.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-
-		initEClass(bugResolutionEClass, BugResolution.class, "BugResolution",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getBugResolution_ResoultionType(), this
-				.getResolutionType(), "resoultionType", null, 0, 1,
-				BugResolution.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 

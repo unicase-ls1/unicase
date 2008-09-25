@@ -91,8 +91,6 @@
       </genEnums>
       <genClasses ecoreClass="model.ecore#//task/ActionItem">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//task/ActionItem/done"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference model.ecore#//task/ActionItem/assignedTo"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//task/ActionItem/dueDate"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//task/ActionItem/estimate"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//task/ActionItem/activity"/>
@@ -358,10 +356,6 @@
         <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//rationale/Issue/solution"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//rationale/Issue/criteria"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//rationale/Issue/refiningIssues"/>
-        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//rationale/Issue/refinedIssue"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference model.ecore#//rationale/Issue/facilitator"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//rationale/Proposal">
         <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//rationale/Proposal/assessments"/>
@@ -430,17 +424,8 @@
         <genEnumLiterals ecoreEnumLiteral="model.ecore#//bug/ResolutionType/WONT_FIX"/>
       </genEnums>
       <genClasses ecoreClass="model.ecore#//bug/BugReport">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference model.ecore#//bug/BugReport/stepsToReproduce"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//bug/BugReport/Status"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference model.ecore#//bug/BugReport/assignedTo"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference model.ecore#//bug/BugReport/resolution"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//bug/BugReport/severity"/>
-      </genClasses>
-      <genClasses ecoreClass="model.ecore#//bug/BugResolution">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//bug/BugResolution/resoultionType"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Component" basePackage="org.unicase.model" disposableProviderFactory="true"

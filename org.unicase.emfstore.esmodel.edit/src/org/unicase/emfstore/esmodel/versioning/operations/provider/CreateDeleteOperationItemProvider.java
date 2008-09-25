@@ -185,16 +185,6 @@ public class CreateDeleteOperationItemProvider extends
 		newChildDescriptors
 				.add(createChildParameter(
 						OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-						ModelFactory.eINSTANCE.createAnnotation()));
-
-		newChildDescriptors
-				.add(createChildParameter(
-						OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-						OrganizationFactory.eINSTANCE.createOrgUnit()));
-
-		newChildDescriptors
-				.add(createChildParameter(
-						OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
 						OrganizationFactory.eINSTANCE.createUser()));
 
 		newChildDescriptors
@@ -368,11 +358,6 @@ public class CreateDeleteOperationItemProvider extends
 				.add(createChildParameter(
 						OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
 						BugFactory.eINSTANCE.createBugReport()));
-
-		newChildDescriptors
-				.add(createChildParameter(
-						OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-						BugFactory.eINSTANCE.createBugResolution()));
 
 		newChildDescriptors
 				.add(createChildParameter(

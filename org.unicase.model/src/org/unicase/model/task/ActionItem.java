@@ -19,7 +19,6 @@ import org.unicase.model.organization.User;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.unicase.model.task.ActionItem#isDone <em>Done</em>}</li>
- *   <li>{@link org.unicase.model.task.ActionItem#getAssignedTo <em>Assigned To</em>}</li>
  *   <li>{@link org.unicase.model.task.ActionItem#getDueDate <em>Due Date</em>}</li>
  *   <li>{@link org.unicase.model.task.ActionItem#getEstimate <em>Estimate</em>}</li>
  *   <li>{@link org.unicase.model.task.ActionItem#getActivity <em>Activity</em>}</li>
@@ -31,22 +30,6 @@ import org.unicase.model.organization.User;
  * @generated
  */
 public interface ActionItem extends WorkItem, Checkable {
-	/**
-	 * Returns the value of the '<em><b>Assigned To</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.organization.User}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Assigned To</em>' containment reference isn't
-	 * clear, there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Assigned To</em>' reference list.
-	 * @see org.unicase.model.task.TaskPackage#getActionItem_AssignedTo()
-	 * @model keys="identifier"
-	 * @generated
-	 */
-	EList<User> getAssignedTo();
-
 	/**
 	 * Returns the value of the '<em><b>Due Date</b></em>' attribute. <!--
 	 * begin-user-doc -->

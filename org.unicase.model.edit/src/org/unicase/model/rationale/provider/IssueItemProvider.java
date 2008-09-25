@@ -67,7 +67,6 @@ public class IssueItemProvider extends AnnotationItemProvider implements
 			addProposalsPropertyDescriptor(object);
 			addSolutionPropertyDescriptor(object);
 			addCriteriaPropertyDescriptor(object);
-			addFacilitatorPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -162,23 +161,6 @@ public class IssueItemProvider extends AnnotationItemProvider implements
 	}
 
 	/**
-	 * This adds a property descriptor for the Facilitator feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void addFacilitatorPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Issue_facilitator_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Issue_facilitator_feature", "_UI_Issue_type"),
-				RationalePackage.Literals.ISSUE__FACILITATOR, true, false,
-				true, null, null, null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Participants feature. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -244,8 +226,6 @@ public class IssueItemProvider extends AnnotationItemProvider implements
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(RationalePackage.Literals.ISSUE__PROPOSALS);
 			childrenFeatures.add(RationalePackage.Literals.ISSUE__SOLUTION);
-			childrenFeatures
-					.add(RationalePackage.Literals.ISSUE__REFINING_ISSUES);
 		}
 		return childrenFeatures;
 	}
@@ -311,7 +291,6 @@ public class IssueItemProvider extends AnnotationItemProvider implements
 			return;
 		case RationalePackage.ISSUE__PROPOSALS:
 		case RationalePackage.ISSUE__SOLUTION:
-		case RationalePackage.ISSUE__REFINING_ISSUES:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), true, false));
 			return;
@@ -346,14 +325,6 @@ public class IssueItemProvider extends AnnotationItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				RationalePackage.Literals.ISSUE__SOLUTION,
 				ChangeFactory.eINSTANCE.createMergingSolution()));
-
-		newChildDescriptors.add(createChildParameter(
-				RationalePackage.Literals.ISSUE__REFINING_ISSUES,
-				RationaleFactory.eINSTANCE.createIssue()));
-
-		newChildDescriptors.add(createChildParameter(
-				RationalePackage.Literals.ISSUE__REFINING_ISSUES,
-				ChangeFactory.eINSTANCE.createMergingIssue()));
 	}
 
 	/**

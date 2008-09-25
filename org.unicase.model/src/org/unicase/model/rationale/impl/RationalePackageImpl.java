@@ -256,30 +256,6 @@ public class RationalePackageImpl extends EPackageImpl implements
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIssue_RefiningIssues() {
-		return (EReference) issueEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getIssue_RefinedIssue() {
-		return (EReference) issueEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getIssue_Facilitator() {
-		return (EReference) issueEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getProposal() {
 		return proposalEClass;
 	}
@@ -419,9 +395,6 @@ public class RationalePackageImpl extends EPackageImpl implements
 		createEReference(issueEClass, ISSUE__PROPOSALS);
 		createEReference(issueEClass, ISSUE__SOLUTION);
 		createEReference(issueEClass, ISSUE__CRITERIA);
-		createEReference(issueEClass, ISSUE__REFINING_ISSUES);
-		createEReference(issueEClass, ISSUE__REFINED_ISSUE);
-		createEReference(issueEClass, ISSUE__FACILITATOR);
 
 		proposalEClass = createEClass(PROPOSAL);
 		createEReference(proposalEClass, PROPOSAL__ASSESSMENTS);
@@ -471,8 +444,6 @@ public class RationalePackageImpl extends EPackageImpl implements
 				.getEPackage(ModelPackage.eNS_URI);
 		TaskPackage theTaskPackage = (TaskPackage) EPackage.Registry.INSTANCE
 				.getEPackage(TaskPackage.eNS_URI);
-		OrganizationPackage theOrganizationPackage = (OrganizationPackage) EPackage.Registry.INSTANCE
-				.getEPackage(OrganizationPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -511,27 +482,6 @@ public class RationalePackageImpl extends EPackageImpl implements
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getIssue_Criteria().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getIssue_RefiningIssues(), this.getIssue(), this
-				.getIssue_RefinedIssue(), "refiningIssues", null, 0, -1,
-				Issue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		getIssue_RefiningIssues().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getIssue_RefinedIssue(), this.getIssue(), this
-				.getIssue_RefiningIssues(), "refinedIssue", null, 0, 1,
-				Issue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		getIssue_RefinedIssue().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getIssue_Facilitator(),
-				theOrganizationPackage.getUser(), null, "facilitator", null, 0,
-				1, Issue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		getIssue_Facilitator().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(proposalEClass, Proposal.class, "Proposal", !IS_ABSTRACT,

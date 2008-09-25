@@ -223,14 +223,6 @@ public class MEDiagramItemProvider extends ModelElementItemProvider implements
 
 		newChildDescriptors.add(createChildParameter(
 				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				ModelFactory.eINSTANCE.createAnnotation()));
-
-		newChildDescriptors.add(createChildParameter(
-				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				OrganizationFactory.eINSTANCE.createOrgUnit()));
-
-		newChildDescriptors.add(createChildParameter(
-				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
 				OrganizationFactory.eINSTANCE.createUser()));
 
 		newChildDescriptors.add(createChildParameter(
@@ -364,10 +356,6 @@ public class MEDiagramItemProvider extends ModelElementItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
 				BugFactory.eINSTANCE.createBugReport()));
-
-		newChildDescriptors.add(createChildParameter(
-				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				BugFactory.eINSTANCE.createBugResolution()));
 
 		newChildDescriptors.add(createChildParameter(
 				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,

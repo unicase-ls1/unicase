@@ -100,7 +100,7 @@ public interface Project extends EObject, IAdaptable {
 	 */
 	<T extends ModelElement> EList<T> getAllModelElementsbyClass(
 			EClass modelElementClass, EList<T> list, Boolean subclasses);
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * Returns whether the project contains a model element with the same id.
@@ -116,7 +116,7 @@ public interface Project extends EObject, IAdaptable {
 	 * @return true if the project contains such a model element
 	 */
 	boolean contains(ModelElementId modelElementId);
-	
+
 	/**
 	 * Returns whether the project contains the exact same instance of the model element.
 	 * @param modelElement the model element
@@ -130,13 +130,13 @@ public interface Project extends EObject, IAdaptable {
 	 * @return the model element or null if it is not in the project
 	 */
 	ModelElement getModelElement(ModelElementId modelElementId);
-	
+
 	/**
 	 * Add an observer to the project. Will be notified on project changes. See {@link ProjectChangeObserver}.
 	 * @param projectChangeObserver
 	 */
 	void addProjectChangeObserver(ProjectChangeObserver projectChangeObserver);
-	
+
 	/**
 	 * Remove an observer to the project. See {@link ProjectChangeObserver}.
 	 * @param projectChangeObserver

@@ -243,16 +243,8 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActionItem_AssignedTo() {
-		return (EReference) actionItemEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getActionItem_DueDate() {
-		return (EAttribute) actionItemEClass.getEStructuralFeatures().get(2);
+		return (EAttribute) actionItemEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -268,7 +260,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * @generated
 	 */
 	public EAttribute getActionItem_Estimate() {
-		return (EAttribute) actionItemEClass.getEStructuralFeatures().get(3);
+		return (EAttribute) actionItemEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -277,7 +269,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * @generated
 	 */
 	public EAttribute getActionItem_Activity() {
-		return (EAttribute) actionItemEClass.getEStructuralFeatures().get(4);
+		return (EAttribute) actionItemEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -539,7 +531,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		// Create classes and their features
 		actionItemEClass = createEClass(ACTION_ITEM);
 		createEAttribute(actionItemEClass, ACTION_ITEM__DONE);
-		createEReference(actionItemEClass, ACTION_ITEM__ASSIGNED_TO);
 		createEAttribute(actionItemEClass, ACTION_ITEM__DUE_DATE);
 		createEAttribute(actionItemEClass, ACTION_ITEM__ESTIMATE);
 		createEAttribute(actionItemEClass, ACTION_ITEM__ACTIVITY);
@@ -602,14 +593,14 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		OrganizationPackage theOrganizationPackage = (OrganizationPackage) EPackage.Registry.INSTANCE
-				.getEPackage(OrganizationPackage.eNS_URI);
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE
 				.getEPackage(ModelPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
 				.getEPackage(EcorePackage.eNS_URI);
 		ChangePackage theChangePackage = (ChangePackage) EPackage.Registry.INSTANCE
 				.getEPackage(ChangePackage.eNS_URI);
+		OrganizationPackage theOrganizationPackage = (OrganizationPackage) EPackage.Registry.INSTANCE
+				.getEPackage(OrganizationPackage.eNS_URI);
 		RationalePackage theRationalePackage = (RationalePackage) EPackage.Registry.INSTANCE
 				.getEPackage(RationalePackage.eNS_URI);
 
@@ -632,13 +623,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 				"done", null, 0, 1, ActionItem.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		initEReference(getActionItem_AssignedTo(), theOrganizationPackage
-				.getUser(), null, "assignedTo", null, 0, -1, ActionItem.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		getActionItem_AssignedTo().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
 		initEAttribute(getActionItem_DueDate(), ecorePackage.getEDate(),
 				"dueDate", null, 0, 1, ActionItem.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,

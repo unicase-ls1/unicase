@@ -82,6 +82,8 @@ public final class ServerConfiguration {
 	public static final String AUTHENTICATION_POLICY_DEFAULT = AUTHENTICATION_LDAP;
 
 	public static final String AUTHENTICATION_SPFV_FILEPATH = "";
+	
+	public static final String VALIDATE_SERVERSPACE_ON_SERVERSTART = "emfstore.validateOnLoad";
 
 	private static Properties properties;
 

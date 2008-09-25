@@ -13,9 +13,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.Annotation;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
+import org.unicase.model.bug.*;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.bug.BugReport;
-import org.unicase.model.bug.BugResolution;
 import org.unicase.model.task.WorkItem;
 
 /**
@@ -77,11 +77,6 @@ public class BugAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseBugResolution(BugResolution object) {
-			return createBugResolutionAdapter();
-		}
-
-		@Override
 		public Adapter caseIdentifiableElement(IdentifiableElement object) {
 			return createIdentifiableElementAdapter();
 		}
@@ -132,21 +127,6 @@ public class BugAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createBugReportAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.unicase.model.bug.BugResolution <em>Resolution</em>}'. <!--
-	 * begin-user-doc --> This default implementation returns null so that we
-	 * can easily ignore cases; it's useful to ignore a case when inheritance
-	 * will catch all the cases anyway. <!-- end-user-doc -->
-	 * 
-	 * @return the new adapter.
-	 * @see org.unicase.model.bug.BugResolution
-	 * @generated
-	 */
-	public Adapter createBugResolutionAdapter() {
 		return null;
 	}
 

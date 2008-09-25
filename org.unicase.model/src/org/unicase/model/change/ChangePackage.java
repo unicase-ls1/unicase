@@ -412,31 +412,6 @@ public interface ChangePackage extends EPackage {
 	int MERGING_ISSUE__CRITERIA = RationalePackage.ISSUE__CRITERIA;
 
 	/**
-	 * The feature id for the '<em><b>Refining Issues</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_ISSUE__REFINING_ISSUES = RationalePackage.ISSUE__REFINING_ISSUES;
-
-	/**
-	 * The feature id for the '<em><b>Refined Issue</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_ISSUE__REFINED_ISSUE = RationalePackage.ISSUE__REFINED_ISSUE;
-
-	/**
-	 * The feature id for the '<em><b>Facilitator</b></em>' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_ISSUE__FACILITATOR = RationalePackage.ISSUE__FACILITATOR;
-
-	/**
 	 * The feature id for the '<em><b>Resolving Revision</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated

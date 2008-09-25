@@ -62,7 +62,6 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 			addAssigneePropertyDescriptor(object);
 			addParticipantsPropertyDescriptor(object);
 			addDonePropertyDescriptor(object);
-			addAssignedToPropertyDescriptor(object);
 			addDueDatePropertyDescriptor(object);
 			addEstimatePropertyDescriptor(object);
 			addActivityPropertyDescriptor(object);
@@ -157,24 +156,6 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 						"_UI_WorkItem_participants_feature",
 						"_UI_WorkItem_type"),
 				TaskPackage.Literals.WORK_ITEM__PARTICIPANTS, true, false,
-				true, null, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Assigned To feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void addAssignedToPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ActionItem_assignedTo_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_ActionItem_assignedTo_feature",
-						"_UI_ActionItem_type"),
-				TaskPackage.Literals.ACTION_ITEM__ASSIGNED_TO, true, false,
 				true, null, null, null));
 	}
 

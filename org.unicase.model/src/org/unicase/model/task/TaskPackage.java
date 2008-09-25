@@ -433,22 +433,13 @@ public interface TaskPackage extends EPackage {
 	int ACTION_ITEM__DONE = WORK_ITEM_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Assigned To</b></em>' reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ACTION_ITEM__ASSIGNED_TO = WORK_ITEM_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Due Date</b></em>' attribute. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM__DUE_DATE = WORK_ITEM_FEATURE_COUNT + 3;
+	int ACTION_ITEM__DUE_DATE = WORK_ITEM_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Estimate</b></em>' attribute. <!--
@@ -457,7 +448,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM__ESTIMATE = WORK_ITEM_FEATURE_COUNT + 4;
+	int ACTION_ITEM__ESTIMATE = WORK_ITEM_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Activity</b></em>' attribute.
@@ -466,7 +457,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM__ACTIVITY = WORK_ITEM_FEATURE_COUNT + 5;
+	int ACTION_ITEM__ACTIVITY = WORK_ITEM_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Action Item</em>' class.
@@ -474,7 +465,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM_FEATURE_COUNT = WORK_ITEM_FEATURE_COUNT + 6;
+	int ACTION_ITEM_FEATURE_COUNT = WORK_ITEM_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.task.impl.WorkPackageImpl <em>Work Package</em>}' class.
@@ -1082,16 +1073,6 @@ public interface TaskPackage extends EPackage {
 	EClass getActionItem();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.task.ActionItem#getAssignedTo <em>Assigned To</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Assigned To</em>'.
-	 * @see org.unicase.model.task.ActionItem#getAssignedTo()
-	 * @see #getActionItem()
-	 * @generated
-	 */
-	EReference getActionItem_AssignedTo();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.model.task.ActionItem#getDueDate <em>Due Date</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Due Date</em>'.
@@ -1447,14 +1428,6 @@ public interface TaskPackage extends EPackage {
 		 * @generated
 		 */
 		EClass ACTION_ITEM = eINSTANCE.getActionItem();
-
-		/**
-		 * The meta object literal for the '<em><b>Assigned To</b></em>' reference list feature.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ACTION_ITEM__ASSIGNED_TO = eINSTANCE
-				.getActionItem_AssignedTo();
 
 		/**
 		 * The meta object literal for the '<em><b>Due Date</b></em>' attribute feature.

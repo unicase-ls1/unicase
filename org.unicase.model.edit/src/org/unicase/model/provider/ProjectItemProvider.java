@@ -156,14 +156,6 @@ public class ProjectItemProvider extends ItemProviderAdapter implements
 
 		newChildDescriptors.add(createChildParameter(
 				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				ModelFactory.eINSTANCE.createAnnotation()));
-
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				OrganizationFactory.eINSTANCE.createOrgUnit()));
-
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 				OrganizationFactory.eINSTANCE.createUser()));
 
 		newChildDescriptors.add(createChildParameter(
@@ -301,10 +293,6 @@ public class ProjectItemProvider extends ItemProviderAdapter implements
 		newChildDescriptors.add(createChildParameter(
 				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 				BugFactory.eINSTANCE.createBugReport()));
-
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				BugFactory.eINSTANCE.createBugResolution()));
 
 		newChildDescriptors.add(createChildParameter(
 				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,

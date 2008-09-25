@@ -232,9 +232,8 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	// end of custom code
 
 	/**
-	 * @generated
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
@@ -515,9 +514,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	 * @generated NOT
 	 */
 	public void addReader(String acOrgId) {
-//		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//		getStringReaderInfos().add(
-//				acOrgId.concat("#").concat(df.format(new Date())));
+		//		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		//		getStringReaderInfos().add(
+		//				acOrgId.concat("#").concat(df.format(new Date())));
 	}
 
 	//end of custom code

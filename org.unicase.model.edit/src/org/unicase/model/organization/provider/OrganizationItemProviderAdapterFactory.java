@@ -100,30 +100,6 @@ public class OrganizationItemProviderAdapterFactory extends
 
 	/**
 	 * This keeps track of the one adapter used for all
-	 * {@link org.unicase.model.organization.OrgUnit} instances. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected OrgUnitItemProvider orgUnitItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.model.organization.OrgUnit}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createOrgUnitAdapter() {
-		if (orgUnitItemProvider == null) {
-			orgUnitItemProvider = new OrgUnitItemProvider(this);
-		}
-
-		return orgUnitItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all
 	 * {@link org.unicase.model.organization.Group} instances. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -246,8 +222,6 @@ public class OrganizationItemProviderAdapterFactory extends
 	public void dispose() {
 		if (userItemProvider != null)
 			userItemProvider.dispose();
-		if (orgUnitItemProvider != null)
-			orgUnitItemProvider.dispose();
 		if (groupItemProvider != null)
 			groupItemProvider.dispose();
 	}
