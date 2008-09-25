@@ -314,6 +314,11 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl
 				return;
 			}
 		}
+		if (!isAdd()) {
+			for (ModelElement currentModelElement : referencedModelElements) {
+				project.addModelElement(currentModelElement);
+			}
+		}
 		//FIXME MK: exception
 		throw new IllegalStateException("cannot find reference feature");
 
