@@ -420,6 +420,25 @@ public interface ModelPackage extends EPackage {
 	int MODEL_ELEMENT_ID_FEATURE_COUNT = UNIQUE_IDENTIFIER_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.unicase.model.NonDomainElement <em>Non Domain Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.NonDomainElement
+	 * @see org.unicase.model.impl.ModelPackageImpl#getNonDomainElement()
+	 * @generated
+	 */
+	int NON_DOMAIN_ELEMENT = 6;
+
+	/**
+	 * The number of structural features of the '<em>Non Domain Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NON_DOMAIN_ELEMENT_FEATURE_COUNT = 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.model.ModelElement <em>Element</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Element</em>'.
@@ -639,6 +658,16 @@ public interface ModelPackage extends EPackage {
 	EClass getModelElementId();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.model.NonDomainElement <em>Non Domain Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Non Domain Element</em>'.
+	 * @see org.unicase.model.NonDomainElement
+	 * @generated
+	 */
+	EClass getNonDomainElement();
+
+	/**
 	 * Returns the factory that creates the instances of the model. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -841,6 +870,16 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass MODEL_ELEMENT_ID = eINSTANCE.getModelElementId();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.NonDomainElement <em>Non Domain Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.NonDomainElement
+		 * @see org.unicase.model.impl.ModelPackageImpl#getNonDomainElement()
+		 * @generated
+		 */
+		EClass NON_DOMAIN_ELEMENT = eINSTANCE.getNonDomainElement();
 
 	}
 

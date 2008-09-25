@@ -22,6 +22,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.NonDomainElement;
 import org.unicase.model.Project;
 import org.unicase.model.UniqueIdentifier;
 import org.unicase.model.bug.BugPackage;
@@ -88,6 +89,13 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	private EClass modelElementIdEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass nonDomainElementEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -405,6 +413,15 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getNonDomainElement() {
+		return nonDomainElementEClass;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -459,6 +476,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 				IDENTIFIABLE_ELEMENT__IDENTIFIER);
 
 		modelElementIdEClass = createEClass(MODEL_ELEMENT_ID);
+
+		nonDomainElementEClass = createEClass(NON_DOMAIN_ELEMENT);
 	}
 
 	/**
@@ -676,6 +695,10 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 		initEClass(modelElementIdEClass, ModelElementId.class,
 				"ModelElementId", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(nonDomainElementEClass, NonDomainElement.class,
+				"NonDomainElement", IS_ABSTRACT, IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource

@@ -454,10 +454,16 @@ public class RationalePackageImpl extends EPackageImpl implements
 		issueEClass.getESuperTypes().add(theTaskPackage.getCheckable());
 		issueEClass.getESuperTypes().add(theTaskPackage.getWorkItem());
 		proposalEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		proposalEClass.getESuperTypes().add(
+				theModelPackage.getNonDomainElement());
 		solutionEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		solutionEClass.getESuperTypes().add(
+				theModelPackage.getNonDomainElement());
 		criterionEClass.getESuperTypes().add(theModelPackage.getModelElement());
 		assessmentEClass.getESuperTypes()
 				.add(theModelPackage.getModelElement());
+		assessmentEClass.getESuperTypes().add(
+				theModelPackage.getNonDomainElement());
 		commentEClass.getESuperTypes().add(theModelPackage.getAnnotation());
 
 		// Initialize classes and features; add operations and parameters

@@ -76,6 +76,7 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModelElementId" eSuperTypes="#//UniqueIdentifier"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NonDomainElement" abstract="true" interface="true"/>
   <eSubpackages name="organization" nsURI="http://unicase.org/model/organization"
       nsPrefix="org.unicase.model.organization">
     <eClassifiers xsi:type="ecore:EClass" name="User" eSuperTypes="#//organization/OrgUnit">
@@ -406,19 +407,19 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="instantiatedActor" eType="#//requirement/Actor"
           eOpposite="#//requirement/Actor/instances" eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Step" eSuperTypes="#//ModelElement">
+    <eClassifiers xsi:type="ecore:EClass" name="Step" eSuperTypes="#//ModelElement #//NonDomainElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="userStep" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="includedUseCase" eType="#//requirement/UseCase"
           eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="includedSystemFunction"
           eType="#//requirement/SystemFunction" eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="SystemFunction" eSuperTypes="#//ModelElement">
+    <eClassifiers xsi:type="ecore:EClass" name="SystemFunction" eSuperTypes="#//ModelElement #//NonDomainElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="input" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="output" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="exception" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="UserTask" eSuperTypes="#//ModelElement">
+    <eClassifiers xsi:type="ecore:EClass" name="UserTask" eSuperTypes="#//ModelElement #//NonDomainElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="initiatingActor" eType="#//requirement/Actor"
           eOpposite="#//requirement/Actor/initiatedUserTask" eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="participatingActor" upperBound="-1"
@@ -439,14 +440,14 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="criteria" upperBound="-1"
           eType="#//rationale/Criterion" eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Proposal" eSuperTypes="#//ModelElement">
+    <eClassifiers xsi:type="ecore:EClass" name="Proposal" eSuperTypes="#//ModelElement #//NonDomainElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="assessments" upperBound="-1"
           eType="#//rationale/Assessment" containment="true" eOpposite="#//rationale/Assessment/proposal"
           eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="issue" eType="#//rationale/Issue"
           eOpposite="#//rationale/Issue/proposals" eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Solution" eSuperTypes="#//ModelElement">
+    <eClassifiers xsi:type="ecore:EClass" name="Solution" eSuperTypes="#//ModelElement #//NonDomainElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="underlyingProposals"
           upperBound="-1" eType="#//rationale/Proposal" eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="issue" eType="#//rationale/Issue"
@@ -457,7 +458,7 @@
           eType="#//rationale/Assessment" eOpposite="#//rationale/Assessment/criterion"
           eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Assessment" eSuperTypes="#//ModelElement">
+    <eClassifiers xsi:type="ecore:EClass" name="Assessment" eSuperTypes="#//ModelElement #//NonDomainElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="proposal" eType="#//rationale/Proposal"
           eOpposite="#//rationale/Proposal/assessments" eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="criterion" eType="#//rationale/Criterion"
