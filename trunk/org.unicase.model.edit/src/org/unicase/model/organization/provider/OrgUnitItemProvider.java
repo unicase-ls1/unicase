@@ -57,7 +57,6 @@ public class OrgUnitItemProvider extends ModelElementItemProvider implements
 
 			addGroupMembershipsPropertyDescriptor(object);
 			addAssignmentsPropertyDescriptor(object);
-			addParticipationsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -94,24 +93,6 @@ public class OrgUnitItemProvider extends ModelElementItemProvider implements
 						"_UI_PropertyDescriptor_description",
 						"_UI_OrgUnit_assignments_feature", "_UI_OrgUnit_type"),
 				OrganizationPackage.Literals.ORG_UNIT__ASSIGNMENTS, true,
-				false, true, null, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Participations feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addParticipationsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_OrgUnit_participations_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_OrgUnit_participations_feature",
-						"_UI_OrgUnit_type"),
-				OrganizationPackage.Literals.ORG_UNIT__PARTICIPATIONS, true,
 				false, true, null, null, null));
 	}
 

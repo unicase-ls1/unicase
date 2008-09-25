@@ -261,13 +261,31 @@ public interface BugPackage extends EPackage {
 	int BUG_REPORT__SEVERITY = TaskPackage.WORK_ITEM_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Resolution</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUG_REPORT__RESOLUTION = TaskPackage.WORK_ITEM_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Resolution Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUG_REPORT__RESOLUTION_TYPE = TaskPackage.WORK_ITEM_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Report</em>' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int BUG_REPORT_FEATURE_COUNT = TaskPackage.WORK_ITEM_FEATURE_COUNT + 3;
+	int BUG_REPORT_FEATURE_COUNT = TaskPackage.WORK_ITEM_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.bug.BugStatus <em>Status</em>}' enum.
@@ -329,6 +347,28 @@ public interface BugPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getBugReport_Severity();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.bug.BugReport#getResolution <em>Resolution</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Resolution</em>'.
+	 * @see org.unicase.model.bug.BugReport#getResolution()
+	 * @see #getBugReport()
+	 * @generated
+	 */
+	EAttribute getBugReport_Resolution();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.bug.BugReport#getResolutionType <em>Resolution Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Resolution Type</em>'.
+	 * @see org.unicase.model.bug.BugReport#getResolutionType()
+	 * @see #getBugReport()
+	 * @generated
+	 */
+	EAttribute getBugReport_ResolutionType();
 
 	/**
 	 * Returns the meta object for enum '{@link org.unicase.model.bug.BugStatus <em>Status</em>}'.
@@ -401,6 +441,23 @@ public interface BugPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute BUG_REPORT__SEVERITY = eINSTANCE.getBugReport_Severity();
+
+		/**
+		 * The meta object literal for the '<em><b>Resolution</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BUG_REPORT__RESOLUTION = eINSTANCE.getBugReport_Resolution();
+
+		/**
+		 * The meta object literal for the '<em><b>Resolution Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BUG_REPORT__RESOLUTION_TYPE = eINSTANCE
+				.getBugReport_ResolutionType();
 
 		/**
 		 * The meta object literal for the '

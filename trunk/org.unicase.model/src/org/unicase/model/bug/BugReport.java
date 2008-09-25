@@ -18,6 +18,8 @@ import org.unicase.model.task.WorkItem;
  * <ul>
  *   <li>{@link org.unicase.model.bug.BugReport#getStatus <em>Status</em>}</li>
  *   <li>{@link org.unicase.model.bug.BugReport#getSeverity <em>Severity</em>}</li>
+ *   <li>{@link org.unicase.model.bug.BugReport#getResolution <em>Resolution</em>}</li>
+ *   <li>{@link org.unicase.model.bug.BugReport#getResolutionType <em>Resolution Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -85,5 +87,60 @@ public interface BugReport extends WorkItem, Checkable {
 	 * @generated
 	 */
 	void setSeverity(Severity value);
+
+	/**
+	 * Returns the value of the '<em><b>Resolution</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Resolution</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Resolution</em>' attribute.
+	 * @see #setResolution(String)
+	 * @see org.unicase.model.bug.BugPackage#getBugReport_Resolution()
+	 * @model
+	 * @generated
+	 */
+	String getResolution();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.bug.BugReport#getResolution <em>Resolution</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Resolution</em>' attribute.
+	 * @see #getResolution()
+	 * @generated
+	 */
+	void setResolution(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Resolution Type</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.unicase.model.bug.ResolutionType}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Resolution Type</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Resolution Type</em>' attribute.
+	 * @see org.unicase.model.bug.ResolutionType
+	 * @see #setResolutionType(ResolutionType)
+	 * @see org.unicase.model.bug.BugPackage#getBugReport_ResolutionType()
+	 * @model
+	 * @generated
+	 */
+	ResolutionType getResolutionType();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.bug.BugReport#getResolutionType <em>Resolution Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Resolution Type</em>' attribute.
+	 * @see org.unicase.model.bug.ResolutionType
+	 * @see #getResolutionType()
+	 * @generated
+	 */
+	void setResolutionType(ResolutionType value);
 
 } // BugReport
