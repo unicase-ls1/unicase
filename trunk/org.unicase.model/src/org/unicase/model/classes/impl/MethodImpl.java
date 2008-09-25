@@ -1,5 +1,6 @@
 /**
- * Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
  *
  * $Id$
  */
@@ -320,8 +321,10 @@ public class MethodImpl extends ModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Creates the complete signature of the method, derived from name, arguments, etc.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
+	 * @return the signature
 	 */
 	public String getSignature() {
 		String signature;
@@ -373,9 +376,9 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	}
 
 	/**
+	 * @generated
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	public EList<MethodArgument> getArguments() {
 		if (arguments == null) {
@@ -620,8 +623,10 @@ public class MethodImpl extends ModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * If the label can not be parsed it is a string field. otherwise this returns the signature.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
+	 * @return The displayable label.
 	 */
 	public String getLabel() {
 		if (label != null) {
@@ -632,9 +637,13 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> Sets and tries to parse the label. If it can be
+	 * parsed, label attribute stays null and signature is used instead. <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated NOT
+	 * @param newLabel
+	 *            the input string which will be parsed.
 	 */
 	public void setLabel(String newLabel) {
 		String oldLabel = label;
@@ -674,7 +683,7 @@ public class MethodImpl extends ModelElementImpl implements Method {
 				String argumentString = m.group(3);
 				if (argumentString != null && argumentString.length() > 0) {
 
-					String argumentStrings[] = argumentString.split(",");
+					String[] argumentStrings = argumentString.split(",");
 
 					this.getArguments().removeAll(this.getArguments());
 
@@ -696,9 +705,10 @@ public class MethodImpl extends ModelElementImpl implements Method {
 			}
 		}
 
-		if (eNotificationRequired())
+		if (eNotificationRequired()){
 			eNotify(new ENotificationImpl(this, Notification.SET,
 					ClassesPackage.METHOD__SIGNATURE, oldLabel, getLabel()));
+		}
 	}
 
 } //MethodImpl
