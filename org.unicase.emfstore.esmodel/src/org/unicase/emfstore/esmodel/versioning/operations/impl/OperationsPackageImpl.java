@@ -841,12 +841,12 @@ public class OperationsPackageImpl extends EPackageImpl implements
 		initEReference(getSingleReferenceOperation_OldValue(), theModelPackage
 				.getModelElementId(), null, "oldValue", null, 0, 1,
 				SingleReferenceOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSingleReferenceOperation_NewValue(), theModelPackage
 				.getModelElementId(), null, "newValue", null, 0, 1,
 				SingleReferenceOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(multiReferenceOperationEClass,
@@ -887,7 +887,7 @@ public class OperationsPackageImpl extends EPackageImpl implements
 				theModelPackage.getModelElementId(), null,
 				"referencedModelElementId", null, 0, 1,
 				MultiReferenceMoveOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(multiAttributeOperationEClass,

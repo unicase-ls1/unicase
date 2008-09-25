@@ -96,6 +96,7 @@
           <genOperations ecoreOperation="esmodel.ecore#//versioning/operations/AbstractOperation/canApply">
             <genParameters ecoreParameter="esmodel.ecore#//versioning/operations/AbstractOperation/canApply/project"/>
           </genOperations>
+          <genOperations ecoreOperation="esmodel.ecore#//versioning/operations/AbstractOperation/isChange"/>
         </genClasses>
         <genClasses ecoreClass="esmodel.ecore#//versioning/operations/CompositeOperation">
           <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/operations/CompositeOperation/subOperations"/>
@@ -138,11 +139,10 @@
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/MultiAttributeOperation/values"/>
         </genClasses>
         <genClasses ecoreClass="esmodel.ecore#//versioning/operations/ReferenceOperation">
-          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/ReferenceOperation/isBidirectional"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/ReferenceOperation/bidirectional"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/ReferenceOperation/oppositeFeatureName"/>
         </genClasses>
         <genClasses ecoreClass="esmodel.ecore#//versioning/operations/ReadOperation">
-          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/ReadOperation/acUsername"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/ReadOperation/date"/>
         </genClasses>
       </nestedGenPackages>

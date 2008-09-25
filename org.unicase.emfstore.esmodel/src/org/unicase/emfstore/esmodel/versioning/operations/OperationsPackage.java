@@ -517,7 +517,7 @@ public interface OperationsPackage extends EPackage {
 	int SINGLE_REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME = REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Old Value</b></em>' reference.
+	 * The feature id for the '<em><b>Old Value</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -526,7 +526,7 @@ public interface OperationsPackage extends EPackage {
 	int SINGLE_REFERENCE_OPERATION__OLD_VALUE = REFERENCE_OPERATION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>New Value</b></em>' reference.
+	 * The feature id for the '<em><b>New Value</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -708,7 +708,7 @@ public interface OperationsPackage extends EPackage {
 	int MULTI_REFERENCE_MOVE_OPERATION__NEW_INDEX = FEATURE_OPERATION_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Referenced Model Element Id</b></em>' reference.
+	 * The feature id for the '<em><b>Referenced Model Element Id</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1055,10 +1055,10 @@ public interface OperationsPackage extends EPackage {
 	EClass getSingleReferenceOperation();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation#getOldValue <em>Old Value</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation#getOldValue <em>Old Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Old Value</em>'.
+	 * @return the meta object for the containment reference '<em>Old Value</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation#getOldValue()
 	 * @see #getSingleReferenceOperation()
 	 * @generated
@@ -1066,10 +1066,10 @@ public interface OperationsPackage extends EPackage {
 	EReference getSingleReferenceOperation_OldValue();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation#getNewValue <em>New Value</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation#getNewValue <em>New Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>New Value</em>'.
+	 * @return the meta object for the containment reference '<em>New Value</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation#getNewValue()
 	 * @see #getSingleReferenceOperation()
 	 * @generated
@@ -1152,10 +1152,10 @@ public interface OperationsPackage extends EPackage {
 	EAttribute getMultiReferenceMoveOperation_NewIndex();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation#getReferencedModelElementId <em>Referenced Model Element Id</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation#getReferencedModelElementId <em>Referenced Model Element Id</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Referenced Model Element Id</em>'.
+	 * @return the meta object for the containment reference '<em>Referenced Model Element Id</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation#getReferencedModelElementId()
 	 * @see #getMultiReferenceMoveOperation()
 	 * @generated
@@ -1450,7 +1450,7 @@ public interface OperationsPackage extends EPackage {
 				.getSingleReferenceOperation();
 
 		/**
-		 * The meta object literal for the '<em><b>Old Value</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Old Value</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1459,7 +1459,7 @@ public interface OperationsPackage extends EPackage {
 				.getSingleReferenceOperation_OldValue();
 
 		/**
-		 * The meta object literal for the '<em><b>New Value</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>New Value</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1535,7 +1535,7 @@ public interface OperationsPackage extends EPackage {
 				.getMultiReferenceMoveOperation_NewIndex();
 
 		/**
-		 * The meta object literal for the '<em><b>Referenced Model Element Id</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Referenced Model Element Id</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

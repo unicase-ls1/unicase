@@ -6,6 +6,7 @@
 package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
@@ -78,7 +79,7 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl
 	protected int newIndex = NEW_INDEX_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getReferencedModelElementId() <em>Referenced Model Element Id</em>}' reference.
+	 * The cached value of the '{@link #getReferencedModelElementId() <em>Referenced Model Element Id</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getReferencedModelElementId()
@@ -167,6 +168,23 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl
 			InternalEObject oldReferencedModelElementId = (InternalEObject) referencedModelElementId;
 			referencedModelElementId = (ModelElementId) eResolveProxy(oldReferencedModelElementId);
 			if (referencedModelElementId != oldReferencedModelElementId) {
+				InternalEObject newReferencedModelElementId = (InternalEObject) referencedModelElementId;
+				NotificationChain msgs = oldReferencedModelElementId
+						.eInverseRemove(
+								this,
+								EOPPOSITE_FEATURE_BASE
+										- OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID,
+								null, null);
+				if (newReferencedModelElementId.eInternalContainer() == null) {
+					msgs = newReferencedModelElementId
+							.eInverseAdd(
+									this,
+									EOPPOSITE_FEATURE_BASE
+											- OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID,
+									null, msgs);
+				}
+				if (msgs != null)
+					msgs.dispatch();
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(
 							this,
@@ -193,16 +211,72 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReferencedModelElementId(
-			ModelElementId newReferencedModelElementId) {
+	public NotificationChain basicSetReferencedModelElementId(
+			ModelElementId newReferencedModelElementId, NotificationChain msgs) {
 		ModelElementId oldReferencedModelElementId = referencedModelElementId;
 		referencedModelElementId = newReferencedModelElementId;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(
+					this,
+					Notification.SET,
+					OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID,
+					oldReferencedModelElementId, newReferencedModelElementId);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setReferencedModelElementId(
+			ModelElementId newReferencedModelElementId) {
+		if (newReferencedModelElementId != referencedModelElementId) {
+			NotificationChain msgs = null;
+			if (referencedModelElementId != null)
+				msgs = ((InternalEObject) referencedModelElementId)
+						.eInverseRemove(
+								this,
+								EOPPOSITE_FEATURE_BASE
+										- OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID,
+								null, msgs);
+			if (newReferencedModelElementId != null)
+				msgs = ((InternalEObject) newReferencedModelElementId)
+						.eInverseAdd(
+								this,
+								EOPPOSITE_FEATURE_BASE
+										- OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID,
+								null, msgs);
+			msgs = basicSetReferencedModelElementId(
+					newReferencedModelElementId, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(
 					this,
 					Notification.SET,
 					OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID,
-					oldReferencedModelElementId, referencedModelElementId));
+					newReferencedModelElementId, newReferencedModelElementId));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID:
+			return basicSetReferencedModelElementId(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

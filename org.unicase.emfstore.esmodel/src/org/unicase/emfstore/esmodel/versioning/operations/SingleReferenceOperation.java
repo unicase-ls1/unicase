@@ -26,52 +26,52 @@ import org.unicase.model.ModelElementId;
  */
 public interface SingleReferenceOperation extends ReferenceOperation {
 	/**
-	 * Returns the value of the '<em><b>Old Value</b></em>' reference.
+	 * Returns the value of the '<em><b>Old Value</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Old Value</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Old Value</em>' reference.
+	 * @return the value of the '<em>Old Value</em>' containment reference.
 	 * @see #setOldValue(ModelElementId)
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getSingleReferenceOperation_OldValue()
-	 * @model
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	ModelElementId getOldValue();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation#getOldValue <em>Old Value</em>}' reference.
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation#getOldValue <em>Old Value</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Old Value</em>' reference.
+	 * @param value the new value of the '<em>Old Value</em>' containment reference.
 	 * @see #getOldValue()
 	 * @generated
 	 */
 	void setOldValue(ModelElementId value);
 
 	/**
-	 * Returns the value of the '<em><b>New Value</b></em>' reference.
+	 * Returns the value of the '<em><b>New Value</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>New Value</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>New Value</em>' reference.
+	 * @return the value of the '<em>New Value</em>' containment reference.
 	 * @see #setNewValue(ModelElementId)
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getSingleReferenceOperation_NewValue()
-	 * @model
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	ModelElementId getNewValue();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation#getNewValue <em>New Value</em>}' reference.
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation#getNewValue <em>New Value</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>New Value</em>' reference.
+	 * @param value the new value of the '<em>New Value</em>' containment reference.
 	 * @see #getNewValue()
 	 * @generated
 	 */

@@ -79,26 +79,26 @@ public interface MultiReferenceMoveOperation extends FeatureOperation {
 	void setNewIndex(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Referenced Model Element Id</b></em>' reference.
+	 * Returns the value of the '<em><b>Referenced Model Element Id</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Referenced Model Element Id</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Referenced Model Element Id</em>' reference.
+	 * @return the value of the '<em>Referenced Model Element Id</em>' containment reference.
 	 * @see #setReferencedModelElementId(ModelElementId)
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getMultiReferenceMoveOperation_ReferencedModelElementId()
-	 * @model
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	ModelElementId getReferencedModelElementId();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation#getReferencedModelElementId <em>Referenced Model Element Id</em>}' reference.
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation#getReferencedModelElementId <em>Referenced Model Element Id</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Referenced Model Element Id</em>' reference.
+	 * @param value the new value of the '<em>Referenced Model Element Id</em>' containment reference.
 	 * @see #getReferencedModelElementId()
 	 * @generated
 	 */
