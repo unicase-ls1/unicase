@@ -44,11 +44,11 @@ public class VersionDecorator extends AdapterImpl implements ILightweightLabelDe
 			String string = stringBuilder.toString();
 			decoration.addSuffix(string);
 		}
-		//ZH Check this
-		if(this.element==null){
-			this.element=(ProjectSpace) element;
-			this.element.eAdapters().add(this);
-		}
+//		//ZH Check this
+//		if(this.element==null){
+//			this.element=(ProjectSpace) element;
+//			this.element.eAdapters().add(this);
+//		}
 	}
 
 	/**.
