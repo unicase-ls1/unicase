@@ -13,6 +13,7 @@ import java.util.List;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -54,11 +55,12 @@ public class DeleteModelelementHandler extends AbstractHandler {
 			if (result == 0) {
 
 				// FIXME MK OW how do we delete model elements
-
+				
+				Resource resource = me.eResource();
 				EcoreUtil.delete(me, true);
-				me.eResource().getContents().remove(me);
+				resource.getContents().remove(me);
 				try {
-					me.eResource().save(Configuration.getResourceSaveOptions());
+					resource.save(Configuration.getResourceSaveOptions());
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
