@@ -307,7 +307,13 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl
 				Object object = modelElement.eGet(reference);
 				EList<ModelElement> list = (EList<ModelElement>) object;
 				if (isAdd()) {
-					list.addAll(getIndex(), referencedModelElements);
+					if (index<list.size()) {
+						list.addAll(getIndex(), referencedModelElements);
+					}
+					else {
+						//if index is out of range ignore index
+						list.addAll(referencedModelElements);
+					}
 				} else {
 					list.removeAll(referencedModelElements);
 				}
