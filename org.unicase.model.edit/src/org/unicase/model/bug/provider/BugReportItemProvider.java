@@ -64,6 +64,8 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 			addParticipantsPropertyDescriptor(object);
 			addStatusPropertyDescriptor(object);
 			addSeverityPropertyDescriptor(object);
+			addResolutionPropertyDescriptor(object);
+			addResolutionTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -196,6 +198,42 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 	}
 
 	/**
+	 * This adds a property descriptor for the Resolution feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addResolutionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_BugReport_resolution_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_BugReport_resolution_feature",
+						"_UI_BugReport_type"),
+				BugPackage.Literals.BUG_REPORT__RESOLUTION, true, true, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Resolution Type feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addResolutionTypePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_BugReport_resolutionType_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_BugReport_resolutionType_feature",
+						"_UI_BugReport_type"),
+				BugPackage.Literals.BUG_REPORT__RESOLUTION_TYPE, true, false,
+				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
 	 * This returns BugReport.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -233,6 +271,8 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 		case BugPackage.BUG_REPORT__CHECKED:
 		case BugPackage.BUG_REPORT__STATUS:
 		case BugPackage.BUG_REPORT__SEVERITY:
+		case BugPackage.BUG_REPORT__RESOLUTION:
+		case BugPackage.BUG_REPORT__RESOLUTION_TYPE:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), false, true));
 			return;

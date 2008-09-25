@@ -129,6 +129,8 @@ public class MEStateImpl implements MEState {
 		if (effectiveBlocker.size() > 0) {
 			return BLOCKED;
 		}
+
+		// JH: use checkable interface
 		// If the me is an ActionItem, the isDone Attribute is effective
 		if (modelElement instanceof ActionItem) {
 			ActionItem actionItem = (ActionItem) modelElement;

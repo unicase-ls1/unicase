@@ -496,6 +496,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="BugReport" eSuperTypes="#//task/WorkItem #//task/Checkable">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Status" eType="#//bug/BugStatus"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="severity" eType="#//bug/Severity"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="resolution" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="resolutionType" eType="#//bug/ResolutionType"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="BugStatus">
       <eLiterals name="NEW" literal="NEW"/>

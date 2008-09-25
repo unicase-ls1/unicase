@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.bug.BugReport;
 import org.unicase.model.bug.BugStatus;
+import org.unicase.model.bug.ResolutionType;
 import org.unicase.model.bug.Severity;
 import org.unicase.model.change.ModelChangePackage;
 import org.unicase.model.impl.AnnotationImpl;
@@ -46,6 +47,8 @@ import org.unicase.model.task.WorkPackage;
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#isChecked <em>Checked</em>}</li>
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getStatus <em>Status</em>}</li>
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getSeverity <em>Severity</em>}</li>
+ *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getResolution <em>Resolution</em>}</li>
+ *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getResolutionType <em>Resolution Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -145,6 +148,46 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	 * @ordered
 	 */
 	protected Severity severity = SEVERITY_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getResolution() <em>Resolution</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResolution()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String RESOLUTION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getResolution() <em>Resolution</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResolution()
+	 * @generated
+	 * @ordered
+	 */
+	protected String resolution = RESOLUTION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getResolutionType() <em>Resolution Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResolutionType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final ResolutionType RESOLUTION_TYPE_EDEFAULT = ResolutionType.FIXED;
+
+	/**
+	 * The cached value of the '{@link #getResolutionType() <em>Resolution Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResolutionType()
+	 * @generated
+	 * @ordered
+	 */
+	protected ResolutionType resolutionType = RESOLUTION_TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -411,6 +454,53 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getResolution() {
+		return resolution;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setResolution(String newResolution) {
+		String oldResolution = resolution;
+		resolution = newResolution;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					BugPackage.BUG_REPORT__RESOLUTION, oldResolution,
+					resolution));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ResolutionType getResolutionType() {
+		return resolutionType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setResolutionType(ResolutionType newResolutionType) {
+		ResolutionType oldResolutionType = resolutionType;
+		resolutionType = newResolutionType == null ? RESOLUTION_TYPE_EDEFAULT
+				: newResolutionType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					BugPackage.BUG_REPORT__RESOLUTION_TYPE, oldResolutionType,
+					resolutionType));
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -512,6 +602,10 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			return getStatus();
 		case BugPackage.BUG_REPORT__SEVERITY:
 			return getSeverity();
+		case BugPackage.BUG_REPORT__RESOLUTION:
+			return getResolution();
+		case BugPackage.BUG_REPORT__RESOLUTION_TYPE:
+			return getResolutionType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -556,6 +650,12 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 		case BugPackage.BUG_REPORT__SEVERITY:
 			setSeverity((Severity) newValue);
 			return;
+		case BugPackage.BUG_REPORT__RESOLUTION:
+			setResolution((String) newValue);
+			return;
+		case BugPackage.BUG_REPORT__RESOLUTION_TYPE:
+			setResolutionType((ResolutionType) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -594,6 +694,12 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 		case BugPackage.BUG_REPORT__SEVERITY:
 			setSeverity(SEVERITY_EDEFAULT);
 			return;
+		case BugPackage.BUG_REPORT__RESOLUTION:
+			setResolution(RESOLUTION_EDEFAULT);
+			return;
+		case BugPackage.BUG_REPORT__RESOLUTION_TYPE:
+			setResolutionType(RESOLUTION_TYPE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -624,6 +730,11 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			return status != STATUS_EDEFAULT;
 		case BugPackage.BUG_REPORT__SEVERITY:
 			return severity != SEVERITY_EDEFAULT;
+		case BugPackage.BUG_REPORT__RESOLUTION:
+			return RESOLUTION_EDEFAULT == null ? resolution != null
+					: !RESOLUTION_EDEFAULT.equals(resolution);
+		case BugPackage.BUG_REPORT__RESOLUTION_TYPE:
+			return resolutionType != RESOLUTION_TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -678,6 +789,10 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 		result.append(status);
 		result.append(", severity: ");
 		result.append(severity);
+		result.append(", resolution: ");
+		result.append(resolution);
+		result.append(", resolutionType: ");
+		result.append(resolutionType);
 		result.append(')');
 		return result.toString();
 	}

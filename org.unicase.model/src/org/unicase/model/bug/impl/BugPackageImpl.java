@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.model.ModelPackage;
@@ -230,6 +231,24 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBugReport_Resolution() {
+		return (EAttribute) bugReportEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBugReport_ResolutionType() {
+		return (EAttribute) bugReportEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -283,6 +302,8 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 		bugReportEClass = createEClass(BUG_REPORT);
 		createEAttribute(bugReportEClass, BUG_REPORT__STATUS);
 		createEAttribute(bugReportEClass, BUG_REPORT__SEVERITY);
+		createEAttribute(bugReportEClass, BUG_REPORT__RESOLUTION);
+		createEAttribute(bugReportEClass, BUG_REPORT__RESOLUTION_TYPE);
 
 		// Create enums
 		bugStatusEEnum = createEEnum(BUG_STATUS);
@@ -316,6 +337,8 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 		// Obtain other dependent packages
 		TaskPackage theTaskPackage = (TaskPackage) EPackage.Registry.INSTANCE
 				.getEPackage(TaskPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
+				.getEPackage(EcorePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -336,6 +359,14 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 				null, 0, 1, BugReport.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		initEAttribute(getBugReport_Resolution(), theEcorePackage.getEString(),
+				"resolution", null, 0, 1, BugReport.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBugReport_ResolutionType(), this.getResolutionType(),
+				"resolutionType", null, 0, 1, BugReport.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(bugStatusEEnum, BugStatus.class, "BugStatus");
