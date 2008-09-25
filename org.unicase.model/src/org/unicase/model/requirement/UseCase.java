@@ -243,17 +243,19 @@ public interface UseCase extends ModelElement {
 	void setPrecondition(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Use Case Steps</b></em>' reference list.
+	 * Returns the value of the '<em><b>Use Case Steps</b></em>' containment reference list.
 	 * The list contents are of type {@link org.unicase.model.requirement.Step}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.Step#getUseCase <em>Use Case</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Use Case Steps</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Use Case Steps</em>' reference list.
+	 * @return the value of the '<em>Use Case Steps</em>' containment reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_UseCaseSteps()
-	 * @model keys="identifier"
+	 * @see org.unicase.model.requirement.Step#getUseCase
+	 * @model opposite="useCase" containment="true" resolveProxies="true" keys="identifier"
 	 * @generated
 	 */
 	EList<Step> getUseCaseSteps();

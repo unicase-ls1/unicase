@@ -26,6 +26,7 @@ import org.unicase.model.change.ModelChangePackage;
 import org.unicase.model.impl.AnnotationImpl;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
+import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
@@ -42,6 +43,7 @@ import org.unicase.model.task.WorkPackage;
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getSuccessors <em>Successors</em>}</li>
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getAssignee <em>Assignee</em>}</li>
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getParticipants <em>Participants</em>}</li>
+ *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#isChecked <em>Checked</em>}</li>
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getStatus <em>Status</em>}</li>
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getSeverity <em>Severity</em>}</li>
  * </ul>
@@ -97,6 +99,16 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	 * @ordered
 	 */
 	protected EList<OrgUnit> participants;
+
+	/**
+	 * The default value of the '{@link #isChecked() <em>Checked</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isChecked()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean CHECKED_EDEFAULT = false;
 
 	/**
 	 * The default value of the '{@link #getStatus() <em>Status</em>}' attribute.
@@ -337,7 +349,29 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isChecked() {
+		// TODO: implement this method to return the 'Checked' attribute
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Sets the bug to closed if checked.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 * @param newChecked if the bug should be closed
+	 */
+	public void setChecked(boolean newChecked) {
+		setStatus(BugStatus.CLOSED);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
 	 * @generated
 	 */
 	public BugStatus getStatus() {
@@ -472,6 +506,8 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			return basicGetAssignee();
 		case BugPackage.BUG_REPORT__PARTICIPANTS:
 			return getParticipants();
+		case BugPackage.BUG_REPORT__CHECKED:
+			return isChecked() ? Boolean.TRUE : Boolean.FALSE;
 		case BugPackage.BUG_REPORT__STATUS:
 			return getStatus();
 		case BugPackage.BUG_REPORT__SEVERITY:
@@ -511,6 +547,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			getParticipants().clear();
 			getParticipants().addAll((Collection<? extends OrgUnit>) newValue);
 			return;
+		case BugPackage.BUG_REPORT__CHECKED:
+			setChecked(((Boolean) newValue).booleanValue());
+			return;
 		case BugPackage.BUG_REPORT__STATUS:
 			setStatus((BugStatus) newValue);
 			return;
@@ -546,6 +585,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 		case BugPackage.BUG_REPORT__PARTICIPANTS:
 			getParticipants().clear();
 			return;
+		case BugPackage.BUG_REPORT__CHECKED:
+			setChecked(CHECKED_EDEFAULT);
+			return;
 		case BugPackage.BUG_REPORT__STATUS:
 			setStatus(STATUS_EDEFAULT);
 			return;
@@ -576,12 +618,50 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			return assignee != null;
 		case BugPackage.BUG_REPORT__PARTICIPANTS:
 			return participants != null && !participants.isEmpty();
+		case BugPackage.BUG_REPORT__CHECKED:
+			return isChecked() != CHECKED_EDEFAULT;
 		case BugPackage.BUG_REPORT__STATUS:
 			return status != STATUS_EDEFAULT;
 		case BugPackage.BUG_REPORT__SEVERITY:
 			return severity != SEVERITY_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == Checkable.class) {
+			switch (derivedFeatureID) {
+			case BugPackage.BUG_REPORT__CHECKED:
+				return TaskPackage.CHECKABLE__CHECKED;
+			default:
+				return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == Checkable.class) {
+			switch (baseFeatureID) {
+			case TaskPackage.CHECKABLE__CHECKED:
+				return BugPackage.BUG_REPORT__CHECKED;
+			default:
+				return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**

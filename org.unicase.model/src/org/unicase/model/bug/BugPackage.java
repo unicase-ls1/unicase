@@ -234,13 +234,22 @@ public interface BugPackage extends EPackage {
 	int BUG_REPORT__PARTICIPANTS = TaskPackage.WORK_ITEM__PARTICIPANTS;
 
 	/**
+	 * The feature id for the '<em><b>Checked</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUG_REPORT__CHECKED = TaskPackage.WORK_ITEM_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Status</b></em>' attribute. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int BUG_REPORT__STATUS = TaskPackage.WORK_ITEM_FEATURE_COUNT + 0;
+	int BUG_REPORT__STATUS = TaskPackage.WORK_ITEM_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Severity</b></em>' attribute. <!--
@@ -249,7 +258,7 @@ public interface BugPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUG_REPORT__SEVERITY = TaskPackage.WORK_ITEM_FEATURE_COUNT + 1;
+	int BUG_REPORT__SEVERITY = TaskPackage.WORK_ITEM_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Report</em>' class. <!--
@@ -258,7 +267,7 @@ public interface BugPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUG_REPORT_FEATURE_COUNT = TaskPackage.WORK_ITEM_FEATURE_COUNT + 2;
+	int BUG_REPORT_FEATURE_COUNT = TaskPackage.WORK_ITEM_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.bug.BugStatus <em>Status</em>}' enum.

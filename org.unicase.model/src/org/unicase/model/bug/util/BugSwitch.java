@@ -15,6 +15,7 @@ import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.bug.BugReport;
+import org.unicase.model.task.Checkable;
 import org.unicase.model.task.WorkItem;
 
 /**
@@ -89,6 +90,8 @@ public class BugSwitch<T> {
 			T result = caseBugReport(bugReport);
 			if (result == null)
 				result = caseWorkItem(bugReport);
+			if (result == null)
+				result = caseCheckable(bugReport);
 			if (result == null)
 				result = caseAnnotation(bugReport);
 			if (result == null)
@@ -174,6 +177,21 @@ public class BugSwitch<T> {
 	 * @generated
 	 */
 	public T caseWorkItem(WorkItem object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Checkable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Checkable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCheckable(Checkable object) {
 		return null;
 	}
 

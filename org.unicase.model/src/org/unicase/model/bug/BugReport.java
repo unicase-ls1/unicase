@@ -6,6 +6,7 @@
  */
 package org.unicase.model.bug;
 
+import org.unicase.model.task.Checkable;
 import org.unicase.model.task.WorkItem;
 
 /**
@@ -24,7 +25,7 @@ import org.unicase.model.task.WorkItem;
  * @model
  * @generated
  */
-public interface BugReport extends WorkItem {
+public interface BugReport extends WorkItem, Checkable {
 	/**
 	 * Returns the value of the '<em><b>Status</b></em>' attribute. The literals
 	 * are from the enumeration {@link org.unicase.model.bug.BugStatus}. <!--
