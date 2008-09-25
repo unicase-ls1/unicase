@@ -42,6 +42,10 @@ public class UpdateStepRemoveAnnotationInstances extends UpdateStepRemoveClass{
 		return "Remove Annotation Instances";
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.emfstore.update.UpdateStepRemoveClass#getRemovableEClass()
+	 */
 	@Override
 	public EClass getRemovableEClass() {
 		return ModelPackage.eINSTANCE.getAnnotation();

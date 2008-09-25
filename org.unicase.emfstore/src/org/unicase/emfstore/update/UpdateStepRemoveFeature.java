@@ -6,6 +6,7 @@
  */
 package org.unicase.emfstore.update;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.unicase.model.ModelElement;
 
@@ -24,6 +25,7 @@ public abstract class UpdateStepRemoveFeature extends UpdateStepTransformClass {
 	 * {@inheritDoc}
 	 * @see org.unicase.emfstore.update.UpdateStepTransformClass#updateModelElement(org.unicase.model.ModelElement)
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public int updateModelElement(ModelElement modelElement) {
 		int numberOfUpdatedItems = 0;
@@ -33,15 +35,21 @@ public abstract class UpdateStepRemoveFeature extends UpdateStepTransformClass {
 		feature = getTransformableEClass().getEStructuralFeature(getFeatureName());
 
 		if (feature != null) {
-			modelElement.eUnset(feature);
-			
-			System.out.println("Unset feature \"" 
-					+ getFeatureName()
-					+ "\" of model element \""
-					+ modelElement.getName()
-					+ "\"");
-			
-			numberOfUpdatedItems++;
+			Object featureValue = modelElement.eGet(feature);
+			if (featureValue != null
+				&& !((featureValue instanceof EList)
+						&& (((EList) featureValue).size() != 0))) {
+
+				modelElement.eUnset(feature);
+
+				System.out.println("Unset feature \"" 
+						+ getFeatureName()
+						+ "\" of model element \""
+						+ modelElement.getName()
+						+ "\"");
+
+				numberOfUpdatedItems++;
+			}
 		}
 		
 		return numberOfUpdatedItems;

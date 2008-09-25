@@ -9,16 +9,9 @@ package org.unicase.ui.stem.views.iterationplanningview;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.jface.viewers.ColumnLabelProvider;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.PlatformUI;
-import org.unicase.model.ModelElement;
 import org.unicase.model.bug.BugReport;
 import org.unicase.model.task.ActionItem;
-import org.unicase.model.task.util.MEState;
 
 /**.
  * LabelProvider for Assigned to column in IterationPlanningView

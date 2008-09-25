@@ -27,6 +27,7 @@ import org.unicase.emfstore.update.steps.UpdateStepRemoveBugResolution;
 import org.unicase.emfstore.update.steps.UpdateStepRemoveOrgUnit;
 import org.unicase.emfstore.update.steps.UpdateStepRemoveRefiningIssues;
 import org.unicase.emfstore.update.steps.UpdateStepRemoveStepsToReproduce;
+import org.unicase.emfstore.update.steps.UpdateStepRenameActionItemAssignedTo;
 import org.unicase.emfstore.update.steps.UpdateStepRenameAssignedTo;
 import org.unicase.emfstore.update.steps.UpdateStepRenameFacilitator;
 import org.unicase.emfstore.update.steps.UpdateStepRenamePackages;
@@ -85,6 +86,7 @@ public class UpdateController {
 		updateSteps.add(new UpdateStepRemoveRefiningIssues());
 		updateSteps.add(new UpdateStepRemoveStepsToReproduce());
 		updateSteps.add(new UpdateStepRenameAssignedTo());
+		updateSteps.add(new UpdateStepRenameActionItemAssignedTo());
 		updateSteps.add(new UpdateStepRenamePackages());
 		updateSteps.add(new UpdateStepRemoveOrgUnit());
 	}
@@ -153,13 +155,15 @@ public class UpdateController {
 								
 				numberOfUpdatedItems += updateStep.updateProjectHistory(projectHistory);
 			}
-			
 		}
 		
 		versionInformation.setEmfStoreVersion(EmfStoreImpl.getModelVersion());
 		
 		try {
-			serverSpace.save();
+			EList<Resource> resources = resource.getResourceSet().getResources();
+			for (Resource currentResource : resources) {
+				currentResource.save(null);
+			}
 			System.out.println("Successfully updated " + numberOfUpdatedItems + " items");
 		} catch (IOException e) {
 			throw new FatalEmfStoreException(StorageException.NOSAVE, e);

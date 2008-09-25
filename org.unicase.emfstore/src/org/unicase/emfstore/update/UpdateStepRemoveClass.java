@@ -36,10 +36,12 @@ public abstract class UpdateStepRemoveClass extends UpdateStepImpl{
 				false);
 		
 		for (ModelElement modelElement : allModelElementsbyClass) {
-			EcoreUtil.remove(modelElement);
-			System.out.println("Removed instance of class \""
-					+ getRemovableEClass()
+			System.out.println("Removed instance \""
+					+ modelElement
+					+ "of class \""
+					+ getRemovableEClass().getName()
 					+ "\"");
+			EcoreUtil.delete(modelElement);
 			numberOfUpdatedItems++;
 		}
 		

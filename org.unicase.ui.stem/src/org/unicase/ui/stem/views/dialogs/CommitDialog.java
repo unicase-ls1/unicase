@@ -18,11 +18,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.ui.stem.Activator;
 import org.unicase.ui.stem.views.ChangesTreeComposite;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.impl.ProjectSpaceImpl;
 
 /**.
  * This class shows a ChangesTreeComposite and a Text control to enter
