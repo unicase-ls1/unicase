@@ -10,12 +10,12 @@
 package org.unicase.ui.usecaseDiagram.unicase;
 
 import org.eclipse.draw2d.Figure;
+import org.eclipse.draw2d.GridData;
+import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
-import org.eclipse.draw2d.GridData;
-import org.eclipse.draw2d.GridLayout;
 /**
  * This figure creates a bodyFigure (a rectangle figure by default) and a label associated with the body figure. The
  * position of the label can be defined (TOP, LEFT, BOTTOM or RIGHT) and the body figure customized overriding the

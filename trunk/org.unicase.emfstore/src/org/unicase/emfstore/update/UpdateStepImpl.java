@@ -34,6 +34,7 @@ public abstract class UpdateStepImpl implements UpdateStep {
 				e.printStackTrace();
 			}
 		}
+		
 		return numberOfUpdatedItems;
 	}
 
