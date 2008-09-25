@@ -142,8 +142,10 @@
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="newValue" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="SingleReferenceOperation" eSuperTypes="#//versioning/operations/ReferenceOperation">
-        <eStructuralFeatures xsi:type="ecore:EReference" name="oldValue" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"/>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="newValue" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="oldValue" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"
+            containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="newValue" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"
+            containment="true"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="MultiReferenceOperation" eSuperTypes="#//versioning/operations/ReferenceOperation">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="add" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -156,7 +158,8 @@
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="oldIndex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="newIndex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="referencedModelElementId"
-            eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"/>
+            eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"
+            containment="true"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="MultiAttributeOperation" eSuperTypes="#//versioning/operations/FeatureOperation">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="add" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
