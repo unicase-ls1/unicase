@@ -23,7 +23,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
  org.eclipse.emf.transaction,
  org.unicase.ui.common,
- org.unicase.ui.stem
+ org.unicase.ui.stem,
+ org.eclipse.gmf.runtime.notation.edit
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.emf.ecore.change.provider,
  org.eclipse.emf.edit.ui.provider
