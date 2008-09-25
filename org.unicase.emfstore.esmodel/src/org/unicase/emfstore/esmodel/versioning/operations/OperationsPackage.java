@@ -97,22 +97,13 @@ public interface OperationsPackage extends EPackage {
 	int ABSTRACT_OPERATION__MODEL_ELEMENT_ID = 2;
 
 	/**
-	 * The feature id for the '<em><b>Username</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_OPERATION__USERNAME = 3;
-
-	/**
 	 * The number of structural features of the '<em>Abstract Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_OPERATION_FEATURE_COUNT = 4;
+	int ABSTRACT_OPERATION_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.CompositeOperationImpl <em>Composite Operation</em>}' class.
@@ -150,15 +141,6 @@ public interface OperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPOSITE_OPERATION__MODEL_ELEMENT_ID = ABSTRACT_OPERATION__MODEL_ELEMENT_ID;
-
-	/**
-	 * The feature id for the '<em><b>Username</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_OPERATION__USERNAME = ABSTRACT_OPERATION__USERNAME;
 
 	/**
 	 * The feature id for the '<em><b>Sub Operations</b></em>' containment reference list.
@@ -243,15 +225,6 @@ public interface OperationsPackage extends EPackage {
 	int FEATURE_OPERATION__MODEL_ELEMENT_ID = ABSTRACT_OPERATION__MODEL_ELEMENT_ID;
 
 	/**
-	 * The feature id for the '<em><b>Username</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_OPERATION__USERNAME = ABSTRACT_OPERATION__USERNAME;
-
-	/**
 	 * The feature id for the '<em><b>Feature Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -305,15 +278,6 @@ public interface OperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int CREATE_DELETE_OPERATION__MODEL_ELEMENT_ID = ABSTRACT_OPERATION__MODEL_ELEMENT_ID;
-
-	/**
-	 * The feature id for the '<em><b>Username</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CREATE_DELETE_OPERATION__USERNAME = ABSTRACT_OPERATION__USERNAME;
 
 	/**
 	 * The feature id for the '<em><b>Delete</b></em>' attribute.
@@ -380,15 +344,6 @@ public interface OperationsPackage extends EPackage {
 	int ATTRIBUTE_OPERATION__MODEL_ELEMENT_ID = FEATURE_OPERATION__MODEL_ELEMENT_ID;
 
 	/**
-	 * The feature id for the '<em><b>Username</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_OPERATION__USERNAME = FEATURE_OPERATION__USERNAME;
-
-	/**
 	 * The feature id for the '<em><b>Feature Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -425,6 +380,79 @@ public interface OperationsPackage extends EPackage {
 	int ATTRIBUTE_OPERATION_FEATURE_COUNT = FEATURE_OPERATION_FEATURE_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.ReferenceOperationImpl <em>Reference Operation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.ReferenceOperationImpl
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getReferenceOperation()
+	 * @generated
+	 */
+	int REFERENCE_OPERATION = 9;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_OPERATION__NAME = FEATURE_OPERATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_OPERATION__DESCRIPTION = FEATURE_OPERATION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Model Element Id</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_OPERATION__MODEL_ELEMENT_ID = FEATURE_OPERATION__MODEL_ELEMENT_ID;
+
+	/**
+	 * The feature id for the '<em><b>Feature Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_OPERATION__FEATURE_NAME = FEATURE_OPERATION__FEATURE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Bidirectional</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_OPERATION__BIDIRECTIONAL = FEATURE_OPERATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Opposite Feature Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME = FEATURE_OPERATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Reference Operation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_OPERATION_FEATURE_COUNT = FEATURE_OPERATION_FEATURE_COUNT + 2;
+
+	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.SingleReferenceOperationImpl <em>Single Reference Operation</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -441,7 +469,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SINGLE_REFERENCE_OPERATION__NAME = FEATURE_OPERATION__NAME;
+	int SINGLE_REFERENCE_OPERATION__NAME = REFERENCE_OPERATION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -450,7 +478,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SINGLE_REFERENCE_OPERATION__DESCRIPTION = FEATURE_OPERATION__DESCRIPTION;
+	int SINGLE_REFERENCE_OPERATION__DESCRIPTION = REFERENCE_OPERATION__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Model Element Id</b></em>' containment reference.
@@ -459,16 +487,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SINGLE_REFERENCE_OPERATION__MODEL_ELEMENT_ID = FEATURE_OPERATION__MODEL_ELEMENT_ID;
-
-	/**
-	 * The feature id for the '<em><b>Username</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SINGLE_REFERENCE_OPERATION__USERNAME = FEATURE_OPERATION__USERNAME;
+	int SINGLE_REFERENCE_OPERATION__MODEL_ELEMENT_ID = REFERENCE_OPERATION__MODEL_ELEMENT_ID;
 
 	/**
 	 * The feature id for the '<em><b>Feature Name</b></em>' attribute.
@@ -477,7 +496,25 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SINGLE_REFERENCE_OPERATION__FEATURE_NAME = FEATURE_OPERATION__FEATURE_NAME;
+	int SINGLE_REFERENCE_OPERATION__FEATURE_NAME = REFERENCE_OPERATION__FEATURE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Bidirectional</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_REFERENCE_OPERATION__BIDIRECTIONAL = REFERENCE_OPERATION__BIDIRECTIONAL;
+
+	/**
+	 * The feature id for the '<em><b>Opposite Feature Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME = REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Old Value</b></em>' reference.
@@ -486,7 +523,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SINGLE_REFERENCE_OPERATION__OLD_VALUE = FEATURE_OPERATION_FEATURE_COUNT + 0;
+	int SINGLE_REFERENCE_OPERATION__OLD_VALUE = REFERENCE_OPERATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>New Value</b></em>' reference.
@@ -495,7 +532,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SINGLE_REFERENCE_OPERATION__NEW_VALUE = FEATURE_OPERATION_FEATURE_COUNT + 1;
+	int SINGLE_REFERENCE_OPERATION__NEW_VALUE = REFERENCE_OPERATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Single Reference Operation</em>' class.
@@ -504,7 +541,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SINGLE_REFERENCE_OPERATION_FEATURE_COUNT = FEATURE_OPERATION_FEATURE_COUNT + 2;
+	int SINGLE_REFERENCE_OPERATION_FEATURE_COUNT = REFERENCE_OPERATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceOperationImpl <em>Multi Reference Operation</em>}' class.
@@ -523,7 +560,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_REFERENCE_OPERATION__NAME = FEATURE_OPERATION__NAME;
+	int MULTI_REFERENCE_OPERATION__NAME = REFERENCE_OPERATION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -532,7 +569,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_REFERENCE_OPERATION__DESCRIPTION = FEATURE_OPERATION__DESCRIPTION;
+	int MULTI_REFERENCE_OPERATION__DESCRIPTION = REFERENCE_OPERATION__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Model Element Id</b></em>' containment reference.
@@ -541,16 +578,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_REFERENCE_OPERATION__MODEL_ELEMENT_ID = FEATURE_OPERATION__MODEL_ELEMENT_ID;
-
-	/**
-	 * The feature id for the '<em><b>Username</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTI_REFERENCE_OPERATION__USERNAME = FEATURE_OPERATION__USERNAME;
+	int MULTI_REFERENCE_OPERATION__MODEL_ELEMENT_ID = REFERENCE_OPERATION__MODEL_ELEMENT_ID;
 
 	/**
 	 * The feature id for the '<em><b>Feature Name</b></em>' attribute.
@@ -559,7 +587,25 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_REFERENCE_OPERATION__FEATURE_NAME = FEATURE_OPERATION__FEATURE_NAME;
+	int MULTI_REFERENCE_OPERATION__FEATURE_NAME = REFERENCE_OPERATION__FEATURE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Bidirectional</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_REFERENCE_OPERATION__BIDIRECTIONAL = REFERENCE_OPERATION__BIDIRECTIONAL;
+
+	/**
+	 * The feature id for the '<em><b>Opposite Feature Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME = REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Add</b></em>' attribute.
@@ -568,7 +614,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_REFERENCE_OPERATION__ADD = FEATURE_OPERATION_FEATURE_COUNT + 0;
+	int MULTI_REFERENCE_OPERATION__ADD = REFERENCE_OPERATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Index</b></em>' attribute.
@@ -577,7 +623,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_REFERENCE_OPERATION__INDEX = FEATURE_OPERATION_FEATURE_COUNT + 1;
+	int MULTI_REFERENCE_OPERATION__INDEX = REFERENCE_OPERATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Referenced Model Elements</b></em>' containment reference list.
@@ -586,7 +632,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS = FEATURE_OPERATION_FEATURE_COUNT + 2;
+	int MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS = REFERENCE_OPERATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Multi Reference Operation</em>' class.
@@ -595,7 +641,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_REFERENCE_OPERATION_FEATURE_COUNT = FEATURE_OPERATION_FEATURE_COUNT + 3;
+	int MULTI_REFERENCE_OPERATION_FEATURE_COUNT = REFERENCE_OPERATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceMoveOperationImpl <em>Multi Reference Move Operation</em>}' class.
@@ -633,15 +679,6 @@ public interface OperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int MULTI_REFERENCE_MOVE_OPERATION__MODEL_ELEMENT_ID = FEATURE_OPERATION__MODEL_ELEMENT_ID;
-
-	/**
-	 * The feature id for the '<em><b>Username</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTI_REFERENCE_MOVE_OPERATION__USERNAME = FEATURE_OPERATION__USERNAME;
 
 	/**
 	 * The feature id for the '<em><b>Feature Name</b></em>' attribute.
@@ -726,15 +763,6 @@ public interface OperationsPackage extends EPackage {
 	int MULTI_ATTRIBUTE_OPERATION__MODEL_ELEMENT_ID = FEATURE_OPERATION__MODEL_ELEMENT_ID;
 
 	/**
-	 * The feature id for the '<em><b>Username</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTI_ATTRIBUTE_OPERATION__USERNAME = FEATURE_OPERATION__USERNAME;
-
-	/**
 	 * The feature id for the '<em><b>Feature Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -780,6 +808,61 @@ public interface OperationsPackage extends EPackage {
 	int MULTI_ATTRIBUTE_OPERATION_FEATURE_COUNT = FEATURE_OPERATION_FEATURE_COUNT + 3;
 
 	/**
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.ReadOperationImpl <em>Read Operation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.ReadOperationImpl
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getReadOperation()
+	 * @generated
+	 */
+	int READ_OPERATION = 10;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int READ_OPERATION__NAME = ABSTRACT_OPERATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int READ_OPERATION__DESCRIPTION = ABSTRACT_OPERATION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Model Element Id</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int READ_OPERATION__MODEL_ELEMENT_ID = ABSTRACT_OPERATION__MODEL_ELEMENT_ID;
+
+	/**
+	 * The feature id for the '<em><b>Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int READ_OPERATION__DATE = ABSTRACT_OPERATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Read Operation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int READ_OPERATION_FEATURE_COUNT = ABSTRACT_OPERATION_FEATURE_COUNT + 1;
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation <em>Abstract Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -821,17 +904,6 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getAbstractOperation_ModelElementId();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getUsername <em>Username</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Username</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getUsername()
-	 * @see #getAbstractOperation()
-	 * @generated
-	 */
-	EAttribute getAbstractOperation_Username();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation <em>Composite Operation</em>}'.
@@ -1134,6 +1206,59 @@ public interface OperationsPackage extends EPackage {
 	EAttribute getMultiAttributeOperation_Values();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation <em>Reference Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Reference Operation</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation
+	 * @generated
+	 */
+	EClass getReferenceOperation();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#isBidirectional <em>Bidirectional</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Bidirectional</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#isBidirectional()
+	 * @see #getReferenceOperation()
+	 * @generated
+	 */
+	EAttribute getReferenceOperation_Bidirectional();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#getOppositeFeatureName <em>Opposite Feature Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Opposite Feature Name</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#getOppositeFeatureName()
+	 * @see #getReferenceOperation()
+	 * @generated
+	 */
+	EAttribute getReferenceOperation_OppositeFeatureName();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.ReadOperation <em>Read Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Read Operation</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.ReadOperation
+	 * @generated
+	 */
+	EClass getReadOperation();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.operations.ReadOperation#getDate <em>Date</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Date</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.ReadOperation#getDate()
+	 * @see #getReadOperation()
+	 * @generated
+	 */
+	EAttribute getReadOperation_Date();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1191,15 +1316,6 @@ public interface OperationsPackage extends EPackage {
 		 */
 		EReference ABSTRACT_OPERATION__MODEL_ELEMENT_ID = eINSTANCE
 				.getAbstractOperation_ModelElementId();
-
-		/**
-		 * The meta object literal for the '<em><b>Username</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ABSTRACT_OPERATION__USERNAME = eINSTANCE
-				.getAbstractOperation_Username();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.CompositeOperationImpl <em>Composite Operation</em>}' class.
@@ -1464,6 +1580,52 @@ public interface OperationsPackage extends EPackage {
 		 */
 		EAttribute MULTI_ATTRIBUTE_OPERATION__VALUES = eINSTANCE
 				.getMultiAttributeOperation_Values();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.ReferenceOperationImpl <em>Reference Operation</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.ReferenceOperationImpl
+		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getReferenceOperation()
+		 * @generated
+		 */
+		EClass REFERENCE_OPERATION = eINSTANCE.getReferenceOperation();
+
+		/**
+		 * The meta object literal for the '<em><b>Bidirectional</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REFERENCE_OPERATION__BIDIRECTIONAL = eINSTANCE
+				.getReferenceOperation_Bidirectional();
+
+		/**
+		 * The meta object literal for the '<em><b>Opposite Feature Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME = eINSTANCE
+				.getReferenceOperation_OppositeFeatureName();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.ReadOperationImpl <em>Read Operation</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.ReadOperationImpl
+		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getReadOperation()
+		 * @generated
+		 */
+		EClass READ_OPERATION = eINSTANCE.getReadOperation();
+
+		/**
+		 * The meta object literal for the '<em><b>Date</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute READ_OPERATION__DATE = eINSTANCE.getReadOperation_Date();
 
 	}
 

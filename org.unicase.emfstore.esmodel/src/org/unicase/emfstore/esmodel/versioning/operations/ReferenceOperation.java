@@ -5,8 +5,6 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations;
 
-import org.unicase.model.ModelElement;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Reference Operation</b></em>'.
@@ -15,66 +13,66 @@ import org.unicase.model.ModelElement;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#getOldValue <em>Old Value</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#getNewValue <em>New Value</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#isBidirectional <em>Bidirectional</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#getOppositeFeatureName <em>Opposite Feature Name</em>}</li>
  * </ul>
  * </p>
  *
  * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getReferenceOperation()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface ReferenceOperation extends FeatureOperation {
 	/**
-	 * Returns the value of the '<em><b>Old Value</b></em>' reference.
+	 * Returns the value of the '<em><b>Bidirectional</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Old Value</em>' reference isn't clear,
+	 * If the meaning of the '<em>Bidirectional</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Old Value</em>' reference.
-	 * @see #setOldValue(ModelElement)
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getReferenceOperation_OldValue()
+	 * @return the value of the '<em>Bidirectional</em>' attribute.
+	 * @see #setBidirectional(boolean)
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getReferenceOperation_Bidirectional()
 	 * @model
 	 * @generated
 	 */
-	ModelElement getOldValue();
+	boolean isBidirectional();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#getOldValue <em>Old Value</em>}' reference.
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#isBidirectional <em>Bidirectional</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Old Value</em>' reference.
-	 * @see #getOldValue()
+	 * @param value the new value of the '<em>Bidirectional</em>' attribute.
+	 * @see #isBidirectional()
 	 * @generated
 	 */
-	void setOldValue(ModelElement value);
+	void setBidirectional(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>New Value</b></em>' reference.
+	 * Returns the value of the '<em><b>Opposite Feature Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>New Value</em>' reference isn't clear,
+	 * If the meaning of the '<em>Opposite Feature Name</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>New Value</em>' reference.
-	 * @see #setNewValue(ModelElement)
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getReferenceOperation_NewValue()
+	 * @return the value of the '<em>Opposite Feature Name</em>' attribute.
+	 * @see #setOppositeFeatureName(String)
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getReferenceOperation_OppositeFeatureName()
 	 * @model
 	 * @generated
 	 */
-	ModelElement getNewValue();
+	String getOppositeFeatureName();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#getNewValue <em>New Value</em>}' reference.
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#getOppositeFeatureName <em>Opposite Feature Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>New Value</em>' reference.
-	 * @see #getNewValue()
+	 * @param value the new value of the '<em>Opposite Feature Name</em>' attribute.
+	 * @see #getOppositeFeatureName()
 	 * @generated
 	 */
-	void setNewValue(ModelElement value);
+	void setOppositeFeatureName(String value);
 
 } // ReferenceOperation

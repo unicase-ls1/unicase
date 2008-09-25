@@ -18,6 +18,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOper
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.emfstore.esmodel.versioning.operations.ReadOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 
 /**
@@ -79,6 +80,8 @@ public class OperationsFactoryImpl extends EFactoryImpl implements
 			return createMultiReferenceMoveOperation();
 		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION:
 			return createMultiAttributeOperation();
+		case OperationsPackage.READ_OPERATION:
+			return createReadOperation();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName()
 					+ "' is not a valid classifier");
@@ -153,6 +156,16 @@ public class OperationsFactoryImpl extends EFactoryImpl implements
 	public MultiAttributeOperation createMultiAttributeOperation() {
 		MultiAttributeOperationImpl multiAttributeOperation = new MultiAttributeOperationImpl();
 		return multiAttributeOperation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReadOperation createReadOperation() {
+		ReadOperationImpl readOperation = new ReadOperationImpl();
+		return readOperation;
 	}
 
 	/**

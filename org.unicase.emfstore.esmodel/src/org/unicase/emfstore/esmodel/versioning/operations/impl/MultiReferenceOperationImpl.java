@@ -40,8 +40,8 @@ import org.unicase.model.Project;
  *
  * @generated
  */
-public class MultiReferenceOperationImpl extends FeatureOperationImpl implements
-		MultiReferenceOperation {
+public class MultiReferenceOperationImpl extends ReferenceOperationImpl
+		implements MultiReferenceOperation {
 	/**
 	 * The default value of the '{@link #isAdd() <em>Add</em>}' attribute.
 	 * <!-- begin-user-doc -->

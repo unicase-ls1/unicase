@@ -35,7 +35,7 @@ import org.unicase.model.util.ModelUtil;
  *
  * @generated
  */
-public class SingleReferenceOperationImpl extends FeatureOperationImpl
+public class SingleReferenceOperationImpl extends ReferenceOperationImpl
 		implements SingleReferenceOperation {
 	/**
 	 * The cached value of the '{@link #getOldValue() <em>Old Value</em>}' reference.

@@ -835,7 +835,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			changePackage.getOperations().add(copy);
 		}
 		
-		// changePackage.cannonize();
+		changePackage.cannonize();
 		
 		if (commitObserver!=null && !commitObserver.inspectChanges(changePackage)) {
 			return this.getBaseVersion();
@@ -1449,7 +1449,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		if (projectNotifications.size() == 0) {
 			return;
 		}
-
 		for (int i = 0; i < projectNotifications.size(); i++) {
 			Notification notification = projectNotifications.get(i);
 			Object feature = notification.getFeature();
@@ -1538,7 +1537,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 				if (feature instanceof EReference) {
 					if (notification.getNotifier() instanceof Project) {
 						CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(
-								(ModelElement) newValue, true);
+								(ModelElement) oldValue, true);
 						this.myOperations.add(createDeleteOperation);
 					} else {
 						i = handleEReference(feature, oldValue, notification,
@@ -1547,7 +1546,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 				} else if (feature instanceof EAttribute) {
 					EAttribute attribute = (EAttribute) feature;
 					MultiAttributeOperation multiAttributeOperation = createMultiAttributeOperation(
-							notification, newValue, attribute, false);
+							notification, oldValue, attribute, false);
 					this.myOperations.add(multiAttributeOperation);
 					continue;
 				} else {
@@ -1636,7 +1635,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 		if (reference.isContainment()) {
 			// element was added or removed to/from containment hierachy
-
 			CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(
 					modelElement, !isAdd);
 			this.myOperations.add(createDeleteOperation);

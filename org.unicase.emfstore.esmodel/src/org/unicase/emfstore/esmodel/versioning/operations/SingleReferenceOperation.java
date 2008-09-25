@@ -24,7 +24,7 @@ import org.unicase.model.ModelElementId;
  * @model
  * @generated
  */
-public interface SingleReferenceOperation extends FeatureOperation {
+public interface SingleReferenceOperation extends ReferenceOperation {
 	/**
 	 * Returns the value of the '<em><b>Old Value</b></em>' reference.
 	 * <!-- begin-user-doc -->

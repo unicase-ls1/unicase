@@ -27,7 +27,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperati
  * @generated
  */
 public class SingleReferenceOperationItemProvider extends
-		FeatureOperationItemProvider implements IEditingDomainItemProvider,
+		ReferenceOperationItemProvider implements IEditingDomainItemProvider,
 		IStructuredItemContentProvider, ITreeItemContentProvider,
 		IItemLabelProvider, IItemPropertySource {
 	/**

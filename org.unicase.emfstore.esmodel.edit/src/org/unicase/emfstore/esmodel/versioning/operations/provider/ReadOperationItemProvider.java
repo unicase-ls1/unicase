@@ -10,7 +10,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -19,19 +18,17 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.emfstore.esmodel.versioning.operations.ReadOperation;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation} object.
+ * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.ReadOperation} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class AbstractOperationItemProvider extends ItemProviderAdapter
+public class ReadOperationItemProvider extends AbstractOperationItemProvider
 		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
@@ -40,7 +37,7 @@ public class AbstractOperationItemProvider extends ItemProviderAdapter
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AbstractOperationItemProvider(AdapterFactory adapterFactory) {
+	public ReadOperationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -55,73 +52,31 @@ public class AbstractOperationItemProvider extends ItemProviderAdapter
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addNamePropertyDescriptor(object);
-			addDescriptionPropertyDescriptor(object);
-			addModelElementIdPropertyDescriptor(object);
+			addDatePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature.
+	 * This adds a property descriptor for the Date feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNamePropertyDescriptor(Object object) {
+	protected void addDatePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
 						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_AbstractOperation_name_feature"), getString(
+				getString("_UI_ReadOperation_date_feature"), getString(
 						"_UI_PropertyDescriptor_description",
-						"_UI_AbstractOperation_name_feature",
-						"_UI_AbstractOperation_type"),
-				OperationsPackage.Literals.ABSTRACT_OPERATION__NAME, true,
-				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-				null));
+						"_UI_ReadOperation_date_feature",
+						"_UI_ReadOperation_type"),
+				OperationsPackage.Literals.READ_OPERATION__DATE, true, false,
+				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Description feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_AbstractOperation_description_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_AbstractOperation_description_feature",
-						"_UI_AbstractOperation_type"),
-				OperationsPackage.Literals.ABSTRACT_OPERATION__DESCRIPTION,
-				true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Model Element Id feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addModelElementIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_AbstractOperation_modelElementId_feature"),
-						getString("_UI_PropertyDescriptor_description",
-								"_UI_AbstractOperation_modelElementId_feature",
-								"_UI_AbstractOperation_type"),
-						OperationsPackage.Literals.ABSTRACT_OPERATION__MODEL_ELEMENT_ID,
-						true, false, true, null, null, null));
-	}
-
-	/**
-	 * This returns AbstractOperation.gif.
+	 * This returns ReadOperation.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -129,7 +84,7 @@ public class AbstractOperationItemProvider extends ItemProviderAdapter
 	@Override
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/AbstractOperation"));
+				"full/obj16/ReadOperation"));
 	}
 
 	/**
@@ -140,9 +95,9 @@ public class AbstractOperationItemProvider extends ItemProviderAdapter
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((AbstractOperation) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_AbstractOperation_type")
-				: getString("_UI_AbstractOperation_type") + " " + label;
+		String label = ((ReadOperation) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_ReadOperation_type")
+				: getString("_UI_ReadOperation_type") + " " + label;
 	}
 
 	/**
@@ -156,9 +111,8 @@ public class AbstractOperationItemProvider extends ItemProviderAdapter
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(AbstractOperation.class)) {
-		case OperationsPackage.ABSTRACT_OPERATION__NAME:
-		case OperationsPackage.ABSTRACT_OPERATION__DESCRIPTION:
+		switch (notification.getFeatureID(ReadOperation.class)) {
+		case OperationsPackage.READ_OPERATION__DATE:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), false, true));
 			return;
@@ -177,17 +131,6 @@ public class AbstractOperationItemProvider extends ItemProviderAdapter
 	protected void collectNewChildDescriptors(
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return EsmodelEditPlugin.INSTANCE;
 	}
 
 }
