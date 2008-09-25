@@ -134,43 +134,43 @@
               </iterate>
            </visibleWhen>
         </command>
-        <command
-              commandId="org.unicase.workspace.edit.revert"
-              icon="icons/revert.png"
-              label="Revert Project"
-              style="push">
-           <visibleWhen
-                 checkEnabled="false">
-              <iterate
-                    ifEmpty="false">
-                 <instanceof
-                       value="org.unicase.workspace.ProjectSpace">
-                 </instanceof>
-              </iterate>
-           </visibleWhen>
-        </command>
-        <command
-              commandId="org.unicase.workspace.edit.deleteProject"
-              icon="icons/delete.gif"
-              label="Delete Project"
-              style="push">
-           <visibleWhen
-                 checkEnabled="false">
-              <iterate
-                    ifEmpty="false">
-                 <instanceof
-                       value="org.unicase.workspace.ProjectSpace">
-                 </instanceof>
-              </iterate>
-           </visibleWhen>
-        </command>
         <menu
               icon="icons/full/obj16/createrepos.gif"
               label="Other...">
            <command
-                 commandId="org.unicase.workspace.edit.shareProject"
-                 icon="icons/full/obj16/relocate.gif"
-                 label="Share  Project"
+                 commandId="org.unicase.workspace.edit.revert"
+                 icon="icons/revert.png"
+                 label="Revert all changes"
+                 style="push">
+              <visibleWhen
+                    checkEnabled="false">
+                 <iterate
+                       ifEmpty="false">
+                    <instanceof
+                          value="org.unicase.workspace.ProjectSpace">
+                    </instanceof>
+                 </iterate>
+              </visibleWhen>
+           </command>
+           <command
+                 commandId="org.unicase.workspace.edit.deleteProject"
+                 icon="icons/delete.gif"
+                 label="Delete Project"
+                 style="push">
+              <visibleWhen
+                    checkEnabled="false">
+                 <iterate
+                       ifEmpty="false">
+                    <instanceof
+                          value="org.unicase.workspace.ProjectSpace">
+                    </instanceof>
+                 </iterate>
+              </visibleWhen>
+           </command>
+           <command
+                 commandId="org.unicase.workspace.edit.exportProject"
+                 icon="icons/full/obj16/export.gif"
+                 label="Export Project"
                  style="push">
               <visibleWhen
                     checkEnabled="false">
@@ -199,9 +199,9 @@
               </visibleWhen>
            </command>
            <command
-                 commandId="org.unicase.workspace.edit.exportProject"
-                 icon="icons/full/obj16/export.gif"
-                 label="Export Project"
+                 commandId="org.unicase.workspace.edit.shareProject"
+                 icon="icons/full/obj16/relocate.gif"
+                 label="Share  Project"
                  style="push">
               <visibleWhen
                     checkEnabled="false">
@@ -216,7 +216,7 @@
            <command
                  commandId="org.unicase.workspace.edit.importUser"
                  icon="icons/importuser.png"
-                 label="Import User"
+                 label="Import Users"
                  style="push">
               <visibleWhen
                     checkEnabled="false">
@@ -230,7 +230,8 @@
            </command>
            <command
                  commandId="org.unicase.ui.common.validate"
-                 label="validate"
+                 icon="icons/revert.png"
+                 label="Validate Project"
                  style="push">
               <visibleWhen
                     checkEnabled="false">
