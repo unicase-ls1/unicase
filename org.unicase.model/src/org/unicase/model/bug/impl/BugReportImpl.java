@@ -397,9 +397,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	 * @generated
 	 */
 	public boolean isChecked() {
-		// TODO: implement this method to return the 'Checked' attribute
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return (getStatus().equals(BugStatus.CLOSED));
 	}
 
 	/**
@@ -410,7 +408,12 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	 * @param newChecked if the bug should be closed
 	 */
 	public void setChecked(boolean newChecked) {
-		setStatus(BugStatus.CLOSED);
+		if(newChecked){
+			setStatus(BugStatus.CLOSED);
+		}
+		else{
+			setStatus(BugStatus.NEW);
+		}
 	}
 
 	/**

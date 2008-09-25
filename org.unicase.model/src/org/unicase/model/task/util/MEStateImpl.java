@@ -16,10 +16,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.bug.BugReport;
-import org.unicase.model.bug.BugStatus;
 import org.unicase.model.requirement.FunctionalRequirement;
-import org.unicase.model.task.ActionItem;
+import org.unicase.model.task.Checkable;
 
 /**
  * Implementation of MEState.
@@ -129,22 +127,16 @@ public class MEStateImpl implements MEState {
 		if (effectiveBlocker.size() > 0) {
 			return BLOCKED;
 		}
-
-		// JH: use checkable interface
-		// If the me is an ActionItem, the isDone Attribute is effective
-		if (modelElement instanceof ActionItem) {
-			ActionItem actionItem = (ActionItem) modelElement;
-			if (!actionItem.isDone()) {
-				return OPEN;
-			}
+		// For all other Modelelements look if there is an openener
+		if (effectiveOpeners.size() > 0) {
+			return OPEN;
 		}
 
-		// If the me is an ActionItem, the isDone Attribute is effective
-		if (modelElement instanceof BugReport) {
-			BugReport bugReport = (BugReport) modelElement;
-			if (!bugReport.getStatus().equals(BugStatus.CLOSED)) {
-				return OPEN;
+		if(modelElement instanceof Checkable){
+			if(((Checkable) modelElement).isChecked()){
+				return CLOSED;
 			}
+			return OPEN;
 		}
 
 		// If the me is a FunctionalRequirement the reviewed attribute is
@@ -155,14 +147,11 @@ public class MEStateImpl implements MEState {
 				return OPEN;
 			}
 		}
-		// For all other Modelelements look if there is an openener
-		if (effectiveOpeners.size() > 0) {
-			return OPEN;
-		}
+	
 		// Else the me is closed
-		else {
+		
 			return CLOSED;
-		}
+		
 	}
 
 	/**
