@@ -30,7 +30,7 @@
         <constraints
               categories="org.unicase.model">
            <constraint
-                 class="org.unicase.model.task.util.ActionItemConstraints"
+                
                  id="org.unicase.model.task.ActionItem"
                  lang="Java"
                  mode="Batch"
@@ -47,20 +47,7 @@
         </constraints>
      </constraintProvider>
   </extension>
-  <extension
-        point="org.eclipse.emf.validation.constraintBindings">
-     <binding
-           category="org.unicase.model"
-           context="org.unicase.model">
-     </binding>
-     <clientContext
-           default="true"
-           id="org.unicase.model">
-        <selector
-              class="org.unicase.model.ClientSelector">
-        </selector>
-     </clientContext>
-  </extension>
+  
 
 
 </plugin>

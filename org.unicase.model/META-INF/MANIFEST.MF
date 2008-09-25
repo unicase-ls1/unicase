@@ -40,10 +40,6 @@ Export-Package: org.unicase.model,
  org.unicase.model.task.impl,
  org.unicase.model.task.util,
  org.unicase.model.util
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.gmf.runtime.notation;visibility:=reexport,
- org.eclipse.emf.edit,
- org.eclipse.emf.transaction,
- org.eclipse.emf.validation.ui
+Require-Bundle: org.eclipse.gmf.runtime.notation;visibility:=reexport,
+ org.eclipse.emf.transaction
 Bundle-ActivationPolicy: lazy
