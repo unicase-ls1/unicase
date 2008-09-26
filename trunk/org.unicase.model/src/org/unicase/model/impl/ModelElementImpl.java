@@ -16,6 +16,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
@@ -490,17 +491,23 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->.
 	 * 
 	 * @generated NOT
-	 * @return the project in which the modelelement is contained.
+	 * @return the project in which the modelelement is contained or null if it not in any project.
 	 */
 	public Project getProject() {
+		
+		EObject container = this.eContainer();
+
+		if (container==null) {
+			return null;
+		}
 		// check if my container is a project
-		if (ModelPackage.eINSTANCE.getProject().isInstance(this.eContainer)) {
-			return (Project) this.eContainer();
+		if (ModelPackage.eINSTANCE.getProject().isInstance(container)) {
+			return (Project) container;
 		}
 		// check if my container is a model element
 		else if (ModelPackage.eINSTANCE.getModelElement().isInstance(
 				this.eContainer)) {
-			return ((ModelElement) this.eContainer()).getProject();
+			return ((ModelElement) container).getProject();
 		} else {
 			throw new IllegalStateException(
 					"ModelElement is not contained by any project");
