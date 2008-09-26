@@ -6,8 +6,12 @@
  */
 package org.unicase.ui.common.diagram;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.io.Writer;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -20,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.DOMHandler;
 import org.eclipse.emf.ecore.xmi.DOMHelper;
 import org.eclipse.emf.ecore.xmi.XMLResource;
@@ -30,6 +35,7 @@ import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.workspace.WorkspaceManager;
@@ -498,5 +504,107 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 		// TODO Auto-generated method stub
 		return super.useZip();
 	}
+	
+	private static final URI VIRTUAL_DIAGRAM_URI = URI.createURI("virtual.diagram.uri");
+	private static final URI VIRTUAL_DIAGRAM_ELEMENTS_URI = URI.createURI("virtual.diagram.elements.uri");
+	
+	//JH: use this to serialize diagram
+	/**
+	 * Save gmf diagram to a String.
+	 * @param meDiagram the me diagram that contains the gmf diagram
+	 * @return the resulting string
+	 * @throws DiagramStoreException if saving to a string fails
+	 */
+	private String saveDiagramToString(MEDiagram meDiagram) throws DiagramStoreException {
+		//preserve original resource for all involved model elements
+		EList<ModelElement> elements = meDiagram.getElements();
+		Map<ModelElement, Resource> resourceMap = new HashMap<ModelElement, Resource>();
+		for (ModelElement modelElement : elements) {
+			//only preserve if element is in another resource than its container
+			if (modelElement.eResource()==modelElement.eContainer().eResource()) {
+				resourceMap.put(modelElement, modelElement.eResource());
+			}
+		}
+	
+		//put all involved elements into a virtual resource set
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Resource diagramResource = resourceSet.createResource(VIRTUAL_DIAGRAM_URI);
+		Diagram gmfdiagram = meDiagram.getGmfdiagram();
+		diagramResource.getContents().add(gmfdiagram);
+		Resource elementsResource = resourceSet.createResource(VIRTUAL_DIAGRAM_ELEMENTS_URI);
+		elementsResource.getContents().addAll(elements);
+		
+		//serialize diagram
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		try {
+			diagramResource.save(out, null);
+		} catch (IOException e) {
+			throw new DiagramStoreException("Diagram resource save failed.", e);
+		}
+		
+		//restore old resource for all model elements
+		elementsResource.getContents().removeAll(elements);
+		diagramResource.getContents().remove(gmfdiagram);
+		for (ModelElement modelElement : resourceMap.keySet()) {
+			resourceMap.get(modelElement).getContents().add(modelElement);
+		}
+		
+		return out.toString();
+	}
+
+	/**
+	 * Load a gmf diagram from a String.
+	 * @param diagramString the string
+	 * @param meDiagram the meDiagram that contains the gmf diagram
+	 * @return the gmf diagram
+	 * @throws DiagramLoadException if load fails
+	 */
+	private Diagram loadDiagramfromString(String diagramString, MEDiagram meDiagram) throws DiagramLoadException {
+		//preserve original resource for all involved model elements
+		EList<ModelElement> elements = meDiagram.getElements();
+		Map<ModelElement, Resource> resourceMap = new HashMap<ModelElement, Resource>();
+		for (ModelElement modelElement : elements) {
+			//only preserve if element is in another resource than its container
+			if (modelElement.eResource()==modelElement.eContainer().eResource()) {
+				resourceMap.put(modelElement, modelElement.eResource());
+			}
+		}
+		
+		//put all involved elements into a virtual resource set
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Resource diagramResource = resourceSet.createResource(VIRTUAL_DIAGRAM_URI);
+		Resource elementsResource = resourceSet.createResource(VIRTUAL_DIAGRAM_ELEMENTS_URI);
+		elementsResource.getContents().addAll(elements);
+		
+		//load diagram
+		try {
+			diagramResource.load(new ByteArrayInputStream(
+					diagramString.getBytes("UTF-8")), null);
+		} catch (UnsupportedEncodingException e) {
+			throw new DiagramLoadException("Diagram string encoding is malformed, load failed.", e);
+		} catch (IOException e) {
+			throw new DiagramLoadException("Diagram load failed.", e);
+		}
+		
+		if (diagramResource.getContents().size()<0) {
+			throw new DiagramLoadException("Diagram String does not contain anything, load failed!");
+		}
+		EObject object = diagramResource.getContents().get(0);
+		if (!(object instanceof Diagram)) {
+			throw new DiagramLoadException("Diagram String contains unexpected content: first entry is not a diagram");
+		}
+		Diagram gmfDiagram = (Diagram) diagramResource.getContents().get(0);
+		
+		//restore old resource for all model elements
+		elementsResource.getContents().removeAll(elements);
+		diagramResource.getContents().remove(gmfDiagram);
+		for (ModelElement modelElement : resourceMap.keySet()) {
+			resourceMap.get(modelElement).getContents().add(modelElement);
+		}
+		
+		return gmfDiagram;
+
+	}
+	
 
 }
