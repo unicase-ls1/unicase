@@ -69,31 +69,19 @@ public class ProjectChangeNotifier extends AdapterImpl {
 		if (notification.isTouch()) {
 			return;
 		}
-		if ((notification.getFeature() instanceof EReference)) {
-			EReference reference = (EReference) notification.getFeature();
-			if (reference.isContainment()) {
-				switch (notification.getEventType()) {
-				case Notification.ADD:
-					handleAddNotification(notification);
-					break;
-				case Notification.ADD_MANY:
-					handleAddAllNotification(notification);
-					break;
-				case Notification.REMOVE:
-					handleRemoveNotification(notification);
-					break;
-				case Notification.REMOVE_MANY:
-					handleRemoveAllNotification(notification);
-					break;
-				case Notification.SET:
-					handleSetNotification(notification);
-					break;
-				default:
-					throw new IllegalStateException(
-							"Unknown containment notification received");
-				}
-
-			}
+		switch (notification.getEventType()) {
+		case Notification.ADD:
+			handleAddNotification(notification);
+			break;
+		case Notification.ADD_MANY:
+			handleAddAllNotification(notification);
+			break;
+		case Notification.SET:
+			handleSetNotification(notification);
+			break;
+		default:
+			// nop
+			break;
 
 		}
 
@@ -106,67 +94,71 @@ public class ProjectChangeNotifier extends AdapterImpl {
 	}
 
 	private void handleSetNotification(Notification notification) {
-		Object newSetValue = notification.getNewValue();
-		Object oldSetValue = notification.getOldValue();
-		if (newSetValue != null) {
-			if (newSetValue instanceof ModelElement) {
-				this.projectChangeObserver.modelElementAdded(project,
-						(ModelElement) newSetValue);
-			}
-		} else {
-			if (oldSetValue instanceof ModelElement) {
-				this.projectChangeObserver.modelElementRemoved(project,
-						(ModelElement) oldSetValue);
-			}
-		}
-	}
-
-	
-	private void handleRemoveAllNotification(Notification notification) {
-		//cast cannot be checked properly, flaw in EMF notification design
-		@SuppressWarnings("unchecked")
-		List<EObject> oldValues = (List<EObject>) notification.getOldValue();
-		for (EObject newElement : oldValues) {
-			if (ModelPackage.eINSTANCE.getModelElement().isInstance(newElement)) {
-				ModelElement modelElement = (ModelElement) newElement;
-				newElement.eAdapters().remove(this);
-				this.projectChangeObserver.modelElementRemoved(project,
-						modelElement);
-			}
-
-		}
-	}
-
-	private void handleRemoveNotification(Notification notification) {
-		EObject oldValue = (EObject) notification.getOldValue();
-		if (ModelPackage.eINSTANCE.getModelElement().isInstance(oldValue)) {
-			oldValue.eAdapters().remove(this);
-			this.projectChangeObserver.modelElementRemoved(project,
-					(ModelElement) oldValue);
-		}
-	}
-
-	private void handleAddAllNotification(Notification notification) {
-		//cast cannot be checked properly, flaw in EMF notification design
-		@SuppressWarnings("unchecked")
-		List<EObject> newValues = (List<EObject>) notification.getNewValue();
-		for (EObject newElement : newValues) {
-			if (ModelPackage.eINSTANCE.getModelElement().isInstance(newElement)) {
-				ModelElement modelElement = (ModelElement) newElement;
-				if (!project.contains(modelElement)) {
-					newElement.eAdapters().add(this);
-					this.projectChangeObserver.modelElementAdded(project,
-							modelElement);
+		
+		//model element is removed from containment hierachy
+		if (isAboutContainer(notification)) {
+			ModelElement modelElement = (ModelElement) notification.getNotifier();
+			EObject newParent = (EObject) notification.getNewValue();
+			if (newParent == null) {
+				//check if model element is really removed from project
+				if (modelElement.getProject()!=project) {
+					this.projectChangeObserver.modelElementRemoved(project, modelElement);
 				}
 			}
-
 		}
+		
+		//model element is added to containment hierachy
+		if (isAboutContainment(notification)) {
+			handleSingleAdd((EObject) notification.getNotifier());
+		}
+	}
+
+	// cast cannot be checked properly, flaw in EMF notification design
+	@SuppressWarnings("unchecked")
+	private void handleAddAllNotification(Notification notification) {
+		if (isAboutContainment(notification)) {
+			List<EObject> newValues = (List<EObject>) notification
+					.getNewValue();
+			for (EObject newElement : newValues) {
+				handleSingleAdd(newElement);
+			}
+		}
+
+	}
+
+	private boolean isAboutContainer(Notification notification) {
+		Object feature = notification.getFeature();
+		if (feature instanceof EReference) {
+			EReference reference = (EReference) feature;
+			if (reference.isContainer()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private boolean isAboutContainment(Notification notification) {
+		Object feature = notification.getFeature();
+		if (feature instanceof EReference) {
+			EReference reference = (EReference) feature;
+			if (reference.isContainment()) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private void handleAddNotification(Notification notification) {
-		EObject newValue = (EObject) notification.getNewValue();
+		if (isAboutContainment(notification)) {
+			EObject newValue = (EObject) notification.getNewValue();
+			handleSingleAdd(newValue);
+		}
+	}
+
+	private void handleSingleAdd(EObject newValue) {
 		if (ModelPackage.eINSTANCE.getModelElement().isInstance(newValue)) {
 			ModelElement modelElement = (ModelElement) newValue;
+			// this works only because the contains cache is not yet updated
 			if (!project.contains(modelElement)) {
 				newValue.eAdapters().add(this);
 				this.projectChangeObserver.modelElementAdded(project,
