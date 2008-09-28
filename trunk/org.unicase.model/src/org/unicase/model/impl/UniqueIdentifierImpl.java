@@ -147,14 +147,14 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String toString() {
 		if (eIsProxy())
 			return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuffer result = new StringBuffer();
 		result.append(" (id: ");
 		result.append(id);
 		result.append(')');
@@ -187,5 +187,5 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements
 	public int hashCode() {
 		return this.id.hashCode();
 	}
-
+	
 } // UniqueIdentifierImpl
