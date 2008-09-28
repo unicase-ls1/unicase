@@ -318,6 +318,11 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl
 					}
 				} else {
 					list.removeAll(referencedModelElements);
+					for (ModelElement currentElement : referencedModelElements) {
+						if (!project.contains(currentElement.getModelElementId())) {
+							project.addModelElement(currentElement);
+						}
+					}
 				}
 				return;
 			}
