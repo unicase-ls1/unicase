@@ -41,6 +41,7 @@ public class ChangesTreeComposite extends Composite {
 
 	// input ChangePackages
 	private List<ChangePackage> changePackages;
+	private ChangePackageVisualizationHelper visualizationHelper;
 
 	/**
 	 * . Constructor
@@ -77,10 +78,7 @@ public class ChangesTreeComposite extends Composite {
 				Object element = cell.getElement();
 				if(element instanceof AbstractOperation){
 					AbstractOperation operation = (AbstractOperation) element;
-					ModelElement me = WorkspaceManager.getInstance()
-							.getCurrentWorkspace().getActiveProjectSpace()
-							.getProject().getModelElement(
-									operation.getModelElementId());
+					ModelElement me = visualizationHelper.getModelElement(operation.getModelElementId());
 					cell.setText(me.getName());
 					cell.setImage(emfProvider.getImage(me));
 				}else{
@@ -164,6 +162,9 @@ public class ChangesTreeComposite extends Composite {
 	 */
 	public void setInput(List<ChangePackage> changePackages) {
 		this.changePackages = changePackages;
+		this.visualizationHelper=new ChangePackageVisualizationHelper(changePackages, WorkspaceManager.getInstance()
+							.getCurrentWorkspace().getActiveProjectSpace()
+							.getProject());
 		if (changePackages != null) {
 			treeViewer.setInput(changePackages);
 			treeViewer.expandAll();
