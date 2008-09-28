@@ -328,7 +328,7 @@ public class ProjectImpl extends EObjectImpl implements Project,
 	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementRemoved(org.unicase.model.Project, org.unicase.model.ModelElement)
 	 */
 	public void modelElementRemoved(Project project, ModelElement modelElement) {
-		this.modelElementCache.remove(modelElement.getIdentifier());
+		this.modelElementCache.remove(modelElement.getModelElementId());
 		for (ProjectChangeObserver projectChangeObserver : this.observers) {
 			projectChangeObserver.modelElementRemoved(project, modelElement);
 		}
