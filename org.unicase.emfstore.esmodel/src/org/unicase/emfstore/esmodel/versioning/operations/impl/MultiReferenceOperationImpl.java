@@ -20,10 +20,12 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
+import org.unicase.model.util.ModelUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -374,8 +376,16 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl
 
 	@Override
 	public AbstractOperation reverse() {
-		// TODO Auto-generated method stub
-		return null;
+		MultiReferenceOperation multiReferenceOperation = OperationsFactory.eINSTANCE.createMultiReferenceOperation();
+		super.reverse(multiReferenceOperation);
+		multiReferenceOperation.setAdd(!isAdd());
+		EList<ModelElementId> copiedReferencedModelElements = multiReferenceOperation.getReferencedModelElements();
+		EList<ModelElementId> modelElements = getReferencedModelElements();
+		for (ModelElementId modelElementId : modelElements) {
+			copiedReferencedModelElements.add(ModelUtil.clone(modelElementId));
+		}
+		multiReferenceOperation.setIndex(getIndex());
+		return multiReferenceOperation;		
 	}
 
 } //MultiReferenceOperationImpl
