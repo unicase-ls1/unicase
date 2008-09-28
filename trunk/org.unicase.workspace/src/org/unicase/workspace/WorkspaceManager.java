@@ -129,6 +129,13 @@ public final class WorkspaceManager {
 			workspace = WorkspaceFactory.eINSTANCE.createWorkspace();
 			workspace.getServerInfos()
 					.addAll(Configuration.getDefaultServerInfos());
+			EList<Usersession> usersessions = workspace.getUsersessions();
+			for (ServerInfo serverInfo: workspace.getServerInfos()) {
+				Usersession lastUsersession = serverInfo.getLastUsersession();
+				if (lastUsersession!=null) {
+					usersessions.add(lastUsersession);
+				}
+			}
 			domain.getCommandStack().execute(new RecordingCommand(domain) {
 				@Override
 				protected void doExecute() {

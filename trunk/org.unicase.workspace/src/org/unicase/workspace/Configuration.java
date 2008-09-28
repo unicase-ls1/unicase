@@ -83,8 +83,14 @@ public final class Configuration {
 		serverInfo1.setName("Localhost Server");
 		serverInfo1.setPort(1099);
 		serverInfo1.setUrl("localhost");
+		Usersession superUsersession = WorkspaceFactory.eINSTANCE.createUsersession();
+		superUsersession.setPassword("super");
+		superUsersession.setSavePassword(true);
+		superUsersession.setServerInfo(serverInfo1);
+		superUsersession.setUsername("super");
+		serverInfo1.setLastUsersession(superUsersession);
 		serverInfos.add(serverInfo1);
-		
+				
 		ServerInfo serverInfo2 = WorkspaceFactory.eINSTANCE.createServerInfo();
 		serverInfo2.setDisplayName("unicase Server");
 		serverInfo2.setName("unicase Server");
