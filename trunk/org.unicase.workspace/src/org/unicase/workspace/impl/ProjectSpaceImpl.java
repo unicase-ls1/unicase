@@ -8,6 +8,7 @@ package org.unicase.workspace.impl;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -16,6 +17,7 @@ import java.util.List;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.notify.impl.NotificationImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
@@ -56,6 +58,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperatio
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
+import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
@@ -83,7 +86,7 @@ import org.unicase.workspace.util.UpdateObserver;
  * <!-- begin-user-doc --> An implementation of the model object '
  * <em><b>Project Container</b></em>'.
  * 
- * @implements ResourceSetListener, ProjectChangeObserver <!-- end-user-doc -->
+ * @implements ProjectChangeObserver <!-- end-user-doc -->
  *             <p>
  *             The following features are implemented:
  *             <ul>
@@ -125,14 +128,12 @@ import org.unicase.workspace.util.UpdateObserver;
  * @generated
  */
 public class ProjectSpaceImpl extends IdentifiableElementImpl implements
-		ProjectSpace, ResourceSetListener, ProjectChangeObserver {
+		ProjectSpace, ProjectChangeObserver {
 
 	/**
 	 * @generated NOT
 	 */
 	private ChangeRecorder changeRecorder;
-
-	private List<AbstractOperation> myOperations;
 
 	/**
 	 * The cached value of the '{@link #getProject() <em>Project</em>}'
@@ -841,6 +842,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 		if (commitObserver != null
 				&& !commitObserver.inspectChanges(changePackage)) {
+			startChangeRecording();
 			return this.getBaseVersion();
 		}
 
@@ -942,7 +944,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		for (ChangePackage change : changes) {
 			ChangePackage changePackage = VersioningFactory.eINSTANCE
 					.createChangePackage();
-			changePackage.getOperations().addAll(myOperations);
+			changePackage.getOperations().addAll(getOperations());
 			if (conflictDetector.doConflict(change, changePackage)) {
 				throw new ChangeConflictException(changes);
 			}
@@ -986,9 +988,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		changePackage.getOperations().addAll(getOperations());
 		changePackage.cannonize();
 		changePackage.reverse().apply(project);
-		
+
 		this.getOperations().clear();
-		
+
 		startChangeRecording();
 	}
 
@@ -1011,8 +1013,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 */
 	private void stopChangeRecording() {
 		this.isRecording = false;
-		this.getOperations().addAll(this.myOperations);
-		this.myOperations.clear();
 	}
 
 	/**
@@ -1023,7 +1023,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 */
 	private void startChangeRecording() {
 		isRecording = true;
-		setDirty(getOperations().size()>0);
+		setDirty(getOperations().size() > 0);
 	}
 
 	/**
@@ -1033,10 +1033,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * @generated NOT
 	 */
 	public void init() {
-		this.myOperations = new ArrayList<AbstractOperation>();
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
-		domain.addResourceSetListener(this);
 		// MK: possibly performance hit
 		this.eResource().setTrackingModification(true);
 		this.getProject().addProjectChangeObserver(this);
@@ -1441,174 +1439,146 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		return false;
 	}
 
-	public void resourceSetChanged(final ResourceSetChangeEvent event) {
+	private void createOperations(final Notification notification,
+			ModelElement modelElement) {
 
-		if (!this.isRecording) {
-			return;
+		Object feature = notification.getFeature();
+		Object newValue = notification.getNewValue();
+		Object oldValue = notification.getOldValue();
+		if (notification.getEventType() == Notification.SET) {
+			if (feature instanceof EAttribute) {
+				// Simple attribute set
+				AttributeOperation attributeOperation = createAttributeOperation(
+						notification, feature, newValue, oldValue);
+				this.getOperations().add(attributeOperation);
+				return;
+			} else if (feature instanceof EReference) {
+				handleSetReference(notification, (EReference) feature,
+						(ModelElement) newValue, (ModelElement) oldValue);
+				return;
+			}
+			// FIXME MK: this should never happen
+			throw new IllegalStateException();
 		}
 
-		// filter notifications to project
-		List<Notification> notifications = event.getNotifications();
-		List<Notification> projectNotifications = new ArrayList<Notification>();
-		for (Notification notification : notifications) {
-			Object notifier = notification.getNotifier();
-			if (notifier instanceof ModelElement) {
-				ModelElement modelElement = (ModelElement) notifier;
-				if (ProjectSpaceImpl.this.getProject().containsInstance(
-						modelElement)) {
-					projectNotifications.add(notification);
-				}
-			}
-			if (notifier == getProject()) {
-				projectNotifications.add(notification);
-			}
-		}
-		if (projectNotifications.size() == 0) {
-			return;
-		}
-		for (int i = 0; i < projectNotifications.size(); i++) {
-			Notification notification = projectNotifications.get(i);
-			Object feature = notification.getFeature();
-			Object newValue = notification.getNewValue();
-			Object oldValue = notification.getOldValue();
-			if (notification.getEventType() == Notification.SET) {
-				if (feature instanceof EAttribute) {
-					// Simple attribute set
-					AttributeOperation attributeOperation = createAttributeOperation(
-							notification, feature, newValue, oldValue);
-					this.myOperations.add(attributeOperation);
-					continue;
-				} else if (feature instanceof EReference) {
-					handleSetReference(projectNotifications, i, notification, feature,
-							newValue, oldValue);
-					continue;
-				}
+		if (notification.getEventType() == Notification.ADD) {
+			if (feature instanceof EReference) {
+				handleEReference((EReference) feature, (ModelElement) newValue,
+						notification, true);
+			} else if (feature instanceof EAttribute) {
+				EAttribute attribute = (EAttribute) feature;
+				MultiAttributeOperation multiAttributeOperation = createMultiAttributeOperation(
+						notification, newValue, attribute, true);
+				this.getOperations().add(multiAttributeOperation);
+				return;
+			} else {
 				// FIXME MK: this should never happen
 				throw new IllegalStateException();
 			}
+		}
 
-			if (notification.getEventType() == Notification.ADD) {
-				if (feature instanceof EReference) {
-					if (notification.getNotifier() instanceof Project) {
-						CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(
-								(ModelElement) newValue, false);
-						this.myOperations.add(createDeleteOperation);
-					} else {
-						handleEReference(feature, newValue, notification, true,
-								projectNotifications, i);
-					}
-				} else if (feature instanceof EAttribute) {
-					EAttribute attribute = (EAttribute) feature;
-					MultiAttributeOperation multiAttributeOperation = createMultiAttributeOperation(
-							notification, newValue, attribute, true);
-					this.myOperations.add(multiAttributeOperation);
-					continue;
-				} else {
-					// FIXME MK: this should never happen
-					throw new IllegalStateException();
-				}
-				continue;
+		if (notification.getEventType() == Notification.REMOVE) {
+			if (feature instanceof EReference) {
+				handleEReference((EReference) feature, (ModelElement) oldValue,
+						notification, false);
+			} else if (feature instanceof EAttribute) {
+				EAttribute attribute = (EAttribute) feature;
+				MultiAttributeOperation multiAttributeOperation = createMultiAttributeOperation(
+						notification, oldValue, attribute, false);
+				this.getOperations().add(multiAttributeOperation);
+				return;
+			} else {
+				// FIXME MK: this should never happen
+				throw new IllegalStateException();
 			}
+			return;
+		}
 
-			if (notification.getEventType() == Notification.REMOVE) {
-				if (feature instanceof EReference) {
-					if (notification.getNotifier() instanceof Project) {
-						CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(
-								(ModelElement) oldValue, true);
-						this.myOperations.add(createDeleteOperation);
-					} else {
-						handleEReference(feature, oldValue, notification,
-								false, projectNotifications, i);
-					}
-				} else if (feature instanceof EAttribute) {
-					EAttribute attribute = (EAttribute) feature;
-					MultiAttributeOperation multiAttributeOperation = createMultiAttributeOperation(
-							notification, oldValue, attribute, false);
-					this.myOperations.add(multiAttributeOperation);
-					continue;
-				} else {
-					// FIXME MK: this should never happen
-					throw new IllegalStateException();
-				}
-				continue;
-			}
+		if (notification.getEventType() == Notification.ADD_MANY) {
+			// FIXME MK: implement
+			throw new UnsupportedOperationException();
+		}
+		if (notification.getEventType() == Notification.REMOVE_MANY) {
+			// FIXME MK: implement
+			throw new UnsupportedOperationException();
+		}
+		if (notification.getEventType() == Notification.UNSET) {
+			// FIXME MK: how can I trigger this
+			throw new UnsupportedOperationException();
+		}
+		if (notification.getEventType() == Notification.MOVE) {
+			// FIXME MK: what about move many
+			if (feature instanceof EReference) {
+				EReference reference = (EReference) feature;
+				MultiReferenceMoveOperation multiReferenceMoveOperation = OperationsFactory.eINSTANCE
+						.createMultiReferenceMoveOperation();
+				multiReferenceMoveOperation.setFeatureName(reference.getName());
+				multiReferenceMoveOperation
+						.setModelElementId(((ModelElement) notification
+								.getNotifier()).getModelElementId());
+				multiReferenceMoveOperation
+						.setReferencedModelElementId(((ModelElement) notification
+								.getNewValue()).getModelElementId());
+				multiReferenceMoveOperation.setNewIndex(notification
+						.getPosition());
+				multiReferenceMoveOperation.setOldIndex((Integer) oldValue);
+				this.getOperations().add(multiReferenceMoveOperation);
 
-			if (notification.getEventType() == Notification.ADD_MANY) {
-				// FIXME MK: implement
-				throw new UnsupportedOperationException();
+			} else {
+				// FIXME MK: this should never happen
+				throw new IllegalStateException();
 			}
-			if (notification.getEventType() == Notification.REMOVE_MANY) {
-				// FIXME MK: implement
-				throw new UnsupportedOperationException();
-			}
-			if (notification.getEventType() == Notification.UNSET) {
-				// FIXME MK: how can I trigger this
-				throw new UnsupportedOperationException();
-			}
-			if (notification.getEventType() == Notification.MOVE) {
-				// FIXME MK: what about move many
-				if (feature instanceof EReference) {
-					EReference reference = (EReference) feature;
-					MultiReferenceMoveOperation multiReferenceMoveOperation = OperationsFactory.eINSTANCE
-							.createMultiReferenceMoveOperation();
-					multiReferenceMoveOperation.setFeatureName(reference
-							.getName());
-					multiReferenceMoveOperation
-							.setModelElementId(((ModelElement) notification
-									.getNotifier()).getModelElementId());
-					multiReferenceMoveOperation
-							.setReferencedModelElementId(((ModelElement) notification
-									.getNewValue()).getModelElementId());
-					multiReferenceMoveOperation.setNewIndex(notification
-							.getPosition());
-					multiReferenceMoveOperation.setOldIndex((Integer) oldValue);
-					this.myOperations.add(multiReferenceMoveOperation);
-					continue;
-				} else {
-					// FIXME MK: this should never happen
-					throw new IllegalStateException();
-				}
-			}
-			throw new IllegalStateException();
 		}
 
 	}
 
-	private void handleSetReference(List<Notification> projectNotifications, int i,
-			Notification notification, Object feature, Object newValue,
-			Object oldValue) {
+	private void handleSetReference(Notification notification,
+			EReference reference, ModelElement newValue, ModelElement oldValue) {
+
+		// handle bidirectional notifications
+		if (reference.getEOpposite() != null) {
+			if (notification instanceof NotificationImpl) {
+				Field declaredField;
+				try {
+					declaredField = NotificationImpl.class
+							.getDeclaredField("next");
+					declaredField.setAccessible(true);
+					Object object = declaredField.get(notification);
+					Notification nextNotification = (Notification) object;
+					if (nextNotification != null
+							&& nextNotification.getFeature() == reference
+									.getEOpposite()) {
+						if (newValue == null
+								&& nextNotification.getNotifier() == oldValue) {
+							// skip this
+							return;
+						} else if (oldValue == null
+								&& nextNotification.getNotifier() == newValue) {
+							// skip this
+							return;
+						}
+					}
+
+				} catch (SecurityException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (NoSuchFieldException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalArgumentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+
 		// single reference set
-		EReference reference = (EReference) feature;
-		ModelElement newValueME = (ModelElement) newValue;
-
-		if (reference.isContainment() && newValue != null) {
-			// element added to containment hierachy
-			CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(
-					newValueME, false);
-			this.myOperations.add(createDeleteOperation);
-
-		}
-
-		boolean skip;
-		if (newValue != null) {
-			skip = isBirectionalNotification(reference,
-					projectNotifications, newValue, i);
-		} else {
-			skip = isBirectionalNotification(reference,
-					projectNotifications, oldValue, i);
-		}
-		if (!skip) {
-			SingleReferenceOperation singleReferenceOperation = createSingleReferenceOperation(
-					notification, oldValue, reference, newValueME);
-			this.myOperations.add(singleReferenceOperation);
-		}
-		
-		if (reference.isContainment() && newValue == null) {
-			// element removed from containment hierachy
-			CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(
-					newValueME, true);
-			this.myOperations.add(createDeleteOperation);
-		}
+		SingleReferenceOperation singleReferenceOperation = createSingleReferenceOperation(
+				notification, oldValue, reference, newValue);
+		this.getOperations().add(singleReferenceOperation);
 	}
 
 	private MultiAttributeOperation createMultiAttributeOperation(
@@ -1640,45 +1610,77 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		return attributeOperation;
 	}
 
-	private void handleEReference(Object feature, Object value,
-			Notification notification, boolean isAdd,
-			List<Notification> projectNotifications, int i) {
+	private void handleEReference(EReference reference,
+			ModelElement modelElement, Notification notification, boolean isAdd) {
 
-		EReference reference = (EReference) feature;
-		ModelElement modelElement = (ModelElement) value;
+		if (reference.isMany()) {
+			// handle bidirectional notifications
+			if (reference.getEOpposite() != null) {
+				if (notification instanceof NotificationImpl) {
+					Field declaredField;
+					try {
+						declaredField = NotificationImpl.class
+								.getDeclaredField("next");
+						declaredField.setAccessible(true);
+						Object object = declaredField.get(notification);
+						Notification nextNotification = (Notification) object;
+						if (nextNotification != null
+								&& nextNotification.getFeature() == reference
+										.getEOpposite()
+								&& nextNotification.getNotifier() == modelElement) {
+							// skip this
+							return;
+						}
+					} catch (SecurityException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (NoSuchFieldException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IllegalArgumentException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IllegalAccessException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
 
-		if (reference.isContainment() && isAdd) {
-			// element was added or removed to/from containment hierachy
-			CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(
-					modelElement, false);
-			this.myOperations.add(createDeleteOperation);
-
-		}
-
-		if (!isBirectionalNotification(reference, projectNotifications, value,
-				i)) {
 			// element was added/removed to/from a reference feature
 			ModelElement parent = (ModelElement) notification.getNotifier();
 
-			if (reference.isMany()) {
-				MultiReferenceOperation multiReferenceOperation = createMultiReferenceOperation(
-						notification, reference, modelElement, parent, isAdd);
-				this.myOperations.add(multiReferenceOperation);
-			} else {
-				// should never hit here
-				throw new IllegalStateException();
+			MultiReferenceOperation multiReferenceOperation = createMultiReferenceOperation(
+					notification, reference, modelElement, parent, isAdd);
+			int index = operations.size();
+			// check if this operation refers to a previous delete
+			EList<AbstractOperation> operations = this.getOperations();
+			for (int i = operations.size()-1; i>=0; i--) {
+				AbstractOperation lastOperation = operations.get(i);
+				if (!isRelated(modelElement, isAdd, parent, lastOperation)) {
+					index=i+1;
+				}
+			}
+			
+			operations.add(index, multiReferenceOperation);
+		} else {
+			// should never hit here
+			throw new IllegalStateException();
+		}
+	}
+
+	private boolean isRelated(ModelElement modelElement, boolean isAdd,
+			ModelElement parent, AbstractOperation lastOperation) {
+		if (!isAdd && lastOperation instanceof CreateDeleteOperation
+				&& ((CreateDeleteOperation) lastOperation).isDelete()) {
+			if (lastOperation.getModelElementId().equals(
+					parent.getModelElementId())
+					|| lastOperation.getModelElementId().equals(
+							modelElement.getModelElementId())) {
+				return true;
 			}
 		}
-
-		if (reference.isContainment() && !isAdd) {
-			// element was removed to/from containment hierachy
-			CreateDeleteOperation deleteOperation = createCreateDeleteOperation(
-					modelElement, true);
-			this.myOperations.add(deleteOperation);
-
-		}
-
-		return;
+		return false;
 	}
 
 	private boolean isBirectionalNotification(EReference reference,
@@ -1705,11 +1707,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			ModelElement modelElement, ModelElement parent, boolean isAdd) {
 		MultiReferenceOperation multiReferenceOperation = OperationsFactory.eINSTANCE
 				.createMultiReferenceOperation();
+		setBidirectionalInfos(reference, multiReferenceOperation);
 		multiReferenceOperation.setFeatureName(reference.getName());
 		multiReferenceOperation.setAdd(isAdd);
 		multiReferenceOperation.setIndex(notification.getPosition());
 		multiReferenceOperation.getReferencedModelElements().add(
-				(ModelElementId) (modelElement.getModelElementId()));
+				modelElement.getModelElementId());
 		multiReferenceOperation.setModelElementId(parent.getModelElementId());
 		return multiReferenceOperation;
 	}
@@ -1720,6 +1723,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		SingleReferenceOperation singleReferenceOperation = OperationsFactory.eINSTANCE
 				.createSingleReferenceOperation();
 		singleReferenceOperation.setFeatureName(reference.getName());
+		setBidirectionalInfos(reference, singleReferenceOperation);
+
 		if (oldValue != null) {
 			singleReferenceOperation.setOldValue(((ModelElement) oldValue)
 					.getModelElementId());
@@ -1731,6 +1736,17 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		singleReferenceOperation.setModelElementId(((ModelElement) notification
 				.getNotifier()).getModelElementId());
 		return singleReferenceOperation;
+	}
+
+	private void setBidirectionalInfos(EReference reference,
+			ReferenceOperation referenceOperation) {
+		if (reference.getEOpposite() != null) {
+			referenceOperation.setBidirectional(true);
+			referenceOperation.setOppositeFeatureName(reference.getEOpposite()
+					.getName());
+		} else {
+			referenceOperation.setBidirectional(false);
+		}
 	}
 
 	private CreateDeleteOperation createCreateDeleteOperation(
@@ -1753,15 +1769,38 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	public void modelElementAdded(Project project, ModelElement modelElement) {
 		addToResource(modelElement);
+		if (isRecording) {
+			EList<AbstractOperation> operations = this.getOperations();
+			for (AbstractOperation abstractOperation : operations) {
+				if (abstractOperation instanceof CreateDeleteOperation) {
+					CreateDeleteOperation operation = (CreateDeleteOperation) abstractOperation;
+					if (operation.isDelete()
+							&& operation.getModelElementId().equals(
+									modelElement.getModelElementId())) {
+						operations.remove(operation);
+						return;
+					}
+				}
+			}
+			operations.add(createCreateDeleteOperation(modelElement, false));
+			save();
+		}
 	}
 
 	public void modelElementRemoved(Project project, ModelElement modelElement) {
-		// TODO clean resources from deleted model elements
+		if (isRecording) {
+			CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(
+					modelElement, true);
+			this.getOperations().add(createDeleteOperation);
+			// MK clean resources from deleted model elements
+			save();
+		}
 	}
 
 	public void notify(Notification notification, Project project,
 			ModelElement modelElement) {
 		if (isRecording) {
+			createOperations(notification, modelElement);
 			save();
 		}
 	}

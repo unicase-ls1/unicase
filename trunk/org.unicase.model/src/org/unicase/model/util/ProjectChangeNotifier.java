@@ -77,7 +77,25 @@ public class ProjectChangeNotifier extends AdapterImpl {
 			handleAddAllNotification(notification);
 			break;
 		case Notification.SET:
-			handleSetNotification(notification);
+			//model element is removed from containment hierachy
+			if (isAboutContainer(notification)) {
+				ModelElement modelElement = (ModelElement) notification.getNotifier();
+				EObject newParent = (EObject) notification.getNewValue();
+				if (newParent == null) {
+					//check if model element is really removed from project
+					if (modelElement.getProject()!=project) {
+						//on a remove fire notification first and then the remove
+						fireNotification(notification);
+						this.projectChangeObserver.modelElementRemoved(project, modelElement);
+						return;
+					}
+				}
+			}
+			
+			//model element is added to containment hierachy
+			if (isAboutContainment(notification)) {
+				handleSingleAdd((EObject) notification.getNotifier());
+			}
 			break;
 		default:
 			// nop
@@ -85,33 +103,18 @@ public class ProjectChangeNotifier extends AdapterImpl {
 
 		}
 
+		fireNotification(notification);
+
+	}
+
+	private void fireNotification(Notification notification) {
 		Object notifier = notification.getNotifier();
 		if (notifier instanceof ModelElement) {
 			this.projectChangeObserver.notify(notification, project,
 					(ModelElement) notifier);
 		}
-
 	}
 
-	private void handleSetNotification(Notification notification) {
-		
-		//model element is removed from containment hierachy
-		if (isAboutContainer(notification)) {
-			ModelElement modelElement = (ModelElement) notification.getNotifier();
-			EObject newParent = (EObject) notification.getNewValue();
-			if (newParent == null) {
-				//check if model element is really removed from project
-				if (modelElement.getProject()!=project) {
-					this.projectChangeObserver.modelElementRemoved(project, modelElement);
-				}
-			}
-		}
-		
-		//model element is added to containment hierachy
-		if (isAboutContainment(notification)) {
-			handleSingleAdd((EObject) notification.getNotifier());
-		}
-	}
 
 	// cast cannot be checked properly, flaw in EMF notification design
 	@SuppressWarnings("unchecked")
