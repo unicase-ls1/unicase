@@ -497,8 +497,7 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 		String diagramLayout = getDiagramLayout();
 		if (diagramLayout == null) {
 			throw new DiagramLoadException(
-					"Diagram string is null, load failed.",
-					new NullPointerException());
+					"Diagram string is null, load failed.");
 		}
 		// load diagram
 		try {
