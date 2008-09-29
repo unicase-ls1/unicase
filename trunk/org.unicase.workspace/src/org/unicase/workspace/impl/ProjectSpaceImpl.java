@@ -54,6 +54,7 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
@@ -65,6 +66,8 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
+import org.unicase.model.diagram.DiagramFactory;
+import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.impl.IdentifiableElementImpl;
 import org.unicase.model.util.ModelValidationHelper;
 import org.unicase.model.util.ProjectChangeObserver;
@@ -1448,13 +1451,29 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		if (notification.getEventType() == Notification.SET) {
 			if (feature instanceof EAttribute) {
 				// Simple attribute set
-				if (((EStructuralFeature) feature).isTransient()) {
+				EAttribute attribute = (EAttribute) feature;
+				if (attribute.isTransient()) {
 					return;
 				}
-				AttributeOperation attributeOperation = createAttributeOperation(
-						notification, feature, newValue, oldValue);
-				this.getOperations().add(attributeOperation);
-				return;
+				DiagramPackage diagramPackage = DiagramFactory.eINSTANCE.getDiagramPackage();
+				if (attribute.getName().equals(
+						diagramPackage
+								.getMEDiagram_DiagramLayout().getName()) && diagramPackage.getMEDiagram().isInstance(modelElement)) {
+					
+					DiagramLayoutOperation createDiagramLayoutOperation = OperationsFactory.eINSTANCE.createDiagramLayoutOperation();
+					createDiagramLayoutOperation.setFeatureName(attribute.getName());
+					createDiagramLayoutOperation.setModelElementId((ModelElementId) EcoreUtil
+					.copy(modelElement.getModelElementId()));
+					createDiagramLayoutOperation.setNewValue(newValue);
+					createDiagramLayoutOperation.setOldValue(oldValue);
+					return;
+
+				} else {
+					AttributeOperation attributeOperation = createAttributeOperation(
+							notification, feature, newValue, oldValue);
+					this.getOperations().add(attributeOperation);
+					return;
+				}
 			} else if (feature instanceof EReference) {
 				if (((EReference) feature).isTransient()) {
 					return;
@@ -1549,7 +1568,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	private void handleSetReference(Notification notification,
 			EReference reference, ModelElement newValue, ModelElement oldValue) {
-		
+
 		if (reference.isTransient()) {
 			return;
 		}
@@ -1681,9 +1700,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 				if (!isRelated(modelElement, isAdd, parent, lastOperation)) {
 					index = i + 1;
 					break;
-				}
-				else {
-					index =  i;
+				} else {
+					index = i;
 				}
 			}
 
