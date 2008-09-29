@@ -10,9 +10,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Properties;
 import java.util.Set;
 
@@ -27,7 +25,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.unicase.emfstore.accesscontrol.AccessControlImpl;
@@ -43,7 +40,6 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesFactory;
 import org.unicase.emfstore.esmodel.versioning.Version;
-import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.StorageException;
@@ -78,7 +74,8 @@ public class EmfStoreController implements IApplication {
 	 * 
 	 * @see org.eclipse.equinox.app.IApplication#start(org.eclipse.equinox.app.IApplicationContext)
 	 */
-	public Object start(IApplicationContext context) throws EmfStoreException, FatalEmfStoreException {
+	public Object start(IApplicationContext context) throws EmfStoreException,
+			FatalEmfStoreException {
 
 		if (instance != null) {
 			throw new FatalEmfStoreException(
@@ -91,12 +88,13 @@ public class EmfStoreController implements IApplication {
 		System.out.println("*------------------*");
 
 		logger = LogFactory.getLog(EmfStoreController.class);
+
 		properties = initProperties();
 		initLogging(properties);
 		this.serverSpace = initServerSpace();
 		versionInfo = initVersionInfo();
 		performNecessaryUpdates();
-		
+
 		accessControl = initAccessControl(serverSpace);
 		emfStore = new EmfStoreImpl(serverSpace, accessControl);
 		adminEmfStore = new AdminEmfStoreImpl(serverSpace, accessControl);
@@ -134,80 +132,85 @@ public class EmfStoreController implements IApplication {
 		return connectionHandlers;
 	}
 
-	private void performNecessaryUpdates() throws FatalEmfStoreException{
-		int compareTo = versionInfo.getEmfStoreVersion().compareTo(EmfStoreImpl.getModelVersion());
+	private void performNecessaryUpdates() throws FatalEmfStoreException {
+		int compareTo = versionInfo.getEmfStoreVersion().compareTo(
+				EmfStoreImpl.getModelVersion());
 		if (compareTo < 0) {
-			System.out.println("Your model is not up to date. Do you want to update now? (y/n)");
-			
-			byte buffer[] = new byte[1];
-			String input = ""; 
-			int read = 0; 
-			
+			System.out
+					.println("Your model is not up to date. Do you want to update now? (y/n)");
+
+			byte[] buffer = new byte[1];
+			String input = "";
+			int read = 0;
+
 			try {
 				read = System.in.read(buffer, 0, 1);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-            input = new String(buffer, 0, read);
-            if (input.equalsIgnoreCase("y")) {
-    			UpdateController updateController = new UpdateController();
-    			updateController.updateResource(resource);				
-			}else{
+
+			input = new String(buffer, 0, read);
+			if (input.equalsIgnoreCase("y")) {
+				UpdateController updateController = new UpdateController();
+				updateController.updateResource(resource);
+			} else {
 				System.out.println("Could not load model, shutting down");
 				throw new FatalEmfStoreException("Unable to load model version");
 			}
 		}
 	}
-	
+
 	private VersionInfo initVersionInfo() throws FatalEmfStoreException {
 		VersionInfo versionInformation = null;
 		for (EObject content : resource.getContents()) {
 			if (content instanceof VersionInfo) {
 				versionInformation = (VersionInfo) content;
 				break;
-			}	
+			}
 		}
-		
-		//If our model does not contain a VersionInfo, we assume version 0.0.1.qualifier
+
+		// If our model does not contain a VersionInfo, we assume version
+		// 0.0.1.qualifier
 		if (versionInformation == null) {
 			versionInformation = EsmodelFactory.eINSTANCE.createVersionInfo();
 			if (serverSpace.getProjects().size() != 0) {
 				versionInformation.setEmfStoreVersionString("0.0.1.qualifier");
-			}else{
-				versionInformation.setEmfStoreVersionString(EmfStoreImpl.getModelVersion().toString());
+			} else {
+				versionInformation.setEmfStoreVersionString(EmfStoreImpl
+						.getModelVersion().toString());
 			}
-			
+
 			resource.getContents().add(versionInformation);
-			
+
 			try {
 				serverSpace.save();
 			} catch (IOException e) {
 				throw new FatalEmfStoreException(StorageException.NOSAVE, e);
 			}
 		}
-		
+
 		return versionInformation;
 	}
-	
+
 	private ServerSpace initServerSpace() throws FatalEmfStoreException {
-		ResourceStorage storage = initStorage(properties);
+		ResourceStorage storage = initStorage();
 		URI resourceUri = storage.init(properties);
 		ResourceSet resourceSet = new ResourceSetImpl();
 		resource = resourceSet.getResource(resourceUri, true);
 		try {
 			resource.load(resourceSet.getLoadOptions());
-			
-			if (properties.getProperty(ServerConfiguration.VALIDATE_SERVERSPACE_ON_SERVERSTART, "true").equals("true")) {
-				validateServerSpace(resource);	
+
+			if (properties.getProperty(
+					ServerConfiguration.VALIDATE_SERVERSPACE_ON_SERVERSTART,
+					"true").equals("true")) {
+				validateServerSpace(resource);
 			}
 		} catch (IOException e) {
 			throw new FatalEmfStoreException(StorageException.NOLOAD, e);
 		}
-		
-		
-		ServerSpace result = null; 
+
+		ServerSpace result = null;
 		EList<EObject> contents = resource.getContents();
 		for (EObject content : contents) {
 			if (content instanceof ServerSpace) {
@@ -215,17 +218,17 @@ public class EmfStoreController implements IApplication {
 				break;
 			}
 		}
-		
+
 		if (result != null) {
-			result.setResource(resource);			
-		}else{
+			result.setResource(resource);
+		} else {
 			// if no serverspace can be loaded, create one
 			logger.debug("Creating initial server space...");
 			result = EsmodelFactory.eINSTANCE.createServerSpace();
 
 			result.setResource(resource);
 			resource.getContents().add(result);
-			
+
 			try {
 				result.save();
 			} catch (IOException e) {
@@ -239,31 +242,33 @@ public class EmfStoreController implements IApplication {
 	private void validateServerSpace(Resource resource)
 			throws FatalEmfStoreException {
 		EList<EObject> contents = resource.getContents();
-		//OW FIXME> project should be contained in serverspace and version in projecthistory
 		for (EObject object : contents) {
 			if (object instanceof ServerSpace) {
-				EList<ProjectHistory> projects = ((ServerSpace) object).getProjects();
+				EList<ProjectHistory> projects = ((ServerSpace) object)
+						.getProjects();
 				for (ProjectHistory projectHistory : projects) {
 					EList<Version> versions = projectHistory.getVersions();
 					for (Version version : versions) {
-						 TreeIterator<EObject> allContents = version.eResource().getAllContents();
-						 while (allContents.hasNext()) {
+						TreeIterator<EObject> allContents = version.eResource()
+								.getAllContents();
+						while (allContents.hasNext()) {
 							EObject object2 = (EObject) allContents.next();
-							
+
 						}
 					}
 				}
 			}
 		}
-		
+
 		EList<Diagnostic> errors = new BasicEList<Diagnostic>();
 		EList<Resource> resources = resource.getResourceSet().getResources();
 		for (Resource currentResource : resources) {
-			errors.addAll(currentResource.getErrors());	
+			errors.addAll(currentResource.getErrors());
 		}
-		
+
 		if (errors.size() > 0) {
-			throw new FatalEmfStoreException(StorageException.NOLOAD + " : " + errors.get(0).getMessage());
+			throw new FatalEmfStoreException(StorageException.NOLOAD + " : "
+					+ errors.get(0).getMessage());
 		}
 	}
 
@@ -293,8 +298,7 @@ public class EmfStoreController implements IApplication {
 		// }
 	}
 
-	private ResourceStorage initStorage(Properties properties)
-			throws FatalEmfStoreException {
+	private ResourceStorage initStorage() throws FatalEmfStoreException {
 		String className = properties.getProperty(
 				ServerConfiguration.RESOURCE_STORAGE,
 				ServerConfiguration.DEFAULT_RESOURCE_STORAGE);
@@ -330,7 +334,8 @@ public class EmfStoreController implements IApplication {
 		}
 	}
 
-	private AccessControlImpl initAccessControl(ServerSpace serverSpace) throws EmfStoreException {
+	private AccessControlImpl initAccessControl(ServerSpace serverSpace)
+			throws EmfStoreException {
 		setSuperUser(serverSpace);
 		return new AccessControlImpl(serverSpace);
 	}
@@ -354,11 +359,10 @@ public class EmfStoreController implements IApplication {
 		try {
 			serverSpace.save();
 		} catch (IOException e) {
-			throw new StorageException(StorageException.NOSAVE,e);
+			throw new StorageException(StorageException.NOSAVE, e);
 		}
-		logger.info("added superuser "
-				+ superuser);
-	}																																	
+		logger.info("added superuser " + superuser);
+	}
 
 	private Properties initProperties() {
 		File propertyFile = new File(ServerConfiguration.getConfFile());

@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.change.ChangePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
@@ -294,15 +295,6 @@ public class VersioningPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EAttribute getLogMessage_Message() {
-		return (EAttribute) logMessageEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getLogMessage_Date() {
 		return (EAttribute) logMessageEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -311,8 +303,26 @@ public class VersioningPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLogMessage_Author() {
+	public EAttribute getLogMessage_Date() {
 		return (EAttribute) logMessageEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLogMessage_ClientDate() {
+		return (EAttribute) logMessageEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLogMessage_Author() {
+		return (EAttribute) logMessageEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -519,9 +529,10 @@ public class VersioningPackageImpl extends EPackageImpl implements
 		versionSpecEClass = createEClass(VERSION_SPEC);
 
 		logMessageEClass = createEClass(LOG_MESSAGE);
+		createEAttribute(logMessageEClass, LOG_MESSAGE__AUTHOR);
 		createEAttribute(logMessageEClass, LOG_MESSAGE__MESSAGE);
 		createEAttribute(logMessageEClass, LOG_MESSAGE__DATE);
-		createEAttribute(logMessageEClass, LOG_MESSAGE__AUTHOR);
+		createEAttribute(logMessageEClass, LOG_MESSAGE__CLIENT_DATE);
 
 		changePackageEClass = createEClass(CHANGE_PACKAGE);
 		createEReference(changePackageEClass, CHANGE_PACKAGE__OPERATIONS);
@@ -574,6 +585,8 @@ public class VersioningPackageImpl extends EPackageImpl implements
 		// Obtain other dependent packages
 		OperationsPackage theOperationsPackage = (OperationsPackage) EPackage.Registry.INSTANCE
 				.getEPackage(OperationsPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
+				.getEPackage(EcorePackage.eNS_URI);
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE
 				.getEPackage(ModelPackage.eNS_URI);
 
@@ -620,6 +633,10 @@ public class VersioningPackageImpl extends EPackageImpl implements
 
 		initEClass(logMessageEClass, LogMessage.class, "LogMessage",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getLogMessage_Author(), ecorePackage.getEString(),
+				"author", null, 1, 1, LogMessage.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLogMessage_Message(), ecorePackage.getEString(),
 				"message", null, 1, 1, LogMessage.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
@@ -628,8 +645,8 @@ public class VersioningPackageImpl extends EPackageImpl implements
 				null, 1, 1, LogMessage.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
-		initEAttribute(getLogMessage_Author(), ecorePackage.getEString(),
-				"author", null, 1, 1, LogMessage.class, !IS_TRANSIENT,
+		initEAttribute(getLogMessage_ClientDate(), theEcorePackage.getEDate(),
+				"clientDate", null, 0, 1, LogMessage.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 

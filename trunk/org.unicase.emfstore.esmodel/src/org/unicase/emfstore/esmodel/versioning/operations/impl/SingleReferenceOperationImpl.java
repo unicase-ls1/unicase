@@ -373,12 +373,12 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl
 				.getModelElement(getModelElementId());
 		ModelElement newModelElement = project.getModelElement(getNewValue());
 		ModelElement oldModelElement = project.getModelElement(getOldValue());
-		
+
 		List<EReference> references = modelElement.eClass().getEAllReferences();
 		for (EReference reference : references) {
 			if (reference.getName().equals(this.getFeatureName())) {
 				modelElement.eSet(reference, newModelElement);
-				if (newModelElement==null && reference.isContainment()) {
+				if (newModelElement == null && reference.isContainment()) {
 					if (!project.contains(getOldValue())) {
 						project.addModelElement(oldModelElement);
 					}

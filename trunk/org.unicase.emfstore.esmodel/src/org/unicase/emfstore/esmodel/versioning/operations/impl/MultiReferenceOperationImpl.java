@@ -309,17 +309,17 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl
 				Object object = modelElement.eGet(reference);
 				EList<ModelElement> list = (EList<ModelElement>) object;
 				if (isAdd()) {
-					if (index<list.size()) {
+					if (index < list.size()) {
 						list.addAll(getIndex(), referencedModelElements);
-					}
-					else {
+					} else {
 						//if index is out of range ignore index
 						list.addAll(referencedModelElements);
 					}
 				} else {
 					list.removeAll(referencedModelElements);
 					for (ModelElement currentElement : referencedModelElements) {
-						if (!project.contains(currentElement.getModelElementId())) {
+						if (!project.contains(currentElement
+								.getModelElementId())) {
 							project.addModelElement(currentElement);
 						}
 					}
@@ -381,16 +381,18 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl
 
 	@Override
 	public AbstractOperation reverse() {
-		MultiReferenceOperation multiReferenceOperation = OperationsFactory.eINSTANCE.createMultiReferenceOperation();
+		MultiReferenceOperation multiReferenceOperation = OperationsFactory.eINSTANCE
+				.createMultiReferenceOperation();
 		super.reverse(multiReferenceOperation);
 		multiReferenceOperation.setAdd(!isAdd());
-		EList<ModelElementId> copiedReferencedModelElements = multiReferenceOperation.getReferencedModelElements();
+		EList<ModelElementId> copiedReferencedModelElements = multiReferenceOperation
+				.getReferencedModelElements();
 		EList<ModelElementId> modelElements = getReferencedModelElements();
 		for (ModelElementId modelElementId : modelElements) {
 			copiedReferencedModelElements.add(ModelUtil.clone(modelElementId));
 		}
 		multiReferenceOperation.setIndex(getIndex());
-		return multiReferenceOperation;		
+		return multiReferenceOperation;
 	}
 
 } //MultiReferenceOperationImpl

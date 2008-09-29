@@ -1343,7 +1343,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		this.setUsersession(usersession);
 		LogMessage logMessage = VersioningFactory.eINSTANCE.createLogMessage();
 		logMessage.setAuthor(usersession.getUsername());
-		logMessage.setDate(new Date());
+		logMessage.setClientDate(new Date());
 		logMessage.setMessage("Initial commit");
 		ProjectInfo createdProject = WorkspaceManager.getInstance()
 				.getConnectionManager().createProject(
