@@ -23,6 +23,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.eclipse.emf.ecore.change.util.ChangeRecorder;
@@ -1447,6 +1448,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		if (notification.getEventType() == Notification.SET) {
 			if (feature instanceof EAttribute) {
 				// Simple attribute set
+				if (((EStructuralFeature) feature).isTransient()) {
+					return;
+				}
 				AttributeOperation attributeOperation = createAttributeOperation(
 						notification, feature, newValue, oldValue);
 				this.getOperations().add(attributeOperation);
@@ -1469,6 +1473,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 						notification, true);
 			} else if (feature instanceof EAttribute) {
 				EAttribute attribute = (EAttribute) feature;
+				if (attribute.isTransient()) {
+					return;
+				}
 				MultiAttributeOperation multiAttributeOperation = createMultiAttributeOperation(
 						notification, newValue, attribute, true);
 				this.getOperations().add(multiAttributeOperation);
@@ -1485,6 +1492,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 						notification, false);
 			} else if (feature instanceof EAttribute) {
 				EAttribute attribute = (EAttribute) feature;
+				if (attribute.isTransient()) {
+					return;
+				}
 				MultiAttributeOperation multiAttributeOperation = createMultiAttributeOperation(
 						notification, oldValue, attribute, false);
 				this.getOperations().add(multiAttributeOperation);
@@ -1512,6 +1522,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			// FIXME MK: what about move many
 			if (feature instanceof EReference) {
 				EReference reference = (EReference) feature;
+				if (reference.isTransient()) {
+					return;
+				}
 				MultiReferenceMoveOperation multiReferenceMoveOperation = OperationsFactory.eINSTANCE
 						.createMultiReferenceMoveOperation();
 				multiReferenceMoveOperation.setFeatureName(reference.getName());
@@ -1536,7 +1549,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	private void handleSetReference(Notification notification,
 			EReference reference, ModelElement newValue, ModelElement oldValue) {
-
+		
+		if (reference.isTransient()) {
+			return;
+		}
 		// handle bidirectional notifications
 		if (reference.getEOpposite() != null) {
 			if (notification instanceof NotificationImpl) {
@@ -1615,6 +1631,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	private void handleEReference(EReference reference,
 			ModelElement modelElement, Notification notification, boolean isAdd) {
 
+		if (reference.isTransient()) {
+			return;
+		}
 		if (reference.isMany()) {
 			// handle bidirectional notifications
 			if (reference.getEOpposite() != null) {
@@ -1661,6 +1680,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 				AbstractOperation lastOperation = operations.get(i);
 				if (!isRelated(modelElement, isAdd, parent, lastOperation)) {
 					index = i + 1;
+					break;
 				}
 			}
 
@@ -1680,25 +1700,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 					|| lastOperation.getModelElementId().equals(
 							modelElement.getModelElementId())) {
 				return true;
-			}
-		}
-		return false;
-	}
-
-	private boolean isBirectionalNotification(EReference reference,
-			List<Notification> projectNotifications, Object value, int i) {
-		EReference opposite = reference.getEOpposite();
-		if (opposite != null) {
-			if (projectNotifications.size() > i + 1) {
-				Notification nextNotification = projectNotifications.get(i + 1);
-				// next notification is about the opposite of this notification
-				if ((nextNotification.getFeature() instanceof EReference)
-						&& nextNotification.getNotifier() == value
-						&& opposite.getName().equals(
-								((EReference) nextNotification.getFeature())
-										.getName())) {
-					return true;
-				}
 			}
 		}
 		return false;
