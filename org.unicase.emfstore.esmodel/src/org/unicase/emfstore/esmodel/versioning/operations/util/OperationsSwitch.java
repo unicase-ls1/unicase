@@ -13,6 +13,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
@@ -206,6 +207,19 @@ public class OperationsSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case OperationsPackage.DIAGRAM_LAYOUT_OPERATION: {
+			DiagramLayoutOperation diagramLayoutOperation = (DiagramLayoutOperation) theEObject;
+			T result = caseDiagramLayoutOperation(diagramLayoutOperation);
+			if (result == null)
+				result = caseAttributeOperation(diagramLayoutOperation);
+			if (result == null)
+				result = caseFeatureOperation(diagramLayoutOperation);
+			if (result == null)
+				result = caseAbstractOperation(diagramLayoutOperation);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -373,6 +387,21 @@ public class OperationsSwitch<T> {
 	 * @generated
 	 */
 	public T caseReadOperation(ReadOperation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Diagram Layout Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Diagram Layout Operation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDiagramLayoutOperation(DiagramLayoutOperation object) {
 		return null;
 	}
 
