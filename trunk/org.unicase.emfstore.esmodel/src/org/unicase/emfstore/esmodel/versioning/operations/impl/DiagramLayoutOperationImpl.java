@@ -20,6 +20,16 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
  */
 public class DiagramLayoutOperationImpl extends AttributeOperationImpl
 		implements DiagramLayoutOperation {
+	@Override
+	public String getDescription() {
+		return "Changed Diagram Layout.";
+	}
+
+	@Override
+	public String getName() {
+		return "Changed Diagram Layout";
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
