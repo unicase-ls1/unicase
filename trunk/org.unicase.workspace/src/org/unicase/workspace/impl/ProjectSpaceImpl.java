@@ -1682,6 +1682,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 					index = i + 1;
 					break;
 				}
+				else {
+					index =  i;
+				}
 			}
 
 			operations.add(index, multiReferenceOperation);
