@@ -207,12 +207,21 @@ public interface DiagramPackage extends EPackage {
 	int ME_DIAGRAM__TYPE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Diagram Layout</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ME_DIAGRAM__DIAGRAM_LAYOUT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>ME Diagram</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ME_DIAGRAM_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int ME_DIAGRAM_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.diagram.DiagramType <em>Type</em>}' enum.
@@ -275,6 +284,17 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getMEDiagram_Type();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.diagram.MEDiagram#getDiagramLayout <em>Diagram Layout</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Diagram Layout</em>'.
+	 * @see org.unicase.model.diagram.MEDiagram#getDiagramLayout()
+	 * @see #getMEDiagram()
+	 * @generated
+	 */
+	EAttribute getMEDiagram_DiagramLayout();
 
 	/**
 	 * Returns the meta object for enum '{@link org.unicase.model.diagram.DiagramType <em>Type</em>}'.
@@ -349,6 +369,15 @@ public interface DiagramPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ME_DIAGRAM__TYPE = eINSTANCE.getMEDiagram_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Diagram Layout</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ME_DIAGRAM__DIAGRAM_LAYOUT = eINSTANCE
+				.getMEDiagram_DiagramLayout();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.diagram.DiagramType <em>Type</em>}' enum.

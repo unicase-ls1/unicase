@@ -494,10 +494,10 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	 * @return the project in which the modelelement is contained or null if it not in any project.
 	 */
 	public Project getProject() {
-		
+
 		EObject container = this.eContainer();
 
-		if (container==null) {
+		if (container == null) {
 			return null;
 		}
 		// check if my container is a project

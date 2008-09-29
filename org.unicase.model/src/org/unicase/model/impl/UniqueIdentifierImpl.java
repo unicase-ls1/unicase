@@ -187,5 +187,5 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements
 	public int hashCode() {
 		return this.id.hashCode();
 	}
-	
+
 } // UniqueIdentifierImpl

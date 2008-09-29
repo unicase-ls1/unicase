@@ -6,14 +6,25 @@
  */
 package org.unicase.model.diagram.impl;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -33,6 +44,7 @@ import org.unicase.model.impl.ModelElementImpl;
  *   <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getGmfdiagram <em>Gmfdiagram</em>}</li>
  *   <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getNewElements <em>New Elements</em>}</li>
  *   <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getDiagramLayout <em>Diagram Layout</em>}</li>
  * </ul>
  * </p>
  *
@@ -88,6 +100,26 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	 * @ordered
 	 */
 	protected DiagramType type = TYPE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDiagramLayout() <em>Diagram Layout</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @see #getDiagramLayout()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DIAGRAM_LAYOUT_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDiagramLayout() <em>Diagram Layout</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @see #getDiagramLayout()
+	 * @generated
+	 * @ordered
+	 */
+	protected String diagramLayout = DIAGRAM_LAYOUT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -151,8 +183,7 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Diagram basicGetGmfdiagram() {
@@ -207,6 +238,7 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return A DiagramNewEelementsList
 	 * @generated NOT
 	 */
@@ -220,7 +252,7 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 			return null;
 		}
 
-		//MD: Should we cache this instance?
+		// MD: Should we cache this instance?
 		return new DiagramNewElementsList(getElements(), getProject());
 	}
 
@@ -242,6 +274,27 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
 					DiagramPackage.ME_DIAGRAM__TYPE, oldType, type));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getDiagramLayout() {
+		return diagramLayout;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDiagramLayout(String newDiagramLayout) {
+		String oldDiagramLayout = diagramLayout;
+		diagramLayout = newDiagramLayout;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					DiagramPackage.ME_DIAGRAM__DIAGRAM_LAYOUT,
+					oldDiagramLayout, diagramLayout));
 	}
 
 	/**
@@ -278,6 +331,8 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 			return getNewElements();
 		case DiagramPackage.ME_DIAGRAM__TYPE:
 			return getType();
+		case DiagramPackage.ME_DIAGRAM__DIAGRAM_LAYOUT:
+			return getDiagramLayout();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -305,6 +360,9 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 		case DiagramPackage.ME_DIAGRAM__TYPE:
 			setType((DiagramType) newValue);
 			return;
+		case DiagramPackage.ME_DIAGRAM__DIAGRAM_LAYOUT:
+			setDiagramLayout((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -328,6 +386,9 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 		case DiagramPackage.ME_DIAGRAM__TYPE:
 			setType(TYPE_EDEFAULT);
 			return;
+		case DiagramPackage.ME_DIAGRAM__DIAGRAM_LAYOUT:
+			setDiagramLayout(DIAGRAM_LAYOUT_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -347,6 +408,9 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 			return newElements != null && !newElements.isEmpty();
 		case DiagramPackage.ME_DIAGRAM__TYPE:
 			return type != TYPE_EDEFAULT;
+		case DiagramPackage.ME_DIAGRAM__DIAGRAM_LAYOUT:
+			return DIAGRAM_LAYOUT_EDEFAULT == null ? diagramLayout != null
+					: !DIAGRAM_LAYOUT_EDEFAULT.equals(diagramLayout);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -363,8 +427,170 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (type: ");
 		result.append(type);
+		result.append(", diagramLayout: ");
+		result.append(diagramLayout);
 		result.append(')');
 		return result.toString();
+	}
+
+	private static final URI VIRTUAL_DIAGRAM_URI = URI
+			.createURI("virtual.diagram.uri");
+	private static final URI VIRTUAL_DIAGRAM_ELEMENTS_URI = URI
+			.createURI("virtual.diagram.elements.uri");
+
+	/**
+	 * @throws DiagramLoadException
+	 * @generated NOT
+	 */
+	public void loadDiagramLayout() throws DiagramLoadException {
+
+		/**
+		 * Load a gmf diagram from a String.
+		 * 
+		 * @param diagramString
+		 *            the string
+		 * @param meDiagram
+		 *            the meDiagram that contains the gmf diagram
+		 * @return the gmf diagram
+		 * @throws DiagramLoadException
+		 *             if load fails
+		 */
+		// preserve original resource for all involved model elements
+		EList<ModelElement> elements = this.getElements();
+		Map<ModelElement, Resource> resourceMap = new HashMap<ModelElement, Resource>();
+		for (ModelElement modelElement : elements) {
+			// only preserve if element is in another resource than its
+			// container
+			if (modelElement.eResource() != modelElement.eContainer()
+					.eResource()) {
+				resourceMap.put(modelElement, modelElement.eResource());
+			}
+		}
+
+		// put all involved elements into a virtual resource set
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Resource diagramResource = resourceSet
+				.createResource(VIRTUAL_DIAGRAM_URI);
+		Resource elementsResource = resourceSet
+				.createResource(VIRTUAL_DIAGRAM_ELEMENTS_URI);
+		elementsResource.getContents().addAll(elements);
+
+		String diagramLayout = getDiagramLayout();
+		if (diagramLayout == null) {
+			throw new DiagramLoadException(
+					"Diagram string is null, load failed.",
+					new NullPointerException());
+		}
+		// load diagram
+		try {
+			diagramResource.load(new ByteArrayInputStream(diagramLayout
+					.getBytes("UTF-8")), null);
+		} catch (UnsupportedEncodingException e) {
+			throw new DiagramLoadException(
+					"Diagram string encoding is malformed, load failed.", e);
+		} catch (IOException e) {
+			throw new DiagramLoadException("Diagram load failed.", e);
+		}
+
+		if (diagramResource.getContents().size() < 1) {
+			throw new DiagramLoadException(
+					"Diagram String does not contain anything, load failed!");
+		}
+		EObject object = diagramResource.getContents().get(0);
+		if (!(object instanceof Diagram)) {
+			throw new DiagramLoadException(
+					"Diagram String contains unexpected content: first entry is not a diagram");
+		}
+		Diagram gmfDiagram = (Diagram) diagramResource.getContents().get(0);
+		setGmfdiagram(gmfDiagram);
+
+		// restore old resource for all model elements
+		elementsResource.getContents().removeAll(elements);
+		diagramResource.getContents().remove(gmfDiagram);
+		for (ModelElement modelElement : resourceMap.keySet()) {
+			resourceMap.get(modelElement).getContents().add(modelElement);
+		}
+		gmfDiagram.setElement(this);
+	}
+
+	/**
+	 * @throws DiagramStoreException
+	 * @generated NOT
+	 */
+	public void saveDiagramLayout() throws DiagramStoreException {
+		// JH: use this to serialize diagram
+		/**
+		 * Save gmf diagram to a String.
+		 * 
+		 * @param meDiagram
+		 *            the me diagram that contains the gmf diagram
+		 * @return the resulting string
+		 * @throws DiagramStoreException
+		 *             if saving to a string fails
+		 */
+
+		gmfdiagram.setElement(null);
+		// preserve original resource for all involved model elements
+		EList<ModelElement> elements = this.getElements();
+		Map<ModelElement, Resource> resourceMap = new HashMap<ModelElement, Resource>();
+		for (ModelElement modelElement : elements) {
+			// only preserve if element is in another resource than its
+			// container
+			if (modelElement.eResource() != modelElement.eContainer()
+					.eResource()) {
+				resourceMap.put(modelElement, modelElement.eResource());
+			}
+		}
+
+		// put all involved elements into a virtual resource set
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Resource diagramResource = resourceSet
+				.createResource(VIRTUAL_DIAGRAM_URI);
+
+		diagramResource.getContents().add(getGmfdiagram());
+		Resource elementsResource = resourceSet
+				.createResource(VIRTUAL_DIAGRAM_ELEMENTS_URI);
+		elementsResource.getContents().addAll(elements);
+
+		// serialize diagram
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		try {
+			diagramResource.save(out, null);
+		} catch (IOException e) {
+			throw new DiagramStoreException("Diagram resource save failed.", e);
+		}
+
+		// restore old resource for all model elements
+		elementsResource.getContents().removeAll(elements);
+		diagramResource.getContents().remove(gmfdiagram);
+		for (ModelElement modelElement : resourceMap.keySet()) {
+			resourceMap.get(modelElement).getContents().add(modelElement);
+		}
+		setDiagramLayout(out.toString());
+
+		// load diagram
+		//		try {
+		//			diagramResource.load(new ByteArrayInputStream(diagramLayout
+		//					.getBytes("UTF-8")), null);
+		//		} catch (UnsupportedEncodingException e) {
+		//			
+		//		} catch (IOException e) {
+		//			
+		//		}
+		//
+		//		if (diagramResource.getContents().size() < 0) {
+		//					}
+		//		EObject object = diagramResource.getContents().get(0);
+		//		if (!(object instanceof Diagram)) {
+		//			
+		//		}
+		//		Diagram loadedgmfDiagram = (Diagram) diagramResource.getContents().get(0);
+		//		
+		//		loadedgmfDiagram.equals(gmfdiagram);
+		//		
+		//		
+		//		
+		//		gmfdiagram.setElement(this);
 	}
 
 } // MEDiagramImpl
