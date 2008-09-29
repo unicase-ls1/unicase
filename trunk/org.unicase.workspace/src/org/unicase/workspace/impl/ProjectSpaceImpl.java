@@ -37,7 +37,6 @@ import org.eclipse.emf.ecore.xmi.DanglingHREFException;
 import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
-import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.conflictDetection.BasicConflictDetectionStrategy;
@@ -1453,6 +1452,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 				this.getOperations().add(attributeOperation);
 				return;
 			} else if (feature instanceof EReference) {
+				if (((EReference) feature).isTransient()) {
+					return;
+				}
 				handleSetReference(notification, (EReference) feature,
 						(ModelElement) newValue, (ModelElement) oldValue);
 				return;
@@ -1655,13 +1657,13 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			int index = operations.size();
 			// check if this operation refers to a previous delete
 			EList<AbstractOperation> operations = this.getOperations();
-			for (int i = operations.size()-1; i>=0; i--) {
+			for (int i = operations.size() - 1; i >= 0; i--) {
 				AbstractOperation lastOperation = operations.get(i);
 				if (!isRelated(modelElement, isAdd, parent, lastOperation)) {
-					index=i+1;
+					index = i + 1;
 				}
 			}
-			
+
 			operations.add(index, multiReferenceOperation);
 		} else {
 			// should never hit here
