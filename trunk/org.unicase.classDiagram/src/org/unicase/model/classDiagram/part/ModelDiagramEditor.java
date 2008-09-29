@@ -42,6 +42,7 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.IShowInTargetList;
 import org.eclipse.ui.part.ShowInContext;
 import org.unicase.model.diagram.MEDiagram;
+import org.unicase.model.diagram.impl.DiagramStoreException;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
@@ -327,11 +328,24 @@ public class ModelDiagramEditor extends DiagramDocumentEditor implements
 
 					@Override
 					protected void doExecute() {
-						WorkspaceManager.getProjectSpace(
-								(MEDiagram) ModelDiagramEditor.this
-										.getDiagram().eContainer()).save();
+						try {
+							((MEDiagram) ModelDiagramEditor.this.getDiagram().eContainer()).saveDiagramLayout();
+							
+						} catch (DiagramStoreException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+//						WorkspaceManager.getProjectSpace(
+//								(MEDiagram) ModelDiagramEditor.this
+//										.getDiagram().eContainer()).save();
 					}
 
 				});
 	}
+
+	@Override
+	public boolean isDirty() {
+		return true;
+	}
+	
 }
