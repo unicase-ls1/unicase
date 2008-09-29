@@ -379,7 +379,7 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl
 			if (reference.getName().equals(this.getFeatureName())) {
 				modelElement.eSet(reference, newModelElement);
 				if (newModelElement == null && reference.isContainer()) {
-					project.addModelElement(oldModelElement);
+					project.addModelElement(modelElement);
 				}
 				return;
 			}
