@@ -38,19 +38,16 @@ import org.unicase.model.Project;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.unicase.emfstore.esmodel.versioning.impl.ChangePackageImpl#getOperations
- * <em>Operations</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.impl.ChangePackageImpl#getOperations <em>Operations</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	/**
-	 * The cached value of the '{@link #getOperations() <em>Operations</em>}'
-	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getOperations() <em>Operations</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getOperations()
 	 * @generated
 	 * @ordered
@@ -59,7 +56,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ChangePackageImpl() {
@@ -68,7 +64,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -78,7 +73,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<AbstractOperation> getOperations() {
@@ -158,15 +152,17 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 						.isDelete();
 				if (isDelete) {
 					deletedElements.put(modelElementId, operation);
-				} else 	{
+				} else {
 					if (deletedElements.keySet().contains(modelElementId)) {
-						operationsToBeDeleted.add(operation);						
-					}	
-					else {
-						Set<AttributeOperation> set = modelElementAttributeChangeMap.get(modelElementId);
-						if (set!=null) {
-							for (AttributeOperation attributeOperation: set) {
-								attributeOperation.apply(((CreateDeleteOperation) operation).getModelElement());
+						operationsToBeDeleted.add(operation);
+					} else {
+						Set<AttributeOperation> set = modelElementAttributeChangeMap
+								.get(modelElementId);
+						if (set != null) {
+							for (AttributeOperation attributeOperation : set) {
+								attributeOperation
+										.apply(((CreateDeleteOperation) operation)
+												.getModelElement());
 								operationsToBeDeleted.add(attributeOperation);
 							}
 						}
@@ -191,10 +187,12 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 					operationsToBeDeleted.add(attributeOperation);
 				} else {
 					changedAttributes.put(key, attributeOperation);
-					Set<AttributeOperation> set = modelElementAttributeChangeMap.get(attributeOperation.getModelElementId());
-					if (set==null) {
+					Set<AttributeOperation> set = modelElementAttributeChangeMap
+							.get(attributeOperation.getModelElementId());
+					if (set == null) {
 						set = new HashSet<AttributeOperation>();
-						modelElementAttributeChangeMap.put(attributeOperation.getModelElementId(), set);
+						modelElementAttributeChangeMap.put(attributeOperation
+								.getModelElementId(), set);
 					}
 					set.add(attributeOperation);
 				}
@@ -326,9 +324,14 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 									} else if (multiReferenceOperation
 											.getReferencedModelElements()
 											.size() == 1) {
-										ModelElementId referencedModelElementId = multiReferenceOperation.getReferencedModelElements().get(0);
-										if (referencedModelElementId.equals(oppositeMultiOperation.getModelElementId())) {
-											operationsToBeDeleted.add(multiReferenceOperation);
+										ModelElementId referencedModelElementId = multiReferenceOperation
+												.getReferencedModelElements()
+												.get(0);
+										if (referencedModelElementId
+												.equals(oppositeMultiOperation
+														.getModelElementId())) {
+											operationsToBeDeleted
+													.add(multiReferenceOperation);
 											continue;
 										}
 									}
@@ -353,7 +356,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -371,7 +373,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -385,7 +386,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -403,7 +403,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -418,7 +417,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

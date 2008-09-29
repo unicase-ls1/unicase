@@ -738,7 +738,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 		LogMessage log = VersioningFactory.eINSTANCE.createLogMessage();
 		log.setMessage("Creating project '" + name + "'");
 		log.setAuthor(this.getUsername());
-		log.setDate(new Date());
+		log.setClientDate(new Date());
 		return connectionManager.createProject(this.getSessionId(), name,
 				description, log);
 

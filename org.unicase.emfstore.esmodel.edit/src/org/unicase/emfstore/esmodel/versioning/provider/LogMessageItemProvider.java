@@ -55,9 +55,10 @@ public class LogMessageItemProvider extends ItemProviderAdapter implements
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addAuthorPropertyDescriptor(object);
 			addMessagePropertyDescriptor(object);
 			addDatePropertyDescriptor(object);
-			addAuthorPropertyDescriptor(object);
+			addClientDatePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -100,6 +101,25 @@ public class LogMessageItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
+	 * This adds a property descriptor for the Client Date feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addClientDatePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_LogMessage_clientDate_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_LogMessage_clientDate_feature",
+						"_UI_LogMessage_type"),
+				VersioningPackage.Literals.LOG_MESSAGE__CLIENT_DATE, true,
+				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
+	}
+
+	/**
 	 * This adds a property descriptor for the Author feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -139,7 +159,7 @@ public class LogMessageItemProvider extends ItemProviderAdapter implements
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((LogMessage) object).getMessage();
+		String label = ((LogMessage) object).getAuthor();
 		return label == null || label.length() == 0 ? getString("_UI_LogMessage_type")
 				: getString("_UI_LogMessage_type") + " " + label;
 	}
@@ -156,9 +176,10 @@ public class LogMessageItemProvider extends ItemProviderAdapter implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(LogMessage.class)) {
+		case VersioningPackage.LOG_MESSAGE__AUTHOR:
 		case VersioningPackage.LOG_MESSAGE__MESSAGE:
 		case VersioningPackage.LOG_MESSAGE__DATE:
-		case VersioningPackage.LOG_MESSAGE__AUTHOR:
+		case VersioningPackage.LOG_MESSAGE__CLIENT_DATE:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), false, true));
 			return;

@@ -45,9 +45,10 @@
       </genClasses>
       <genClasses image="false" ecoreClass="esmodel.ecore#//versioning/VersionSpec"/>
       <genClasses ecoreClass="esmodel.ecore#//versioning/LogMessage">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/LogMessage/author"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/LogMessage/message"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/LogMessage/date"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/LogMessage/author"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/LogMessage/clientDate"/>
       </genClasses>
       <genClasses ecoreClass="esmodel.ecore#//versioning/ChangePackage">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/ChangePackage/operations"/>

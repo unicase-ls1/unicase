@@ -90,7 +90,7 @@ public class CommitProjectHandler extends ProjectActionHandler implements Commit
 		int returnCode = commitDialog.open();
 		if(returnCode==Window.OK){
 			logMessage.setAuthor(usersession.getUsername());
-			logMessage.setDate(new Date());
+			logMessage.setClientDate(new Date());
 			logMessage.setMessage(commitDialog.getLogText());
 			return true;
 		}

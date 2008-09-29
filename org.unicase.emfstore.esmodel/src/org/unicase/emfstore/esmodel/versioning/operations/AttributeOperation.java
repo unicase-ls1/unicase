@@ -76,7 +76,7 @@ public interface AttributeOperation extends FeatureOperation {
 	 * @generated
 	 */
 	void setNewValue(Object value);
-	
+
 	void apply(ModelElement modelElement);
 
 } // AttributeOperation

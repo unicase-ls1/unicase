@@ -76,7 +76,7 @@ public interface EsmodelPackage extends EPackage {
 	int PROJECT_HISTORY__PROJECT_ID = 0;
 
 	/**
-	 * The feature id for the '<em><b>Versions</b></em>' reference list.
+	 * The feature id for the '<em><b>Versions</b></em>' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -320,9 +320,9 @@ public interface EsmodelPackage extends EPackage {
 	EReference getProjectHistory_ProjectId();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.emfstore.esmodel.ProjectHistory#getVersions <em>Versions</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.unicase.emfstore.esmodel.ProjectHistory#getVersions <em>Versions</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Versions</em>'.
+	 * @return the meta object for the containment reference list '<em>Versions</em>'.
 	 * @see org.unicase.emfstore.esmodel.ProjectHistory#getVersions()
 	 * @see #getProjectHistory()
 	 * @generated
@@ -535,7 +535,7 @@ public interface EsmodelPackage extends EPackage {
 				.getProjectHistory_ProjectId();
 
 		/**
-		 * The meta object literal for the '<em><b>Versions</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Versions</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * @generated

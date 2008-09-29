@@ -17,9 +17,10 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.LogMessage#getAuthor <em>Author</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.LogMessage#getMessage <em>Message</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.LogMessage#getDate <em>Date</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.LogMessage#getAuthor <em>Author</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.LogMessage#getClientDate <em>Client Date</em>}</li>
  * </ul>
  * </p>
  *
@@ -113,5 +114,31 @@ public interface LogMessage extends EObject {
 	 * @generated
 	 */
 	void setDate(Date value);
+
+	/**
+	 * Returns the value of the '<em><b>Client Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Client Date</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Client Date</em>' attribute.
+	 * @see #setClientDate(Date)
+	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getLogMessage_ClientDate()
+	 * @model
+	 * @generated
+	 */
+	Date getClientDate();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.LogMessage#getClientDate <em>Client Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Client Date</em>' attribute.
+	 * @see #getClientDate()
+	 * @generated
+	 */
+	void setClientDate(Date value);
 
 } // LogMessage

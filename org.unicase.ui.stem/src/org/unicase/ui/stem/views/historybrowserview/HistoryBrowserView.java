@@ -97,7 +97,6 @@ public class HistoryBrowserView extends AbstractSCMView {
 
 	private HistoryQuery getQuery(ProjectSpace activeProjectSpace)
 			throws EmfStoreException {
-		System.out.println("getQuery");
 		HistoryQuery query = VersioningFactory.eINSTANCE.createHistoryQuery();
 
 		int start = 0;
@@ -123,8 +122,6 @@ public class HistoryBrowserView extends AbstractSCMView {
 		target.setIdentifier(end);
 		query.setSource(source);
 		query.setTarget(target);
-
-		System.out.println(start + " " + end);
 
 		return query;
 	}

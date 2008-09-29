@@ -39,7 +39,8 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements
 	public void apply(Project project) {
 		super.apply(project);
 		if (isDelete()) {
-			EcoreUtil.delete(project.getModelElement(getModelElementId()), true);
+			EcoreUtil
+					.delete(project.getModelElement(getModelElementId()), true);
 		} else {
 			project.getModelElements().add(ModelUtil.clone(getModelElement()));
 		}

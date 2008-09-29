@@ -173,13 +173,22 @@ public interface VersioningPackage extends EPackage {
 	int LOG_MESSAGE = 4;
 
 	/**
+	 * The feature id for the '<em><b>Author</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOG_MESSAGE__AUTHOR = 0;
+
+	/**
 	 * The feature id for the '<em><b>Message</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LOG_MESSAGE__MESSAGE = 0;
+	int LOG_MESSAGE__MESSAGE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -188,16 +197,16 @@ public interface VersioningPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOG_MESSAGE__DATE = 1;
+	int LOG_MESSAGE__DATE = 2;
 
 	/**
-	 * The feature id for the '<em><b>Author</b></em>' attribute.
+	 * The feature id for the '<em><b>Client Date</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LOG_MESSAGE__AUTHOR = 2;
+	int LOG_MESSAGE__CLIENT_DATE = 3;
 
 	/**
 	 * The number of structural features of the '<em>Log Message</em>' class.
@@ -206,7 +215,7 @@ public interface VersioningPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOG_MESSAGE_FEATURE_COUNT = 3;
+	int LOG_MESSAGE_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.impl.ChangePackageImpl <em>Change Package</em>}' class.
@@ -526,6 +535,17 @@ public interface VersioningPackage extends EPackage {
 	EAttribute getLogMessage_Date();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.LogMessage#getClientDate <em>Client Date</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Client Date</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.LogMessage#getClientDate()
+	 * @see #getLogMessage()
+	 * @generated
+	 */
+	EAttribute getLogMessage_ClientDate();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.LogMessage#getAuthor <em>Author</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -842,6 +862,15 @@ public interface VersioningPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute LOG_MESSAGE__DATE = eINSTANCE.getLogMessage_Date();
+
+		/**
+		 * The meta object literal for the '<em><b>Client Date</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LOG_MESSAGE__CLIENT_DATE = eINSTANCE
+				.getLogMessage_ClientDate();
 
 		/**
 		 * The meta object literal for the '<em><b>Author</b></em>' attribute feature.

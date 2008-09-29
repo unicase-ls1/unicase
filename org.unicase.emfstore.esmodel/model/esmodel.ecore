@@ -7,7 +7,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="projectId" eType="#//ProjectId"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="versions" lowerBound="1"
-        upperBound="-1" eType="#//versioning/Version"/>
+        upperBound="-1" eType="#//versioning/Version" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="projectName" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="projectDescription" lowerBound="1"
@@ -52,12 +52,13 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="VersionSpec" abstract="true" interface="true"/>
     <eClassifiers xsi:type="ecore:EClass" name="LogMessage">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="author" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="message" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="author" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="clientDate" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDate"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ChangePackage">
       <eOperations name="reverse" eType="#//versioning/ChangePackage"/>
