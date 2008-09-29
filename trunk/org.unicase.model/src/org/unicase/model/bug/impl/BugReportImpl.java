@@ -393,8 +393,10 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * .
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
+	 * @return if the bugreport is closed
 	 */
 	public boolean isChecked() {
 		return (getStatus().equals(BugStatus.CLOSED));
@@ -408,10 +410,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	 * @param newChecked if the bug should be closed
 	 */
 	public void setChecked(boolean newChecked) {
-		if(newChecked){
+		if (newChecked) {
 			setStatus(BugStatus.CLOSED);
-		}
-		else{
+		} else {
 			setStatus(BugStatus.NEW);
 		}
 	}

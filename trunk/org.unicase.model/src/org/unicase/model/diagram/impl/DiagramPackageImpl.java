@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.model.ModelPackage;
@@ -239,6 +240,15 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getMEDiagram_DiagramLayout() {
+		return (EAttribute) meDiagramEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getDiagramType() {
 		return diagramTypeEEnum;
 	}
@@ -275,6 +285,7 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		createEReference(meDiagramEClass, ME_DIAGRAM__GMFDIAGRAM);
 		createEReference(meDiagramEClass, ME_DIAGRAM__NEW_ELEMENTS);
 		createEAttribute(meDiagramEClass, ME_DIAGRAM__TYPE);
+		createEAttribute(meDiagramEClass, ME_DIAGRAM__DIAGRAM_LAYOUT);
 
 		// Create enums
 		diagramTypeEEnum = createEEnum(DIAGRAM_TYPE);
@@ -308,6 +319,8 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 				.getEPackage(ModelPackage.eNS_URI);
 		NotationPackage theNotationPackage = (NotationPackage) EPackage.Registry.INSTANCE
 				.getEPackage(NotationPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
+				.getEPackage(EcorePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -328,7 +341,7 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 				theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getMEDiagram_Gmfdiagram(), theNotationPackage
 				.getDiagram(), null, "gmfdiagram", null, 0, 1, MEDiagram.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 		initEReference(getMEDiagram_NewElements(), theModelPackage
@@ -342,6 +355,10 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 				null, 0, 1, MEDiagram.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		initEAttribute(getMEDiagram_DiagramLayout(), theEcorePackage
+				.getEString(), "diagramLayout", null, 0, 1, MEDiagram.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(diagramTypeEEnum, DiagramType.class, "DiagramType");

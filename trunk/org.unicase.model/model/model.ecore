@@ -169,10 +169,11 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
           eType="#//ModelElement" eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="gmfdiagram" eType="ecore:EClass platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.ecore#//Diagram"
-          containment="true"/>
+          transient="true" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="newElements" upperBound="-1"
           eType="#//ModelElement" transient="true" containment="true" eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//diagram/DiagramType"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="diagramLayout" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="DiagramType">
       <eLiterals name="CLASS_DIAGRAM" literal="CLASS_DIAGRAM"/>
