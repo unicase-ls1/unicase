@@ -98,6 +98,15 @@ public interface OperationsFactory extends EFactory {
 	ReadOperation createReadOperation();
 
 	/**
+	 * Returns a new object of class '<em>Diagram Layout Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Diagram Layout Operation</em>'.
+	 * @generated
+	 */
+	DiagramLayoutOperation createDiagramLayoutOperation();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

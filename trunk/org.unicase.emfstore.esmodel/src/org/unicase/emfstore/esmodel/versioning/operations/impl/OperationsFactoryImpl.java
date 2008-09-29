@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
@@ -82,6 +83,8 @@ public class OperationsFactoryImpl extends EFactoryImpl implements
 			return createMultiAttributeOperation();
 		case OperationsPackage.READ_OPERATION:
 			return createReadOperation();
+		case OperationsPackage.DIAGRAM_LAYOUT_OPERATION:
+			return createDiagramLayoutOperation();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName()
 					+ "' is not a valid classifier");
@@ -166,6 +169,16 @@ public class OperationsFactoryImpl extends EFactoryImpl implements
 	public ReadOperation createReadOperation() {
 		ReadOperationImpl readOperation = new ReadOperationImpl();
 		return readOperation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DiagramLayoutOperation createDiagramLayoutOperation() {
+		DiagramLayoutOperationImpl diagramLayoutOperation = new DiagramLayoutOperationImpl();
+		return diagramLayoutOperation;
 	}
 
 	/**

@@ -24,6 +24,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
@@ -119,6 +120,13 @@ public class OperationsPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	private EClass readOperationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass diagramLayoutOperationEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -585,6 +593,15 @@ public class OperationsPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getDiagramLayoutOperation() {
+		return diagramLayoutOperationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public OperationsFactory getOperationsFactory() {
 		return (OperationsFactory) getEFactoryInstance();
 	}
@@ -680,6 +697,8 @@ public class OperationsPackageImpl extends EPackageImpl implements
 
 		readOperationEClass = createEClass(READ_OPERATION);
 		createEAttribute(readOperationEClass, READ_OPERATION__DATE);
+
+		diagramLayoutOperationEClass = createEClass(DIAGRAM_LAYOUT_OPERATION);
 	}
 
 	/**
@@ -736,6 +755,8 @@ public class OperationsPackageImpl extends EPackageImpl implements
 		referenceOperationEClass.getESuperTypes().add(
 				this.getFeatureOperation());
 		readOperationEClass.getESuperTypes().add(this.getAbstractOperation());
+		diagramLayoutOperationEClass.getESuperTypes().add(
+				this.getAttributeOperation());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(abstractOperationEClass, AbstractOperation.class,
@@ -928,6 +949,10 @@ public class OperationsPackageImpl extends EPackageImpl implements
 				"date", null, 0, 1, ReadOperation.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+
+		initEClass(diagramLayoutOperationEClass, DiagramLayoutOperation.class,
+				"DiagramLayoutOperation", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
 	}
 
 } //OperationsPackageImpl

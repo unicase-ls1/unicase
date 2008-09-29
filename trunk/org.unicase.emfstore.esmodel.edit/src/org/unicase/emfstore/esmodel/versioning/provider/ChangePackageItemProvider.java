@@ -179,6 +179,10 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 		newChildDescriptors.add(createChildParameter(
 				VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
 				OperationsFactory.eINSTANCE.createReadOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
+				OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
 	}
 
 	/**

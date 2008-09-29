@@ -378,16 +378,11 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl
 		for (EReference reference : references) {
 			if (reference.getName().equals(this.getFeatureName())) {
 				modelElement.eSet(reference, newModelElement);
-				if (newModelElement == null && reference.isContainment()) {
-					if (!project.contains(getOldValue())) {
-						project.addModelElement(oldModelElement);
-					}
+				if (newModelElement == null && reference.isContainer()) {
+					project.addModelElement(oldModelElement);
 				}
 				return;
 			}
-		}
-		if (!project.contains(newModelElement)) {
-			project.addModelElement(newModelElement);
 		}
 		//FIXME MK: exception
 		throw new IllegalStateException("cannot find reference feature");
