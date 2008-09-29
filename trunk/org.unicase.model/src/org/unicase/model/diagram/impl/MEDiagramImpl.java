@@ -12,7 +12,9 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -481,9 +483,11 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 		
 		// preserve original resource for all involved model elements
 		EList<ModelElement> elements = this.getElements();
-		List<ModelElement> copiedElements = new ArrayList<ModelElement>();
+		Map<ModelElement, Resource> resourceMap = new HashMap<ModelElement, Resource>();
 		for (ModelElement modelElement : elements) {
-			copiedElements.add(ModelUtil.clone(modelElement));
+			if (modelElement.eResource()!=modelElement.eContainer().eResource()) {
+				resourceMap.put(modelElement, modelElement.eResource());
+			}
 		}
 
 		// put all involved elements into a virtual resource set
@@ -492,7 +496,7 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 				.createResource(VIRTUAL_DIAGRAM_URI);
 		Resource elementsResource = resourceSet
 				.createResource(VIRTUAL_DIAGRAM_ELEMENTS_URI);
-		elementsResource.getContents().addAll(copiedElements);
+		elementsResource.getContents().addAll(elements);
 
 		String diagramLayout = getDiagramLayout();
 		if (diagramLayout == null) {
@@ -529,7 +533,11 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 		setGmfdiagram(gmfDiagram);
 
 		// restore old resource for all model elements
-		diagramResource.getContents().remove(gmfDiagram);
+		diagramResource.getContents().remove(gmfdiagram);
+		elementsResource.getContents().removeAll(elements);
+		for (ModelElement modelElement : resourceMap.keySet()) {
+			resourceMap.get(modelElement).getContents().add(modelElement);
+		}
 		gmfDiagram.setElement(this);
 	}
 
@@ -548,9 +556,11 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 		gmfdiagram.setElement(null);
 		// preserve original resource for all involved model elements
 		EList<ModelElement> elements = this.getElements();
-		List<ModelElement> copiedElements = new ArrayList<ModelElement>();
+		Map<ModelElement, Resource> resourceMap = new HashMap<ModelElement, Resource>();
 		for (ModelElement modelElement : elements) {
-			copiedElements.add(ModelUtil.clone(modelElement));
+			if (modelElement.eResource()!=modelElement.eContainer().eResource()) {
+				resourceMap.put(modelElement, modelElement.eResource());
+			}
 		}
 
 		// put all involved elements into a virtual resource set
@@ -560,7 +570,7 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 
 		Resource elementsResource = resourceSet
 				.createResource(VIRTUAL_DIAGRAM_ELEMENTS_URI);
-		elementsResource.getContents().addAll(copiedElements);
+		elementsResource.getContents().addAll(elements);
 		diagramResource.getContents().add(getGmfdiagram());
 
 		// serialize diagram
@@ -573,7 +583,10 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 
 		// restore old resource for all model elements
 		diagramResource.getContents().remove(gmfdiagram);
-
+		elementsResource.getContents().removeAll(elements);
+		for (ModelElement modelElement : resourceMap.keySet()) {
+			resourceMap.get(modelElement).getContents().add(modelElement);
+		}
 		setDiagramLayout(out.toString());
 
 	}
