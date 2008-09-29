@@ -1466,6 +1466,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 					.copy(modelElement.getModelElementId()));
 					createDiagramLayoutOperation.setNewValue(newValue);
 					createDiagramLayoutOperation.setOldValue(oldValue);
+					this.getOperations().add(createDiagramLayoutOperation);
 					return;
 
 				} else {
