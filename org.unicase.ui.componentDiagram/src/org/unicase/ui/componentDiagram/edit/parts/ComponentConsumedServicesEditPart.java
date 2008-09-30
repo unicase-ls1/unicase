@@ -1,10 +1,15 @@
 package org.unicase.ui.componentDiagram.edit.parts;
 
+import java.util.Iterator;
+import java.util.List;
+
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.RotatableDecoration;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
@@ -82,6 +87,19 @@ public class ComponentConsumedServicesEditPart extends ConnectionNodeEditPart
 			return df;
 		}
 
+	}
+
+	protected void handleNotificationEvent(Notification event) {
+
+		List editPolicies = CanonicalEditPolicy
+				.getRegisteredEditPolicies(((View) getModel()).getElement());
+		for (Iterator it = editPolicies.iterator(); it.hasNext();) {
+			CanonicalEditPolicy nextEditPolicy = (CanonicalEditPolicy) it
+					.next();
+			nextEditPolicy.refresh();
+		}
+
+		super.handleNotificationEvent(event);
 	}
 
 }

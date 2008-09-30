@@ -21,7 +21,6 @@ import org.unicase.model.diagram.MEDiagram;
  */
 public class ModelDiagramUpdater {
 
-
 	/**
 	 * @generated
 	 */

@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IWorkspaceRoot;
@@ -64,7 +65,7 @@ import org.unicase.workspace.WorkspaceManager;
 /**
  * @generated
  */
-public class ModelDiagramEditor extends DiagramDocumentEditor implements
+public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagramEditor implements
 		IGotoMarker {
 
 	/**
@@ -309,94 +310,6 @@ public class ModelDiagramEditor extends DiagramDocumentEditor implements
 		getDiagramGraphicalViewer().setContextMenu(provider);
 		getSite().registerContextMenu(ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU,
 				provider, getDiagramGraphicalViewer());
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void initializeGraphicalViewer() {
-		super.initializeGraphicalViewer();
-		getDiagramGraphicalViewer().addDropTargetListener(
-				new DropTargetListener(getDiagramGraphicalViewer(),
-						LocalSelectionTransfer.getTransfer()) {
-
-					protected Object getJavaObject(TransferData data) {
-						return LocalSelectionTransfer.getTransfer()
-								.nativeToJava(data);
-					}
-
-				});
-		getDiagramGraphicalViewer().addDropTargetListener(
-				new DropTargetListener(getDiagramGraphicalViewer(),
-						LocalTransfer.getInstance()) {
-
-					protected Object getJavaObject(TransferData data) {
-						return LocalTransfer.getInstance().nativeToJava(data);
-					}
-
-				});
-	}
-
-	/**
-	 * @generated
-	 */
-	private abstract class DropTargetListener extends DiagramDropTargetListener {
-
-		/**
-		 * @generated
-		 */
-		public DropTargetListener(EditPartViewer viewer, Transfer xfer) {
-			super(viewer, xfer);
-		}
-
-		/**
-		 * @generated
-		 */
-		protected List getObjectsBeingDropped() {
-			TransferData data = getCurrentEvent().currentDataType;
-			Collection uris = new HashSet();
-
-			Object transferedObject = getJavaObject(data);
-			if (transferedObject instanceof IStructuredSelection) {
-				IStructuredSelection selection = (IStructuredSelection) transferedObject;
-				for (Iterator it = selection.iterator(); it.hasNext();) {
-					Object nextSelectedObject = it.next();
-					if (nextSelectedObject instanceof org.unicase.ui.componentDiagram.navigator.ModelNavigatorItem) {
-						View view = ((org.unicase.ui.componentDiagram.navigator.ModelNavigatorItem) nextSelectedObject)
-								.getView();
-						nextSelectedObject = view.getElement();
-					} else if (nextSelectedObject instanceof IAdaptable) {
-						IAdaptable adaptable = (IAdaptable) nextSelectedObject;
-						nextSelectedObject = adaptable
-								.getAdapter(EObject.class);
-					}
-
-					if (nextSelectedObject instanceof EObject) {
-						EObject modelElement = (EObject) nextSelectedObject;
-						Resource modelElementResource = modelElement
-								.eResource();
-						uris.add(modelElementResource.getURI().appendFragment(
-								modelElementResource
-										.getURIFragment(modelElement)));
-					}
-				}
-			}
-
-			List result = new ArrayList();
-			for (Iterator it = uris.iterator(); it.hasNext();) {
-				URI nextURI = (URI) it.next();
-				EObject modelObject = getEditingDomain().getResourceSet()
-						.getEObject(nextURI, true);
-				result.add(modelObject);
-			}
-			return result;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected abstract Object getJavaObject(TransferData data);
-
 	}
 
 	@Override

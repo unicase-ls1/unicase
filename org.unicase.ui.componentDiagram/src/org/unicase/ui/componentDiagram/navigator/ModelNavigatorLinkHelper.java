@@ -96,9 +96,6 @@ public class ModelNavigatorLinkHelper implements ILinkHelper {
 			if (navigatorGroup.getParent() instanceof org.unicase.ui.componentDiagram.navigator.ModelNavigatorItem) {
 				navigatorView = ((org.unicase.ui.componentDiagram.navigator.ModelNavigatorItem) navigatorGroup
 						.getParent()).getView();
-			} else if (navigatorGroup.getParent() instanceof IAdaptable) {
-				navigatorView = (View) ((IAdaptable) navigatorGroup.getParent())
-						.getAdapter(View.class);
 			}
 		}
 		if (navigatorView == null) {

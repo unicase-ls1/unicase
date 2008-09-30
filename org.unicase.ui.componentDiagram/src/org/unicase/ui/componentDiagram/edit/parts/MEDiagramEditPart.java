@@ -24,7 +24,7 @@ import org.unicase.model.diagram.DiagramPackage;
 /**
  * @generated
  */
-public class MEDiagramEditPart extends DiagramEditPart {
+public class MEDiagramEditPart extends org.unicase.ui.common.diagram.MEDiagramEditPart {
 
 	/**
 	 * @generated
@@ -54,63 +54,16 @@ public class MEDiagramEditPart extends DiagramEditPart {
 		installEditPolicy(
 				EditPolicyRoles.CANONICAL_ROLE,
 				new org.unicase.ui.componentDiagram.edit.policies.MEDiagramCanonicalEditPolicy());
-		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
-				new DiagramDragDropEditPolicy() {
-					public Command getDropObjectsCommand(
-							DropObjectsRequest dropRequest) {
-						List viewDescriptors = new ArrayList();
-						for (Iterator it = dropRequest.getObjects().iterator(); it
-								.hasNext();) {
-							Object nextObject = it.next();
-							if (false == nextObject instanceof EObject) {
-								continue;
-							}
-							viewDescriptors
-									.add(new CreateViewRequest.ViewDescriptor(
-											new EObjectAdapter(
-													(EObject) nextObject),
-											Node.class, null,
-											getDiagramPreferencesHint()));
-						}
-						return createShortcutsCommand(dropRequest,
-								viewDescriptors);
-					}
-
-					private Command createShortcutsCommand(
-							DropObjectsRequest dropRequest, List viewDescriptors) {
-						Command command = createViewsAndArrangeCommand(
-								dropRequest, viewDescriptors);
-						if (command != null) {
-							CreateElementRequest req = new CreateElementRequest(
-									((View) getModel()).getElement(),
-									ElementTypeRegistry.getInstance()
-											.getElementType(
-													dropRequest.getObjects()
-															.iterator().next()));
-							req.setNewElement((EObject) dropRequest
-									.getObjects().iterator().next());
-							/*return command
-									.chain(new ICommandProxy(
-											new org.unicase.ui.componentDiagram.edit.commands.ModelCreateShortcutDecorationsCommand(
-													getEditingDomain(),
-													(View) getModel(),
-													viewDescriptors)));*/
-							return command
-							.chain(new ICommandProxy(
-									new org.unicase.ui.componentDiagram.edit.commands.ComponentAddCommand(req)));
-						}
-						return null;
-					}
-				});
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
+
 	protected void handleNotificationEvent(Notification event) {
 		int type = event.getEventType();
 		Object feature = event.getFeature();
 		if (DiagramPackage.eINSTANCE.getMEDiagram_Elements().equals(feature)) {
 			CanonicalEditPolicy canonicalEditPolicy = (CanonicalEditPolicy) this
 					.getEditPolicy(EditPolicyRoles.CANONICAL_ROLE);
-			canonicalEditPolicy.refresh();			
+			canonicalEditPolicy.refresh();
 		}
 		super.handleNotificationEvent(event);
 	}
