@@ -26,6 +26,7 @@ import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerSorter;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
@@ -229,26 +230,23 @@ public class ESBrowserView extends ViewPart {
 
 		contentProvider = new ESBrowserContentProvider(session);
 		viewer.setContentProvider(contentProvider);
-		// AdapterFactoryLabelProvider adapterFactoryLabelProvider = new
-		// AdapterFactoryLabelProvider(new
-		// ComposedAdapterFactory(ComposedAdapterFactory
-		// .Descriptor.Registry.INSTANCE));
-		// viewer.setLabelProvider(new
-		// DecoratingLabelProvider(adapterFactoryLabelProvider,
-		// ((DecoratingLabelProvider)
-		// WorkbenchLabelProvider.getDecoratingWorkbenchLabelProvider
-		// ()).getLabelDecorator()));
-
-		// viewer.setLabelProvider(new DecoratingStyledCellLabelProvider(
-		// new ESBrowserLabelProvider(),
-		// ((DecoratingLabelProvider)
-		// WorkbenchLabelProvider.getDecoratingWorkbenchLabelProvider
-		// ()).getLabelDecorator(),
-		// null));
 
 		viewer.setLabelProvider(new ESBrowserLabelProvider());
 
-		viewer.setSorter(new ViewerSorter());
+		viewer.setSorter(new ViewerSorter() {
+
+            public int compare(Viewer viewer, Object e1, Object e2) {
+                if (e1 instanceof ServerInfo && e2 instanceof ServerInfo){
+                    return ((ServerInfo)e1).getDisplayName().toLowerCase().compareTo(
+                            ((ServerInfo) e2).getDisplayName().toLowerCase());
+                }else if(e1 instanceof ProjectInfo && e2 instanceof ProjectInfo){
+                	return ((ProjectInfo)e1).getName().toLowerCase().compareTo(
+                			((ProjectInfo) e2).getName().toLowerCase());
+                }
+
+                return super.compare(viewer, e1, e2);
+            }
+        });
 		viewer.setInput(getViewSite());
 
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(viewer.getControl(),
@@ -292,13 +290,11 @@ public class ESBrowserView extends ViewPart {
 					accessControl.checkServerAdminAccess();
 					manager.add(new Separator("Administrative"));
 					manager.add(serverAddProject);
-					serverChangeSession.setText("Log out");
-					manager.add(manageOrgUnits);
 				} catch (EmfStoreException e) {
-					//
-				} catch (NullPointerException en) {
-					// no AccessControlHelper as the user is not logged in
+					// access denied
 				}
+				serverChangeSession.setText("Log out");
+				manager.add(manageOrgUnits);
 
 			} else if (session != null && !session.isLoggedIn()) {
 				manager.add(new Separator("Userspace"));
