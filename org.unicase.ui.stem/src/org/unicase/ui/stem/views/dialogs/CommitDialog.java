@@ -10,10 +10,12 @@ import java.util.ArrayList;
 
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
@@ -39,7 +41,7 @@ public class CommitDialog extends TitleAreaDialog {
 	 * Constructor.
 	 * 
 	 * @param parentShell shell
-	 * @param projectSpace the current project space
+	 * @param changes the {@link ChangePackage} to be displayed
 	 */
 	public CommitDialog(Shell parentShell, ChangePackage changes) {
 		super(parentShell);
@@ -91,6 +93,10 @@ public class CommitDialog extends TitleAreaDialog {
 		
 		super.configureShell(newShell);
 		newShell.setText("Commit");
+		Rectangle area = Display.getCurrent().getClientArea();
+		int width = area.width*2/3;
+		int height = area.height*2/3;
+		newShell.setBounds((area.width-width)/2, (area.height-height)/2, width, height);
 	}
 
 

@@ -10,10 +10,12 @@ import java.util.List;
 
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.ui.stem.views.ChangesTreeComposite;
@@ -74,6 +76,10 @@ public class UpdateDialog extends TitleAreaDialog {
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
 		newShell.setText("Update");
+		Rectangle area = Display.getCurrent().getClientArea();
+		int width = area.width*2/3;
+		int height = area.height*2/3;
+		newShell.setBounds((area.width-width)/2, (area.height-height)/2, width, height);
 	}
 	
 	

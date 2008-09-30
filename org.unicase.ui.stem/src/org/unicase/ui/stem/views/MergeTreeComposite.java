@@ -37,7 +37,7 @@ public class MergeTreeComposite extends ChangesTreeComposite {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected void createOtherColumns() {
+	protected void createAdditionalColumns() {
 		
 		
 		// username column
