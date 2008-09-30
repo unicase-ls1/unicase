@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.client"
       label="Unicase Client"
-      version="0.2.0"
+      version="0.2.1"
       provider-name="TU Muenchen">
 
    <description url="http://www.unicase.org">
