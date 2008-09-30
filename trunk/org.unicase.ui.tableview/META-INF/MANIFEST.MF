@@ -11,7 +11,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.edit.ui,
  org.unicase.workspace,
  org.unicase.model.edit,
- org.unicase.ui.common
+ org.unicase.ui.common,
+ org.eclipse.emf.transaction;bundle-version="1.2.0"
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: unicase.org
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
