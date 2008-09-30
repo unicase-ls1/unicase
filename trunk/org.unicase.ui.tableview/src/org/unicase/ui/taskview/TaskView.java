@@ -36,7 +36,7 @@ public class TaskView extends ViewPart {
 	private FilteredItemProviderAdapterFactory adapterFactory;
 
 	private boolean restrictedToCurrentUser;
-	private boolean showUncheckedOnly;
+	private boolean showChecked;
 	private Action doubleClickAction;
 	private UncheckedElementsViewerFilter uncheckedElementsVF = new UncheckedElementsViewerFilter();
 
@@ -56,7 +56,7 @@ public class TaskView extends ViewPart {
 		// Checkable
 		viewer.addFilter(new CheckableViewerFilter());
 		// initially, only unchecked elements shall be shown
-		toggleShowUncheckedOnly();
+		viewer.addFilter(uncheckedElementsVF);
 		getSite().setSelectionProvider(viewer);
 		hookDoubleClickAction();
 		// the toolbar contains two buttons: one to restrict the view to the
@@ -150,18 +150,18 @@ public class TaskView extends ViewPart {
 		return restrictedToCurrentUser;
 	}
 
-	public void toggleShowUncheckedOnly() {
-		showUncheckedOnly = !showUncheckedOnly;
+	public void toggleShowChecked() {
+		showChecked = !showChecked;
 
-		if (showUncheckedOnly) {
-			viewer.addFilter(uncheckedElementsVF);
-		} else {
+		if (showChecked) {
 			viewer.removeFilter(uncheckedElementsVF);
+		} else {
+			viewer.addFilter(uncheckedElementsVF);
 		}
 	}
 
 	public boolean isShowUncheckedOnly() {
-		return showUncheckedOnly;
+		return showChecked;
 	}
 
 	/**
@@ -214,7 +214,7 @@ public class TaskView extends ViewPart {
 		@Override
 		public void run() {
 			super.run();
-			part.toggleShowUncheckedOnly();
+			part.toggleShowChecked();
 		}
 	}
 }
