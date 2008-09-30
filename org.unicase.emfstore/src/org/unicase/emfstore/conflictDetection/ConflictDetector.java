@@ -29,7 +29,9 @@ public class ConflictDetector {
 	public boolean doConflict(ChangePackage a, ChangePackage b) {
 		for (AbstractOperation operation : a.getOperations()) {
 			for (AbstractOperation otherOperation : b.getOperations()) {
-				if (conflictDetectionStrategy.doConflict(operation, otherOperation));
+				if (conflictDetectionStrategy.doConflict(operation, otherOperation)){
+					return true;
+				}
 			}
 		}
 		return false;
