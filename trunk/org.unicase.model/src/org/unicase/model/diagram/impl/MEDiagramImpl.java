@@ -10,10 +10,8 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -36,7 +34,6 @@ import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.impl.ModelElementImpl;
-import org.unicase.model.util.ModelUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '
@@ -523,6 +520,7 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 			throw new DiagramLoadException(
 					"Diagram String contains unexpected content: first entry is not a diagram");
 		}
+		@SuppressWarnings("unused")
 		EObject object2;
 		TreeIterator<EObject> allContents = elementsResource.getAllContents();
 		while (allContents.hasNext()) {
@@ -551,8 +549,6 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 	 * @generated NOT
 	 */
 	public void saveDiagramLayout() throws DiagramStoreException {
-		// JH: use this to serialize diagram
-
 		gmfdiagram.setElement(null);
 		// preserve original resource for all involved model elements
 		EList<ModelElement> elements = this.getElements();
