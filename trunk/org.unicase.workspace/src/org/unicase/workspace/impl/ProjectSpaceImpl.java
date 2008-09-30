@@ -69,6 +69,7 @@ import org.unicase.model.Project;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.impl.IdentifiableElementImpl;
+import org.unicase.model.util.ModelUtil;
 import org.unicase.model.util.ModelValidationHelper;
 import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.workspace.Configuration;
@@ -918,23 +919,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 							+ ", but the server version of this project is "
 							+ resolvedVersion.getIdentifier() + "!");
 		}
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
-
 		stopChangeRecording();
-
-		RecordingCommandWithResult<SessionId> command = new RecordingCommandWithResult<SessionId>(
-				domain) {
-			protected void doExecute() {
-				setTypedResult(getUsersession().getSessionId());
-			}
-		};
-		domain.getCommandStack().execute(command);
-
+		
 		List<ChangePackage> changes = new ArrayList<ChangePackage>();
 		try {
 
-			changes = connectionManager.getChanges(command.getTypedResult(),
+			changes = connectionManager.getChanges(getUsersession().getSessionId(),
 					projectId, baseVersion, resolvedVersion);
 		} catch (EmfStoreException e) {
 			startChangeRecording();
@@ -947,7 +937,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		for (ChangePackage change : changes) {
 			ChangePackage changePackage = VersioningFactory.eINSTANCE
 					.createChangePackage();
-			changePackage.getOperations().addAll(getOperations());
+			EList<AbstractOperation> copiedOperations = changePackage.getOperations();
+			for (AbstractOperation operation : getOperations()) {
+				copiedOperations.add((AbstractOperation) EcoreUtil.copy(operation));
+			}
 			if (conflictDetector.doConflict(change, changePackage)) {
 				throw new ChangeConflictException(changes);
 			}
@@ -958,23 +951,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			return;
 		}
 		final List<ChangePackage> cps = changes;
-		RecordingCommand command2 = new RecordingCommand(domain) {
-			protected void doExecute() {
-				for (ChangePackage change : cps) {
-					change.apply(getProject());
-				}
-			}
-		};
-		domain.getCommandStack().execute(command2);
-
-		RecordingCommand command3 = new RecordingCommand(domain) {
-			protected void doExecute() {
-				setBaseVersion(resolvedVersion);
-				save();
-			}
-		};
-		domain.getCommandStack().execute(command3);
-
+		for (ChangePackage change : cps) {
+			change.apply(getProject());
+		}
+	
+		setBaseVersion(resolvedVersion);
+		save();
 	}
 
 	/**
