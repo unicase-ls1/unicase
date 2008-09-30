@@ -22,15 +22,7 @@
                class="org.unicase.ui.common.commands.OpenDiagramWithMEEditorHandler"
                commandId="org.unicase.ui.common.openDiagramWithMEEditor">
          </handler>
-         <handler
-               class="org.unicase.ui.common.commands.ValidateHandler"
-               commandId="org.unicase.ui.common.validate">
-         </handler>
-         <handler
-               class="OpenModelelementHandler"
-               commandId="org.unicase.ui.common.openModelelement">
-         </handler>
-  </extension>
+    </extension>
    <extension
         point="org.eclipse.ui.commands">
      
@@ -62,10 +54,7 @@
            id="org.unicase.ui.common.openDiagramWithMEEditor"
            name="Quick open modelelement">
      </command>
-     <keyBinding
-           command="quick open"
-           commandId="org.unicase.ui.common.openDiagramWithMEEditor">
-     </keyBinding>
+   
   </extension>
    <extension
         point="org.eclipse.ui.menus">
