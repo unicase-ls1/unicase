@@ -6,8 +6,6 @@ Bundle-Version: 0.0.5.qualifier
 Bundle-Activator: org.unicase.emfstore.Activator
 Bundle-Vendor: unicase.org
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.teneo;bundle-version="1.0.1",
- org.eclipse.emf.teneo.hibernate;bundle-version="1.0.1";visibility:=reexport,
  org.unicase.model;bundle-version="0.0.5",
  org.eclipse.emf,
  org.unicase.emfstore.esmodel;bundle-version="0.0.5",
