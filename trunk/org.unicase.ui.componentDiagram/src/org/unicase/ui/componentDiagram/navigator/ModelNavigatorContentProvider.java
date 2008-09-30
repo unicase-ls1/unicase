@@ -202,18 +202,6 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 			return getViewChildren(navigatorItem.getView(), parentElement);
 		}
 
-		/*
-		 * Due to plugin.xml restrictions this code will be called only for views representing
-		 * shortcuts to this diagram elements created on other diagrams. 
-		 */
-		if (parentElement instanceof IAdaptable) {
-			View view = (View) ((IAdaptable) parentElement)
-					.getAdapter(View.class);
-			if (view != null) {
-				return getViewChildren(view, parentElement);
-			}
-		}
-
 		return EMPTY_ARRAY;
 	}
 
@@ -226,7 +214,6 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 
 		case org.unicase.ui.componentDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID: {
 			Collection result = new ArrayList();
-			result.addAll(getForeignShortcuts((Diagram) view, parentElement));
 			org.unicase.ui.componentDiagram.navigator.ModelNavigatorGroup links = new org.unicase.ui.componentDiagram.navigator.ModelNavigatorGroup(
 					org.unicase.ui.componentDiagram.part.Messages.NavigatorGroupName_MEDiagram_99_links,
 					"icons/linksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
@@ -484,21 +471,6 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 							(View) it.next(), parent, isLeafs));
 		}
 		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	private Collection getForeignShortcuts(Diagram diagram, Object parent) {
-		Collection result = new ArrayList();
-		for (Iterator it = diagram.getChildren().iterator(); it.hasNext();) {
-			View nextView = (View) it.next();
-			if (!isOwnView(nextView)
-					&& nextView.getEAnnotation("Shortcut") != null) { //$NON-NLS-1$
-				result.add(nextView);
-			}
-		}
-		return createNavigatorItems(result, parent, false);
 	}
 
 	/**

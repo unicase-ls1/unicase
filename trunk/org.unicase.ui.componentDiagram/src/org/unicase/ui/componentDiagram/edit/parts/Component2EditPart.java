@@ -130,7 +130,7 @@ public class Component2EditPart extends AbstractBorderedShapeEditPart {
 		if (borderItemEditPart instanceof org.unicase.ui.componentDiagram.edit.parts.ComponentServiceNameEditPart) {
 			ComponentBorderItemLocator locator = new ComponentBorderItemLocator(getMainFigure(),
 					PositionConstants.SOUTH);
-			locator.setBorderItemOffset(new Dimension(0, 10));
+			locator.setBorderItemOffset(new Dimension(-20, -20));
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
@@ -189,19 +189,6 @@ public class Component2EditPart extends AbstractBorderedShapeEditPart {
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(org.unicase.ui.componentDiagram.part.ModelVisualIDRegistry
 				.getType(org.unicase.ui.componentDiagram.edit.parts.ComponentServiceNameEditPart.VISUAL_ID));
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void handleNotificationEvent(Notification event) {
-		if (event.getNotifier() == getModel()
-				&& EcorePackage.eINSTANCE.getEModelElement_EAnnotations()
-						.equals(event.getFeature())) {
-			handleMajorSemanticChange();
-		} else {
-			super.handleNotificationEvent(event);
-		}
 	}
 
 	/**
