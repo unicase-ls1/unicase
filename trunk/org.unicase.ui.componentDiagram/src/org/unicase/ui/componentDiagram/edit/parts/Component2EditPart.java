@@ -130,7 +130,7 @@ public class Component2EditPart extends AbstractBorderedShapeEditPart {
 		if (borderItemEditPart instanceof org.unicase.ui.componentDiagram.edit.parts.ComponentServiceNameEditPart) {
 			ComponentBorderItemLocator locator = new ComponentBorderItemLocator(getMainFigure(),
 					PositionConstants.SOUTH);
-			locator.setBorderItemOffset(new Dimension(-20, -20));
+			locator.setBorderItemOffset(new Dimension(0, 10));
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
