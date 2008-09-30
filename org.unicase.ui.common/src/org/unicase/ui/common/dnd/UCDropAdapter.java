@@ -13,22 +13,28 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.command.DragAndDropCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.dnd.EditingDomainViewerDropAdapter;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
+import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
+import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.diagram.DiagramType;
+import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.document.Section;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.WorkPackage;
+import org.unicase.ui.common.commands.ActionHelper;
 
 /**
  * . Drop adaptor for viewers.
@@ -112,9 +118,39 @@ public class UCDropAdapter extends EditingDomainViewerDropAdapter {
 									.getAnnotations().addAll(newAnnotations);
 						}
 					});
+		} else if (target instanceof MEDiagram) {			
+			super.drop(event);
+			MEDiagram diagram = (MEDiagram) target;
+			ActionHelper.openModelElement(diagram);
+			
 		} else {
 			super.drop(event);
 		}
+	}
+
+	private boolean isElementOfDiagram(MEDiagram diagram, EObject dropee) {
+		if(dropee instanceof MEDiagram){
+			return false;
+		}
+		DiagramType type = diagram.getType();
+		String clientContextID = "ModelClientContext";
+		if(type == DiagramType.USECASE_DIAGRAM) {
+			clientContextID = "UseCaseClientContext";			
+		}
+		else if(type == DiagramType.COMPONENT_DIAGRAM) {
+			clientContextID = "ComponentClientContext";			
+		}
+		IClientContext cc = ClientContextManager.getInstance().getClientContext(clientContextID);
+		if(cc == null){
+			return false;
+		}
+		IElementType[] containedTypes = ElementTypeRegistry.getInstance().getElementTypes(cc);
+		IElementType dropeeType = ElementTypeRegistry.getInstance().getElementType(dropee,cc);
+		boolean contains=false;
+		for(int i=0; i<containedTypes.length; i++){
+			contains |= containedTypes[i].equals(dropeeType);			
+		}
+		return contains;
 	}
 
 	/**
@@ -154,7 +190,14 @@ public class UCDropAdapter extends EditingDomainViewerDropAdapter {
 		if (eObject instanceof User) {
 
 		}
-
+		if(target instanceof MEDiagram) {
+			if(!isElementOfDiagram((MEDiagram) target, eObject) ||
+					((MEDiagram)target).getElements().contains(eObject)) {
+				event.detail = DND.DROP_NONE;
+			} else{
+				event.detail = event.detail | DND.DROP_COPY;
+			}
+		}
 		if (target instanceof WorkPackage
 				|| target.eContainer() instanceof WorkPackage) {
 			event.detail = event.detail | DND.DROP_COPY;
