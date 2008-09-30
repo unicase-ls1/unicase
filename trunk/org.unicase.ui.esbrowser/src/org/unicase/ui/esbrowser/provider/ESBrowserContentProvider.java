@@ -145,7 +145,6 @@ private class ContentProviderRecordingCommand extends RecordingCommand{
 					return;
 				}
 				session = dialog.getSession();
-				accessControl = dialog.getAccesscontrolHelper();
 			}
 			if (session!=null && session.isLoggedIn()) {
 				try {
@@ -153,6 +152,7 @@ private class ContentProviderRecordingCommand extends RecordingCommand{
 					serverInfo.getProjectInfos().addAll(session.getRemoteProjectList());
 					WorkspaceManager.getInstance().getCurrentWorkspace().save();
 					result = serverInfo.getProjectInfos();
+					accessControl = new AccesscontrolHelper(session);
 				} catch (EmfStoreException e) {
 					DialogHandler.showExceptionDialog(e);
 				}
