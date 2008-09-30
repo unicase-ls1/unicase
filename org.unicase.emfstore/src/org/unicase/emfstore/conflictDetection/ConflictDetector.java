@@ -35,6 +35,15 @@ public class ConflictDetector {
 		return false;
 	}
 	
+	public ChangePackage doConflict(ChangePackage a, ArrayList<ChangePackage> list) {
+		for(ChangePackage b : list){
+			if(doConflict(a, b)){
+				return b;
+			}
+		}
+		return null;
+	}
+	
 	/**
 	 * Retrieve all operations in other ops that are conflicting with operations
 	 * in ops. If any operation is in both lists, it is not considered to be
