@@ -14,12 +14,12 @@ import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Table;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.ui.common.TableViewerColumnSorter;
-import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
@@ -60,7 +60,8 @@ public class METableViewer extends CheckboxTableViewer {
 	 */
 	public METableViewer(Composite parent, AdapterFactory adapterFactory,
 			EClass itemMetaClass) {
-		super(parent, SWT.FULL_SELECTION);
+		super(new Table(parent, SWT.FULL_SELECTION | SWT.CHECK));
+
 		this.adapterFactory = adapterFactory;
 		this.itemMetaClass = itemMetaClass;
 
@@ -81,14 +82,11 @@ public class METableViewer extends CheckboxTableViewer {
 
 		this.setAdapterFactory(adapterFactory);
 
-		this.createColumns();
-		ProjectSpace activeProjectSpace = WorkspaceManager.getInstance()
-				.getCurrentWorkspace().getActiveProjectSpace();
-		if (activeProjectSpace != null) {
-			Project project = activeProjectSpace.getProject();
-			setInput(project);
+		if (workspace.getActiveProjectSpace() != null) {
+			setInput(workspace.getActiveProjectSpace().getProject());
 		}
 
+		this.createColumns();
 		this.getTable().setLinesVisible(true);
 		this.getTable().setHeaderVisible(true);
 	}
@@ -116,23 +114,17 @@ public class METableViewer extends CheckboxTableViewer {
 		EAttribute name = ModelPackage.Literals.MODEL_ELEMENT__NAME;
 		TableViewerColumn nameColumn = prepareColumn(name, 250);
 
+		EReference assignee = TaskPackage.Literals.WORK_ITEM__ASSIGNEE;
+		TableViewerColumn assigneeColumn = prepareColumn(assignee, 150);
+
 		EAttribute creator = ModelPackage.Literals.MODEL_ELEMENT__CREATOR;
 		TableViewerColumn creatorColumn = prepareColumn(creator, 100);
 
 		EAttribute creationDate = ModelPackage.Literals.MODEL_ELEMENT__CREATION_DATE;
 		TableViewerColumn creationDateColumn = prepareColumn(creationDate, 150);
 
-		EAttribute state = ModelPackage.Literals.MODEL_ELEMENT__STATE;
-		TableViewerColumn stateColumn = prepareColumn(state, 140);
-
-		EReference assignee = TaskPackage.Literals.WORK_ITEM__ASSIGNEE;
-		TableViewerColumn assigneeColumn = prepareColumn(assignee, 150);
-
 		EReference container = TaskPackage.Literals.WORK_ITEM__CONTAINING_WORKPACKAGE;
 		TableViewerColumn containerColumn = prepareColumn(container, 150);
-		
-//		TableViewerColumn checked = prepareColumn(state, 150);
-//		checked.setLabelProvider(new CheckboxCellEditor());
 	}
 
 	private String getFeatureName(EStructuralFeature feature) {
@@ -145,8 +137,8 @@ public class METableViewer extends CheckboxTableViewer {
 
 	private TableViewerColumn prepareColumn(EStructuralFeature currentFeature,
 			int width) {
-		TableViewerColumn currentColumn;
-		currentColumn = new TableViewerColumn(this, SWT.CENTER);
+		TableViewerColumn currentColumn = new TableViewerColumn(this,
+				SWT.CENTER);
 
 		String name = getFeatureName(currentFeature);
 		currentColumn.getColumn().setText(name);

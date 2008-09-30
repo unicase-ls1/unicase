@@ -10,12 +10,15 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.action.Action;
+import org.eclipse.jface.viewers.CheckStateChangedEvent;
 import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.ICheckStateListener;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
+import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.ui.tableview.Activator;
@@ -29,7 +32,7 @@ import org.unicase.workspace.WorkspaceManager;
  * @author Florian Schneider
  * 
  */
-public class TaskView extends ViewPart {
+public class TaskView extends ViewPart implements ICheckStateListener {
 
 	private METableViewer viewer;
 	private final EClass itemMetaClass = TaskPackage.eINSTANCE.getWorkItem();
@@ -50,7 +53,7 @@ public class TaskView extends ViewPart {
 		adapterFactory.setFilteredItemProvider(new EClassFilterItemProvider(
 				adapterFactory, itemMetaClass));
 		viewer = new METableViewer(parent, adapterFactory, itemMetaClass);
-
+		// viewer.addCheckStateListener(this);
 		getSite().setSelectionProvider(viewer);
 		hookDoubleClickAction();
 		getViewSite().getActionBars().getToolBarManager().add(
@@ -164,5 +167,17 @@ public class TaskView extends ViewPart {
 	 */
 	public boolean isRestrictedToCurrentUser() {
 		return restrictedToCurrentUser;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.jface.viewers.ICheckStateListener#checkStateChanged(org.eclipse.jface.viewers.CheckStateChangedEvent)
+	 */
+	public void checkStateChanged(CheckStateChangedEvent event) {
+		Object source = event.getElement();
+		if (source instanceof Checkable) {
+			((Checkable) source).setChecked(event.getChecked());
+		}
 	}
 }
