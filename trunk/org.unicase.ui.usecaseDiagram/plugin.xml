@@ -49,7 +49,7 @@
 
    <extension point="org.eclipse.ui.popupMenus">
       <?gmfgen generated="true"?>
-    <!--   <objectContribution
+      <objectContribution
             adaptable="false"
             id="org.unicase.ui.usecaseDiagram.CreateShortcut"
             objectClass="org.unicase.ui.usecaseDiagram.edit.parts.MEDiagramEditPart">
@@ -60,7 +60,7 @@
                label="%createShortcutActionLabel"
                menubarPath="additions">
          </action>
-      </objectContribution>-->          
+      </objectContribution>                      
       <objectContribution
             adaptable="false"
             id="org.unicase.ui.usecaseDiagram.LoadResource"
@@ -516,13 +516,32 @@
          <Priority name="Lowest"/>
       </decoratorProvider>
    </extension>
-<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+<extension point="org.eclipse.core.expressions.propertyTesters">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="org.unicase.ui.usecaseDiagram.DomainModelElementPropertyTester"
+           type="org.eclipse.emf.ecore.EObject"
+           namespace="org.unicase.ui.usecaseDiagram"
+           properties="isDomainModelElement"
+           class="org.unicase.ui.usecaseDiagram.part.ModelDomainModelElementTester">
+       </propertyTester>
+   </extension>
+
+ <extension point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+<contributionItemProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider" checkPluginLoaded="false">
+<Priority name="Low"/>
+<popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+<popupStructuredContributionCriteria objectClass="org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart"/>
+<popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+</popupContribution>
+</contributionItemProvider>
+</extension><extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
       <?gmfgen generated="true"?>
       <clientContext id="UseCaseClientContext">
          <enablement>
             <test
                property="org.eclipse.gmf.runtime.emf.core.editingDomain"
-               value="org.unicase.EditingDomain"/>
+               value="org.unicase.EditingDomainUseCase"/>
          </enablement>
       </clientContext> 
       <binding context="UseCaseClientContext">
@@ -536,20 +555,6 @@
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
-<extension point="org.eclipse.core.expressions.propertyTesters">
-      <?gmfgen generated="true"?>
-       <propertyTester
-           id="org.unicase.ui.usecaseDiagram.DomainModelElementPropertyTester"
-           type="org.eclipse.emf.ecore.EObject"
-           namespace="org.unicase.ui.usecaseDiagram"
-           properties="isDomainModelElement"
-           class="org.unicase.ui.usecaseDiagram.part.ModelDomainModelElementTester">
-       </propertyTester>
-   </extension>
 
-
-
-
-  
 
 </plugin>
