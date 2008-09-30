@@ -61,15 +61,10 @@ public class UpdateProjectHandler extends ProjectActionHandler implements
 				// initially setting the status as successful in case the user
 				// is already logged in
 				int loginStatus = LoginDialog.SUCCESSFUL;
-				try {
-					if (!usersession.isLoggedIn()) {
-						login = new LoginDialog(shell, usersession, usersession
-								.getServerInfo());
-						loginStatus = login.open();
-					}
-				} catch (NullPointerException e3) {
-					// FIXME AS why?
-					// usersession was null -> fail silently
+				if (!usersession.isLoggedIn()) {
+					login = new LoginDialog(shell, usersession, usersession
+							.getServerInfo());
+					loginStatus = login.open();
 				}
 				try {
 					if (loginStatus == LoginDialog.SUCCESSFUL) {
