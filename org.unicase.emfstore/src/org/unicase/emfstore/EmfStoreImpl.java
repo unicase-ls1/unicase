@@ -45,9 +45,9 @@ import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidInputException;
 import org.unicase.emfstore.exceptions.InvalidProjectIdException;
-import org.unicase.emfstore.exceptions.InvalidPropertyException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.model.ModelFactory;
@@ -62,7 +62,7 @@ public class EmfStoreImpl implements EmfStore {
 
 	private ServerSpace serverSpace;
 
-	private static final Log LOGGER = LogFactory.getLog(EmfStoreImpl.class);
+	private static final Log logger = LogFactory.getLog(EmfStoreImpl.class);
 
 	private AuthorizationControl authorizationControl;
 
@@ -108,27 +108,32 @@ public class EmfStoreImpl implements EmfStore {
 
 		Version previousHeadVersion = versions.get(versions.size() - 1);
 
-		String property = ServerConfiguration.getProperties().getProperty(
-				ServerConfiguration.PROJECTSTATE_VERSION_PERSISTENCE,
-				ServerConfiguration.PROJECTSPACE_VERSION_PERSISTENCY_DEFAULT);
+		// String property = ServerConfiguration.getProperties().getProperty(
+		// ServerConfiguration.PROJECTSTATE_VERSION_PERSISTENCE,
+		// ServerConfiguration.PROJECTSPACE_VERSION_PERSISTENCY_DEFAULT);
+		//
+		// // allways save projecstate of first version
+		// if (previousHeadVersion.getPrimarySpec().getIdentifier() == 0
+		// || property.equals(ServerConfiguration.EVERYVERSION)) {
+		// } else if
+		// (property.equals(ServerConfiguration.FIRSTANDLASTVERSIONONLY)) {
+		// newProjectState = previousHeadVersion.getProjectState();
+		// } else {
+		// throw new InvalidPropertyException();
+		// }
 
-		// allways save projecstate of first version
-		Project newProjectState = null;
-		if (previousHeadVersion.getPrimarySpec().getIdentifier() == 0
-				|| property.equals(ServerConfiguration.EVERYVERSION)) {
-			newProjectState = (Project) EcoreUtil.copy(previousHeadVersion
-					.getProjectState());
-		} else if (property.equals(ServerConfiguration.FIRSTANDLASTVERSIONONLY)) {
-			newProjectState = previousHeadVersion.getProjectState();
-		} else {
-			throw new InvalidPropertyException();
-		}
+		// TODO: OW set projectstate of previous to null depending on strategy
+		// and save exceptions
+
+		Project newProjectState = (Project) EcoreUtil.copy(previousHeadVersion
+				.getProjectState());
 
 		changePackage.apply(newProjectState);
 
 		version.setProjectState(newProjectState);
 
 		version.setChanges(changePackage);
+
 		logMessage.setDate(new Date());
 		version.setLogMessage(logMessage);
 		version.setPrimarySpec(newVersionSpec);
@@ -136,13 +141,25 @@ public class EmfStoreImpl implements EmfStore {
 		version.setPreviousVersion(previousHeadVersion);
 
 		versions.add(version);
-		createResourceForVersion(version, projectHistory.getProjectId());
 
-		// if projectstate of the previous head version is set to null saving is
-		// required
-		save(previousHeadVersion);
-		save(projectHistory);
-		LOGGER.error("Total time for commit: "
+		try {
+			try {
+				createResourceForVersion(version, projectHistory.getProjectId());
+			} catch (FatalEmfStoreException e) {
+				previousHeadVersion.setNextVersion(null);
+				versions.remove(version);
+				save(previousHeadVersion);
+				save(projectHistory);
+				throw new StorageException(StorageException.NOSAVE);
+			}
+			save(previousHeadVersion);
+			save(projectHistory);
+		} catch (FatalEmfStoreException e) {
+			EmfStoreController.getInstance().shutdown(e);
+			throw new EmfStoreException("Shutting down server.");
+		}
+
+		logger.error("Total time for commit: "
 				+ (System.currentTimeMillis() - currentTimeMillis));
 		return newVersionSpec;
 	}
@@ -288,7 +305,8 @@ public class EmfStoreImpl implements EmfStore {
 			// TODO OW MK: speed up calculation by using nearer projectstate
 			// instead of first.
 			Version firstVersion = getProject(projectId).getVersions().get(0);
-			Project projectState = (Project) EcoreUtil.copy(firstVersion.getProjectState());
+			Project projectState = (Project) EcoreUtil.copy(firstVersion
+					.getProjectState());
 			for (Version next = firstVersion.getNextVersion(); next != null
 					&& next.getPrimarySpec().compareTo(resolvedVersion) < 1; next = next
 					.getNextVersion()) {
@@ -365,8 +383,13 @@ public class EmfStoreImpl implements EmfStore {
 			throw new InvalidInputException();
 		}
 		authorizationControl.checkServerAdminAccess(sessionId);
-		ProjectHistory projectHistory = createEmptyProject(name, description,
-				logMessage);
+		ProjectHistory projectHistory = null;
+		try {
+			projectHistory = createEmptyProject(name, description, logMessage);
+		} catch (FatalEmfStoreException e) {
+			// TODO rollback?
+			throw new StorageException(StorageException.NOSAVE);
+		}
 		return getProjectInfo(projectHistory);
 	}
 
@@ -381,16 +404,23 @@ public class EmfStoreImpl implements EmfStore {
 			throw new InvalidInputException();
 		}
 		authorizationControl.checkServerAdminAccess(sessionId);
-		ProjectHistory projectHistory = createEmptyProject(name, description,
-				logMessage);
-		Version lastVersion = projectHistory.getLastVersion();
-		lastVersion.setProjectState(project);
-		save(lastVersion);
+		ProjectHistory projectHistory = null;
+		try {
+			projectHistory = createEmptyProject(name, description, logMessage);
+			Version lastVersion = projectHistory.getLastVersion();
+			lastVersion.setProjectState(project);
+			save(lastVersion);
+		} catch (FatalEmfStoreException e) {
+			// TODO rollback?
+			throw new StorageException(StorageException.NOSAVE);
+		}
+
 		return getProjectInfo(projectHistory);
 	}
 
 	private ProjectHistory createEmptyProject(String name, String description,
-			LogMessage logMessage) throws EmfStoreException {
+			LogMessage logMessage) throws EmfStoreException,
+			FatalEmfStoreException {
 
 		// create initial ProjectHistory
 		ProjectHistory projectHistory = EsmodelFactory.eINSTANCE
@@ -420,7 +450,7 @@ public class EmfStoreImpl implements EmfStore {
 	}
 
 	private void createResourceForProjectHistory(ProjectHistory projectHistory)
-			throws EmfStoreException {
+			throws FatalEmfStoreException {
 		String fileName = ServerConfiguration.getServerHome() + "project-"
 				+ projectHistory.getProjectId().getId() + File.separatorChar
 				+ "projectHistory";
@@ -431,7 +461,7 @@ public class EmfStoreImpl implements EmfStore {
 	}
 
 	private void createResourceForVersion(Version version, ProjectId projectId)
-			throws EmfStoreException {
+			throws FatalEmfStoreException {
 		String fileName = ServerConfiguration.getServerHome() + "project-"
 				+ projectId.getId() + File.separatorChar + "version-"
 				+ version.getPrimarySpec().getIdentifier();
@@ -543,27 +573,27 @@ public class EmfStoreImpl implements EmfStore {
 		}
 	}
 
-	public void save() throws EmfStoreException {
+	private void save() throws FatalEmfStoreException {
 		try {
 			long currentTimeMillis = System.currentTimeMillis();
 			getServerSpace().save();
-			LOGGER.error("Total time for saving: "
+			logger.error("Total time for saving: "
 					+ (System.currentTimeMillis() - currentTimeMillis));
 			currentTimeMillis = System.currentTimeMillis();
 		} catch (IOException e) {
-			throw new StorageException(StorageException.NOSAVE, e);
+			throw new FatalEmfStoreException(StorageException.NOSAVE, e);
 		} catch (NullPointerException e) {
-			throw new StorageException(StorageException.NOSAVE, e);
+			throw new FatalEmfStoreException(StorageException.NOSAVE, e);
 		}
 	}
 
-	private void save(EObject object) throws EmfStoreException {
+	private void save(EObject object) throws FatalEmfStoreException {
 		try {
 			object.eResource().save(null);
 		} catch (IOException e) {
-			throw new StorageException(StorageException.NOSAVE, e);
+			throw new FatalEmfStoreException(StorageException.NOSAVE, e);
 		} catch (NullPointerException e) {
-			throw new StorageException(StorageException.NOSAVE, e);
+			throw new FatalEmfStoreException(StorageException.NOSAVE, e);
 		}
 	}
 }
