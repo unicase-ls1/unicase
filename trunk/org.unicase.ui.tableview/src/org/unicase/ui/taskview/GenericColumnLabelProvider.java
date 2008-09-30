@@ -11,6 +11,7 @@ import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.PlatformUI;
+import org.unicase.model.ModelPackage;
 
 public class GenericColumnLabelProvider extends
 		org.eclipse.jface.viewers.ColumnLabelProvider {
@@ -29,9 +30,13 @@ public class GenericColumnLabelProvider extends
 				decoratorManager.getLabelDecorator());
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.jface.viewers.ColumnLabelProvider#getText(java.lang.Object)
+	 */
 	@Override
 	public String getText(Object element) {
-
 		if (element instanceof EObject) {
 			Object attr = ((EObject) element).eGet(feature, true);
 
@@ -58,11 +63,19 @@ public class GenericColumnLabelProvider extends
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.jface.viewers.ColumnLabelProvider#getImage(java.lang.Object)
+	 */
 	@Override
 	public Image getImage(Object element) {
-		Image image = decoratingLabelProvider.getImage(element);
-		decoratingLabelProvider.getLabelDecorator().decorateImage(image,
-				element);
+		Image image = null;
+		if (this.feature.equals(ModelPackage.Literals.MODEL_ELEMENT__NAME)) {
+			image = decoratingLabelProvider.getImage(element);
+			decoratingLabelProvider.getLabelDecorator().decorateImage(image,
+					element);
+		}
 		return image;
 	}
 
