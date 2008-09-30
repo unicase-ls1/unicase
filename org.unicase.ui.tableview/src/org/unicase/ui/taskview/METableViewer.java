@@ -8,13 +8,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
-import org.eclipse.jface.viewers.CheckboxTableViewer;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
+import org.eclipse.jface.viewers.EditingSupport;
+import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Table;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.provider.ModelEditPlugin;
@@ -24,11 +24,10 @@ import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
 
-public class METableViewer extends CheckboxTableViewer {
+public class METableViewer extends TableViewer {
 
 	private Project currentProject;
 	private AdapterFactory adapterFactory;
-	private EClass itemMetaClass;
 
 	/**
 	 * Constructor that directly sets the input of the table view.
@@ -60,10 +59,8 @@ public class METableViewer extends CheckboxTableViewer {
 	 */
 	public METableViewer(Composite parent, AdapterFactory adapterFactory,
 			EClass itemMetaClass) {
-		super(new Table(parent, SWT.FULL_SELECTION | SWT.CHECK));
-
+		super(parent, SWT.FULL_SELECTION);
 		this.adapterFactory = adapterFactory;
-		this.itemMetaClass = itemMetaClass;
 
 		final Workspace workspace = WorkspaceManager.getInstance()
 				.getCurrentWorkspace();
@@ -110,21 +107,42 @@ public class METableViewer extends CheckboxTableViewer {
 		setInput(currentProject);
 	}
 
+	@Override
+	protected void inputChanged(Object input, Object oldInput) {
+		super.inputChanged(input, oldInput);
+	}
+
 	private void createColumns() {
+		EAttribute check = TaskPackage.Literals.CHECKABLE__CHECKED;
+		TableViewerColumn currentColumn = new TableViewerColumn(this,
+				SWT.CENTER);
+		currentColumn.getColumn().setWidth(30);
+		currentColumn.getColumn().setMoveable(true);
+		currentColumn.getColumn().setResizable(false);
+		ColumnLabelProvider provider = new GenericColumnLabelProvider(this,
+				check);
+		currentColumn.setLabelProvider(provider);
+
+		EditingSupport es = new CheckableEditingSupport(this);
+		currentColumn.setEditingSupport(es);
+
 		EAttribute name = ModelPackage.Literals.MODEL_ELEMENT__NAME;
-		TableViewerColumn nameColumn = prepareColumn(name, 250);
+		TableViewerColumn nameColumn = prepareStandardColumn(name, 250);
+		nameColumn.getColumn().setAlignment(SWT.LEFT);
 
 		EReference assignee = TaskPackage.Literals.WORK_ITEM__ASSIGNEE;
-		TableViewerColumn assigneeColumn = prepareColumn(assignee, 150);
+		TableViewerColumn assigneeColumn = prepareStandardColumn(assignee, 150);
 
 		EAttribute creator = ModelPackage.Literals.MODEL_ELEMENT__CREATOR;
-		TableViewerColumn creatorColumn = prepareColumn(creator, 100);
+		TableViewerColumn creatorColumn = prepareStandardColumn(creator, 100);
 
 		EAttribute creationDate = ModelPackage.Literals.MODEL_ELEMENT__CREATION_DATE;
-		TableViewerColumn creationDateColumn = prepareColumn(creationDate, 150);
+		TableViewerColumn creationDateColumn = prepareStandardColumn(
+				creationDate, 150);
 
 		EReference container = TaskPackage.Literals.WORK_ITEM__CONTAINING_WORKPACKAGE;
-		TableViewerColumn containerColumn = prepareColumn(container, 150);
+		TableViewerColumn containerColumn = prepareStandardColumn(container,
+				150);
 	}
 
 	private String getFeatureName(EStructuralFeature feature) {
@@ -135,8 +153,13 @@ public class METableViewer extends CheckboxTableViewer {
 		return ModelEditPlugin.INSTANCE.getString(nameLookupString);
 	}
 
-	private TableViewerColumn prepareColumn(EStructuralFeature currentFeature,
-			int width) {
+	// public void setRestrictedToCurrentUser(){
+	// ViewerFilter userFilter = new TaskViewFilter();
+	// this.setFilters(filters)
+	// }
+
+	private TableViewerColumn prepareStandardColumn(
+			EStructuralFeature currentFeature, int width) {
 		TableViewerColumn currentColumn = new TableViewerColumn(this,
 				SWT.CENTER);
 
@@ -147,7 +170,7 @@ public class METableViewer extends CheckboxTableViewer {
 		currentColumn.getColumn().setMoveable(true);
 		currentColumn.getColumn().setResizable(true);
 
-		ColumnLabelProvider provider = new GenericColumnLabelProvider(
+		ColumnLabelProvider provider = new GenericColumnLabelProvider(this,
 				currentFeature);
 		currentColumn.setLabelProvider(provider);
 

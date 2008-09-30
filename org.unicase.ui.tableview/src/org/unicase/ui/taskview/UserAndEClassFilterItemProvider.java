@@ -4,7 +4,6 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EClass;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
-import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.WorkItem;
 
 /**
@@ -31,8 +30,6 @@ public class UserAndEClassFilterItemProvider extends EClassFilterItemProvider {
 			OrgUnit unit = null;
 			if (objectToTest instanceof WorkItem) {
 				unit = ((WorkItem) objectToTest).getAssignee();
-			} else if (objectToTest instanceof ActionItem) {
-				unit = ((ActionItem) objectToTest).getAssignee();
 			} else {
 				return false;
 			}

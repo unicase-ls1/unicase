@@ -10,15 +10,12 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.action.Action;
-import org.eclipse.jface.viewers.CheckStateChangedEvent;
 import org.eclipse.jface.viewers.DoubleClickEvent;
-import org.eclipse.jface.viewers.ICheckStateListener;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
-import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.ui.tableview.Activator;
@@ -32,14 +29,16 @@ import org.unicase.workspace.WorkspaceManager;
  * @author Florian Schneider
  * 
  */
-public class TaskView extends ViewPart implements ICheckStateListener {
+public class TaskView extends ViewPart {
 
 	private METableViewer viewer;
 	private final EClass itemMetaClass = TaskPackage.eINSTANCE.getWorkItem();
 	private FilteredItemProviderAdapterFactory adapterFactory;
 
 	private boolean restrictedToCurrentUser;
+	private boolean showUncheckedOnly;
 	private Action doubleClickAction;
+	private UncheckedElementsViewerFilter uncheckedElementsVF = new UncheckedElementsViewerFilter();
 
 	/**
 	 * 
@@ -53,11 +52,20 @@ public class TaskView extends ViewPart implements ICheckStateListener {
 		adapterFactory.setFilteredItemProvider(new EClassFilterItemProvider(
 				adapterFactory, itemMetaClass));
 		viewer = new METableViewer(parent, adapterFactory, itemMetaClass);
-		// viewer.addCheckStateListener(this);
+		// the task view shall only display objects that are instance of
+		// Checkable
+		viewer.addFilter(new CheckableViewerFilter());
+		// initially, only unchecked elements shall be shown
+		toggleShowUncheckedOnly();
 		getSite().setSelectionProvider(viewer);
 		hookDoubleClickAction();
+		// the toolbar contains two buttons: one to restrict the view to the
+		// current user, the other one to toggle the exclusion of checked
+		// elements.
 		getViewSite().getActionBars().getToolBarManager().add(
 				new RestrictTableContentToCurrentUserAction(this));
+		getViewSite().getActionBars().getToolBarManager().add(
+				new ToggleCheckedElementsDisplayAction(this));
 	}
 
 	private void hookDoubleClickAction() {
@@ -87,33 +95,6 @@ public class TaskView extends ViewPart implements ICheckStateListener {
 	@Override
 	public void setFocus() {
 		viewer.refresh();
-	}
-
-	/**
-	 * Restricts the items in the task view to those owned by the current user.
-	 * 
-	 * @author Florian Schneider
-	 */
-	private class RestrictTableContentToCurrentUserAction extends
-			org.eclipse.jface.action.Action {
-		private TaskView part;
-
-		public RestrictTableContentToCurrentUserAction(TaskView part) {
-			super();
-			this.part = part;
-			this.setText("Restrict to current user");
-			this
-					.setToolTipText("Restricts the displayed table items to items owned by the current user.");
-			this.setImageDescriptor(Activator
-					.getImageDescriptor("icons/User.gif"));
-			this.setChecked(part.isRestrictedToCurrentUser());
-		}
-
-		@Override
-		public void run() {
-			super.run();
-			part.setRestrictedToCurrentUser(isChecked());
-		}
 	}
 
 	/**
@@ -169,15 +150,71 @@ public class TaskView extends ViewPart implements ICheckStateListener {
 		return restrictedToCurrentUser;
 	}
 
+	public void toggleShowUncheckedOnly() {
+		showUncheckedOnly = !showUncheckedOnly;
+
+		if (showUncheckedOnly) {
+			viewer.addFilter(uncheckedElementsVF);
+		} else {
+			viewer.removeFilter(uncheckedElementsVF);
+		}
+	}
+
+	public boolean isShowUncheckedOnly() {
+		return showUncheckedOnly;
+	}
+
 	/**
-	 * {@inheritDoc}
+	 * Restricts the items in the task view to those owned by the current user.
 	 * 
-	 * @see org.eclipse.jface.viewers.ICheckStateListener#checkStateChanged(org.eclipse.jface.viewers.CheckStateChangedEvent)
+	 * @author Florian Schneider
 	 */
-	public void checkStateChanged(CheckStateChangedEvent event) {
-		Object source = event.getElement();
-		if (source instanceof Checkable) {
-			((Checkable) source).setChecked(event.getChecked());
+	private class RestrictTableContentToCurrentUserAction extends
+			org.eclipse.jface.action.Action {
+		private TaskView part;
+
+		public RestrictTableContentToCurrentUserAction(TaskView part) {
+			super();
+			this.part = part;
+			this.setText("Restrict to current user");
+			this
+					.setToolTipText("Restricts the displayed table items to items owned by the current user.");
+			this.setImageDescriptor(Activator
+					.getImageDescriptor("icons/User.gif"));
+			this.setChecked(part.isRestrictedToCurrentUser());
+		}
+
+		@Override
+		public void run() {
+			super.run();
+			part.setRestrictedToCurrentUser(isChecked());
+		}
+	}
+
+	/**
+	 * Restricts the items in the task view to those owned by the current user.
+	 * 
+	 * @author Florian Schneider
+	 */
+	private class ToggleCheckedElementsDisplayAction extends
+			org.eclipse.jface.action.Action {
+		private TaskView part;
+
+		public ToggleCheckedElementsDisplayAction(TaskView part) {
+			super();
+			this.part = part;
+			this.setText("Show checked elements as well");
+			this
+					.setToolTipText("Besides the unchecked elements, the checked ones will be shown as well.");
+			this.setImageDescriptor(Activator
+					.getImageDescriptor("icons/tick.png"));
+			this.setChecked(part.isShowUncheckedOnly());
+		}
+
+		@Override
+		public void run() {
+			super.run();
+			part.toggleShowUncheckedOnly();
 		}
 	}
 }
