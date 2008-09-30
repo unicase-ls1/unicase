@@ -67,30 +67,28 @@ public class UpdateProjectHandler extends ProjectActionHandler implements
 								.getServerInfo());
 						loginStatus = login.open();
 					}
-					this.setTypedResult(loginStatus);
 				} catch (NullPointerException e3) {
-					//FIXME AS why?
+					// FIXME AS why?
 					// usersession was null -> fail silently
 				}
+				try {
+					if (loginStatus == LoginDialog.SUCCESSFUL) {
+						projectSpace.update(VersionSpec.HEAD_VERSION,
+								UpdateProjectHandler.this);
+					}
+				} catch (ChangeConflictException e1) {
+					List<ChangePackage> changePackages = e1.newPackages;
+					MergeDialog mergeDialog = new MergeDialog(shell,
+							changePackages);
+					mergeDialog.open();
+				} catch (EmfStoreException e2) {
+					DialogHandler.showExceptionDialog(e2);
+					e2.printStackTrace();
+				}
 			}
+
 		};
 		domain.getCommandStack().execute(command);
-
-		if (command.getTypedResult() != null) {
-			try {
-				if (command.getTypedResult().intValue() == LoginDialog.SUCCESSFUL) {
-					projectSpace.update(VersionSpec.HEAD_VERSION,
-							UpdateProjectHandler.this);
-				}
-			} catch (ChangeConflictException e1) {
-				List<ChangePackage> changePackages = e1.newPackages;
-				MergeDialog mergeDialog = new MergeDialog(shell, changePackages);
-				mergeDialog.open();
-			} catch (EmfStoreException e2) {
-				DialogHandler.showExceptionDialog(e2);
-				e2.printStackTrace();
-			}
-		}
 
 		return null;
 	}
