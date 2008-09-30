@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.client"
       label="Unicase Client"
-      version="0.1.1"
+      version="0.2.0"
       provider-name="TU Muenchen">
 
    <description url="http://www.unicase.org">
@@ -148,14 +148,14 @@ This Agreement is governed by the laws of the State of New York and the intellec
          id="org.unicase.emfstore"
          download-size="0"
          install-size="0"
-         version="0.0.1.qualifier"
+         version="0.0.5.qualifier"
          unpack="false"/>
 
    <plugin
          id="org.unicase.emfstore.esmodel"
          download-size="0"
          install-size="0"
-         version="0.0.1.qualifier"
+         version="0.0.5.qualifier"
          unpack="false"/>
 
    <plugin
@@ -169,14 +169,14 @@ This Agreement is governed by the laws of the State of New York and the intellec
          id="org.unicase.model"
          download-size="0"
          install-size="0"
-         version="0.0.1.qualifier"
+         version="0.2.0"
          unpack="false"/>
 
    <plugin
          id="org.unicase.model.edit"
          download-size="0"
          install-size="0"
-         version="0.0.2.qualifier"
+         version="0.2.0"
          unpack="false"/>
 
    <plugin
@@ -246,7 +246,7 @@ This Agreement is governed by the laws of the State of New York and the intellec
          id="org.eclipse.nebula.widgets.cdatetime"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="0.10.0.200806241339"
          unpack="false"/>
 
 </feature>
