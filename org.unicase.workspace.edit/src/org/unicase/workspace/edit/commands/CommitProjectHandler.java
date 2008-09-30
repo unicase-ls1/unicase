@@ -15,11 +15,10 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.common.exceptions.DialogHandler;
@@ -41,16 +40,14 @@ import org.unicase.workspace.util.CommitObserver;
 public class CommitProjectHandler extends ProjectActionHandler implements CommitObserver{
 
 	private Shell shell;
-	protected Usersession usersession;
-	protected LogMessage logMessage;
+	private Usersession usersession;
+	private LogMessage logMessage;
 	
 	/**
 	 * . ({@inheritDoc})
 	 * 
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-
-		final IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
 
 		final ProjectSpace projectSpace = getProjectSpace(event);
 
@@ -72,19 +69,23 @@ public class CommitProjectHandler extends ProjectActionHandler implements Commit
 					}
 					if (loginStatus == LoginDialog.SUCCESSFUL) {
 						logMessage = VersioningFactory.eINSTANCE.createLogMessage();
-						projectSpace.commit(logMessage,CommitProjectHandler.this);
-						MessageDialog.openInformation(shell, null, "Commit completed.");
+						PrimaryVersionSpec oldVersion = projectSpace.getBaseVersion();
+						PrimaryVersionSpec newVersion = projectSpace.commit(logMessage,CommitProjectHandler.this);
+						if(!oldVersion.equals(newVersion)){
+							MessageDialog.openInformation(shell, null, "Commit completed.");
+						}
 					}
 				} catch (EmfStoreException e) {
 					DialogHandler.showExceptionDialog(e);
-				}catch(NullPointerException np){
-					//usersession was null -> fail silently
 				}
 			}
 		});
 		return null;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public boolean inspectChanges(ChangePackage changePackage) {
 		CommitDialog commitDialog = new CommitDialog(shell,changePackage);
 		int returnCode = commitDialog.open();

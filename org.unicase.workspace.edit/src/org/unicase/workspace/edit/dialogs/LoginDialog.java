@@ -6,6 +6,8 @@
  */
 package org.unicase.workspace.edit.dialogs;
 
+import java.util.ArrayList;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -27,7 +29,6 @@ import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.accesscontrol.AccesscontrolHelper;
 
 /**
  * Class for the login dialog.
@@ -51,12 +52,11 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 	private Text username;
 	private Text password;
 	private Usersession session;
-	private Combo savedSessionsCombo;
-	private EList<Usersession> savedSessionsList;
+	private Combo sessionsCombo;
+	private EList<Usersession> sessionsList;
 	private Button savePassword;
 	private Composite contents;
 	private ServerInfo server;
-	private AccesscontrolHelper accessControl;
 
 	/**
 	 * Default constructor.
@@ -85,18 +85,26 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 		setTitle("Log in");
 		setMessage("Please enter your username and password");
 
-		// initialize the combo for the saved sessions
-		Label savedSessionsLabel = new Label(contents, SWT.NULL);
-		savedSessionsLabel.setText("Saved sessions:");
-		savedSessionsCombo = new Combo(contents, SWT.READ_ONLY);
-		savedSessionsCombo.add("<new session>");
-		savedSessionsList = WorkspaceManager.getInstance().getCurrentWorkspace().getUsersessions();
-		for (int i = 0; i < savedSessionsList.size(); i++) {
-			if(savedSessionsList.get(i).getServerInfo().equals(server)){
-				savedSessionsCombo.add(savedSessionsList.get(i).getUsername());
+		Label sessionsLabel = new Label(contents, SWT.NULL);
+		sessionsLabel.setText("Saved sessions:");
+
+		//initialize the list of appropriate usersessions
+		sessionsList = WorkspaceManager.getInstance().getCurrentWorkspace().getUsersessions();
+		ArrayList<Usersession> sessionToRemove = new ArrayList<Usersession>();
+		for (Usersession tempSession : sessionsList) {			
+			if(!tempSession.getServerInfo().equals(server)){
+				sessionToRemove.add(tempSession);
 			}
 		}
-		savedSessionsCombo.addSelectionListener(this);
+		sessionsList.removeAll(sessionToRemove);
+
+		// initialize the combo for choosing an old session
+		sessionsCombo = new Combo(contents, SWT.READ_ONLY);
+		sessionsCombo.add("<new session>");
+		for (Usersession tempSession : sessionsList) {
+			sessionsCombo.add(tempSession.getUsername());
+		}
+		sessionsCombo.addSelectionListener(this);
 
 		// initialize the other widgets
 		Label user = new Label(contents, SWT.NULL);
@@ -115,12 +123,12 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 
 		// select entry for a new session
 		if (session == null) {
-			savedSessionsCombo.select(0);
+			sessionsCombo.select(0);
 			username.setEnabled(true);
 		}
 		// load the data from the last session
 		else {
-			savedSessionsCombo.select(1 + savedSessionsList.indexOf(session));
+			sessionsCombo.select(1 + sessionsList.indexOf(session));
 			loadData(session);
 		}
 
@@ -150,7 +158,6 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 				WorkspaceManager.getInstance().getCurrentWorkspace().getUsersessions().add(session);
 			}
 			WorkspaceManager.getInstance().getCurrentWorkspace().save();
-			accessControl = new AccesscontrolHelper(session);
 			setReturnCode(SUCCESSFUL);
 			close();
 		} catch (EmfStoreException e) {
@@ -175,19 +182,20 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 	 */
 	public void widgetDefaultSelected(SelectionEvent e) {
 		// nothing to do here.
+		
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public void widgetSelected(SelectionEvent e) {
-		if (savedSessionsCombo.getSelectionIndex() == 0) {
+		if (sessionsCombo.getSelectionIndex() == 0) {
 			username.setEnabled(true);
 			username.setText("");
 			password.setText("");
 			savePassword.setSelection(false);
 		} else {
-			Usersession loadSession = savedSessionsList.get(savedSessionsCombo.getSelectionIndex() - 1);
+			Usersession loadSession = sessionsList.get(sessionsCombo.getSelectionIndex() - 1);
 			loadData(loadSession);
 		}
 
@@ -226,14 +234,6 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 			}
 		}
 		return super.open();
-	}
-	
-	/**
-	 * Getter for this dialog's AccesscontrolHelper.
-	 * @return the AccesscontrolHelper
-	 */
-	public AccesscontrolHelper getAccesscontrolHelper(){
-		return accessControl;
 	}
 
 }
