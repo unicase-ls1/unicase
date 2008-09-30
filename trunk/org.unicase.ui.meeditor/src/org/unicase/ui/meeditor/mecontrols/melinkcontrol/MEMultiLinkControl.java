@@ -210,8 +210,6 @@ public class MEMultiLinkControl extends AbstractMEControl {
 		section.setText(descriptor.getDisplayName(getModelElement()));
 		createSectionToolbar(section, getToolkit());
 		composite = getToolkit().createComposite(section, style);
-		// getToolkit().getColors().createColor("c", 0, 0, 0);
-		// composite.setBackground(getToolkit().getColors().getColor("c"));
 		composite.setLayout(tableLayout);
 
 		rebuildLinkSection();
