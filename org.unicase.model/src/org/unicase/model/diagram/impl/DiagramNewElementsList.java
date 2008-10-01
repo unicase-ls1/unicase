@@ -48,6 +48,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void move(int newPosition, ModelElement object) {
 		elements.move(newPosition, object);
 	}
@@ -55,6 +56,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public ModelElement move(int newPosition, int oldPosition) {
 		return elements.move(newPosition, oldPosition);
 	}
@@ -62,6 +64,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public boolean add(ModelElement arg0) {
 		boolean add = project.getModelElements().add(arg0);
 		return add;
@@ -76,6 +79,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	 * @param arg1
 	 *            The new modelelement
 	 */
+	@Override
 	public void add(int arg0, ModelElement arg1) {
 		project.getModelElements().add(arg0, arg1);
 	}
@@ -88,6 +92,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	 *            The list of new modelelements
 	 * @return true if the list changed as a result of the calls
 	 */
+	@Override
 	public boolean addAll(Collection<? extends ModelElement> arg0) {
 		return project.getModelElements().addAll(arg0);
 	}
@@ -102,6 +107,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	 *            The list of new modelelements
 	 * @return true if the list changed as a result of the calls
 	 */
+	@Override
 	public boolean addAll(int arg0, Collection<? extends ModelElement> arg1) {
 		return project.getModelElements().addAll(arg0, arg1);
 	}
@@ -109,6 +115,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	/**
 	 * {@inheritDoc} Elements are not deleted from the project.
 	 */
+	@Override
 	public void clear() {
 		elements.clear();
 	}
@@ -116,6 +123,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public boolean contains(Object arg0) {
 		return elements.contains(arg0);
 	}
@@ -123,6 +131,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public boolean containsAll(Collection<?> arg0) {
 		return elements.containsAll(arg0);
 	}
@@ -130,6 +139,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public ModelElement get(int arg0) {
 		return elements.get(arg0);
 	}
@@ -137,6 +147,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public int indexOf(Object arg0) {
 		return elements.indexOf(arg0);
 	}
@@ -144,6 +155,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public boolean isEmpty() {
 		return elements.isEmpty();
 	}
@@ -151,6 +163,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Iterator<ModelElement> iterator() {
 		return elements.iterator();
 	}
@@ -158,6 +171,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public int lastIndexOf(Object arg0) {
 		return elements.lastIndexOf(arg0);
 	}
@@ -165,6 +179,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public ListIterator<ModelElement> listIterator() {
 		return elements.listIterator();
 	}
@@ -172,6 +187,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public ListIterator<ModelElement> listIterator(int arg0) {
 		return elements.listIterator(arg0);
 	}
@@ -179,6 +195,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public boolean remove(Object arg0) {
 		return elements.remove(arg0);
 	}
@@ -186,6 +203,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public ModelElement remove(int arg0) {
 		return elements.remove(arg0);
 	}
@@ -193,6 +211,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public boolean removeAll(Collection<?> arg0) {
 		return elements.removeAll(arg0);
 	}
@@ -200,6 +219,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public boolean retainAll(Collection<?> arg0) {
 		return elements.retainAll(arg0);
 	}
@@ -207,6 +227,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public ModelElement set(int arg0, ModelElement arg1) {
 		return elements.set(arg0, arg1);
 	}
@@ -214,6 +235,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public int size() {
 		return elements.size();
 	}
@@ -221,6 +243,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public List<ModelElement> subList(int arg0, int arg1) {
 		return elements.subList(arg0, arg1);
 	}
@@ -228,6 +251,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Object[] toArray() {
 		return elements.toArray();
 	}
@@ -235,6 +259,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public <T> T[] toArray(T[] arg0) {
 		return elements.toArray(arg0);
 	}

@@ -348,7 +348,7 @@ public class MethodImpl extends ModelElementImpl implements Method {
 			signature += "(";
 			for (Iterator<MethodArgument> argumentIterator = this
 					.getArguments().iterator(); argumentIterator.hasNext();) {
-				MethodArgument currentArgument = (MethodArgument) argumentIterator
+				MethodArgument currentArgument = argumentIterator
 						.next();
 				signature += currentArgument.getLabel();
 
