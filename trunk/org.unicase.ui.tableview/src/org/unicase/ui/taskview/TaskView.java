@@ -6,22 +6,18 @@
  */
 package org.unicase.ui.taskview;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.ui.tableview.Activator;
-import org.unicase.workspace.Usersession;
-import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.OrgUnitHelper;
 
 /**
  * A specialized TableView to display Action Items.
@@ -39,6 +35,7 @@ public class TaskView extends ViewPart {
 	private boolean showChecked;
 	private Action doubleClickAction;
 	private UncheckedElementsViewerFilter uncheckedElementsVF = new UncheckedElementsViewerFilter();
+	private UserViewerFilter userViewerFilter;
 
 	/**
 	 * 
@@ -57,6 +54,11 @@ public class TaskView extends ViewPart {
 		viewer.addFilter(new CheckableViewerFilter());
 		// initially, only unchecked elements shall be shown
 		viewer.addFilter(uncheckedElementsVF);
+
+		User user = OrgUnitHelper.getCurrentUser(WorkspaceManager.getInstance()
+				.getCurrentWorkspace());
+
+		userViewerFilter = new UserViewerFilter(user);
 		getSite().setSelectionProvider(viewer);
 		hookDoubleClickAction();
 		// the toolbar contains two buttons: one to restrict the view to the
@@ -107,37 +109,10 @@ public class TaskView extends ViewPart {
 	 *            instance or not
 	 */
 	public void setRestrictedToCurrentUser(boolean restricted) {
-		this.restrictedToCurrentUser = restricted;
-
-		if (restrictedToCurrentUser) {
-			Workspace workspace = WorkspaceManager.getInstance()
-					.getCurrentWorkspace();
-			Usersession currentUserSession = workspace.getActiveProjectSpace()
-					.getUsersession();
-
-			EList<User> projectUsers = workspace.getActiveProjectSpace()
-					.getProject().getAllModelElementsbyClass(
-							OrganizationPackage.eINSTANCE.getUser(),
-							new BasicEList<User>());
-			// FS tell the user if the project has no users
-			for (User currentUser : projectUsers) {
-				// FS how can I get the appropriate user from the current user
-				// session?
-				if (currentUser.getName().equals(
-						currentUserSession.getUsername())) {
-					adapterFactory
-							.setFilteredItemProvider(new UserAndEClassFilterItemProvider(
-									adapterFactory, itemMetaClass, currentUser));
-					viewer.setAdapterFactory(adapterFactory);
-					// first come first serve
-					break;
-				}
-			}
+		if (restricted) {
+			viewer.addFilter(userViewerFilter);
 		} else {
-			adapterFactory
-					.setFilteredItemProvider(new EClassFilterItemProvider(
-							adapterFactory, itemMetaClass));
-			viewer.setAdapterFactory(adapterFactory);
+			viewer.removeFilter(userViewerFilter);
 		}
 	}
 
