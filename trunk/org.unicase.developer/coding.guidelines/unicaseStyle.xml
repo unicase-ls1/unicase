@@ -3,7 +3,7 @@
     This configuration file was written by the eclipse-cs plugin configuration editor
 -->
 <!--
-    Checkstyle-Configuration: Unicase
+    Checkstyle-Configuration: unicase Style
     Description: none
 -->
 <!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.2//EN" "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
@@ -156,7 +156,9 @@
         <module name="DefaultComesLast"/>
         <module name="ExplicitInitialization"/>
         <module name="FallThrough"/>
-        <module name="AnonInnerLength"/>
+        <module name="AnonInnerLength">
+            <property name="max" value="50"/>
+        </module>
         <module name="ThrowsCount">
             <property name="max" value="2"/>
         </module>
@@ -181,8 +183,8 @@
     </module>
     <module name="SuppressionCommentFilter">
         <metadata name="com.atlassw.tools.eclipse.checkstyle.comment" value="No Supress Warning on manual code"/>
-        <property name="offCommentFormat" value="//end of custom code"/>
-        <property name="onCommentFormat" value="//begin of custom code"/>
+        <property name="offCommentFormat" value="// end of custom code"/>
+        <property name="onCommentFormat" value="// begin of custom code"/>
     </module>
     <module name="SuppressionCommentFilter">
         <metadata name="com.atlassw.tools.eclipse.checkstyle.comment" value="SupressCatchExceptionWarning"/>
