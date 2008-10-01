@@ -194,6 +194,7 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider
 	 * @generated NOT
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/ModelElement");
 	}
