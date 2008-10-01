@@ -134,12 +134,14 @@
             <property name="header" value="/**\n * &lt;copyright&gt; Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html\n * &lt;/copyright&gt;"/>
         </module>
         <module name="BooleanExpressionComplexity">
-            <property name="max" value="4"/>
+            <property name="max" value="5"/>
         </module>
         <module name="CyclomaticComplexity">
-            <property name="max" value="12"/>
+            <property name="max" value="15"/>
         </module>
-        <module name="NPathComplexity"/>
+        <module name="NPathComplexity">
+            <property name="max" value="220"/>
+        </module>
         <module name="SuperClone"/>
         <module name="SuperFinalize"/>
         <module name="PackageDeclaration"/>
@@ -165,7 +167,7 @@
         <module name="UncommentedMain"/>
         <module name="CyclomaticComplexity">
             <property name="id" value="complexity"/>
-            <property name="max" value="12"/>
+            <property name="max" value="15"/>
         </module>
     </module>
     <module name="PackageHtml">
