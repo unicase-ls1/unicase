@@ -156,6 +156,7 @@ public class ProjectInfoItemProvider extends ItemProviderAdapter implements
 	 * @return the label for the object
 	 * @generated NOT
 	 */
+	@Override
 	public String getText(Object object) {
 		ProjectInfo projectInfo = ((ProjectInfo) object);
 		String ret = "";
