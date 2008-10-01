@@ -252,7 +252,7 @@ public class EmfStoreController implements IApplication {
 						TreeIterator<EObject> allContents = version.eResource()
 								.getAllContents();
 						while (allContents.hasNext()) {
-							EObject object2 = (EObject) allContents.next();
+							allContents.next();
 
 						}
 					}

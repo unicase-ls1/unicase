@@ -74,6 +74,7 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 		try {
 			results = dirContext.search(LDAPBASE, "(& (" + SEARCHDN + "="
 					+ username + ") (objectclass=*))", constraints);
+		//OW removed this
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.info("Search failed, base = " + LDAPBASE);
@@ -91,6 +92,7 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 				resolvedName = sr.getName();
 				break;
 			}
+		//remove this
 		} catch (Exception e) {
 			logger.info("Exception while iterating over the results");
 			return false;

@@ -301,6 +301,7 @@ public class AccessControlImpl implements AuthenticationControl,
 		return user;
 	}
 
+	//extract to normal class
 	/**
 	 * 
 	 * @author wesendonk
@@ -314,6 +315,11 @@ public class AccessControlImpl implements AuthenticationControl,
 			active();
 		}
 
+		/**
+		 * Get the ACUser.
+		 * @return
+		 * @throws AccessControlException
+		 */
 		public ACUser getUser() throws AccessControlException {
 			//FIXME OW timeout
 			//checkLastActive();
