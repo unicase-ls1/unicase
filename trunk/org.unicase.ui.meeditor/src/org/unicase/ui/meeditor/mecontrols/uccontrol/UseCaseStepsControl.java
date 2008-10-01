@@ -196,6 +196,7 @@ public class UseCaseStepsControl extends AbstractMEControl{
 			public void linkActivated(HyperlinkEvent e) {
 				TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
+				@Override
 				protected void doExecute() {
 						RequirementFactory rFactory = RequirementFactoryImpl.init();						
 						Step p = rFactory.createStep();
@@ -224,6 +225,7 @@ public class UseCaseStepsControl extends AbstractMEControl{
 			public void linkActivated(HyperlinkEvent e) {
 				TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
+					@Override
 					protected void doExecute() {
 						RequirementFactory rFactory = RequirementFactoryImpl.init();
 						Step p = rFactory.createStep();

@@ -146,6 +146,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 			if(creationDate==null){
 				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
+					@Override
 					protected void doExecute() {
 						modelElement.setCreator("unicase");
 						modelElement.setCreationDate(new Date());

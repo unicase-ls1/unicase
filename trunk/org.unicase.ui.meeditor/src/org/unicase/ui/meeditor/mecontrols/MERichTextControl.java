@@ -168,6 +168,7 @@ public class MERichTextControl extends AbstractMEControl {
 		ImageDescriptor descriptor = ImageDescriptor.createFromURL(url);
 		item.setImage(descriptor.createImage());
 		item.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(SelectionEvent event) {
 				Point selectionRange = text.getSelectionRange();
 				int x = selectionRange.x;

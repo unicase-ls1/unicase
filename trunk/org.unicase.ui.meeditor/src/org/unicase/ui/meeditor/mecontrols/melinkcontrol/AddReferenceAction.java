@@ -58,7 +58,7 @@ public class AddReferenceAction extends Action {
 					new AdapterFactoryLabelProvider(
 							new ComposedAdapterFactory(
 									ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
-			Collection<ModelElement> allElements = ((ModelElement) modelElement)
+			Collection<ModelElement> allElements = modelElement
 					.getProject().getAllModelElementsbyClass(clazz,
 							new BasicEList<ModelElement>());
 			allElements.remove(modelElement);
@@ -99,7 +99,7 @@ public class AddReferenceAction extends Action {
 				} else {
 					Object result = dlg.getFirstResult();
 					if (result instanceof EObject) {
-						modelElement.eSet(eReference, (EObject) result);
+						modelElement.eSet(eReference, result);
 					}
 				}
 
@@ -163,6 +163,7 @@ public class AddReferenceAction extends Action {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void run() {
 		TransactionalEditingDomain domain = TransactionUtil
 				.getEditingDomain(modelElement);
