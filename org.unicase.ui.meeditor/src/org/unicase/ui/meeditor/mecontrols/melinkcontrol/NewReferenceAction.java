@@ -150,6 +150,7 @@ public class NewReferenceAction extends Action {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void run() {
 		if (eReference.isContainer()) {
 			DialogHandler

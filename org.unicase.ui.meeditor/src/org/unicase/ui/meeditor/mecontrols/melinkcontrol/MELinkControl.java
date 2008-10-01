@@ -95,6 +95,7 @@ public class MELinkControl extends AbstractMEControl {
 	/**
 	 * Disposes the Composite of this {@link MELinkControl}.
 	 */
+	@Override
 	public void dispose() {
 		//AS: check single link widget for instability
 		if (linkComposite!=null){
