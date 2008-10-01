@@ -3,8 +3,10 @@ package org.unicase.ui.stem.views;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -13,6 +15,7 @@ import org.eclipse.swt.graphics.Image;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
@@ -27,10 +30,12 @@ public class ChangePackageVisualizationHelper {
 	private ChangePackage changePackage;
 	private Project project;
 	private Map<ModelElementId, ModelElement> modelElementMap;
+	private Map<ChangePackage,Set<ModelElementId>> touchedModelElements;
 	
 	public ChangePackageVisualizationHelper(List<ChangePackage> changePackages, Project project) {
 		this.changePackage=changePackage;
 		this.modelElementMap=new HashMap<ModelElementId, ModelElement>();
+		this.touchedModelElements=new HashMap<ChangePackage, Set<ModelElementId>>();
 		for (ChangePackage changePackage : changePackages) {
 			initModelELementMap(changePackage);
 		}
@@ -39,10 +44,41 @@ public class ChangePackageVisualizationHelper {
 	
 	private void initModelELementMap(ChangePackage changePackage) {
 		EList<AbstractOperation> operations = changePackage.getOperations();
+		Set<ModelElementId> modelElements = new HashSet<ModelElementId>();
+		touchedModelElements.put(changePackage, modelElements);
 		for (AbstractOperation abstractOperation : operations) {
-			if (abstractOperation instanceof CreateDeleteOperation) {
-				ModelElement modelElement = ((CreateDeleteOperation) abstractOperation).getModelElement();
-				modelElementMap.put(modelElement.getModelElementId(), modelElement);
+			modelElements.add(abstractOperation.getModelElementId());
+			extractModelElements(modelElements, abstractOperation);
+		}
+	}
+
+	private void extractModelElements(Set<ModelElementId> modelElements,
+			AbstractOperation abstractOperation) {
+		if (abstractOperation instanceof CreateDeleteOperation) {
+			ModelElement modelElement = ((CreateDeleteOperation) abstractOperation).getModelElement();
+			modelElementMap.put(modelElement.getModelElementId(), modelElement);
+		}
+		else if (abstractOperation instanceof SingleReferenceOperation) {
+			SingleReferenceOperation singleReferenceOperation = (SingleReferenceOperation) abstractOperation;
+			ModelElementId newValue = singleReferenceOperation.getNewValue();
+			ModelElementId oldValue = singleReferenceOperation.getOldValue();
+			if (newValue!=null) {
+				modelElements.add(newValue);
+			}
+			if (oldValue!=null) {
+				modelElements.add(oldValue);
+			}
+		}
+		else if (abstractOperation instanceof MultiReferenceOperation) {
+			MultiReferenceOperation multiReferenceOperation = (MultiReferenceOperation) abstractOperation;
+			modelElements.addAll(multiReferenceOperation.getReferencedModelElements());
+		}
+		else if (abstractOperation instanceof MultiReferenceMoveOperation) {
+			modelElements.add(((MultiReferenceMoveOperation) abstractOperation).getReferencedModelElementId());
+		}
+		else if (abstractOperation instanceof CompositeOperation) {
+			for (AbstractOperation subOperation : ((CompositeOperation) abstractOperation).getSubOperations()) {
+				extractModelElements(modelElements, abstractOperation);
 			}
 		}
 	}
@@ -151,7 +187,7 @@ public class ChangePackageVisualizationHelper {
 		return image;
 	}
 	
-	public Collection<ModelElement> getAllModelElements() {
-		return modelElementMap.values();
+	public Set<ModelElementId> getAllModelElements(ChangePackage changePackage) {
+		return this.touchedModelElements.get(changePackage);
 	}
 }
