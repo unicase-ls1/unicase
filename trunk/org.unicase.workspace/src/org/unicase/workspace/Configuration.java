@@ -62,12 +62,14 @@ public final class Configuration {
 	 * @return the resource save options
 	 */
 	public static Map<Object, Object> getResourceSaveOptions() {
-		if (resourceSaveOptions == null) {
-			resourceSaveOptions = new HashMap<Object, Object>();
-			resourceSaveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED,
-					Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
-		}
-		return resourceSaveOptions;
+		// MK: the options below should only be used with resourcemodification
+		// tracking enabled
+		// if (resourceSaveOptions == null) {
+		// resourceSaveOptions = new HashMap<Object, Object>();
+		// resourceSaveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED,
+		// Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
+		// }
+		return null;
 	}
 
 	/**
@@ -77,40 +79,43 @@ public final class Configuration {
 	 */
 	public static List<ServerInfo> getDefaultServerInfos() {
 		List<ServerInfo> serverInfos = new ArrayList<ServerInfo>();
-		
+
 		ServerInfo serverInfo1 = WorkspaceFactory.eINSTANCE.createServerInfo();
 		serverInfo1.setDisplayName("Localhost Server");
 		serverInfo1.setName("Localhost Server");
 		serverInfo1.setPort(1099);
 		serverInfo1.setUrl("localhost");
-		Usersession superUsersession = WorkspaceFactory.eINSTANCE.createUsersession();
+		Usersession superUsersession = WorkspaceFactory.eINSTANCE
+				.createUsersession();
 		superUsersession.setPassword("super");
 		superUsersession.setSavePassword(true);
 		superUsersession.setServerInfo(serverInfo1);
 		superUsersession.setUsername("super");
 		serverInfo1.setLastUsersession(superUsersession);
 		serverInfos.add(serverInfo1);
-				
+
 		ServerInfo serverInfo2 = WorkspaceFactory.eINSTANCE.createServerInfo();
 		serverInfo2.setDisplayName("unicase Server");
 		serverInfo2.setName("unicase Server");
 		serverInfo2.setPort(1099);
 		serverInfo2.setUrl("sysiphus.in.tum.de");
 		serverInfos.add(serverInfo2);
-		
+
 		return serverInfos;
 	}
-	
+
 	/**
 	 * Returns maximum number of model elements allowed per resource.
+	 * 
 	 * @return the maximum number
 	 */
 	public static int getMaxMECountPerResource() {
 		return 100;
 	}
-	
+
 	/**
 	 * Returns maximum size of of a resource file on expand.
+	 * 
 	 * @return the maximum number
 	 */
 	public static int getMaxResourceFileSizeOnExpand() {
