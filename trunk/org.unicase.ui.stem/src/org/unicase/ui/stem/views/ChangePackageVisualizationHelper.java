@@ -1,6 +1,7 @@
 package org.unicase.ui.stem.views;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,8 +21,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperati
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
-import org.unicase.model.task.ActionItem;
-import org.unicase.model.task.TaskFactory;
 
 public class ChangePackageVisualizationHelper {
 	
@@ -150,5 +149,9 @@ public class ChangePackageVisualizationHelper {
 			}
 		}
 		return image;
+	}
+	
+	public Collection<ModelElement> getAllModelElements() {
+		return modelElementMap.values();
 	}
 }
