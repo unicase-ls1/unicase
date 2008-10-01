@@ -32,11 +32,11 @@ public class Activator extends Plugin {
 	public void start(BundleContext context) throws FatalEmfStoreException {
 		try {
 			super.start(context);
-		//BEGIN SUPRESS CATCH EXCEPTION
+		// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (Exception e) {
 			throw new FatalEmfStoreException("Plugin Bundle start failed!", e);
 		}
-		//END SUPRESS CATCH EXCEPTION
+		// END SUPRESS CATCH EXCEPTION
 		plugin = this;
 	}
 
@@ -50,11 +50,11 @@ public class Activator extends Plugin {
 		plugin = null;
 		try {
 			super.stop(context);
-		//BEGIN SUPRESS CATCH EXCEPTION
+		// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (Exception e) {
 			throw new FatalEmfStoreException("Plugin Bundle stop failed!", e);
 		}
-		//END SUPRESS CATCH EXCEPTION
+		// END SUPRESS CATCH EXCEPTION
 	}
 
 	/**
