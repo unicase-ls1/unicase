@@ -120,17 +120,17 @@ public class MESingleLinkControl extends AbstractMEControl {
 		});
 		Button newButton = getToolkit().createButton(composite, "", SWT.PUSH);
 		newButton.setImage(newAction.getImageDescriptor().createImage());// Activator
-																			// .
-																			// getImageDescriptor
-																			// (
-																			// "icons/link.png"
-																			// )
-																			// .
-																			// createImage
-																			// (
-																			// )
-																			// )
-																			// ;
+		// .
+		// getImageDescriptor
+		// (
+		// "icons/link.png"
+		// )
+		// .
+		// createImage
+		// (
+		// )
+		// )
+		// ;
 		newButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -178,5 +178,9 @@ public class MESingleLinkControl extends AbstractMEControl {
 	@Override
 	public void dispose() {
 		getModelElement().eAdapters().remove(eAdapter);
+		if (meControl != null) {
+			meControl.dispose();
+		}
+
 	}
 }
