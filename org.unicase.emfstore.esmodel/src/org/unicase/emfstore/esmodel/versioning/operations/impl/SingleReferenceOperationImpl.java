@@ -1,11 +1,13 @@
 /**
- * Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
  *
  * $Id$
  */
 package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -372,7 +374,6 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl
 		ModelElement modelElement = project
 				.getModelElement(getModelElementId());
 		ModelElement newModelElement = project.getModelElement(getNewValue());
-		ModelElement oldModelElement = project.getModelElement(getOldValue());
 
 		List<EReference> references = modelElement.eClass().getEAllReferences();
 		for (EReference reference : references) {
@@ -417,6 +418,15 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl
 		singleReferenceOperation.setNewValue(ModelUtil.clone(getOldValue()));
 		singleReferenceOperation.setOldValue(ModelUtil.clone(getOldValue()));
 		return singleReferenceOperation;
+	}
+
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#getOtherInvolvedModelElements()
+	 */
+	public Set<ModelElementId> getOtherInvolvedModelElements() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 } //SingleReferenceOperationImpl

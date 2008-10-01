@@ -132,9 +132,12 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 		}
 		return roles;
 	}
+	
+	// begin of custom code
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit#getId()
 	 * @generated NOT
 	 */
 	public ACOrgUnitId getId() {
@@ -149,7 +152,8 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}
+	 * @see java.lang.Object#equals(java.lang.Object)
 	 * @generated NOT
 	 */
 	@Override
@@ -160,6 +164,16 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 			return super.equals(obj);
 		}
 	}
+	
+	/** 
+	 * {@inheritDoc}
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		return this.getId().getId().hashCode();
+	}
+	// end of custom code
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -1,9 +1,14 @@
 /**
- * Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
  *
  * $Id$
  */
 package org.unicase.emfstore.esmodel.versioning.operations;
+
+import java.util.Set;
+
+import org.unicase.model.ModelElementId;
 
 /**
  * <!-- begin-user-doc -->
@@ -74,5 +79,11 @@ public interface ReferenceOperation extends FeatureOperation {
 	 * @generated
 	 */
 	void setOppositeFeatureName(String value);
+	
+	/**
+	 * Returns all involved elements other than the element the operation refers to.
+	 * @return a set of model elements
+	 */
+	Set<ModelElementId> getOtherInvolvedModelElements();
 
 } // ReferenceOperation

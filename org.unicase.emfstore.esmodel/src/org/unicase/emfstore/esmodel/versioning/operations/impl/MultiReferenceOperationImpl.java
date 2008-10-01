@@ -1,5 +1,6 @@
 /**
- * Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
  *
  * $Id$
  */
@@ -7,7 +8,9 @@ package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -307,6 +310,7 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl
 		for (EReference reference : references) {
 			if (reference.getName().equals(this.getFeatureName())) {
 				Object object = modelElement.eGet(reference);
+				@SuppressWarnings("unchecked")
 				EList<ModelElement> list = (EList<ModelElement>) object;
 				if (isAdd()) {
 					if (index < list.size()) {
@@ -393,6 +397,16 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl
 		}
 		multiReferenceOperation.setIndex(getIndex());
 		return multiReferenceOperation;
+	}
+
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#getOtherInvolvedModelElements()
+	 */
+	public Set<ModelElementId> getOtherInvolvedModelElements() {
+		Set<ModelElementId> set = new HashSet<ModelElementId>();
+		set.addAll(getReferencedModelElements());
+		return set;
 	}
 
 } //MultiReferenceOperationImpl

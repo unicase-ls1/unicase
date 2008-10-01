@@ -213,7 +213,7 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 		return versions;
 	}
 
-	//begin of custom code
+	// begin of custom code
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -225,7 +225,7 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 				.get(versions.size() - 1);
 	}
 
-	//end of custom code
+	// end of custom code
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
