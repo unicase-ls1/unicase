@@ -111,7 +111,7 @@ public final class RMIUtil {
 	 * 
 	 * @param object
 	 *            the String representation of the EObject
-	 * @param the
+	 * @param res the
 	 *            resource
 	 * @return the deserialized EObject
 	 * @throws UnsupportedEncodingException

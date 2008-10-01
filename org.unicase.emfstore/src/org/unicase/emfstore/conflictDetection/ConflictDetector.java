@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.emfstore.conflictDetection;
 
 import java.util.ArrayList;
@@ -18,17 +24,30 @@ public class ConflictDetector {
 
 	private ConflictDetectionStrategy conflictDetectionStrategy;
 	
+	/**
+	 * Constructor. Uses default conflict detection strategy
+	 */
 	public ConflictDetector() {
 		this(new AlwaysFalseConflictDetectionStrategy());
 	}
 	
+	/**
+	 * Constructor with a given strategy.
+	 * @param conflictDetectionStrategy the detection strategy to use
+	 */
 	public ConflictDetector(ConflictDetectionStrategy conflictDetectionStrategy) {
 		this.conflictDetectionStrategy=conflictDetectionStrategy;
 	}
 	
-	public boolean doConflict(ChangePackage a, ChangePackage b) {
-		for (AbstractOperation operation : a.getOperations()) {
-			for (AbstractOperation otherOperation : b.getOperations()) {
+	/**
+	 * Determines if two change packages are conflicting.
+	 * @param changePackageA a changePackage
+	 * @param changePackageB another change package
+	 * @return true if the two packages conflict
+	 */
+	public boolean doConflict(ChangePackage changePackageA, ChangePackage changePackageB) {
+		for (AbstractOperation operation : changePackageA.getOperations()) {
+			for (AbstractOperation otherOperation : changePackageB.getOperations()) {
 				if (conflictDetectionStrategy.doConflict(operation, otherOperation)){
 					return true;
 				}
@@ -37,9 +56,15 @@ public class ConflictDetector {
 		return false;
 	}
 	
-	public ChangePackage doConflict(ChangePackage a, ArrayList<ChangePackage> list) {
-		for(ChangePackage b : list){
-			if(doConflict(a, b)){
+	/**
+	 * Determine if a change package conflicts with a list of change packages.
+	 * @param changePackage a change package
+	 * @param changePackageList a list of change package
+	 * @return true if the change package conflicts with any package in the list
+	 */
+	public ChangePackage doConflict(ChangePackage changePackage, ArrayList<ChangePackage> changePackageList) {
+		for(ChangePackage b : changePackageList){
+			if(doConflict(changePackage, b)){
 				return b;
 			}
 		}
@@ -173,10 +198,10 @@ public class ConflictDetector {
 	}
 	
 	/**
-	 * Return all conflicting
-	 * @param operationListA
-	 * @param operationListB
-	 * @return
+	 * Return all operations that are involved in a conflict of the two lists.
+	 * @param operationListA a list of operations
+	 * @param operationListB another list of operations
+	 * @return a set of operations
 	 */
 	public Set<AbstractOperation> getAllConflictInvolvedOperations(List<AbstractOperation> operationListA, List<AbstractOperation> operationListB) {
 		Set<AbstractOperation> result = new HashSet<AbstractOperation>();
