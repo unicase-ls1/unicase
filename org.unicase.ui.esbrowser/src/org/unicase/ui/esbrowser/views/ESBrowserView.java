@@ -51,7 +51,7 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.accesscontrol.AccesscontrolHelper;
+import org.unicase.workspace.accesscontrol.AccessControlHelper;
 
 /**
  * View containing the remote repositories.
@@ -278,7 +278,7 @@ public class ESBrowserView extends ViewPart {
 	private void fillContextMenu(IMenuManager manager) {
 		ESBrowserContentProvider provider = (ESBrowserContentProvider) viewer
 				.getContentProvider();
-		AccesscontrolHelper accessControl = provider.getAccesscontrolHelper();
+		AccessControlHelper accessControl = provider.getAccesscontrolHelper();
 		ISelection selection = viewer.getSelection();
 		Object obj = ((IStructuredSelection) selection).getFirstElement();
 		if (obj instanceof ServerInfo) {
@@ -420,6 +420,7 @@ public class ESBrowserView extends ViewPart {
 				.getImageDescriptor("icons/serverAdd.png"));
 
 		manageOrgUnits = new Action() {
+			@Override
 			public void run() {
 				ManageOrgUnitsDialog dialog;
 				try {
@@ -433,7 +434,7 @@ public class ESBrowserView extends ViewPart {
 							.getDisplay().getActiveShell(), adminBroker);
 					dialog.create();
 					dialog.open();
-				} catch (ConnectionException e) {
+				} catch (EmfStoreException e) {
 					DialogHandler.showExceptionDialog(e);
 				}
 			}
