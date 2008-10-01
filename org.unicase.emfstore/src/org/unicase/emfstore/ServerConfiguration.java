@@ -18,8 +18,14 @@ import java.util.Properties;
  */
 public final class ServerConfiguration {
 
+	/**
+	 * Constant for boolean true string.
+	 */
 	public static final String TRUE = "true";
 
+	/**
+	 * Constant for boolean false string.
+	 */
 	public static final String FALSE = "false";
 
 	/**
@@ -42,6 +48,7 @@ public final class ServerConfiguration {
 	 */
 	public static final String RMI_ENCRYTION_DEFAULT = "true";
 
+	//OW please document
 	public static final String SSL_PASSWORD = "rmi.encryption.ssl.password";
 
 	public static final String SSL_PASSWORD_DEFAULT = "av374tb$VBGGtrgwa7tosdfa";

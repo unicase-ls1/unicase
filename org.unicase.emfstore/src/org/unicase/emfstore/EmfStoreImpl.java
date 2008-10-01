@@ -62,7 +62,7 @@ public class EmfStoreImpl implements EmfStore {
 
 	private ServerSpace serverSpace;
 
-	private static final Log logger = LogFactory.getLog(EmfStoreImpl.class);
+	private static final Log LOGGER = LogFactory.getLog(EmfStoreImpl.class);
 
 	private AuthorizationControl authorizationControl;
 
@@ -159,7 +159,7 @@ public class EmfStoreImpl implements EmfStore {
 			throw new EmfStoreException("Shutting down server.");
 		}
 
-		logger.error("Total time for commit: "
+		LOGGER.error("Total time for commit: "
 				+ (System.currentTimeMillis() - currentTimeMillis));
 		return newVersionSpec;
 	}
@@ -419,8 +419,7 @@ public class EmfStoreImpl implements EmfStore {
 	}
 
 	private ProjectHistory createEmptyProject(String name, String description,
-			LogMessage logMessage) throws EmfStoreException,
-			FatalEmfStoreException {
+			LogMessage logMessage) throws FatalEmfStoreException {
 
 		// create initial ProjectHistory
 		ProjectHistory projectHistory = EsmodelFactory.eINSTANCE
@@ -577,7 +576,7 @@ public class EmfStoreImpl implements EmfStore {
 		try {
 			long currentTimeMillis = System.currentTimeMillis();
 			getServerSpace().save();
-			logger.error("Total time for saving: "
+			LOGGER.error("Total time for saving: "
 					+ (System.currentTimeMillis() - currentTimeMillis));
 			currentTimeMillis = System.currentTimeMillis();
 		} catch (IOException e) {
