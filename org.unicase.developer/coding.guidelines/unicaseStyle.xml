@@ -188,8 +188,8 @@
     </module>
     <module name="SuppressionCommentFilter">
         <metadata name="com.atlassw.tools.eclipse.checkstyle.comment" value="SupressCatchExceptionWarning"/>
-        <property name="offCommentFormat" value="//BEGIN SUPRESS CATCH EXCEPTION"/>
-        <property name="onCommentFormat" value="//END SUPRESS CATCH EXCEPTION"/>
+        <property name="offCommentFormat" value="// BEGIN SUPRESS CATCH EXCEPTION"/>
+        <property name="onCommentFormat" value="// END SUPRESS CATCH EXCEPTION"/>
         <property name="messageFormat" value=".*Exception.*"/>
     </module>
 </module>
