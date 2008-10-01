@@ -12,6 +12,7 @@ import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.PlatformUI;
+import org.unicase.ui.stem.Activator;
 
 /**
  * . LabelProvider for annotated model element column in IterationPlaningView
@@ -42,6 +43,9 @@ public class EMFColumnLabelProvider extends IterationPlanningLabelProvider {
 	 */
 	@Override
 	public Image getImage(Object element) {
+		if(element instanceof Backlog){
+			return Activator.getImageDescriptor("icons/backlog.png").createImage();
+		}
 		Image image = decoratingLabelProvider.getImage(element);
 		decoratingLabelProvider.getLabelDecorator().decorateImage(image,
 				element);
@@ -56,6 +60,9 @@ public class EMFColumnLabelProvider extends IterationPlanningLabelProvider {
 	 */
 	@Override
 	public String getText(Object element) {
+		if(element instanceof Backlog){
+			return "Backlog";
+		}
 		return decoratingLabelProvider.getText(element);
 	}
 
