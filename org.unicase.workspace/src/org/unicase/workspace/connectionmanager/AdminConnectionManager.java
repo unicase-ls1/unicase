@@ -11,8 +11,19 @@ import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.workspace.ServerInfo;
 
+/**
+ * An admin connection manager connects to the server for administrative services.
+ * @author koegel
+ *
+ */
 public interface AdminConnectionManager extends AdminEmfStore {
 	
+	/**
+	 * Initialize the connection to the server.
+	 * @param serverInfo the server info
+	 * @param id the session id
+	 * @throws ConnectionException if the connection fails
+	 */
 	void initConnection(ServerInfo serverInfo, SessionId id) throws ConnectionException; 
 	
 }

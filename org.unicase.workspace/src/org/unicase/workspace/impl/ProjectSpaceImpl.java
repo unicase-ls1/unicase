@@ -14,7 +14,6 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.notify.impl.NotificationImpl;
@@ -23,10 +22,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.change.ChangeDescription;
-import org.eclipse.emf.ecore.change.util.ChangeRecorder;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -37,15 +33,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.xmi.DanglingHREFException;
 import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.ResourceSetChangeEvent;
-import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.conflictDetection.BasicConflictDetectionStrategy;
 import org.unicase.emfstore.conflictDetection.ConflictDetector;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
-import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
@@ -69,7 +62,6 @@ import org.unicase.model.Project;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.impl.IdentifiableElementImpl;
-import org.unicase.model.util.ModelUtil;
 import org.unicase.model.util.ModelValidationHelper;
 import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.workspace.Configuration;
@@ -83,7 +75,6 @@ import org.unicase.workspace.exceptions.IllegalProjectSpaceStateException;
 import org.unicase.workspace.exceptions.NoChangesOnServerException;
 import org.unicase.workspace.exceptions.NoLocalChangesException;
 import org.unicase.workspace.util.CommitObserver;
-import org.unicase.workspace.util.RecordingCommandWithResult;
 import org.unicase.workspace.util.UpdateObserver;
 
 /**
@@ -133,11 +124,6 @@ import org.unicase.workspace.util.UpdateObserver;
  */
 public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		ProjectSpace, ProjectChangeObserver {
-
-	/**
-	 * @generated NOT
-	 */
-	private ChangeRecorder changeRecorder;
 
 	/**
 	 * The cached value of the '{@link #getProject() <em>Project</em>}'
@@ -305,8 +291,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	protected EList<String> oldLogMessages;
 
 	private boolean isRecording;
-
-	private List<ProjectChangeObserver> observers;
 
 	// begin of custom code
 	/**
@@ -807,8 +791,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	public PrimaryVersionSpec commit(final LogMessage logMessage,
 			CommitObserver commitObserver) throws EmfStoreException {
 
-		long currentTimeMillis = System.currentTimeMillis();
-
 		stopChangeRecording();
 
 		// check if there are any changes
@@ -870,12 +852,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		return newBaseVersion;
 	}
 
-	private boolean isChangeDescriptionEmpty(ChangeDescription changeDescription) {
-		return (changeDescription.getObjectChanges().isEmpty()
-				&& changeDescription.getObjectsToAttach().isEmpty() && changeDescription
-				.getObjectsToDetach().isEmpty());
-	}
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -920,12 +896,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 							+ resolvedVersion.getIdentifier() + "!");
 		}
 		stopChangeRecording();
-		
+
 		List<ChangePackage> changes = new ArrayList<ChangePackage>();
 		try {
 
-			changes = connectionManager.getChanges(getUsersession().getSessionId(),
-					projectId, baseVersion, resolvedVersion);
+			changes = connectionManager.getChanges(getUsersession()
+					.getSessionId(), projectId, baseVersion, resolvedVersion);
 		} catch (EmfStoreException e) {
 			startChangeRecording();
 			throw e;
@@ -937,9 +913,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		for (ChangePackage change : changes) {
 			ChangePackage changePackage = VersioningFactory.eINSTANCE
 					.createChangePackage();
-			EList<AbstractOperation> copiedOperations = changePackage.getOperations();
+			EList<AbstractOperation> copiedOperations = changePackage
+					.getOperations();
 			for (AbstractOperation operation : getOperations()) {
-				copiedOperations.add((AbstractOperation) EcoreUtil.copy(operation));
+				copiedOperations.add((AbstractOperation) EcoreUtil
+						.copy(operation));
 			}
 			if (conflictDetector.doConflict(change, changePackage)) {
 				throw new ChangeConflictException(changes);
@@ -954,7 +932,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		for (ChangePackage change : cps) {
 			change.apply(getProject());
 		}
-	
+
 		setBaseVersion(resolvedVersion);
 		save();
 	}
@@ -1018,8 +996,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * @generated NOT
 	 */
 	public void init() {
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
 		// MK: possibly performance hit
 		this.eResource().setTrackingModification(true);
 		this.getProject().addProjectChangeObserver(this);
@@ -1437,15 +1413,20 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 				if (attribute.isTransient()) {
 					return;
 				}
-				DiagramPackage diagramPackage = DiagramFactory.eINSTANCE.getDiagramPackage();
+				DiagramPackage diagramPackage = DiagramFactory.eINSTANCE
+						.getDiagramPackage();
 				if (attribute.getName().equals(
-						diagramPackage
-								.getMEDiagram_DiagramLayout().getName()) && diagramPackage.getMEDiagram().isInstance(modelElement)) {
-					
-					DiagramLayoutOperation createDiagramLayoutOperation = OperationsFactory.eINSTANCE.createDiagramLayoutOperation();
-					createDiagramLayoutOperation.setFeatureName(attribute.getName());
-					createDiagramLayoutOperation.setModelElementId((ModelElementId) EcoreUtil
-					.copy(modelElement.getModelElementId()));
+						diagramPackage.getMEDiagram_DiagramLayout().getName())
+						&& diagramPackage.getMEDiagram().isInstance(
+								modelElement)) {
+
+					DiagramLayoutOperation createDiagramLayoutOperation = OperationsFactory.eINSTANCE
+							.createDiagramLayoutOperation();
+					createDiagramLayoutOperation.setFeatureName(attribute
+							.getName());
+					createDiagramLayoutOperation
+							.setModelElementId((ModelElementId) EcoreUtil
+									.copy(modelElement.getModelElementId()));
 					createDiagramLayoutOperation.setNewValue(newValue);
 					createDiagramLayoutOperation.setOldValue(oldValue);
 					this.getOperations().add(createDiagramLayoutOperation);
@@ -1766,12 +1747,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		createDeleteOperation.setModelElementId((ModelElementId) EcoreUtil
 				.copy(modelElement.getModelElementId()));
 		return createDeleteOperation;
-	}
-
-	public Command transactionAboutToCommit(ResourceSetChangeEvent event)
-			throws RollbackException {
-		// do nothing
-		return null;
 	}
 
 	public void modelElementAdded(Project project, ModelElement modelElement) {

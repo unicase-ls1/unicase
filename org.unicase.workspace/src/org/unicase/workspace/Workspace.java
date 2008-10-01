@@ -175,8 +175,20 @@ public interface Workspace extends EObject, IAdaptable {
 	 */
 	TransactionalEditingDomain getEditingDomain();
 
+	/**
+	 * Import a project from file.
+	 * @param absoluteFileName the file name to import from
+	 * @return a project space containing the imported project
+	 * @throws IOException if file access fails
+	 */
 	ProjectSpace importProject(String absoluteFileName) throws IOException;
 
+	/**
+	 * Export a project to a file.
+	 * @param projectSpace the project space
+	 * @param absoluteFileName the file name
+	 * @throws IOException if file access fails
+	 */
 	void exportProject(ProjectSpace projectSpace, String absoluteFileName)
 			throws IOException;
 

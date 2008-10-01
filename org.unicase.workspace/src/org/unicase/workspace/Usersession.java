@@ -18,7 +18,6 @@ import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
-import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 
 /**
@@ -299,6 +298,7 @@ public interface Usersession extends EObject {
 	 * <!-- begin-user-doc -->
 	 * Resolve a version spec to a primary version spec.
 	 * @param versionSpec the spec to resolve
+	 * @param projectId the project id
 	 * @return the primary version spec
 	 * <!-- end-user-doc -->
 	 * @throws EmfStoreException if resolving fails
@@ -317,16 +317,18 @@ public interface Usersession extends EObject {
 	 * @throws EmfStoreException if server throws an exception
 	 * @generated NOT
 	 */
-	public List<HistoryInfo> getHistoryInfo(ProjectId projectId,
+	List<HistoryInfo> getHistoryInfo(ProjectId projectId,
 			HistoryQuery query) throws EmfStoreException;
 
 	/**
 	 * Returns a {@link AdminBroker} related to the user session.
 	 * 
 	 * @return {@link AdminBroker}
+	 * @throws EmfStoreException if no connection can be established
+	 * @throws AccessControlException if access is denied
 	 * @generated NOT
 	 */
-	AdminBroker getAdminBroker() throws ConnectionException;
+	AdminBroker getAdminBroker() throws EmfStoreException, AccessControlException;
 
 	// end of custom code
 } // Usersession
