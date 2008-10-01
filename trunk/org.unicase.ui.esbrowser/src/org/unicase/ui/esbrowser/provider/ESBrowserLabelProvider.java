@@ -25,6 +25,7 @@ public class ESBrowserLabelProvider extends StyledCellLabelProvider{
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	@SuppressWarnings("deprecation")
 	public void update(ViewerCell cell) {
 		Object element= cell.getElement();

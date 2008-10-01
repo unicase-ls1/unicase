@@ -78,6 +78,7 @@ public class CreateProjectDialog extends TitleAreaDialog {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void okPressed() {
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
@@ -98,6 +99,7 @@ public class CreateProjectDialog extends TitleAreaDialog {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void cancelPressed() {
 		close();
 	}

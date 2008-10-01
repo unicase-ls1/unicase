@@ -23,7 +23,7 @@ import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.accesscontrol.AccesscontrolHelper;
+import org.unicase.workspace.accesscontrol.AccessControlHelper;
 import org.unicase.workspace.edit.dialogs.LoginDialog;
 import org.unicase.workspace.provider.WorkspaceItemProviderAdapterFactory;
 
@@ -37,7 +37,7 @@ public class ESBrowserContentProvider extends AdapterFactoryContentProvider {
 
 	private Usersession session;
 	private HashMap<ProjectInfo, ServerInfo> projectServerMap = new HashMap<ProjectInfo, ServerInfo>();
-	private AccesscontrolHelper accessControl;
+	private AccessControlHelper accessControl;
 
 
 	/**
@@ -61,7 +61,7 @@ public class ESBrowserContentProvider extends AdapterFactoryContentProvider {
 	 * Getter for the AccesscontrolHelper.
 	 * @return the AccesscontrolHelper
 	 */
-	public AccesscontrolHelper getAccesscontrolHelper(){
+	public AccessControlHelper getAccesscontrolHelper(){
 		return accessControl;
 	}
 
@@ -152,13 +152,18 @@ private class ContentProviderRecordingCommand extends RecordingCommand{
 					serverInfo.getProjectInfos().addAll(session.getRemoteProjectList());
 					WorkspaceManager.getInstance().getCurrentWorkspace().save();
 					result = serverInfo.getProjectInfos();
-					accessControl = new AccesscontrolHelper(session);
+					accessControl = new AccessControlHelper(session);
 				} catch (EmfStoreException e) {
 					DialogHandler.showExceptionDialog(e);
 				}
 			}
 		}
 		
+		/** 
+		 * {@inheritDoc}
+		 * @see org.eclipse.emf.common.command.AbstractCommand#getResult()
+		 */
+		@Override
 		public List<ProjectInfo> getResult(){
 			return result;
 		}

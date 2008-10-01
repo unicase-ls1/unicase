@@ -250,8 +250,9 @@ public class TabContent {
 
 	protected void doDrop(ACOrgUnit orgUnit) {
 		EObject currentInput = frm.getCurrentInput();
-		if (currentInput == null)
+		if (currentInput == null) {
 			return;
+		}
 		try {
 			if (currentInput instanceof ProjectInfo) {
 				ProjectInfo projectInfo = (ProjectInfo) currentInput;

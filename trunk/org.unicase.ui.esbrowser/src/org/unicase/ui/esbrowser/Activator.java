@@ -29,10 +29,10 @@ public class Activator extends AbstractUIPlugin {
 	public Activator() {
 	}
 
-	//BEGIN SUPRESS CATCH EXCEPTION
-	/**
+	// BEGIN SUPRESS CATCH EXCEPTION
+	/** 
+	 * {@inheritDoc}
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
-	 *      .
 	 */
 	@Override
 	public void start(BundleContext context) throws Exception {
@@ -49,7 +49,7 @@ public class Activator extends AbstractUIPlugin {
 		plugin = null;
 		super.stop(context);
 	}
-	//END SUPRESS CATCH EXCEPTION
+	// END SUPRESS CATCH EXCEPTION
 
 	/**
 	 * Returns the shared instance.
