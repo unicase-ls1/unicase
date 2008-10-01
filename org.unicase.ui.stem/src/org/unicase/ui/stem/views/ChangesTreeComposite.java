@@ -6,14 +6,23 @@
  */
 package org.unicase.ui.stem.views;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.ColumnViewerToolTipSupport;
+import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.viewers.TableViewerColumn;
+import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.TreeViewerColumn;
 import org.eclipse.jface.viewers.ViewerCell;
@@ -25,11 +34,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Tree;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.model.ModelElement;
 import org.unicase.ui.common.decorators.OverlayImageDescriptor;
 import org.unicase.workspace.WorkspaceManager;
@@ -46,11 +50,82 @@ import org.unicase.workspace.WorkspaceManager;
  */
 public class ChangesTreeComposite extends Composite {
 
+	/**
+	 * Label provider for the operation column in the viewer.
+	 * @author Shterev
+	 *
+	 */
+	private final class OperationColumnLabelProvider extends
+			ColumnLabelProvider {
+		private final ILabelProvider emfProvider;
+
+		private OperationColumnLabelProvider(ILabelProvider emfProvider) {
+			this.emfProvider = emfProvider;
+		}
+
+		@Override
+		public void update(ViewerCell cell) {
+			Object element = cell.getElement();
+			if (element instanceof AbstractOperation) {
+				AbstractOperation op = (AbstractOperation) element;
+				cell.setText(op.getName());
+				Image image = visualizationHelper.getImage(emfProvider, op);
+				ImageDescriptor overlay = visualizationHelper.getOverlayImage(op);
+				if (image != null && overlay != null) {
+					OverlayImageDescriptor imageDescriptor = new OverlayImageDescriptor(image, overlay,	OverlayImageDescriptor.LOWER_RIGHT);
+					cell.setImage(imageDescriptor.createImage());
+				}
+			} else {
+				cell.setText("Change Package");
+			}
+
+		}
+
+		@Override
+		public String getToolTipText(Object element) {
+			if (element instanceof AbstractOperation) {
+				AbstractOperation operation = (AbstractOperation) element;
+				String desc = operation.getDescription();
+				return (desc != null ? desc : "No description");
+			}
+			return "";
+		}
+	}
+	
+	/**
+	 * Content provider for the affected elements treeviewer.
+	 * The class uses a helper class to gather the elements - @see {@link ChangePackageVisualizationHelper#getAffectedElements(AbstractOperation)}
+	 * @author Shterev
+	 *
+	 */
+	private final class AffectedElementsContentProvider extends AdapterFactoryContentProvider implements IContentProvider {
+
+		private ArrayList<ModelElement> affected;
+
+		private AffectedElementsContentProvider(ArrayList<ModelElement> affected) {
+			super(new ComposedAdapterFactory(
+					ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+			this.affected = affected;
+		}
+		
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public Object[] getElements(Object object) {
+			return affected.toArray();
+		}
+	}
+
 	private TreeViewer treeViewer;
 
 	// input ChangePackages
 	private List<ChangePackage> changePackages;
 	private ChangePackageVisualizationHelper visualizationHelper;
+
+	private Composite affectedTableComposite;
+
+	private TableViewer affectedTable;
 
 	/**
 	 * . Constructor
@@ -62,25 +137,71 @@ public class ChangesTreeComposite extends Composite {
 	 */
 	public ChangesTreeComposite(Composite parent, int style) {
 		super(parent, style);
-		this.setLayout(new GridLayout());
+		this.setLayout(new GridLayout(2,false));
 		createTreeViewer();
+	}
+	
+	private void createAffectedTableComposite(final ILabelProvider emfProvider, ArrayList<ModelElement> affected){
+		affectedTableComposite = new Composite(this,SWT.NO_BACKGROUND);
+		GridDataFactory.fillDefaults().hint(200, 100).grab(false, true).applyTo(affectedTableComposite);
+		affectedTableComposite.setLayout(new GridLayout());
+		affectedTable = new TableViewer(affectedTableComposite, SWT.SINGLE);
+		affectedTable.getTable().setHeaderVisible(true);
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(affectedTable.getTable());
+		TableViewerColumn theList = new TableViewerColumn(affectedTable,SWT.LEFT);
+		theList.getColumn().setText("Affected Model Elements");
+		theList.getColumn().setWidth(170);
+		theList.getColumn().setResizable(false);
+		affectedTableComposite.layout(true);
+		ChangesTreeComposite.this.layout(true);
+		
+		theList.setLabelProvider(new ColumnLabelProvider(){
+			public Image getImage(Object element) {
+				return emfProvider.getImage(element);
+			}
+			
+			public String getText(Object element) {
+				return emfProvider.getText(element);
+			}
+		});
+		affectedTable.setContentProvider(new AffectedElementsContentProvider(affected));
+		affectedTable.setInput(new Object());
 	}
 
 	private void createTreeViewer() {
+		final ILabelProvider emfProvider = new AdapterFactoryLabelProvider(
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		treeViewer = new TreeViewer(this, SWT.FULL_SELECTION);
 		Tree tree = treeViewer.getTree();
 		tree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		tree.setHeaderVisible(true);
 		tree.setLinesVisible(true);
 		treeViewer.setContentProvider(new ChangesTreeContentProvider());
+		treeViewer.addSelectionChangedListener(new ISelectionChangedListener(){
 
+			public void selectionChanged(SelectionChangedEvent event) {
+				Object selected = ((TreeSelection)event.getSelection()).getFirstElement();				
+				if(affectedTable!=null && !affectedTable.getTable().isDisposed()){
+					affectedTable.getTable().dispose();
+					affectedTableComposite.dispose();
+					ChangesTreeComposite.this.layout(true);
+				}
+				if (selected instanceof AbstractOperation){
+					AbstractOperation operation = (AbstractOperation)selected;
+					ArrayList<ModelElement> affectedList = visualizationHelper.getAffectedElements(operation);
+					if(affectedList.size()>0){
+						createAffectedTableComposite(emfProvider,affectedList);
+					}
+				}
+			}
+			
+		});
+		
 		// the changed model element
 		TreeViewerColumn tclmME = new TreeViewerColumn(treeViewer, SWT.NONE);
 		tclmME.getColumn().setWidth(250);
 		tclmME.getColumn().setText("ModelElement");
-		final ILabelProvider emfProvider = new AdapterFactoryLabelProvider(
-				new ComposedAdapterFactory(
-						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		tclmME.setLabelProvider(new ColumnLabelProvider() {
 			@Override
 			public void update(ViewerCell cell) {
@@ -101,96 +222,7 @@ public class ChangesTreeComposite extends Composite {
 		TreeViewerColumn tclmOp = new TreeViewerColumn(treeViewer, SWT.NONE);
 		tclmOp.getColumn().setText("Operation");
 		tclmOp.getColumn().setWidth(getShell().getSize().x - 350);
-		tclmOp.setLabelProvider(new ColumnLabelProvider() {
-
-			@Override
-			public void update(ViewerCell cell) {
-				Object element = cell.getElement();
-				if (element instanceof AbstractOperation) {
-					AbstractOperation op = (AbstractOperation) element;
-					cell.setText(op.getName());
-				} else {
-					cell.setText("Change Package");
-				}
-				Image image = null;
-				String overlay = null;
-				if (element instanceof CreateDeleteOperation) {
-					CreateDeleteOperation op = (CreateDeleteOperation) element;
-					image = emfProvider.getImage(op.getModelElement());
-					if (op.isDelete()) {
-						overlay = "icons/delete_overlay.png";
-					} else {
-						overlay = "icons/add_overlay.png";
-					}
-				} else if (element instanceof AttributeOperation) {
-					AttributeOperation op = (AttributeOperation) element;
-					image = emfProvider.getImage(null);
-					if (op.getNewValue() == null) {
-						overlay = "icons/delete_overlay.png";
-					} else if (op.getOldValue() == null) {
-						overlay = "icons/add_overlay.png";
-					} else {
-						overlay = "icons/modify_overlay.png";
-					}
-				} else if (element instanceof SingleReferenceOperation) {
-					SingleReferenceOperation op = (SingleReferenceOperation) element;
-					if (op.getNewValue() == null) {
-						overlay = "icons/delete_overlay.png";
-						image = emfProvider.getImage(op.getOldValue());
-					} else if (op.getOldValue() == null) {
-						overlay = "icons/add_overlay.png";
-						image = emfProvider.getImage(op.getNewValue());
-					} else {
-						overlay = "icons/modify_overlay.png";
-						image = emfProvider.getImage(op.getNewValue());
-					}
-				} else if (element instanceof MultiAttributeOperation) {
-					image = emfProvider.getImage(null);
-					overlay = "icons/modify_overlay.png";
-				} else if (element instanceof MultiReferenceOperation) {
-					MultiReferenceOperation op = (MultiReferenceOperation) element;
-					if (op.getReferencedModelElements().size() > 0) {
-						image = emfProvider.getImage(op
-								.getReferencedModelElements().get(0));
-						overlay = "icons/link_overlay.png";
-					}
-				}
-				if (image != null && overlay != null) {
-					ImageDescriptor overlayDescriptor = org.unicase.ui.common.Activator
-							.getImageDescriptor(overlay);
-					OverlayImageDescriptor imageDescriptor = new OverlayImageDescriptor(
-							image, overlayDescriptor,
-							OverlayImageDescriptor.LOWER_RIGHT);
-					cell.setImage(imageDescriptor.createImage());
-				}
-
-			}
-
-			@Override
-			public String getText(Object element) {
-				if (element instanceof AbstractOperation) {
-					AbstractOperation operation = (AbstractOperation) element;
-					return operation.getName();
-				}
-				return "";
-
-			}
-
-			@Override
-			public String getToolTipText(Object element) {
-				if (element instanceof AbstractOperation) {
-					AbstractOperation operation = (AbstractOperation) element;
-					String desc = operation.getDescription();
-					return (desc != null ? desc : "No description");
-				}
-				return "";
-			}
-
-			@Override
-			public int getToolTipDisplayDelayTime(Object element) {
-				return 0;
-			}
-		});
+		tclmOp.setLabelProvider(new OperationColumnLabelProvider(emfProvider));
 		ColumnViewerToolTipSupport.enableFor(treeViewer);
 
 		createAdditionalColumns();
