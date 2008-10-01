@@ -111,6 +111,7 @@ public final class ActionHelper {
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
 			protected void doExecute() {
 				creator.append(WorkspaceManager.getInstance()
 						.getCurrentWorkspace().getActiveProjectSpace()
@@ -136,6 +137,7 @@ public final class ActionHelper {
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
 			protected void doExecute() {
 				String user = WorkspaceManager.getInstance()
 						.getCurrentWorkspace().getActiveProjectSpace()
@@ -263,7 +265,7 @@ public final class ActionHelper {
 	 *         IStructuredSelection
 	 */
 	public static Object getSelection() {
-		ISelectionService selectionService = (ISelectionService) PlatformUI
+		ISelectionService selectionService = PlatformUI
 				.getWorkbench().getActiveWorkbenchWindow()
 				.getSelectionService();
 

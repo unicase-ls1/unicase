@@ -35,6 +35,7 @@ public class TableViewerColumnSorter extends ViewerComparator {
 
 		this.column.getColumn().addSelectionListener(new SelectionAdapter() {
 
+			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (TableViewerColumnSorter.this.viewer.getComparator() != null) {
 					if (TableViewerColumnSorter.this.viewer.getComparator() == TableViewerColumnSorter.this) {
@@ -71,6 +72,7 @@ public class TableViewerColumnSorter extends ViewerComparator {
 
 	}
 
+	@Override
 	public int compare(Viewer viewer, Object e1, Object e2) {
 
 		int cat1 = category(e1);

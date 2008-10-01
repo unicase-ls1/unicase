@@ -62,16 +62,16 @@ public class AddAnnotationHandler extends AbstractHandler {
 	private Annotation createAnnotation(final Project project) {
 		final Annotation result;
 		if (event.getCommand().getId().equals(ADD_ACTIONITEM_COMMAND_ID)) {
-			result = (Annotation) TaskFactory.eINSTANCE.createActionItem();
+			result = TaskFactory.eINSTANCE.createActionItem();
 			result.setName("New Action Item");
 			result.setDescription("");
 
 		} else if (event.getCommand().getId().equals(ADD_ISSUE_COMMAND_ID)) {
-			result = (Annotation) RationaleFactory.eINSTANCE.createIssue();
+			result = RationaleFactory.eINSTANCE.createIssue();
 			result.setName("New Issue");
 			result.setDescription("");
 		} else if (event.getCommand().getId().equals(ADD_COMMENT_COMMAND_ID)) {
-			result = (Annotation) RationaleFactory.eINSTANCE.createComment();
+			result = RationaleFactory.eINSTANCE.createComment();
 			result.setName("New Comment");
 			result.setDescription("");
 		} else {
@@ -81,6 +81,7 @@ public class AddAnnotationHandler extends AbstractHandler {
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
 			protected void doExecute() {
 				project.addModelElement(result);
 			}
@@ -100,6 +101,7 @@ public class AddAnnotationHandler extends AbstractHandler {
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
 			protected void doExecute() {
 				me.getAnnotations().add(annotation);
 			}

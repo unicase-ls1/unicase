@@ -41,10 +41,12 @@ public class MEDiagramEditPart extends DiagramEditPart {
 		super(view);
 	}
 
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();		
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
 				new DiagramDragDropEditPolicy() {
+					@Override
 					public Command getDropObjectsCommand(
 							DropObjectsRequest dropRequest) {
 						List viewDescriptors = new ArrayList();
@@ -85,6 +87,7 @@ public class MEDiagramEditPart extends DiagramEditPart {
 				});
 
 	}
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
 		if(DiagramPackage.eINSTANCE.getMEDiagram_Elements().equals(feature)) {

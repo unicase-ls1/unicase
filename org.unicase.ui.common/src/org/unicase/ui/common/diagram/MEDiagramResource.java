@@ -72,6 +72,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	/**
 	 * . {@inheritDoc}
 	 */
+	@Override
 	public void delete(Map<?, ?> options) throws IOException {
 		// TODO Auto-generated method stub
 	}
@@ -79,6 +80,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	/**
 	 * . {@inheritDoc}
 	 */
+	@Override
 	public TreeIterator<EObject> getAllContents() {
 		// TODO Auto-generated method stub
 		return null;
@@ -89,6 +91,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	 * 
 	 * @return MEDiagram and the GMF Diagram on root level
 	 */
+	@Override
 	public EList<EObject> getContents() {
 		if (!initialized) {
 			initialize();
@@ -105,6 +108,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 		TransactionalEditingDomain domain = TransactionUtil
 				.getEditingDomain(meDiagram);
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
 			protected void doExecute() {
 				try {
 					meDiagram.loadDiagramLayout();
@@ -143,6 +147,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 		TransactionalEditingDomain domain = TransactionUtil
 				.getEditingDomain(meDiagram);
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
 			protected void doExecute() {
 				meDiagram.setGmfdiagram(diagram);
 
@@ -153,6 +158,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	/**
 	 * . {@inheritDoc}
 	 */
+	@Override
 	public EObject getEObject(String uriFragment) {
 		// TODO Auto-generated method stub
 		return null;
@@ -161,6 +167,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	/**
 	 * . {@inheritDoc}
 	 */
+	@Override
 	public EList<Diagnostic> getErrors() {
 		// TODO Auto-generated method stub
 		return null;
@@ -169,6 +176,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	/**
 	 * . {@inheritDoc}
 	 */
+	@Override
 	public ResourceSet getResourceSet() {
 		return meDiagram.eResource().getResourceSet();
 	}
@@ -176,6 +184,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	/**
 	 * . {@inheritDoc}
 	 */
+	@Override
 	public long getTimeStamp() {
 		// TODO Auto-generated method stub
 		return 0;
@@ -186,6 +195,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	 * 
 	 * @return returns URI
 	 */
+	@Override
 	public URI getURI() {
 		return meDiagram.eResource().getURI();
 	}
@@ -193,6 +203,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	/**
 	 * . {@inheritDoc}
 	 */
+	@Override
 	public String getURIFragment(EObject object) {
 		String uriFragment = super.getURIFragment(object);
 		return uriFragment;
@@ -201,6 +212,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	/**
 	 * . {@inheritDoc}
 	 */
+	@Override
 	public EList<Diagnostic> getWarnings() {
 		// TODO Auto-generated method stub
 		return null;
@@ -209,6 +221,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	/**
 	 * . {@inheritDoc}
 	 */
+	@Override
 	public boolean isLoaded() {
 
 		return meDiagram.eResource().isLoaded();
@@ -217,6 +230,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	/**
 	 * . {@inheritDoc}
 	 */
+	@Override
 	public boolean isModified() {
 		// TODO Auto-generated method stub
 		return false;
@@ -225,6 +239,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	/**
 	 * . {@inheritDoc}
 	 */
+	@Override
 	public boolean isTrackingModification() {
 		// JH has to be false, otherwise nullpointer
 		return super.isTrackingModification();
@@ -233,6 +248,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	/**
 	 * . {@inheritDoc}
 	 */
+	@Override
 	public void load(Map<?, ?> options) throws IOException {
 		// TODO Auto-generated method stub
 
@@ -241,6 +257,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	/**
 	 * . {@inheritDoc}
 	 */
+	@Override
 	public void save(Map<?, ?> options) throws IOException {
 		// TODO Auto-generated method stub
 
@@ -249,6 +266,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	/**
 	 * . {@inheritDoc}
 	 */
+	@Override
 	public void setModified(boolean isModified) {
 		// TODO Auto-generated method stub
 		System.out.print("huha");
@@ -258,6 +276,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	/**
 	 * . {@inheritDoc}
 	 */
+	@Override
 	public void setTimeStamp(long timeStamp) {
 		// TODO Auto-generated method stub
 
@@ -266,6 +285,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	/**
 	 * . {@inheritDoc}
 	 */
+	@Override
 	public void setTrackingModification(boolean isTrackingModification) {
 		meDiagram.eResource().setTrackingModification(isTrackingModification);
 	}
@@ -273,6 +293,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	/**
 	 * . {@inheritDoc}
 	 */
+	@Override
 	public void setURI(URI uri) {
 		// TODO Auto-generated method stub
 
@@ -281,6 +302,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	/**
 	 * . {@inheritDoc}
 	 */
+	@Override
 	public boolean eDeliver() {
 		return meDiagram.eResource().eDeliver();
 	}
@@ -288,6 +310,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	/**
 	 * . {@inheritDoc}
 	 */
+	@Override
 	public void eNotify(Notification notification) {
 		// TODO Auto-generated method stub
 
@@ -296,6 +319,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	/**
 	 * . {@inheritDoc}
 	 */
+	@Override
 	public void eSetDeliver(boolean deliver) {
 		// TODO Auto-generated method stub
 
@@ -319,6 +343,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	/**
 	 * . {@inheritDoc}
 	 */
+	@Override
 	public void attached(EObject object) {
 		// JH Implement this?
 	}
@@ -326,6 +351,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	/**
 	 * . {@inheritDoc}
 	 */
+	@Override
 	public NotificationChain basicSetResourceSet(ResourceSet resourceSet,
 			NotificationChain notifications) {
 
@@ -337,6 +363,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	/**
 	 * . {@inheritDoc}
 	 */
+	@Override
 	public void detached(EObject object) {
 		// TODO Auto-generated method stub
 
@@ -345,6 +372,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	/**
 	 * . {@inheritDoc}
 	 */
+	@Override
 	public boolean isLoading() {
 		// TODO Auto-generated method stub
 		return false;
