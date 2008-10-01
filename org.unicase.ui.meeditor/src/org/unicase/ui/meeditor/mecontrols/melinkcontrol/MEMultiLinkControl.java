@@ -246,10 +246,11 @@ public class MEMultiLinkControl extends AbstractMEControl {
 	 */
 	@Override
 	public void dispose() {
+		getModelElement().eAdapters().remove(eAdapter);
 		for (MELinkControl link : linkControls) {
 			link.dispose();
 		}
-		getModelElement().eAdapters().remove(eAdapter);
+		
 	}
 
 }
