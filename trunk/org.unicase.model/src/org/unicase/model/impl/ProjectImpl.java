@@ -51,7 +51,7 @@ public class ProjectImpl extends EObjectImpl implements Project,
 	private Map<ModelElementId, ModelElement> modelElementCache;
 	private List<ProjectChangeObserver> observers;
 
-	//begin of custom code
+	// begin of custom code
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -62,7 +62,7 @@ public class ProjectImpl extends EObjectImpl implements Project,
 		observers = new ArrayList<ProjectChangeObserver>();
 	}
 
-	//end of custom code
+	// end of custom code
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

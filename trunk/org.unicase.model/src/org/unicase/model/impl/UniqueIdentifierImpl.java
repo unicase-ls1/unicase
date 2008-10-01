@@ -49,7 +49,7 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements
 	 */
 	protected String id = ID_EDEFAULT;
 
-	//begin of custom code
+	// begin of custom code
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -60,10 +60,11 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements
 		this.id = EcoreUtil.generateUUID();
 	}
 
-	//end of custom code
+	// end of custom code
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -146,13 +147,17 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * Returns a string representation.
+	 * @return the string
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
+		if (eIsProxy()) {
 			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer();
 		result.append(" (id: ");

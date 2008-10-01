@@ -524,7 +524,7 @@ public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
 		EObject object2;
 		TreeIterator<EObject> allContents = elementsResource.getAllContents();
 		while (allContents.hasNext()) {
-			object2 = (EObject) allContents.next();
+			object2 = allContents.next();
 
 		}
 		Diagram gmfDiagram = (Diagram) diagramResource.getContents().get(0);
