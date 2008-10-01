@@ -54,10 +54,15 @@ public class ACGroupImpl extends ACOrgUnitImpl implements ACGroup {
 		return AccesscontrolPackage.Literals.AC_GROUP;
 	}
 
+	// begin of custom code
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * Get the group members.
+	 * @return a list of org units
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@SuppressWarnings("serial")
 	public EList<ACOrgUnit> getMembers() {
 		if (members == null) {
 			//see comment in RoleImpl.getProjects()
@@ -74,7 +79,8 @@ public class ACGroupImpl extends ACOrgUnitImpl implements ACGroup {
 		}
 		return members;
 	}
-
+	// end of custom code
+	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated

@@ -56,10 +56,15 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 		return RolesPackage.Literals.ROLE;
 	}
 
+	// begin of custom code
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * Get all projects of the role.
+	 * @return a list of project ids
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@SuppressWarnings("serial")
 	public EList<ProjectId> getProjects() {
 		if (projects == null) {
 			//the contains() method of EObjectEList uses reference equality , 
@@ -79,13 +84,20 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * Determines if the role can administrate the project.
+	 * @return true if the role can
+	 * <!-- end-user-doc -->
+	 * {@inheritDoc}
+	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.Role#canAdministrate(org.unicase.emfstore.esmodel.ProjectId)
 	 * @generated NOT
 	 */
 	public boolean canAdministrate(ProjectId projectId) {
 		return false;
 	}
+	// end of custom code
 
+	
 	/**
 	 * {@inheritDoc}
 	 * 

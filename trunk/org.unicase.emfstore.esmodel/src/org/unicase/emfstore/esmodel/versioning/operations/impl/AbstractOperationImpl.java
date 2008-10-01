@@ -1,5 +1,6 @@
 /**
- * Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
  *
  * $Id$
  */
@@ -80,9 +81,12 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements
 	protected EClass eStaticClass() {
 		return OperationsPackage.Literals.ABSTRACT_OPERATION;
 	}
-
+	
+	// begin of custom code
 	/**
 	 * <!-- begin-user-doc -->
+	 * Return the operations name.
+	 * @return the name
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
@@ -90,11 +94,14 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Return the operations description.
+	 * @return the description
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public abstract String getDescription();
-
+	// end of custom code
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
