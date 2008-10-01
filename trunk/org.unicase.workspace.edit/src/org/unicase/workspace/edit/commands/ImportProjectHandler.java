@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.workspace.edit.commands;
 
 import java.io.File;
@@ -12,18 +18,31 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.ui.common.exceptions.DialogHandler;
-import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 
+/**
+ * Handler for import project menu item.
+ * @author helming
+ *
+ */
 public class ImportProjectHandler extends ProjectActionHandler {
 
+	/**
+	 * These filter names are used to filter which files are displayed.
+	 */
 	public static final String[] FILTER_NAMES = {
 			"Unicase Project Files (*.ucp)", "All Files (*.*)" };
 
-	// These filter extensions are used to filter which files are displayed.
+	/**
+	 * These filter extensions are used to filter which files are displayed.
+	 */
 	public static final String[] FILTER_EXTS = { "*.ucp", "*.*" };
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
+	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench()
 				.getActiveWorkbenchWindow().getShell(), SWT.OPEN);
@@ -46,20 +65,22 @@ public class ImportProjectHandler extends ProjectActionHandler {
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
 			protected void doExecute() {
 				try {
 					Workspace currentWorkspace = WorkspaceManager.getInstance()
 							.getCurrentWorkspace();
-					ProjectSpace projectSpace = currentWorkspace
+					currentWorkspace
 							.importProject(absoluteFileName);
 	
 				} catch (IOException e) {
 					DialogHandler.showExceptionDialog(e);
-				}
-				catch (RuntimeException e) {
+					// BEGIN SUPRESS CATCH EXCEPTION
+				} catch (RuntimeException e) {
 					DialogHandler.showExceptionDialog(e);
 					throw e;
 				}
+				// END SUPRESS CATCH EXCEPTION
 			}
 		});
 

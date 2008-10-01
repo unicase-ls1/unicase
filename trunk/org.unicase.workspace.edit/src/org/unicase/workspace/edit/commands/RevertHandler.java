@@ -9,6 +9,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 
 //MK: document whats this exactly does
@@ -24,16 +25,16 @@ public class RevertHandler extends ProjectActionHandler {
 	 */
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
 		final ProjectSpace projectSpace;
-		try {
-			projectSpace = getProjectSpace(event);
-		} catch (ExecutionException e) {
-			//If there is no projectspace, return
-			return null;
+		projectSpace = getProjectSpace(event);
+		
+		if (projectSpace==null) {
+			DialogHandler.showErrorDialog("No Project selected.");
 		}
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
 		
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
 			protected void doExecute() {
 				
 				MessageDialog dialog = new MessageDialog(null, "Confirmation",

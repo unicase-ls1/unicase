@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.workspace.edit.commands;
 
 import java.util.Collection;
@@ -21,21 +27,33 @@ import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.edit.dialogs.LoginDialog;
 
+/**
+ * Share a project with the server.
+ * @author koegel
+ *
+ */
 public class ShareProjectHandler extends ProjectActionHandler {
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
+	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		final ProjectSpace projectSpace = (ProjectSpace) getProjectSpace(event);
+		final ProjectSpace projectSpace = getProjectSpace(event);
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
 			protected void doExecute() {
 				// TODO: handle exception
 				try {
 					createProject(projectSpace);
+				// BEGIN SUPRESS CATCH EXCEPTION
 				} catch (RuntimeException e) {
 					DialogHandler.showExceptionDialog(e);
 					throw e;
 				}
+				// END SUPRESS CATCH EXCEPTION
 			}
 		});
 		return null;

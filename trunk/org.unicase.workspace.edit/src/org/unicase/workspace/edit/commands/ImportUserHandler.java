@@ -42,6 +42,7 @@ public class ImportUserHandler extends ProjectActionHandler {
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
 			protected void doExecute() {
 				try {
 					List<ACOrgUnit> participants = projectSpace

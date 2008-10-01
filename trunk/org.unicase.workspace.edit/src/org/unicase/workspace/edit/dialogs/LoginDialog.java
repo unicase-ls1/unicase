@@ -78,6 +78,7 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected Control createDialogArea(Composite parent) {
 		contents = new Composite(parent, SWT.NONE);
 		contents.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
@@ -141,6 +142,7 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void okPressed() {
 		if (session==null) {
 			session = WorkspaceFactory.eINSTANCE.createUsersession();
@@ -171,6 +173,7 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void cancelPressed() {
 		// session = null;
 		setReturnCode(CANCELED);

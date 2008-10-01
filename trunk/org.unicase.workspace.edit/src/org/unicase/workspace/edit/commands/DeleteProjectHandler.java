@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.workspace.edit.commands;
 
 import org.eclipse.core.commands.ExecutionEvent;
@@ -9,13 +15,23 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 
+/**
+ * Handler for delete project menu item.
+ * @author koegel
+ *
+ */
 public class DeleteProjectHandler extends ProjectActionHandler {
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
+	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		final ProjectSpace projectSpace = getProjectSpace(event);
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
 			protected void doExecute() {
 				StringBuilder stringBuilder = new StringBuilder();
 				stringBuilder
@@ -41,7 +57,7 @@ public class DeleteProjectHandler extends ProjectActionHandler {
 					currentWorkspace.getProjectSpaces().remove(projectSpace);
 					currentWorkspace.save();
 					
-					//MK: also delete file
+					//OW: also delete file
 				}
 			}
 		});
