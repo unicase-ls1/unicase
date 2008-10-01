@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.workspace;
 
 import java.util.List;
@@ -13,11 +19,14 @@ import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 
 /**
+ * Interface for administrative services of the EMFStore.
+ * 
  * @author Hodaie
  * @author Wesendonk
  */
 public interface AdminBroker {
 	
+	//FIXME OW please document
 	List<ProjectInfo> getProjectInfos() throws EmfStoreException;
 	List<ACGroup> getGroups() throws EmfStoreException;
 	List<ACUser> getUsers() throws EmfStoreException;

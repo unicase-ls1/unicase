@@ -162,6 +162,7 @@ public final class WorkspaceManager {
 		resource.setTrackingModification(true);
 		workspace.setWorkspaceResourceSet(resourceSet);
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
 			protected void doExecute() {
 				workspace.init(domain);
 			}

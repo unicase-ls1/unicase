@@ -407,7 +407,8 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 		}
 		setSavePasswordGen(newSavePassword);
 	}
-
+	// end of custom code
+	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -534,7 +535,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 		this.setSessionId(newSessionId);
 		setACUser(connectionManager.resolveUser(newSessionId, null));
 	}
-
+	// begin of custom code
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -546,7 +547,8 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 		return this.getWorkspaceManager().getCurrentWorkspace().checkout(this,
 				projectInfo);
 	}
-
+	// end of custom code
+	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated

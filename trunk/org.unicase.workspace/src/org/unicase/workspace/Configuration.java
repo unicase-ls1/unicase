@@ -101,10 +101,18 @@ public final class Configuration {
 		return serverInfos;
 	}
 	
+	/**
+	 * Returns maximum number of model elements allowed per resource.
+	 * @return the maximum number
+	 */
 	public static int getMaxMECountPerResource() {
 		return 100;
 	}
 	
+	/**
+	 * Returns maximum size of of a resource file on expand.
+	 * @return the maximum number
+	 */
 	public static int getMaxResourceFileSizeOnExpand() {
 		return 50000;
 	}
