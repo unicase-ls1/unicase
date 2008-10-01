@@ -47,6 +47,7 @@ public class DeleteModelelementHandler extends AbstractHandler {
 			this.me = me;
 		}
 
+		@Override
 		protected void doExecute() {
 			MessageDialog dialog = new MessageDialog(null, "Confirmation",
 					null, "Do you really want to delete " + me.getName(),

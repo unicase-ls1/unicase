@@ -32,6 +32,7 @@ public class DiagramElementAddCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected EObject getElementToEdit() {
 		EObject container = ((CreateElementRequest) getRequest())
 				.getContainer();
@@ -44,6 +45,7 @@ public class DiagramElementAddCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected EClass getEClassToEdit() {
 		return DiagramPackage.eINSTANCE.getMEDiagram();
 	}
@@ -51,6 +53,7 @@ public class DiagramElementAddCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected EObject doDefaultElementCreation() {
 	
 		MEDiagram childHolder = (MEDiagram) getElementToEdit();

@@ -36,12 +36,14 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 		super(hasFlyoutPalette);
 	}
 
+	@Override
 	protected void initializeGraphicalViewer() {
 		super.initializeGraphicalViewer();
 		getDiagramGraphicalViewer().addDropTargetListener(
 				new DropTargetListener(getDiagramGraphicalViewer(),
 						LocalSelectionTransfer.getTransfer()) {
 
+					@Override
 					protected Object getJavaObject(TransferData data) {
 						return LocalSelectionTransfer.getTransfer()
 								.nativeToJava(data);
@@ -52,6 +54,7 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 				new DropTargetListener(getDiagramGraphicalViewer(),
 						LocalTransfer.getInstance()) {
 
+					@Override
 					protected Object getJavaObject(TransferData data) {
 						return LocalTransfer.getInstance().nativeToJava(data);
 					}
@@ -65,6 +68,7 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 			super(viewer, xfer);
 		}
 
+		@Override
 		protected List getObjectsBeingDropped() {
 			TransferData data = getCurrentEvent().currentDataType;
 			Collection uris = new HashSet();

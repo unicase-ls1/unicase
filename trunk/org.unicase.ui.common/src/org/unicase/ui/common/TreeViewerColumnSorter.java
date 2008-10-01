@@ -35,6 +35,7 @@ public  class TreeViewerColumnSorter extends ViewerComparator {
 		this.viewer = viewer;
 		this.column.getColumn().addSelectionListener(new SelectionAdapter() {
 
+			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if( TreeViewerColumnSorter.this.viewer.getComparator() != null ) {
 					if( TreeViewerColumnSorter.this.viewer.getComparator() == TreeViewerColumnSorter.this ) {
@@ -72,6 +73,7 @@ public  class TreeViewerColumnSorter extends ViewerComparator {
 
 	}
 
+	@Override
 	public int compare(Viewer viewer, Object e1, Object e2) {
 		    	
 	    String name1 = columnLabelProvider.getText(e1);
@@ -96,8 +98,12 @@ public  class TreeViewerColumnSorter extends ViewerComparator {
 	
 	@Override
 	public int category(Object element) {
-		if(element instanceof Annotation) return 1;
-		if(element instanceof WorkPackage) return 2;
+		if(element instanceof Annotation) {
+			return 1;
+		}
+		if(element instanceof WorkPackage) {
+			return 2;
+		}
 		return 3;
 	}
 	

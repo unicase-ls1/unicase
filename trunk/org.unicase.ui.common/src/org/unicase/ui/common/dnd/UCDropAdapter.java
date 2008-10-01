@@ -73,6 +73,7 @@ public class UCDropAdapter extends EditingDomainViewerDropAdapter {
 			// add the AI to target
 			domain.getCommandStack().execute(
 					new RecordingCommand((TransactionalEditingDomain) domain) {
+						@Override
 						protected void doExecute() {
 							for (ModelElement me : dragSource) {
 								ActionItem ai = TaskFactory.eINSTANCE
@@ -92,6 +93,7 @@ public class UCDropAdapter extends EditingDomainViewerDropAdapter {
 			// add the AI to target.eContainer
 			domain.getCommandStack().execute(
 					new RecordingCommand((TransactionalEditingDomain) domain) {
+						@Override
 						protected void doExecute() {
 							for (ModelElement me : dragSource) {
 								ActionItem ai = TaskFactory.eINSTANCE
@@ -113,6 +115,7 @@ public class UCDropAdapter extends EditingDomainViewerDropAdapter {
 			final List<Annotation> newAnnotations = Arrays.asList(arr);
 			domain.getCommandStack().execute(
 					new RecordingCommand((TransactionalEditingDomain) domain) {
+						@Override
 						protected void doExecute() {
 							((ModelElement) event.item.getData())
 									.getAnnotations().addAll(newAnnotations);

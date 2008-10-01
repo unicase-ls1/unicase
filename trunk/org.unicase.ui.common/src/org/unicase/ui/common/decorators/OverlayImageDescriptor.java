@@ -80,6 +80,7 @@ public class OverlayImageDescriptor extends CompositeImageDescriptor {
 	 * @see org.eclipse.jface.resource.CompositeImageDescriptor#drawCompositeImage(int,
 	 *      int)
 	 */
+	@Override
 	protected void drawCompositeImage(int width, int height) {
 		// draw the base image
 		ImageData backgroundData = srcImage.getImageData();
@@ -118,6 +119,7 @@ public class OverlayImageDescriptor extends CompositeImageDescriptor {
 	 * @return the x and y size of the image expressed as a point object
 	 * @see org.eclipse.jface.resource.CompositeImageDescriptor#getSize()
 	 */
+	@Override
 	protected Point getSize() {
 		return new Point(DEFAULT_IMAGE_WIDTH, DEFAULT_IMAGE_HEIGHT);
 	}
