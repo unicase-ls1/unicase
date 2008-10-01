@@ -224,6 +224,8 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements
 
 	/**
 	 * This returns the label text for the adapted class.
+	 * @param object the object to provide the label for
+	 * @return the label
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * @generated NOT

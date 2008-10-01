@@ -46,13 +46,14 @@ public class UpdateProjectHandler extends ProjectActionHandler implements
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		final ProjectSpace projectSpace = (ProjectSpace) getProjectSpace(event);
+		final ProjectSpace projectSpace = getProjectSpace(event);
 
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
 		RecordingCommandWithResult<Integer> command = new RecordingCommandWithResult<Integer>(
 				domain) {
 
+			@Override
 			protected void doExecute() {
 				Usersession usersession = projectSpace.getUsersession();
 				shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
@@ -72,7 +73,7 @@ public class UpdateProjectHandler extends ProjectActionHandler implements
 								UpdateProjectHandler.this);
 					}
 				} catch (ChangeConflictException e1) {
-					List<ChangePackage> changePackages = e1.newPackages;
+					List<ChangePackage> changePackages = e1.getNewPackages();
 					MergeDialog mergeDialog = new MergeDialog(shell,
 							changePackages);
 					mergeDialog.open();

@@ -88,14 +88,12 @@
            name="deleteProject">
      </command>
      <command
-           category="Unicase"
-           categoryId="org.unicase"
+           categoryId="org.unicase.workspace.edit.project"
            id="org.unicase.workspace.edit.importUser"
            name="Import User">
      </command>
      <command
-           category="Unicase"
-           categoryId="org.unicase"
+           categoryId="org.unicase.workspace.edit.project"
            id="org.unicase.workspace.edit.revert"
            name="Revert">
      </command>

@@ -55,6 +55,7 @@ public class CommitProjectHandler extends ProjectActionHandler implements Commit
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");																																																																																																																							  
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
+			@Override
 			protected void doExecute() {
 				usersession = projectSpace.getUsersession();
 				shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
