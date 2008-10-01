@@ -162,6 +162,7 @@
         </module>
         <module name="UncommentedMain"/>
         <module name="CyclomaticComplexity">
+            <property name="id" value="complexity"/>
             <property name="max" value="12"/>
         </module>
     </module>
