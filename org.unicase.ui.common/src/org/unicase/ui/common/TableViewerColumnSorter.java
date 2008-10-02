@@ -7,17 +7,28 @@
 package org.unicase.ui.common;
 
 import org.eclipse.jface.viewers.ColumnLabelProvider;
-import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.events.SelectionEvent;
 
+/**.
+ * This a sorter for TableViewers.
+ * @author hodaie
+ *
+ */
 public class TableViewerColumnSorter extends ViewerComparator {
 
+	/**.
+	 * Direction constant used to show right direction arrow on column header
+	 */
 	public static final int ASC = 1;
+	/**.
+	 * Direction constant used to show right direction arrow on column header
+	 */
 	public static final int DESC = -1;
 
 	private int direction = 1;
@@ -27,6 +38,12 @@ public class TableViewerColumnSorter extends ViewerComparator {
 
 	private TableViewer viewer;
 
+	/**.
+	 * Constructor
+	 * @param viewer TableViewer to be sorted
+	 * @param column TableViewerColumn based on which viewer is sorted
+	 * @param columnLabelProvider ColumnLabelProvider used to sort contents
+	 */
 	public TableViewerColumnSorter(TableViewer viewer,
 			TableViewerColumn column, ColumnLabelProvider columnLabelProvider) {
 		this.columnLabelProvider = columnLabelProvider;
@@ -53,8 +70,11 @@ public class TableViewerColumnSorter extends ViewerComparator {
 			}
 		});
 	}
-
-	public void setSorter(TableViewerColumnSorter sorter, int direction) {
+	
+	/**.
+	 * This is used to set the right direction arrow at column header and refresh the viewer.
+	 */
+	private void setSorter(TableViewerColumnSorter sorter, int direction) {
 		column.getColumn().getParent().setSortColumn(column.getColumn());
 		sorter.direction = direction;
 
@@ -72,6 +92,11 @@ public class TableViewerColumnSorter extends ViewerComparator {
 
 	}
 
+	/**.
+	 * {@inheritDoc}
+	 * 
+	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public int compare(Viewer viewer, Object e1, Object e2) {
 
@@ -101,128 +126,6 @@ public class TableViewerColumnSorter extends ViewerComparator {
 
 	}
 
-//	@Override
-//	public int category(Object element) {
-//		if (element instanceof ModelElement) {
-//			ModelElement me = (ModelElement) element;
-//			if (me.getState().equals(MEState.CLOSED)) {
-//				return 2;
-//			} else {
-//				return 1;
-//			}
-//		}
-//		return 3;
-//	}
 
 }
 
-// //====================================================================
-// //====================================================================
-//
-// package org.unicase.ui.common;
-//
-// import org.eclipse.jface.viewers.ColumnViewer;
-// import org.eclipse.jface.viewers.ITableLabelProvider;
-// import org.eclipse.jface.viewers.TableViewer;
-// import org.eclipse.jface.viewers.TableViewerColumn;
-// import org.eclipse.jface.viewers.Viewer;
-// import org.eclipse.jface.viewers.ViewerComparator;
-// import org.eclipse.swt.SWT;
-// import org.eclipse.swt.events.SelectionAdapter;
-// import org.eclipse.swt.events.SelectionEvent;
-// import org.unicase.model.Annotation;
-// import org.unicase.model.task.WorkPackage;
-//
-// public class TableViewerColumnSorter extends ViewerComparator {
-//
-// public static final int ASC = 1;
-// public static final int DESC = -1;
-//
-// private int direction = 1;
-//
-// private TableViewerColumn column;
-// private ITableLabelProvider tableLabelProvider;
-// private int columnIndex;
-//
-// private TableViewer viewer;
-//
-// public TableViewerColumnSorter(TableViewer viewer,
-// TableViewerColumn column, ITableLabelProvider tableLabelProvider,
-// int columnIndex) {
-// this.tableLabelProvider = tableLabelProvider;
-// this.column = column;
-//
-// this.viewer = viewer;
-// this.columnIndex = columnIndex;
-//
-// this.column.getColumn().addSelectionListener(new SelectionAdapter() {
-//
-// public void widgetSelected(SelectionEvent e) {
-// if (TableViewerColumnSorter.this.viewer.getComparator() != null) {
-// if (TableViewerColumnSorter.this.viewer.getComparator() ==
-// TableViewerColumnSorter.this) {
-// if (direction == ASC) {
-// setSorter(TableViewerColumnSorter.this, DESC);
-// } else {
-// setSorter(TableViewerColumnSorter.this, ASC);
-// }
-// } else {
-// setSorter(TableViewerColumnSorter.this, ASC);
-// }
-// } else {
-// setSorter(TableViewerColumnSorter.this, ASC);
-// }
-// }
-// });
-// }
-//
-// public void setSorter(TableViewerColumnSorter sorter, int direction) {
-// column.getColumn().getParent().setSortColumn(column.getColumn());
-// sorter.direction = direction;
-//
-// if (direction == ASC) {
-// column.getColumn().getParent().setSortDirection(SWT.DOWN);
-// } else {
-// column.getColumn().getParent().setSortDirection(SWT.UP);
-// }
-//
-// if (viewer.getComparator() == sorter) {
-// viewer.refresh();
-// } else {
-// viewer.setComparator(sorter);
-// }
-//
-// }
-//
-// public int compare(Viewer viewer, Object e1, Object e2) {
-//
-// String name1 = tableLabelProvider.getColumnText(e1, columnIndex);
-// String name2 = tableLabelProvider.getColumnText(e2, columnIndex);
-//
-// if (name1 == null) {
-// name1 = "";
-// }
-// if (name2 == null) {
-// name2 = "";
-// }
-//
-// // use the comparator to compare the strings
-// if (direction == ASC) {
-// return getComparator().compare(name1, name2);
-// } else {
-// return getComparator().compare(name2, name1);
-// }
-//
-// }
-//
-// // @Override
-// // public int category(Object element) {
-// // if (element instanceof Annotation)
-// // return 1;
-// // if (element instanceof WorkPackage)
-// // return 2;
-// // return 3;
-// // }
-//
-// }
-//

@@ -125,6 +125,7 @@ public class METypeSelectionDialog extends TitleAreaDialog implements Listener {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	private boolean checkSelection() {
 
 		ISelection sel = treeViewer.getSelection();
