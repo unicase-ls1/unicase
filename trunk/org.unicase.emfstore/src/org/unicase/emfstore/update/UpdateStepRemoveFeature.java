@@ -14,12 +14,8 @@ import org.unicase.model.ModelElement;
  * @author schroech
  *
  */
-public abstract class UpdateStepRemoveFeature extends UpdateStepTransformClass {
-	
-	/**
-	 * @return The name of the feature that is about to be unset
-	 */
-	public abstract String getFeatureName();
+public abstract class UpdateStepRemoveFeature extends UpdateStepTransformFeature {
+
 
 	/**
 	 * {@inheritDoc}
@@ -27,31 +23,24 @@ public abstract class UpdateStepRemoveFeature extends UpdateStepTransformClass {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public int updateModelElement(ModelElement modelElement) {
+	public int updateFeature(ModelElement modelElement, EStructuralFeature feature) {
 		int numberOfUpdatedItems = 0;
-		
-		EStructuralFeature feature = null;
-		
-		feature = getTransformableEClass().getEStructuralFeature(getFeatureName());
 
-		if (feature != null) {
-			Object featureValue = modelElement.eGet(feature);
-			if (featureValue != null
+		Object featureValue = modelElement.eGet(feature);
+		if (featureValue != null
 				&& !((featureValue instanceof EList)
 						&& (((EList) featureValue).size() != 0))) {
 
-				modelElement.eUnset(feature);
+			modelElement.eUnset(feature);
 
-				System.out.println("Unset feature \"" 
-						+ getFeatureName()
-						+ "\" of model element \""
-						+ modelElement.getName()
-						+ "\"");
+			System.out.println("Unset feature \"" 
+					+ getFeatureName()
+					+ "\" of model element \""
+					+ modelElement.getName()
+					+ "\"");
 
-				numberOfUpdatedItems++;
-			}
+			numberOfUpdatedItems++;
 		}
-		
 		return numberOfUpdatedItems;
 	}
 }
