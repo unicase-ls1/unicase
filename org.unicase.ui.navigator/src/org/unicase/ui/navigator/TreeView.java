@@ -154,6 +154,7 @@ public class TreeView extends ViewPart  { //implements IShowInSource
 		if (projectSpace != null) {
 			domain.getCommandStack().execute(new RecordingCommand(domain) {
 
+				@Override
 				protected void doExecute() {
 					WorkspaceManager.getInstance().getCurrentWorkspace()
 							.setActiveProjectSpace(projectSpace);
@@ -216,6 +217,7 @@ public class TreeView extends ViewPart  { //implements IShowInSource
 
 	private void createDoubleClickAction() {
 		doubleClickAction = new Action() {
+			@Override
 			public void run() {
 				ActionHelper.openModelElement(ActionHelper
 						.getSelectedModelElement());
