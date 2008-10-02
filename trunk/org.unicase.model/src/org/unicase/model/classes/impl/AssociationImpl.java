@@ -27,6 +27,8 @@ import org.unicase.model.impl.ModelElementImpl;
  *   <li>{@link org.unicase.model.classes.impl.AssociationImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.unicase.model.classes.impl.AssociationImpl#getSourceMultiplicity <em>Source Multiplicity</em>}</li>
  *   <li>{@link org.unicase.model.classes.impl.AssociationImpl#getTargetMultiplicity <em>Target Multiplicity</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.AssociationImpl#getSourceRole <em>Source Role</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.AssociationImpl#getTargetRole <em>Target Role</em>}</li>
  * </ul>
  * </p>
  *
@@ -108,6 +110,46 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	 * @ordered
 	 */
 	protected String targetMultiplicity = TARGET_MULTIPLICITY_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getSourceRole() <em>Source Role</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSourceRole()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String SOURCE_ROLE_EDEFAULT = "1";
+
+	/**
+	 * The cached value of the '{@link #getSourceRole() <em>Source Role</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSourceRole()
+	 * @generated
+	 * @ordered
+	 */
+	protected String sourceRole = SOURCE_ROLE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getTargetRole() <em>Target Role</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTargetRole()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TARGET_ROLE_EDEFAULT = "1";
+
+	/**
+	 * The cached value of the '{@link #getTargetRole() <em>Target Role</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTargetRole()
+	 * @generated
+	 * @ordered
+	 */
+	protected String targetRole = TARGET_ROLE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -331,6 +373,52 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getSourceRole() {
+		return sourceRole;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSourceRole(String newSourceRole) {
+		String oldSourceRole = sourceRole;
+		sourceRole = newSourceRole;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ClassesPackage.ASSOCIATION__SOURCE_ROLE, oldSourceRole,
+					sourceRole));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getTargetRole() {
+		return targetRole;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTargetRole(String newTargetRole) {
+		String oldTargetRole = targetRole;
+		targetRole = newTargetRole;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ClassesPackage.ASSOCIATION__TARGET_ROLE, oldTargetRole,
+					targetRole));
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -393,6 +481,10 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 			return getSourceMultiplicity();
 		case ClassesPackage.ASSOCIATION__TARGET_MULTIPLICITY:
 			return getTargetMultiplicity();
+		case ClassesPackage.ASSOCIATION__SOURCE_ROLE:
+			return getSourceRole();
+		case ClassesPackage.ASSOCIATION__TARGET_ROLE:
+			return getTargetRole();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -418,6 +510,12 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 			return;
 		case ClassesPackage.ASSOCIATION__TARGET_MULTIPLICITY:
 			setTargetMultiplicity((String) newValue);
+			return;
+		case ClassesPackage.ASSOCIATION__SOURCE_ROLE:
+			setSourceRole((String) newValue);
+			return;
+		case ClassesPackage.ASSOCIATION__TARGET_ROLE:
+			setTargetRole((String) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -445,6 +543,12 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 		case ClassesPackage.ASSOCIATION__TARGET_MULTIPLICITY:
 			setTargetMultiplicity(TARGET_MULTIPLICITY_EDEFAULT);
 			return;
+		case ClassesPackage.ASSOCIATION__SOURCE_ROLE:
+			setSourceRole(SOURCE_ROLE_EDEFAULT);
+			return;
+		case ClassesPackage.ASSOCIATION__TARGET_ROLE:
+			setTargetRole(TARGET_ROLE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -468,6 +572,12 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 		case ClassesPackage.ASSOCIATION__TARGET_MULTIPLICITY:
 			return TARGET_MULTIPLICITY_EDEFAULT == null ? targetMultiplicity != null
 					: !TARGET_MULTIPLICITY_EDEFAULT.equals(targetMultiplicity);
+		case ClassesPackage.ASSOCIATION__SOURCE_ROLE:
+			return SOURCE_ROLE_EDEFAULT == null ? sourceRole != null
+					: !SOURCE_ROLE_EDEFAULT.equals(sourceRole);
+		case ClassesPackage.ASSOCIATION__TARGET_ROLE:
+			return TARGET_ROLE_EDEFAULT == null ? targetRole != null
+					: !TARGET_ROLE_EDEFAULT.equals(targetRole);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -488,6 +598,10 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 		result.append(sourceMultiplicity);
 		result.append(", targetMultiplicity: ");
 		result.append(targetMultiplicity);
+		result.append(", sourceRole: ");
+		result.append(sourceRole);
+		result.append(", targetRole: ");
+		result.append(targetRole);
 		result.append(')');
 		return result.toString();
 	}

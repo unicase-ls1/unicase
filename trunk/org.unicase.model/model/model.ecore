@@ -208,6 +208,10 @@
           defaultValueLiteral="1"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetMultiplicity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           defaultValueLiteral="1"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceRole" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          defaultValueLiteral="1"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetRole" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          defaultValueLiteral="1"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="AssociationType">
       <eLiterals name="UNDIRECTED_ASSOCIATION" literal="UNDIRECTED_ASSOCIATION"/>
@@ -237,9 +241,9 @@
       <eLiterals name="PROTECTED" value="4" literal="~"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="ScopeType">
+      <eLiterals name="CLASS" value="2"/>
       <eLiterals name="UNDEFINED" literal=""/>
       <eLiterals name="INSTANCE" value="1"/>
-      <eLiterals name="CLASS" value="2"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Method" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" eType="#//classes/VisibilityType"/>

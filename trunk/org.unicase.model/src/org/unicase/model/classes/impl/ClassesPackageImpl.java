@@ -448,6 +448,24 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getAssociation_SourceRole() {
+		return (EAttribute) associationEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAssociation_TargetRole() {
+		return (EAttribute) associationEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getAttribute() {
 		return attributeEClass;
 	}
@@ -778,6 +796,8 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		createEAttribute(associationEClass, ASSOCIATION__TYPE);
 		createEAttribute(associationEClass, ASSOCIATION__SOURCE_MULTIPLICITY);
 		createEAttribute(associationEClass, ASSOCIATION__TARGET_MULTIPLICITY);
+		createEAttribute(associationEClass, ASSOCIATION__SOURCE_ROLE);
+		createEAttribute(associationEClass, ASSOCIATION__TARGET_ROLE);
 
 		attributeEClass = createEClass(ATTRIBUTE);
 		createEReference(attributeEClass, ATTRIBUTE__DEFINING_CLASS);
@@ -983,6 +1003,14 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 				.getEString(), "targetMultiplicity", "1", 0, 1,
 				Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAssociation_SourceRole(), ecorePackage.getEString(),
+				"sourceRole", "1", 0, 1, Association.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAssociation_TargetRole(), ecorePackage.getEString(),
+				"targetRole", "1", 0, 1, Association.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(attributeEClass, Attribute.class, "Attribute", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1113,9 +1141,9 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		addEEnumLiteral(visibilityTypeEEnum, VisibilityType.PROTECTED);
 
 		initEEnum(scopeTypeEEnum, ScopeType.class, "ScopeType");
+		addEEnumLiteral(scopeTypeEEnum, ScopeType.CLASS);
 		addEEnumLiteral(scopeTypeEEnum, ScopeType.UNDEFINED);
 		addEEnumLiteral(scopeTypeEEnum, ScopeType.INSTANCE);
-		addEEnumLiteral(scopeTypeEEnum, ScopeType.CLASS);
 
 		initEEnum(argumentDirectionTypeEEnum, ArgumentDirectionType.class,
 				"ArgumentDirectionType");

@@ -61,6 +61,8 @@ public class AssociationItemProvider extends ModelElementItemProvider implements
 			addTypePropertyDescriptor(object);
 			addSourceMultiplicityPropertyDescriptor(object);
 			addTargetMultiplicityPropertyDescriptor(object);
+			addSourceRolePropertyDescriptor(object);
+			addTargetRolePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -160,6 +162,42 @@ public class AssociationItemProvider extends ModelElementItemProvider implements
 	}
 
 	/**
+	 * This adds a property descriptor for the Source Role feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSourceRolePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Association_sourceRole_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Association_sourceRole_feature",
+						"_UI_Association_type"),
+				ClassesPackage.Literals.ASSOCIATION__SOURCE_ROLE, true, false,
+				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Target Role feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTargetRolePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Association_targetRole_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Association_targetRole_feature",
+						"_UI_Association_type"),
+				ClassesPackage.Literals.ASSOCIATION__TARGET_ROLE, true, false,
+				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
 	 * This returns Association.gif. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
@@ -199,6 +237,8 @@ public class AssociationItemProvider extends ModelElementItemProvider implements
 		case ClassesPackage.ASSOCIATION__TYPE:
 		case ClassesPackage.ASSOCIATION__SOURCE_MULTIPLICITY:
 		case ClassesPackage.ASSOCIATION__TARGET_MULTIPLICITY:
+		case ClassesPackage.ASSOCIATION__SOURCE_ROLE:
+		case ClassesPackage.ASSOCIATION__TARGET_ROLE:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), false, true));
 			return;

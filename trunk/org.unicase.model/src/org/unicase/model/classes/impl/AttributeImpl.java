@@ -65,7 +65,7 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final ScopeType SCOPE_EDEFAULT = ScopeType.UNDEFINED;
+	protected static final ScopeType SCOPE_EDEFAULT = ScopeType.CLASS;
 	/**
 	 * The cached value of the '{@link #getScope() <em>Scope</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
