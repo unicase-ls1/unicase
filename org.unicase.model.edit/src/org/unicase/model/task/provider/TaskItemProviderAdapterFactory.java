@@ -119,29 +119,6 @@ public class TaskItemProviderAdapterFactory extends TaskAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.model.task.Meeting} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected MeetingItemProvider meetingItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.model.task.Meeting}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createMeetingAdapter() {
-		if (meetingItemProvider == null) {
-			meetingItemProvider = new MeetingItemProvider(this);
-		}
-
-		return meetingItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.unicase.model.task.Milestone} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -266,8 +243,6 @@ public class TaskItemProviderAdapterFactory extends TaskAdapterFactory
 			actionItemItemProvider.dispose();
 		if (workPackageItemProvider != null)
 			workPackageItemProvider.dispose();
-		if (meetingItemProvider != null)
-			meetingItemProvider.dispose();
 		if (milestoneItemProvider != null)
 			milestoneItemProvider.dispose();
 	}

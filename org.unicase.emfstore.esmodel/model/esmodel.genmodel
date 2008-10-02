@@ -146,6 +146,7 @@
         <genClasses ecoreClass="esmodel.ecore#//versioning/operations/ReadOperation">
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/ReadOperation/date"/>
         </genClasses>
+        <genClasses ecoreClass="esmodel.ecore#//versioning/operations/DiagramLayoutOperation"/>
       </nestedGenPackages>
     </nestedGenPackages>
     <nestedGenPackages prefix="Accesscontrol" basePackage="org.unicase.emfstore.esmodel"

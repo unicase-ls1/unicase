@@ -8,6 +8,7 @@ package org.unicase.model.requirement;
 
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
+import org.unicase.model.organization.OrgUnit;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '
@@ -23,6 +24,7 @@ import org.unicase.model.ModelElement;
  *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getUseCases <em>Use Cases</em>}</li>
  *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getScenarios <em>Scenarios</em>}</li>
  *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#isReviewed <em>Reviewed</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getStakeholder <em>Stakeholder</em>}</li>
  * </ul>
  * </p>
  *
@@ -60,6 +62,32 @@ public interface FunctionalRequirement extends ModelElement {
 	 * @generated
 	 */
 	void setReviewed(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Stakeholder</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Stakeholder</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Stakeholder</em>' reference.
+	 * @see #setStakeholder(OrgUnit)
+	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_Stakeholder()
+	 * @model keys="identifier"
+	 * @generated
+	 */
+	OrgUnit getStakeholder();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.requirement.FunctionalRequirement#getStakeholder <em>Stakeholder</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Stakeholder</em>' reference.
+	 * @see #getStakeholder()
+	 * @generated
+	 */
+	void setStakeholder(OrgUnit value);
 
 	/**
 	 * Returns the value of the '<em><b>Story Points</b></em>' attribute. <!--

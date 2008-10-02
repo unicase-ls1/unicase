@@ -31,6 +31,8 @@ import org.unicase.model.diagram.impl.DiagramPackageImpl;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.impl.DocumentPackageImpl;
 import org.unicase.model.impl.ModelPackageImpl;
+import org.unicase.model.meeting.MeetingPackage;
+import org.unicase.model.meeting.impl.MeetingPackageImpl;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.impl.OrganizationPackageImpl;
 import org.unicase.model.rationale.RationalePackage;
@@ -173,6 +175,10 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 				.getEPackage(ComponentPackage.eNS_URI) instanceof ComponentPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(ComponentPackage.eNS_URI)
 				: ComponentPackage.eINSTANCE);
+		MeetingPackageImpl theMeetingPackage = (MeetingPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(MeetingPackage.eNS_URI) instanceof MeetingPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(MeetingPackage.eNS_URI)
+				: MeetingPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theBugPackage.createPackageContents();
@@ -186,6 +192,7 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 		theRationalePackage.createPackageContents();
 		theChangePackage.createPackageContents();
 		theComponentPackage.createPackageContents();
+		theMeetingPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theBugPackage.initializePackageContents();
@@ -199,6 +206,7 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 		theRationalePackage.initializePackageContents();
 		theChangePackage.initializePackageContents();
 		theComponentPackage.initializePackageContents();
+		theMeetingPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theBugPackage.freeze();

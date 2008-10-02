@@ -37,6 +37,8 @@ import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.impl.DiagramPackageImpl;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.impl.DocumentPackageImpl;
+import org.unicase.model.meeting.MeetingPackage;
+import org.unicase.model.meeting.impl.MeetingPackageImpl;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.impl.OrganizationPackageImpl;
 import org.unicase.model.rationale.RationalePackage;
@@ -200,6 +202,10 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 				.getEPackage(ComponentPackage.eNS_URI) instanceof ComponentPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(ComponentPackage.eNS_URI)
 				: ComponentPackage.eINSTANCE);
+		MeetingPackageImpl theMeetingPackage = (MeetingPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(MeetingPackage.eNS_URI) instanceof MeetingPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(MeetingPackage.eNS_URI)
+				: MeetingPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theModelPackage.createPackageContents();
@@ -213,6 +219,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		theChangePackage.createPackageContents();
 		theBugPackage.createPackageContents();
 		theComponentPackage.createPackageContents();
+		theMeetingPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theModelPackage.initializePackageContents();
@@ -226,6 +233,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		theChangePackage.initializePackageContents();
 		theBugPackage.initializePackageContents();
 		theComponentPackage.initializePackageContents();
+		theMeetingPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theModelPackage.freeze();
@@ -524,6 +532,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 				.getEPackage(BugPackage.eNS_URI);
 		ComponentPackage theComponentPackage = (ComponentPackage) EPackage.Registry.INSTANCE
 				.getEPackage(ComponentPackage.eNS_URI);
+		MeetingPackage theMeetingPackage = (MeetingPackage) EPackage.Registry.INSTANCE
+				.getEPackage(MeetingPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
 				.getEPackage(EcorePackage.eNS_URI);
 
@@ -538,6 +548,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		getESubpackages().add(theChangePackage);
 		getESubpackages().add(theBugPackage);
 		getESubpackages().add(theComponentPackage);
+		getESubpackages().add(theMeetingPackage);
 
 		// Create type parameters
 

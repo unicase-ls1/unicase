@@ -30,6 +30,7 @@ import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.document.DocumentFactory;
+import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.ModelElementItemProvider;
@@ -259,10 +260,6 @@ public class MEDiagramItemProvider extends ModelElementItemProvider implements
 
 		newChildDescriptors.add(createChildParameter(
 				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-				TaskFactory.eINSTANCE.createMeeting()));
-
-		newChildDescriptors.add(createChildParameter(
-				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
 				TaskFactory.eINSTANCE.createMilestone()));
 
 		newChildDescriptors.add(createChildParameter(
@@ -388,6 +385,22 @@ public class MEDiagramItemProvider extends ModelElementItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
 				ComponentFactory.eINSTANCE.createDeploymentNode()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				MeetingFactory.eINSTANCE.createMeeting()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				MeetingFactory.eINSTANCE.createCompositeMeetingSection()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				MeetingFactory.eINSTANCE.createIssueMeetingSection()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				MeetingFactory.eINSTANCE.createWorkItemMeetingSection()));
 	}
 
 	/**

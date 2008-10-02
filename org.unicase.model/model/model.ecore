@@ -131,25 +131,6 @@
           eType="#//organization/OrgUnit" eOpposite="#//organization/OrgUnit/participations"
           eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Meeting" eSuperTypes="#//ModelElement">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="time" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="purpose" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="facilitator" eType="#//organization/User"
-          eKeys="#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="scribe" eType="#//organization/User"
-          eKeys="#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="participants" upperBound="-1"
-          eType="#//organization/OrgUnit" eKeys="#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="informationExchange"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="discussedActionItems"
-          upperBound="-1" eType="#//task/ActionItem" eKeys="#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="discussedIssues" upperBound="-1"
-          eType="#//rationale/Issue" eKeys="#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="identifiedActionItems"
-          eType="#//task/ActionItem" eKeys="#//IdentifiableElement/identifier"/>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Milestone" eSuperTypes="#//ModelElement"/>
     <eClassifiers xsi:type="ecore:EEnum" name="ActivityType">
       <eLiterals name="MANAGEMENT" literal="Management"/>
@@ -328,6 +309,8 @@
           eType="#//requirement/Scenario" eOpposite="#//requirement/Scenario/functionalRequirements"
           eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="reviewed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="stakeholder" eType="#//organization/OrgUnit"
+          eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="UseCase" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="initiatingActor" eType="#//requirement/Actor"
@@ -543,6 +526,43 @@
     <eClassifiers xsi:type="ecore:EClass" name="DeploymentNode" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="components" upperBound="-1"
           eType="#//component/Component" eKeys="#//IdentifiableElement/identifier"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="meeting" nsURI="http://unicase.org/model/meeting" nsPrefix="org.unicase.model.meeting">
+    <eClassifiers xsi:type="ecore:EClass" name="Meeting" eSuperTypes="#//ModelElement">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="starttime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="endtime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="facilitator" eType="#//organization/User"
+          eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="minutetaker" eType="#//organization/User"
+          eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="timekeeper" eType="#//organization/User"
+          eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="participants" upperBound="-1"
+          eType="#//organization/OrgUnit" eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sections" upperBound="-1"
+          eType="#//meeting/MeetingSection" containment="true" eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="identifiedIssuesSection"
+          eType="#//meeting/IssueMeetingSection" eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="identifiedWorkItemsSection"
+          eType="#//meeting/WorkItemMeetingSection" eKeys="#//IdentifiableElement/identifier"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="MeetingSection" abstract="true" eSuperTypes="#//ModelElement">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="allocatedTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+          defaultValueLiteral="0"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CompositeMeetingSection" eSuperTypes="#//meeting/MeetingSection">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="subsections" upperBound="-1"
+          eType="#//meeting/MeetingSection" containment="true" eKeys="#//IdentifiableElement/identifier"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="IssueMeetingSection" eSuperTypes="#//meeting/MeetingSection">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="includedIssues" upperBound="-1"
+          eType="#//rationale/Issue" eKeys="#//IdentifiableElement/identifier"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="WorkItemMeetingSection" eSuperTypes="#//meeting/MeetingSection">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="includedWorkItems" upperBound="-1"
+          eType="#//task/WorkItem" eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.Scenario;
@@ -37,6 +38,7 @@ import org.unicase.model.requirement.UseCase;
  *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getUseCases <em>Use Cases</em>}</li>
  *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getScenarios <em>Scenarios</em>}</li>
  *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#isReviewed <em>Reviewed</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getStakeholder <em>Stakeholder</em>}</li>
  * </ul>
  * </p>
  *
@@ -129,6 +131,16 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 	protected boolean reviewed = REVIEWED_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getStakeholder() <em>Stakeholder</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStakeholder()
+	 * @generated
+	 * @ordered
+	 */
+	protected OrgUnit stakeholder;
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -164,6 +176,50 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 			eNotify(new ENotificationImpl(this, Notification.SET,
 					RequirementPackage.FUNCTIONAL_REQUIREMENT__REVIEWED,
 					oldReviewed, reviewed));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OrgUnit getStakeholder() {
+		if (stakeholder != null && stakeholder.eIsProxy()) {
+			InternalEObject oldStakeholder = (InternalEObject) stakeholder;
+			stakeholder = (OrgUnit) eResolveProxy(oldStakeholder);
+			if (stakeholder != oldStakeholder) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(
+							this,
+							Notification.RESOLVE,
+							RequirementPackage.FUNCTIONAL_REQUIREMENT__STAKEHOLDER,
+							oldStakeholder, stakeholder));
+			}
+		}
+		return stakeholder;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OrgUnit basicGetStakeholder() {
+		return stakeholder;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStakeholder(OrgUnit newStakeholder) {
+		OrgUnit oldStakeholder = stakeholder;
+		stakeholder = newStakeholder;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RequirementPackage.FUNCTIONAL_REQUIREMENT__STAKEHOLDER,
+					oldStakeholder, stakeholder));
 	}
 
 	/**
@@ -406,6 +462,10 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 			return getScenarios();
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REVIEWED:
 			return isReviewed() ? Boolean.TRUE : Boolean.FALSE;
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT__STAKEHOLDER:
+			if (resolve)
+				return getStakeholder();
+			return basicGetStakeholder();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -443,6 +503,9 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REVIEWED:
 			setReviewed(((Boolean) newValue).booleanValue());
 			return;
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT__STAKEHOLDER:
+			setStakeholder((OrgUnit) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -475,6 +538,9 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REVIEWED:
 			setReviewed(REVIEWED_EDEFAULT);
 			return;
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT__STAKEHOLDER:
+			setStakeholder((OrgUnit) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -501,6 +567,8 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 			return scenarios != null && !scenarios.isEmpty();
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REVIEWED:
 			return reviewed != REVIEWED_EDEFAULT;
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT__STAKEHOLDER:
+			return stakeholder != null;
 		}
 		return super.eIsSet(featureID);
 	}
