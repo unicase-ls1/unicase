@@ -27,6 +27,8 @@ import org.unicase.model.diagram.impl.DiagramPackageImpl;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.impl.DocumentPackageImpl;
 import org.unicase.model.impl.ModelPackageImpl;
+import org.unicase.model.meeting.MeetingPackage;
+import org.unicase.model.meeting.impl.MeetingPackageImpl;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.impl.OrganizationPackageImpl;
 import org.unicase.model.rationale.RationalePackage;
@@ -211,6 +213,10 @@ public class RequirementPackageImpl extends EPackageImpl implements
 				.getEPackage(ComponentPackage.eNS_URI) instanceof ComponentPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(ComponentPackage.eNS_URI)
 				: ComponentPackage.eINSTANCE);
+		MeetingPackageImpl theMeetingPackage = (MeetingPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(MeetingPackage.eNS_URI) instanceof MeetingPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(MeetingPackage.eNS_URI)
+				: MeetingPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theRequirementPackage.createPackageContents();
@@ -224,6 +230,7 @@ public class RequirementPackageImpl extends EPackageImpl implements
 		theChangePackage.createPackageContents();
 		theBugPackage.createPackageContents();
 		theComponentPackage.createPackageContents();
+		theMeetingPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theRequirementPackage.initializePackageContents();
@@ -237,6 +244,7 @@ public class RequirementPackageImpl extends EPackageImpl implements
 		theChangePackage.initializePackageContents();
 		theBugPackage.initializePackageContents();
 		theComponentPackage.initializePackageContents();
+		theMeetingPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theRequirementPackage.freeze();
@@ -285,6 +293,16 @@ public class RequirementPackageImpl extends EPackageImpl implements
 	public EAttribute getFunctionalRequirement_Reviewed() {
 		return (EAttribute) functionalRequirementEClass
 				.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFunctionalRequirement_Stakeholder() {
+		return (EReference) functionalRequirementEClass
+				.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -773,6 +791,8 @@ public class RequirementPackageImpl extends EPackageImpl implements
 				FUNCTIONAL_REQUIREMENT__SCENARIOS);
 		createEAttribute(functionalRequirementEClass,
 				FUNCTIONAL_REQUIREMENT__REVIEWED);
+		createEReference(functionalRequirementEClass,
+				FUNCTIONAL_REQUIREMENT__STAKEHOLDER);
 
 		useCaseEClass = createEClass(USE_CASE);
 		createEReference(useCaseEClass, USE_CASE__INITIATING_ACTOR);
@@ -859,6 +879,8 @@ public class RequirementPackageImpl extends EPackageImpl implements
 				.getEPackage(RationalePackage.eNS_URI);
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE
 				.getEPackage(ModelPackage.eNS_URI);
+		OrganizationPackage theOrganizationPackage = (OrganizationPackage) EPackage.Registry.INSTANCE
+				.getEPackage(OrganizationPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
 				.getEPackage(EcorePackage.eNS_URI);
 		ClassesPackage theClassesPackage = (ClassesPackage) EPackage.Registry.INSTANCE
@@ -960,6 +982,13 @@ public class RequirementPackageImpl extends EPackageImpl implements
 				FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		initEReference(getFunctionalRequirement_Stakeholder(),
+				theOrganizationPackage.getOrgUnit(), null, "stakeholder", null,
+				0, 1, FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getFunctionalRequirement_Stakeholder().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(useCaseEClass, UseCase.class, "UseCase", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

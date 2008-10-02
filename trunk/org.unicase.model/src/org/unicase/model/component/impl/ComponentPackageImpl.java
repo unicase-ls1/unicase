@@ -28,6 +28,8 @@ import org.unicase.model.diagram.impl.DiagramPackageImpl;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.impl.DocumentPackageImpl;
 import org.unicase.model.impl.ModelPackageImpl;
+import org.unicase.model.meeting.MeetingPackage;
+import org.unicase.model.meeting.impl.MeetingPackageImpl;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.impl.OrganizationPackageImpl;
 import org.unicase.model.rationale.RationalePackage;
@@ -165,6 +167,10 @@ public class ComponentPackageImpl extends EPackageImpl implements
 				.getEPackage(BugPackage.eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(BugPackage.eNS_URI)
 				: BugPackage.eINSTANCE);
+		MeetingPackageImpl theMeetingPackage = (MeetingPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(MeetingPackage.eNS_URI) instanceof MeetingPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(MeetingPackage.eNS_URI)
+				: MeetingPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theComponentPackage.createPackageContents();
@@ -178,6 +184,7 @@ public class ComponentPackageImpl extends EPackageImpl implements
 		theRationalePackage.createPackageContents();
 		theChangePackage.createPackageContents();
 		theBugPackage.createPackageContents();
+		theMeetingPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theComponentPackage.initializePackageContents();
@@ -191,6 +198,7 @@ public class ComponentPackageImpl extends EPackageImpl implements
 		theRationalePackage.initializePackageContents();
 		theChangePackage.initializePackageContents();
 		theBugPackage.initializePackageContents();
+		theMeetingPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theComponentPackage.freeze();

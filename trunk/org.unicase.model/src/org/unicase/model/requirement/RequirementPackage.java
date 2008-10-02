@@ -384,12 +384,21 @@ public interface RequirementPackage extends EPackage {
 	int FUNCTIONAL_REQUIREMENT__REVIEWED = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
+	 * The feature id for the '<em><b>Stakeholder</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTIONAL_REQUIREMENT__STAKEHOLDER = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
 	 * The number of structural features of the '<em>Functional Requirement</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTIONAL_REQUIREMENT_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 7;
+	int FUNCTIONAL_REQUIREMENT_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.requirement.impl.UseCaseImpl <em>Use Case</em>}' class.
@@ -1640,6 +1649,17 @@ public interface RequirementPackage extends EPackage {
 	EAttribute getFunctionalRequirement_Reviewed();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.unicase.model.requirement.FunctionalRequirement#getStakeholder <em>Stakeholder</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Stakeholder</em>'.
+	 * @see org.unicase.model.requirement.FunctionalRequirement#getStakeholder()
+	 * @see #getFunctionalRequirement()
+	 * @generated
+	 */
+	EReference getFunctionalRequirement_Stakeholder();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.model.requirement.FunctionalRequirement#getStoryPoints <em>Story Points</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Story Points</em>'.
@@ -2270,6 +2290,14 @@ public interface RequirementPackage extends EPackage {
 		 */
 		EAttribute FUNCTIONAL_REQUIREMENT__REVIEWED = eINSTANCE
 				.getFunctionalRequirement_Reviewed();
+		/**
+		 * The meta object literal for the '<em><b>Stakeholder</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FUNCTIONAL_REQUIREMENT__STAKEHOLDER = eINSTANCE
+				.getFunctionalRequirement_Stakeholder();
 		/**
 		 * The meta object literal for the '<em><b>Story Points</b></em>' attribute feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->

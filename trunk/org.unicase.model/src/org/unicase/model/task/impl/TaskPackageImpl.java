@@ -28,6 +28,8 @@ import org.unicase.model.diagram.impl.DiagramPackageImpl;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.impl.DocumentPackageImpl;
 import org.unicase.model.impl.ModelPackageImpl;
+import org.unicase.model.meeting.MeetingPackage;
+import org.unicase.model.meeting.impl.MeetingPackageImpl;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.impl.OrganizationPackageImpl;
 import org.unicase.model.rationale.RationalePackage;
@@ -37,7 +39,6 @@ import org.unicase.model.requirement.impl.RequirementPackageImpl;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.ActivityType;
 import org.unicase.model.task.Checkable;
-import org.unicase.model.task.Meeting;
 import org.unicase.model.task.Milestone;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.TaskPackage;
@@ -66,13 +67,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * @generated
 	 */
 	private EClass workItemEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass meetingEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -198,6 +192,10 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 				.getEPackage(ComponentPackage.eNS_URI) instanceof ComponentPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(ComponentPackage.eNS_URI)
 				: ComponentPackage.eINSTANCE);
+		MeetingPackageImpl theMeetingPackage = (MeetingPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(MeetingPackage.eNS_URI) instanceof MeetingPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(MeetingPackage.eNS_URI)
+				: MeetingPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theTaskPackage.createPackageContents();
@@ -211,6 +209,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		theChangePackage.createPackageContents();
 		theBugPackage.createPackageContents();
 		theComponentPackage.createPackageContents();
+		theMeetingPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theTaskPackage.initializePackageContents();
@@ -224,6 +223,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		theChangePackage.initializePackageContents();
 		theBugPackage.initializePackageContents();
 		theComponentPackage.initializePackageContents();
+		theMeetingPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theTaskPackage.freeze();
@@ -372,105 +372,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMeeting() {
-		return meetingEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getMeeting_Location() {
-		return (EAttribute) meetingEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getMeeting_Time() {
-		return (EAttribute) meetingEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getMeeting_Purpose() {
-		return (EAttribute) meetingEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMeeting_Facilitator() {
-		return (EReference) meetingEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMeeting_Scribe() {
-		return (EReference) meetingEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMeeting_Participants() {
-		return (EReference) meetingEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getMeeting_InformationExchange() {
-		return (EAttribute) meetingEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMeeting_DiscussedActionItems() {
-		return (EReference) meetingEClass.getEStructuralFeatures().get(7);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMeeting_DiscussedIssues() {
-		return (EReference) meetingEClass.getEStructuralFeatures().get(8);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMeeting_IdentifiedActionItems() {
-		return (EReference) meetingEClass.getEStructuralFeatures().get(9);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getMilestone() {
 		return milestoneEClass;
 	}
@@ -548,18 +449,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		createEReference(workItemEClass, WORK_ITEM__ASSIGNEE);
 		createEReference(workItemEClass, WORK_ITEM__PARTICIPANTS);
 
-		meetingEClass = createEClass(MEETING);
-		createEAttribute(meetingEClass, MEETING__LOCATION);
-		createEAttribute(meetingEClass, MEETING__TIME);
-		createEAttribute(meetingEClass, MEETING__PURPOSE);
-		createEReference(meetingEClass, MEETING__FACILITATOR);
-		createEReference(meetingEClass, MEETING__SCRIBE);
-		createEReference(meetingEClass, MEETING__PARTICIPANTS);
-		createEAttribute(meetingEClass, MEETING__INFORMATION_EXCHANGE);
-		createEReference(meetingEClass, MEETING__DISCUSSED_ACTION_ITEMS);
-		createEReference(meetingEClass, MEETING__DISCUSSED_ISSUES);
-		createEReference(meetingEClass, MEETING__IDENTIFIED_ACTION_ITEMS);
-
 		milestoneEClass = createEClass(MILESTONE);
 
 		checkableEClass = createEClass(CHECKABLE);
@@ -601,8 +490,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 				.getEPackage(ChangePackage.eNS_URI);
 		OrganizationPackage theOrganizationPackage = (OrganizationPackage) EPackage.Registry.INSTANCE
 				.getEPackage(OrganizationPackage.eNS_URI);
-		RationalePackage theRationalePackage = (RationalePackage) EPackage.Registry.INSTANCE
-				.getEPackage(RationalePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -613,7 +500,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		actionItemEClass.getESuperTypes().add(this.getCheckable());
 		workPackageEClass.getESuperTypes().add(this.getWorkItem());
 		workItemEClass.getESuperTypes().add(theModelPackage.getAnnotation());
-		meetingEClass.getESuperTypes().add(theModelPackage.getModelElement());
 		milestoneEClass.getESuperTypes().add(theModelPackage.getModelElement());
 
 		// Initialize classes and features; add operations and parameters
@@ -699,66 +585,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 		getWorkItem_Participants().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
-
-		initEClass(meetingEClass, Meeting.class, "Meeting", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMeeting_Location(), ecorePackage.getEString(),
-				"location", null, 0, 1, Meeting.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMeeting_Time(), ecorePackage.getEDate(), "time",
-				null, 0, 1, Meeting.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getMeeting_Purpose(), ecorePackage.getEString(),
-				"purpose", null, 0, 1, Meeting.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEReference(getMeeting_Facilitator(), theOrganizationPackage
-				.getUser(), null, "facilitator", null, 0, 1, Meeting.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		getMeeting_Facilitator().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getMeeting_Scribe(), theOrganizationPackage.getUser(),
-				null, "scribe", null, 0, 1, Meeting.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getMeeting_Scribe().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getMeeting_Participants(), theOrganizationPackage
-				.getOrgUnit(), null, "participants", null, 0, -1,
-				Meeting.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		getMeeting_Participants().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
-		initEAttribute(getMeeting_InformationExchange(), ecorePackage
-				.getEString(), "informationExchange", null, 0, 1,
-				Meeting.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMeeting_DiscussedActionItems(), this.getActionItem(),
-				null, "discussedActionItems", null, 0, -1, Meeting.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		getMeeting_DiscussedActionItems().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getMeeting_DiscussedIssues(), theRationalePackage
-				.getIssue(), null, "discussedIssues", null, 0, -1,
-				Meeting.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		getMeeting_DiscussedIssues().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getMeeting_IdentifiedActionItems(),
-				this.getActionItem(), null, "identifiedActionItems", null, 0,
-				1, Meeting.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		getMeeting_IdentifiedActionItems().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(milestoneEClass, Milestone.class, "Milestone", !IS_ABSTRACT,

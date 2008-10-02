@@ -65,6 +65,7 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider
 			addUseCasesPropertyDescriptor(object);
 			addScenariosPropertyDescriptor(object);
 			addReviewedPropertyDescriptor(object);
+			addStakeholderPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -86,6 +87,27 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider
 				RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__REVIEWED,
 				true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Stakeholder feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addStakeholderPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_FunctionalRequirement_stakeholder_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_FunctionalRequirement_stakeholder_feature",
+								"_UI_FunctionalRequirement_type"),
+						RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__STAKEHOLDER,
+						true, false, true, null, null, null));
 	}
 
 	/**

@@ -29,6 +29,7 @@ import org.unicase.model.classes.ClassesFactory;
 import org.unicase.model.component.ComponentFactory;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.document.DocumentFactory;
+import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.requirement.RequirementFactory;
@@ -205,11 +206,6 @@ public class CreateDeleteOperationItemProvider extends
 		newChildDescriptors
 				.add(createChildParameter(
 						OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-						TaskFactory.eINSTANCE.createMeeting()));
-
-		newChildDescriptors
-				.add(createChildParameter(
-						OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
 						TaskFactory.eINSTANCE.createMilestone()));
 
 		newChildDescriptors
@@ -373,6 +369,27 @@ public class CreateDeleteOperationItemProvider extends
 				.add(createChildParameter(
 						OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
 						ComponentFactory.eINSTANCE.createDeploymentNode()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+						MeetingFactory.eINSTANCE.createMeeting()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+						MeetingFactory.eINSTANCE
+								.createCompositeMeetingSection()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+						MeetingFactory.eINSTANCE.createIssueMeetingSection()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+						MeetingFactory.eINSTANCE.createWorkItemMeetingSection()));
 	}
 
 }

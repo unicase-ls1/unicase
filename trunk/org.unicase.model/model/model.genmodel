@@ -114,24 +114,6 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//task/WorkItem/participants"/>
       </genClasses>
-      <genClasses ecoreClass="model.ecore#//task/Meeting">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//task/Meeting/location"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//task/Meeting/time"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//task/Meeting/purpose"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference model.ecore#//task/Meeting/facilitator"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference model.ecore#//task/Meeting/scribe"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference model.ecore#//task/Meeting/participants"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//task/Meeting/informationExchange"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference model.ecore#//task/Meeting/discussedActionItems"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference model.ecore#//task/Meeting/discussedIssues"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference model.ecore#//task/Meeting/identifiedActionItems"/>
-      </genClasses>
       <genClasses ecoreClass="model.ecore#//task/Milestone"/>
       <genClasses image="false" ecoreClass="model.ecore#//task/Checkable">
         <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//task/Checkable/checked"/>
@@ -270,6 +252,8 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/FunctionalRequirement/scenarios"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/FunctionalRequirement/reviewed"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//requirement/FunctionalRequirement/stakeholder"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//requirement/UseCase">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -452,6 +436,41 @@
       <genClasses ecoreClass="model.ecore#//component/DeploymentNode">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//component/DeploymentNode/components"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Meeting" basePackage="org.unicase.model" disposableProviderFactory="true"
+        ecorePackage="model.ecore#//meeting">
+      <genClasses ecoreClass="model.ecore#//meeting/Meeting">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//meeting/Meeting/location"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//meeting/Meeting/starttime"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//meeting/Meeting/endtime"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//meeting/Meeting/facilitator"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//meeting/Meeting/minutetaker"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//meeting/Meeting/timekeeper"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//meeting/Meeting/participants"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//meeting/Meeting/sections"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//meeting/Meeting/identifiedIssuesSection"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//meeting/Meeting/identifiedWorkItemsSection"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="model.ecore#//meeting/MeetingSection">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//meeting/MeetingSection/allocatedTime"/>
+      </genClasses>
+      <genClasses ecoreClass="model.ecore#//meeting/CompositeMeetingSection">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//meeting/CompositeMeetingSection/subsections"/>
+      </genClasses>
+      <genClasses ecoreClass="model.ecore#//meeting/IssueMeetingSection">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//meeting/IssueMeetingSection/includedIssues"/>
+      </genClasses>
+      <genClasses ecoreClass="model.ecore#//meeting/WorkItemMeetingSection">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//meeting/WorkItemMeetingSection/includedWorkItems"/>
       </genClasses>
     </nestedGenPackages>
   </genPackages>

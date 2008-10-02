@@ -15,7 +15,6 @@ import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.Checkable;
-import org.unicase.model.task.Meeting;
 import org.unicase.model.task.Milestone;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
@@ -87,11 +86,6 @@ public class TaskAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseWorkItem(WorkItem object) {
 			return createWorkItemAdapter();
-		}
-
-		@Override
-		public Adapter caseMeeting(Meeting object) {
-			return createMeetingAdapter();
 		}
 
 		@Override
@@ -180,20 +174,6 @@ public class TaskAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createWorkItemAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.task.Meeting <em>Meeting</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.model.task.Meeting
-	 * @generated
-	 */
-	public Adapter createMeetingAdapter() {
 		return null;
 	}
 
