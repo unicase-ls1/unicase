@@ -1044,7 +1044,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	public void initResources(ResourceSet resourceSet) {
 		setResourceCount(0);
 		String fileName = Configuration.getWorkspaceDirectory() + "ps-"
-				+ getIdentifier() + File.separatorChar + getResourceCount();
+				+ getIdentifier() + File.separatorChar + getResourceCount() +".ucf";
 		URI fileURI = URI.createFileURI(fileName);
 		List<Resource> resources = new ArrayList<Resource>();
 		Resource resource = resourceSet.createResource(fileURI);
@@ -1057,7 +1057,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			if (counter > Configuration.getMaxMECountPerResource()) {
 				fileName = Configuration.getWorkspaceDirectory() + "ps-"
 						+ getIdentifier() + File.separatorChar
-						+ getResourceCount();
+						+ getResourceCount() +".ucf";
 				fileURI = URI.createFileURI(fileName);
 				resource = resourceSet.createResource(fileURI);
 				setResourceCount(getResourceCount() + 1);
@@ -1365,13 +1365,13 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 				Resource oldResource = modelElement.eResource();
 				String oldFileName = Configuration.getWorkspaceDirectory()
 						+ "ps-" + getIdentifier() + File.separatorChar
-						+ (getResourceCount() - 1);
+						+ (getResourceCount() - 1)+".ucf";
 				// FIXME MK check if file exists
 				if (new File(oldFileName).length() > Configuration
 						.getMaxResourceFileSizeOnExpand()) {
 					String newfileName = Configuration.getWorkspaceDirectory()
 							+ "ps-" + getIdentifier() + File.separatorChar
-							+ getResourceCount();
+							+ getResourceCount()+".ucf";
 					URI fileURI = URI.createFileURI(newfileName);
 					Resource resource = oldResource.getResourceSet()
 							.createResource(fileURI);
