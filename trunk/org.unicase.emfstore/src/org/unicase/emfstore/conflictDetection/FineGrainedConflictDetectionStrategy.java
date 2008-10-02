@@ -41,41 +41,56 @@ public class FineGrainedConflictDetectionStrategy implements
 		if (operationA instanceof ReadOperation
 				|| operationB instanceof ReadOperation) {
 			return false;
+		} else if (operationA instanceof DiagramLayoutOperation) {
+			return doConflict((DiagramLayoutOperation) operationA, operationB);
+
 		} else if (operationA instanceof AttributeOperation) {
 			return doConflict((AttributeOperation) operationA, operationB);
-		} 
-		else if (operationA instanceof MultiReferenceMoveOperation) {
+		} else if (operationA instanceof MultiReferenceMoveOperation) {
 			return doConflict((MultiReferenceMoveOperation) operationA,
 					operationB);
-		} 
-		else if (operationA instanceof SingleReferenceOperation) {
+		} else if (operationA instanceof SingleReferenceOperation) {
 			return doConflict((SingleReferenceOperation) operationA, operationB);
-		} 
-		else if (operationA instanceof DiagramLayoutOperation) {
-			return doConflict((DiagramLayoutOperation) operationA, operationB);
-		} 
-		else if (operationA instanceof MultiReferenceOperation) {
-
-			if (operationB instanceof AttributeOperation) {
-				
-			} else if (operationB instanceof MultiReferenceMoveOperation) {
-
-			} else if (operationB instanceof CreateDeleteOperation) {
-
-			} else if (operationB instanceof SingleReferenceOperation) {
-
-			} else {
-				throw new IllegalStateException("Unknown operation");
-			}
+		} else if (operationA instanceof MultiReferenceOperation) {
+			return doConflict((MultiReferenceOperation) operationA, operationB);
 		} else if (operationA instanceof CreateDeleteOperation) {
 			return doConflict((CreateDeleteOperation) operationA, operationB);
-
 		} else if (operationA instanceof CompositeOperation) {
 			return doConflict((CompositeOperation) operationA, operationB);
 		}
 		throw new IllegalArgumentException("Unkown operation type: "
 				+ operationA);
 
+	}
+
+	private boolean doConflict(MultiReferenceOperation operationA,
+			AbstractOperation operationB) {
+		if (operationB instanceof AttributeOperation) {
+			return false;
+		} else if (operationB instanceof MultiReferenceMoveOperation) {
+			boolean sameFeature = ((FeatureOperation) operationA)
+					.getFeatureName().equals(
+							((MultiReferenceMoveOperation) operationB)
+									.getFeatureName());
+			boolean sameElement = operationA.getModelElementId().equals(
+					operationB.getModelElementId());
+			return sameElement && sameFeature;
+		} else if (operationB instanceof ReferenceOperation) {
+			MultiReferenceOperation multiOperationA = operationA;
+			ReferenceOperation referenceOperationB = (ReferenceOperation) operationB;
+			boolean sameFeature = multiOperationA.getFeatureName().equals(
+					referenceOperationB.getFeatureName());
+			if (multiOperationA.getOppositeFeatureName() != null) {
+				sameFeature = sameFeature
+						|| multiOperationA.getOppositeFeatureName().equals(
+								referenceOperationB.getFeatureName());
+			}
+			boolean sameElement = multiOperationA.getModelElementId().equals(
+					referenceOperationB.getModelElementId());
+			return sameFeature && sameElement;
+		} else {
+			return doConflict(operationB, operationA);
+		}
 	}
 
 	private boolean doConflict(CompositeOperation operationA,
@@ -163,13 +178,21 @@ public class FineGrainedConflictDetectionStrategy implements
 	private boolean doConflict(SingleReferenceOperation operationA,
 			AbstractOperation operationB) {
 		if (operationB instanceof SingleReferenceOperation) {
-
+			ReferenceOperation singleOperationB = (SingleReferenceOperation) operationB;
+			boolean sameFeature = operationA.getFeatureName().equals(
+					singleOperationB.getFeatureName());
+			if (operationA.getOppositeFeatureName() != null) {
+				sameFeature = sameFeature
+						|| operationA.getOppositeFeatureName().equals(
+								singleOperationB.getFeatureName());
+			}
+			boolean sameElement = operationA.getModelElementId().equals(
+					operationB.getModelElementId());
+			return sameFeature && sameElement;
 		} else if (operationB instanceof AttributeOperation) {
-
+			return false;
 		} else if (operationB instanceof MultiReferenceMoveOperation) {
-
-		} else if (operationB instanceof CreateDeleteOperation) {
-
+			return false;
 		}
 		return doConflict(operationB, operationA);
 	}
