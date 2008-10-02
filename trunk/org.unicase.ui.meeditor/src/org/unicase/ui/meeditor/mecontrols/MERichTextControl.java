@@ -6,14 +6,10 @@
  */
 package org.unicase.ui.meeditor.mecontrols;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import org.eclipse.core.runtime.FileLocator;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EAttribute;
@@ -47,6 +43,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.unicase.ui.meeditor.Activator;
 
 /**
  * The standard widget for multi line text fields.
@@ -162,10 +159,7 @@ public class MERichTextControl extends AbstractMEControl {
 		toolBar = new ToolBar(composite, SWT.NULL);
 		ToolItem item;
 		item = new ToolItem(toolBar, SWT.PUSH);
-		URL url = FileLocator.find(Platform
-				.getBundle("org.unicase.ui.meeditor"), new Path(
-				"icons/bullet.jpg"), null);
-		ImageDescriptor descriptor = ImageDescriptor.createFromURL(url);
+		ImageDescriptor descriptor = Activator.getImageDescriptor("icons/bullet.jpg");
 		item.setImage(descriptor.createImage());
 		item.addSelectionListener(new SelectionAdapter() {
 			@Override

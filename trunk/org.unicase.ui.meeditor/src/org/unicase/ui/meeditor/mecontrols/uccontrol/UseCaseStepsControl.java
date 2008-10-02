@@ -40,7 +40,42 @@ import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
  *
  */
 public class UseCaseStepsControl extends AbstractMEControl{
-	
+	/**
+	 * Listener for the new step command.
+	 * @author helming
+	 *
+	 */
+	private final class NewStepListener implements
+			IHyperlinkListener {
+		private final int position;
+
+		private NewStepListener(int position) {
+			this.position = position;
+		}
+
+		public void linkActivated(HyperlinkEvent e) {
+			TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
+			domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
+			protected void doExecute() {
+					RequirementFactory rFactory = RequirementFactoryImpl.init();						
+					Step p = rFactory.createStep();
+					p.setName("New Actor Step");
+					p.setUserStep(true);
+					UseCase uc = (UseCase) getModelElement();
+					EList<Step> allSteps = uc.getUseCaseSteps();
+					uc.getProject().addModelElement(p);
+					if(position == -1) {allSteps.add(p);} 
+					else {allSteps.add(position, p);}
+				}
+			});
+		}
+
+		public void linkEntered(HyperlinkEvent e) {	}
+
+		public void linkExited(HyperlinkEvent e) {	}
+	}
+
 	private final EReference eReference;
 	private final IItemPropertyDescriptor descriptor;
 	private AdapterImpl eAdapter;
@@ -192,27 +227,7 @@ public class UseCaseStepsControl extends AbstractMEControl{
 		gdActorLink.horizontalSpan = 1;
 		
 		Hyperlink addActorStepLink = getToolkit().createHyperlink(buttonControl, "Insert Actor Step", GridData.HORIZONTAL_ALIGN_BEGINNING);
-		addActorStepLink.addHyperlinkListener(new IHyperlinkListener() {
-			public void linkActivated(HyperlinkEvent e) {
-				TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
-				domain.getCommandStack().execute(new RecordingCommand(domain) {
-				@Override
-				protected void doExecute() {
-						RequirementFactory rFactory = RequirementFactoryImpl.init();						
-						Step p = rFactory.createStep();
-						p.setName("New Actor Step");
-						p.setUserStep(true);
-						UseCase uc = (UseCase) getModelElement();
-						EList<Step> allSteps = uc.getUseCaseSteps();
-						uc.getProject().addModelElement(p);
-						if(position == -1) {allSteps.add(p);} 
-						else {allSteps.add(position, p);}
-					}
-				});
-			}
-			public void linkEntered(HyperlinkEvent e) {	}
-			public void linkExited(HyperlinkEvent e) {	}
-		});
+		addActorStepLink.addHyperlinkListener(new NewStepListener(position));
 		
 		addActorStepLink.setLayoutData(gdActorLink);
 		
