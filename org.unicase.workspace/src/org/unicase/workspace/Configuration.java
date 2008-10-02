@@ -52,7 +52,7 @@ public final class Configuration {
 	 * @return the workspace file path string
 	 */
 	public static String getWorkspacePath() {
-		String workSpacePath = getWorkspaceDirectory() + "workspace";
+		String workSpacePath = getWorkspaceDirectory() + "workspace.ucw";
 		return workSpacePath;
 	}
 
