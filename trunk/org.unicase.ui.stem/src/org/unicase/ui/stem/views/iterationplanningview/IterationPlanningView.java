@@ -23,6 +23,7 @@ import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.TreeViewerColumn;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.Transfer;
@@ -34,13 +35,16 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
+import org.unicase.model.organization.User;
 import org.unicase.ui.common.TreeViewerColumnSorter;
 import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.ui.common.dnd.UCDropAdapter;
+import org.unicase.ui.common.filter.UserFilter;
 import org.unicase.ui.stem.Activator;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
+import org.unicase.workspace.util.OrgUnitHelper;
 
 /**
  * This view helps managing WorkPackages (sprints) contained in a project. It
@@ -57,6 +61,9 @@ public class IterationPlanningView extends ViewPart {
 	private DialogSettings settings;
 	private String filename;
 	private Action filterToMyTeam;
+	private ViewerFilter teamFilter;
+	private UserFilter userFilter;
+	private Action filterToMe;
 
 	/**
 	 * The constructor.
@@ -68,7 +75,7 @@ public class IterationPlanningView extends ViewPart {
 		try {
 			settings.load(filename);
 		} catch (IOException e) {
-			//Do nothing.
+			// Do nothing.
 		}
 	}
 
@@ -85,19 +92,40 @@ public class IterationPlanningView extends ViewPart {
 
 		IActionBars bars = getViewSite().getActionBars();
 		IToolBarManager menuManager = bars.getToolBarManager();
+		User user = OrgUnitHelper.getCurrentUser(WorkspaceManager.getInstance()
+				.getCurrentWorkspace());
+		// Create Team filter
+		teamFilter = new IterationTeamFilter(user);
 		filterToMyTeam = new Action("", SWT.TOGGLE) {
-
 			@Override
 			public void run() {
-				workpackageContentProvider.setTeamFilter(isChecked());
+				setTeamFilter(isChecked());
 			}
 
 		};
 		filterToMyTeam.setImageDescriptor(Activator
 				.getImageDescriptor("/icons/filtertomyteam.png"));
-		Boolean teamFilter=Boolean.parseBoolean(settings.get("TeamFilter"));
+		Boolean teamFilter = Boolean.parseBoolean(settings.get("TeamFilter"));
 		filterToMyTeam.setChecked(teamFilter);
+		setTeamFilter(teamFilter);
 		menuManager.add(filterToMyTeam);
+
+		// Create User filter
+
+		userFilter = new UserFilter(user);
+		filterToMe = new Action("", SWT.TOGGLE) {
+			@Override
+			public void run() {
+				setUserFilter(isChecked());
+			}
+
+		};
+		filterToMe.setImageDescriptor(Activator
+				.getImageDescriptor("/icons/filtertouser.png"));
+		Boolean userFilter = Boolean.parseBoolean(settings.get("UserFilter"));
+		filterToMe.setChecked(userFilter);
+		setUserFilter(userFilter);
+		menuManager.add(filterToMe);
 
 		// Create the help context id for the viewer's control
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(viewer.getControl(),
@@ -129,6 +157,24 @@ public class IterationPlanningView extends ViewPart {
 			setInput();
 		} else {
 			setInput();
+		}
+
+	}
+
+	protected void setUserFilter(boolean checked) {
+		if (checked) {
+			viewer.addFilter(userFilter);
+		} else {
+			viewer.removeFilter(userFilter);
+		}
+
+	}
+
+	protected void setTeamFilter(boolean checked) {
+		if (checked) {
+			viewer.addFilter(teamFilter);
+		} else {
+			viewer.removeFilter(teamFilter);
 		}
 
 	}
@@ -244,7 +290,7 @@ public class IterationPlanningView extends ViewPart {
 	@Override
 	public void dispose() {
 
-		settings.put("TeamFilter",filterToMyTeam.isChecked());
+		settings.put("TeamFilter", filterToMyTeam.isChecked());
 		try {
 			settings.save(filename);
 		} catch (IOException e) {
