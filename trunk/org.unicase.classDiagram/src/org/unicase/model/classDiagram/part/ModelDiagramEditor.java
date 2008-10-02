@@ -43,7 +43,6 @@ import org.eclipse.ui.part.IShowInTargetList;
 import org.eclipse.ui.part.ShowInContext;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.impl.DiagramStoreException;
-import org.unicase.workspace.WorkspaceManager;
 
 /**
  * @generated

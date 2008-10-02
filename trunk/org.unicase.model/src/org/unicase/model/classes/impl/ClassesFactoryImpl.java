@@ -18,6 +18,7 @@ import org.unicase.model.classes.AssociationType;
 import org.unicase.model.classes.Attribute;
 import org.unicase.model.classes.ClassesFactory;
 import org.unicase.model.classes.ClassesPackage;
+import org.unicase.model.classes.Dependency;
 import org.unicase.model.classes.Method;
 import org.unicase.model.classes.MethodArgument;
 import org.unicase.model.classes.ScopeType;
@@ -77,6 +78,8 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 			return createMethod();
 		case ClassesPackage.METHOD_ARGUMENT:
 			return createMethodArgument();
+		case ClassesPackage.DEPENDENCY:
+			return createDependency();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName()
 					+ "' is not a valid classifier");
@@ -182,6 +185,16 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 	public MethodArgument createMethodArgument() {
 		MethodArgumentImpl methodArgument = new MethodArgumentImpl();
 		return methodArgument;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Dependency createDependency() {
+		DependencyImpl dependency = new DependencyImpl();
+		return dependency;
 	}
 
 	/**

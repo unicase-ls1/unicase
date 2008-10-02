@@ -182,6 +182,10 @@
       </genClasses>
       <genClasses image="false" ecoreClass="model.ecore#//classes/PackageElement">
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//classes/PackageElement/parentPackage"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//classes/PackageElement/outgoingDependencies"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//classes/PackageElement/incomingDependencies"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//classes/Association">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -218,6 +222,12 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/MethodArgument/defaultValue"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/MethodArgument/signature"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/MethodArgument/label"/>
+      </genClasses>
+      <genClasses ecoreClass="model.ecore#//classes/Dependency">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//classes/Dependency/source"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//classes/Dependency/target"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Document" basePackage="org.unicase.model" disposableProviderFactory="true"

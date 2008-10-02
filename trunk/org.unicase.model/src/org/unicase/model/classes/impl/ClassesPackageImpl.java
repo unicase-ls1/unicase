@@ -25,6 +25,7 @@ import org.unicase.model.classes.AssociationType;
 import org.unicase.model.classes.Attribute;
 import org.unicase.model.classes.ClassesFactory;
 import org.unicase.model.classes.ClassesPackage;
+import org.unicase.model.classes.Dependency;
 import org.unicase.model.classes.Method;
 import org.unicase.model.classes.MethodArgument;
 import org.unicase.model.classes.PackageElement;
@@ -95,6 +96,13 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 	 * @generated
 	 */
 	private EClass methodArgumentEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass dependencyEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -363,6 +371,26 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 	public EReference getPackageElement_ParentPackage() {
 		return (EReference) packageElementEClass.getEStructuralFeatures()
 				.get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPackageElement_OutgoingDependencies() {
+		return (EReference) packageElementEClass.getEStructuralFeatures()
+				.get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPackageElement_IncomingDependencies() {
+		return (EReference) packageElementEClass.getEStructuralFeatures()
+				.get(2);
 	}
 
 	/**
@@ -637,6 +665,33 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDependency() {
+		return dependencyEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDependency_Source() {
+		return (EReference) dependencyEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDependency_Target() {
+		return (EReference) dependencyEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -712,6 +767,10 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 		packageElementEClass = createEClass(PACKAGE_ELEMENT);
 		createEReference(packageElementEClass, PACKAGE_ELEMENT__PARENT_PACKAGE);
+		createEReference(packageElementEClass,
+				PACKAGE_ELEMENT__OUTGOING_DEPENDENCIES);
+		createEReference(packageElementEClass,
+				PACKAGE_ELEMENT__INCOMING_DEPENDENCIES);
 
 		associationEClass = createEClass(ASSOCIATION);
 		createEReference(associationEClass, ASSOCIATION__SOURCE);
@@ -746,6 +805,10 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		createEAttribute(methodArgumentEClass, METHOD_ARGUMENT__DEFAULT_VALUE);
 		createEAttribute(methodArgumentEClass, METHOD_ARGUMENT__SIGNATURE);
 		createEAttribute(methodArgumentEClass, METHOD_ARGUMENT__LABEL);
+
+		dependencyEClass = createEClass(DEPENDENCY);
+		createEReference(dependencyEClass, DEPENDENCY__SOURCE);
+		createEReference(dependencyEClass, DEPENDENCY__TARGET);
 
 		// Create enums
 		associationTypeEEnum = createEEnum(ASSOCIATION_TYPE);
@@ -800,6 +863,8 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		methodEClass.getESuperTypes().add(theModelPackage.getModelElement());
 		methodArgumentEClass.getESuperTypes().add(
 				theModelPackage.getModelElement());
+		dependencyEClass.getESuperTypes()
+				.add(theModelPackage.getModelElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(classEClass, org.unicase.model.classes.Class.class, "Class",
@@ -872,6 +937,22 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		getPackageElement_ParentPackage().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getPackageElement_OutgoingDependencies(), this
+				.getDependency(), this.getDependency_Source(),
+				"outgoingDependencies", null, 0, -1, PackageElement.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		getPackageElement_OutgoingDependencies().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getPackageElement_IncomingDependencies(), this
+				.getDependency(), this.getDependency_Target(),
+				"incomingDependencies", null, 0, -1, PackageElement.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		getPackageElement_IncomingDependencies().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(associationEClass, Association.class, "Association",
@@ -999,6 +1080,19 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 				"label", null, 0, 1, MethodArgument.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+
+		initEClass(dependencyEClass, Dependency.class, "Dependency",
+				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDependency_Source(), this.getPackageElement(), this
+				.getPackageElement_OutgoingDependencies(), "source", null, 0,
+				1, Dependency.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDependency_Target(), this.getPackageElement(), this
+				.getPackageElement_IncomingDependencies(), "target", null, 0,
+				1, Dependency.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(associationTypeEEnum, AssociationType.class,

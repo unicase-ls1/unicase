@@ -190,6 +190,12 @@
     <eClassifiers xsi:type="ecore:EClass" name="PackageElement" abstract="true" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="parentPackage" eType="#//classes/Package"
           derived="true" eOpposite="#//classes/Package/containedPackageElements" eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingDependencies"
+          upperBound="-1" eType="#//classes/Dependency" eOpposite="#//classes/Dependency/source"
+          eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="incomingDependencies"
+          upperBound="-1" eType="#//classes/Dependency" eOpposite="#//classes/Dependency/target"
+          eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Association" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//classes/Class"
@@ -263,6 +269,12 @@
       <eLiterals name="IN" value="1" literal="in"/>
       <eLiterals name="OUT" value="2" literal="out"/>
       <eLiterals name="INOUT" value="3" literal="inout"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Dependency" eSuperTypes="#//ModelElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//classes/PackageElement"
+          eOpposite="#//classes/PackageElement/outgoingDependencies"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//classes/PackageElement"
+          eOpposite="#//classes/PackageElement/incomingDependencies"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="document" nsURI="http://unicase.org/model/document" nsPrefix="org.unicase.model.document">

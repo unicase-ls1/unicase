@@ -15,6 +15,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.classes.Association;
 import org.unicase.model.classes.Attribute;
 import org.unicase.model.classes.ClassesPackage;
+import org.unicase.model.classes.Dependency;
 import org.unicase.model.classes.Method;
 import org.unicase.model.classes.MethodArgument;
 import org.unicase.model.classes.PackageElement;
@@ -167,6 +168,17 @@ public class ClassesSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case ClassesPackage.DEPENDENCY: {
+			Dependency dependency = (Dependency) theEObject;
+			T result = caseDependency(dependency);
+			if (result == null)
+				result = caseModelElement(dependency);
+			if (result == null)
+				result = caseIdentifiableElement(dependency);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -270,6 +282,21 @@ public class ClassesSwitch<T> {
 	 * @generated
 	 */
 	public T caseMethodArgument(MethodArgument object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Dependency</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Dependency</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDependency(Dependency object) {
 		return null;
 	}
 

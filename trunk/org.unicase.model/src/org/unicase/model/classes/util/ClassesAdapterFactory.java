@@ -15,6 +15,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.classes.Association;
 import org.unicase.model.classes.Attribute;
 import org.unicase.model.classes.ClassesPackage;
+import org.unicase.model.classes.Dependency;
 import org.unicase.model.classes.Method;
 import org.unicase.model.classes.MethodArgument;
 import org.unicase.model.classes.PackageElement;
@@ -105,6 +106,11 @@ public class ClassesAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseMethodArgument(MethodArgument object) {
 			return createMethodArgumentAdapter();
+		}
+
+		@Override
+		public Adapter caseDependency(Dependency object) {
+			return createDependencyAdapter();
 		}
 
 		@Override
@@ -233,6 +239,20 @@ public class ClassesAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMethodArgumentAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.classes.Dependency <em>Dependency</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.classes.Dependency
+	 * @generated
+	 */
+	public Adapter createDependencyAdapter() {
 		return null;
 	}
 
