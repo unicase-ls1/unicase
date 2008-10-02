@@ -15,10 +15,22 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.unicase.model.Annotation;
 import org.unicase.model.task.WorkPackage;
 
-
+/**.
+ * This is a sorter class used to sort TreeViewers. Note this class is currently only used by StatusView and 
+ * its category method is tailored to handle WorkPackages and Annotations. It may be changed to an abstract class without
+ * any implementation of category method.
+ *  
+ * @author hodaie
+ *
+ */
 public  class TreeViewerColumnSorter extends ViewerComparator {
-
+	/**.
+	 * Direction constant used to show right direction arrow on column header
+	 */
 	public static final int ASC = 1;
+	/**.
+	 * Direction constant used to show right direction arrow on column header
+	 */
 	public static final int DESC = -1;
 	
 	private int direction = 1;
@@ -28,7 +40,12 @@ public  class TreeViewerColumnSorter extends ViewerComparator {
 	
 	private TreeViewer viewer;
 	
-	
+	/**.
+	 * Constructor
+	 * @param viewer TreeViewer to be sorted
+	 * @param column TreeViewerColumn based on which the TreeViewer is sorted
+	 * @param columnLabelProvider LabelProvider used to sort the contents
+	 */
 	public TreeViewerColumnSorter(TreeViewer viewer, TreeViewerColumn column,  ColumnLabelProvider columnLabelProvider) {
 		this.columnLabelProvider = columnLabelProvider;
 		this.column = column;
@@ -54,8 +71,11 @@ public  class TreeViewerColumnSorter extends ViewerComparator {
 		});
 	}
 	
-	
-	public void setSorter(TreeViewerColumnSorter sorter, int direction) {
+	/**.
+	 * This is used to set the right direction arrow at column header and refresh the viewer.
+	 * 
+	 */
+	private void setSorter(TreeViewerColumnSorter sorter, int direction) {
 			column.getColumn().getParent().setSortColumn(column.getColumn());
 			sorter.direction = direction;
 			
@@ -73,6 +93,12 @@ public  class TreeViewerColumnSorter extends ViewerComparator {
 
 	}
 
+	
+	/**.
+	 * {@inheritDoc}
+	 * 
+	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public int compare(Viewer viewer, Object e1, Object e2) {
 		    	
@@ -96,6 +122,10 @@ public  class TreeViewerColumnSorter extends ViewerComparator {
 	}
 	
 	
+	/**.
+	 * {@inheritDoc}
+	 * This method is adapted to sort StatusView tree.  
+	 */
 	@Override
 	public int category(Object element) {
 		if(element instanceof Annotation) {

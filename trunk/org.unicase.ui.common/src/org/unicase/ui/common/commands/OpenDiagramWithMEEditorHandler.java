@@ -12,8 +12,18 @@ import org.eclipse.core.commands.ExecutionException;
 import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.MEDiagram;
 
+
+/**.
+ * This a handler to open MEDiagrams with MEEditor. By default MEdiagrams are opened using diagram editor. 
+ * @author hodaie
+ *
+ */
 public class OpenDiagramWithMEEditorHandler extends AbstractHandler  {
 
+	/**.
+	 * {@inheritDoc}
+	 * 
+	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		ModelElement me = ActionHelper.getSelectedModelElement();
 		if(me instanceof MEDiagram){
