@@ -182,12 +182,30 @@ public interface ClassesPackage extends EPackage {
 	int PACKAGE_ELEMENT__PARENT_PACKAGE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Outgoing Dependencies</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_ELEMENT__OUTGOING_DEPENDENCIES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Dependencies</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_ELEMENT__INCOMING_DEPENDENCIES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Package Element</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_ELEMENT_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int PACKAGE_ELEMENT_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.classes.impl.ClassImpl <em>Class</em>}' class.
@@ -310,6 +328,24 @@ public interface ClassesPackage extends EPackage {
 	 * @ordered
 	 */
 	int CLASS__PARENT_PACKAGE = PACKAGE_ELEMENT__PARENT_PACKAGE;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Dependencies</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__OUTGOING_DEPENDENCIES = PACKAGE_ELEMENT__OUTGOING_DEPENDENCIES;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Dependencies</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__INCOMING_DEPENDENCIES = PACKAGE_ELEMENT__INCOMING_DEPENDENCIES;
 
 	/**
 	 * The feature id for the '<em><b>Participated Use Cases</b></em>' reference list.
@@ -501,6 +537,24 @@ public interface ClassesPackage extends EPackage {
 	 * @ordered
 	 */
 	int PACKAGE__PARENT_PACKAGE = PACKAGE_ELEMENT__PARENT_PACKAGE;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Dependencies</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE__OUTGOING_DEPENDENCIES = PACKAGE_ELEMENT__OUTGOING_DEPENDENCIES;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Dependencies</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE__INCOMING_DEPENDENCIES = PACKAGE_ELEMENT__INCOMING_DEPENDENCIES;
 
 	/**
 	 * The feature id for the '<em><b>Contained Package Elements</b></em>' containment reference list.
@@ -1260,6 +1314,151 @@ public interface ClassesPackage extends EPackage {
 	int METHOD_ARGUMENT_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
+	 * The meta object id for the '{@link org.unicase.model.classes.impl.DependencyImpl <em>Dependency</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.classes.impl.DependencyImpl
+	 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getDependency()
+	 * @generated
+	 */
+	int DEPENDENCY = 7;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDENCY__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDENCY__NAME = ModelPackage.MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDENCY__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDENCY__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDENCY__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Last Modifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDENCY__LAST_MODIFIER = ModelPackage.MODEL_ELEMENT__LAST_MODIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Last Modified Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDENCY__LAST_MODIFIED_DATE = ModelPackage.MODEL_ELEMENT__LAST_MODIFIED_DATE;
+
+	/**
+	 * The feature id for the '<em><b>String Reader Infos</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDENCY__STRING_READER_INFOS = ModelPackage.MODEL_ELEMENT__STRING_READER_INFOS;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDENCY__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDENCY__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDENCY__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDENCY__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDENCY__SOURCE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDENCY__TARGET = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Dependency</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDENCY_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The meta object id for the '{@link org.unicase.model.classes.AssociationType <em>Association Type</em>}' enum.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -1267,7 +1466,7 @@ public interface ClassesPackage extends EPackage {
 	 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getAssociationType()
 	 * @generated
 	 */
-	int ASSOCIATION_TYPE = 7;
+	int ASSOCIATION_TYPE = 8;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.classes.VisibilityType <em>Visibility Type</em>}' enum.
@@ -1277,7 +1476,7 @@ public interface ClassesPackage extends EPackage {
 	 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getVisibilityType()
 	 * @generated
 	 */
-	int VISIBILITY_TYPE = 8;
+	int VISIBILITY_TYPE = 9;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.classes.ScopeType <em>Scope Type</em>}' enum.
@@ -1287,7 +1486,7 @@ public interface ClassesPackage extends EPackage {
 	 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getScopeType()
 	 * @generated
 	 */
-	int SCOPE_TYPE = 9;
+	int SCOPE_TYPE = 10;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.classes.ArgumentDirectionType <em>Argument Direction Type</em>}' enum.
@@ -1297,7 +1496,7 @@ public interface ClassesPackage extends EPackage {
 	 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getArgumentDirectionType()
 	 * @generated
 	 */
-	int ARGUMENT_DIRECTION_TYPE = 10;
+	int ARGUMENT_DIRECTION_TYPE = 11;
 
 	/**
 	 * Returns the meta object for class '
@@ -1426,6 +1625,28 @@ public interface ClassesPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPackageElement_ParentPackage();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.classes.PackageElement#getOutgoingDependencies <em>Outgoing Dependencies</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Outgoing Dependencies</em>'.
+	 * @see org.unicase.model.classes.PackageElement#getOutgoingDependencies()
+	 * @see #getPackageElement()
+	 * @generated
+	 */
+	EReference getPackageElement_OutgoingDependencies();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.classes.PackageElement#getIncomingDependencies <em>Incoming Dependencies</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Incoming Dependencies</em>'.
+	 * @see org.unicase.model.classes.PackageElement#getIncomingDependencies()
+	 * @see #getPackageElement()
+	 * @generated
+	 */
+	EReference getPackageElement_IncomingDependencies();
 
 	/**
 	 * Returns the meta object for class '
@@ -1752,6 +1973,38 @@ public interface ClassesPackage extends EPackage {
 	EAttribute getMethodArgument_Label();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.model.classes.Dependency <em>Dependency</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Dependency</em>'.
+	 * @see org.unicase.model.classes.Dependency
+	 * @generated
+	 */
+	EClass getDependency();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.model.classes.Dependency#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Source</em>'.
+	 * @see org.unicase.model.classes.Dependency#getSource()
+	 * @see #getDependency()
+	 * @generated
+	 */
+	EReference getDependency_Source();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.model.classes.Dependency#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Target</em>'.
+	 * @see org.unicase.model.classes.Dependency#getTarget()
+	 * @see #getDependency()
+	 * @generated
+	 */
+	EReference getDependency_Target();
+
+	/**
 	 * Returns the meta object for enum '
 	 * {@link org.unicase.model.classes.AssociationType
 	 * <em>Association Type</em>}'. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1909,6 +2162,22 @@ public interface ClassesPackage extends EPackage {
 		 */
 		EReference PACKAGE_ELEMENT__PARENT_PACKAGE = eINSTANCE
 				.getPackageElement_ParentPackage();
+		/**
+		 * The meta object literal for the '<em><b>Outgoing Dependencies</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PACKAGE_ELEMENT__OUTGOING_DEPENDENCIES = eINSTANCE
+				.getPackageElement_OutgoingDependencies();
+		/**
+		 * The meta object literal for the '<em><b>Incoming Dependencies</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PACKAGE_ELEMENT__INCOMING_DEPENDENCIES = eINSTANCE
+				.getPackageElement_IncomingDependencies();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.classes.impl.AssociationImpl <em>Association</em>}' class.
 		 * <!-- begin-user-doc --> <!--
@@ -2131,6 +2400,29 @@ public interface ClassesPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute METHOD_ARGUMENT__LABEL = eINSTANCE.getMethodArgument_Label();
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.classes.impl.DependencyImpl <em>Dependency</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.classes.impl.DependencyImpl
+		 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getDependency()
+		 * @generated
+		 */
+		EClass DEPENDENCY = eINSTANCE.getDependency();
+		/**
+		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DEPENDENCY__SOURCE = eINSTANCE.getDependency_Source();
+		/**
+		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DEPENDENCY__TARGET = eINSTANCE.getDependency_Target();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.classes.AssociationType <em>Association Type</em>}' enum.
 		 * <!-- begin-user-doc --> <!--

@@ -204,6 +204,10 @@ public class ProjectItemProvider extends ItemProviderAdapter implements
 
 		newChildDescriptors.add(createChildParameter(
 				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ClassesFactory.eINSTANCE.createDependency()));
+
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 				DocumentFactory.eINSTANCE.createLeafSection()));
 
 		newChildDescriptors.add(createChildParameter(
