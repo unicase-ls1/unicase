@@ -261,6 +261,15 @@ public class RationalePackageImpl extends EPackageImpl implements
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getIssue_Activity() {
+		return (EAttribute) issueEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -403,6 +412,7 @@ public class RationalePackageImpl extends EPackageImpl implements
 		createEReference(issueEClass, ISSUE__PROPOSALS);
 		createEReference(issueEClass, ISSUE__SOLUTION);
 		createEReference(issueEClass, ISSUE__CRITERIA);
+		createEAttribute(issueEClass, ISSUE__ACTIVITY);
 
 		proposalEClass = createEClass(PROPOSAL);
 		createEReference(proposalEClass, PROPOSAL__ASSESSMENTS);
@@ -497,6 +507,10 @@ public class RationalePackageImpl extends EPackageImpl implements
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getIssue_Criteria().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
+		initEAttribute(getIssue_Activity(), theTaskPackage.getActivityType(),
+				"activity", null, 0, 1, Issue.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(proposalEClass, Proposal.class, "Proposal", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

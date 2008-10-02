@@ -267,13 +267,22 @@ public interface RationalePackage extends EPackage {
 	int ISSUE__CRITERIA = ModelPackage.ANNOTATION_FEATURE_COUNT + 9;
 
 	/**
+	 * The feature id for the '<em><b>Activity</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISSUE__ACTIVITY = ModelPackage.ANNOTATION_FEATURE_COUNT + 10;
+
+	/**
 	 * The number of structural features of the '<em>Issue</em>' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE_FEATURE_COUNT = ModelPackage.ANNOTATION_FEATURE_COUNT + 10;
+	int ISSUE_FEATURE_COUNT = ModelPackage.ANNOTATION_FEATURE_COUNT + 11;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.rationale.impl.ProposalImpl <em>Proposal</em>}' class.
@@ -1020,6 +1029,17 @@ public interface RationalePackage extends EPackage {
 	EReference getIssue_Criteria();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.rationale.Issue#getActivity <em>Activity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Activity</em>'.
+	 * @see org.unicase.model.rationale.Issue#getActivity()
+	 * @see #getIssue()
+	 * @generated
+	 */
+	EAttribute getIssue_Activity();
+
+	/**
 	 * Returns the meta object for class '
 	 * {@link org.unicase.model.rationale.Proposal <em>Proposal</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -1218,6 +1238,14 @@ public interface RationalePackage extends EPackage {
 		 * @generated
 		 */
 		EReference ISSUE__CRITERIA = eINSTANCE.getIssue_Criteria();
+
+		/**
+		 * The meta object literal for the '<em><b>Activity</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ISSUE__ACTIVITY = eINSTANCE.getIssue_Activity();
 
 		/**
 		 * The meta object literal for the '

@@ -8,6 +8,7 @@ package org.unicase.model.rationale;
 
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.Annotation;
+import org.unicase.model.task.ActivityType;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.WorkItem;
 
@@ -21,6 +22,7 @@ import org.unicase.model.task.WorkItem;
  *   <li>{@link org.unicase.model.rationale.Issue#getProposals <em>Proposals</em>}</li>
  *   <li>{@link org.unicase.model.rationale.Issue#getSolution <em>Solution</em>}</li>
  *   <li>{@link org.unicase.model.rationale.Issue#getCriteria <em>Criteria</em>}</li>
+ *   <li>{@link org.unicase.model.rationale.Issue#getActivity <em>Activity</em>}</li>
  * </ul>
  * </p>
  *
@@ -89,5 +91,34 @@ public interface Issue extends Annotation, Checkable, WorkItem {
 	 * @generated
 	 */
 	EList<Criterion> getCriteria();
+
+	/**
+	 * Returns the value of the '<em><b>Activity</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.unicase.model.task.ActivityType}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Activity</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Activity</em>' attribute.
+	 * @see org.unicase.model.task.ActivityType
+	 * @see #setActivity(ActivityType)
+	 * @see org.unicase.model.rationale.RationalePackage#getIssue_Activity()
+	 * @model
+	 * @generated
+	 */
+	ActivityType getActivity();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.rationale.Issue#getActivity <em>Activity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Activity</em>' attribute.
+	 * @see org.unicase.model.task.ActivityType
+	 * @see #getActivity()
+	 * @generated
+	 */
+	void setActivity(ActivityType value);
 
 } // Issue

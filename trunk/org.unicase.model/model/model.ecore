@@ -426,6 +426,7 @@
           containment="true" eOpposite="#//rationale/Solution/issue" eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="criteria" upperBound="-1"
           eType="#//rationale/Criterion" eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="activity" eType="#//task/ActivityType"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Proposal" eSuperTypes="#//ModelElement #//NonDomainElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="assessments" upperBound="-1"
