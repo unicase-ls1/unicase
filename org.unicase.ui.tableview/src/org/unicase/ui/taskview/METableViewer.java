@@ -20,6 +20,7 @@ import org.unicase.model.Project;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.ui.common.TableViewerColumnSorter;
+import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
@@ -69,9 +70,13 @@ public class METableViewer extends TableViewer {
 			@Override
 			public void notifyChanged(Notification msg) {
 				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
-					currentProject = workspace.getActiveProjectSpace()
-							.getProject();
-					setInput(currentProject);
+					ProjectSpace activeProjectSpace = workspace
+							.getActiveProjectSpace();
+					if (activeProjectSpace != null) {
+						currentProject = activeProjectSpace.getProject();
+						setInput(currentProject);
+					}
+
 				}
 				super.notifyChanged(msg);
 			}

@@ -6,15 +6,24 @@
  */
 package org.unicase.ui.taskview;
 
+import java.io.IOException;
+
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.IToolBarManager;
+import org.eclipse.jface.dialogs.DialogSettings;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.ui.common.commands.ActionHelper;
+import org.unicase.ui.common.filter.TeamFilter;
+import org.unicase.ui.common.filter.UserFilter;
 import org.unicase.ui.tableview.Activator;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.OrgUnitHelper;
@@ -31,11 +40,31 @@ public class TaskView extends ViewPart {
 	private final EClass itemMetaClass = TaskPackage.eINSTANCE.getWorkItem();
 	private FilteredItemProviderAdapterFactory adapterFactory;
 
-	private boolean restrictedToCurrentUser;
-	private boolean showChecked;
 	private Action doubleClickAction;
-	private UncheckedElementsViewerFilter uncheckedElementsVF = new UncheckedElementsViewerFilter();
-	private UserViewerFilter userViewerFilter;
+	private UncheckedElementsViewerFilter uncheckedFilter;
+	private UserFilter userFilter;
+	private Action filterToMe;
+	private DialogSettings settings;
+	private Action filterToUnchecked;
+	private TeamFilter teamFilter;
+	private Action filterToMyTeam;
+	private String filename;
+
+	/**
+	 * default constructor.
+	 */
+
+	public TaskView() {
+		super();
+		IPath path = Activator.getDefault().getStateLocation();
+		filename = path.append("settings.txt").toOSString();
+		settings = new DialogSettings("Top");
+		try {
+			settings.load(filename);
+		} catch (IOException e) {
+			// Do nothing.
+		}
+	}
 
 	/**
 	 * 
@@ -52,22 +81,127 @@ public class TaskView extends ViewPart {
 		// the task view shall only display objects that are instance of
 		// Checkable
 		viewer.addFilter(new CheckableViewerFilter());
-		// initially, only unchecked elements shall be shown
-		viewer.addFilter(uncheckedElementsVF);
 
+		IActionBars bars = getViewSite().getActionBars();
+		IToolBarManager menuManager = bars.getToolBarManager();
 		User user = OrgUnitHelper.getCurrentUser(WorkspaceManager.getInstance()
 				.getCurrentWorkspace());
 
-		userViewerFilter = new UserViewerFilter(user);
+		// Create User filter
+
+		createUserFilter(user);
+		menuManager.add(filterToMe);
+
+		// Create Team Filter
+
+		createTeamFilter(user);
+		menuManager.add(filterToMyTeam);
+
+		// Create Checked filter
+
+		createCheckedFilter();
+		menuManager.add(filterToUnchecked);
+
 		getSite().setSelectionProvider(viewer);
 		hookDoubleClickAction();
-		// the toolbar contains two buttons: one to restrict the view to the
-		// current user, the other one to toggle the exclusion of checked
-		// elements.
-		getViewSite().getActionBars().getToolBarManager().add(
-				new RestrictTableContentToCurrentUserAction(this));
-		getViewSite().getActionBars().getToolBarManager().add(
-				new ToggleCheckedElementsDisplayAction(this));
+	}
+
+	private void createTeamFilter(User user) {
+		teamFilter = new TeamFilter(user);
+		filterToMyTeam = new Action("", SWT.TOGGLE) {
+			@Override
+			public void run() {
+				setTeamFilter(isChecked());
+			}
+
+		};
+		filterToMyTeam.setImageDescriptor(Activator
+				.getImageDescriptor("/icons/filtertomyteam.png"));
+		Boolean teamFilter = Boolean.parseBoolean(settings.get("TeamFilter"));
+		filterToMyTeam.setChecked(teamFilter);
+		setTeamFilter(teamFilter);
+	}
+
+	/**
+	 * Sets the teamfilter.
+	 * 
+	 * @param checked
+	 *            if filtered
+	 */
+	protected void setTeamFilter(boolean checked) {
+		if (checked) {
+			viewer.addFilter(teamFilter);
+		} else {
+			viewer.removeFilter(teamFilter);
+		}
+
+	}
+
+	private void createCheckedFilter() {
+		uncheckedFilter = new UncheckedElementsViewerFilter();
+		filterToUnchecked = new Action("", SWT.TOGGLE) {
+			@Override
+			public void run() {
+				setUncheckedFilter(isChecked());
+			}
+
+		};
+		filterToUnchecked.setImageDescriptor(Activator
+				.getImageDescriptor("/icons/tick.png"));
+		Boolean uncheckedFilter = Boolean.parseBoolean(settings
+				.get("UncheckedFilter"));
+		filterToUnchecked.setChecked(uncheckedFilter);
+		filterToUnchecked
+				.setToolTipText("Besides the unchecked elements, the checked ones will be shown as well.");
+		setUserFilter(uncheckedFilter);
+	}
+
+	private void createUserFilter(User user) {
+		userFilter = new UserFilter(user);
+		filterToMe = new Action("", SWT.TOGGLE) {
+			@Override
+			public void run() {
+				setUserFilter(isChecked());
+			}
+
+		};
+		filterToMe.setImageDescriptor(Activator
+				.getImageDescriptor("/icons/filtertouser.png"));
+		Boolean userFilter = Boolean.parseBoolean(settings.get("UserFilter"));
+		filterToMe.setChecked(userFilter);
+		filterToMe
+				.setToolTipText("Restricts the displayed table items to items owned by the current user.");
+		setUserFilter(userFilter);
+	}
+
+	/**
+	 * sets the uncheckd filter.
+	 * 
+	 * @param checked
+	 *            if filtered
+	 */
+	protected void setUncheckedFilter(boolean checked) {
+		if (checked) {
+			viewer.removeFilter(uncheckedFilter);
+		} else {
+			viewer.addFilter(uncheckedFilter);
+		}
+
+	}
+
+	/**
+	 * sets the userfilter.
+	 * 
+	 * @param checked
+	 *            if fileterd.
+	 */
+	protected void setUserFilter(boolean checked) {
+		if (checked) {
+			viewer.addFilter(userFilter);
+		} else {
+			viewer.removeFilter(userFilter);
+		}
+
 	}
 
 	private void hookDoubleClickAction() {
@@ -81,6 +215,7 @@ public class TaskView extends ViewPart {
 
 	private void createDoubleClickAction() {
 		doubleClickAction = new Action() {
+			@Override
 			public void run() {
 				ActionHelper.openModelElement(ActionHelper
 						.getSelectedModelElement());
@@ -100,96 +235,22 @@ public class TaskView extends ViewPart {
 	}
 
 	/**
-	 * Triggers a viewer update according to the current user session. As a
-	 * result, only action items that are assigned to the user that corresponds
-	 * to the current user session are displayed.
-	 * 
-	 * @param restricted
-	 *            determines if this view shall be restricted to a specific user
-	 *            instance or not
+	 * {@inheritDoc}
 	 */
-	public void setRestrictedToCurrentUser(boolean restricted) {
-		if (restricted) {
-			viewer.addFilter(userViewerFilter);
-		} else {
-			viewer.removeFilter(userViewerFilter);
-		}
-	}
+	@Override
+	public void dispose() {
 
-	/**
-	 * 
-	 * @return if the view is currently restricted to the current user session
-	 *         or not
-	 */
-	public boolean isRestrictedToCurrentUser() {
-		return restrictedToCurrentUser;
-	}
-
-	public void toggleShowChecked() {
-		showChecked = !showChecked;
-
-		if (showChecked) {
-			viewer.removeFilter(uncheckedElementsVF);
-		} else {
-			viewer.addFilter(uncheckedElementsVF);
-		}
-	}
-
-	public boolean isShowUncheckedOnly() {
-		return showChecked;
-	}
-
-	/**
-	 * Restricts the items in the task view to those owned by the current user.
-	 * 
-	 * @author Florian Schneider
-	 */
-	private class RestrictTableContentToCurrentUserAction extends
-			org.eclipse.jface.action.Action {
-		private TaskView part;
-
-		public RestrictTableContentToCurrentUserAction(TaskView part) {
-			super();
-			this.part = part;
-			this.setText("Restrict to current user");
-			this
-					.setToolTipText("Restricts the displayed table items to items owned by the current user.");
-			this.setImageDescriptor(Activator
-					.getImageDescriptor("icons/User.gif"));
-			this.setChecked(part.isRestrictedToCurrentUser());
+		settings.put("TeamFilter", filterToMyTeam.isChecked());
+		settings.put("UncheckedFilter", filterToUnchecked.isChecked());
+		settings.put("UserFilter", filterToMe.isChecked());
+		try {
+			settings.save(filename);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
-		@Override
-		public void run() {
-			super.run();
-			part.setRestrictedToCurrentUser(isChecked());
-		}
+		super.dispose();
 	}
 
-	/**
-	 * Restricts the items in the task view to those owned by the current user.
-	 * 
-	 * @author Florian Schneider
-	 */
-	private class ToggleCheckedElementsDisplayAction extends
-			org.eclipse.jface.action.Action {
-		private TaskView part;
-
-		public ToggleCheckedElementsDisplayAction(TaskView part) {
-			super();
-			this.part = part;
-			this.setText("Show checked elements as well");
-			this
-					.setToolTipText("Besides the unchecked elements, the checked ones will be shown as well.");
-			this.setImageDescriptor(Activator
-					.getImageDescriptor("icons/tick.png"));
-			this.setChecked(part.isShowUncheckedOnly());
-		}
-
-		@Override
-		public void run() {
-			super.run();
-			part.toggleShowChecked();
-		}
-	}
 }
