@@ -28,6 +28,7 @@ import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.Proposal;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.rationale.Solution;
+import org.unicase.model.task.ActivityType;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
@@ -49,6 +50,7 @@ import org.unicase.model.task.WorkPackage;
  *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getProposals <em>Proposals</em>}</li>
  *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getSolution <em>Solution</em>}</li>
  *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getCriteria <em>Criteria</em>}</li>
+ *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getActivity <em>Activity</em>}</li>
  * </ul>
  * </p>
  *
@@ -139,6 +141,26 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 * @ordered
 	 */
 	protected EList<Criterion> criteria;
+
+	/**
+	 * The default value of the '{@link #getActivity() <em>Activity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getActivity()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final ActivityType ACTIVITY_EDEFAULT = ActivityType.MANAGEMENT;
+
+	/**
+	 * The cached value of the '{@link #getActivity() <em>Activity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getActivity()
+	 * @generated
+	 * @ordered
+	 */
+	protected ActivityType activity = ACTIVITY_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -466,6 +488,28 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ActivityType getActivity() {
+		return activity;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setActivity(ActivityType newActivity) {
+		ActivityType oldActivity = activity;
+		activity = newActivity == null ? ACTIVITY_EDEFAULT : newActivity;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RationalePackage.ISSUE__ACTIVITY, oldActivity, activity));
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -598,6 +642,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			return basicGetSolution();
 		case RationalePackage.ISSUE__CRITERIA:
 			return getCriteria();
+		case RationalePackage.ISSUE__ACTIVITY:
+			return getActivity();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -647,6 +693,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			getCriteria().clear();
 			getCriteria().addAll((Collection<? extends Criterion>) newValue);
 			return;
+		case RationalePackage.ISSUE__ACTIVITY:
+			setActivity((ActivityType) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -688,6 +737,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 		case RationalePackage.ISSUE__CRITERIA:
 			getCriteria().clear();
 			return;
+		case RationalePackage.ISSUE__ACTIVITY:
+			setActivity(ACTIVITY_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -720,6 +772,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			return solution != null;
 		case RationalePackage.ISSUE__CRITERIA:
 			return criteria != null && !criteria.isEmpty();
+		case RationalePackage.ISSUE__ACTIVITY:
+			return activity != ACTIVITY_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -792,6 +846,23 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (activity: ");
+		result.append(activity);
+		result.append(')');
+		return result.toString();
 	}
 
 } // IssueImpl

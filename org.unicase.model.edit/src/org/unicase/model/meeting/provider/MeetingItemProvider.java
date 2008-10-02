@@ -1,5 +1,6 @@
 /**
- * Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
  *
  * $Id$
  */
@@ -64,6 +65,7 @@ public class MeetingItemProvider extends ModelElementItemProvider implements
 			addMinutetakerPropertyDescriptor(object);
 			addTimekeeperPropertyDescriptor(object);
 			addParticipantsPropertyDescriptor(object);
+			addSectionsPropertyDescriptor(object);
 			addIdentifiedIssuesSectionPropertyDescriptor(object);
 			addIdentifiedWorkItemsSectionPropertyDescriptor(object);
 		}
@@ -189,6 +191,23 @@ public class MeetingItemProvider extends ModelElementItemProvider implements
 								"_UI_Meeting_type"),
 						MeetingPackage.Literals.MEETING__PARTICIPANTS, true,
 						false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Sections feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSectionsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Meeting_sections_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Meeting_sections_feature", "_UI_Meeting_type"),
+				MeetingPackage.Literals.MEETING__SECTIONS, true, false, false,
+				null, null, null));
 	}
 
 	/**

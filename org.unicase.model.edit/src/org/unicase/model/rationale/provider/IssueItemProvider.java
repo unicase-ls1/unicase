@@ -20,6 +20,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.model.change.ChangeFactory;
 import org.unicase.model.provider.AnnotationItemProvider;
@@ -67,6 +68,7 @@ public class IssueItemProvider extends AnnotationItemProvider implements
 			addProposalsPropertyDescriptor(object);
 			addSolutionPropertyDescriptor(object);
 			addCriteriaPropertyDescriptor(object);
+			addActivityPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -158,6 +160,23 @@ public class IssueItemProvider extends AnnotationItemProvider implements
 						"_UI_Issue_criteria_feature", "_UI_Issue_type"),
 				RationalePackage.Literals.ISSUE__CRITERIA, true, false, true,
 				null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Activity feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addActivityPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Issue_activity_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Issue_activity_feature", "_UI_Issue_type"),
+				RationalePackage.Literals.ISSUE__ACTIVITY, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -286,6 +305,7 @@ public class IssueItemProvider extends AnnotationItemProvider implements
 
 		switch (notification.getFeatureID(Issue.class)) {
 		case RationalePackage.ISSUE__CHECKED:
+		case RationalePackage.ISSUE__ACTIVITY:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), false, true));
 			return;

@@ -412,6 +412,15 @@ public interface ChangePackage extends EPackage {
 	int MERGING_ISSUE__CRITERIA = RationalePackage.ISSUE__CRITERIA;
 
 	/**
+	 * The feature id for the '<em><b>Activity</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_ISSUE__ACTIVITY = RationalePackage.ISSUE__ACTIVITY;
+
+	/**
 	 * The feature id for the '<em><b>Resolving Revision</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
