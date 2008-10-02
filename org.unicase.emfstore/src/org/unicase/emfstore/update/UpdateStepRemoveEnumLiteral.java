@@ -6,7 +6,7 @@
  */
 package org.unicase.emfstore.update;
 
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.unicase.model.ModelElement;
 
@@ -14,22 +14,27 @@ import org.unicase.model.ModelElement;
  * @author schroech
  *
  */
-public abstract class UpdateStepRemoveFeature extends UpdateStepTransformFeature {
-
+public abstract class UpdateStepRemoveEnumLiteral extends UpdateStepTransformFeature {
 
 	/**
-	 * {@inheritDoc}
-	 * @see org.unicase.emfstore.update.UpdateStepTransformClass#updateModelElement(org.unicase.model.ModelElement)
+	 * @return
+	 * The name of the literal that should be deleted
 	 */
-	@SuppressWarnings("unchecked")
+	public abstract String getLiteralName();
+
+	
+	/**
+	 * {@inheritDoc}
+	 * @see org.unicase.emfstore.update.UpdateStepTransformFeature#updateFeature(org.unicase.model.ModelElement, org.eclipse.emf.ecore.EStructuralFeature)
+	 */
 	@Override
 	public int updateFeature(ModelElement modelElement, EStructuralFeature feature) {
 		int numberOfUpdatedItems = 0;
 
 		Object featureValue = modelElement.eGet(feature);
 		if (featureValue != null
-				&& !((featureValue instanceof EList)
-						&& (((EList) featureValue).size() != 0))) {
+				&& featureValue instanceof Enumerator
+				&& ((Enumerator)featureValue).getName() == getLiteralName()) {
 
 			modelElement.eUnset(feature);
 
@@ -39,8 +44,9 @@ public abstract class UpdateStepRemoveFeature extends UpdateStepTransformFeature
 					+ modelElement.getName()
 					+ "\"");
 
+
 			numberOfUpdatedItems++;
 		}
 		return numberOfUpdatedItems;
-	}
+	}	
 }
