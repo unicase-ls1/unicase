@@ -736,12 +736,30 @@ public interface ClassesPackage extends EPackage {
 	int ASSOCIATION__TARGET_MULTIPLICITY = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Source Role</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__SOURCE_ROLE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Target Role</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__TARGET_ROLE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
 	 * The number of structural features of the '<em>Association</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
+	int ASSOCIATION_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.classes.impl.AttributeImpl <em>Attribute</em>}' class.
@@ -1712,6 +1730,28 @@ public interface ClassesPackage extends EPackage {
 	EAttribute getAssociation_TargetMultiplicity();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.classes.Association#getSourceRole <em>Source Role</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Source Role</em>'.
+	 * @see org.unicase.model.classes.Association#getSourceRole()
+	 * @see #getAssociation()
+	 * @generated
+	 */
+	EAttribute getAssociation_SourceRole();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.classes.Association#getTargetRole <em>Target Role</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Target Role</em>'.
+	 * @see org.unicase.model.classes.Association#getTargetRole()
+	 * @see #getAssociation()
+	 * @generated
+	 */
+	EAttribute getAssociation_TargetRole();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.model.classes.Attribute <em>Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2221,6 +2261,22 @@ public interface ClassesPackage extends EPackage {
 		 */
 		EAttribute ASSOCIATION__TARGET_MULTIPLICITY = eINSTANCE
 				.getAssociation_TargetMultiplicity();
+		/**
+		 * The meta object literal for the '<em><b>Source Role</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ASSOCIATION__SOURCE_ROLE = eINSTANCE
+				.getAssociation_SourceRole();
+		/**
+		 * The meta object literal for the '<em><b>Target Role</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ASSOCIATION__TARGET_ROLE = eINSTANCE
+				.getAssociation_TargetRole();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.classes.impl.AttributeImpl <em>Attribute</em>}' class.
 		 * <!-- begin-user-doc -->

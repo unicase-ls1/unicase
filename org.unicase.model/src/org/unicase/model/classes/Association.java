@@ -20,6 +20,8 @@ import org.unicase.model.ModelElement;
  *   <li>{@link org.unicase.model.classes.Association#getType <em>Type</em>}</li>
  *   <li>{@link org.unicase.model.classes.Association#getSourceMultiplicity <em>Source Multiplicity</em>}</li>
  *   <li>{@link org.unicase.model.classes.Association#getTargetMultiplicity <em>Target Multiplicity</em>}</li>
+ *   <li>{@link org.unicase.model.classes.Association#getSourceRole <em>Source Role</em>}</li>
+ *   <li>{@link org.unicase.model.classes.Association#getTargetRole <em>Target Role</em>}</li>
  * </ul>
  * </p>
  *
@@ -165,5 +167,59 @@ public interface Association extends ModelElement {
 	 * @generated
 	 */
 	void setTargetMultiplicity(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Source Role</b></em>' attribute.
+	 * The default value is <code>"1"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Source Role</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Source Role</em>' attribute.
+	 * @see #setSourceRole(String)
+	 * @see org.unicase.model.classes.ClassesPackage#getAssociation_SourceRole()
+	 * @model default="1"
+	 * @generated
+	 */
+	String getSourceRole();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.classes.Association#getSourceRole <em>Source Role</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Source Role</em>' attribute.
+	 * @see #getSourceRole()
+	 * @generated
+	 */
+	void setSourceRole(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Target Role</b></em>' attribute.
+	 * The default value is <code>"1"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Target Role</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Target Role</em>' attribute.
+	 * @see #setTargetRole(String)
+	 * @see org.unicase.model.classes.ClassesPackage#getAssociation_TargetRole()
+	 * @model default="1"
+	 * @generated
+	 */
+	String getTargetRole();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.classes.Association#getTargetRole <em>Target Role</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Target Role</em>' attribute.
+	 * @see #getTargetRole()
+	 * @generated
+	 */
+	void setTargetRole(String value);
 
 } // Association

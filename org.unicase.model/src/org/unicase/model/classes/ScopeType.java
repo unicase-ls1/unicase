@@ -23,6 +23,14 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum ScopeType implements Enumerator {
 	/**
+	 * The '<em><b>CLASS</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #CLASS_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	CLASS(2, "CLASS", "CLASS"), /**
 	 * The '<em><b>UNDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -38,17 +46,22 @@ public enum ScopeType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	INSTANCE(1, "INSTANCE", "INSTANCE"),
+	INSTANCE(1, "INSTANCE", "INSTANCE");
 
 	/**
-	 * The '<em><b>CLASS</b></em>' literal object.
+	 * The '<em><b>CLASS</b></em>' literal value.
 	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CLASS</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CLASS_VALUE
+	 * @see #CLASS
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	CLASS(2, "CLASS", "CLASS");
+	public static final int CLASS_VALUE = 2;
 
 	/**
 	 * The '<em><b>UNDEFINED</b></em>' literal value.
@@ -81,28 +94,13 @@ public enum ScopeType implements Enumerator {
 	public static final int INSTANCE_VALUE = 1;
 
 	/**
-	 * The '<em><b>CLASS</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>CLASS</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #CLASS
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int CLASS_VALUE = 2;
-
-	/**
 	 * An array of all the '<em><b>Scope Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ScopeType[] VALUES_ARRAY = new ScopeType[] {
-			UNDEFINED, INSTANCE, CLASS, };
+	private static final ScopeType[] VALUES_ARRAY = new ScopeType[] { CLASS,
+			UNDEFINED, INSTANCE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Scope Type</b></em>' enumerators.
@@ -153,12 +151,12 @@ public enum ScopeType implements Enumerator {
 	 */
 	public static ScopeType get(int value) {
 		switch (value) {
+		case CLASS_VALUE:
+			return CLASS;
 		case UNDEFINED_VALUE:
 			return UNDEFINED;
 		case INSTANCE_VALUE:
 			return INSTANCE;
-		case CLASS_VALUE:
-			return CLASS;
 		}
 		return null;
 	}
