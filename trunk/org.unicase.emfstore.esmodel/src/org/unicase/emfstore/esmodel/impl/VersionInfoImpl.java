@@ -114,7 +114,7 @@ public class VersionInfoImpl extends EObjectImpl implements VersionInfo {
 	}
 
 	// end of custom code
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

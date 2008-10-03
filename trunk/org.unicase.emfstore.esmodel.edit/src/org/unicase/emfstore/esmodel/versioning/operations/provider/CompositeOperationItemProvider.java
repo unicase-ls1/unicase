@@ -255,6 +255,12 @@ public class CompositeOperationItemProvider extends
 		newChildDescriptors.add(createChildParameter(
 				OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
 				OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+						OperationsFactory.eINSTANCE
+								.createMultiAttributeMoveOperation()));
 	}
 
 }

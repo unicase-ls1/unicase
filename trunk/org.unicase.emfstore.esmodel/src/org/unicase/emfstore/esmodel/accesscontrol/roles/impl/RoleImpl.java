@@ -95,9 +95,9 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	public boolean canAdministrate(ProjectId projectId) {
 		return false;
 	}
+
 	// end of custom code
 
-	
 	/**
 	 * {@inheritDoc}
 	 * 

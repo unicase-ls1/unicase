@@ -81,7 +81,7 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements
 	protected EClass eStaticClass() {
 		return OperationsPackage.Literals.ABSTRACT_OPERATION;
 	}
-	
+
 	// begin of custom code
 	/**
 	 * <!-- begin-user-doc -->
@@ -100,8 +100,9 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements
 	 * @generated NOT
 	 */
 	public abstract String getDescription();
+
 	// end of custom code
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

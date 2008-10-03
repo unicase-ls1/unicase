@@ -108,6 +108,15 @@ public interface OperationsFactory extends EFactory {
 	DiagramLayoutOperation createDiagramLayoutOperation();
 
 	/**
+	 * Returns a new object of class '<em>Multi Attribute Move Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Multi Attribute Move Operation</em>'.
+	 * @generated
+	 */
+	MultiAttributeMoveOperation createMultiAttributeMoveOperation();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

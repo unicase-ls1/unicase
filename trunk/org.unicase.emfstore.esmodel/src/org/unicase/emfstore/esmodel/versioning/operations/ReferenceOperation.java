@@ -79,7 +79,7 @@ public interface ReferenceOperation extends FeatureOperation {
 	 * @generated
 	 */
 	void setOppositeFeatureName(String value);
-	
+
 	/**
 	 * Returns all involved elements other than the element the operation refers to.
 	 * @return a set of model elements

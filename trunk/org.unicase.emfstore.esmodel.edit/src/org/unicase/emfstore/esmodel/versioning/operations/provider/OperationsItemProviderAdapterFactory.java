@@ -291,6 +291,30 @@ public class OperationsItemProviderAdapterFactory extends
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MultiAttributeMoveOperationItemProvider multiAttributeMoveOperationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMultiAttributeMoveOperationAdapter() {
+		if (multiAttributeMoveOperationItemProvider == null) {
+			multiAttributeMoveOperationItemProvider = new MultiAttributeMoveOperationItemProvider(
+					this);
+		}
+
+		return multiAttributeMoveOperationItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -410,6 +434,8 @@ public class OperationsItemProviderAdapterFactory extends
 			readOperationItemProvider.dispose();
 		if (diagramLayoutOperationItemProvider != null)
 			diagramLayoutOperationItemProvider.dispose();
+		if (multiAttributeMoveOperationItemProvider != null)
+			multiAttributeMoveOperationItemProvider.dispose();
 	}
 
 }
