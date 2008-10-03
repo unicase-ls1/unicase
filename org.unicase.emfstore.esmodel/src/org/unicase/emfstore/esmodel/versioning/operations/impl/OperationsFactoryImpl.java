@@ -15,6 +15,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
@@ -86,6 +87,8 @@ public class OperationsFactoryImpl extends EFactoryImpl implements
 			return createReadOperation();
 		case OperationsPackage.DIAGRAM_LAYOUT_OPERATION:
 			return createDiagramLayoutOperation();
+		case OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION:
+			return createMultiAttributeMoveOperation();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName()
 					+ "' is not a valid classifier");
@@ -180,6 +183,16 @@ public class OperationsFactoryImpl extends EFactoryImpl implements
 	public DiagramLayoutOperation createDiagramLayoutOperation() {
 		DiagramLayoutOperationImpl diagramLayoutOperation = new DiagramLayoutOperationImpl();
 		return diagramLayoutOperation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MultiAttributeMoveOperation createMultiAttributeMoveOperation() {
+		MultiAttributeMoveOperationImpl multiAttributeMoveOperation = new MultiAttributeMoveOperationImpl();
+		return multiAttributeMoveOperation;
 	}
 
 	/**

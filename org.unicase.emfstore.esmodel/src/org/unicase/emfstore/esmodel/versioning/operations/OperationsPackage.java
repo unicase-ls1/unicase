@@ -937,6 +937,79 @@ public interface OperationsPackage extends EPackage {
 	int DIAGRAM_LAYOUT_OPERATION_FEATURE_COUNT = ATTRIBUTE_OPERATION_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiAttributeMoveOperationImpl <em>Multi Attribute Move Operation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.MultiAttributeMoveOperationImpl
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getMultiAttributeMoveOperation()
+	 * @generated
+	 */
+	int MULTI_ATTRIBUTE_MOVE_OPERATION = 12;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_ATTRIBUTE_MOVE_OPERATION__NAME = FEATURE_OPERATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_ATTRIBUTE_MOVE_OPERATION__DESCRIPTION = FEATURE_OPERATION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Model Element Id</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_ATTRIBUTE_MOVE_OPERATION__MODEL_ELEMENT_ID = FEATURE_OPERATION__MODEL_ELEMENT_ID;
+
+	/**
+	 * The feature id for the '<em><b>Feature Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_ATTRIBUTE_MOVE_OPERATION__FEATURE_NAME = FEATURE_OPERATION__FEATURE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Old Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_ATTRIBUTE_MOVE_OPERATION__OLD_INDEX = FEATURE_OPERATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>New Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_ATTRIBUTE_MOVE_OPERATION__NEW_INDEX = FEATURE_OPERATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Multi Attribute Move Operation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_ATTRIBUTE_MOVE_OPERATION_FEATURE_COUNT = FEATURE_OPERATION_FEATURE_COUNT + 2;
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation <em>Abstract Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1343,6 +1416,38 @@ public interface OperationsPackage extends EPackage {
 	EClass getDiagramLayoutOperation();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation <em>Multi Attribute Move Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Multi Attribute Move Operation</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation
+	 * @generated
+	 */
+	EClass getMultiAttributeMoveOperation();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation#getOldIndex <em>Old Index</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Old Index</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation#getOldIndex()
+	 * @see #getMultiAttributeMoveOperation()
+	 * @generated
+	 */
+	EAttribute getMultiAttributeMoveOperation_OldIndex();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation#getNewIndex <em>New Index</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>New Index</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation#getNewIndex()
+	 * @see #getMultiAttributeMoveOperation()
+	 * @generated
+	 */
+	EAttribute getMultiAttributeMoveOperation_NewIndex();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1720,6 +1825,35 @@ public interface OperationsPackage extends EPackage {
 		 * @generated
 		 */
 		EClass DIAGRAM_LAYOUT_OPERATION = eINSTANCE.getDiagramLayoutOperation();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiAttributeMoveOperationImpl <em>Multi Attribute Move Operation</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.MultiAttributeMoveOperationImpl
+		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getMultiAttributeMoveOperation()
+		 * @generated
+		 */
+		EClass MULTI_ATTRIBUTE_MOVE_OPERATION = eINSTANCE
+				.getMultiAttributeMoveOperation();
+
+		/**
+		 * The meta object literal for the '<em><b>Old Index</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MULTI_ATTRIBUTE_MOVE_OPERATION__OLD_INDEX = eINSTANCE
+				.getMultiAttributeMoveOperation_OldIndex();
+
+		/**
+		 * The meta object literal for the '<em><b>New Index</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MULTI_ATTRIBUTE_MOVE_OPERATION__NEW_INDEX = eINSTANCE
+				.getMultiAttributeMoveOperation_NewIndex();
 
 	}
 

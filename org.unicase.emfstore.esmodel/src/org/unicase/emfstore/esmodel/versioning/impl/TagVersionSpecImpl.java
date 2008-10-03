@@ -166,7 +166,7 @@ public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 		}
 		return super.equals(obj);
 	}
-	
+
 	/** 
 	 * {@inheritDoc}
 	 * @see java.lang.Object#hashCode()

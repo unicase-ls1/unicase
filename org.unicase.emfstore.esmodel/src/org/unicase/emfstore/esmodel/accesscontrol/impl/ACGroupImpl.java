@@ -79,8 +79,9 @@ public class ACGroupImpl extends ACOrgUnitImpl implements ACGroup {
 		}
 		return members;
 	}
+
 	// end of custom code
-	
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated

@@ -178,6 +178,10 @@
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="DiagramLayoutOperation" eSuperTypes="#//versioning/operations/AttributeOperation"/>
+      <eClassifiers xsi:type="ecore:EClass" name="MultiAttributeMoveOperation" eSuperTypes="#//versioning/operations/FeatureOperation">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="oldIndex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="newIndex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      </eClassifiers>
     </eSubpackages>
   </eSubpackages>
   <eSubpackages name="accesscontrol" nsURI="http://unicase.org/esmodel/accesscontrol"

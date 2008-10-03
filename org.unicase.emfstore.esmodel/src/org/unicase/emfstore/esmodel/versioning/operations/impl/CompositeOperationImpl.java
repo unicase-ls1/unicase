@@ -222,16 +222,18 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 					oldReversed, reversed));
 	}
 
+	// begin of custom code
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void cannonize() {
-		//MK implement
+		//MK: implement
 		throw new UnsupportedOperationException();
 	}
-
+	// end of custom code  
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

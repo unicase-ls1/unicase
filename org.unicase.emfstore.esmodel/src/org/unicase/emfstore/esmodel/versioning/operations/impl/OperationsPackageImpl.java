@@ -27,6 +27,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
@@ -128,6 +129,13 @@ public class OperationsPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	private EClass diagramLayoutOperationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass multiAttributeMoveOperationEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -603,6 +611,35 @@ public class OperationsPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getMultiAttributeMoveOperation() {
+		return multiAttributeMoveOperationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMultiAttributeMoveOperation_OldIndex() {
+		return (EAttribute) multiAttributeMoveOperationEClass
+				.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMultiAttributeMoveOperation_NewIndex() {
+		return (EAttribute) multiAttributeMoveOperationEClass
+				.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public OperationsFactory getOperationsFactory() {
 		return (OperationsFactory) getEFactoryInstance();
 	}
@@ -700,6 +737,12 @@ public class OperationsPackageImpl extends EPackageImpl implements
 		createEAttribute(readOperationEClass, READ_OPERATION__DATE);
 
 		diagramLayoutOperationEClass = createEClass(DIAGRAM_LAYOUT_OPERATION);
+
+		multiAttributeMoveOperationEClass = createEClass(MULTI_ATTRIBUTE_MOVE_OPERATION);
+		createEAttribute(multiAttributeMoveOperationEClass,
+				MULTI_ATTRIBUTE_MOVE_OPERATION__OLD_INDEX);
+		createEAttribute(multiAttributeMoveOperationEClass,
+				MULTI_ATTRIBUTE_MOVE_OPERATION__NEW_INDEX);
 	}
 
 	/**
@@ -758,6 +801,8 @@ public class OperationsPackageImpl extends EPackageImpl implements
 		readOperationEClass.getESuperTypes().add(this.getAbstractOperation());
 		diagramLayoutOperationEClass.getESuperTypes().add(
 				this.getAttributeOperation());
+		multiAttributeMoveOperationEClass.getESuperTypes().add(
+				this.getFeatureOperation());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(abstractOperationEClass, AbstractOperation.class,
@@ -954,6 +999,21 @@ public class OperationsPackageImpl extends EPackageImpl implements
 		initEClass(diagramLayoutOperationEClass, DiagramLayoutOperation.class,
 				"DiagramLayoutOperation", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(multiAttributeMoveOperationEClass,
+				MultiAttributeMoveOperation.class,
+				"MultiAttributeMoveOperation", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getMultiAttributeMoveOperation_OldIndex(), ecorePackage
+				.getEInt(), "oldIndex", null, 0, 1,
+				MultiAttributeMoveOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getMultiAttributeMoveOperation_NewIndex(), ecorePackage
+				.getEInt(), "newIndex", null, 0, 1,
+				MultiAttributeMoveOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 	}
 
 } //OperationsPackageImpl

@@ -132,7 +132,7 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 		}
 		return roles;
 	}
-	
+
 	// begin of custom code
 
 	/** 
@@ -164,7 +164,7 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 			return super.equals(obj);
 		}
 	}
-	
+
 	/** 
 	 * {@inheritDoc}
 	 * @see java.lang.Object#hashCode()
@@ -173,6 +173,7 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 	public int hashCode() {
 		return this.getId().getId().hashCode();
 	}
+
 	// end of custom code
 
 	/**
