@@ -124,6 +124,105 @@ public class FineGrainedConflictDetectionStrategy implements
 		if (requiredOperation instanceof ReadOperation
 				|| operation instanceof ReadOperation) {
 			return false;
+		} else if (requiredOperation instanceof CreateDeleteOperation) {
+			return isRequired((CreateDeleteOperation) requiredOperation,
+					operation);
+		} else if (requiredOperation instanceof MultiReferenceOperation
+				&& operation instanceof MultiReferenceMoveOperation) {
+			return isRequired((MultiReferenceOperation)requiredOperation, (MultiReferenceMoveOperation)operation);
+		} else if (requiredOperation instanceof MultiReferenceOperation
+				&& operation instanceof MultiReferenceOperation) {
+			return isRequired((MultiReferenceOperation)requiredOperation, (MultiReferenceOperation)operation);
+		} else if (requiredOperation instanceof CompositeOperation) {
+			for (AbstractOperation abstractOperation : ((CompositeOperation) requiredOperation)
+					.getSubOperations()) {
+				if (isRequired(abstractOperation, operation)) {
+					return true;
+				}
+			}
+			return false;
+		} else if (operation instanceof CompositeOperation) {
+			for (AbstractOperation abstractOperation : ((CompositeOperation) operation)
+					.getSubOperations()) {
+				if (isRequired(requiredOperation, abstractOperation)) {
+					return true;
+				}
+			}
+			return false;
+		}
+		return false;
+	}
+
+	private boolean isRequired(MultiReferenceOperation requiredMultiReferenceOperation,
+			MultiReferenceOperation multiReferenceOperation) {
+		boolean sameElement = requiredMultiReferenceOperation
+				.getModelElementId().equals(
+						multiReferenceOperation.getModelElementId());
+		boolean sameFeature = requiredMultiReferenceOperation
+				.getFeatureName().equals(
+						multiReferenceOperation.getFeatureName());
+		if (sameElement && sameFeature
+				&& requiredMultiReferenceOperation.isAdd()
+				&& !multiReferenceOperation.isAdd()) {
+			for (ModelElementId modelElementId : multiReferenceOperation
+					.getReferencedModelElements()) {
+				if (requiredMultiReferenceOperation
+						.getReferencedModelElements().contains(
+								modelElementId)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	private boolean isRequired(MultiReferenceOperation requiredMultiReferenceOperation,
+			MultiReferenceMoveOperation moveOperation) {
+		boolean sameElement = requiredMultiReferenceOperation
+				.getModelElementId().equals(
+						moveOperation.getModelElementId());
+		boolean sameFeature = requiredMultiReferenceOperation
+				.getFeatureName().equals(moveOperation.getFeatureName());
+		if (sameElement && sameFeature) {
+			for (ModelElementId modelElementId : requiredMultiReferenceOperation
+					.getReferencedModelElements()) {
+				if (modelElementId.equals(moveOperation
+						.getReferencedModelElementId())) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	private boolean isRequired(CreateDeleteOperation requiredOperation,
+			AbstractOperation operation) {
+		if (!requiredOperation.isDelete()) {
+			if (operation instanceof FeatureOperation) {
+				if (operation.getModelElementId().equals(
+						requiredOperation.getModelElementId())) {
+					return true;
+				}
+				if (operation instanceof ReferenceOperation) {
+					return ((ReferenceOperation) operation).getOtherInvolvedModelElements().contains(requiredOperation.getModelElementId());
+				}
+				if (operation instanceof MultiReferenceMoveOperation) {
+					return ((MultiReferenceMoveOperation) operation)
+							.getReferencedModelElementId().equals(
+									requiredOperation);
+				}
+				return false;
+			} else if (operation instanceof CompositeOperation) {
+				for (AbstractOperation abstractOperation : ((CompositeOperation) operation)
+						.getSubOperations()) {
+					if (isRequired(requiredOperation, abstractOperation)) {
+						return true;
+					}
+				}
+				return false;
+			} else if (operation instanceof CreateDeleteOperation) {
+				return (((CreateDeleteOperation) operation).isDelete());
+			}
 		}
 		return false;
 	}
