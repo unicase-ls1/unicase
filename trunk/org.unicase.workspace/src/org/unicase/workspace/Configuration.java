@@ -23,7 +23,7 @@ public final class Configuration {
 		// nothing to do
 	}
 
-	private static Map<Object, Object> resourceSaveOptions;
+	//private static Map<Object, Object> resourceSaveOptions;
 
 	/**
 	 * Get the Workspace directory.
