@@ -30,7 +30,7 @@ public class UserComposite extends FormContents {
 			adminBroker.removeGroup(
 					user.getId(), ((ACGroup) group).getId());
 		} catch (EmfStoreException e) {
-			// TODO Auto-generated catch block
+			// ZH Auto-generated catch block
 			e.printStackTrace();
 		}
 		tableViewer.refresh();
@@ -59,7 +59,7 @@ public class UserComposite extends FormContents {
 				}
 			} 
 		} catch (EmfStoreException e) {
-			// TODO Auto-generated catch block
+			// ZH Auto-generated catch block
 			e.printStackTrace();
 		} 
 		tableViewer.refresh();
@@ -96,7 +96,7 @@ public class UserComposite extends FormContents {
 				}
 			}
 		} catch (EmfStoreException e) {
-			// TODO Auto-generated catch block
+			// ZH Auto-generated catch block
 			e.printStackTrace();
 		}
 		return groups;
@@ -153,7 +153,7 @@ public class UserComposite extends FormContents {
 				orgUnitMgmtGUI.getActiveTabContent().getListViewer().refresh();
 			
 			} catch (EmfStoreException e) {
-				// TODO Auto-generated catch block
+				// ZH Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

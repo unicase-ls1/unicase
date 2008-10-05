@@ -13,7 +13,7 @@ package org.unicase.emfstore.exceptions;
  * @author koegel
  * 
  */
-//FIXME: move to workspace
+//MK: move to workspace
 @SuppressWarnings("serial")
 public class BaseVersionOutdatedException extends EmfStoreException {
 

@@ -784,6 +784,7 @@ public class TestProjectGenerator {
 			PlatformUI.getWorkbench().getActiveWorkbenchWindow()
 					.getActivePage().openEditor(input, MEEditor.ID, true);
 		} catch (PartInitException e) {
+			//ZH: exception handling
 			e.printStackTrace();
 		}
 

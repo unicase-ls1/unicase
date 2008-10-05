@@ -78,6 +78,7 @@ public class UpdateProjectHandler extends ProjectActionHandler implements
 							changePackages);
 					mergeDialog.open();
 				} catch (EmfStoreException e2) {
+					//AS: exception handling
 					DialogHandler.showExceptionDialog(e2);
 					e2.printStackTrace();
 				}

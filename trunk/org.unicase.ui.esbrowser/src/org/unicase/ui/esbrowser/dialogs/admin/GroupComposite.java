@@ -29,7 +29,7 @@ public class GroupComposite extends FormContents {
 			adminBroker.removeMember(group.getId(),orgUnit.getId());
 		
 		} catch (EmfStoreException e) {
-			// TODO Auto-generated catch block
+			// ZH Auto-generated catch block
 			e.printStackTrace();
 		}
 		tableViewer.refresh();
@@ -47,7 +47,7 @@ public class GroupComposite extends FormContents {
 					adminBroker.addMember(group.getId(), orgUnit.getId());
 					
 				} catch (EmfStoreException e) {
-					// TODO Auto-generated catch block
+					// ZH Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -59,7 +59,7 @@ public class GroupComposite extends FormContents {
 					adminBroker.addMember(group.getId(), ou.getId());
 					
 				} catch (EmfStoreException e) {
-					// TODO Auto-generated catch block
+					// ZH Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -91,7 +91,7 @@ public class GroupComposite extends FormContents {
 				}
 			}
 		} catch (EmfStoreException e) {
-			// TODO Auto-generated catch block
+			// ZH Auto-generated catch block
 			e.printStackTrace();
 		}
 		return members;
@@ -147,7 +147,7 @@ public class GroupComposite extends FormContents {
 					((Form)(this.getParent().getParent())).setText("Group: " + txtName.getText());
 					orgUnitMgmtGUI.getActiveTabContent().getListViewer().refresh();
 				} catch (EmfStoreException e) {
-					// TODO Auto-generated catch block
+					// ZH Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

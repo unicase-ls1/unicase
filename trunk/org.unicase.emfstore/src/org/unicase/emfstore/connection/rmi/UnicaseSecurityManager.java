@@ -16,7 +16,7 @@ import java.security.Permission;
  * @author koegel
  *
  */
-//FIXME: make some restrictions
+//MK: make some restrictions
 public class UnicaseSecurityManager extends SecurityManager {
 
 	/** 

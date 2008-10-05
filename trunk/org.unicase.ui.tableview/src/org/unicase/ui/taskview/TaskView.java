@@ -246,7 +246,7 @@ public class TaskView extends ViewPart {
 		try {
 			settings.save(filename);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			// JH Auto-generated catch block
 			e.printStackTrace();
 		}
 

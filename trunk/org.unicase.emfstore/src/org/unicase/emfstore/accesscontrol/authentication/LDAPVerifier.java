@@ -92,7 +92,7 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 				resolvedName = sr.getName();
 				break;
 			}
-		//remove this
+		//OW: remove this
 		} catch (Exception e) {
 			logger.info("Exception while iterating over the results");
 			return false;
@@ -103,7 +103,7 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 			return false;
 		}
 
-		// TODO: use ssl? password hash?
+		// OW: use ssl? password hash?
 		// Authenticated bind
 		props = new Properties();
 		// props.put(Context.SECURITY_PROTOCOL, "ssl");
