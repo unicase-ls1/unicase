@@ -136,7 +136,7 @@ public class TabContent {
 				adminBroker.deleteUser(((ACUser) ou).getId());
 			}
 		} catch (EmfStoreException e) {
-			// TODO Auto-generated catch block
+			// ZH Auto-generated catch block
 			e.printStackTrace();
 		}
 		list.refresh();
@@ -152,7 +152,7 @@ public class TabContent {
 				adminBroker.createGroup("New Group");
 			}
 		} catch (EmfStoreException e) {
-			// TODO Auto-generated catch block
+			// ZH Auto-generated catch block
 			e.printStackTrace();
 		}
 		list.refresh();
@@ -266,7 +266,7 @@ public class TabContent {
 					adminBroker.removeMember(group.getId(), orgUnit.getId());
 
 				} catch (EmfStoreException e) {
-					// TODO Auto-generated catch block
+					// ZH Auto-generated catch block
 					e.printStackTrace();
 				}
 			} else if (currentInput instanceof ACUser) {
@@ -275,7 +275,7 @@ public class TabContent {
 						.getId());
 			}
 		} catch (EmfStoreException e) {
-			// TODO Auto-generated catch block
+			// ZH Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -362,7 +362,7 @@ public class TabContent {
 					result = users.toArray(new ACUser[users.size()]);
 				}
 			} catch (EmfStoreException e) {
-				// TODO Auto-generated catch block
+				// ZH Auto-generated catch block
 				e.printStackTrace();
 			}
 			return result;

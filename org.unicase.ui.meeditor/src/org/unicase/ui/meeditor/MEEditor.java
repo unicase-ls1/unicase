@@ -67,7 +67,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 		try {
 			addPage(form);
 		} catch (PartInitException e) {
-			// TODO Auto-generated catch block
+			// JH Auto-generated catch block
 			e.printStackTrace();
 		}
 

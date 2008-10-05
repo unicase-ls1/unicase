@@ -30,7 +30,7 @@ public abstract class UpdateStepImpl implements UpdateStep {
 			try {
 				numberOfUpdatedItems += updateProjectState(projectState);
 			} catch (EmfStoreException e) {
-				// TODO Auto-generated catch block
+				// CS: handle exception properly: is this fatal?
 				e.printStackTrace();
 			}
 		}

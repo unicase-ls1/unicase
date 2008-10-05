@@ -56,7 +56,7 @@ public class UpdateStepRemoveAssociationTypeDependency extends UpdateStepRemoveE
 	* @see org.unicase.emfstore.update.UpdateStep#getTitle()
 	*/
 	public String getTitle() {
-		// TODO Auto-generated method stub
+		// CS: return proper title
 		return null;
 	}
 

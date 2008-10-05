@@ -56,7 +56,7 @@ public class RMISSLServerSocketFactory implements RMIServerSocketFactory,
 			context.init(keyManagerFactory.getKeyManagers(), null, null);
 
 			serverSocketFactory = context.getServerSocketFactory();
-
+			// OW: insert proper exception handling
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		} catch (KeyStoreException e) {

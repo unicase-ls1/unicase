@@ -50,7 +50,7 @@ public class ProjectComposite extends FormContents {
 					.removeParticipant(projectInfo.getProjectId(),
 							orgUnit.getId());
 		} catch (EmfStoreException e) {
-			// TODO Auto-generated catch block
+			// ZH Auto-generated catch block
 			e.printStackTrace();
 		}
 		tableViewer.refresh();
@@ -78,7 +78,7 @@ public class ProjectComposite extends FormContents {
 				}
 			}
 		} catch (EmfStoreException e) {
-			// TODO Auto-generated catch block
+			// ZH Auto-generated catch block
 			e.printStackTrace();
 		}
 		tableViewer.refresh();
@@ -107,7 +107,7 @@ public class ProjectComposite extends FormContents {
 				}
 			}
 		} catch (EmfStoreException e) {
-			// TODO Auto-generated catch block
+			// ZH Auto-generated catch block
 			e.printStackTrace();
 		}
 		return participants;
@@ -206,7 +206,7 @@ public class ProjectComposite extends FormContents {
 						RolesPackage.eINSTANCE.getProjectAdminRole());
 			}
 		} catch (EmfStoreException e) {
-			// TODO Auto-generated catch block
+			// ZH Auto-generated catch block
 			e.printStackTrace();
 		}
 		tableViewer.refresh();
@@ -260,7 +260,7 @@ public class ProjectComposite extends FormContents {
 				result = PROJECT_ADMIN_ROLE;
 			}
 		} catch (EmfStoreException e) {
-			// TODO Auto-generated catch block
+			// ZH Auto-generated catch block
 			e.printStackTrace();
 		}
 		return result;

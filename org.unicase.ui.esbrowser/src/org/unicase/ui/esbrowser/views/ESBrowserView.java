@@ -81,7 +81,7 @@ public class ESBrowserView extends ViewPart {
 						.getActiveShell(), "Project information",
 						"Current revision: " + revision);
 			} catch (EmfStoreException e) {
-				// TODO Auto-generated catch block
+				// AS Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -182,6 +182,7 @@ public class ESBrowserView extends ViewPart {
 						contentProvider.getProjectServerMap().get(element)
 								.getLastUsersession().checkout(element);
 					} catch (EmfStoreException e) {
+						//AS proper exception handling
 						DialogHandler.showExceptionDialog(e);
 						e.printStackTrace();
 					}

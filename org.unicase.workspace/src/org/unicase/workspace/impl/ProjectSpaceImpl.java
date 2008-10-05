@@ -1071,7 +1071,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			try {
 				currentResource.save(Configuration.getResourceSaveOptions());
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				// MK Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -1561,16 +1561,16 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 					}
 
 				} catch (SecurityException e) {
-					// TODO Auto-generated catch block
+					// MK Auto-generated catch block
 					e.printStackTrace();
 				} catch (NoSuchFieldException e) {
-					// TODO Auto-generated catch block
+					// MK Auto-generated catch block
 					e.printStackTrace();
 				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
+					// MK Auto-generated catch block
 					e.printStackTrace();
 				} catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
+					// MK Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -1636,16 +1636,16 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 							return;
 						}
 					} catch (SecurityException e) {
-						// TODO Auto-generated catch block
+						// MK Auto-generated catch block
 						e.printStackTrace();
 					} catch (NoSuchFieldException e) {
-						// TODO Auto-generated catch block
+						// MK Auto-generated catch block
 						e.printStackTrace();
 					} catch (IllegalArgumentException e) {
-						// TODO Auto-generated catch block
+						// MK Auto-generated catch block
 						e.printStackTrace();
 					} catch (IllegalAccessException e) {
-						// TODO Auto-generated catch block
+						// MK Auto-generated catch block
 						e.printStackTrace();
 					}
 				}

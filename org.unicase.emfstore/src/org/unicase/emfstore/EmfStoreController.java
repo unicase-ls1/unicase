@@ -98,7 +98,7 @@ public class EmfStoreController implements IApplication {
 		accessControl = initAccessControl(serverSpace);
 		emfStore = new EmfStoreImpl(serverSpace, accessControl);
 		adminEmfStore = new AdminEmfStoreImpl(serverSpace, accessControl);
-		// FIXME: combine connectionHandler and adminConnectionHandler
+		// OW: combine connectionHandler and adminConnectionHandler
 		adminConnectionHandler = new RMIAdminConnectionHandler();
 		adminConnectionHandler.init(adminEmfStore, accessControl);
 		connectionHandlers = initConnectionHandlers(emfStore, accessControl);
@@ -146,7 +146,7 @@ public class EmfStoreController implements IApplication {
 			try {
 				read = System.in.read(buffer, 0, 1);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				// CS: Remove Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -282,7 +282,7 @@ public class EmfStoreController implements IApplication {
 	}
 
 	private void initLogging(Properties properties) {
-		// FIXME: fix logging config
+		// OW: fix logging config
 		// ConsoleAppender console = new ConsoleAppender(new SimpleLayout());
 		// try {
 		// FileAppender fileLog = new FileAppender(new SimpleLayout(),

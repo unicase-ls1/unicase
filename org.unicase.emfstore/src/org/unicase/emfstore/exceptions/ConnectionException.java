@@ -11,7 +11,7 @@ package org.unicase.emfstore.exceptions;
  * @author koegel
  *
  */
-//FIXME: move to workspace
+//MK: move to workspace
 public class ConnectionException extends EmfStoreException {
 
 	private static final long serialVersionUID = -2839606769454873809L;

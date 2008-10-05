@@ -67,7 +67,7 @@ public class PropertiesForm extends Form {
 				stackLayout.topControl = groupComposite;
 				groupComposite.updateControls(group);
 			} catch (EmfStoreException e) {
-				// TODO Auto-generated catch block
+				// ZH Auto-generated catch block
 				e.printStackTrace();
 			}
 			
@@ -79,7 +79,7 @@ public class PropertiesForm extends Form {
 				stackLayout.topControl = userComposite;
 				userComposite.updateControls(user);
 			} catch (EmfStoreException e) {
-				// TODO Auto-generated catch block
+				// ZH Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

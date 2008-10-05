@@ -122,7 +122,7 @@ public class EmfStoreImpl implements EmfStore {
 		// throw new InvalidPropertyException();
 		// }
 
-		// TODO: OW set projectstate of previous to null depending on strategy
+		// OW set projectstate of previous to null depending on strategy
 		// and save exceptions
 
 		Project newProjectState = (Project) EcoreUtil.copy(previousHeadVersion
@@ -302,7 +302,7 @@ public class EmfStoreImpl implements EmfStore {
 				versionSpec);
 		Version version = getVersion(projectId, resolvedVersion);
 		if (version.getProjectState() == null) {
-			// TODO OW MK: speed up calculation by using nearer projectstate
+			// OW: speed up calculation by using nearer projectstate
 			// instead of first.
 			Version firstVersion = getProject(projectId).getVersions().get(0);
 			Project projectState = (Project) EcoreUtil.copy(firstVersion
@@ -387,7 +387,7 @@ public class EmfStoreImpl implements EmfStore {
 		try {
 			projectHistory = createEmptyProject(name, description, logMessage);
 		} catch (FatalEmfStoreException e) {
-			// TODO rollback?
+			// OW rollback?
 			throw new StorageException(StorageException.NOSAVE);
 		}
 		return getProjectInfo(projectHistory);
@@ -411,7 +411,7 @@ public class EmfStoreImpl implements EmfStore {
 			lastVersion.setProjectState(project);
 			save(lastVersion);
 		} catch (FatalEmfStoreException e) {
-			// TODO rollback?
+			// OW rollback?
 			throw new StorageException(StorageException.NOSAVE);
 		}
 

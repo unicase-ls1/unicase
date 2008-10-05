@@ -46,7 +46,7 @@ public class MEHyperLinkAdapter extends HyperlinkAdapter implements
 					.getActivePage().openEditor(input,
 							"org.unicase.ui.meeditor", true);
 		} catch (PartInitException e) {
-			// TODO Auto-generated catch block
+			// JH Auto-generated catch block
 			e.printStackTrace();
 		}
 		super.linkActivated(event);

@@ -61,9 +61,8 @@ public final class RMIUtil {
 	 * @throws IOException
 	 *             if a serialization problem occurs
 	 */
-	// FIXME: Exception
+	// OW: Fix Exception handling and URI
 	public static String eObjectToString(EObject object) throws IOException {
-		// TODO Uri
 		if (object == null) {
 			return null;			
 		}
@@ -87,10 +86,9 @@ public final class RMIUtil {
 	 * @throws IOException
 	 *             if deserialization fails
 	 */
-	// FIXME: Exceptions
+	// OW: Fix Exception handling and URI
 	public static EObject stringToEObject(String object)
 			throws UnsupportedEncodingException, IOException {
-		// TODO Uri
 		if (object == null) {
 			return null;			
 		}
@@ -119,7 +117,7 @@ public final class RMIUtil {
 	 * @throws IOException
 	 *             if deserialization fails
 	 */
-	// FIXME: Exceptions
+	// OW: Fix Exception handling and URI
 	public static EObject stringToEObject(String object, Resource res)
 			throws UnsupportedEncodingException, IOException {
 		res.load(new ByteArrayInputStream(object.getBytes("UTF-8")), null);

@@ -124,7 +124,7 @@ public class AccessControlImpl implements AuthenticationControl,
 		List<Role> roles = new ArrayList<Role>();
 		roles.addAll(user.getRoles());
 		roles.addAll(getRolesFromGroups(user));
-		// FIXME
+		// MK: remove access control simplification
 		if (!canWrite(roles, projectId, null)) {
 			throw new AccessControlException();
 			// for (ModelElement modelElement : modelElements) {
@@ -223,7 +223,7 @@ public class AccessControlImpl implements AuthenticationControl,
 		List<Role> roles = new ArrayList<Role>();
 		roles.addAll(user.getRoles());
 		roles.addAll(getRolesFromGroups(user));
-		// FIXME
+		// MK: remove access control simplification
 		if (!canRead(roles, projectId, null)) {
 			throw new AccessControlException();
 			// for (ModelElement modelElement : modelElements) {
@@ -321,7 +321,7 @@ public class AccessControlImpl implements AuthenticationControl,
 		 * @throws AccessControlException
 		 */
 		public ACUser getUser() throws AccessControlException {
-			//FIXME OW timeout
+			//OW: timeout behaviour does not work as expected
 			//checkLastActive();
 			active();
 			return getRawUser();
@@ -337,7 +337,7 @@ public class AccessControlImpl implements AuthenticationControl,
 					ServerConfiguration.SESSION_TIMEOUT_DEFAULT);
 			if (System.currentTimeMillis() - lastActive > Integer
 					.parseInt(property)) {
-				//TODO: delete from map
+				//OW: delete from map
 				throw new AccessControlException("Usersession timed out.");
 			}
 		}

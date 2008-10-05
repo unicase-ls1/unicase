@@ -219,6 +219,7 @@ public class MEStateImpl implements MEState {
 				}
 			}
 		} catch (CircularDependencyException e) {
+			//JH: insert proper exception handlin
 			e.printStackTrace();
 		}
 

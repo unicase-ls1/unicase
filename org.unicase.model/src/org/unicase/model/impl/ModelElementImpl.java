@@ -482,6 +482,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		try {
 			return getMEState().getStatus();
 		} catch (CircularDependencyException e) {
+			//JH: insert proper exception handling
 			e.printStackTrace();
 			return MEState.CLOSED;
 		}
@@ -829,6 +830,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 			try {
 				readerInfo.setDate(df.parse(infos[1]));
 			} catch (ParseException e) {
+				//JH: insert proper exception handling
 				e.printStackTrace();
 			}
 			ret.add(readerInfo);

@@ -84,7 +84,7 @@ public final class KeyStoreManager {
 				certificates.add(tmp + " - " + keyStore.getCreationDate(tmp));
 			}
 		} catch (KeyStoreException e) {
-			// TODO Auto-generated catch block
+			// OW Auto-generated catch block
 			e.printStackTrace();
 		}
 		return certificates;
@@ -101,7 +101,7 @@ public final class KeyStoreManager {
 		try {
 			keyStore.deleteEntry(alias);
 		} catch (KeyStoreException e) {
-			// TODO Auto-generated catch block
+			// OW Auto-generated catch block
 			e.printStackTrace();
 		}
 		storeKeyStore();
@@ -122,13 +122,13 @@ public final class KeyStoreManager {
 					.generateCertificate(new FileInputStream(path));
 			keyStore.setCertificateEntry(alias, newCertificate);
 		} catch (CertificateException e) {
-			// TODO Auto-generated catch block
+			// OW Auto-generated catch block
 			e.printStackTrace();
 		} catch (KeyStoreException e) {
-			// TODO Auto-generated catch block
+			// OW Auto-generated catch block
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			// OW Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -139,19 +139,19 @@ public final class KeyStoreManager {
 			keyStore.store(new FileOutputStream(getPathToKeyStore()),
 					KEYSTOREPASSWORD.toCharArray());
 		} catch (KeyStoreException e) {
-			// TODO Auto-generated catch block
+			// OW Auto-generated catch block
 			e.printStackTrace();
 		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
+			// OW Auto-generated catch block
 			e.printStackTrace();
 		} catch (CertificateException e) {
-			// TODO Auto-generated catch block
+			// OW Auto-generated catch block
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			// OW Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			// OW Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -163,19 +163,19 @@ public final class KeyStoreManager {
 				keyStore.load(new FileInputStream(getPathToKeyStore()),
 						KEYSTOREPASSWORD.toCharArray());
 			} catch (KeyStoreException e) {
-				// TODO Auto-generated catch block
+				// OW Auto-generated catch block
 				e.printStackTrace();
 			} catch (NoSuchAlgorithmException e) {
-				// TODO Auto-generated catch block
+				// OW Auto-generated catch block
 				e.printStackTrace();
 			} catch (CertificateException e) {
-				// TODO Auto-generated catch block
+				// OW Auto-generated catch block
 				e.printStackTrace();
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
+				// OW Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				// OW Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

@@ -60,10 +60,11 @@ public class DeleteModelelementHandler extends AbstractHandler {
 				Resource resource = me.eResource();
 				EcoreUtil.delete(me, true);
 				resource.getContents().remove(me);
+				//MK: remove save here if save problems are all solved
 				try {
 					resource.save(Configuration.getResourceSaveOptions());
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					// MK: insert proper exception handling
 					e.printStackTrace();
 				}
 			}
