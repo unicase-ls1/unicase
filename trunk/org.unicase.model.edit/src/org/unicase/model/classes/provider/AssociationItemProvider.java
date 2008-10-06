@@ -203,6 +203,8 @@ public class AssociationItemProvider extends ModelElementItemProvider implements
 	 * -->
 	 * 
 	 * @generated NOT
+	 * @param object The association
+	 * @return The association image
 	 */
 	@Override
 	public Object getImage(Object object) {
