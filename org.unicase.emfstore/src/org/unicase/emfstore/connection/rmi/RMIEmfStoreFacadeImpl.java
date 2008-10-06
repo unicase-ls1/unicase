@@ -6,8 +6,6 @@
  */
 package org.unicase.emfstore.connection.rmi;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +27,7 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
+import org.unicase.emfstore.exceptions.SerializationException;
 import org.unicase.model.Project;
 
 /**
@@ -84,25 +83,18 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements
 			throws RemoteException, EmfStoreException {
 		LOGGER.debug("Client call on createRevision RECEIVED.");
 
-		try {
-			SessionId sessionIdObject = (SessionId) RMIUtil
-					.stringToEObject(sessionId);
-			ProjectId projectIdObject = (ProjectId) RMIUtil
-					.stringToEObject(projectId);
-			PrimaryVersionSpec primaryVersionSpec = (PrimaryVersionSpec) RMIUtil
-					.stringToEObject(baseVersionSpec);
-			ChangePackage changePackageObject = (ChangePackage) RMIUtil
-					.stringToEObject(changePackage);
+		SessionId sessionIdObject = (SessionId) RMIUtil
+				.stringToEObject(sessionId);
+		ProjectId projectIdObject = (ProjectId) RMIUtil
+				.stringToEObject(projectId);
+		PrimaryVersionSpec primaryVersionSpec = (PrimaryVersionSpec) RMIUtil
+				.stringToEObject(baseVersionSpec);
+		ChangePackage changePackageObject = (ChangePackage) RMIUtil
+				.stringToEObject(changePackage);
 
-			return RMIUtil.eObjectToString(emfStore.createVersion(
-					sessionIdObject, projectIdObject, primaryVersionSpec,
-					changePackageObject, (LogMessage) RMIUtil
-							.stringToEObject(logMessage)));
-		} catch (UnsupportedEncodingException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		} catch (IOException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		}
+		return RMIUtil.eObjectToString(emfStore.createVersion(sessionIdObject,
+				projectIdObject, primaryVersionSpec, changePackageObject,
+				(LogMessage) RMIUtil.stringToEObject(logMessage)));
 	}
 
 	/**
@@ -115,22 +107,16 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements
 			String source, String target) throws RemoteException,
 			EmfStoreException {
 		LOGGER.debug("Client call on getChanges RECEIVED.");
-		try {
-			List<String> result = new ArrayList<String>();
-			for (ChangePackage cp : emfStore.getChanges((SessionId) RMIUtil
-					.stringToEObject(sessionId), (ProjectId) RMIUtil
-					.stringToEObject(projectId), (VersionSpec) RMIUtil
-					.stringToEObject(source), (VersionSpec) RMIUtil
-					.stringToEObject(target))) {
+		List<String> result = new ArrayList<String>();
+		for (ChangePackage cp : emfStore.getChanges((SessionId) RMIUtil
+				.stringToEObject(sessionId), (ProjectId) RMIUtil
+				.stringToEObject(projectId), (VersionSpec) RMIUtil
+				.stringToEObject(source), (VersionSpec) RMIUtil
+				.stringToEObject(target))) {
 
-				result.add(RMIUtil.eObjectToString(cp));
-			}
-			return result;
-		} catch (UnsupportedEncodingException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		} catch (IOException e) {
-			throw new EmfStoreException(SERIALEX, e);
+			result.add(RMIUtil.eObjectToString(cp));
 		}
+		return result;
 	}
 
 	/**
@@ -140,19 +126,13 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements
 			String query) throws RemoteException, EmfStoreException {
 		LOGGER.debug("Client call on getHistoryInfo with query RECEIVED.");
 		List<String> result = new ArrayList<String>();
-		try {
-			for (HistoryInfo info : emfStore.getHistoryInfo((SessionId) RMIUtil
-					.stringToEObject(sessionId), (ProjectId) RMIUtil
-					.stringToEObject(projectId), (HistoryQuery) RMIUtil
-					.stringToEObject(query))) {
-				result.add(RMIUtil.eObjectToString(info));
-			}
-			return result;
-		} catch (UnsupportedEncodingException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		} catch (IOException e) {
-			throw new EmfStoreException(SERIALEX, e);
+		for (HistoryInfo info : emfStore.getHistoryInfo((SessionId) RMIUtil
+				.stringToEObject(sessionId), (ProjectId) RMIUtil
+				.stringToEObject(projectId), (HistoryQuery) RMIUtil
+				.stringToEObject(query))) {
+			result.add(RMIUtil.eObjectToString(info));
 		}
+		return result;
 	}
 
 	/**
@@ -164,16 +144,10 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements
 	public String getProject(String sessionId, String projectId,
 			String versionSpec) throws RemoteException, EmfStoreException {
 		LOGGER.debug("Client call on getProject RECEIVED.");
-		try {
-			return RMIUtil.eObjectToString(emfStore.getProject(
-					(SessionId) RMIUtil.stringToEObject(sessionId),
-					(ProjectId) RMIUtil.stringToEObject(projectId),
-					(VersionSpec) RMIUtil.stringToEObject(versionSpec)));
-		} catch (UnsupportedEncodingException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		} catch (IOException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		}
+		return RMIUtil.eObjectToString(emfStore.getProject((SessionId) RMIUtil
+				.stringToEObject(sessionId), (ProjectId) RMIUtil
+				.stringToEObject(projectId), (VersionSpec) RMIUtil
+				.stringToEObject(versionSpec)));
 	}
 
 	/**
@@ -184,18 +158,12 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements
 	public List<String> getProjectList(String sessionId)
 			throws RemoteException, EmfStoreException {
 		LOGGER.debug("Client call on getProjectList RECEIVED.");
-		try {
-			List<String> result = new ArrayList<String>();
-			for (ProjectInfo pi : emfStore.getProjectList((SessionId) RMIUtil
-					.stringToEObject(sessionId))) {
-				result.add(RMIUtil.eObjectToString(pi));
-			}
-			return result;
-		} catch (UnsupportedEncodingException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		} catch (IOException e) {
-			throw new EmfStoreException(SERIALEX, e);
+		List<String> result = new ArrayList<String>();
+		for (ProjectInfo pi : emfStore.getProjectList((SessionId) RMIUtil
+				.stringToEObject(sessionId))) {
+			result.add(RMIUtil.eObjectToString(pi));
 		}
+		return result;
 	}
 
 	/**
@@ -210,7 +178,7 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements
 		try {
 			return RMIUtil.eObjectToString(accessControl.logIn(username,
 					password));
-		} catch (IOException e) {
+		} catch (SerializationException e) {
 			throw new AccessControlException(SERIALEX);
 		}
 	}
@@ -224,16 +192,10 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements
 	public String resolveVersionSpec(String sessionId, String projectId,
 			String versionSpec) throws RemoteException, EmfStoreException {
 		LOGGER.debug("Client call on resolveVersionSpec RECEIVED.");
-		try {
-			return RMIUtil.eObjectToString(emfStore.resolveVersionSpec(
-					(SessionId) RMIUtil.stringToEObject(sessionId),
-					(ProjectId) RMIUtil.stringToEObject(projectId),
-					(VersionSpec) RMIUtil.stringToEObject(versionSpec)));
-		} catch (UnsupportedEncodingException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		} catch (IOException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		}
+		return RMIUtil.eObjectToString(emfStore.resolveVersionSpec(
+				(SessionId) RMIUtil.stringToEObject(sessionId),
+				(ProjectId) RMIUtil.stringToEObject(projectId),
+				(VersionSpec) RMIUtil.stringToEObject(versionSpec)));
 	}
 
 	/**
@@ -246,16 +208,9 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements
 			String description, String logMessage) throws RemoteException,
 			EmfStoreException {
 		LOGGER.debug("Client call on createProject RECEIVED.");
-		try {
-			return RMIUtil.eObjectToString(emfStore.createProject(
-					(SessionId) RMIUtil.stringToEObject(sessionId), name,
-					description, (LogMessage) RMIUtil
-							.stringToEObject(logMessage)));
-		} catch (UnsupportedEncodingException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		} catch (IOException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		}
+		return RMIUtil.eObjectToString(emfStore.createProject(
+				(SessionId) RMIUtil.stringToEObject(sessionId), name,
+				description, (LogMessage) RMIUtil.stringToEObject(logMessage)));
 	}
 
 	/**
@@ -265,17 +220,10 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements
 			String description, String logMessage, String project)
 			throws EmfStoreException, RemoteException {
 		LOGGER.debug("Client call on createProject RECEIVED.");
-		try {
-			return RMIUtil.eObjectToString(emfStore.createProject(
-					(SessionId) RMIUtil.stringToEObject(sessionId), name,
-					description, (LogMessage) RMIUtil
-							.stringToEObject(logMessage), (Project) RMIUtil
-							.stringToEObject(project)));
-		} catch (UnsupportedEncodingException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		} catch (IOException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		}
+		return RMIUtil.eObjectToString(emfStore.createProject(
+				(SessionId) RMIUtil.stringToEObject(sessionId), name,
+				description, (LogMessage) RMIUtil.stringToEObject(logMessage),
+				(Project) RMIUtil.stringToEObject(project)));
 	}
 
 	/**
@@ -284,14 +232,8 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements
 	public String resolveUser(String sessionId, String orgUnitId)
 			throws EmfStoreException, RemoteException {
 		LOGGER.debug("Client call on resolveUser RECEIVED.");
-		try {
-			return RMIUtil.eObjectToString(emfStore.resolveUser(
-					(SessionId) RMIUtil.stringToEObject(sessionId),
-					(ACOrgUnitId) RMIUtil.stringToEObject(orgUnitId)));
-		} catch (UnsupportedEncodingException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		} catch (IOException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		}
+		return RMIUtil.eObjectToString(emfStore.resolveUser((SessionId) RMIUtil
+				.stringToEObject(sessionId), (ACOrgUnitId) RMIUtil
+				.stringToEObject(orgUnitId)));
 	}
 }
