@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.unicase.emfstore.exceptions.SerializationException;
 
 /**
  * Helper class for serializing and deserializing EObjects for RMI transport.
@@ -40,17 +41,21 @@ public final class RMIUtil {
 	 * @param object
 	 *            the eObject
 	 * @return String representation of the EObject
-	 * @throws IOException
+	 * @throws SerializationException
 	 *             if a serialization problem occurs
 	 */
-	public static String eObjectToString(EObject object) throws IOException {
+	public static String eObjectToString(EObject object) throws SerializationException {
 		if (object == null) {
 			return null;
 		}
 		Resource res = (new ResourceSetImpl()).createResource(VIRTUAL_URI);
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		res.getContents().add(EcoreUtil.copy(object));
-		res.save(out, null);
+		try {
+			res.save(out, null);
+		} catch (IOException e) {
+			throw new SerializationException(e);
+		}
 		return out.toString();
 	}
 
@@ -61,18 +66,22 @@ public final class RMIUtil {
 	 * @param object
 	 *            the String representation of the EObject
 	 * @return the deserialized EObject
-	 * @throws UnsupportedEncodingException
-	 *             if encoding is invalid
-	 * @throws IOException
+	 * @throws SerializationException
 	 *             if deserialization fails
 	 */
 	public static EObject stringToEObject(String object)
-			throws UnsupportedEncodingException, IOException {
+			throws SerializationException {
 		if (object == null) {
 			return null;
 		}
 		Resource res = (new ResourceSetImpl()).createResource(VIRTUAL_URI);
-		res.load(new ByteArrayInputStream(object.getBytes("UTF-8")), null);
+		try {
+			res.load(new ByteArrayInputStream(object.getBytes("UTF-8")), null);
+		} catch (UnsupportedEncodingException e) {
+			throw new SerializationException(e);
+		} catch (IOException e) {
+			throw new SerializationException(e);
+		}
 
 		EObject result = res.getContents().get(0);
 		res.getContents().remove(result);

@@ -6,8 +6,6 @@
  */
 package org.unicase.emfstore.connection.rmi;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,12 +28,10 @@ import org.unicase.emfstore.exceptions.FatalEmfStoreException;
  * @author Wesendonk
  */
 @SuppressWarnings("serial")
-public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements
-		RMIAdminEmfStoreFacade {
+public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade
+		implements RMIAdminEmfStoreFacade {
 
 	private AdminEmfStore adminEmfStore;
-
-	private static final String SERIALEX = "An exception occured while serializing the objects.";
 
 	/**
 	 * Default constructor.
@@ -47,10 +43,11 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade impleme
 	 * @throws RemoteException
 	 *             thrown if there are rmi-related problems
 	 * @throws FatalEmfStoreException
-	 * 				exception within the server
+	 *             exception within the server
 	 */
 	public RMIAdminEmfStoreFacadeImpl(AdminEmfStore adminEmfStore,
-			AuthenticationControl accessControl) throws RemoteException, FatalEmfStoreException {
+			AuthenticationControl accessControl) throws RemoteException,
+			FatalEmfStoreException {
 		this.adminEmfStore = adminEmfStore;
 	}
 
@@ -59,16 +56,11 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade impleme
 	 */
 	public void addParticipant(String sessionId, String projectId,
 			String participant) throws RemoteException, EmfStoreException {
-		try {
-			adminEmfStore.addParticipant((SessionId) RMIUtil
-					.stringToEObject(sessionId), (ProjectId) RMIUtil
-					.stringToEObject(projectId), (ACOrgUnitId) RMIUtil
-					.stringToEObject(participant));
-		} catch (UnsupportedEncodingException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		} catch (IOException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		}
+		adminEmfStore.addParticipant((SessionId) RMIUtil
+				.stringToEObject(sessionId), (ProjectId) RMIUtil
+				.stringToEObject(projectId), (ACOrgUnitId) RMIUtil
+				.stringToEObject(participant));
+
 	}
 
 	/**
@@ -76,17 +68,12 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade impleme
 	 */
 	public void changeRole(String sessionId, String projectId, String orgUnit,
 			String eClass) throws RemoteException, EmfStoreException {
-		try {
-			adminEmfStore.changeRole((SessionId) RMIUtil
-					.stringToEObject(sessionId), (ProjectId) RMIUtil
-					.stringToEObject(projectId), (ACOrgUnitId) RMIUtil
-					.stringToEObject(orgUnit), (EClass) RMIUtil
-					.stringToEObject(eClass));
-		} catch (UnsupportedEncodingException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		} catch (IOException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		}
+		adminEmfStore.changeRole(
+				(SessionId) RMIUtil.stringToEObject(sessionId),
+				(ProjectId) RMIUtil.stringToEObject(projectId),
+				(ACOrgUnitId) RMIUtil.stringToEObject(orgUnit),
+				(EClass) RMIUtil.stringToEObject(eClass));
+
 	}
 
 	/**
@@ -94,18 +81,12 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade impleme
 	 */
 	public List<String> getGroups(String sessionId) throws RemoteException,
 			EmfStoreException {
-		try {
-			List<String> result = new ArrayList<String>();
-			for (ACGroup group : adminEmfStore.getGroups((SessionId) RMIUtil
-					.stringToEObject(sessionId))) {
-				result.add(RMIUtil.eObjectToString(group));
-			}
-			return result;
-		} catch (UnsupportedEncodingException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		} catch (IOException e) {
-			throw new EmfStoreException(SERIALEX, e);
+		List<String> result = new ArrayList<String>();
+		for (ACGroup group : adminEmfStore.getGroups((SessionId) RMIUtil
+				.stringToEObject(sessionId))) {
+			result.add(RMIUtil.eObjectToString(group));
 		}
+		return result;
 	}
 
 	/**
@@ -113,19 +94,13 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade impleme
 	 */
 	public List<String> getGroups(String sessionId, String user)
 			throws RemoteException, EmfStoreException {
-		try {
-			List<String> result = new ArrayList<String>();
-			for (ACGroup group : adminEmfStore.getGroups((SessionId) RMIUtil
-					.stringToEObject(sessionId), (ACOrgUnitId) RMIUtil
-					.stringToEObject(user))) {
-				result.add(RMIUtil.eObjectToString(group));
-			}
-			return result;
-		} catch (UnsupportedEncodingException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		} catch (IOException e) {
-			throw new EmfStoreException(SERIALEX, e);
+		List<String> result = new ArrayList<String>();
+		for (ACGroup group : adminEmfStore.getGroups((SessionId) RMIUtil
+				.stringToEObject(sessionId), (ACOrgUnitId) RMIUtil
+				.stringToEObject(user))) {
+			result.add(RMIUtil.eObjectToString(group));
 		}
+		return result;
 	}
 
 	/**
@@ -133,18 +108,12 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade impleme
 	 */
 	public List<String> getOrgUnits(String sessionId) throws RemoteException,
 			EmfStoreException {
-		try {
-			List<String> result = new ArrayList<String>();
-			for (ACOrgUnit orgUnit : adminEmfStore
-					.getOrgUnits((SessionId) RMIUtil.stringToEObject(sessionId))) {
-				result.add(RMIUtil.eObjectToString(orgUnit));
-			}
-			return result;
-		} catch (UnsupportedEncodingException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		} catch (IOException e) {
-			throw new EmfStoreException(SERIALEX, e);
+		List<String> result = new ArrayList<String>();
+		for (ACOrgUnit orgUnit : adminEmfStore.getOrgUnits((SessionId) RMIUtil
+				.stringToEObject(sessionId))) {
+			result.add(RMIUtil.eObjectToString(orgUnit));
 		}
+		return result;
 	}
 
 	/**
@@ -152,19 +121,13 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade impleme
 	 */
 	public List<String> getParticipants(String sessionId, String projectId)
 			throws RemoteException, EmfStoreException {
-		try {
-			List<String> result = new ArrayList<String>();
-			for (ACOrgUnit orgUnit : adminEmfStore.getParticipants(
-					(SessionId) RMIUtil.stringToEObject(sessionId),
-					(ProjectId) RMIUtil.stringToEObject(projectId))) {
-				result.add(RMIUtil.eObjectToString(orgUnit));
-			}
-			return result;
-		} catch (UnsupportedEncodingException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		} catch (IOException e) {
-			throw new EmfStoreException(SERIALEX, e);
+		List<String> result = new ArrayList<String>();
+		for (ACOrgUnit orgUnit : adminEmfStore.getParticipants(
+				(SessionId) RMIUtil.stringToEObject(sessionId),
+				(ProjectId) RMIUtil.stringToEObject(projectId))) {
+			result.add(RMIUtil.eObjectToString(orgUnit));
 		}
+		return result;
 	}
 
 	/**
@@ -173,19 +136,13 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade impleme
 	public List<String> getMembers(String sessionId, String groupId)
 			throws RemoteException, EmfStoreException {
 
-		try {
-			List<String> result = new ArrayList<String>();
-			for (ACOrgUnit orgUnit : adminEmfStore.getMembers(
-					(SessionId) RMIUtil.stringToEObject(sessionId),
-					(ACOrgUnitId) RMIUtil.stringToEObject(groupId))) {
-				result.add(RMIUtil.eObjectToString(orgUnit));
-			}
-			return result;
-		} catch (UnsupportedEncodingException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		} catch (IOException e) {
-			throw new EmfStoreException(SERIALEX, e);
+		List<String> result = new ArrayList<String>();
+		for (ACOrgUnit orgUnit : adminEmfStore.getMembers((SessionId) RMIUtil
+				.stringToEObject(sessionId), (ACOrgUnitId) RMIUtil
+				.stringToEObject(groupId))) {
+			result.add(RMIUtil.eObjectToString(orgUnit));
 		}
+		return result;
 	}
 
 	/**
@@ -193,19 +150,12 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade impleme
 	 */
 	public List<String> getProjectInfos(String sessionId)
 			throws RemoteException, EmfStoreException {
-		try {
-			List<String> result = new ArrayList<String>();
-			for (ProjectInfo projectInfo : adminEmfStore
-					.getProjectInfos((SessionId) RMIUtil
-							.stringToEObject(sessionId))) {
-				result.add(RMIUtil.eObjectToString(projectInfo));
-			}
-			return result;
-		} catch (UnsupportedEncodingException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		} catch (IOException e) {
-			throw new EmfStoreException(SERIALEX, e);
+		List<String> result = new ArrayList<String>();
+		for (ProjectInfo projectInfo : adminEmfStore
+				.getProjectInfos((SessionId) RMIUtil.stringToEObject(sessionId))) {
+			result.add(RMIUtil.eObjectToString(projectInfo));
 		}
+		return result;
 	}
 
 	/**
@@ -213,16 +163,10 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade impleme
 	 */
 	public String getRole(String sessionId, String projectId, String orgUnit)
 			throws RemoteException, EmfStoreException {
-		try {
-			return RMIUtil.eObjectToString(adminEmfStore.getRole(
-					(SessionId) RMIUtil.stringToEObject(sessionId),
-					(ProjectId) RMIUtil.stringToEObject(projectId),
-					(ACOrgUnitId) RMIUtil.stringToEObject(orgUnit)));
-		} catch (UnsupportedEncodingException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		} catch (IOException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		}
+		return RMIUtil.eObjectToString(adminEmfStore.getRole(
+				(SessionId) RMIUtil.stringToEObject(sessionId),
+				(ProjectId) RMIUtil.stringToEObject(projectId),
+				(ACOrgUnitId) RMIUtil.stringToEObject(orgUnit)));
 	}
 
 	/**
@@ -230,18 +174,12 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade impleme
 	 */
 	public List<String> getUsers(String sessionId) throws RemoteException,
 			EmfStoreException {
-		try {
-			List<String> result = new ArrayList<String>();
-			for (ACUser user : adminEmfStore.getUsers((SessionId) RMIUtil
-					.stringToEObject(sessionId))) {
-				result.add(RMIUtil.eObjectToString(user));
-			}
-			return result;
-		} catch (UnsupportedEncodingException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		} catch (IOException e) {
-			throw new EmfStoreException(SERIALEX, e);
+		List<String> result = new ArrayList<String>();
+		for (ACUser user : adminEmfStore.getUsers((SessionId) RMIUtil
+				.stringToEObject(sessionId))) {
+			result.add(RMIUtil.eObjectToString(user));
 		}
+		return result;
 	}
 
 	/**
@@ -249,16 +187,10 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade impleme
 	 */
 	public void removeGroup(String sessionId, String user, String group)
 			throws RemoteException, EmfStoreException {
-		try {
-			adminEmfStore.removeGroup((SessionId) RMIUtil
-					.stringToEObject(sessionId), (ACOrgUnitId) RMIUtil
-					.stringToEObject(user), (ACOrgUnitId) RMIUtil
-					.stringToEObject(group));
-		} catch (UnsupportedEncodingException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		} catch (IOException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		}
+		adminEmfStore.removeGroup((SessionId) RMIUtil
+				.stringToEObject(sessionId), (ACOrgUnitId) RMIUtil
+				.stringToEObject(user), (ACOrgUnitId) RMIUtil
+				.stringToEObject(group));
 	}
 
 	/**
@@ -266,16 +198,10 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade impleme
 	 */
 	public void removeParticipant(String sessionId, String projectId,
 			String participant) throws RemoteException, EmfStoreException {
-		try {
-			adminEmfStore.removeParticipant((SessionId) RMIUtil
-					.stringToEObject(sessionId), (ProjectId) RMIUtil
-					.stringToEObject(projectId), (ACOrgUnitId) RMIUtil
-					.stringToEObject(participant));
-		} catch (UnsupportedEncodingException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		} catch (IOException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		}
+		adminEmfStore.removeParticipant((SessionId) RMIUtil
+				.stringToEObject(sessionId), (ProjectId) RMIUtil
+				.stringToEObject(projectId), (ACOrgUnitId) RMIUtil
+				.stringToEObject(participant));
 	}
 
 	/**
@@ -283,14 +209,8 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade impleme
 	 */
 	public void createGroup(String sessionId, String name)
 			throws RemoteException, EmfStoreException {
-		try {
-			adminEmfStore.createGroup((SessionId) RMIUtil
-					.stringToEObject(sessionId), name);
-		} catch (UnsupportedEncodingException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		} catch (IOException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		}
+		adminEmfStore.createGroup((SessionId) RMIUtil
+				.stringToEObject(sessionId), name);
 	}
 
 	/**
@@ -298,15 +218,8 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade impleme
 	 */
 	public void createUser(String sessionId, String name)
 			throws RemoteException, EmfStoreException {
-		try {
-			adminEmfStore.createUser((SessionId) RMIUtil
-					.stringToEObject(sessionId), name);
-		} catch (UnsupportedEncodingException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		} catch (IOException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		}
-
+		adminEmfStore.createUser(
+				(SessionId) RMIUtil.stringToEObject(sessionId), name);
 	}
 
 	/**
@@ -314,15 +227,9 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade impleme
 	 */
 	public void deleteGroup(String sessionId, String id)
 			throws RemoteException, EmfStoreException {
-		try {
-			adminEmfStore.deleteGroup((SessionId) RMIUtil
-					.stringToEObject(sessionId), (ACOrgUnitId) RMIUtil
-					.stringToEObject(id));
-		} catch (UnsupportedEncodingException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		} catch (IOException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		}
+		adminEmfStore.deleteGroup((SessionId) RMIUtil
+				.stringToEObject(sessionId), (ACOrgUnitId) RMIUtil
+				.stringToEObject(id));
 	}
 
 	/**
@@ -330,15 +237,9 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade impleme
 	 */
 	public void deleteUser(String sessionId, String id) throws RemoteException,
 			EmfStoreException {
-		try {
-			adminEmfStore.deleteUser((SessionId) RMIUtil
-					.stringToEObject(sessionId), (ACOrgUnitId) RMIUtil
-					.stringToEObject(id));
-		} catch (UnsupportedEncodingException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		} catch (IOException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		}
+		adminEmfStore.deleteUser(
+				(SessionId) RMIUtil.stringToEObject(sessionId),
+				(ACOrgUnitId) RMIUtil.stringToEObject(id));
 	}
 
 	/**
@@ -346,16 +247,9 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade impleme
 	 */
 	public void addMember(String sessionId, String group, String member)
 			throws RemoteException, EmfStoreException {
-		try {
-			adminEmfStore.addMember((SessionId) RMIUtil
-					.stringToEObject(sessionId), (ACOrgUnitId) RMIUtil
-					.stringToEObject(group), (ACOrgUnitId) RMIUtil
-					.stringToEObject(member));
-		} catch (UnsupportedEncodingException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		} catch (IOException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		}
+		adminEmfStore.addMember((SessionId) RMIUtil.stringToEObject(sessionId),
+				(ACOrgUnitId) RMIUtil.stringToEObject(group),
+				(ACOrgUnitId) RMIUtil.stringToEObject(member));
 	}
 
 	/**
@@ -363,16 +257,10 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade impleme
 	 */
 	public void removeMember(String sessionId, String group, String member)
 			throws RemoteException, EmfStoreException {
-		try {
-			adminEmfStore.removeMember((SessionId) RMIUtil
-					.stringToEObject(sessionId), (ACOrgUnitId) RMIUtil
-					.stringToEObject(group), (ACOrgUnitId) RMIUtil
-					.stringToEObject(member));
-		} catch (UnsupportedEncodingException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		} catch (IOException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		}
+		adminEmfStore.removeMember((SessionId) RMIUtil
+				.stringToEObject(sessionId), (ACOrgUnitId) RMIUtil
+				.stringToEObject(group), (ACOrgUnitId) RMIUtil
+				.stringToEObject(member));
 	}
 
 	/**
@@ -380,15 +268,9 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade impleme
 	 */
 	public void changeOrgUnit(String sessionId, String orgUnitId, String name,
 			String description) throws RemoteException, EmfStoreException {
-		try {
-			adminEmfStore.changeOrgUnit((SessionId) RMIUtil
-					.stringToEObject(sessionId), (ACOrgUnitId) RMIUtil
-					.stringToEObject(orgUnitId), name, description);
-		} catch (UnsupportedEncodingException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		} catch (IOException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		}
+		adminEmfStore.changeOrgUnit((SessionId) RMIUtil
+				.stringToEObject(sessionId), (ACOrgUnitId) RMIUtil
+				.stringToEObject(orgUnitId), name, description);
 	}
 
 	/**
@@ -396,15 +278,10 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade impleme
 	 */
 	public String getOrgUnit(String sessionId, String orgUnitId)
 			throws RemoteException, EmfStoreException {
-		try {
-			return RMIUtil.eObjectToString(adminEmfStore.getOrgUnit(
-					(SessionId) RMIUtil.stringToEObject(sessionId),
-					(ACOrgUnitId) RMIUtil.stringToEObject(orgUnitId)));
-		} catch (UnsupportedEncodingException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		} catch (IOException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		}
+		return RMIUtil.eObjectToString(adminEmfStore.getOrgUnit(
+				(SessionId) RMIUtil.stringToEObject(sessionId),
+				(ACOrgUnitId) RMIUtil.stringToEObject(orgUnitId)));
+
 	}
 
 }
