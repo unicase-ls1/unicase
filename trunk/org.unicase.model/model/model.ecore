@@ -214,11 +214,11 @@
           defaultValueLiteral="1"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="AssociationType">
-      <eLiterals name="UNDIRECTED_ASSOCIATION" literal="UNDIRECTED_ASSOCIATION"/>
-      <eLiterals name="AGGREGATION" value="1" literal="AGGREGATION"/>
-      <eLiterals name="COMPOSITION" value="2" literal="COMPOSITION"/>
+      <eLiterals name="UNDIRECTED_ASSOCIATION" literal="Undirected Association"/>
+      <eLiterals name="AGGREGATION" value="1" literal="Aggregation"/>
+      <eLiterals name="COMPOSITION" value="2" literal="Composition"/>
       <eLiterals name="DEPENDENCY" value="3" literal="DEPENDENCY"/>
-      <eLiterals name="DIRECTED_ASSOCIATION" value="4"/>
+      <eLiterals name="DIRECTED_ASSOCIATION" value="4" literal="Directed Association"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Attribute" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="definingClass" eType="#//classes/Class"
@@ -235,15 +235,15 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="VisibilityType">
       <eLiterals name="UNDEFINED" literal=""/>
-      <eLiterals name="PACKAGE" value="1" literal="$"/>
+      <eLiterals name="PACKAGE" value="1" literal="#"/>
       <eLiterals name="PRIVATE" value="2" literal="-"/>
       <eLiterals name="GLOBAL" value="3" literal="+"/>
       <eLiterals name="PROTECTED" value="4" literal="~"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="ScopeType">
-      <eLiterals name="CLASS" value="2"/>
+      <eLiterals name="INSTANCE" value="1" literal="Instance"/>
       <eLiterals name="UNDEFINED" literal=""/>
-      <eLiterals name="INSTANCE" value="1"/>
+      <eLiterals name="CLASS" value="2" literal="Class"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Method" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" eType="#//classes/VisibilityType"/>

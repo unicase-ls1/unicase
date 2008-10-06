@@ -22,6 +22,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.model.classes.Association;
+import org.unicase.model.classes.AssociationType;
 import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.ModelElementItemProvider;
@@ -33,8 +34,8 @@ import org.unicase.model.provider.ModelElementItemProvider;
  * @generated
  */
 public class AssociationItemProvider extends ModelElementItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+IEditingDomainItemProvider, IStructuredItemContentProvider,
+ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -76,11 +77,11 @@ public class AssociationItemProvider extends ModelElementItemProvider implements
 	protected void addSourcePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
+				.getRootAdapterFactory(), getResourceLocator(),
 				getString("_UI_Association_source_feature"), getString(
 						"_UI_PropertyDescriptor_description",
 						"_UI_Association_source_feature",
-						"_UI_Association_type"),
+				"_UI_Association_type"),
 				ClassesPackage.Literals.ASSOCIATION__SOURCE, true, false, true,
 				null, null, null));
 	}
@@ -94,11 +95,11 @@ public class AssociationItemProvider extends ModelElementItemProvider implements
 	protected void addTargetPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
+				.getRootAdapterFactory(), getResourceLocator(),
 				getString("_UI_Association_target_feature"), getString(
 						"_UI_PropertyDescriptor_description",
 						"_UI_Association_target_feature",
-						"_UI_Association_type"),
+				"_UI_Association_type"),
 				ClassesPackage.Literals.ASSOCIATION__TARGET, true, false, true,
 				null, null, null));
 	}
@@ -111,16 +112,16 @@ public class AssociationItemProvider extends ModelElementItemProvider implements
 	 */
 	protected void addTypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(), getResourceLocator(),
-						getString("_UI_Association_type_feature"), getString(
-								"_UI_PropertyDescriptor_description",
-								"_UI_Association_type_feature",
-								"_UI_Association_type"),
-						ClassesPackage.Literals.ASSOCIATION__TYPE, true, false,
-						false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null, null));
+		.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Association_type_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Association_type_feature",
+				"_UI_Association_type"),
+				ClassesPackage.Literals.ASSOCIATION__TYPE, true, false,
+				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null, null));
 	}
 
 	/**
@@ -132,11 +133,11 @@ public class AssociationItemProvider extends ModelElementItemProvider implements
 	protected void addSourceMultiplicityPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
+				.getRootAdapterFactory(), getResourceLocator(),
 				getString("_UI_Association_sourceMultiplicity_feature"),
 				getString("_UI_PropertyDescriptor_description",
 						"_UI_Association_sourceMultiplicity_feature",
-						"_UI_Association_type"),
+				"_UI_Association_type"),
 				ClassesPackage.Literals.ASSOCIATION__SOURCE_MULTIPLICITY, true,
 				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
 				null));
@@ -151,11 +152,11 @@ public class AssociationItemProvider extends ModelElementItemProvider implements
 	protected void addTargetMultiplicityPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
+				.getRootAdapterFactory(), getResourceLocator(),
 				getString("_UI_Association_targetMultiplicity_feature"),
 				getString("_UI_PropertyDescriptor_description",
 						"_UI_Association_targetMultiplicity_feature",
-						"_UI_Association_type"),
+				"_UI_Association_type"),
 				ClassesPackage.Literals.ASSOCIATION__TARGET_MULTIPLICITY, true,
 				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
 				null));
@@ -170,11 +171,11 @@ public class AssociationItemProvider extends ModelElementItemProvider implements
 	protected void addSourceRolePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
+				.getRootAdapterFactory(), getResourceLocator(),
 				getString("_UI_Association_sourceRole_feature"), getString(
 						"_UI_PropertyDescriptor_description",
 						"_UI_Association_sourceRole_feature",
-						"_UI_Association_type"),
+				"_UI_Association_type"),
 				ClassesPackage.Literals.ASSOCIATION__SOURCE_ROLE, true, false,
 				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
@@ -188,11 +189,11 @@ public class AssociationItemProvider extends ModelElementItemProvider implements
 	protected void addTargetRolePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
+				.getRootAdapterFactory(), getResourceLocator(),
 				getString("_UI_Association_targetRole_feature"), getString(
 						"_UI_PropertyDescriptor_description",
 						"_UI_Association_targetRole_feature",
-						"_UI_Association_type"),
+				"_UI_Association_type"),
 				ClassesPackage.Literals.ASSOCIATION__TARGET_ROLE, true, false,
 				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
@@ -201,12 +202,32 @@ public class AssociationItemProvider extends ModelElementItemProvider implements
 	 * This returns Association.gif. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/Association"));
+
+		Object overlayImage = null;
+
+		AssociationType type = ((Association)object).getType();
+		if (type == AssociationType.AGGREGATION) {
+			overlayImage = overlayImage(object, getResourceLocator().getImage(
+			"full/obj16/Aggregation"));
+		}else if (type == AssociationType.COMPOSITION) {
+			overlayImage = overlayImage(object, getResourceLocator().getImage(
+			"full/obj16/Composition"));
+		}else if (type == AssociationType.DIRECTED_ASSOCIATION) {
+			overlayImage = overlayImage(object, getResourceLocator().getImage(
+			"full/obj16/Directed_Association"));
+		}else if (type == AssociationType.UNDIRECTED_ASSOCIATION) {
+			overlayImage = overlayImage(object, getResourceLocator().getImage(
+			"full/obj16/Association"));
+		}else{
+			overlayImage = overlayImage(object, getResourceLocator().getImage(
+			"full/obj16/Association"));
+		}
+
+		return overlayImage;
 	}
 
 	/**

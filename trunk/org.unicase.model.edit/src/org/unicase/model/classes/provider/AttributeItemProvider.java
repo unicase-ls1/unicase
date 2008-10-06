@@ -56,6 +56,7 @@ public class AttributeItemProvider extends ModelElementItemProvider implements
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addDefiningClassPropertyDescriptor(object);
 			addVisibilityPropertyDescriptor(object);
 			addScopePropertyDescriptor(object);
 			addSignaturePropertyDescriptor(object);
@@ -65,6 +66,24 @@ public class AttributeItemProvider extends ModelElementItemProvider implements
 			addLabelPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Defining Class feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDefiningClassPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Attribute_definingClass_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Attribute_definingClass_feature",
+						"_UI_Attribute_type"),
+				ClassesPackage.Literals.ATTRIBUTE__DEFINING_CLASS, true, false,
+				false, null, null, null));
 	}
 
 	/**
