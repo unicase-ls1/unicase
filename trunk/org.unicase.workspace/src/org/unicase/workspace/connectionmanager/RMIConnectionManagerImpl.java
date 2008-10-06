@@ -121,31 +121,6 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 	 * {@inheritDoc}
 	 */
 	public List<HistoryInfo> getHistoryInfo(SessionId sessionId,
-			ProjectId projectId, VersionSpec source, VersionSpec target)
-			throws EmfStoreException {
-		RMIEmfStoreFacade facade = getFacade(sessionId);
-		try {
-			List<HistoryInfo> result = new ArrayList<HistoryInfo>();
-			for (String str : facade.getHistoryInfo(RMIUtil
-					.eObjectToString(sessionId), RMIUtil
-					.eObjectToString(projectId), RMIUtil
-					.eObjectToString(source), RMIUtil.eObjectToString(target))) {
-				result.add((HistoryInfo) RMIUtil.stringToEObject(str));
-			}
-			return result;
-		} catch (UnsupportedEncodingException e) {
-			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
-		} catch (RemoteException e) {
-			throw new ConnectionException(REMOTE, e);
-		} catch (IOException e) {
-			throw new ConnectionException(REMOTE, e);
-		}
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	public List<HistoryInfo> getHistoryInfo(SessionId sessionId,
 			ProjectId projectId, HistoryQuery historyQuery)
 			throws EmfStoreException {
 		RMIEmfStoreFacade facade = getFacade(sessionId);

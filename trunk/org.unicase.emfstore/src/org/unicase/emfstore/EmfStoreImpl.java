@@ -7,7 +7,6 @@
 package org.unicase.emfstore;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -153,7 +152,7 @@ public class EmfStoreImpl implements EmfStore {
 			throw new EmfStoreException("Shutting down server.");
 		}
 
-		LOGGER.error("Total time for commit: "
+		LOGGER.info("Total time for commit: "
 				+ (System.currentTimeMillis() - currentTimeMillis));
 		return newVersionSpec;
 	}
@@ -204,31 +203,6 @@ public class EmfStoreImpl implements EmfStore {
 			Collections.reverse(result);
 		}
 
-		return result;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public synchronized List<HistoryInfo> getHistoryInfo(SessionId sessionId,
-			ProjectId projectId, VersionSpec source, VersionSpec target)
-			throws EmfStoreException {
-		if (sessionId == null || projectId == null || source == null
-				|| target == null) {
-			throw new InvalidInputException();
-		}
-		authorizationControl.checkReadAccess(sessionId, projectId, null);
-
-		PrimaryVersionSpec resolvedSource = resolveVersionSpec(projectId,
-				source);
-		PrimaryVersionSpec resolvedTarget = resolveVersionSpec(projectId,
-				target);
-
-		List<HistoryInfo> result = getHistoryInfo(projectId, resolvedSource,
-				resolvedTarget);
-		if (resolvedSource.compareTo(resolvedTarget) < 0) {
-			Collections.reverse(result);
-		}
 		return result;
 	}
 
@@ -573,20 +547,20 @@ public class EmfStoreImpl implements EmfStore {
 			LOGGER.error("Total time for saving: "
 					+ (System.currentTimeMillis() - currentTimeMillis));
 			currentTimeMillis = System.currentTimeMillis();
-		} catch (IOException e) {
-			throw new FatalEmfStoreException(StorageException.NOSAVE, e);
-		} catch (NullPointerException e) {
+		// BEGIN SUPRESS CATCH EXCEPTION
+		} catch (Exception e) {
 			throw new FatalEmfStoreException(StorageException.NOSAVE, e);
 		}
+		// END SUPRESS CATCH EXCEPTION
 	}
 
 	private void save(EObject object) throws FatalEmfStoreException {
 		try {
 			object.eResource().save(null);
-		} catch (IOException e) {
-			throw new FatalEmfStoreException(StorageException.NOSAVE, e);
-		} catch (NullPointerException e) {
+		// BEGIN SUPRESS CATCH EXCEPTION
+		} catch (Exception e) {
 			throw new FatalEmfStoreException(StorageException.NOSAVE, e);
 		}
+		// END SUPRESS CATCH EXCEPTION
 	}
 }
