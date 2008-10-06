@@ -39,6 +39,9 @@ public class RMISSLServerSocketFactory implements RMIServerSocketFactory,
 
 	private static Log logger;
 	
+	/**
+	 * Default constructor.
+	 */
 	public RMISSLServerSocketFactory() {
 		super();
 		logger = LogFactory.getLog(RMISSLServerSocketFactory.class);
