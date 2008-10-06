@@ -26,6 +26,12 @@
 				<include name="**/ps-*/**" />
 			</fileset>
 		</delete>
+		<delete file="${unicaseWorkspaceDir}/workspace.ucw" />
+		<delete includeemptydirs="yes">
+			<fileset dir="${unicaseWorkspaceDir}" defaultexcludes="no">
+				<include name="**/ps-*/**" />
+			</fileset>
+		</delete>
 
 	</target>
 
