@@ -29,17 +29,31 @@ import org.eclipse.swt.dnd.TransferData;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.impl.DiagramStoreException;
 
-
+/**
+ * @author denglerm
+ * This class is a superclass for the specific ModelDiagramEditor in each diagram.
+ */
 public class ModelDiagramEditor extends DiagramDocumentEditor {
 	
+	/**.
+	 * The constructor
+	 */
 	public ModelDiagramEditor() {
 		super(true);
 	}
 	
+	/**
+	 * Constructs a diagram editor with optional flyout palette.
+	 * 
+	 * @param hasFlyoutPalette creates a palette if true, else no palette
+	 */
 	public ModelDiagramEditor(boolean hasFlyoutPalette) {
 		super(hasFlyoutPalette);
 	}
 
+	/**
+	 * . {@inheritDoc}
+	 */
 	@Override
 	public void doSave(IProgressMonitor progressMonitor) {
 		getEditingDomain().getCommandStack().execute(
@@ -63,6 +77,9 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 				});
 	}
 	
+	/**
+	 * . {@inheritDoc}
+	 */
 	@Override
 	protected void initializeGraphicalViewer() {
 		super.initializeGraphicalViewer();
@@ -89,6 +106,11 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 				});
 	}
 
+	/**
+	 * @author denglerm
+	 * This class implements the abstract DiagramDropTargetListener
+	 * @see org.eclipse.gmf.runtime.diagram.ui.parts.DiagramDropTargetListener
+	 */
 	private abstract class DropTargetListener extends DiagramDropTargetListener {
 
 		public DropTargetListener(EditPartViewer viewer, Transfer xfer) {
