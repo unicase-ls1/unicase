@@ -68,15 +68,15 @@ public class TestProjectGenerator {
 			"moon", "network", "watch", "rain", "kid", "repair", "bug",
 			"rainbow" };
 	// maximum length of a text
-	private static final int MAX_NUM_OF_WORDS = 50;
+	private static final int MAX_NUM_OF_WORDS = 25;
 
 	private Project project;
 
 	private Random random;
 	// these two are just shortcuts in order to save typing
-	private static final EClass modelElementEClass = ModelPackage.eINSTANCE
+	private static final EClass MODELELEMENT_ECLASS = ModelPackage.eINSTANCE
 			.getModelElement();
-	private static final EClass sectionEClass = DocumentPackage.eINSTANCE
+	private static final EClass SECTION_ECLASS = DocumentPackage.eINSTANCE
 			.getSection();
 
 	// maintain a list of instances of every class. This is to avoid
@@ -103,8 +103,6 @@ public class TestProjectGenerator {
 	 *            maximum number of references
 	 * @param maxNumOfMEsInLeafSection
 	 *            max number of MEs to show on a LeafSection
-	 * @param numOfMEsToOpen
-	 *            number of MEs to open
 	 */
 	public TestProjectGenerator(int numOfEachME, int randomSeed, int projWidth,
 			int porjDepth, int maxNumOfManyRefs, int maxNumOfMEsInLeafSection) {
@@ -137,7 +135,7 @@ public class TestProjectGenerator {
 		for (EObject eObject : ePackage.eContents()) {
 			if (eObject instanceof EClass) {
 				EClass eClass = (EClass) eObject;
-				if (modelElementEClass.isSuperTypeOf(eClass)) {
+				if (MODELELEMENT_ECLASS.isSuperTypeOf(eClass)) {
 					if (!(eClass.isAbstract() || eClass.isInterface() || eClass
 							.equals(ModelPackage.eINSTANCE.getProject()))) {
 						// this can be instantiated
@@ -156,8 +154,11 @@ public class TestProjectGenerator {
 		}
 	}
 
-	/**
-	 * This creates the test project and adds it to worksapce.
+	/**.
+	 * This creates the test project and adds it to workspace.
+	 * 
+	 * @param workspace Workspace to which the project will be added
+	 * @param project Project to be added
 	 */
 	public void addProjectToWorkspace(final Workspace workspace, Project project) {
 		final ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE
@@ -179,6 +180,11 @@ public class TestProjectGenerator {
 		});
 	}
 
+	/**.
+	 * Creates a test project
+	 * 
+	 * @return a Project
+	 */
 	public Project generateProject() {
 		// create a project
 		this.project = ModelFactory.eINSTANCE.createProject();
@@ -257,7 +263,7 @@ public class TestProjectGenerator {
 		// the classes of Document package should not be instantiated
 		// again. They are in createDocStructure instantiated and added
 		// to project.
-		if (sectionEClass.isSuperTypeOf(eClass)) {
+		if (SECTION_ECLASS.isSuperTypeOf(eClass)) {
 			return;
 		}
 		// create the specified minimum number of instances of this EClass
@@ -271,7 +277,7 @@ public class TestProjectGenerator {
 
 	// this adds an instance to <EClass, ItsInstances> hash-tables
 	private void keepTrackOf(EClass eClass, EObject instance) {
-		if (modelElementEClass.isSuperTypeOf(eClass)) {
+		if (MODELELEMENT_ECLASS.isSuperTypeOf(eClass)) {
 			// if instance is a ModelElement, add it to model elements
 			// hash-table
 			if (meInstancesByClass.get(eClass) == null) {
@@ -298,7 +304,7 @@ public class TestProjectGenerator {
 		// have'nt been enough elements to reference, and therefore they
 		// are referenced as soon as they are created.
 		List<EObject> allMEs = new ArrayList<EObject>();
-		allMEs.addAll(getAllInstancesOf(modelElementEClass));
+		allMEs.addAll(getAllInstancesOf(MODELELEMENT_ECLASS));
 
 		for (EObject me : allMEs) {
 			initializeReferences((ModelElement) me);
@@ -479,7 +485,7 @@ public class TestProjectGenerator {
 			// distributeMEsOnLeafSection((LeafSection)me);
 			result = true;
 		}
-		if (sectionEClass.isSuperTypeOf(ref.getEReferenceType())) {
+		if (SECTION_ECLASS.isSuperTypeOf(ref.getEReferenceType())) {
 			// we don't want to break apart the document structure.
 			// a containment reference whose target is Section is not
 			// considered.
@@ -518,7 +524,7 @@ public class TestProjectGenerator {
 			}
 		}
 
-		if (sectionEClass.isSuperTypeOf(ref.getEReferenceType())) {
+		if (SECTION_ECLASS.isSuperTypeOf(ref.getEReferenceType())) {
 			if (ref.getEReferenceType().equals(
 					DocumentPackage.eINSTANCE.getCompositeSection())
 					|| ref.getEReferenceType().equals(
@@ -528,7 +534,7 @@ public class TestProjectGenerator {
 						ref.getEReferenceType()).size());
 			} else {
 				// it need just a section, whatever.
-				numOfRefs = random.nextInt(getAllInstancesOf(sectionEClass)
+				numOfRefs = random.nextInt(getAllInstancesOf(SECTION_ECLASS)
 						.size());
 			}
 		}
@@ -541,7 +547,7 @@ public class TestProjectGenerator {
 		List<EObject> result;
 		HashMap<EClass, List<EObject>> hash;
 		// if EClass is a ModelElement sub-class, look in MEs hash-table
-		if (modelElementEClass.isSuperTypeOf(type)) {
+		if (MODELELEMENT_ECLASS.isSuperTypeOf(type)) {
 			hash = meInstancesByClass;
 		} else {
 			hash = nonMEInstancesByClass;
@@ -578,7 +584,7 @@ public class TestProjectGenerator {
 		int numOfRefs = random.nextInt(maxNumOfMEsInLeafSection);
 		// get a list of all MEs in project
 		List<EObject> allMEs = new ArrayList<EObject>();
-		allMEs.addAll(getAllInstancesOf(modelElementEClass));
+		allMEs.addAll(getAllInstancesOf(MODELELEMENT_ECLASS));
 
 		// get a list of MEs that are not contained in some other,
 		// therefore can be contained in a LeafSection
@@ -628,7 +634,7 @@ public class TestProjectGenerator {
 		if (!(eClass.isAbstract() || eClass.isInterface())) {
 			obj = eClass.getEPackage().getEFactoryInstance().create(eClass);
 
-		} else if (eClass.equals(modelElementEClass)) {
+		} else if (eClass.equals(MODELELEMENT_ECLASS)) {
 			// special case; we need just some ModelElement, whatever.
 			// for performance reason, this case is implemented in its own
 			// method. Otherwise it could be handled with next the case
@@ -662,7 +668,7 @@ public class TestProjectGenerator {
 		EClass eClass = meNonAbstractClasses.get(index);
 
 		// if noSection and eClass is a Section, pick another Class
-		while (noSection && sectionEClass.isSuperTypeOf(eClass)) {
+		while (noSection && SECTION_ECLASS.isSuperTypeOf(eClass)) {
 			index = random.nextInt(meNonAbstractClasses.size());
 			eClass = meNonAbstractClasses.get(index);
 		}
@@ -676,7 +682,8 @@ public class TestProjectGenerator {
 
 		for (EAttribute attribute : instance.eClass().getEAllAttributes()) {
 
-			if (attribute.getEType().getInstanceClass().equals(String.class)) {
+			if (attribute.getEType().getInstanceClass().equals(String.class) 
+					&& attribute.isChangeable()) {
 				if (instance instanceof ModelElement
 						&& attribute.getName().equalsIgnoreCase("name")) {
 					// special case for name attribute of model elements
@@ -695,10 +702,10 @@ public class TestProjectGenerator {
 				}
 
 				// in any other case create a random text
-				// FIXME ZH, JH: this will cause "red stack zone access" problems
-				// when opening in editor, commented out
-				// instance.eSet(attribute, getRandomText(instance.eClass()
-				// .getName()));
+				//FIXME ZH, JH: description is not shown. StackOverflow, NullPointer
+//				instance.eSet(attribute, getRandomText(instance.eClass()
+//						 .getName()));
+				getRandomText("some text");
 				continue;
 			}
 
@@ -730,7 +737,7 @@ public class TestProjectGenerator {
 		List<EClass> result = new ArrayList<EClass>();
 		List<EClass> todo;
 		// check whether it's a ME or non-ME
-		if (modelElementEClass.isSuperTypeOf(superClass)) {
+		if (MODELELEMENT_ECLASS.isSuperTypeOf(superClass)) {
 			todo = meNonAbstractClasses;
 		} else {
 			todo = nonMEnonAbstractClasses;
@@ -766,9 +773,14 @@ public class TestProjectGenerator {
 		return new Date();
 	}
 
+	/**.
+	 * Opens some model elements randomly.
+	 * 
+	 * @param count number of model elements to be opened.
+	 */
 	public void openSomeModelElements(int count) {
 		List<EObject> modelElements = new ArrayList<EObject>();
-		modelElements.addAll(getAllInstancesOf(modelElementEClass));
+		modelElements.addAll(getAllInstancesOf(MODELELEMENT_ECLASS));
 		int index;
 		for (int i = 0; i < count; i++) {
 			index = random.nextInt(modelElements.size());
@@ -803,6 +815,11 @@ public class TestProjectGenerator {
 		return totalCount;
 	}
 
+	/**.
+	 * Generates a test project and adds it to workspace.
+	 *  
+	 * @param currentWorkspace Workspace
+	 */
 	public void generateProjectIntoWorkspace(final Workspace currentWorkspace) {
 		Project generatedProject = generateProject();
 		addProjectToWorkspace(currentWorkspace, generatedProject);

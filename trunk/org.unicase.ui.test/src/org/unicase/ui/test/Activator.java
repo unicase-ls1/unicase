@@ -33,26 +33,26 @@ public class Activator extends AbstractUIPlugin {
 	 * (non-Javadoc)
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
 	 */
-	//BEGIN SUPRESS CATCH EXCEPTION
+	// BEGIN SUPRESS CATCH EXCEPTION
 	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
 	}
-	//END SUPRESS CATCH EXCEPTION
+	// END SUPRESS CATCH EXCEPTION
 
 	/*
 	 * 
 	 * (non-Javadoc)
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
 	 */
-	//BEGIN SUPRESS CATCH EXCEPTION
+	// BEGIN SUPRESS CATCH EXCEPTION
 	@Override
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
 		super.stop(context);
 	}
-	//END SUPRESS CATCH EXCEPTION
+	// END SUPRESS CATCH EXCEPTION
 
 	/**.
 	 * Returns the shared instance
