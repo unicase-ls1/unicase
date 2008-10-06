@@ -174,12 +174,10 @@ public class UCDropAdapter extends EditingDomainViewerDropAdapter {
 			return;
 		}
 
-		if (event.item == null || event.item.getClass() == null) {
+		if (event.item == null || event.item.getClass() == null
+				|| !(event.item.getData() instanceof ModelElement)) {
 			return;
-		}
-		if (!(event.item.getData() instanceof ModelElement)) {
-			return;
-		}
+		}		
 		ModelElement target = (ModelElement) event.item.getData();
 		if (getDragSource(event).contains(target)) {
 			event.detail = DND.DROP_NONE;
