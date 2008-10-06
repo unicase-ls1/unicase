@@ -30,7 +30,7 @@ public enum ArgumentDirectionType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	UNDEFINED(0, "UNDEFINED", ""),
+	UNDEFINED(0, "UNDEFINED", "Undefined"),
 
 	/**
 	 * The '<em><b>IN</b></em>' literal object.
@@ -71,7 +71,7 @@ public enum ArgumentDirectionType implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #UNDEFINED
-	 * @model literal=""
+	 * @model literal="Undefined"
 	 * @generated
 	 * @ordered
 	 */

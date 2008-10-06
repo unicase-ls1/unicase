@@ -30,7 +30,7 @@ public enum VisibilityType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	UNDEFINED(0, "UNDEFINED", ""), /**
+	UNDEFINED(0, "UNDEFINED", "Undefined"), /**
 	 * The '<em><b>PACKAGE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -77,7 +77,7 @@ public enum VisibilityType implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #UNDEFINED
-	 * @model literal=""
+	 * @model literal="Undefined"
 	 * @generated
 	 * @ordered
 	 */
