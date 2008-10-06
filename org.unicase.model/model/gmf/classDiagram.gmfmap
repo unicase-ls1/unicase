@@ -82,6 +82,30 @@
       </compartments>
     </ownedChild>
   </nodes>
+  <nodes>
+    <containmentFeature
+        href="../model.ecore#//diagram/MEDiagram/newElements"/>
+    <childrenFeature
+        href="../model.ecore#//diagram/MEDiagram/elements"/>
+    <ownedChild>
+      <domainMetaElement
+          href="../model.ecore#//classes/Package"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern=""
+          editPattern="">
+        <diagramLabel
+            href="model.gmfgraph#PackageNode_name"/>
+        <features
+            href="../model.ecore#//ModelElement/name"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="model.gmftool#//@palette/@tools.0/@tools.3"/>
+      <diagramNode
+          href="model.gmfgraph#Package"/>
+    </ownedChild>
+  </nodes>
   <links
       relatedDiagrams="//@diagram">
     <domainMetaElement

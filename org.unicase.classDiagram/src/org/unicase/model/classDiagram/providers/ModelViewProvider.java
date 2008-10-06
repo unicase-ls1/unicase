@@ -82,6 +82,7 @@ public class ModelViewProvider extends AbstractViewProvider {
 				}
 				switch (visualID) {
 				case org.unicase.model.classDiagram.edit.parts.ClassEditPart.VISUAL_ID:
+				case org.unicase.model.classDiagram.edit.parts.PackageEditPart.VISUAL_ID:
 				case org.unicase.model.classDiagram.edit.parts.AttributeEditPart.VISUAL_ID:
 				case org.unicase.model.classDiagram.edit.parts.MethodEditPart.VISUAL_ID:
 					if (domainElement == null
@@ -95,6 +96,13 @@ public class ModelViewProvider extends AbstractViewProvider {
 				case org.unicase.model.classDiagram.edit.parts.ClassClassNode_attributesEditPart.VISUAL_ID:
 				case org.unicase.model.classDiagram.edit.parts.ClassClassNode_methodsEditPart.VISUAL_ID:
 					if (org.unicase.model.classDiagram.edit.parts.ClassEditPart.VISUAL_ID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
+							.getVisualID(containerView)
+							|| containerView.getElement() != domainElement) {
+						return null; // wrong container
+					}
+					break;
+				case org.unicase.model.classDiagram.edit.parts.PackageNameEditPart.VISUAL_ID:
+					if (org.unicase.model.classDiagram.edit.parts.PackageEditPart.VISUAL_ID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
 							.getVisualID(containerView)
 							|| containerView.getElement() != domainElement) {
 						return null; // wrong container
@@ -158,6 +166,10 @@ public class ModelViewProvider extends AbstractViewProvider {
 			return org.unicase.model.classDiagram.view.factories.ClassViewFactory.class;
 		case org.unicase.model.classDiagram.edit.parts.ClassNameEditPart.VISUAL_ID:
 			return org.unicase.model.classDiagram.view.factories.ClassNameViewFactory.class;
+		case org.unicase.model.classDiagram.edit.parts.PackageEditPart.VISUAL_ID:
+			return org.unicase.model.classDiagram.view.factories.PackageViewFactory.class;
+		case org.unicase.model.classDiagram.edit.parts.PackageNameEditPart.VISUAL_ID:
+			return org.unicase.model.classDiagram.view.factories.PackageNameViewFactory.class;
 		case org.unicase.model.classDiagram.edit.parts.AttributeEditPart.VISUAL_ID:
 			return org.unicase.model.classDiagram.view.factories.AttributeViewFactory.class;
 		case org.unicase.model.classDiagram.edit.parts.MethodEditPart.VISUAL_ID:

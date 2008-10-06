@@ -92,7 +92,7 @@ public class Association1CreateCommand extends CreateElementCommand {
 			return false;
 		}
 		return org.unicase.model.classDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canCreateAssociation_3001(getContainer(), getSource(),
+				.canCreateAssociation_4001(getContainer(), getSource(),
 						getTarget());
 	}
 
@@ -106,7 +106,7 @@ public class Association1CreateCommand extends CreateElementCommand {
 		newElement.setSource(getSource());
 		newElement.setTarget(getTarget());
 		org.unicase.model.classDiagram.providers.ModelElementTypes
-				.init_Association_3001(newElement);
+				.init_Association_4001(newElement);
 		return newElement;
 	}
 

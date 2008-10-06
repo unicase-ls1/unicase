@@ -12,7 +12,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_Association_3001(Association instance) {
+	public static void init_Association_4001(Association instance) {
 		try {
 			Object value0 = org.unicase.model.classDiagram.expressions.ModelOCLFactory
 					.getExpression("AssociationType::UNDIRECTED_ASSOCIATION",
@@ -32,7 +32,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_Association_3002(Association instance) {
+	public static void init_Association_4002(Association instance) {
 		try {
 			Object value0 = org.unicase.model.classDiagram.expressions.ModelOCLFactory
 					.getExpression("AssociationType::AGGREGATION",
@@ -52,10 +52,10 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_Association_3004(Association instance) {
+	public static void init_Association_4003(Association instance) {
 		try {
 			Object value0 = org.unicase.model.classDiagram.expressions.ModelOCLFactory
-					.getExpression("AssociationType::DIRECTED_ASSOCIATION",
+					.getExpression("AssociationType::COMPOSITION",
 							ClassesPackage.eINSTANCE.getAssociation())
 					.evaluate(instance);
 
@@ -72,10 +72,10 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_Association_3003(Association instance) {
+	public static void init_Association_4004(Association instance) {
 		try {
 			Object value0 = org.unicase.model.classDiagram.expressions.ModelOCLFactory
-					.getExpression("AssociationType::COMPOSITION",
+					.getExpression("AssociationType::DIRECTED_ASSOCIATION",
 							ClassesPackage.eINSTANCE.getAssociation())
 					.evaluate(instance);
 

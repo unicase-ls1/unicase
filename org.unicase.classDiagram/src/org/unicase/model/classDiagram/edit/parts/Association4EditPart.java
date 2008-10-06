@@ -21,7 +21,7 @@ public class Association4EditPart extends ConnectionNodeEditPart implements
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3004;
+	public static final int VISUAL_ID = 4004;
 
 	/**
 	 * @generated

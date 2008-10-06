@@ -55,7 +55,7 @@ public class ClassNameEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4001;
+	public static final int VISUAL_ID = 5001;
 
 	/**
 	 * @generated
@@ -305,7 +305,7 @@ public class ClassNameEditPart extends CompartmentEditPart implements
 		if (parser == null) {
 			String parserHint = ((View) getModel()).getType();
 			IAdaptable hintAdapter = new org.unicase.model.classDiagram.providers.ModelParserProvider.HintAdapter(
-					org.unicase.model.classDiagram.providers.ModelElementTypes.Class_1001,
+					org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001,
 					getParserElement(), parserHint);
 			parser = ParserService.getInstance().getParser(hintAdapter);
 		}

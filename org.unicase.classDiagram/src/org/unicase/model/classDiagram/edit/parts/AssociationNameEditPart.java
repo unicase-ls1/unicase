@@ -51,7 +51,7 @@ public class AssociationNameEditPart extends LabelEditPart implements
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4002;
+	public static final int VISUAL_ID = 6001;
 
 	/**
 	 * @generated
@@ -295,7 +295,7 @@ public class AssociationNameEditPart extends LabelEditPart implements
 		if (parser == null) {
 			String parserHint = ((View) getModel()).getType();
 			IAdaptable hintAdapter = new org.unicase.model.classDiagram.providers.ModelParserProvider.HintAdapter(
-					org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3001,
+					org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4001,
 					getParserElement(), parserHint);
 			parser = ParserService.getInstance().getParser(hintAdapter);
 		}

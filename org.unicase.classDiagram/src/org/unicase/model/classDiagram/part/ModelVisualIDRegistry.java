@@ -27,21 +27,22 @@ public class ModelVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-	private static org.unicase.model.classDiagram.expressions.ModelAbstractExpression Association_3001_Constraint;
-	/**
-	 * @generated
-	 */
-	private static org.unicase.model.classDiagram.expressions.ModelAbstractExpression Association_3002_Constraint;
+	private static org.unicase.model.classDiagram.expressions.ModelAbstractExpression Association_4001_Constraint;
 
 	/**
 	 * @generated
 	 */
-	private static org.unicase.model.classDiagram.expressions.ModelAbstractExpression Association_3004_Constraint;
+	private static org.unicase.model.classDiagram.expressions.ModelAbstractExpression Association_4002_Constraint;
 
 	/**
 	 * @generated
 	 */
-	private static org.unicase.model.classDiagram.expressions.ModelAbstractExpression Association_3003_Constraint;
+	private static org.unicase.model.classDiagram.expressions.ModelAbstractExpression Association_4003_Constraint;
+
+	/**
+	 * @generated
+	 */
+	private static org.unicase.model.classDiagram.expressions.ModelAbstractExpression Association_4004_Constraint;
 
 	/**
 	 * @generated
@@ -157,6 +158,10 @@ public class ModelVisualIDRegistry {
 					domainElement.eClass())) {
 				return org.unicase.model.classDiagram.edit.parts.ClassEditPart.VISUAL_ID;
 			}
+			if (ClassesPackage.eINSTANCE.getPackage().isSuperTypeOf(
+					domainElement.eClass())) {
+				return org.unicase.model.classDiagram.edit.parts.PackageEditPart.VISUAL_ID;
+			}
 			break;
 		}
 		return -1;
@@ -196,6 +201,11 @@ public class ModelVisualIDRegistry {
 				return true;
 			}
 			break;
+		case org.unicase.model.classDiagram.edit.parts.PackageEditPart.VISUAL_ID:
+			if (org.unicase.model.classDiagram.edit.parts.PackageNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case org.unicase.model.classDiagram.edit.parts.ClassClassNode_attributesEditPart.VISUAL_ID:
 			if (org.unicase.model.classDiagram.edit.parts.AttributeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -208,6 +218,9 @@ public class ModelVisualIDRegistry {
 			break;
 		case org.unicase.model.classDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
 			if (org.unicase.model.classDiagram.edit.parts.ClassEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (org.unicase.model.classDiagram.edit.parts.PackageEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -268,22 +281,22 @@ public class ModelVisualIDRegistry {
 		}
 		if (ClassesPackage.eINSTANCE.getAssociation().isSuperTypeOf(
 				domainElement.eClass())
-				&& isAssociation_3001((Association) domainElement)) {
+				&& isAssociation_4001((Association) domainElement)) {
 			return org.unicase.model.classDiagram.edit.parts.Association1EditPart.VISUAL_ID;
 		}
 		if (ClassesPackage.eINSTANCE.getAssociation().isSuperTypeOf(
 				domainElement.eClass())
-				&& isAssociation_3002((Association) domainElement)) {
+				&& isAssociation_4002((Association) domainElement)) {
 			return org.unicase.model.classDiagram.edit.parts.Association2EditPart.VISUAL_ID;
 		}
 		if (ClassesPackage.eINSTANCE.getAssociation().isSuperTypeOf(
 				domainElement.eClass())
-				&& isAssociation_3003((Association) domainElement)) {
+				&& isAssociation_4003((Association) domainElement)) {
 			return org.unicase.model.classDiagram.edit.parts.Association3EditPart.VISUAL_ID;
 		}
 		if (ClassesPackage.eINSTANCE.getAssociation().isSuperTypeOf(
 				domainElement.eClass())
-				&& isAssociation_3004((Association) domainElement)) {
+				&& isAssociation_4004((Association) domainElement)) {
 			return org.unicase.model.classDiagram.edit.parts.Association4EditPart.VISUAL_ID;
 		}
 		return -1;
@@ -302,52 +315,52 @@ public class ModelVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-	private static boolean isAssociation_3001(Association domainElement) {
-		if (Association_3001_Constraint == null) { // lazy initialization
-			Association_3001_Constraint = org.unicase.model.classDiagram.expressions.ModelOCLFactory
+	private static boolean isAssociation_4001(Association domainElement) {
+		if (Association_4001_Constraint == null) { // lazy initialization
+			Association_4001_Constraint = org.unicase.model.classDiagram.expressions.ModelOCLFactory
 					.getExpression(
 							"self.type = AssociationType::UNDIRECTED_ASSOCIATION", ClassesPackage.eINSTANCE.getAssociation()); //$NON-NLS-1$
 		}
-		Object result = Association_3001_Constraint.evaluate(domainElement);
+		Object result = Association_4001_Constraint.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isAssociation_3002(Association domainElement) {
-		if (Association_3002_Constraint == null) { // lazy initialization
-			Association_3002_Constraint = org.unicase.model.classDiagram.expressions.ModelOCLFactory
+	private static boolean isAssociation_4002(Association domainElement) {
+		if (Association_4002_Constraint == null) { // lazy initialization
+			Association_4002_Constraint = org.unicase.model.classDiagram.expressions.ModelOCLFactory
 					.getExpression(
 							"self.type = AssociationType::AGGREGATION", ClassesPackage.eINSTANCE.getAssociation()); //$NON-NLS-1$
 		}
-		Object result = Association_3002_Constraint.evaluate(domainElement);
+		Object result = Association_4002_Constraint.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isAssociation_3004(Association domainElement) {
-		if (Association_3004_Constraint == null) { // lazy initialization
-			Association_3004_Constraint = org.unicase.model.classDiagram.expressions.ModelOCLFactory
-					.getExpression(
-							"self.type = AssociationType::DIRECTED_ASSOCIATION", ClassesPackage.eINSTANCE.getAssociation()); //$NON-NLS-1$
-		}
-		Object result = Association_3004_Constraint.evaluate(domainElement);
-		return result instanceof Boolean && ((Boolean) result).booleanValue();
-	}
-
-	/**
-	 * @generated
-	 */
-	private static boolean isAssociation_3003(Association domainElement) {
-		if (Association_3003_Constraint == null) { // lazy initialization
-			Association_3003_Constraint = org.unicase.model.classDiagram.expressions.ModelOCLFactory
+	private static boolean isAssociation_4003(Association domainElement) {
+		if (Association_4003_Constraint == null) { // lazy initialization
+			Association_4003_Constraint = org.unicase.model.classDiagram.expressions.ModelOCLFactory
 					.getExpression(
 							"self.type = AssociationType::COMPOSITION", ClassesPackage.eINSTANCE.getAssociation()); //$NON-NLS-1$
 		}
-		Object result = Association_3003_Constraint.evaluate(domainElement);
+		Object result = Association_4003_Constraint.evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isAssociation_4004(Association domainElement) {
+		if (Association_4004_Constraint == null) { // lazy initialization
+			Association_4004_Constraint = org.unicase.model.classDiagram.expressions.ModelOCLFactory
+					.getExpression(
+							"self.type = AssociationType::DIRECTED_ASSOCIATION", ClassesPackage.eINSTANCE.getAssociation()); //$NON-NLS-1$
+		}
+		Object result = Association_4004_Constraint.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 

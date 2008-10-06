@@ -49,13 +49,13 @@ import org.eclipse.swt.graphics.Image;
 /**
  * @generated
  */
-public class WrappingLabelEditPart extends CompartmentEditPart implements
+public class PackageNameEditPart extends CompartmentEditPart implements
 		ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4001;
+	public static final int VISUAL_ID = 5002;
 
 	/**
 	 * @generated
@@ -80,7 +80,7 @@ public class WrappingLabelEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
-	public WrappingLabelEditPart(View view) {
+	public PackageNameEditPart(View view) {
 		super(view);
 	}
 
@@ -191,12 +191,7 @@ public class WrappingLabelEditPart extends CompartmentEditPart implements
 	 * @generated
 	 */
 	protected Image getLabelIcon() {
-		EObject parserElement = getParserElement();
-		if (parserElement == null) {
-			return null;
-		}
-		return org.unicase.model.classDiagram.providers.ModelElementTypes
-				.getImage(parserElement.eClass());
+		return null;
 	}
 
 	/**
@@ -305,7 +300,7 @@ public class WrappingLabelEditPart extends CompartmentEditPart implements
 		if (parser == null) {
 			String parserHint = ((View) getModel()).getType();
 			IAdaptable hintAdapter = new org.unicase.model.classDiagram.providers.ModelParserProvider.HintAdapter(
-					org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001,
+					org.unicase.model.classDiagram.providers.ModelElementTypes.Package_2002,
 					getParserElement(), parserHint);
 			parser = ParserService.getInstance().getParser(hintAdapter);
 		}
@@ -513,7 +508,7 @@ public class WrappingLabelEditPart extends CompartmentEditPart implements
 	 * @generated
 	 */
 	private View getFontStyleOwnerView() {
-		return (View) getModel();
+		return getPrimaryView();
 	}
 
 	/**

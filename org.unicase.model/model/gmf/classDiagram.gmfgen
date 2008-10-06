@@ -25,7 +25,7 @@
         href="../model.genmodel#//model/diagram/MEDiagram"/>
     <childNodes
         xsi:type="gmfgen:GenChildLabelNode"
-        visualID="2001"
+        visualID="3001"
         editPartClassName="AttributeEditPart"
         itemSemanticEditPolicyClassName="AttributeItemSemanticEditPolicy"
         notationViewFactoryClassName="AttributeViewFactory"
@@ -62,7 +62,7 @@
     </childNodes>
     <childNodes
         xsi:type="gmfgen:GenChildLabelNode"
-        visualID="2002"
+        visualID="3002"
         editPartClassName="MethodEditPart"
         itemSemanticEditPolicyClassName="MethodItemSemanticEditPolicy"
         notationViewFactoryClassName="MethodViewFactory"
@@ -98,7 +98,7 @@
       </labelModelFacet>
     </childNodes>
     <topLevelNodes
-        visualID="1001"
+        visualID="2001"
         editPartClassName="ClassEditPart"
         itemSemanticEditPolicyClassName="ClassItemSemanticEditPolicy"
         notationViewFactoryClassName="ClassViewFactory"
@@ -128,7 +128,7 @@
             href="../model.genmodel#//model/diagram/MEDiagram/elements"/>
       </modelFacet>
       <labels
-          visualID="4001"
+          visualID="5001"
           editPartClassName="ClassNameEditPart"
           itemSemanticEditPolicyClassName="ClassNameItemSemanticEditPolicy"
           notationViewFactoryClassName="ClassNameViewFactory"
@@ -151,8 +151,60 @@
         </modelFacet>
       </labels>
     </topLevelNodes>
+    <topLevelNodes
+        visualID="2002"
+        editPartClassName="PackageEditPart"
+        itemSemanticEditPolicyClassName="PackageItemSemanticEditPolicy"
+        notationViewFactoryClassName="PackageViewFactory"
+        canonicalEditPolicyClassName="PackageCanonicalEditPolicy"
+        graphicalNodeEditPolicyClassName="PackageGraphicalNodeEditPolicy"
+        createCommandClassName="PackageCreateCommand">
+      <diagramRunTimeClass
+          href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType
+          xsi:type="gmfgen:MetamodelType"
+          editHelperClassName="PackageEditHelper"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="PackageFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class PackageFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigurePackageFigure_name; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public PackageFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.BorderLayout layoutThis = new org.eclipse.draw2d.BorderLayout();&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setFill(false);&#xA;this.setFillXOR(true);&#xA;this.setOutline(false);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.eclipse.draw2d.RectangleFigure packageFigure_AuxTop0 = new org.eclipse.draw2d.RectangleFigure();&#xA;packageFigure_AuxTop0.setFill(false);&#xA;packageFigure_AuxTop0.setFillXOR(true);&#xA;packageFigure_AuxTop0.setOutline(false);&#xA;packageFigure_AuxTop0.setOutlineXOR(true);&#xA;&#xA;this.add(packageFigure_AuxTop0, org.eclipse.draw2d.BorderLayout.TOP);&#xA;&#xA;&#x9;org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout layoutPackageFigure_AuxTop0 = new org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout();&#xA;&#xA;&#xA;&#xA;&#xA;layoutPackageFigure_AuxTop0.setStretchMajorAxis(&#xA;true);&#xA;&#xA;&#xA;&#xA;&#xA;layoutPackageFigure_AuxTop0.setVertical(&#xA;false);&#xA;&#xA;&#xA;&#x9;packageFigure_AuxTop0.setLayoutManager(layoutPackageFigure_AuxTop0);&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.RectangleFigure packageFigure_AuxLeftTab1 = new org.eclipse.draw2d.RectangleFigure();&#xA;packageFigure_AuxLeftTab1.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(1)&#xA;, getMapMode().DPtoLP(30)&#xA;));&#xA;&#xA;packageFigure_AuxTop0.add(packageFigure_AuxLeftTab1);&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.RectangleFigure packageFigure_AuxRightPadding1 = new org.eclipse.draw2d.RectangleFigure();&#xA;packageFigure_AuxRightPadding1.setFill(false);&#xA;packageFigure_AuxRightPadding1.setOutline(false);&#xA;packageFigure_AuxRightPadding1.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(1)&#xA;, getMapMode().DPtoLP(30)&#xA;));&#xA;&#xA;packageFigure_AuxTop0.add(packageFigure_AuxRightPadding1);&#xA;&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.RectangleFigure packageFigure_AuxCenter0 = new org.eclipse.draw2d.RectangleFigure();&#xA;packageFigure_AuxCenter0.setFillXOR(true);&#xA;packageFigure_AuxCenter0.setOutlineXOR(true);&#xA;&#xA;this.add(packageFigure_AuxCenter0, org.eclipse.draw2d.BorderLayout.CENTER);&#xA;&#xA;&#x9;org.eclipse.draw2d.ToolbarLayout layoutPackageFigure_AuxCenter0 = new org.eclipse.draw2d.ToolbarLayout();&#xA;&#x9;layoutPackageFigure_AuxCenter0.setStretchMinorAxis(true);&#xA;&#x9;layoutPackageFigure_AuxCenter0.setMinorAlignment(org.eclipse.draw2d.ToolbarLayout.ALIGN_CENTER&#xA;);&#xA;&#xA;&#x9;layoutPackageFigure_AuxCenter0.setSpacing(0);&#xA;&#x9;layoutPackageFigure_AuxCenter0.setVertical(true);&#xA;&#xA;&#x9;packageFigure_AuxCenter0.setLayoutManager(layoutPackageFigure_AuxCenter0);&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.RectangleFigure packageFigure_NameContainer1 = new org.eclipse.draw2d.RectangleFigure();&#xA;packageFigure_NameContainer1.setFill(false);&#xA;packageFigure_NameContainer1.setOutline(false);&#xA;packageFigure_NameContainer1.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(20)&#xA;));&#xA;&#xA;packageFigure_NameContainer1.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(10)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#xA;packageFigure_AuxCenter0.add(packageFigure_NameContainer1);&#xA;&#xA;&#x9;org.unicase.model.classDiagram.unicase.CenterLayout layoutPackageFigure_NameContainer1 = new org.unicase.model.classDiagram.unicase.CenterLayout();&#xA;&#xA;&#xA;&#x9;packageFigure_NameContainer1.setLayoutManager(layoutPackageFigure_NameContainer1);&#xA;&#xA;&#xA;&#xA;fFigurePackageFigure_name = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigurePackageFigure_name.setText(&quot;unnamed&quot;);&#xA;&#xA;packageFigure_NameContainer1.add(fFigurePackageFigure_name);&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigurePackageFigure_name() {&#xA;&#x9;&#x9;return fFigurePackageFigure_name;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
+        <attributes
+            xsi:type="gmfgen:DefaultSizeAttributes"
+            width="150"
+            height="110"/>
+        <requiredPluginIDs>org.eclipse.draw2d</requiredPluginIDs>
+        <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+      </viewmap>
+      <modelFacet>
+        <metaClass
+            href="../model.genmodel#//model/classes/Package"/>
+        <containmentMetaFeature
+            href="../model.genmodel#//model/diagram/MEDiagram/newElements"/>
+        <childMetaFeature
+            href="../model.genmodel#//model/diagram/MEDiagram/elements"/>
+      </modelFacet>
+      <labels
+          visualID="5002"
+          editPartClassName="PackageNameEditPart"
+          itemSemanticEditPolicyClassName="PackageNameItemSemanticEditPolicy"
+          notationViewFactoryClassName="PackageNameViewFactory">
+        <diagramRunTimeClass
+            href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getFigurePackageFigure_name"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            viewPattern=""
+            editPattern="">
+          <metaFeatures
+              href="../model.genmodel#//model/ModelElement/name"/>
+        </modelFacet>
+      </labels>
+    </topLevelNodes>
     <links
-        visualID="3001"
+        visualID="4001"
         editPartClassName="Association1EditPart"
         itemSemanticEditPolicyClassName="Association1ItemSemanticEditPolicy"
         notationViewFactoryClassName="Association1ViewFactory"
@@ -194,7 +246,7 @@
             href="../model.genmodel#//model/classes/Association/target"/>
       </modelFacet>
       <labels
-          visualID="4002"
+          visualID="6001"
           editPartClassName="AssociationNameEditPart"
           itemSemanticEditPolicyClassName="AssociationNameItemSemanticEditPolicy"
           notationViewFactoryClassName="AssociationNameViewFactory">
@@ -216,7 +268,7 @@
         </modelFacet>
       </labels>
       <labels
-          visualID="4003"
+          visualID="6002"
           editPartClassName="AssociationSourceMultiplicityEditPart"
           itemSemanticEditPolicyClassName="AssociationSourceMultiplicityItemSemanticEditPolicy"
           notationViewFactoryClassName="AssociationSourceMultiplicityViewFactory"
@@ -237,7 +289,7 @@
         </modelFacet>
       </labels>
       <labels
-          visualID="4004"
+          visualID="6003"
           editPartClassName="AssociationTargetMultiplicityEditPart"
           itemSemanticEditPolicyClassName="AssociationTargetMultiplicityItemSemanticEditPolicy"
           notationViewFactoryClassName="AssociationTargetMultiplicityViewFactory"
@@ -260,7 +312,7 @@
       </labels>
     </links>
     <links
-        visualID="3002"
+        visualID="4002"
         editPartClassName="Association2EditPart"
         itemSemanticEditPolicyClassName="Association2ItemSemanticEditPolicy"
         notationViewFactoryClassName="Association2ViewFactory"
@@ -270,7 +322,6 @@
           href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
       <elementType
           xsi:type="gmfgen:SpecializationType"
-          displayName="Directed Association"
           metamodelType="//@diagram/@links.0/@elementType"/>
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
@@ -303,7 +354,7 @@
             href="../model.genmodel#//model/classes/Association/target"/>
       </modelFacet>
       <labels
-          visualID="4005"
+          visualID="6004"
           editPartClassName="AssociationName2EditPart"
           itemSemanticEditPolicyClassName="AssociationName2ItemSemanticEditPolicy"
           notationViewFactoryClassName="AssociationName2ViewFactory">
@@ -325,7 +376,7 @@
         </modelFacet>
       </labels>
       <labels
-          visualID="4006"
+          visualID="6005"
           editPartClassName="AssociationSourceMultiplicity2EditPart"
           itemSemanticEditPolicyClassName="AssociationSourceMultiplicity2ItemSemanticEditPolicy"
           notationViewFactoryClassName="AssociationSourceMultiplicity2ViewFactory"
@@ -346,7 +397,7 @@
         </modelFacet>
       </labels>
       <labels
-          visualID="4007"
+          visualID="6006"
           editPartClassName="AssociationTargetMultiplicity2EditPart"
           itemSemanticEditPolicyClassName="AssociationTargetMultiplicity2ItemSemanticEditPolicy"
           notationViewFactoryClassName="AssociationTargetMultiplicity2ViewFactory"
@@ -369,7 +420,7 @@
       </labels>
     </links>
     <links
-        visualID="3003"
+        visualID="4003"
         editPartClassName="Association3EditPart"
         itemSemanticEditPolicyClassName="Association3ItemSemanticEditPolicy"
         notationViewFactoryClassName="Association3ViewFactory"
@@ -379,7 +430,6 @@
           href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
       <elementType
           xsi:type="gmfgen:SpecializationType"
-          displayName="Aggregation"
           metamodelType="//@diagram/@links.0/@elementType"/>
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
@@ -412,7 +462,7 @@
             href="../model.genmodel#//model/classes/Association/target"/>
       </modelFacet>
       <labels
-          visualID="4008"
+          visualID="6007"
           editPartClassName="AssociationName3EditPart"
           itemSemanticEditPolicyClassName="AssociationName3ItemSemanticEditPolicy"
           notationViewFactoryClassName="AssociationName3ViewFactory">
@@ -434,7 +484,7 @@
         </modelFacet>
       </labels>
       <labels
-          visualID="4009"
+          visualID="6008"
           editPartClassName="AssociationSourceMultiplicity3EditPart"
           itemSemanticEditPolicyClassName="AssociationSourceMultiplicity3ItemSemanticEditPolicy"
           notationViewFactoryClassName="AssociationSourceMultiplicity3ViewFactory"
@@ -455,7 +505,7 @@
         </modelFacet>
       </labels>
       <labels
-          visualID="4010"
+          visualID="6009"
           editPartClassName="AssociationTargetMultiplicity3EditPart"
           itemSemanticEditPolicyClassName="AssociationTargetMultiplicity3ItemSemanticEditPolicy"
           notationViewFactoryClassName="AssociationTargetMultiplicity3ViewFactory"
@@ -478,7 +528,7 @@
       </labels>
     </links>
     <links
-        visualID="3004"
+        visualID="4004"
         editPartClassName="Association4EditPart"
         itemSemanticEditPolicyClassName="Association4ItemSemanticEditPolicy"
         notationViewFactoryClassName="Association4ViewFactory"
@@ -488,7 +538,6 @@
           href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
       <elementType
           xsi:type="gmfgen:SpecializationType"
-          displayName="Composition"
           metamodelType="//@diagram/@links.0/@elementType"/>
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
@@ -521,7 +570,7 @@
             href="../model.genmodel#//model/classes/Association/target"/>
       </modelFacet>
       <labels
-          visualID="4011"
+          visualID="6010"
           editPartClassName="AssociationName4EditPart"
           itemSemanticEditPolicyClassName="AssociationName4ItemSemanticEditPolicy"
           notationViewFactoryClassName="AssociationName4ViewFactory">
@@ -543,7 +592,7 @@
         </modelFacet>
       </labels>
       <labels
-          visualID="4012"
+          visualID="6011"
           editPartClassName="AssociationSourceMultiplicity4EditPart"
           itemSemanticEditPolicyClassName="AssociationSourceMultiplicity4ItemSemanticEditPolicy"
           notationViewFactoryClassName="AssociationSourceMultiplicity4ViewFactory"
@@ -564,7 +613,7 @@
         </modelFacet>
       </labels>
       <labels
-          visualID="4013"
+          visualID="6012"
           editPartClassName="AssociationTargetMultiplicity4EditPart"
           itemSemanticEditPolicyClassName="AssociationTargetMultiplicity4ItemSemanticEditPolicy"
           notationViewFactoryClassName="AssociationTargetMultiplicity4ViewFactory"
@@ -587,7 +636,7 @@
       </labels>
     </links>
     <links
-        visualID="3005"
+        visualID="4005"
         editPartClassName="ClassSubClassesEditPart"
         itemSemanticEditPolicyClassName="ClassSubClassesItemSemanticEditPolicy"
         notationViewFactoryClassName="ClassSubClassesViewFactory"
@@ -611,7 +660,7 @@
       </modelFacet>
     </links>
     <compartments
-        visualID="5001"
+        visualID="7001"
         editPartClassName="ClassClassNode_attributesEditPart"
         itemSemanticEditPolicyClassName="ClassClassNode_attributesItemSemanticEditPolicy"
         notationViewFactoryClassName="ClassClassNode_attributesViewFactory"
@@ -629,7 +678,7 @@
           figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
     </compartments>
     <compartments
-        visualID="5002"
+        visualID="7002"
         editPartClassName="ClassClassNode_methodsEditPart"
         itemSemanticEditPolicyClassName="ClassClassNode_methodsItemSemanticEditPolicy"
         notationViewFactoryClassName="ClassClassNode_methodsViewFactory"
@@ -665,6 +714,10 @@
             xsi:type="gmfgen:ToolEntry"
             title="Method"
             genNodes="//@diagram/@childNodes.1"/>
+        <entries
+            xsi:type="gmfgen:ToolEntry"
+            title="Package"
+            genNodes="//@diagram/@topLevelNodes.1"/>
       </groups>
       <groups
           title="Connections"
@@ -749,6 +802,9 @@
     <childReferences
         parent="//@diagram"
         child="//@diagram/@topLevelNodes.0"/>
+    <childReferences
+        parent="//@diagram"
+        child="//@diagram/@topLevelNodes.1"/>
     <childReferences
         parent="//@diagram"
         child="//@diagram/@links.0"

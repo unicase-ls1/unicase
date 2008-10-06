@@ -17,7 +17,7 @@ public class ClassClassNode_methodsEditPart extends ListCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5002;
+	public static final int VISUAL_ID = 7002;
 
 	/**
 	 * @generated

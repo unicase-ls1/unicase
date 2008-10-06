@@ -15,7 +15,7 @@ public class ClassClassNode_attributesItemSemanticEditPolicy
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (org.unicase.model.classDiagram.providers.ModelElementTypes.Attribute_2001 == req
+		if (org.unicase.model.classDiagram.providers.ModelElementTypes.Attribute_3001 == req
 				.getElementType()) {
 			if (req.getContainmentFeature() == null) {
 				req.setContainmentFeature(ClassesPackage.eINSTANCE

@@ -35,15 +35,17 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 		if (editPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart) {
 			List types = new ArrayList();
 			types
-					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Attribute_2001);
+					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Attribute_3001);
 			types
-					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Method_2002);
+					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Method_3002);
 			return types;
 		}
 		if (editPart instanceof org.unicase.model.classDiagram.edit.parts.MEDiagramEditPart) {
 			List types = new ArrayList();
 			types
-					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_1001);
+					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
+			types
+					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Package_2002);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
@@ -58,15 +60,15 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 		if (sourceEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart) {
 			List types = new ArrayList();
 			types
-					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3001);
+					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4001);
 			types
-					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3002);
+					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4002);
 			types
-					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3003);
+					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4003);
 			types
-					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3004);
+					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4004);
 			types
-					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3005);
+					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_4005);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
@@ -81,15 +83,15 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 		if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart) {
 			List types = new ArrayList();
 			types
-					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3001);
+					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4001);
 			types
-					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3002);
+					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4002);
 			types
-					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3003);
+					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4003);
 			types
-					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3004);
+					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4004);
 			types
-					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3005);
+					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_4005);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
@@ -108,23 +110,23 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 			List types = new ArrayList();
 			if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart) {
 				types
-						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3001);
+						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4001);
 			}
 			if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart) {
 				types
-						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3002);
+						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4002);
 			}
 			if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart) {
 				types
-						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3003);
+						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4003);
 			}
 			if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart) {
 				types
-						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3004);
+						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4004);
 			}
 			if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart) {
 				types
-						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3005);
+						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_4005);
 			}
 			return types;
 		}
@@ -140,25 +142,25 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 				.getAdapter(IGraphicalEditPart.class);
 		if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart) {
 			List types = new ArrayList();
-			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3001) {
+			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4001) {
 				types
-						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_1001);
+						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
 			}
-			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3002) {
+			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4002) {
 				types
-						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_1001);
+						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
 			}
-			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3003) {
+			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4003) {
 				types
-						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_1001);
+						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
 			}
-			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3004) {
+			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4004) {
 				types
-						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_1001);
+						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
 			}
-			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3005) {
+			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_4005) {
 				types
-						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_1001);
+						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
 			}
 			return types;
 		}
@@ -174,25 +176,25 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 				.getAdapter(IGraphicalEditPart.class);
 		if (sourceEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart) {
 			List types = new ArrayList();
-			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3001) {
+			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4001) {
 				types
-						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_1001);
+						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
 			}
-			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3002) {
+			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4002) {
 				types
-						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_1001);
+						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
 			}
-			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3003) {
+			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4003) {
 				types
-						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_1001);
+						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
 			}
-			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3004) {
+			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4004) {
 				types
-						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_1001);
+						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
 			}
-			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3005) {
+			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_4005) {
 				types
-						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_1001);
+						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
 			}
 			return types;
 		}

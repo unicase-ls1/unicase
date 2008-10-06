@@ -21,6 +21,9 @@
       <tools
           xsi:type="gmftool:CreationTool"
           title="Method"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Package"/>
     </tools>
     <tools
         xsi:type="gmftool:ToolGroup"

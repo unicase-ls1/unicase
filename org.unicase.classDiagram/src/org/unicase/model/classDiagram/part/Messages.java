@@ -273,6 +273,11 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String Package4CreationTool_title;
+
+	/**
+	 * @generated
+	 */
 	public static String Generalization1CreationTool_title;
 
 	/**
@@ -318,62 +323,62 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Class_1001_incominglinks;
+	public static String NavigatorGroupName_Class_2001_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Class_1001_outgoinglinks;
+	public static String NavigatorGroupName_Class_2001_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Association_3001_target;
+	public static String NavigatorGroupName_Association_4001_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Association_3001_source;
+	public static String NavigatorGroupName_Association_4001_source;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Association_3002_target;
+	public static String NavigatorGroupName_Association_4002_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Association_3002_source;
+	public static String NavigatorGroupName_Association_4002_source;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ClassSubClasses_3005_target;
+	public static String NavigatorGroupName_Association_4003_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ClassSubClasses_3005_source;
+	public static String NavigatorGroupName_Association_4003_source;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Association_3004_target;
+	public static String NavigatorGroupName_Association_4004_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Association_3004_source;
+	public static String NavigatorGroupName_Association_4004_source;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Association_3003_target;
+	public static String NavigatorGroupName_ClassSubClasses_4005_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Association_3003_source;
+	public static String NavigatorGroupName_ClassSubClasses_4005_source;
 
 	/**
 	 * @generated

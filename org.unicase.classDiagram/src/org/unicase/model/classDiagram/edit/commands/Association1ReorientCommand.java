@@ -70,7 +70,7 @@ public class Association1ReorientCommand extends EditElementCommand {
 		}
 		MEDiagram container = (MEDiagram) getLink().eContainer();
 		return org.unicase.model.classDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistAssociation_3001(container, getNewSource(), target);
+				.canExistAssociation_4001(container, getNewSource(), target);
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class Association1ReorientCommand extends EditElementCommand {
 		}
 		MEDiagram container = (MEDiagram) getLink().eContainer();
 		return org.unicase.model.classDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistAssociation_3001(container, source, getNewTarget());
+				.canExistAssociation_4001(container, source, getNewTarget());
 	}
 
 	/**

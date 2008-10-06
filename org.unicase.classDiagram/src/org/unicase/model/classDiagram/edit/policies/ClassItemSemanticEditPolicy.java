@@ -95,27 +95,27 @@ public class ClassItemSemanticEditPolicy
 			CreateRelationshipRequest req) {
 		IElementType elementType = req.getElementType();
 
-		if (elementType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3001) {
+		if (elementType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4001) {
 			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.Association1CreateCommand(
 					req, req.getSource(), req.getTarget(), (EObject) getHost()
 							.getModel()));
 		}
-		if (elementType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3002) {
+		if (elementType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4002) {
 			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.Association2CreateCommand(
 					req, req.getSource(), req.getTarget(), (EObject) getHost()
 							.getModel()));
 		}
-		if (elementType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3003) {
+		if (elementType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4003) {
 			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.Association3CreateCommand(
 					req, req.getSource(), req.getTarget(), (EObject) getHost()
 							.getModel()));
 		}
-		if (elementType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3004) {
+		if (elementType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4004) {
 			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.Association4CreateCommand(
 					req, req.getSource(), req.getTarget(), (EObject) getHost()
 							.getModel()));
 		}
-		if (org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3005 == req
+		if (org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_4005 == req
 				.getElementType()) {
 			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.ClassSubClassesCreateCommand(
 					req, req.getSource(), req.getTarget()));
@@ -130,28 +130,28 @@ public class ClassItemSemanticEditPolicy
 			CreateRelationshipRequest req) {
 		IElementType elementType = req.getElementType();
 
-		if (elementType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3001) {
+		if (elementType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4001) {
 			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.Association1CreateCommand(
 					req, req.getSource(), req.getTarget(), (EObject) getHost()
 							.getModel()));
 		}
-		if (elementType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3002) {
+		if (elementType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4002) {
 			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.Association2CreateCommand(
 					req, req.getSource(), req.getTarget(), (EObject) getHost()
 							.getModel()));
 		}
-		if (elementType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3003) {
+		if (elementType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4003) {
 			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.Association3CreateCommand(
 					req, req.getSource(), req.getTarget(), (EObject) getHost()
 							.getModel()));
 		}
-		if (elementType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3004) {
+		if (elementType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4004) {
 			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.Association4CreateCommand(
 					req, req.getSource(), req.getTarget(), (EObject) getHost()
 							.getModel()));
 		}
 
-		if (org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_3005 == req
+		if (org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_4005 == req
 				.getElementType()) {
 			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.ClassSubClassesCreateCommand(
 					req, req.getSource(), req.getTarget()));
