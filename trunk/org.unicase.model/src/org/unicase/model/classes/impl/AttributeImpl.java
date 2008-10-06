@@ -336,7 +336,7 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 			String validSignatureRegExp;
 
 			validSignatureRegExp = "";
-			validSignatureRegExp += "(\\+|\\$|-|~)?\\s*"; // group1 ->
+			validSignatureRegExp += "(\\+|\\#|-|~)?\\s*"; // group1 ->
 			// visibility
 			validSignatureRegExp += "(\\w+)\\s*"; // group2 -> name
 			validSignatureRegExp += "(?::\\s*(\\w+))?\\s*"; // group3 -> type

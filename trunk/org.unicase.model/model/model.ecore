@@ -238,7 +238,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="VisibilityType">
-      <eLiterals name="UNDEFINED" literal=""/>
+      <eLiterals name="UNDEFINED" literal="Undefined"/>
       <eLiterals name="PACKAGE" value="1" literal="#"/>
       <eLiterals name="PRIVATE" value="2" literal="-"/>
       <eLiterals name="GLOBAL" value="3" literal="+"/>
@@ -246,7 +246,6 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="ScopeType">
       <eLiterals name="INSTANCE" value="1" literal="Instance"/>
-      <eLiterals name="UNDEFINED" literal=""/>
       <eLiterals name="CLASS" value="2" literal="Class"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Method" eSuperTypes="#//ModelElement">
@@ -273,7 +272,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="ArgumentDirectionType">
-      <eLiterals name="UNDEFINED" literal=""/>
+      <eLiterals name="UNDEFINED" literal="Undefined"/>
       <eLiterals name="IN" value="1" literal="in"/>
       <eLiterals name="OUT" value="2" literal="out"/>
       <eLiterals name="INOUT" value="3" literal="inout"/>

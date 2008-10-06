@@ -1148,7 +1148,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 		initEEnum(scopeTypeEEnum, ScopeType.class, "ScopeType");
 		addEEnumLiteral(scopeTypeEEnum, ScopeType.INSTANCE);
-		addEEnumLiteral(scopeTypeEEnum, ScopeType.UNDEFINED);
 		addEEnumLiteral(scopeTypeEEnum, ScopeType.CLASS);
 
 		initEEnum(argumentDirectionTypeEEnum, ArgumentDirectionType.class,

@@ -158,7 +158,6 @@
       </genEnums>
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="model.ecore#//classes/ScopeType">
         <genEnumLiterals ecoreEnumLiteral="model.ecore#//classes/ScopeType/INSTANCE"/>
-        <genEnumLiterals ecoreEnumLiteral="model.ecore#//classes/ScopeType/UNDEFINED"/>
         <genEnumLiterals ecoreEnumLiteral="model.ecore#//classes/ScopeType/CLASS"/>
       </genEnums>
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="model.ecore#//classes/ArgumentDirectionType">
