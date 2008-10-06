@@ -6,8 +6,6 @@
  */
 package org.unicase.workspace.connectionmanager;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -40,8 +38,6 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 
 	private HashMap<SessionId, RMIAdminEmfStoreFacade> adminFacadeMap;
 
-	private static final String UNSUPPORTED_ENCODING = "Problem with en/decoding.";
-
 	private static final String REMOTE = "A rmi communication-related exception.";
 
 	/**
@@ -63,8 +59,6 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 					RMIUtil.eObjectToString(participant));
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
-		} catch (IOException e) {
-			throw new ConnectionException(REMOTE, e);
 		}
 	}
 
@@ -80,10 +74,7 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 					RMIUtil.eObjectToString(role));
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
-		} catch (IOException e) {
-			throw new ConnectionException(REMOTE, e);
 		}
-
 	}
 
 	/**
@@ -98,11 +89,7 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 				result.add((ACGroup) RMIUtil.stringToEObject(str));
 			}
 			return result;
-		} catch (UnsupportedEncodingException e) {
-			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
 		} catch (RemoteException e) {
-			throw new ConnectionException(REMOTE, e);
-		} catch (IOException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
 	}
@@ -120,11 +107,7 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 				result.add((ACGroup) RMIUtil.stringToEObject(str));
 			}
 			return result;
-		} catch (UnsupportedEncodingException e) {
-			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
 		} catch (RemoteException e) {
-			throw new ConnectionException(REMOTE, e);
-		} catch (IOException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
 	}
@@ -141,11 +124,7 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 				result.add((ACOrgUnit) RMIUtil.stringToEObject(str));
 			}
 			return result;
-		} catch (UnsupportedEncodingException e) {
-			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
 		} catch (RemoteException e) {
-			throw new ConnectionException(REMOTE, e);
-		} catch (IOException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
 	}
@@ -163,11 +142,7 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 				result.add((ACOrgUnit) RMIUtil.stringToEObject(str));
 			}
 			return result;
-		} catch (UnsupportedEncodingException e) {
-			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
 		} catch (RemoteException e) {
-			throw new ConnectionException(REMOTE, e);
-		} catch (IOException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
 	}
@@ -185,11 +160,7 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 				result.add((ACOrgUnit) RMIUtil.stringToEObject(str));
 			}
 			return result;
-		} catch (UnsupportedEncodingException e) {
-			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
 		} catch (RemoteException e) {
-			throw new ConnectionException(REMOTE, e);
-		} catch (IOException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
 	}
@@ -206,11 +177,7 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 				result.add((ProjectInfo) RMIUtil.stringToEObject(str));
 			}
 			return result;
-		} catch (UnsupportedEncodingException e) {
-			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
 		} catch (RemoteException e) {
-			throw new ConnectionException(REMOTE, e);
-		} catch (IOException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
 	}
@@ -225,11 +192,7 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 					RMIUtil.eObjectToString(sessionId),
 					RMIUtil.eObjectToString(projectId),
 					RMIUtil.eObjectToString(orgUnit)));
-		} catch (UnsupportedEncodingException e) {
-			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
 		} catch (RemoteException e) {
-			throw new ConnectionException(REMOTE, e);
-		} catch (IOException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
 	}
@@ -245,11 +208,7 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 				result.add((ACUser) RMIUtil.stringToEObject(user));
 			}
 			return result;
-		} catch (UnsupportedEncodingException e) {
-			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
 		} catch (RemoteException e) {
-			throw new ConnectionException(REMOTE, e);
-		} catch (IOException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
 	}
@@ -266,8 +225,6 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 					RMIUtil.eObjectToString(group));
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
-		} catch (IOException e) {
-			throw new ConnectionException(REMOTE, e);
 		}
 	}
 
@@ -283,8 +240,6 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 					RMIUtil.eObjectToString(participant));
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
-		} catch (IOException e) {
-			throw new ConnectionException(REMOTE, e);
 		}
 	}
 
@@ -298,8 +253,6 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 					RMIUtil.eObjectToString(sessionId), name);
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
-		} catch (IOException e) {
-			throw new ConnectionException(REMOTE, e);
 		}
 	}
 
@@ -312,8 +265,6 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 			getFacade(sessionId).createUser(RMIUtil.eObjectToString(sessionId),
 					name);
 		} catch (RemoteException e) {
-			throw new ConnectionException(REMOTE, e);
-		} catch (IOException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
 	}
@@ -329,8 +280,6 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 					RMIUtil.eObjectToString(group));
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
-		} catch (IOException e) {
-			throw new ConnectionException(REMOTE, e);
 		}
 	}
 
@@ -343,8 +292,6 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 			getFacade(sessionId).deleteUser(RMIUtil.eObjectToString(sessionId),
 					RMIUtil.eObjectToString(user));
 		} catch (RemoteException e) {
-			throw new ConnectionException(REMOTE, e);
-		} catch (IOException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
 	}
@@ -390,8 +337,6 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 					RMIUtil.eObjectToString(member));
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
-		} catch (IOException e) {
-			throw new ConnectionException(REMOTE, e);
 		}
 	}
 
@@ -407,8 +352,6 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 					RMIUtil.eObjectToString(member));
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
-		} catch (IOException e) {
-			throw new ConnectionException(REMOTE, e);
 		}
 	}
 
@@ -423,8 +366,6 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 					RMIUtil.eObjectToString(orgUnitId), name, description);
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
-		} catch (IOException e) {
-			throw new ConnectionException(REMOTE, e);
 		}
 	}
 
@@ -438,8 +379,6 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 					.getOrgUnit(RMIUtil.eObjectToString(sessionId),
 							RMIUtil.eObjectToString(orgUnitId)));
 		} catch (RemoteException e) {
-			throw new ConnectionException(REMOTE, e);
-		} catch (IOException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
 	}

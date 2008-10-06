@@ -6,8 +6,6 @@
  */
 package org.unicase.workspace.connectionmanager;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -34,6 +32,7 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.emfstore.exceptions.SerializationException;
 import org.unicase.emfstore.exceptions.UnknownSessionException;
 import org.unicase.model.Project;
 import org.unicase.workspace.ServerInfo;
@@ -79,11 +78,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 					RMIUtil.eObjectToString(baseVersionSpec),
 					RMIUtil.eObjectToString(changePackage),
 					RMIUtil.eObjectToString(logMessage)));
-		} catch (UnsupportedEncodingException e) {
-			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
 		} catch (RemoteException e) {
-			throw new ConnectionException(REMOTE, e);
-		} catch (IOException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
 	}
@@ -107,11 +102,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 				result.add(changePackageObject);
 			}
 
-		} catch (UnsupportedEncodingException e) {
-			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
 		} catch (RemoteException e) {
-			throw new ConnectionException(REMOTE, e);
-		} catch (IOException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
 		return result;
@@ -133,13 +124,9 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 				result.add((HistoryInfo) RMIUtil.stringToEObject(str));
 			}
 			return result;
-		} catch (UnsupportedEncodingException e) {
-			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
-		} catch (IOException e) {
-			throw new ConnectionException(REMOTE, e);
-		}
+		} 
 	}
 
 	/**
@@ -152,11 +139,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 					.getProject(RMIUtil.eObjectToString(sessionId),
 							RMIUtil.eObjectToString(projectId),
 							RMIUtil.eObjectToString(versionSpec)));
-		} catch (UnsupportedEncodingException e) {
-			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
 		} catch (RemoteException e) {
-			throw new ConnectionException(REMOTE, e);
-		} catch (IOException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
 	}
@@ -173,11 +156,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 				result.add((ProjectInfo) RMIUtil.stringToEObject(str));
 			}
 			return result;
-		} catch (UnsupportedEncodingException e) {
-			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
 		} catch (RemoteException e) {
-			throw new ConnectionException(REMOTE, e);
-		} catch (IOException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
 	}
@@ -194,11 +173,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 					RMIUtil.eObjectToString(sessionId),
 					RMIUtil.eObjectToString(projectId),
 					RMIUtil.eObjectToString(versionSpec)));
-		} catch (UnsupportedEncodingException e) {
-			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
 		} catch (RemoteException e) {
-			throw new ConnectionException(REMOTE, e);
-		} catch (IOException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
 	}
@@ -212,11 +187,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 			return (ProjectInfo) RMIUtil.stringToEObject(getFacade(sessionid)
 					.createProject(RMIUtil.eObjectToString(sessionid), name,
 							description, RMIUtil.eObjectToString(logMessage)));
-		} catch (UnsupportedEncodingException e) {
-			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
 		} catch (RemoteException e) {
-			throw new ConnectionException(REMOTE, e);
-		} catch (IOException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
 	}
@@ -232,11 +203,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 					.createProject(RMIUtil.eObjectToString(sessionid), name,
 							description, RMIUtil.eObjectToString(logMessage),
 							RMIUtil.eObjectToString(project)));
-		} catch (UnsupportedEncodingException e) {
-			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
 		} catch (RemoteException e) {
-			throw new ConnectionException(REMOTE, e);
-		} catch (IOException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
 	}
@@ -251,11 +218,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 					sessionId).resolveUser(
 					RMIUtil.eObjectToString(sessionId),
 					RMIUtil.eObjectToString(id)));
-		} catch (UnsupportedEncodingException e) {
-			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
 		} catch (RemoteException e) {
-			throw new ConnectionException(REMOTE, e);
-		} catch (IOException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
 	}
@@ -281,10 +244,8 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 			throw new ConnectionException(REMOTE, e);
 		} catch (NotBoundException e) {
 			throw new ConnectionException("RMI Registry not available.");
-		} catch (UnsupportedEncodingException e) {
+		} catch (SerializationException e) {
 			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
-		} catch (IOException e) {
-			throw new ConnectionException(REMOTE, e);
 		} catch (AccessControlException e) {
 			throw new ConnectionException("Login refused.", e);
 		}
