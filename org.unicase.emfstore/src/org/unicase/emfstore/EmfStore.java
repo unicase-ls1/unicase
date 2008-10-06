@@ -21,6 +21,7 @@ import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.model.Project;
 
 /**
@@ -91,6 +92,7 @@ public interface EmfStore {
 	 * @param logMessage
 	 *            the log message for the new version
 	 * @return the version specifier of the version created on the server
+	 * @throws InvalidVersionSpecException if the base version is not equal to the current head revision.
 	 * @throws EmfStoreException
 	 *             if any error in the EmfStore occurs
 	 * 
@@ -98,7 +100,7 @@ public interface EmfStore {
 	 */
 	PrimaryVersionSpec createVersion(SessionId sessionId, ProjectId projectId,
 			PrimaryVersionSpec baseVersionSpec, ChangePackage changePackage,
-			LogMessage logMessage) throws EmfStoreException;
+			LogMessage logMessage) throws EmfStoreException, InvalidVersionSpecException;
 
 	/**
 	 * Resolve a version specified to a primary version specifier.
@@ -137,27 +139,6 @@ public interface EmfStore {
 	 * @generated NOT
 	 */
 	List<ChangePackage> getChanges(SessionId sessionId, ProjectId projectId,
-			VersionSpec source, VersionSpec target) throws EmfStoreException;
-
-	/**
-	 * Get history information from the server. The list returned will describe
-	 * the versions from source to target.
-	 * 
-	 * @param sessionId
-	 *            the session id for authentication
-	 * @param projectId
-	 *            the project id
-	 * @param source
-	 *            the source version specifier
-	 * @param target
-	 *            the target version specifier
-	 * @return a list of history information
-	 * @throws EmfStoreException
-	 *             if any error in the EmfStore occurs
-	 * 
-	 * @generated NOT
-	 */
-	List<HistoryInfo> getHistoryInfo(SessionId sessionId, ProjectId projectId,
 			VersionSpec source, VersionSpec target) throws EmfStoreException;
 
 	/**

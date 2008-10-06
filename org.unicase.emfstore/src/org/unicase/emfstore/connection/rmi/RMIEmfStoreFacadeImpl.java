@@ -135,33 +135,6 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade#getHistoryInfo(java.lang.String,
-	 *      java.lang.String, java.lang.String, java.lang.String)
-	 */
-	public List<String> getHistoryInfo(String sessionId, String projectId,
-			String source, String target) throws RemoteException,
-			EmfStoreException {
-		LOGGER.debug("Client call on getHistoryInfo RECEIVED.");
-		List<String> result = new ArrayList<String>();
-		try {
-			for (HistoryInfo info : emfStore.getHistoryInfo((SessionId) RMIUtil
-					.stringToEObject(sessionId), (ProjectId) RMIUtil
-					.stringToEObject(projectId), (VersionSpec) RMIUtil
-					.stringToEObject(source), (VersionSpec) RMIUtil
-					.stringToEObject(target))) {
-				result.add(RMIUtil.eObjectToString(info));
-			}
-			return result;
-		} catch (UnsupportedEncodingException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		} catch (IOException e) {
-			throw new EmfStoreException(SERIALEX, e);
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
 	 */
 	public List<String> getHistoryInfo(String sessionId, String projectId,
 			String query) throws RemoteException, EmfStoreException {

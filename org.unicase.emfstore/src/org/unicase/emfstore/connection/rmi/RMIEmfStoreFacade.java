@@ -133,31 +133,6 @@ public interface RMIEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link EmfStore}.
 	 * 
-	 * @see org.unicase.emfstore.EmfStore#getHistoryInfo(org.unicase.emfstore.esmodel.SessionId,
-	 *      org.unicase.emfstore.esmodel.ProjectId,
-	 *      org.unicase.emfstore.esmodel.changemanagment.VersionSpec,
-	 *      org.unicase.emfstore.esmodel.changemanagment.VersionSpec)
-	 * @param sessionId
-	 *            the session id
-	 * @param projectId
-	 *            the project id
-	 * @param source
-	 *            the source version
-	 * @param target
-	 *            the target version
-	 * @return a list of history infos
-	 * @throws RemoteException
-	 *             if RMI remote invocation fails
-	 * @throws EmfStoreException
-	 *             if a problem in the element store occurs
-	 */
-	List<String> getHistoryInfo(String sessionId, String projectId,
-			String source, String target) throws RemoteException,
-			EmfStoreException;
-
-	/**
-	 * String typed implementation of method in {@link EmfStore}.
-	 * 
 	 * @param sessionId
 	 *            the session id
 	 * @param projectId
