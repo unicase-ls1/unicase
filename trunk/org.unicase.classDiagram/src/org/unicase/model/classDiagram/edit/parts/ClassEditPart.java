@@ -37,7 +37,7 @@ public class ClassEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 1001;
+	public static final int VISUAL_ID = 2001;
 
 	/**
 	 * @generated
@@ -70,14 +70,14 @@ public class ClassEditPart extends ShapeNodeEditPart {
 										.getCreateElementRequestAdapter();
 								IElementType type = (IElementType) adapter
 										.getAdapter(IElementType.class);
-								if (type == org.unicase.model.classDiagram.providers.ModelElementTypes.Attribute_2001) {
+								if (type == org.unicase.model.classDiagram.providers.ModelElementTypes.Attribute_3001) {
 									EditPart compartmentEditPart = getChildBySemanticHint(org.unicase.model.classDiagram.part.ModelVisualIDRegistry
 											.getType(org.unicase.model.classDiagram.edit.parts.ClassClassNode_attributesEditPart.VISUAL_ID));
 									return compartmentEditPart == null ? null
 											: compartmentEditPart
 													.getCommand(request);
 								}
-								if (type == org.unicase.model.classDiagram.providers.ModelElementTypes.Method_2002) {
+								if (type == org.unicase.model.classDiagram.providers.ModelElementTypes.Method_3002) {
 									EditPart compartmentEditPart = getChildBySemanticHint(org.unicase.model.classDiagram.part.ModelVisualIDRegistry
 											.getType(org.unicase.model.classDiagram.edit.parts.ClassClassNode_methodsEditPart.VISUAL_ID));
 									return compartmentEditPart == null ? null

@@ -19,13 +19,22 @@ public class MEDiagramItemSemanticEditPolicy
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (org.unicase.model.classDiagram.providers.ModelElementTypes.Class_1001 == req
+		if (org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001 == req
 				.getElementType()) {
 			if (req.getContainmentFeature() == null) {
 				req.setContainmentFeature(DiagramPackage.eINSTANCE
 						.getMEDiagram_NewElements());
 			}
 			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.ClassCreateCommand(
+					req));
+		}
+		if (org.unicase.model.classDiagram.providers.ModelElementTypes.Package_2002 == req
+				.getElementType()) {
+			if (req.getContainmentFeature() == null) {
+				req.setContainmentFeature(DiagramPackage.eINSTANCE
+						.getMEDiagram_NewElements());
+			}
+			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.PackageCreateCommand(
 					req));
 		}
 		return super.getCreateCommand(req);

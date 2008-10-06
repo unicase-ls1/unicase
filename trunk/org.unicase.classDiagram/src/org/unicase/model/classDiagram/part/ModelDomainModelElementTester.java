@@ -38,6 +38,9 @@ public class ModelDomainModelElementTester extends PropertyTester {
 		if (eClass == ModelPackage.eINSTANCE.getModelElementId()) {
 			return true;
 		}
+		if (eClass == ModelPackage.eINSTANCE.getNonDomainElement()) {
+			return true;
+		}
 		return false;
 	}
 

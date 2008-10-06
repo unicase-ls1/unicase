@@ -51,7 +51,7 @@ public class AssociationTargetMultiplicity2EditPart extends LabelEditPart
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4007;
+	public static final int VISUAL_ID = 6006;
 
 	/**
 	 * @generated
@@ -295,7 +295,7 @@ public class AssociationTargetMultiplicity2EditPart extends LabelEditPart
 		if (parser == null) {
 			String parserHint = ((View) getModel()).getType();
 			IAdaptable hintAdapter = new org.unicase.model.classDiagram.providers.ModelParserProvider.HintAdapter(
-					org.unicase.model.classDiagram.providers.ModelElementTypes.Association_3002,
+					org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4002,
 					getParserElement(), parserHint);
 			parser = ParserService.getInstance().getParser(hintAdapter);
 		}

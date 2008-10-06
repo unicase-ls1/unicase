@@ -29,7 +29,7 @@ public class ClassClassNode_attributesCanonicalEditPolicy extends
 		View viewObject = (View) getHost().getModel();
 		List result = new LinkedList();
 		for (Iterator it = org.unicase.model.classDiagram.part.ModelDiagramUpdater
-				.getClassClassNode_attributes_5001SemanticChildren(viewObject)
+				.getClassClassNode_attributes_7001SemanticChildren(viewObject)
 				.iterator(); it.hasNext();) {
 			result
 					.add(((org.unicase.model.classDiagram.part.ModelNodeDescriptor) it

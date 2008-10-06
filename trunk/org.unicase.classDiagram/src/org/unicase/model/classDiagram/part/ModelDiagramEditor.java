@@ -327,15 +327,16 @@ public class ModelDiagramEditor extends DiagramDocumentEditor implements
 					@Override
 					protected void doExecute() {
 						try {
-							((MEDiagram) ModelDiagramEditor.this.getDiagram().eContainer()).saveDiagramLayout();
-							
+							((MEDiagram) ModelDiagramEditor.this.getDiagram()
+									.eContainer()).saveDiagramLayout();
+
 						} catch (DiagramStoreException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-//						WorkspaceManager.getProjectSpace(
-//								(MEDiagram) ModelDiagramEditor.this
-//										.getDiagram().eContainer()).save();
+						//						WorkspaceManager.getProjectSpace(
+						//								(MEDiagram) ModelDiagramEditor.this
+						//										.getDiagram().eContainer()).save();
 					}
 
 				});
@@ -345,5 +346,5 @@ public class ModelDiagramEditor extends DiagramDocumentEditor implements
 	public boolean isDirty() {
 		return true;
 	}
-	
+
 }

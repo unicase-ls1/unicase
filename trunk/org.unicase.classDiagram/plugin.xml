@@ -286,78 +286,88 @@
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/classes">
          <metamodelType
-               id="org.unicase.classDiagram.Class_1001"
-               name="%metatype.name.Class_1001"
+               id="org.unicase.classDiagram.Class_2001"
+               name="%metatype.name.Class_2001"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Class"
                edithelper="org.unicase.model.classDiagram.edit.helpers.ClassEditHelper">
-            <param name="semanticHint" value="1001"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://unicase.org/model/classes">
-         <metamodelType
-               id="org.unicase.classDiagram.Attribute_2001"
-               name="%metatype.name.Attribute_2001"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Attribute"
-               edithelper="org.unicase.model.classDiagram.edit.helpers.AttributeEditHelper">
             <param name="semanticHint" value="2001"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/classes">
          <metamodelType
-               id="org.unicase.classDiagram.Method_2002"
-               name="%metatype.name.Method_2002"
+               id="org.unicase.classDiagram.Package_2002"
+               name="%metatype.name.Package_2002"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Method"
-               edithelper="org.unicase.model.classDiagram.edit.helpers.MethodEditHelper">
+               eclass="Package"
+               edithelper="org.unicase.model.classDiagram.edit.helpers.PackageEditHelper">
             <param name="semanticHint" value="2002"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/classes">
          <metamodelType
-               id="org.unicase.classDiagram.Association_3001"
-               name="%metatype.name.Association_3001"
+               id="org.unicase.classDiagram.Attribute_3001"
+               name="%metatype.name.Attribute_3001"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Association"
-               edithelper="org.unicase.model.classDiagram.edit.helpers.AssociationEditHelper">
+               eclass="Attribute"
+               edithelper="org.unicase.model.classDiagram.edit.helpers.AttributeEditHelper">
             <param name="semanticHint" value="3001"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/classes">
-         <specializationType
-               id="org.unicase.classDiagram.Association_3002"
-               name="%metatype.name.Association_3002"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.unicase.classDiagram.Association_3001"/>
+         <metamodelType
+               id="org.unicase.classDiagram.Method_3002"
+               name="%metatype.name.Method_3002"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Method"
+               edithelper="org.unicase.model.classDiagram.edit.helpers.MethodEditHelper">
             <param name="semanticHint" value="3002"/>
-         </specializationType>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/classes">
+         <metamodelType
+               id="org.unicase.classDiagram.Association_4001"
+               name="%metatype.name.Association_4001"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Association"
+               edithelper="org.unicase.model.classDiagram.edit.helpers.AssociationEditHelper">
+            <param name="semanticHint" value="4001"/>
+         </metamodelType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/classes">
          <specializationType
-               id="org.unicase.classDiagram.Association_3003"
-               name="%metatype.name.Association_3003"
+               id="org.unicase.classDiagram.Association_4002"
+               name="%metatype.name.Association_4002"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.unicase.classDiagram.Association_3001"/>
-            <param name="semanticHint" value="3003"/>
+            <specializes id="org.unicase.classDiagram.Association_4001"/>
+            <param name="semanticHint" value="4002"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/classes">
          <specializationType
-               id="org.unicase.classDiagram.Association_3004"
-               name="%metatype.name.Association_3004"
+               id="org.unicase.classDiagram.Association_4003"
+               name="%metatype.name.Association_4003"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.unicase.classDiagram.Association_3001"/>
-            <param name="semanticHint" value="3004"/>
+            <specializes id="org.unicase.classDiagram.Association_4001"/>
+            <param name="semanticHint" value="4003"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/classes">
          <specializationType
-               id="org.unicase.classDiagram.ClassSubClasses_3005"
-               name="%metatype.name.ClassSubClasses_3005"
+               id="org.unicase.classDiagram.Association_4004"
+               name="%metatype.name.Association_4004"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.classDiagram.Association_4001"/>
+            <param name="semanticHint" value="4004"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/classes">
+         <specializationType
+               id="org.unicase.classDiagram.ClassSubClasses_4005"
+               name="%metatype.name.ClassSubClasses_4005"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="3005"/>
+            <param name="semanticHint" value="4005"/>
          </specializationType>
       </metamodel>
    </extension>
@@ -511,8 +521,6 @@
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="F5"/>
    </extension>
-
-
 
 
 </plugin>

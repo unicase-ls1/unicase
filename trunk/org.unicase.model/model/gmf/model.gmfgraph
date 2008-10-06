@@ -136,6 +136,95 @@
           name="GeneralizationPolyline"
           sourceDecoration="//@figures.0/@figures.2"/>
     </descriptors>
+    <descriptors
+        name="PackageFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="PackageFigure"
+          outline="false"
+          fill="false"
+          xorFill="true">
+        <layout
+            xsi:type="gmfgraph:BorderLayout"/>
+        <children
+            xsi:type="gmfgraph:Rectangle"
+            name="PackageFigure_AuxTop"
+            outline="false"
+            fill="false"
+            xorFill="true"
+            xorOutline="true">
+          <layoutData
+              xsi:type="gmfgraph:BorderLayoutData"
+              alignment="BEGINNING"
+              vertical="true"/>
+          <layout
+              xsi:type="gmfgraph:CustomLayout"
+              qualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout">
+            <attributes
+                name="StretchMajorAxis"
+                value="true"/>
+            <attributes
+                name="vertical"
+                value="false"/>
+          </layout>
+          <children
+              xsi:type="gmfgraph:Rectangle"
+              name="PackageFigure_AuxLeftTab">
+            <preferredSize
+                dx="1"
+                dy="30"/>
+          </children>
+          <children
+              xsi:type="gmfgraph:Rectangle"
+              name="PackageFigure_AuxRightPadding"
+              outline="false"
+              fill="false">
+            <preferredSize
+                dx="1"
+                dy="30"/>
+          </children>
+        </children>
+        <children
+            xsi:type="gmfgraph:Rectangle"
+            name="PackageFigure_AuxCenter"
+            xorFill="true"
+            xorOutline="true">
+          <layoutData
+              xsi:type="gmfgraph:BorderLayoutData"/>
+          <layout
+              xsi:type="gmfgraph:FlowLayout"
+              vertical="true"
+              matchMinorSize="true"
+              forceSingleLine="true"
+              minorAlignment="CENTER"
+              majorSpacing="0"
+              minorSpacing="0"/>
+          <children
+              xsi:type="gmfgraph:Rectangle"
+              name="PackageFigure_NameContainer"
+              outline="false"
+              fill="false">
+            <layout
+                xsi:type="gmfgraph:CustomLayout"
+                qualifiedClassName="org.unicase.model.classDiagram.unicase.CenterLayout"/>
+            <minimumSize
+                dy="20"/>
+            <insets
+                top="5"
+                left="10"
+                bottom="5"
+                right="5"/>
+            <children
+                xsi:type="gmfgraph:Label"
+                name="PackageFigure_name"
+                text="unnamed"/>
+          </children>
+        </children>
+      </actualFigure>
+      <accessors
+          accessor="getFigurePackageFigure_name"
+          figure="//@figures.0/@descriptors.5/@actualFigure/@children.1/@children.0/@children.0"/>
+    </descriptors>
   </figures>
   <figures
       name="ComponentDiagram">
@@ -447,6 +536,16 @@
   <nodes
       name="ProvidedInterfaceCircleNode"
       figure="ProvidedInterfaceCircleFigure"/>
+  <nodes
+      name="Package"
+      figure="PackageFigure">
+    <facets
+        xsi:type="gmfgraph:DefaultSizeFacet">
+      <defaultSize
+          dx="150"
+          dy="110"/>
+    </facets>
+  </nodes>
   <connections
       name="Association"
       figure="AssociationFigure"/>
@@ -588,4 +687,9 @@
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"/>
   </labels>
+  <labels
+      name="PackageNode_name"
+      figure="PackageFigure"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.5/@accessors.0"/>
 </gmfgraph:Canvas>
