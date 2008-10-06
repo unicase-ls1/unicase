@@ -28,6 +28,7 @@ import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.model.Project;
 
 /**
@@ -60,12 +61,12 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements
 	 *            the authentication controler
 	 * @throws RemoteException
 	 *             if an RMI problem occurs
-	 * @throws EmfStoreException
+	 * @throws FatalEmfStoreException
 	 *             exception within the server
 	 */
 	public RMIEmfStoreFacadeImpl(EmfStore emfStore,
 			AuthenticationControl authenticationControl)
-			throws RemoteException, EmfStoreException {
+			throws RemoteException, FatalEmfStoreException {
 		super();
 		this.emfStore = emfStore;
 		this.accessControl = authenticationControl;

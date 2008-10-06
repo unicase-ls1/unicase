@@ -26,6 +26,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.ServerAdmin;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidPropertyException;
 import org.unicase.model.ModelElement;
 
@@ -47,10 +48,13 @@ public class AccessControlImpl implements AuthenticationControl,
 	 * 
 	 * @param serverSpace
 	 *            the server space to work on
+	 * @throws FatalEmfStoreException
+	 *             an exception
 	 * @throws EmfStoreException
 	 *             an exception
 	 */
-	public AccessControlImpl(ServerSpace serverSpace) throws EmfStoreException {
+	public AccessControlImpl(ServerSpace serverSpace)
+			throws FatalEmfStoreException, EmfStoreException {
 		this.sessionUserMap = new HashMap<SessionId, ACUserContainer>();
 		this.serverSpace = serverSpace;
 
@@ -301,7 +305,7 @@ public class AccessControlImpl implements AuthenticationControl,
 		return user;
 	}
 
-	//extract to normal class
+	// extract to normal class
 	/**
 	 * 
 	 * @author wesendonk
@@ -317,12 +321,13 @@ public class AccessControlImpl implements AuthenticationControl,
 
 		/**
 		 * Get the ACUser.
+		 * 
 		 * @return
 		 * @throws AccessControlException
 		 */
 		public ACUser getUser() throws AccessControlException {
-			//OW: timeout behaviour does not work as expected
-			//checkLastActive();
+			// OW: timeout behaviour does not work as expected
+			// checkLastActive();
 			active();
 			return getRawUser();
 		}
@@ -337,7 +342,7 @@ public class AccessControlImpl implements AuthenticationControl,
 					ServerConfiguration.SESSION_TIMEOUT_DEFAULT);
 			if (System.currentTimeMillis() - lastActive > Integer
 					.parseInt(property)) {
-				//OW: delete from map
+				// OW: delete from map
 				throw new AccessControlException("Usersession timed out.");
 			}
 		}

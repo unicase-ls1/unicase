@@ -23,6 +23,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 
 /**
  * 
@@ -45,11 +46,11 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade impleme
 	 *            the {@link AuthenticationControl}
 	 * @throws RemoteException
 	 *             thrown if there are rmi-related problems
-	 * @throws EmfStoreException
+	 * @throws FatalEmfStoreException
 	 * 				exception within the server
 	 */
 	public RMIAdminEmfStoreFacadeImpl(AdminEmfStore adminEmfStore,
-			AuthenticationControl accessControl) throws RemoteException, EmfStoreException {
+			AuthenticationControl accessControl) throws RemoteException, FatalEmfStoreException {
 		this.adminEmfStore = adminEmfStore;
 	}
 

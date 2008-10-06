@@ -22,7 +22,11 @@ import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLServerSocketFactory;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.unicase.emfstore.EmfStoreController;
 import org.unicase.emfstore.ServerConfiguration;
+import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 
 /**
  * Custom SocketFactory for rmi with encryption.
@@ -33,6 +37,13 @@ import org.unicase.emfstore.ServerConfiguration;
 public class RMISSLServerSocketFactory implements RMIServerSocketFactory,
 		Serializable {
 
+	private static Log logger;
+	
+	public RMISSLServerSocketFactory() {
+		super();
+		logger = LogFactory.getLog(RMISSLServerSocketFactory.class);
+	}
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -56,17 +67,21 @@ public class RMISSLServerSocketFactory implements RMIServerSocketFactory,
 			context.init(keyManagerFactory.getKeyManagers(), null, null);
 
 			serverSocketFactory = context.getServerSocketFactory();
-			// OW: insert proper exception handling
 		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
+			logger.error("Couldn't initialize server socket.");
+			EmfStoreController.getInstance().shutdown(new FatalEmfStoreException());
 		} catch (KeyStoreException e) {
-			e.printStackTrace();
+			logger.error("Couldn't initialize server socket.");
+			EmfStoreController.getInstance().shutdown(new FatalEmfStoreException());
 		} catch (CertificateException e) {
-			e.printStackTrace();
+			logger.error("Couldn't initialize server socket.");
+			EmfStoreController.getInstance().shutdown(new FatalEmfStoreException());
 		} catch (UnrecoverableKeyException e) {
-			e.printStackTrace();
+			logger.error("Couldn't initialize server socket.");
+			EmfStoreController.getInstance().shutdown(new FatalEmfStoreException());
 		} catch (KeyManagementException e) {
-			e.printStackTrace();
+			logger.error("Couldn't initialize server socket.");
+			EmfStoreController.getInstance().shutdown(new FatalEmfStoreException());
 		}
 
 		return serverSocketFactory.createServerSocket(port);

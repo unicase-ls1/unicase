@@ -87,10 +87,9 @@ public class EmfStoreController implements IApplication {
 		System.out.println("| unicase EmfStore |");
 		System.out.println("*------------------*");
 
-		logger = LogFactory.getLog(EmfStoreController.class);
+		initLogging();
 
 		properties = initProperties();
-		initLogging(properties);
 		this.serverSpace = initServerSpace();
 		versionInfo = initVersionInfo();
 		performNecessaryUpdates();
@@ -281,21 +280,22 @@ public class EmfStoreController implements IApplication {
 		return instance;
 	}
 
-	private void initLogging(Properties properties) {
+	private void initLogging() {
+		logger = LogFactory.getLog(EmfStoreController.class);
+		
 		// OW: fix logging config
-		// ConsoleAppender console = new ConsoleAppender(new SimpleLayout());
-		// try {
-		// FileAppender fileLog = new FileAppender(new SimpleLayout(),
-		// ServerConfiguration.getServerHome() + "emfstore.log", true);
-		// Logger rootLogger = Logger.getRootLogger();
-		// rootLogger.addAppender(console);
-		// rootLogger.addAppender(fileLog);
-		// rootLogger.setLevel(Level.ALL);
-		// } catch (IOException e) {
-		// String message =
-		// "Logging initialization failed! Logging might be disabled!";
-		// logger.warn(message, e);
-		// }
+//		ConsoleAppender console = new ConsoleAppender(new SimpleLayout());
+//		try {
+//			FileAppender fileLog = new FileAppender(new SimpleLayout(),
+//					ServerConfiguration.getServerHome() + "emfstore.log", true);
+//			Logger rootLogger = Logger.getRootLogger();
+//			rootLogger.addAppender(console);
+//			rootLogger.addAppender(fileLog);
+//			rootLogger.setLevel(Level.ALL);
+//		} catch (IOException e) {
+//			String message = "Logging initialization failed! Logging might be disabled!";
+//			logger.warn(message, e);
+//		}
 	}
 
 	private ResourceStorage initStorage() throws FatalEmfStoreException {
@@ -335,7 +335,7 @@ public class EmfStoreController implements IApplication {
 	}
 
 	private AccessControlImpl initAccessControl(ServerSpace serverSpace)
-			throws EmfStoreException {
+			throws EmfStoreException, FatalEmfStoreException {
 		setSuperUser(serverSpace);
 		return new AccessControlImpl(serverSpace);
 	}
