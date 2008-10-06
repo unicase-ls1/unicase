@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.ui.common.filter;
 
 import java.util.Set;
@@ -11,18 +17,30 @@ import org.unicase.model.organization.User;
 import org.unicase.model.task.WorkItem;
 import org.unicase.workspace.util.OrgUnitHelper;
 
+/**
+ * This filter filters to the elements of a users team.
+ * 
+ * @author helming
+ * 
+ */
 public class TeamFilter extends ViewerFilter {
 
-	private final User user;
-	Set<OrgUnit> team;
+	private Set<OrgUnit> team;
 
+	/**
+	 * default constructor.
+	 * 
+	 * @param user
+	 *            The user to whos team it should be filtered.
+	 */
 	public TeamFilter(User user) {
-		this.user = user;
-
 		team = OrgUnitHelper.getTeam(user);
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean select(Viewer viewer, Object parentElement, Object element) {
 		if (element instanceof WorkItem) {
