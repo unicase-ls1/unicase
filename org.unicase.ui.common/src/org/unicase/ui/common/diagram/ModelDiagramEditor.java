@@ -13,10 +13,12 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramDropTargetListener;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
@@ -24,6 +26,8 @@ import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.dnd.TransferData;
+import org.unicase.model.diagram.MEDiagram;
+import org.unicase.model.diagram.impl.DiagramStoreException;
 
 
 public class ModelDiagramEditor extends DiagramDocumentEditor {
@@ -36,6 +40,29 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 		super(hasFlyoutPalette);
 	}
 
+	@Override
+	public void doSave(IProgressMonitor progressMonitor) {
+		getEditingDomain().getCommandStack().execute(
+				new RecordingCommand(getEditingDomain()) {
+
+					@Override
+					protected void doExecute() {
+						try {
+							((MEDiagram) ModelDiagramEditor.this.getDiagram()
+									.eContainer()).saveDiagramLayout();
+
+						} catch (DiagramStoreException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						//						WorkspaceManager.getProjectSpace(
+						//								(MEDiagram) ModelDiagramEditor.this
+						//										.getDiagram().eContainer()).save();
+					}
+
+				});
+	}
+	
 	@Override
 	protected void initializeGraphicalViewer() {
 		super.initializeGraphicalViewer();
