@@ -25,31 +25,13 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  */
 public final class RMIUtil {
 
+	private static final URI VIRTUAL_URI = URI.createURI("virtualUnicaseUri");
+
 	/**
 	 * Private constructor.
 	 */
 	private RMIUtil() {
 		// nothing to do
-	}
-
-	/**
-	 * Converts an EObject to a String using the resource attached to the
-	 * object.
-	 * 
-	 * @param object
-	 *            the eObject
-	 * @return String representation of the EObject
-	 * @throws IOException
-	 *             if a serialization problem occurs
-	 */
-	// OW: Exception
-	public static String eObjectToStringByResource(EObject object)
-			throws IOException {
-		// OW null safety
-		Resource res = object.eResource();
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		res.save(out, null);
-		return out.toString();
 	}
 
 	/**
@@ -61,13 +43,11 @@ public final class RMIUtil {
 	 * @throws IOException
 	 *             if a serialization problem occurs
 	 */
-	// OW: Fix Exception handling and URI
 	public static String eObjectToString(EObject object) throws IOException {
 		if (object == null) {
-			return null;			
+			return null;
 		}
-		Resource res = (new ResourceSetImpl()).createResource(URI
-				.createURI("eineTolleUri"));
+		Resource res = (new ResourceSetImpl()).createResource(VIRTUAL_URI);
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		res.getContents().add(EcoreUtil.copy(object));
 		res.save(out, null);
@@ -86,41 +66,17 @@ public final class RMIUtil {
 	 * @throws IOException
 	 *             if deserialization fails
 	 */
-	// OW: Fix Exception handling and URI
 	public static EObject stringToEObject(String object)
 			throws UnsupportedEncodingException, IOException {
 		if (object == null) {
-			return null;			
+			return null;
 		}
-		Resource res = (new ResourceSetImpl()).createResource(URI
-				.createURI("eineNochTollereUri"));
+		Resource res = (new ResourceSetImpl()).createResource(VIRTUAL_URI);
 		res.load(new ByteArrayInputStream(object.getBytes("UTF-8")), null);
-		
+
 		EObject result = res.getContents().get(0);
 		res.getContents().remove(result);
 		return result;
 	}
 
-	/**
-	 * Converts a String to an EObject using a given resource.
-	 * 
-	 * Note: String must be the result of
-	 * {@link RMIUtil#eObjectToString(EObject)}
-	 * 
-	 * @param object
-	 *            the String representation of the EObject
-	 * @param res the
-	 *            resource
-	 * @return the deserialized EObject
-	 * @throws UnsupportedEncodingException
-	 *             if encoding is invalid
-	 * @throws IOException
-	 *             if deserialization fails
-	 */
-	// OW: Fix Exception handling and URI
-	public static EObject stringToEObject(String object, Resource res)
-			throws UnsupportedEncodingException, IOException {
-		res.load(new ByteArrayInputStream(object.getBytes("UTF-8")), null);
-		return res.getContents().get(0);
-	}
 }

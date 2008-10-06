@@ -108,23 +108,6 @@ public class EmfStoreImpl implements EmfStore {
 
 		Version previousHeadVersion = versions.get(versions.size() - 1);
 
-		// String property = ServerConfiguration.getProperties().getProperty(
-		// ServerConfiguration.PROJECTSTATE_VERSION_PERSISTENCE,
-		// ServerConfiguration.PROJECTSPACE_VERSION_PERSISTENCY_DEFAULT);
-		//
-		// // allways save projecstate of first version
-		// if (previousHeadVersion.getPrimarySpec().getIdentifier() == 0
-		// || property.equals(ServerConfiguration.EVERYVERSION)) {
-		// } else if
-		// (property.equals(ServerConfiguration.FIRSTANDLASTVERSIONONLY)) {
-		// newProjectState = previousHeadVersion.getProjectState();
-		// } else {
-		// throw new InvalidPropertyException();
-		// }
-
-		// OW set projectstate of previous to null depending on strategy
-		// and save exceptions
-
 		Project newProjectState = (Project) EcoreUtil.copy(previousHeadVersion
 				.getProjectState());
 
@@ -151,6 +134,17 @@ public class EmfStoreImpl implements EmfStore {
 				save(previousHeadVersion);
 				save(projectHistory);
 				throw new StorageException(StorageException.NOSAVE);
+			}
+			String property = ServerConfiguration
+					.getProperties()
+					.getProperty(
+							ServerConfiguration.PROJECTSTATE_VERSION_PERSISTENCE,
+							ServerConfiguration.PROJECTSPACE_VERSION_PERSISTENCY_DEFAULT);
+
+			// allways save projecstate of first version
+			if (!(previousHeadVersion.getPrimarySpec().getIdentifier() == 0
+					|| property.equals(ServerConfiguration.EVERYVERSION))) {
+				previousHeadVersion.setProjectState(null);
 			}
 			save(previousHeadVersion);
 			save(projectHistory);
@@ -385,9 +379,9 @@ public class EmfStoreImpl implements EmfStore {
 		authorizationControl.checkServerAdminAccess(sessionId);
 		ProjectHistory projectHistory = null;
 		try {
+			logMessage.setDate(new Date());
 			projectHistory = createEmptyProject(name, description, logMessage);
 		} catch (FatalEmfStoreException e) {
-			// OW rollback?
 			throw new StorageException(StorageException.NOSAVE);
 		}
 		return getProjectInfo(projectHistory);
@@ -406,12 +400,12 @@ public class EmfStoreImpl implements EmfStore {
 		authorizationControl.checkServerAdminAccess(sessionId);
 		ProjectHistory projectHistory = null;
 		try {
+			logMessage.setDate(new Date());
 			projectHistory = createEmptyProject(name, description, logMessage);
 			Version lastVersion = projectHistory.getLastVersion();
 			lastVersion.setProjectState(project);
 			save(lastVersion);
 		} catch (FatalEmfStoreException e) {
-			// OW rollback?
 			throw new StorageException(StorageException.NOSAVE);
 		}
 

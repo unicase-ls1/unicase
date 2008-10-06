@@ -42,5 +42,12 @@ public class FatalEmfStoreException extends Exception {
 	public FatalEmfStoreException(Throwable cause) {
 		super(cause);
 	}
+	
+	/**
+	 * Default constructor.
+	 */
+	public FatalEmfStoreException() {
+		this("Fatal exception");
+	}
 
 }

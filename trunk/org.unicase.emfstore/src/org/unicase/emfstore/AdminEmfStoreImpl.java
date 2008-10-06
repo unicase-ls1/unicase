@@ -34,6 +34,7 @@ import org.unicase.emfstore.exceptions.InvalidInputException;
 import org.unicase.emfstore.exceptions.StorageException;
 
 /**
+ * Implementation of {@link AdminEmfStore} interface.
  * 
  * @author Wesendonk
  */
@@ -67,7 +68,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		authorizationControl.checkServerAdminAccess(sessionId);
 		List<ACGroup> result = new ArrayList<ACGroup>();
 		for (ACGroup group : getServerSpace().getGroups()) {
-			result.add(group);
+			result.add((ACGroup) EcoreUtil.copy(group));
 		}
 		return result;
 	}
@@ -84,7 +85,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 			ACOrgUnit orgUnit = getOrgUnit(orgUnitId);
 			for (ACGroup group : getServerSpace().getGroups()) {
 				if (group.getMembers().contains(orgUnit)){
-						result.add(group);
+						result.add((ACGroup) EcoreUtil.copy(group));
 				}
 			}
 		return result;

@@ -12,7 +12,7 @@ package org.unicase.emfstore.exceptions;
  * @author wesendonk
  */
 @SuppressWarnings("serial")
-public class InvalidPropertyException extends EmfStoreException {
+public class InvalidPropertyException extends FatalEmfStoreException {
 
 	/**
 	 * Default constructor.

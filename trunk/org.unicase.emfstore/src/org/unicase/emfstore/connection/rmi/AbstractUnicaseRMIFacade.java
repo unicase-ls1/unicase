@@ -13,7 +13,7 @@ import java.rmi.server.RMISocketFactory;
 import java.rmi.server.UnicastRemoteObject;
 
 import org.unicase.emfstore.ServerConfiguration;
-import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidPropertyException;
 
 /**
@@ -30,10 +30,11 @@ public abstract class AbstractUnicaseRMIFacade extends UnicastRemoteObject {
 	 * 
 	 * @throws RemoteException
 	 *             rmi related exception
-	 * @throws EmfStoreException
-	 *             a server exception
+	 * @throws FatalEmfStoreException
+	 *             a fatal emfstore exception
 	 */
-	public AbstractUnicaseRMIFacade() throws RemoteException, EmfStoreException {
+	public AbstractUnicaseRMIFacade() throws RemoteException,
+			FatalEmfStoreException {
 		super(0, getClientFactory(), getServerFactory());
 	}
 

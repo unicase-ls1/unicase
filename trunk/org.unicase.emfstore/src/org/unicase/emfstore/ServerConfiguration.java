@@ -48,9 +48,14 @@ public final class ServerConfiguration {
 	 */
 	public static final String RMI_ENCRYTION_DEFAULT = "true";
 
-	//OW please document
+	/**
+	 * SSL password property, used for RMI encryption.
+	 */
 	public static final String SSL_PASSWORD = "rmi.encryption.ssl.password";
 
+	/**
+	 * Default SSL password.
+	 */
 	public static final String SSL_PASSWORD_DEFAULT = "av374tb$VBGGtrgwa7tosdfa";
 
 	/**
@@ -59,8 +64,15 @@ public final class ServerConfiguration {
 	 */
 	public static final String PROJECTSTATE_VERSION_PERSISTENCE = "persistence.version.projectstate";
 
+	/**
+	 * Only the project state from the first and last version is stored, the
+	 * other states are calculated by the changes.
+	 */
 	public static final String FIRSTANDLASTVERSIONONLY = "firstAndLastVersionOnly";
 
+	/**
+	 * The projectstate of every version will be stored.
+	 */
 	public static final String EVERYVERSION = "everyVersion";
 
 	/**
@@ -68,28 +80,65 @@ public final class ServerConfiguration {
 	 */
 	public static final String PROJECTSPACE_VERSION_PERSISTENCY_DEFAULT = EVERYVERSION;
 
+	/**
+	 * Property for timeout time of a user session.
+	 */
 	public static final String SESSION_TIMEOUT = "accesscontrol.session.timeout";
-	
+
+	/**
+	 * Default timeout.
+	 */
 	public static final String SESSION_TIMEOUT_DEFAULT = "7200";
 
+	/**
+	 * Property for the super user.
+	 */
 	public static final String SUPER_USER = "accesscontrol.authentication.superuser";
 
+	/**
+	 * Default super user name.
+	 */
 	public static final String SUPER_USER_DEFAULT = "super";
 
+	/**
+	 * Property for the super user's password.
+	 */
 	public static final String SUPER_USER_PASSWORD = "accesscontrol.authentication.superuser.password";
 
+	/**
+	 * Default super user password.
+	 */
 	public static final String SUPER_USER_PASSWORD_DEFAULT = "super";
 
+	/**
+	 * Property for authentication policy used by server. E.g. ldap or property
+	 * file.
+	 */
 	public static final String AUTHENTICATION_POLICY = "accesscontrol.authentication.policy";
 
+	/**
+	 * Use ldap for authentication.
+	 */
 	public static final String AUTHENTICATION_LDAP = "ldap";
 
+	/**
+	 * Use simple property file for authentication.
+	 */
 	public static final String AUTHENTICATION_SPFV = "spfv";
 
+	/**
+	 * Default authentication policy: ldap.
+	 */
 	public static final String AUTHENTICATION_POLICY_DEFAULT = AUTHENTICATION_LDAP;
 
-	public static final String AUTHENTICATION_SPFV_FILEPATH = "";
-	
+	/**
+	 * Path to property file for spfv authentication.
+	 */
+	public static final String AUTHENTICATION_SPFV_FILEPATH = "accesscontrol.authentication.spfv";
+
+	/**
+	 * Property to validate server on start up.
+	 */
 	public static final String VALIDATE_SERVERSPACE_ON_SERVERSTART = "emfstore.validateOnLoad";
 
 	private static Properties properties;

@@ -59,7 +59,7 @@ public class SimplePropertyFileVerifyer extends AbstractAuthenticationControl {
 	protected boolean verifyPassword(String username, String password)
 			throws AccessControlException {
 		String expectedPassword = passwordFile.getProperty(username);
-		if (expectedPassword == null || expectedPassword.equals(password)) {
+		if (expectedPassword == null || !expectedPassword.equals(password)) {
 			throw new AccessControlException();
 		}
 		return true;
