@@ -21,18 +21,12 @@
 	<target name="cleanWorkspace" description="delete the unicase workspace and all its projectspaces">
 		<echo message="Deleting workspace..." />
 		<delete file="${unicaseWorkspaceDir}/workspace" />
-		<delete includeemptydirs="yes">
-			<fileset dir="${unicaseWorkspaceDir}" defaultexcludes="no">
-				<include name="**/ps-*/**" />
-			</fileset>
-		</delete>
 		<delete file="${unicaseWorkspaceDir}/workspace.ucw" />
 		<delete includeemptydirs="yes">
 			<fileset dir="${unicaseWorkspaceDir}" defaultexcludes="no">
 				<include name="**/ps-*/**" />
 			</fileset>
 		</delete>
-
 	</target>
 
 	<target name="cleanServer" description="delete the unicase serverspace">
