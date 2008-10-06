@@ -301,7 +301,7 @@ public class EmfStoreController implements IApplication {
 	private ResourceStorage initStorage() throws FatalEmfStoreException {
 		String className = properties.getProperty(
 				ServerConfiguration.RESOURCE_STORAGE,
-				ServerConfiguration.DEFAULT_RESOURCE_STORAGE);
+				ServerConfiguration.RESOURCE_STORAGE_DEFAULT);
 
 		ResourceStorage resourceStorage;
 		final String failMessage = "Failed loading ressource storage!";

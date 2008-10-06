@@ -142,7 +142,7 @@ public class EmfStoreImpl implements EmfStore {
 
 			// allways save projecstate of first version
 			if (!(previousHeadVersion.getPrimarySpec().getIdentifier() == 0
-					|| property.equals(ServerConfiguration.EVERYVERSION))) {
+					|| property.equals(ServerConfiguration.PROJECTSTATE_VERSION_PERSISTENCE_EVERYVERSION))) {
 				previousHeadVersion.setProjectState(null);
 			}
 			save(previousHeadVersion);
