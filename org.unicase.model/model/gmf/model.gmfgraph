@@ -378,7 +378,7 @@
   </figures>
   <figures
       name="UseCaseDiagram">
-    <descriptors
+       <descriptors
         name="ActorFigure">
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
@@ -389,6 +389,9 @@
           <margins/>
           <spacing/>
         </layout>
+        <minimumSize
+            dx="10"
+            dy="10"/>
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="ActorFigure"
