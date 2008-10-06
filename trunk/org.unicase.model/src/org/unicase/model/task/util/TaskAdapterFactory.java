@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.Annotation;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
+import org.unicase.model.task.*;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.Milestone;

@@ -1126,12 +1126,18 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		initEEnum(associationTypeEEnum, AssociationType.class,
 				"AssociationType");
 		addEEnumLiteral(associationTypeEEnum,
-				AssociationType.UNDIRECTED_ASSOCIATION);
-		addEEnumLiteral(associationTypeEEnum, AssociationType.AGGREGATION);
-		addEEnumLiteral(associationTypeEEnum, AssociationType.COMPOSITION);
+				AssociationType.UNDIRECTED_ASSOCIATION_OLD);
+		addEEnumLiteral(associationTypeEEnum, AssociationType.AGGREGATION_OLD);
+		addEEnumLiteral(associationTypeEEnum, AssociationType.COMPOSITION_OLD);
 		addEEnumLiteral(associationTypeEEnum, AssociationType.DEPENDENCY);
 		addEEnumLiteral(associationTypeEEnum,
+				AssociationType.DIRECTED_ASSOCIATION_OLD);
+		addEEnumLiteral(associationTypeEEnum,
+				AssociationType.UNDIRECTED_ASSOCIATION);
+		addEEnumLiteral(associationTypeEEnum,
 				AssociationType.DIRECTED_ASSOCIATION);
+		addEEnumLiteral(associationTypeEEnum, AssociationType.AGGREGATION);
+		addEEnumLiteral(associationTypeEEnum, AssociationType.COMPOSITION);
 
 		initEEnum(visibilityTypeEEnum, VisibilityType.class, "VisibilityType");
 		addEEnumLiteral(visibilityTypeEEnum, VisibilityType.UNDEFINED);

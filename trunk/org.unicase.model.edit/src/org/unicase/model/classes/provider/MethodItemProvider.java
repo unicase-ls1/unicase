@@ -60,6 +60,7 @@ public class MethodItemProvider extends ModelElementItemProvider implements
 
 			addVisibilityPropertyDescriptor(object);
 			addScopePropertyDescriptor(object);
+			addDefiningClassPropertyDescriptor(object);
 			addReturnTypePropertyDescriptor(object);
 			addSignaturePropertyDescriptor(object);
 			addArgumentsPropertyDescriptor(object);
@@ -101,6 +102,23 @@ public class MethodItemProvider extends ModelElementItemProvider implements
 						"_UI_Method_scope_feature", "_UI_Method_type"),
 				ClassesPackage.Literals.METHOD__SCOPE, true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Defining Class feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDefiningClassPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Method_definingClass_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Method_definingClass_feature", "_UI_Method_type"),
+				ClassesPackage.Literals.METHOD__DEFINING_CLASS, true, false,
+				false, null, null, null));
 	}
 
 	/**
