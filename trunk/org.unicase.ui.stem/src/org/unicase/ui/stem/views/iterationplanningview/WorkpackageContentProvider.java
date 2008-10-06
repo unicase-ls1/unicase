@@ -30,7 +30,7 @@ import org.unicase.workspace.WorkspaceManager;
  * 
  */
 public class WorkpackageContentProvider extends
-		TransactionalAdapterFactoryContentProvider  {
+		TransactionalAdapterFactoryContentProvider {
 
 	private boolean teamFilter;
 	private AdapterImpl adapterImpl;
@@ -43,19 +43,22 @@ public class WorkpackageContentProvider extends
 		super(WorkspaceManager.getInstance().getCurrentWorkspace()
 				.getEditingDomain(), new ComposedAdapterFactory(
 				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		adapterImpl = new AdapterImpl(){
+		adapterImpl = new AdapterImpl() {
 
 			@Override
 			public void notifyChanged(Notification msg) {
-				if(msg.getFeatureID(WorkItem.class)==TaskPackage.WORK_ITEM__CONTAINING_WORKPACKAGE){
-					TreeViewer treeViewer=(TreeViewer) viewer;
+				if (msg.isTouch()) {
+					return;
+				}
+				if (msg.getFeatureID(WorkItem.class) == TaskPackage.WORK_ITEM__CONTAINING_WORKPACKAGE) {
+					TreeViewer treeViewer = (TreeViewer) viewer;
 					treeViewer.refresh(backlog, true);
 					EObject notifier = (EObject) msg.getNotifier();
 					notifier.eAdapters().remove(this);
-					
+
 				}
 			}
-			
+
 		};
 	}
 
@@ -105,7 +108,8 @@ public class WorkpackageContentProvider extends
 	@Override
 	public Object[] getChildren(Object object) {
 		if (object instanceof Backlog) {
-			return getProjectWorkItems(((Backlog) object).getProject()).toArray();
+			return getProjectWorkItems(((Backlog) object).getProject())
+					.toArray();
 		}
 		return super.getChildren(object);
 	}
@@ -148,7 +152,5 @@ public class WorkpackageContentProvider extends
 		teamFilter = checked;
 		viewer.refresh();
 	}
-
-	
 
 }
