@@ -139,11 +139,15 @@
     <nestedGenPackages prefix="Classes" basePackage="org.unicase.model" disposableProviderFactory="true"
         ecorePackage="model.ecore#//classes">
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="model.ecore#//classes/AssociationType">
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//classes/AssociationType/UNDIRECTED_ASSOCIATION_OLD"/>
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//classes/AssociationType/AGGREGATION_OLD"/>
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//classes/AssociationType/COMPOSITION_OLD"/>
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//classes/AssociationType/DEPENDENCY"/>
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//classes/AssociationType/DIRECTED_ASSOCIATION_OLD"/>
         <genEnumLiterals ecoreEnumLiteral="model.ecore#//classes/AssociationType/UNDIRECTED_ASSOCIATION"/>
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//classes/AssociationType/DIRECTED_ASSOCIATION"/>
         <genEnumLiterals ecoreEnumLiteral="model.ecore#//classes/AssociationType/AGGREGATION"/>
         <genEnumLiterals ecoreEnumLiteral="model.ecore#//classes/AssociationType/COMPOSITION"/>
-        <genEnumLiterals ecoreEnumLiteral="model.ecore#//classes/AssociationType/DEPENDENCY"/>
-        <genEnumLiterals ecoreEnumLiteral="model.ecore#//classes/AssociationType/DIRECTED_ASSOCIATION"/>
       </genEnums>
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="model.ecore#//classes/VisibilityType">
         <genEnumLiterals ecoreEnumLiteral="model.ecore#//classes/VisibilityType/UNDEFINED"/>

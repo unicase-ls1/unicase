@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.model.*;
 import org.unicase.model.Annotation;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
