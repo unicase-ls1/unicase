@@ -18,17 +18,17 @@
         title="Initiate"
         description="">
       <smallIcon
-          xsi:type="gmftool:DefaultImage"/>
-      <largeIcon
-          xsi:type="gmftool:DefaultImage"/>
+          xsi:type="gmftool:BundleImage"
+          path="/icons/full/obj16/Initiate.gif"
+          bundle="org.unicase.model.edit"/>
     </tools>
     <tools
         xsi:type="gmftool:CreationTool"
         title="Participate">
       <smallIcon
-          xsi:type="gmftool:DefaultImage"/>
-      <largeIcon
-          xsi:type="gmftool:DefaultImage"/>
+          xsi:type="gmftool:BundleImage"
+          path="/icons/full/obj16/Participate.gif"
+          bundle="org.unicase.model.edit"/>
     </tools>
     <tools
         xsi:type="gmftool:CreationTool"
