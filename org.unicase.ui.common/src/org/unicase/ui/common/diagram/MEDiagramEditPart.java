@@ -41,6 +41,9 @@ public class MEDiagramEditPart extends DiagramEditPart {
 		super(view);
 	}
 
+	/**
+	 * . {@inheritDoc}
+	 */
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();		
@@ -87,6 +90,9 @@ public class MEDiagramEditPart extends DiagramEditPart {
 				});
 
 	}
+	/**
+	 * . {@inheritDoc}
+	 */
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
