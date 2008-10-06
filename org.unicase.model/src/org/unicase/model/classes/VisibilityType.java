@@ -38,7 +38,7 @@ public enum VisibilityType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PACKAGE(1, "PACKAGE", "$"),
+	PACKAGE(1, "PACKAGE", "#"),
 
 	/**
 	 * The '<em><b>PRIVATE</b></em>' literal object.
@@ -92,7 +92,7 @@ public enum VisibilityType implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #PACKAGE
-	 * @model literal="$"
+	 * @model literal="#"
 	 * @generated
 	 * @ordered
 	 */

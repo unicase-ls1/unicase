@@ -23,14 +23,14 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum ScopeType implements Enumerator {
 	/**
-	 * The '<em><b>CLASS</b></em>' literal object.
+	 * The '<em><b>INSTANCE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #CLASS_VALUE
+	 * @see #INSTANCE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	CLASS(2, "CLASS", "CLASS"), /**
+	INSTANCE(1, "INSTANCE", "Instance"), /**
 	 * The '<em><b>UNDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -39,29 +39,29 @@ public enum ScopeType implements Enumerator {
 	 * @ordered
 	 */
 	UNDEFINED(0, "UNDEFINED", ""), /**
-	 * The '<em><b>INSTANCE</b></em>' literal object.
+	 * The '<em><b>CLASS</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #INSTANCE_VALUE
+	 * @see #CLASS_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	INSTANCE(1, "INSTANCE", "INSTANCE");
+	CLASS(2, "CLASS", "Class");
 
 	/**
-	 * The '<em><b>CLASS</b></em>' literal value.
+	 * The '<em><b>INSTANCE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>CLASS</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>INSTANCE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CLASS
-	 * @model
+	 * @see #INSTANCE
+	 * @model literal="Instance"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CLASS_VALUE = 2;
+	public static final int INSTANCE_VALUE = 1;
 
 	/**
 	 * The '<em><b>UNDEFINED</b></em>' literal value.
@@ -79,19 +79,19 @@ public enum ScopeType implements Enumerator {
 	public static final int UNDEFINED_VALUE = 0;
 
 	/**
-	 * The '<em><b>INSTANCE</b></em>' literal value.
+	 * The '<em><b>CLASS</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>INSTANCE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>CLASS</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #INSTANCE
-	 * @model
+	 * @see #CLASS
+	 * @model literal="Class"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INSTANCE_VALUE = 1;
+	public static final int CLASS_VALUE = 2;
 
 	/**
 	 * An array of all the '<em><b>Scope Type</b></em>' enumerators.
@@ -99,8 +99,8 @@ public enum ScopeType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ScopeType[] VALUES_ARRAY = new ScopeType[] { CLASS,
-			UNDEFINED, INSTANCE, };
+	private static final ScopeType[] VALUES_ARRAY = new ScopeType[] { INSTANCE,
+			UNDEFINED, CLASS, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Scope Type</b></em>' enumerators.
@@ -151,12 +151,12 @@ public enum ScopeType implements Enumerator {
 	 */
 	public static ScopeType get(int value) {
 		switch (value) {
-		case CLASS_VALUE:
-			return CLASS;
-		case UNDEFINED_VALUE:
-			return UNDEFINED;
 		case INSTANCE_VALUE:
 			return INSTANCE;
+		case UNDEFINED_VALUE:
+			return UNDEFINED;
+		case CLASS_VALUE:
+			return CLASS;
 		}
 		return null;
 	}

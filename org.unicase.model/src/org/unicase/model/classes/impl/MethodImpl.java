@@ -76,7 +76,7 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final ScopeType SCOPE_EDEFAULT = ScopeType.CLASS;
+	protected static final ScopeType SCOPE_EDEFAULT = ScopeType.INSTANCE;
 
 	/**
 	 * The cached value of the '{@link #getScope() <em>Scope</em>}' attribute.

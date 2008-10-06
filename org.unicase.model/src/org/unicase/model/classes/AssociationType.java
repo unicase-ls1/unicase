@@ -30,7 +30,7 @@ public enum AssociationType implements Enumerator {
 	 * @ordered
 	 */
 	UNDIRECTED_ASSOCIATION(0, "UNDIRECTED_ASSOCIATION",
-			"UNDIRECTED_ASSOCIATION"), /**
+			"Undirected Association"), /**
 	 * The '<em><b>AGGREGATION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -38,7 +38,7 @@ public enum AssociationType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	AGGREGATION(1, "AGGREGATION", "AGGREGATION"),
+	AGGREGATION(1, "AGGREGATION", "Aggregation"),
 
 	/**
 	 * The '<em><b>COMPOSITION</b></em>' literal object.
@@ -48,7 +48,7 @@ public enum AssociationType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	COMPOSITION(2, "COMPOSITION", "COMPOSITION"),
+	COMPOSITION(2, "COMPOSITION", "Composition"),
 
 	/**
 	 * The '<em><b>DEPENDENCY</b></em>' literal object.
@@ -66,7 +66,7 @@ public enum AssociationType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DIRECTED_ASSOCIATION(4, "DIRECTED_ASSOCIATION", "DIRECTED_ASSOCIATION");
+	DIRECTED_ASSOCIATION(4, "DIRECTED_ASSOCIATION", "Directed Association");
 
 	/**
 	 * The '<em><b>UNDIRECTED ASSOCIATION</b></em>' literal value.
@@ -77,7 +77,7 @@ public enum AssociationType implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #UNDIRECTED_ASSOCIATION
-	 * @model
+	 * @model literal="Undirected Association"
 	 * @generated
 	 * @ordered
 	 */
@@ -92,7 +92,7 @@ public enum AssociationType implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #AGGREGATION
-	 * @model
+	 * @model literal="Aggregation"
 	 * @generated
 	 * @ordered
 	 */
@@ -107,7 +107,7 @@ public enum AssociationType implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #COMPOSITION
-	 * @model
+	 * @model literal="Composition"
 	 * @generated
 	 * @ordered
 	 */
@@ -137,7 +137,7 @@ public enum AssociationType implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #DIRECTED_ASSOCIATION
-	 * @model
+	 * @model literal="Directed Association"
 	 * @generated
 	 * @ordered
 	 */
