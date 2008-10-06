@@ -97,7 +97,6 @@ public class EmfStoreController implements IApplication {
 		accessControl = initAccessControl(serverSpace);
 		emfStore = new EmfStoreImpl(serverSpace, accessControl);
 		adminEmfStore = new AdminEmfStoreImpl(serverSpace, accessControl);
-		// OW: combine connectionHandler and adminConnectionHandler
 		adminConnectionHandler = new RMIAdminConnectionHandler();
 		adminConnectionHandler.init(adminEmfStore, accessControl);
 		connectionHandlers = initConnectionHandlers(emfStore, accessControl);
