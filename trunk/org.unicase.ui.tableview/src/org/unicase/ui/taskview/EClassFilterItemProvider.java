@@ -18,6 +18,12 @@ import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.provider.IdentifiableElementItemProvider;
 
+/**
+ * Provider which can be restricted to a certain class of modelelements.
+ * 
+ * @author helming
+ * 
+ */
 public class EClassFilterItemProvider extends IdentifiableElementItemProvider {
 
 	private EClass itemClass;
@@ -34,12 +40,23 @@ public class EClassFilterItemProvider extends IdentifiableElementItemProvider {
 		this.itemClass = ModelPackage.eINSTANCE.getIdentifiableElement();
 	}
 
+	/**
+	 * Default constructor.
+	 * 
+	 * @param adapterFactory
+	 *            The adapter factory that creates this content provider.
+	 * @param itemClass
+	 *            The class which should be shown
+	 */
 	public EClassFilterItemProvider(AdapterFactory adapterFactory,
 			EClass itemClass) {
 		super(adapterFactory);
 		this.itemClass = itemClass;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Collection<?> getElements(Object object) {
 		return this.getChildren(object);

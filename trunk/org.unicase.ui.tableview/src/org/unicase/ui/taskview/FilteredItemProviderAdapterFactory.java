@@ -21,13 +21,19 @@ import org.unicase.model.provider.ModelItemProviderAdapterFactory;
 public class FilteredItemProviderAdapterFactory extends
 		ModelItemProviderAdapterFactory {
 
-	EClassFilterItemProvider filteredItemProvider;
+	private EClassFilterItemProvider filteredItemProvider;
 
+	/**
+	 * default constructor.
+	 */
 	public FilteredItemProviderAdapterFactory() {
 		super();
 		this.supportedTypes.add(EClassFilterItemProvider.class);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Adapter createIdentifiableElementAdapter() {
 		if (filteredItemProvider == null) {
@@ -37,6 +43,12 @@ public class FilteredItemProviderAdapterFactory extends
 		return filteredItemProvider;
 	}
 
+	/**
+	 * sets a fileterd itemprovider.
+	 * 
+	 * @param newProvider
+	 *            The filtered provider
+	 */
 	public void setFilteredItemProvider(EClassFilterItemProvider newProvider) {
 		if (filteredItemProvider != null) {
 			supportedTypes.remove(filteredItemProvider.getClass());
@@ -45,6 +57,9 @@ public class FilteredItemProviderAdapterFactory extends
 		supportedTypes.add(filteredItemProvider.getClass());
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Object adapt(Object object, Object type) {
 		if (((Class<?>) type).isInstance(filteredItemProvider)) {

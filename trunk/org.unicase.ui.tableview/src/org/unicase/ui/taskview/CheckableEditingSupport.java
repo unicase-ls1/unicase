@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.ui.taskview;
 
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -9,19 +15,35 @@ import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.TableViewer;
 import org.unicase.model.task.Checkable;
 
+/**
+ * Editing support for a checkbox column.
+ * 
+ * @author helming
+ * 
+ */
 public class CheckableEditingSupport extends EditingSupport {
 
-	private CheckboxCellEditor ce;
-
+	/**
+	 * default constructor.
+	 * 
+	 * @param viewer
+	 *            The viewer
+	 */
 	public CheckableEditingSupport(TableViewer viewer) {
 		super(viewer);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected boolean canEdit(Object element) {
 		return (element instanceof Checkable);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected CellEditor getCellEditor(Object element) {
 		if (element instanceof Checkable) {
@@ -31,11 +53,17 @@ public class CheckableEditingSupport extends EditingSupport {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public TableViewer getViewer() {
 		return (TableViewer) super.getViewer();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected Object getValue(Object element) {
 		if (element instanceof Checkable) {
@@ -47,6 +75,9 @@ public class CheckableEditingSupport extends EditingSupport {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void setValue(Object element, Object value) {
 		if ((element instanceof Checkable) && (value instanceof Boolean)) {
@@ -55,6 +86,7 @@ public class CheckableEditingSupport extends EditingSupport {
 			TransactionalEditingDomain domain = TransactionUtil
 					.getEditingDomain(c);
 			domain.getCommandStack().execute(new RecordingCommand(domain) {
+				@Override
 				protected void doExecute() {
 					c.setChecked(isChecked);
 				}

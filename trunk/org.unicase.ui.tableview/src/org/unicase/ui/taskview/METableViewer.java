@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.ui.taskview;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -24,7 +30,11 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
-
+/**
+ * A tableviewer for modelelements.
+ * @author schneidf
+ *
+ */
 public class METableViewer extends TableViewer {
 
 	private Project currentProject;
@@ -112,10 +122,7 @@ public class METableViewer extends TableViewer {
 		setInput(currentProject);
 	}
 
-	@Override
-	protected void inputChanged(Object input, Object oldInput) {
-		super.inputChanged(input, oldInput);
-	}
+	
 
 	private void createColumns() {
 		EAttribute check = TaskPackage.Literals.CHECKABLE__CHECKED;
@@ -136,17 +143,17 @@ public class METableViewer extends TableViewer {
 		nameColumn.getColumn().setAlignment(SWT.LEFT);
 
 		EReference assignee = TaskPackage.Literals.WORK_ITEM__ASSIGNEE;
-		TableViewerColumn assigneeColumn = prepareStandardColumn(assignee, 150);
+		prepareStandardColumn(assignee, 150);
 
 		EAttribute creator = ModelPackage.Literals.MODEL_ELEMENT__CREATOR;
-		TableViewerColumn creatorColumn = prepareStandardColumn(creator, 100);
+		prepareStandardColumn(creator, 100);
 
 		EAttribute creationDate = ModelPackage.Literals.MODEL_ELEMENT__CREATION_DATE;
-		TableViewerColumn creationDateColumn = prepareStandardColumn(
+		prepareStandardColumn(
 				creationDate, 150);
 
 		EReference container = TaskPackage.Literals.WORK_ITEM__CONTAINING_WORKPACKAGE;
-		TableViewerColumn containerColumn = prepareStandardColumn(container,
+		prepareStandardColumn(container,
 				150);
 	}
 
