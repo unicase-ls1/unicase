@@ -36,7 +36,7 @@ public final class ServerConfiguration {
 	/**
 	 * Constant for the Default Resource Storage.
 	 */
-	public static final String DEFAULT_RESOURCE_STORAGE = "org.unicase.emfstore.storage.XMLStorage";
+	public static final String RESOURCE_STORAGE_DEFAULT = "org.unicase.emfstore.storage.XMLStorage";
 
 	/**
 	 * RMI encryption property, possible values are true and false.
@@ -68,17 +68,17 @@ public final class ServerConfiguration {
 	 * Only the project state from the first and last version is stored, the
 	 * other states are calculated by the changes.
 	 */
-	public static final String FIRSTANDLASTVERSIONONLY = "firstAndLastVersionOnly";
+	public static final String PROJECTSTATE_VERSION_PERSISTENCE_FIRSTANDLASTVERSIONONLY = "firstAndLastVersionOnly";
 
 	/**
 	 * The projectstate of every version will be stored.
 	 */
-	public static final String EVERYVERSION = "everyVersion";
+	public static final String PROJECTSTATE_VERSION_PERSISTENCE_EVERYVERSION = "everyVersion";
 
 	/**
 	 * Default value for projectstate persistence policy in versions.
 	 */
-	public static final String PROJECTSPACE_VERSION_PERSISTENCY_DEFAULT = EVERYVERSION;
+	public static final String PROJECTSPACE_VERSION_PERSISTENCY_DEFAULT = PROJECTSTATE_VERSION_PERSISTENCE_EVERYVERSION;
 
 	/**
 	 * Property for timeout time of a user session.
