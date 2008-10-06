@@ -118,9 +118,9 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 		}
 
 		@Override
-		protected List getObjectsBeingDropped() {
+		protected List<EObject> getObjectsBeingDropped() {
 			TransferData data = getCurrentEvent().currentDataType;
-			Collection uris = new HashSet();
+			Collection<URI> uris= new HashSet<URI>();
 
 			Object transferedObject = getJavaObject(data);
 			if (transferedObject instanceof IStructuredSelection) {
@@ -144,8 +144,8 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 				}
 			}
 
-			List result = new ArrayList();
-			for (Iterator it = uris.iterator(); it.hasNext();) {
+			List<EObject> result = new ArrayList<EObject>();
+			for (Iterator<URI> it = uris.iterator(); it.hasNext();) {
 				URI nextURI = (URI) it.next();
 				EObject modelObject = getEditingDomain().getResourceSet()
 						.getEObject(nextURI, true);

@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramDragDropEditPolicy
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
@@ -52,7 +53,7 @@ public class MEDiagramEditPart extends DiagramEditPart {
 					@Override
 					public Command getDropObjectsCommand(
 							DropObjectsRequest dropRequest) {
-						List viewDescriptors = new ArrayList();
+						List<ViewDescriptor> viewDescriptors = new ArrayList<ViewDescriptor>();
 						for (Iterator it = dropRequest.getObjects().iterator(); it
 								.hasNext();) {
 							Object nextObject = it.next();
@@ -71,7 +72,7 @@ public class MEDiagramEditPart extends DiagramEditPart {
 					}
 
 					private Command createShortcutsCommand(
-							DropObjectsRequest dropRequest, List viewDescriptors) {
+							DropObjectsRequest dropRequest, List<ViewDescriptor> viewDescriptors) {
 						Command command = createViewsAndArrangeCommand(
 								dropRequest, viewDescriptors);
 						if (command != null) {
