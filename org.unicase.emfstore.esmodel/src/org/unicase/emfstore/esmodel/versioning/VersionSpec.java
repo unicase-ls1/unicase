@@ -21,4 +21,9 @@ public interface VersionSpec extends EObject {
 
 	VersionSpec HEAD_VERSION = VersioningFactory.eINSTANCE
 			.createHeadVersionSpec();
+	
+	String HEAD = "HEAD";
+	
+	String BASE = "BASE";
+	
 } // VersionSpec

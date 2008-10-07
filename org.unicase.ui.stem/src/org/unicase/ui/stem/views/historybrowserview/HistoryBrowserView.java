@@ -66,8 +66,10 @@ public class HistoryBrowserView extends AbstractSCMView {
 					historyInfos.clear();
 					return;
 				}
-				if (activeProjectSpace.getUsersession() == null || !activeProjectSpace.getUsersession().isLoggedIn()) {
-					DialogHandler.showErrorDialog("Chosen Project is not logged in.");
+				if (activeProjectSpace.getUsersession() == null
+						|| !activeProjectSpace.getUsersession().isLoggedIn()) {
+					DialogHandler
+							.showErrorDialog("Chosen Project is not logged in.");
 					historyInfos.clear();
 					return;
 				}
@@ -77,10 +79,12 @@ public class HistoryBrowserView extends AbstractSCMView {
 									activeProjectSpace.getProjectId(),
 									getQuery(activeProjectSpace));
 					if (historyInfo != null) {
-						for(HistoryInfo hi : historyInfo) {
-							if(hi.getPrimerySpec().equals(activeProjectSpace.getBaseVersion())) {
-								TagVersionSpec spec = VersioningFactory.eINSTANCE.createTagVersionSpec();
-								spec.setName("BASE");
+						for (HistoryInfo hi : historyInfo) {
+							if (hi.getPrimerySpec().equals(
+									activeProjectSpace.getBaseVersion())) {
+								TagVersionSpec spec = VersioningFactory.eINSTANCE
+										.createTagVersionSpec();
+								spec.setName(VersionSpec.BASE);
 								hi.getTagSpecs().add(spec);
 								break;
 							}
@@ -111,7 +115,7 @@ public class HistoryBrowserView extends AbstractSCMView {
 			PrimaryVersionSpec resolveVersionSpec = activeProjectSpace
 					.resolveVersionSpec(VersionSpec.HEAD_VERSION);
 			end = resolveVersionSpec.getIdentifier();
-			start = (end>20)?end-20:0;
+			start = (end > 20) ? end - 20 : 0;
 		}
 
 		PrimaryVersionSpec source = VersioningFactory.eINSTANCE
