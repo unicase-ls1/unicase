@@ -33,7 +33,7 @@ import org.unicase.model.Project;
  * 
  * @generated NOT
  */
-public interface EmfStore {
+public interface EmfStore extends EmfStoreInterface {
 
 	/**
 	 * Virtual Uri for change package de-/serialization.

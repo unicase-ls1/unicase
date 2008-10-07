@@ -14,6 +14,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.unicase.emfstore.AdminEmfStore;
 import org.unicase.emfstore.accesscontrol.AuthenticationControl;
+import org.unicase.emfstore.connection.ConnectionHandler;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 
@@ -23,7 +24,13 @@ import org.unicase.emfstore.exceptions.FatalEmfStoreException;
  * @author Wesendonk
  * 
  */
-public class RMIAdminConnectionHandler {
+public class RMIAdminConnectionHandler implements
+		ConnectionHandler<AdminEmfStore> {
+
+	/**
+	 * String constant for the handlers name.
+	 */
+	private static final String NAME = "RMI Admin Connection Handler";
 
 	/**
 	 * String constant for the RMI Binding name.
@@ -51,10 +58,11 @@ public class RMIAdminConnectionHandler {
 	 * @throws FatalEmfStoreException
 	 *             is thrown if the server can't initialize
 	 * @throws EmfStoreException
-	 * 				exception within the server
+	 *             exception within the server
 	 */
 	public void init(AdminEmfStore adminEmfStore,
-			AuthenticationControl accessControl) throws FatalEmfStoreException, EmfStoreException {
+			AuthenticationControl accessControl) throws FatalEmfStoreException,
+			EmfStoreException {
 		try {
 			stub = new RMIAdminEmfStoreFacadeImpl(adminEmfStore, accessControl);
 			Registry registry = RMIRegistryManager.getInstance().getRegistry();
@@ -89,5 +97,12 @@ public class RMIAdminConnectionHandler {
 			return;
 		}
 
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getName() {
+		return NAME;
 	}
 }
