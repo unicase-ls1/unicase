@@ -20,6 +20,7 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.stem.views.dialogs.CommitDialog;
@@ -57,31 +58,45 @@ public class CommitProjectHandler extends ProjectActionHandler implements Commit
 
 			@Override
 			protected void doExecute() {
-				usersession = projectSpace.getUsersession();
-				shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-				LoginDialog login;
-				// initially setting the status as successful in case the user
-				// is already logged in
-				int loginStatus = LoginDialog.SUCCESSFUL;
-				try{
-					if (!usersession.isLoggedIn()) {
-						login = new LoginDialog(shell, usersession, usersession.getServerInfo());
-						loginStatus = login.open();
-					}
-					if (loginStatus == LoginDialog.SUCCESSFUL) {
-						logMessage = VersioningFactory.eINSTANCE.createLogMessage();
-						PrimaryVersionSpec oldVersion = projectSpace.getBaseVersion();
-						PrimaryVersionSpec newVersion = projectSpace.commit(logMessage,CommitProjectHandler.this);
-						if(!oldVersion.equals(newVersion)){
-							MessageDialog.openInformation(shell, null, "Commit completed.");
-						}
-					}
-				} catch (EmfStoreException e) {
-					DialogHandler.showExceptionDialog(e);
-				}
+				commitWithoutCommand(projectSpace);
 			}
+
+			
 		});
 		return null;
+	}
+	
+	private void commitWithoutCommand(final ProjectSpace projectSpace) {
+		usersession = projectSpace.getUsersession();
+		shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		LoginDialog login;
+		// initially setting the status as successful in case the user
+		// is already logged in
+		int loginStatus = LoginDialog.SUCCESSFUL;
+		try{
+			if (!usersession.isLoggedIn()) {
+				login = new LoginDialog(shell, usersession, usersession.getServerInfo());
+				loginStatus = login.open();
+			}
+			if (loginStatus == LoginDialog.SUCCESSFUL) {
+				logMessage = VersioningFactory.eINSTANCE.createLogMessage();
+				PrimaryVersionSpec oldVersion = projectSpace.getBaseVersion();
+				PrimaryVersionSpec newVersion = projectSpace.commit(logMessage,CommitProjectHandler.this);
+				if(!oldVersion.equals(newVersion)){
+					MessageDialog.openInformation(shell, null, "Commit completed.");
+				}
+			}
+		} catch (BaseVersionOutdatedException e) {
+			MessageDialog dialog = new MessageDialog(null, "Confirmation",
+					null, "Your project is outdated, you need to update before commit. Do you want to update now?",
+					MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
+			int result = dialog.open();
+			if (result == 0) {
+				new UpdateProjectHandler().update(projectSpace);
+			}
+		} catch (EmfStoreException e) {
+			DialogHandler.showExceptionDialog(e);
+		}
 	}
 
 	/**
