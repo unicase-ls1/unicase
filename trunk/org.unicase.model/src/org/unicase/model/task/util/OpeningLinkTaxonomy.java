@@ -49,7 +49,7 @@ public class OpeningLinkTaxonomy {
 		if(me instanceof WorkPackage){
 			getWorkPackageOpeners((WorkPackage)me, openers);
 		}
-		
+		openers.remove(me);
 		return openers;
 	}
 	
@@ -75,7 +75,7 @@ public class OpeningLinkTaxonomy {
 		if(me instanceof WorkPackage){
 			getWorkPackageOpeners((WorkPackage)me, openers);
 		}
-		
+		openers.remove(me);
 		return openers;
 	}
 	
@@ -102,7 +102,8 @@ public class OpeningLinkTaxonomy {
 		if(modelElement instanceof Annotation){
 			Annotation annotation = (Annotation) modelElement;
 			opened.addAll(annotation.getAnnotatedModelElements());
-		}	
+		}
+		opened.remove(modelElement);
 		return opened;
 	}
 	/**
@@ -119,6 +120,7 @@ public class OpeningLinkTaxonomy {
 			}
 			leafOpeners.addAll(getLeafOpeners(modelElement)); 
 		}
+		leafOpeners.remove(modelElement);
 		return leafOpeners;
 	}
 

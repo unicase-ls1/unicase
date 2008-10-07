@@ -39,6 +39,7 @@ public class BlockingLinkTaxonomy {
 				blocked.addAll(successors);
 			}
 		}
+		blocked.remove(modelElement);
 		return blocked;
 	}
 
@@ -61,6 +62,7 @@ public class BlockingLinkTaxonomy {
 				blockers.addAll(predecessors);
 			}
 		}
+		blockers.remove(modelElement);
 		return blockers;
 	}
 
