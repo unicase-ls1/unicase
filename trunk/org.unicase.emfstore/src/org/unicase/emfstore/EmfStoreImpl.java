@@ -141,8 +141,8 @@ public class EmfStoreImpl implements EmfStore {
 							ServerConfiguration.PROJECTSPACE_VERSION_PERSISTENCY_DEFAULT);
 
 			// allways save projecstate of first version
-			if (!(previousHeadVersion.getPrimarySpec().getIdentifier() == 0
-					|| property.equals(ServerConfiguration.PROJECTSTATE_VERSION_PERSISTENCE_EVERYVERSION))) {
+			if (!(previousHeadVersion.getPrimarySpec().getIdentifier() == 0 || property
+					.equals(ServerConfiguration.PROJECTSTATE_VERSION_PERSISTENCE_EVERYVERSION))) {
 				previousHeadVersion.setProjectState(null);
 			}
 			save(previousHeadVersion);
@@ -248,7 +248,7 @@ public class EmfStoreImpl implements EmfStore {
 			if (version.getPrimarySpec().equals(headRevision)) {
 				TagVersionSpec spec = VersioningFactory.eINSTANCE
 						.createTagVersionSpec();
-				spec.setName("HEAD");
+				spec.setName(VersionSpec.HEAD);
 				history.getTagSpecs().add(spec);
 			}
 			result.add(history);
@@ -547,7 +547,7 @@ public class EmfStoreImpl implements EmfStore {
 			LOGGER.error("Total time for saving: "
 					+ (System.currentTimeMillis() - currentTimeMillis));
 			currentTimeMillis = System.currentTimeMillis();
-		// BEGIN SUPRESS CATCH EXCEPTION
+			// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (Exception e) {
 			throw new FatalEmfStoreException(StorageException.NOSAVE, e);
 		}
@@ -557,7 +557,7 @@ public class EmfStoreImpl implements EmfStore {
 	private void save(EObject object) throws FatalEmfStoreException {
 		try {
 			object.eResource().save(null);
-		// BEGIN SUPRESS CATCH EXCEPTION
+			// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (Exception e) {
 			throw new FatalEmfStoreException(StorageException.NOSAVE, e);
 		}
