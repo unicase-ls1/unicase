@@ -19,7 +19,6 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.unicase.model.meeting.MeetingPackage;
-import org.unicase.model.meeting.WorkItemMeetingSection;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.model.meeting.WorkItemMeetingSection} object.
@@ -94,13 +93,12 @@ public class WorkItemMeetingSectionItemProvider extends
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((WorkItemMeetingSection) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_WorkItemMeetingSection_type")
-				: getString("_UI_WorkItemMeetingSection_type") + " " + label;
+		return super.getText(object);
 	}
 
 	/**

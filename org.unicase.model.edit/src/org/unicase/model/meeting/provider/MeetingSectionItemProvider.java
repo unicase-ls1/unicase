@@ -84,13 +84,12 @@ public class MeetingSectionItemProvider extends ModelElementItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((MeetingSection) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_MeetingSection_type")
-				: getString("_UI_MeetingSection_type") + " " + label;
+		return super.getText(object);
 	}
 
 	/**

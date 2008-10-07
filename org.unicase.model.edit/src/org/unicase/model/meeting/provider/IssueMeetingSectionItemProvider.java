@@ -18,7 +18,6 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.unicase.model.meeting.IssueMeetingSection;
 import org.unicase.model.meeting.MeetingPackage;
 
 /**
@@ -90,13 +89,12 @@ public class IssueMeetingSectionItemProvider extends MeetingSectionItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((IssueMeetingSection) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_IssueMeetingSection_type")
-				: getString("_UI_IssueMeetingSection_type") + " " + label;
+		return super.getText(object);
 	}
 
 	/**
