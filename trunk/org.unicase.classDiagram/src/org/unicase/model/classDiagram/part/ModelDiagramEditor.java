@@ -47,7 +47,7 @@ import org.unicase.model.diagram.impl.DiagramStoreException;
 /**
  * @generated
  */
-public class ModelDiagramEditor extends DiagramDocumentEditor implements
+public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagramEditor implements
 		IGotoMarker {
 
 	/**
@@ -317,29 +317,6 @@ public class ModelDiagramEditor extends DiagramDocumentEditor implements
 		// ((AdapterFactoryEditingDomain) getEditingDomain())
 		// .getResourceToReadOnlyMap().put(res, new Boolean(false));
 		// }
-	}
-
-	@Override
-	public void doSave(IProgressMonitor progressMonitor) {
-		getEditingDomain().getCommandStack().execute(
-				new RecordingCommand(getEditingDomain()) {
-
-					@Override
-					protected void doExecute() {
-						try {
-							((MEDiagram) ModelDiagramEditor.this.getDiagram()
-									.eContainer()).saveDiagramLayout();
-
-						} catch (DiagramStoreException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						//						WorkspaceManager.getProjectSpace(
-						//								(MEDiagram) ModelDiagramEditor.this
-						//										.getDiagram().eContainer()).save();
-					}
-
-				});
 	}
 
 	@Override
