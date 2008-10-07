@@ -151,7 +151,14 @@ public class ChangePackageVisualizationHelper {
 			if (op.getReferencedModelElements().size() > 0) {
 				overlay = "icons/link_overlay.png";
 			}
-		}
+		} else if (operation instanceof MultiReferenceMoveOperation) {
+			//AS: provide overlay in any case?
+			overlay = "icons/modify_overlay.png";
+		} else {
+			//AS: is this the best default image?
+			overlay = "icons/modify_overlay.png";
+		} 
+		
 		ImageDescriptor overlayDescriptor = org.unicase.ui.common.Activator
 		.getImageDescriptor(overlay);
 		return overlayDescriptor;
