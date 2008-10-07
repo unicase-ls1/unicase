@@ -324,19 +324,4 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagr
 			ErrorDialog.openError(shell, title, msg, x.getStatus());
 		}
 	}
-
-	@Override
-	public void doSave(IProgressMonitor progressMonitor) {
-		getEditingDomain().getCommandStack().execute(
-				new RecordingCommand(getEditingDomain()) {
-
-					@Override
-					protected void doExecute() {
-						WorkspaceManager.getProjectSpace(
-								(MEDiagram) ModelDiagramEditor.this
-										.getDiagram().eContainer()).save();
-					}
-
-				});
-	}
 }
