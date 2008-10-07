@@ -59,9 +59,13 @@ public interface EmfStore {
 	 */
 	List<ProjectInfo> getProjectList(SessionId sessionId)
 			throws EmfStoreException;
-	
+
 	/**
-	 * Get a project in a certain revision from the server.
+	 * Gets a project in a certain revision from the server. Depending on your
+	 * persistence properties, this method can become expensive because it has
+	 * to recalculate the requested project state.
+	 * 
+	 * @see ServerConfiguration#PROJECTSTATE_VERSION_PERSISTENCE
 	 * 
 	 * @param sessionId
 	 *            the session id for authentication
@@ -92,7 +96,9 @@ public interface EmfStore {
 	 * @param logMessage
 	 *            the log message for the new version
 	 * @return the version specifier of the version created on the server
-	 * @throws InvalidVersionSpecException if the base version is not equal to the current head revision.
+	 * @throws InvalidVersionSpecException
+	 *             if the base version is not equal to the current head
+	 *             revision.
 	 * @throws EmfStoreException
 	 *             if any error in the EmfStore occurs
 	 * 
@@ -100,7 +106,8 @@ public interface EmfStore {
 	 */
 	PrimaryVersionSpec createVersion(SessionId sessionId, ProjectId projectId,
 			PrimaryVersionSpec baseVersionSpec, ChangePackage changePackage,
-			LogMessage logMessage) throws EmfStoreException, InvalidVersionSpecException;
+			LogMessage logMessage) throws EmfStoreException,
+			InvalidVersionSpecException;
 
 	/**
 	 * Resolve a version specified to a primary version specifier.
@@ -181,7 +188,8 @@ public interface EmfStore {
 			String description, LogMessage logMessage) throws EmfStoreException;
 
 	/**
-	 * Create a new project on the server.
+	 * Create a new project on the server. This createProject method allows to
+	 * create a project on the server with initial projectstate (share project).
 	 * 
 	 * @param sessionId
 	 *            the session id for authentication
@@ -206,12 +214,14 @@ public interface EmfStore {
 
 	/**
 	 * Resolves a user by id and returns an ACUser with all roles on the server.
-	 * Also roles from groups are aggregated and added to the user.
+	 * Also roles from groups are aggregated and added to the user. To resolve
+	 * other user than the requesting user himself, the user has to have admin
+	 * access rights. If id is null, the requesting user will be resolved.
 	 * 
 	 * @param sessionId
 	 *            session id
 	 * @param id
-	 *            user id
+	 *            user id, can be null, then requesting user gets resolved
 	 * @return ACuser with all roles on the server
 	 * @throws EmfStoreException
 	 *             if any error in the EmfStore occurs
