@@ -159,7 +159,7 @@
         <module name="ExplicitInitialization"/>
         <module name="FallThrough"/>
         <module name="AnonInnerLength">
-            <property name="max" value="50"/>
+            <property name="max" value="70"/>
         </module>
         <module name="ThrowsCount">
             <property name="max" value="2"/>
