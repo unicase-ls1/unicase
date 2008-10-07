@@ -38,61 +38,62 @@ public class DeleteProjectHandler extends ProjectActionHandler {
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-				StringBuilder stringBuilder = new StringBuilder();
-				stringBuilder
-						.append("Do you really want to delete your local copy of project \"");
-				stringBuilder.append(projectSpace.getProjectName());
-				stringBuilder.append("\"");
-				if (projectSpace.getBaseVersion() != null) {
-					stringBuilder.append(" in version ");
-					stringBuilder.append(projectSpace.getBaseVersion()
-							.getIdentifier());
-				}
-				stringBuilder.append(".");
-				String message = stringBuilder.toString();
-
-				MessageDialog dialog = new MessageDialog(null, "Confirmation",
-						null, message, MessageDialog.QUESTION, new String[] {
-								"Yes", "No" }, 0);
-				int result = dialog.open();
-				if (result == 0) {
-
-					Workspace currentWorkspace = WorkspaceManager.getInstance()
-							.getCurrentWorkspace();
-					currentWorkspace.getProjectSpaces().remove(projectSpace);
-					currentWorkspace.save();
-					
-					try {
-						String pathToProject = Configuration.getWorkspaceDirectory()+"ps-"+projectSpace.getIdentifier();
-						deleteFolder(new File(pathToProject));
-					} catch (IOException e) {
-						DialogHandler.showExceptionDialog("Couldn't delete project files in file system.", e);
-					}
-					
-				}
+				deleteProjectSpace(projectSpace);
 			}
-			
-			private void deleteFolder(File folder) throws IOException {
-				if(folder.exists()) {
-					for(File child : folder.listFiles()) {
-						if(child.isDirectory()) {
-							deleteFolder(child);
-						} else {
-							if(!child.delete()) {
-								throw new IOException("Deletion of file: "+child.getAbsolutePath()+" failed.");
-							}
-						}
-					}
-					if(!folder.delete()) {
-						throw new IOException("Deletion of file: "+folder.getAbsolutePath()+" failed.");
-					}
-				}
-			}
-			
 		});
-		
-	
 		return null;
+	}
+	
+	private void deleteProjectSpace(final ProjectSpace projectSpace) {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder
+				.append("Do you really want to delete your local copy of project \"");
+		stringBuilder.append(projectSpace.getProjectName());
+		stringBuilder.append("\"");
+		if (projectSpace.getBaseVersion() != null) {
+			stringBuilder.append(" in version ");
+			stringBuilder.append(projectSpace.getBaseVersion()
+					.getIdentifier());
+		}
+		stringBuilder.append(".");
+		String message = stringBuilder.toString();
+
+		MessageDialog dialog = new MessageDialog(null, "Confirmation",
+				null, message, MessageDialog.QUESTION, new String[] {
+						"Yes", "No" }, 0);
+		int result = dialog.open();
+		if (result == 0) {
+
+			Workspace currentWorkspace = WorkspaceManager.getInstance()
+					.getCurrentWorkspace();
+			currentWorkspace.getProjectSpaces().remove(projectSpace);
+			currentWorkspace.save();
+			
+			try {
+				String pathToProject = Configuration.getWorkspaceDirectory()+"ps-"+projectSpace.getIdentifier();
+				deleteFolder(new File(pathToProject));
+			} catch (IOException e) {
+				DialogHandler.showExceptionDialog("Couldn't delete project files in file system.", e);
+			}
+			
+		}
+	}
+	
+	private void deleteFolder(File folder) throws IOException {
+		if(folder.exists()) {
+			for(File child : folder.listFiles()) {
+				if(child.isDirectory()) {
+					deleteFolder(child);
+				} else {
+					if(!child.delete()) {
+						throw new IOException("Deletion of file: "+child.getAbsolutePath()+" failed.");
+					}
+				}
+			}
+			if(!folder.delete()) {
+				throw new IOException("Deletion of file: "+folder.getAbsolutePath()+" failed.");
+			}
+		}
 	}
 }
 
