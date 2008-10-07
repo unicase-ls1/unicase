@@ -28,6 +28,7 @@ import org.unicase.model.util.ModelUtil;
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AbstractOperationImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AbstractOperationImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AbstractOperationImpl#getModelElementId <em>Model Element Id</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AbstractOperationImpl#isAccepted <em>Accepted</em>}</li>
  * </ul>
  * </p>
  *
@@ -62,6 +63,25 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements
 	 * @ordered
 	 */
 	protected ModelElementId modelElementId;
+
+	/**
+	 * The default value of the '{@link #isAccepted() <em>Accepted</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isAccepted()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean ACCEPTED_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isAccepted() <em>Accepted</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isAccepted()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean accepted = ACCEPTED_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -206,6 +226,29 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isAccepted() {
+		return accepted;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAccepted(boolean newAccepted) {
+		boolean oldAccepted = accepted;
+		accepted = newAccepted;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					OperationsPackage.ABSTRACT_OPERATION__ACCEPTED,
+					oldAccepted, accepted));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public void apply(Project project) {
@@ -281,6 +324,8 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements
 			if (resolve)
 				return getModelElementId();
 			return basicGetModelElementId();
+		case OperationsPackage.ABSTRACT_OPERATION__ACCEPTED:
+			return isAccepted() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -296,6 +341,9 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements
 		case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID:
 			setModelElementId((ModelElementId) newValue);
 			return;
+		case OperationsPackage.ABSTRACT_OPERATION__ACCEPTED:
+			setAccepted(((Boolean) newValue).booleanValue());
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -310,6 +358,9 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements
 		switch (featureID) {
 		case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID:
 			setModelElementId((ModelElementId) null);
+			return;
+		case OperationsPackage.ABSTRACT_OPERATION__ACCEPTED:
+			setAccepted(ACCEPTED_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -331,8 +382,27 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements
 					: !DESCRIPTION_EDEFAULT.equals(getDescription());
 		case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID:
 			return modelElementId != null;
+		case OperationsPackage.ABSTRACT_OPERATION__ACCEPTED:
+			return accepted != ACCEPTED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (accepted: ");
+		result.append(accepted);
+		result.append(')');
+		return result.toString();
 	}
 
 } //AbstractOperationImpl

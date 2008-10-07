@@ -38,19 +38,16 @@ import org.unicase.model.Project;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.unicase.emfstore.esmodel.versioning.impl.ChangePackageImpl#getOperations
- * <em>Operations</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.impl.ChangePackageImpl#getOperations <em>Operations</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	/**
-	 * The cached value of the '{@link #getOperations() <em>Operations</em>}'
-	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getOperations() <em>Operations</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getOperations()
 	 * @generated
 	 * @ordered
@@ -59,7 +56,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ChangePackageImpl() {
@@ -68,7 +64,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -78,7 +73,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<AbstractOperation> getOperations() {
@@ -175,12 +169,14 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 				continue;
 			}
 			if (operation instanceof SingleReferenceOperation) {
-				handleSingleRefOperation((SingleReferenceOperation) operation, changedReferences, operationsToBeDeleted);
+				handleSingleRefOperation((SingleReferenceOperation) operation,
+						changedReferences, operationsToBeDeleted);
 				continue;
 			}
 
 			if (operation instanceof MultiReferenceOperation) {
-				handleMultiRefOperation((MultiReferenceOperation) operation, changedReferences, operationsToBeDeleted);
+				handleMultiRefOperation((MultiReferenceOperation) operation,
+						changedReferences, operationsToBeDeleted);
 				continue;
 			}
 			// nop
@@ -191,8 +187,10 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		// remove all obsolete operations
 		list.removeAll(operationsToBeDeleted);
 	}
-	
-	private void aggregateMultiReferenceOperations(MultiReferenceOperation multiReferenceOperation, Map<String, ReferenceOperation> changedReferences,
+
+	private void aggregateMultiReferenceOperations(
+			MultiReferenceOperation multiReferenceOperation,
+			Map<String, ReferenceOperation> changedReferences,
 			Set<AbstractOperation> operationsToBeDeleted, String key) {
 		// aggregate the two multi reference changes if possible
 		MultiReferenceOperation lastMultiReferenceOperation = (MultiReferenceOperation) changedReferences
@@ -201,53 +199,55 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		if (multiReferenceOperation.isAdd() == lastMultiReferenceOperation
 				.isAdd()) {
 
-			int indexDifference = lastMultiReferenceOperation
-					.getIndex()
+			int indexDifference = lastMultiReferenceOperation.getIndex()
 					- multiReferenceOperation.getIndex();
 			if (indexDifference > 0
 					&& indexDifference < multiReferenceOperation
 							.getReferencedModelElements().size()) {
-				multiReferenceOperation
-						.getReferencedModelElements()
-						.addAll(
-								lastMultiReferenceOperation
-										.getIndex(),
-								lastMultiReferenceOperation
-										.getReferencedModelElements());
+				multiReferenceOperation.getReferencedModelElements().addAll(
+						lastMultiReferenceOperation.getIndex(),
+						lastMultiReferenceOperation
+								.getReferencedModelElements());
 				changedReferences.put(key, multiReferenceOperation);
-				operationsToBeDeleted
-						.add(lastMultiReferenceOperation);
+				operationsToBeDeleted.add(lastMultiReferenceOperation);
 				return;
 			}
 		}
 		changedReferences.put(key, multiReferenceOperation);
 	}
-	
-	private void handleMultiRefOperation(MultiReferenceOperation multiReferenceOperation, Map<String, ReferenceOperation> changedReferences,
-			Set<AbstractOperation> operationsToBeDeleted ) {
+
+	private void handleMultiRefOperation(
+			MultiReferenceOperation multiReferenceOperation,
+			Map<String, ReferenceOperation> changedReferences,
+			Set<AbstractOperation> operationsToBeDeleted) {
 		String key = multiReferenceOperation.getModelElementId()
 				+ multiReferenceOperation.getFeatureName();
 
 		if (changedReferences.containsKey(key)) {
-			aggregateMultiReferenceOperations(multiReferenceOperation, changedReferences, operationsToBeDeleted, key);
+			aggregateMultiReferenceOperations(multiReferenceOperation,
+					changedReferences, operationsToBeDeleted, key);
 			return;
 		} else if (multiReferenceOperation.isBidirectional()) {
 			for (ModelElementId referencedId : multiReferenceOperation
 					.getReferencedModelElements()) {
 				String oppositeKey = referencedId
-						+ multiReferenceOperation
-								.getOppositeFeatureName();
+						+ multiReferenceOperation.getOppositeFeatureName();
 				if (changedReferences.containsKey(oppositeKey)) {
 					ReferenceOperation oppositeOperation = changedReferences
 							.get(oppositeKey);
 					if (oppositeOperation instanceof SingleReferenceOperation) {
-						aggregateMultiwithSingleReference(multiReferenceOperation, changedReferences,
+						aggregateMultiwithSingleReference(
+								multiReferenceOperation, changedReferences,
 								operationsToBeDeleted, key, referencedId,
 								oppositeKey, oppositeOperation);
 						return;
 					} else {
 						// opposite is multiref
-						aggregateMultiwithMultiReference(multiReferenceOperation, (MultiReferenceOperation) oppositeOperation, changedReferences, operationsToBeDeleted, key, oppositeKey);
+						aggregateMultiwithMultiReference(
+								multiReferenceOperation,
+								(MultiReferenceOperation) oppositeOperation,
+								changedReferences, operationsToBeDeleted, key,
+								oppositeKey);
 						return;
 					}
 				}
@@ -255,38 +255,31 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		}
 		changedReferences.put(key, multiReferenceOperation);
 	}
-	
-	private void aggregateMultiwithMultiReference(MultiReferenceOperation multiReferenceOperation, MultiReferenceOperation oppositeMultiOperation, Map<String, ReferenceOperation> changedReferences,
-			Set<AbstractOperation> operationsToBeDeleted, String key, String oppositeKey) {
-		if (oppositeMultiOperation.isAdd() == multiReferenceOperation
-				.isAdd()) {
-			if (oppositeMultiOperation
-					.getReferencedModelElements()
-					.size() == 1) {
+
+	private void aggregateMultiwithMultiReference(
+			MultiReferenceOperation multiReferenceOperation,
+			MultiReferenceOperation oppositeMultiOperation,
+			Map<String, ReferenceOperation> changedReferences,
+			Set<AbstractOperation> operationsToBeDeleted, String key,
+			String oppositeKey) {
+		if (oppositeMultiOperation.isAdd() == multiReferenceOperation.isAdd()) {
+			if (oppositeMultiOperation.getReferencedModelElements().size() == 1) {
 				ModelElementId oppositeReferencedModelElementId = oppositeMultiOperation
-						.getReferencedModelElements()
-						.get(0);
+						.getReferencedModelElements().get(0);
 				if (oppositeReferencedModelElementId
-						.equals(multiReferenceOperation
-								.getModelElementId())) {
-					operationsToBeDeleted
-							.add(oppositeMultiOperation);
-					changedReferences
-							.remove(oppositeKey);
+						.equals(multiReferenceOperation.getModelElementId())) {
+					operationsToBeDeleted.add(oppositeMultiOperation);
+					changedReferences.remove(oppositeKey);
 				}
 				changedReferences.put(key, multiReferenceOperation);
 				return;
-			} else if (multiReferenceOperation
-					.getReferencedModelElements()
+			} else if (multiReferenceOperation.getReferencedModelElements()
 					.size() == 1) {
 				ModelElementId referencedModelElementId = multiReferenceOperation
-						.getReferencedModelElements()
-						.get(0);
-				if (referencedModelElementId
-						.equals(oppositeMultiOperation
-								.getModelElementId())) {
-					operationsToBeDeleted
-							.add(multiReferenceOperation);
+						.getReferencedModelElements().get(0);
+				if (referencedModelElementId.equals(oppositeMultiOperation
+						.getModelElementId())) {
+					operationsToBeDeleted.add(multiReferenceOperation);
 					return;
 				}
 				changedReferences.put(key, multiReferenceOperation);
@@ -295,7 +288,8 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		}
 	}
 
-	private void aggregateMultiwithSingleReference(MultiReferenceOperation multiReferenceOperation,
+	private void aggregateMultiwithSingleReference(
+			MultiReferenceOperation multiReferenceOperation,
 			Map<String, ReferenceOperation> changedReferences,
 			Set<AbstractOperation> operationsToBeDeleted, String key,
 			ModelElementId referencedId, String oppositeKey,
@@ -304,31 +298,23 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		// single operation on opposite is about same
 		// remove change
 		if (oppositeSingleOperation.getNewValue() == null
-				&& referencedId
-						.equals(oppositeSingleOperation
-								.getModelElementId())
-				&& multiReferenceOperation
-						.getModelElementId().equals(
-								oppositeSingleOperation
-										.getOldValue())
+				&& referencedId.equals(oppositeSingleOperation
+						.getModelElementId())
+				&& multiReferenceOperation.getModelElementId().equals(
+						oppositeSingleOperation.getOldValue())
 				&& !multiReferenceOperation.isAdd()) {
-			operationsToBeDeleted
-					.add(oppositeSingleOperation);
+			operationsToBeDeleted.add(oppositeSingleOperation);
 			changedReferences.remove(oppositeKey);
 		}
 		// single operation on opposite is about same
 		// add change
 		else if (oppositeSingleOperation.getOldValue() == null
-				&& referencedId
-						.equals(oppositeSingleOperation
-								.getModelElementId())
-				&& multiReferenceOperation
-						.getModelElementId().equals(
-								oppositeSingleOperation
-										.getNewValue())
+				&& referencedId.equals(oppositeSingleOperation
+						.getModelElementId())
+				&& multiReferenceOperation.getModelElementId().equals(
+						oppositeSingleOperation.getNewValue())
 				&& multiReferenceOperation.isAdd()) {
-			operationsToBeDeleted
-					.add(oppositeSingleOperation);
+			operationsToBeDeleted.add(oppositeSingleOperation);
 			changedReferences.remove(oppositeKey);
 		}
 		changedReferences.put(key, multiReferenceOperation);
@@ -423,7 +409,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	// end of custom code
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -441,7 +426,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -455,7 +439,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -473,7 +456,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -488,7 +470,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

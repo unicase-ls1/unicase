@@ -232,8 +232,9 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 		//MK: implement
 		throw new UnsupportedOperationException();
 	}
+
 	// end of custom code  
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
