@@ -60,7 +60,10 @@ public final class ServerConfiguration {
 
 	/**
 	 * Property for projectstate persistence policy in versions. Possible values
-	 * are <b>lastVersionOnly</b> and <b>everyVersion</b>
+	 * are <b>lastVersionOnly</b> and <b>everyVersion</b>. If you don't have
+	 * every project state the server has to recalulate certain revisions if
+	 * requested. On the other side saving every project state is quite
+	 * redundant.
 	 */
 	public static final String PROJECTSTATE_VERSION_PERSISTENCE = "persistence.version.projectstate";
 
