@@ -50,6 +50,7 @@ public class MEDiagramEditPart extends DiagramEditPart {
 		super.createDefaultEditPolicies();		
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
 				new DiagramDragDropEditPolicy() {
+					@SuppressWarnings("unchecked")
 					@Override
 					public Command getDropObjectsCommand(
 							DropObjectsRequest dropRequest) {
