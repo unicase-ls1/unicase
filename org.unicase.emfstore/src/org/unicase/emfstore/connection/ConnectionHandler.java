@@ -6,7 +6,7 @@
  */
 package org.unicase.emfstore.connection;
 
-import org.unicase.emfstore.EmfStore;
+import org.unicase.emfstore.EmfStoreInterface;
 import org.unicase.emfstore.accesscontrol.AuthenticationControl;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
@@ -16,24 +16,29 @@ import org.unicase.emfstore.exceptions.FatalEmfStoreException;
  * server. It requires {@link EmfStore} and {@link AuthenticationControl} to
  * delegate the messaeges.
  * 
+ * @param <T>
+ *            server interface type E.g {@link org.unicase.emfstore.EmfStore} or
+ *            {@link org.unicase.emfstore.AdminEmfStore}
+ * 
  * @author Wesendonk
  * @author koegel
  */
-public interface ConnectionHandler {
+public interface ConnectionHandler<T extends EmfStoreInterface> {
 
 	/**
 	 * This method initializes the ConnectionHandler.
 	 * 
 	 * @param emfStore
-	 *            an implementation of the {@link EmfStore}
+	 *            an implementation of a server interface. E.g {@link EmfStore}
+	 *            or {@link AdminEmfStore}
 	 * @param accessControl
 	 *            an implementation of the {@link AuthenticationControl}
 	 * @throws FatalEmfStoreException
 	 *             is thrown if the server can't initialize
 	 * @throws EmfStoreException
-	 * 				exception within the server
+	 *             exception within the server
 	 */
-	void init(EmfStore emfStore, AuthenticationControl accessControl)
+	void init(T emfStore, AuthenticationControl accessControl)
 			throws FatalEmfStoreException, EmfStoreException;
 
 	/**

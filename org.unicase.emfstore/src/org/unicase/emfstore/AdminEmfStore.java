@@ -26,7 +26,7 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
  * @author Hodaie
  * @author Wesendonk
  */
-public interface AdminEmfStore {
+public interface AdminEmfStore extends EmfStoreInterface{
 
 	/**
 	 * Returns a list of available project.

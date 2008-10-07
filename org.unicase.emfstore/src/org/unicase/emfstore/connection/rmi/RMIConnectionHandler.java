@@ -23,9 +23,9 @@ import org.unicase.emfstore.exceptions.FatalEmfStoreException;
  * 
  * @author koegel
  * @author Wesendonk
- *
+ * 
  */
-public class RMIConnectionHandler implements ConnectionHandler {
+public class RMIConnectionHandler implements ConnectionHandler<EmfStore> {
 
 	/**
 	 * String constant for the handlers name.
@@ -47,10 +47,11 @@ public class RMIConnectionHandler implements ConnectionHandler {
 	public RMIConnectionHandler() {
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
-	 * @throws EmfStoreException 
-	 * @see org.unicase.emfstore.connection.ConnectionHandler#init(org.unicase.emfstore.EmfStore, org.unicase.emfstore.accesscontrol.AuthenticationControl)
+	 * 
+	 * @throws EmfStoreException
+	 * @see {@link org.unicase.emfstore.connection.ConnectionHandler#init(Object, AuthenticationControl)}
 	 */
 	public void init(EmfStore emfStore, AuthenticationControl accessControl)
 			throws FatalEmfStoreException, EmfStoreException {
@@ -66,16 +67,18 @@ public class RMIConnectionHandler implements ConnectionHandler {
 		logger.debug("RMIConnectionHandler is running.");
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.emfstore.connection.ConnectionHandler#getName()
 	 */
 	public String getName() {
 		return NAME;
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.emfstore.connection.ConnectionHandler#stop(boolean)
 	 */
 	public void stop(boolean force) {

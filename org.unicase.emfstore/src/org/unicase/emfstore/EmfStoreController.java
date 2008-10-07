@@ -16,6 +16,7 @@ import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.commons.logging.impl.Log4jFactory;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
@@ -59,8 +60,7 @@ public class EmfStoreController implements IApplication {
 	private EmfStore emfStore;
 	private AdminEmfStore adminEmfStore;
 	private AccessControlImpl accessControl;
-	private Set<ConnectionHandler> connectionHandlers;
-	private RMIAdminConnectionHandler adminConnectionHandler;
+	private Set<ConnectionHandler<? extends EmfStoreInterface>> connectionHandlers;
 	private Properties properties;
 	private static Log logger;
 	private ServerSpace serverSpace;
@@ -92,17 +92,18 @@ public class EmfStoreController implements IApplication {
 		properties = initProperties();
 		this.serverSpace = initServerSpace();
 		versionInfo = initVersionInfo();
+
 		performNecessaryUpdates();
 
 		accessControl = initAccessControl(serverSpace);
 		emfStore = new EmfStoreImpl(serverSpace, accessControl);
 		adminEmfStore = new AdminEmfStoreImpl(serverSpace, accessControl);
-		adminConnectionHandler = new RMIAdminConnectionHandler();
-		adminConnectionHandler.init(adminEmfStore, accessControl);
-		connectionHandlers = initConnectionHandlers(emfStore, accessControl);
-		logger.info("Initialitation COMPLETE.");
 
+		connectionHandlers = initConnectionHandlers();
+
+		logger.info("Initialitation COMPLETE.");
 		logger.info("Server is RUNNING...");
+
 		waitForTermination();
 
 		instance = null;
@@ -110,23 +111,20 @@ public class EmfStoreController implements IApplication {
 		return IApplication.EXIT_OK;
 	}
 
-	private Set<ConnectionHandler> initConnectionHandlers(EmfStore emfStore,
-			AuthenticationControl accessControl) throws FatalEmfStoreException,
-			EmfStoreException {
-		Set<ConnectionHandler> connectionHandlers = new HashSet<ConnectionHandler>();
+	private Set<ConnectionHandler<? extends EmfStoreInterface>> initConnectionHandlers()
+			throws FatalEmfStoreException, EmfStoreException {
+		Set<ConnectionHandler<? extends EmfStoreInterface>> connectionHandlers = new HashSet<ConnectionHandler<? extends EmfStoreInterface>>();
 
-		// create RMI connection handler
+		// create RMI connection handler for emfstore
 		RMIConnectionHandler rmiConnectionHandler = new RMIConnectionHandler();
+		rmiConnectionHandler.init(emfStore, accessControl);
 		connectionHandlers.add(rmiConnectionHandler);
 
-		// TestDriver test = new TestDriver();
-		// connectionHandlers.add(test);
-
-		// init all handlers
-		for (ConnectionHandler handler : connectionHandlers) {
-			handler.init(emfStore, accessControl);
-		}
-
+		// create RMI connection handler for admin emfstore
+		RMIAdminConnectionHandler rmiAdminConnectionHandler = new RMIAdminConnectionHandler();
+		rmiAdminConnectionHandler.init(adminEmfStore, accessControl);
+		connectionHandlers.add(rmiAdminConnectionHandler);
+		
 		return connectionHandlers;
 	}
 
@@ -283,18 +281,19 @@ public class EmfStoreController implements IApplication {
 		logger = LogFactory.getLog(EmfStoreController.class);
 		
 		// OW: fix logging config
-//		ConsoleAppender console = new ConsoleAppender(new SimpleLayout());
-//		try {
-//			FileAppender fileLog = new FileAppender(new SimpleLayout(),
-//					ServerConfiguration.getServerHome() + "emfstore.log", true);
-//			Logger rootLogger = Logger.getRootLogger();
-//			rootLogger.addAppender(console);
-//			rootLogger.addAppender(fileLog);
-//			rootLogger.setLevel(Level.ALL);
-//		} catch (IOException e) {
-//			String message = "Logging initialization failed! Logging might be disabled!";
-//			logger.warn(message, e);
-//		}
+		// ConsoleAppender console = new ConsoleAppender(new SimpleLayout());
+		// try {
+		// FileAppender fileLog = new FileAppender(new SimpleLayout(),
+		// ServerConfiguration.getServerHome() + "emfstore.log", true);
+		// Logger rootLogger = Logger.getRootLogger();
+		// rootLogger.addAppender(console);
+		// rootLogger.addAppender(fileLog);
+		// rootLogger.setLevel(Level.ALL);
+		// } catch (IOException e) {
+		// String message =
+		// "Logging initialization failed! Logging might be disabled!";
+		// logger.warn(message, e);
+		// }
 	}
 
 	private ResourceStorage initStorage() throws FatalEmfStoreException {
@@ -384,7 +383,7 @@ public class EmfStoreController implements IApplication {
 	 */
 	public void stop() {
 		wakeForTermination();
-		for (ConnectionHandler handler : connectionHandlers) {
+		for (ConnectionHandler<? extends EmfStoreInterface> handler : connectionHandlers) {
 			handler.stop(false);
 		}
 		logger.info("Server was stopped.");
@@ -401,7 +400,7 @@ public class EmfStoreController implements IApplication {
 	 */
 	public void shutdown(FatalEmfStoreException exception) {
 		logger.debug("Stopping all connection handlers...");
-		for (ConnectionHandler handler : connectionHandlers) {
+		for (ConnectionHandler<? extends EmfStoreInterface> handler : connectionHandlers) {
 			logger.debug("Stopping connection handler \"" + handler.getName()
 					+ "\".");
 			handler.stop(true);
