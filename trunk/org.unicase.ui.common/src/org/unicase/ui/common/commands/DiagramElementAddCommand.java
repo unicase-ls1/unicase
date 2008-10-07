@@ -16,21 +16,30 @@ import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
 
 /**
- * @generated
+ * @author denglerm
+ * This class represents a command to add model elements to the diagram,
+ * which are not contained in the newElements list of the diagram.
  */
 public class DiagramElementAddCommand extends CreateElementCommand {
 
 	/**
-	 * @generated
+	 * The model element, which is added to the diagram.
 	 */
 	private EObject newElement;
+	
+	/**
+	 * Constructs a new element creation command for the <code>request</code>.
+	 * 
+	 * @param req
+	 *            the element creation request
+	 */
 	public DiagramElementAddCommand(CreateElementRequest req) {
 		super(req);
 		this.newElement = req.getNewElement();
 	}
 
 	/**
-	 * @generated
+	 * . {@inheritDoc}
 	 */
 	@Override
 	protected EObject getElementToEdit() {
@@ -43,7 +52,7 @@ public class DiagramElementAddCommand extends CreateElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * . {@inheritDoc}
 	 */
 	@Override
 	protected EClass getEClassToEdit() {
@@ -51,17 +60,20 @@ public class DiagramElementAddCommand extends CreateElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * This method adds the new model element to the element list of the diagram. 
+	 * @return the new model element that has been added
 	 */
 	@Override
 	protected EObject doDefaultElementCreation() {
 	
 		MEDiagram childHolder = (MEDiagram) getElementToEdit();
 		childHolder.getElements().add((ModelElement)this.newElement);
-
 		return newElement;
 	}
 
+	/**
+	 * . {@inheritDoc}
+	 */
 	@Override
 	public boolean canExecute() {
 		// Super class checks if Diagram has a containment feature.
