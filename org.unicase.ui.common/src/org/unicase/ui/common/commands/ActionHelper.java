@@ -130,7 +130,7 @@ public final class ActionHelper {
 	 *            ModelElement to open
 	 */
 	public static void openModelElement(final ModelElement me) {
-		if (!(me instanceof ModelElement)) {
+		if (me == null) {
 			return;
 		}
 

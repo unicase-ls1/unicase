@@ -146,7 +146,7 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 
 			List<EObject> result = new ArrayList<EObject>();
 			for (Iterator<URI> it = uris.iterator(); it.hasNext();) {
-				URI nextURI = (URI) it.next();
+				URI nextURI = it.next();
 				EObject modelObject = getEditingDomain().getResourceSet()
 						.getEObject(nextURI, true);
 				result.add(modelObject);
