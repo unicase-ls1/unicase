@@ -200,7 +200,7 @@ public class ChangesTreeComposite extends Composite {
 		
 		// the changed model element
 		TreeViewerColumn tclmME = new TreeViewerColumn(treeViewer, SWT.NONE);
-		tclmME.getColumn().setWidth(250);
+		tclmME.getColumn().setWidth(200);
 		tclmME.getColumn().setText("ModelElement");
 		tclmME.setLabelProvider(new ColumnLabelProvider() {
 			@Override
@@ -221,7 +221,7 @@ public class ChangesTreeComposite extends Composite {
 		// operation column
 		TreeViewerColumn tclmOp = new TreeViewerColumn(treeViewer, SWT.NONE);
 		tclmOp.getColumn().setText("Operation");
-		tclmOp.getColumn().setWidth(getShell().getSize().x - 350);
+		tclmOp.getColumn().setWidth(150);//getShell().getSize().x - 350);
 		tclmOp.setLabelProvider(new OperationColumnLabelProvider(emfProvider));
 		ColumnViewerToolTipSupport.enableFor(treeViewer);
 
