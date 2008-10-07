@@ -149,6 +149,15 @@ public interface ClassesPackage extends EPackage {
 	int PACKAGE_ELEMENT__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_ELEMENT__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -295,6 +304,15 @@ public interface ClassesPackage extends EPackage {
 	 * @ordered
 	 */
 	int CLASS__ANNOTATIONS = PACKAGE_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__ATTACHMENTS = PACKAGE_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -506,6 +524,15 @@ public interface ClassesPackage extends EPackage {
 	int PACKAGE__ANNOTATIONS = PACKAGE_ELEMENT__ANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE__ATTACHMENTS = PACKAGE_ELEMENT__ATTACHMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -664,6 +691,15 @@ public interface ClassesPackage extends EPackage {
 	 * @ordered
 	 */
 	int ASSOCIATION__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -851,6 +887,15 @@ public interface ClassesPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -1052,6 +1097,15 @@ public interface ClassesPackage extends EPackage {
 	int METHOD__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1251,6 +1305,15 @@ public interface ClassesPackage extends EPackage {
 	int METHOD_ARGUMENT__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD_ARGUMENT__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1421,6 +1484,15 @@ public interface ClassesPackage extends EPackage {
 	 * @ordered
 	 */
 	int DEPENDENCY__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDENCY__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.

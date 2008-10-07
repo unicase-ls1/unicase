@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.Annotation;
+import org.unicase.model.Attachment;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelFactory;
@@ -50,6 +51,7 @@ import org.unicase.model.task.util.MEStateImpl;
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getLastModifiedDate <em>Last Modified Date</em>}</li>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getStringReaderInfos <em>String Reader Infos</em>}</li>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getAnnotations <em>Annotations</em>}</li>
+ *   <li>{@link org.unicase.model.impl.ModelElementImpl#getAttachments <em>Attachments</em>}</li>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getIncomingDocumentReferences <em>Incoming Document References</em>}</li>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getLeafSection <em>Leaf Section</em>}</li>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getState <em>State</em>}</li>
@@ -194,6 +196,16 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	 * @ordered
 	 */
 	protected EList<Annotation> annotations;
+
+	/**
+	 * The cached value of the '{@link #getAttachments() <em>Attachments</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAttachments()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Attachment> attachments;
 
 	/**
 	 * The cached value of the '{@link #getIncomingDocumentReferences()
@@ -401,6 +413,21 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Attachment> getAttachments() {
+		if (attachments == null) {
+			attachments = new EObjectWithInverseResolvingEList.ManyInverse<Attachment>(
+					Attachment.class, this,
+					ModelPackage.MODEL_ELEMENT__ATTACHMENTS,
+					ModelPackage.ATTACHMENT__REFERRING_MODEL_ELEMENTS);
+		}
+		return attachments;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -583,6 +610,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAnnotations())
 					.basicAdd(otherEnd, msgs);
+		case ModelPackage.MODEL_ELEMENT__ATTACHMENTS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAttachments())
+					.basicAdd(otherEnd, msgs);
 		case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIncomingDocumentReferences())
 					.basicAdd(otherEnd, msgs);
@@ -604,6 +634,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		switch (featureID) {
 		case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:
 			return ((InternalEList<?>) getAnnotations()).basicRemove(otherEnd,
+					msgs);
+		case ModelPackage.MODEL_ELEMENT__ATTACHMENTS:
+			return ((InternalEList<?>) getAttachments()).basicRemove(otherEnd,
 					msgs);
 		case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
 			return ((InternalEList<?>) getIncomingDocumentReferences())
@@ -653,6 +686,8 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 			return getStringReaderInfos();
 		case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:
 			return getAnnotations();
+		case ModelPackage.MODEL_ELEMENT__ATTACHMENTS:
+			return getAttachments();
 		case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
 			return getIncomingDocumentReferences();
 		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
@@ -696,6 +731,11 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 			getAnnotations()
 					.addAll((Collection<? extends Annotation>) newValue);
 			return;
+		case ModelPackage.MODEL_ELEMENT__ATTACHMENTS:
+			getAttachments().clear();
+			getAttachments()
+					.addAll((Collection<? extends Attachment>) newValue);
+			return;
 		case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
 			getIncomingDocumentReferences().clear();
 			getIncomingDocumentReferences().addAll(
@@ -736,6 +776,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:
 			getAnnotations().clear();
 			return;
+		case ModelPackage.MODEL_ELEMENT__ATTACHMENTS:
+			getAttachments().clear();
+			return;
 		case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
 			getIncomingDocumentReferences().clear();
 			return;
@@ -775,6 +818,8 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 			return stringReaderInfos != null && !stringReaderInfos.isEmpty();
 		case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:
 			return annotations != null && !annotations.isEmpty();
+		case ModelPackage.MODEL_ELEMENT__ATTACHMENTS:
+			return attachments != null && !attachments.isEmpty();
 		case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
 			return incomingDocumentReferences != null
 					&& !incomingDocumentReferences.isEmpty();

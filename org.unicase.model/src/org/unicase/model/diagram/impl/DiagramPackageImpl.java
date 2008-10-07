@@ -335,7 +335,7 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		meDiagramEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		meDiagramEClass.getESuperTypes().add(theModelPackage.getAttachment());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(meDiagramEClass, MEDiagram.class, "MEDiagram", !IS_ABSTRACT,

@@ -38,7 +38,7 @@ public interface Annotation extends ModelElement {
 	 * @return the value of the '<em>Annotated Model Elements</em>' reference list.
 	 * @see org.unicase.model.ModelPackage#getAnnotation_AnnotatedModelElements()
 	 * @see org.unicase.model.ModelElement#getAnnotations
-	 * @model opposite="annotations"
+	 * @model opposite="annotations" keys="identifier"
 	 * @generated
 	 */
 	EList<ModelElement> getAnnotatedModelElements();

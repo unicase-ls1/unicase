@@ -147,6 +147,15 @@ public interface TaskPackage extends EPackage {
 	int WORK_ITEM__ANNOTATIONS = ModelPackage.ANNOTATION__ANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM__ATTACHMENTS = ModelPackage.ANNOTATION__ATTACHMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -328,6 +337,15 @@ public interface TaskPackage extends EPackage {
 	 * @ordered
 	 */
 	int ACTION_ITEM__ANNOTATIONS = WORK_ITEM__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_ITEM__ATTACHMENTS = WORK_ITEM__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -557,6 +575,15 @@ public interface TaskPackage extends EPackage {
 	int WORK_PACKAGE__ANNOTATIONS = WORK_ITEM__ANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE__ATTACHMENTS = WORK_ITEM__ATTACHMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -769,6 +796,15 @@ public interface TaskPackage extends EPackage {
 	 * @ordered
 	 */
 	int MILESTONE__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.

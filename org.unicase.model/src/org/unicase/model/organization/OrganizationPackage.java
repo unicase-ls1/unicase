@@ -156,6 +156,15 @@ public interface OrganizationPackage extends EPackage {
 	int ORG_UNIT__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORG_UNIT__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -304,6 +313,15 @@ public interface OrganizationPackage extends EPackage {
 	 * @ordered
 	 */
 	int USER__ANNOTATIONS = ORG_UNIT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__ATTACHMENTS = ORG_UNIT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -490,6 +508,15 @@ public interface OrganizationPackage extends EPackage {
 	 * @ordered
 	 */
 	int GROUP__ANNOTATIONS = ORG_UNIT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP__ATTACHMENTS = ORG_UNIT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.

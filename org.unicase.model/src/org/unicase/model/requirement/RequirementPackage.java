@@ -149,6 +149,15 @@ public interface RequirementPackage extends EPackage {
 	int NON_FUNCTIONAL_REQUIREMENT__ANNOTATIONS = RationalePackage.CRITERION__ANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NON_FUNCTIONAL_REQUIREMENT__ATTACHMENTS = RationalePackage.CRITERION__ATTACHMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -296,6 +305,15 @@ public interface RequirementPackage extends EPackage {
 	 * @ordered
 	 */
 	int FUNCTIONAL_REQUIREMENT__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTIONAL_REQUIREMENT__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -488,6 +506,15 @@ public interface RequirementPackage extends EPackage {
 	 * @ordered
 	 */
 	int USE_CASE__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USE_CASE__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -735,6 +762,15 @@ public interface RequirementPackage extends EPackage {
 	int SCENARIO__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCENARIO__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -906,6 +942,15 @@ public interface RequirementPackage extends EPackage {
 	int ACTOR__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTOR__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -1073,6 +1118,15 @@ public interface RequirementPackage extends EPackage {
 	int ACTOR_INSTANCE__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTOR_INSTANCE__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -1217,6 +1271,15 @@ public interface RequirementPackage extends EPackage {
 	 * @ordered
 	 */
 	int STEP__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -1380,6 +1443,15 @@ public interface RequirementPackage extends EPackage {
 	int SYSTEM_FUNCTION__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_FUNCTION__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1532,6 +1604,15 @@ public interface RequirementPackage extends EPackage {
 	 * @ordered
 	 */
 	int USER_TASK__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_TASK__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.

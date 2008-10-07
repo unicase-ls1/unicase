@@ -146,6 +146,15 @@ public interface ComponentPackage extends EPackage {
 	int COMPONENT__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -303,6 +312,15 @@ public interface ComponentPackage extends EPackage {
 	int COMPONENT_SERVICE__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_SERVICE__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -441,6 +459,15 @@ public interface ComponentPackage extends EPackage {
 	 * @ordered
 	 */
 	int DEPLOYMENT_NODE__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPLOYMENT_NODE__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.

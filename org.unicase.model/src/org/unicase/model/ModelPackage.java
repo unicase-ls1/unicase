@@ -63,7 +63,7 @@ public interface ModelPackage extends EPackage {
 	 * @see org.unicase.model.impl.ModelPackageImpl#getIdentifiableElement()
 	 * @generated
 	 */
-	int IDENTIFIABLE_ELEMENT = 4;
+	int IDENTIFIABLE_ELEMENT = 5;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -173,12 +173,21 @@ public interface ModelPackage extends EPackage {
 	int MODEL_ELEMENT__ANNOTATIONS = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT__ATTACHMENTS = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 8;
+
+	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 8;
+	int MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
@@ -186,7 +195,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__LEAF_SECTION = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 9;
+	int MODEL_ELEMENT__LEAF_SECTION = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
@@ -195,7 +204,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__STATE = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 10;
+	int MODEL_ELEMENT__STATE = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
 	 * The number of structural features of the '<em>Element</em>' class. <!--
@@ -204,7 +213,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_FEATURE_COUNT = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 11;
+	int MODEL_ELEMENT_FEATURE_COUNT = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 12;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.impl.ProjectImpl <em>Project</em>}' class.
@@ -351,6 +360,15 @@ public interface ModelPackage extends EPackage {
 	int ANNOTATION__ANNOTATIONS = MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__ATTACHMENTS = MODEL_ELEMENT__ATTACHMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -392,6 +410,151 @@ public interface ModelPackage extends EPackage {
 	int ANNOTATION_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.unicase.model.impl.AttachmentImpl <em>Attachment</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.impl.AttachmentImpl
+	 * @see org.unicase.model.impl.ModelPackageImpl#getAttachment()
+	 * @generated
+	 */
+	int ATTACHMENT = 4;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHMENT__IDENTIFIER = MODEL_ELEMENT__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHMENT__NAME = MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHMENT__DESCRIPTION = MODEL_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHMENT__CREATOR = MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHMENT__CREATION_DATE = MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Last Modifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHMENT__LAST_MODIFIER = MODEL_ELEMENT__LAST_MODIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Last Modified Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHMENT__LAST_MODIFIED_DATE = MODEL_ELEMENT__LAST_MODIFIED_DATE;
+
+	/**
+	 * The feature id for the '<em><b>String Reader Infos</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHMENT__STRING_READER_INFOS = MODEL_ELEMENT__STRING_READER_INFOS;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHMENT__ANNOTATIONS = MODEL_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHMENT__ATTACHMENTS = MODEL_ELEMENT__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHMENT__INCOMING_DOCUMENT_REFERENCES = MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHMENT__LEAF_SECTION = MODEL_ELEMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHMENT__STATE = MODEL_ELEMENT__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Referring Model Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHMENT__REFERRING_MODEL_ELEMENTS = MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Attachment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHMENT_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link org.unicase.model.impl.ModelElementIdImpl <em>Element Id</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -399,7 +562,7 @@ public interface ModelPackage extends EPackage {
 	 * @see org.unicase.model.impl.ModelPackageImpl#getModelElementId()
 	 * @generated
 	 */
-	int MODEL_ELEMENT_ID = 5;
+	int MODEL_ELEMENT_ID = 6;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -427,7 +590,7 @@ public interface ModelPackage extends EPackage {
 	 * @see org.unicase.model.impl.ModelPackageImpl#getNonDomainElement()
 	 * @generated
 	 */
-	int NON_DOMAIN_ELEMENT = 6;
+	int NON_DOMAIN_ELEMENT = 7;
 
 	/**
 	 * The number of structural features of the '<em>Non Domain Element</em>' class.
@@ -535,6 +698,17 @@ public interface ModelPackage extends EPackage {
 	EReference getModelElement_Annotations();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.ModelElement#getAttachments <em>Attachments</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Attachments</em>'.
+	 * @see org.unicase.model.ModelElement#getAttachments()
+	 * @see #getModelElement()
+	 * @generated
+	 */
+	EReference getModelElement_Attachments();
+
+	/**
 	 * Returns the meta object for the reference list '{@link org.unicase.model.ModelElement#getIncomingDocumentReferences <em>Incoming Document References</em>}'.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -625,6 +799,27 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getAnnotation_AnnotatedModelElements();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.model.Attachment <em>Attachment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Attachment</em>'.
+	 * @see org.unicase.model.Attachment
+	 * @generated
+	 */
+	EClass getAttachment();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.Attachment#getReferringModelElements <em>Referring Model Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Referring Model Elements</em>'.
+	 * @see org.unicase.model.Attachment#getReferringModelElements()
+	 * @see #getAttachment()
+	 * @generated
+	 */
+	EReference getAttachment_ReferringModelElements();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.IdentifiableElement <em>Identifiable Element</em>}'.
@@ -766,6 +961,15 @@ public interface ModelPackage extends EPackage {
 				.getModelElement_Annotations();
 
 		/**
+		 * The meta object literal for the '<em><b>Attachments</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODEL_ELEMENT__ATTACHMENTS = eINSTANCE
+				.getModelElement_Attachments();
+
+		/**
 		 * The meta object literal for the '<em><b>Incoming Document References</b></em>' reference list feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
@@ -841,6 +1045,25 @@ public interface ModelPackage extends EPackage {
 		 */
 		EReference ANNOTATION__ANNOTATED_MODEL_ELEMENTS = eINSTANCE
 				.getAnnotation_AnnotatedModelElements();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.impl.AttachmentImpl <em>Attachment</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.impl.AttachmentImpl
+		 * @see org.unicase.model.impl.ModelPackageImpl#getAttachment()
+		 * @generated
+		 */
+		EClass ATTACHMENT = eINSTANCE.getAttachment();
+
+		/**
+		 * The meta object literal for the '<em><b>Referring Model Elements</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ATTACHMENT__REFERRING_MODEL_ELEMENTS = eINSTANCE
+				.getAttachment_ReferringModelElements();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.impl.IdentifiableElementImpl <em>Identifiable Element</em>}' class.

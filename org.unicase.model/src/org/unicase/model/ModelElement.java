@@ -28,6 +28,7 @@ import org.unicase.model.task.util.MEState;
  *   <li>{@link org.unicase.model.ModelElement#getLastModifiedDate <em>Last Modified Date</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getStringReaderInfos <em>String Reader Infos</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getAnnotations <em>Annotations</em>}</li>
+ *   <li>{@link org.unicase.model.ModelElement#getAttachments <em>Attachments</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getIncomingDocumentReferences <em>Incoming Document References</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getLeafSection <em>Leaf Section</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getState <em>State</em>}</li>
@@ -232,6 +233,24 @@ public interface ModelElement extends IdentifiableElement {
 	 * @generated
 	 */
 	EList<Annotation> getAnnotations();
+
+	/**
+	 * Returns the value of the '<em><b>Attachments</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.Attachment}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.Attachment#getReferringModelElements <em>Referring Model Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Attachments</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Attachments</em>' reference list.
+	 * @see org.unicase.model.ModelPackage#getModelElement_Attachments()
+	 * @see org.unicase.model.Attachment#getReferringModelElements
+	 * @model opposite="referringModelElements" keys="identifier"
+	 * @generated
+	 */
+	EList<Attachment> getAttachments();
 
 	/**
 	 * Returns the value of the '<em><b>Incoming Document References</b></em>' reference list.

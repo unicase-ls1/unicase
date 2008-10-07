@@ -8,6 +8,7 @@ package org.unicase.model.diagram;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.unicase.model.Attachment;
 import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.impl.DiagramLoadException;
 import org.unicase.model.diagram.impl.DiagramStoreException;
@@ -31,7 +32,7 @@ import org.unicase.model.diagram.impl.DiagramStoreException;
  * @model
  * @generated
  */
-public interface MEDiagram extends ModelElement {
+public interface MEDiagram extends Attachment {
 	/**
 	 * Returns the value of the '<em><b>Elements</b></em>' reference list. The
 	 * list contents are of type {@link org.unicase.model.ModelElement}. <!--
