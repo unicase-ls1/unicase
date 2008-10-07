@@ -28,7 +28,7 @@ public class DiagramElementAddCommand extends CreateElementCommand {
 	private EObject newElement;
 	
 	/**
-	 * Constructs a new element creation command for the <code>request</code>.
+	 * Constructs a command for the <code>request</code>.
 	 * 
 	 * @param req
 	 *            the element creation request

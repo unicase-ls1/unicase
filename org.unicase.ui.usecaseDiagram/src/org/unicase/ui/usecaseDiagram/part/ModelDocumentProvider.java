@@ -325,14 +325,15 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void disposeElementInfo(Object element, ElementInfo info) {
-		if (info instanceof ResourceSetInfo) {
-			ResourceSetInfo resourceSetInfo = (ResourceSetInfo) info;
-			resourceSetInfo.dispose();
-		}
-		super.disposeElementInfo(element, info);
+		// JH we should do sth.
+		// if (info instanceof ResourceSetInfo) {
+		// ResourceSetInfo resourceSetInfo = (ResourceSetInfo) info;
+		// resourceSetInfo.dispose();
+		// }
+		// super.disposeElementInfo(element, info);
 	}
 
 	/**

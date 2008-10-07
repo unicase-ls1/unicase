@@ -290,5 +290,20 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagr
 		getSite().registerContextMenu(ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU,
 				provider, getDiagramGraphicalViewer());
 	}
-
+	
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public void setInput(IEditorInput input) {
+		try {
+			doSetInput(input, true);
+		} catch (CoreException x) {
+			x.printStackTrace(System.err);
+			String title = x.getMessage();
+			String msg = x.getMessage();
+			Shell shell = getSite().getShell();
+			ErrorDialog.openError(shell, title, msg, x.getStatus());
+		}
+	}
 }

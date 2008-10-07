@@ -491,16 +491,34 @@
       </parser>
    </extension>
 
+<extension point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="false"
+            id="org.unicase.ui.usecaseDiagram.part.DeleteFromDiagramAction"
+            objectClass="org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart">
+         <action
+               class="org.unicase.ui.common.diagram.DeleteFromDiagramAction"
+               enablesFor="1"
+               id="DeleteFromDiagramActionID"
+               label="Delete From Diagram"
+               menubarPath="additions">
+         </action>
+      </objectContribution>
+            <objectContribution
+            adaptable="false"
+            id="org.unicase.ui.usecaseDiagram.part.DeleteFromDiagramAction"
+            objectClass="org.unicase.ui.usecaseDiagram.edit.parts.ActorEditPart">
+         <action
+               class="org.unicase.ui.common.diagram.DeleteFromDiagramAction"
+               enablesFor="1"
+               id="DeleteFromDiagramActionID"
+               label="Delete From Diagram"
+               menubarPath="additions">
+         </action>
+      </objectContribution>
+</extension>
 
- <extension point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
-<contributionItemProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider" checkPluginLoaded="false">
-<Priority name="Low"/>
-<popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-<popupStructuredContributionCriteria objectClass="org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart"/>
-<popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-</popupContribution>
-</contributionItemProvider>
-</extension><extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
       <?gmfgen generated="true"?>
       <clientContext id="UseCaseClientContext">
          <enablement>

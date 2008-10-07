@@ -312,6 +312,9 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagr
 				provider, getDiagramGraphicalViewer());
 	}
 
+	/**
+	 * @generated NOT
+	 */
 	@Override
 	public void setInput(IEditorInput input) {
 		try {

@@ -1,6 +1,5 @@
 package org.unicase.ui.usecaseDiagram.edit.parts;
 
-import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 
