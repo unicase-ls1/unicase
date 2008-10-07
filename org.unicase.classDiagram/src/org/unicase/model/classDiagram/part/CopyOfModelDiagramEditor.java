@@ -10,6 +10,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.ui.URIEditorInput;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
@@ -42,12 +43,14 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.IShowInTargetList;
 import org.eclipse.ui.part.ShowInContext;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.model.diagram.impl.DiagramStoreException;
+import org.unicase.model.impl.ProjectImpl;
+import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.impl.ProjectSpaceImpl;
 
 /**
  * @generated
  */
-public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagramEditor implements
+public class CopyOfModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagramEditor implements
 		IGotoMarker {
 
 	/**
@@ -63,7 +66,7 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagr
 	/**
 	 * @generated
 	 */
-	public ModelDiagramEditor() {
+	public CopyOfModelDiagramEditor() {
 		super(true);
 	}
 
@@ -320,8 +323,18 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagr
 	}
 
 	@Override
-	public boolean isDirty() {
-		return true;
-	}
+	public void doSave(IProgressMonitor progressMonitor) {
+		//FIXME JH: can we remove this method?
+		getEditingDomain().getCommandStack().execute(
+				new RecordingCommand(getEditingDomain()) {
 
+					@Override
+					protected void doExecute() {
+						WorkspaceManager.getProjectSpace(
+								(MEDiagram) CopyOfModelDiagramEditor.this
+										.getDiagram().eContainer()).save();
+					}
+
+				});
+	}
 }
