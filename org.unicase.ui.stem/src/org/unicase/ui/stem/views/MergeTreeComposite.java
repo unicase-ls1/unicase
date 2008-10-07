@@ -24,6 +24,8 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
  */
 public class MergeTreeComposite extends ChangesTreeComposite {
 
+	private TreeViewerColumn statusColumn;
+
 	/**
 	 * Default constructor.
 	 * @param parent the parent composite
@@ -44,7 +46,7 @@ public class MergeTreeComposite extends ChangesTreeComposite {
 		TreeViewerColumn tclmUsername = new TreeViewerColumn(getTreeViewer(),
 				SWT.NONE);
 		tclmUsername.getColumn().setText("Username");
-		tclmUsername.getColumn().setWidth(100);
+		tclmUsername.getColumn().setWidth(75);
 		tclmUsername.setLabelProvider(new ColumnLabelProvider() {
 
 			@Override
@@ -59,39 +61,42 @@ public class MergeTreeComposite extends ChangesTreeComposite {
 		});
 
 
-		// status column
-		TreeViewerColumn tclmStatus = new TreeViewerColumn(getTreeViewer(),
+		statusColumn = new TreeViewerColumn(getTreeViewer(),
 				SWT.NONE);
-		tclmStatus.getColumn().setText("Status");
-		tclmStatus.getColumn().setWidth(100);
+		statusColumn.getColumn().setText("Status");
+		statusColumn.getColumn().setWidth(75);
 		
 		
-		final Random rnd = new Random();
 		// currently status column is set using a random boolean
-		tclmStatus.setLabelProvider(new ColumnLabelProvider() {
-			private boolean accepted;
-
+		statusColumn.setLabelProvider(new ColumnLabelProvider() {
 			@Override
 			public Color getForeground(Object element) {
-				return (accepted?Display.getCurrent().getSystemColor(SWT.COLOR_GREEN):Display.getCurrent().getSystemColor(SWT.COLOR_RED));
+				if(element instanceof AbstractOperation){
+					AbstractOperation op = (AbstractOperation)element;
+					return (op.isAccepted()?Display.getCurrent().getSystemColor(SWT.COLOR_GREEN):Display.getCurrent().getSystemColor(SWT.COLOR_RED));
+				}else{
+					return super.getForeground(element);
+				}
+				
 			}
 
 			@Override
 			public String getText(Object element) {
 				if(element instanceof AbstractOperation){
-					AbstractOperation operation = (AbstractOperation) element;
-					accepted = isAccepted(operation); 
-					return (accepted?"Accepted":"Rejected");
+					AbstractOperation op = (AbstractOperation) element;
+					return (op.isAccepted()?"Accepted":"Rejected");
 				}
 				return "";
 			}
-
-			// a dummy method.
-			private boolean isAccepted(AbstractOperation operation) {
-				return rnd.nextBoolean();
-			}
+			
 		});
+		
+		
 
+	}
+	
+	public TreeViewerColumn getStatusColumn(){
+		return this.statusColumn;
 	}
 
 }
