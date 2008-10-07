@@ -73,7 +73,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ME_DIAGRAM__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
+	int ME_DIAGRAM__IDENTIFIER = ModelPackage.ATTACHMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!--
@@ -82,7 +82,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ME_DIAGRAM__NAME = ModelPackage.MODEL_ELEMENT__NAME;
+	int ME_DIAGRAM__NAME = ModelPackage.ATTACHMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute. <!--
@@ -91,7 +91,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ME_DIAGRAM__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int ME_DIAGRAM__DESCRIPTION = ModelPackage.ATTACHMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute.
@@ -100,7 +100,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ME_DIAGRAM__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+	int ME_DIAGRAM__CREATOR = ModelPackage.ATTACHMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
@@ -109,7 +109,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ME_DIAGRAM__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+	int ME_DIAGRAM__CREATION_DATE = ModelPackage.ATTACHMENT__CREATION_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Last Modifier</b></em>' attribute.
@@ -118,7 +118,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ME_DIAGRAM__LAST_MODIFIER = ModelPackage.MODEL_ELEMENT__LAST_MODIFIER;
+	int ME_DIAGRAM__LAST_MODIFIER = ModelPackage.ATTACHMENT__LAST_MODIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Last Modified Date</b></em>' attribute.
@@ -127,7 +127,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ME_DIAGRAM__LAST_MODIFIED_DATE = ModelPackage.MODEL_ELEMENT__LAST_MODIFIED_DATE;
+	int ME_DIAGRAM__LAST_MODIFIED_DATE = ModelPackage.ATTACHMENT__LAST_MODIFIED_DATE;
 
 	/**
 	 * The feature id for the '<em><b>String Reader Infos</b></em>' attribute list.
@@ -136,7 +136,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ME_DIAGRAM__STRING_READER_INFOS = ModelPackage.MODEL_ELEMENT__STRING_READER_INFOS;
+	int ME_DIAGRAM__STRING_READER_INFOS = ModelPackage.ATTACHMENT__STRING_READER_INFOS;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!--
@@ -145,7 +145,16 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ME_DIAGRAM__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+	int ME_DIAGRAM__ANNOTATIONS = ModelPackage.ATTACHMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ME_DIAGRAM__ATTACHMENTS = ModelPackage.ATTACHMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -153,7 +162,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ME_DIAGRAM__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int ME_DIAGRAM__INCOMING_DOCUMENT_REFERENCES = ModelPackage.ATTACHMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
@@ -161,7 +170,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ME_DIAGRAM__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int ME_DIAGRAM__LEAF_SECTION = ModelPackage.ATTACHMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
@@ -170,7 +179,16 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ME_DIAGRAM__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+	int ME_DIAGRAM__STATE = ModelPackage.ATTACHMENT__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Referring Model Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ME_DIAGRAM__REFERRING_MODEL_ELEMENTS = ModelPackage.ATTACHMENT__REFERRING_MODEL_ELEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Elements</b></em>' reference list. <!--
@@ -179,7 +197,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ME_DIAGRAM__ELEMENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int ME_DIAGRAM__ELEMENTS = ModelPackage.ATTACHMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Gmfdiagram</b></em>' containment reference.
@@ -187,7 +205,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ME_DIAGRAM__GMFDIAGRAM = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int ME_DIAGRAM__GMFDIAGRAM = ModelPackage.ATTACHMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>New Elements</b></em>' containment reference list.
@@ -195,7 +213,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ME_DIAGRAM__NEW_ELEMENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int ME_DIAGRAM__NEW_ELEMENTS = ModelPackage.ATTACHMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -204,7 +222,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ME_DIAGRAM__TYPE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int ME_DIAGRAM__TYPE = ModelPackage.ATTACHMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Diagram Layout</b></em>' attribute.
@@ -213,7 +231,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ME_DIAGRAM__DIAGRAM_LAYOUT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int ME_DIAGRAM__DIAGRAM_LAYOUT = ModelPackage.ATTACHMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>ME Diagram</em>' class.
@@ -221,7 +239,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ME_DIAGRAM_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
+	int ME_DIAGRAM_FEATURE_COUNT = ModelPackage.ATTACHMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.diagram.DiagramType <em>Type</em>}' enum.

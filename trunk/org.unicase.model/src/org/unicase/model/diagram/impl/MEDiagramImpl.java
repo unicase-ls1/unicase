@@ -33,7 +33,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.impl.AttachmentImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '
@@ -51,7 +51,7 @@ import org.unicase.model.impl.ModelElementImpl;
  *
  * @generated
  */
-public class MEDiagramImpl extends ModelElementImpl implements MEDiagram {
+public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	/**
 	 * 
 	 */

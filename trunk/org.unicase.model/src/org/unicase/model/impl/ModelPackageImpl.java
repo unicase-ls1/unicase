@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.model.Annotation;
+import org.unicase.model.Attachment;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
@@ -77,6 +78,13 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	private EClass annotationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass attachmentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -319,10 +327,11 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModelElement_IncomingDocumentReferences() {
+	public EReference getModelElement_Attachments() {
 		return (EReference) modelElementEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -330,8 +339,16 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModelElement_LeafSection() {
+	public EReference getModelElement_IncomingDocumentReferences() {
 		return (EReference) modelElementEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getModelElement_LeafSection() {
+		return (EReference) modelElementEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -340,7 +357,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	public EAttribute getModelElement_State() {
-		return (EAttribute) modelElementEClass.getEStructuralFeatures().get(10);
+		return (EAttribute) modelElementEClass.getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -390,6 +407,24 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 */
 	public EReference getAnnotation_AnnotatedModelElements() {
 		return (EReference) annotationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getAttachment() {
+		return attachmentEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAttachment_ReferringModelElements() {
+		return (EReference) attachmentEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -465,6 +500,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		createEAttribute(modelElementEClass, MODEL_ELEMENT__LAST_MODIFIED_DATE);
 		createEAttribute(modelElementEClass, MODEL_ELEMENT__STRING_READER_INFOS);
 		createEReference(modelElementEClass, MODEL_ELEMENT__ANNOTATIONS);
+		createEReference(modelElementEClass, MODEL_ELEMENT__ATTACHMENTS);
 		createEReference(modelElementEClass,
 				MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES);
 		createEReference(modelElementEClass, MODEL_ELEMENT__LEAF_SECTION);
@@ -478,6 +514,9 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 		annotationEClass = createEClass(ANNOTATION);
 		createEReference(annotationEClass, ANNOTATION__ANNOTATED_MODEL_ELEMENTS);
+
+		attachmentEClass = createEClass(ATTACHMENT);
+		createEReference(attachmentEClass, ATTACHMENT__REFERRING_MODEL_ELEMENTS);
 
 		identifiableElementEClass = createEClass(IDENTIFIABLE_ELEMENT);
 		createEAttribute(identifiableElementEClass,
@@ -557,6 +596,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		// Add supertypes to classes
 		modelElementEClass.getESuperTypes().add(this.getIdentifiableElement());
 		annotationEClass.getESuperTypes().add(this.getModelElement());
+		attachmentEClass.getESuperTypes().add(this.getModelElement());
 		modelElementIdEClass.getESuperTypes().add(this.getUniqueIdentifier());
 
 		// Initialize classes and features; add operations and parameters
@@ -597,6 +637,13 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getModelElement_Annotations().getEKeys().add(
+				this.getIdentifiableElement_Identifier());
+		initEReference(getModelElement_Attachments(), this.getAttachment(),
+				this.getAttachment_ReferringModelElements(), "attachments",
+				null, 0, -1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getModelElement_Attachments().getEKeys().add(
 				this.getIdentifiableElement_Identifier());
 		initEReference(getModelElement_IncomingDocumentReferences(),
 				theDocumentPackage.getLeafSection(), theDocumentPackage
@@ -694,6 +741,19 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		getAnnotation_AnnotatedModelElements().getEKeys().add(
+				this.getIdentifiableElement_Identifier());
+
+		initEClass(attachmentEClass, Attachment.class, "Attachment",
+				IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAttachment_ReferringModelElements(), this
+				.getModelElement(), this.getModelElement_Attachments(),
+				"referringModelElements", null, 0, -1, Attachment.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		getAttachment_ReferringModelElements().getEKeys().add(
+				this.getIdentifiableElement_Identifier());
 
 		initEClass(identifiableElementEClass, IdentifiableElement.class,
 				"IdentifiableElement", !IS_ABSTRACT, !IS_INTERFACE,

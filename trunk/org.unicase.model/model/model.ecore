@@ -23,6 +23,8 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" changeable="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="annotations" upperBound="-1"
         eType="#//Annotation" eOpposite="#//Annotation/annotatedModelElements" eKeys="#//IdentifiableElement/identifier"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attachments" upperBound="-1"
+        eType="#//Attachment" eOpposite="#//Attachment/referringModelElements" eKeys="#//IdentifiableElement/identifier"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="incomingDocumentReferences"
         upperBound="-1" eType="#//document/LeafSection" eOpposite="#//document/LeafSection/referencedModelElements"
         eKeys="#//IdentifiableElement/identifier"/>
@@ -69,7 +71,13 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Annotation" abstract="true" eSuperTypes="#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="annotatedModelElements"
-        upperBound="-1" eType="#//ModelElement" eOpposite="#//ModelElement/annotations"/>
+        upperBound="-1" eType="#//ModelElement" eOpposite="#//ModelElement/annotations"
+        eKeys="#//IdentifiableElement/identifier"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Attachment" abstract="true" eSuperTypes="#//ModelElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referringModelElements"
+        upperBound="-1" eType="#//ModelElement" eOpposite="#//ModelElement/attachments"
+        eKeys="#//IdentifiableElement/identifier"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IdentifiableElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
@@ -146,7 +154,7 @@
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="diagram" nsURI="http://unicase.org/model/diagram" nsPrefix="org.unicase.model.diagram">
-    <eClassifiers xsi:type="ecore:EClass" name="MEDiagram" eSuperTypes="#//ModelElement">
+    <eClassifiers xsi:type="ecore:EClass" name="MEDiagram" eSuperTypes="#//Attachment">
       <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
           eType="#//ModelElement" eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="gmfdiagram" eType="ecore:EClass platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.ecore#//Diagram"

@@ -32,8 +32,8 @@ import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.organization.OrganizationFactory;
+import org.unicase.model.provider.AttachmentItemProvider;
 import org.unicase.model.provider.ModelEditPlugin;
-import org.unicase.model.provider.ModelElementItemProvider;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.task.TaskFactory;
@@ -44,7 +44,7 @@ import org.unicase.model.task.TaskFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MEDiagramItemProvider extends ModelElementItemProvider implements
+public class MEDiagramItemProvider extends AttachmentItemProvider implements
 		IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**

@@ -146,6 +146,15 @@ public interface BugPackage extends EPackage {
 	int BUG_REPORT__ANNOTATIONS = TaskPackage.WORK_ITEM__ANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUG_REPORT__ATTACHMENTS = TaskPackage.WORK_ITEM__ATTACHMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
