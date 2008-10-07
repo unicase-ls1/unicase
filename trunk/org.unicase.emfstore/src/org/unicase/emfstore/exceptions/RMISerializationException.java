@@ -12,13 +12,13 @@ package org.unicase.emfstore.exceptions;
  *
  */
 @SuppressWarnings("serial")
-public class SerializationException extends EmfStoreException {
+public class RMISerializationException extends EmfStoreException {
 
 	/**
 	 * Default constructor.
 	 * @param cause the cause
 	 */
-	public SerializationException(Throwable cause) {
+	public RMISerializationException(Throwable cause) {
 		super("De-/Serialization failed", cause);
 	}
 }
