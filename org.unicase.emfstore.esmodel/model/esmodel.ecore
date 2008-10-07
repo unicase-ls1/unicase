@@ -118,6 +118,8 @@
             derived="true"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="modelElementId" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"
             containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="accepted" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+            transient="true"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="CompositeOperation" eSuperTypes="#//versioning/operations/AbstractOperation">
         <eOperations name="cannonize"/>

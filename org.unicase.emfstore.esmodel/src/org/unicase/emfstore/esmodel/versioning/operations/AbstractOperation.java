@@ -21,6 +21,7 @@ import org.unicase.model.Project;
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getName <em>Name</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getDescription <em>Description</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getModelElementId <em>Model Element Id</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#isAccepted <em>Accepted</em>}</li>
  * </ul>
  * </p>
  *
@@ -85,6 +86,32 @@ public interface AbstractOperation extends EObject {
 	 * @generated
 	 */
 	void setModelElementId(ModelElementId value);
+
+	/**
+	 * Returns the value of the '<em><b>Accepted</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Accepted</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Accepted</em>' attribute.
+	 * @see #setAccepted(boolean)
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getAbstractOperation_Accepted()
+	 * @model transient="true"
+	 * @generated
+	 */
+	boolean isAccepted();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#isAccepted <em>Accepted</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Accepted</em>' attribute.
+	 * @see #isAccepted()
+	 * @generated
+	 */
+	void setAccepted(boolean value);
 
 	/**
 	 * <!-- begin-user-doc -->
