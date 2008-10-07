@@ -56,9 +56,9 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade
 	 */
 	public void addParticipant(String sessionId, String projectId,
 			String participant) throws RemoteException, EmfStoreException {
-		adminEmfStore.addParticipant((SessionId) RMIUtil
-				.stringToEObject(sessionId), (ProjectId) RMIUtil
-				.stringToEObject(projectId), (ACOrgUnitId) RMIUtil
+		adminEmfStore.addParticipant((SessionId) SerializationUtil
+				.stringToEObject(sessionId), (ProjectId) SerializationUtil
+				.stringToEObject(projectId), (ACOrgUnitId) SerializationUtil
 				.stringToEObject(participant));
 
 	}
@@ -69,10 +69,10 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade
 	public void changeRole(String sessionId, String projectId, String orgUnit,
 			String eClass) throws RemoteException, EmfStoreException {
 		adminEmfStore.changeRole(
-				(SessionId) RMIUtil.stringToEObject(sessionId),
-				(ProjectId) RMIUtil.stringToEObject(projectId),
-				(ACOrgUnitId) RMIUtil.stringToEObject(orgUnit),
-				(EClass) RMIUtil.stringToEObject(eClass));
+				(SessionId) SerializationUtil.stringToEObject(sessionId),
+				(ProjectId) SerializationUtil.stringToEObject(projectId),
+				(ACOrgUnitId) SerializationUtil.stringToEObject(orgUnit),
+				(EClass) SerializationUtil.stringToEObject(eClass));
 
 	}
 
@@ -82,9 +82,9 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade
 	public List<String> getGroups(String sessionId) throws RemoteException,
 			EmfStoreException {
 		List<String> result = new ArrayList<String>();
-		for (ACGroup group : adminEmfStore.getGroups((SessionId) RMIUtil
+		for (ACGroup group : adminEmfStore.getGroups((SessionId) SerializationUtil
 				.stringToEObject(sessionId))) {
-			result.add(RMIUtil.eObjectToString(group));
+			result.add(SerializationUtil.eObjectToString(group));
 		}
 		return result;
 	}
@@ -95,10 +95,10 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade
 	public List<String> getGroups(String sessionId, String user)
 			throws RemoteException, EmfStoreException {
 		List<String> result = new ArrayList<String>();
-		for (ACGroup group : adminEmfStore.getGroups((SessionId) RMIUtil
-				.stringToEObject(sessionId), (ACOrgUnitId) RMIUtil
+		for (ACGroup group : adminEmfStore.getGroups((SessionId) SerializationUtil
+				.stringToEObject(sessionId), (ACOrgUnitId) SerializationUtil
 				.stringToEObject(user))) {
-			result.add(RMIUtil.eObjectToString(group));
+			result.add(SerializationUtil.eObjectToString(group));
 		}
 		return result;
 	}
@@ -109,9 +109,9 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade
 	public List<String> getOrgUnits(String sessionId) throws RemoteException,
 			EmfStoreException {
 		List<String> result = new ArrayList<String>();
-		for (ACOrgUnit orgUnit : adminEmfStore.getOrgUnits((SessionId) RMIUtil
+		for (ACOrgUnit orgUnit : adminEmfStore.getOrgUnits((SessionId) SerializationUtil
 				.stringToEObject(sessionId))) {
-			result.add(RMIUtil.eObjectToString(orgUnit));
+			result.add(SerializationUtil.eObjectToString(orgUnit));
 		}
 		return result;
 	}
@@ -123,9 +123,9 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade
 			throws RemoteException, EmfStoreException {
 		List<String> result = new ArrayList<String>();
 		for (ACOrgUnit orgUnit : adminEmfStore.getParticipants(
-				(SessionId) RMIUtil.stringToEObject(sessionId),
-				(ProjectId) RMIUtil.stringToEObject(projectId))) {
-			result.add(RMIUtil.eObjectToString(orgUnit));
+				(SessionId) SerializationUtil.stringToEObject(sessionId),
+				(ProjectId) SerializationUtil.stringToEObject(projectId))) {
+			result.add(SerializationUtil.eObjectToString(orgUnit));
 		}
 		return result;
 	}
@@ -137,10 +137,10 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade
 			throws RemoteException, EmfStoreException {
 
 		List<String> result = new ArrayList<String>();
-		for (ACOrgUnit orgUnit : adminEmfStore.getMembers((SessionId) RMIUtil
-				.stringToEObject(sessionId), (ACOrgUnitId) RMIUtil
+		for (ACOrgUnit orgUnit : adminEmfStore.getMembers((SessionId) SerializationUtil
+				.stringToEObject(sessionId), (ACOrgUnitId) SerializationUtil
 				.stringToEObject(groupId))) {
-			result.add(RMIUtil.eObjectToString(orgUnit));
+			result.add(SerializationUtil.eObjectToString(orgUnit));
 		}
 		return result;
 	}
@@ -152,8 +152,8 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade
 			throws RemoteException, EmfStoreException {
 		List<String> result = new ArrayList<String>();
 		for (ProjectInfo projectInfo : adminEmfStore
-				.getProjectInfos((SessionId) RMIUtil.stringToEObject(sessionId))) {
-			result.add(RMIUtil.eObjectToString(projectInfo));
+				.getProjectInfos((SessionId) SerializationUtil.stringToEObject(sessionId))) {
+			result.add(SerializationUtil.eObjectToString(projectInfo));
 		}
 		return result;
 	}
@@ -163,10 +163,10 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade
 	 */
 	public String getRole(String sessionId, String projectId, String orgUnit)
 			throws RemoteException, EmfStoreException {
-		return RMIUtil.eObjectToString(adminEmfStore.getRole(
-				(SessionId) RMIUtil.stringToEObject(sessionId),
-				(ProjectId) RMIUtil.stringToEObject(projectId),
-				(ACOrgUnitId) RMIUtil.stringToEObject(orgUnit)));
+		return SerializationUtil.eObjectToString(adminEmfStore.getRole(
+				(SessionId) SerializationUtil.stringToEObject(sessionId),
+				(ProjectId) SerializationUtil.stringToEObject(projectId),
+				(ACOrgUnitId) SerializationUtil.stringToEObject(orgUnit)));
 	}
 
 	/**
@@ -175,9 +175,9 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade
 	public List<String> getUsers(String sessionId) throws RemoteException,
 			EmfStoreException {
 		List<String> result = new ArrayList<String>();
-		for (ACUser user : adminEmfStore.getUsers((SessionId) RMIUtil
+		for (ACUser user : adminEmfStore.getUsers((SessionId) SerializationUtil
 				.stringToEObject(sessionId))) {
-			result.add(RMIUtil.eObjectToString(user));
+			result.add(SerializationUtil.eObjectToString(user));
 		}
 		return result;
 	}
@@ -187,9 +187,9 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade
 	 */
 	public void removeGroup(String sessionId, String user, String group)
 			throws RemoteException, EmfStoreException {
-		adminEmfStore.removeGroup((SessionId) RMIUtil
-				.stringToEObject(sessionId), (ACOrgUnitId) RMIUtil
-				.stringToEObject(user), (ACOrgUnitId) RMIUtil
+		adminEmfStore.removeGroup((SessionId) SerializationUtil
+				.stringToEObject(sessionId), (ACOrgUnitId) SerializationUtil
+				.stringToEObject(user), (ACOrgUnitId) SerializationUtil
 				.stringToEObject(group));
 	}
 
@@ -198,9 +198,9 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade
 	 */
 	public void removeParticipant(String sessionId, String projectId,
 			String participant) throws RemoteException, EmfStoreException {
-		adminEmfStore.removeParticipant((SessionId) RMIUtil
-				.stringToEObject(sessionId), (ProjectId) RMIUtil
-				.stringToEObject(projectId), (ACOrgUnitId) RMIUtil
+		adminEmfStore.removeParticipant((SessionId) SerializationUtil
+				.stringToEObject(sessionId), (ProjectId) SerializationUtil
+				.stringToEObject(projectId), (ACOrgUnitId) SerializationUtil
 				.stringToEObject(participant));
 	}
 
@@ -209,7 +209,7 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade
 	 */
 	public void createGroup(String sessionId, String name)
 			throws RemoteException, EmfStoreException {
-		adminEmfStore.createGroup((SessionId) RMIUtil
+		adminEmfStore.createGroup((SessionId) SerializationUtil
 				.stringToEObject(sessionId), name);
 	}
 
@@ -219,7 +219,7 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade
 	public void createUser(String sessionId, String name)
 			throws RemoteException, EmfStoreException {
 		adminEmfStore.createUser(
-				(SessionId) RMIUtil.stringToEObject(sessionId), name);
+				(SessionId) SerializationUtil.stringToEObject(sessionId), name);
 	}
 
 	/**
@@ -227,8 +227,8 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade
 	 */
 	public void deleteGroup(String sessionId, String id)
 			throws RemoteException, EmfStoreException {
-		adminEmfStore.deleteGroup((SessionId) RMIUtil
-				.stringToEObject(sessionId), (ACOrgUnitId) RMIUtil
+		adminEmfStore.deleteGroup((SessionId) SerializationUtil
+				.stringToEObject(sessionId), (ACOrgUnitId) SerializationUtil
 				.stringToEObject(id));
 	}
 
@@ -238,8 +238,8 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade
 	public void deleteUser(String sessionId, String id) throws RemoteException,
 			EmfStoreException {
 		adminEmfStore.deleteUser(
-				(SessionId) RMIUtil.stringToEObject(sessionId),
-				(ACOrgUnitId) RMIUtil.stringToEObject(id));
+				(SessionId) SerializationUtil.stringToEObject(sessionId),
+				(ACOrgUnitId) SerializationUtil.stringToEObject(id));
 	}
 
 	/**
@@ -247,9 +247,9 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade
 	 */
 	public void addMember(String sessionId, String group, String member)
 			throws RemoteException, EmfStoreException {
-		adminEmfStore.addMember((SessionId) RMIUtil.stringToEObject(sessionId),
-				(ACOrgUnitId) RMIUtil.stringToEObject(group),
-				(ACOrgUnitId) RMIUtil.stringToEObject(member));
+		adminEmfStore.addMember((SessionId) SerializationUtil.stringToEObject(sessionId),
+				(ACOrgUnitId) SerializationUtil.stringToEObject(group),
+				(ACOrgUnitId) SerializationUtil.stringToEObject(member));
 	}
 
 	/**
@@ -257,9 +257,9 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade
 	 */
 	public void removeMember(String sessionId, String group, String member)
 			throws RemoteException, EmfStoreException {
-		adminEmfStore.removeMember((SessionId) RMIUtil
-				.stringToEObject(sessionId), (ACOrgUnitId) RMIUtil
-				.stringToEObject(group), (ACOrgUnitId) RMIUtil
+		adminEmfStore.removeMember((SessionId) SerializationUtil
+				.stringToEObject(sessionId), (ACOrgUnitId) SerializationUtil
+				.stringToEObject(group), (ACOrgUnitId) SerializationUtil
 				.stringToEObject(member));
 	}
 
@@ -268,8 +268,8 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade
 	 */
 	public void changeOrgUnit(String sessionId, String orgUnitId, String name,
 			String description) throws RemoteException, EmfStoreException {
-		adminEmfStore.changeOrgUnit((SessionId) RMIUtil
-				.stringToEObject(sessionId), (ACOrgUnitId) RMIUtil
+		adminEmfStore.changeOrgUnit((SessionId) SerializationUtil
+				.stringToEObject(sessionId), (ACOrgUnitId) SerializationUtil
 				.stringToEObject(orgUnitId), name, description);
 	}
 
@@ -278,9 +278,9 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade
 	 */
 	public String getOrgUnit(String sessionId, String orgUnitId)
 			throws RemoteException, EmfStoreException {
-		return RMIUtil.eObjectToString(adminEmfStore.getOrgUnit(
-				(SessionId) RMIUtil.stringToEObject(sessionId),
-				(ACOrgUnitId) RMIUtil.stringToEObject(orgUnitId)));
+		return SerializationUtil.eObjectToString(adminEmfStore.getOrgUnit(
+				(SessionId) SerializationUtil.stringToEObject(sessionId),
+				(ACOrgUnitId) SerializationUtil.stringToEObject(orgUnitId)));
 
 	}
 

@@ -17,7 +17,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.unicase.emfstore.connection.rmi.RMIAdminConnectionHandler;
 import org.unicase.emfstore.connection.rmi.RMIAdminEmfStoreFacade;
-import org.unicase.emfstore.connection.rmi.RMIUtil;
+import org.unicase.emfstore.connection.rmi.SerializationUtil;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
@@ -54,9 +54,9 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 			ACOrgUnitId participant) throws EmfStoreException {
 		try {
 			getFacade(sessionId).addParticipant(
-					RMIUtil.eObjectToString(sessionId),
-					RMIUtil.eObjectToString(projectId),
-					RMIUtil.eObjectToString(participant));
+					SerializationUtil.eObjectToString(sessionId),
+					SerializationUtil.eObjectToString(projectId),
+					SerializationUtil.eObjectToString(participant));
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
@@ -68,10 +68,10 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 	public void changeRole(SessionId sessionId, ProjectId projectId,
 			ACOrgUnitId orgUnit, EClass role) throws EmfStoreException {
 		try {
-			getFacade(sessionId).changeRole(RMIUtil.eObjectToString(sessionId),
-					RMIUtil.eObjectToString(projectId),
-					RMIUtil.eObjectToString(orgUnit),
-					RMIUtil.eObjectToString(role));
+			getFacade(sessionId).changeRole(SerializationUtil.eObjectToString(sessionId),
+					SerializationUtil.eObjectToString(projectId),
+					SerializationUtil.eObjectToString(orgUnit),
+					SerializationUtil.eObjectToString(role));
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
@@ -85,8 +85,8 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		try {
 			List<ACGroup> result = new ArrayList<ACGroup>();
 			for (String str : getFacade(sessionId).getGroups(
-					RMIUtil.eObjectToString(sessionId))) {
-				result.add((ACGroup) RMIUtil.stringToEObject(str));
+					SerializationUtil.eObjectToString(sessionId))) {
+				result.add((ACGroup) SerializationUtil.stringToEObject(str));
 			}
 			return result;
 		} catch (RemoteException e) {
@@ -102,9 +102,9 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		try {
 			List<ACGroup> result = new ArrayList<ACGroup>();
 			for (String str : getFacade(sessionId).getGroups(
-					RMIUtil.eObjectToString(sessionId),
-					RMIUtil.eObjectToString(user))) {
-				result.add((ACGroup) RMIUtil.stringToEObject(str));
+					SerializationUtil.eObjectToString(sessionId),
+					SerializationUtil.eObjectToString(user))) {
+				result.add((ACGroup) SerializationUtil.stringToEObject(str));
 			}
 			return result;
 		} catch (RemoteException e) {
@@ -120,8 +120,8 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		try {
 			List<ACOrgUnit> result = new ArrayList<ACOrgUnit>();
 			for (String str : getFacade(sessionId).getOrgUnits(
-					RMIUtil.eObjectToString(sessionId))) {
-				result.add((ACOrgUnit) RMIUtil.stringToEObject(str));
+					SerializationUtil.eObjectToString(sessionId))) {
+				result.add((ACOrgUnit) SerializationUtil.stringToEObject(str));
 			}
 			return result;
 		} catch (RemoteException e) {
@@ -137,9 +137,9 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		try {
 			List<ACOrgUnit> result = new ArrayList<ACOrgUnit>();
 			for (String str : getFacade(sessionId).getParticipants(
-					RMIUtil.eObjectToString(sessionId),
-					RMIUtil.eObjectToString(projectId))) {
-				result.add((ACOrgUnit) RMIUtil.stringToEObject(str));
+					SerializationUtil.eObjectToString(sessionId),
+					SerializationUtil.eObjectToString(projectId))) {
+				result.add((ACOrgUnit) SerializationUtil.stringToEObject(str));
 			}
 			return result;
 		} catch (RemoteException e) {
@@ -155,9 +155,9 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		try {
 			List<ACOrgUnit> result = new ArrayList<ACOrgUnit>();
 			for (String str : getFacade(sessionId).getMembers(
-					RMIUtil.eObjectToString(sessionId),
-					RMIUtil.eObjectToString(groupId))) {
-				result.add((ACOrgUnit) RMIUtil.stringToEObject(str));
+					SerializationUtil.eObjectToString(sessionId),
+					SerializationUtil.eObjectToString(groupId))) {
+				result.add((ACOrgUnit) SerializationUtil.stringToEObject(str));
 			}
 			return result;
 		} catch (RemoteException e) {
@@ -173,8 +173,8 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		try {
 			List<ProjectInfo> result = new ArrayList<ProjectInfo>();
 			for (String str : getFacade(sessionId).getProjectInfos(
-					RMIUtil.eObjectToString(sessionId))) {
-				result.add((ProjectInfo) RMIUtil.stringToEObject(str));
+					SerializationUtil.eObjectToString(sessionId))) {
+				result.add((ProjectInfo) SerializationUtil.stringToEObject(str));
 			}
 			return result;
 		} catch (RemoteException e) {
@@ -188,10 +188,10 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 	public Role getRole(SessionId sessionId, ProjectId projectId,
 			ACOrgUnitId orgUnit) throws EmfStoreException {
 		try {
-			return (Role) RMIUtil.stringToEObject(getFacade(sessionId).getRole(
-					RMIUtil.eObjectToString(sessionId),
-					RMIUtil.eObjectToString(projectId),
-					RMIUtil.eObjectToString(orgUnit)));
+			return (Role) SerializationUtil.stringToEObject(getFacade(sessionId).getRole(
+					SerializationUtil.eObjectToString(sessionId),
+					SerializationUtil.eObjectToString(projectId),
+					SerializationUtil.eObjectToString(orgUnit)));
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
@@ -204,8 +204,8 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		try {
 			List<ACUser> result = new ArrayList<ACUser>();
 			for (String user : getFacade(sessionId).getUsers(
-					RMIUtil.eObjectToString(sessionId))) {
-				result.add((ACUser) RMIUtil.stringToEObject(user));
+					SerializationUtil.eObjectToString(sessionId))) {
+				result.add((ACUser) SerializationUtil.stringToEObject(user));
 			}
 			return result;
 		} catch (RemoteException e) {
@@ -220,9 +220,9 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 			ACOrgUnitId group) throws EmfStoreException {
 		try {
 			getFacade(sessionId).removeGroup(
-					RMIUtil.eObjectToString(sessionId),
-					RMIUtil.eObjectToString(user),
-					RMIUtil.eObjectToString(group));
+					SerializationUtil.eObjectToString(sessionId),
+					SerializationUtil.eObjectToString(user),
+					SerializationUtil.eObjectToString(group));
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
@@ -235,9 +235,9 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 			ACOrgUnitId participant) throws EmfStoreException {
 		try {
 			getFacade(sessionId).removeParticipant(
-					RMIUtil.eObjectToString(sessionId),
-					RMIUtil.eObjectToString(projectId),
-					RMIUtil.eObjectToString(participant));
+					SerializationUtil.eObjectToString(sessionId),
+					SerializationUtil.eObjectToString(projectId),
+					SerializationUtil.eObjectToString(participant));
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
@@ -250,7 +250,7 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 			throws EmfStoreException {
 		try {
 			getFacade(sessionId).createGroup(
-					RMIUtil.eObjectToString(sessionId), name);
+					SerializationUtil.eObjectToString(sessionId), name);
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
@@ -262,7 +262,7 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 	public void createUser(SessionId sessionId, String name)
 			throws EmfStoreException {
 		try {
-			getFacade(sessionId).createUser(RMIUtil.eObjectToString(sessionId),
+			getFacade(sessionId).createUser(SerializationUtil.eObjectToString(sessionId),
 					name);
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
@@ -276,8 +276,8 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 			throws EmfStoreException {
 		try {
 			getFacade(sessionId).deleteGroup(
-					RMIUtil.eObjectToString(sessionId),
-					RMIUtil.eObjectToString(group));
+					SerializationUtil.eObjectToString(sessionId),
+					SerializationUtil.eObjectToString(group));
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
@@ -289,8 +289,8 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 	public void deleteUser(SessionId sessionId, ACOrgUnitId user)
 			throws EmfStoreException {
 		try {
-			getFacade(sessionId).deleteUser(RMIUtil.eObjectToString(sessionId),
-					RMIUtil.eObjectToString(user));
+			getFacade(sessionId).deleteUser(SerializationUtil.eObjectToString(sessionId),
+					SerializationUtil.eObjectToString(user));
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
@@ -332,9 +332,9 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 	public void addMember(SessionId sessionId, ACOrgUnitId group,
 			ACOrgUnitId member) throws EmfStoreException {
 		try {
-			getFacade(sessionId).addMember(RMIUtil.eObjectToString(sessionId),
-					RMIUtil.eObjectToString(group),
-					RMIUtil.eObjectToString(member));
+			getFacade(sessionId).addMember(SerializationUtil.eObjectToString(sessionId),
+					SerializationUtil.eObjectToString(group),
+					SerializationUtil.eObjectToString(member));
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
@@ -347,9 +347,9 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 			ACOrgUnitId member) throws EmfStoreException {
 		try {
 			getFacade(sessionId).removeMember(
-					RMIUtil.eObjectToString(sessionId),
-					RMIUtil.eObjectToString(group),
-					RMIUtil.eObjectToString(member));
+					SerializationUtil.eObjectToString(sessionId),
+					SerializationUtil.eObjectToString(group),
+					SerializationUtil.eObjectToString(member));
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
@@ -362,8 +362,8 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 			String name, String description) throws EmfStoreException {
 		try {
 			getFacade(sessionId).changeOrgUnit(
-					RMIUtil.eObjectToString(sessionId),
-					RMIUtil.eObjectToString(orgUnitId), name, description);
+					SerializationUtil.eObjectToString(sessionId),
+					SerializationUtil.eObjectToString(orgUnitId), name, description);
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
@@ -375,9 +375,9 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 	public ACOrgUnit getOrgUnit(SessionId sessionId, ACOrgUnitId orgUnitId)
 			throws EmfStoreException {
 		try {
-			return (ACOrgUnit) RMIUtil.stringToEObject(getFacade(sessionId)
-					.getOrgUnit(RMIUtil.eObjectToString(sessionId),
-							RMIUtil.eObjectToString(orgUnitId)));
+			return (ACOrgUnit) SerializationUtil.stringToEObject(getFacade(sessionId)
+					.getOrgUnit(SerializationUtil.eObjectToString(sessionId),
+							SerializationUtil.eObjectToString(orgUnitId)));
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
