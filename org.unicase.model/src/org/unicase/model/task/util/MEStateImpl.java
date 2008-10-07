@@ -191,37 +191,37 @@ public class MEStateImpl implements MEState {
 	}
 
 	private void recursivlyUpdateStatus(String status) {
-		ENotificationImpl notificationImpl = new ENotificationImpl(
-				(InternalEObject) modelElement, Notification.RESOLVE,
-				ModelPackage.MODEL_ELEMENT__STATE, OPEN, OPEN);
-
-		modelElement.eNotify(notificationImpl);
-
-		ArrayList<ModelElement> opened = TaxonomyAccess.getInstance()
-				.getOpeningLinkTaxonomy().getOpened(modelElement);
-		ArrayList<ModelElement> blocked = TaxonomyAccess.getInstance()
-				.getBlockingLinkTaxonomy().getBlocked(modelElement);
-		try {
-			if (status.equals(OPEN) | status.equals(BLOCKED)) {
-				for (ModelElement open : opened) {
-					open.getMEState().addOpener(modelElement);
-				}
-				for (ModelElement modelElement : blocked) {
-					modelElement.getMEState().addBlocker(modelElement);
-				}
-			}
-			if (status.equals(CLOSED)) {
-				for (ModelElement open : opened) {
-					open.getMEState().removeOpener(modelElement);
-				}
-				for (ModelElement modelElement : blocked) {
-					modelElement.getMEState().removeBlocker(modelElement);
-				}
-			}
-		} catch (CircularDependencyException e) {
-			//JH: insert proper exception handlin
-			e.printStackTrace();
-		}
+//		ENotificationImpl notificationImpl = new ENotificationImpl(
+//				(InternalEObject) modelElement, Notification.RESOLVE,
+//				ModelPackage.MODEL_ELEMENT__STATE, OPEN, OPEN);
+//
+//		modelElement.eNotify(notificationImpl);
+//
+//		ArrayList<ModelElement> opened = TaxonomyAccess.getInstance()
+//				.getOpeningLinkTaxonomy().getOpened(modelElement);
+//		ArrayList<ModelElement> blocked = TaxonomyAccess.getInstance()
+//				.getBlockingLinkTaxonomy().getBlocked(modelElement);
+//		try {
+//			if (status.equals(OPEN) | status.equals(BLOCKED)) {
+//				for (ModelElement open : opened) {
+//					open.getMEState().addOpener(modelElement);
+//				}
+//				for (ModelElement modelElement : blocked) {
+//					modelElement.getMEState().addBlocker(modelElement);
+//				}
+//			}
+//			if (status.equals(CLOSED)) {
+//				for (ModelElement open : opened) {
+//					open.getMEState().removeOpener(modelElement);
+//				}
+//				for (ModelElement modelElement : blocked) {
+//					modelElement.getMEState().removeBlocker(modelElement);
+//				}
+//			}
+//		} catch (CircularDependencyException e) {
+//			//JH: insert proper exception handlin
+//			e.printStackTrace();
+//		}
 
 	}
 }
