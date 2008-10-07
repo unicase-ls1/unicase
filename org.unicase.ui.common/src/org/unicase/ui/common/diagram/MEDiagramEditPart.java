@@ -29,14 +29,63 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.diagram.DiagramPackage;
 
 /**
- * @author denglerm
- * This class is a superclass for the specific MEDiagramEditPart in each diagram.
+ * @author denglerm This class is a superclass for the specific
+ *         MEDiagramEditPart in each diagram.
  */
 public class MEDiagramEditPart extends DiagramEditPart {
+	/**
+	 * The policy for diagrams.
+	 * 
+	 * @author helming
+	 * 
+	 */
+	private final class DiagramDragDropEditPolicyExtension extends
+			DiagramDragDropEditPolicy {
+		@SuppressWarnings("unchecked")
+		@Override
+		public Command getDropObjectsCommand(DropObjectsRequest dropRequest) {
+			List<ViewDescriptor> viewDescriptors = new ArrayList<ViewDescriptor>();
+			for (Iterator it = dropRequest.getObjects().iterator(); it
+					.hasNext();) {
+				Object nextObject = it.next();
+				if (!(nextObject instanceof EObject)) {
+					continue;
+				}
+				viewDescriptors.add(new CreateViewRequest.ViewDescriptor(
+						new EObjectAdapter((EObject) nextObject), Node.class,
+						null, getDiagramPreferencesHint()));
+			}
+			return createShortcutsCommand(dropRequest, viewDescriptors);
+		}
 
-	/**.
-	 * The constructor
-	 * @param view the view controlled by this edit part
+		private Command createShortcutsCommand(DropObjectsRequest dropRequest,
+				List<ViewDescriptor> viewDescriptors) {
+			Command command = createViewsAndArrangeCommand(dropRequest,
+					viewDescriptors);
+			if (command != null) {
+				CreateElementRequest req = new CreateElementRequest(
+						((View) getModel()).getElement(), ElementTypeRegistry
+								.getInstance().getElementType(
+										dropRequest.getObjects().iterator()
+												.next()));
+				req.setNewElement((EObject) dropRequest.getObjects().iterator()
+						.next());
+
+				return command
+						.chain(new ICommandProxy(
+								new org.unicase.ui.common.commands.DiagramElementAddCommand(
+										req)));
+
+			}
+			return null;
+		}
+	}
+
+	/**
+	 * . The constructor
+	 * 
+	 * @param view
+	 *            the view controlled by this edit part
 	 */
 	public MEDiagramEditPart(View view) {
 		super(view);
@@ -47,61 +96,22 @@ public class MEDiagramEditPart extends DiagramEditPart {
 	 */
 	@Override
 	protected void createDefaultEditPolicies() {
-		super.createDefaultEditPolicies();		
+		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
-				new DiagramDragDropEditPolicy() {
-					@SuppressWarnings("unchecked")
-					@Override
-					public Command getDropObjectsCommand(
-							DropObjectsRequest dropRequest) {
-						List<ViewDescriptor> viewDescriptors = new ArrayList<ViewDescriptor>();
-						for (Iterator it = dropRequest.getObjects().iterator(); it
-								.hasNext();) {
-							Object nextObject = it.next();
-							if (!(nextObject instanceof EObject)) {
-								continue;
-							}
-							viewDescriptors
-									.add(new CreateViewRequest.ViewDescriptor(
-											new EObjectAdapter(
-													(EObject) nextObject),
-											Node.class, null,
-											getDiagramPreferencesHint()));
-						}						
-						return createShortcutsCommand(dropRequest,
-								viewDescriptors);
-					}
-
-					private Command createShortcutsCommand(
-							DropObjectsRequest dropRequest, List<ViewDescriptor> viewDescriptors) {
-						Command command = createViewsAndArrangeCommand(
-								dropRequest, viewDescriptors);
-						if (command != null) {
-							CreateElementRequest req = new CreateElementRequest(((View)getModel()).getElement(),
-									ElementTypeRegistry.getInstance().getElementType(dropRequest.getObjects().
-											iterator().next()));
-									req.setNewElement((EObject)dropRequest.getObjects().iterator().next());
-											
-							return command
-									.chain(new ICommandProxy(
-											new org.unicase.ui.common.commands.DiagramElementAddCommand(req)));
-													
-						}
-						return null;
-					}
-				});
+				new DiagramDragDropEditPolicyExtension());
 
 	}
+
 	/**
 	 * . {@inheritDoc}
 	 */
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
-		if(DiagramPackage.eINSTANCE.getMEDiagram_Elements().equals(feature)) {
+		if (DiagramPackage.eINSTANCE.getMEDiagram_Elements().equals(feature)) {
 			CanonicalEditPolicy canonicalEditPolicy = (CanonicalEditPolicy) this
 					.getEditPolicy(EditPolicyRoles.CANONICAL_ROLE);
-			canonicalEditPolicy.refresh();			
+			canonicalEditPolicy.refresh();
 		}
 		super.handleNotificationEvent(event);
 	}
