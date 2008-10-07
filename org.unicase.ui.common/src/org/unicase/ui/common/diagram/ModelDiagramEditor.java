@@ -117,6 +117,7 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 			super(viewer, xfer);
 		}
 
+		@SuppressWarnings("unchecked")
 		@Override
 		protected List<EObject> getObjectsBeingDropped() {
 			TransferData data = getCurrentEvent().currentDataType;
