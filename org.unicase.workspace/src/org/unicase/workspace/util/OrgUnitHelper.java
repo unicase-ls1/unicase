@@ -41,6 +41,7 @@ public final class OrgUnitHelper {
 		if(activeProjectSpace==null){
 			return null;
 		}
+		//JH: handle non-existing usersession
 		Usersession currentUserSession = activeProjectSpace.getUsersession();
 		EList<User> projectUsers = currentWorkspace.getActiveProjectSpace()
 				.getProject().getAllModelElementsbyClass(
