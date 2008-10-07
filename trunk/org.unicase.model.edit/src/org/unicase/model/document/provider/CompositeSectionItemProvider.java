@@ -119,8 +119,17 @@ public class CompositeSectionItemProvider extends ModelElementItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
+		if(object instanceof CompositeSection) {
+			CompositeSection compositeSection = (CompositeSection) object;
+			if(compositeSection.eContainer() instanceof CompositeSection) {
+				return overlayImage(object, getResourceLocator().getImage(
 				"full/obj16/CompositeSection"));
+			}
+			return overlayImage(object, getResourceLocator().getImage(
+			"full/obj16/Document"));
+		}
+		return overlayImage(object, getResourceLocator().getImage(
+		"full/obj16/CompositeSection"));
 	}
 
 	/**
