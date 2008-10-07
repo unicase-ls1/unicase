@@ -76,7 +76,7 @@ public class MEDateControl extends AbstractMEControl implements MEControl,
 		widget = new CDateTime(composite, CDT.BORDER | CDT.DROP_DOWN
 				| CDT.COMPACT);
 		widget.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		widget.setFormat(CDT.DATE_MEDIUM);
+		widget.setFormat(CDT.DATE_MEDIUM | CDT.TIME_SHORT);
 		widget.addSelectionListener(this);
 		update();
 		return composite;
