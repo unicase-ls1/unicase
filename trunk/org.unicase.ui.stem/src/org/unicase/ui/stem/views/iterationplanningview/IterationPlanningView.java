@@ -82,6 +82,7 @@ public class IterationPlanningView extends ViewPart {
 	/**
 	 * . {@inheritDoc}
 	 */
+	@Override
 	public void createPartControl(Composite parent) {
 
 		// create a TreeViewer for WorkPackages.
@@ -161,6 +162,12 @@ public class IterationPlanningView extends ViewPart {
 
 	}
 
+	/**
+	 * Sets if the user filter is turned on.
+	 * 
+	 * @param checked
+	 *            if the filter is turned on.
+	 */
 	protected void setUserFilter(boolean checked) {
 		if (checked) {
 			viewer.addFilter(userFilter);
@@ -170,6 +177,12 @@ public class IterationPlanningView extends ViewPart {
 
 	}
 
+	/**
+	 * Sets the team filter.
+	 * 
+	 * @param checked
+	 *            if the team filter is turned on.
+	 */
 	protected void setTeamFilter(boolean checked) {
 		if (checked) {
 			viewer.addFilter(teamFilter);
@@ -268,7 +281,9 @@ public class IterationPlanningView extends ViewPart {
 
 	/**
 	 * Passing the focus request to the viewer's control.
+	 * 
 	 */
+	@Override
 	public void setFocus() {
 		viewer.getTree().setFocus();
 	}
@@ -287,6 +302,9 @@ public class IterationPlanningView extends ViewPart {
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void dispose() {
 

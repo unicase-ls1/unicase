@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.ui.stem.views.iterationplanningview;
 
 import java.net.URL;
@@ -12,7 +18,11 @@ import org.eclipse.swt.graphics.Image;
 import org.unicase.model.ModelElement;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
-
+/**
+ * This label provider shows the status of a modelelement represented as an image.
+ * @author helming
+ *
+ */
 public class StatusLabelProvider extends ColumnLabelProvider implements
 		IColorProvider {
 
@@ -31,7 +41,7 @@ public class StatusLabelProvider extends ColumnLabelProvider implements
 				e.printStackTrace();
 			}
 
-			String path = "icons/closed.jpg";;
+			String path = "icons/closed.jpg";
 			if (status.equals(MEState.OPEN)) {
 				path = "icons/open.gif";
 			}
