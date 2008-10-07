@@ -12,31 +12,36 @@ public class ChangeTest extends TestSuite {
 
 	ProjectSpace testSpace;
 	ProjectSpace compareSpace;
-	
+
 	private static Log logger = LogFactory.getLog(ChangeTest.class);
-	
+
 	@Override
 	public void initialize() {
 		logger.info("initializing test projectSpaces");
 		testSpace = ChangeTestHelper.createEmptyProjectSpace("test");
 		compareSpace = (ProjectSpace) EcoreUtil.copy(testSpace);
-		
-		WorkspaceImpl currentWorkspace = (WorkspaceImpl) WorkspaceManager.getInstance().getCurrentWorkspace();
+
+		WorkspaceImpl currentWorkspace = (WorkspaceImpl) WorkspaceManager
+				.getInstance().getCurrentWorkspace();
 		currentWorkspace.getProjectSpaces().add(testSpace);
 		testSpace.initResources(currentWorkspace.getWorkspaceResourceSet());
-		
+
 		testSpace.init();
-		
+
 		logger.info("adding testcases");
+	}
+
+	@Override
+	public void initTestCases() {
 		// add test cases
+
 	}
 
 	@Override
 	public void end() {
-		//getchanges
-		//applychanges
-		//compare
+		// getchanges
+		// applychanges
+		// compare
 	}
 
-	
 }
