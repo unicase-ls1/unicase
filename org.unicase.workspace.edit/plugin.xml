@@ -97,6 +97,11 @@
            id="org.unicase.workspace.edit.revert"
            name="Revert">
      </command>
+     <command
+           defaultHandler="org.unicase.workspace.edit.commands.CompareProjectsHandler"
+           id="org.unicase.workspace.edit.compareProjects"
+           name="compareProjects">
+     </command>
   </extension>
   <extension
         point="org.eclipse.ui.menus">
@@ -241,10 +246,19 @@
                  </iterate>
               </visibleWhen>
            </command>
+           <command
+                 commandId="org.unicase.workspace.edit.compareProjects"
+                 label="Compare to ..."
+                 style="push">
+           </command>
         </menu>
         <separator
               name="org.unicase.workspace.edit.scmCommands">
         </separator>
+        <command
+              commandId="org.unicase.workspace.edit.command1"
+              style="push">
+        </command>
      </menuContribution>
   </extension>
 
