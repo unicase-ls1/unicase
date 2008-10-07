@@ -3,7 +3,7 @@
     This configuration file was written by the eclipse-cs plugin configuration editor
 -->
 <!--
-    Checkstyle-Configuration: unicase Style
+    Checkstyle-Configuration: Unicase
     Description: none
 -->
 <!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.2//EN" "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
@@ -159,7 +159,7 @@
         <module name="ExplicitInitialization"/>
         <module name="FallThrough"/>
         <module name="AnonInnerLength">
-            <property name="max" value="70"/>
+            <property name="max" value="25"/>
         </module>
         <module name="ThrowsCount">
             <property name="max" value="2"/>
