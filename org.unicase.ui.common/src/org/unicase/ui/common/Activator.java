@@ -38,7 +38,7 @@ public class Activator extends AbstractUIPlugin {
 	 * {@inheritDoc}
 	 */
 	@Override
-	//BEGIN SUPRESS CATCH EXCEPTION
+	// BEGIN SUPRESS CATCH EXCEPTION
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
@@ -52,7 +52,7 @@ public class Activator extends AbstractUIPlugin {
 		plugin = null;
 		super.stop(context);
 	}
-	//END SUPRESS CATCH EXCEPTION
+	// END SUPRESS CATCH EXCEPTION
 	
 	/**.
 	 * Returns the shared instance
