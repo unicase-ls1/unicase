@@ -502,7 +502,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		}
 		Diagram gmfDiagram = (Diagram) diagramResource.getContents().get(0);
 		EcoreUtil.resolveAll(gmfDiagram);
-		
+
 		setGmfdiagram(gmfDiagram);
 
 		// restore old resource for all model elements
@@ -513,7 +513,8 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		}
 		gmfDiagram.setElement(this);
 		//MK change this
-		EList<Resource> resources = this.eResource().getResourceSet().getResources();
+		EList<Resource> resources = this.eResource().getResourceSet()
+				.getResources();
 		for (Resource resource : resources) {
 			try {
 				resource.save(null);
@@ -571,7 +572,8 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		}
 		setDiagramLayout(out.toString());
 		//MK Change this
-		EList<Resource> resources = this.eResource().getResourceSet().getResources();
+		EList<Resource> resources = this.eResource().getResourceSet()
+				.getResources();
 		for (Resource resource : resources) {
 			try {
 				resource.save(null);
@@ -580,7 +582,6 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 				e.printStackTrace();
 			}
 		}
-		
 
 	}
 
