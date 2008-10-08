@@ -28,6 +28,7 @@ import org.unicase.ui.stem.views.dialogs.CommitDialog;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.edit.dialogs.LoginDialog;
+import org.unicase.workspace.exceptions.NoLocalChangesException;
 import org.unicase.workspace.util.CommitObserver;
 
 /**
@@ -104,6 +105,11 @@ public class CommitProjectHandler extends ProjectActionHandler implements Commit
 			if (result == 0) {
 				new UpdateProjectHandler().update(projectSpace);
 			}
+		} catch (NoLocalChangesException e) {
+			progressDialog.getProgressMonitor().done();
+			progressDialog.close();
+			MessageDialog.openInformation(shell, null, "No local changes in your project. No need to commit.");
+			
 		} catch (EmfStoreException e) {
 			progressDialog.getProgressMonitor().done();
 			progressDialog.close();
