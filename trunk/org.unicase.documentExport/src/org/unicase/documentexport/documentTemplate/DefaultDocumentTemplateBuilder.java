@@ -2,9 +2,7 @@ package org.unicase.documentexport.documentTemplate;
 
 import java.util.Vector;
 
-import org.unicase.documentexport.renderers.attribute.AttributeRendererMappings.AttributeRendererMapping;
 import org.unicase.documentexport.renderers.modelElement.DefaultModelElementRenderer;
-import org.unicase.documentexport.renderers.modelElement.ModelElementRendererMappings.ModelElementRendererMapping;
 import org.unicase.documentexport.renderers.options.BooleanAttributeOption;
 import org.unicase.documentexport.renderers.options.LayoutOptions;
 import org.unicase.documentexport.renderers.options.MultiReferenceAttributeOption;

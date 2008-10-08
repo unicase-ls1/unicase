@@ -1,12 +1,7 @@
 package org.unicase.documentexport.views;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,8 +19,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TabFolder;
@@ -35,13 +28,6 @@ import org.eclipse.ui.part.ViewPart;
 import org.unicase.documentexport.Activator;
 import org.unicase.documentexport.TemplateSaveHelper;
 import org.unicase.documentexport.documentTemplate.DocumentTemplate;
-import org.unicase.documentexport.renderers.ModelElementRenderer;
-import org.unicase.documentexport.renderers.attribute.AttributeRendererMappings.AttributeRendererMapping;
-import org.unicase.documentexport.renderers.modelElement.DefaultModelElementRenderer;
-import org.unicase.documentexport.renderers.modelElement.ModelElementRendererMappings.ModelElementRendererMapping;
-import org.unicase.documentexport.views.GlobalAttributeTypeOptions;
-import org.unicase.documentexport.views.LayoutOptions;
-import org.unicase.documentexport.views.RendererOptions;
 
 public class DocumentTemplateManager extends ViewPart {
 	TabFolder tabFolder;

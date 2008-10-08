@@ -2,7 +2,6 @@ package org.unicase.documentexport.renderers.attribute;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Vector;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.unicase.documentexport.renderers.AttributeRenderer;

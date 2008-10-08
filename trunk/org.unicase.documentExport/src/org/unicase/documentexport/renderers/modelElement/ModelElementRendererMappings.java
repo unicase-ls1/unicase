@@ -4,13 +4,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import org.unicase.documentexport.renderers.ModelElementRenderer;
-import org.unicase.model.ModelElement;
 
 /**
  * This class has contains a mapping from ModeElement type to ModelElementRenderer.
  * This mapping is needed in a DocumentTemplate to know which renderer should be used for each
  * ModelElement type.
  */
+@SuppressWarnings("serial")
 public class ModelElementRendererMappings implements Serializable {
 
 	public class ModelElementRendererMapping implements Serializable {

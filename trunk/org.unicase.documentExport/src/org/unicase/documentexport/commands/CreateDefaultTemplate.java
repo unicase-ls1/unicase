@@ -7,7 +7,6 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
@@ -71,13 +70,13 @@ public class CreateDefaultTemplate extends AbstractHandler {
 			CompositeSection cs = (CompositeSection) me;
 			EList<Section> subSections = cs.getSubsections();
 			for (Section section : subSections) {
-				readModelElementTypes((ModelElementImpl)section);
+				readModelElementTypes(section);
 			}
 		} else if (me instanceof LeafSection) {
 			LeafSection lf = (LeafSection) me;
 			EList<ModelElement> modelElements = lf.getModelElements();
 			for (ModelElement sub : modelElements) {
-				readModelElementTypes((ModelElementImpl)sub);
+				readModelElementTypes(sub);
 			}
 		} else {
 			

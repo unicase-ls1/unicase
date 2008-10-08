@@ -11,7 +11,6 @@ import org.unicase.documentexport.renderers.ModelElementRenderer;
 import org.unicase.documentexport.renderers.elements.UCompositeSection;
 import org.unicase.documentexport.renderers.elements.UParagraph;
 import org.unicase.documentexport.renderers.modelElement.ModelElementRendererMappings;
-import org.unicase.documentexport.renderers.modelElement.ModelElementRendererMappings.ModelElementRendererMapping;
 import org.unicase.documentexport.renderers.options.AttributeOption;
 import org.unicase.documentexport.renderers.options.BooleanAttributeOption;
 import org.unicase.documentexport.renderers.options.LayoutOptions;
@@ -43,20 +42,16 @@ public class DefaultAttributeRenderer extends AttributeRenderer {
 		this.template = template;
 		
 		if (option instanceof StringAttributeOption) {
-			this.option.globalOption = (StringAttributeOption) 
-				template.getGlobalAttributeRendererOption(StringAttributeOption.class);
+			this.option.globalOption = template.getGlobalAttributeRendererOption(StringAttributeOption.class);
 		}
 		if (option instanceof BooleanAttributeOption) {
-			this.option.globalOption = (BooleanAttributeOption) 
-				template.getGlobalAttributeRendererOption(BooleanAttributeOption.class);			
+			this.option.globalOption = template.getGlobalAttributeRendererOption(BooleanAttributeOption.class);			
 		}
 		if (option instanceof SingleReferenceAttributeOption) {
-			this.option.globalOption = (SingleReferenceAttributeOption) 
-				template.getGlobalAttributeRendererOption(SingleReferenceAttributeOption.class);		
+			this.option.globalOption = template.getGlobalAttributeRendererOption(SingleReferenceAttributeOption.class);		
 		}
 		if (option instanceof MultiReferenceAttributeOption) {
-			this.option.globalOption = (MultiReferenceAttributeOption) 
-				template.getGlobalAttributeRendererOption(MultiReferenceAttributeOption.class);	
+			this.option.globalOption = template.getGlobalAttributeRendererOption(MultiReferenceAttributeOption.class);	
 		}
 		
 
@@ -87,10 +82,11 @@ public class DefaultAttributeRenderer extends AttributeRenderer {
 			}
 		} else { //EReference	
 			if (content != null) {
-				if (((EReference) feature).isContainment())
+				if (((EReference) feature).isContainment()) {
 					renderContainedReference((ModelElement)content, parent, feature);
-				else
+				} else {
 					renderLinkedReference((ModelElement)content, parent, feature);
+				}
 			}
 		}
 	}
@@ -165,7 +161,7 @@ public class DefaultAttributeRenderer extends AttributeRenderer {
 		) {
 		
 		ModelElementRenderer renderer = modelElementRendererMappings.get(
-				((ModelElement)content).eClass().getInstanceClass()
+				(content).eClass().getInstanceClass()
 			);
 		renderer.render(content, attributeSection, layoutOptions);
 	}

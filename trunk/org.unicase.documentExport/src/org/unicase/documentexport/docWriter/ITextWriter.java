@@ -61,7 +61,7 @@ public class ITextWriter {
 		
 		if (parent instanceof Document) {
 			Paragraph chapterP = new Paragraph(
-					((USection) child).getTitle(), 
+					(child).getTitle(), 
 					getFont(layoutOptions.sectionTextOption)
 				);
 			Chapter chapter = new Chapter(chapterP, chapterNumber);
@@ -78,7 +78,7 @@ public class ITextWriter {
 		else if (parent instanceof Chapter) {
 			Chapter chapter = (Chapter) parent;
 			Section subSection = chapter.addSection(new Paragraph(
-					((USection) child).getTitle(), 
+					(child).getTitle(), 
 					getFont(layoutOptions.sectionTextOption)
 				));
 
@@ -90,7 +90,7 @@ public class ITextWriter {
 		else if (parent instanceof Section) {
 			Section section = (Section) parent;
 			Section subSection = section.addSection(new Paragraph(
-					((USection) child).getTitle(), 
+					(child).getTitle(), 
 					getFont(child.option)
 				));
 

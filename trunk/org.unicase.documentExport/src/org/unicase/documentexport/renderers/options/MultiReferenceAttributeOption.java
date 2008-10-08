@@ -1,5 +1,6 @@
 package org.unicase.documentexport.renderers.options;
 
+@SuppressWarnings("serial")
 public class MultiReferenceAttributeOption extends AttributeOption {
 	public ReferenceOption referenceOption = new ReferenceOption();
 	public ListOption listOption = new ListOption();
