@@ -2,8 +2,8 @@ package org.unicase.ui.componentDiagram.edit.policies;
 
 import java.util.Collections;
 import java.util.Iterator;
-
 import java.util.Map;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;

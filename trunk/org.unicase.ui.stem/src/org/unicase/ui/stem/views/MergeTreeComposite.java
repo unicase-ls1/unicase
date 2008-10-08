@@ -6,8 +6,6 @@
  */
 package org.unicase.ui.stem.views;
 
-import java.util.Random;
-
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.TreeViewerColumn;
 import org.eclipse.swt.SWT;

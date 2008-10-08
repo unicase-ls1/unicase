@@ -6,6 +6,8 @@
  */
 package org.unicase.emfstore.connection;
 
+import org.unicase.emfstore.AdminEmfStore;
+import org.unicase.emfstore.EmfStore;
 import org.unicase.emfstore.EmfStoreInterface;
 import org.unicase.emfstore.accesscontrol.AuthenticationControl;
 import org.unicase.emfstore.exceptions.EmfStoreException;
