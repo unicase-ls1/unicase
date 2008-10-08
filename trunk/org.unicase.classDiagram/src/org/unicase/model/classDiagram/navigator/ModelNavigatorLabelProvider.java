@@ -16,6 +16,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 import org.eclipse.ui.navigator.ICommonLabelProvider;
+import org.unicase.model.classes.Dependency;
 import org.unicase.model.diagram.MEDiagram;
 
 /**
@@ -111,6 +112,9 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 		case org.unicase.model.classDiagram.edit.parts.ClassSubClassesEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http://unicase.org/model/classes?Class?subClasses", org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_4005); //$NON-NLS-1$
+		case org.unicase.model.classDiagram.edit.parts.DependencyEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/classes?Dependency", org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -187,6 +191,8 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 			return getAssociation_4004Text(view);
 		case org.unicase.model.classDiagram.edit.parts.ClassSubClassesEditPart.VISUAL_ID:
 			return getClassSubClasses_4005Text(view);
+		case org.unicase.model.classDiagram.edit.parts.DependencyEditPart.VISUAL_ID:
+			return getDependency_4006Text(view);
 		}
 		return getUnknownElementText(view);
 	}
@@ -393,6 +399,22 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 	 */
 	private String getClassSubClasses_4005Text(View view) {
 		return ""; //$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getDependency_4006Text(View view) {
+		Dependency domainModelElement = (Dependency) view.getElement();
+		if (domainModelElement != null) {
+			return domainModelElement.getName();
+		} else {
+			org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin
+					.getInstance()
+					.logError(
+							"No domain element for view with visualID = " + 4006); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
 	}
 
 	/**

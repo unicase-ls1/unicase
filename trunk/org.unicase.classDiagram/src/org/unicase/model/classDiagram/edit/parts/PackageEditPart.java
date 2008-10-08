@@ -229,8 +229,6 @@ public class PackageEditPart extends ShapeNodeEditPart {
 			BorderLayout layoutThis = new BorderLayout();
 			this.setLayoutManager(layoutThis);
 
-			this.setFill(false);
-			this.setFillXOR(true);
 			this.setOutline(false);
 			createContents();
 		}

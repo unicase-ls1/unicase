@@ -299,6 +299,10 @@ public class ModelVisualIDRegistry {
 				&& isAssociation_4004((Association) domainElement)) {
 			return org.unicase.model.classDiagram.edit.parts.Association4EditPart.VISUAL_ID;
 		}
+		if (ClassesPackage.eINSTANCE.getDependency().isSuperTypeOf(
+				domainElement.eClass())) {
+			return org.unicase.model.classDiagram.edit.parts.DependencyEditPart.VISUAL_ID;
+		}
 		return -1;
 	}
 

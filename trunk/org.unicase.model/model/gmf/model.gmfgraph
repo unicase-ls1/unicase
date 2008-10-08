@@ -17,6 +17,10 @@
         xsi:type="gmfgraph:CustomDecoration"
         name="GeneralizationDecoration"
         qualifiedClassName="org.unicase.model.classDiagram.unicase.GeneralizationDecoration"/>
+    <figures
+        xsi:type="gmfgraph:CustomDecoration"
+        name="DependencyDecoration"
+        qualifiedClassName="org.unicase.model.classDiagram.unicase.DependencyDecoration"/>
     <descriptors
         name="ClassFigure">
       <actualFigure
@@ -141,9 +145,7 @@
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
           name="PackageFigure"
-          outline="false"
-          fill="false"
-          xorFill="true">
+          outline="false">
         <layout
             xsi:type="gmfgraph:BorderLayout"/>
         <children
@@ -224,6 +226,14 @@
       <accessors
           accessor="getFigurePackageFigure_name"
           figure="//@figures.0/@descriptors.5/@actualFigure/@children.1/@children.0/@children.0"/>
+    </descriptors>
+    <descriptors
+        name="DependencyFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="DependencyPolyline"
+          lineKind="LINE_DASHDOT"
+          targetDecoration="//@figures.0/@figures.3"/>
     </descriptors>
   </figures>
   <figures
@@ -378,7 +388,7 @@
   </figures>
   <figures
       name="UseCaseDiagram">
-       <descriptors
+    <descriptors
         name="ActorFigure">
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
@@ -573,6 +583,9 @@
   <connections
       name="Generalization"
       figure="GeneralizationFigure"/>
+  <connections
+      name="Dependency"
+      figure="DependencyFigure"/>
   <compartments
       name="ClassNode_attributes"
       figure="ClassFigure"

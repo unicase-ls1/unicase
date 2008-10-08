@@ -12,24 +12,23 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 
+/**
+ * @author schroech
+ *
+ */
 public class GeneralizationDecoration extends Figure implements RotatableDecoration{
 
 	private static final Locator NULL_LOCATOR = new LocatorStub();
 
+	/**
+	 * Designated constructor.
+	 */
 	public GeneralizationDecoration() {
 		super();
 		initDecoration();
 		setLayoutManager(new DelegatingLayout());
 
 		updateDecoration();
-
-//		association.eAdapters().add(new AdapterImpl() {
-//			@Override
-//			public void notifyChanged(Notification msg) {
-//				updateDecoration();
-//				super.notifyChanged(msg);
-//			}
-//		});
 	}
 
 	private void updateDecoration() {

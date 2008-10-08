@@ -370,6 +370,16 @@
             <param name="semanticHint" value="4005"/>
          </specializationType>
       </metamodel>
+      <metamodel nsURI="http://unicase.org/model/classes">
+         <metamodelType
+               id="org.unicase.classDiagram.Dependency_4006"
+               name="%metatype.name.Dependency_4006"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Dependency"
+               edithelper="org.unicase.model.classDiagram.edit.helpers.DependencyEditHelper">
+            <param name="semanticHint" value="4006"/>
+         </metamodelType>
+      </metamodel>
    </extension>
 
   
@@ -521,6 +531,8 @@
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="F5"/>
    </extension>
+
+
 
 
 </plugin>

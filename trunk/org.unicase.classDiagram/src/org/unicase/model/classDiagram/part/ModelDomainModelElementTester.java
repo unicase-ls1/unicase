@@ -32,6 +32,9 @@ public class ModelDomainModelElementTester extends PropertyTester {
 		if (eClass == ModelPackage.eINSTANCE.getAnnotation()) {
 			return true;
 		}
+		if (eClass == ModelPackage.eINSTANCE.getAttachment()) {
+			return true;
+		}
 		if (eClass == ModelPackage.eINSTANCE.getIdentifiableElement()) {
 			return true;
 		}

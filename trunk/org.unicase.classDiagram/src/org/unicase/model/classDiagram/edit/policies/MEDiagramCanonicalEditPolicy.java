@@ -289,6 +289,18 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 			}
 			break;
 		}
+		case org.unicase.model.classDiagram.edit.parts.DependencyEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result
+						.addAll(org.unicase.model.classDiagram.part.ModelDiagramUpdater
+								.getDependency_4006ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement())
+					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
 		}
 		for (Iterator children = view.getChildren().iterator(); children
 				.hasNext();) {

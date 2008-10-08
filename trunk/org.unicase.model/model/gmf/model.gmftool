@@ -91,6 +91,18 @@
             path="/icons/full/obj16/Composition.gif"
             bundle="org.unicase.model.edit"/>
       </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Dependency">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Dependency.gif"
+            bundle="org.unicase.model.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Dependency.gif"
+            bundle="org.unicase.model.edit"/>
+      </tools>
     </tools>
   </palette>
 </gmftool:ToolRegistry>

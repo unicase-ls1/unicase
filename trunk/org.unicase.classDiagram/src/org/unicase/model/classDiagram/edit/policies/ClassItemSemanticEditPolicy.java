@@ -120,6 +120,11 @@ public class ClassItemSemanticEditPolicy
 			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.ClassSubClassesCreateCommand(
 					req, req.getSource(), req.getTarget()));
 		}
+		if (elementType == org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006) {
+			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.DependencyCreateCommand(
+					req, req.getSource(), req.getTarget(), (EObject) getHost()
+							.getModel()));
+		}
 		return null;
 	}
 
@@ -156,6 +161,12 @@ public class ClassItemSemanticEditPolicy
 			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.ClassSubClassesCreateCommand(
 					req, req.getSource(), req.getTarget()));
 		}
+
+		if (elementType == org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006) {
+			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.DependencyCreateCommand(
+					req, req.getSource(), req.getTarget(), (EObject) getHost()
+							.getModel()));
+		}
 		return null;
 	}
 
@@ -179,6 +190,9 @@ public class ClassItemSemanticEditPolicy
 					req));
 		case org.unicase.model.classDiagram.edit.parts.Association4EditPart.VISUAL_ID:
 			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.Association4ReorientCommand(
+					req));
+		case org.unicase.model.classDiagram.edit.parts.DependencyEditPart.VISUAL_ID:
+			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.DependencyReorientCommand(
 					req));
 		}
 		return super.getReorientRelationshipCommand(req);
