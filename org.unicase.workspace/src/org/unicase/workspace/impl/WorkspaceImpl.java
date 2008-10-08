@@ -17,7 +17,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
@@ -488,17 +487,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 				.createFileURI(absoluteFileName));
 		Project project = (Project) EcoreUtil.copy(projectSpace.getProject());
 
-		//preserve old containment
-		EReference containmentFeature = project.eContainmentFeature();
-		EObject oldContainer = project.eContainer();
-
 		resource.getContents().add(project);
 		resource.save(null);
-
-		// reintegrate project into old container
-		if (oldContainer != null) {
-			oldContainer.eSet(containmentFeature, project);
-		}
 	}
 
 	public void setWorkspaceResourceSet(ResourceSet resourceSet) {
