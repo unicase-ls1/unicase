@@ -160,8 +160,10 @@ public class StepImpl extends ModelElementImpl implements Step {
 	 */
 	public void setIncludedUseCase(UseCase newIncludedUseCase) {
 		UseCase useCase = getUseCase();
-		if (!useCase.getIncludedUseCases().contains(newIncludedUseCase)) {
-			useCase.getIncludedUseCases().add(newIncludedUseCase);
+		if (useCase != null) {
+			if (!useCase.getIncludedUseCases().contains(newIncludedUseCase)) {
+				useCase.getIncludedUseCases().add(newIncludedUseCase);
+			}
 		}
 		UseCase oldIncludedUseCase = includedUseCase;
 		includedUseCase = newIncludedUseCase;
