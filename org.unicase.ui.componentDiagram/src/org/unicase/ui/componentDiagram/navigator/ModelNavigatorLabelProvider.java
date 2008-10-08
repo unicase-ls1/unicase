@@ -16,7 +16,6 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 import org.eclipse.ui.navigator.ICommonLabelProvider;
-import org.unicase.model.component.Component;
 import org.unicase.model.diagram.MEDiagram;
 
 /**

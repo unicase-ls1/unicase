@@ -1,10 +1,8 @@
 package org.unicase.ui.stem.views;
 
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
 
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ColumnViewer;
@@ -13,7 +11,6 @@ import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.unicase.emfstore.conflictDetection.ConflictDetector;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 
 

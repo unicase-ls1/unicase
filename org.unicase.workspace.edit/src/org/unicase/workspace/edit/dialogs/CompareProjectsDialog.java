@@ -8,7 +8,6 @@ package org.unicase.workspace.edit.dialogs;
 
 import java.util.List;
 
-
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
