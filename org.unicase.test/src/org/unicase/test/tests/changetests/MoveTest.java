@@ -4,7 +4,7 @@ import org.unicase.test.lib.TestCase;
 
 public class MoveTest extends TestCase {
 
-	public MoveTest(String testName, int randomSeed) {
+	public MoveTest(String testName, long randomSeed) {
 		super(testName, randomSeed);
 		// TODO Auto-generated constructor stub
 	}

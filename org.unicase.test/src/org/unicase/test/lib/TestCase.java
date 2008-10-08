@@ -12,7 +12,7 @@ public abstract class TestCase {
 	
 	abstract public void runTest();
 	
-	public TestCase(String testName, int randomSeed){
+	public TestCase(String testName, long randomSeed){
 		this.testName = testName;
 		rnd = new Random(randomSeed);
 	}

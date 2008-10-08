@@ -104,7 +104,7 @@ public class TestProjectGenerator {
 	 * @param maxNumOfMEsInLeafSection
 	 *            max number of MEs to show on a LeafSection
 	 */
-	public TestProjectGenerator(int numOfEachME, int randomSeed, int projWidth,
+	public TestProjectGenerator(int numOfEachME, long randomSeed, int projWidth,
 			int porjDepth, int maxNumOfManyRefs, int maxNumOfMEsInLeafSection) {
 
 		this.numOfEachME = numOfEachME;
@@ -397,7 +397,7 @@ public class TestProjectGenerator {
 		} else if (referencedInstances.size() != 0) {
 			me.eSet(ref, referencedInstances.get(0));
 		} else {
-			me.eSet(ref, null);
+			//me.eSet(ref, null);
 		}
 	}
 

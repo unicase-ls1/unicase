@@ -1,7 +1,6 @@
 package org.unicase.test.tests.changetests;
 
 import java.util.List;
-import java.util.Random;
 
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -10,7 +9,7 @@ import org.unicase.test.lib.TestCase;
 
 public class RenameTest extends TestCase {
 
-	public RenameTest(String testName, int randomSeed) {
+	public RenameTest(String testName, long randomSeed) {
 		super(testName, randomSeed);
 		
 	}
@@ -38,7 +37,7 @@ public class RenameTest extends TestCase {
 			});
 		}
 		
-		System.out.println(numOfChanges + " operations");
+		System.out.println(RenameTest.class.getSimpleName() + "; " + numOfChanges + " renames");
 	}
 
 }
