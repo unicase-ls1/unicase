@@ -89,15 +89,11 @@ public class CommitProjectHandler extends ProjectActionHandler implements Commit
 				logMessage = VersioningFactory.eINSTANCE.createLogMessage();
 				PrimaryVersionSpec oldVersion = projectSpace.getBaseVersion();
 				PrimaryVersionSpec newVersion = projectSpace.commit(logMessage,CommitProjectHandler.this);
-				progressDialog.getProgressMonitor().done();
-				progressDialog.close();
 				if(!oldVersion.equals(newVersion)){
 					MessageDialog.openInformation(shell, null, "Commit completed.");
 				}
 			}
 		} catch (BaseVersionOutdatedException e) {
-			progressDialog.getProgressMonitor().done();
-			progressDialog.close();
 			MessageDialog dialog = new MessageDialog(null, "Confirmation",
 					null, "Your project is outdated, you need to update before commit. Do you want to update now?",
 					MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
@@ -106,14 +102,14 @@ public class CommitProjectHandler extends ProjectActionHandler implements Commit
 				new UpdateProjectHandler().update(projectSpace);
 			}
 		} catch (NoLocalChangesException e) {
-			progressDialog.getProgressMonitor().done();
-			progressDialog.close();
 			MessageDialog.openInformation(shell, null, "No local changes in your project. No need to commit.");
 			
 		} catch (EmfStoreException e) {
+			DialogHandler.showExceptionDialog(e);
+		}
+		finally {
 			progressDialog.getProgressMonitor().done();
 			progressDialog.close();
-			DialogHandler.showExceptionDialog(e);
 		}
 	}
 
