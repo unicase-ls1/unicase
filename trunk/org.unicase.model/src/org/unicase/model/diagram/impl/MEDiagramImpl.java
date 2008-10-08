@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.unicase.model.ModelElement;
@@ -499,6 +500,8 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 
 		}
 		Diagram gmfDiagram = (Diagram) diagramResource.getContents().get(0);
+		EcoreUtil.resolveAll(gmfDiagram);
+		
 		setGmfdiagram(gmfDiagram);
 
 		// restore old resource for all model elements
@@ -508,6 +511,16 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 			resourceMap.get(modelElement).getContents().add(modelElement);
 		}
 		gmfDiagram.setElement(this);
+		//MK change this
+		EList<Resource> resources = this.eResource().getResourceSet().getResources();
+		for (Resource resource : resources) {
+			try {
+				resource.save(null);
+			} catch (IOException e) {
+				// MK Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 	/**
@@ -556,6 +569,17 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 			resourceMap.get(modelElement).getContents().add(modelElement);
 		}
 		setDiagramLayout(out.toString());
+		//MK Change this
+		EList<Resource> resources = this.eResource().getResourceSet().getResources();
+		for (Resource resource : resources) {
+			try {
+				resource.save(null);
+			} catch (IOException e) {
+				// MK Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 
 	}
 
