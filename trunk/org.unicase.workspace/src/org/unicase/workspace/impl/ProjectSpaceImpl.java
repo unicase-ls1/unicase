@@ -1038,6 +1038,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
+	 * {@inheritDoc}
+	 * @see org.unicase.workspace.ProjectSpace#initResources(org.eclipse.emf.ecore.resource.ResourceSet)
 	 * @generated NOT
 	 */
 	public void initResources(ResourceSet resourceSet) {
@@ -1299,6 +1301,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		return result.toString();
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.workspace.ProjectSpace#shareProject(org.unicase.workspace.Usersession)
+	 * @generated NOT
+	 */
 	public void shareProject(Usersession usersession) throws EmfStoreException {
 		this.stopChangeRecording();
 		this.setUsersession(usersession);
@@ -1319,9 +1326,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		this.startChangeRecording();
 	}
 
-	/**
-	 * @param absoluteFileName
-	 * @param projectSpace
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.workspace.ProjectSpace#exportProject(java.lang.String)
 	 */
 	public void exportProject(String absoluteFileName) throws IOException {
 		WorkspaceManager.getInstance().getCurrentWorkspace().exportProject(
@@ -1330,6 +1337,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * Save all resources that are dirty.
+	 * @param force if all resources should be saved regardless of their dirty state
 	 */
 	private void saveResources(boolean force) {
 		EList<Resource> resources = this.eResource().getResourceSet()
@@ -1355,6 +1363,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		}
 	}
 
+	/**
+	 * Add model element to a resource, assign a new resource if neccessary.
+	 * @param modelElement the model element
+	 * @generated NOT
+	 */
 	private void addToResource(final ModelElement modelElement) {
 		TransactionalEditingDomain domain = WorkspaceManager.getInstance()
 				.getCurrentWorkspace().getEditingDomain();
@@ -1383,6 +1396,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	}
 
+	/**
+	 * Create all neccessary operations for the notification.
+	 * @param notification the notification
+	 * @param modelElement the model element the triggered the notification
+	 * @generated NOT
+	 */
 	private void createOperations(final Notification notification,
 			ModelElement modelElement) {
 
@@ -1720,6 +1739,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		}
 	}
 
+	/**
+	 * Create a CreateDeleteOperation
+	 * @param modelElement the model element to delete or create
+	 * @param delete whether the element is deleted or created
+	 * @return the operation
+	 */
 	private CreateDeleteOperation createCreateDeleteOperation(
 			ModelElement modelElement, boolean delete) {
 		CreateDeleteOperation createDeleteOperation = OperationsFactory.eINSTANCE
@@ -1732,6 +1757,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		return createDeleteOperation;
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.model.Project, org.unicase.model.ModelElement)
+	 */
 	public void modelElementAdded(Project project, ModelElement modelElement) {
 		addToResource(modelElement);
 		if (isRecording) {
@@ -1752,6 +1781,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		}
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementRemoved(org.unicase.model.Project, org.unicase.model.ModelElement)
+	 */
 	public void modelElementRemoved(Project project, ModelElement modelElement) {
 		if (isRecording) {
 			CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(
@@ -1762,6 +1795,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		}
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification, org.unicase.model.Project, org.unicase.model.ModelElement)
+	 */
 	public void notify(Notification notification, Project project,
 			ModelElement modelElement) {
 		if (isRecording) {
