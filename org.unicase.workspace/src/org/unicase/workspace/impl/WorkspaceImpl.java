@@ -405,13 +405,12 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 * This is to enable the workspace to be root of table views.
 	 * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
 	 * @generated NOT
 	 */
 	@SuppressWarnings("unchecked")
 	public Object getAdapter(Class adapter) {
-		// JH Auto-generated method stub
 		return null;
 	}
 
