@@ -201,6 +201,40 @@
               </visibleWhen>
            </command>
            <command
+                 commandId="org.unicase.workspace.edit.exportChanges"
+                 icon="icons/full/obj16/export.gif"
+                 label="Export Changes"
+                 style="push">
+              <visibleWhen
+                    checkEnabled="false">
+                 <iterate
+                       ifEmpty="false">
+                    <instanceof
+                          value="org.unicase.workspace.ProjectSpace">
+                    </instanceof>
+                 </iterate>
+              </visibleWhen>
+           </command>
+           <command
+                 commandId="org.unicase.workspace.edit.undoLastOperation"
+                 icon="icons/full/obj16/arrow_left.png"
+                 label="Undo last operation"
+                 style="push">
+              <visibleWhen
+                    checkEnabled="false">
+                 <iterate
+                       ifEmpty="false">
+                    <instanceof
+                          value="org.unicase.workspace.ProjectSpace">
+                    </instanceof>
+                 </iterate>
+              </visibleWhen>
+           </command>
+        </menu>
+        <menu
+              icon="icons/advanced.gif"
+              label="Advanced">
+           <command
                  commandId="org.unicase.workspace.edit.importProject"
                  icon="icons/full/obj16/import.gif"
                  label="Import Project"
@@ -217,9 +251,39 @@
               </visibleWhen>
            </command>
            <command
+                 commandId="org.unicase.workspace.edit.importChanges"
+                 icon="icons/full/obj16/import.gif"
+                 label="Import Changes"
+                 style="push">
+              <visibleWhen
+                    checkEnabled="false">
+                 <iterate
+                       ifEmpty="false">
+                    <instanceof
+                          value="org.unicase.workspace.ProjectSpace">
+                    </instanceof>
+                 </iterate>
+              </visibleWhen>
+           </command>
+           <command
                  commandId="org.unicase.workspace.edit.shareProject"
                  icon="icons/full/obj16/relocate.gif"
                  label="Share  Project"
+                 style="push">
+              <visibleWhen
+                    checkEnabled="false">
+                 <iterate
+                       ifEmpty="false">
+                    <instanceof
+                          value="org.unicase.workspace.ProjectSpace">
+                    </instanceof>
+                 </iterate>
+              </visibleWhen>
+           </command>
+           <command
+                 commandId="org.unicase.workspace.edit.compareProjects"
+                 icon="icons/full/obj16/compare.png"
+                 label="Compare to ..."
                  style="push">
               <visibleWhen
                     checkEnabled="false">
@@ -261,65 +325,10 @@
                  </iterate>
               </visibleWhen>
            </command>
-           <command
-                 commandId="org.unicase.workspace.edit.compareProjects"
-                 label="Compare to ..."
-                 style="push">
-              <visibleWhen
-                    checkEnabled="false">
-                 <iterate
-                       ifEmpty="false">
-                    <instanceof
-                          value="org.unicase.workspace.ProjectSpace">
-                    </instanceof>
-                 </iterate>
-              </visibleWhen>
-           </command>
-           <command
-                 commandId="org.unicase.workspace.edit.importChanges"
-                 label="Import Changes..."
-                 style="push">
-              <visibleWhen
-                    checkEnabled="false">
-                 <iterate
-                       ifEmpty="false">
-                    <instanceof
-                          value="org.unicase.workspace.ProjectSpace">
-                    </instanceof>
-                 </iterate>
-              </visibleWhen>
-           </command>
-           <command
-                 commandId="org.unicase.workspace.edit.exportChanges"
-                 label="Export Changes..."
-                 style="push">
-              <visibleWhen
-                    checkEnabled="false">
-                 <iterate
-                       ifEmpty="false">
-                    <instanceof
-                          value="org.unicase.workspace.ProjectSpace">
-                    </instanceof>
-                 </iterate>
-              </visibleWhen>
-           </command>
-           <command
-                 commandId="org.unicase.workspace.edit.undoLastOperation"
-                 label="Undo last operation"
-                 style="push">
-              <visibleWhen
-                    checkEnabled="false">
-                 <iterate
-                       ifEmpty="false">
-                    <instanceof
-                          value="org.unicase.workspace.ProjectSpace">
-                    </instanceof>
-                 </iterate>
-              </visibleWhen>
-           </command>
         </menu>
         <separator
-              name="org.unicase.workspace.edit.scmCommands">
+              name="org.unicase.workspace.edit.scmCommands"
+              visible="true">
         </separator>
      </menuContribution>
   </extension>
