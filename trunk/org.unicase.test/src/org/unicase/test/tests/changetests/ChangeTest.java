@@ -3,12 +3,14 @@ package org.unicase.test.tests.changetests;
 import java.util.Calendar;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.model.Project;
 import org.unicase.model.util.ModelUtil;
 import org.unicase.test.lib.TestCase;
 import org.unicase.test.lib.TestSuite;
@@ -31,11 +33,14 @@ public class ChangeTest extends TestSuite {
 		//getLogger().info("initializing test projectSpaces");
 		System.out.println("initializing test projectSpaces");
 		testSpace = ChangeTestHelper.createEmptyProjectSpace("test");
+		compareSpace = ChangeTestHelper.createEmptyProjectSpace("compare");
 		long randomSeed = Calendar.getInstance().getTimeInMillis();
-		testSpace.setProject(new TestProjectGenerator(5, randomSeed, 3, 2, 5, 10).generateProject());
-		compareSpace = (ProjectSpace) EcoreUtil.copy(testSpace);
-
-
+		Project project = new TestProjectGenerator(5, randomSeed, 3, 2, 5, 10).generateProject();
+		Project copiedProject = ModelUtil.clone(project);
+		testSpace.setProject(project);
+		compareSpace.setProject(copiedProject);
+		
+		
 		final WorkspaceImpl currentWorkspace = (WorkspaceImpl) WorkspaceManager
 				.getInstance().getCurrentWorkspace();
 
@@ -46,13 +51,14 @@ public class ChangeTest extends TestSuite {
 			@Override
 			protected void doExecute() {
 				
-				currentWorkspace.getProjectSpaces().add(testSpace);
 				testSpace.initResources(currentWorkspace
 						.getWorkspaceResourceSet());
-				testSpace.init();
 				compareSpace.initResources(currentWorkspace
 						.getWorkspaceResourceSet());
-				compareSpace.init();
+				EList<ProjectSpace> projectSpaces = currentWorkspace.getProjectSpaces();
+				projectSpaces.add(testSpace);
+				projectSpaces.add(compareSpace);
+				currentWorkspace.save();
 
 			}
 
