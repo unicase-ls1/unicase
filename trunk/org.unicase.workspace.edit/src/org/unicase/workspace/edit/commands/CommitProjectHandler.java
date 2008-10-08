@@ -10,7 +10,6 @@ import java.util.Date;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -24,7 +23,6 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.ui.common.Activator;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.stem.views.dialogs.CommitDialog;
 import org.unicase.workspace.ProjectSpace;
@@ -111,7 +109,6 @@ public class CommitProjectHandler extends ProjectActionHandler implements Commit
 		// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (Exception e) {
 			DialogHandler.showExceptionDialog(e);
-			
 		}
 		// END SUPRESS CATCH EXCEPTION
 		finally {
