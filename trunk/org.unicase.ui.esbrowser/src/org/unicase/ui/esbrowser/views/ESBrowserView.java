@@ -21,6 +21,7 @@ import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
@@ -176,17 +177,27 @@ public class ESBrowserView extends ViewPart {
 			final ProjectInfo element = (ProjectInfo) obj;
 			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 					.getEditingDomain("org.unicase.EditingDomain");
-
+			final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
+				       .getActiveWorkbenchWindow().getShell());
 			domain.getCommandStack().execute(new RecordingCommand(domain) {
 				@Override
 				protected void doExecute() {
 					try {
+						progressDialog.open();
+						progressDialog.getProgressMonitor().beginTask("Checkout project...", 100);
+						progressDialog.getProgressMonitor().worked(10);
 						contentProvider.getProjectServerMap().get(element)
 								.getLastUsersession().checkout(element);
 					} catch (EmfStoreException e) {
-						//AS proper exception handling
 						DialogHandler.showExceptionDialog(e);
-						e.printStackTrace();
+					// BEGIN SUPRESS CATCH EXCEPTION
+					} catch (Exception e) {
+						DialogHandler.showExceptionDialog(e);
+					}
+					// END SUPRESS CATCH EXCEPTION
+					finally {
+						progressDialog.getProgressMonitor().done();
+						progressDialog.close();
 					}
 				}
 			});
