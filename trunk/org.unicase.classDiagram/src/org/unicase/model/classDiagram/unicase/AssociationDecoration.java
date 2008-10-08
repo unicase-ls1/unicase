@@ -17,6 +17,10 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.unicase.model.classes.Association;
 import org.unicase.model.classes.AssociationType;
 
+/**
+ * @author schroech
+ *
+ */
 public class AssociationDecoration extends Figure implements
 		RotatableDecoration {
 	private static final Locator NULL_LOCATOR = new LocatorStub();
@@ -25,6 +29,12 @@ public class AssociationDecoration extends Figure implements
 
 	private boolean source;
 
+	/**
+	 * @param association
+	 * The association to which the decoration will be attached
+	 * @param source
+	 * Indicates if the decoration is attached to the associations source end
+	 */
 	public AssociationDecoration(Association association, boolean source) {
 		super();
 		initAggregationDecorations();
@@ -47,17 +57,17 @@ public class AssociationDecoration extends Figure implements
 	private void updateDecortation() {
 		removeDecoration();
 		if (association.getType().equals(AssociationType.AGGREGATION)) {
-			if (source == true) {
+			if (source) {
 				addDecoration(mySharedAggrecationDecoration);
 			}
 		}
 		if (association.getType().equals(AssociationType.COMPOSITION)) {
-			if (source == true) {
+			if (source) {
 				addDecoration(myCompositeAggrecationDecoration);
 			}
 		}
 		if (association.getType().equals(AssociationType.DIRECTED_ASSOCIATION)) {
-			if (source == false) {
+			if (source) {
 				addDecoration(myNavigableDecoration);
 			}
 		}
@@ -129,6 +139,10 @@ public class AssociationDecoration extends Figure implements
 		myNonNavigableDecoration.setBoundPoint(new Point(-2, 0));
 	}
 
+	/**
+	 * @param figure
+	 * Adds the figure subdecoration
+	 */
 	public void addDecoration(ComposableRotatableDecoration figure) {
 		if (!getChildren().contains(figure)) {
 			super.add(figure, NULL_LOCATOR);
@@ -136,8 +150,11 @@ public class AssociationDecoration extends Figure implements
 		}
 	};
 
+	/**
+	 * Removes all subdecorations.
+	 */
+	@SuppressWarnings("unchecked")
 	public void removeDecoration() {
-		
 		List children = getChildren();
 		List decorations = new ArrayList(2);
 		for (Object object : children) {
@@ -152,11 +169,19 @@ public class AssociationDecoration extends Figure implements
 
 	}
 
+	/**
+	 * @author schroech
+	 *
+	 */
 	private static class LocatorStub implements Locator {
 		public void relocate(IFigure target) {
 		}
 	}
 
+	/**
+	* {@inheritDoc}
+	* @see org.eclipse.draw2d.Figure#getBounds()
+	*/
 	@Override
 	public Rectangle getBounds() {
 		Rectangle result = super.getBounds();
@@ -171,6 +196,10 @@ public class AssociationDecoration extends Figure implements
 		return getChildren();
 	}
 
+	/**
+	* {@inheritDoc}
+	* @see org.eclipse.draw2d.RotatableDecoration#setReferencePoint(org.eclipse.draw2d.geometry.Point)
+	*/
 	public void setReferencePoint(Point p) {
 		for (Object child : getChildren()) {
 			if (child instanceof RotatableDecoration) {
@@ -179,6 +208,10 @@ public class AssociationDecoration extends Figure implements
 		}
 	}
 
+	/**
+	* {@inheritDoc}
+	* @see org.eclipse.draw2d.Figure#setLocation(org.eclipse.draw2d.geometry.Point)
+	*/
 	@Override
 	public void setLocation(Point p) {
 		super.setLocation(p);

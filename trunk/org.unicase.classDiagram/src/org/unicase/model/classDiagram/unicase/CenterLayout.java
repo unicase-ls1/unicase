@@ -19,9 +19,18 @@ import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 
+/**
+ * @author schroech
+ *
+ */
 public class CenterLayout extends StackLayout {
 	private static final Rectangle RECTANGLE = new Rectangle();
 	
+	/**
+	* {@inheritDoc}
+	* @see org.eclipse.draw2d.StackLayout#layout(org.eclipse.draw2d.IFigure)
+	*/
+	@SuppressWarnings("unchecked")
 	public void layout(IFigure figure) {
 		Rectangle r = figure.getClientArea();
 		final int centerX = r.x + r.width / 2;

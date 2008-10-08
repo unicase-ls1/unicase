@@ -445,6 +445,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	 * 
 	 * @throws DiagramLoadException
 	 *             if load fails
+	 *            
 	 * @generated NOT
 	 */
 	public void loadDiagramLayout() throws DiagramLoadException {

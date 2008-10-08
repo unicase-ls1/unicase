@@ -152,7 +152,10 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 
 	/**
 	 * @generated NOT
-	 */
+	 * 
+	* {@inheritDoc}
+	* @see org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.AbstractDocumentProvider#createEmptyDocument()
+	*/
 	protected IDocument createEmptyDocument() {
 		DiagramDocument document = new DiagramDocument();
 		document.setEditingDomain(WorkspaceManager.getInstance()
@@ -206,9 +209,18 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 
 	/**
 	 * @generated NOT
+	 * 
+	 * @param document
+	 * The document whose content should be set
+	 * @param element
+	 * The new content element
+	 * 
+	 * @throws CoreException
+	 * 
 	 */
-	protected void setDocumentContent(IDocument document, IEditorInput element)
-			throws CoreException {
+	
+	protected void setDocumentContent(IDocument document, IEditorInput element) 
+		throws CoreException {
 		IDiagramDocument diagramDocument = (IDiagramDocument) document;
 		TransactionalEditingDomain domain = diagramDocument.getEditingDomain();
 		if (element instanceof FileEditorInput) {
