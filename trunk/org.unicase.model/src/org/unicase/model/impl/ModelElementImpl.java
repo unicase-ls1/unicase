@@ -11,6 +11,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -523,19 +525,39 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	 */
 	public Project getProject() {
 
+		Set<ModelElement> seenModelElements = new HashSet<ModelElement>();
+		seenModelElements.add(this);
+		return getProject(seenModelElements);
+	}
+	
+	/**
+	 * <!-- begin-user-doc --> 
+	 * 
+	 * <!-- end-user-doc -->.
+	 * 
+	 * @generated NOT
+	 * @return the project in which the modelelement is contained or null if it not in any project.
+	 */
+	public Project getProject(Set<ModelElement> seenModelElements) {
+
 		EObject container = this.eContainer();
 
 		if (container == null) {
 			return null;
+		}
+		
+		if (seenModelElements.contains(container)) {
+			throw new IllegalStateException(
+			"ModelElement is in a containment cycle");
 		}
 		// check if my container is a project
 		if (ModelPackage.eINSTANCE.getProject().isInstance(container)) {
 			return (Project) container;
 		}
 		// check if my container is a model element
-		else if (ModelPackage.eINSTANCE.getModelElement().isInstance(
-				this.eContainer)) {
-			return ((ModelElement) container).getProject();
+		else if (this.eContainer instanceof ModelElementImpl) {
+			seenModelElements.add(this);
+			return ((ModelElementImpl) container).getProject(seenModelElements);
 		} else {
 			throw new IllegalStateException(
 					"ModelElement is not contained by any project");
