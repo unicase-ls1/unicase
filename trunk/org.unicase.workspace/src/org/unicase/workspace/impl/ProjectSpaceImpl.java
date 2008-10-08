@@ -31,7 +31,6 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.xmi.DanglingHREFException;
-import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.conflictDetection.BasicConflictDetectionStrategy;
@@ -1382,22 +1381,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			}
 		});
 
-	}
-
-	public NotificationFilter getFilter() {
-		return NotificationFilter.NOT_TOUCH;
-	}
-
-	public boolean isAggregatePrecommitListener() {
-		return false;
-	}
-
-	public boolean isPostcommitOnly() {
-		return true;
-	}
-
-	public boolean isPrecommitOnly() {
-		return false;
 	}
 
 	private void createOperations(final Notification notification,
