@@ -106,6 +106,11 @@ public class UpdateProjectHandler extends ProjectActionHandler implements
 		} catch (EmfStoreException e2) {
 			DialogHandler.showExceptionDialog(e2);
 		}
+		// BEGIN SUPRESS CATCH EXCEPTION
+		catch (Exception e) {
+			DialogHandler.showExceptionDialog(e);
+		}
+		// END SUPRESS CATCH EXCEPTION
 		finally {
 			progressDialog.getProgressMonitor().done();
 			progressDialog.close();

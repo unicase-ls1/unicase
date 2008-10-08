@@ -7,65 +7,27 @@
 
 package org.unicase.ui.common.util;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
-import org.unicase.model.ModelPackage;
+import org.unicase.ui.common.Activator;
 
 /**
  * Utility class for the unicase project. 
  * @author shterev
  *
  */
-public final class UnicaseUtil {
+public final class UnicaseUiUtil {
 	
-	private UnicaseUtil(){
-		
+	private UnicaseUiUtil(){
+		//do nothing
 	}
-	
-	/**
-	 * @param clazz the input class
-	 * @param ePackage the input package
-	 * @return Returns all subclasses of the given input in the given package.
-	 */
-	public static ArrayList<EClass> getSubclasses(EClass clazz, EPackage ePackage) {
-		ArrayList<EClass> ret = new ArrayList<EClass>();
-
-		if (clazz.isAbstract() || clazz.isInterface()) {
-			for (EObject eObject : ePackage.eContents()) {
-				if (eObject instanceof EClass && !eObject.equals(ModelPackage.eINSTANCE.getProject())) {
-					EClass eClass = (EClass) eObject;
-					if (clazz.isSuperTypeOf(eClass) && !(eClass.isAbstract() || eClass.isInterface())) {
-						ret.add(eClass);
-					}
-				}else if (eObject instanceof EPackage) {
-					EPackage eSubPackage = (EPackage) eObject;
-					ret.addAll(getSubclasses(clazz, eSubPackage));
-				}
-			}
-		} else {
-			ret.add(clazz);
-		}
-		return ret;
-	}
-
-	/**
-	 * @param clazz the input super class
-	 * @return Returns all subclasses of the given input.
-	 * Looks in whole graph starting from the root package - i.e. ModelPackage.
-	 */
-	public static ArrayList<EClass> getSubclasses(EClass clazz) {
-		return UnicaseUtil.getSubclasses(clazz, ModelPackage.eINSTANCE);
-	}
-	
 	
 	/**.
 	 * This shows a standard dialog with some given initial contents to
@@ -96,6 +58,19 @@ public final class UnicaseUtil {
 			result = dlg.getResult();
 		}
 		return result;
+	}
+	
+	/**
+	 * Log an exception to the error log.
+	 * @param message the message
+	 * @param e the exception
+	 */
+	public static void logException(String message, Exception e) {
+		Activator activator = Activator.getDefault();
+		Status status = new Status(IStatus.ERROR,
+			      activator.getBundle().getSymbolicName(),
+			      IStatus.ERROR, message, e);
+		activator.getLog().log(status);
 	}
 
 }

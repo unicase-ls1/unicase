@@ -10,15 +10,19 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelFactory;
+import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 
 /**
@@ -154,5 +158,40 @@ public final class ModelUtil {
 		EObject result = res.getContents().get(0);
 		res.getContents().remove(result);
 		return result;
+	}
+	
+	/**
+	 * @param clazz the input class
+	 * @param ePackage the input package
+	 * @return Returns all subclasses of the given input in the given package.
+	 */
+	public static ArrayList<EClass> getSubclasses(EClass clazz, EPackage ePackage) {
+		ArrayList<EClass> ret = new ArrayList<EClass>();
+
+		if (clazz.isAbstract() || clazz.isInterface()) {
+			for (EObject eObject : ePackage.eContents()) {
+				if (eObject instanceof EClass && !eObject.equals(ModelPackage.eINSTANCE.getProject())) {
+					EClass eClass = (EClass) eObject;
+					if (clazz.isSuperTypeOf(eClass) && !(eClass.isAbstract() || eClass.isInterface())) {
+						ret.add(eClass);
+					}
+				}else if (eObject instanceof EPackage) {
+					EPackage eSubPackage = (EPackage) eObject;
+					ret.addAll(getSubclasses(clazz, eSubPackage));
+				}
+			}
+		} else {
+			ret.add(clazz);
+		}
+		return ret;
+	}
+
+	/**
+	 * @param clazz the input super class
+	 * @return Returns all subclasses of the given input.
+	 * Looks in whole graph starting from the root package - i.e. ModelPackage.
+	 */
+	public static ArrayList<EClass> getSubclasses(EClass clazz) {
+		return getSubclasses(clazz, ModelPackage.eINSTANCE);
 	}
 }
