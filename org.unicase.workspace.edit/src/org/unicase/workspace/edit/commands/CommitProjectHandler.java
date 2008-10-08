@@ -13,6 +13,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
@@ -69,6 +70,8 @@ public class CommitProjectHandler extends ProjectActionHandler implements Commit
 	private void commitWithoutCommand(final ProjectSpace projectSpace) {
 		usersession = projectSpace.getUsersession();
 		shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
+			       .getActiveWorkbenchWindow().getShell());
 		LoginDialog login;
 		// initially setting the status as successful in case the user
 		// is already logged in
@@ -79,14 +82,21 @@ public class CommitProjectHandler extends ProjectActionHandler implements Commit
 				loginStatus = login.open();
 			}
 			if (loginStatus == LoginDialog.SUCCESSFUL) {
+				progressDialog.open();
+				progressDialog.getProgressMonitor().beginTask("Commit project...", 100);
+				progressDialog.getProgressMonitor().worked(10);
 				logMessage = VersioningFactory.eINSTANCE.createLogMessage();
 				PrimaryVersionSpec oldVersion = projectSpace.getBaseVersion();
 				PrimaryVersionSpec newVersion = projectSpace.commit(logMessage,CommitProjectHandler.this);
+				progressDialog.getProgressMonitor().done();
+				progressDialog.close();
 				if(!oldVersion.equals(newVersion)){
 					MessageDialog.openInformation(shell, null, "Commit completed.");
 				}
 			}
 		} catch (BaseVersionOutdatedException e) {
+			progressDialog.getProgressMonitor().done();
+			progressDialog.close();
 			MessageDialog dialog = new MessageDialog(null, "Confirmation",
 					null, "Your project is outdated, you need to update before commit. Do you want to update now?",
 					MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
