@@ -11,20 +11,24 @@ import java.io.IOException;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.workspace.ProjectSpace;
 
-/**.
- * ImportChangesHandler
+/**
+ * . ImportChangesHandler
+ * 
  * @author Hodaie
- *
+ * 
  */
 public class ImportChangesHandler extends ProjectActionHandler {
 
-	/**.
-	 * {@inheritDoc}
+	/**
+	 * . {@inheritDoc}
 	 * 
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -45,12 +49,20 @@ public class ImportChangesHandler extends ProjectActionHandler {
 		}
 		stringBuilder.append(fileName);
 		final String absoluteFileName = stringBuilder.toString();
-		
-		try {
-			getProjectSpace(event).importLocalChanges(absoluteFileName);
-		} catch (IOException e) {
-			DialogHandler.showExceptionDialog(e);
-		}
+		final ProjectSpace projectSpace = getProjectSpace(event);
+
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain");
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
+			protected void doExecute() {
+				try {
+					projectSpace.importLocalChanges(absoluteFileName);
+				} catch (IOException e) {
+					DialogHandler.showExceptionDialog(e);
+				}
+			}
+		});
 
 		return null;
 	}
