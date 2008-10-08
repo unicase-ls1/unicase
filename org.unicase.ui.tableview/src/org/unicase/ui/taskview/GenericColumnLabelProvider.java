@@ -29,10 +29,11 @@ import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
+
 /**
  * 
  * @author schneidf
- *
+ * 
  */
 public class GenericColumnLabelProvider extends
 		org.eclipse.jface.viewers.ColumnLabelProvider {
@@ -111,23 +112,27 @@ public class GenericColumnLabelProvider extends
 					|| (feature.equals(TaskPackage.Literals.CHECKABLE__CHECKED))) {
 				return "";
 			}
+			Method getName;
+			Object name;
 			try {
-				Method getName = attr.getClass().getMethod("getName");
-				Object name = getName.invoke(attr);
-				return (String) name;
-			} catch (SecurityException e) {
-				return attr != null ? attr.toString() : "";
+				getName = attr.getClass().getMethod("getName");
 			} catch (NoSuchMethodException e) {
 				return attr != null ? attr.toString() : "";
+			}
+
+			try {
+				name = getName.invoke(attr);
 			} catch (IllegalArgumentException e) {
 				return attr != null ? attr.toString() : "";
 			} catch (IllegalAccessException e) {
 				return attr != null ? attr.toString() : "";
 			} catch (InvocationTargetException e) {
 				return attr != null ? attr.toString() : "";
-			} catch (NullPointerException e) {
+			}
+			if (name == null) {
 				return attr != null ? attr.toString() : "";
 			}
+			return (String) name;
 
 		} else {
 			return super.getText(element);
