@@ -15,7 +15,7 @@ import org.unicase.model.classes.ClassesPackage;
  * @generated
  */
 public class ClassClassNode_attributesCanonicalEditPolicy extends
-		CanonicalEditPolicy {
+CanonicalEditPolicy {
 
 	/**
 	 * @generated
@@ -32,8 +32,8 @@ public class ClassClassNode_attributesCanonicalEditPolicy extends
 				.getClassClassNode_attributes_7001SemanticChildren(viewObject)
 				.iterator(); it.hasNext();) {
 			result
-					.add(((org.unicase.model.classDiagram.part.ModelNodeDescriptor) it
-							.next()).getModelElement());
+			.add(((org.unicase.model.classDiagram.part.ModelNodeDescriptor) it
+					.next()).getModelElement());
 		}
 		return result;
 	}
@@ -43,7 +43,7 @@ public class ClassClassNode_attributesCanonicalEditPolicy extends
 	 */
 	protected boolean isOrphaned(Collection semanticChildren, final View view) {
 		int visualID = org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-				.getVisualID(view);
+		.getVisualID(view);
 		switch (visualID) {
 		case org.unicase.model.classDiagram.edit.parts.AttributeEditPart.VISUAL_ID:
 			if (!semanticChildren.contains(view.getElement())) {

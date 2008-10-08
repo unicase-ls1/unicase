@@ -147,6 +147,9 @@ public class Association4EditPart extends ConnectionNodeEditPart implements
 		}
 
 		/**
+		 * 
+		 * @return The source decoration
+		 * 
 		 * @generated NOT
 		 */
 		private RotatableDecoration createSourceDecoration() {
@@ -160,14 +163,17 @@ public class Association4EditPart extends ConnectionNodeEditPart implements
 				Association association = (Association) object;
 				df = new org.unicase.model.classDiagram.unicase.AssociationDecoration(
 						association, true);
-			} else
+			} else {
 				throw new IllegalArgumentException();
+			}
 
 			return df;
 		}
 
 		/**
 		 * @generated NOT
+		 * 
+		 * @return The target decoration
 		 */
 		private RotatableDecoration createTargetDecoration() {
 			org.unicase.model.classDiagram.unicase.AssociationDecoration df;
@@ -180,8 +186,9 @@ public class Association4EditPart extends ConnectionNodeEditPart implements
 				Association association = (Association) object;
 				df = new org.unicase.model.classDiagram.unicase.AssociationDecoration(
 						association, false);
-			} else
+			} else {
 				throw new IllegalArgumentException();
+			}
 
 			return df;
 		}

@@ -90,6 +90,12 @@ public class ClassItemSemanticEditPolicy
 
 	/**
 	 * @generated NOT
+
+
+	 * @param req
+	 * The request which triggers the creation of the command
+	 * @return
+	 * The new RelationshipCreateCommand
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
@@ -130,6 +136,12 @@ public class ClassItemSemanticEditPolicy
 
 	/**
 	 * @generated NOT
+	 */
+	/**
+	 * @param req
+	 * The request that triggers the command creation
+	 * @return
+	 * The new {@link CreateElementCommand}
 	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {

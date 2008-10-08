@@ -66,6 +66,7 @@ public class AssociationName2EditPart extends LabelEditPart implements
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	private List parserElements;
 
 	/**

@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.model.classDiagram.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -36,6 +42,18 @@ public class Association1CreateCommand extends CreateElementCommand {
 	private MEDiagram container;
 
 	/**
+	 * This constructor should not be used!
+	 * Because of our use of a single resource we need to know the 
+	 * connections container at creation time. 
+	 * Please use the constructor below to create this command.
+	 * 
+	 * @param request
+	 * The request that caused the creation of this command
+	 * @param source
+	 * The source element of the connection to be created
+	 * @param target
+	 * The target element of the connection to be created
+	 * 
 	 * @generated NOT
 	 */
 	public Association1CreateCommand(CreateRelationshipRequest request,
@@ -45,7 +63,16 @@ public class Association1CreateCommand extends CreateElementCommand {
 	}
 
 	/**
-	 * @param eContainer 
+	 * 
+	 * @param request
+	 * The request that caused the creation of this command
+	 * @param source
+	 * The source element of the connection to be created
+	 * @param target
+	 * The target element of the connection to be created
+	 * @param eContainer
+	 * The container element which will contain the connection
+	 * 
 	 * @generated NOT
 	 */
 	public Association1CreateCommand(CreateRelationshipRequest request,
@@ -98,7 +125,10 @@ public class Association1CreateCommand extends CreateElementCommand {
 
 	/**
 	 * @generated NOT
-	 */
+	 * 
+	* {@inheritDoc}
+	* @see org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand#doDefaultElementCreation()
+	*/
 	protected EObject doDefaultElementCreation() {
 		Association newElement = ClassesFactory.eINSTANCE.createAssociation();
 		getContainer().getNewElements().add(newElement);

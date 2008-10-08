@@ -566,17 +566,21 @@ public class AttributeEditPart extends CompartmentEditPart implements
 			}
 			if (getParser() instanceof ISemanticParser) {
 				ISemanticParser modelParser = (ISemanticParser) getParser();
-				if (modelParser.areSemanticElementsAffected(null, event)) {
-					removeSemanticListeners();
-					if (resolveSemanticElement() != null) {
-						addSemanticListeners();
-					}
-					refreshLabel();
-				}
+				refreshSemanticListeners(event, modelParser);
 			}
 			refreshLabel();
 		}
 		super.handleNotificationEvent(event);
+	}
+
+	private void refreshSemanticListeners(Notification event, ISemanticParser modelParser) {
+		if (modelParser.areSemanticElementsAffected(null, event)) {
+			removeSemanticListeners();
+			if (resolveSemanticElement() != null) {
+				addSemanticListeners();
+			}
+			refreshLabel();
+		}
 	}
 
 	/**

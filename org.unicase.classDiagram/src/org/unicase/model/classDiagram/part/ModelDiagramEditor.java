@@ -155,7 +155,10 @@ public class ModelDiagramEditor extends DiagramDocumentEditor implements
 
 	/**
 	 * @generated NOT
-	 */
+	 * 
+	* {@inheritDoc}
+	* @see org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor#isSaveAsAllowed()
+	*/
 	public boolean isSaveAsAllowed() {
 		return false;
 	}
