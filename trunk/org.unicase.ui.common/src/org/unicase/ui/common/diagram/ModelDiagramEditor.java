@@ -30,22 +30,23 @@ import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.impl.DiagramStoreException;
 
 /**
- * @author denglerm
- * This class is a superclass for the specific ModelDiagramEditor in each diagram.
+ * @author denglerm This class is a superclass for the specific
+ *         ModelDiagramEditor in each diagram.
  */
 public class ModelDiagramEditor extends DiagramDocumentEditor {
-	
-	/**.
-	 * The constructor
+
+	/**
+	 * . The constructor
 	 */
 	public ModelDiagramEditor() {
 		super(true);
 	}
-	
+
 	/**
 	 * Constructs a diagram editor with optional flyout palette.
 	 * 
-	 * @param hasFlyoutPalette creates a palette if true, else no palette
+	 * @param hasFlyoutPalette
+	 *            creates a palette if true, else no palette
 	 */
 	public ModelDiagramEditor(boolean hasFlyoutPalette) {
 		super(hasFlyoutPalette);
@@ -69,14 +70,14 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						//						WorkspaceManager.getProjectSpace(
-						//								(MEDiagram) ModelDiagramEditor.this
-						//										.getDiagram().eContainer()).save();
+						// WorkspaceManager.getProjectSpace(
+						// (MEDiagram) ModelDiagramEditor.this
+						// .getDiagram().eContainer()).save();
 					}
 
 				});
 	}
-	
+
 	/**
 	 * . {@inheritDoc}
 	 */
@@ -107,8 +108,8 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 	}
 
 	/**
-	 * @author denglerm
-	 * This class implements the abstract DiagramDropTargetListener
+	 * @author denglerm This class implements the abstract
+	 *         DiagramDropTargetListener
 	 * @see org.eclipse.gmf.runtime.diagram.ui.parts.DiagramDropTargetListener
 	 */
 	private abstract class DropTargetListener extends DiagramDropTargetListener {
@@ -121,7 +122,7 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 		@Override
 		protected List<EObject> getObjectsBeingDropped() {
 			TransferData data = getCurrentEvent().currentDataType;
-			Collection<URI> uris= new HashSet<URI>();
+			Collection<URI> uris = new HashSet<URI>();
 
 			Object transferedObject = getJavaObject(data);
 			if (transferedObject instanceof IStructuredSelection) {
@@ -158,4 +159,14 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 		protected abstract Object getJavaObject(TransferData data);
 
 	}
+/**
+ *Turned to always true as a fix.
+ *{@inheritDoc}
+ */
+	//MD: Fix to better method
+	@Override
+	public boolean isDirty() {
+		return true;
+	}
+
 }
