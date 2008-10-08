@@ -209,7 +209,7 @@
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//classes/Attribute/definingClass"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Attribute/visibility"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Attribute/scope"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Attribute/signature"/>
+        <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Attribute/signature"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Attribute/type"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Attribute/defaultValue"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Attribute/properties"/>
@@ -220,7 +220,7 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Method/scope"/>
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//classes/Method/definingClass"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Method/returnType"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Method/signature"/>
+        <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Method/signature"/>
         <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//classes/Method/arguments"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Method/properties"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Method/label"/>
@@ -229,7 +229,7 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/MethodArgument/type"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/MethodArgument/direction"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/MethodArgument/defaultValue"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/MethodArgument/signature"/>
+        <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/MethodArgument/signature"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/MethodArgument/label"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//classes/Dependency">

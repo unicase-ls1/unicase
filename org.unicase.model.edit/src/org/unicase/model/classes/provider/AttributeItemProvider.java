@@ -59,7 +59,6 @@ public class AttributeItemProvider extends ModelElementItemProvider implements
 			addDefiningClassPropertyDescriptor(object);
 			addVisibilityPropertyDescriptor(object);
 			addScopePropertyDescriptor(object);
-			addSignaturePropertyDescriptor(object);
 			addTypePropertyDescriptor(object);
 			addDefaultValuePropertyDescriptor(object);
 			addPropertiesPropertyDescriptor(object);
@@ -119,26 +118,6 @@ public class AttributeItemProvider extends ModelElementItemProvider implements
 						"_UI_Attribute_scope_feature", "_UI_Attribute_type"),
 				ClassesPackage.Literals.ATTRIBUTE__SCOPE, true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Signature feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSignaturePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(), getResourceLocator(),
-						getString("_UI_Attribute_signature_feature"),
-						getString("_UI_PropertyDescriptor_description",
-								"_UI_Attribute_signature_feature",
-								"_UI_Attribute_type"),
-						ClassesPackage.Literals.ATTRIBUTE__SIGNATURE, true,
-						false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**

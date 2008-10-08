@@ -59,7 +59,6 @@ public class MethodArgumentItemProvider extends ModelElementItemProvider
 			addTypePropertyDescriptor(object);
 			addDirectionPropertyDescriptor(object);
 			addDefaultValuePropertyDescriptor(object);
-			addSignaturePropertyDescriptor(object);
 			addLabelPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -117,25 +116,6 @@ public class MethodArgumentItemProvider extends ModelElementItemProvider
 						"_UI_MethodArgument_defaultValue_feature",
 						"_UI_MethodArgument_type"),
 				ClassesPackage.Literals.METHOD_ARGUMENT__DEFAULT_VALUE, true,
-				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-				null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Signature feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSignaturePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_MethodArgument_signature_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_MethodArgument_signature_feature",
-						"_UI_MethodArgument_type"),
-				ClassesPackage.Literals.METHOD_ARGUMENT__SIGNATURE, true,
 				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
 				null));
 	}
