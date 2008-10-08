@@ -332,6 +332,24 @@
         xsi:type="ecore:EReference"
         href="../model.ecore#//classes/Class/subClasses"/>
   </links>
+  <links
+      relatedDiagrams="//@diagram">
+    <domainMetaElement
+        href="../model.ecore#//classes/Dependency"/>
+    <containmentFeature
+        href="../model.ecore#//diagram/MEDiagram/newElements"/>
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="model.gmftool#//@palette/@tools.1/@tools.5"/>
+    <diagramLink
+        href="model.gmfgraph#Dependency"/>
+    <sourceMetaFeature
+        xsi:type="ecore:EReference"
+        href="../model.ecore#//classes/Dependency/source"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="../model.ecore#//classes/Dependency/target"/>
+  </links>
   <diagram>
     <diagramCanvas
         href="model.gmfgraph#MEDiagram"/>

@@ -1,9 +1,12 @@
 package org.unicase.model.classDiagram.edit.policies;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.View;
 
 /**
@@ -25,6 +28,60 @@ public class PackageItemSemanticEditPolicy
 		}
 		cc.add(getGEFWrapper(new DestroyElementCommand(req)));
 		return cc.unwrap();
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
+		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
+				: getCompleteCreateRelationshipCommand(req);
+		return command != null ? command : super
+				.getCreateRelationshipCommand(req);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Command getStartCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
+		if (org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006 == req
+				.getElementType()) {
+			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.DependencyCreateCommand(
+					req, req.getSource(), req.getTarget(), (EObject) getHost()
+					.getModel()));
+		}
+		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Command getCompleteCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
+		if (org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006 == req
+				.getElementType()) {
+			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.DependencyCreateCommand(
+					req, req.getSource(), req.getTarget(), (EObject) getHost()
+					.getModel()));
+		}
+		return null;
+	}
+
+	/**
+	 * Returns command to reorient EClass based link. New link target or source
+	 * should be the domain model element associated with this node.
+	 * 
+	 * @generated
+	 */
+	protected Command getReorientRelationshipCommand(
+			ReorientRelationshipRequest req) {
+		switch (getVisualID(req)) {
+		case org.unicase.model.classDiagram.edit.parts.DependencyEditPart.VISUAL_ID:
+			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.DependencyReorientCommand(
+					req));
+		}
+		return super.getReorientRelationshipCommand(req);
 	}
 
 }

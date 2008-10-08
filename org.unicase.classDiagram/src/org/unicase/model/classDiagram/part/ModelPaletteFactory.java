@@ -52,6 +52,7 @@ public class ModelPaletteFactory {
 		paletteContainer.add(createDirectedAssociation3CreationTool());
 		paletteContainer.add(createAggregation4CreationTool());
 		paletteContainer.add(createComposition5CreationTool());
+		paletteContainer.add(createDependency6CreationTool());
 		return paletteContainer;
 	}
 
@@ -217,6 +218,25 @@ public class ModelPaletteFactory {
 		entry
 				.setLargeIcon(org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin
 						.findImageDescriptor("/org.unicase.model.edit/icons/full/obj16/Composition.gif")); //$NON-NLS-1$
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createDependency6CreationTool() {
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		types
+				.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006);
+		LinkToolEntry entry = new LinkToolEntry(
+				org.unicase.model.classDiagram.part.Messages.Dependency6CreationTool_title,
+				null, types);
+		entry
+				.setSmallIcon(org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin
+						.findImageDescriptor("/org.unicase.model.edit/icons/full/obj16/Dependency.gif")); //$NON-NLS-1$
+		entry
+				.setLargeIcon(org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin
+						.findImageDescriptor("/org.unicase.model.edit/icons/full/obj16/Dependency.gif")); //$NON-NLS-1$
 		return entry;
 	}
 

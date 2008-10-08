@@ -39,6 +39,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.classes.Class;
+import org.unicase.model.classes.PackageElement;
 import org.unicase.model.diagram.MEDiagram;
 
 /**
@@ -397,6 +398,14 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
+		public static boolean canCreateDependency_4006(MEDiagram container,
+				PackageElement source, PackageElement target) {
+			return canExistDependency_4006(container, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
 		public static boolean canExistAssociation_4001(MEDiagram container,
 				Class source, Class target) {
 
@@ -435,6 +444,15 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public static boolean canExistClassSubClasses_4005(Class source,
 				Class target) {
+
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistDependency_4006(MEDiagram container,
+				PackageElement source, PackageElement target) {
 
 			return true;
 		}

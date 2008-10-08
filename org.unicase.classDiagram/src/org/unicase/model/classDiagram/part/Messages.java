@@ -303,6 +303,11 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String Dependency6CreationTool_title;
+
+	/**
+	 * @generated
+	 */
 	public static String ClassClassNode_attributesEditPart_title;
 
 	/**
@@ -329,6 +334,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_Class_2001_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Package_2002_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Package_2002_outgoinglinks;
 
 	/**
 	 * @generated
@@ -379,6 +394,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_ClassSubClasses_4005_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Dependency_4006_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Dependency_4006_source;
 
 	/**
 	 * @generated

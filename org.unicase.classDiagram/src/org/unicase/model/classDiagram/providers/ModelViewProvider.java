@@ -250,6 +250,8 @@ public class ModelViewProvider extends AbstractViewProvider {
 			return org.unicase.model.classDiagram.view.factories.Association4ViewFactory.class;
 		case org.unicase.model.classDiagram.edit.parts.ClassSubClassesEditPart.VISUAL_ID:
 			return org.unicase.model.classDiagram.view.factories.ClassSubClassesViewFactory.class;
+		case org.unicase.model.classDiagram.edit.parts.DependencyEditPart.VISUAL_ID:
+			return org.unicase.model.classDiagram.view.factories.DependencyViewFactory.class;
 		}
 		return null;
 	}

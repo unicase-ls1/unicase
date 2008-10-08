@@ -12,18 +12,11 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 
-/**
- * @author schroech
- *
- */
-public class GeneralizationDecoration extends Figure implements RotatableDecoration{
+public class DependencyDecoration extends Figure implements RotatableDecoration{
 
 	private static final Locator NULL_LOCATOR = new LocatorStub();
 
-	/**
-	 * Designated constructor.
-	 */
-	public GeneralizationDecoration() {
+	public DependencyDecoration() {
 		super();
 		initDecoration();
 		setLayoutManager(new DelegatingLayout());
@@ -32,26 +25,27 @@ public class GeneralizationDecoration extends Figure implements RotatableDecorat
 	}
 
 	private void updateDecoration() {
-		addDecoration(myGeneralizationDecoration);
+		addDecoration(myDependencyDecoration);
 	}
 
 
-	private static final PointList CLOSED_ARROW = new PointList(new int[] {
-					-1, 2,
-					0, 0,
-					-1, -2,
-					-1, 0,
-					-1, 2,
+	private static final PointList ARROW = new PointList(new int[] { //
+			//
+					-1, 1, //
+					0, 0, //
+					-1, -1, //
+					0, 0, //
+					-1, 1, //
 			});
 	
-	private ComposablePolygonDecoration myGeneralizationDecoration;
+	private ComposablePolygonDecoration myDependencyDecoration;
 
 	private void initDecoration() {
-		myGeneralizationDecoration = new ComposablePolygonDecoration();
-		myGeneralizationDecoration.setTemplate(CLOSED_ARROW.getCopy());
-		myGeneralizationDecoration.setBoundPoint(new Point(-1, 0));
-		myGeneralizationDecoration.setFill(true);
-		myGeneralizationDecoration.setBackgroundColor(ColorConstants.white);
+		myDependencyDecoration = new ComposablePolygonDecoration();
+		myDependencyDecoration.setTemplate(ARROW.getCopy());
+		myDependencyDecoration.setBoundPoint(new Point(-1, 0));
+		myDependencyDecoration.setFill(true);
+		myDependencyDecoration.setBackgroundColor(ColorConstants.white);
 	}
 
 	public void addDecoration(ComposableRotatableDecoration figure) {
@@ -87,6 +81,10 @@ public class GeneralizationDecoration extends Figure implements RotatableDecorat
 		return getChildren();
 	}
 
+	/**
+	* {@inheritDoc}
+	* @see org.eclipse.draw2d.RotatableDecoration#setReferencePoint(org.eclipse.draw2d.geometry.Point)
+	*/
 	public void setReferencePoint(Point p) {
 		for (Object child : getChildren()) {
 			if (child instanceof RotatableDecoration) {
@@ -95,6 +93,10 @@ public class GeneralizationDecoration extends Figure implements RotatableDecorat
 		}
 	}
 
+	/**
+	* {@inheritDoc}
+	* @see org.eclipse.draw2d.Figure#setLocation(org.eclipse.draw2d.geometry.Point)
+	*/
 	@Override
 	public void setLocation(Point p) {
 		super.setLocation(p);

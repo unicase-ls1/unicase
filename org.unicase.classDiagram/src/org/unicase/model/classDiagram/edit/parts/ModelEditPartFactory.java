@@ -131,6 +131,10 @@ public class ModelEditPartFactory implements EditPartFactory {
 			case org.unicase.model.classDiagram.edit.parts.ClassSubClassesEditPart.VISUAL_ID:
 				return new org.unicase.model.classDiagram.edit.parts.ClassSubClassesEditPart(
 						view);
+
+			case org.unicase.model.classDiagram.edit.parts.DependencyEditPart.VISUAL_ID:
+				return new org.unicase.model.classDiagram.edit.parts.DependencyEditPart(
+						view);
 			}
 		}
 		return createUnrecognizedEditPart(context, model);
