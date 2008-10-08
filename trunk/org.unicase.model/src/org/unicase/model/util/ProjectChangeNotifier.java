@@ -167,6 +167,11 @@ public class ProjectChangeNotifier extends AdapterImpl {
 				this.projectChangeObserver.modelElementAdded(project,
 						(ModelElement) newValue);
 			}
+			else {
+				if (project.getModelElement(modelElement.getModelElementId())!=modelElement) {
+					throw new IllegalStateException("Two elements with the same id but different instance detected!");
+				}
+			}
 		}
 	}
 
