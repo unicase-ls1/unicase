@@ -26,11 +26,11 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.model.ModelElement;
+import org.unicase.model.util.ModelUtil;
 import org.unicase.ui.common.MEClassLabelProvider;
 import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.ui.common.decorators.OverlayImageDescriptor;
 import org.unicase.ui.common.exceptions.DialogHandler;
-import org.unicase.ui.common.util.UnicaseUtil;
 
 /**
  * 
@@ -57,7 +57,7 @@ public class NewReferenceAction extends Action {
 		protected void doExecute() {
 			EClass clazz = eReference.getEReferenceType();
 			EClass newClass = null;
-			ArrayList<EClass> subclasses = UnicaseUtil.getSubclasses(clazz);
+			ArrayList<EClass> subclasses = ModelUtil.getSubclasses(clazz);
 			if (subclasses.size() == 1) {
 				newClass = clazz;
 			} else {

@@ -67,7 +67,7 @@ public class ExportProjectHandler extends ProjectActionHandler {
 				} catch (IOException e) {
 					DialogHandler.showExceptionDialog(e);
 				// BEGIN SUPRESS CATCH EXCEPTION
-				} catch (RuntimeException e) {
+				} catch (Exception e) {
 					DialogHandler.showExceptionDialog(e);
 				}
 				finally {

@@ -37,7 +37,7 @@ import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 import org.unicase.ui.common.MEClassLabelProvider;
 import org.unicase.ui.common.dialogs.METypeSelectionDialog;
-import org.unicase.ui.common.util.UnicaseUtil;
+import org.unicase.ui.common.util.UnicaseUiUtil;
 import org.unicase.ui.stem.views.Query.QueryRangeType;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -313,7 +313,7 @@ public class QueryComosite extends Composite {
 			users.addAll(project.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser() , new BasicEList<User>()));
 			users.removeAll(usersList);
 
-			result = UnicaseUtil.showMESelectionDialog(getShell(),
+			result = UnicaseUiUtil.showMESelectionDialog(getShell(),
 					users, "select user", true);
 
 		} else if (type == ListCompositeType.ELEMENTS_LIST) {
@@ -322,7 +322,7 @@ public class QueryComosite extends Composite {
 			modelElements.addAll(project.getAllModelElements());
 			modelElements.removeAll(modelElementsList);
 
-			result = UnicaseUtil.showMESelectionDialog(getShell(),
+			result = UnicaseUiUtil.showMESelectionDialog(getShell(),
 					modelElements, "select model element", true);
 		}
 
