@@ -8,6 +8,7 @@ package org.unicase.workspace.edit.dialogs;
 
 import java.util.List;
 
+
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -40,6 +41,7 @@ public class CompareProjectsDialog extends TitleAreaDialog {
 
 	private ProjectSpace selectedProjectSpace;
 	private ListViewer listViewer;
+
 
 	/**
 	 * {@inheritDoc}
@@ -117,6 +119,7 @@ public class CompareProjectsDialog extends TitleAreaDialog {
 		return contents;
 	}
 
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -124,6 +127,7 @@ public class CompareProjectsDialog extends TitleAreaDialog {
 	 */
 	@Override
 	protected void okPressed() {
+
 		ProjectSpace secondProjectSpace = (ProjectSpace) (((StructuredSelection) listViewer
 				.getSelection()).getFirstElement());
 		boolean areEqual = ModelUtil.areEqual(
@@ -143,6 +147,7 @@ public class CompareProjectsDialog extends TitleAreaDialog {
 		
 		super.okPressed();
 	}
+
 
 	/**
 	 * Constructor.
