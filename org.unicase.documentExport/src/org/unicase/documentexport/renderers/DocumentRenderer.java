@@ -32,12 +32,13 @@ public class DocumentRenderer {
 		coverPage.option = template.layoutOptions.coverTextOption;
 		doc.add(coverPage);
 		
-		if (modelElement instanceof CompositeSection) 
+		if (modelElement instanceof CompositeSection) {
 			renderCompositeSection(doc, (CompositeSection)modelElement);
-		else if (modelElement instanceof LeafSection)
+		} else if (modelElement instanceof LeafSection) {
 			renderLeafSection(doc, (LeafSectionImpl)modelElement);
-		else
+		} else {
 			renderModelElement(doc, modelElement);
+		}
 
 		return doc;
 	}
@@ -83,7 +84,7 @@ public class DocumentRenderer {
 		
 		EList<ModelElement>  subSections = leafSection.getModelElements();
 		for (ModelElement child : subSections) {
-			renderModelElement(section, (ModelElement) child);
+			renderModelElement(section, child);
 		}
 	}
 

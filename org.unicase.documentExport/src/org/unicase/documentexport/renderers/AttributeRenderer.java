@@ -11,6 +11,7 @@ import org.unicase.documentexport.renderers.options.LayoutOptions;
 import org.unicase.documentexport.renderers.options.StringAttributeOption;
 import org.unicase.model.ModelElement;
 
+@SuppressWarnings("serial")
 public abstract class AttributeRenderer implements Serializable {
 	
 	class AttributeType {

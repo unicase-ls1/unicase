@@ -10,7 +10,6 @@ import java.lang.reflect.InvocationTargetException;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -20,10 +19,10 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.unicase.documentexport.docWriter.PdfWriter;
-import org.unicase.documentexport.renderers.DocumentRenderer;
 import org.unicase.documentexport.DocumentExport;
 import org.unicase.documentexport.TemplateSaveHelper;
+import org.unicase.documentexport.docWriter.PdfWriter;
+import org.unicase.documentexport.renderers.DocumentRenderer;
 import org.unicase.model.ModelElement;
 import org.unicase.model.impl.ModelElementImpl;
 

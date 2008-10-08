@@ -29,6 +29,7 @@ import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 
+@SuppressWarnings("serial")
 public class MeetingRenderer extends ModelElementRenderer {
 
 	public static final String header = "Lehrstuhl f�r Angewandte Softwaretechnik \n DOLLI-Projekt";

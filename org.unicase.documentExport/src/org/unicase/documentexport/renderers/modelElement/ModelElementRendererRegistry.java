@@ -2,7 +2,6 @@ package org.unicase.documentexport.renderers.modelElement;
 
 import java.util.ArrayList;
 
-//import org.unicase.documentexport.documentTemplate.DefaultModelElementRendererBuilder;
 import org.unicase.documentexport.TemplateSaveHelper;
 import org.unicase.documentexport.renderers.ModelElementRenderer;
 import org.unicase.model.ModelElement;

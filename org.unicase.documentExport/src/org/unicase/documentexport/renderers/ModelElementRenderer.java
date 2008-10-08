@@ -9,6 +9,7 @@ import org.unicase.documentexport.renderers.options.LayoutOptions;
 import org.unicase.documentexport.renderers.options.RendererOption;
 import org.unicase.model.ModelElement;
 
+@SuppressWarnings("serial")
 public abstract class ModelElementRenderer implements Serializable {
 	public ArrayList<RendererOption> rendererOptions = new ArrayList<RendererOption>();
 	

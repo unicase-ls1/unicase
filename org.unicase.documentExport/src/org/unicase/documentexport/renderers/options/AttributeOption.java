@@ -1,6 +1,7 @@
 package org.unicase.documentexport.renderers.options;
 
 
+@SuppressWarnings("serial")
 public abstract class AttributeOption extends RendererOption {
 	
 	/**
