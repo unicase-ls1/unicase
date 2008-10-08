@@ -9,6 +9,7 @@ package org.unicase.ui.common.exceptions;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
+import org.unicase.ui.common.util.UnicaseUiUtil;
 //ZH Implement a proper ExceptionDialog
 /**
  * This abstract calls is to show exceptions to the user in a unified way.
@@ -64,6 +65,7 @@ public final class DialogHandler {
 		}
 		String string = stringBuilder.toString();
 		MessageDialog.openError(shell, title, string);
+		UnicaseUiUtil.logException("An unexpected error in a unicase plugin occured.", cause);
 	}
 
 }
