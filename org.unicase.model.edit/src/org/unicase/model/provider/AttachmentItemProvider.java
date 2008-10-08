@@ -21,9 +21,8 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.unicase.model.ModelPackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.Attachment}
- * object. <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
+ * This is the item provider adapter for a {@link org.unicase.model.Attachment} object.
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
 public class AttachmentItemProvider extends ModelElementItemProvider implements
@@ -58,7 +57,6 @@ public class AttachmentItemProvider extends ModelElementItemProvider implements
 	/**
 	 * This adds a property descriptor for the Referring Model Elements feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addReferringModelElementsPropertyDescriptor(Object object) {
@@ -86,11 +84,10 @@ public class AttachmentItemProvider extends ModelElementItemProvider implements
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

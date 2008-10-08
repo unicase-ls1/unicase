@@ -529,7 +529,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		seenModelElements.add(this);
 		return getProject(seenModelElements);
 	}
-	
+
 	/**
 	 * <!-- begin-user-doc --> 
 	 * 
@@ -545,10 +545,10 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		if (container == null) {
 			return null;
 		}
-		
+
 		if (seenModelElements.contains(container)) {
 			throw new IllegalStateException(
-			"ModelElement is in a containment cycle");
+					"ModelElement is in a containment cycle");
 		}
 		// check if my container is a project
 		if (ModelPackage.eINSTANCE.getProject().isInstance(container)) {

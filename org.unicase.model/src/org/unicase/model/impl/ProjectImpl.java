@@ -305,8 +305,10 @@ public class ProjectImpl extends EObjectImpl implements Project,
 	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.model.Project, org.unicase.model.ModelElement)
 	 */
 	public void modelElementAdded(Project project, ModelElement modelElement) {
-		if (this.modelElementCache.containsKey(modelElement.getModelElementId())) {
-			throw new IllegalStateException("ModelElement is already in the project!");
+		if (this.modelElementCache
+				.containsKey(modelElement.getModelElementId())) {
+			throw new IllegalStateException(
+					"ModelElement is already in the project!");
 		}
 		this.modelElementCache.put(modelElement.getModelElementId(),
 				modelElement);
