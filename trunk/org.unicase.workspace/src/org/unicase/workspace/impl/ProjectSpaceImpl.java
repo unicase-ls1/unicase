@@ -21,11 +21,13 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -1039,13 +1041,15 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.workspace.ProjectSpace#initResources(org.eclipse.emf.ecore.resource.ResourceSet)
 	 * @generated NOT
 	 */
 	public void initResources(ResourceSet resourceSet) {
 		setResourceCount(0);
 		String fileName = Configuration.getWorkspaceDirectory() + "ps-"
-				+ getIdentifier() + File.separatorChar + getResourceCount() +".ucf";
+				+ getIdentifier() + File.separatorChar + getResourceCount()
+				+ ".ucf";
 		URI fileURI = URI.createFileURI(fileName);
 		List<Resource> resources = new ArrayList<Resource>();
 		Resource resource = resourceSet.createResource(fileURI);
@@ -1058,7 +1062,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			if (counter > Configuration.getMaxMECountPerResource()) {
 				fileName = Configuration.getWorkspaceDirectory() + "ps-"
 						+ getIdentifier() + File.separatorChar
-						+ getResourceCount() +".ucf";
+						+ getResourceCount() + ".ucf";
 				fileURI = URI.createFileURI(fileName);
 				resource = resourceSet.createResource(fileURI);
 				setResourceCount(getResourceCount() + 1);
@@ -1301,8 +1305,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		return result.toString();
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.workspace.ProjectSpace#shareProject(org.unicase.workspace.Usersession)
 	 * @generated NOT
 	 */
@@ -1326,8 +1331,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		this.startChangeRecording();
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.workspace.ProjectSpace#exportProject(java.lang.String)
 	 */
 	public void exportProject(String absoluteFileName) throws IOException {
@@ -1337,7 +1343,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * Save all resources that are dirty.
-	 * @param force if all resources should be saved regardless of their dirty state
+	 * 
+	 * @param force
+	 *            if all resources should be saved regardless of their dirty
+	 *            state
 	 */
 	private void saveResources(boolean force) {
 		EList<Resource> resources = this.eResource().getResourceSet()
@@ -1365,7 +1374,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * Add model element to a resource, assign a new resource if neccessary.
-	 * @param modelElement the model element
+	 * 
+	 * @param modelElement
+	 *            the model element
 	 * @generated NOT
 	 */
 	private void addToResource(final ModelElement modelElement) {
@@ -1377,13 +1388,13 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 				Resource oldResource = modelElement.eResource();
 				String oldFileName = Configuration.getWorkspaceDirectory()
 						+ "ps-" + getIdentifier() + File.separatorChar
-						+ (getResourceCount() - 1)+".ucf";
+						+ (getResourceCount() - 1) + ".ucf";
 				// FIXME MK check if file exists
 				if (new File(oldFileName).length() > Configuration
 						.getMaxResourceFileSizeOnExpand()) {
 					String newfileName = Configuration.getWorkspaceDirectory()
 							+ "ps-" + getIdentifier() + File.separatorChar
-							+ getResourceCount()+".ucf";
+							+ getResourceCount() + ".ucf";
 					URI fileURI = URI.createFileURI(newfileName);
 					Resource resource = oldResource.getResourceSet()
 							.createResource(fileURI);
@@ -1398,8 +1409,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * Create all neccessary operations for the notification.
-	 * @param notification the notification
-	 * @param modelElement the model element the triggered the notification
+	 * 
+	 * @param notification
+	 *            the notification
+	 * @param modelElement
+	 *            the model element the triggered the notification
 	 * @generated NOT
 	 */
 	private void createOperations(final Notification notification,
@@ -1741,8 +1755,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * Create a CreateDeleteOperation
-	 * @param modelElement the model element to delete or create
-	 * @param delete whether the element is deleted or created
+	 * 
+	 * @param modelElement
+	 *            the model element to delete or create
+	 * @param delete
+	 *            whether the element is deleted or created
 	 * @return the operation
 	 */
 	private CreateDeleteOperation createCreateDeleteOperation(
@@ -1757,9 +1774,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		return createDeleteOperation;
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.model.Project, org.unicase.model.ModelElement)
+	 * 
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.model.Project,
+	 *      org.unicase.model.ModelElement)
 	 */
 	public void modelElementAdded(Project project, ModelElement modelElement) {
 		addToResource(modelElement);
@@ -1781,9 +1800,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		}
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementRemoved(org.unicase.model.Project, org.unicase.model.ModelElement)
+	 * 
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementRemoved(org.unicase.model.Project,
+	 *      org.unicase.model.ModelElement)
 	 */
 	public void modelElementRemoved(Project project, ModelElement modelElement) {
 		if (isRecording) {
@@ -1795,9 +1816,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		}
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
-	 * @see org.unicase.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification, org.unicase.model.Project, org.unicase.model.ModelElement)
+	 * 
+	 * @see org.unicase.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
+	 *      org.unicase.model.Project, org.unicase.model.ModelElement)
 	 */
 	public void notify(Notification notification, Project project,
 			ModelElement modelElement) {
@@ -1805,5 +1828,50 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			createOperations(notification, modelElement);
 			save();
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.ProjectSpace#exportLocalChanges(java.lang.String)
+	 */
+	public void exportLocalChanges(String fileName) throws IOException {
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Resource resource = resourceSet.createResource(URI
+				.createFileURI(fileName));
+		ChangePackage changePackage = VersioningFactory.eINSTANCE
+				.createChangePackage();
+		// copy operations from projectspace
+		for (AbstractOperation abstractOperation : getOperations()) {
+			AbstractOperation copy = (AbstractOperation) EcoreUtil
+					.copy(abstractOperation);
+			changePackage.getOperations().add(copy);
+		}
+		
+		resource.getContents().add(changePackage);
+		resource.save(null);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.ProjectSpace#importLocalChanges(java.lang.String)
+	 */
+	public void importLocalChanges(String fileName) throws IOException {
+		ResourceSetImpl resourceSet = new ResourceSetImpl();
+		Resource resource = resourceSet.getResource(URI
+				.createFileURI(fileName), true);
+		EList<EObject> directContents = resource.getContents();
+		// sanity check
+
+		if (directContents.size() != 1
+				&& (!(directContents.get(0) instanceof ChangePackage))) {
+			throw new IOException(
+					"File is corrupt, does not contain a Project.");
+		}
+
+		ChangePackage changePackage = (ChangePackage) directContents.get(0);
+		this.getOperations().addAll(changePackage.getOperations());
+		this.save();
 	}
 } // ProjectContainerImpl
