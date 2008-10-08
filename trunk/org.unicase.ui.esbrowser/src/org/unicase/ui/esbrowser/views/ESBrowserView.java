@@ -66,6 +66,7 @@ public class ESBrowserView extends ViewPart {
 	 * 
 	 */
 	private final class PropertiesAction extends Action {
+		@Override
 		public void run() {
 			ISelection selection = viewer.getSelection();
 			ProjectInfo projectInfo = ((ProjectInfo) ((IStructuredSelection) selection)
@@ -94,6 +95,7 @@ public class ESBrowserView extends ViewPart {
 	 * 
 	 */
 	private final class DeleteAction extends Action {
+		@Override
 		public void run() {
 			ISelection selection = viewer.getSelection();
 			ServerInfo serverInfo = ((ServerInfo) ((IStructuredSelection) selection)
@@ -235,7 +237,8 @@ public class ESBrowserView extends ViewPart {
 
 		viewer.setSorter(new ViewerSorter() {
 
-            public int compare(Viewer viewer, Object e1, Object e2) {
+            @Override
+			public int compare(Viewer viewer, Object e1, Object e2) {
                 if (e1 instanceof ServerInfo && e2 instanceof ServerInfo){
                     return ((ServerInfo)e1).getDisplayName().toLowerCase().compareTo(
                             ((ServerInfo) e2).getDisplayName().toLowerCase());
