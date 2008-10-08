@@ -45,8 +45,9 @@ public class RevertHandler extends ProjectActionHandler {
 						MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
 				int result = dialog.open();
 				if (result == 0) {
-					progressDialog.getProgressMonitor().done();
-					progressDialog.close();
+					progressDialog.open();
+					progressDialog.getProgressMonitor().beginTask("Revert project...", 100);
+					progressDialog.getProgressMonitor().worked(10);
 					projectSpace.revert();
 					progressDialog.getProgressMonitor().done();
 					progressDialog.close();

@@ -61,7 +61,7 @@ public class ExportProjectHandler extends ProjectActionHandler {
 			protected void doExecute() {
 				try {
 					progressDialog.open();
-					progressDialog.getProgressMonitor().beginTask("Commit project...", 100);
+					progressDialog.getProgressMonitor().beginTask("Export project...", 100);
 					progressDialog.getProgressMonitor().worked(10);
 					projectSpace.exportProject(absoluteFileName);
 				} catch (IOException e) {
