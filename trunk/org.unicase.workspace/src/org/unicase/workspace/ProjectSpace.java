@@ -512,5 +512,26 @@ public interface ProjectSpace extends IdentifiableElement {
 	 */
 	PrimaryVersionSpec commit(LogMessage logMessage,
 			CommitObserver commitObserver) throws EmfStoreException, BaseVersionOutdatedException;
-
+	
+	/**
+	 * Export all local changes to a file with the given name.
+	 * 
+	 * @param fileName
+	 *            the file name
+	 * @throws IOException
+	 *             if writing to the given file fails
+	 */
+	void exportLocalChanges(String fileName) throws IOException;
+	
+	/**
+	 * Import changes from a file.
+	 * @param fileName the file name to import from
+	 * @throws IOException if file access fails
+	 */
+	void importLocalChanges(String fileName) throws IOException;
+	
+	/**
+	 * Undo the last operation of the projectSpace.
+	 */
+	void undoLastOperation();
 } // ProjectContainer

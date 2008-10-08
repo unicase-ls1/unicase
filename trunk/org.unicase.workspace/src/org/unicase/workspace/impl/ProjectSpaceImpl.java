@@ -1858,6 +1858,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * @see org.unicase.workspace.ProjectSpace#importLocalChanges(java.lang.String)
 	 */
 	public void importLocalChanges(String fileName) throws IOException {
+		stopChangeRecording();
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
 		Resource resource = resourceSet.getResource(URI
 				.createFileURI(fileName), true);
@@ -1871,7 +1872,25 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		}
 
 		ChangePackage changePackage = (ChangePackage) directContents.get(0);
+		changePackage.apply(getProject());
 		this.getOperations().addAll(changePackage.getOperations());
-		this.save();
+		save();
+		startChangeRecording();
 	}
+
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.workspace.ProjectSpace#undoLastOperation()
+	 */
+	public void undoLastOperation() {
+		stopChangeRecording();
+		EList<AbstractOperation> operations = this.getOperations();
+		AbstractOperation lastOperation = operations.get(operations.size()-1);
+		lastOperation.reverse().apply(getProject());
+		operations.remove(lastOperation);
+		save();
+		startChangeRecording();
+	}
+	
+	
 } // ProjectContainerImpl
