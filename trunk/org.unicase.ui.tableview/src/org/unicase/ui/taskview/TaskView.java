@@ -9,6 +9,8 @@ package org.unicase.ui.taskview;
 import java.io.IOException;
 
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
@@ -25,7 +27,10 @@ import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.ui.common.filter.TeamFilter;
 import org.unicase.ui.common.filter.UserFilter;
 import org.unicase.ui.tableview.Activator;
+import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.WorkspacePackage;
+import org.unicase.workspace.util.NoCurrentUserException;
 import org.unicase.workspace.util.OrgUnitHelper;
 
 /**
@@ -64,6 +69,17 @@ public class TaskView extends ViewPart {
 		} catch (IOException e) {
 			// Do nothing.
 		}
+		final Workspace workspace = WorkspaceManager.getInstance()
+				.getCurrentWorkspace();
+		workspace.eAdapters().add(new AdapterImpl() {
+			@Override
+			public void notifyChanged(Notification msg) {
+				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
+					initUserFilter();
+				}
+			}
+		});
+
 	}
 
 	/**
@@ -84,17 +100,9 @@ public class TaskView extends ViewPart {
 
 		IActionBars bars = getViewSite().getActionBars();
 		IToolBarManager menuManager = bars.getToolBarManager();
-		User user = OrgUnitHelper.getCurrentUser(WorkspaceManager.getInstance()
-				.getCurrentWorkspace());
 
-		// Create User filter
-
-		createUserFilter(user);
+		initUserFilter();
 		menuManager.add(filterToMe);
-
-		// Create Team Filter
-
-		createTeamFilter(user);
 		menuManager.add(filterToMyTeam);
 
 		// Create Checked filter
@@ -106,17 +114,43 @@ public class TaskView extends ViewPart {
 		hookDoubleClickAction();
 	}
 
-	private void createTeamFilter(User user) {
-		teamFilter = new TeamFilter(user);
-		filterToMyTeam = new Action("", SWT.TOGGLE) {
-			@Override
-			public void run() {
-				setTeamFilter(isChecked());
-			}
+	private void initUserFilter() {
+		try {
+			User user;
+			user = OrgUnitHelper.getCurrentUser(WorkspaceManager.getInstance()
+					.getCurrentWorkspace());
+			// Create User filter
+			createUserFilter(user);
+			// Create Team Filter
+			createTeamFilter(user);
 
-		};
-		filterToMyTeam.setImageDescriptor(Activator
-				.getImageDescriptor("/icons/filtertomyteam.png"));
+		} catch (NoCurrentUserException e) {
+			// Disable filter
+			createUserFilter(null);
+			createTeamFilter(null);
+		}
+	}
+
+	private void createTeamFilter(User user) {
+		if (filterToMyTeam == null) {
+			filterToMyTeam = new Action("", SWT.TOGGLE) {
+				@Override
+				public void run() {
+					setTeamFilter(isChecked());
+				}
+
+			};
+			filterToMyTeam.setImageDescriptor(Activator
+					.getImageDescriptor("/icons/filtertomyteam.png"));
+		}
+		if (user == null) {
+			setTeamFilter(false);
+			filterToMyTeam.setEnabled(false);
+			return;
+		}
+		filterToMyTeam.setEnabled(true);
+		teamFilter = new TeamFilter(user);
+
 		Boolean teamFilter = Boolean.parseBoolean(settings.get("TeamFilter"));
 		filterToMyTeam.setChecked(teamFilter);
 		setTeamFilter(teamFilter);
@@ -132,7 +166,9 @@ public class TaskView extends ViewPart {
 		if (checked) {
 			viewer.addFilter(teamFilter);
 		} else {
-			viewer.removeFilter(teamFilter);
+			if (teamFilter != null) {
+				viewer.removeFilter(teamFilter);
+			}
 		}
 
 	}
@@ -157,16 +193,25 @@ public class TaskView extends ViewPart {
 	}
 
 	private void createUserFilter(User user) {
-		userFilter = new UserFilter(user);
-		filterToMe = new Action("", SWT.TOGGLE) {
-			@Override
-			public void run() {
-				setUserFilter(isChecked());
-			}
+		if (filterToMe == null) {
+			filterToMe = new Action("", SWT.TOGGLE) {
+				@Override
+				public void run() {
+					setUserFilter(isChecked());
+				}
 
-		};
-		filterToMe.setImageDescriptor(Activator
-				.getImageDescriptor("/icons/filtertouser.png"));
+			};
+			filterToMe.setImageDescriptor(Activator
+					.getImageDescriptor("/icons/filtertouser.png"));
+		}
+		if (user == null) {
+			setUserFilter(false);
+			filterToMe.setEnabled(false);
+			return;
+		}
+		filterToMe.setEnabled(true);
+		userFilter = new UserFilter(user);
+
 		Boolean userFilter = Boolean.parseBoolean(settings.get("UserFilter"));
 		filterToMe.setChecked(userFilter);
 		filterToMe
@@ -199,7 +244,9 @@ public class TaskView extends ViewPart {
 		if (checked) {
 			viewer.addFilter(userFilter);
 		} else {
-			viewer.removeFilter(userFilter);
+			if (userFilter != null) {
+				viewer.removeFilter(userFilter);
+			}
 		}
 
 	}

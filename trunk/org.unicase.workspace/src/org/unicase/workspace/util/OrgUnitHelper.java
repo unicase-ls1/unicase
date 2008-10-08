@@ -34,15 +34,19 @@ public final class OrgUnitHelper {
  * Returns the current User in the project, whos logged in.
  * @param currentWorkspace the current workspace
  * @return The current user
+ * @throws NoCurrentUserException  if there is no current user.
  */
-	public static User getCurrentUser(Workspace currentWorkspace) {
+	public static User getCurrentUser(Workspace currentWorkspace) throws NoCurrentUserException {
 		ProjectSpace activeProjectSpace = currentWorkspace
 		.getActiveProjectSpace();
 		if(activeProjectSpace==null){
-			return null;
+			throw new NoCurrentUserException();
 		}
 		//JH: handle non-existing usersession
 		Usersession currentUserSession = activeProjectSpace.getUsersession();
+		if(currentUserSession==null){
+			throw new NoCurrentUserException();
+		}
 		EList<User> projectUsers = currentWorkspace.getActiveProjectSpace()
 				.getProject().getAllModelElementsbyClass(
 						OrganizationPackage.eINSTANCE.getUser(),
