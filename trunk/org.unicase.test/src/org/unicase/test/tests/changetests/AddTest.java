@@ -4,7 +4,7 @@ import org.unicase.test.lib.TestCase;
 
 public class AddTest extends TestCase {
 
-	public AddTest(String testName, int randomSeed) {
+	public AddTest(String testName, long randomSeed) {
 		super(testName, randomSeed);
 		// TODO Auto-generated constructor stub
 	}

@@ -10,7 +10,7 @@ import org.unicase.test.tests.changetests.ChangeTest;
 public abstract class TestSuite {
 
 	List<TestCase> testcases;
-	private static Log logger = LogFactory.getLog(ChangeTest.class);
+	//private static Log logger = LogFactory.getLog(ChangeTest.class);
 	
 
 	public TestSuite() {
@@ -21,7 +21,8 @@ public abstract class TestSuite {
 		initialize();
 		initTestCases();
 		for (TestCase testCase : testcases) {
-			logger.info("Running " + testCase.getTestName() + " test...");
+			//logger.info("Running " + testCase.getTestName() + " test...");
+			System.out.println("Running " + testCase.getTestName() + " test...");
 			testCase.runTest();
 			
 			compare(testCase.getTestName());
@@ -49,7 +50,7 @@ public abstract class TestSuite {
 	}
 
 	
-	public static Log getLogger() {
-		return logger;
-	}
+//	public static Log getLogger() {
+//		return logger;
+//	}
 }
