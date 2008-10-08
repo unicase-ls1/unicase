@@ -8,22 +8,33 @@ package org.unicase.workspace.edit.commands;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.unicase.workspace.ProjectSpace;
 
-/**.
- * UndoLastOperationHandler
+/**
+ * . UndoLastOperationHandler
+ * 
  * @author Hodaie
- *
+ * 
  */
 public class UndoLastOperationHandler extends ProjectActionHandler {
 
-	/**.
-	 * {@inheritDoc}
+	/**
+	 * . {@inheritDoc}
 	 * 
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		
-		getProjectSpace(event).undoLastOperation();
+		final ProjectSpace projectSpace = getProjectSpace(event);
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain");
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
+			protected void doExecute() {
+				projectSpace.undoLastOperation();
+
+			}
+		});
 		return null;
 	}
-
 }
