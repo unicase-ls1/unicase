@@ -23,7 +23,7 @@ public class ChangeTestHelper {
 		projectSpace.setBaseVersion(versionSpec);
 		projectSpace.setLastUpdated(new Date());
 		projectSpace.setUsersession(null);
-		projectSpace.setProject(ModelFactory.eINSTANCE.createProject());
+		//projectSpace.setProject(ModelFactory.eINSTANCE.createProject());
 		projectSpace.setResourceCount(0);
 		return projectSpace;
 	}
