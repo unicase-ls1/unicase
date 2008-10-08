@@ -153,7 +153,7 @@ public class TaskView extends ViewPart {
 		filterToUnchecked.setChecked(uncheckedFilter);
 		filterToUnchecked
 				.setToolTipText("Besides the unchecked elements, the checked ones will be shown as well.");
-		setUserFilter(uncheckedFilter);
+		setUncheckedFilter(uncheckedFilter);
 	}
 
 	private void createUserFilter(User user) {
