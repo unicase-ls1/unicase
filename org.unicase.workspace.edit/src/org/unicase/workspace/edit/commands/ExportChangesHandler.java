@@ -6,8 +6,15 @@
  */
 package org.unicase.workspace.edit.commands;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.FileDialog;
+import org.eclipse.ui.PlatformUI;
+import org.unicase.ui.common.exceptions.DialogHandler;
 
 /**.
  * ExportChangesHandler
@@ -17,12 +24,49 @@ import org.eclipse.core.commands.ExecutionException;
  */
 public class ExportChangesHandler extends ProjectActionHandler {
 
+	/**
+	 * These filter names are used to filter which files are displayed.
+	 */
+	public static final String[] FILTER_NAMES = {
+			"Unicase change package (*.ucc)", "All Files (*.*)" };
+
+	/**
+	 * These filter extensions are used to filter which files are displayed.
+	 */
+	public static final String[] FILTER_EXTS = { "*.ucc", "*.*" };
+
+	
+	
 	/**.
 	 * {@inheritDoc}
 	 * 
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		// TODO Auto-generated method stub
+		
+		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getShell(), SWT.SAVE);
+		dialog.setFilterNames(ExportChangesHandler.FILTER_NAMES);
+		dialog.setFilterExtensions(ExportChangesHandler.FILTER_EXTS);
+		dialog.setOverwrite(true);
+		String fn = dialog.open();
+		if (fn == null) {
+			return null;
+		}
+
+		String fileName = dialog.getFileName();
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append(dialog.getFilterPath());
+		if (fileName.charAt(fileName.length() - 1) != File.separatorChar) {
+			stringBuilder.append(File.separatorChar);
+		}
+		stringBuilder.append(fileName);
+		final String absoluteFileName = stringBuilder.toString();
+		
+		try {
+			this.getProjectSpace(event).exportLocalChanges(absoluteFileName);
+		} catch (IOException e) {
+			DialogHandler.showExceptionDialog(e);			
+		}
 		return null;
 	}
 

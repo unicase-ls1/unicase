@@ -21,7 +21,8 @@ public class UndoLastOperationHandler extends ProjectActionHandler {
 	 * 
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		// TODO Auto-generated method stub
+		
+		getProjectSpace(event).undoLastOperation();
 		return null;
 	}
 
