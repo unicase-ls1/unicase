@@ -9,6 +9,8 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.ui.PlatformUI;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 
@@ -32,7 +34,8 @@ public class RevertHandler extends ProjectActionHandler {
 		}
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
-		
+		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
+			       .getActiveWorkbenchWindow().getShell());
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
@@ -42,7 +45,11 @@ public class RevertHandler extends ProjectActionHandler {
 						MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
 				int result = dialog.open();
 				if (result == 0) {
+					progressDialog.getProgressMonitor().done();
+					progressDialog.close();
 					projectSpace.revert();
+					progressDialog.getProgressMonitor().done();
+					progressDialog.close();
 				}
 			}
 		});

@@ -12,6 +12,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
@@ -76,6 +77,8 @@ public class UpdateProjectHandler extends ProjectActionHandler implements
 		Usersession usersession = projectSpace.getUsersession();
 		shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
 				.getShell();
+		ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
+			       .getActiveWorkbenchWindow().getShell());
 		LoginDialog login;
 		// initially setting the status as successful in case the user
 		// is already logged in
@@ -87,6 +90,9 @@ public class UpdateProjectHandler extends ProjectActionHandler implements
 		}
 		try {
 			if (loginStatus == LoginDialog.SUCCESSFUL) {
+				progressDialog.open();
+				progressDialog.getProgressMonitor().beginTask("Update project...", 100);
+				progressDialog.getProgressMonitor().worked(10);
 				projectSpace.update(VersionSpec.HEAD_VERSION,
 						UpdateProjectHandler.this);
 			}
@@ -99,6 +105,10 @@ public class UpdateProjectHandler extends ProjectActionHandler implements
 			MessageDialog.openInformation(shell, "No need to update" ,"Your project is update to date, you do not need to update.");				
 		} catch (EmfStoreException e2) {
 			DialogHandler.showExceptionDialog(e2);
+		}
+		finally {
+			progressDialog.getProgressMonitor().done();
+			progressDialog.close();
 		}
 	}
 	
