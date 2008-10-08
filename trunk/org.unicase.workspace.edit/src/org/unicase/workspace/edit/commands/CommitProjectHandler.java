@@ -105,6 +105,8 @@ public class CommitProjectHandler extends ProjectActionHandler implements Commit
 				new UpdateProjectHandler().update(projectSpace);
 			}
 		} catch (EmfStoreException e) {
+			progressDialog.getProgressMonitor().done();
+			progressDialog.close();
 			DialogHandler.showExceptionDialog(e);
 		}
 	}
