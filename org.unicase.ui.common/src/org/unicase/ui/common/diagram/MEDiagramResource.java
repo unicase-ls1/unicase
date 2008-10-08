@@ -113,8 +113,10 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 				try {
 					meDiagram.loadDiagramLayout();
 				} catch (DiagramLoadException e) {
-					// JH Auto-generated catch block
-					e.printStackTrace();
+					if(!(e.getCause()instanceof NullPointerException)){
+						e.printStackTrace();
+					}
+					
 				}
 
 			}
