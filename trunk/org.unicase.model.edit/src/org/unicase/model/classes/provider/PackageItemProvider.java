@@ -24,9 +24,10 @@ import org.unicase.model.classes.ClassesFactory;
 import org.unicase.model.classes.ClassesPackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.classes.Package} object.
- * <!-- begin-user-doc -->
+ * This is the item provider adapter for a
+ * {@link org.unicase.model.classes.Package} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class PackageItemProvider extends PackageElementItemProvider implements
@@ -59,9 +60,9 @@ public class PackageItemProvider extends PackageElementItemProvider implements
 	}
 
 	/**
-	 * This adds a property descriptor for the Contained Package Elements feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Contained Package Elements
+	 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addContainedPackageElementsPropertyDescriptor(Object object) {
@@ -77,10 +78,13 @@ public class PackageItemProvider extends PackageElementItemProvider implements
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This specifies how to implement {@link #getChildren} and is used to
+	 * deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand},
+	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in
+	 * {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -96,19 +100,21 @@ public class PackageItemProvider extends PackageElementItemProvider implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
+		// Check the type of the specified child object and return the proper
+		// feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
 		return super.getChildFeature(object, child);
 	}
 
 	/**
-	 * This returns Package.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns Package.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -118,23 +124,22 @@ public class PackageItemProvider extends PackageElementItemProvider implements
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
-	 * @generated
+	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * --> .<!-- end-user-doc -->
+	 * {@inheritDoc}
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((org.unicase.model.classes.Package) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Package_type")
-				: getString("_UI_Package_type") + " " + label;
+		return super.getText(object);
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to
+	 * update any cached children and by creating a viewer notification, which
+	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
