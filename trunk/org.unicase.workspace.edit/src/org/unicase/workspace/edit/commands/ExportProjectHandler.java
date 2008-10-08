@@ -37,6 +37,7 @@ public class ExportProjectHandler extends ProjectActionHandler {
 				.getActiveWorkbenchWindow().getShell(), SWT.SAVE);
 		dialog.setFilterNames(ImportProjectHandler.FILTER_NAMES);
 		dialog.setFilterExtensions(ImportProjectHandler.FILTER_EXTS);
+		dialog.setOverwrite(true);
 		String fn = dialog.open();
 		if (fn == null) {
 			return null;
