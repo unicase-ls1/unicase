@@ -22,8 +22,6 @@ import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.esmodel.VersionInfo;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.StorageException;
-import org.unicase.emfstore.update.steps.UpdateStepRemoveAssociationTypeDependency;
-import org.unicase.emfstore.update.steps.UpdateStepRenameAssociationTypeLiterals;
 
 /**
  * @author schroech
@@ -85,8 +83,8 @@ public class UpdateController {
 //		updateSteps.add(new UpdateStepRemoveOrgUnit());
 		
 		//Update from Version 0.0.5 to 0.0.6
-		updateSteps.add(new UpdateStepRemoveAssociationTypeDependency());
-		updateSteps.add(new UpdateStepRenameAssociationTypeLiterals());
+//		updateSteps.add(new UpdateStepRemoveAssociationTypeDependency());
+//		updateSteps.add(new UpdateStepRenameAssociationTypeLiterals());
 	}
 	
 

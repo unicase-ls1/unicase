@@ -22,48 +22,6 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum AssociationType implements Enumerator {
 	/**
-	 * The '<em><b>UNDIRECTED ASSOCIATION OLD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #UNDIRECTED_ASSOCIATION_OLD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	UNDIRECTED_ASSOCIATION_OLD(5, "UNDIRECTED_ASSOCIATION_OLD",
-			"UNDIRECTED_ASSOCIATION"), /**
-	 * The '<em><b>AGGREGATION OLD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #AGGREGATION_OLD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	AGGREGATION_OLD(6, "AGGREGATION_OLD", "AGGREGATION"), /**
-	 * The '<em><b>COMPOSITION OLD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COMPOSITION_OLD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	COMPOSITION_OLD(7, "COMPOSITION_OLD", "COMPOSITION"), /**
-	 * The '<em><b>DEPENDENCY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DEPENDENCY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DEPENDENCY(8, "DEPENDENCY", "DEPENDENCY"), /**
-	 * The '<em><b>DIRECTED ASSOCIATION OLD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DIRECTED_ASSOCIATION_OLD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DIRECTED_ASSOCIATION_OLD(9, "DIRECTED_ASSOCIATION_OLD",
-			"DIRECTED_ASSOCIATION"), /**
 	 * The '<em><b>UNDIRECTED ASSOCIATION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -97,81 +55,6 @@ public enum AssociationType implements Enumerator {
 	 * @ordered
 	 */
 	COMPOSITION(3, "COMPOSITION", "Composition");
-
-	/**
-	 * The '<em><b>UNDIRECTED ASSOCIATION OLD</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>UNDIRECTED ASSOCIATION OLD</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #UNDIRECTED_ASSOCIATION_OLD
-	 * @model literal="UNDIRECTED_ASSOCIATION"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int UNDIRECTED_ASSOCIATION_OLD_VALUE = 5;
-
-	/**
-	 * The '<em><b>AGGREGATION OLD</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>AGGREGATION OLD</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #AGGREGATION_OLD
-	 * @model literal="AGGREGATION"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int AGGREGATION_OLD_VALUE = 6;
-
-	/**
-	 * The '<em><b>COMPOSITION OLD</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>COMPOSITION OLD</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #COMPOSITION_OLD
-	 * @model literal="COMPOSITION"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int COMPOSITION_OLD_VALUE = 7;
-
-	/**
-	 * The '<em><b>DEPENDENCY</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>DEPENDENCY</b></em>' literal object isn't
-	 * clear, there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #DEPENDENCY
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int DEPENDENCY_VALUE = 8;
-
-	/**
-	 * The '<em><b>DIRECTED ASSOCIATION OLD</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>DIRECTED ASSOCIATION OLD</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #DIRECTED_ASSOCIATION_OLD
-	 * @model literal="DIRECTED_ASSOCIATION"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int DIRECTED_ASSOCIATION_OLD_VALUE = 9;
 
 	/**
 	 * The '<em><b>UNDIRECTED ASSOCIATION</b></em>' literal value.
@@ -240,9 +123,8 @@ public enum AssociationType implements Enumerator {
 	 * @generated
 	 */
 	private static final AssociationType[] VALUES_ARRAY = new AssociationType[] {
-			UNDIRECTED_ASSOCIATION_OLD, AGGREGATION_OLD, COMPOSITION_OLD,
-			DEPENDENCY, DIRECTED_ASSOCIATION_OLD, UNDIRECTED_ASSOCIATION,
-			DIRECTED_ASSOCIATION, AGGREGATION, COMPOSITION, };
+			UNDIRECTED_ASSOCIATION, DIRECTED_ASSOCIATION, AGGREGATION,
+			COMPOSITION, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Association Type</b></em>' enumerators.
@@ -289,16 +171,6 @@ public enum AssociationType implements Enumerator {
 	 */
 	public static AssociationType get(int value) {
 		switch (value) {
-		case UNDIRECTED_ASSOCIATION_OLD_VALUE:
-			return UNDIRECTED_ASSOCIATION_OLD;
-		case AGGREGATION_OLD_VALUE:
-			return AGGREGATION_OLD;
-		case COMPOSITION_OLD_VALUE:
-			return COMPOSITION_OLD;
-		case DEPENDENCY_VALUE:
-			return DEPENDENCY;
-		case DIRECTED_ASSOCIATION_OLD_VALUE:
-			return DIRECTED_ASSOCIATION_OLD;
 		case UNDIRECTED_ASSOCIATION_VALUE:
 			return UNDIRECTED_ASSOCIATION;
 		case DIRECTED_ASSOCIATION_VALUE:

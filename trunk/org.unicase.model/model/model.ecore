@@ -222,11 +222,6 @@
           defaultValueLiteral="1"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="AssociationType">
-      <eLiterals name="UNDIRECTED_ASSOCIATION_OLD" value="5" literal="UNDIRECTED_ASSOCIATION"/>
-      <eLiterals name="AGGREGATION_OLD" value="6" literal="AGGREGATION"/>
-      <eLiterals name="COMPOSITION_OLD" value="7" literal="COMPOSITION"/>
-      <eLiterals name="DEPENDENCY" value="8" literal="DEPENDENCY"/>
-      <eLiterals name="DIRECTED_ASSOCIATION_OLD" value="9" literal="DIRECTED_ASSOCIATION"/>
       <eLiterals name="UNDIRECTED_ASSOCIATION" literal="Undirected Association"/>
       <eLiterals name="DIRECTED_ASSOCIATION" value="1" literal="Directed Association"/>
       <eLiterals name="AGGREGATION" value="2" literal="Aggregation"/>
