@@ -1,20 +1,16 @@
 package org.unicase.test.tests.changetests;
 
-import java.util.Calendar;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.Project;
-import org.unicase.model.util.ModelUtil;
 import org.unicase.test.lib.TestSuite;
-import org.unicase.ui.test.TestProjectGenerator;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.impl.WorkspaceImpl;
 
 
-public class ChangeTestSuite extends TestSuite {
+public abstract class ChangeTestSuite extends TestSuite {
 
 	private ProjectSpace testSpace;
 	private ProjectSpace compareSpace;
@@ -58,15 +54,7 @@ public class ChangeTestSuite extends TestSuite {
 		});
 	}
 
+	abstract public Project getCompareProject();
 
-
-	private Project getCompareProject() {
-		//return ModelUtil.clone(project);
-		return null;
-	}
-
-	private Project getTestProject() {
-		long randomSeed = Calendar.getInstance().getTimeInMillis();
-		return new TestProjectGenerator(5, randomSeed, 3, 2, 5, 10).generateProject();
-	}
+	abstract public Project getTestProject(); 
 }

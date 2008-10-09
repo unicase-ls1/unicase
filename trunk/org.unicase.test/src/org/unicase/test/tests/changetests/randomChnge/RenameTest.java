@@ -1,14 +1,14 @@
-package org.unicase.test.tests.changetests.randomChange;
+package org.unicase.test.tests.changetests.randomChnge;
 
 import java.util.List;
 
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.ModelElement;
-import org.unicase.test.lib.TestCase;
 
-public class RenameTest extends TestCase {
+public class RenameTest extends RandomChangeTestCase {
 
+	
 	public RenameTest(String testName, long randomSeed) {
 		super(testName, randomSeed);
 		

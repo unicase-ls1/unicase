@@ -1,8 +1,8 @@
-package org.unicase.test.tests.changetests.randomChange;
+package org.unicase.test.tests.changetests.randomChnge;
 
 import org.unicase.test.lib.TestCase;
 
-public class MoveTest extends TestCase {
+public class MoveTest extends RandomChangeTestCase {
 
 	public MoveTest(String testName, long randomSeed) {
 		super(testName, randomSeed);
