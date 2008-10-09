@@ -14,6 +14,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.unicase.model.util.FileUtil;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
@@ -71,28 +72,11 @@ public class DeleteProjectHandler extends ProjectActionHandler {
 			
 			try {
 				String pathToProject = Configuration.getWorkspaceDirectory()+"ps-"+projectSpace.getIdentifier();
-				deleteFolder(new File(pathToProject));
+				FileUtil.deleteFolder(new File(pathToProject));
 			} catch (IOException e) {
 				DialogHandler.showExceptionDialog("Couldn't delete project files in file system.", e);
 			}
 			
-		}
-	}
-	
-	private void deleteFolder(File folder) throws IOException {
-		if(folder.exists()) {
-			for(File child : folder.listFiles()) {
-				if(child.isDirectory()) {
-					deleteFolder(child);
-				} else {
-					if(!child.delete()) {
-						throw new IOException("Deletion of file: "+child.getAbsolutePath()+" failed.");
-					}
-				}
-			}
-			if(!folder.delete()) {
-				throw new IOException("Deletion of file: "+folder.getAbsolutePath()+" failed.");
-			}
 		}
 	}
 }
