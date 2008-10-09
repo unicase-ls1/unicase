@@ -135,7 +135,18 @@ public class CommitDialog extends TitleAreaDialog {
 	@Override
 	protected void okPressed() {
 		logMsg = txtLogMsg.getText();
-		oldLogMessages.add(logMsg);
+		
+		//suppress duplicates
+		if(!oldLogMessages.contains(logMsg)){
+			oldLogMessages.add(logMsg);
+		}
+		
+		//remove older messages
+		if(oldLogMessages.size()>10){
+			//the list can only grow one element at a time,
+			// so only one element should be deleted
+			oldLogMessages.remove(0);
+		}
 		super.okPressed();
 	}
 	
