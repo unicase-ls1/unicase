@@ -44,7 +44,7 @@ public abstract class UpdateStepRenameFeature extends UpdateStepTransformClass {
 
 		if (sourceFeature == null
 				|| targetFeature == null) {
-			return 0;
+			throw new IllegalStateException("Feature not found");
 		}
 
 		Object sourceValue = modelElement.eGet(sourceFeature, true);

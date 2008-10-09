@@ -7,7 +7,6 @@
 package org.unicase.emfstore.update;
 
 import org.osgi.framework.Version;
-import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.Project;
 
 /**
@@ -18,12 +17,11 @@ public class ModelCleanupUpdateStep extends UpdateStepImpl {
 
 	/**
 	 * {@inheritDoc}
-	 * @throws EmfStoreException 
 	 * @see org.unicase.emfstore.update.UpdateStepImpl#updateProjectState(org.unicase.model.Project)
 	 */
 	@Override
-	public int updateProjectState(Project state) throws EmfStoreException {
-		throw new EmfStoreException("Model outdated, upgrade to 0.0.9");
+	public int updateProjectState(Project state) {
+		throw new UnsupportedOperationException();
 	}
 
 	/**

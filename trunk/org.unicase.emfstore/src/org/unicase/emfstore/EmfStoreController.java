@@ -122,7 +122,7 @@ public class EmfStoreController implements IApplication {
 		RMIAdminConnectionHandler rmiAdminConnectionHandler = new RMIAdminConnectionHandler();
 		rmiAdminConnectionHandler.init(adminEmfStore, accessControl);
 		connectionHandlers.add(rmiAdminConnectionHandler);
-		
+
 		return connectionHandlers;
 	}
 
@@ -131,7 +131,7 @@ public class EmfStoreController implements IApplication {
 				EmfStoreImpl.getModelVersion());
 		if (compareTo < 0) {
 			System.out
-					.println("Your model is not up to date. Do you want to update now? (y/n)");
+					.println("Your model is not up to date. Do you want to update now and did you backup your emfstore folder? (y/n)");
 
 			byte[] buffer = new byte[1];
 			String input = "";
@@ -140,17 +140,17 @@ public class EmfStoreController implements IApplication {
 			try {
 				read = System.in.read(buffer, 0, 1);
 			} catch (IOException e) {
-				// CS: Remove Auto-generated catch block
-				e.printStackTrace();
+				throw new FatalEmfStoreException("Cannot read from input", e);
 			}
 
 			input = new String(buffer, 0, read);
 			if (input.equalsIgnoreCase("y")) {
 				UpdateController updateController = new UpdateController();
-				updateController.updateResource(resource);
+				updateController.updateServerSpace(serverSpace, versionInfo);
 			} else {
-				System.out.println("Could not load model, shutting down");
-				throw new FatalEmfStoreException("Unable to load model version");
+				String message = "Server shutting down, model update is mandatory.";
+				System.out.println(message);
+				throw new FatalEmfStoreException(message);
 			}
 		}
 	}
@@ -163,18 +163,12 @@ public class EmfStoreController implements IApplication {
 				break;
 			}
 		}
-
-		// If our model does not contain a VersionInfo, we assume version
-		// 0.0.1.qualifier
+		
+		//only happens after initial creation of serverspace
 		if (versionInformation == null) {
 			versionInformation = EsmodelFactory.eINSTANCE.createVersionInfo();
-			if (serverSpace.getProjects().size() != 0) {
-				versionInformation.setEmfStoreVersionString("0.0.1.qualifier");
-			} else {
-				versionInformation.setEmfStoreVersionString(EmfStoreImpl
-						.getModelVersion().toString());
-			}
-
+			versionInformation.setEmfStoreVersionString(EmfStoreImpl
+					.getModelVersion().toString());
 			resource.getContents().add(versionInformation);
 
 			try {
@@ -277,7 +271,7 @@ public class EmfStoreController implements IApplication {
 
 	private void initLogging() {
 		logger = LogFactory.getLog(EmfStoreController.class);
-		
+
 		// OW: fix logging config
 		// ConsoleAppender console = new ConsoleAppender(new SimpleLayout());
 		// try {
