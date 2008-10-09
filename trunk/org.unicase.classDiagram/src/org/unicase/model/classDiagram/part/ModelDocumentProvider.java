@@ -215,7 +215,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 	 * @param element
 	 * The new content element
 	 * 
-	 * @throws CoreException
+	 * @throws CoreException if an exceptional error occurs
 	 * 
 	 */
 	
@@ -269,6 +269,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 				}
 				throw new RuntimeException(
 						org.unicase.model.classDiagram.part.Messages.ModelDocumentProvider_NoDiagramInResourceError);
+			// BEGIN SUPRESS CATCH EXCEPTION
 			} catch (Exception e) {
 				CoreException thrownExcp = null;
 				if (e instanceof CoreException) {
@@ -286,6 +287,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 				}
 				throw thrownExcp;
 			}
+			// END SUPRESS CATCH EXCEPTION
 		} else {
 			throw new CoreException(
 					new Status(
