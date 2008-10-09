@@ -909,8 +909,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		}
 
 		// detect conflicts
-		ConflictDetector conflictDetector = new ConflictDetector(
-				new BasicConflictDetectionStrategy());
+		ConflictDetector conflictDetector = new ConflictDetector();
 		for (ChangePackage change : changes) {
 			ChangePackage changePackage = VersioningFactory.eINSTANCE
 					.createChangePackage();
