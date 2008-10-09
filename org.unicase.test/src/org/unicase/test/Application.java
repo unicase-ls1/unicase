@@ -2,7 +2,7 @@ package org.unicase.test;
 
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
-import org.unicase.test.tests.changetests.ChangeTest;
+import org.unicase.test.tests.changetests.ChangeTestSuite;
 
 /**
  * This class controls all aspects of the application's execution
@@ -14,7 +14,7 @@ public class Application implements IApplication {
 	 */
 	public Object start(IApplicationContext context) throws Exception {
 
-		ChangeTest changeTest = new ChangeTest();
+		ChangeTestSuite changeTest = new ChangeTestSuite();
 		changeTest.runTest();
 		return IApplication.EXIT_OK;
 	}

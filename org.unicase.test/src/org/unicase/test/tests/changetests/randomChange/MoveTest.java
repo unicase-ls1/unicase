@@ -1,10 +1,10 @@
-package org.unicase.test.tests.changetests;
+package org.unicase.test.tests.changetests.randomChange;
 
 import org.unicase.test.lib.TestCase;
 
-public class AddTest extends TestCase {
+public class MoveTest extends TestCase {
 
-	public AddTest(String testName, long randomSeed) {
+	public MoveTest(String testName, long randomSeed) {
 		super(testName, randomSeed);
 		// TODO Auto-generated constructor stub
 	}
