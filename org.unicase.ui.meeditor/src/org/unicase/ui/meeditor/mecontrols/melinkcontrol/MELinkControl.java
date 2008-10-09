@@ -98,7 +98,6 @@ public class MELinkControl extends AbstractMEControl {
 	@Override
 	public void dispose() {
 		labelProvider.removeListener(labelListener);
-		//AS: check single link widget for instability
 		if (linkComposite!=null){
 			linkComposite.dispose();
 		}

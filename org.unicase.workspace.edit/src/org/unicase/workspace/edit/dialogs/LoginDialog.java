@@ -163,8 +163,7 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 			setReturnCode(SUCCESSFUL);
 			close();
 		} catch (EmfStoreException e) {
-			//AS: exception handling
-			e.printStackTrace();
+			//e.printStackTrace(); //is shown for debugging purposes only, proper handling is being done.
 			setErrorMessage(e.getMessage());
 			password.selectAll();
 			setReturnCode(FAILED);

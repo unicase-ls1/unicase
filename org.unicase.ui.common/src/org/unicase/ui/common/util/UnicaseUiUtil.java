@@ -21,6 +21,7 @@ import org.unicase.ui.common.Activator;
 /**
  * Utility class for the unicase project. 
  * @author shterev
+ * @author hodaie
  *
  */
 public final class UnicaseUiUtil {
@@ -38,7 +39,7 @@ public final class UnicaseUiUtil {
 	 * @param multiSelection if multiSelection is allowed
 	 * @return The selected objects
 	 */
-	//AS Why does this return Objects?:
+	//ZH Why does this return Objects?:
 	public static Object[] showMESelectionDialog(Shell shell,
 								Collection<?> initialContent,
 								String title,
