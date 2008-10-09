@@ -1,17 +1,28 @@
 package org.unicase.test.tests.changetests;
 
 import java.util.Date;
+import java.util.List;
 
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceFactory;
+import org.unicase.workspace.WorkspaceManager;
 
 public class ChangeTestHelper {
 
 	public static ProjectSpace createEmptyProjectSpace(String name) {
+		Workspace workSpace = WorkspaceManager.getInstance().getCurrentWorkspace();
+		List<ProjectSpace> projectSpaces = workSpace.getProjectSpaces();
+		for(ProjectSpace ps : projectSpaces){
+			if(ps.getProjectName().equalsIgnoreCase(name)){
+				return ps;
+			}
+		}
+		
 		ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE
 				.createProjectSpace();
 		ProjectId projectId = EsmodelFactory.eINSTANCE.createProjectId();

@@ -153,7 +153,7 @@ public class ChangeTest extends TestSuite {
 
 	@Override
 	public void end() {
-
+		testSpace.setProject(null);
 	}
 
 }
