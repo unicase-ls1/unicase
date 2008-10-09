@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -514,6 +513,10 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		}
 		gmfDiagram.setElement(this);
 		//MK change this
+		saveAllResources();
+	}
+
+	private void saveAllResources() {
 		EList<Resource> resources = this.eResource().getResourceSet()
 				.getResources();
 		for (Resource resource : resources) {
@@ -572,17 +575,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 			resourceMap.get(modelElement).getContents().add(modelElement);
 		}
 		setDiagramLayout(out.toString());
-		//MK Change this
-		EList<Resource> resources = this.eResource().getResourceSet()
-				.getResources();
-		for (Resource resource : resources) {
-			try {
-				resource.save(null);
-			} catch (IOException e) {
-				// MK Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+		saveAllResources();
 
 	}
 
