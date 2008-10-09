@@ -3,7 +3,7 @@ package org.unicase.test;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.unicase.test.tests.changetests.ChangeTestSuite;
-import org.unicase.test.tests.changetests.randomChnge.RandomChangeTestSuite;
+import org.unicase.test.tests.changetests.randomchange.RandomChangeTestSuite;
 
 /**
  * This class controls all aspects of the application's execution

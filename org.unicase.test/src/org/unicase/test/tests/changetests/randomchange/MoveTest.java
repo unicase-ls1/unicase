@@ -1,4 +1,4 @@
-package org.unicase.test.tests.changetests.randomChnge;
+package org.unicase.test.tests.changetests.randomchange;
 
 import org.unicase.test.lib.TestCase;
 
