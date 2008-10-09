@@ -83,8 +83,7 @@ public class ESBrowserView extends ViewPart {
 						.getActiveShell(), "Project information",
 						"Current revision: " + revision);
 			} catch (EmfStoreException e) {
-				// AS Auto-generated catch block
-				e.printStackTrace();
+				DialogHandler.showExceptionDialog(e);
 			}
 		}
 	}

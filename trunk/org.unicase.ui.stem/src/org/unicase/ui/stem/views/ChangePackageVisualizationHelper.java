@@ -152,10 +152,8 @@ public class ChangePackageVisualizationHelper {
 				overlay = "icons/link_overlay.png";
 			}
 		} else if (operation instanceof MultiReferenceMoveOperation) {
-			//AS: provide overlay in any case?
-			overlay = "icons/modify_overlay.png";
+			overlay = "icons/link_overlay.png";
 		} else {
-			//AS: is this the best default image?
 			overlay = "icons/modify_overlay.png";
 		} 
 		
