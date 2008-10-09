@@ -28,6 +28,8 @@ public class AssociationDecoration extends Figure implements
 	private Association association;
 
 	private boolean source;
+	
+	
 
 	/**
 	 * @param association
@@ -43,18 +45,18 @@ public class AssociationDecoration extends Figure implements
 
 		this.association = association;
 		this.source = source;
-		updateDecortation();
+		updateDecoration();
 
 		association.eAdapters().add(new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
-				updateDecortation();
+				updateDecoration();
 				super.notifyChanged(msg);
 			}
 		});
 	}
 
-	private void updateDecortation() {
+	private void updateDecoration() {
 		removeDecoration();
 		if (association.getType().equals(AssociationType.AGGREGATION)) {
 			if (source) {
