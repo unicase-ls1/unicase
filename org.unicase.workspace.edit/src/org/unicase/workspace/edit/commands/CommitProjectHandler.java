@@ -100,6 +100,7 @@ public class CommitProjectHandler extends ProjectActionHandler implements Commit
 			int result = dialog.open();
 			if (result == 0) {
 				new UpdateProjectHandler().update(projectSpace);
+				commitWithoutCommand(projectSpace);
 			}
 		} catch (NoLocalChangesException e) {
 			MessageDialog.openInformation(shell, null, "No local changes in your project. No need to commit.");
