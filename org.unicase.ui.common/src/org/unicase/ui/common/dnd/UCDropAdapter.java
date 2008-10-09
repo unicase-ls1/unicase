@@ -13,7 +13,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.command.DragAndDropCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.dnd.EditingDomainViewerDropAdapter;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -161,7 +160,7 @@ public class UCDropAdapter extends EditingDomainViewerDropAdapter {
 	 * This method is called the same way for each of the
 	 * DropTargetListener methods, except for leave
 	 * and drop. If the source is available early, it creates or revalidates the
-	 * {@link DragAndDropCommand}, and updates the event's detail (operation)
+	 * DragAndDropCommand, and updates the event's detail (operation)
 	 * and feedback (drag under effect), appropriately.
 	 * 
 	 * @param event
