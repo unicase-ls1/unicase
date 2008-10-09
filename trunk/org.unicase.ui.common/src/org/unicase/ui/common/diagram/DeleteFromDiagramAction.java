@@ -16,14 +16,14 @@ import org.unicase.model.diagram.MEDiagram;
 public class DeleteFromDiagramAction implements IObjectActionDelegate {
 
 	/**
-	 * The id of the action, referred in the popupMenus extension point of the diagram's common.xml.
-	 */
-	public final static String ID = "DeleteFromDiagramActionID";
-
-	/**
 	 * The selected diagram element to delete.
 	 */
 	private EditPart selectedElement;
+	
+	/**
+	 * The id of the action, referred in the popupMenus extension point of the diagram's common.xml.
+	 */
+	public static final String ID = "DeleteFromDiagramActionID";
 
 	/**
 	 * This method deletes the diagram element from the diagram's elements list.
