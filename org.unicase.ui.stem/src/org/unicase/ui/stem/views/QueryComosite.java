@@ -117,8 +117,13 @@ public class QueryComosite extends Composite {
 		expandItem.setText(title);
 		expandItem.setExpanded(false);
 		expandItem.setControl(composite);
-		expandItem.setHeight(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT).y);
-
+		if(!title.equalsIgnoreCase("Range")) {
+			expandItem.setText(expandItem.getText()+" - disabled");
+			expandItem.setHeight(0);			
+		} else {
+			expandItem.setHeight(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT).y);
+			expandItem.setExpanded(true);
+		}
 	}
 
 	//a generic method to create three list expand items (elements, users, and element types)
@@ -344,7 +349,8 @@ public class QueryComosite extends Composite {
 		lblVerTo.setText("To:");
 		txtVerTo = new Text(composite, SWT.BORDER);
 		Label lblVerTip = new Label(composite, SWT.NONE);
-		lblVerTip.setText("Enter a positive integer or any tag like BASE, CURRENT, HEAD, etc.");
+		//lblVerTip.setText("Enter a positive integer or any tag like BASE, CURRENT, HEAD, etc.");
+		lblVerTip.setText("");
 		rbtnVer.addSelectionListener(new SelectionListener() {
 
 			public void widgetDefaultSelected(SelectionEvent e) {
@@ -359,10 +365,12 @@ public class QueryComosite extends Composite {
 
 		//number of days
 		rbtnNumOfDays = new Button(composite, SWT.RADIO);
+		rbtnNumOfDays.setEnabled(false);
 		rbtnNumOfDays.setText("Number of days:");
 		@SuppressWarnings("unused")
 		Label filler = new Label(composite, SWT.NONE);
 		txtNumOfDays = new Text(composite, SWT.BORDER);
+		txtNumOfDays.setEnabled(false);
 		GridData gridData1 = new GridData(SWT.LEFT, SWT.CENTER, true, true, 4,
 				1);
 		txtNumOfDays.setLayoutData(gridData1);
@@ -372,30 +380,33 @@ public class QueryComosite extends Composite {
 			}
 
 			public void widgetSelected(SelectionEvent e) {
-				txtNumOfDays.setEnabled(rbtnNumOfDays.getSelection());
+//				txtNumOfDays.setEnabled(rbtnNumOfDays.getSelection());
 			}
 
 		});
 
 		//date
 		rbtnDate = new Button(composite, SWT.RADIO);
+		rbtnDate.setEnabled(false);
 		rbtnDate.setText("Date");
 		Label lblDateFrom = new Label(composite, SWT.NONE);
 		lblDateFrom.setText("From:");
 		dtFrom = new CDateTime(composite, CDT.BORDER | CDT.DROP_DOWN
 				| CDT.COMPACT);
+		dtFrom.setEnabled(false);
 		Label lblDateTo = new Label(composite, SWT.NONE);
 		lblDateTo.setText("To:");
 		dtTo = new CDateTime(composite, CDT.BORDER | CDT.DROP_DOWN
 				| CDT.COMPACT);
+		dtTo.setEnabled(false);
 		rbtnDate.addSelectionListener(new SelectionListener() {
 
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}
 
 			public void widgetSelected(SelectionEvent e) {
-				dtFrom.setEnabled(rbtnDate.getSelection());
-				dtTo.setEnabled(rbtnDate.getSelection());
+//				dtFrom.setEnabled(rbtnDate.getSelection());
+//				dtTo.setEnabled(rbtnDate.getSelection());
 			}
 
 		});
