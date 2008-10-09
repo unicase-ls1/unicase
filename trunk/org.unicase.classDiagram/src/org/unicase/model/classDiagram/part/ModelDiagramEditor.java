@@ -19,7 +19,6 @@ import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider;
-import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.IMessageProvider;
@@ -43,8 +42,9 @@ import org.eclipse.ui.part.ShowInContext;
 
 /**
  * @generated
+ * @extends org.unicase.ui.common.diagram.ModelDiagramEditor
  */
-public class ModelDiagramEditor extends DiagramDocumentEditor implements
+public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagramEditor implements
 		IGotoMarker {
 
 	/**

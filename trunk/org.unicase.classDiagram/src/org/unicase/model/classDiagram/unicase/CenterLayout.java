@@ -30,6 +30,7 @@ public class CenterLayout extends StackLayout {
 	* {@inheritDoc}
 	* @see org.eclipse.draw2d.StackLayout#layout(org.eclipse.draw2d.IFigure)
 	*/
+	@Override
 	@SuppressWarnings("unchecked")
 	public void layout(IFigure figure) {
 		Rectangle r = figure.getClientArea();
