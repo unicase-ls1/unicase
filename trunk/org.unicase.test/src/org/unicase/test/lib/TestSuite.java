@@ -3,10 +3,6 @@ package org.unicase.test.lib;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.unicase.test.tests.changetests.ChangeTest;
-
 public abstract class TestSuite {
 
 	List<TestCase> testcases;
