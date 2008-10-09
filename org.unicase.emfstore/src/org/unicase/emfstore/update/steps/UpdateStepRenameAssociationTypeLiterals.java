@@ -63,7 +63,7 @@ public class UpdateStepRenameAssociationTypeLiterals extends
 	* @see org.unicase.emfstore.update.UpdateStep#getSourceVersion()
 	*/
 	public Version getSourceVersion() {
-		return new Version("0.0.5");
+		return new Version("0.2.0");
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class UpdateStepRenameAssociationTypeLiterals extends
 	* @see org.unicase.emfstore.update.UpdateStep#getTargetVersion()
 	*/
 	public Version getTargetVersion() {
-		return new Version("0.0.6");
+		return new Version("0.2.1");
 	}
 
 	/**
