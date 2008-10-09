@@ -12,8 +12,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.osgi.framework.Version;
 import org.unicase.emfstore.EmfStoreImpl;
@@ -33,6 +34,7 @@ public class UpdateController {
 	private List<UpdateStep> updateSteps;
 	private List<UpdateStep> necessaryUpdateSteps;
 
+	private static final Log LOGGER = LogFactory.getLog(EmfStoreImpl.class);
 	
 	/**
 	 * @return A list of necessary update steps to upgrade from the model version to the emf store version
@@ -65,12 +67,13 @@ public class UpdateController {
 	}
 	
 	/**
-	 * A fucking constructor.
+	 * Constructor.
 	 */
 	public UpdateController(){
 		updateSteps = new ArrayList<UpdateStep>();
 		necessaryUpdateSteps = new ArrayList<UpdateStep>();
-		
+
+		//Model reset here: cannot run these updaters without old model
 		//Update from Version 0.0.4 to 0.0.5
 //		updateSteps.add(new UpdateStepRenameFacilitator());
 //		updateSteps.add(new UpdateStepRemoveAnnotationInstances());
@@ -81,7 +84,8 @@ public class UpdateController {
 //		updateSteps.add(new UpdateStepRenameActionItemAssignedTo());
 //		updateSteps.add(new UpdateStepRenamePackages());
 //		updateSteps.add(new UpdateStepRemoveOrgUnit());
-		
+
+		//Model reset here: cannot run these updaters without old model
 		//Update from Version 0.0.5 to 0.0.6
 //		updateSteps.add(new UpdateStepRemoveAssociationTypeDependency());
 //		updateSteps.add(new UpdateStepRenameAssociationTypeLiterals());
@@ -89,23 +93,16 @@ public class UpdateController {
 	
 
 	/**
-	 * @param resource 
-	 * The resource to update
+	 * Update the server space.
+	 * @param serverSpace the server space to update
+	 * @param versionInformation the current version info 
 	 * @throws FatalEmfStoreException
 	 * Throws an {@link FatalEmfStoreException} if the {@link Resource} could not be saved
 	 */
-	public void updateResource(Resource resource) throws FatalEmfStoreException{
+	public void updateServerSpace(ServerSpace serverSpace, VersionInfo versionInformation) throws FatalEmfStoreException{
 		
-		EList<EObject> contents = resource.getContents();
-		
-		ServerSpace serverSpace = getServerSpace(contents);
-		VersionInfo versionInformation = getVersionInformation(contents);
-		
-		Version sourceEMFStoreVersion;
-		Version targetEMFStoreVersion;
-		
-		sourceEMFStoreVersion = versionInformation.getEmfStoreVersion();
-		targetEMFStoreVersion = EmfStoreImpl.getModelVersion();
+		Version sourceEMFStoreVersion = versionInformation.getEmfStoreVersion();
+		Version targetEMFStoreVersion = EmfStoreImpl.getModelVersion();
 		
 		Collections.sort(getUpdateSteps(), new Comparator<UpdateStep>(){
 				public int compare(UpdateStep arg0, UpdateStep arg1) {
@@ -117,22 +114,29 @@ public class UpdateController {
 				}
 		});
 		
+		UpdateStep previousUpdateStep = null;
 		
 		for (UpdateStep updateStep : getUpdateSteps()) {
+			// if target > emf store source 
 			if (updateStep.getTargetVersion().compareTo(sourceEMFStoreVersion) > 0) {
+				//if target < emf store target 
 				if (updateStep.getTargetVersion().compareTo(targetEMFStoreVersion) <= 0) {
 					if (updateStep instanceof ModelCleanupUpdateStep) {
-						String updateMessage = "Your model version is outdated!\n" 
-						+ "Please start the emf store version"
-						+ updateStep.getSourceVersion() 
-						+ "and perform all available "
-						+ "updates before loading the model with emf store version "
-						+ updateStep.getTargetVersion()
-						+ ".";
-						
+						StringBuilder stringBuilder = new StringBuilder();
+						stringBuilder.append("Your model version is outdated!\n" 
+						+ "Please start the emf store version");
+						stringBuilder.append(updateStep.getSourceVersion());
+						stringBuilder.append("and perform all available ");
+						stringBuilder.append("updates before loading the model with emf store version ");
+						stringBuilder.append(updateStep.getTargetVersion());
+						stringBuilder.append(".");
+						String updateMessage = stringBuilder.toString();
 						System.out.println(updateMessage);
+						throw new FatalEmfStoreException(updateMessage);
 					}else{
+						checkForMissingSteps(previousUpdateStep, updateStep);
 						getNecessaryUpdateSteps().add(updateStep);
+						previousUpdateStep=updateStep;
 					}
 				}
 			}
@@ -156,7 +160,7 @@ public class UpdateController {
 		versionInformation.setEmfStoreVersion(EmfStoreImpl.getModelVersion());
 		
 		try {
-			EList<Resource> resources = resource.getResourceSet().getResources();
+			EList<Resource> resources = serverSpace.eResource().getResourceSet().getResources();
 			for (Resource currentResource : resources) {
 				currentResource.save(null);
 			}
@@ -166,25 +170,18 @@ public class UpdateController {
 		}
 	}
 
-	private ServerSpace getServerSpace(EList<EObject> contents) {
-		ServerSpace serverSpace = null;
-		for (EObject content : contents) {
-			if (content instanceof ServerSpace) {
-				serverSpace = (ServerSpace) content;
-				break;
+	private void checkForMissingSteps(UpdateStep previousUpdateStep, UpdateStep updateStep) {
+		if (previousUpdateStep!=null && !previousUpdateStep.getSourceVersion().equals(updateStep.getSourceVersion())) {
+			if (previousUpdateStep.getTargetVersion().equals(updateStep.getSourceVersion())) {
+				StringBuilder stringBuilder = new StringBuilder();
+				stringBuilder.append("Explicit update step from ");
+				stringBuilder.append(previousUpdateStep.getTargetVersion());
+				stringBuilder.append(" to ");
+				stringBuilder.append(updateStep.getSourceVersion());
+				stringBuilder.append(" is missing!");
+				LOGGER.warn(stringBuilder.toString());
 			}
 		}
-		return serverSpace;
 	}
 
-	private VersionInfo getVersionInformation(EList<EObject> contents) {
-		VersionInfo versionInformation = null;
-		for (EObject content : contents) {
-			if (content instanceof VersionInfo) {
-				versionInformation = (VersionInfo) content;
-				break;
-			}	
-		}
-		return versionInformation;
-	}
 }
