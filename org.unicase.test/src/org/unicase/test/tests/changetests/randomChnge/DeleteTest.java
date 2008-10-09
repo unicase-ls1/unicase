@@ -1,5 +1,6 @@
-package org.unicase.test.tests.changetests.randomChange;
+package org.unicase.test.tests.changetests.randomChnge;
 
+import java.io.File;
 import java.util.List;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -7,8 +8,9 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.ModelElement;
 import org.unicase.test.lib.TestCase;
+import org.unicase.test.tests.changetests.ChangeTestHelper;
 
-public class DeleteTest extends TestCase {
+public class DeleteTest extends RandomChangeTestCase {
 
 	public DeleteTest(String testName, long randomSeed) {
 		super(testName, randomSeed);
@@ -16,6 +18,7 @@ public class DeleteTest extends TestCase {
 	}
 
 	public void runTest() {
+		
 		System.out.println("getting list of all model elements in project...");
 		List<ModelElement> modelElements = getTestProject()
 				.getAllModelElements();
