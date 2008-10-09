@@ -6,47 +6,35 @@ import java.util.List;
 public abstract class TestSuite {
 
 	List<TestCase> testcases;
-	//private static Log logger = LogFactory.getLog(ChangeTest.class);
-	
 
 	public TestSuite() {
 		testcases = new ArrayList<TestCase>();
 	}
 
 	public void runTest() {
-		initialize();
+		initTestSuite();
 		initTestCases();
 		for (TestCase testCase : testcases) {
-			//logger.info("Running " + testCase.getTestName() + " test...");
-			System.out.println("Running " + testCase.getTestName() + " test...");
+			System.out.println("Running TestCase: " + testCase.getTestName());
 			testCase.runTest();
-			
-			compare(testCase.getTestName());
+			endTestCase();
 		}
-
-		//end();		
-
+		endTestSuite();
 	}
 
-	
-	public void initialize() {   };
-	
-	public void end() {   };
-	
-	public void compare(String testName) {  };
+	public void initTestSuite() {
+	}
 
+	public void endTestCase() {
+	}
 
+	public void endTestSuite() {
+	}
 
 	public void initTestCases() {
 	}
 
-	
 	public List<TestCase> getTestCases() {
 		return testcases;
 	}
-
-	
-//	public static Log getLogger() {
-//		return logger;
-//	}
 }
