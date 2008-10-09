@@ -8,11 +8,16 @@ package org.unicase.ui.stem.views.dialogs;
 
 import java.util.ArrayList;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
+import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
@@ -22,6 +27,7 @@ import org.eclipse.swt.widgets.Text;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.ui.stem.Activator;
 import org.unicase.ui.stem.views.ChangesTreeComposite;
+import org.unicase.workspace.WorkspaceManager;
 
 /**.
  * This class shows a ChangesTreeComposite and a Text control to enter
@@ -36,6 +42,7 @@ public class CommitDialog extends TitleAreaDialog {
 	private Text txtLogMsg;
 	private String logMsg = "";
 	private ChangePackage changes;
+	private EList<String> oldLogMessages;
 
 	/**
 	 * Constructor.
@@ -69,8 +76,28 @@ public class CommitDialog extends TitleAreaDialog {
 		lblLogMsg.setText("Log message:");
 		
 		txtLogMsg = new Text(contents, SWT.MULTI | SWT.LEAD | SWT.BORDER);
-		txtLogMsg.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
+		GridDataFactory.fillDefaults().grab(true,false).span(2, 1).
+		align(SWT.FILL, SWT.TOP).hint(1, 150).applyTo(txtLogMsg);
 		txtLogMsg.setText("");
+		
+		//previous log messages
+		Label oldLabel = new Label(contents,SWT.NONE);
+		oldLabel.setText("Previous messages:");
+		final Combo oldMsg = new Combo(contents,SWT.READ_ONLY);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).grab(true, false).applyTo(oldMsg);
+		oldLogMessages = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getOldLogMessages();
+		oldMsg.setItems((String[]) oldLogMessages.toArray());
+		oldMsg.addSelectionListener(new SelectionListener(){
+
+			public void widgetDefaultSelected(SelectionEvent e) {
+				// nothing to do here
+			}
+
+			public void widgetSelected(SelectionEvent e) {
+				txtLogMsg.setText(oldMsg.getItem(oldMsg.getSelectionIndex()));
+			}
+			
+		});
 		
 		//ChangesTree	
 		ChangesTreeComposite changesTree = new ChangesTreeComposite(contents,
@@ -108,6 +135,7 @@ public class CommitDialog extends TitleAreaDialog {
 	@Override
 	protected void okPressed() {
 		logMsg = txtLogMsg.getText();
+		oldLogMessages.add(logMsg);
 		super.okPressed();
 	}
 	
