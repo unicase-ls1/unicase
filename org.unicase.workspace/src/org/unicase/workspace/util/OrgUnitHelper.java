@@ -22,29 +22,35 @@ import org.unicase.workspace.Workspace;
 
 /**
  * Helper for OrgUnit operations.
+ * 
  * @author helming
- *
+ * 
  */
 public final class OrgUnitHelper {
-	
+
 	private OrgUnitHelper() {
-		
+
 	}
-/**
- * Returns the current User in the project, whos logged in.
- * @param currentWorkspace the current workspace
- * @return The current user
- * @throws NoCurrentUserException  if there is no current user.
- */
-	public static User getCurrentUser(Workspace currentWorkspace) throws NoCurrentUserException {
+
+	/**
+	 * Returns the current User in the project, whos logged in.
+	 * 
+	 * @param currentWorkspace
+	 *            the current workspace
+	 * @return The current user
+	 * @throws NoCurrentUserException
+	 *             if there is no current user.
+	 */
+	public static User getCurrentUser(Workspace currentWorkspace)
+			throws NoCurrentUserException {
 		ProjectSpace activeProjectSpace = currentWorkspace
-		.getActiveProjectSpace();
-		if(activeProjectSpace==null){
+				.getActiveProjectSpace();
+		if (activeProjectSpace == null) {
 			throw new NoCurrentUserException();
 		}
-		//JH: handle non-existing usersession
+		// JH: handle non-existing usersession
 		Usersession currentUserSession = activeProjectSpace.getUsersession();
-		if(currentUserSession==null){
+		if (currentUserSession == null) {
 			throw new NoCurrentUserException();
 		}
 		EList<User> projectUsers = currentWorkspace.getActiveProjectSpace()
@@ -55,31 +61,37 @@ public final class OrgUnitHelper {
 		for (User currentUser : projectUsers) {
 			// FS how can I get the appropriate user from the current user
 			// session?
-			if (currentUser.getAcOrgId().equals(id)) {
-				return currentUser;
+			String acOrgId = currentUser.getAcOrgId();
+			if (acOrgId != null) {
+				if (acOrgId.equals(id)) {
+					return currentUser;
+				}
 			}
 		}
 		return null;
 	}
-/**
- * Gets the team of the user. Includes all groups he is member of, all members of this groups and himself.
- * @param user the user
- * @return his team
- */
+
+	/**
+	 * Gets the team of the user. Includes all groups he is member of, all
+	 * members of this groups and himself.
+	 * 
+	 * @param user
+	 *            the user
+	 * @return his team
+	 */
 	public static Set<OrgUnit> getTeam(User user) {
 		Set<OrgUnit> team = new HashSet<OrgUnit>();
-		if(user==null){
+		if (user == null) {
 			return team;
 		}
 		team.add(user);
 		List<Group> groupMemberships = user.getGroupMemberships();
-		for(Group group: groupMemberships){
+		for (Group group : groupMemberships) {
 			team.add(group);
 			team.addAll(group.getOrgUnits());
 		}
 		return team;
-		
-		
+
 	}
 
 }
