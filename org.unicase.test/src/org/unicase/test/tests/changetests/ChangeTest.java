@@ -4,7 +4,6 @@ import java.util.Calendar;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
@@ -35,11 +34,11 @@ public class ChangeTest extends TestSuite {
 		testSpace = ChangeTestHelper.createEmptyProjectSpace("test");
 		compareSpace = ChangeTestHelper.createEmptyProjectSpace("compare");
 		long randomSeed = Calendar.getInstance().getTimeInMillis();
+
 		Project project = new TestProjectGenerator(5, randomSeed, 3, 2, 5, 10).generateProject();
 		Project copiedProject = ModelUtil.clone(project);
 		testSpace.setProject(project);
 		compareSpace.setProject(copiedProject);
-		
 		
 		final WorkspaceImpl currentWorkspace = (WorkspaceImpl) WorkspaceManager
 				.getInstance().getCurrentWorkspace();
@@ -66,16 +65,7 @@ public class ChangeTest extends TestSuite {
 
 		//getLogger().info();
 		System.out.println("adding testcases");
-		
-		//RenameTest
-		RenameTest renameTest = new RenameTest("Rename", Calendar.getInstance().getTimeInMillis());
-		//reanmeTest.setParameters();
-		this.getTestCases().add(renameTest);
-		
-		
-		for(TestCase test : getTestCases()){
-			test.setTestProject(testSpace.getProject());
-		}
+		initTestCases();
 		
 		
 	}
@@ -83,6 +73,7 @@ public class ChangeTest extends TestSuite {
 	@Override
 	public void compare(String testName) {
 		// get changes(testProject)
+		System.out.println("extracting operations...");
 		final List<AbstractOperation> operations = testSpace.getOperations();
 		//getLogger().info( );
 		System.out.println(testName + " test did " + operations.size() + " operations");
@@ -127,9 +118,13 @@ public class ChangeTest extends TestSuite {
 	public void initTestCases() {
 		// add test cases
 		//getLogger().info("adding testcases");
+	
+		//RenameTest
+		//RenameTest renameTest = new RenameTest("Rename", Calendar.getInstance().getTimeInMillis());
+		//reanmeTest.setParameters();
 		
 		//DeleteTest
-		//DeleteTest deleteTest = new DeleteTest();
+		DeleteTest deleteTest = new DeleteTest("Delete",  Calendar.getInstance().getTimeInMillis());
 		//deleteTest.setParameters();
 		
 		//MoveTest
@@ -140,9 +135,16 @@ public class ChangeTest extends TestSuite {
 		//AddTest addTest = new AddTest();
 		//addTest.setParameters();
 		
-		//this.getTestCases().add(deleteTest);
+		this.getTestCases().add(deleteTest);
 		//this.getTestCases().add(moveTest);
 		//this.getTestCases().add(addTest);
+		//this.getTestCases().add(renameTest);
+		
+		
+		for(TestCase test : getTestCases()){
+			test.setTestProject(testSpace.getProject());
+		}
+		
 	}
 
 	
