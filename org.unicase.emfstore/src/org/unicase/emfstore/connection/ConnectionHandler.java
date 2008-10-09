@@ -6,8 +6,6 @@
  */
 package org.unicase.emfstore.connection;
 
-import org.unicase.emfstore.AdminEmfStore;
-import org.unicase.emfstore.EmfStore;
 import org.unicase.emfstore.EmfStoreInterface;
 import org.unicase.emfstore.accesscontrol.AuthenticationControl;
 import org.unicase.emfstore.exceptions.EmfStoreException;
@@ -31,8 +29,7 @@ public interface ConnectionHandler<T extends EmfStoreInterface> {
 	 * This method initializes the ConnectionHandler.
 	 * 
 	 * @param emfStore
-	 *            an implementation of a server interface. E.g {@link EmfStore}
-	 *            or {@link AdminEmfStore}
+	 *            an implementation of a server interface. 
 	 * @param accessControl
 	 *            an implementation of the {@link AuthenticationControl}
 	 * @throws FatalEmfStoreException
