@@ -229,6 +229,8 @@ public class PackageEditPart extends ShapeNodeEditPart {
 			BorderLayout layoutThis = new BorderLayout();
 			this.setLayoutManager(layoutThis);
 
+			this.setFill(false);
+			this.setFillXOR(true);
 			this.setOutline(false);
 			createContents();
 		}
@@ -240,9 +242,7 @@ public class PackageEditPart extends ShapeNodeEditPart {
 
 			RectangleFigure packageFigure_AuxTop0 = new RectangleFigure();
 			packageFigure_AuxTop0.setFill(false);
-			packageFigure_AuxTop0.setFillXOR(true);
 			packageFigure_AuxTop0.setOutline(false);
-			packageFigure_AuxTop0.setOutlineXOR(true);
 
 			this.add(packageFigure_AuxTop0, BorderLayout.TOP);
 

@@ -145,16 +145,16 @@
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
           name="PackageFigure"
-          outline="false">
+          outline="false"
+          fill="false"
+          xorFill="true">
         <layout
             xsi:type="gmfgraph:BorderLayout"/>
         <children
             xsi:type="gmfgraph:Rectangle"
             name="PackageFigure_AuxTop"
             outline="false"
-            fill="false"
-            xorFill="true"
-            xorOutline="true">
+            fill="false">
           <layoutData
               xsi:type="gmfgraph:BorderLayoutData"
               alignment="BEGINNING"

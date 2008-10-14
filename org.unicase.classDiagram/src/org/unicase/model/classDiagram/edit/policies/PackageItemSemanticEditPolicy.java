@@ -1,5 +1,6 @@
 package org.unicase.model.classDiagram.edit.policies;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
@@ -40,27 +41,45 @@ public class PackageItemSemanticEditPolicy
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
+	 * 
+	 * Generates the relationship and passes the diagram to the custom constructor
+	 * 
+	 * @param req
+	 * The request that triggered the command
+	 * @return
+	 * The created command
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
 		if (org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006 == req
 				.getElementType()) {
 			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.DependencyCreateCommand(
-					req, req.getSource(), req.getTarget()));
+					req, req.getSource(), req.getTarget(),
+					//custom code
+					(EObject) getHost().getModel()));
 		}
 		return null;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
+	 * 
+	 * Generates the relationship and passes the diagram to the custom constructor
+	 * 
+	 * @param req
+	 * The request that triggered the command
+	 * @return
+	 * The created command
 	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
 		if (org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006 == req
 				.getElementType()) {
 			return getGEFWrapper(new org.unicase.model.classDiagram.edit.commands.DependencyCreateCommand(
-					req, req.getSource(), req.getTarget()));
+					req, req.getSource(), req.getTarget(),
+					//custom code
+					(EObject) getHost().getModel()));
 		}
 		return null;
 	}
