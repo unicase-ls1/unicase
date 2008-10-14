@@ -107,7 +107,9 @@ public class GantChart {
 		TreeItem[] items = tree.getItems();
 		
 		
-		for ( int i=1; i <= items.length; i++) System.out.println(zahl);
+		for (TreeItem item : items) {
+			createItem(item);
+		}
 		
 		ganttComposite.setShowPlannedDates(true);
 		ganttComposite.setZoomLevel(10);
