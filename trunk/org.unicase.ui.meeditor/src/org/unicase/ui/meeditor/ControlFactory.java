@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.requirement.Step;
 import org.unicase.ui.meeditor.mecontrols.MEBoolControl;
 import org.unicase.ui.meeditor.mecontrols.MEControl;
@@ -100,6 +101,7 @@ public class ControlFactory {
 			IItemPropertyDescriptor itemPropertyDescriptor,
 			EStructuralFeature feature) {
 		//TODO: Add email control
+//		if(feature.getFeatureID()==OrganizationPackage.USER__EMAIL)
 		if (itemPropertyDescriptor.isMultiLine(modelElement)) {
 			return createMERichTextControl((EAttribute) feature);
 		}
