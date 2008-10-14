@@ -8,10 +8,13 @@ package org.unicase.emfstore.esmodel.accesscontrol.roles.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
@@ -31,7 +34,7 @@ import org.unicase.model.ModelElement;
  */
 public abstract class RoleImpl extends EObjectImpl implements Role {
 	/**
-	 * The cached value of the '{@link #getProjects() <em>Projects</em>}' reference list.
+	 * The cached value of the '{@link #getProjects() <em>Projects</em>}' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getProjects()
 	 * @generated
@@ -140,6 +143,22 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 */
 	public boolean canRead(ProjectId projectId, ModelElement modelElement) {
 		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case RolesPackage.ROLE__PROJECTS:
+			return ((InternalEList<?>) getProjects()).basicRemove(otherEnd,
+					msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

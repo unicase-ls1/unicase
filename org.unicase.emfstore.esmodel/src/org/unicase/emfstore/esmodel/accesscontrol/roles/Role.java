@@ -28,7 +28,7 @@ import org.unicase.model.ModelElement;
  */
 public interface Role extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Projects</b></em>' reference list.
+	 * Returns the value of the '<em><b>Projects</b></em>' containment reference list.
 	 * The list contents are of type {@link org.unicase.emfstore.esmodel.ProjectId}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -36,9 +36,9 @@ public interface Role extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Projects</em>' reference list.
+	 * @return the value of the '<em>Projects</em>' containment reference list.
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage#getRole_Projects()
-	 * @model keys="id"
+	 * @model containment="true" resolveProxies="true" keys="id"
 	 * @generated
 	 */
 	EList<ProjectId> getProjects();

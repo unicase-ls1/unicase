@@ -257,7 +257,7 @@
           <eParameters name="modelElement" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElement"/>
         </eOperations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="projects" upperBound="-1"
-            eType="#//ProjectId" eKeys="../../org.unicase.model/model/model.ecore#//UniqueIdentifier/id"/>
+            eType="#//ProjectId" containment="true" eKeys="../../org.unicase.model/model/model.ecore#//UniqueIdentifier/id"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ReaderRole" eSuperTypes="#//accesscontrol/roles/Role"/>
       <eClassifiers xsi:type="ecore:EClass" name="WriterRole" eSuperTypes="#//accesscontrol/roles/Role"/>
