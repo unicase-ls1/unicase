@@ -10,7 +10,9 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.unicase.emfstore.esmodel.ClientVersionInfo;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
 import org.unicase.emfstore.esmodel.ProjectHistory;
@@ -73,6 +75,13 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * @generated
 	 */
 	private EClass versionInfoEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass clientVersionInfoEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -339,6 +348,35 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getClientVersionInfo() {
+		return clientVersionInfoEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getClientVersionInfo_Version() {
+		return (EAttribute) clientVersionInfoEClass.getEStructuralFeatures()
+				.get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getClientVersionInfo_Name() {
+		return (EAttribute) clientVersionInfoEClass.getEStructuralFeatures()
+				.get(1);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -391,6 +429,10 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		versionInfoEClass = createEClass(VERSION_INFO);
 		createEAttribute(versionInfoEClass,
 				VERSION_INFO__EMF_STORE_VERSION_STRING);
+
+		clientVersionInfoEClass = createEClass(CLIENT_VERSION_INFO);
+		createEAttribute(clientVersionInfoEClass, CLIENT_VERSION_INFO__VERSION);
+		createEAttribute(clientVersionInfoEClass, CLIENT_VERSION_INFO__NAME);
 	}
 
 	/**
@@ -423,6 +465,8 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 				.getEPackage(AccesscontrolPackage.eNS_URI);
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE
 				.getEPackage(ModelPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
+				.getEPackage(EcorePackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theVersioningPackage);
@@ -517,6 +561,18 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 				.getEString(), "emfStoreVersionString", null, 0, 1,
 				VersionInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(clientVersionInfoEClass, ClientVersionInfo.class,
+				"ClientVersionInfo", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getClientVersionInfo_Version(), theEcorePackage
+				.getEString(), "version", null, 0, 1, ClientVersionInfo.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getClientVersionInfo_Name(), theEcorePackage
+				.getEString(), "name", null, 0, 1, ClientVersionInfo.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -32,6 +32,10 @@
     <genClasses ecoreClass="esmodel.ecore#//VersionInfo">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//VersionInfo/emfStoreVersionString"/>
     </genClasses>
+    <genClasses ecoreClass="esmodel.ecore#//ClientVersionInfo">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//ClientVersionInfo/version"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//ClientVersionInfo/name"/>
+    </genClasses>
     <nestedGenPackages prefix="Versioning" basePackage="org.unicase.emfstore.esmodel"
         disposableProviderFactory="true" ecorePackage="esmodel.ecore#//versioning">
       <genClasses ecoreClass="esmodel.ecore#//versioning/TagVersionSpec">

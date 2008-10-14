@@ -37,6 +37,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="emfStoreVersionString"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClientVersionInfo">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
   <eSubpackages name="versioning" nsURI="http://unicase.org/esmodel/versioning" nsPrefix="org.unicase.emfstore.esmodel.versioning">
     <eClassifiers xsi:type="ecore:EClass" name="TagVersionSpec" eSuperTypes="#//versioning/VersionSpec">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"

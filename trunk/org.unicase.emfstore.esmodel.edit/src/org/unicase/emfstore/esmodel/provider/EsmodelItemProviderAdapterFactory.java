@@ -218,6 +218,30 @@ public class EsmodelItemProviderAdapterFactory extends EsmodelAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.ClientVersionInfo} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ClientVersionInfoItemProvider clientVersionInfoItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.ClientVersionInfo}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createClientVersionInfoAdapter() {
+		if (clientVersionInfoItemProvider == null) {
+			clientVersionInfoItemProvider = new ClientVersionInfoItemProvider(
+					this);
+		}
+
+		return clientVersionInfoItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -327,6 +351,8 @@ public class EsmodelItemProviderAdapterFactory extends EsmodelAdapterFactory
 			projectIdItemProvider.dispose();
 		if (versionInfoItemProvider != null)
 			versionInfoItemProvider.dispose();
+		if (clientVersionInfoItemProvider != null)
+			clientVersionInfoItemProvider.dispose();
 	}
 
 }

@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.emfstore.esmodel.ClientVersionInfo;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
 import org.unicase.emfstore.esmodel.ProjectHistory;
@@ -74,6 +75,8 @@ public class EsmodelFactoryImpl extends EFactoryImpl implements EsmodelFactory {
 			return createProjectId();
 		case EsmodelPackage.VERSION_INFO:
 			return createVersionInfo();
+		case EsmodelPackage.CLIENT_VERSION_INFO:
+			return createClientVersionInfo();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName()
 					+ "' is not a valid classifier");
@@ -133,6 +136,16 @@ public class EsmodelFactoryImpl extends EFactoryImpl implements EsmodelFactory {
 	public VersionInfo createVersionInfo() {
 		VersionInfoImpl versionInfo = new VersionInfoImpl();
 		return versionInfo;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ClientVersionInfo createClientVersionInfo() {
+		ClientVersionInfoImpl clientVersionInfo = new ClientVersionInfoImpl();
+		return clientVersionInfo;
 	}
 
 	/**
