@@ -22,3 +22,4 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.transaction,
  org.eclipse.emf.ecore.xmi
 Bundle-ActivationPolicy: lazy
+Bundle-Activator: org.unicase.workspace.Activator

@@ -506,4 +506,9 @@ public interface ProjectSpace extends IdentifiableElement {
 	 */
 	void undoLastOperation();
 
+	/**
+	 * Add an event to the project space. Will be transfered to server on next commit.
+	 * @param event the event
+	 */
+	void addEvent(Event event);
 } // ProjectContainer
