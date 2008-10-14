@@ -31,9 +31,15 @@ import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
 
 /**
+ * A specific ColumnLabelProvider for the display of features of Checkable
+ * instances. For the {@link TaskPackage.Literals.CHECKABLE__CHECKED} feature,
+ * it returns images of CheckBoxes. For the
+ * {@link ModelPackage.Literals.MODEL_ELEMENT__NAME} feature, it uses a
+ * {@link DecoratingLabelProvider} to return a decorated image consisting of a
+ * symbol corresponding to the model element type and possible decorations.
  * 
- * @author schneidf
- * 
+ * @author Florian Schneider
+ * @author Jonas Helming
  */
 public class GenericColumnLabelProvider extends
 		org.eclipse.jface.viewers.ColumnLabelProvider {
@@ -43,6 +49,17 @@ public class GenericColumnLabelProvider extends
 	private static final String CHECKED_KEY = "CHECKED";
 	private static final String UNCHECK_KEY = "UNCHECKED";
 
+	/**
+	 * Creates a specific ColumnLabelProvider for the display of features of
+	 * Checkable instances.
+	 * 
+	 * @param viewer
+	 *            the viewer that uses this column provider for a specific
+	 *            column
+	 * @param feature
+	 *            the feature that this provider shall return a label for
+	 * 
+	 */
 	public GenericColumnLabelProvider(METableViewer viewer,
 			EStructuralFeature feature) {
 		super();
